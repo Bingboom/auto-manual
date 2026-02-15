@@ -1,0 +1,36 @@
+% ==================================================
+% components_base.tex
+% 通用组件 / 通用排版规则（可复用）
+% ==================================================
+
+% --- list base ---
+\setlist[itemize]{
+  leftmargin=*,
+  itemsep=1.5mm,
+  topsep=0mm,
+  parsep=0mm
+}
+
+% --- table base: inner rules >= 0.2pt ---
+\arrayrulewidth=0.2pt
+\setlength{\tabcolsep}{3.5pt}
+
+% Outer border wrapper (>=0.4pt)
+\newtcolorbox{tableframe}{
+  enhanced,
+  colback=white,
+  colframe=LineK40,
+  arc=2mm,
+  boxrule=0.4pt,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+% NOTE box (K5% gray background)
+\newtcolorbox{notebox}{
+  enhanced,
+  colback=BgK05,
+  colframe=BgK05,
+  arc=2mm,
+  boxrule=0pt,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+}

@@ -1,0 +1,13 @@
+\usepackage{geometry}
+\geometry{
+  paperwidth=130mm,
+  paperheight=185mm,
+  left=10mm,right=10mm,top=10mm,bottom=10mm
+}
+
+\usepackage{fancyhdr}
+\fancyhf{}
+\pagestyle{fancy}
+\fancyfoot[L]{\fontsize{6pt}{7.2pt}\selectfont\ifnum\value{page}<10 0\fi\arabic{page}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
