@@ -7,7 +7,7 @@ brand_title_vspace_after,0,mm,space after title pill (tcolorbox after skip)
 ,,,
 warn_box_arc,2.0,mm,warning box corner radius
 warn_box_rule,0.55,pt,warning box border width
-warn_box_pad_lr,-3.5,mm,warning box left/right padding
+warn_box_pad_lr,-2,mm,warning box left/right padding
 warn_box_pad_tb,-1,mm,warning box top/bottom padding
 warn_box_before,0.5,mm,space before warning box
 warn_box_after,1.2,mm,space after warning box
@@ -18,7 +18,7 @@ warn_icon_excl_size,9.6,pt,exclamation font size
 warn_icon_excl_y,0.43,em,exclamation y position
 ,,,
 warn_col_icon,13,mm,tabular col width for icon
-warn_col_label,6,mm,tabular col width for WARNING label
+warn_col_label,8,mm,tabular col width for WARNING label
 warn_label_size,10,pt,WARNING label font size
 warn_label_leading,3,pt,WARNING label leading
 warn_text_size,7,pt,right warning text font size
@@ -47,7 +47,7 @@ list_topsep,0,mm,itemize topsep
 list_parsep,0,mm,itemize parsep
 list_partopsep,0,mm,itemize partopsep
 list_bullet_raise,0.15,ex,bullet raise
-list_bullet_symbol,\small\textbullet,none,bullet symbol tex
+list_bullet_symbol,\tiny\textbullet,none,bullet symbol tex
 ,,,
 table_inner_rule,0.2,pt,table inner rule width
 table_tabcolsep,3.5,pt,table tabcolsep
@@ -55,11 +55,11 @@ table_outer_arc,2,mm,table outer corner radius
 table_outer_rule,0.4,pt,table outer rule width
 ,,,
 note_arc,2,mm,note box corner radius
-note_pad_lr,3,mm,note left/right padding
+note_pad_lr,1,mm,note left/right padding
 note_pad_tb,2.5,mm,note top/bottom padding
 section_after_fix,-2,mm,negative spacing after section to cancel sphinx glue
 warn_box_width,1,ratio,warning box width ratio of \textwidth
-warn_lockup_height,6,mm,height of warning lockup image
+warn_lockup_height,7,mm,height of warning lockup image
 warn_lockup_trim,300pt 20pt 360pt 20pt,none,trim left bottom right top
 warn_lockup_gap,2,mm,gap between lockup and right text
 warn_lockup_width,36,mm,width reserved for lockup block

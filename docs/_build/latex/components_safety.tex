@@ -130,6 +130,12 @@
   \par\noindent
 }
 
+% lead sentence = same metrics as list, just bold, no bullet
+\newcommand{\safetylead}[1]{%
+  {\bfseries
+   \fontsize{\csname HBtwocol_font_size\endcsname}{\csname HBtwocol_font_leading\endcsname}\selectfont
+   #1}\vspace{0.6mm}%
+}
 
 
 \titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}

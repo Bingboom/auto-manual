@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  15 FEB 2026 23:25
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  16 FEB 2026 00:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1419,14 +1419,14 @@ fd)))
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
 * h-part:(L,W,R)=(28.45274pt, 312.98033pt, 28.45274pt)
-* v-part:(T,H,B)=(28.45274pt, 469.47049pt, 28.45274pt)
+* v-part:(T,H,B)=(2.84526pt, 495.07797pt, 28.45274pt)
 * \paperwidth=369.88582pt
 * \paperheight=526.37598pt
 * \textwidth=312.98033pt
-* \textheight=469.47049pt
+* \textheight=495.07797pt
 * \oddsidemargin=-43.81725pt
 * \evensidemargin=-43.81725pt
-* \topmargin=-80.81725pt
+* \topmargin=-106.42473pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1465,17 +1465,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: warning_lockup.png Graphic file (type bmp)
 <warning_lockup.png>
 
-Overfull \vbox (12.94742pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (5.54742pt too high) has occurred while \output is active []
-
 
 [1
 
-] (./safety_demo.ind)
-
-[2] (./safety_demo.aux)
+] (./safety_demo.ind) (./safety_demo.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1484,12 +1477,12 @@ Package rerunfilecheck Info: File `safety_demo.out' has not changed.
 (rerunfilecheck)             Checksum: EC1B33D82F71134F6D29AB11C1C0722F;190.
  ) 
 Here is how much of TeX's memory you used:
- 36633 strings out of 473832
- 779332 string characters out of 5729482
- 1270530 words of memory out of 5000000
- 59001 multiletter control sequences out of 15000+600000
+ 36634 strings out of 473832
+ 779349 string characters out of 5729482
+ 1263593 words of memory out of 5000000
+ 59002 multiletter control sequences out of 15000+600000
  561224 words of font info for 86 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  103i,12n,104p,1200b,844s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on safety_demo.xdv (2 pages, 52964 bytes).
+Output written on safety_demo.xdv (1 page, 52592 bytes).

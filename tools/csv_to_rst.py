@@ -12,6 +12,7 @@ CSV_PATH = ROOT / "data" / "safety_items.csv"
 TEMPLATE_PATH = ROOT / "docs" / "templates" / "safety_template.rst"
 OUT_RST_PATH = ROOT / "docs" / "safety.rst"
 
+PLACEHOLDER_LEAD = "{{ safety_lead }}"
 PLACEHOLDER_TOP = "{{ safety_top_items }}"
 PLACEHOLDER_BOTTOM = "{{ safety_bottom_items }}"
 
@@ -31,46 +32,56 @@ def load_rows() -> list[dict[str, str]]:
         for col in ("part", "text"):
             if col not in reader.fieldnames:
                 die(f"CSV missing required column: {col}")
-        return [{k: (v or "").strip() for k, v in row.items()} for row in reader]
+
+        rows: list[dict[str, str]] = []
+        for row in reader:
+            clean: dict[str, str] = {}
+            for k, v in row.items():
+                # DictReader 正常给 str；但为了容错，统一转成 str
+                clean[k] = ("" if v is None else str(v)).strip()
+            rows.append(clean)
+        return rows
 
 
 def rst_escape(s: str) -> str:
+    # 只做轻量清洗：NBSP -> space
     return s.replace("\u00a0", " ").strip()
 
 
 def render_bullet(text: str) -> str:
     """
-    Support '\n' in CSV to create nested sub-bullets.
-    Example:
-      "Line1\n- sub1\n- sub2"
-    We treat '\n' as actual newline.
-    If a line starts with '- ' we render it as nested bullet under the parent.
+    Support real newline in CSV cell to create nested sub-lines.
+    - First line => "- xxx"
+    - Following lines:
+        "- sub" => "  - sub"
+        else   => "  continuation"
     """
     text = rst_escape(text)
-    parts = text.split("\\n")
-    head = parts[0].strip()
+    parts = text.splitlines()
+    if not parts:
+        return ""
 
+    head = parts[0].strip()
     lines = [f"- {head}"]
-    if len(parts) > 1:
-        for p in parts[1:]:
-            p = p.strip()
-            if not p:
-                continue
-            # allow author to write "- xxx" in CSV; we keep it as nested bullet
-            if p.startswith("- "):
-                lines.append(f"  {p}")  # nested bullet needs 2-space indent
-            else:
-                # fallback: treat as continuation paragraph under same bullet
-                lines.append(f"  {p}")
+
+    for p in parts[1:]:
+        p = p.rstrip()
+        if not p.strip():
+            continue
+        if p.lstrip().startswith("- "):
+            # keep nested bullet
+            lines.append("  " + p.lstrip())
+        else:
+            lines.append("  " + p.strip())
     return "\n".join(lines)
 
 
 def build_block(rows: list[dict[str, str]], part: str) -> str:
-    items = []
+    items: list[str] = []
     for r in rows:
         if (r.get("part") or "").lower() != part:
             continue
-        text = (r.get("text") or "").strip()
+        text = rst_escape(r.get("text") or "")
         if not text:
             continue
         items.append(render_bullet(text))
@@ -80,19 +91,51 @@ def build_block(rows: list[dict[str, str]], part: str) -> str:
     return "\n".join(items)
 
 
+def build_lead(rows: list[dict[str, str]]) -> str:
+    # 找 part=lead（允许多行，但只取第一条非空）
+    lead_text = ""
+    for r in rows:
+        if (r.get("part") or "").lower() == "lead":
+            lead_text = rst_escape(r.get("text") or "")
+            if lead_text:
+                break
+
+    if not lead_text:
+        die("Missing lead text: add a CSV row with part=lead.")
+
+    # 输出 raw latex，调用 \safetylead{...}
+    # 注意：这里不要用 ** **，完全走你 LaTeX 里定义的样式
+    return "\n".join([
+        ".. raw:: latex",
+        "",
+        f"   \\safetylead{{{lead_text}}}",
+        "",
+    ])
+
+
 def main() -> None:
     if not TEMPLATE_PATH.exists():
         die(f"Template not found: {TEMPLATE_PATH}")
 
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
-    if PLACEHOLDER_TOP not in template or PLACEHOLDER_BOTTOM not in template:
-        die(f"Template must contain placeholders: {PLACEHOLDER_TOP} and {PLACEHOLDER_BOTTOM}")
+
+    for ph in (PLACEHOLDER_LEAD, PLACEHOLDER_TOP, PLACEHOLDER_BOTTOM):
+        if ph not in template:
+            die(f"Template must contain placeholder: {ph}")
 
     rows = load_rows()
+
+    lead_block = build_lead(rows)
     top_block = build_block(rows, "top")
     bottom_block = build_block(rows, "bottom")
 
-    out = template.replace(PLACEHOLDER_TOP, top_block).replace(PLACEHOLDER_BOTTOM, bottom_block)
+    out = (
+        template
+        .replace(PLACEHOLDER_LEAD, lead_block)
+        .replace(PLACEHOLDER_TOP, top_block)
+        .replace(PLACEHOLDER_BOTTOM, bottom_block)
+    )
+
     OUT_RST_PATH.write_text(out, encoding="utf-8")
     print(f"[csv_to_rst] Wrote: {OUT_RST_PATH}")
 
