@@ -6,8 +6,7 @@ IMPORTANT SAFETY INFORMATION
 
 .. raw:: latex
 
-   \safetywarning{WARNING}{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
-
+   \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
 
 **Always follow these basic precautions when using this product.**
 

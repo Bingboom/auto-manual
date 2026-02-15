@@ -1,14 +1,14 @@
 key,value,unit,comment
 brand_title_arc,2.6,mm,H1 pill corner radius
-brand_title_pad_lr,7,mm,H1 pill left/right padding
+brand_title_pad_lr,1,mm,H1 pill left/right padding
 brand_title_pad_tb,1.8,mm,H1 pill top/bottom padding
 brand_title_width,1,ratio,H1 pill width ratio of \textwidth
 brand_title_vspace_after,0,mm,space after title pill (tcolorbox after skip)
 ,,,
 warn_box_arc,2.0,mm,warning box corner radius
 warn_box_rule,0.55,pt,warning box border width
-warn_box_pad_lr,0.5,mm,warning box left/right padding
-warn_box_pad_tb,0.5,mm,warning box top/bottom padding
+warn_box_pad_lr,-3.5,mm,warning box left/right padding
+warn_box_pad_tb,-1,mm,warning box top/bottom padding
 warn_box_before,0.5,mm,space before warning box
 warn_box_after,1.2,mm,space after warning box
 warn_icon_round,0.12,em,warn icon rounded corners
@@ -18,14 +18,14 @@ warn_icon_excl_size,9.6,pt,exclamation font size
 warn_icon_excl_y,0.43,em,exclamation y position
 ,,,
 warn_col_icon,13,mm,tabular col width for icon
-warn_col_label,8,mm,tabular col width for WARNING label
+warn_col_label,6,mm,tabular col width for WARNING label
 warn_label_size,10,pt,WARNING label font size
-warn_label_leading,5,pt,WARNING label leading
+warn_label_leading,3,pt,WARNING label leading
 warn_text_size,7,pt,right warning text font size
-warn_text_leading,5,pt,right warning text leading
+warn_text_leading,3,pt,right warning text leading
 ,,,
 subbar_arc,2.4,mm,operating bar corner radius
-subbar_pad_lr,4,mm,operating bar left/right padding
+subbar_pad_lr,1,mm,operating bar left/right padding
 subbar_pad_tb,1.8,mm,operating bar top/bottom padding
 subbar_vspace_after,2,mm,space after operating bar
 ,,,
@@ -47,7 +47,7 @@ list_topsep,0,mm,itemize topsep
 list_parsep,0,mm,itemize parsep
 list_partopsep,0,mm,itemize partopsep
 list_bullet_raise,0.15,ex,bullet raise
-list_bullet_symbol,\tiny\textbullet,none,bullet symbol tex
+list_bullet_symbol,\small\textbullet,none,bullet symbol tex
 ,,,
 table_inner_rule,0.2,pt,table inner rule width
 table_tabcolsep,3.5,pt,table tabcolsep
@@ -59,7 +59,7 @@ note_pad_lr,3,mm,note left/right padding
 note_pad_tb,2.5,mm,note top/bottom padding
 section_after_fix,-2,mm,negative spacing after section to cancel sphinx glue
 warn_box_width,1,ratio,warning box width ratio of \textwidth
-warn_lockup_height,8,mm,height of warning lockup image
-warn_lockup_trim,260pt 20pt 360pt 20pt,none,trim left bottom right top
+warn_lockup_height,6,mm,height of warning lockup image
+warn_lockup_trim,300pt 20pt 360pt 20pt,none,trim left bottom right top
 warn_lockup_gap,2,mm,gap between lockup and right text
 warn_lockup_width,36,mm,width reserved for lockup block
