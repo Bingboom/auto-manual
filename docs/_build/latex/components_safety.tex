@@ -1,88 +1,115 @@
 % ==================================================
 % components_safety.tex
 % 安全页专用组件（WARNING / subbar / two-col）
+% Parameter access:
+%   \csname HB<key>\endcsname
 % ==================================================
 
-% ---------- Warning triangle icon ----------
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+
+% --------------------------------------------------
+% WARNING icon (TikZ) - parameterized
+% --------------------------------------------------
 \newcommand{\warnicon}{%
-\begin{tikzpicture}[scale=1.1,baseline=-0.2em]
-\draw[fill=BrandDark,draw=BrandDark] (0,0)--(1,0)--(0.5,0.866)--cycle;
-\node[color=white,font=\bfseries\fontsize{7pt}{7pt}\selectfont] at (0.5,0.35) {!};
+\begin{tikzpicture}[x=1em,y=1em,baseline=-0.25em,scale=\csname HBwarn_icon_scale\endcsname]
+  \path[fill=BrandDark,draw=BrandDark,rounded corners=\csname HBwarn_icon_round\endcsname]
+    (0.00,0.00) -- (\csname HBwarn_icon_w\endcsname,0.00) --
+    (0.5*\csname HBwarn_icon_w\endcsname,\csname HBwarn_icon_h\endcsname) -- cycle;
+  \node[color=white,font=\bfseries\fontsize{\csname HBwarn_icon_excl_size\endcsname}{\csname HBwarn_icon_excl_size\endcsname}\selectfont]
+    at (0.5*\csname HBwarn_icon_w\endcsname,\csname HBwarn_icon_excl_y\endcsname) {!};
 \end{tikzpicture}%
 }
 
-% ---------- Warning box ----------
+% --------------------------------------------------
+% WARNING box - parameterized
+% --------------------------------------------------
 \newtcolorbox{safetywarningbox}{
   enhanced,
   colback=white,
   colframe=LineK40,
-  arc=2mm,
-  boxrule=0.6pt,
-  left=3mm,right=3mm,top=2mm,bottom=2mm,
-  before skip=0mm, after skip=3mm,
+  arc=\csname HBwarn_box_arc\endcsname,
+  boxrule=\csname HBwarn_box_rule\endcsname,
+  left=\csname HBwarn_box_pad_lr\endcsname,
+  right=\csname HBwarn_box_pad_lr\endcsname,
+  top=\csname HBwarn_box_pad_tb\endcsname,
+  bottom=\csname HBwarn_box_pad_tb\endcsname,
+  before skip=\csname HBwarn_box_before\endcsname,
+  after skip=\csname HBwarn_box_after\endcsname,
 }
 
+% --------------------------------------------------
+% WARNING layout - parameterized
+% --------------------------------------------------
 \newcommand{\safetywarning}[2]{%
 \begin{safetywarningbox}
-\begin{tabularx}{\textwidth}{@{}l l X@{}}
-{\warnicon} &
-{\bfseries\fontsize{9pt}{10.8pt}\selectfont #1} &
-{\bfseries\fontsize{6.5pt}{7.8pt}\selectfont\MakeUppercase{#2}}
-\end{tabularx}
+  \setlength{\tabcolsep}{0pt}
+  \renewcommand{\arraystretch}{1.0}
+  \begin{tabularx}{\textwidth}{@{}p{\csname HBwarn_col_icon\endcsname} p{\csname HBwarn_col_label\endcsname} X@{}}
+    \raggedright\warnicon &
+    \raggedright{\bfseries\fontsize{10pt}{12pt}\selectfont #1} &
+    \raggedright{\bfseries\fontsize{\csname HBwarn_text_size\endcsname}{7.8pt}\selectfont\MakeUppercase{#2}}
+  \end{tabularx}
 \end{safetywarningbox}
 }
 
-% ---------- OPERATING INSTRUCTIONS pill bar ----------
+% --------------------------------------------------
+% OPERATING INSTRUCTIONS pill bar - parameterized
+% --------------------------------------------------
 \newcommand{\safetysubbar}[1]{%
   \begin{tcolorbox}[
     colback=BrandDark,
     colframe=BrandDark,
-    arc=3mm,
-    left=5mm,right=5mm,top=2.2mm,bottom=2.2mm,
+    arc=\csname HBsubbar_arc\endcsname,
+    left=\csname HBsubbar_pad_lr\endcsname,
+    right=\csname HBsubbar_pad_lr\endcsname,
+    top=\csname HBsubbar_pad_tb\endcsname,
+    bottom=\csname HBsubbar_pad_tb\endcsname,
     boxrule=0pt,
     width=\textwidth
   ]
   {\color{white}\bfseries\fontsize{9pt}{10.8pt}\selectfont\MakeUppercase{#1}}
   \end{tcolorbox}
-  \vspace{2mm}
+  \vspace{\csname HBsubbar_vspace_after\endcsname}
 }
 
-% ---------- Two-column list env ----------
-\setlength{\columnsep}{12mm}
+% --------------------------------------------------
+% Two-column list env - parameterized
+% --------------------------------------------------
+\setlength{\columnsep}{\csname HBtwocol_sep\endcsname}
 \newenvironment{safetytwocol}{%
   \begin{multicols}{2}
-  \fontsize{6.5pt}{7.8pt}\selectfont
+  \fontsize{\csname HBtwocol_font_size\endcsname}{\csname HBtwocol_font_leading\endcsname}\selectfont
 }{%
   \end{multicols}
 }
 
-% ---------- Section pill bar (stable, no begin/end env) ----------
-\usepackage{titlesec}
-\usepackage[most]{tcolorbox}
+% --------------------------------------------------
+% Section title pill (IMPORTANT SAFETY INFORMATION) - parameterized
+% brand_title_width is ratio (e.g., 0.86)
+% --------------------------------------------------
+\providecommand{\hbsectiontitle}[1]{#1}
 
-% "pill" box as a command (NOT an environment) => avoids Missing } errors
-\newtcbox{\hbsectionbox}{%
-  enhanced,
-  on line,
-  colback=BrandDark,
-  colframe=BrandDark,
-  arc=3mm,
-  boxrule=0pt,
-  left=5mm,right=5mm,top=2.2mm,bottom=2.2mm,
-  width=\linewidth
+\renewcommand{\hbsectiontitle}[1]{%
+  \par\noindent
+  \hspace*{-\leftskip}% 关键：抵消当前环境左缩进（Sphinx 标题常有）
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBbrand_title_arc\endcsname,
+    boxrule=0pt,
+    left=\csname HBbrand_title_pad_lr\endcsname,
+    right=\csname HBbrand_title_pad_lr\endcsname,
+    top=\csname HBbrand_title_pad_tb\endcsname,
+    bottom=\csname HBbrand_title_pad_tb\endcsname,
+    width=\textwidth % 关键：用版心宽，不用 linewidth
+  ]
+
+  {\color{white}\bfseries\fontsize{9pt}{10.8pt}\selectfont\MakeUppercase{#1}}
+  \end{tcolorbox}
+  \vspace{\csname HBbrand_title_vspace_after\endcsname}
 }
 
-\newcommand{\hbsectiontitle}[1]{%
-  \hbsectionbox{%
-    \color{white}\bfseries\fontsize{9pt}{10.8pt}\selectfont\MakeUppercase{#1}%
-  }%
-}
-
-% Apply to \section
 \titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
-\titlespacing*{\section}{0pt}{0pt}{3mm}
-
-% Remove section numbering (remove "1 ")
+\titlespacing*{\section}{0pt}{0pt}{0pt}
 \setcounter{secnumdepth}{0}
-
-
