@@ -7,8 +7,8 @@ brand_title_vspace_after,0,mm,space after title pill (tcolorbox after skip)
 ,,,
 warn_box_arc,2.0,mm,warning box corner radius
 warn_box_rule,0.55,pt,warning box border width
-warn_box_pad_lr,3.2,mm,warning box left/right padding
-warn_box_pad_tb,1,mm,warning box top/bottom padding
+warn_box_pad_lr,0.5,mm,warning box left/right padding
+warn_box_pad_tb,0.5,mm,warning box top/bottom padding
 warn_box_before,0.5,mm,space before warning box
 warn_box_after,1.2,mm,space after warning box
 warn_icon_round,0.12,em,warn icon rounded corners
@@ -20,9 +20,9 @@ warn_icon_excl_y,0.43,em,exclamation y position
 warn_col_icon,13,mm,tabular col width for icon
 warn_col_label,8,mm,tabular col width for WARNING label
 warn_label_size,10,pt,WARNING label font size
-warn_label_leading,10.6,pt,WARNING label leading
+warn_label_leading,5,pt,WARNING label leading
 warn_text_size,7,pt,right warning text font size
-warn_text_leading,6,pt,right warning text leading
+warn_text_leading,5,pt,right warning text leading
 ,,,
 subbar_arc,2.4,mm,operating bar corner radius
 subbar_pad_lr,4,mm,operating bar left/right padding
@@ -59,7 +59,7 @@ note_pad_lr,3,mm,note left/right padding
 note_pad_tb,2.5,mm,note top/bottom padding
 section_after_fix,-2,mm,negative spacing after section to cancel sphinx glue
 warn_box_width,1,ratio,warning box width ratio of \textwidth
-warn_lockup_height,8.5,mm,height of warning lockup image
-warn_lockup_trim,200pt 20pt 360pt 20pt,none,trim left bottom right top
-warn_lockup_gap,0,mm,gap between lockup and right text
-warn_lockup_width,45,mm,width reserved for lockup block
+warn_lockup_height,8,mm,height of warning lockup image
+warn_lockup_trim,260pt 20pt 360pt 20pt,none,trim left bottom right top
+warn_lockup_gap,2,mm,gap between lockup and right text
+warn_lockup_width,36,mm,width reserved for lockup block
