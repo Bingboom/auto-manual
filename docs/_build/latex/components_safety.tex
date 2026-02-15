@@ -1,8 +1,7 @@
 % ==================================================
 % components_safety.tex
-% 安全页专用组件（WARNING / subbar / two-col）
-% Parameter access:
-%   \csname HB<key>\endcsname
+% 安全页专用组件（WARNING / subbar / two-col / section title）
+% Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
 \usepackage{titlesec}
@@ -47,8 +46,8 @@
   \renewcommand{\arraystretch}{1.0}
   \begin{tabularx}{\textwidth}{@{}p{\csname HBwarn_col_icon\endcsname} p{\csname HBwarn_col_label\endcsname} X@{}}
     \raggedright\warnicon &
-    \raggedright{\bfseries\fontsize{10pt}{12pt}\selectfont #1} &
-    \raggedright{\bfseries\fontsize{\csname HBwarn_text_size\endcsname}{7.8pt}\selectfont\MakeUppercase{#2}}
+    \raggedright{\bfseries\fontsize{\csname HBwarn_label_size\endcsname}{\csname HBwarn_label_leading\endcsname}\selectfont #1} &
+    \raggedright{\bfseries\fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont\MakeUppercase{#2}}
   \end{tabularx}
 \end{safetywarningbox}
 }
@@ -68,7 +67,7 @@
     boxrule=0pt,
     width=\textwidth
   ]
-  {\color{white}\bfseries\fontsize{9pt}{10.8pt}\selectfont\MakeUppercase{#1}}
+  {\color{white}\bfseries\fontsize{\csname HBtitle_font_size\endcsname}{\csname HBtitle_font_leading\endcsname}\selectfont\MakeUppercase{#1}}
   \end{tcolorbox}
   \vspace{\csname HBsubbar_vspace_after\endcsname}
 }
@@ -86,13 +85,13 @@
 
 % --------------------------------------------------
 % Section title pill (IMPORTANT SAFETY INFORMATION) - parameterized
-% brand_title_width is ratio (e.g., 0.86)
+% NOTE: use \textwidth to avoid Sphinx heading indent surprises
 % --------------------------------------------------
 \providecommand{\hbsectiontitle}[1]{#1}
 
 \renewcommand{\hbsectiontitle}[1]{%
   \par\noindent
-  \hspace*{-\leftskip}% 关键：抵消当前环境左缩进（Sphinx 标题常有）
+  \hspace*{-\leftskip}%
   \begin{tcolorbox}[
     colback=BrandDark,
     colframe=BrandDark,
@@ -102,14 +101,19 @@
     right=\csname HBbrand_title_pad_lr\endcsname,
     top=\csname HBbrand_title_pad_tb\endcsname,
     bottom=\csname HBbrand_title_pad_tb\endcsname,
-    width=\textwidth % 关键：用版心宽，不用 linewidth
+    width=\csname HBbrand_title_width\endcsname\textwidth,
+    before skip=0mm,
+    after skip=\csname HBbrand_title_vspace_after\endcsname
   ]
-
-  {\color{white}\bfseries\fontsize{9pt}{10.8pt}\selectfont\MakeUppercase{#1}}
-  \end{tcolorbox}
-  \vspace{\csname HBbrand_title_vspace_after\endcsname}
+  {\color{white}\bfseries
+   \fontsize{\csname HBtitle_font_size\endcsname}{\csname HBtitle_font_leading\endcsname}\selectfont
+   \MakeUppercase{#1}}
+  \end{tcolorbox}%
+  \par\noindent
 }
 
+
+
 \titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
-\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
 \setcounter{secnumdepth}{0}

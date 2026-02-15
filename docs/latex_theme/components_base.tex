@@ -1,28 +1,31 @@
 % ==================================================
 % components_base.tex
 % 通用组件 / 通用排版规则（可复用）
+% Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
 % --- list base ---
 \setlist[itemize]{
-  leftmargin=1.2em,
-  itemsep=1.1mm,
-  topsep=0mm,
-  parsep=0mm,
-  label=\raisebox{0.15ex}{\tiny\textbullet}
+  leftmargin=\csname HBlist_leftmargin\endcsname,
+  labelsep=\csname HBlist_labelsep\endcsname,
+  itemsep=\csname HBlist_itemsep\endcsname,
+  topsep=\csname HBlist_topsep\endcsname,
+  parsep=\csname HBlist_parsep\endcsname,
+  partopsep=\csname HBlist_partopsep\endcsname,
+  label=\raisebox{\csname HBlist_bullet_raise\endcsname}{\csname HBlist_bullet_symbol\endcsname}
 }
 
 % --- table base: inner rules >= 0.2pt ---
-\arrayrulewidth=0.2pt
-\setlength{\tabcolsep}{3.5pt}
+\arrayrulewidth=\csname HBtable_inner_rule\endcsname
+\setlength{\tabcolsep}{\csname HBtable_tabcolsep\endcsname}
 
 % Outer border wrapper (>=0.4pt)
 \newtcolorbox{tableframe}{
   enhanced,
   colback=white,
   colframe=LineK40,
-  arc=2mm,
-  boxrule=0.4pt,
+  arc=\csname HBtable_outer_arc\endcsname,
+  boxrule=\csname HBtable_outer_rule\endcsname,
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
@@ -33,7 +36,17 @@
   enhanced,
   colback=BgK05,
   colframe=BgK05,
-  arc=2mm,
+  arc=\csname HBnote_arc\endcsname,
   boxrule=0pt,
-  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  left=\csname HBnote_pad_lr\endcsname,
+  right=\csname HBnote_pad_lr\endcsname,
+  top=\csname HBnote_pad_tb\endcsname,
+  bottom=\csname HBnote_pad_tb\endcsname,
 }
+
+% Make rubric (subsubsection*) look like original: small + dark
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
+  {\csname HBrubric_before\endcsname}{\csname HBrubric_after\endcsname}%
+  {\bfseries\fontsize{\csname HBrubric_font_size\endcsname}{\csname HBrubric_font_leading\endcsname}\selectfont\color{black}}}
+\makeatother
