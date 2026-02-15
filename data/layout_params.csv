@@ -1,0 +1,33 @@
+key,value,unit,comment
+brand_title_arc,2.6,mm,H1 pill corner radius
+brand_title_pad_lr,7,mm,H1 pill left/right padding
+brand_title_pad_tb,1.8,mm,H1 pill top/bottom padding
+brand_title_width,0.86,ratio,H1 pill width ratio of \textwidth
+brand_title_vspace_after,1.8,mm,space after title pill
+
+warn_box_arc,2.0,mm,warning box corner radius
+warn_box_rule,0.55,pt,warning box border width
+warn_box_pad_lr,3.6,mm,warning box left/right padding
+warn_box_pad_tb,1.8,mm,warning box top/bottom padding
+warn_box_before,0.8,mm,space before warning box
+warn_box_after,2.0,mm,space after warning box
+
+warn_icon_scale,1.00,ratio,warn icon scale (for tikz)
+warn_icon_round,0.12,em,warn icon rounded corners
+warn_icon_w,1.10,em,warn triangle base width
+warn_icon_h,0.95,em,warn triangle height
+warn_icon_excl_size,8.5,pt,exclamation font size
+warn_icon_excl_y,0.37,em,exclamation y position
+
+warn_col_icon,13,mm,tabular col width for icon
+warn_col_label,30,mm,tabular col width for WARNING label
+warn_text_size,6.5,pt,right text font size
+
+subbar_arc,2.4,mm,operating bar corner radius
+subbar_pad_lr,4,mm,operating bar left/right padding
+subbar_pad_tb,1.8,mm,operating bar top/bottom padding
+subbar_vspace_after,2,mm,space after operating bar
+
+twocol_sep,14,mm,space between columns
+twocol_font_size,6.2,pt,font size for two-col list
+twocol_font_leading,7.4,pt,leading for two-col list
