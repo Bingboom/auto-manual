@@ -21,8 +21,8 @@ warn_col_icon,13,mm,tabular col width for icon
 warn_col_label,8,mm,tabular col width for WARNING label
 warn_label_size,10,pt,WARNING label font size
 warn_label_leading,10.6,pt,WARNING label leading
-warn_text_size,6.1,pt,right warning text font size
-warn_text_leading,3,pt,right warning text leading
+warn_text_size,8,pt,right warning text font size
+warn_text_leading,6,pt,right warning text leading
 ,,,
 subbar_arc,2.4,mm,operating bar corner radius
 subbar_pad_lr,4,mm,operating bar left/right padding
@@ -59,7 +59,7 @@ note_pad_lr,3,mm,note left/right padding
 note_pad_tb,2.5,mm,note top/bottom padding
 section_after_fix,-2,mm,negative spacing after section to cancel sphinx glue
 warn_box_width,1,ratio,warning box width ratio of \textwidth
-warn_lockup_height,11.5,mm,height of warning lockup image
+warn_lockup_height,8.5,mm,height of warning lockup image
 warn_lockup_trim,200pt 20pt 360pt 20pt,none,trim left bottom right top
-warn_lockup_gap,5,mm,gap between lockup and right text
-warn_lockup_width,48,mm,width reserved for lockup block
+warn_lockup_gap,1,mm,gap between lockup and right text
+warn_lockup_width,45,mm,width reserved for lockup block
