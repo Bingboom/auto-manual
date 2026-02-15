@@ -6,6 +6,17 @@
 
 \usepackage{titlesec}
 \usepackage[most]{tcolorbox}
+\usepackage{array}
+\usepackage{graphicx}
+
+% ---- warning lockup image (icon+WARNING as ONE object) ----
+\newcommand{\warninglockup}{%
+  \includegraphics[
+    height=\csname HBwarn_lockup_height\endcsname,
+    viewport=79 70 2125 549,
+    clip
+  ]{warning_lockup.png}%
+}
 
 % --------------------------------------------------
 % WARNING icon (TikZ) - parameterized
@@ -35,21 +46,26 @@
   bottom=\csname HBwarn_box_pad_tb\endcsname,
   before skip=\csname HBwarn_box_before\endcsname,
   after skip=\csname HBwarn_box_after\endcsname,
+  width=\csname HBwarn_box_width\endcsname\textwidth,
 }
 
 % --------------------------------------------------
-% WARNING layout - parameterized
+% WARNING layout - vertical centered + flat
+% (Replace the whole \safetywarning command with this)
 % --------------------------------------------------
-\newcommand{\safetywarning}[2]{%
-\begin{safetywarningbox}
-  \setlength{\tabcolsep}{0pt}
-  \renewcommand{\arraystretch}{1.0}
-  \begin{tabularx}{\textwidth}{@{}p{\csname HBwarn_col_icon\endcsname} p{\csname HBwarn_col_label\endcsname} X@{}}
-    \raggedright\warnicon &
-    \raggedright{\bfseries\fontsize{\csname HBwarn_label_size\endcsname}{\csname HBwarn_label_leading\endcsname}\selectfont #1} &
-    \raggedright{\bfseries\fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont\MakeUppercase{#2}}
-  \end{tabularx}
-\end{safetywarningbox}
+\usepackage{array} % make sure array is available for m{} column
+
+\newcommand{\safetywarning}[1]{%
+\begin{safetywarningbox}%
+\noindent%
+\begin{minipage}[t]{\csname HBwarn_lockup_width\endcsname}%
+\vspace{0pt}\warninglockup%
+\end{minipage}\hspace{\csname HBwarn_lockup_gap\endcsname}%
+\begin{minipage}[t]{\dimexpr\textwidth-\csname HBwarn_lockup_width\endcsname-\csname HBwarn_lockup_gap\endcsname\relax}%
+\vspace{0pt}\raggedright%
+{\bfseries\fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont\MakeUppercase{#1}}%
+\end{minipage}%
+\end{safetywarningbox}%
 }
 
 % --------------------------------------------------

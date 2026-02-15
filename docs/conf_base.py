@@ -22,6 +22,7 @@ latex_additional_files = [
     "latex_theme/theme.tex",
     "latex_theme/colors.tex",
     "latex_theme/params.tex", 
+    "latex_theme/assets/warning_lockup.png",  
     "latex_theme/layout.tex",
     "latex_theme/components.tex",
     "latex_theme/components_base.tex",
