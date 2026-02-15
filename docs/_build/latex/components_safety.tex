@@ -56,17 +56,19 @@
 \usepackage{array} % make sure array is available for m{} column
 
 \newcommand{\safetywarning}[1]{%
-\begin{safetywarningbox}%
-\noindent%
-\begin{minipage}[t]{\csname HBwarn_lockup_width\endcsname}%
-\vspace{0pt}\warninglockup%
-\end{minipage}\hspace{\csname HBwarn_lockup_gap\endcsname}%
-\begin{minipage}[t]{\dimexpr\textwidth-\csname HBwarn_lockup_width\endcsname-\csname HBwarn_lockup_gap\endcsname\relax}%
-\vspace{0pt}\raggedright%
-{\bfseries\fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont\MakeUppercase{#1}}%
-\end{minipage}%
-\end{safetywarningbox}%
+\begin{safetywarningbox}
+  \noindent
+  \begin{tabular}{@{}m{\csname HBwarn_lockup_width\endcsname}@{\hspace{\csname HBwarn_lockup_gap\endcsname}}m{\dimexpr\textwidth-\csname HBwarn_lockup_width\endcsname-\csname HBwarn_lockup_gap\endcsname\relax}@{}}
+    \centering\warninglockup
+    &
+    \raggedright
+    {\bfseries
+     \fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont
+     \MakeUppercase{#1}}
+  \end{tabular}
+\end{safetywarningbox}
 }
+
 
 % --------------------------------------------------
 % OPERATING INSTRUCTIONS pill bar - parameterized
