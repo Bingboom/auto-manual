@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  15 FEB 2026 21:32
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  15 FEB 2026 22:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1450,16 +1450,24 @@ Package hyperref Info: Link coloring ON on input line 111.
 \openout6 = `safety_demo.out'.
 
 \c@lstlisting=\count385
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124
+.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124
+.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 File: warning_lockup.png Graphic file (type bmp)
 <warning_lockup.png>
+ [1
 
-Overfull \hbox (3.1878pt too wide) in paragraph at lines 124--124
-[][] 
- []
-
-[1
-
-] (./safety_demo.ind)
+]
+(./safety_demo.ind)
 
 [2] (./safety_demo.aux)
  ***********
@@ -1470,12 +1478,12 @@ Package rerunfilecheck Info: File `safety_demo.out' has not changed.
 (rerunfilecheck)             Checksum: EC1B33D82F71134F6D29AB11C1C0722F;190.
  ) 
 Here is how much of TeX's memory you used:
- 36598 strings out of 473832
- 778753 string characters out of 5729482
- 1260557 words of memory out of 5000000
- 58981 multiletter control sequences out of 15000+600000
- 559509 words of font info for 76 fonts, out of 8000000 for 9000
+ 36633 strings out of 473832
+ 779350 string characters out of 5729482
+ 1261530 words of memory out of 5000000
+ 59002 multiletter control sequences out of 15000+600000
+ 561216 words of font info for 85 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 103i,11n,104p,1200b,844s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,12n,104p,1200b,844s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on safety_demo.xdv (2 pages, 53828 bytes).
+Output written on safety_demo.xdv (2 pages, 53860 bytes).
