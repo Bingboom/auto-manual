@@ -16,9 +16,9 @@
   enhanced,
   colback=white,
   colframe=LineK40,
-  arc=2.5mm,
-  boxrule=0.8pt,
-  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  arc=2mm,
+  boxrule=0.6pt,
+  left=3mm,right=3mm,top=2mm,bottom=2mm,
   before skip=0mm, after skip=3mm,
 }
 
@@ -48,10 +48,41 @@
 }
 
 % ---------- Two-column list env ----------
-\setlength{\columnsep}{10mm}
+\setlength{\columnsep}{12mm}
 \newenvironment{safetytwocol}{%
   \begin{multicols}{2}
   \fontsize{6.5pt}{7.8pt}\selectfont
 }{%
   \end{multicols}
 }
+
+% ---------- Section pill bar (stable, no begin/end env) ----------
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+
+% "pill" box as a command (NOT an environment) => avoids Missing } errors
+\newtcbox{\hbsectionbox}{%
+  enhanced,
+  on line,
+  colback=BrandDark,
+  colframe=BrandDark,
+  arc=3mm,
+  boxrule=0pt,
+  left=5mm,right=5mm,top=2.2mm,bottom=2.2mm,
+  width=\linewidth
+}
+
+\newcommand{\hbsectiontitle}[1]{%
+  \hbsectionbox{%
+    \color{white}\bfseries\fontsize{9pt}{10.8pt}\selectfont\MakeUppercase{#1}%
+  }%
+}
+
+% Apply to \section
+\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
+\titlespacing*{\section}{0pt}{0pt}{3mm}
+
+% Remove section numbering (remove "1 ")
+\setcounter{secnumdepth}{0}
+
+

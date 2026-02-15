@@ -42,18 +42,20 @@ latex_elements = {
     # 让 xcolor 走 CMYK（必须抢先传参）
     "passoptionstopackages": r"\PassOptionsToPackage{cmyk}{xcolor}",
 
-    "preamble": r"""
+  "preamble": r"""
 % ============================
-% Hard kill title / toc / date
+% Kill title / toc AFTER sphinx defines them
 % ============================
-\makeatletter
-\renewcommand{\maketitle}{}%
-\@ifundefined{sphinxmaketitle}{}{\renewcommand{\sphinxmaketitle}{}}%
-\renewcommand{\today}{}%
-\@ifundefined{sphinxtableofcontents}{}{%
-  \renewcommand{\sphinxtableofcontents}{}%
-}%
-\makeatother
+\usepackage{etoolbox}
+
+\AtBeginDocument{%
+  \makeatletter
+  \ifdef{\sphinxmaketitle}{\renewcommand{\sphinxmaketitle}{}}{}%
+  \ifdef{\sphinxtableofcontents}{\renewcommand{\sphinxtableofcontents}{}}{}%
+  \renewcommand{\maketitle}{}%
+  \renewcommand{\today}{}%
+  \makeatother
+}
 
 % ============================
 % Load separated theme
@@ -62,6 +64,7 @@ latex_elements = {
 % ============================
 \input{theme.tex}
 """,
+
 }
 
 # 可选：一个 helper，便于子类 append preamble

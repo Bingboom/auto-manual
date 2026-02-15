@@ -76,16 +76,18 @@
 
 
 % ============================
-% Hard kill title / toc / date
+% Kill title / toc AFTER sphinx defines them
 % ============================
-\makeatletter
-\renewcommand{\maketitle}{}%
-\@ifundefined{sphinxmaketitle}{}{\renewcommand{\sphinxmaketitle}{}}%
-\renewcommand{\today}{}%
-\@ifundefined{sphinxtableofcontents}{}{%
-  \renewcommand{\sphinxtableofcontents}{}%
-}%
-\makeatother
+\usepackage{etoolbox}
+
+\AtBeginDocument{%
+  \makeatletter
+  \ifdef{\sphinxmaketitle}{\renewcommand{\sphinxmaketitle}{}}{}%
+  \ifdef{\sphinxtableofcontents}{\renewcommand{\sphinxtableofcontents}{}}{}%
+  \renewcommand{\maketitle}{}%
+  \renewcommand{\today}{}%
+  \makeatother
+}
 
 % ============================
 % Load separated theme
@@ -99,7 +101,7 @@
 % e.g. \tracingall
 
 
-\title{IMPORTANT SAFETY INFORMATION}
+\title{SAFETY}
 \date{Feb 15, 2026}
 \release{}
 \author{}
@@ -116,7 +118,13 @@
 \phantomsection\label{\detokenize{safety::doc}}
 
 
+
+\section{IMPORTANT SAFETY INFORMATION}
+\label{\detokenize{safety:important-safety-information}}
 \safetywarning{WARNING}{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+
+\sphinxAtStartPar
+…
 \subsubsection*{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
 
 \sphinxAtStartPar

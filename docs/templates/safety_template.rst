@@ -1,9 +1,14 @@
+SAFETY
+======
+
 IMPORTANT SAFETY INFORMATION
-============================
+----------------------------
 
 .. raw:: latex
 
    \safetywarning{WARNING}{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+...
+
 
 .. rubric:: INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS
 

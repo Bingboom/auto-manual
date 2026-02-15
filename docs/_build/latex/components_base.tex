@@ -5,10 +5,11 @@
 
 % --- list base ---
 \setlist[itemize]{
-  leftmargin=*,
-  itemsep=1.5mm,
+  leftmargin=1.2em,
+  itemsep=1.1mm,
   topsep=0mm,
-  parsep=0mm
+  parsep=0mm,
+  label=\raisebox{0.15ex}{\tiny\textbullet}
 }
 
 % --- table base: inner rules >= 0.2pt ---
@@ -24,6 +25,8 @@
   boxrule=0.4pt,
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
+
+\setcounter{secnumdepth}{0}
 
 % NOTE box (K5% gray background)
 \newtcolorbox{notebox}{
