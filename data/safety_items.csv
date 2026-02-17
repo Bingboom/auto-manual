@@ -1,5 +1,5 @@
 id,part,text
-0,lead,"Always follow these basic precautions when using this product."
+0,lead_top,"Always follow these basic precautions when using this product."
 1,top,"Read all the instructions before using the product."
 2,top,"Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children."
 3,top,"Avoid placing hands or fingers inside the product."
@@ -12,6 +12,7 @@ id,part,text
 10,top,"Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
 11,top,"To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
 
+20,save_title,"SAVE THESE INSTRUCTIONS"
 21,bottom,"Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
 22,bottom,"Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges."
 23,bottom,"Charging temperature: -4°F to 113°F (-20°C to 45°C)."

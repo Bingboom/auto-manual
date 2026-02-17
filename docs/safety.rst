@@ -8,15 +8,14 @@ IMPORTANT SAFETY INFORMATION
 
    \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
 
+.. raw:: latex
+
+   \begin{safetytwocol}
 
 .. raw:: latex
 
    \safetylead{Always follow these basic precautions when using this product.}
 
-
-.. raw:: latex
-
-   \begin{safetytwocol}
 
 - Read all the instructions before using the product.
 - Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.
@@ -38,11 +37,14 @@ IMPORTANT SAFETY INFORMATION
 
    \safetysubbar{OPERATING INSTRUCTIONS}
 
-.. rubric:: SAVE THESE INSTRUCTIONS
-
 .. raw:: latex
 
    \begin{safetytwocol}
+
+.. raw:: latex
+
+   \safetylead{SAVE THESE INSTRUCTIONS}
+   
 
 - Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.
 - Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges.
