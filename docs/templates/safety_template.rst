@@ -12,7 +12,7 @@ IMPORTANT SAFETY INFORMATION
 
    \begin{safetytwocol}
 
-{{ safety_lead }}
+{{ safety_lead_top }}
 
 {{ safety_top_items }}
 
@@ -24,11 +24,11 @@ IMPORTANT SAFETY INFORMATION
 
    \safetysubbar{OPERATING INSTRUCTIONS}
 
-.. rubric:: SAVE THESE INSTRUCTIONS
-
 .. raw:: latex
 
    \begin{safetytwocol}
+
+{{ safety_save_title }}   
 
 {{ safety_bottom_items }}
 
