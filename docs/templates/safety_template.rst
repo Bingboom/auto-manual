@@ -8,12 +8,11 @@ IMPORTANT SAFETY INFORMATION
 
    \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
 
-
-{{ safety_lead }}
-
 .. raw:: latex
 
    \begin{safetytwocol}
+
+{{ safety_lead }}
 
 {{ safety_top_items }}
 
