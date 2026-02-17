@@ -11,23 +11,33 @@
 % H1 pill top/bottom padding
 \expandafter\def\csname HBbrand_title_pad_tb\endcsname{1.8mm}
 
-% space after title pill
+% Space after H1 pill (tcolorbox after skip)
 \expandafter\def\csname HBbrand_title_vspace_after\endcsname{0mm}
 
-% H1 pill width ratio of \textwidth
+% H1 pill width ratio of \\textwidth
 \expandafter\def\csname HBbrand_title_width\endcsname{0.86}
+
+% Lead leading (same as list leading)
+\expandafter\def\csname HBlead_font_leading\endcsname{7.4pt}
+
+\expandafter\def\csname HBlead_font_leading\endcsname{7.4pt}
+
+% Lead font size (same as list font size)
+\expandafter\def\csname HBlead_font_size\endcsname{6.2pt}
+
+\expandafter\def\csname HBlead_font_size\endcsname{6.2pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBlead_force_upper\endcsname{0int}
 
-% space after lead line (before list)
+% Space after lead line
 \expandafter\def\csname HBlead_vspace_after\endcsname{0.6mm}
 
-% bullet raise
+% Bullet raise offset
 \expandafter\def\csname HBlist_bullet_raise\endcsname{0.15ex}
 
-% bullet symbol tex
-\expandafter\def\csname HBlist_bullet_symbol\endcsname{\small\textbullet}
+% Bullet symbol TeX
+\expandafter\def\csname HBlist_bullet_symbol\endcsname{\\small\\textbullet}
 
 % itemize itemsep
 \expandafter\def\csname HBlist_itemsep\endcsname{0.8mm}
@@ -47,104 +57,154 @@
 % itemize topsep
 \expandafter\def\csname HBlist_topsep\endcsname{0mm}
 
-% note box corner radius
+% Note box corner radius
 \expandafter\def\csname HBnote_arc\endcsname{2mm}
 
-% note left/right padding
+% Note left/right padding
 \expandafter\def\csname HBnote_pad_lr\endcsname{3mm}
 
-% note top/bottom padding
+% Note top/bottom padding
 \expandafter\def\csname HBnote_pad_tb\endcsname{2.5mm}
 
-% rubric space after
+% Footer leading
+\expandafter\def\csname HBpage_footer_font_leading\endcsname{7.2pt}
+
+% Footer font size
+\expandafter\def\csname HBpage_footer_font_size\endcsname{6pt}
+
+% 0=no leading zero / 1=leading zero for 1-9
+\expandafter\def\csname HBpage_footer_leading_zero\endcsname{1int}
+
+% Footer rule width
+\expandafter\def\csname HBpage_footrulewidth\endcsname{0pt}
+
+% Header rule width
+\expandafter\def\csname HBpage_headrulewidth\endcsname{0pt}
+
+% Bottom margin
+\expandafter\def\csname HBpage_margin_bottom\endcsname{10mm}
+
+% Left margin
+\expandafter\def\csname HBpage_margin_left\endcsname{10mm}
+
+% Right margin
+\expandafter\def\csname HBpage_margin_right\endcsname{10mm}
+
+% Top margin
+\expandafter\def\csname HBpage_margin_top\endcsname{1mm}
+
+% Paper height
+\expandafter\def\csname HBpage_paperheight\endcsname{185mm}
+
+% Paper width
+\expandafter\def\csname HBpage_paperwidth\endcsname{130mm}
+
+% Paragraph indent
+\expandafter\def\csname HBpage_parindent\endcsname{0pt}
+
+% Paragraph skip
+\expandafter\def\csname HBpage_parskip\endcsname{0pt}
+
+% Rubric space after
 \expandafter\def\csname HBrubric_after\endcsname{0.8mm}
 
-% rubric space before
+% Rubric space before
 \expandafter\def\csname HBrubric_before\endcsname{1.2mm}
 
-% rubric leading
+% Rubric leading
 \expandafter\def\csname HBrubric_font_leading\endcsname{7.2pt}
 
-% rubric font size
+% Rubric font size
 \expandafter\def\csname HBrubric_font_size\endcsname{6pt}
 
 % negative spacing after section to cancel sphinx glue
 \expandafter\def\csname HBsection_after_fix\endcsname{-2mm}
 
-% operating bar corner radius
+% Subbar corner radius
 \expandafter\def\csname HBsubbar_arc\endcsname{2.4mm}
 
-% operating bar left/right padding
+% Subbar left/right padding
 \expandafter\def\csname HBsubbar_pad_lr\endcsname{5mm}
 
-% operating bar top/bottom padding
+% Subbar top/bottom padding
 \expandafter\def\csname HBsubbar_pad_tb\endcsname{1.8mm}
 
-% space after operating bar
+% Space after subbar pill
 \expandafter\def\csname HBsubbar_vspace_after\endcsname{2mm}
 
-% table inner rule width
+% Subbar width ratio of \\textwidth
+\expandafter\def\csname HBsubbar_width\endcsname{1}
+
+\expandafter\def\csname HBsubbar_width\endcsname{1}
+
+% Table inner rule width
 \expandafter\def\csname HBtable_inner_rule\endcsname{0.2pt}
 
-% table outer corner radius
+% Table outer corner radius
 \expandafter\def\csname HBtable_outer_arc\endcsname{2mm}
 
-% table outer rule width
+% Table outer rule width
 \expandafter\def\csname HBtable_outer_rule\endcsname{0.4pt}
 
-% table tabcolsep
+% Table tabcolsep
 \expandafter\def\csname HBtable_tabcolsep\endcsname{3.5pt}
 
-% title font leading in pills
+% Title leading used in pills
 \expandafter\def\csname HBtitle_font_leading\endcsname{10.8pt}
 
-% title font size in pills
+% Title font size used in pills (H1/subbar)
 \expandafter\def\csname HBtitle_font_size\endcsname{9pt}
 
-% leading for two-col list (MUST be around 1.2x size)
+\expandafter\def\csname HBtitle_force_upper\endcsname{1int}
+
+% Leading for two-col list (~1.2x size)
 \expandafter\def\csname HBtwocol_font_leading\endcsname{7.4pt}
 
-% font size for two-col list
+% Font size for two-col list
 \expandafter\def\csname HBtwocol_font_size\endcsname{6.2pt}
 
-% space between columns
+% Space between columns
 \expandafter\def\csname HBtwocol_sep\endcsname{12mm}
 
-% space after warning box
+% Space after warning box
 \expandafter\def\csname HBwarn_box_after\endcsname{1.2mm}
 
-% warning box corner radius
+% Warning box corner radius
 \expandafter\def\csname HBwarn_box_arc\endcsname{2.0mm}
 
-% space before warning box
+% Space before warning box
 \expandafter\def\csname HBwarn_box_before\endcsname{0.5mm}
 
-% warning box left/right padding (do NOT use negative)
+% Warning box left/right padding
 \expandafter\def\csname HBwarn_box_pad_lr\endcsname{3.6mm}
 
-% warning box top/bottom padding (make flatter by reducing)
+% Warning box top/bottom padding (flatter by reducing)
 \expandafter\def\csname HBwarn_box_pad_tb\endcsname{1.0mm}
 
-% warning box border width
+% Warning box border width
 \expandafter\def\csname HBwarn_box_rule\endcsname{0.55pt}
 
-% warning box width ratio of \textwidth
+% Warning box width ratio of \\textwidth
 \expandafter\def\csname HBwarn_box_width\endcsname{1}
 
-% gap between lockup and right text
+% Gap between lockup and right warning text
 \expandafter\def\csname HBwarn_lockup_gap\endcsname{2mm}
 
-% height of warning lockup image
+% Height of warning_lockup.png
 \expandafter\def\csname HBwarn_lockup_height\endcsname{7.2mm}
 
-% trim left bottom right top (pt units)
-\expandafter\def\csname HBwarn_lockup_trim\endcsname{79pt 22pt 172pt 70pt}
+\expandafter\def\csname HBwarn_lockup_viewport\endcsname{79 70 2125 549}
 
-% width reserved for lockup block
+% Width reserved for lockup block in table
 \expandafter\def\csname HBwarn_lockup_width\endcsname{36mm}
 
-% right warning text leading (must be > size)
+% Right warning text leading (should be >= size)
 \expandafter\def\csname HBwarn_text_leading\endcsname{9pt}
 
-% right warning text font size
+% Right warning text font size
 \expandafter\def\csname HBwarn_text_size\endcsname{7pt}
+
+% 0=keep case / 1=uppercase
+\expandafter\def\csname HBwarn_text_uppercase\endcsname{1int}
+
+\expandafter\def\csname HBwarn_text_uppercase\endcsname{1int}

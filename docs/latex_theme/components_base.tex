@@ -1,10 +1,12 @@
 % ==================================================
 % components_base.tex
-% 通用组件 / 通用排版规则（可复用）
+% 通用组件 / 通用排版规则（基础层）
 % Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
-% --- list base ---
+% ------------------------------
+% List base (enumitem)
+% ------------------------------
 \setlist[itemize]{
   leftmargin=\csname HBlist_leftmargin\endcsname,
   labelsep=\csname HBlist_labelsep\endcsname,
@@ -12,14 +14,16 @@
   topsep=\csname HBlist_topsep\endcsname,
   parsep=\csname HBlist_parsep\endcsname,
   partopsep=\csname HBlist_partopsep\endcsname,
-  label=\raisebox{\csname HBlist_bullet_raise\endcsname}{\csname HBlist_bullet_symbol\endcsname}
+  label=\raisebox{\csname HBlist_bullet_raise\endcsname}
+        {\csname HBlist_bullet_symbol\endcsname}
 }
 
-% --- table base: inner rules >= 0.2pt ---
+% ------------------------------
+% Table base
+% ------------------------------
 \arrayrulewidth=\csname HBtable_inner_rule\endcsname
 \setlength{\tabcolsep}{\csname HBtable_tabcolsep\endcsname}
 
-% Outer border wrapper (>=0.4pt)
 \newtcolorbox{tableframe}{
   enhanced,
   colback=white,
@@ -29,9 +33,9 @@
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
-\setcounter{secnumdepth}{0}
-
-% NOTE box (K5% gray background)
+% ------------------------------
+% Note box
+% ------------------------------
 \newtcolorbox{notebox}{
   enhanced,
   colback=BgK05,
@@ -44,9 +48,15 @@
   bottom=\csname HBnote_pad_tb\endcsname,
 }
 
-% Make rubric (subsubsection*) look like original: small + dark
+% ------------------------------
+% Rubric style (subsubsection*)
+% ------------------------------
 \makeatletter
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
-  {\csname HBrubric_before\endcsname}{\csname HBrubric_after\endcsname}%
-  {\bfseries\fontsize{\csname HBrubric_font_size\endcsname}{\csname HBrubric_font_leading\endcsname}\selectfont\color{black}}}
+  {\csname HBrubric_before\endcsname}%
+  {\csname HBrubric_after\endcsname}%
+  {\bfseries
+   \fontsize{\csname HBrubric_font_size\endcsname}
+            {\csname HBrubric_font_leading\endcsname}
+   \selectfont\color{black}}}
 \makeatother

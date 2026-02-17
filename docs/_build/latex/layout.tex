@@ -1,22 +1,47 @@
+% ==================================================
+% layout.tex
+% Page geometry + footer + global paragraph spacing
+% Parameter access: \csname HB<key>\endcsname
+% ==================================================
+
 \usepackage{geometry}
+
+% NOTE:
+% - All dimensions come from params.tex (generated from layout_params.csv)
+% - Keep these keys in CSV:
+%   page_paperwidth/page_paperheight/page_margin_left/page_margin_right/page_margin_top/page_margin_bottom
 \geometry{
-  paperwidth=130mm,
-  paperheight=185mm,
-  left=10mm,right=10mm,top=1mm,bottom=10mm
+  paperwidth=\csname HBpage_paperwidth\endcsname,
+  paperheight=\csname HBpage_paperheight\endcsname,
+  left=\csname HBpage_margin_left\endcsname,
+  right=\csname HBpage_margin_right\endcsname,
+  top=\csname HBpage_margin_top\endcsname,
+  bottom=\csname HBpage_margin_bottom\endcsname
 }
 
+% --------------------------------------------------
+% Footer (page number)
+% --------------------------------------------------
 \usepackage{fancyhdr}
 \fancyhf{}
 \pagestyle{fancy}
-\fancyfoot[L]{\fontsize{6pt}{7.2pt}\selectfont\ifnum\value{page}<10 0\fi\arabic{page}}
+
+% left footer: page number with optional leading zero
+\fancyfoot[L]{%
+  \fontsize{\csname HBfooter_font_size\endcsname}{\csname HBfooter_font_leading\endcsname}\selectfont
+  \ifnum\csname HBfooter_leading_zero\endcsname=1
+    \ifnum\value{page}<10 0\fi
+  \fi
+  \arabic{page}%
+}
+
+% no header/footer rules
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
+% --------------------------------------------------
+% Global paragraph spacing
+% (This is the #1 reason "gaps" feel uncontrollable in LaTeX/Sphinx)
+% --------------------------------------------------
+\setlength{\parindent}{\csname HBpage_parindent\endcsname}
+\setlength{\parskip}{\csname HBpage_parskip\endcsname}
