@@ -6,16 +6,16 @@
 \expandafter\def\csname HBbrand_title_arc\endcsname{2.6mm}
 
 % H1 pill left/right padding
-\expandafter\def\csname HBbrand_title_pad_lr\endcsname{1mm}
+\expandafter\def\csname HBbrand_title_pad_lr\endcsname{5mm}
 
 % H1 pill top/bottom padding
 \expandafter\def\csname HBbrand_title_pad_tb\endcsname{1.8mm}
 
-% space after title pill (tcolorbox after skip)
+% space after title pill
 \expandafter\def\csname HBbrand_title_vspace_after\endcsname{0mm}
 
 % H1 pill width ratio of \textwidth
-\expandafter\def\csname HBbrand_title_width\endcsname{1}
+\expandafter\def\csname HBbrand_title_width\endcsname{0.86}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBlead_force_upper\endcsname{0int}
@@ -51,7 +51,7 @@
 \expandafter\def\csname HBnote_arc\endcsname{2mm}
 
 % note left/right padding
-\expandafter\def\csname HBnote_pad_lr\endcsname{1mm}
+\expandafter\def\csname HBnote_pad_lr\endcsname{3mm}
 
 % note top/bottom padding
 \expandafter\def\csname HBnote_pad_tb\endcsname{2.5mm}
@@ -75,13 +75,13 @@
 \expandafter\def\csname HBsubbar_arc\endcsname{2.4mm}
 
 % operating bar left/right padding
-\expandafter\def\csname HBsubbar_pad_lr\endcsname{1mm}
+\expandafter\def\csname HBsubbar_pad_lr\endcsname{5mm}
 
 % operating bar top/bottom padding
 \expandafter\def\csname HBsubbar_pad_tb\endcsname{1.8mm}
 
 % space after operating bar
-\expandafter\def\csname HBsubbar_vspace_after\endcsname{0mm}
+\expandafter\def\csname HBsubbar_vspace_after\endcsname{2mm}
 
 % table inner rule width
 \expandafter\def\csname HBtable_inner_rule\endcsname{0.2pt}
@@ -95,20 +95,20 @@
 % table tabcolsep
 \expandafter\def\csname HBtable_tabcolsep\endcsname{3.5pt}
 
-% title font leading in pills (H1/subbar)
+% title font leading in pills
 \expandafter\def\csname HBtitle_font_leading\endcsname{10.8pt}
 
-% title font size in pills (H1/subbar)
+% title font size in pills
 \expandafter\def\csname HBtitle_font_size\endcsname{9pt}
 
-% leading for two-col list
-\expandafter\def\csname HBtwocol_font_leading\endcsname{3pt}
+% leading for two-col list (MUST be around 1.2x size)
+\expandafter\def\csname HBtwocol_font_leading\endcsname{7.4pt}
 
 % font size for two-col list
 \expandafter\def\csname HBtwocol_font_size\endcsname{6.2pt}
 
 % space between columns
-\expandafter\def\csname HBtwocol_sep\endcsname{5mm}
+\expandafter\def\csname HBtwocol_sep\endcsname{12mm}
 
 % space after warning box
 \expandafter\def\csname HBwarn_box_after\endcsname{1.2mm}
@@ -119,11 +119,11 @@
 % space before warning box
 \expandafter\def\csname HBwarn_box_before\endcsname{0.5mm}
 
-% warning box left/right padding
-\expandafter\def\csname HBwarn_box_pad_lr\endcsname{-2mm}
+% warning box left/right padding (do NOT use negative)
+\expandafter\def\csname HBwarn_box_pad_lr\endcsname{3.6mm}
 
-% warning box top/bottom padding
-\expandafter\def\csname HBwarn_box_pad_tb\endcsname{0mm}
+% warning box top/bottom padding (make flatter by reducing)
+\expandafter\def\csname HBwarn_box_pad_tb\endcsname{1.0mm}
 
 % warning box border width
 \expandafter\def\csname HBwarn_box_rule\endcsname{0.55pt}
@@ -131,47 +131,20 @@
 % warning box width ratio of \textwidth
 \expandafter\def\csname HBwarn_box_width\endcsname{1}
 
-% tabular col width for icon
-\expandafter\def\csname HBwarn_col_icon\endcsname{13mm}
-
-% tabular col width for WARNING label
-\expandafter\def\csname HBwarn_col_label\endcsname{8mm}
-
-% exclamation font size
-\expandafter\def\csname HBwarn_icon_excl_size\endcsname{9.6pt}
-
-% exclamation y position
-\expandafter\def\csname HBwarn_icon_excl_y\endcsname{0.43em}
-
-% warn triangle height
-\expandafter\def\csname HBwarn_icon_h\endcsname{0.98em}
-
-% warn icon rounded corners
-\expandafter\def\csname HBwarn_icon_round\endcsname{0.12em}
-
-% warn triangle base width
-\expandafter\def\csname HBwarn_icon_w\endcsname{1.2em}
-
-% WARNING label leading
-\expandafter\def\csname HBwarn_label_leading\endcsname{3pt}
-
-% WARNING label font size
-\expandafter\def\csname HBwarn_label_size\endcsname{10pt}
-
 % gap between lockup and right text
 \expandafter\def\csname HBwarn_lockup_gap\endcsname{2mm}
 
 % height of warning lockup image
-\expandafter\def\csname HBwarn_lockup_height\endcsname{7mm}
+\expandafter\def\csname HBwarn_lockup_height\endcsname{7.2mm}
 
-% trim left bottom right top
-\expandafter\def\csname HBwarn_lockup_trim\endcsname{300pt 20pt 360pt 20pt}
+% trim left bottom right top (pt units)
+\expandafter\def\csname HBwarn_lockup_trim\endcsname{79pt 22pt 172pt 70pt}
 
 % width reserved for lockup block
 \expandafter\def\csname HBwarn_lockup_width\endcsname{36mm}
 
-% right warning text leading
-\expandafter\def\csname HBwarn_text_leading\endcsname{3pt}
+% right warning text leading (must be > size)
+\expandafter\def\csname HBwarn_text_leading\endcsname{9pt}
 
 % right warning text font size
 \expandafter\def\csname HBwarn_text_size\endcsname{7pt}
