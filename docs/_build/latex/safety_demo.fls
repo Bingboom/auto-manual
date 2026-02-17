@@ -442,10 +442,10 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5
 INPUT ./warning_lockup.png
 INPUT ./warning_lockup.png
 INPUT ./warning_lockup.png
-OUTPUT safety_demo.xdv
 INPUT ./safety_demo.ind
 INPUT ./safety_demo.ind
 INPUT safety_demo.ind
+OUTPUT safety_demo.xdv
 INPUT safety_demo.aux
 INPUT ./safety_demo.out
 INPUT ./safety_demo.out
