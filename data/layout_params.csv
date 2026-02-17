@@ -8,7 +8,7 @@ brand_title_vspace_after,0,mm,space after title pill (tcolorbox after skip)
 warn_box_arc,2.0,mm,warning box corner radius
 warn_box_rule,0.55,pt,warning box border width
 warn_box_pad_lr,-2,mm,warning box left/right padding
-warn_box_pad_tb,-1,mm,warning box top/bottom padding
+warn_box_pad_tb,0,mm,warning box top/bottom padding
 warn_box_before,0.5,mm,space before warning box
 warn_box_after,1.2,mm,space after warning box
 warn_icon_round,0.12,em,warn icon rounded corners
@@ -27,11 +27,11 @@ warn_text_leading,3,pt,right warning text leading
 subbar_arc,2.4,mm,operating bar corner radius
 subbar_pad_lr,1,mm,operating bar left/right padding
 subbar_pad_tb,1.8,mm,operating bar top/bottom padding
-subbar_vspace_after,2,mm,space after operating bar
+subbar_vspace_after,0,mm,space after operating bar
 ,,,
-twocol_sep,14,mm,space between columns
+twocol_sep,5,mm,space between columns
 twocol_font_size,6.2,pt,font size for two-col list
-twocol_font_leading,7.4,pt,leading for two-col list
+twocol_font_leading,3,pt,leading for two-col list
 ,,,
 title_font_size,9,pt,title font size in pills (H1/subbar)
 title_font_leading,10.8,pt,title font leading in pills (H1/subbar)
@@ -47,7 +47,7 @@ list_topsep,0,mm,itemize topsep
 list_parsep,0,mm,itemize parsep
 list_partopsep,0,mm,itemize partopsep
 list_bullet_raise,0.15,ex,bullet raise
-list_bullet_symbol,\tiny\textbullet,none,bullet symbol tex
+list_bullet_symbol,\small\textbullet,none,bullet symbol tex
 ,,,
 table_inner_rule,0.2,pt,table inner rule width
 table_tabcolsep,3.5,pt,table tabcolsep
