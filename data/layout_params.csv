@@ -63,3 +63,6 @@ warn_lockup_height,7,mm,height of warning lockup image
 warn_lockup_trim,300pt 20pt 360pt 20pt,none,trim left bottom right top
 warn_lockup_gap,2,mm,gap between lockup and right text
 warn_lockup_width,36,mm,width reserved for lockup block
+,,,
+lead_vspace_after,0.6,mm,space after lead line (before list)
+lead_force_upper,0,int,0 keep case / 1 uppercase

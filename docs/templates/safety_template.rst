@@ -24,11 +24,12 @@ IMPORTANT SAFETY INFORMATION
 
    \safetysubbar{OPERATING INSTRUCTIONS}
 
+
 .. raw:: latex
 
    \begin{safetytwocol}
 
-{{ safety_save_title }}   
+{{ safety_save_title }}
 
 {{ safety_bottom_items }}
 
