@@ -2,7 +2,7 @@ PWD /Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex
 INPUT /usr/local/texlive/2025/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT /Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/safety_demo.tex
+INPUT safety_demo.tex
 OUTPUT safety_demo.log
 INPUT ./sphinxhowto.cls
 INPUT sphinxhowto.cls
@@ -384,12 +384,12 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
-INPUT ./colors.tex
-INPUT ./colors.tex
-INPUT colors.tex
 INPUT ./params.tex
 INPUT ./params.tex
 INPUT params.tex
+INPUT ./colors.tex
+INPUT ./colors.tex
+INPUT colors.tex
 INPUT ./layout.tex
 INPUT ./layout.tex
 INPUT layout.tex
@@ -445,6 +445,7 @@ INPUT ./warning_lockup.png
 INPUT ./safety_demo.ind
 INPUT ./safety_demo.ind
 INPUT safety_demo.ind
+OUTPUT safety_demo.xdv
 INPUT safety_demo.aux
 INPUT ./safety_demo.out
 INPUT ./safety_demo.out

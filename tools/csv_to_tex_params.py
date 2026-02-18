@@ -17,14 +17,14 @@ Access:
   \\csname HB<key>\\endcsname
 
 Enhancements:
-- Grouped output sections by key prefix (page_/type_/comp_/other)
-- Optional alias mapping: old_key -> new_key (\\let HBold HBnew)
+- Grouped output sections by key prefix (page_/brand_color_/type_/comp_/other)
 - Duplicate key detection (hard error)
 """
 
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
 
 
@@ -34,21 +34,17 @@ OUT_TEX = ROOT / "docs" / "latex_theme" / "params.tex"
 
 
 def fmt_value(value: str, unit: str) -> str:
-    """Format value with unit. 'ratio' means raw number with no unit suffix."""
+    """Format value with unit. ratio/int/cmyk/none are raw."""
     value = (value or "").strip()
     unit = (unit or "").strip()
-
     if value == "":
         return ""
 
-    if unit == "" or unit.lower() in {"none", "null"}:
+    u = unit.lower()
+    # raw units (no suffix)
+    if u in {"", "none", "null", "ratio", "int", "cmyk"}:
         return value
 
-    u = unit.lower()
-    if u in {"", "none", "null"}:
-        return value
-    if u in {"ratio", "int"}:
-        return value
     return f"{value}{unit}"
 
 
@@ -60,8 +56,10 @@ def escape_tex_comment(s: str) -> str:
 
 def group_of_key(key: str) -> str:
     k = key.lower()
-    if k.startswith("page_"):
+    if k.startswith("page_") or k == "section_after_fix":
         return "PAGE"
+    if k.startswith("brand_color_"):
+        return "BRAND"
     if k.startswith("type_"):
         return "TYPE SYSTEM"
     if k.startswith("comp_"):
@@ -71,9 +69,10 @@ def group_of_key(key: str) -> str:
 
 GROUP_ORDER = {
     "PAGE": 0,
-    "TYPE SYSTEM": 1,
-    "COMPONENTS": 2,
-    "OTHER": 3,
+    "BRAND": 1,
+    "TYPE SYSTEM": 2,
+    "COMPONENTS": 3,
+    "OTHER": 4,
 }
 
 
@@ -81,8 +80,8 @@ def main() -> None:
     if not CSV_PATH.exists():
         raise SystemExit(f"[csv_to_tex_params] ERROR: CSV not found: {CSV_PATH}")
 
-    # key -> (value_with_unit, comment)
     items: dict[str, tuple[str, str]] = {}
+
     with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
@@ -99,8 +98,8 @@ def main() -> None:
             unit = (r.get("unit") or "").strip()
             comment = escape_tex_comment(r.get("comment") or "")
 
-            # ignore blank rows / separator rows / comment rows
-            if not key or not value:
+            # ignore blank rows / separators
+            if not key or value == "":
                 continue
 
             v = fmt_value(value, unit)
@@ -112,7 +111,6 @@ def main() -> None:
 
             items[key] = (v, comment)
 
-    # sort by group then key
     sorted_keys = sorted(items.keys(), key=lambda k: (GROUP_ORDER[group_of_key(k)], k))
 
     OUT_TEX.parent.mkdir(parents=True, exist_ok=True)
@@ -123,7 +121,6 @@ def main() -> None:
     lines.append("% Access pattern: \\csname HB<key>\\endcsname")
     lines.append("")
 
-    # grouped output
     cur_group = None
     for key in sorted_keys:
         v, c = items[key]
@@ -135,13 +132,10 @@ def main() -> None:
 
         if c:
             lines.append(f"% {c}")
-        if key.endswith("_viewport"):
-            # body is v (no extra brace layer inside)
-            lines.append(rf"\expandafter\def\csname HB{key}\endcsname{{{v}}}".replace("{{{v}}}", "{"+v+"}"))
-        else:
-            # body is {v} (extra brace layer inside)
-            lines.append(rf"\expandafter\def\csname HB{key}\endcsname{{{v}}}")
 
+        # Define as raw tokens (no extra brace layer)
+        # This is safest across geometry/setlength/fontsize/etc.
+        lines.append(rf"\expandafter\def\csname HB{key}\endcsname{{{v}}}")
         lines.append("")
 
     OUT_TEX.write_text("\n".join(lines), encoding="utf-8")

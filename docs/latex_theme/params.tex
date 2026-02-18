@@ -43,179 +43,197 @@
 % Paragraph skip
 \expandafter\def\csname HBpage_parskip\endcsname{0pt}
 
+% Negative spacing after section to cancel Sphinx glue
+\expandafter\def\csname HBsection_after_fix\endcsname{-2mm}
+
+% ===== BRAND =====
+
+% Accent blue
+\expandafter\def\csname HBbrand_color_accentblue\endcsname{0.90,0.55,0,0.60}
+
+% Background light gray
+\expandafter\def\csname HBbrand_color_bgk05\endcsname{0,0,0,0.05}
+
+% Main brand dark
+\expandafter\def\csname HBbrand_color_branddark\endcsname{0,0,0,0.78}
+
+% Border gray
+\expandafter\def\csname HBbrand_color_linek40\endcsname{0,0,0,0.40}
+
+% Body text gray
+\expandafter\def\csname HBbrand_color_textgray\endcsname{0,0,0,0.80}
+
+% Strong text
+\expandafter\def\csname HBbrand_color_textk90\endcsname{0,0,0,0.90}
+
 % ===== TYPE SYSTEM =====
 
-% (NEW) Body/lead leading (edit this should NOT affect list/warning)
+% Body/lead leading (MUST NOT affect list/warning)
 \expandafter\def\csname HBtype_body_font_leading\endcsname{7.4pt}
 
-% (NEW) Body/lead font size
+% Body/lead font size
 \expandafter\def\csname HBtype_body_font_size\endcsname{6.2pt}
 
-% (NEW) Body/lead uppercase
+% 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_body_force_upper\endcsname{0}
 
-% (NEW) H1 leading
+% H1 leading
 \expandafter\def\csname HBtype_h1_font_leading\endcsname{10.8pt}
 
-% (NEW) H1 font size
+% H1 font size
 \expandafter\def\csname HBtype_h1_font_size\endcsname{9pt}
 
-% (NEW) H1 uppercase
+% 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
 
-% (NEW) List leading
+% List leading (independent from body)
 \expandafter\def\csname HBtype_list_font_leading\endcsname{7.4pt}
 
-% (NEW) List font size
+% List font size
 \expandafter\def\csname HBtype_list_font_size\endcsname{6.2pt}
 
-% (NEW) Rubric leading
+% Rubric leading
 \expandafter\def\csname HBtype_rubric_font_leading\endcsname{7.2pt}
 
-% (NEW) Rubric font size
+% Rubric font size
 \expandafter\def\csname HBtype_rubric_font_size\endcsname{6pt}
 
-% (NEW) Subbar leading
+% Subbar leading
 \expandafter\def\csname HBtype_subbar_font_leading\endcsname{10.8pt}
 
-% (NEW) Subbar font size
+% Subbar font size
 \expandafter\def\csname HBtype_subbar_font_size\endcsname{9pt}
 
-% (NEW) Subbar uppercase
+% 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_subbar_force_upper\endcsname{1}
 
-% (NEW) Warning text leading
+% Warning right text leading
 \expandafter\def\csname HBtype_warning_text_font_leading\endcsname{9pt}
 
-% (NEW) Warning text font size
+% Warning right text font size
 \expandafter\def\csname HBtype_warning_text_font_size\endcsname{7pt}
 
-% (NEW) Warning text uppercase
+% 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_warning_text_force_upper\endcsname{1}
 
 % ===== COMPONENTS =====
 
-% (NEW) Space after H1 pill
+% Space after H1 pill
 \expandafter\def\csname HBcomp_h1_pill_after\endcsname{0mm}
 
-% (NEW) H1 pill corner radius
+% H1 pill corner radius
 \expandafter\def\csname HBcomp_h1_pill_arc\endcsname{2.6mm}
 
-% (NEW) H1 pill left/right padding
+% H1 pill left/right padding
 \expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{5mm}
 
-% (NEW) H1 pill top/bottom padding
+% H1 pill top/bottom padding
 \expandafter\def\csname HBcomp_h1_pill_pad_tb\endcsname{1.8mm}
 
-% (NEW) H1 pill width ratio of \\textwidth
+% H1 pill width ratio of \textwidth
 \expandafter\def\csname HBcomp_h1_pill_width\endcsname{1}
 
-% (NEW) Space after lead line
+% Space after lead line
 \expandafter\def\csname HBcomp_lead_after\endcsname{0.6mm}
 
-% (NEW) Bullet raise offset
+% Bullet raise offset
 \expandafter\def\csname HBcomp_list_bullet_raise\endcsname{0.15ex}
 
-% (NEW) Bullet symbol TeX
+% Bullet TeX (use single backslash)
 \expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\small\textbullet}
 
-% (NEW) itemize itemsep
+% itemize itemsep
 \expandafter\def\csname HBcomp_list_itemsep\endcsname{0.8mm}
 
-% (NEW) itemize labelsep
+% itemize labelsep
 \expandafter\def\csname HBcomp_list_labelsep\endcsname{0.6em}
 
-% (NEW) itemize leftmargin
+% itemize leftmargin
 \expandafter\def\csname HBcomp_list_leftmargin\endcsname{1.2em}
 
-% (NEW) itemize parsep
+% itemize parsep
 \expandafter\def\csname HBcomp_list_parsep\endcsname{0mm}
 
-% (NEW) itemize partopsep
+% itemize partopsep
 \expandafter\def\csname HBcomp_list_partopsep\endcsname{0mm}
 
-% (NEW) itemize topsep
+% itemize topsep
 \expandafter\def\csname HBcomp_list_topsep\endcsname{0mm}
 
-% (NEW) Gap between lockup and right warning text
+% Gap between lockup and warning text
 \expandafter\def\csname HBcomp_lockup_gap\endcsname{2mm}
 
-% (NEW) Height of warning_lockup.png
+% warning_lockup.png height
 \expandafter\def\csname HBcomp_lockup_height\endcsname{7.2mm}
 
-% (NEW) Crop viewport for lockup image
+% Reserved (viewport macro is fragile; keep for future trim-based cropping)
 \expandafter\def\csname HBcomp_lockup_viewport\endcsname{79 70 2125 549}
 
-% (NEW) Width reserved for lockup block in table
+% Width reserved for lockup column
 \expandafter\def\csname HBcomp_lockup_width\endcsname{36mm}
 
-% (NEW) Note box corner radius
+% Note box corner radius
 \expandafter\def\csname HBcomp_note_arc\endcsname{2mm}
 
-% (NEW) Note left/right padding
+% Note left/right padding
 \expandafter\def\csname HBcomp_note_pad_lr\endcsname{3mm}
 
-% (NEW) Note top/bottom padding
+% Note top/bottom padding
 \expandafter\def\csname HBcomp_note_pad_tb\endcsname{2.5mm}
 
-% (NEW) Rubric space after
+% Rubric space after
 \expandafter\def\csname HBcomp_rubric_after\endcsname{0.8mm}
 
-% (NEW) Rubric space before
+% Rubric space before
 \expandafter\def\csname HBcomp_rubric_before\endcsname{1.2mm}
 
-% (NEW) Space after subbar pill
+% Space after subbar
 \expandafter\def\csname HBcomp_subbar_after\endcsname{2mm}
 
-% (NEW) Subbar corner radius
+% Subbar corner radius
 \expandafter\def\csname HBcomp_subbar_arc\endcsname{2.4mm}
 
-% (NEW) Subbar left/right padding
+% Subbar left/right padding
 \expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{5mm}
 
-% (NEW) Subbar top/bottom padding
+% Subbar top/bottom padding
 \expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{1.8mm}
 
-% (NEW) Subbar width ratio of \\textwidth
+% Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
 
-% (NEW) Table inner rule width
+% Table inner rule width
 \expandafter\def\csname HBcomp_table_inner_rule\endcsname{0.2pt}
 
-% (NEW) Table outer corner radius
+% Table outer corner radius
 \expandafter\def\csname HBcomp_table_outer_arc\endcsname{2mm}
 
-% (NEW) Table outer rule width
+% Table outer rule width
 \expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.4pt}
 
-% (NEW) Table tabcolsep
+% Table tabcolsep
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{3.5pt}
 
-% (NEW) Space between columns
+% Space between two columns
 \expandafter\def\csname HBcomp_twocol_sep\endcsname{12mm}
 
-% (NEW) Space after warning box
+% Space after warning box
 \expandafter\def\csname HBcomp_warning_box_after\endcsname{1.2mm}
 
-% (NEW) Warning box corner radius
+% Warning box corner radius
 \expandafter\def\csname HBcomp_warning_box_arc\endcsname{2.0mm}
 
-% (NEW) Space before warning box
+% Space before warning box
 \expandafter\def\csname HBcomp_warning_box_before\endcsname{0.5mm}
 
-% (NEW) Warning box left/right padding
+% Warning box left/right padding
 \expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{3.6mm}
 
-% (NEW) Warning box top/bottom padding
+% Warning box top/bottom padding
 \expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{1.0mm}
 
-% (NEW) Warning box border width
+% Warning box border width
 \expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.55pt}
 
-% (NEW) Warning box width ratio of \\textwidth
+% Warning box width ratio of \textwidth
 \expandafter\def\csname HBcomp_warning_box_width\endcsname{1}
-
-% ===== OTHER =====
-
-% negative spacing after section to cancel sphinx glue
-\expandafter\def\csname HBsection_after_fix\endcsname{-2mm}

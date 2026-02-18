@@ -25,6 +25,7 @@ ALLOWED_UNITS: Set[str] = {
     "", "none", "null",
     "mm", "pt", "em", "ex",
     "ratio", "int",
+    "cmyk",
 }
 
 
@@ -105,6 +106,12 @@ def check_units_and_values(rows: List[Row]) -> Dict[str, Row]:
             else:
                 if not NUM_RE.match(row.value):
                     die(f"numeric unit '{row.unit}' requires number: key='{row.key}', value='{row.value}'")
+
+        if u == "cmyk":
+            parts = [p.strip() for p in row.value.split(",")]
+            if len(parts) != 4 or not all(NUM_RE.match(p) for p in parts):
+                die(f"cmyk must be 4 numbers separated by commas: key='{row.key}', value='{row.value}'")
+            
 
         # naming rule sanity
         if not (row.key.startswith("page_") or row.key.startswith("type_") or row.key.startswith("comp_") or row.key == "section_after_fix"):
