@@ -62,26 +62,35 @@
 % WARNING LAYOUT
 % ==================================================
 
+% ==================================================
+% WARNING LAYOUT
+% ==================================================
+
 \providecommand{\safetywarning}[1]{}
 \renewcommand{\safetywarning}[1]{%
-\begin{safetywarningbox}
-  \noindent
-  \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
-                  @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
-                  m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}
-    \centering\warninglockup
-    &
-    \raggedright
-    {\bfseries
-    \color{\csname HBtype_warning_text_color\endcsname}
-    \fontsize{\csname HBtype_warning_text_font_size\endcsname}
-             {\csname HBtype_warning_text_font_leading\endcsname}
-    \selectfont
-     #1
-    }
-  \end{tabular}
-\end{safetywarningbox}
+  \begin{safetywarningbox}%
+    \noindent
+    \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+                    @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
+                    m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}%
+      \centering\warninglockup
+      &
+      \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
+        \raggedright
+        \bfseries
+        \color{\csname HBtype_warning_text_color\endcsname}%
+        \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
+        % Force real line spacing for wrapped lines
+        \setlength{\baselineskip}{\csname HBtype_warning_text_font_leading\endcsname}%
+        \setlength{\lineskip}{0pt}%
+        \setlength{\lineskiplimit}{0pt}%
+        \strut #1\strut
+      }%
+    \end{tabular}%
+  \end{safetywarningbox}%
 }
+
+
 
 % ==================================================
 % SUBBAR
@@ -121,12 +130,13 @@
   \begin{multicols}{2}
     \normalfont\mdseries
     \color{\csname HBtype_list_color\endcsname}
-    \fontsize{\csname HBtype_list_font_size\endcsname}{\csname HBtype_list_font_leading\endcsname}\selectfont 
+    \fontsize{\csname HBtype_list_font_size\endcsname}
+             {\csname HBtype_list_font_leading\endcsname}\selectfont
 }{%
-  \end{multicols}
+  \end{multicols}%
   \par
+  \vspace*{\csname HBcomp_twocol_after\endcsname}%
 }
-
 
 % ==================================================
 % H1 PILL
