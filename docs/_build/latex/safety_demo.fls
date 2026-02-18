@@ -2,7 +2,7 @@ PWD /Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex
 INPUT /usr/local/texlive/2025/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT safety_demo.tex
+INPUT /Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/safety_demo.tex
 OUTPUT safety_demo.log
 INPUT ./sphinxhowto.cls
 INPUT sphinxhowto.cls
@@ -445,7 +445,6 @@ INPUT ./warning_lockup.png
 INPUT ./safety_demo.ind
 INPUT ./safety_demo.ind
 INPUT safety_demo.ind
-OUTPUT safety_demo.xdv
 INPUT safety_demo.aux
 INPUT ./safety_demo.out
 INPUT ./safety_demo.out
