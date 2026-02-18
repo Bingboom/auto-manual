@@ -33,80 +33,6 @@ CSV_PATH = ROOT / "data" / "layout_params.csv"
 OUT_TEX = ROOT / "docs" / "latex_theme" / "params.tex"
 
 
-# --- alias mapping (old_key -> new_key) ---
-# Only emits alias when BOTH keys exist in CSV.
-ALIASES: dict[str, str] = {
-    # --- CORE decoupling you want ---
-    # old lead_* should map to type_body_*
-    "lead_font_size": "type_body_font_size",
-    "lead_font_leading": "type_body_font_leading",
-    "lead_force_upper": "type_body_force_upper",
-    "lead_vspace_after": "comp_lead_after",
-
-    # old twocol_font_* should map to type_list_*
-    "twocol_font_size": "type_list_font_size",
-    "twocol_font_leading": "type_list_font_leading",
-
-    # title_* used by pills -> split (initially can share, later you can change values)
-    "title_font_size": "type_h1_font_size",
-    "title_font_leading": "type_h1_font_leading",
-    "title_force_upper": "type_h1_force_upper",
-
-    # warning text -> type_warning_text_*
-    "warn_text_size": "type_warning_text_font_size",
-    "warn_text_leading": "type_warning_text_font_leading",
-    "warn_text_uppercase": "type_warning_text_force_upper",
-
-    # box params mirrors (optional but nice)
-    "brand_title_arc": "comp_h1_pill_arc",
-    "brand_title_pad_lr": "comp_h1_pill_pad_lr",
-    "brand_title_pad_tb": "comp_h1_pill_pad_tb",
-    "brand_title_width": "comp_h1_pill_width",
-    "brand_title_vspace_after": "comp_h1_pill_after",
-
-    "warn_box_arc": "comp_warning_box_arc",
-    "warn_box_rule": "comp_warning_box_rule",
-    "warn_box_pad_lr": "comp_warning_box_pad_lr",
-    "warn_box_pad_tb": "comp_warning_box_pad_tb",
-    "warn_box_before": "comp_warning_box_before",
-    "warn_box_after": "comp_warning_box_after",
-    "warn_box_width": "comp_warning_box_width",
-
-    "warn_lockup_height": "comp_lockup_height",
-    "warn_lockup_width": "comp_lockup_width",
-    "warn_lockup_gap": "comp_lockup_gap",
-    "warn_lockup_viewport": "comp_lockup_viewport",
-
-    "subbar_arc": "comp_subbar_arc",
-    "subbar_pad_lr": "comp_subbar_pad_lr",
-    "subbar_pad_tb": "comp_subbar_pad_tb",
-    "subbar_width": "comp_subbar_width",
-    "subbar_vspace_after": "comp_subbar_after",
-
-    "twocol_sep": "comp_twocol_sep",
-    "list_leftmargin": "comp_list_leftmargin",
-    "list_labelsep": "comp_list_labelsep",
-    "list_itemsep": "comp_list_itemsep",
-    "list_topsep": "comp_list_topsep",
-    "list_parsep": "comp_list_parsep",
-    "list_partopsep": "comp_list_partopsep",
-    "list_bullet_raise": "comp_list_bullet_raise",
-    "list_bullet_symbol": "comp_list_bullet_symbol",
-
-    "rubric_before": "comp_rubric_before",
-    "rubric_after": "comp_rubric_after",
-
-    "table_inner_rule": "comp_table_inner_rule",
-    "table_tabcolsep": "comp_table_tabcolsep",
-    "table_outer_arc": "comp_table_outer_arc",
-    "table_outer_rule": "comp_table_outer_rule",
-
-    "note_arc": "comp_note_arc",
-    "note_pad_lr": "comp_note_pad_lr",
-    "note_pad_tb": "comp_note_pad_tb",
-}
-
-
 def fmt_value(value: str, unit: str) -> str:
     """Format value with unit. 'ratio' means raw number with no unit suffix."""
     value = (value or "").strip()
@@ -217,25 +143,6 @@ def main() -> None:
             lines.append(rf"\expandafter\def\csname HB{key}\endcsname{{{v}}}")
 
         lines.append("")
-
-    # aliases (only if both keys exist)
-    emitted = []
-    for old_key, new_key in ALIASES.items():
-        if old_key in items and new_key in items:
-            emitted.append((old_key, new_key))
-
-    if emitted:
-        lines.append("% ===== ALIASES (compat) =====")
-        lines.append("% Format: \\def\\HB<old>{\\HB<new>} (forwarding)")
-        lines.append("")
-        for old_key, new_key in emitted:
-            lines.append(f"% alias: {old_key} -> {new_key}")
-            # OLD (remove)
-            # lines.append(rf"\expandafter\let\csname HB{old_key}\expandafter\endcsname\csname HB{new_key}\endcsname")
-
-            # NEW (use def forwarding)
-            lines.append(rf"\expandafter\def\csname HB{old_key}\endcsname{{\csname HB{new_key}\endcsname}}")
-            lines.append("")
 
     OUT_TEX.write_text("\n".join(lines), encoding="utf-8")
     print(f"[csv_to_tex_params] Wrote: {OUT_TEX}")

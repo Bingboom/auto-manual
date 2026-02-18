@@ -14,24 +14,12 @@ page_headrulewidth,0,pt,Header rule width
 page_footrulewidth,0,pt,Footer rule width
 section_after_fix,-2,mm,negative spacing after section to cancel sphinx glue
 ,,,
-brand_title_arc,2.6,mm,H1 pill corner radius
-brand_title_pad_lr,5,mm,H1 pill left/right padding
-brand_title_pad_tb,1.8,mm,H1 pill top/bottom padding
-brand_title_width,1,ratio,H1 pill width ratio of \\textwidth
-brand_title_vspace_after,0,mm,Space after H1 pill (tcolorbox after skip)
 comp_h1_pill_arc,2.6,mm,(NEW) H1 pill corner radius
 comp_h1_pill_pad_lr,5,mm,(NEW) H1 pill left/right padding
 comp_h1_pill_pad_tb,1.8,mm,(NEW) H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,(NEW) H1 pill width ratio of \\textwidth
 comp_h1_pill_after,0,mm,(NEW) Space after H1 pill
 ,,,
-warn_box_arc,2.0,mm,Warning box corner radius
-warn_box_rule,0.55,pt,Warning box border width
-warn_box_pad_lr,3.6,mm,Warning box left/right padding
-warn_box_pad_tb,1.0,mm,Warning box top/bottom padding
-warn_box_before,0.5,mm,Space before warning box
-warn_box_after,1.2,mm,Space after warning box
-warn_box_width,1,ratio,Warning box width ratio of \\textwidth
 comp_warning_box_arc,2.0,mm,(NEW) Warning box corner radius
 comp_warning_box_rule,0.55,pt,(NEW) Warning box border width
 comp_warning_box_pad_lr,3.6,mm,(NEW) Warning box left/right padding
@@ -40,39 +28,23 @@ comp_warning_box_before,0.5,mm,(NEW) Space before warning box
 comp_warning_box_after,1.2,mm,(NEW) Space after warning box
 comp_warning_box_width,1,ratio,(NEW) Warning box width ratio of \\textwidth
 ,,,
-warn_lockup_height,7.2,mm,Height of warning_lockup.png
-warn_lockup_width,36,mm,Width reserved for lockup block in table
-warn_lockup_gap,2,mm,Gap between lockup and right warning text
-warn_lockup_viewport,79 70 2125 549,none,Crop viewport for lockup image (x y w h)
 comp_lockup_height,7.2,mm,(NEW) Height of warning_lockup.png
 comp_lockup_width,36,mm,(NEW) Width reserved for lockup block in table
 comp_lockup_gap,2,mm,(NEW) Gap between lockup and right warning text
 comp_lockup_viewport,79 70 2125 549,none,(NEW) Crop viewport for lockup image
 ,,,
-warn_text_size,7,pt,Right warning text font size
-warn_text_leading,9,pt,Right warning text leading (>= size)
-warn_text_uppercase,1,int,0=keep case / 1=uppercase
 type_warning_text_font_size,7,pt,(NEW) Warning text font size
 type_warning_text_font_leading,9,pt,(NEW) Warning text leading
 type_warning_text_force_upper,1,int,(NEW) Warning text uppercase
 ,,,
-subbar_arc,2.4,mm,Subbar corner radius
-subbar_pad_lr,5,mm,Subbar left/right padding
-subbar_pad_tb,1.8,mm,Subbar top/bottom padding
-subbar_width,1,ratio,Subbar width ratio of \\textwidth
-subbar_vspace_after,2,mm,Space after subbar pill
 comp_subbar_arc,2.4,mm,(NEW) Subbar corner radius
 comp_subbar_pad_lr,5,mm,(NEW) Subbar left/right padding
 comp_subbar_pad_tb,1.8,mm,(NEW) Subbar top/bottom padding
 comp_subbar_width,1,ratio,(NEW) Subbar width ratio of \\textwidth
 comp_subbar_after,2,mm,(NEW) Space after subbar pill
 ,,,
-twocol_sep,12,mm,Space between columns
 comp_twocol_sep,12,mm,(NEW) Space between columns
 ,,,
-title_font_size,9,pt,Title font size used in pills (H1/subbar)
-title_font_leading,10.8,pt,Title leading used in pills
-title_force_upper,1,int,0 keep case / 1 uppercase
 type_h1_font_size,9,pt,(NEW) H1 font size
 type_h1_font_leading,10.8,pt,(NEW) H1 leading
 type_h1_force_upper,1,int,(NEW) H1 uppercase
@@ -80,37 +52,19 @@ type_subbar_font_size,9,pt,(NEW) Subbar font size
 type_subbar_font_leading,10.8,pt,(NEW) Subbar leading
 type_subbar_force_upper,1,int,(NEW) Subbar uppercase
 ,,,
-rubric_font_size,6,pt,Rubric font size
-rubric_font_leading,7.2,pt,Rubric leading
-rubric_before,1.2,mm,Rubric space before
-rubric_after,0.8,mm,Rubric space after
 type_rubric_font_size,6,pt,(NEW) Rubric font size
 type_rubric_font_leading,7.2,pt,(NEW) Rubric leading
 comp_rubric_before,1.2,mm,(NEW) Rubric space before
 comp_rubric_after,0.8,mm,(NEW) Rubric space after
 ,,,
-lead_font_size,6.2,pt,Lead/body font size (legacy)
-lead_font_leading,7.4,pt,Lead/body leading (legacy)
-lead_vspace_after,0.6,mm,Space after lead line (legacy)
-lead_force_upper,0,int,0 keep case / 1 uppercase (legacy)
 type_body_font_size,6.2,pt,(NEW) Body/lead font size
 type_body_font_leading,7.4,pt,(NEW) Body/lead leading (edit this should NOT affect list/warning)
 type_body_force_upper,0,int,(NEW) Body/lead uppercase
 comp_lead_after,0.6,mm,(NEW) Space after lead line
 ,,,
-twocol_font_size,6.2,pt,Font size for two-col list (legacy)
-twocol_font_leading,7.4,pt,Leading for two-col list (legacy)
 type_list_font_size,6.2,pt,(NEW) List font size
 type_list_font_leading,7.4,pt,(NEW) List leading
 ,,,
-list_leftmargin,1.2,em,itemize leftmargin
-list_labelsep,0.6,em,itemize labelsep
-list_itemsep,0.8,mm,itemize itemsep
-list_topsep,0,mm,itemize topsep
-list_parsep,0,mm,itemize parsep
-list_partopsep,0,mm,itemize partopsep
-list_bullet_raise,0.15,ex,Bullet raise offset
-list_bullet_symbol,\\small\\textbullet,none,Bullet symbol TeX
 comp_list_leftmargin,1.2,em,(NEW) itemize leftmargin
 comp_list_labelsep,0.6,em,(NEW) itemize labelsep
 comp_list_itemsep,0.8,mm,(NEW) itemize itemsep
@@ -120,18 +74,11 @@ comp_list_partopsep,0,mm,(NEW) itemize partopsep
 comp_list_bullet_raise,0.15,ex,(NEW) Bullet raise offset
 comp_list_bullet_symbol,\small\textbullet,none,(NEW) Bullet symbol TeX
 ,,,
-table_inner_rule,0.2,pt,Table inner rule width
-table_tabcolsep,3.5,pt,Table tabcolsep
-table_outer_arc,2,mm,Table outer corner radius
-table_outer_rule,0.4,pt,Table outer rule width
 comp_table_inner_rule,0.2,pt,(NEW) Table inner rule width
 comp_table_tabcolsep,3.5,pt,(NEW) Table tabcolsep
 comp_table_outer_arc,2,mm,(NEW) Table outer corner radius
 comp_table_outer_rule,0.4,pt,(NEW) Table outer rule width
 ,,,
-note_arc,2,mm,Note box corner radius
-note_pad_lr,3,mm,Note left/right padding
-note_pad_tb,2.5,mm,Note top/bottom padding
 comp_note_arc,2,mm,(NEW) Note box corner radius
 comp_note_pad_lr,3,mm,(NEW) Note left/right padding
 comp_note_pad_tb,2.5,mm,(NEW) Note top/bottom padding
