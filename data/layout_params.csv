@@ -16,11 +16,11 @@ page_footer_leading_zero,1,int,0=no leading zero / 1=leading zero for 1-9
 section_after_fix,-2,mm,Negative spacing after section to cancel Sphinx glue
 ,,,
 ,,,==================== TYPE SYSTEM ====================
-type_h1_font_size,9,pt,H1 font size
+type_h1_font_size,10,pt,H1 font size
 type_h1_font_leading,10.8,pt,H1 leading
 type_h1_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
-type_subbar_font_size,7,pt,Subbar font size
+type_subbar_font_size,6,pt,Subbar font size
 type_subbar_font_leading,8.4,pt,Subbar leading
 type_subbar_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
@@ -34,8 +34,8 @@ type_body_force_upper,0,int,0 keep case / 1 uppercase
 type_list_font_size,5.5,pt,List font size
 type_list_font_leading,7.4,pt,List leading (independent from body)
 ,,,
-type_warning_text_font_size,7,pt,Warning right text font size
-type_warning_text_font_leading,7.6,pt,Warning right text leading
+type_warning_text_font_size,6.5,pt,Warning right text font size
+type_warning_text_font_leading,8,pt,Warning right text leading
 type_warning_text_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
 ,,,==================== COMPONENTS ====================
@@ -45,16 +45,16 @@ comp_h1_pill_pad_tb,1,mm,H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,H1 pill width ratio of \textwidth
 comp_h1_pill_after,0,mm,Space after H1 pill
 ,,,
-comp_subbar_arc,2.4,mm,Subbar corner radius
-comp_subbar_pad_lr,2,mm,Subbar left/right padding
-comp_subbar_pad_tb,1.6,mm,Subbar top/bottom padding
+comp_subbar_arc,1.5,mm,Subbar corner radius
+comp_subbar_pad_lr,0.6,mm,Subbar left/right padding
+comp_subbar_pad_tb,0,mm,Subbar top/bottom padding
 comp_subbar_width,1,ratio,Subbar width ratio of \textwidth
 comp_subbar_after,0,mm,Space after subbar
 ,,,
 comp_warning_box_arc,2.0,mm,Warning box corner radius
 comp_warning_box_rule,0.55,pt,Warning box border width
-comp_warning_box_pad_lr,0,mm,Warning box left/right padding
-comp_warning_box_pad_tb,0,mm,Warning box top/bottom padding
+comp_warning_box_pad_lr,-1,mm,Warning box left/right padding
+comp_warning_box_pad_tb,0.2,mm,Warning box top/bottom padding
 comp_warning_box_before,0.5,mm,Space before warning box
 comp_warning_box_after,1.2,mm,Space after warning box
 comp_warning_box_width,1,ratio,Warning box width ratio of \textwidth
@@ -83,12 +83,12 @@ comp_table_tabcolsep,3.5,pt,Table tabcolsep
 comp_table_outer_arc,2,mm,Table outer corner radius
 comp_table_outer_rule,0.4,pt,Table outer rule width
 ,,,
-comp_note_arc,2,mm,Note box corner radius
-comp_note_pad_lr,3,mm,Note left/right padding
-comp_note_pad_tb,2.5,mm,Note top/bottom padding
+comp_note_arc,2.4,mm,Note box corner radius
+comp_note_pad_lr,0,mm,Note left/right padding
+comp_note_pad_tb,0.5,mm,Note top/bottom padding
 ,,,
 comp_rubric_before,0,mm,Rubric space before
-comp_rubric_after,0.8,mm,Rubric space after
+comp_rubric_after,1.2,mm,Rubric space after
 ,,,==================== BRAND COLORS ====================
 brand_color_branddark,"0,0,0,0.78",cmyk,Main brand dark
 brand_color_textgray,"0,0,0,0.80",cmyk,Body text gray
@@ -103,3 +103,4 @@ type_body_color,TextGray,none,Body text color name
 type_list_color,TextGray,none,List text color name
 type_rubric_color,TextK90,none,Rubric text color name
 type_warning_text_color,TextK90,none,Warning right text color name
+comp_twocol_after,-5,mm,Space after two-column block
