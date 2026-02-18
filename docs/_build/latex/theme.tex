@@ -16,3 +16,8 @@
 \input{layout.tex}
 \input{components.tex}
 
+% --- enforce paragraph spacing (override sphinx/parskip) ---
+\setlength{\parindent}{\csname HBpage_parindent\endcsname}
+\setlength{\parskip}{\csname HBpage_parskip\endcsname}
+
+

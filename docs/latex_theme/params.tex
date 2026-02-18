@@ -29,7 +29,7 @@
 \expandafter\def\csname HBpage_margin_right\endcsname{10mm}
 
 % Top margin
-\expandafter\def\csname HBpage_margin_top\endcsname{1mm}
+\expandafter\def\csname HBpage_margin_top\endcsname{4mm}
 
 % Paper height
 \expandafter\def\csname HBpage_paperheight\endcsname{185mm}
@@ -69,10 +69,10 @@
 % ===== TYPE SYSTEM =====
 
 % Body/lead leading (MUST NOT affect list/warning)
-\expandafter\def\csname HBtype_body_font_leading\endcsname{6.6pt}
+\expandafter\def\csname HBtype_body_font_leading\endcsname{6pt}
 
 % Body/lead font size
-\expandafter\def\csname HBtype_body_font_size\endcsname{5.5pt}
+\expandafter\def\csname HBtype_body_font_size\endcsname{6.2pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_body_force_upper\endcsname{0}
@@ -87,7 +87,7 @@
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
 
 % List leading (independent from body)
-\expandafter\def\csname HBtype_list_font_leading\endcsname{6.6pt}
+\expandafter\def\csname HBtype_list_font_leading\endcsname{7.4pt}
 
 % List font size
 \expandafter\def\csname HBtype_list_font_size\endcsname{5.5pt}
@@ -143,7 +143,7 @@
 \expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\small\textbullet}
 
 % itemize itemsep
-\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.4mm}
+\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.8mm}
 
 % itemize labelsep
 \expandafter\def\csname HBcomp_list_labelsep\endcsname{0.45em}
@@ -185,10 +185,10 @@
 \expandafter\def\csname HBcomp_rubric_after\endcsname{0.8mm}
 
 % Rubric space before
-\expandafter\def\csname HBcomp_rubric_before\endcsname{1.2mm}
+\expandafter\def\csname HBcomp_rubric_before\endcsname{0mm}
 
 % Space after subbar
-\expandafter\def\csname HBcomp_subbar_after\endcsname{2mm}
+\expandafter\def\csname HBcomp_subbar_after\endcsname{0mm}
 
 % Subbar corner radius
 \expandafter\def\csname HBcomp_subbar_arc\endcsname{2.4mm}
@@ -198,6 +198,9 @@
 
 % Subbar top/bottom padding
 \expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{1.6mm}
+
+% Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
+\expandafter\def\csname HBcomp_subbar_tighten\endcsname{9mm}
 
 % Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
@@ -215,7 +218,10 @@
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{3.5pt}
 
 % Space between two columns
-\expandafter\def\csname HBcomp_twocol_sep\endcsname{10mm}
+\expandafter\def\csname HBcomp_twocol_sep\endcsname{6mm}
+
+% Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)
+\expandafter\def\csname HBcomp_twocol_tighten\endcsname{5mm}
 
 % Space after warning box
 \expandafter\def\csname HBcomp_warning_box_after\endcsname{1.2mm}

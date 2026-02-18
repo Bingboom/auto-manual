@@ -114,7 +114,14 @@ def check_units_and_values(rows: List[Row]) -> Dict[str, Row]:
             
 
         # naming rule sanity
-        if not (row.key.startswith("page_") or row.key.startswith("type_") or row.key.startswith("comp_") or row.key == "section_after_fix"):
+        if not (
+            row.key.startswith("page_")
+            or row.key.startswith("type_")
+            or row.key.startswith("comp_")
+            or row.key.startswith("brand_color_")
+            or row.key == "section_after_fix"
+        ):
+
             warn(f"non-v2 key naming detected: '{row.key}' (expected page_/type_/comp_ or section_after_fix)")
 
         # TeX escape sanity for bullet: should be single backslash style

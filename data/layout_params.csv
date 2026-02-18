@@ -4,7 +4,7 @@ page_paperwidth,130,mm,Paper width
 page_paperheight,185,mm,Paper height
 page_margin_left,10,mm,Left margin
 page_margin_right,10,mm,Right margin
-page_margin_top,1,mm,Top margin
+page_margin_top,4,mm,Top margin
 page_margin_bottom,10,mm,Bottom margin
 page_parindent,0,pt,Paragraph indent
 page_parskip,0,pt,Paragraph skip
@@ -27,12 +27,12 @@ type_subbar_force_upper,1,int,0 keep case / 1 uppercase
 type_rubric_font_size,6,pt,Rubric font size
 type_rubric_font_leading,7.2,pt,Rubric leading
 ,,,
-type_body_font_size,5.5,pt,Body/lead font size
-type_body_font_leading,6.6,pt,Body/lead leading (MUST NOT affect list/warning)
+type_body_font_size,6.2,pt,Body/lead font size
+type_body_font_leading,6,pt,Body/lead leading (MUST NOT affect list/warning)
 type_body_force_upper,0,int,0 keep case / 1 uppercase
 ,,,
 type_list_font_size,5.5,pt,List font size
-type_list_font_leading,6.6,pt,List leading (independent from body)
+type_list_font_leading,7.4,pt,List leading (independent from body)
 ,,,
 type_warning_text_font_size,7,pt,Warning right text font size
 type_warning_text_font_leading,7.6,pt,Warning right text leading
@@ -49,7 +49,7 @@ comp_subbar_arc,2.4,mm,Subbar corner radius
 comp_subbar_pad_lr,2,mm,Subbar left/right padding
 comp_subbar_pad_tb,1.6,mm,Subbar top/bottom padding
 comp_subbar_width,1,ratio,Subbar width ratio of \textwidth
-comp_subbar_after,2,mm,Space after subbar
+comp_subbar_after,0,mm,Space after subbar
 ,,,
 comp_warning_box_arc,2.0,mm,Warning box corner radius
 comp_warning_box_rule,0.55,pt,Warning box border width
@@ -65,13 +65,13 @@ comp_lockup_width,30,mm,Width reserved for lockup column
 comp_lockup_gap,2,mm,Gap between lockup and warning text
 comp_lockup_viewport,79 70 2125 549,none,Reserved (viewport macro is fragile; keep for future trim-based cropping)
 ,,,
-comp_twocol_sep,10,mm,Space between two columns
+comp_twocol_sep,6,mm,Space between two columns
 ,,,
 comp_lead_after,0.6,mm,Space after lead line
 ,,,
 comp_list_leftmargin,1.0,em,itemize leftmargin
 comp_list_labelsep,0.45,em,itemize labelsep
-comp_list_itemsep,0.4,mm,itemize itemsep
+comp_list_itemsep,0.8,mm,itemize itemsep
 comp_list_topsep,0,mm,itemize topsep
 comp_list_parsep,0,mm,itemize parsep
 comp_list_partopsep,0,mm,itemize partopsep
@@ -87,7 +87,7 @@ comp_note_arc,2,mm,Note box corner radius
 comp_note_pad_lr,3,mm,Note left/right padding
 comp_note_pad_tb,2.5,mm,Note top/bottom padding
 ,,,
-comp_rubric_before,1.2,mm,Rubric space before
+comp_rubric_before,0,mm,Rubric space before
 comp_rubric_after,0.8,mm,Rubric space after
 ,,,==================== BRAND COLORS ====================
 brand_color_branddark,"0,0,0,0.78",cmyk,Main brand dark
@@ -96,3 +96,6 @@ brand_color_linek40,"0,0,0,0.40",cmyk,Border gray
 brand_color_bgk05,"0,0,0,0.05",cmyk,Background light gray
 brand_color_accentblue,"0.90,0.55,0,0.60",cmyk,Accent blue
 brand_color_textk90,"0,0,0,0.90",cmyk,Strong text
+,,,
+comp_subbar_tighten,9,mm,Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
+comp_twocol_tighten,5,mm,Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)

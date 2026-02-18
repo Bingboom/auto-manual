@@ -103,7 +103,9 @@
    \fontsize{\csname HBtype_subbar_font_size\endcsname}{\csname HBtype_subbar_font_leading\endcsname}\selectfont
    #1}
   \end{tcolorbox}
-  \vspace{\csname HBcomp_subbar_after\endcsname}
+  \par\noindent
+  \vspace*{\csname HBcomp_subbar_after\endcsname}%
+  \vspace*{-\csname HBcomp_subbar_tighten\endcsname}%
 }
 
 % ==================================================
@@ -113,11 +115,16 @@
 \setlength{\columnsep}{\csname HBcomp_twocol_sep\endcsname}
 
 \newenvironment{safetytwocol}{%
+  \par\noindent
+  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
   \begin{multicols}{2}
+  \normalfont\mdseries
   \fontsize{\csname HBtype_list_font_size\endcsname}{\csname HBtype_list_font_leading\endcsname}\selectfont
 }{%
   \end{multicols}
+  \par
 }
+
 
 % ==================================================
 % H1 PILL
@@ -158,7 +165,7 @@
   {\bfseries
    \fontsize{\csname HBtype_body_font_size\endcsname}{\csname HBtype_body_font_leading\endcsname}\selectfont
    #1}
-  \par\vspace{\csname HBcomp_lead_after\endcsname}
+   \par\vspace{\csname HBcomp_lead_after\endcsname}
 }
 
 % ==================================================
