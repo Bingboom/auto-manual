@@ -68,8 +68,11 @@
 
 % ===== TYPE SYSTEM =====
 
+% Body text color name
+\expandafter\def\csname HBtype_body_color\endcsname{TextGray}
+
 % Body/lead leading (MUST NOT affect list/warning)
-\expandafter\def\csname HBtype_body_font_leading\endcsname{6pt}
+\expandafter\def\csname HBtype_body_font_leading\endcsname{7.4pt}
 
 % Body/lead font size
 \expandafter\def\csname HBtype_body_font_size\endcsname{6.2pt}
@@ -86,11 +89,17 @@
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
 
+% List text color name
+\expandafter\def\csname HBtype_list_color\endcsname{TextGray}
+
 % List leading (independent from body)
 \expandafter\def\csname HBtype_list_font_leading\endcsname{7.4pt}
 
 % List font size
 \expandafter\def\csname HBtype_list_font_size\endcsname{5.5pt}
+
+% Rubric text color name
+\expandafter\def\csname HBtype_rubric_color\endcsname{TextK90}
 
 % Rubric leading
 \expandafter\def\csname HBtype_rubric_font_leading\endcsname{7.2pt}
@@ -106,6 +115,9 @@
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_subbar_force_upper\endcsname{1}
+
+% Warning right text color name
+\expandafter\def\csname HBtype_warning_text_color\endcsname{TextK90}
 
 % Warning right text leading
 \expandafter\def\csname HBtype_warning_text_font_leading\endcsname{7.6pt}

@@ -28,7 +28,7 @@ type_rubric_font_size,6,pt,Rubric font size
 type_rubric_font_leading,7.2,pt,Rubric leading
 ,,,
 type_body_font_size,6.2,pt,Body/lead font size
-type_body_font_leading,6,pt,Body/lead leading (MUST NOT affect list/warning)
+type_body_font_leading,7.4,pt,Body/lead leading (MUST NOT affect list/warning)
 type_body_force_upper,0,int,0 keep case / 1 uppercase
 ,,,
 type_list_font_size,5.5,pt,List font size
@@ -99,3 +99,7 @@ brand_color_textk90,"0,0,0,0.90",cmyk,Strong text
 ,,,
 comp_subbar_tighten,9,mm,Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
 comp_twocol_tighten,5,mm,Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)
+type_body_color,TextGray,none,Body text color name
+type_list_color,TextGray,none,List text color name
+type_rubric_color,TextK90,none,Rubric text color name
+type_warning_text_color,TextK90,none,Warning right text color name
