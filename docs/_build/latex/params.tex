@@ -4,17 +4,26 @@
 
 % ===== PAGE =====
 
+% Footer color
+\expandafter\def\csname HBpage_footer_color\endcsname{TextGray}
+
 % Footer leading
 \expandafter\def\csname HBpage_footer_font_leading\endcsname{7.2pt}
 
 % Footer font size
 \expandafter\def\csname HBpage_footer_font_size\endcsname{6pt}
 
-% 0=no leading zero / 1=leading zero for 1-9
+% Leading zero
 \expandafter\def\csname HBpage_footer_leading_zero\endcsname{1}
+
+% Raises page number up
+\expandafter\def\csname HBpage_footer_raise\endcsname{3mm}
 
 % Footer rule width
 \expandafter\def\csname HBpage_footrulewidth\endcsname{0pt}
+
+% Distance from text block to footer baseline
+\expandafter\def\csname HBpage_footskip\endcsname{8mm}
 
 % Header rule width
 \expandafter\def\csname HBpage_headrulewidth\endcsname{0pt}
@@ -84,7 +93,7 @@
 \expandafter\def\csname HBtype_h1_font_leading\endcsname{10.8pt}
 
 % H1 font size
-\expandafter\def\csname HBtype_h1_font_size\endcsname{9pt}
+\expandafter\def\csname HBtype_h1_font_size\endcsname{10pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
@@ -111,7 +120,7 @@
 \expandafter\def\csname HBtype_subbar_font_leading\endcsname{8.4pt}
 
 % Subbar font size
-\expandafter\def\csname HBtype_subbar_font_size\endcsname{7pt}
+\expandafter\def\csname HBtype_subbar_font_size\endcsname{6pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_subbar_force_upper\endcsname{1}
@@ -120,10 +129,10 @@
 \expandafter\def\csname HBtype_warning_text_color\endcsname{TextK90}
 
 % Warning right text leading
-\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{7.6pt}
+\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{8pt}
 
 % Warning right text font size
-\expandafter\def\csname HBtype_warning_text_font_size\endcsname{7pt}
+\expandafter\def\csname HBtype_warning_text_font_size\endcsname{6.5pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_warning_text_force_upper\endcsname{1}
@@ -185,16 +194,16 @@
 \expandafter\def\csname HBcomp_lockup_width\endcsname{30mm}
 
 % Note box corner radius
-\expandafter\def\csname HBcomp_note_arc\endcsname{2mm}
+\expandafter\def\csname HBcomp_note_arc\endcsname{2.4mm}
 
 % Note left/right padding
-\expandafter\def\csname HBcomp_note_pad_lr\endcsname{3mm}
+\expandafter\def\csname HBcomp_note_pad_lr\endcsname{0mm}
 
 % Note top/bottom padding
-\expandafter\def\csname HBcomp_note_pad_tb\endcsname{2.5mm}
+\expandafter\def\csname HBcomp_note_pad_tb\endcsname{0.5mm}
 
 % Rubric space after
-\expandafter\def\csname HBcomp_rubric_after\endcsname{0.8mm}
+\expandafter\def\csname HBcomp_rubric_after\endcsname{1.2mm}
 
 % Rubric space before
 \expandafter\def\csname HBcomp_rubric_before\endcsname{0mm}
@@ -203,13 +212,13 @@
 \expandafter\def\csname HBcomp_subbar_after\endcsname{0mm}
 
 % Subbar corner radius
-\expandafter\def\csname HBcomp_subbar_arc\endcsname{2.4mm}
+\expandafter\def\csname HBcomp_subbar_arc\endcsname{1.5mm}
 
 % Subbar left/right padding
-\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{2mm}
+\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{0.6mm}
 
 % Subbar top/bottom padding
-\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{1.6mm}
+\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{0mm}
 
 % Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
 \expandafter\def\csname HBcomp_subbar_tighten\endcsname{9mm}
@@ -229,6 +238,9 @@
 % Table tabcolsep
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{3.5pt}
 
+% Space after two-column block
+\expandafter\def\csname HBcomp_twocol_after\endcsname{-5mm}
+
 % Space between two columns
 \expandafter\def\csname HBcomp_twocol_sep\endcsname{6mm}
 
@@ -245,10 +257,10 @@
 \expandafter\def\csname HBcomp_warning_box_before\endcsname{0.5mm}
 
 % Warning box left/right padding
-\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{0mm}
+\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{-1mm}
 
 % Warning box top/bottom padding
-\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{0mm}
+\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{0.2mm}
 
 % Warning box border width
 \expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.55pt}
