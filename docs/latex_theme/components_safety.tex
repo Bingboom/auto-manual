@@ -1,6 +1,6 @@
 % ==================================================
 % components_safety.tex
-% INDUSTRIAL STABLE VERSION
+% INDUSTRIAL STABLE VERSION (layered params)
 % ==================================================
 
 \usepackage{titlesec}
@@ -13,9 +13,14 @@
 % SAFE DEFAULTS (防止参数未定义)
 % ==================================================
 
-\providecommand{\HBwarn_text_uppercase}{0}
-\providecommand{\HBtitle_force_upper}{0}
-\providecommand{\HBlead_force_upper}{0}
+% NOTE:
+% - We keep legacy providecommands for safety, but runtime values come from params.tex via \csname HB<key>\endcsname.
+% - Uppercase flags are expected to be numeric (0/1). Ensure csv_to_tex_params treats unit=int as raw number.
+
+\providecommand{\HBtype_warning_text_force_upper}{0}
+\providecommand{\HBtype_h1_force_upper}{0}
+\providecommand{\HBtype_subbar_force_upper}{0}
+\providecommand{\HBtype_body_force_upper}{0}
 \providecommand{\HBsection_after_fix}{0pt}
 
 % ==================================================
@@ -25,7 +30,7 @@
 \providecommand{\warninglockup}{}
 \renewcommand{\warninglockup}{%
   \includegraphics[
-    height=\csname HBwarn_lockup_height\endcsname,
+    height=\csname HBcomp_lockup_height\endcsname,
     viewport=79 22 2125 549,
     clip
   ]{warning_lockup.png}%
@@ -40,15 +45,15 @@
   enhanced,
   colback=white,
   colframe=LineK40,
-  arc=\csname HBwarn_box_arc\endcsname,
-  boxrule=\csname HBwarn_box_rule\endcsname,
-  left=\csname HBwarn_box_pad_lr\endcsname,
-  right=\csname HBwarn_box_pad_lr\endcsname,
-  top=\csname HBwarn_box_pad_tb\endcsname,
-  bottom=\csname HBwarn_box_pad_tb\endcsname,
-  before skip=\csname HBwarn_box_before\endcsname,
-  after skip=\csname HBwarn_box_after\endcsname,
-  width=\csname HBwarn_box_width\endcsname\textwidth,
+  arc=\csname HBcomp_warning_box_arc\endcsname,
+  boxrule=\csname HBcomp_warning_box_rule\endcsname,
+  left=\csname HBcomp_warning_box_pad_lr\endcsname,
+  right=\csname HBcomp_warning_box_pad_lr\endcsname,
+  top=\csname HBcomp_warning_box_pad_tb\endcsname,
+  bottom=\csname HBcomp_warning_box_pad_tb\endcsname,
+  before skip=\csname HBcomp_warning_box_before\endcsname,
+  after skip=\csname HBcomp_warning_box_after\endcsname,
+  width=\csname HBcomp_warning_box_width\endcsname\textwidth,
 }
 
 % ==================================================
@@ -59,14 +64,14 @@
 \renewcommand{\safetywarning}[1]{%
 \begin{safetywarningbox}
   \noindent
-  \begin{tabular}{@{}m{\csname HBwarn_lockup_width\endcsname}%
-                  @{\hspace{\csname HBwarn_lockup_gap\endcsname}}%
-                  m{\dimexpr\textwidth-\csname HBwarn_lockup_width\endcsname-\csname HBwarn_lockup_gap\endcsname\relax}@{}}
+  \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+                  @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
+                  m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}
     \centering\warninglockup
     &
     \raggedright
     {\bfseries
-     \fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont
+     \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
      #1
     }
   \end{tabular}
@@ -82,30 +87,30 @@
   \begin{tcolorbox}[
     colback=BrandDark,
     colframe=BrandDark,
-    arc=\csname HBsubbar_arc\endcsname,
-    left=\csname HBsubbar_pad_lr\endcsname,
-    right=\csname HBsubbar_pad_lr\endcsname,
-    top=\csname HBsubbar_pad_tb\endcsname,
-    bottom=\csname HBsubbar_pad_tb\endcsname,
+    arc=\csname HBcomp_subbar_arc\endcsname,
+    left=\csname HBcomp_subbar_pad_lr\endcsname,
+    right=\csname HBcomp_subbar_pad_lr\endcsname,
+    top=\csname HBcomp_subbar_pad_tb\endcsname,
+    bottom=\csname HBcomp_subbar_pad_tb\endcsname,
     boxrule=0pt,
-    width=\csname HBsubbar_width\endcsname\textwidth
+    width=\csname HBcomp_subbar_width\endcsname\textwidth
   ]
   {\color{white}\bfseries
-   \fontsize{\csname HBtitle_font_size\endcsname}{\csname HBtitle_font_leading\endcsname}\selectfont
+   \fontsize{\csname HBtype_subbar_font_size\endcsname}{\csname HBtype_subbar_font_leading\endcsname}\selectfont
    #1}
   \end{tcolorbox}
-  \vspace{\csname HBsubbar_vspace_after\endcsname}
+  \vspace{\csname HBcomp_subbar_after\endcsname}
 }
 
 % ==================================================
 % TWO COLUMN
 % ==================================================
 
-\setlength{\columnsep}{\csname HBtwocol_sep\endcsname}
+\setlength{\columnsep}{\csname HBcomp_twocol_sep\endcsname}
 
 \newenvironment{safetytwocol}{%
   \begin{multicols}{2}
-  \fontsize{\csname HBtwocol_font_size\endcsname}{\csname HBtwocol_font_leading\endcsname}\selectfont
+  \fontsize{\csname HBtype_list_font_size\endcsname}{\csname HBtype_list_font_leading\endcsname}\selectfont
 }{%
   \end{multicols}
 }
@@ -122,18 +127,18 @@
   \begin{tcolorbox}[
     colback=BrandDark,
     colframe=BrandDark,
-    arc=\csname HBbrand_title_arc\endcsname,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
     boxrule=0pt,
-    left=\csname HBbrand_title_pad_lr\endcsname,
-    right=\csname HBbrand_title_pad_lr\endcsname,
-    top=\csname HBbrand_title_pad_tb\endcsname,
-    bottom=\csname HBbrand_title_pad_tb\endcsname,
-    width=\csname HBbrand_title_width\endcsname\textwidth,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
     before skip=0mm,
-    after skip=\csname HBbrand_title_vspace_after\endcsname
+    after skip=\csname HBcomp_h1_pill_after\endcsname
   ]
   {\color{white}\bfseries
-   \fontsize{\csname HBtitle_font_size\endcsname}{\csname HBtitle_font_leading\endcsname}\selectfont
+   \fontsize{\csname HBtype_h1_font_size\endcsname}{\csname HBtype_h1_font_leading\endcsname}\selectfont
    #1}
   \end{tcolorbox}%
   \par\noindent
@@ -147,9 +152,9 @@
 \renewcommand{\safetylead}[1]{%
   \par\noindent
   {\bfseries
-   \fontsize{\csname HBlead_font_size\endcsname}{\csname HBlead_font_leading\endcsname}\selectfont
+   \fontsize{\csname HBtype_body_font_size\endcsname}{\csname HBtype_body_font_leading\endcsname}\selectfont
    #1}
-  \par\vspace{\csname HBlead_vspace_after\endcsname}
+  \par\vspace{\csname HBcomp_lead_after\endcsname}
 }
 
 % ==================================================

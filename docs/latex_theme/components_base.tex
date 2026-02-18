@@ -1,6 +1,6 @@
 % ==================================================
 % components_base.tex
-% 通用组件 / 通用排版规则（基础层）
+% 通用组件 / 通用排版规则（基础层, layered params）
 % Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
@@ -8,27 +8,27 @@
 % List base (enumitem)
 % ------------------------------
 \setlist[itemize]{
-  leftmargin=\csname HBlist_leftmargin\endcsname,
-  labelsep=\csname HBlist_labelsep\endcsname,
-  itemsep=\csname HBlist_itemsep\endcsname,
-  topsep=\csname HBlist_topsep\endcsname,
-  parsep=\csname HBlist_parsep\endcsname,
-  partopsep=\csname HBlist_partopsep\endcsname,
-  label=\raisebox{\csname HBlist_bullet_raise\endcsname}{\small\csname HBlist_bullet_symbol\endcsname}
+  leftmargin=\csname HBcomp_list_leftmargin\endcsname,
+  labelsep=\csname HBcomp_list_labelsep\endcsname,
+  itemsep=\csname HBcomp_list_itemsep\endcsname,
+  topsep=\csname HBcomp_list_topsep\endcsname,
+  parsep=\csname HBcomp_list_parsep\endcsname,
+  partopsep=\csname HBcomp_list_partopsep\endcsname,
+  label=\raisebox{\csname HBcomp_list_bullet_raise\endcsname}{\csname HBcomp_list_bullet_symbol\endcsname}
 }
 
 % ------------------------------
 % Table base
 % ------------------------------
-\arrayrulewidth=\csname HBtable_inner_rule\endcsname
-\setlength{\tabcolsep}{\csname HBtable_tabcolsep\endcsname}
+\arrayrulewidth=\csname HBcomp_table_inner_rule\endcsname
+\setlength{\tabcolsep}{\csname HBcomp_table_tabcolsep\endcsname}
 
 \newtcolorbox{tableframe}{
   enhanced,
   colback=white,
   colframe=LineK40,
-  arc=\csname HBtable_outer_arc\endcsname,
-  boxrule=\csname HBtable_outer_rule\endcsname,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
@@ -39,23 +39,25 @@
   enhanced,
   colback=BgK05,
   colframe=BgK05,
-  arc=\csname HBnote_arc\endcsname,
+  arc=\csname HBcomp_note_arc\endcsname,
   boxrule=0pt,
-  left=\csname HBnote_pad_lr\endcsname,
-  right=\csname HBnote_pad_lr\endcsname,
-  top=\csname HBnote_pad_tb\endcsname,
-  bottom=\csname HBnote_pad_tb\endcsname,
+  left=\csname HBcomp_note_pad_lr\endcsname,
+  right=\csname HBcomp_note_pad_lr\endcsname,
+  top=\csname HBcomp_note_pad_tb\endcsname,
+  bottom=\csname HBcomp_note_pad_tb\endcsname,
 }
 
 % ------------------------------
 % Rubric style (subsubsection*)
+% - spacing: COMPONENT
+% - font: TYPE SYSTEM
 % ------------------------------
 \makeatletter
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
-  {\csname HBrubric_before\endcsname}%
-  {\csname HBrubric_after\endcsname}%
+  {\csname HBcomp_rubric_before\endcsname}%
+  {\csname HBcomp_rubric_after\endcsname}%
   {\bfseries
-   \fontsize{\csname HBrubric_font_size\endcsname}
-            {\csname HBrubric_font_leading\endcsname}
+   \fontsize{\csname HBtype_rubric_font_size\endcsname}
+            {\csname HBtype_rubric_font_leading\endcsname}
    \selectfont\color{black}}}
 \makeatother

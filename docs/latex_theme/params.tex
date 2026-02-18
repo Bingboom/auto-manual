@@ -2,69 +2,7 @@
 % Source: data/layout_params.csv
 % Access pattern: \csname HB<key>\endcsname
 
-% H1 pill corner radius
-\expandafter\def\csname HBbrand_title_arc\endcsname{2.6mm}
-
-% H1 pill left/right padding
-\expandafter\def\csname HBbrand_title_pad_lr\endcsname{5mm}
-
-% H1 pill top/bottom padding
-\expandafter\def\csname HBbrand_title_pad_tb\endcsname{1.8mm}
-
-% Space after H1 pill (tcolorbox after skip)
-\expandafter\def\csname HBbrand_title_vspace_after\endcsname{0mm}
-
-% H1 pill width ratio of \\textwidth
-\expandafter\def\csname HBbrand_title_width\endcsname{0.86}
-
-% Lead leading (same as list leading)
-\expandafter\def\csname HBlead_font_leading\endcsname{7.4pt}
-
-\expandafter\def\csname HBlead_font_leading\endcsname{7.4pt}
-
-% Lead font size (same as list font size)
-\expandafter\def\csname HBlead_font_size\endcsname{6.2pt}
-
-\expandafter\def\csname HBlead_font_size\endcsname{6.2pt}
-
-% 0 keep case / 1 uppercase
-\expandafter\def\csname HBlead_force_upper\endcsname{0int}
-
-% Space after lead line
-\expandafter\def\csname HBlead_vspace_after\endcsname{0.6mm}
-
-% Bullet raise offset
-\expandafter\def\csname HBlist_bullet_raise\endcsname{0.15ex}
-
-% Bullet symbol TeX
-\expandafter\def\csname HBlist_bullet_symbol\endcsname{\small\textbullet}
-
-% itemize itemsep
-\expandafter\def\csname HBlist_itemsep\endcsname{0.8mm}
-
-% itemize labelsep
-\expandafter\def\csname HBlist_labelsep\endcsname{0.6em}
-
-% itemize leftmargin
-\expandafter\def\csname HBlist_leftmargin\endcsname{1.2em}
-
-% itemize parsep
-\expandafter\def\csname HBlist_parsep\endcsname{0mm}
-
-% itemize partopsep
-\expandafter\def\csname HBlist_partopsep\endcsname{0mm}
-
-% itemize topsep
-\expandafter\def\csname HBlist_topsep\endcsname{0mm}
-
-% Note box corner radius
-\expandafter\def\csname HBnote_arc\endcsname{2mm}
-
-% Note left/right padding
-\expandafter\def\csname HBnote_pad_lr\endcsname{3mm}
-
-% Note top/bottom padding
-\expandafter\def\csname HBnote_pad_tb\endcsname{2.5mm}
+% ===== PAGE =====
 
 % Footer leading
 \expandafter\def\csname HBpage_footer_font_leading\endcsname{7.2pt}
@@ -73,7 +11,7 @@
 \expandafter\def\csname HBpage_footer_font_size\endcsname{6pt}
 
 % 0=no leading zero / 1=leading zero for 1-9
-\expandafter\def\csname HBpage_footer_leading_zero\endcsname{1int}
+\expandafter\def\csname HBpage_footer_leading_zero\endcsname{1}
 
 % Footer rule width
 \expandafter\def\csname HBpage_footrulewidth\endcsname{0pt}
@@ -105,6 +43,240 @@
 % Paragraph skip
 \expandafter\def\csname HBpage_parskip\endcsname{0pt}
 
+% ===== TYPE SYSTEM =====
+
+% (NEW) Body/lead leading (edit this should NOT affect list/warning)
+\expandafter\def\csname HBtype_body_font_leading\endcsname{7.4pt}
+
+% (NEW) Body/lead font size
+\expandafter\def\csname HBtype_body_font_size\endcsname{6.2pt}
+
+% (NEW) Body/lead uppercase
+\expandafter\def\csname HBtype_body_force_upper\endcsname{0}
+
+% (NEW) H1 leading
+\expandafter\def\csname HBtype_h1_font_leading\endcsname{10.8pt}
+
+% (NEW) H1 font size
+\expandafter\def\csname HBtype_h1_font_size\endcsname{9pt}
+
+% (NEW) H1 uppercase
+\expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
+
+% (NEW) List leading
+\expandafter\def\csname HBtype_list_font_leading\endcsname{7.4pt}
+
+% (NEW) List font size
+\expandafter\def\csname HBtype_list_font_size\endcsname{6.2pt}
+
+% (NEW) Rubric leading
+\expandafter\def\csname HBtype_rubric_font_leading\endcsname{7.2pt}
+
+% (NEW) Rubric font size
+\expandafter\def\csname HBtype_rubric_font_size\endcsname{6pt}
+
+% (NEW) Subbar leading
+\expandafter\def\csname HBtype_subbar_font_leading\endcsname{10.8pt}
+
+% (NEW) Subbar font size
+\expandafter\def\csname HBtype_subbar_font_size\endcsname{9pt}
+
+% (NEW) Subbar uppercase
+\expandafter\def\csname HBtype_subbar_force_upper\endcsname{1}
+
+% (NEW) Warning text leading
+\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{9pt}
+
+% (NEW) Warning text font size
+\expandafter\def\csname HBtype_warning_text_font_size\endcsname{7pt}
+
+% (NEW) Warning text uppercase
+\expandafter\def\csname HBtype_warning_text_force_upper\endcsname{1}
+
+% ===== COMPONENTS =====
+
+% (NEW) Space after H1 pill
+\expandafter\def\csname HBcomp_h1_pill_after\endcsname{0mm}
+
+% (NEW) H1 pill corner radius
+\expandafter\def\csname HBcomp_h1_pill_arc\endcsname{2.6mm}
+
+% (NEW) H1 pill left/right padding
+\expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{5mm}
+
+% (NEW) H1 pill top/bottom padding
+\expandafter\def\csname HBcomp_h1_pill_pad_tb\endcsname{1.8mm}
+
+% (NEW) H1 pill width ratio of \\textwidth
+\expandafter\def\csname HBcomp_h1_pill_width\endcsname{1}
+
+% (NEW) Space after lead line
+\expandafter\def\csname HBcomp_lead_after\endcsname{0.6mm}
+
+% (NEW) Bullet raise offset
+\expandafter\def\csname HBcomp_list_bullet_raise\endcsname{0.15ex}
+
+% (NEW) Bullet symbol TeX
+\expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\small\textbullet}
+
+% (NEW) itemize itemsep
+\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.8mm}
+
+% (NEW) itemize labelsep
+\expandafter\def\csname HBcomp_list_labelsep\endcsname{0.6em}
+
+% (NEW) itemize leftmargin
+\expandafter\def\csname HBcomp_list_leftmargin\endcsname{1.2em}
+
+% (NEW) itemize parsep
+\expandafter\def\csname HBcomp_list_parsep\endcsname{0mm}
+
+% (NEW) itemize partopsep
+\expandafter\def\csname HBcomp_list_partopsep\endcsname{0mm}
+
+% (NEW) itemize topsep
+\expandafter\def\csname HBcomp_list_topsep\endcsname{0mm}
+
+% (NEW) Gap between lockup and right warning text
+\expandafter\def\csname HBcomp_lockup_gap\endcsname{2mm}
+
+% (NEW) Height of warning_lockup.png
+\expandafter\def\csname HBcomp_lockup_height\endcsname{7.2mm}
+
+% (NEW) Crop viewport for lockup image
+\expandafter\def\csname HBcomp_lockup_viewport\endcsname{79 70 2125 549}
+
+% (NEW) Width reserved for lockup block in table
+\expandafter\def\csname HBcomp_lockup_width\endcsname{36mm}
+
+% (NEW) Note box corner radius
+\expandafter\def\csname HBcomp_note_arc\endcsname{2mm}
+
+% (NEW) Note left/right padding
+\expandafter\def\csname HBcomp_note_pad_lr\endcsname{3mm}
+
+% (NEW) Note top/bottom padding
+\expandafter\def\csname HBcomp_note_pad_tb\endcsname{2.5mm}
+
+% (NEW) Rubric space after
+\expandafter\def\csname HBcomp_rubric_after\endcsname{0.8mm}
+
+% (NEW) Rubric space before
+\expandafter\def\csname HBcomp_rubric_before\endcsname{1.2mm}
+
+% (NEW) Space after subbar pill
+\expandafter\def\csname HBcomp_subbar_after\endcsname{2mm}
+
+% (NEW) Subbar corner radius
+\expandafter\def\csname HBcomp_subbar_arc\endcsname{2.4mm}
+
+% (NEW) Subbar left/right padding
+\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{5mm}
+
+% (NEW) Subbar top/bottom padding
+\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{1.8mm}
+
+% (NEW) Subbar width ratio of \\textwidth
+\expandafter\def\csname HBcomp_subbar_width\endcsname{1}
+
+% (NEW) Table inner rule width
+\expandafter\def\csname HBcomp_table_inner_rule\endcsname{0.2pt}
+
+% (NEW) Table outer corner radius
+\expandafter\def\csname HBcomp_table_outer_arc\endcsname{2mm}
+
+% (NEW) Table outer rule width
+\expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.4pt}
+
+% (NEW) Table tabcolsep
+\expandafter\def\csname HBcomp_table_tabcolsep\endcsname{3.5pt}
+
+% (NEW) Space between columns
+\expandafter\def\csname HBcomp_twocol_sep\endcsname{12mm}
+
+% (NEW) Space after warning box
+\expandafter\def\csname HBcomp_warning_box_after\endcsname{1.2mm}
+
+% (NEW) Warning box corner radius
+\expandafter\def\csname HBcomp_warning_box_arc\endcsname{2.0mm}
+
+% (NEW) Space before warning box
+\expandafter\def\csname HBcomp_warning_box_before\endcsname{0.5mm}
+
+% (NEW) Warning box left/right padding
+\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{3.6mm}
+
+% (NEW) Warning box top/bottom padding
+\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{1.0mm}
+
+% (NEW) Warning box border width
+\expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.55pt}
+
+% (NEW) Warning box width ratio of \\textwidth
+\expandafter\def\csname HBcomp_warning_box_width\endcsname{1}
+
+% ===== OTHER =====
+
+% H1 pill corner radius
+\expandafter\def\csname HBbrand_title_arc\endcsname{2.6mm}
+
+% H1 pill left/right padding
+\expandafter\def\csname HBbrand_title_pad_lr\endcsname{5mm}
+
+% H1 pill top/bottom padding
+\expandafter\def\csname HBbrand_title_pad_tb\endcsname{1.8mm}
+
+% Space after H1 pill (tcolorbox after skip)
+\expandafter\def\csname HBbrand_title_vspace_after\endcsname{0mm}
+
+% H1 pill width ratio of \\textwidth
+\expandafter\def\csname HBbrand_title_width\endcsname{1}
+
+% Lead/body leading (legacy)
+\expandafter\def\csname HBlead_font_leading\endcsname{7.4pt}
+
+% Lead/body font size (legacy)
+\expandafter\def\csname HBlead_font_size\endcsname{6.2pt}
+
+% 0 keep case / 1 uppercase (legacy)
+\expandafter\def\csname HBlead_force_upper\endcsname{0}
+
+% Space after lead line (legacy)
+\expandafter\def\csname HBlead_vspace_after\endcsname{0.6mm}
+
+% Bullet raise offset
+\expandafter\def\csname HBlist_bullet_raise\endcsname{0.15ex}
+
+% Bullet symbol TeX
+\expandafter\def\csname HBlist_bullet_symbol\endcsname{\\small\\textbullet}
+
+% itemize itemsep
+\expandafter\def\csname HBlist_itemsep\endcsname{0.8mm}
+
+% itemize labelsep
+\expandafter\def\csname HBlist_labelsep\endcsname{0.6em}
+
+% itemize leftmargin
+\expandafter\def\csname HBlist_leftmargin\endcsname{1.2em}
+
+% itemize parsep
+\expandafter\def\csname HBlist_parsep\endcsname{0mm}
+
+% itemize partopsep
+\expandafter\def\csname HBlist_partopsep\endcsname{0mm}
+
+% itemize topsep
+\expandafter\def\csname HBlist_topsep\endcsname{0mm}
+
+% Note box corner radius
+\expandafter\def\csname HBnote_arc\endcsname{2mm}
+
+% Note left/right padding
+\expandafter\def\csname HBnote_pad_lr\endcsname{3mm}
+
+% Note top/bottom padding
+\expandafter\def\csname HBnote_pad_tb\endcsname{2.5mm}
+
 % Rubric space after
 \expandafter\def\csname HBrubric_after\endcsname{0.8mm}
 
@@ -135,8 +307,6 @@
 % Subbar width ratio of \\textwidth
 \expandafter\def\csname HBsubbar_width\endcsname{1}
 
-\expandafter\def\csname HBsubbar_width\endcsname{1}
-
 % Table inner rule width
 \expandafter\def\csname HBtable_inner_rule\endcsname{0.2pt}
 
@@ -155,12 +325,13 @@
 % Title font size used in pills (H1/subbar)
 \expandafter\def\csname HBtitle_font_size\endcsname{9pt}
 
-\expandafter\def\csname HBtitle_force_upper\endcsname{1int}
+% 0 keep case / 1 uppercase
+\expandafter\def\csname HBtitle_force_upper\endcsname{1}
 
-% Leading for two-col list (~1.2x size)
+% Leading for two-col list (legacy)
 \expandafter\def\csname HBtwocol_font_leading\endcsname{7.4pt}
 
-% Font size for two-col list
+% Font size for two-col list (legacy)
 \expandafter\def\csname HBtwocol_font_size\endcsname{6.2pt}
 
 % Space between columns
@@ -178,7 +349,7 @@
 % Warning box left/right padding
 \expandafter\def\csname HBwarn_box_pad_lr\endcsname{3.6mm}
 
-% Warning box top/bottom padding (flatter by reducing)
+% Warning box top/bottom padding
 \expandafter\def\csname HBwarn_box_pad_tb\endcsname{1.0mm}
 
 % Warning box border width
@@ -193,18 +364,173 @@
 % Height of warning_lockup.png
 \expandafter\def\csname HBwarn_lockup_height\endcsname{7.2mm}
 
+% Crop viewport for lockup image (x y w h)
 \expandafter\def\csname HBwarn_lockup_viewport\endcsname{79 70 2125 549}
 
 % Width reserved for lockup block in table
 \expandafter\def\csname HBwarn_lockup_width\endcsname{36mm}
 
-% Right warning text leading (should be >= size)
+% Right warning text leading (>= size)
 \expandafter\def\csname HBwarn_text_leading\endcsname{9pt}
 
 % Right warning text font size
 \expandafter\def\csname HBwarn_text_size\endcsname{7pt}
 
 % 0=keep case / 1=uppercase
-\expandafter\def\csname HBwarn_text_uppercase\endcsname{1int}
+\expandafter\def\csname HBwarn_text_uppercase\endcsname{1}
 
-\expandafter\def\csname HBwarn_text_uppercase\endcsname{1int}
+% ===== ALIASES (compat) =====
+% Format: \def\HB<old>{\HB<new>} (forwarding)
+
+% alias: lead_font_size -> type_body_font_size
+\expandafter\def\csname HBlead_font_size\endcsname{\csname HBtype_body_font_size\endcsname}
+
+% alias: lead_font_leading -> type_body_font_leading
+\expandafter\def\csname HBlead_font_leading\endcsname{\csname HBtype_body_font_leading\endcsname}
+
+% alias: lead_force_upper -> type_body_force_upper
+\expandafter\def\csname HBlead_force_upper\endcsname{\csname HBtype_body_force_upper\endcsname}
+
+% alias: lead_vspace_after -> comp_lead_after
+\expandafter\def\csname HBlead_vspace_after\endcsname{\csname HBcomp_lead_after\endcsname}
+
+% alias: twocol_font_size -> type_list_font_size
+\expandafter\def\csname HBtwocol_font_size\endcsname{\csname HBtype_list_font_size\endcsname}
+
+% alias: twocol_font_leading -> type_list_font_leading
+\expandafter\def\csname HBtwocol_font_leading\endcsname{\csname HBtype_list_font_leading\endcsname}
+
+% alias: title_font_size -> type_h1_font_size
+\expandafter\def\csname HBtitle_font_size\endcsname{\csname HBtype_h1_font_size\endcsname}
+
+% alias: title_font_leading -> type_h1_font_leading
+\expandafter\def\csname HBtitle_font_leading\endcsname{\csname HBtype_h1_font_leading\endcsname}
+
+% alias: title_force_upper -> type_h1_force_upper
+\expandafter\def\csname HBtitle_force_upper\endcsname{\csname HBtype_h1_force_upper\endcsname}
+
+% alias: warn_text_size -> type_warning_text_font_size
+\expandafter\def\csname HBwarn_text_size\endcsname{\csname HBtype_warning_text_font_size\endcsname}
+
+% alias: warn_text_leading -> type_warning_text_font_leading
+\expandafter\def\csname HBwarn_text_leading\endcsname{\csname HBtype_warning_text_font_leading\endcsname}
+
+% alias: warn_text_uppercase -> type_warning_text_force_upper
+\expandafter\def\csname HBwarn_text_uppercase\endcsname{\csname HBtype_warning_text_force_upper\endcsname}
+
+% alias: brand_title_arc -> comp_h1_pill_arc
+\expandafter\def\csname HBbrand_title_arc\endcsname{\csname HBcomp_h1_pill_arc\endcsname}
+
+% alias: brand_title_pad_lr -> comp_h1_pill_pad_lr
+\expandafter\def\csname HBbrand_title_pad_lr\endcsname{\csname HBcomp_h1_pill_pad_lr\endcsname}
+
+% alias: brand_title_pad_tb -> comp_h1_pill_pad_tb
+\expandafter\def\csname HBbrand_title_pad_tb\endcsname{\csname HBcomp_h1_pill_pad_tb\endcsname}
+
+% alias: brand_title_width -> comp_h1_pill_width
+\expandafter\def\csname HBbrand_title_width\endcsname{\csname HBcomp_h1_pill_width\endcsname}
+
+% alias: brand_title_vspace_after -> comp_h1_pill_after
+\expandafter\def\csname HBbrand_title_vspace_after\endcsname{\csname HBcomp_h1_pill_after\endcsname}
+
+% alias: warn_box_arc -> comp_warning_box_arc
+\expandafter\def\csname HBwarn_box_arc\endcsname{\csname HBcomp_warning_box_arc\endcsname}
+
+% alias: warn_box_rule -> comp_warning_box_rule
+\expandafter\def\csname HBwarn_box_rule\endcsname{\csname HBcomp_warning_box_rule\endcsname}
+
+% alias: warn_box_pad_lr -> comp_warning_box_pad_lr
+\expandafter\def\csname HBwarn_box_pad_lr\endcsname{\csname HBcomp_warning_box_pad_lr\endcsname}
+
+% alias: warn_box_pad_tb -> comp_warning_box_pad_tb
+\expandafter\def\csname HBwarn_box_pad_tb\endcsname{\csname HBcomp_warning_box_pad_tb\endcsname}
+
+% alias: warn_box_before -> comp_warning_box_before
+\expandafter\def\csname HBwarn_box_before\endcsname{\csname HBcomp_warning_box_before\endcsname}
+
+% alias: warn_box_after -> comp_warning_box_after
+\expandafter\def\csname HBwarn_box_after\endcsname{\csname HBcomp_warning_box_after\endcsname}
+
+% alias: warn_box_width -> comp_warning_box_width
+\expandafter\def\csname HBwarn_box_width\endcsname{\csname HBcomp_warning_box_width\endcsname}
+
+% alias: warn_lockup_height -> comp_lockup_height
+\expandafter\def\csname HBwarn_lockup_height\endcsname{\csname HBcomp_lockup_height\endcsname}
+
+% alias: warn_lockup_width -> comp_lockup_width
+\expandafter\def\csname HBwarn_lockup_width\endcsname{\csname HBcomp_lockup_width\endcsname}
+
+% alias: warn_lockup_gap -> comp_lockup_gap
+\expandafter\def\csname HBwarn_lockup_gap\endcsname{\csname HBcomp_lockup_gap\endcsname}
+
+% alias: warn_lockup_viewport -> comp_lockup_viewport
+\expandafter\def\csname HBwarn_lockup_viewport\endcsname{\csname HBcomp_lockup_viewport\endcsname}
+
+% alias: subbar_arc -> comp_subbar_arc
+\expandafter\def\csname HBsubbar_arc\endcsname{\csname HBcomp_subbar_arc\endcsname}
+
+% alias: subbar_pad_lr -> comp_subbar_pad_lr
+\expandafter\def\csname HBsubbar_pad_lr\endcsname{\csname HBcomp_subbar_pad_lr\endcsname}
+
+% alias: subbar_pad_tb -> comp_subbar_pad_tb
+\expandafter\def\csname HBsubbar_pad_tb\endcsname{\csname HBcomp_subbar_pad_tb\endcsname}
+
+% alias: subbar_width -> comp_subbar_width
+\expandafter\def\csname HBsubbar_width\endcsname{\csname HBcomp_subbar_width\endcsname}
+
+% alias: subbar_vspace_after -> comp_subbar_after
+\expandafter\def\csname HBsubbar_vspace_after\endcsname{\csname HBcomp_subbar_after\endcsname}
+
+% alias: twocol_sep -> comp_twocol_sep
+\expandafter\def\csname HBtwocol_sep\endcsname{\csname HBcomp_twocol_sep\endcsname}
+
+% alias: list_leftmargin -> comp_list_leftmargin
+\expandafter\def\csname HBlist_leftmargin\endcsname{\csname HBcomp_list_leftmargin\endcsname}
+
+% alias: list_labelsep -> comp_list_labelsep
+\expandafter\def\csname HBlist_labelsep\endcsname{\csname HBcomp_list_labelsep\endcsname}
+
+% alias: list_itemsep -> comp_list_itemsep
+\expandafter\def\csname HBlist_itemsep\endcsname{\csname HBcomp_list_itemsep\endcsname}
+
+% alias: list_topsep -> comp_list_topsep
+\expandafter\def\csname HBlist_topsep\endcsname{\csname HBcomp_list_topsep\endcsname}
+
+% alias: list_parsep -> comp_list_parsep
+\expandafter\def\csname HBlist_parsep\endcsname{\csname HBcomp_list_parsep\endcsname}
+
+% alias: list_partopsep -> comp_list_partopsep
+\expandafter\def\csname HBlist_partopsep\endcsname{\csname HBcomp_list_partopsep\endcsname}
+
+% alias: list_bullet_raise -> comp_list_bullet_raise
+\expandafter\def\csname HBlist_bullet_raise\endcsname{\csname HBcomp_list_bullet_raise\endcsname}
+
+% alias: list_bullet_symbol -> comp_list_bullet_symbol
+\expandafter\def\csname HBlist_bullet_symbol\endcsname{\csname HBcomp_list_bullet_symbol\endcsname}
+
+% alias: rubric_before -> comp_rubric_before
+\expandafter\def\csname HBrubric_before\endcsname{\csname HBcomp_rubric_before\endcsname}
+
+% alias: rubric_after -> comp_rubric_after
+\expandafter\def\csname HBrubric_after\endcsname{\csname HBcomp_rubric_after\endcsname}
+
+% alias: table_inner_rule -> comp_table_inner_rule
+\expandafter\def\csname HBtable_inner_rule\endcsname{\csname HBcomp_table_inner_rule\endcsname}
+
+% alias: table_tabcolsep -> comp_table_tabcolsep
+\expandafter\def\csname HBtable_tabcolsep\endcsname{\csname HBcomp_table_tabcolsep\endcsname}
+
+% alias: table_outer_arc -> comp_table_outer_arc
+\expandafter\def\csname HBtable_outer_arc\endcsname{\csname HBcomp_table_outer_arc\endcsname}
+
+% alias: table_outer_rule -> comp_table_outer_rule
+\expandafter\def\csname HBtable_outer_rule\endcsname{\csname HBcomp_table_outer_rule\endcsname}
+
+% alias: note_arc -> comp_note_arc
+\expandafter\def\csname HBnote_arc\endcsname{\csname HBcomp_note_arc\endcsname}
+
+% alias: note_pad_lr -> comp_note_pad_lr
+\expandafter\def\csname HBnote_pad_lr\endcsname{\csname HBcomp_note_pad_lr\endcsname}
+
+% alias: note_pad_tb -> comp_note_pad_tb
+\expandafter\def\csname HBnote_pad_tb\endcsname{\csname HBcomp_note_pad_tb\endcsname}

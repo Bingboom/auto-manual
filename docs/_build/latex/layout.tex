@@ -8,7 +8,7 @@
 
 % NOTE:
 % - All dimensions come from params.tex (generated from layout_params.csv)
-% - Keep these keys in CSV:
+% - Keys:
 %   page_paperwidth/page_paperheight/page_margin_left/page_margin_right/page_margin_top/page_margin_bottom
 \geometry{
   paperwidth=\csname HBpage_paperwidth\endcsname,
@@ -28,20 +28,19 @@
 
 % left footer: page number with optional leading zero
 \fancyfoot[L]{%
-  \fontsize{\csname HBfooter_font_size\endcsname}{\csname HBfooter_font_leading\endcsname}\selectfont
-  \ifnum\csname HBfooter_leading_zero\endcsname=1
-    \ifnum\value{page}<10 0\fi
+  \fontsize{\csname HBpage_footer_font_size\endcsname}{\csname HBpage_footer_font_leading\endcsname}\selectfont
+  \ifnum\csname HBpage_footer_leading_zero\endcsname=1\relax
+    \ifnum\value{page}<10\relax 0\fi
   \fi
   \arabic{page}%
 }
 
-% no header/footer rules
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+% header/footer rules (parameterized)
+\renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}
+\renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}
 
 % --------------------------------------------------
 % Global paragraph spacing
-% (This is the #1 reason "gaps" feel uncontrollable in LaTeX/Sphinx)
 % --------------------------------------------------
 \setlength{\parindent}{\csname HBpage_parindent\endcsname}
 \setlength{\parskip}{\csname HBpage_parskip\endcsname}
