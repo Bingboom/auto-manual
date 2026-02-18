@@ -10,10 +10,14 @@ page_parindent,0,pt,Paragraph indent
 page_parskip,0,pt,Paragraph skip
 page_headrulewidth,0,pt,Header rule width
 page_footrulewidth,0,pt,Footer rule width
+section_after_fix,-2,mm,Negative spacing after section to cancel Sphinx glue
+page_footer_raise,3,mm,Raises page number up
 page_footer_font_size,6,pt,Footer font size
 page_footer_font_leading,7.2,pt,Footer leading
-page_footer_leading_zero,1,int,0=no leading zero / 1=leading zero for 1-9
-section_after_fix,-2,mm,Negative spacing after section to cancel Sphinx glue
+page_footer_color,TextGray,none,Footer color
+page_footer_leading_zero,1,int,Leading zero
+page_footskip,8,mm,Distance from text block to footer baseline
+
 ,,,
 ,,,==================== TYPE SYSTEM ====================
 type_h1_font_size,10,pt,H1 font size
