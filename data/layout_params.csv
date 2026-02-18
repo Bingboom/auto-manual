@@ -65,7 +65,7 @@ list_topsep,0,mm,itemize topsep
 list_parsep,0,mm,itemize parsep
 list_partopsep,0,mm,itemize partopsep
 list_bullet_raise,0.15,ex,Bullet raise offset
-list_bullet_symbol,\\small\\textbullet,none,Bullet symbol TeX
+list_bullet_symbol,\small\textbullet,none,Bullet symbol TeX
 ,,,
 table_inner_rule,0.2,pt,Table inner rule width
 table_tabcolsep,3.5,pt,Table tabcolsep
@@ -83,4 +83,3 @@ title_force_upper,1,int,
 lead_font_size,6.2,pt,
 lead_font_leading,7.4,pt,
 section_after_fix,-2,mm,negative spacing after section to cancel sphinx glue
-
