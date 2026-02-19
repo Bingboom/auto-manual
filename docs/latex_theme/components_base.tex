@@ -48,26 +48,6 @@
 }
 
 % ------------------------------
-% Helper: lock natural-wrap line spacing in boxes/tables
-% - 强制自然换行行距严格跟随 leading（解决 tabular/array 的 lineskip fallback）
-%
-% Usage:
-%   \HBtightlines{<leading>}{<content>}
-% Example:
-%   \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}
-% ------------------------------
-\providecommand{\HBtightlines}[2]{%
-  \begingroup
-    \setlength{\baselineskip}{#1}%
-    \setlength{\lineskip}{0pt}%
-    \setlength{\lineskiplimit}{0pt}%
-    \setlength{\parskip}{0pt}%
-    \setlength{\parindent}{0pt}%
-    \strut #2\strut
-  \endgroup
-}
-
-% ------------------------------
 % Rubric style (subsubsection*)
 % - spacing: COMPONENT
 % - font: TYPE SYSTEM
@@ -82,26 +62,3 @@
    \color{\csname HBtype_rubric_color\endcsname}
    \selectfont\color{black}}}
 \makeatother
-
-
-% ------------------------------
-% Tight lines helper (alignment + locked leading)
-% ------------------------------
-
-\renewcommand{\HBtightlines}[2]{%
-  \begingroup
-    \setlength{\baselineskip}{#1}%
-    \setlength{\lineskip}{0pt}%
-    \setlength{\lineskiplimit}{0pt}%
-    \parindent=0pt
-    \strut #2\strut
-  \endgroup
-}
-
-
-
-
-
-
-
-

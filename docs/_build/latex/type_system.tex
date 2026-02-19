@@ -1,0 +1,69 @@
+% ==================================================
+% type_system.tex
+% TYPE SYSTEM LAYER (safe, no side effects)
+% Only defines reusable macros; does NOT patch Sphinx styles directly.
+% ==================================================
+
+% --- helpers ---
+\providecommand{\HBifupper}[2]{%
+  \ifnum#1=1\relax\MakeUppercase{#2}\else#2\fi
+}
+
+% ==================================================
+% TYPE PRESETS (macros only)
+% ==================================================
+
+% H1 title in dark pill
+\providecommand{\HBTypeHOne}[1]{%
+  {\color{white}\bfseries
+   \fontsize{\csname HBtype_h1_font_size\endcsname}{\csname HBtype_h1_font_leading\endcsname}\selectfont
+   \HBifupper{\csname HBtype_h1_force_upper\endcsname}{#1}}%
+}
+
+% Subbar white text on dark background
+\providecommand{\HBTypeSubbar}[1]{%
+  {\color{white}\bfseries
+   \fontsize{\csname HBtype_subbar_font_size\endcsname}{\csname HBtype_subbar_font_leading\endcsname}\selectfont
+   \HBifupper{\csname HBtype_subbar_force_upper\endcsname}{#1}}%
+}
+
+% Body/lead
+\providecommand{\HBTypeBody}[1]{%
+  {\bfseries
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_body_font_size\endcsname}{\csname HBtype_body_font_leading\endcsname}\selectfont
+   \HBifupper{\csname HBtype_body_force_upper\endcsname}{#1}}%
+}
+
+% List (used in two-column env)
+\providecommand{\HBTypeListStart}{%
+  \normalfont\mdseries
+  \color{\csname HBtype_list_color\endcsname}%
+  \fontsize{\csname HBtype_list_font_size\endcsname}{\csname HBtype_list_font_leading\endcsname}\selectfont
+}
+
+% Warning right text (font only; alignment handled elsewhere)
+\providecommand{\HBTypeWarningTextStart}{%
+  \bfseries
+  \color{\csname HBtype_warning_text_color\endcsname}%
+  \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
+}
+
+% Rubric header (font only; sectioning handled in components_base.tex)
+\providecommand{\HBTypeRubricStart}{%
+  \bfseries
+  \fontsize{\csname HBtype_rubric_font_size\endcsname}{\csname HBtype_rubric_font_leading\endcsname}\selectfont
+  \color{\csname HBtype_rubric_color\endcsname}%
+}
+
+% ==================================================
+% FOOTER TYPE
+% ==================================================
+
+\newcommand{\HBTypeFooter}[1]{%
+  {\color{\csname HBpage_footer_color\endcsname}%
+   \fontsize{\csname HBpage_footer_font_size\endcsname}
+            {\csname HBpage_footer_font_leading\endcsname}%
+   \selectfont
+   #1}%
+}

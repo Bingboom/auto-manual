@@ -21,6 +21,8 @@ latex_show_urls = "no"
 latex_additional_files = [
     "latex_theme/theme.tex",
     "latex_theme/colors.tex",
+    "latex_theme/type_system.tex",
+    "latex_theme/tools.tex",
     "latex_theme/params.tex", 
     "latex_theme/assets/warning_lockup.png",  
     "latex_theme/layout.tex",

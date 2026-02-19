@@ -392,6 +392,12 @@ INPUT params.tex
 INPUT ./colors.tex
 INPUT ./colors.tex
 INPUT colors.tex
+INPUT ./type_system.tex
+INPUT ./type_system.tex
+INPUT type_system.tex
+INPUT ./tools.tex
+INPUT ./tools.tex
+INPUT tools.tex
 INPUT ./layout.tex
 INPUT ./layout.tex
 INPUT layout.tex

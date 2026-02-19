@@ -1,15 +1,16 @@
 % ==================================================
 % layout.tex
-% Page geometry + footer + global paragraph spacing
-% Parameter access: \csname HB<key>\endcsname
+% L4 PAGE LAYOUT LAYER
+% 只负责页面结构，不负责类型系统
 % ==================================================
 
 \usepackage{geometry}
+\usepackage{fancyhdr}
 
-% NOTE:
-% - All dimensions come from params.tex (generated from layout_params.csv)
-% - Keys:
-%   page_paperwidth/page_paperheight/page_margin_left/page_margin_right/page_margin_top/page_margin_bottom
+% ==================================================
+% PAGE GEOMETRY
+% ==================================================
+
 \geometry{
   paperwidth=\csname HBpage_paperwidth\endcsname,
   paperheight=\csname HBpage_paperheight\endcsname,
@@ -19,48 +20,48 @@
   bottom=\csname HBpage_margin_bottom\endcsname
 }
 
-% --------------------------------------------------
-% Footer (page number) - Sphinx-safe fancyhdr
-% --------------------------------------------------
-\usepackage{fancyhdr}
+% ==================================================
+% PAGE NUMBER FORMAT
+% ==================================================
 
-% A helper macro for formatted page number (supports leading zero)
-\newcommand{\HBpagenum}{%
-  {\color{\csname HBpage_footer_color\endcsname}%
-   \fontsize{\csname HBpage_footer_font_size\endcsname}{\csname HBpage_footer_font_leading\endcsname}\selectfont
-   \ifnum\csname HBpage_footer_leading_zero\endcsname=1\relax
-     \ifnum\value{page}<10\relax 0\fi
-   \fi
-   \arabic{page}%
-  }%
+\newcommand{\HBPageNumber}{%
+  \ifnum\csname HBpage_footer_leading_zero\endcsname=1\relax
+    \ifnum\value{page}<10\relax 0\fi
+  \fi
+  \arabic{page}%
 }
 
-% Apply to BOTH normal + plain styles (Sphinx uses both)
+% ==================================================
+% FOOTER STYLE
+% ==================================================
+
 \fancypagestyle{normal}{%
   \fancyhf{}%
   \renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}%
   \renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}%
-  % left footer: raised page number
-  \fancyfoot[L]{\raisebox{\csname HBpage_footer_raise\endcsname}{\HBpagenum}}%
+  \fancyfoot[L]{%
+    \raisebox{\csname HBpage_footer_raise\endcsname}{%
+      \HBTypeFooter{\HBPageNumber}%
+    }%
+  }%
 }
 
 \fancypagestyle{plain}{%
   \fancyhf{}%
   \renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}%
   \renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}%
-  \fancyfoot[L]{\raisebox{\csname HBpage_footer_raise\endcsname}{\HBpagenum}}%
+  \fancyfoot[L]{%
+    \raisebox{\csname HBpage_footer_raise\endcsname}{%
+      \HBTypeFooter{\HBPageNumber}%
+    }%
+  }%
 }
 
-% Use normal style by default
 \pagestyle{normal}
 
+% ==================================================
+% GLOBAL PARAGRAPH SPACING
+% ==================================================
 
-% header/footer rules (parameterized)
-\renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}
-\renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}
-
-% --------------------------------------------------
-% Global paragraph spacing
-% --------------------------------------------------
 \setlength{\parindent}{\csname HBpage_parindent\endcsname}
 \setlength{\parskip}{\csname HBpage_parskip\endcsname}

@@ -1,6 +1,7 @@
 % ==================================================
 % components_safety.tex
-% INDUSTRIAL STABLE VERSION (layered params)
+% L3 COMPONENT LAYER
+% 只负责结构，不直接控制字号/颜色/对齐
 % ==================================================
 
 \usepackage{titlesec}
@@ -8,20 +9,6 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{multicol}
-
-% ==================================================
-% SAFE DEFAULTS (防止参数未定义)
-% ==================================================
-
-% NOTE:
-% - We keep legacy providecommands for safety, but runtime values come from params.tex via \csname HB<key>\endcsname.
-% - Uppercase flags are expected to be numeric (0/1). Ensure csv_to_tex_params treats unit=int as raw number.
-
-\providecommand{\HBtype_warning_text_force_upper}{0}
-\providecommand{\HBtype_h1_force_upper}{0}
-\providecommand{\HBtype_subbar_force_upper}{0}
-\providecommand{\HBtype_body_force_upper}{0}
-\providecommand{\HBsection_after_fix}{0pt}
 
 % ==================================================
 % WARNING LOCKUP
@@ -35,7 +22,6 @@
     clip
   ]{warning_lockup.png}%
 }
-
 
 % ==================================================
 % WARNING BOX
@@ -59,7 +45,7 @@
 }
 
 % ==================================================
-% WARNING LAYOUT
+% WARNING LAYOUT（结构层，不控制排版）
 % ==================================================
 
 \providecommand{\safetywarning}[1]{}
@@ -72,22 +58,12 @@
       \centering\warninglockup
       &
       \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
-        % 🔴 对齐必须在这里决定
-        \edef\HB@tmpalign{\csname HBtype_warning_text_align\endcsname}%
-        \ifnum\pdfstrcmp{\HB@tmpalign}{justified}=0
-          \justifying
-        \else
-          \raggedright
-        \fi
-        \bfseries
-        \color{\csname HBtype_warning_text_color\endcsname}%
-        \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
+        \HBTypeWarningTextStart
         \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
       }%
     \end{tabular}%
   \end{safetywarningbox}%
 }
-  
 
 % ==================================================
 % SUBBAR
@@ -106,9 +82,7 @@
     boxrule=0pt,
     width=\csname HBcomp_subbar_width\endcsname\textwidth
   ]
-  {\color{white}\bfseries
-   \fontsize{\csname HBtype_subbar_font_size\endcsname}{\csname HBtype_subbar_font_leading\endcsname}\selectfont
-   #1}
+    \HBTypeSubbar{#1}
   \end{tcolorbox}
   \par\noindent
   \vspace*{\csname HBcomp_subbar_after\endcsname}%
@@ -125,14 +99,11 @@
   \par\noindent
   \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
   \begin{multicols}{2}
-    \normalfont\mdseries
-    \color{\csname HBtype_list_color\endcsname}
-    \fontsize{\csname HBtype_list_font_size\endcsname}{\csname HBtype_list_font_leading\endcsname}\selectfont 
+    \HBTypeListStart
 }{%
   \end{multicols}
   \par
 }
-
 
 % ==================================================
 % H1 PILL
@@ -158,9 +129,7 @@
     before skip=0mm,
     after skip=\csname HBcomp_h1_pill_after\endcsname
   ]
-  {\color{white}\bfseries
-   \fontsize{\csname HBtype_h1_font_size\endcsname}{\csname HBtype_h1_font_leading\endcsname}\selectfont
-   #1}
+    \HBTypeHOne{#1}
   \end{tcolorbox}%
   \par\noindent
 }
@@ -172,11 +141,8 @@
 \providecommand{\safetylead}[1]{}
 \renewcommand{\safetylead}[1]{%
   \par\noindent
-  {\bfseries
-   \color{\csname HBtype_body_color\endcsname}
-   \fontsize{\csname HBtype_body_font_size\endcsname}{\csname HBtype_body_font_leading\endcsname}\selectfont
-   #1}
-   \par\vspace{\csname HBcomp_lead_after\endcsname}%
+  \HBTypeBody{#1}
+  \par\vspace{\csname HBcomp_lead_after\endcsname}%
 }
 
 % ==================================================
