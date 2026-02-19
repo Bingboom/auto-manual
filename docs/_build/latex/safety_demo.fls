@@ -403,6 +403,9 @@ INPUT ./components_safety.tex
 INPUT ./components_safety.tex
 INPUT components_safety.tex
 OUTPUT safety_demo.idx
+INPUT ./fonts.tex
+INPUT ./fonts.tex
+INPUT fonts.tex
 INPUT ./safety_demo.aux
 INPUT ./safety_demo.aux
 INPUT safety_demo.aux

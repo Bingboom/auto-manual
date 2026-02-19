@@ -1,0 +1,29 @@
+% docs/latex_theme/fonts.tex
+\usepackage{fontspec}
+
+\newcommand{\HBSetupFonts}{%
+  \IfFontExistsTF{Avenir Next Rounded}{%
+    \setmainfont{Avenir Next Rounded}
+    \setsansfont{Avenir Next Rounded}
+  }{%
+    \IfFontExistsTF{Helvetica Rounded}{%
+      \setmainfont{Helvetica Rounded}
+      \setsansfont{Helvetica Rounded}
+    }{%
+      \IfFontExistsTF{Avenir Next}{%
+        \setmainfont{Avenir Next}
+        \setsansfont{Avenir Next}
+      }{%
+        \setmainfont{Helvetica}
+        \setsansfont{Helvetica}
+      }%
+    }%
+  }%
+  \IfFontExistsTF{JetBrains Mono}{%
+    \setmonofont{JetBrains Mono}[Scale=MatchLowercase]
+  }{%
+    \setmonofont{Menlo}[Scale=MatchLowercase]
+  }%
+}
+
+\AtBeginDocument{\HBSetupFonts}

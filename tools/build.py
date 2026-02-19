@@ -87,6 +87,9 @@ def main() -> None:
     # 4) sphinx -> latex
     run(["sphinx-build", "-b", "latex", ".", "_build/latex"], cwd=DOCS)
 
+    # 4.5) patch fonts into main tex (force override)
+    run([sys.executable, "tools/patch_latex_fonts.py", "--tex", args.tex], cwd=ROOT)
+
     # 5) latexmk
     main_tex = BUILD_LATEX / args.tex
     if not main_tex.exists():

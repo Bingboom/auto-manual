@@ -94,8 +94,8 @@ comp_note_pad_tb,0.5,mm,Note top/bottom padding
 comp_rubric_before,0,mm,Rubric space before
 comp_rubric_after,1.2,mm,Rubric space after
 ,,,==================== BRAND COLORS ====================
-brand_color_branddark,"0,0,0,0.78",cmyk,Main brand dark
-brand_color_textgray,"0,0,0,0.80",cmyk,Body text gray
+brand_color_branddark,"0,0,0,0.92",cmyk,Main brand dark
+brand_color_textgray,"0,0,0,0.90",cmyk,Body text gray
 brand_color_linek40,"0,0,0,0.40",cmyk,Border gray
 brand_color_bgk05,"0,0,0,0.05",cmyk,Background light gray
 brand_color_accentblue,"0.90,0.55,0,0.60",cmyk,Accent blue
