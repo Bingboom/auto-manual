@@ -24,34 +24,34 @@ type_h1_font_size,10,pt,H1 font size
 type_h1_font_leading,10.8,pt,H1 leading
 type_h1_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
-type_subbar_font_size,6,pt,Subbar font size
+type_subbar_font_size,8,pt,Subbar font size
 type_subbar_font_leading,8.4,pt,Subbar leading
 type_subbar_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
-type_rubric_font_size,6,pt,Rubric font size
+type_rubric_font_size,7,pt,Rubric font size
 type_rubric_font_leading,7.2,pt,Rubric leading
 ,,,
 type_body_font_size,6.2,pt,Body/lead font size
 type_body_font_leading,7.4,pt,Body/lead leading (MUST NOT affect list/warning)
 type_body_force_upper,0,int,0 keep case / 1 uppercase
 ,,,
-type_list_font_size,5.5,pt,List font size
+type_list_font_size,6,pt,List font size
 type_list_font_leading,7.4,pt,List leading (independent from body)
 ,,,
 type_warning_text_font_size,6.5,pt,Warning right text font size
-type_warning_text_font_leading,8,pt,Warning right text leading
+type_warning_text_font_leading,9,pt,Warning right text leading
 type_warning_text_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
 ,,,==================== COMPONENTS ====================
-comp_h1_pill_arc,2.6,mm,H1 pill corner radius
+comp_h1_pill_arc,1.8,mm,H1 pill corner radius
 comp_h1_pill_pad_lr,1,mm,H1 pill left/right padding
 comp_h1_pill_pad_tb,1,mm,H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,H1 pill width ratio of \textwidth
-comp_h1_pill_after,0,mm,Space after H1 pill
+comp_h1_pill_after,0.2,mm,Space after H1 pill
 ,,,
-comp_subbar_arc,1.5,mm,Subbar corner radius
-comp_subbar_pad_lr,0.6,mm,Subbar left/right padding
-comp_subbar_pad_tb,0,mm,Subbar top/bottom padding
+comp_subbar_arc,2.3,mm,Subbar corner radius
+comp_subbar_pad_lr,1,mm,Subbar left/right padding
+comp_subbar_pad_tb,0.2,mm,Subbar top/bottom padding
 comp_subbar_width,1,ratio,Subbar width ratio of \textwidth
 comp_subbar_after,0,mm,Space after subbar
 ,,,
@@ -80,7 +80,7 @@ comp_list_topsep,0,mm,itemize topsep
 comp_list_parsep,0,mm,itemize parsep
 comp_list_partopsep,0,mm,itemize partopsep
 comp_list_bullet_raise,0.10,ex,Bullet raise offset
-comp_list_bullet_symbol,\small\textbullet,none,Bullet TeX (use single backslash)
+comp_list_bullet_symbol,\tiny\textbullet,none,Bullet TeX (use single backslash)
 ,,,
 comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,3.5,pt,Table tabcolsep
@@ -92,12 +92,12 @@ comp_note_pad_lr,0,mm,Note left/right padding
 comp_note_pad_tb,0.5,mm,Note top/bottom padding
 ,,,
 comp_rubric_before,0,mm,Rubric space before
-comp_rubric_after,1.2,mm,Rubric space after
+comp_rubric_after,2.5,mm,Rubric space after
 ,,,==================== BRAND COLORS ====================
-brand_color_branddark,"0,0,0,0.92",cmyk,Main brand dark
+brand_color_branddark,"0,0,0,0.95",cmyk,Main brand dark
 brand_color_textgray,"0,0,0,0.90",cmyk,Body text gray
 brand_color_linek40,"0,0,0,0.40",cmyk,Border gray
-brand_color_bgk05,"0,0,0,0.05",cmyk,Background light gray
+brand_color_bgk05,"0,0,0,0.00",cmyk,Background light gray
 brand_color_accentblue,"0.90,0.55,0,0.60",cmyk,Accent blue
 brand_color_textk90,"0,0,0,0.90",cmyk,Strong text
 ,,,
