@@ -24,9 +24,9 @@ latex_additional_files = [
     "latex_theme/type_system.tex",
     "latex_theme/tools.tex",
     "latex_theme/params.tex", 
-    "latex_theme/assets/warning_lockup.png",  
-    "latex_theme/layout.tex",
-    "latex_theme/components.tex",
+    "latex_theme/assets/warning_lockup.png",   
+    "latex_theme/layout_templates.tex", 
+    "latex_theme/layout_core.tex",
     "latex_theme/components_base.tex",
     "latex_theme/components_safety.tex",
 ]

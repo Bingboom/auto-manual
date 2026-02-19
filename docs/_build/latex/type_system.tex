@@ -67,3 +67,14 @@
    \selectfont
    #1}%
 }
+
+% ==================================================
+% PAGE NUMBER TYPE
+% ==================================================
+
+\newcommand{\HBTypePageNumber}{%
+  \ifnum\csname HBpage_footer_leading_zero\endcsname=1\relax
+    \ifnum\value{page}<10\relax 0\fi
+  \fi
+  \arabic{page}%
+}

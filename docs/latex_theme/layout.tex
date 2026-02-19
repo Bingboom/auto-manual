@@ -21,41 +21,22 @@
 }
 
 % ==================================================
-% PAGE NUMBER FORMAT
+% FOOTER LAYOUT BLOCK
 % ==================================================
 
-\newcommand{\HBPageNumber}{%
-  \ifnum\csname HBpage_footer_leading_zero\endcsname=1\relax
-    \ifnum\value{page}<10\relax 0\fi
-  \fi
-  \arabic{page}%
-}
-
-% ==================================================
-% FOOTER STYLE
-% ==================================================
-
-\fancypagestyle{normal}{%
+\newcommand{\HBPageFooterLayout}{%
   \fancyhf{}%
   \renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}%
   \renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}%
   \fancyfoot[L]{%
     \raisebox{\csname HBpage_footer_raise\endcsname}{%
-      \HBTypeFooter{\HBPageNumber}%
+      \HBTypeFooter{\HBTypePageNumber}%
     }%
   }%
 }
 
-\fancypagestyle{plain}{%
-  \fancyhf{}%
-  \renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}%
-  \renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}%
-  \fancyfoot[L]{%
-    \raisebox{\csname HBpage_footer_raise\endcsname}{%
-      \HBTypeFooter{\HBPageNumber}%
-    }%
-  }%
-}
+\fancypagestyle{normal}{\HBPageFooterLayout}
+\fancypagestyle{plain}{\HBPageFooterLayout}
 
 \pagestyle{normal}
 

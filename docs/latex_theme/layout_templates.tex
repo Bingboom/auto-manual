@@ -1,0 +1,37 @@
+% ==================================================
+% L5 PAGE TEMPLATE LAYER
+% ==================================================
+
+% ==========================================
+% Standard Page Template
+% ==========================================
+
+\newcommand{\HBPageTemplateStandard}{%
+  \fancypagestyle{normal}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}
+    \renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}
+    \fancyfoot[L]{%
+      \raisebox{\csname HBpage_footer_raise\endcsname}{%
+        \HBTypeFooter{\HBTypePageNumber}%
+      }%
+    }
+  }
+  \pagestyle{normal}
+}
+
+% ==========================================
+% No Footer Template
+% ==========================================
+
+\newcommand{\HBPageTemplateNoFooter}{%
+  \pagestyle{HBEmptyStyle}
+}
+
+% ==========================================
+% Cover Template (Example)
+% ==========================================
+
+\newcommand{\HBPageTemplateCover}{%
+  \pagestyle{HBEmptyStyle}
+}

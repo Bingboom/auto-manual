@@ -17,8 +17,11 @@
 \AtBeginDocument{\color{TextK90}}
 \input{type_system.tex}
 \input{tools.tex}
-\input{layout.tex}
-\input{components.tex}
+\input{layout_core.tex}
+\input{layout_templates.tex}
+
+\input{components_base.tex}
+\input{components_safety.tex}
 
 % --- enforce paragraph spacing (override sphinx/parskip) ---
 \setlength{\parindent}{\csname HBpage_parindent\endcsname}
