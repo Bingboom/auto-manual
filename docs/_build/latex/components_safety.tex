@@ -64,24 +64,29 @@
 
 \providecommand{\safetywarning}[1]{}
 \renewcommand{\safetywarning}[1]{%
-\begin{safetywarningbox}
-  \noindent
-  \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
-                  @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
-                  m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}
-    \centering\warninglockup
-    &
-    \raggedright
-    {\bfseries
-    \color{\csname HBtype_warning_text_color\endcsname}
-    \fontsize{\csname HBtype_warning_text_font_size\endcsname}
-             {\csname HBtype_warning_text_font_leading\endcsname}
-    \selectfont
-     #1
-    }
-  \end{tabular}
-\end{safetywarningbox}
+  \begin{safetywarningbox}%
+    \noindent
+    \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+                    @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
+                    m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}%
+      \centering\warninglockup
+      &
+      \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
+        \raggedright
+        \bfseries
+        \color{\csname HBtype_warning_text_color\endcsname}%
+        \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
+        % Force real line spacing for wrapped lines
+        \setlength{\baselineskip}{\csname HBtype_warning_text_font_leading\endcsname}%
+        \setlength{\lineskip}{0pt}%
+        \setlength{\lineskiplimit}{0pt}%
+        \strut #1\strut
+      }%
+    \end{tabular}%
+  \end{safetywarningbox}%
 }
+
+      
 
 % ==================================================
 % SUBBAR
@@ -141,6 +146,8 @@
     colback=BrandDark,
     colframe=BrandDark,
     arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
     boxrule=0pt,
     left=\csname HBcomp_h1_pill_pad_lr\endcsname,
     right=\csname HBcomp_h1_pill_pad_lr\endcsname,
