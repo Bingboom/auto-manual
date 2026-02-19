@@ -4,7 +4,7 @@ page_paperwidth,130,mm,Paper width
 page_paperheight,185,mm,Paper height
 page_margin_left,10,mm,Left margin
 page_margin_right,10,mm,Right margin
-page_margin_top,4,mm,Top margin
+page_margin_top,5,mm,Top margin
 page_margin_bottom,10,mm,Bottom margin
 page_parindent,0,pt,Paragraph indent
 page_parskip,0,pt,Paragraph skip
@@ -20,7 +20,7 @@ page_footskip,8,mm,Distance from text block to footer baseline
 
 ,,,
 ,,,==================== TYPE SYSTEM ====================
-type_h1_font_size,10,pt,H1 font size
+type_h1_font_size,12,pt,H1 font size
 type_h1_font_leading,10.8,pt,H1 leading
 type_h1_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
@@ -38,7 +38,7 @@ type_body_force_upper,0,int,0 keep case / 1 uppercase
 type_list_font_size,6,pt,List font size
 type_list_font_leading,7.4,pt,List leading (independent from body)
 ,,,
-type_warning_text_font_size,6.5,pt,Warning right text font size
+type_warning_text_font_size,7.5,pt,Warning right text font size
 type_warning_text_font_leading,9,pt,Warning right text leading
 type_warning_text_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
@@ -57,16 +57,16 @@ comp_subbar_after,0,mm,Space after subbar
 ,,,
 comp_warning_box_arc,2.0,mm,Warning box corner radius
 comp_warning_box_rule,0.55,pt,Warning box border width
-comp_warning_box_pad_lr,-1,mm,Warning box left/right padding
-comp_warning_box_pad_tb,0.2,mm,Warning box top/bottom padding
-comp_warning_box_before,0.5,mm,Space before warning box
+comp_warning_box_pad_lr,1,mm,Warning box left/right padding
+comp_warning_box_pad_tb,0,mm,Warning box top/bottom padding
+comp_warning_box_before,0.8,mm,Space before warning box
 comp_warning_box_after,1.2,mm,Space after warning box
 comp_warning_box_width,1,ratio,Warning box width ratio of \textwidth
-comp_warning_box_sep,0,mm,Warning box inner boxsep
+comp_warning_box_sep,1,mm,Warning box inner boxsep
 ,,,
-comp_lockup_height,6,mm,warning_lockup.png height
-comp_lockup_width,30,mm,Width reserved for lockup column
-comp_lockup_gap,2,mm,Gap between lockup and warning text
+comp_lockup_height,7.5,mm,warning_lockup.png height
+comp_lockup_width,29,mm,Width reserved for lockup column
+comp_lockup_gap,4,mm,Gap between lockup and warning text
 comp_lockup_viewport,79 70 2125 549,none,Reserved (viewport macro is fragile; keep for future trim-based cropping)
 ,,,
 comp_twocol_sep,6,mm,Space between two columns
@@ -94,7 +94,7 @@ comp_note_pad_tb,0.5,mm,Note top/bottom padding
 comp_rubric_before,0,mm,Rubric space before
 comp_rubric_after,2.5,mm,Rubric space after
 ,,,==================== BRAND COLORS ====================
-brand_color_branddark,"0,0,0,0.95",cmyk,Main brand dark
+brand_color_branddark,"0,0,0,0.85",cmyk,Main brand dark
 brand_color_textgray,"0,0,0,0.90",cmyk,Body text gray
 brand_color_linek40,"0,0,0,0.40",cmyk,Border gray
 brand_color_bgk05,"0,0,0,0.00",cmyk,Background light gray

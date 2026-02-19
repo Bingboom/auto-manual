@@ -76,17 +76,12 @@
         \bfseries
         \color{\csname HBtype_warning_text_color\endcsname}%
         \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
-        % Force real line spacing for wrapped lines
-        \setlength{\baselineskip}{\csname HBtype_warning_text_font_leading\endcsname}%
-        \setlength{\lineskip}{0pt}%
-        \setlength{\lineskiplimit}{0pt}%
-        \strut #1\strut
+        % Reuse base helper: lock natural-wrap line spacing in tables/boxes
+        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
       }%
     \end{tabular}%
   \end{safetywarningbox}%
 }
-
-      
 
 % ==================================================
 % SUBBAR

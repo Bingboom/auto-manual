@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  19 FEB 2026 12:54
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  19 FEB 2026 14:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1159,14 +1159,14 @@ LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on 
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
 * h-part:(L,W,R)=(28.45274pt, 312.98033pt, 28.45274pt)
-* v-part:(T,H,B)=(11.38109pt, 486.54214pt, 28.45274pt)
+* v-part:(T,H,B)=(14.22636pt, 483.69687pt, 28.45274pt)
 * \paperwidth=369.88582pt
 * \paperheight=526.37598pt
 * \textwidth=312.98033pt
-* \textheight=486.54214pt
+* \textheight=483.69687pt
 * \oddsidemargin=-43.81725pt
 * \evensidemargin=-43.81725pt
-* \topmargin=-97.8889pt
+* \topmargin=-95.04362pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1275,11 +1275,11 @@ Package rerunfilecheck Info: File `safety_demo.out' has not changed.
 (rerunfilecheck)             Checksum: EC1B33D82F71134F6D29AB11C1C0722F;190.
  ) 
 Here is how much of TeX's memory you used:
- 36777 strings out of 473832
- 783288 string characters out of 5729482
- 1266081 words of memory out of 5000000
- 59104 multiletter control sequences out of 15000+600000
- 561408 words of font info for 109 fonts, out of 8000000 for 9000
+ 36782 strings out of 473832
+ 783421 string characters out of 5729482
+ 1266114 words of memory out of 5000000
+ 59108 multiletter control sequences out of 15000+600000
+ 561416 words of font info for 110 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  103i,13n,115p,1262b,844s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
