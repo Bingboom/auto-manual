@@ -410,6 +410,9 @@ INPUT components_base.tex
 INPUT ./components_safety.tex
 INPUT ./components_safety.tex
 INPUT components_safety.tex
+INPUT ./page_fit.tex
+INPUT ./page_fit.tex
+INPUT page_fit.tex
 OUTPUT safety_demo.idx
 INPUT ./fonts.tex
 INPUT ./fonts.tex

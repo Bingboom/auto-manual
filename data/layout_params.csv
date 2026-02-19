@@ -109,3 +109,5 @@ type_rubric_color,TextK90,none,Rubric text color name
 type_warning_text_color,TextGray,none,Warning right text color name
 comp_twocol_after,-5,mm,Space after two-column block
 type_warning_text_align,justified,none,Warning right text alignment (ragged|justified)
+fit_line_scale,1,ratio,Global line compression ratio (1 = normal)
+fit_image_scale,1,ratio,Global image scale ratio (1 = normal)

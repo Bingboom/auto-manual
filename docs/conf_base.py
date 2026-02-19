@@ -29,6 +29,7 @@ latex_additional_files = [
     "latex_theme/layout_core.tex",
     "latex_theme/components_base.tex",
     "latex_theme/components_safety.tex",
+    "latex_theme/page_fit.tex",
 ]
 
 # latex_documents 默认（子类可覆盖）
