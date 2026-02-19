@@ -1,16 +1,12 @@
 # Fdb version 4
-["makeindex safety_demo.idx"] 1771484624.80417 "safety_demo.idx" "safety_demo.ind" "safety_demo" 1771484627.47637 0
-  "safety_demo.idx" 1771484625.83013 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+["makeindex safety_demo.idx"] 1771489121.82153 "safety_demo.idx" "safety_demo.ind" "safety_demo" 1771489124.85256 0
+  "safety_demo.idx" 1771489122.87971 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "safety_demo.ilg"
   "safety_demo.ind"
   (rewritten before read)
-["xdvipdfmx"] 1771484626.70764 "safety_demo.xdv" "safety_demo.pdf" "safety_demo" 1771484627.47851 0
-  "safety_demo.xdv" 1771484626.61431 52504 51b5e8df65da9c7ac1ccd6ecb2ae6756 "xelatex"
-  (generated)
-  "safety_demo.pdf"
-  (rewritten before read)
-["xelatex"] 1771484624.80669 "safety_demo.tex" "safety_demo.xdv" "safety_demo" 1771484627.47642 0
+["pdflatex"] 1771489121.82397 "/Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/safety_demo.tex" "safety_demo.pdf" "safety_demo" 1771489124.85268 0
+  "/Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/safety_demo.tex" 1771489114.54086 7445 ce9d6b661d49814b662d27fb8b3fa71d ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -174,6 +170,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/polyglossia/gloss-english.ldf" 1738361565 6435 fc2baa086c6073e5becdc949b3c912ff ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/polyglossia/gloss-latex.ldf" 1738361565 965 b87f5d90da9ae322732c2f38762d0ba0 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/polyglossia/polyglossia.sty" 1738361565 62759 49291ce0d24a6fce6ac84ff6deec2987 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/ragged2e/ragged2e.sty" 1687466457 10085 3dececaeed388e31285c366e124c0c4e ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657483315 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/tabulary/tabulary.sty" 1718041297 14749 2802e3d502c668c888432d1e167723d4 ""
@@ -213,17 +210,17 @@
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "colors.tex" 1771403134.72111 751 6ba054e12c6281ee00092da6aed90557 ""
   "components.tex" 1771127213.64814 147 53babd821be2c9b2b25ed98637b978ae ""
-  "components_base.tex" 1771483271.9528 2718 4ff1acc145b10ad9e5fcd70928098757 ""
-  "components_safety.tex" 1771483270.34205 6128 0f9c98f55f4f200c68cd5364f8db037b ""
-  "fonts.tex" 1771484622.31438 712 6f7e1d4c940adf62e6f2e84f91b02355 ""
+  "components_base.tex" 1771489034.59217 3047 dd87ddd75d0ee28b826a95f94d21999e ""
+  "components_safety.tex" 1771489093.71222 6272 3744c9e348b9cbd39b0db1c91c06c969 ""
+  "fonts.tex" 1771489114.5403 712 6f7e1d4c940adf62e6f2e84f91b02355 ""
   "layout.tex" 1771431793.06182 2409 a82170de5d05a752c7ca44aea884d6c5 ""
-  "params.tex" 1771484621.77741 8046 5c441ee333cd173a4a112bbcf0a537b0 ""
-  "safety_demo.aux" 1771484626.61334 462 28ea483a0a901359df737841e062e64b "xelatex"
-  "safety_demo.ind" 1771484624.80433 0 d41d8cd98f00b204e9800998ecf8427e "makeindex safety_demo.idx"
-  "safety_demo.out" 1771484626.61393 190 ec1b33d82f71134f6d29ab11c1c0722f "xelatex"
-  "safety_demo.tex" 1771484622.31464 7445 ce9d6b661d49814b662d27fb8b3fa71d ""
+  "params.tex" 1771489113.90299 8160 3213a630ce3bd0f69c1c6b5c4d173702 ""
+  "safety_demo.aux" 1771489123.83221 462 28ea483a0a901359df737841e062e64b "pdflatex"
+  "safety_demo.ind" 1771489121.82165 0 d41d8cd98f00b204e9800998ecf8427e "makeindex safety_demo.idx"
+  "safety_demo.out" 1771489123.83294 190 ec1b33d82f71134f6d29ab11c1c0722f "pdflatex"
+  "safety_demo.tex" 1771489114.54086 7445 ce9d6b661d49814b662d27fb8b3fa71d ""
   "sphinx.sty" 1771126201.01352 57237 e19e1f380d737472c975e274a37a2126 ""
-  "sphinxhighlight.sty" 1771484622.19392 7553 83fb52292c17957d9f4aadcb28c57a87 ""
+  "sphinxhighlight.sty" 1771489114.35435 7553 83fb52292c17957d9f4aadcb28c57a87 ""
   "sphinxhowto.cls" 1771126201.01371 3256 55d5772de2f18cad818d98a3e6e8e37b ""
   "sphinxlatexadmonitions.sty" 1771126201.01382 19258 40d230fa86bf8c791de90924bc0a9916 ""
   "sphinxlatexcontainers.sty" 1771126201.0139 900 d61f923db071a7b54d3cee8a1e6935d3 ""
@@ -238,17 +235,17 @@
   "sphinxlatexstylepage.sty" 1771126201.01483 2671 e63daf3b9f0f8a387a8b4ba09c515982 ""
   "sphinxlatexstyletext.sty" 1771126201.01493 6932 46506bfce90adabe816de566561356fc ""
   "sphinxlatextables.sty" 1771126201.01522 63776 301b4897e4c838a7aa5af2eb139208e8 ""
-  "sphinxmessages.sty" 1771484622.2283 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1771489114.41758 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxoptionsgeometry.sty" 1771126201.01554 2060 6c27b3eba37bde592ae8908ab2c1ac0f ""
   "sphinxoptionshyperref.sty" 1771126201.01564 1093 e468489bae7631a7f387b4b0f7bc15d4 ""
   "sphinxpackageboxes.sty" 1771126201.01576 36106 1be2053eb1cb9b083b3a75e3657bcb24 ""
   "sphinxpackagefootnote.sty" 1771126201.01605 15497 e3d010897db5f6f93f75d08335769b1f ""
-  "theme.tex" 1771470496.51333 531 c6e532801860328c31fc84c918ebda26 ""
+  "theme.tex" 1771487011.12815 553 5b22d531160d5b0699838ba1b58e1fe6 ""
   "warning_lockup.png" 1771405591.58371 316221 f1425aae54db7741ae7a1d648bb4995d ""
   (generated)
   "safety_demo.aux"
   "safety_demo.idx"
   "safety_demo.log"
   "safety_demo.out"
-  "safety_demo.xdv"
+  "safety_demo.pdf"
   (rewritten before read)

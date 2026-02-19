@@ -72,16 +72,22 @@
       \centering\warninglockup
       &
       \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
-        \raggedright
+        % 🔴 对齐必须在这里决定
+        \edef\HB@tmpalign{\csname HBtype_warning_text_align\endcsname}%
+        \ifnum\pdfstrcmp{\HB@tmpalign}{justified}=0
+          \justifying
+        \else
+          \raggedright
+        \fi
         \bfseries
         \color{\csname HBtype_warning_text_color\endcsname}%
         \fontsize{\csname HBtype_warning_text_font_size\endcsname}{\csname HBtype_warning_text_font_leading\endcsname}\selectfont
-        % Reuse base helper: lock natural-wrap line spacing in tables/boxes
         \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
       }%
     \end{tabular}%
   \end{safetywarningbox}%
 }
+  
 
 % ==================================================
 % SUBBAR

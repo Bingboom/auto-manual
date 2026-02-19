@@ -84,4 +84,24 @@
 \makeatother
 
 
+% ------------------------------
+% Tight lines helper (alignment + locked leading)
+% ------------------------------
+
+\renewcommand{\HBtightlines}[2]{%
+  \begingroup
+    \setlength{\baselineskip}{#1}%
+    \setlength{\lineskip}{0pt}%
+    \setlength{\lineskiplimit}{0pt}%
+    \parindent=0pt
+    \strut #2\strut
+  \endgroup
+}
+
+
+
+
+
+
+
 
