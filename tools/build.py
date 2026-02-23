@@ -23,7 +23,7 @@ def run(cmd: List[str], cwd: Path | None = None) -> None:
 
 def find_main_tex(build_dir: Path) -> Path:
     # 1) Prefer known main doc name
-    preferred = build_dir / "safety_demo.tex"
+    preferred = build_dir / "manual_demo.tex"
     if preferred.exists():
         return preferred
 
@@ -70,7 +70,7 @@ def find_main_tex(build_dir: Path) -> Path:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--open", action="store_true", help="open PDF after build")
-    ap.add_argument("--tex", default="safety_demo.tex", help="main tex filename in _build/latex")
+    ap.add_argument("--tex", default="manual_demo.tex", help="main tex filename in _build/latex")
     args = ap.parse_args()
 
     # 1) lint

@@ -8,7 +8,7 @@ from pathlib import Path
 project = ""
 author = ""
 extensions: list[str] = []
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "templates/*"]
 
 # 默认入口（子类可覆盖）
 master_doc = "index"
@@ -19,6 +19,8 @@ latex_show_urls = "no"
 
 # 主题文件（放在 docs/latex_theme/ 下）
 latex_additional_files = [
+    "latex_theme/assets/cover.pdf",
+    "latex_theme/assets/product_overview.pdf",
     "latex_theme/theme.tex",
     "latex_theme/colors.tex",
     "latex_theme/type_system.tex",
@@ -39,7 +41,7 @@ latex_documents = [
 
 # --- core latex elements (base) ---
 latex_elements = {
-    "papersize": "a4paper",
+    "papersize": "paperwidth=368.787pt,paperheight=524.692pt",
     "pointsize": "10pt",
     # 禁目录（同时避免 TOC 相关 error）
     "tableofcontents": "",
@@ -76,3 +78,9 @@ latex_elements = {
 def append_preamble(extra_tex: str) -> None:
     """Append LaTeX code to latex_elements['preamble']."""
     latex_elements["preamble"] = (latex_elements.get("preamble", "") or "") + "\n" + extra_tex
+
+
+# ✅ NEW: enable \includepdf
+append_preamble(r"""
+\usepackage{pdfpages}
+""")

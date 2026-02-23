@@ -1,7 +1,7 @@
 key,value,unit,comment
 ,,,==================== PAGE ====================
-page_paperwidth,140,mm,Paper width
-page_paperheight,200,mm,Paper height
+page_paperwidth,130.10,mm,Paper width
+page_paperheight,185.10,mm,Paper height
 page_margin_left,10,mm,Left margin
 page_margin_right,10,mm,Right margin
 page_margin_top,5,mm,Top margin
@@ -20,7 +20,7 @@ page_footskip,8,mm,Distance from text block to footer baseline
 ,,,
 ,,,
 ,,,==================== TYPE SYSTEM ====================
-type_h1_font_size,12.6,pt,H1 font size
+type_h1_font_size,12,pt,H1 font size
 type_h1_font_leading,10.8,pt,H1 leading
 type_h1_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
@@ -45,7 +45,7 @@ type_warning_text_force_upper,1,int,0 keep case / 1 uppercase
 ,,,==================== COMPONENTS ====================
 comp_h1_pill_arc,1.8,mm,H1 pill corner radius
 comp_h1_pill_pad_lr,1.2,mm,H1 pill left/right padding
-comp_h1_pill_pad_tb,1.2,mm,H1 pill top/bottom padding
+comp_h1_pill_pad_tb,0.9,mm,H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,H1 pill width ratio of \textwidth
 comp_h1_pill_after,1.5,mm,Space after H1 pill
 ,,,
@@ -75,7 +75,7 @@ comp_lead_after,1,mm,Space after lead line
 ,,,
 comp_list_leftmargin,1.0,em,itemize leftmargin
 comp_list_labelsep,0.45,em,itemize labelsep
-comp_list_itemsep,1,mm,itemize itemsep
+comp_list_itemsep,0.5,mm,itemize itemsep
 comp_list_topsep,0,mm,itemize topsep
 comp_list_parsep,0,mm,itemize parsep
 comp_list_partopsep,0,mm,itemize partopsep

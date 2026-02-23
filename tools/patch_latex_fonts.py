@@ -42,7 +42,7 @@ def inject_before_begin_document(tex_path: Path) -> None:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tex", default="safety_demo.tex", help="main tex filename in _build/latex")
+    ap.add_argument("--tex", default="manual_demo.tex", help="main tex filename in _build/latex")
     args = ap.parse_args()
 
     if not BUILD.exists():
