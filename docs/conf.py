@@ -18,3 +18,4 @@ latex_documents = [
 ]
 
 latex_domain_indices = False
+
