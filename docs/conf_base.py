@@ -45,6 +45,7 @@ latex_elements = {
     "pointsize": "10pt",
     # 禁目录（同时避免 TOC 相关 error）
     "tableofcontents": "",
+    "classoptions": ",twoside,openany",
 
     # 让 xcolor 走 CMYK（必须抢先传参）
     "passoptionstopackages": r"\PassOptionsToPackage{cmyk}{xcolor}",
@@ -84,3 +85,5 @@ def append_preamble(extra_tex: str) -> None:
 append_preamble(r"""
 \usepackage{pdfpages}
 """)
+
+print("[conf_base] LOADED conf_base.py")
