@@ -2,7 +2,7 @@ PWD /Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex
 INPUT /usr/local/texlive/2025/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT manual_demo.tex
+INPUT /Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/manual_demo.tex
 OUTPUT manual_demo.log
 INPUT ./sphinxhowto.cls
 INPUT sphinxhowto.cls
@@ -475,7 +475,6 @@ INPUT ./cover.pdf
 INPUT ./cover.pdf
 INPUT ./cover.pdf
 INPUT ./cover.pdf
-OUTPUT manual_demo.xdv
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd

@@ -1,16 +1,12 @@
 # Fdb version 4
-["makeindex manual_demo.idx"] 1771820541.78665 "manual_demo.idx" "manual_demo.ind" "manual_demo" 1771820543.87697 0
-  "manual_demo.idx" 1771820542.55739 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+["makeindex manual_demo.idx"] 1771823187.45476 "manual_demo.idx" "manual_demo.ind" "manual_demo" 1771823189.78801 0
+  "manual_demo.idx" 1771823188.44419 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "manual_demo.ilg"
   "manual_demo.ind"
   (rewritten before read)
-["xdvipdfmx"] 1771820543.25993 "manual_demo.xdv" "manual_demo.pdf" "manual_demo" 1771820543.87872 0
-  "manual_demo.xdv" 1771820543.18759 54232 41e25a9c2562002e4cf10dd979299816 "xelatex"
-  (generated)
-  "manual_demo.pdf"
-  (rewritten before read)
-["xelatex"] 1771820541.78846 "manual_demo.tex" "manual_demo.xdv" "manual_demo" 1771820543.87701 0
+["pdflatex"] 1771823187.46162 "/Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/manual_demo.tex" "manual_demo.pdf" "manual_demo" 1771823189.7881 0
+  "/Users/pika/Documents/cms-demos/manual_demo/docs/_build/latex/manual_demo.tex" 1771823182.57113 7776 cfe93af17eb61d69e8b0d4cc179d3bda ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -224,18 +220,18 @@
   "components_base.tex" 1771490351.62788 2106 d4131618ecaa9c556a2fdbc0f944c63d ""
   "components_safety.tex" 1771772796.21153 4737 b0cb7ee8f96e2e2f360431925625b716 ""
   "cover.pdf" 1771817561.47597 18861356 b18180e714b5953a3bcf574297159d12 ""
-  "fonts.tex" 1771820540.07604 712 6f7e1d4c940adf62e6f2e84f91b02355 ""
-  "layout_core.tex" 1771491628.44817 951 9b4f02a15c4fe52fd2898dd287603d1a ""
-  "layout_templates.tex" 1771491646.86656 1004 b0e7e8c020a3a4b943e98953f6f2629f ""
-  "manual_demo.aux" 1771820543.18671 483 66e3e8bdd0d17d344d16b8ecefb0e870 "xelatex"
-  "manual_demo.ind" 1771820541.78678 0 d41d8cd98f00b204e9800998ecf8427e "makeindex manual_demo.idx"
-  "manual_demo.out" 1771820543.18729 190 ec1b33d82f71134f6d29ab11c1c0722f "xelatex"
-  "manual_demo.tex" 1771820540.07627 7760 f5e34a736680dc6b2aed93ccff9762e3 ""
+  "fonts.tex" 1771823182.57094 712 6f7e1d4c940adf62e6f2e84f91b02355 ""
+  "layout_core.tex" 1771823171.584 2675 fee3ba965475bc09acfb054f8fc4e844 ""
+  "layout_templates.tex" 1771823090.59383 561 bc340980b334462db614754e25041db8 ""
+  "manual_demo.aux" 1771823189.14531 483 66e3e8bdd0d17d344d16b8ecefb0e870 "pdflatex"
+  "manual_demo.ind" 1771823187.45491 0 d41d8cd98f00b204e9800998ecf8427e "makeindex manual_demo.idx"
+  "manual_demo.out" 1771823189.14571 190 ec1b33d82f71134f6d29ab11c1c0722f "pdflatex"
+  "manual_demo.tex" 1771823182.57113 7776 cfe93af17eb61d69e8b0d4cc179d3bda ""
   "page_fit.tex" 1771497160.41949 149 5f48a3174f5d8c80f2a138f6dc93b6e6 ""
-  "params.tex" 1771820539.60337 8383 2f9fd34c6bde840539c34c77c42e9350 ""
+  "params.tex" 1771823182.06835 8383 2f9fd34c6bde840539c34c77c42e9350 ""
   "product_overview.pdf" 1771817581.73294 18909766 0fea517a92d4a4bcd092dcb63df54534 ""
   "sphinx.sty" 1771126201.01352 57237 e19e1f380d737472c975e274a37a2126 ""
-  "sphinxhighlight.sty" 1771820539.93811 7553 83fb52292c17957d9f4aadcb28c57a87 ""
+  "sphinxhighlight.sty" 1771823182.41939 7553 83fb52292c17957d9f4aadcb28c57a87 ""
   "sphinxhowto.cls" 1771126201.01371 3256 55d5772de2f18cad818d98a3e6e8e37b ""
   "sphinxlatexadmonitions.sty" 1771126201.01382 19258 40d230fa86bf8c791de90924bc0a9916 ""
   "sphinxlatexcontainers.sty" 1771126201.0139 900 d61f923db071a7b54d3cee8a1e6935d3 ""
@@ -250,7 +246,7 @@
   "sphinxlatexstylepage.sty" 1771126201.01483 2671 e63daf3b9f0f8a387a8b4ba09c515982 ""
   "sphinxlatexstyletext.sty" 1771126201.01493 6932 46506bfce90adabe816de566561356fc ""
   "sphinxlatextables.sty" 1771126201.01522 63776 301b4897e4c838a7aa5af2eb139208e8 ""
-  "sphinxmessages.sty" 1771820540.00694 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1771823182.50348 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxoptionsgeometry.sty" 1771126201.01554 2060 6c27b3eba37bde592ae8908ab2c1ac0f ""
   "sphinxoptionshyperref.sty" 1771126201.01564 1093 e468489bae7631a7f387b4b0f7bc15d4 ""
   "sphinxpackageboxes.sty" 1771126201.01576 36106 1be2053eb1cb9b083b3a75e3657bcb24 ""
@@ -264,5 +260,5 @@
   "manual_demo.idx"
   "manual_demo.log"
   "manual_demo.out"
-  "manual_demo.xdv"
+  "manual_demo.pdf"
   (rewritten before read)
