@@ -2,27 +2,53 @@
 \usepackage{fontspec}
 
 \newcommand{\HBSetupFonts}{%
-  \IfFontExistsTF{Avenir Next Rounded}{%
-    \setmainfont{Avenir Next Rounded}
-    \setsansfont{Avenir Next Rounded}
+  % Main font (safe)
+  \IfFontExistsTF{Times New Roman}{%
+    \setmainfont{Times New Roman}%
   }{%
-    \IfFontExistsTF{Helvetica Rounded}{%
-      \setmainfont{Helvetica Rounded}
-      \setsansfont{Helvetica Rounded}
+    \IfFontExistsTF{Calibri}{%
+      \setmainfont{Calibri}%
     }{%
-      \IfFontExistsTF{Avenir Next}{%
-        \setmainfont{Avenir Next}
-        \setsansfont{Avenir Next}
+      \IfFontExistsTF{Latin Modern Roman}{%
+        \setmainfont{Latin Modern Roman}%
       }{%
-        \setmainfont{Helvetica}
-        \setsansfont{Helvetica}
+        \setmainfont{FreeSerif}%
       }%
     }%
   }%
-  \IfFontExistsTF{JetBrains Mono}{%
-    \setmonofont{JetBrains Mono}[Scale=MatchLowercase]
+
+  % Sans font (safe)
+  \IfFontExistsTF{Arial}{%
+    \setsansfont{Arial}%
   }{%
-    \setmonofont{Menlo}[Scale=MatchLowercase]
+    \IfFontExistsTF{Calibri}{%
+      \setsansfont{Calibri}%
+    }{%
+      \IfFontExistsTF{Latin Modern Sans}{%
+        \setsansfont{Latin Modern Sans}%
+      }{%
+        \setsansfont{FreeSans}%
+      }%
+    }%
+  }%
+
+  % Mono font (safe)
+  \IfFontExistsTF{Consolas}{%
+    \setmonofont{Consolas}[Scale=MatchLowercase]%
+  }{%
+    \IfFontExistsTF{JetBrains Mono}{%
+      \setmonofont{JetBrains Mono}[Scale=MatchLowercase]%
+    }{%
+      \IfFontExistsTF{Courier New}{%
+        \setmonofont{Courier New}[Scale=MatchLowercase]%
+      }{%
+        \IfFontExistsTF{Latin Modern Mono}{%
+          \setmonofont{Latin Modern Mono}[Scale=MatchLowercase]%
+        }{%
+          \setmonofont{FreeMono}[Scale=MatchLowercase]%
+        }%
+      }%
+    }%
   }%
 }
 
