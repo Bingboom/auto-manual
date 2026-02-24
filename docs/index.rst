@@ -1,15 +1,36 @@
 .. raw:: latex
 
-   % Cover: no page number
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{cover.pdf}
-   % Start numbering from Safety page
+   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{cover-en.pdf}
    \clearpage
    \pagenumbering{arabic}
    \setcounter{page}{1}
 
-.. include:: safety.rst
+..  ========================
+..  EN
+..  ========================
+
+.. include:: safety_en.rst
 
 .. raw:: latex
 
-   % Overview page (keep numbering)
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{fancy}}]{product_overview.pdf}
+   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-en.pdf}
+
+..  ========================
+..  FR
+..  ========================
+
+.. include:: safety_fr.rst
+
+.. raw:: latex
+
+   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-fr.pdf}
+
+..  ========================
+..  ES
+..  ========================
+
+.. include:: safety_es.rst
+
+.. raw:: latex
+
+   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-es.pdf}

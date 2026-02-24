@@ -9,6 +9,11 @@
 % PAGE GEOMETRY
 % ==========================
 
+% --- fallback to avoid 0bp paper size on some MiKTeX setups ---
+\expandafter\providecommand\csname HBpage_paperwidth\endcsname{130.10mm}
+\expandafter\providecommand\csname HBpage_paperheight\endcsname{185.10mm}
+
+
 \geometry{
   paperwidth=\csname HBpage_paperwidth\endcsname,
   paperheight=\csname HBpage_paperheight\endcsname,

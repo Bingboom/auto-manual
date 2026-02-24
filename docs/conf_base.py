@@ -19,8 +19,10 @@ latex_show_urls = "no"
 
 # 主题文件（放在 docs/latex_theme/ 下）
 latex_additional_files = [
-    "latex_theme/assets/cover.pdf",
-    "latex_theme/assets/product_overview.pdf",
+    "latex_theme/assets/cover-en.pdf",
+    "latex_theme/assets/product_overview-en.pdf",
+    "latex_theme/assets/product_overview-fr.pdf",
+    "latex_theme/assets/product_overview-es.pdf",
     "latex_theme/theme.tex",
     "latex_theme/colors.tex",
     "latex_theme/type_system.tex",
@@ -41,7 +43,7 @@ latex_documents = [
 
 # --- core latex elements (base) ---
 latex_elements = {
-    "papersize": "paperwidth=368.787pt,paperheight=524.692pt",
+    "papersize": "a4paper",
     "pointsize": "10pt",
     # 禁目录（同时避免 TOC 相关 error）
     "tableofcontents": "",
