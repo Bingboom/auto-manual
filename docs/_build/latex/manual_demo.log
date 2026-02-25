@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.2.24)  24 FEB 2026 17:45
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.2.24)  25 FEB 2026 10:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1559,13 +1559,13 @@ File: cover-en.pdf Graphic file (type pdf)
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 125
+LaTeX Font Info:    Trying to load font information for U+msa on input line 130
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 125
+LaTeX Font Info:    Trying to load font information for U+msb on input line 130
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1594,27 +1594,27 @@ File: product_overview-en.pdf Graphic file (type pdf)
 File: warning_lockup.png Graphic file (type bmp)
 <warning_lockup.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\TU/TimesNewRoman(0)/b/n/7.8 INSTRUCTIONS CONCERNANT LES RISQUES
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 \TU/TimesNewRoman(0)/b/n/7.8 D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 312--314
+Underfull \hbox (badness 10000) in paragraph at lines 319--321
 []\TU/TimesNewRoman(0)/m/n/7 Pour réduire le risque de choc électrique,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 312--314
+Underfull \hbox (badness 10000) in paragraph at lines 319--321
 \TU/TimesNewRoman(0)/m/n/7 débranchez le produit de toute source
  []
 
 
-Underfull \hbox (badness 6526) in paragraph at lines 326--328
+Underfull \hbox (badness 6526) in paragraph at lines 333--335
 \TU/TimesNewRoman(0)/m/n/7 présente des signes de dommage. Arrêtez
  []
 
@@ -1638,7 +1638,7 @@ File: product_overview-fr.pdf Graphic file (type pdf)
 File: warning_lockup.png Graphic file (type bmp)
 <warning_lockup.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--405
+Underfull \hbox (badness 10000) in paragraph at lines 414--414
 []|\TU/TimesNewRoman(0)/b/n/7.8 INSTRUCCIONES RELATIVAS AL RIESGO DE
  []
 
@@ -1669,10 +1669,10 @@ Package rerunfilecheck Info: File `manual_demo.out' has not changed.
 (rerunfilecheck)             Checksum: 238253FED4F341500FCA17A52B4EE35D;660.
  ) 
 Here is how much of TeX's memory you used:
- 37708 strings out of 402986
- 785660 string characters out of 5452850
- 1288712 words of memory out of 5000000
- 65703 multiletter control sequences out of 15000+600000
+ 37722 strings out of 402986
+ 786002 string characters out of 5452850
+ 1289124 words of memory out of 5000000
+ 65717 multiletter control sequences out of 15000+600000
  630324 words of font info for 117 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  103i,17n,113p,1202b,849s stack positions out of 10000i,1000n,20000p,200000b,200000s

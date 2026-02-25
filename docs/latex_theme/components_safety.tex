@@ -152,3 +152,52 @@
 \titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
 \titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
 \setcounter{secnumdepth}{0}
+
+% ==================================================
+% Language density switch (CSV-driven overrides)
+% - EN: default (no lang_en_* keys needed)
+% - FR/ES: override selected layout/type params via params.tex keys
+%
+% Supported override keys in layout_params.csv:
+%   lang_<lang>_comp_h1_pill_after
+%   lang_<lang>_comp_subbar_after
+%   lang_<lang>_comp_twocol_tighten
+%   lang_<lang>_comp_lead_after
+%   lang_<lang>_comp_warning_box_after
+%   lang_<lang>_comp_warning_box_before
+%   (optional) lang_<lang>_type_warning_text_font_size / leading ...
+% ==================================================
+\makeatletter
+
+% override any HB<key> macro value at runtime
+\providecommand{\HBOverrideParam}[2]{%
+  \expandafter\def\csname HB#1\endcsname{#2}%
+}
+
+% override base key from another HB macro if it exists
+\providecommand{\HBOverrideFromKey}[2]{%
+  \ifcsname HB#2\endcsname
+    \HBOverrideParam{#1}{\csname HB#2\endcsname}%
+  \fi
+}
+
+% Apply per-language density overrides (values come from params.tex)
+\providecommand{\HBApplyLang}[1]{%
+  \def\HB@lang{#1}%
+
+  % --- the 3 keys you explicitly want to tune per language ---
+  \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
+  \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
+
+  % --- optional spacing knobs (if you add them in layout_params.csv) ---
+  \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%
+  \HBOverrideFromKey{comp_warning_box_after}{lang_\HB@lang_comp_warning_box_after}%
+  \HBOverrideFromKey{comp_warning_box_before}{lang_\HB@lang_comp_warning_box_before}%
+
+  % --- optional type knobs (only if you add them) ---
+  % \HBOverrideFromKey{type_warning_text_font_size}{lang_\HB@lang_type_warning_text_font_size}%
+  % \HBOverrideFromKey{type_warning_text_font_leading}{lang_\HB@lang_type_warning_text_font_leading}%
+}
+
+\makeatother

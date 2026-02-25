@@ -100,7 +100,7 @@
 
 
 \title{}
-\date{Feb 24, 2026}
+\date{Feb 25, 2026}
 \release{}
 \author{}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -115,10 +115,15 @@
 
 \pagestyle{normal}
 \phantomsection\label{\detokenize{index::doc}}
+% ========================
+% Cover (no page number)
+% ========================
 \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{cover-en.pdf}
 \clearpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
+
+\HBApplyLang{en}
 
 \section{IMPORTANT SAFETY INFORMATION}
 
@@ -260,6 +265,8 @@ Solar charge time depends on weather conditions. Place your solar panel where it
 
 \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-en.pdf}
 
+\HBApplyLang{fr}
+
 \section{INFORMATIONS DE SÉCURITÉ IMPORTANTES}
 
 \safetywarning{INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES}
@@ -399,6 +406,8 @@ Le temps de charge solaire dépend des conditions météorologiques. Placez votr
 \end{safetytwocol}
 
 \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-fr.pdf}
+
+\HBApplyLang{es}
 
 \section{INFORMACIÓN IMPORTANTE DE SEGURIDAD}
 
