@@ -4,9 +4,7 @@
 from __future__ import annotations
 
 import argparse
-import os
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
@@ -16,58 +14,13 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.utils.path_utils import get_paths  # noqa: E402
+from tools.utils.process_utils import open_file, run  # noqa: E402
+from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 
 paths = get_paths()
 
 
-def run(cmd: list[str], cwd: Path | None = None) -> None:
-    pretty = " ".join(str(x) for x in cmd)
-    print("$", pretty)
-    subprocess.run([str(x) for x in cmd], cwd=str(cwd) if cwd else None, check=True)
-
-
-def find_exe(names: list[str]) -> str | None:
-    # 1) Search in PATH
-    for n in names:
-        p = shutil.which(n)
-        if p:
-            return p
-
-    # 2) Common MiKTeX locations (Windows)
-    candidates = [
-        r"C:\Program Files\MiKTeX\miktex\bin\x64",
-        os.path.expandvars(r"%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64"),
-        os.path.expandvars(r"%LOCALAPPDATA%\MiKTeX\miktex\bin\x64"),
-        os.path.expandvars(r"%APPDATA%\MiKTeX\miktex\bin\x64"),
-    ]
-    for base in candidates:
-        if not base:
-            continue
-        base_path = Path(base)
-        if not base_path.exists():
-            continue
-        for n in names:
-            exe = base_path / f"{n}.exe"
-            if exe.exists():
-                return str(exe)
-
-    return None
-
-
-def open_pdf(pdf_path: Path) -> None:
-    print(f"[build] Opening PDF: {pdf_path}")
-    if sys.platform.startswith("win"):
-        os.startfile(str(pdf_path))
-    elif sys.platform == "darwin":
-        subprocess.run(["open", str(pdf_path)])
-    else:
-        subprocess.run(["xdg-open", str(pdf_path)])
-
-
 def load_config() -> dict:
-    """
-    Load config.yaml from repo root. Requires PyYAML.
-    """
     cfg_path = paths.config_yaml
     if not cfg_path.exists():
         raise RuntimeError(f"config.yaml not found: {cfg_path}")
@@ -103,16 +56,6 @@ def patch_fonts(patch_fonts_script: str, main_tex: str) -> None:
     run([sys.executable, patch_fonts_script, "--tex", main_tex], cwd=paths.root)
 
 
-def compile_xelatex(main_tex: str, runs: int) -> None:
-    xelatex = find_exe(["xelatex"])
-    if not xelatex:
-        raise RuntimeError("xelatex not found. Install MiKTeX/TeX Live.")
-
-    for i in range(1, runs + 1):
-        print(f"[build] xelatex pass {i}/{runs}")
-        run([xelatex, "-interaction=nonstopmode", "-halt-on-error", main_tex], cwd=paths.latex_build_dir)
-
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
@@ -135,11 +78,10 @@ def main() -> None:
     if args.clean:
         clean_build_dir()
 
-    # Pipeline
     render_safety_all_langs(csv_to_rst, list(langs))
     sphinx_build_latex()
     patch_fonts(patch_fonts_script, main_tex)
-    compile_xelatex(main_tex, xelatex_runs)
+    compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
 
     pdf_path = paths.output_pdf(output_pdf)
     if not pdf_path.exists():
@@ -147,7 +89,7 @@ def main() -> None:
 
     print(f"[build] Done. PDF: {pdf_path}")
     if open_after:
-        open_pdf(pdf_path)
+        open_file(pdf_path)
 
 
 if __name__ == "__main__":
