@@ -11,15 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 
 MAIN_TEX = "manual_demo.tex"
+OUTPUT_PDF = "manual_demo.pdf"
 XE_RUNS = 3  # xelatex runs
+
 
 def run(cmd, cwd=None):
     pretty = " ".join(str(x) for x in cmd)
     print("$", pretty)
-    subprocess.run([str(x) for x in cmd], cwd=str(cwd) if cwd else None, check=True)
+    subprocess.run([str(x) for x in cmd],
+                   cwd=str(cwd) if cwd else None,
+                   check=True)
+
 
 def find_exe(names: list[str]) -> str | None:
-    # 1) PATH
+    # 1) Search in PATH
     for n in names:
         p = shutil.which(n)
         if p:
@@ -32,6 +37,7 @@ def find_exe(names: list[str]) -> str | None:
         os.path.expandvars(r"%LOCALAPPDATA%\MiKTeX\miktex\bin\x64"),
         os.path.expandvars(r"%APPDATA%\MiKTeX\miktex\bin\x64"),
     ]
+
     for base in candidates:
         if not base:
             continue
@@ -42,7 +48,20 @@ def find_exe(names: list[str]) -> str | None:
             exe = base_path / f"{n}.exe"
             if exe.exists():
                 return str(exe)
+
     return None
+
+
+def open_pdf(pdf_path: Path):
+    print(f"[build_multilang_bundle] Opening PDF: {pdf_path}")
+
+    if sys.platform.startswith("win"):
+        os.startfile(str(pdf_path))  # Windows
+    elif sys.platform == "darwin":
+        subprocess.run(["open", str(pdf_path)])  # macOS
+    else:
+        subprocess.run(["xdg-open", str(pdf_path)])  # Linux
+
 
 def main():
     # 1) Generate multi-language safety rst files
@@ -53,10 +72,11 @@ def main():
     run(["sphinx-build", "-b", "latex", ".", "_build/latex"], cwd=DOCS)
 
     latex_dir = DOCS / "_build" / "latex"
-    
-    run([sys.executable, "tools/patch_latex_fonts.py", "--tex", "manual_demo.tex"], cwd=ROOT)
-    
-    # 3) Compile TeX -> PDF (avoid latexmk on MiKTeX without perl)
+
+    # 3) Patch fonts
+    run([sys.executable, "tools/patch_latex_fonts.py", "--tex", MAIN_TEX], cwd=ROOT)
+
+    # 4) Compile TeX -> PDF (avoid latexmk on MiKTeX without perl)
     xelatex = find_exe(["xelatex"])
     if not xelatex:
         raise RuntimeError(
@@ -66,6 +86,14 @@ def main():
     for i in range(1, XE_RUNS + 1):
         print(f"[build_multilang_bundle] xelatex pass {i}/{XE_RUNS}")
         run([xelatex, "-interaction=nonstopmode", "-halt-on-error", MAIN_TEX], cwd=latex_dir)
+
+    # 5) Open generated PDF
+    pdf_path = latex_dir / OUTPUT_PDF
+    if pdf_path.exists():
+        open_pdf(pdf_path)
+    else:
+        print(f"[build_multilang_bundle] WARNING: PDF not found at {pdf_path}")
+
 
 if __name__ == "__main__":
     main()
