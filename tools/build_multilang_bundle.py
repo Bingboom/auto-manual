@@ -7,7 +7,14 @@ import sys
 import shutil
 from pathlib import Path
 
+# Ensure repo root is importable (works on mac/win when running "python tools/xxx.py")
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.utils.path_utils import get_paths
+
+paths = get_paths()
 
 
 def run(cmd, cwd=None):
@@ -60,16 +67,14 @@ def load_config() -> dict:
     Load config.yaml from repo root.
     Requires PyYAML. (Install: pip install pyyaml)
     """
-    cfg_path = ROOT / "config.yaml"
+    cfg_path = paths.config_yaml
     if not cfg_path.exists():
         raise RuntimeError(f"config.yaml not found at repo root: {cfg_path}")
 
     try:
         import yaml
     except ImportError:
-        raise RuntimeError(
-            "PyYAML not installed. Please run: pip install pyyaml"
-        )
+        raise RuntimeError("PyYAML not installed. Please run: pip install pyyaml")
 
     with cfg_path.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
@@ -80,7 +85,7 @@ def main():
 
     build_cfg = cfg.get("build", {})
     tools_cfg = cfg.get("tools", {})
-    paths_cfg = cfg.get("paths", {})
+    paths_cfg = cfg.get("paths", {})  # kept for forward compatibility
 
     languages = build_cfg.get("languages", ["en", "fr", "es"])
     main_tex = build_cfg.get("main_tex", "manual_demo.tex")
@@ -88,37 +93,32 @@ def main():
     xelatex_runs = int(build_cfg.get("xelatex_runs", 3))
     should_open = bool(build_cfg.get("open_pdf", True))
 
-    docs_dir = ROOT / str(paths_cfg.get("docs_dir", "docs"))
-
+    # tools paths remain config-driven (future: resolve via Paths too)
     csv_to_rst = str(tools_cfg.get("csv_to_rst", "tools/csv_to_rst.py"))
     patch_fonts = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
 
     # 1) Generate multi-language safety rst files
     for lang in languages:
-        run([sys.executable, csv_to_rst, "--lang", lang], cwd=ROOT)
+        run([sys.executable, csv_to_rst, "--lang", lang], cwd=paths.root)
 
     # 2) Sphinx -> LaTeX
-    run(["sphinx-build", "-b", "latex", ".", "_build/latex"], cwd=docs_dir)
-
-    latex_dir = docs_dir / "_build" / "latex"
+    run(["sphinx-build", "-b", "latex", ".", "_build/latex"], cwd=paths.docs_dir)
 
     # 3) Patch fonts (inject fonts.tex)
-    run([sys.executable, patch_fonts, "--tex", main_tex], cwd=ROOT)
+    run([sys.executable, patch_fonts, "--tex", main_tex], cwd=paths.root)
 
     # 4) Compile TeX -> PDF
     xelatex = find_exe(["xelatex"])
     if not xelatex:
-        raise RuntimeError(
-            "xelatex not found. Please install MiKTeX/TeX Live and ensure xelatex exists."
-        )
+        raise RuntimeError("xelatex not found. Please install MiKTeX/TeX Live and ensure xelatex exists.")
 
     for i in range(1, xelatex_runs + 1):
         print(f"[build_multilang_bundle] xelatex pass {i}/{xelatex_runs}")
         run([xelatex, "-interaction=nonstopmode", "-halt-on-error", main_tex],
-            cwd=latex_dir)
+            cwd=paths.latex_build_dir)
 
     # 5) Open generated PDF
-    pdf_path = latex_dir / output_pdf
+    pdf_path = paths.output_pdf(output_pdf)
     if pdf_path.exists():
         if should_open:
             open_pdf(pdf_path)
