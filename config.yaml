@@ -11,20 +11,19 @@ paths:
   docs_dir: docs
 
 tools:
-  csv_to_rst: tools/csv_to_rst.py
+  generators:
+    safety: tools/csv_to_rst.py
   patch_fonts: tools/patch_latex_fonts.py
 
 pages:
-# 1) Cover (EN only, no repeat)
 - type: cover_pdf
   file: cover-en.pdf
 
-# 2) Safety pages (generated RST per language)
-- type: safety_rst
+- type: csv_page
+  page: safety
   langs: [ en, fr, es ]
 
-# 3) Product overview pages (design PDFs per language)
-- type: overview_pdf
+- type: pdf_insert
   file_map:
     en: product_overview-en.pdf
     fr: product_overview-fr.pdf

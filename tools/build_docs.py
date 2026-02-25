@@ -40,10 +40,22 @@ def clean_build_dir() -> None:
         shutil.rmtree(paths.docs_build_dir)
 
 
-def render_safety_all_langs(csv_to_rst: str, langs: list[str]) -> None:
-    print(f"[build] Render safety RST for langs: {langs}")
-    for lang in langs:
-        run([sys.executable, csv_to_rst, "--lang", lang], cwd=paths.root)
+def render_csv_pages(cfg: dict) -> None:
+    pages = cfg.get("pages", [])
+    gens = cfg.get("tools", {}).get("generators", {})
+
+    for p in pages:
+        if p.get("type") != "csv_page":
+            continue
+
+        page_name = p.get("page")
+        if page_name not in gens:
+            raise RuntimeError(f"No generator configured for csv_page '{page_name}'")
+
+        script = gens[page_name]
+        langs = p.get("langs", cfg.get("build", {}).get("languages", []))
+        for lang in langs:
+            run([sys.executable, script, "--lang", lang], cwd=paths.root)
 
 
 def sphinx_build_latex() -> None:
@@ -78,7 +90,7 @@ def main() -> None:
     if args.clean:
         clean_build_dir()
 
-    render_safety_all_langs(csv_to_rst, list(langs))
+    render_csv_pages(cfg)
 
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type == "manual_bundle":

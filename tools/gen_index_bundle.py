@@ -103,15 +103,29 @@ def build_index_from_pages(cfg: dict) -> str:
                 out += latex_apply_lang(lang)
                 out += include_safety(lang)
 
-        elif ptype == "overview_pdf":
-            file_map = ensure_mapping(page.get("file_map"), "overview_pdf.file_map")
-            # default langs from build.languages
+        elif ptype == "pdf_insert":
+            file_map = ensure_mapping(page.get("file_map"), "pdf_insert.file_map")
+
             plangs = page.get("langs", langs)
             plangs = list(plangs)
+
             for lang in plangs:
                 if lang not in file_map:
-                    raise RuntimeError(f"overview_pdf.file_map missing lang '{lang}'")
+                    raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
+
                 out += latex_overview_block(file_map[lang])
+
+        elif ptype == "csv_page":
+            page_name = page.get("page")
+            if not isinstance(page_name, str) or not page_name:
+                raise RuntimeError("csv_page requires 'page'")
+
+            plangs = page.get("langs", langs)
+            plangs = list(plangs)
+
+            for lang in plangs:
+                out += latex_apply_lang(lang)
+                out += [f".. include:: {page_name}_{lang}.rst", ""]
 
         else:
             raise RuntimeError(f"Unsupported page type: {ptype}")
