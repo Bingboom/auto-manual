@@ -55,7 +55,17 @@ def render_csv_pages(cfg: dict) -> None:
         script = gens[page_name]
         langs = p.get("langs", cfg.get("build", {}).get("languages", []))
         for lang in langs:
-            run([sys.executable, script, "--lang", lang], cwd=paths.root)
+            cmd = [sys.executable, script, "--lang", lang]
+
+            # optional overrides from config
+            if "csv" in p:
+                cmd += ["--csv", str(p["csv"])]
+            if "template" in p:
+                cmd += ["--template", str(p["template"])]
+            if "out_prefix" in p:
+                cmd += ["--out-prefix", str(p["out_prefix"])]
+
+            run(cmd, cwd=paths.root)
 
 
 def sphinx_build_latex() -> None:

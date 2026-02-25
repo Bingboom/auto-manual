@@ -10,15 +10,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-CSV_PATH = ROOT / "data" / "safety_items.csv"
-TEMPLATE_PATH = ROOT / "docs" / "templates" / "safety_template.rst"
+DEFAULT_CSV_PATH = ROOT / "data" / "safety_items.csv"
+DEFAULT_TEMPLATE_PATH = ROOT / "docs" / "templates" / "safety_template.rst"
+DEFAULT_OUT_PREFIX = "safety"
 
 PH_TOP = "{{ safety_top_items }}"
 PH_BOTTOM = "{{ safety_bottom_items }}"
 PH_LEAD_TOP = "{{ safety_lead_top }}"
 PH_SAVE_TITLE = "{{ safety_save_title }}"
 
-# NEW placeholders (LaTeX lines, NOT raw blocks)
 PH_TITLE_MAIN = "{{ safety_title_main }}"
 PH_WARNING_TITLE = "{{ safety_warning_title }}"
 PH_TITLE_OPERATING = "{{ safety_title_operating }}"
@@ -29,18 +29,41 @@ def die(msg: str) -> None:
     raise SystemExit(1)
 
 
-def load_rows(lang: str) -> list[dict[str, str]]:
-    if not CSV_PATH.exists():
-        die(f"CSV not found: {CSV_PATH}")
+def rst_escape(s: str) -> str:
+    return (s or "").replace("\u00a0", " ").strip()
 
-    with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as f:
+
+def latex_arg_escape(text: str) -> str:
+    text = rst_escape(text)
+    return text.replace("{", r"\{").replace("}", r"\}")
+
+
+def render_bullet(text: str) -> str:
+    text = rst_escape(text)
+    parts = text.split("\\n")
+    head = parts[0].strip()
+
+    lines = [f"- {head}"]
+    for p in parts[1:]:
+        p = p.strip()
+        if not p:
+            continue
+        if p.startswith("- "):
+            lines.append(f"  {p}")
+        else:
+            lines.append(f"  {p}")
+    return "\n".join(lines)
+
+
+def load_rows(csv_path: Path, lang: str) -> list[dict[str, str]]:
+    if not csv_path.exists():
+        die(f"CSV not found: {csv_path}")
+
+    with csv_path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
             die("CSV has no header.")
 
-        # Supported formats:
-        # 1) legacy: part,text
-        # 2) i18n:  part,text_en,text_fr,text_es...
         if "text" in reader.fieldnames:
             text_col = "text"
         else:
@@ -62,32 +85,6 @@ def load_rows(lang: str) -> list[dict[str, str]]:
         return rows
 
 
-def rst_escape(s: str) -> str:
-    return (s or "").replace("\u00a0", " ").strip()
-
-
-def render_bullet(text: str) -> str:
-    """
-    Support literal '\\n' in CSV to create nested sub-bullets.
-    Example:
-      "Line1\\n- sub1\\n- sub2"
-    """
-    text = rst_escape(text)
-    parts = text.split("\\n")
-    head = parts[0].strip()
-
-    lines = [f"- {head}"]
-    for p in parts[1:]:
-        p = p.strip()
-        if not p:
-            continue
-        if p.startswith("- "):
-            lines.append(f"  {p}")  # nested bullet
-        else:
-            lines.append(f"  {p}")  # continuation
-    return "\n".join(lines)
-
-
 def build_block(rows: list[dict[str, str]], part: str) -> str:
     items: list[str] = []
     for r in rows:
@@ -107,8 +104,7 @@ def pick_single_text(rows: list[dict[str, str]], part: str) -> str:
     texts = [
         rst_escape(r.get("text", ""))
         for r in rows
-        if (r.get("part") or "").lower() == part
-        and (r.get("text") or "").strip()
+        if (r.get("part") or "").lower() == part and (r.get("text") or "").strip()
     ]
     if not texts:
         die(f"Missing required single-line part='{part}'.")
@@ -116,12 +112,7 @@ def pick_single_text(rows: list[dict[str, str]], part: str) -> str:
 
 
 def render_latex_cmd(cmd: str, text: str) -> str:
-    """
-    Emit a LaTeX command via rst raw block.
-    Used for lead/save title blocks because template expects raw blocks there.
-    """
-    text = rst_escape(text)
-    text = text.replace("{", r"\{").replace("}", r"\}")
+    text = latex_arg_escape(text)
     return "\n".join(
         [
             ".. raw:: latex",
@@ -132,36 +123,36 @@ def render_latex_cmd(cmd: str, text: str) -> str:
     )
 
 
-def latex_arg_escape(text: str) -> str:
-    """Escape braces for safe LaTeX macro arguments."""
-    text = rst_escape(text)
-    return text.replace("{", r"\{").replace("}", r"\}")
-
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--lang", default="en", help="language code: en/fr/es")
-    ap.add_argument("--out", default=None, help="custom output path")
+    ap.add_argument("--csv", default=None, help="override input CSV path")
+    ap.add_argument("--template", default=None, help="override template path")
+    ap.add_argument("--out-prefix", default=None, help="output rst prefix (default=safety)")
+    ap.add_argument("--out", default=None, help="explicit output file path (overrides out-prefix)")
     args = ap.parse_args()
 
     lang = args.lang.lower()
 
-    if not TEMPLATE_PATH.exists():
-        die(f"Template not found: {TEMPLATE_PATH}")
+    csv_path = Path(args.csv) if args.csv else DEFAULT_CSV_PATH
+    template_path = Path(args.template) if args.template else DEFAULT_TEMPLATE_PATH
+    out_prefix = args.out_prefix or DEFAULT_OUT_PREFIX
 
-    template = TEMPLATE_PATH.read_text(encoding="utf-8")
+    if not template_path.exists():
+        die(f"Template not found: {template_path}")
 
-    # require placeholders
+    template = template_path.read_text(encoding="utf-8")
+
     for ph in (
         PH_TOP, PH_BOTTOM, PH_LEAD_TOP, PH_SAVE_TITLE,
-        PH_TITLE_MAIN, PH_WARNING_TITLE, PH_TITLE_OPERATING
+        PH_TITLE_MAIN, PH_WARNING_TITLE, PH_TITLE_OPERATING,
     ):
         if ph not in template:
             die(f"Template missing placeholder: {ph}")
 
-    rows = load_rows(lang)
+    rows = load_rows(csv_path, lang)
 
-    # ---- NEW multilingual titles (LaTeX lines only; template wraps raw:: latex) ----
+    # titles (LaTeX lines only; template wraps raw:: latex)
     title_main = latex_arg_escape(pick_single_text(rows, "title_main"))
     title_oper = latex_arg_escape(pick_single_text(rows, "title_operating"))
     warning_title = latex_arg_escape(pick_single_text(rows, "warning_title"))
@@ -190,7 +181,11 @@ def main() -> None:
         .replace(PH_BOTTOM, bottom_block)
     )
 
-    out_path = Path(args.out) if args.out else (ROOT / "docs" / f"safety_{lang}.rst")
+    if args.out:
+        out_path = Path(args.out)
+    else:
+        out_path = ROOT / "docs" / f"{out_prefix}_{lang}.rst"
+
     out_path.write_text(out, encoding="utf-8")
     print(f"[csv_to_rst] Wrote: {out_path}")
 

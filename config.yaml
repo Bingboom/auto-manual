@@ -22,6 +22,9 @@ pages:
 - type: csv_page
   page: safety
   langs: [ en, fr, es ]
+  csv: data/safety_items.csv
+  template: docs/templates/safety_template.rst
+  out_prefix: safety
 
 - type: pdf_insert
   file_map:
