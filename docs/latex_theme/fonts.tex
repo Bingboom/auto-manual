@@ -2,31 +2,35 @@
 \usepackage{fontspec}
 \usepackage{xeCJK}
 
-% --- CJK fallback (safe) ---
-\providecommand{\HBFontCJKFallbackMain}{FZLanTingHeiS-R-GB}
-\providecommand{\HBFontCJKFallbackSans}{FZLanTingHeiS-R-GB}
-
+% Apply late so we override Sphinx/class defaults
 \newcommand{\HBSetupFonts}{%
 
   % =========================
-  % Latin fonts (Gilroy)
+  % Latin fonts (main/sans)
   % =========================
+  % Prefer Gilroy if installed (cross-platform optional)
   \IfFontExistsTF{Gilroy}{%
-    % Use Gilroy as both main + sans for consistent look
-    \setmainfont{Gilroy}[
-      Ligatures=TeX
-    ]
-    \setsansfont{Gilroy}[
-      Ligatures=TeX
-    ]
+    \setmainfont{Gilroy}[Ligatures=TeX]
+    \setsansfont{Gilroy}[Ligatures=TeX]
   }{%
-    % Fallback (Windows-safe)
-    \IfFontExistsTF{Calibri}{%
-      \setmainfont{Calibri}[Ligatures=TeX]
-      \setsansfont{Calibri}[Ligatures=TeX]
+    % macOS: System Font / Helvetica Neue
+    \IfFontExistsTF{System Font}{%
+      \setmainfont{System Font}[Ligatures=TeX]
+      \setsansfont{System Font}[Ligatures=TeX]
     }{%
-      \setmainfont{Times New Roman}[Ligatures=TeX]
-      \setsansfont{Arial}[Ligatures=TeX]
+      \IfFontExistsTF{Helvetica Neue}{%
+        \setmainfont{Helvetica Neue}[Ligatures=TeX]
+        \setsansfont{Helvetica Neue}[Ligatures=TeX]
+      }{%
+        % Windows-ish fallback
+        \IfFontExistsTF{Calibri}{%
+          \setmainfont{Calibri}[Ligatures=TeX]
+          \setsansfont{Calibri}[Ligatures=TeX]
+        }{%
+          \setmainfont{Times New Roman}[Ligatures=TeX]
+          \setsansfont{Arial}[Ligatures=TeX]
+        }%
+      }%
     }%
   }%
 
@@ -36,17 +40,22 @@
   \IfFontExistsTF{JetBrains Mono}{%
     \setmonofont{JetBrains Mono}[Scale=MatchLowercase]
   }{%
-    \IfFontExistsTF{Consolas}{%
-      \setmonofont{Consolas}[Scale=MatchLowercase]
+    % macOS default mono
+    \IfFontExistsTF{Menlo}{%
+      \setmonofont{Menlo}[Scale=MatchLowercase]
     }{%
-      \setmonofont{Courier New}[Scale=MatchLowercase]
+      \IfFontExistsTF{Consolas}{%
+        \setmonofont{Consolas}[Scale=MatchLowercase]
+      }{%
+        \setmonofont{Courier New}[Scale=MatchLowercase]
+      }%
     }%
   }%
 
   % =========================
-  % CJK fonts (FZ LanTingHei)
+  % CJK fonts (Chinese)
   % =========================
-  % Try common font names; fall back to system CJK if not found.
+  % 1) Your preferred CN fonts (if installed)
   \IfFontExistsTF{方正兰亭中黑简体}{%
     \setCJKmainfont{方正兰亭中黑简体}
     \setCJKsansfont{方正兰亭中黑简体}
@@ -55,17 +64,33 @@
       \setCJKmainfont{方正兰亭黑简体}
       \setCJKsansfont{方正兰亭黑简体}
     }{%
-      % Last resort CJK fallback (Windows usually has these)
+      % 2) Windows common
       \IfFontExistsTF{Microsoft YaHei}{%
         \setCJKmainfont{Microsoft YaHei}
         \setCJKsansfont{Microsoft YaHei}
       }{%
-        \setCJKmainfont{SimSun}
-        \setCJKsansfont{SimHei}
+        % 3) macOS common
+        \IfFontExistsTF{PingFang SC}{%
+          \setCJKmainfont{PingFang SC}
+          \setCJKsansfont{PingFang SC}
+        }{%
+          \IfFontExistsTF{Songti SC}{%
+            \setCJKmainfont{Songti SC}
+            \setCJKsansfont{Songti SC}
+          }{%
+            \IfFontExistsTF{Heiti SC}{%
+              \setCJKmainfont{Heiti SC}
+              \setCJKsansfont{Heiti SC}
+            }{%
+              % 4) last resort: TeXLive built-in (prevents xeCJK Fandol warning + keeps build alive)
+              \setCJKmainfont{FandolSong-Regular}
+              \setCJKsansfont{FandolSong-Regular}
+            }%
+          }%
+        }%
       }%
     }%
   }%
 }
 
-% Apply late so we override Sphinx class defaults
 \AtBeginDocument{\HBSetupFonts}
