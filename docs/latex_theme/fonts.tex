@@ -1,55 +1,71 @@
 % docs/latex_theme/fonts.tex
 \usepackage{fontspec}
+\usepackage{xeCJK}
+
+% --- CJK fallback (safe) ---
+\providecommand{\HBFontCJKFallbackMain}{FZLanTingHeiS-R-GB}
+\providecommand{\HBFontCJKFallbackSans}{FZLanTingHeiS-R-GB}
 
 \newcommand{\HBSetupFonts}{%
-  % Main font (safe)
-  \IfFontExistsTF{Times New Roman}{%
-    \setmainfont{Times New Roman}%
+
+  % =========================
+  % Latin fonts (Gilroy)
+  % =========================
+  \IfFontExistsTF{Gilroy}{%
+    % Use Gilroy as both main + sans for consistent look
+    \setmainfont{Gilroy}[
+      Ligatures=TeX
+    ]
+    \setsansfont{Gilroy}[
+      Ligatures=TeX
+    ]
   }{%
+    % Fallback (Windows-safe)
     \IfFontExistsTF{Calibri}{%
-      \setmainfont{Calibri}%
+      \setmainfont{Calibri}[Ligatures=TeX]
+      \setsansfont{Calibri}[Ligatures=TeX]
     }{%
-      \IfFontExistsTF{Latin Modern Roman}{%
-        \setmainfont{Latin Modern Roman}%
-      }{%
-        \setmainfont{FreeSerif}%
-      }%
+      \setmainfont{Times New Roman}[Ligatures=TeX]
+      \setsansfont{Arial}[Ligatures=TeX]
     }%
   }%
 
-  % Sans font (safe)
-  \IfFontExistsTF{Arial}{%
-    \setsansfont{Arial}%
+  % =========================
+  % Mono font
+  % =========================
+  \IfFontExistsTF{JetBrains Mono}{%
+    \setmonofont{JetBrains Mono}[Scale=MatchLowercase]
   }{%
-    \IfFontExistsTF{Calibri}{%
-      \setsansfont{Calibri}%
+    \IfFontExistsTF{Consolas}{%
+      \setmonofont{Consolas}[Scale=MatchLowercase]
     }{%
-      \IfFontExistsTF{Latin Modern Sans}{%
-        \setsansfont{Latin Modern Sans}%
-      }{%
-        \setsansfont{FreeSans}%
-      }%
+      \setmonofont{Courier New}[Scale=MatchLowercase]
     }%
   }%
 
-  % Mono font (safe)
-  \IfFontExistsTF{Consolas}{%
-    \setmonofont{Consolas}[Scale=MatchLowercase]%
+  % =========================
+  % CJK fonts (FZ LanTingHei)
+  % =========================
+  % Try common font names; fall back to system CJK if not found.
+  \IfFontExistsTF{方正兰亭中黑简体}{%
+    \setCJKmainfont{方正兰亭中黑简体}
+    \setCJKsansfont{方正兰亭中黑简体}
   }{%
-    \IfFontExistsTF{JetBrains Mono}{%
-      \setmonofont{JetBrains Mono}[Scale=MatchLowercase]%
+    \IfFontExistsTF{方正兰亭黑简体}{%
+      \setCJKmainfont{方正兰亭黑简体}
+      \setCJKsansfont{方正兰亭黑简体}
     }{%
-      \IfFontExistsTF{Courier New}{%
-        \setmonofont{Courier New}[Scale=MatchLowercase]%
+      % Last resort CJK fallback (Windows usually has these)
+      \IfFontExistsTF{Microsoft YaHei}{%
+        \setCJKmainfont{Microsoft YaHei}
+        \setCJKsansfont{Microsoft YaHei}
       }{%
-        \IfFontExistsTF{Latin Modern Mono}{%
-          \setmonofont{Latin Modern Mono}[Scale=MatchLowercase]%
-        }{%
-          \setmonofont{FreeMono}[Scale=MatchLowercase]%
-        }%
+        \setCJKmainfont{SimSun}
+        \setCJKsansfont{SimHei}
       }%
     }%
   }%
 }
 
+% Apply late so we override Sphinx class defaults
 \AtBeginDocument{\HBSetupFonts}
