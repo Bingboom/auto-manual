@@ -79,6 +79,13 @@ def main() -> None:
         clean_build_dir()
 
     render_safety_all_langs(csv_to_rst, list(langs))
+
+    doc_type = cfg.get("doc_type", "manual_bundle")
+    if doc_type == "manual_bundle":
+        run([sys.executable, "tools/gen_index_bundle.py"], cwd=paths.root)
+    else:
+        raise RuntimeError(f"Unsupported doc_type: {doc_type}")
+    
     sphinx_build_latex()
     patch_fonts(patch_fonts_script, main_tex)
     compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
