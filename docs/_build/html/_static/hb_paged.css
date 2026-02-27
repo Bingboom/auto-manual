@@ -1,0 +1,97 @@
+/* ===== HB Paged HTML (visual PDF) ===== */
+
+/* A4 size in CSS pixels is not exact across screens, but mm works well for print-like view */
+:root{
+  --hb-page-width: 210mm;
+  --hb-page-height: 297mm;
+  --hb-page-margin: 18mm;
+  --hb-page-gap: 14px;
+  --hb-page-bg: #ffffff;
+  --hb-canvas-bg: #f3f4f6;
+  --hb-text: #111827;
+  --hb-muted: #6b7280;
+  --hb-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  background: var(--hb-canvas-bg);
+  color: var(--hb-text);
+}
+
+/* Center the content like a PDF viewer */
+.wy-nav-content,
+.document,
+.body,
+.bodywrapper,
+section,
+div.document{
+  /* 不同主题 class 会不一样，先不强依赖 */
+}
+
+/* A wrapper we will inject via JS */
+.hb-book{
+  width: 100%;
+  padding: 24px 12px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hb-page-gap);
+}
+
+/* Each "page" */
+.hb-page{
+  width: var(--hb-page-width);
+  min-height: var(--hb-page-height);
+  background: var(--hb-page-bg);
+  box-shadow: var(--hb-shadow);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Inner page content area */
+.hb-page__content{
+  padding: var(--hb-page-margin);
+}
+
+/* Page number */
+.hb-page__num{
+  position: absolute;
+  bottom: 10mm;
+  right: 12mm;
+  font-size: 10pt;
+  color: var(--hb-muted);
+  user-select: none;
+}
+
+/* Optional: header line / footer line */
+.hb-page__footerline{
+  position: absolute;
+  left: 10mm;
+  right: 10mm;
+  bottom: 15mm;
+  height: 1px;
+  background: rgba(0,0,0,.08);
+}
+
+/* When printing, use real pages and remove shadow */
+@media print{
+  body{
+    background: #fff !important;
+  }
+  .hb-book{
+    padding: 0;
+    gap: 0;
+  }
+  .hb-page{
+    box-shadow: none;
+    border-radius: 0;
+    width: auto;
+    min-height: auto;
+    page-break-after: always;
+  }
+}
