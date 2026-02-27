@@ -1,22 +1,48 @@
+% ==================================================
+% layout.tex
+% L4 PAGE LAYOUT LAYER
+% 只负责页面结构，不负责类型系统
+% ==================================================
+
 \usepackage{geometry}
+\usepackage{fancyhdr}
+
+% ==================================================
+% PAGE GEOMETRY
+% ==================================================
+
 \geometry{
-  paperwidth=130mm,
-  paperheight=185mm,
-  left=10mm,right=10mm,top=1mm,bottom=10mm
+  paperwidth=\csname HBpage_paperwidth\endcsname,
+  paperheight=\csname HBpage_paperheight\endcsname,
+  left=\csname HBpage_margin_left\endcsname,
+  right=\csname HBpage_margin_right\endcsname,
+  top=\csname HBpage_margin_top\endcsname,
+  bottom=\csname HBpage_margin_bottom\endcsname
 }
 
-\usepackage{fancyhdr}
-\fancyhf{}
-\pagestyle{fancy}
-\fancyfoot[L]{\fontsize{6pt}{7.2pt}\selectfont\ifnum\value{page}<10 0\fi\arabic{page}}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+% ==================================================
+% FOOTER LAYOUT BLOCK
+% ==================================================
 
+\newcommand{\HBPageFooterLayout}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{\csname HBpage_headrulewidth\endcsname}%
+  \renewcommand{\footrulewidth}{\csname HBpage_footrulewidth\endcsname}%
+  \fancyfoot[L]{%
+    \raisebox{\csname HBpage_footer_raise\endcsname}{%
+      \HBTypeFooter{\HBTypePageNumber}%
+    }%
+  }%
+}
 
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{normal}{\HBPageFooterLayout}
+\fancypagestyle{plain}{\HBPageFooterLayout}
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
+\pagestyle{normal}
+
+% ==================================================
+% GLOBAL PARAGRAPH SPACING
+% ==================================================
+
+\setlength{\parindent}{\csname HBpage_parindent\endcsname}
+\setlength{\parskip}{\csname HBpage_parskip\endcsname}

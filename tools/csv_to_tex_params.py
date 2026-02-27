@@ -12,16 +12,19 @@ Output:
   docs/latex_theme/params.tex
 
 Generated TeX:
-  \expandafter\def\csname HB<key>\endcsname{<value><unit>}
-So you can use in TeX:
-  \csname HBtwocol_sep\endcsname
-  \csname HBwarn_box_arc\endcsname
-etc.
+  \\expandafter\\def\\csname HB<key>\\endcsname{<value><unit>}
+Access:
+  \\csname HB<key>\\endcsname
+
+Enhancements:
+- Grouped output sections by key prefix (page_/brand_color_/type_/comp_/other)
+- Duplicate key detection (hard error)
 """
 
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
 
 
@@ -31,22 +34,19 @@ OUT_TEX = ROOT / "docs" / "latex_theme" / "params.tex"
 
 
 def fmt_value(value: str, unit: str) -> str:
-    """Format value with unit. 'ratio' means raw number with no unit suffix."""
+    """Format value with unit. ratio/int/cmyk/none are raw."""
     value = (value or "").strip()
     unit = (unit or "").strip()
-
     if value == "":
         return ""
 
-    if unit == "" or unit.lower() in {"none", "null"}:
+    u = unit.lower()
+    # raw units (no suffix)
+    if u in {"", "none", "null", "ratio", "int", "cmyk"}:
         return value
 
-    if unit.lower() == "ratio":
-        # ratio used as plain number (e.g., 0.86), caller may append \textwidth etc.
-        return value
-
-    # mm/pt/em/... directly concatenated
     return f"{value}{unit}"
+
 
 
 def escape_tex_comment(s: str) -> str:
@@ -54,11 +54,34 @@ def escape_tex_comment(s: str) -> str:
     return (s or "").replace("%", r"\%").strip()
 
 
+def group_of_key(key: str) -> str:
+    k = key.lower()
+    if k.startswith("page_") or k == "section_after_fix":
+        return "PAGE"
+    if k.startswith("brand_color_"):
+        return "BRAND"
+    if k.startswith("type_"):
+        return "TYPE SYSTEM"
+    if k.startswith("comp_"):
+        return "COMPONENTS"
+    return "OTHER"
+
+
+GROUP_ORDER = {
+    "PAGE": 0,
+    "BRAND": 1,
+    "TYPE SYSTEM": 2,
+    "COMPONENTS": 3,
+    "OTHER": 4,
+}
+
+
 def main() -> None:
     if not CSV_PATH.exists():
         raise SystemExit(f"[csv_to_tex_params] ERROR: CSV not found: {CSV_PATH}")
 
-    rows: list[tuple[str, str, str]] = []
+    items: dict[str, tuple[str, str]] = {}
+
     with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
@@ -75,17 +98,20 @@ def main() -> None:
             unit = (r.get("unit") or "").strip()
             comment = escape_tex_comment(r.get("comment") or "")
 
-            if not key or not value:
+            # ignore blank rows / separators
+            if not key or value == "":
                 continue
 
             v = fmt_value(value, unit)
             if v == "":
                 continue
 
-            rows.append((key, v, comment))
+            if key in items:
+                raise SystemExit(f"[csv_to_tex_params] ERROR: duplicate key in CSV: {key}")
 
-    # stable ordering for diff
-    rows.sort(key=lambda x: x[0])
+            items[key] = (v, comment)
+
+    sorted_keys = sorted(items.keys(), key=lambda k: (GROUP_ORDER[group_of_key(k)], k))
 
     OUT_TEX.parent.mkdir(parents=True, exist_ok=True)
 
@@ -95,10 +121,20 @@ def main() -> None:
     lines.append("% Access pattern: \\csname HB<key>\\endcsname")
     lines.append("")
 
-    for key, v, c in rows:
+    cur_group = None
+    for key in sorted_keys:
+        v, c = items[key]
+        g = group_of_key(key)
+        if g != cur_group:
+            cur_group = g
+            lines.append(f"% ===== {g} =====")
+            lines.append("")
+
         if c:
             lines.append(f"% {c}")
-        # IMPORTANT: define via csname so keys may contain underscores
+
+        # Define as raw tokens (no extra brace layer)
+        # This is safest across geometry/setlength/fontsize/etc.
         lines.append(rf"\expandafter\def\csname HB{key}\endcsname{{{v}}}")
         lines.append("")
 

@@ -37,6 +37,7 @@ IMPORTANT SAFETY INFORMATION
 
    \safetysubbar{OPERATING INSTRUCTIONS}
 
+
 .. raw:: latex
 
    \begin{safetytwocol}
@@ -44,7 +45,7 @@ IMPORTANT SAFETY INFORMATION
 .. raw:: latex
 
    \safetylead{SAVE THESE INSTRUCTIONS}
-   
+
 
 - Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.
 - Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges.

@@ -8,7 +8,7 @@ from pathlib import Path
 project = ""
 author = ""
 extensions: list[str] = []
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "templates/*"]
 
 # 默认入口（子类可覆盖）
 master_doc = "index"
@@ -19,14 +19,21 @@ latex_show_urls = "no"
 
 # 主题文件（放在 docs/latex_theme/ 下）
 latex_additional_files = [
+    "latex_theme/assets/cover-en.pdf",
+    "latex_theme/assets/product_overview-en.pdf",
+    "latex_theme/assets/product_overview-fr.pdf",
+    "latex_theme/assets/product_overview-es.pdf",
     "latex_theme/theme.tex",
     "latex_theme/colors.tex",
+    "latex_theme/type_system.tex",
+    "latex_theme/tools.tex",
     "latex_theme/params.tex", 
-    "latex_theme/assets/warning_lockup.png",  
-    "latex_theme/layout.tex",
-    "latex_theme/components.tex",
+    "latex_theme/assets/warning_lockup.png",   
+    "latex_theme/layout_templates.tex", 
+    "latex_theme/layout_core.tex",
     "latex_theme/components_base.tex",
     "latex_theme/components_safety.tex",
+    "latex_theme/page_fit.tex",
 ]
 
 # latex_documents 默认（子类可覆盖）
@@ -40,6 +47,7 @@ latex_elements = {
     "pointsize": "10pt",
     # 禁目录（同时避免 TOC 相关 error）
     "tableofcontents": "",
+    "classoptions": ",twoside,openany",
 
     # 让 xcolor 走 CMYK（必须抢先传参）
     "passoptionstopackages": r"\PassOptionsToPackage{cmyk}{xcolor}",
@@ -73,3 +81,11 @@ latex_elements = {
 def append_preamble(extra_tex: str) -> None:
     """Append LaTeX code to latex_elements['preamble']."""
     latex_elements["preamble"] = (latex_elements.get("preamble", "") or "") + "\n" + extra_tex
+
+
+# ✅ NEW: enable \includepdf
+append_preamble(r"""
+\usepackage{pdfpages}
+""")
+
+print("[conf_base] LOADED conf_base.py")

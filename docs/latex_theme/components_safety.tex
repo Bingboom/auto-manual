@@ -1,110 +1,114 @@
 % ==================================================
 % components_safety.tex
-% 安全页专用组件（WARNING / subbar / two-col / section title）
-% Parameter access: \csname HB<key>\endcsname
+% L3 COMPONENT LAYER
+% 只负责结构，不直接控制字号/颜色/对齐
 % ==================================================
 
 \usepackage{titlesec}
 \usepackage[most]{tcolorbox}
 \usepackage{array}
 \usepackage{graphicx}
+\usepackage{multicol}
 
-% ---- warning lockup image (icon+WARNING as ONE object) ----
-\newcommand{\warninglockup}{%
+% ==================================================
+% WARNING LOCKUP
+% ==================================================
+
+\providecommand{\warninglockup}{}
+\renewcommand{\warninglockup}{%
   \includegraphics[
-    height=\csname HBwarn_lockup_height\endcsname,
-    viewport=79 70 2125 549,
+    height=\csname HBcomp_lockup_height\endcsname,
+    viewport=79 22 2125 549,
     clip
   ]{warning_lockup.png}%
 }
 
-% --------------------------------------------------
-% WARNING icon (TikZ) - parameterized
-% --------------------------------------------------
-\newcommand{\warnicon}{%
-\begin{tikzpicture}[x=1em,y=1em,baseline=-0.25em,scale=\csname HBwarn_icon_scale\endcsname]
-  \path[fill=BrandDark,draw=BrandDark,rounded corners=\csname HBwarn_icon_round\endcsname]
-    (0.00,0.00) -- (\csname HBwarn_icon_w\endcsname,0.00) --
-    (0.5*\csname HBwarn_icon_w\endcsname,\csname HBwarn_icon_h\endcsname) -- cycle;
-  \node[color=white,font=\bfseries\fontsize{\csname HBwarn_icon_excl_size\endcsname}{\csname HBwarn_icon_excl_size\endcsname}\selectfont]
-    at (0.5*\csname HBwarn_icon_w\endcsname,\csname HBwarn_icon_excl_y\endcsname) {!};
-\end{tikzpicture}%
-}
+% ==================================================
+% WARNING BOX
+% ==================================================
 
-% --------------------------------------------------
-% WARNING box - parameterized
-% --------------------------------------------------
 \newtcolorbox{safetywarningbox}{
   enhanced,
   colback=white,
   colframe=LineK40,
-  arc=\csname HBwarn_box_arc\endcsname,
-  boxrule=\csname HBwarn_box_rule\endcsname,
-  left=\csname HBwarn_box_pad_lr\endcsname,
-  right=\csname HBwarn_box_pad_lr\endcsname,
-  top=\csname HBwarn_box_pad_tb\endcsname,
-  bottom=\csname HBwarn_box_pad_tb\endcsname,
-  before skip=\csname HBwarn_box_before\endcsname,
-  after skip=\csname HBwarn_box_after\endcsname,
-  width=\csname HBwarn_box_width\endcsname\textwidth,
+  flush left,
+  boxsep=\csname HBcomp_warning_box_sep\endcsname,
+  top=\csname HBcomp_warning_box_pad_tb\endcsname,
+  bottom=\csname HBcomp_warning_box_pad_tb\endcsname,
+  arc=\csname HBcomp_warning_box_arc\endcsname,
+  boxrule=\csname HBcomp_warning_box_rule\endcsname,
+  left=\csname HBcomp_warning_box_pad_lr\endcsname,
+  right=\csname HBcomp_warning_box_pad_lr\endcsname,
+  before skip=\csname HBcomp_warning_box_before\endcsname,
+  after skip=\csname HBcomp_warning_box_after\endcsname,
+  width=\csname HBcomp_warning_box_width\endcsname\textwidth,
 }
 
-% --------------------------------------------------
-% WARNING layout - vertical centered + flat
-% (Replace the whole \safetywarning command with this)
-% --------------------------------------------------
-\usepackage{array} % make sure array is available for m{} column
+% ==================================================
+% WARNING LAYOUT（结构层，不控制排版）
+% ==================================================
 
-\newcommand{\safetywarning}[1]{%
-\begin{safetywarningbox}
-  \noindent
-  \begin{tabular}{@{}m{\csname HBwarn_lockup_width\endcsname}@{\hspace{\csname HBwarn_lockup_gap\endcsname}}m{\dimexpr\textwidth-\csname HBwarn_lockup_width\endcsname-\csname HBwarn_lockup_gap\endcsname\relax}@{}}
-    \centering\warninglockup
-    &
-    \raggedright
-    {\bfseries
-     \fontsize{\csname HBwarn_text_size\endcsname}{\csname HBwarn_text_leading\endcsname}\selectfont
-     \MakeUppercase{#1}}
-  \end{tabular}
-\end{safetywarningbox}
+\providecommand{\safetywarning}[1]{}
+\renewcommand{\safetywarning}[1]{%
+  \begin{safetywarningbox}%
+    \noindent
+    \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+                    @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
+                    m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}%
+      \centering\warninglockup
+      &
+      \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
+        \HBTypeWarningTextStart
+        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
+      }%
+    \end{tabular}%
+  \end{safetywarningbox}%
 }
 
+% ==================================================
+% SUBBAR
+% ==================================================
 
-% --------------------------------------------------
-% OPERATING INSTRUCTIONS pill bar - parameterized
-% --------------------------------------------------
-\newcommand{\safetysubbar}[1]{%
+\providecommand{\safetysubbar}[1]{}
+\renewcommand{\safetysubbar}[1]{%
   \begin{tcolorbox}[
     colback=BrandDark,
     colframe=BrandDark,
-    arc=\csname HBsubbar_arc\endcsname,
-    left=\csname HBsubbar_pad_lr\endcsname,
-    right=\csname HBsubbar_pad_lr\endcsname,
-    top=\csname HBsubbar_pad_tb\endcsname,
-    bottom=\csname HBsubbar_pad_tb\endcsname,
+    arc=\csname HBcomp_subbar_arc\endcsname,
+    left=\csname HBcomp_subbar_pad_lr\endcsname,
+    right=\csname HBcomp_subbar_pad_lr\endcsname,
+    top=\csname HBcomp_subbar_pad_tb\endcsname,
+    bottom=\csname HBcomp_subbar_pad_tb\endcsname,
     boxrule=0pt,
-    width=\textwidth
+    width=\csname HBcomp_subbar_width\endcsname\textwidth
   ]
-  {\color{white}\bfseries\fontsize{\csname HBtitle_font_size\endcsname}{\csname HBtitle_font_leading\endcsname}\selectfont\MakeUppercase{#1}}
+    \HBTypeSubbar{#1}
   \end{tcolorbox}
-  \vspace{\csname HBsubbar_vspace_after\endcsname}
+  \par\noindent
+  \vspace*{\csname HBcomp_subbar_after\endcsname}%
+  \vspace*{-\csname HBcomp_subbar_tighten\endcsname}%
 }
 
-% --------------------------------------------------
-% Two-column list env - parameterized
-% --------------------------------------------------
-\setlength{\columnsep}{\csname HBtwocol_sep\endcsname}
+% ==================================================
+% TWO COLUMN
+% ==================================================
+
+\setlength{\columnsep}{\csname HBcomp_twocol_sep\endcsname}
+
 \newenvironment{safetytwocol}{%
+  \par\noindent
+  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
   \begin{multicols}{2}
-  \fontsize{\csname HBtwocol_font_size\endcsname}{\csname HBtwocol_font_leading\endcsname}\selectfont
+    \HBTypeListStart
 }{%
   \end{multicols}
+  \par
 }
 
-% --------------------------------------------------
-% Section title pill (IMPORTANT SAFETY INFORMATION) - parameterized
-% NOTE: use \textwidth to avoid Sphinx heading indent surprises
-% --------------------------------------------------
+% ==================================================
+% H1 PILL
+% ==================================================
+
 \providecommand{\hbsectiontitle}[1]{#1}
 
 \renewcommand{\hbsectiontitle}[1]{%
@@ -113,31 +117,70 @@
   \begin{tcolorbox}[
     colback=BrandDark,
     colframe=BrandDark,
-    arc=\csname HBbrand_title_arc\endcsname,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
     boxrule=0pt,
-    left=\csname HBbrand_title_pad_lr\endcsname,
-    right=\csname HBbrand_title_pad_lr\endcsname,
-    top=\csname HBbrand_title_pad_tb\endcsname,
-    bottom=\csname HBbrand_title_pad_tb\endcsname,
-    width=\csname HBbrand_title_width\endcsname\textwidth,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
     before skip=0mm,
-    after skip=\csname HBbrand_title_vspace_after\endcsname
+    after skip=\csname HBcomp_h1_pill_after\endcsname
   ]
-  {\color{white}\bfseries
-   \fontsize{\csname HBtitle_font_size\endcsname}{\csname HBtitle_font_leading\endcsname}\selectfont
-   \MakeUppercase{#1}}
+    \HBTypeHOne{#1}
   \end{tcolorbox}%
   \par\noindent
 }
 
-% lead sentence = same metrics as list, just bold, no bullet
-\newcommand{\safetylead}[1]{%
-  {\bfseries
-   \fontsize{\csname HBtwocol_font_size\endcsname}{\csname HBtwocol_font_leading\endcsname}\selectfont
-   #1}\vspace{0.6mm}%
+% ==================================================
+% LEAD
+% ==================================================
+
+\providecommand{\safetylead}[1]{}
+\renewcommand{\safetylead}[1]{%
+  \par\noindent
+  \HBTypeBody{#1}
+  \par\vspace{\csname HBcomp_lead_after\endcsname}%
 }
 
+% ==================================================
+% SECTION PATCH
+% ==================================================
 
 \titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
 \titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
 \setcounter{secnumdepth}{0}
+
+% ==================================================
+% Language density overrides (SAFE v2 - includes TYPE layer)
+% ==================================================
+\makeatletter
+
+\providecommand{\HBOverrideParam}[2]{%
+  \expandafter\def\csname HB#1\endcsname{#2}%
+}
+
+\providecommand{\HBOverrideFromKey}[2]{%
+  \ifcsname HB#2\endcsname
+    \HBOverrideParam{#1}{\csname HB#2\endcsname}%
+  \fi
+}
+
+\providecommand{\HBApplyLang}[1]{%
+  \def\HB@lang{#1}%
+
+  % ===== Component layer =====
+  \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
+  \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
+  \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%
+  \HBOverrideFromKey{comp_warning_box_before}{lang_\HB@lang_comp_warning_box_before}%
+  \HBOverrideFromKey{comp_warning_box_after}{lang_\HB@lang_comp_warning_box_after}%
+
+  % ===== Type layer =====
+  \HBOverrideFromKey{type_list_font_leading}{lang_\HB@lang_type_list_font_leading}%
+}
+
+\makeatother

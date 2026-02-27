@@ -1,12 +1,10 @@
-SAFETY
-======
+.. raw:: latex
 
-IMPORTANT SAFETY INFORMATION
-----------------------------
+   {{ safety_title_main }}
 
 .. raw:: latex
 
-   \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+   {{ safety_warning_title }}
 
 .. raw:: latex
 
@@ -22,13 +20,13 @@ IMPORTANT SAFETY INFORMATION
 
 .. raw:: latex
 
-   \safetysubbar{OPERATING INSTRUCTIONS}
+   {{ safety_title_operating }}
 
 .. raw:: latex
 
    \begin{safetytwocol}
 
-{{ safety_save_title }}   
+{{ safety_save_title }}
 
 {{ safety_bottom_items }}
 

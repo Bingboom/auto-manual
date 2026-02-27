@@ -1,7 +1,16 @@
-% CMYK + K-only grays
-\definecolor{BrandDark}{cmyk}{0,0,0,0.78}
-\definecolor{TextGray}{cmyk}{0,0,0,0.80}
-\definecolor{LineK40}{cmyk}{0,0,0,0.40}
-\definecolor{BgK05}{cmyk}{0,0,0,0.05}
-\definecolor{AccentBlue}{cmyk}{0.90,0.55,0,0.60}
-\definecolor{TextK90}{cmyk}{0,0,0,0.90}
+% CMYK + K-only grays (parameterized)
+% IMPORTANT: xcolor's CMYK parser is picky. Expand values first.
+
+\edef\HBBrandDarkCMYK{\csname HBbrand_color_branddark\endcsname}
+\edef\HBTextGrayCMYK{\csname HBbrand_color_textgray\endcsname}
+\edef\HBLineK40CMYK{\csname HBbrand_color_linek40\endcsname}
+\edef\HBBgK05CMYK{\csname HBbrand_color_bgk05\endcsname}
+\edef\HBAccentBlueCMYK{\csname HBbrand_color_accentblue\endcsname}
+\edef\HBTextK90CMYK{\csname HBbrand_color_textk90\endcsname}
+
+\definecolor{BrandDark}{cmyk}{\HBBrandDarkCMYK}
+\definecolor{TextGray}{cmyk}{\HBTextGrayCMYK}
+\definecolor{LineK40}{cmyk}{\HBLineK40CMYK}
+\definecolor{BgK05}{cmyk}{\HBBgK05CMYK}
+\definecolor{AccentBlue}{cmyk}{\HBAccentBlueCMYK}
+\definecolor{TextK90}{cmyk}{\HBTextK90CMYK}
