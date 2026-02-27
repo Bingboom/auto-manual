@@ -1,0 +1,49 @@
+{
+  "sku": "SKU-B",
+  "lang": "zh",
+  "version": "1.1",
+  "items": [
+    {
+      "content_id": "title_main",
+      "type": "h1",
+      "sku_scope": "ALL",
+      "text": "使用说明书 (Demo v2.0)",
+      "revision_id": "2"
+    },
+    {
+      "content_id": "overview_power",
+      "type": "para",
+      "sku_scope": "ALL",
+      "text": "本产品额定功率为 800W，容量为 2048Wh。",
+      "revision_id": "1"
+    },
+    {
+      "content_id": "warning_all_01",
+      "type": "warning",
+      "sku_scope": "ALL",
+      "text": "警告：必须使用原装电源线，禁止任何自行改装。",
+      "revision_id": "3"
+    },
+    {
+      "content_id": "sku_b_only_note",
+      "type": "note",
+      "sku_scope": "SKU-B",
+      "text": "仅 SKU-B：本型号支持快充模式V1,0。",
+      "revision_id": "1"
+    },
+    {
+      "content_id": "steps_01",
+      "type": "step",
+      "sku_scope": "ALL",
+      "text": "步骤1：连接电源线。",
+      "revision_id": "1"
+    },
+    {
+      "content_id": "steps_02",
+      "type": "step",
+      "sku_scope": "ALL",
+      "text": "步骤2：长按电源键开机。",
+      "revision_id": "1"
+    }
+  ]
+}

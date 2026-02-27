@@ -1,0 +1,17 @@
+HB-Docs Demo v2.0 Revision Log
+Generated at: 2026-02-27 15:45:13
+Target: sku=SKU-A, lang=en, version=1.2
+Compared to: v1.1
+
+Items (metadata):
+- title_main | rev=3 | by=Tom | at=2026-03-02 | note=Update v1.1
+- overview_power | rev=1 | by=Tom | at=2026-02-27 | note=init
+- warning_all_01 | rev=3 | by=Tom | at=2026-02-27 | note=update global warning wording
+- sku_a_only_note | rev=3 | by=Tom | at=2026-02-27 | note=update SKU-A only note
+- steps_01 | rev=1 | by=Tom | at=2026-02-27 | note=init
+- steps_02 | rev=1 | by=Tom | at=2026-02-27 | note=init
+
+Changes (old -> new):
+- [MOD] steps_01
+  old: Step 1: Connect the AC cable.
+  new: Step 1: Connect the AC cable11.

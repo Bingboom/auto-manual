@@ -17,6 +17,18 @@ latex_engine = "xelatex"
 latex_domain_indices = False
 latex_show_urls = "no"
 
+# --- HTML output (primary reading version) ---
+html_theme = "furo"  # 推荐：furo（现代、干净）；也可用 sphinx_rtd_theme
+html_static_path = ["_static"]
+html_css_files = ["hb_manual.css"]
+html_js_files = ["hb_manual.js"]  # 可先留空文件
+html_title = "User Manual"
+
+# 把 assets 暴露给 HTML（封面/overview/pdf_insert 用）
+# 方案 A：直接把 latex_theme/assets 作为 html_extra_path 暴露（最省事）
+html_extra_path = ["latex_theme/assets"]
+
+
 # 主题文件（放在 docs/latex_theme/ 下）
 latex_additional_files = [
     "latex_theme/assets/cover-en.pdf",

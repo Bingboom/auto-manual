@@ -1,0 +1,21 @@
+.hb-safety { max-width: 960px; margin: 0 auto; }
+.hb-h1-pill, .hb-subbar{
+  background:#2f2f2f; color:#fff; font-weight:700;
+  padding:10px 14px; border-radius:10px;
+  margin: 10px 0 12px 0;
+}
+.hb-warning-box{
+  border:1px solid #888; border-radius:10px;
+  padding:10px 12px; margin: 0 0 12px 0;
+}
+.hb-warning-row{ display:flex; gap:10px; align-items:flex-start; }
+.hb-warning-lockup{ width:32px; text-align:center; font-size:18px; }
+.hb-warning-text{ font-weight:700; }
+.hb-two-col{
+  column-count:2;
+  column-gap:24px;
+}
+.hb-lead{ font-weight:700; margin: 0 0 8px 0; }
+.hb-list{ margin:0; padding-left: 18px; }
+.hb-list > li{ margin: 0 0 6px 0; break-inside: avoid; }
+.hb-sublist{ margin: 6px 0 0 16px; padding-left: 14px; }

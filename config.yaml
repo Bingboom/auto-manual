@@ -7,6 +7,8 @@ build:
   output_pdf: manual_demo.pdf
   xelatex_runs: 3
   open_pdf: true
+  build_html: true
+  open_html: true
 
 paths:
   docs_dir: docs

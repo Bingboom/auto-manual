@@ -7,6 +7,7 @@ import csv
 import sys
 import argparse
 from pathlib import Path
+import html as _html
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,6 +15,7 @@ DEFAULT_CSV_PATH = ROOT / "data" / "safety_items.csv"
 DEFAULT_TEMPLATE_PATH = ROOT / "docs" / "templates" / "safety_template.rst"
 DEFAULT_OUT_PREFIX = "safety"
 
+# LaTeX placeholders (existing)
 PH_TOP = "{{ safety_top_items }}"
 PH_BOTTOM = "{{ safety_bottom_items }}"
 PH_LEAD_TOP = "{{ safety_lead_top }}"
@@ -22,6 +24,16 @@ PH_SAVE_TITLE = "{{ safety_save_title }}"
 PH_TITLE_MAIN = "{{ safety_title_main }}"
 PH_WARNING_TITLE = "{{ safety_warning_title }}"
 PH_TITLE_OPERATING = "{{ safety_title_operating }}"
+
+# HTML placeholders (new, MUST be plain HTML snippets / plain text)
+PH_TITLE_MAIN_HTML = "{{ safety_title_main_html }}"
+PH_WARNING_TITLE_HTML = "{{ safety_warning_title_html }}"
+PH_TITLE_OPERATING_HTML = "{{ safety_title_operating_html }}"
+
+PH_LEAD_TOP_HTML = "{{ safety_lead_top_html }}"
+PH_SAVE_TITLE_HTML = "{{ safety_save_title_html }}"
+PH_TOP_HTML = "{{ safety_top_items_html }}"
+PH_BOTTOM_HTML = "{{ safety_bottom_items_html }}"
 
 
 def die(msg: str) -> None:
@@ -38,21 +50,8 @@ def latex_arg_escape(text: str) -> str:
     return text.replace("{", r"\{").replace("}", r"\}")
 
 
-def render_bullet(text: str) -> str:
-    text = rst_escape(text)
-    parts = text.split("\\n")
-    head = parts[0].strip()
-
-    lines = [f"- {head}"]
-    for p in parts[1:]:
-        p = p.strip()
-        if not p:
-            continue
-        if p.startswith("- "):
-            lines.append(f"  {p}")
-        else:
-            lines.append(f"  {p}")
-    return "\n".join(lines)
+def html_escape(text: str) -> str:
+    return _html.escape(rst_escape(text), quote=True)
 
 
 def load_rows(csv_path: Path, lang: str) -> list[dict[str, str]]:
@@ -78,26 +77,9 @@ def load_rows(csv_path: Path, lang: str) -> list[dict[str, str]]:
                 if isinstance(v, list):
                     v = ",".join(map(str, v))
                 clean[k] = (v or "").strip()
-
             clean["text"] = clean.get(text_col, "").strip()
             rows.append(clean)
-
         return rows
-
-
-def build_block(rows: list[dict[str, str]], part: str) -> str:
-    items: list[str] = []
-    for r in rows:
-        if (r.get("part") or "").lower() != part:
-            continue
-        text = (r.get("text") or "").strip()
-        if not text:
-            continue
-        items.append(render_bullet(text))
-
-    if not items:
-        die(f"No items for part='{part}'.")
-    return "\n".join(items)
 
 
 def pick_single_text(rows: list[dict[str, str]], part: str) -> str:
@@ -111,6 +93,38 @@ def pick_single_text(rows: list[dict[str, str]], part: str) -> str:
     return texts[0]
 
 
+def render_bullet_rst(text: str) -> str:
+    text = rst_escape(text)
+    parts = text.split("\\n")
+    head = parts[0].strip()
+
+    lines = [f"- {head}"]
+    for p in parts[1:]:
+        p = p.strip()
+        if not p:
+            continue
+        if p.startswith("- "):
+            lines.append(f"  {p}")
+        else:
+            lines.append(f"  {p}")
+    return "\n".join(lines)
+
+
+def build_block_rst(rows: list[dict[str, str]], part: str) -> str:
+    items: list[str] = []
+    for r in rows:
+        if (r.get("part") or "").lower() != part:
+            continue
+        text = (r.get("text") or "").strip()
+        if not text:
+            continue
+        items.append(render_bullet_rst(text))
+
+    if not items:
+        die(f"No items for part='{part}'.")
+    return "\n".join(items)
+
+
 def render_latex_cmd(cmd: str, text: str) -> str:
     text = latex_arg_escape(text)
     return "\n".join(
@@ -121,6 +135,48 @@ def render_latex_cmd(cmd: str, text: str) -> str:
             "",
         ]
     )
+
+
+def render_lead_html_snippet(text: str) -> str:
+    return f'<p class="hb-lead">{html_escape(text)}</p>'
+
+
+def render_list_html_snippet(rows: list[dict[str, str]], part: str) -> str:
+    """
+    Render list items as HTML <ul><li>...</li></ul>.
+    Supports '\\n' for sub-lines; '- ' starts a nested bullet.
+    """
+    items: list[str] = []
+    for r in rows:
+        if (r.get("part") or "").lower() != part:
+            continue
+        raw = (r.get("text") or "").strip()
+        if not raw:
+            continue
+
+        parts = rst_escape(raw).split("\\n")
+        head = html_escape(parts[0])
+
+        li_lines = [head]
+        sub_items: list[str] = []
+        for p in parts[1:]:
+            p = p.strip()
+            if not p:
+                continue
+            if p.startswith("- "):
+                sub_items.append(f"<li>{html_escape(p[2:])}</li>")
+            else:
+                li_lines.append(html_escape(p))
+
+        li_html = "<br/>".join(li_lines)
+        if sub_items:
+            li_html += "<ul class=\"hb-sublist\">" + "".join(sub_items) + "</ul>"
+
+        items.append(f"<li>{li_html}</li>")
+
+    if not items:
+        die(f"No items for part='{part}'.")
+    return "<ul class=\"hb-list\">" + "".join(items) + "</ul>"
 
 
 def main() -> None:
@@ -143,16 +199,19 @@ def main() -> None:
 
     template = template_path.read_text(encoding="utf-8")
 
-    for ph in (
+    required_ph = [
         PH_TOP, PH_BOTTOM, PH_LEAD_TOP, PH_SAVE_TITLE,
         PH_TITLE_MAIN, PH_WARNING_TITLE, PH_TITLE_OPERATING,
-    ):
+        PH_TITLE_MAIN_HTML, PH_WARNING_TITLE_HTML, PH_TITLE_OPERATING_HTML,
+        PH_LEAD_TOP_HTML, PH_SAVE_TITLE_HTML, PH_TOP_HTML, PH_BOTTOM_HTML,
+    ]
+    for ph in required_ph:
         if ph not in template:
             die(f"Template missing placeholder: {ph}")
 
     rows = load_rows(csv_path, lang)
 
-    # titles (LaTeX lines only; template wraps raw:: latex)
+    # LaTeX title lines (existing behavior)
     title_main = latex_arg_escape(pick_single_text(rows, "title_main"))
     title_oper = latex_arg_escape(pick_single_text(rows, "title_operating"))
     warning_title = latex_arg_escape(pick_single_text(rows, "warning_title"))
@@ -161,24 +220,43 @@ def main() -> None:
     title_oper_line = rf"\safetysubbar{{{title_oper}}}"
     warning_line = rf"\safetywarning{{{warning_title}}}"
 
-    # existing blocks
+    # HTML text/snippets (new)
+    title_main_html = html_escape(pick_single_text(rows, "title_main"))
+    title_oper_html = html_escape(pick_single_text(rows, "title_operating"))
+    warning_title_html = html_escape(pick_single_text(rows, "warning_title"))
+
     lead_top_text = pick_single_text(rows, "lead_top")
     save_title_text = pick_single_text(rows, "save_title")
 
-    lead_block = render_latex_cmd("safetylead", lead_top_text)
-    save_title_block = render_latex_cmd("safetylead", save_title_text)
+    # LaTeX lead blocks (existing)
+    lead_block_latex = render_latex_cmd("safetylead", lead_top_text)
+    save_title_block_latex = render_latex_cmd("safetylead", save_title_text)
 
-    top_block = build_block(rows, "top")
-    bottom_block = build_block(rows, "bottom")
+    # HTML snippets (plain strings)
+    lead_block_html = render_lead_html_snippet(lead_top_text)
+    save_title_block_html = render_lead_html_snippet(save_title_text)
+    top_block_html = render_list_html_snippet(rows, "top")
+    bottom_block_html = render_list_html_snippet(rows, "bottom")
+
+    # RST lists for LaTeX/PDF path
+    top_block_rst = build_block_rst(rows, "top")
+    bottom_block_rst = build_block_rst(rows, "bottom")
 
     out = (
         template.replace(PH_TITLE_MAIN, title_main_line)
         .replace(PH_WARNING_TITLE, warning_line)
         .replace(PH_TITLE_OPERATING, title_oper_line)
-        .replace(PH_LEAD_TOP, lead_block)
-        .replace(PH_SAVE_TITLE, save_title_block)
-        .replace(PH_TOP, top_block)
-        .replace(PH_BOTTOM, bottom_block)
+        .replace(PH_LEAD_TOP, lead_block_latex)
+        .replace(PH_SAVE_TITLE, save_title_block_latex)
+        .replace(PH_TOP, top_block_rst)
+        .replace(PH_BOTTOM, bottom_block_rst)
+        .replace(PH_TITLE_MAIN_HTML, title_main_html)
+        .replace(PH_WARNING_TITLE_HTML, warning_title_html)
+        .replace(PH_TITLE_OPERATING_HTML, title_oper_html)
+        .replace(PH_LEAD_TOP_HTML, lead_block_html)
+        .replace(PH_SAVE_TITLE_HTML, save_title_block_html)
+        .replace(PH_TOP_HTML, top_block_html)
+        .replace(PH_BOTTOM_HTML, bottom_block_html)
     )
 
     if args.out:

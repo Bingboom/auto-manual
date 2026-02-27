@@ -71,6 +71,10 @@ def render_csv_pages(cfg: dict) -> None:
 
             run(cmd, cwd=paths.root)
 
+def sphinx_build_html() -> None:
+    print("[build] Sphinx -> HTML")
+    run(["sphinx-build", "-b", "html", ".", "_build/html"], cwd=paths.docs_dir)           
+
 
 def sphinx_build_latex() -> None:
     print("[build] Sphinx -> LaTeX")
@@ -122,6 +126,13 @@ def main() -> None:
     else:
         raise RuntimeError(f"Unsupported doc_type: {doc_type}")
     
+    build_html = bool(build_cfg.get("build_html", False))
+    open_html = bool(build_cfg.get("open_html", False)) and (not args.no_open)
+
+    if build_html:
+        sphinx_build_html()
+    
+    
     sphinx_build_latex()
     patch_fonts(patch_fonts_script, main_tex)
     compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
@@ -133,6 +144,11 @@ def main() -> None:
     print(f"[build] Done. PDF: {pdf_path}")
     if open_after:
         open_file(pdf_path)
+
+    if build_html and open_html:
+        index_html = paths.docs_dir / "_build" / "html" / "index.html"
+        if index_html.exists():
+            open_file(index_html)
 
 
 if __name__ == "__main__":
