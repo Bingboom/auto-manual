@@ -1,4 +1,4 @@
-﻿id,part,text_en,text_fr,text_es
+id,part,text_en,text_fr,text_es
 0.0,lead_top,Always follow these basic precautions when using this product.,Respectez toujours les précautions de base lors de l'utilisation de ce produit.,Sigue siempre estas precauciones básicas al usar este producto.
 1.0,top,Read all the instructions before using the product.,Lisez toutes les instructions avant d'utiliser le produit.,Lee todas las instrucciones antes de usar el producto.
 2.0,top,Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.,Ne laissez pas les enfants jouer avec le produit. Surveillez-les étroitement lorsque le produit est utilisé à proximité d'enfants.,No permitas que los niños jueguen sobre el producto. Se requiere la supervisión cercana de adultos cuando se use cerca de niños.
@@ -33,26 +33,3 @@
 100,title_main,IMPORTANT SAFETY INFORMATION,INFORMATIONS DE SÉCURITÉ IMPORTANTES,INFORMACIÓN IMPORTANTE DE SEGURIDAD
 101,warning_title,"INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS","INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES","INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES"
 102,title_operating,OPERATING INSTRUCTIONS,INSTRUCTIONS D'UTILISATION,INSTRUCCIONES DE USO
-,,,==================== LANGUAGE DENSITY STRATEGY v1 ====================
-,,,How it works:
-,,,1) Base values (comp_*/type_*) define the EN layout (default).
-,,,2) A language maps to a profile via: lang_<lang>_profile.
-,,,3) A profile provides overrides via: profile_<profile>_<base_key>.
-,,,4) LaTeX calls \\HBApplyLang{en|fr|es} before including each language page.
-
-,,,------ PROFILE FLAGS (optional; for readability only) ------
-density_profile_normal,1,int,Profile 'normal': use base values (no overrides)
-density_profile_tight_1,1,int,Profile 'tight_1': reduce vertical spacing to fit longer languages
-
-,,,------ PROFILE: tight_1 overrides (missing key => keep base value) ------
-profile_tight_1_comp_h1_pill_after,0.6,mm,tight_1: reduce space after H1 pill
-profile_tight_1_comp_subbar_after,0.6,mm,tight_1: reduce space after subbar
-profile_tight_1_comp_twocol_tighten,6,mm,tight_1: increase tighten before twocol (store POSITIVE number)
-profile_tight_1_comp_lead_after,0.5,mm,tight_1: reduce space after lead line
-profile_tight_1_comp_warning_box_after,0.6,mm,tight_1: reduce space after warning box
-profile_tight_1_comp_warning_box_before,0.6,mm,tight_1: reduce space before warning box
-
-,,,------ LANGUAGE -> PROFILE mapping ------
-lang_en_profile,normal,none,EN uses base layout (normal profile)
-lang_fr_profile,tight_1,none,FR uses tight_1 to fit one page
-lang_es_profile,tight_1,none,ES uses tight_1 to fit one page
