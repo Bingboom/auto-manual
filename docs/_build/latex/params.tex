@@ -11,7 +11,7 @@
 \expandafter\def\csname HBpage_footer_font_leading\endcsname{7.2pt}
 
 % Footer font size
-\expandafter\def\csname HBpage_footer_font_size\endcsname{8pt}
+\expandafter\def\csname HBpage_footer_font_size\endcsname{6pt}
 
 % Leading zero
 \expandafter\def\csname HBpage_footer_leading_zero\endcsname{1}
@@ -105,7 +105,7 @@
 \expandafter\def\csname HBtype_list_font_leading\endcsname{8pt}
 
 % List font size
-\expandafter\def\csname HBtype_list_font_size\endcsname{7pt}
+\expandafter\def\csname HBtype_list_font_size\endcsname{6pt}
 
 % Rubric text color name
 \expandafter\def\csname HBtype_rubric_color\endcsname{TextK90}
@@ -164,7 +164,7 @@
 \expandafter\def\csname HBcomp_list_bullet_raise\endcsname{0.10ex}
 
 % Bullet TeX (use single backslash)
-\expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\tiny\textbullet}
+\expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\small\textbullet}
 
 % itemize itemsep
 \expandafter\def\csname HBcomp_list_itemsep\endcsname{0.5mm}
@@ -245,7 +245,7 @@
 \expandafter\def\csname HBcomp_twocol_after\endcsname{-5mm}
 
 % Space between two columns
-\expandafter\def\csname HBcomp_twocol_sep\endcsname{6mm}
+\expandafter\def\csname HBcomp_twocol_sep\endcsname{4mm}
 
 % Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)
 \expandafter\def\csname HBcomp_twocol_tighten\endcsname{5mm}
@@ -276,44 +276,44 @@
 
 % ===== OTHER =====
 
-% Global image scale ratio (1 = normal)
-\expandafter\def\csname HBfit_image_scale\endcsname{1}
-
-% Global line compression ratio (1 = normal)
-\expandafter\def\csname HBfit_line_scale\endcsname{1}
-
-% ES override of comp_h1_pill_after (less gap after H1 pill)
+% ES: space after H1 pill
 \expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{0.6mm}
 
-% ES override of comp_lead_after (less gap after lead line)
+% ES: space after lead line
 \expandafter\def\csname HBlang_es_comp_lead_after\endcsname{0.5mm}
 
-% ES override of comp_subbar_after (less gap after subbar)
-\expandafter\def\csname HBlang_es_comp_subbar_after\endcsname{0.6mm}
+% ES: space after subbar
+\expandafter\def\csname HBlang_es_comp_subbar_after\endcsname{2mm}
 
-% ES override of comp_twocol_tighten (more tighten before twocol; store POSITIVE)
+% ES: extra tighten before two-column block
 \expandafter\def\csname HBlang_es_comp_twocol_tighten\endcsname{6mm}
 
-% ES override of comp_warning_box_after (less gap after warning box)
-\expandafter\def\csname HBlang_es_comp_warning_box_after\endcsname{0.6mm}
+% ES: space after warning box
+\expandafter\def\csname HBlang_es_comp_warning_box_after\endcsname{2mm}
 
-% ES override of comp_warning_box_before (less gap before warning box)
+% ES: space before warning box
 \expandafter\def\csname HBlang_es_comp_warning_box_before\endcsname{0.6mm}
 
-% FR override of comp_h1_pill_after (less gap after H1 pill)
+% ES tighter list leading
+\expandafter\def\csname HBlang_es_type_list_font_leading\endcsname{7.2pt}
+
+% FR: space after H1 pill
 \expandafter\def\csname HBlang_fr_comp_h1_pill_after\endcsname{0.6mm}
 
-% FR override of comp_lead_after (less gap after lead line)
+% FR: space after lead line
 \expandafter\def\csname HBlang_fr_comp_lead_after\endcsname{0.5mm}
 
-% FR override of comp_subbar_after (less gap after subbar)
-\expandafter\def\csname HBlang_fr_comp_subbar_after\endcsname{0.6mm}
+% FR: space after subbar
+\expandafter\def\csname HBlang_fr_comp_subbar_after\endcsname{2mm}
 
-% FR override of comp_twocol_tighten (more tighten before twocol; store POSITIVE)
+% FR: extra tighten before two-column block
 \expandafter\def\csname HBlang_fr_comp_twocol_tighten\endcsname{6mm}
 
-% FR override of comp_warning_box_after (less gap after warning box)
-\expandafter\def\csname HBlang_fr_comp_warning_box_after\endcsname{0.6mm}
+% FR: space after warning box
+\expandafter\def\csname HBlang_fr_comp_warning_box_after\endcsname{2mm}
 
-% FR override of comp_warning_box_before (less gap before warning box)
+% FR: space before warning box
 \expandafter\def\csname HBlang_fr_comp_warning_box_before\endcsname{0.6mm}
+
+% FR tighter list leading
+\expandafter\def\csname HBlang_fr_type_list_font_leading\endcsname{7.2pt}

@@ -8,6 +8,7 @@ import shutil
 import sys
 from pathlib import Path
 
+
 # Ensure repo root is importable when running "python tools/xxx.py"
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -16,6 +17,9 @@ if str(ROOT) not in sys.path:
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import open_file, run  # noqa: E402
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
+
+from tools.validate_config import validate as validate_cfg
+from tools.validate_layout_params import validate as validate_layout
 
 paths = get_paths()
 
@@ -87,6 +91,16 @@ def main() -> None:
     cfg = load_config()
     build_cfg = cfg.get("build", {})
     tools_cfg = cfg.get("tools", {})
+
+    print("[build] validating config...")
+    validate_cfg(load_config(), strict_files=False)
+
+    print("[build] validating layout params...")
+    layout_csv = cfg.get("paths", {}).get("layout_params_csv")
+    if not layout_csv:
+        raise RuntimeError("config.yaml missing paths.layout_params_csv")
+
+    validate_layout(paths.root / layout_csv)
 
     langs = build_cfg.get("languages", ["en", "fr", "es"])
     main_tex = build_cfg.get("main_tex", "manual_demo.tex")

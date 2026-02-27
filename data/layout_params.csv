@@ -12,7 +12,7 @@ page_headrulewidth,0,pt,Header rule width
 page_footrulewidth,0,pt,Footer rule width
 section_after_fix,-2,mm,Negative spacing after section to cancel Sphinx glue
 page_footer_raise,3,mm,Raises page number up
-page_footer_font_size,8,pt,Footer font size
+page_footer_font_size,6,pt,Footer font size
 page_footer_font_leading,7.2,pt,Footer leading
 page_footer_color,TextGray,none,Footer color
 page_footer_leading_zero,1,int,Leading zero
@@ -35,7 +35,7 @@ type_body_font_size,7.2,pt,Body/lead font size
 type_body_font_leading,7.4,pt,Body/lead leading (MUST NOT affect list/warning)
 type_body_force_upper,0,int,0 keep case / 1 uppercase
 ,,,
-type_list_font_size,7,pt,List font size
+type_list_font_size,6,pt,List font size
 type_list_font_leading,8,pt,List leading (independent from body)
 ,,,
 type_warning_text_font_size,7.8,pt,Warning right text font size
@@ -69,7 +69,7 @@ comp_lockup_width,30,mm,Width reserved for lockup column
 comp_lockup_gap,7,mm,Gap between lockup and warning text
 comp_lockup_viewport,79 70 2125 549,none,Reserved (viewport macro is fragile; keep for future trim-based cropping)
 ,,,
-comp_twocol_sep,6,mm,Space between two columns
+comp_twocol_sep,4,mm,Space between two columns
 ,,,
 comp_lead_after,1,mm,Space after lead line
 ,,,
@@ -80,7 +80,7 @@ comp_list_topsep,0,mm,itemize topsep
 comp_list_parsep,0,mm,itemize parsep
 comp_list_partopsep,0,mm,itemize partopsep
 comp_list_bullet_raise,0.10,ex,Bullet raise offset
-comp_list_bullet_symbol,\tiny\textbullet,none,Bullet TeX (use single backslash)
+comp_list_bullet_symbol,\small\textbullet,none,Bullet TeX (use single backslash)
 ,,,
 comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,3.5,pt,Table tabcolsep
@@ -109,8 +109,6 @@ type_rubric_color,TextK90,none,Rubric text color name
 type_warning_text_color,TextGray,none,Warning right text color name
 comp_twocol_after,-5,mm,Space after two-column block
 type_warning_text_align,justified,none,Warning right text alignment (ragged|justified)
-fit_line_scale,1,ratio,Global line compression ratio (1 = normal)
-fit_image_scale,1,ratio,Global image scale ratio (1 = normal)
 
 ,,,==================== LANGUAGE DENSITY OVERRIDES ====================
 ,,,These keys override base layout values ONLY when \HBApplyLang{fr/es} is used.
@@ -118,16 +116,18 @@ fit_image_scale,1,ratio,Global image scale ratio (1 = normal)
 
 ,,,------ FR (French tighter layout to fit one page) ------
 lang_fr_comp_h1_pill_after,0.6,mm,FR: space after H1 pill
-lang_fr_comp_subbar_after,0.6,mm,FR: space after subbar
+lang_fr_comp_subbar_after,2,mm,FR: space after subbar
 lang_fr_comp_twocol_tighten,6,mm,FR: extra tighten before two-column block
 lang_fr_comp_lead_after,0.5,mm,FR: space after lead line
-lang_fr_comp_warning_box_after,0.6,mm,FR: space after warning box
+lang_fr_comp_warning_box_after,2,mm,FR: space after warning box
 lang_fr_comp_warning_box_before,0.6,mm,FR: space before warning box
+lang_fr_type_list_font_leading,7.2,pt,FR tighter list leading
 
 ,,,------ ES (Spanish tighter layout to fit one page) ------
 lang_es_comp_h1_pill_after,0.6,mm,ES: space after H1 pill
-lang_es_comp_subbar_after,0.6,mm,ES: space after subbar
+lang_es_comp_subbar_after,2,mm,ES: space after subbar
 lang_es_comp_twocol_tighten,6,mm,ES: extra tighten before two-column block
 lang_es_comp_lead_after,0.5,mm,ES: space after lead line
-lang_es_comp_warning_box_after,0.6,mm,ES: space after warning box
+lang_es_comp_warning_box_after,2,mm,ES: space after warning box
 lang_es_comp_warning_box_before,0.6,mm,ES: space before warning box
+lang_es_type_list_font_leading,7.2,pt,ES tighter list leading

@@ -154,8 +154,7 @@
 \setcounter{secnumdepth}{0}
 
 % ==================================================
-% Language density overrides (SAFE v1)
-% Reads lang_<lang>_<basekey> from params.tex and overrides base HB<basekey>.
+% Language density overrides (SAFE v2 - includes TYPE layer)
 % ==================================================
 \makeatletter
 
@@ -172,13 +171,16 @@
 \providecommand{\HBApplyLang}[1]{%
   \def\HB@lang{#1}%
 
-  % whitelist overrides (safe, explicit)
+  % ===== Component layer =====
   \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%
   \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
   \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
   \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%
   \HBOverrideFromKey{comp_warning_box_before}{lang_\HB@lang_comp_warning_box_before}%
   \HBOverrideFromKey{comp_warning_box_after}{lang_\HB@lang_comp_warning_box_after}%
+
+  % ===== Type layer =====
+  \HBOverrideFromKey{type_list_font_leading}{lang_\HB@lang_type_list_font_leading}%
 }
 
 \makeatother
