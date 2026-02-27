@@ -20,8 +20,8 @@ latex_show_urls = "no"
 # --- HTML output (primary reading version) ---
 html_theme = "furo"  # 推荐：furo（现代、干净）；也可用 sphinx_rtd_theme
 html_static_path = ["_static"]
-html_css_files = ["hb_manual.css"]
-html_js_files = ["hb_manual.js"]  # 可先留空文件
+html_css_files = ["hb_manual.css",'hb_paged.css']
+html_js_files = ["hb_manual.js",'hb_paged.js']  # 可先留空文件
 html_title = "User Manual"
 
 # 把 assets 暴露给 HTML（封面/overview/pdf_insert 用）

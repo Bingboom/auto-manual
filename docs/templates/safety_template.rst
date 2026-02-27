@@ -1,38 +1,44 @@
-.. raw:: latex
+.. only:: latex
 
-   {{ safety_title_main }}
+   .. raw:: latex
 
-.. raw:: latex
+      {{ safety_title_main }}
 
-   {{ safety_warning_title }}
+   .. raw:: latex
 
-.. raw:: latex
+      {{ safety_warning_title }}
 
-   \begin{safetytwocol}
+   .. raw:: latex
 
-{{ safety_lead_top }}
+      \begin{safetytwocol}
 
-{{ safety_top_items }}
 
-.. raw:: latex
+   {{ safety_lead_top }}
 
-   \end{safetytwocol}
+   {{ safety_top_items }}
 
-.. raw:: latex
 
-   {{ safety_title_operating }}
+   .. raw:: latex
 
-.. raw:: latex
+      \end{safetytwocol}
 
-   \begin{safetytwocol}
+   .. raw:: latex
 
-{{ safety_save_title }}
+      {{ safety_title_operating }}
 
-{{ safety_bottom_items }}
+   .. raw:: latex
 
-.. raw:: latex
+      \begin{safetytwocol}
 
-   \end{safetytwocol}
+
+   {{ safety_save_title }}
+
+   {{ safety_bottom_items }}
+
+
+   .. raw:: latex
+
+      \end{safetytwocol}
 
 
 .. only:: html

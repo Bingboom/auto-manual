@@ -15,7 +15,7 @@ DEFAULT_CSV_PATH = ROOT / "data" / "safety_items.csv"
 DEFAULT_TEMPLATE_PATH = ROOT / "docs" / "templates" / "safety_template.rst"
 DEFAULT_OUT_PREFIX = "safety"
 
-# LaTeX placeholders (existing)
+# LaTeX placeholders
 PH_TOP = "{{ safety_top_items }}"
 PH_BOTTOM = "{{ safety_bottom_items }}"
 PH_LEAD_TOP = "{{ safety_lead_top }}"
@@ -25,7 +25,7 @@ PH_TITLE_MAIN = "{{ safety_title_main }}"
 PH_WARNING_TITLE = "{{ safety_warning_title }}"
 PH_TITLE_OPERATING = "{{ safety_title_operating }}"
 
-# HTML placeholders (new, MUST be plain HTML snippets / plain text)
+# HTML placeholders
 PH_TITLE_MAIN_HTML = "{{ safety_title_main_html }}"
 PH_WARNING_TITLE_HTML = "{{ safety_warning_title_html }}"
 PH_TITLE_OPERATING_HTML = "{{ safety_title_operating_html }}"
@@ -94,6 +94,10 @@ def pick_single_text(rows: list[dict[str, str]], part: str) -> str:
 
 
 def render_bullet_rst(text: str) -> str:
+    """
+    Render one CSV cell into an RST bullet item.
+    Supports '\\n' for sub-lines; '- ' starts a nested bullet.
+    """
     text = rst_escape(text)
     parts = text.split("\\n")
     head = parts[0].strip()
@@ -104,13 +108,13 @@ def render_bullet_rst(text: str) -> str:
         if not p:
             continue
         if p.startswith("- "):
-            lines.append(f"  {p}")
+            lines.append(f"  {p}")  # nested bullet
         else:
-            lines.append(f"  {p}")
+            lines.append(f"  {p}")  # continuation line
     return "\n".join(lines)
 
 
-def build_block_rst(rows: list[dict[str, str]], part: str) -> str:
+def render_list_latex(rows: list[dict[str, str]], part: str) -> str:
     items: list[str] = []
     for r in rows:
         if (r.get("part") or "").lower() != part:
@@ -118,20 +122,40 @@ def build_block_rst(rows: list[dict[str, str]], part: str) -> str:
         text = (r.get("text") or "").strip()
         if not text:
             continue
-        items.append(render_bullet_rst(text))
+        # 简化：不做嵌套，直接当一条 item
+        items.append(latex_arg_escape(text))
 
     if not items:
         die(f"No items for part='{part}'.")
-    return "\n".join(items)
+
+    body = "\n".join([f"\\item {t}" for t in items])
+
+    # 输出 raw latex block，注意 6 空格缩进让它在 only:: latex 里稳定
+    return "\n".join(
+        [
+            ".. raw:: latex",
+            "",
+            "      \\begin{itemize}",
+            *[f"      {line}" for line in body.splitlines()],
+            "      \\end{itemize}",
+            "",
+        ]
+    )
 
 
 def render_latex_cmd(cmd: str, text: str) -> str:
+    """
+    Render a raw-latex directive block.
+    IMPORTANT: The LaTeX command line uses 6 spaces indentation so that when this block
+    itself is placed under `.. only:: latex` (3 spaces), the raw content is still
+    indented one level deeper than the directive.
+    """
     text = latex_arg_escape(text)
     return "\n".join(
         [
             ".. raw:: latex",
             "",
-            f"   \\{cmd}{{{text}}}",
+            f"      \\{cmd}{{{text}}}",  # 6 spaces
             "",
         ]
     )
@@ -170,13 +194,13 @@ def render_list_html_snippet(rows: list[dict[str, str]], part: str) -> str:
 
         li_html = "<br/>".join(li_lines)
         if sub_items:
-            li_html += "<ul class=\"hb-sublist\">" + "".join(sub_items) + "</ul>"
+            li_html += '<ul class="hb-sublist">' + "".join(sub_items) + "</ul>"
 
         items.append(f"<li>{li_html}</li>")
 
     if not items:
         die(f"No items for part='{part}'.")
-    return "<ul class=\"hb-list\">" + "".join(items) + "</ul>"
+    return '<ul class="hb-list">' + "".join(items) + "</ul>"
 
 
 def main() -> None:
@@ -211,7 +235,7 @@ def main() -> None:
 
     rows = load_rows(csv_path, lang)
 
-    # LaTeX title lines (existing behavior)
+    # LaTeX title lines (inserted into raw latex blocks in template)
     title_main = latex_arg_escape(pick_single_text(rows, "title_main"))
     title_oper = latex_arg_escape(pick_single_text(rows, "title_operating"))
     warning_title = latex_arg_escape(pick_single_text(rows, "warning_title"))
@@ -220,7 +244,7 @@ def main() -> None:
     title_oper_line = rf"\safetysubbar{{{title_oper}}}"
     warning_line = rf"\safetywarning{{{warning_title}}}"
 
-    # HTML text/snippets (new)
+    # HTML text/snippets
     title_main_html = html_escape(pick_single_text(rows, "title_main"))
     title_oper_html = html_escape(pick_single_text(rows, "title_operating"))
     warning_title_html = html_escape(pick_single_text(rows, "warning_title"))
@@ -228,19 +252,19 @@ def main() -> None:
     lead_top_text = pick_single_text(rows, "lead_top")
     save_title_text = pick_single_text(rows, "save_title")
 
-    # LaTeX lead blocks (existing)
+    # LaTeX blocks (raw directive blocks)
     lead_block_latex = render_latex_cmd("safetylead", lead_top_text)
     save_title_block_latex = render_latex_cmd("safetylead", save_title_text)
 
-    # HTML snippets (plain strings)
+    # RST lists for LaTeX/PDF path (indented 3 spaces)
+    top_block_rst = render_list_latex(rows, "top")
+    bottom_block_rst = render_list_latex(rows, "bottom")
+
+    # HTML snippets
     lead_block_html = render_lead_html_snippet(lead_top_text)
     save_title_block_html = render_lead_html_snippet(save_title_text)
     top_block_html = render_list_html_snippet(rows, "top")
     bottom_block_html = render_list_html_snippet(rows, "bottom")
-
-    # RST lists for LaTeX/PDF path
-    top_block_rst = build_block_rst(rows, "top")
-    bottom_block_rst = build_block_rst(rows, "bottom")
 
     out = (
         template.replace(PH_TITLE_MAIN, title_main_line)
