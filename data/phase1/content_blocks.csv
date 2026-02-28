@@ -1,0 +1,17 @@
+block_id,page_id,order,block_type,sku_scope,text_en,text_fr,meta_json,enabled
+b100,safety,10,title_main,ALL,IMPORTANT SAFETY INFORMATION,INFORMATIONS DE SÉCURITÉ IMPORTANTES,{},1
+b101,safety,20,warning_title,ALL,"INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS","INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES",{},1
+b102,safety,30,title_operating,ALL,OPERATING INSTRUCTIONS,INSTRUCTIONS D'UTILISATION,{},1
+,,,,,,,,
+b110,safety,40,lead_top,ALL,Always follow these basic precautions when using {{product_name}}.,Respectez toujours les précautions de base lors de l'utilisation de {{product_name}}.,{},1
+,,,,,,,,
+b201,safety,100,list_item,ALL,Read all the instructions before using {{product_name}}.,Lisez toutes les instructions avant d'utiliser {{product_name}}.,"{""list_part"":""top""}",1
+b202,safety,110,list_item,ALL,Do not allow children to play on {{product_name}}. Close supervision of children is necessary when {{product_name}} is used near children.,Ne laissez pas les enfants jouer avec {{product_name}}. Surveillez-les étroitement lorsque {{product_name}} est utilisé à proximité d'enfants.,"{""list_part"":""top""}",1
+b203,safety,120,list_item,ALL,"Stop using {{product_name}} immediately if it has been physically damaged or modified. Improper use may cause unpredictable behavior, leading to fire, explosion, or injury.","Arrêtez immédiatement d'utiliser {{product_name}} s'il a été endommagé physiquement ou modifié. Une mauvaise utilisation peut entraîner un comportement imprévisible, une explosion ou des blessures.","{""list_part"":""top""}",1
+,,,,,,,,
+b220,safety,200,save_title,ALL,SAVE THESE INSTRUCTIONS,CONSERVEZ CES INSTRUCTIONS,{},1
+,,,,,,,,
+b301,safety,300,list_item,ALL,Do not charge {{product_name}} in extremely hot or cold environments; follow the specified temperature ranges.\n- Charging temperature: {{charge_temp_range}}\n- Discharging temperature: {{discharge_temp_range}},Ne rechargez pas {{product_name}} dans un environnement extrêmement chaud ou froid ; respectez strictement les plages de température spécifiées.\n- Température de charge : {{charge_temp_range_fr}}\n- Température de décharge : {{discharge_temp_range_fr}},"{""list_part"":""bottom""}",1
+b302,safety,310,list_item,ALL,Do not expose {{product_name}} to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds the rated limit.,N'exposez pas {{product_name}} au feu ni à des températures excessives. Cela peut entraîner une explosion si la température dépasse la limite nominale.,"{""list_part"":""bottom""}",1
+,,,,,,,,
+b401,safety,900,list_item,JB2000,This model ({{sku_id}}) supports higher output power. Follow the additional safety instructions in the addendum.,Ce modèle ({{sku_id}}) prend en charge une puissance de sortie plus élevée. Suivez les instructions de sécurité supplémentaires de l'annexe.,"{""list_part"":""bottom""}",1
