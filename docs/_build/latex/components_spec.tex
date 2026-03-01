@@ -1,0 +1,125 @@
+% ==================================================
+% components_spec.tex
+% L3 COMPONENT LAYER (spec page)
+% ==================================================
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage[most]{tcolorbox}
+
+% ---- fallbacks (safe defaults if params are missing) ----
+\expandafter\providecommand\csname HBcomp_spec_section_before\endcsname{0.6mm}
+\expandafter\providecommand\csname HBcomp_spec_section_after\endcsname{0.9mm}
+\expandafter\providecommand\csname HBcomp_spec_section_bullet_raise\endcsname{-0.16ex}
+\expandafter\providecommand\csname HBcomp_spec_section_bullet_symbol\endcsname{\scalebox{1.67}{\textbullet}}
+\expandafter\providecommand\csname HBcomp_spec_section_bullet_gap\endcsname{0.36em}
+\expandafter\providecommand\csname HBcomp_spec_table_left_ratio\endcsname{0.33}
+\expandafter\providecommand\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
+\expandafter\providecommand\csname HBcomp_spec_table_row_stretch\endcsname{1.10}
+\expandafter\providecommand\csname HBcomp_spec_notes_before\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_spec_footnotes_before\endcsname{1.2mm}
+
+\expandafter\providecommand\csname HBtype_spec_section_font_size\endcsname{8.8pt}
+\expandafter\providecommand\csname HBtype_spec_section_font_leading\endcsname{9.6pt}
+\expandafter\providecommand\csname HBtype_spec_label_font_size\endcsname{6.2pt}
+\expandafter\providecommand\csname HBtype_spec_label_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_spec_value_font_size\endcsname{6.2pt}
+\expandafter\providecommand\csname HBtype_spec_value_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_spec_note_font_size\endcsname{5.9pt}
+\expandafter\providecommand\csname HBtype_spec_note_font_leading\endcsname{6.7pt}
+
+% Spec table palette.
+\colorlet{SpecLeftBg}{black!14}
+\colorlet{SpecFrameColor}{black}
+
+% ---- spec section title (bullet + uppercase heading) ----
+\providecommand{\specsectiontitle}[1]{%
+  \par\noindent
+  \vspace*{\csname HBcomp_spec_section_before\endcsname}%
+  {\bfseries
+   \color{\csname HBtype_rubric_color\endcsname}%
+   \fontsize{\csname HBtype_spec_section_font_size\endcsname}
+            {\csname HBtype_spec_section_font_leading\endcsname}
+   \selectfont
+   \raisebox{\csname HBcomp_spec_section_bullet_raise\endcsname}{\csname HBcomp_spec_section_bullet_symbol\endcsname}%
+   \hspace{\csname HBcomp_spec_section_bullet_gap\endcsname}%
+   \MakeUppercase{#1}\par}%
+  \vspace*{\csname HBcomp_spec_section_after\endcsname}%
+}
+
+% ---- dedicated spec table frame ----
+% Style rule from spec design:
+% outer border >= 0.4pt (thicker than inner), inner grid >= 0.2pt, K5 background.
+\newtcolorbox{spectableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=SpecFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+  overlay unbroken={
+    \begin{tcbclipinterior}
+      \fill[SpecLeftBg]
+        (interior.south west)
+        rectangle
+        ([xshift=\dimexpr\csname HBcomp_spec_table_left_ratio\endcsname\linewidth+\csname HBcomp_spec_table_tabcolsep\endcsname\relax]interior.north west);
+    \end{tcbclipinterior}
+  },
+}
+
+\providecommand{\HBspecXcolumn}[1]{m{#1}}
+
+\newenvironment{spectable}{%
+  \begin{spectableframe}
+  \begingroup
+  \parindent=0pt\relax
+  \arrayrulecolor{SpecFrameColor}
+  \let\tabularxcolumn\HBspecXcolumn
+  \setlength{\tabcolsep}{\csname HBcomp_spec_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_spec_table_row_stretch\endcsname}
+  % Inner grid lines: same color as frame, at least 0.24pt for visible black.
+  % Keep 1/2 relation when outer rule is larger.
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.24pt\arrayrulewidth=0.24pt\fi
+}{%
+  \endgroup
+  \end{spectableframe}
+}
+
+% ---- spec text styles ----
+\providecommand{\HBTypeSpecLabel}[1]{%
+  {\normalfont\mdseries
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_spec_label_font_size\endcsname}
+            {\csname HBtype_spec_label_font_leading\endcsname}
+   \selectfont
+   \hspace*{\csname HBcomp_table_outer_arc\endcsname}#1}%
+}
+
+\providecommand{\HBTypeSpecValue}[1]{%
+  {\normalfont\mdseries
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_spec_value_font_size\endcsname}
+            {\csname HBtype_spec_value_font_leading\endcsname}
+   \selectfont #1}%
+}
+
+\providecommand{\HBTypeSpecNote}[1]{%
+  {\normalfont\mdseries
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_spec_note_font_size\endcsname}
+            {\csname HBtype_spec_note_font_leading\endcsname}
+   \selectfont #1}%
+}
+
+% ---- portable note/footnote markers ----
+% Avoid tiny math fallback fonts from \textsuperscript in some XeLaTeX stacks.
+\providecommand{\HBSpecMarkerBase}[1]{%
+  \raisebox{0.48ex}{\fontsize{5.2pt}{5.2pt}\selectfont #1}%
+}
+\providecommand{\HBSpecMarkerOne}{\HBSpecMarkerBase{1}}
+\providecommand{\HBSpecMarkerTwo}{\HBSpecMarkerBase{2}}
+\providecommand{\HBSpecMarkerAsterisk}{\HBSpecMarkerBase{*}}

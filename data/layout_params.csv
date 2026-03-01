@@ -79,13 +79,34 @@ comp_list_itemsep,0.5,mm,itemize itemsep
 comp_list_topsep,0,mm,itemize topsep
 comp_list_parsep,0,mm,itemize parsep
 comp_list_partopsep,0,mm,itemize partopsep
-comp_list_bullet_raise,0.10,ex,Bullet raise offset
+comp_list_bullet_raise,-0.12,ex,Bullet raise offset (optical baseline align)
 comp_list_bullet_symbol,\small\textbullet,none,Bullet TeX (use single backslash)
 ,,,
 comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,3.5,pt,Table tabcolsep
 comp_table_outer_arc,2,mm,Table outer corner radius
 comp_table_outer_rule,0.4,pt,Table outer rule width
+,,,
+,,,------ SPEC TABLE PAGE ------
+comp_spec_section_before,1.1,mm,Spec section title space before (larger gap from previous table)
+comp_spec_section_after,0.13,mm,Spec section title space after (tightened to one-third)
+comp_spec_section_bullet_raise,-0.16,ex,Spec section bullet raise offset (optical baseline align)
+comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section bullet symbol (scaled 1.67x, baseline aligned)
+comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
+comp_spec_table_left_ratio,0.33,ratio,Spec table left column ratio of textwidth
+comp_spec_table_tabcolsep,3.2,pt,Spec table cell horizontal padding
+comp_spec_table_row_stretch,0.84,ratio,Spec table row vertical stretch (flatter)
+comp_spec_notes_before,0.8,mm,Spec notes block space before
+comp_spec_footnotes_before,1.2,mm,Spec footnotes block space before
+,,,
+type_spec_section_font_size,8.8,pt,Spec section title font size
+type_spec_section_font_leading,9.6,pt,Spec section title leading
+type_spec_label_font_size,6.2,pt,Spec left-cell label font size
+type_spec_label_font_leading,6.4,pt,Spec left-cell label leading
+type_spec_value_font_size,6.2,pt,Spec right-cell value font size
+type_spec_value_font_leading,6.4,pt,Spec right-cell value leading
+type_spec_note_font_size,5.9,pt,Spec note/footnote font size
+type_spec_note_font_leading,6.7,pt,Spec note/footnote leading
 ,,,
 comp_note_arc,2.4,mm,Note box corner radius
 comp_note_pad_lr,0,mm,Note left/right padding
@@ -97,7 +118,7 @@ comp_rubric_after,12,mm,Rubric space after
 brand_color_branddark,"0,0,0,0.90",cmyk,Main brand dark
 brand_color_textgray,"0,0,0,0.90",cmyk,Body text gray
 brand_color_linek40,"0,0,0,0.80",cmyk,Border gray
-brand_color_bgk05,"0,0,0,0.00",cmyk,Background light gray
+brand_color_bgk05,"0,0,0,0.05",cmyk,Background light gray
 brand_color_accentblue,"0,0,0,0",cmyk,Accent blue
 brand_color_textk90,"0,0,0,0.90",cmyk,Strong text
 ,,,
@@ -122,6 +143,18 @@ lang_fr_comp_lead_after,0.5,mm,FR: space after lead line
 lang_fr_comp_warning_box_after,2,mm,FR: space after warning box
 lang_fr_comp_warning_box_before,0.6,mm,FR: space before warning box
 lang_fr_type_list_font_leading,7.2,pt,FR tighter list leading
+lang_fr_comp_spec_section_before,0.8,mm,FR: larger spec section space before
+lang_fr_comp_spec_section_after,0.12,mm,FR: spec section space after at one-third
+lang_fr_comp_spec_table_tabcolsep,2.8,pt,FR: tighter spec table cell horizontal padding
+lang_fr_comp_spec_table_row_stretch,0.82,ratio,FR: tighter spec row stretch
+lang_fr_comp_spec_notes_before,0.6,mm,FR: tighter space before notes
+lang_fr_comp_spec_footnotes_before,0.9,mm,FR: tighter space before footnotes
+lang_fr_type_spec_label_font_size,5.9,pt,FR: tighter spec label font size
+lang_fr_type_spec_label_font_leading,6.1,pt,FR: tighter spec label leading
+lang_fr_type_spec_value_font_size,5.9,pt,FR: tighter spec value font size
+lang_fr_type_spec_value_font_leading,6.1,pt,FR: tighter spec value leading
+lang_fr_type_spec_note_font_size,5.6,pt,FR: tighter note font size
+lang_fr_type_spec_note_font_leading,6.3,pt,FR: tighter note leading
 
 ,,,------ ES (Spanish tighter layout to fit one page) ------
 lang_es_comp_h1_pill_after,0.6,mm,ES: space after H1 pill
@@ -131,3 +164,15 @@ lang_es_comp_lead_after,0.5,mm,ES: space after lead line
 lang_es_comp_warning_box_after,2,mm,ES: space after warning box
 lang_es_comp_warning_box_before,0.6,mm,ES: space before warning box
 lang_es_type_list_font_leading,7.2,pt,ES tighter list leading
+lang_es_comp_spec_section_before,0.8,mm,ES: larger spec section space before
+lang_es_comp_spec_section_after,0.12,mm,ES: spec section space after at one-third
+lang_es_comp_spec_table_tabcolsep,2.8,pt,ES: tighter spec table cell horizontal padding
+lang_es_comp_spec_table_row_stretch,0.82,ratio,ES: tighter spec row stretch
+lang_es_comp_spec_notes_before,0.6,mm,ES: tighter space before notes
+lang_es_comp_spec_footnotes_before,0.9,mm,ES: tighter space before footnotes
+lang_es_type_spec_label_font_size,5.9,pt,ES: tighter spec label font size
+lang_es_type_spec_label_font_leading,6.1,pt,ES: tighter spec label leading
+lang_es_type_spec_value_font_size,5.9,pt,ES: tighter spec value font size
+lang_es_type_spec_value_font_leading,6.1,pt,ES: tighter spec value leading
+lang_es_type_spec_note_font_size,5.6,pt,ES: tighter note font size
+lang_es_type_spec_note_font_leading,6.3,pt,ES: tighter note leading

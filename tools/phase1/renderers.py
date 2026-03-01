@@ -291,9 +291,9 @@ def _split_spec_lines(text: str) -> list[str]:
 def _spec_latex_escape(text: str) -> str:
     # Keep special glyphs renderable on environments where brand fonts miss unicode glyphs.
     special = {
-        "①": r"\textsuperscript{1}",
-        "②": r"\textsuperscript{2}",
-        "※": r"\textasteriskcentered",
+        "①": r"\HBSpecMarkerOne{}",
+        "②": r"\HBSpecMarkerTwo{}",
+        "※": r"\HBSpecMarkerAsterisk{}",
     }
     base = {
         "\\": r"\textbackslash{}",
@@ -342,29 +342,22 @@ def _render_spec_sections_latex(
         title = rst_escape(str(sec.get("title") or ""))
         rows = sec.get("rows") or []
         tex_lines: list[str] = [
-            r"\vspace*{0.4mm}",
-            r"{\noindent\bfseries\fontsize{10.8pt}{11.6pt}\selectfont\textbullet\hspace{0.45em}"
-            + _spec_latex_escape(title)
-            + r"\par}",
-            r"\vspace*{0.8mm}",
-            r"\begin{tableframe}",
-            r"\begingroup",
-            r"\setlength{\tabcolsep}{3.0pt}",
-            r"\renewcommand{\arraystretch}{1.03}",
-            r"\HBTypeListStart",
-            r"\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.33\textwidth}|>{\raggedright\arraybackslash}X|}",
-            r"\hline",
+            rf"\specsectiontitle{{{_spec_latex_escape(title)}}}",
+            r"\begin{spectable}",
+            r"\noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}",
         ]
-        for left, right in rows:
+        row_count = len(rows)
+        for idx, (left, right) in enumerate(rows):
             left_txt = _spec_latex_cell(str(left))
             right_txt = _spec_latex_cell(str(right))
-            tex_lines.append(f"{left_txt} & {right_txt} \\\\")
-            tex_lines.append(r"\hline")
+            tex_lines.append(
+                rf"\HBTypeSpecLabel{{{left_txt}}} & \HBTypeSpecValue{{{right_txt}}} \\"
+            )
+            if idx < row_count - 1:
+                tex_lines.append(r"\hline")
         tex_lines += [
             r"\end{tabularx}",
-            r"\endgroup",
-            r"\end{tableframe}",
-            r"\vspace*{0.8mm}",
+            r"\end{spectable}",
         ]
         blocks.append(_raw_latex_block(tex_lines))
     return "".join(blocks)
@@ -392,15 +385,15 @@ def _render_spec_sections_html(
     return "\n".join(lines).strip() + ("\n" if lines else "")
 
 
-def _render_text_blocks_latex(rows: list[str], leading_space_mm: float = 0.0) -> str:
+def _render_text_blocks_latex(rows: list[str], before_vspace_tex: str = "") -> str:
     if not rows:
         return ""
     lines: list[str] = []
-    if leading_space_mm > 0:
-        lines.append(rf"\vspace*{{{leading_space_mm:.1f}mm}}")
-    lines.append(r"{\noindent\fontsize{7.2pt}{8.0pt}\selectfont")
+    if before_vspace_tex:
+        lines.append(rf"\vspace*{{{before_vspace_tex}}}")
+    lines.append(r"{\noindent")
     for row in rows:
-        lines.append(_spec_latex_escape(row) + r"\par")
+        lines.append(rf"\HBTypeSpecNote{{{_spec_latex_escape(row)}}}\par")
     lines.append("}")
     return _raw_latex_block(lines)
 
@@ -501,8 +494,12 @@ def render_spec_page(
     title_main = pick("title_main")
     title_main_latex = rf"\section{{{latex_arg_escape(title_main)}}}"
     sections_latex = _render_spec_sections_latex(sections)
-    notes_latex = _render_text_blocks_latex(notes, leading_space_mm=0.3)
-    footnotes_latex = _render_text_blocks_latex(footnotes, leading_space_mm=0.9)
+    notes_latex = _render_text_blocks_latex(
+        notes, before_vspace_tex=r"\csname HBcomp_spec_notes_before\endcsname"
+    )
+    footnotes_latex = _render_text_blocks_latex(
+        footnotes, before_vspace_tex=r"\csname HBcomp_spec_footnotes_before\endcsname"
+    )
 
     sections_html = _render_spec_sections_html(sections)
     notes_html = _render_text_blocks_html(notes)

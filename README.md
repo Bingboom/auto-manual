@@ -2,6 +2,8 @@
 
 > 目标：把“能跑的 demo”升级为“可解释、可维护、可扩展的基于csv构建文档的pipeline”。
 > 本文档覆盖：整体数据流、分层职责、文件边界、参数体系、构建流程、常见坑、扩展方法与迭代路线。
+> 排版参数快速手册：`dev/layout_params_guide.md`
+> 参数变更记录模板：`dev/layout_params_change_log_template.md`
 
 ---
 

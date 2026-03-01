@@ -45,6 +45,7 @@ latex_additional_files = [
     "renderers/latex/layout_core.tex",
     "renderers/latex/components_base.tex",
     "renderers/latex/components_safety.tex",
+    "renderers/latex/components_spec.tex",
     "renderers/latex/page_fit.tex",
 ]
 
