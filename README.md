@@ -23,17 +23,17 @@
 
 ```mermaid
 flowchart TD
-  A[data/safety_items.csv] -->|tools/csv_to_rst.py| B[docs/safety.rst]
-  C[data/layout_params.csv] -->|tools/csv_to_tex_params.py| D[docs/latex_theme/params.tex]
+  A[data/phase1/content_blocks.csv + product_variables.csv + page_registry.csv] -->|tools/phase1_build.py| B[docs/generated/<sku>/<page>_<lang>.rst]
+  C[data/layout_params.csv] -->|tools/csv_to_tex_params.py| D[docs/renderers/latex/params.tex]
 
   B -->|sphinx-build -b latex| E[docs/_build/latex/*.tex]
   D -->|sphinx copies additional files| E
-  F[docs/latex_theme/*.tex] -->|sphinx copies additional files| E
+  F[docs/renderers/latex/*.tex] -->|sphinx copies additional files| E
   G[tools/patch_latex_fonts.py] -->|inject fonts.tex into main .tex| E
   E -->|latexmk -xelatex| H[PDF]
 ```
 
-* `csv_to_rst.py` 负责把内容 CSV 渲染成 RST 主体。
+* `phase1_build.py` 负责按 page/sku/lang 渲染 RST 页面。
 * `csv_to_tex_params.py` 负责把布局 CSV 渲染成 `params.tex`（TeX 宏）。
 * Sphinx 负责把 RST 转换成主 `.tex` 并拷贝主题文件到 `_build/latex`。
 * `patch_latex_fonts.py` 负责把 `fonts.tex` 注入主 `.tex`，确保字体“压轴生效”。
@@ -55,10 +55,10 @@ flowchart TD
 
 ## 3. 仓库关键目录与文件职责
 
-### 3.1 `latex_theme/` 结构
+### 3.1 `renderers/latex/` 结构
 
 ```
-latex_theme/
+renderers/latex/
 ├── assets/
 ├── colors.tex          ← L0 (品牌色定义：从 params 取色值并 definecolor)
 ├── params.tex          ← L0 (CSV生成；只定义宏，不写逻辑)
@@ -111,9 +111,9 @@ latex_theme/
 
 ---
 
-## 5. 内容体系（safety_items.csv → safety.rst）
+## 5. 内容体系（phase1/content_blocks.csv → generated rst）
 
-`csv_to_rst.py` 做了两件关键事：
+`phase1_build.py`（`tools/phase1/renderers.py`）做了两件关键事：
 
 1. 把 `top/bottom` 的条目渲染为 bullet list
 2. 把 `lead_top/save_title` 渲染为 `.. raw:: latex` 调用命令（如 `\safetylead{...}`）
@@ -135,13 +135,13 @@ latex_theme/
 Sphinx 在 latex builder 里：
 
 * 会把 `latex_additional_files` 列表里的文件复制到 `_build/latex` 根目录
-* 因此 `\input{...}` 最稳的写法是 **输入文件名**（而不是 `latex_theme/xxx.tex`）
+* 因此 `\input{...}` 最稳的写法是 **输入文件名**（而不是 `renderers/latex/xxx.tex`）
 
 
 新文件必须同时满足：
 
 1. `theme.tex` 里 `\input{xxx.tex}`
-2. `conf_base.py` 的 `latex_additional_files` 里包含 `latex_theme/xxx.tex`
+2. `conf_base.py` 的 `latex_additional_files` 里包含 `renderers/latex/xxx.tex`
 
 ---
 
@@ -219,7 +219,7 @@ Sphinx 在 latex builder 里：
 排查：
 
 1. `theme.tex` 是否 `\input{xxx.tex}`
-2. `conf_base.py` 是否把 `latex_theme/xxx.tex` 加到 `latex_additional_files`
+2. `conf_base.py` 是否把 `renderers/latex/xxx.tex` 加到 `latex_additional_files`
 
 ### 10.2 “Missing endcsname inserted”
 
@@ -252,3 +252,27 @@ Sphinx 在 latex builder 里：
 
 > 这是一个 CSV 驱动的文档排版引擎：
 > 内容由 CMS 输出结构化 CSV，版式由分层 LaTeX 主题参数化控制，通过 Sphinx 将 RST → LaTeX → PDF，实现可维护、可扩展、可出版级精调的自动化说明书生产流水线。
+
+---
+
+## 13. Phase1 构建入口（多 SKU / 多页面 / 多语言）
+
+### 13.1 只生成 phase1 结构化页面
+
+```bash
+python3 tools/phase1_build.py
+python3 tools/phase1_build.py --sku JB1000 --lang en,fr --page safety
+```
+
+输出目录固定为：`docs/generated/<sku>/<page>_<lang>.rst`
+
+### 13.2 用统一构建入口按 SKU 组装整本
+
+```bash
+python3 tools/build_docs.py --sku JB1000
+```
+
+说明：
+
+* `pages[].source=phase1` 时，会先调用 `tools/phase1_build.py`
+* `pages[].include_dir=generated/{sku}` 用于把 `index.rst` include 到对应 SKU 的 RST 文件

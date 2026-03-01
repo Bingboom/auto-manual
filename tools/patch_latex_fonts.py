@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 BUILD = DOCS / "_build" / "latex"
 
-FONTS_SRC = DOCS / "latex_theme" / "fonts.tex"
+FONTS_SRC = DOCS / "renderers" / "latex" / "fonts.tex"
 FONTS_DST = BUILD / "fonts.tex"
 
 

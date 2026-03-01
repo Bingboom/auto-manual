@@ -18,7 +18,7 @@
 ```
 CSV（结构化内容）
     ↓
-csv_to_rst.py
+phase1_build.py
     ↓
 RST
     ↓
@@ -108,7 +108,7 @@ XeLaTeX
 ```
 CSV
  ↓
-csv_to_rst.py
+phase1_build.py
  ↓
 RST
  ↓
@@ -301,11 +301,11 @@ manual_demo/
 │
 ├── docs/
 │
-├── latex_theme/
+├── renderers/latex/
 │
 ├── tools/
 │
-└── output/
+└── docs/generated/
 ```
 
 ---
@@ -371,5 +371,3 @@ manual_demo/
 * 提高版本稳定性
 * 提升构建效率
 * 为未来自动化留出接口
-
-

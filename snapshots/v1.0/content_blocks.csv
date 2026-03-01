@@ -1,8 +1,0 @@
-content_id,sku_scope,type,text_zh,text_en,revision_id,revision_note,updated_at,updated_by
-title_main,ALL,h1,使用说明书 (Demo v2.0),User Manual (Demo v2.0),1,Initial,2026-03-01,Tom
-overview_power,ALL,para,本产品额定功率为 {{param_power}}，容量为 {{param_capacity}}。,"Rated power: {{param_power}}, Capacity: {{param_capacity}}.",1,init,2026-02-27,Tom
-warning_all_01,ALL,warning,警告：必须使用原装电源线，禁止任何自行改装。,WARNING: Use the supplied AC cable. Do not modify.,3,update global warning wording,2026-02-27,Tom
-sku_a_only_note,SKU-A,note,仅 SKU-A：本型号支持 AC 输出 {{param_voltage}}。,SKU-A only: This model supports AC output {{param_voltage}} (UPDATED).,3,update SKU-A only note,2026-02-27,Tom
-sku_b_only_note,SKU-B,note,仅 SKU-B：本型号支持快充模式。,SKU-B only: This model supports fast-charging mode.,1,init,2026-02-27,Tom
-steps_01,ALL,step,步骤1：连接电源线。,Step 1: Connect the AC cable.,1,init,2026-02-27,Tom
-steps_02,ALL,step,步骤2：长按电源键开机。,Step 2: Press and hold the power button to turn on.,1,init,2026-02-27,Tom

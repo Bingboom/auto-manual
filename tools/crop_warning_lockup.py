@@ -12,8 +12,8 @@ from pathlib import Path
 from PIL import Image
 import numpy as np
 
-INPUT = Path("docs/latex_theme/assets/warning_lockup.jpg")
-OUTPUT = Path("docs/latex_theme/assets/warning_lockup_trans_keep_left.png")
+INPUT = Path("docs/renderers/latex/assets/warning_lockup.jpg")
+OUTPUT = Path("docs/renderers/latex/assets/warning_lockup_trans_keep_left.png")
 
 WHITE_THRESHOLD = 245  # higher -> keep more near-white pixels (less aggressive)
 KEEP_LEFT = 80        # pixels to KEEP on the left side (increase if you want more front whitespace)

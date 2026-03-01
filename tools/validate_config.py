@@ -10,7 +10,7 @@ Checks:
 - Detect duplicate YAML keys (fail-fast)
 - Required sections exist
 - pages DSL structure valid
-- csv_page has matching generator
+- csv_page source check (phase1-only)
 - Optional file existence checks
 """
 
@@ -38,6 +38,10 @@ def is_list_of_str(x: Any) -> bool:
 def as_path(p: str) -> Path:
     pp = Path(p)
     return pp if pp.is_absolute() else (ROOT / pp)
+
+
+def has_tokenized_value(v: Any) -> bool:
+    return isinstance(v, str) and ("{" in v and "}" in v)
 
 
 def load_yaml(path: Path) -> dict:
@@ -91,10 +95,6 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if not is_list_of_str(languages) or not languages:
         issues.append(Issue("ERROR", "build.languages must be non-empty list of strings"))
 
-    # ---- tools.generators ----
-    tools = cfg.get("tools", {})
-    generators = tools.get("generators", {}) if isinstance(tools, dict) else {}
-
     # ---- pages ----
     pages = cfg.get("pages", None)
     if not isinstance(pages, list) or not pages:
@@ -114,8 +114,12 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
         if ptype == "cover_pdf":
             if "file" not in p:
                 issues.append(Issue("ERROR", f"pages[{idx}] cover_pdf requires file"))
-            elif strict_files and not as_path(p["file"]).exists():
-                issues.append(Issue("ERROR", f"cover file not found: {p['file']}"))
+            elif strict_files:
+                f = p["file"]
+                if has_tokenized_value(f):
+                    issues.append(Issue("WARN", f"pages[{idx}] cover_pdf file is tokenized, skip strict check"))
+                elif not as_path(f).exists():
+                    issues.append(Issue("ERROR", f"cover file not found: {p['file']}"))
 
         elif ptype == "csv_page":
             page_name = p.get("page")
@@ -123,12 +127,16 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 issues.append(Issue("ERROR", f"pages[{idx}] csv_page requires page"))
                 continue
 
-            if page_name not in generators:
-                issues.append(Issue("ERROR", f"csv_page.page '{page_name}' missing in tools.generators"))
+            source = str(p.get("source", "phase1")).strip().lower()
+            if source != "phase1":
+                issues.append(Issue("ERROR", f"pages[{idx}] csv_page.source invalid: {source}"))
 
             plangs = p.get("langs", languages)
             if not is_list_of_str(plangs):
                 issues.append(Issue("ERROR", f"pages[{idx}] csv_page.langs invalid"))
+
+            if "include_dir" in p and not isinstance(p.get("include_dir"), str):
+                issues.append(Issue("ERROR", f"pages[{idx}] csv_page.include_dir must be string"))
 
         elif ptype == "pdf_insert":
             file_map = p.get("file_map")
@@ -136,8 +144,11 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 issues.append(Issue("ERROR", f"pages[{idx}] pdf_insert requires file_map"))
             else:
                 for lang, fname in file_map.items():
-                    if strict_files and not as_path(fname).exists():
-                        issues.append(Issue("ERROR", f"pdf_insert file not found: {fname}"))
+                    if strict_files:
+                        if has_tokenized_value(fname):
+                            issues.append(Issue("WARN", f"pages[{idx}] pdf_insert '{lang}' is tokenized, skip strict check"))
+                        elif not as_path(fname).exists():
+                            issues.append(Issue("ERROR", f"pdf_insert file not found: {fname}"))
 
     return issues
 

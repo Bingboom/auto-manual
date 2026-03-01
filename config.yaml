@@ -1,69 +1,33 @@
 doc_type: manual_bundle
 
-
 build:
-  languages: [ en, fr, es ]
+  languages: [en, fr]
   main_tex: manual_demo.tex
   output_pdf: manual_demo.pdf
   xelatex_runs: 3
   open_pdf: true
-  build_html: true
-  open_html: true
+  build_html: false
+  open_html: false
 
 paths:
   docs_dir: docs
   layout_params_csv: data/layout_params.csv
 
 tools:
-  generators:
-    safety: tools/csv_to_rst.py
   patch_fonts: tools/patch_latex_fonts.py
 
 pages:
 - type: cover_pdf
   file: cover-en.pdf
 
-# EN block
 - type: csv_page
+  source: phase1
   page: safety
-  langs: [en]
-  csv: data/safety_items.csv
-  template: docs/templates/safety_template.rst
-  out_prefix: safety
+  langs: [en, fr]
+  include_dir: generated/{sku}
 
 - type: pdf_insert
-  langs: [en]
+  langs: [en, fr]
   file_map:
     en: product_overview-en.pdf
     fr: product_overview-fr.pdf
-    es: product_overview-es.pdf
-
-# FR block
-- type: csv_page
-  page: safety
-  langs: [fr]
-  csv: data/safety_items.csv
-  template: docs/templates/safety_template.rst
-  out_prefix: safety
-
-- type: pdf_insert
-  langs: [fr]
-  file_map:
-    en: product_overview-en.pdf
-    fr: product_overview-fr.pdf
-    es: product_overview-es.pdf
-
-# ES block
-- type: csv_page
-  page: safety
-  langs: [es]
-  csv: data/safety_items.csv
-  template: docs/templates/safety_template.rst
-  out_prefix: safety
-
-- type: pdf_insert
-  langs: [es]
-  file_map:
-    en: product_overview-en.pdf
-    fr: product_overview-fr.pdf
-    es: product_overview-es.pdf

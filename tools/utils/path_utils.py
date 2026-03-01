@@ -36,8 +36,13 @@ class Paths:
         return self.root / "tools"
 
     @property
+    def latex_renderer_dir(self) -> Path:
+        return self.docs_dir / "renderers" / "latex"
+
+    @property
     def latex_theme_dir(self) -> Path:
-        return self.docs_dir / "latex_theme"
+        # Backward-compatible alias; repo now uses docs/renderers/latex.
+        return self.latex_renderer_dir
 
     @property
     def templates_dir(self) -> Path:

@@ -15,12 +15,20 @@
 
    .. raw:: latex
 
-      \safetylead{Always follow these basic precautions when using Jackery Battery 2000.}
+      \safetylead{Always follow these basic precautions when using this product.}
 
 
-      - Read all the instructions before using Jackery Battery 2000.
-   - Do not allow children to play on Jackery Battery 2000. Close supervision of children is necessary when Jackery Battery 2000 is used near children.
-   - Stop using Jackery Battery 2000 immediately if it has been physically damaged or modified. Improper use may cause unpredictable behavior, leading to fire, explosion, or injury.
+   - Read all the instructions before using the product.
+   - Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.
+   - Avoid placing hands or fingers inside the product.
+   - Stop using the product immediately if it has been physically damaged or modified. Improper use may cause unpredictable behavior, leading to fire, explosion, or injury.
+   - If the product overheats, emits unusual odors or smoke, leaks, or burns, stop using it immediately and contact customer support.
+   - Never attempt to open, repair, or modify the product. Any tampering may result in electric shock, fire, or battery damage.
+   - Be aware that liquid ejected from the product may cause irritation or burns. Avoid contact with leaking liquid and seek medical help if it contacts your eyes.
+   - Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds the rated limit.
+   - Any use of unrecommended or non-supplied materials or parts may result in a risk of fire, electric shock, or personal injury.
+   - Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation.
+   - To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting.
 
 
 
@@ -42,11 +50,24 @@
       \safetylead{SAVE THESE INSTRUCTIONS}
 
 
-      - Do not charge Jackery Battery 2000 in extremely hot or cold environments; follow the specified temperature ranges.
-     - Charging temperature: -20°C to 45°C
-     - Discharging temperature: -20°C to 45°C
-   - Do not expose Jackery Battery 2000 to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds the rated limit.
-   - This model (JB2000) supports higher output power. Follow the additional safety instructions in the addendum.
+   - Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.
+   - Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges.
+   - Charging temperature: -4°F to 113°F (-20°C to 45°C).
+   - Discharging temperature: -4°F to 113°F (-20°C to 45°C).
+   - To ensure proper air circulation, keep the product vents uncovered.
+   - Charging in damp or poorly ventilated spaces may cause safety hazards.
+   - Water can cause short circuits or damage to the charger, leading to safety risks.
+   - Unplug the power cord from a power outlet during a storm.
+   - Immediately turn off the product if it has fallen, been dropped, or exposed to vibrations.
+   - Ensure the device(s) are powered off before connecting them to the product.
+   - Do not charge the product using a damaged or broken charging cord or plug.
+   - Do not use the product to charge any device with a damaged or broken cable or plug.
+   - Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.
+   - Ensure the product is properly secured when transporting it in a moving vehicle.
+   - DO NOT place the unit upside down or on its side during use or storage.
+   - DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.
+   - DO NOT use the product's accessories with other devices or equipment.
+   - Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible.
 
 
 
@@ -70,14 +91,14 @@
         </div>
 
         <div class="hb-two-col">
-          <p class="hb-lead">Always follow these basic precautions when using Jackery Battery 2000.</p>
-          <ul class="hb-list"><li>Read all the instructions before using Jackery Battery 2000.</li><li>Do not allow children to play on Jackery Battery 2000. Close supervision of children is necessary when Jackery Battery 2000 is used near children.</li><li>Stop using Jackery Battery 2000 immediately if it has been physically damaged or modified. Improper use may cause unpredictable behavior, leading to fire, explosion, or injury.</li></ul>
+          <p class="hb-lead">Always follow these basic precautions when using this product.</p>
+          <ul class="hb-list"><li>Read all the instructions before using the product.</li><li>Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children.</li><li>Avoid placing hands or fingers inside the product.</li><li>Stop using the product immediately if it has been physically damaged or modified. Improper use may cause unpredictable behavior, leading to fire, explosion, or injury.</li><li>If the product overheats, emits unusual odors or smoke, leaks, or burns, stop using it immediately and contact customer support.</li><li>Never attempt to open, repair, or modify the product. Any tampering may result in electric shock, fire, or battery damage.</li><li>Be aware that liquid ejected from the product may cause irritation or burns. Avoid contact with leaking liquid and seek medical help if it contacts your eyes.</li><li>Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds the rated limit.</li><li>Any use of unrecommended or non-supplied materials or parts may result in a risk of fire, electric shock, or personal injury.</li><li>Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation.</li><li>To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting.</li></ul>
         </div>
 
         <div class="hb-subbar">OPERATING INSTRUCTIONS</div>
 
         <div class="hb-two-col">
           <p class="hb-lead">SAVE THESE INSTRUCTIONS</p>
-          <ul class="hb-list"><li>Do not charge Jackery Battery 2000 in extremely hot or cold environments; follow the specified temperature ranges.<ul class="hb-sublist"><li>Charging temperature: -20°C to 45°C</li><li>Discharging temperature: -20°C to 45°C</li></ul></li><li>Do not expose Jackery Battery 2000 to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds the rated limit.</li><li>This model (JB2000) supports higher output power. Follow the additional safety instructions in the addendum.</li></ul>
+          <ul class="hb-list"><li>Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.</li><li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges.</li><li>Charging temperature: -4°F to 113°F (-20°C to 45°C).</li><li>Discharging temperature: -4°F to 113°F (-20°C to 45°C).</li><li>To ensure proper air circulation, keep the product vents uncovered.</li><li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li><li>Water can cause short circuits or damage to the charger, leading to safety risks.</li><li>Unplug the power cord from a power outlet during a storm.</li><li>Immediately turn off the product if it has fallen, been dropped, or exposed to vibrations.</li><li>Ensure the device(s) are powered off before connecting them to the product.</li><li>Do not charge the product using a damaged or broken charging cord or plug.</li><li>Do not use the product to charge any device with a damaged or broken cable or plug.</li><li>Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.</li><li>Ensure the product is properly secured when transporting it in a moving vehicle.</li><li>DO NOT place the unit upside down or on its side during use or storage.</li><li>DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.</li><li>DO NOT use the product&#x27;s accessories with other devices or equipment.</li><li>Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible.</li></ul>
         </div>
       </div>

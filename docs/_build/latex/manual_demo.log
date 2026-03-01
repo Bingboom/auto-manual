@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  27 FEB 2026 23:57
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 MAR 2026 16:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1766,6 +1766,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 File: warning_lockup.png Graphic file (type bmp)
 <warning_lockup.png>
+
+
+[1
+
+]
+File: warning_lockup.png Graphic file (type bmp)
+<warning_lockup.png>
+
+
+LaTeX Font Warning: Font shape `TU/方正兰亭中黑简体(0)/b/n' undefined
+(Font)              using `TU/方正兰亭中黑简体(0)/m/n' instead on input line 268.
+
 File: product_overview-en.pdf Graphic file (type pdf)
 <use product_overview-en.pdf>
 File: product_overview-en.pdf Graphic file (type pdf)
@@ -1774,41 +1786,24 @@ File: product_overview-en.pdf Graphic file (type pdf)
 <use product_overview-en.pdf, page 1>
 
 
-[1
+[2]
+File: product_overview-en.pdf Graphic file (type pdf)
+<use product_overview-en.pdf, page 1>
+File: product_overview-en.pdf Graphic file (type pdf)
+<use product_overview-en.pdf, page 1>
+
+
+File: product_overview-en.pdf Graphic file (type pdf)
+<use product_overview-en.pdf, page 1>
+[3
 
 ]
-File: product_overview-en.pdf Graphic file (type pdf)
-<use product_overview-en.pdf, page 1>
-File: product_overview-en.pdf Graphic file (type pdf)
-<use product_overview-en.pdf, page 1>
-
-
-File: product_overview-en.pdf Graphic file (type pdf)
-<use product_overview-en.pdf, page 1>
-[2
-
-]
-File: warning_lockup.png Graphic file (type bmp)
-<warning_lockup.png>
-
-
-LaTeX Font Warning: Font shape `TU/方正兰亭中黑简体(0)/b/n' undefined
-(Font)              using `TU/方正兰亭中黑简体(0)/m/n' instead on input line 185.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--215
-[]\TU/Gilroy(0)/m/n/6 Cessez immédiatement d’utiliser le produit s’il
- []
-
 File: product_overview-fr.pdf Graphic file (type pdf)
 <use product_overview-fr.pdf>
 File: product_overview-fr.pdf Graphic file (type pdf)
 <use product_overview-fr.pdf, page 1>
 File: product_overview-fr.pdf Graphic file (type pdf)
 <use product_overview-fr.pdf, page 1>
-
-
-[3]
 File: product_overview-fr.pdf Graphic file (type pdf)
 <use product_overview-fr.pdf, page 1>
 File: product_overview-fr.pdf Graphic file (type pdf)
@@ -1818,28 +1813,6 @@ File: product_overview-fr.pdf Graphic file (type pdf)
 File: product_overview-fr.pdf Graphic file (type pdf)
 <use product_overview-fr.pdf, page 1>
 [4
-
-]
-File: warning_lockup.png Graphic file (type bmp)
-<warning_lockup.png>
-File: product_overview-es.pdf Graphic file (type pdf)
-<use product_overview-es.pdf>
-File: product_overview-es.pdf Graphic file (type pdf)
-<use product_overview-es.pdf, page 1>
-File: product_overview-es.pdf Graphic file (type pdf)
-<use product_overview-es.pdf, page 1>
-
-
-[5]
-File: product_overview-es.pdf Graphic file (type pdf)
-<use product_overview-es.pdf, page 1>
-File: product_overview-es.pdf Graphic file (type pdf)
-<use product_overview-es.pdf, page 1>
-
-
-File: product_overview-es.pdf Graphic file (type pdf)
-<use product_overview-es.pdf, page 1>
-[6
 
 ]
 No file manual_demo.ind.
@@ -1853,15 +1826,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `manual_demo.out' has not changed.
-(rerunfilecheck)             Checksum: 238253FED4F341500FCA17A52B4EE35D;660.
+(rerunfilecheck)             Checksum: 749C1F16EAFC0F907147893B41D65B87;429.
  ) 
 Here is how much of TeX's memory you used:
  39322 strings out of 473832
- 848924 string characters out of 5729482
- 1316750 words of memory out of 5000000
- 61578 multiletter control sequences out of 15000+600000
- 562006 words of font info for 116 fonts, out of 8000000 for 9000
+ 849336 string characters out of 5729482
+ 1319498 words of memory out of 5000000
+ 61579 multiletter control sequences out of 15000+600000
+ 562014 words of font info for 117 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  103i,17n,115p,1200b,849s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on manual_demo.pdf (7 pages).
+Output written on manual_demo.pdf (5 pages).
