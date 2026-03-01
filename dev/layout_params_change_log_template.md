@@ -20,10 +20,10 @@
 
 > 一次记录建议只覆盖同一类问题（如“spec 标题间距”）。
 
-| key | 旧值 | 新值 | unit | 影响范围 | 调整原因 |
-|---|---:|---:|---|---|---|
-| `comp_spec_section_after` | `0.40` | `0.13` | `mm` | `spec en/fr/es` | 标题与下表间距压缩 |
-| `comp_spec_section_bullet_symbol` | `\textbullet` | `\scalebox{1.67}{\textbullet}` | `none` | `spec en/fr/es` | 小节圆点放大 |
+| key                                 |            旧值 |                             新值 | unit     | 影响范围          | 调整原因           |
+| ----------------------------------- | --------------: | -------------------------------: | -------- | ----------------- | ------------------ |
+| `comp_spec_section_after`         |        `0.40` |                         `0.13` | `mm`   | `spec en/fr/es` | 标题与下表间距压缩 |
+| `comp_spec_section_bullet_symbol` | `\textbullet` | `\scalebox{1.67}{\textbullet}` | `none` | `spec en/fr/es` | 小节圆点放大       |
 
 ---
 
@@ -31,9 +31,9 @@
 
 > 仅当 `.tex/.py` 同步改动时填写。
 
-| 文件 | 行号/位置 | 变更说明 | 是否可参数化 |
-|---|---|---|---|
-| `/abs/path/to/file.tex` | `Lxx` | 示例：把 spec bullet 从 list raise 解耦 | 是/否 |
+| 文件                      | 行号/位置 | 变更说明                                | 是否可参数化 |
+| ------------------------- | --------- | --------------------------------------- | ------------ |
+| `/abs/path/to/file.tex` | `Lxx`   | 示例：把 spec bullet 从 list raise 解耦 | 是/否        |
 
 ---
 
@@ -84,4 +84,3 @@ python3 tools/build_docs.py --no-open
 - 审阅人：
 - 审阅结论：`通过/需调整`
 - 最终确认时间：
-
