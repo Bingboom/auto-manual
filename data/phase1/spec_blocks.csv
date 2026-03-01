@@ -1,0 +1,28 @@
+block_id,page_id,order,block_type,sku_scope,text_en,text_fr,meta_json,enabled
+spec_100,spec,100,title_main,ALL,"SPECIFICATIONS","SPÉCIFICATIONS","{}",1
+spec_110,spec,110,section_title,ALL,"GENERAL INFO","INFORMATIONS GÉNÉRALES","{}",1
+spec_111,spec,111,row_item,ALL,"Product Name || Jackery HomePower 2000 Plus v2","Nom du produit || Jackery HomePower 2000 Plus v2","{}",1
+spec_112,spec,112,row_item,ALL,"Model No. || JHP-2000A","N° modèle || JHP-2000A","{}",1
+spec_113,spec,113,row_item,ALL,"Capacity || 2048 Wh (40Ah/51.2V DC)","Capacité || 2048 Wh (40 Ah/51,2 V DC)","{}",1
+spec_114,spec,114,row_item,ALL,"Cell Chemistry || LiFePO4","Cellule Chimique || LiFePO4","{}",1
+spec_115,spec,115,row_item,ALL,"Weight || About 40.56 lbs /18.4 kg","Poids || Environ 40,56 lbs / 18,4 kg","{}",1
+spec_116,spec,116,row_item,ALL,"Dimensions || 14.4 x 10.0 x 10.8 in / 36.5 x 25.5 x 27.5 cm","Dimensions || 14,4 x 10,0 x 10,8 in / 36,5 x 25,5 x 27,5 cm","{}",1
+spec_117,spec,117,row_item,ALL,"Cycle Life || 6000 cycles to 70%+ capacity","Durée de vie || Capacité de 6000 cycles à 70 % ou plus","{}",1
+spec_120,spec,120,section_title,ALL,"INPUT PORTS","PORTS D’ENTRÉE","{}",1
+spec_121,spec,121,row_item,ALL,"1 x AC Input || Charge Mode: 100V-120V~60Hz, 15A Max, 1750W Max\nBypass Mode①: 100V-120V~60Hz, 12A Max, 1440W","1 x Entrée CA || Mode charge : 100-120 V~60 Hz, 15 A max., 1750 W max.\nMode dérivation① : 100-120 V~60 Hz, 12 A max., 1440 W","{}",1
+spec_122,spec,122,row_item,ALL,"2 x DC8020 Ports || 16V-60V②==12A Max, Double to 21A / 800W Max\n11V-16V==8A Max","2 x Ports DC8020 || 16 V-60 V②==12 A max., double à 21 A/800 W max.\n11 V-16 V==8 A max.","{}",1
+spec_123,spec,123,row_item,ALL,"1 x DC Expansion Port || 36.8V-57.6V==75A Max","1 x Port d’extension CC || 36,8 V-57,6 V==75 A max.","{}",1
+spec_130,spec,130,section_title,ALL,"OUTPUT PORTS","PORTS DE SORTIE","{}",1
+spec_131,spec,131,row_item,ALL,"4 x AC Output || 120V~60Hz, 20A Max, 2400W Rated, 4800W Surge Peak","4 x Sortie CA || 120V~60Hz, 20A Max, 2400W Rated, 4800W Surge Peak","{}",1
+spec_132,spec,132,row_item,ALL,"AC Total Output② || 2400W Rated, 4800W Surge peak","Sortie totale CA② || 2400W Rated, 4800W Surge peak","{}",1
+spec_133,spec,133,row_item,ALL,"AC Output in Bypass Mode① || 100V-120V~60Hz, 12A Max, 1440W Max","Sortie CA en mode dérivation① || 100V-120V~60Hz, 12A Max, 1440W Max","{}",1
+spec_134,spec,134,row_item,ALL,"1 x USB-A Output || 18W Max, 5-6V==3A, 6-9V==2A, 9-12V==1.5A","1 x Sortie USB-A || 18 W max., 5-6 V==3 A, 6-9 V==2 A, 9-12 V==1,5 A","{}",1
+spec_135,spec,135,row_item,ALL,"2 x USB-C Output || 30W Max, 5V==3A, 9V==3A, 12V==2.5A, 15V==2A, 20V==1.5A\n140W Max, 5V==3A, 9V==3A, 12V==3A, 15V==3A, 20V==5A, 28V==5A","2 x Sortie USB-C || 30W max., 5 V==3 A, 9 V==3 A, 12 V==2.5 A, 15 V==2 A, 20 V==1.5 A\n140 W max., 5 V==3 A, 9 V==3 A, 12 V==3 A, 15 V==3 A, 20 V==5 A, 28 V==5 A","{}",1
+spec_136,spec,136,row_item,ALL,"1 x DC 12V Port || 12V==10A Max","1 x Port CC 12V || 12V==10A Max","{}",1
+spec_137,spec,137,row_item,ALL,"1 x DC Expansion Port || 36.8V-57.6V==75A Max","1 x Port d’extension CC || 36,8 V-57,6 V==75 A max.","{}",1
+spec_140,spec,140,section_title,ALL,"ENVIRONMENTAL OPERATING TEMPERATURE","TEMPÉRATURE DE FONCTIONNEMENT","{}",1
+spec_141,spec,141,row_item,ALL,"Charge Temperature || -4 °F to 113 °F / -20°C to 45°C","Température de charge || - 4 °F à 113 °F / - 20 °C à 45 °C","{}",1
+spec_142,spec,142,row_item,ALL,"Discharge Temperature || -4 °F to 113 °F / -20°C to 45°C","Température de décharge || - 4 °F à 113 °F / - 20 °C à 45 °C","{}",1
+spec_150,spec,150,note_line,ALL,"※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.","※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.","{}",1
+spec_160,spec,160,footnote,ALL,"①The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.","①Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.","{}",1
+spec_161,spec,161,footnote,ALL,"②Indicates that two or more AC output ports work together.","②Indique que deux ports de sortie CA ou plus fonctionnent ensemble.","{}",1

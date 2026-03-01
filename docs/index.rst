@@ -9,13 +9,25 @@
 
    \HBApplyLang{en}
 
-.. include:: generated/JB2000/safety_en.rst
+.. include:: generated/JB1000/safety_en.rst
 
 .. raw:: latex
 
    \HBApplyLang{fr}
 
-.. include:: generated/JB2000/safety_fr.rst
+.. include:: generated/JB1000/safety_fr.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: generated/JB1000/spec_en.rst
+
+.. raw:: latex
+
+   \HBApplyLang{fr}
+
+.. include:: generated/JB1000/spec_fr.rst
 
 .. raw:: latex
 

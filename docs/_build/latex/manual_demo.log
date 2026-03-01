@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 MAR 2026 16:16
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  1 MAR 2026 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -28,7 +28,6 @@ File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 LaTeX Info: Redefining \and on input line 32.
 )
 \sphinxpxdimen=\dimen142
-\sphinxremdimen=\dimen143
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/cmap/cmap.sty
 Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
@@ -66,9 +65,9 @@ X
 \l__fontspec_emdef_int=\count277
 \l__fontspec_strong_int=\count278
 \l__fontspec_strongdef_int=\count279
-\l__fontspec_tmpa_dim=\dimen144
-\l__fontspec_tmpb_dim=\dimen145
-\l__fontspec_tmpc_dim=\dimen146
+\l__fontspec_tmpa_dim=\dimen143
+\l__fontspec_tmpb_dim=\dimen144
+\l__fontspec_tmpc_dim=\dimen145
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -85,11 +84,11 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
-\ex@=\dimen147
+\ex@=\dimen146
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen148
+\pmbraise@=\dimen147
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
@@ -111,7 +110,7 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen149
+\big@size=\dimen148
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
 \macc@depth=\count285
@@ -129,12 +128,12 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \column@=\count290
 \maxfields@=\count291
 \andhelp@=\toks19
-\eqnshift@=\dimen150
-\alignsep@=\dimen151
-\tagshift@=\dimen152
-\tagwidth@=\dimen153
-\totwidth@=\dimen154
-\lineht@=\dimen155
+\eqnshift@=\dimen149
+\alignsep@=\dimen150
+\tagshift@=\dimen151
+\tagwidth@=\dimen152
+\totwidth@=\dimen153
+\lineht@=\dimen154
 \@envbody=\toks20
 \multlinegap=\skip52
 \multlinetaggap=\skip53
@@ -285,7 +284,7 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \c@AlphaDecCnt=\count295
 )
 (./sphinx.sty
-Package: sphinx 2025/12/26 v9.1.0 Sphinx LaTeX package (sphinx-doc)
+Package: sphinx 2024/11/23 v8.2.0 Sphinx LaTeX package (sphinx-doc)
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
@@ -338,8 +337,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@floatcapt=\box56
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen156
-\WF@size=\dimen157
+\wrapoverhang=\dimen155
+\WF@size=\dimen156
 \c@WF@wrappedlines=\count297
 \WF@box=\box57
 \WF@everypar=\toks25
@@ -352,22 +351,22 @@ Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
 Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \c@tracingmulticols=\count298
 \mult@box=\box58
-\multicol@leftmargin=\dimen158
+\multicol@leftmargin=\dimen157
 \c@unbalance=\count299
 \c@collectmore=\count300
 \doublecol@number=\count301
 \multicoltolerance=\count302
 \multicolpretolerance=\count303
-\full@width=\dimen159
-\page@free=\dimen160
-\premulticols=\dimen161
-\postmulticols=\dimen162
+\full@width=\dimen158
+\page@free=\dimen159
+\premulticols=\dimen160
+\postmulticols=\dimen161
 \multicolsep=\skip61
 \multicolbaselineskip=\skip62
 \partial@page=\box59
 \last@line=\box60
 \mc@boxedresult=\box61
-\maxbalancingoverflow=\dimen163
+\maxbalancingoverflow=\dimen162
 \mult@rightbox=\box62
 \mult@grightbox=\box63
 \mult@firstbox=\box64
@@ -411,9 +410,9 @@ Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \c@minrows=\count304
 \c@columnbadness=\count305
 \c@finalcolumnbadness=\count306
-\last@try=\dimen164
-\multicolovershoot=\dimen165
-\multicolundershoot=\dimen166
+\last@try=\dimen163
+\multicolovershoot=\dimen164
+\multicolundershoot=\dimen165
 \mult@nat@firstbox=\box102
 \colbreak@box=\box103
 \mc@col@check@num=\count307
@@ -432,12 +431,12 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 106.
 )
-\Gin@req@height=\dimen167
-\Gin@req@width=\dimen168
+\Gin@req@height=\dimen166
+\Gin@req@width=\dimen167
 )
 (./sphinxlatexgraphics.sty
 Package: sphinxlatexgraphics 2024/08/13 v8.1.0 graphics
-\spx@image@maxheight=\dimen169
+\spx@image@maxheight=\dimen168
 \spx@image@box=\box104
 ) (./sphinxpackageboxes.sty
 Package: sphinxpackageboxes 2024/07/01 v7.4.0 advanced colored boxes
@@ -455,66 +454,63 @@ Package pict2e Info: Driver file for pict2e: p2e-xetex.def on input line 114.
 File: p2e-xetex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
 \pIIe@GRAPH=\toks26
-\@arclen=\dimen170
-\@arcrad=\dimen171
-\pIIe@tempdima=\dimen172
-\pIIe@tempdimb=\dimen173
-\pIIe@tempdimc=\dimen174
-\pIIe@tempdimd=\dimen175
-\pIIe@tempdime=\dimen176
-\pIIe@tempdimf=\dimen177
+\@arclen=\dimen169
+\@arcrad=\dimen170
+\pIIe@tempdima=\dimen171
+\pIIe@tempdimb=\dimen172
+\pIIe@tempdimc=\dimen173
+\pIIe@tempdimd=\dimen174
+\pIIe@tempdime=\dimen175
+\pIIe@tempdimf=\dimen176
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/ellipse/ellipse.sty
 Package: ellipse 2004/11/05 v1.0 .dtx ellipse file
 )
-\@tempdimd=\dimen178
+\@tempdimd=\dimen177
 \spx@tempboxa=\box105
 \spx@tempboxb=\box106
-\spx@boxes@border@top=\dimen179
-\spx@boxes@border@right=\dimen180
-\spx@boxes@border@bottom=\dimen181
-\spx@boxes@border@left=\dimen182
-\spx@boxes@padding@top=\dimen183
-\spx@boxes@padding@right=\dimen184
-\spx@boxes@padding@bottom=\dimen185
-\spx@boxes@padding@left=\dimen186
-\spx@boxes@shadow@xoffset=\dimen187
-\spx@boxes@shadow@yoffset=\dimen188
-\spx@boxes@radius@topleft@x=\dimen189
-\spx@boxes@radius@topright@x=\dimen190
-\spx@boxes@radius@bottomright@x=\dimen191
-\spx@boxes@radius@bottomleft@x=\dimen192
-\spx@boxes@radius@topleft@y=\dimen193
-\spx@boxes@radius@topright@y=\dimen194
-\spx@boxes@radius@bottomright@y=\dimen195
-\spx@boxes@radius@bottomleft@y=\dimen196
+\spx@boxes@border@top=\dimen178
+\spx@boxes@border@right=\dimen179
+\spx@boxes@border@bottom=\dimen180
+\spx@boxes@border@left=\dimen181
+\spx@boxes@padding@top=\dimen182
+\spx@boxes@padding@right=\dimen183
+\spx@boxes@padding@bottom=\dimen184
+\spx@boxes@padding@left=\dimen185
+\spx@boxes@shadow@xoffset=\dimen186
+\spx@boxes@shadow@yoffset=\dimen187
+\spx@boxes@radius@topleft@x=\dimen188
+\spx@boxes@radius@topright@x=\dimen189
+\spx@boxes@radius@bottomright@x=\dimen190
+\spx@boxes@radius@bottomleft@x=\dimen191
+\spx@boxes@radius@topleft@y=\dimen192
+\spx@boxes@radius@topright@y=\dimen193
+\spx@boxes@radius@bottomright@y=\dimen194
+\spx@boxes@radius@bottomleft@y=\dimen195
 )
 (./sphinxlatexadmonitions.sty
-Package: sphinxlatexadmonitions 2025/10/24 v9.0.0 admonitions
+Package: sphinxlatexadmonitions 2024/10/11 v8.1.1 admonitions
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip63
-\fb@frw=\dimen197
-\fb@frh=\dimen198
-\FrameRule=\dimen199
-\FrameSep=\dimen256
-)
-(/usr/local/texlive/2025/texmf-dist/tex/latex/needspace/needspace.sty
-Package: needspace 2010/09/12 v1.3d reserve vertical space
+\fb@frw=\dimen196
+\fb@frh=\dimen197
+\FrameRule=\dimen198
+\FrameSep=\dimen199
 )
 (./sphinxpackagefootnote.sty
-Package: sphinxpackagefootnote 2025/11/15 v9.0.0 Sphinx custom footnotehyper pa
+Package: sphinxpackagefootnote 2024/05/17 v7.3.x Sphinx custom footnotehyper pa
 ckage (Sphinx team)
 \FNH@notes=\box107
 \FNH@toks=\toks27
-\FNH@width=\dimen257
+\FNH@width=\dimen256
 \c@sphinxfootnotemark=\count308
 )
-\spx@notice@border=\dimen258
+\spx@notice@border=\dimen257
 \c@sphinxtodo=\count309
 ) (./sphinxlatexliterals.sty
-Package: sphinxlatexliterals 2025/12/26 v9.1.0 code-blocks and parsed literals
+Package: sphinxlatexliterals 2024/07/01 v7.4.0 code-blocks and parsed literals
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
@@ -532,6 +528,9 @@ Package: alltt 2024/07/07 v2.0g defines alltt environment
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
+(/usr/local/texlive/2025/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
 \sphinxcontinuationbox=\box109
 \sphinxvisiblespacebox=\box110
 \sphinxVerbatim@TitleBox=\box111
@@ -545,26 +544,26 @@ Package: sphinxlatexcontainers 2021/05/03 containers
 (./sphinxhighlight.sty
 Package: sphinxhighlight 2022/06/30 stylesheet for highlighting with pygments
 ) (./sphinxlatextables.sty
-Package: sphinxlatextables 2025/12/30 v9.1.0 tables
+Package: sphinxlatextables 2024/07/01 v7.4.0 tables
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tabulary/tabulary.sty
 Package: tabulary 2024/06/04 v0.11 tabulary package (DPC)
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
-\col@sep=\dimen259
+\col@sep=\dimen258
 \ar@mcellbox=\box113
-\extrarowheight=\dimen260
+\extrarowheight=\dimen259
 \NC@list=\toks28
 \extratabsurround=\skip64
 \backup@length=\skip65
 \ar@cellbox=\box114
 )
 \TY@count=\count313
-\TY@linewidth=\dimen261
-\tymin=\dimen262
-\tymax=\dimen263
-\TY@tablewidth=\dimen264
+\TY@linewidth=\dimen260
+\tymin=\dimen261
+\tymax=\dimen262
+\TY@tablewidth=\dimen263
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
@@ -573,7 +572,7 @@ Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
 \LTpre=\skip68
 \LTpost=\skip69
 \LTchunksize=\count314
-\LTcapwidth=\dimen265
+\LTcapwidth=\dimen264
 \LT@head=\box115
 \LT@firsthead=\box116
 \LT@foot=\box117
@@ -589,10 +588,10 @@ Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box120
 \sift@deathcycles=\count319
-\@vwid@loff=\dimen266
-\@vwid@roff=\dimen267
+\@vwid@loff=\dimen265
+\@vwid@roff=\dimen266
 )
-\sphinx@TY@tablewidth=\dimen268
+\sphinx@TY@tablewidth=\dimen267
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
@@ -602,23 +601,23 @@ Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen269
-\lightrulewidth=\dimen270
-\cmidrulewidth=\dimen271
-\belowrulesep=\dimen272
-\belowbottomsep=\dimen273
-\aboverulesep=\dimen274
-\abovetopsep=\dimen275
-\cmidrulesep=\dimen276
-\cmidrulekern=\dimen277
-\defaultaddspace=\dimen278
+\heavyrulewidth=\dimen268
+\lightrulewidth=\dimen269
+\cmidrulewidth=\dimen270
+\belowrulesep=\dimen271
+\belowbottomsep=\dimen272
+\aboverulesep=\dimen273
+\abovetopsep=\dimen274
+\cmidrulesep=\dimen275
+\cmidrulekern=\dimen276
+\defaultaddspace=\dimen277
 \@cmidla=\count321
 \@cmidlb=\count322
-\@aboverulesep=\dimen279
-\@belowrulesep=\dimen280
+\@aboverulesep=\dimen278
+\@belowrulesep=\dimen279
 \@thisruleclass=\count323
 \@lastruleclass=\count324
-\@thisrulewidth=\dimen281
+\@thisrulewidth=\dimen280
 ))
 (./sphinxlatexnumfig.sty
 Package: sphinxlatexnumfig 2024/07/31 v8.1.0 numbering
@@ -666,29 +665,23 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box121
 \beforetitleunit=\skip85
 \aftertitleunit=\skip86
-\ttl@plus=\dimen282
-\ttl@minus=\dimen283
+\ttl@plus=\dimen281
+\ttl@minus=\dimen282
 \ttl@toksa=\toks33
-\titlewidth=\dimen284
-\titlewidthlast=\dimen285
-\titlewidthfirst=\dimen286
+\titlewidth=\dimen283
+\titlewidthlast=\dimen284
+\titlewidthfirst=\dimen285
 ))
 (./sphinxlatexstyletext.sty
-Package: sphinxlatexstyletext 2025/05/24 v9.0.0 text styling
+Package: sphinxlatexstyletext 2024/07/28 v8.1.0 text styling
 ) (./sphinxlatexobjects.sty
-Package: sphinxlatexobjects 2025/06/06 documentation environments
+Package: sphinxlatexobjects 2025/02/11 documentation environments
 \sphinxsignaturesep=\skip87
 \sphinxsignaturelistskip=\skip88
 \py@argswidth=\skip89
 \lineblockindentation=\skip90
 \DUlineblockindent=\skip91
-)
-\sphinxvwdimen=\dimen287
-\sphinxvhdimen=\dimen288
-\sphinxvmindimen=\dimen289
-\sphinxvmaxdimen=\dimen290
-\sphinxQdimen=\dimen291
-)
+))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
@@ -698,14 +691,14 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@cnth=\count326
 \Gm@cntv=\count327
 \c@Gm@tempcnt=\count328
-\Gm@bindingoffset=\dimen292
-\Gm@wd@mp=\dimen293
-\Gm@odd@mp=\dimen294
-\Gm@even@mp=\dimen295
-\Gm@layoutwidth=\dimen296
-\Gm@layoutheight=\dimen297
-\Gm@layouthoffset=\dimen298
-\Gm@layoutvoffset=\dimen299
+\Gm@bindingoffset=\dimen286
+\Gm@wd@mp=\dimen287
+\Gm@odd@mp=\dimen288
+\Gm@even@mp=\dimen289
+\Gm@layoutwidth=\dimen290
+\Gm@layoutheight=\dimen291
+\Gm@layouthoffset=\dimen292
+\Gm@layoutvoffset=\dimen293
 \Gm@dimlist=\toks34
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -746,7 +739,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen300
+\@linkdim=\dimen294
 \Hy@linkcounter=\count330
 \Hy@pagecounter=\count331
 
@@ -779,7 +772,7 @@ Package hyperref Info: Bookmarks ON on input line 4424.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen301
+\XeTeXLinkMargin=\dimen295
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -789,8 +782,8 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count334
-\Field@Width=\dimen302
-\Fld@charsize=\dimen303
+\Field@Width=\dimen296
+\Fld@charsize=\dimen297
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index OFF on input line 6052.
@@ -849,8 +842,8 @@ Package: tcolorbox 2024/10/22 version 6.4.1 text color boxes
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
 \pgfutil@everybye=\toks35
-\pgfutil@tempdima=\dimen304
-\pgfutil@tempdimb=\dimen305
+\pgfutil@tempdima=\dimen298
+\pgfutil@tempdimb=\dimen299
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box123
@@ -872,16 +865,16 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 tered.code.tex
 \pgfkeys@tmptoks=\toks38
 ))
-\pgf@x=\dimen306
-\pgf@y=\dimen307
-\pgf@xa=\dimen308
-\pgf@ya=\dimen309
-\pgf@xb=\dimen310
-\pgf@yb=\dimen311
-\pgf@xc=\dimen312
-\pgf@yc=\dimen313
-\pgf@xd=\dimen314
-\pgf@yd=\dimen315
+\pgf@x=\dimen300
+\pgf@y=\dimen301
+\pgf@xa=\dimen302
+\pgf@ya=\dimen303
+\pgf@xb=\dimen304
+\pgf@yb=\dimen305
+\pgf@xc=\dimen306
+\pgf@yc=\dimen307
+\pgf@xd=\dimen308
+\pgf@yd=\dimen309
 \w@pgf@writea=\write4
 \r@pgf@reada=\read3
 \c@pgf@counta=\count342
@@ -927,7 +920,7 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen316
+\pgfmath@dimen=\dimen310
 \pgfmath@count=\count350
 \pgfmath@box=\box124
 \pgfmath@toks=\toks42
@@ -959,32 +952,32 @@ erarithmetics.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen317
-\pgf@picmaxx=\dimen318
-\pgf@picminy=\dimen319
-\pgf@picmaxy=\dimen320
-\pgf@pathminx=\dimen321
-\pgf@pathmaxx=\dimen322
-\pgf@pathminy=\dimen323
-\pgf@pathmaxy=\dimen324
-\pgf@xx=\dimen325
-\pgf@xy=\dimen326
-\pgf@yx=\dimen327
-\pgf@yy=\dimen328
-\pgf@zx=\dimen329
-\pgf@zy=\dimen330
+\pgf@picminx=\dimen311
+\pgf@picmaxx=\dimen312
+\pgf@picminy=\dimen313
+\pgf@picmaxy=\dimen314
+\pgf@pathminx=\dimen315
+\pgf@pathmaxx=\dimen316
+\pgf@pathminy=\dimen317
+\pgf@pathmaxy=\dimen318
+\pgf@xx=\dimen319
+\pgf@xy=\dimen320
+\pgf@yx=\dimen321
+\pgf@yy=\dimen322
+\pgf@zx=\dimen323
+\pgf@zy=\dimen324
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen331
-\pgf@path@lasty=\dimen332
+\pgf@path@lastx=\dimen325
+\pgf@path@lasty=\dimen326
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen333
-\pgf@shorten@start@additional=\dimen334
+\pgf@shorten@end@additional=\dimen327
+\pgf@shorten@start@additional=\dimen328
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
@@ -997,14 +990,14 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen335
+\pgflinewidth=\dimen329
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen336
-\pgf@pt@y=\dimen337
-\pgf@pt@temp=\dimen338
+\pgf@pt@x=\dimen330
+\pgf@pt@y=\dimen331
+\pgf@pt@temp=\dimen332
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -1021,12 +1014,12 @@ File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen339
+\pgfarrowsep=\dimen333
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen340
+\pgf@max=\dimen334
 \pgf@sys@shading@range@num=\count353
 \pgf@shadingcount=\count354
 )
@@ -1067,8 +1060,8 @@ File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen341
-\pgf@nodesepend=\dimen342
+\pgf@nodesepstart=\dimen335
+\pgf@nodesepend=\dimen336
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -1081,8 +1074,8 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen343
-\pgffor@skip=\dimen344
+\pgffor@iter=\dimen337
+\pgffor@skip=\dimen338
 \pgffor@stack=\toks45
 \pgffor@toks=\toks46
 ))
@@ -1094,16 +1087,16 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@plot@mark@count=\count355
-\pgfplotmarksize=\dimen345
+\pgfplotmarksize=\dimen339
 )
-\tikz@lastx=\dimen346
-\tikz@lasty=\dimen347
-\tikz@lastxsaved=\dimen348
-\tikz@lastysaved=\dimen349
-\tikz@lastmovetox=\dimen350
-\tikz@lastmovetoy=\dimen351
-\tikzleveldistance=\dimen352
-\tikzsiblingdistance=\dimen353
+\tikz@lastx=\dimen340
+\tikz@lasty=\dimen341
+\tikz@lastxsaved=\dimen342
+\tikz@lastysaved=\dimen343
+\tikz@lastmovetox=\dimen344
+\tikz@lastmovetoy=\dimen345
+\tikzleveldistance=\dimen346
+\tikzsiblingdistance=\dimen347
 \tikz@figbox=\box130
 \tikz@figbox@bg=\box131
 \tikz@tempbox=\box132
@@ -1146,7 +1139,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \c@tcblayer=\count365
 \c@tcolorbox@number=\count366
 \l__tcobox_tmpa_box=\box138
-\l__tcobox_tmpa_dim=\dimen354
+\l__tcobox_tmpa_dim=\dimen348
 \tcb@temp=\box139
 \tcb@temp=\box140
 \tcb@temp=\box141
@@ -1191,9 +1184,9 @@ Library (tcolorbox): 'tcbhooks.code.tex' version '6.4.1'
 Library (tcolorbox): 'tcbtheorems.code.tex' version '6.4.1'
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '6.4.1'
-\tcbfitdim=\dimen355
-\tcb@lowerfitdim=\dimen356
-\tcb@upperfitdim=\dimen357
+\tcbfitdim=\dimen349
+\tcb@lowerfitdim=\dimen350
+\tcb@upperfitdim=\dimen351
 \tcb@cur@hbadness=\count371
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.te
@@ -1206,14 +1199,14 @@ Library (tcolorbox): 'tcblistings.code.tex' version '6.4.1'
 \lst@gtempboxa=\box147
 \lst@token=\toks49
 \lst@length=\count373
-\lst@currlwidth=\dimen358
+\lst@currlwidth=\dimen352
 \lst@column=\count374
 \lst@pos=\count375
-\lst@lostspace=\dimen359
-\lst@width=\dimen360
+\lst@lostspace=\dimen353
+\lst@width=\dimen354
 \lst@newlines=\count376
 \lst@lineno=\count377
-\lst@maxwidth=\dimen361
+\lst@maxwidth=\dimen355
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
@@ -1260,7 +1253,7 @@ Library (tcolorbox): 'tcbposter.code.tex' version '6.4.1'
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip93
-\enit@outerparindent=\dimen362
+\enit@outerparindent=\dimen356
 \enit@toks=\toks50
 \enit@inbox=\box149
 \enit@count@id=\count381
@@ -1268,11 +1261,11 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-\TX@col@width=\dimen363
-\TX@old@table=\dimen364
-\TX@old@col=\dimen365
-\TX@target=\dimen366
-\TX@delta=\dimen367
+\TX@col@width=\dimen357
+\TX@old@table=\dimen358
+\TX@old@col=\dimen359
+\TX@target=\dimen360
+\TX@delta=\dimen361
 \TX@cols=\count383
 \TX@ftn=\toks51
 )
@@ -1306,8 +1299,8 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count384
 \calc@Bcount=\count385
-\calc@Adimen=\dimen368
-\calc@Bdimen=\dimen369
+\calc@Adimen=\dimen362
+\calc@Bdimen=\dimen363
 \calc@Askip=\skip108
 \calc@Bskip=\skip109
 LaTeX Info: Redefining \setlength on input line 80.
@@ -1317,12 +1310,12 @@ LaTeX Info: Redefining \addtolength on input line 81.
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
-\ESO@tempdima=\dimen370
-\ESO@tempdimb=\dimen371
+\ESO@tempdima=\dimen364
+\ESO@tempdimb=\dimen365
 )
-\AM@pagewidth=\dimen372
-\AM@pageheight=\dimen373
-\AM@fboxrule=\dimen374
+\AM@pagewidth=\dimen366
+\AM@pageheight=\dimen367
+\AM@fboxrule=\dimen368
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pdfpages/ppxetex.def
 File: ppxetex.def 2025/01/30 v0.6e Pdfpages driver for XeTeX (AM)
@@ -1353,7 +1346,7 @@ Package: xtemplate 2024-08-16 L3 Experimental prototype document functions
 )
 \l__xeCJK_tmp_int=\count390
 \l__xeCJK_tmp_box=\box152
-\l__xeCJK_tmp_dim=\dimen375
+\l__xeCJK_tmp_dim=\dimen369
 \l__xeCJK_tmp_skip=\skip111
 \g__xeCJK_space_factor_int=\count391
 \l__xeCJK_begin_int=\count392
@@ -1369,43 +1362,43 @@ Package: xtemplate 2024-08-16 L3 Experimental prototype document functions
 \l__xeCJK_last_skip=\skip112
 \c__xeCJK_none_node=\count394
 \g__xeCJK_node_int=\count395
-\c__xeCJK_CJK_node_dim=\dimen376
-\c__xeCJK_CJK-space_node_dim=\dimen377
-\c__xeCJK_default_node_dim=\dimen378
-\c__xeCJK_CJK-widow_node_dim=\dimen379
-\c__xeCJK_normalspace_node_dim=\dimen380
+\c__xeCJK_CJK_node_dim=\dimen370
+\c__xeCJK_CJK-space_node_dim=\dimen371
+\c__xeCJK_default_node_dim=\dimen372
+\c__xeCJK_CJK-widow_node_dim=\dimen373
+\c__xeCJK_normalspace_node_dim=\dimen374
 \c__xeCJK_default-space_node_skip=\skip113
 \l__xeCJK_ccglue_skip=\skip114
 \l__xeCJK_ecglue_skip=\skip115
 \l__xeCJK_punct_kern_skip=\skip116
 \l__xeCJK_indent_box=\box153
 \l__xeCJK_last_penalty_int=\count396
-\l__xeCJK_last_bound_dim=\dimen381
-\l__xeCJK_last_kern_dim=\dimen382
+\l__xeCJK_last_bound_dim=\dimen375
+\l__xeCJK_last_kern_dim=\dimen376
 \l__xeCJK_widow_penalty_int=\count397
 
 LaTeX template Info: Declaring template type 'xeCJK/punctuation' taking 0
 (template)           argument(s) on line 2396.
 
-\l__xeCJK_fixed_punct_width_dim=\dimen383
-\l__xeCJK_mixed_punct_width_dim=\dimen384
-\l__xeCJK_middle_punct_width_dim=\dimen385
-\l__xeCJK_fixed_margin_width_dim=\dimen386
-\l__xeCJK_mixed_margin_width_dim=\dimen387
-\l__xeCJK_middle_margin_width_dim=\dimen388
-\l__xeCJK_bound_punct_width_dim=\dimen389
-\l__xeCJK_bound_margin_width_dim=\dimen390
-\l__xeCJK_margin_minimum_dim=\dimen391
-\l__xeCJK_kerning_total_width_dim=\dimen392
-\l__xeCJK_same_align_margin_dim=\dimen393
-\l__xeCJK_different_align_margin_dim=\dimen394
-\l__xeCJK_kerning_margin_width_dim=\dimen395
-\l__xeCJK_kerning_margin_minimum_dim=\dimen396
-\l__xeCJK_bound_dim=\dimen397
-\l__xeCJK_reverse_bound_dim=\dimen398
-\l__xeCJK_margin_dim=\dimen399
-\l__xeCJK_minimum_bound_dim=\dimen400
-\l__xeCJK_kerning_margin_dim=\dimen401
+\l__xeCJK_fixed_punct_width_dim=\dimen377
+\l__xeCJK_mixed_punct_width_dim=\dimen378
+\l__xeCJK_middle_punct_width_dim=\dimen379
+\l__xeCJK_fixed_margin_width_dim=\dimen380
+\l__xeCJK_mixed_margin_width_dim=\dimen381
+\l__xeCJK_middle_margin_width_dim=\dimen382
+\l__xeCJK_bound_punct_width_dim=\dimen383
+\l__xeCJK_bound_margin_width_dim=\dimen384
+\l__xeCJK_margin_minimum_dim=\dimen385
+\l__xeCJK_kerning_total_width_dim=\dimen386
+\l__xeCJK_same_align_margin_dim=\dimen387
+\l__xeCJK_different_align_margin_dim=\dimen388
+\l__xeCJK_kerning_margin_width_dim=\dimen389
+\l__xeCJK_kerning_margin_minimum_dim=\dimen390
+\l__xeCJK_bound_dim=\dimen391
+\l__xeCJK_reverse_bound_dim=\dimen392
+\l__xeCJK_margin_dim=\dimen393
+\l__xeCJK_minimum_bound_dim=\dimen394
+\l__xeCJK_kerning_margin_dim=\dimen395
 \g__xeCJK_family_int=\count398
 \l__xeCJK_fam_int=\count399
 \g__xeCJK_fam_allocation_int=\count400
@@ -1457,26 +1450,26 @@ LaTeX Warning: Unused global option(s):
 (./manual_demo.aux)
 \openout1 = `manual_demo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -1484,64 +1477,64 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 111.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 111.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 111.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 111.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 111.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 111.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 111.
-LaTeX Font Info:    Redeclaring math accent \check on input line 111.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 111.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 111.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 111.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 111.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 111.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 110.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 110.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 110.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 110.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 110.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 110.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 110.
+LaTeX Font Info:    Redeclaring math accent \check on input line 110.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 110.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 110.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 110.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 110.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 111.
+(Font)              `operators' in the math version `normal' on input line 110.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 111.
+(Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 110.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 111.
+(Font)              `operators' in the math version `bold' on input line 110.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/m/n on input line 111.
+(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/m/n on input line 110.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/FreeSerif(0)/m/n --> TU/FreeSerif(0)/m/n on input li
-ne 111.
+ne 110.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/FreeSerif(0)/m/it on input line 111
+(Font)                  OT1/cmr/m/it --> TU/FreeSerif(0)/m/it on input line 110
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/b/n on input line 111.
+(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/b/n on input line 110.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/FreeSans(0)/m/n on input line 111.
+(Font)                  OT1/cmss/m/n --> TU/FreeSans(0)/m/n on input line 110.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/m/n on input line 111.
+(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/m/n on input line 110.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/FreeSerif(0)/m/n --> TU/FreeSerif(0)/b/n on input li
-ne 111.
+ne 110.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/FreeSerif(0)/b/it on input line 11
-1.
+0.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/FreeSans(0)/b/n on input line 111.
+(Font)                  OT1/cmss/bx/n --> TU/FreeSans(0)/b/n on input line 110.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/b/n on input line 111.
+(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/b/n on input line 110.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
 Package: fontawesome5 2022/05/02 v5.15.4 Font Awesome 5
@@ -1599,7 +1592,7 @@ fd)))
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 111.
+Package hyperref Info: Link coloring ON on input line 110.
 (./manual_demo.out) (./manual_demo.out)
 \@outlinefile=\write6
 \openout6 = `manual_demo.out'.
@@ -1621,24 +1614,27 @@ Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 ))
 
 Package fontspec Info: 
-(fontspec)             Font family 'Gilroy(0)' created for font 'Gilroy' with
-(fontspec)             options [Ligatures=TeX].
+(fontspec)             Font family 'gilroy-regular-3.otf(0)' created for font
+(fontspec)             'gilroy-regular-3.otf' with options
+(fontspec)             [Path=/Users/pika/Library/Fonts/,Ligatures=TeX,BoldFont=
+gilroy-bold-4.otf,ItalicFont=Gilroy-LightItalic-12.otf,BoldItalicFont=Gilroy-Ex
+traBoldItalic-10.otf].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"Gilroy/OT:script=latn;language=dflt;mapping=tex-text
-;"
+(fontspec)             <->"[/Users/pika/Library/Fonts/gilroy-regular-3.otf]/OT:
+script=latn;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"Gilroy/B/OT:script=latn;language=dflt;mapping=tex-te
-xt;"
+(fontspec)             <->"[/Users/pika/Library/Fonts/gilroy-bold-4.otf]/OT:scr
+ipt=latn;language=dflt;mapping=tex-text;"
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"Gilroy/I/OT:script=latn;language=dflt;mapping=tex-te
-xt;"
+(fontspec)             <->"[/Users/pika/Library/Fonts/Gilroy-LightItalic-12.otf
+]/OT:script=latn;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->"Gilroy/BI/OT:script=latn;language=dflt;mapping=tex-t
-ext;"
+(fontspec)             <->"[/Users/pika/Library/Fonts/Gilroy-ExtraBoldItalic-10
+.otf]/OT:script=latn;language=dflt;mapping=tex-text;"
 
 
 Package fontspec Info: 
@@ -1707,33 +1703,41 @@ Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
 
 
 Package fontspec Info: 
-(fontspec)             Could not resolve font "方正兰亭中黑简体/BI" (it probably
+(fontspec)             Script 'CJK' not explicitly supported within font
+(fontspec)             'Songti SC'. Check the typeset output, and if it is
+(fontspec)             okay then ignore this warning. Otherwise a different
+(fontspec)             font should be chosen.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Songti SC/I" (it probably
 (fontspec)             doesn't exist).
 
 
 Package fontspec Info: 
-(fontspec)             Could not resolve font "方正兰亭中黑简体/B" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "方正兰亭中黑简体/I" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Font family '方正兰亭中黑简体(0)' created for font '方正兰亭中黑简体'
+(fontspec)             Font family 'SongtiSC(0)' created for font 'Songti SC'
 (fontspec)             with options [Script={CJK}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"方正兰亭中黑简体/OT:script=hani;language=dflt;"
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Songti
+(fontspec)             SC/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Songti
+(fontspec)             SC/B/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Songti
+(fontspec)             SC/BI/OT:script=hani;language=dflt;"
 
 
 Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
 (xeCJK)                (FandolHei-Regular(0)).
+
+
+Package fontspec Info: 
+(fontspec)             Script 'CJK' not explicitly supported within font
+(fontspec)             'Songti SC'. Check the typeset output, and if it is
+(fontspec)             okay then ignore this warning. Otherwise a different
+(fontspec)             font should be chosen.
 
 File: cover-en.pdf Graphic file (type pdf)
 <use cover-en.pdf>
@@ -1753,12 +1757,12 @@ File: cover-en.pdf Graphic file (type pdf)
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 128
+LaTeX Font Info:    Trying to load font information for U+msa on input line 127
 .
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 128
+LaTeX Font Info:    Trying to load font information for U+msb on input line 127
 .
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1774,10 +1778,38 @@ File: warning_lockup.png Graphic file (type bmp)
 File: warning_lockup.png Graphic file (type bmp)
 <warning_lockup.png>
 
+Underfull \hbox (badness 10000) in paragraph at lines 267--267
+[]|\TU/gilroy-regular-3.otf(0)/b/n/7.8 INSTRUCTIONS CONCERNANT LES RISQUES D\TU
+/SongtiSC(0)/b/n/7.8 ’|
+ []
 
-LaTeX Font Warning: Font shape `TU/方正兰亭中黑简体(0)/b/n' undefined
-(Font)              using `TU/方正兰亭中黑简体(0)/m/n' instead on input line 268.
 
+Underfull \hbox (badness 10000) in paragraph at lines 328--330
+[]\TU/gilroy-regular-3.otf(0)/m/n/6 Cessez immédiatement d\TU/SongtiSC(0)/m/n/6
+ ’| \TU/gilroy-regular-3.otf(0)/m/n/6 utiliser le produit s\TU/SongtiSC(0)/m/n/
+6 ’| \TU/gilroy-regular-3.otf(0)/m/n/6 il
+ []
+
+
+
+[2]
+LaTeX Font Info:    Calculating math sizes for size <7.2> on input line 512.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.59999> not available
+(Font)              size <5> substituted on input line 512.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.59999> not available
+(Font)              size <5> substituted on input line 512.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.59999> not available
+(Font)              size <5> substituted on input line 512.
+
+
+
+[3]
 File: product_overview-en.pdf Graphic file (type pdf)
 <use product_overview-en.pdf>
 File: product_overview-en.pdf Graphic file (type pdf)
@@ -1786,7 +1818,7 @@ File: product_overview-en.pdf Graphic file (type pdf)
 <use product_overview-en.pdf, page 1>
 
 
-[2]
+[4]
 File: product_overview-en.pdf Graphic file (type pdf)
 <use product_overview-en.pdf, page 1>
 File: product_overview-en.pdf Graphic file (type pdf)
@@ -1795,7 +1827,7 @@ File: product_overview-en.pdf Graphic file (type pdf)
 
 File: product_overview-en.pdf Graphic file (type pdf)
 <use product_overview-en.pdf, page 1>
-[3
+[5
 
 ]
 File: product_overview-fr.pdf Graphic file (type pdf)
@@ -1812,7 +1844,7 @@ File: product_overview-fr.pdf Graphic file (type pdf)
 
 File: product_overview-fr.pdf Graphic file (type pdf)
 <use product_overview-fr.pdf, page 1>
-[4
+[6
 
 ]
 No file manual_demo.ind.
@@ -1823,18 +1855,19 @@ L3 programming layer <2022/08/05>
  ***********
 
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.40001pt have occurred.
 
 Package rerunfilecheck Info: File `manual_demo.out' has not changed.
-(rerunfilecheck)             Checksum: 749C1F16EAFC0F907147893B41D65B87;429.
+(rerunfilecheck)             Checksum: 450AB2C7FB4F4284CA44557A8D861684;660.
  ) 
 Here is how much of TeX's memory you used:
- 39322 strings out of 473832
- 849336 string characters out of 5729482
- 1319498 words of memory out of 5000000
- 61579 multiletter control sequences out of 15000+600000
- 562014 words of font info for 117 fonts, out of 8000000 for 9000
+ 39338 strings out of 473832
+ 851799 string characters out of 5729482
+ 1322868 words of memory out of 5000000
+ 61581 multiletter control sequences out of 15000+600000
+ 565563 words of font info for 139 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  103i,17n,115p,1200b,849s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on manual_demo.pdf (5 pages).
+Output written on manual_demo.pdf (7 pages).

@@ -24,6 +24,16 @@ PH_SAVE_TITLE_HTML = "{{ safety_save_title_html }}"
 PH_TOP_HTML = "{{ safety_top_items_html }}"
 PH_BOTTOM_HTML = "{{ safety_bottom_items_html }}"
 
+# Template placeholders (spec page)
+PH_SPEC_TITLE_MAIN = "{{ spec_title_main }}"
+PH_SPEC_TITLE_MAIN_HTML = "{{ spec_title_main_html }}"
+PH_SPEC_SECTIONS_LATEX = "{{ spec_sections_latex }}"
+PH_SPEC_NOTES_LATEX = "{{ spec_notes_latex }}"
+PH_SPEC_FOOTNOTES_LATEX = "{{ spec_footnotes_latex }}"
+PH_SPEC_SECTIONS_HTML = "{{ spec_sections_html }}"
+PH_SPEC_NOTES_HTML = "{{ spec_notes_html }}"
+PH_SPEC_FOOTNOTES_HTML = "{{ spec_footnotes_html }}"
+
 Renderer = Callable[[str, list[dict[str, str]], str, str, dict[str, str]], str]
 
 VAR_PATTERN = re.compile(r"\{\{\s*([a-zA-Z0-9_\-]+)\s*\}\}")
@@ -43,7 +53,20 @@ def rst_escape(s: str) -> str:
 
 def latex_arg_escape(text: str) -> str:
     text = rst_escape(text)
-    return text.replace("{", r"\{").replace("}", r"\}")
+    # Keep escaping centralized: all user-provided CSV text must be safe in LaTeX args.
+    mapping = {
+        "\\": r"\textbackslash{}",
+        "{": r"\{",
+        "}": r"\}",
+        "%": r"\%",
+        "_": r"\_",
+        "#": r"\#",
+        "&": r"\&",
+        "$": r"\$",
+        "~": r"\textasciitilde{}",
+        "^": r"\textasciicircum{}",
+    }
+    return "".join(mapping.get(ch, ch) for ch in text)
 
 
 def html_escape(text: str) -> str:
@@ -165,6 +188,8 @@ def render_safety_page(
                 "order": (b.get("order") or "").strip(),
                 "text": txt,
                 "meta": b.get("meta_json") or "{}",
+                "block_id": (b.get("block_id") or "").strip(),
+                "line": (b.get("__line__") or "").strip(),
             }
         )
 
@@ -190,8 +215,12 @@ def render_safety_page(
                 continue
             try:
                 meta = json.loads(r["meta"] or "{}")
-            except Exception:
-                meta = {}
+            except Exception as exc:
+                block_id = (r.get("block_id") or "").strip() or "?"
+                line = (r.get("line") or "").strip() or "?"
+                raise ValueError(
+                    f"Invalid meta_json for block_id='{block_id}' line {line}: {exc}"
+                ) from exc
             if (meta.get("list_part") or "").strip().lower() == part:
                 out.append(r)
         if not out:
@@ -235,8 +264,265 @@ def render_safety_page(
     )
 
 
+def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
+    raw = rst_escape(text)
+    if "||" not in raw:
+        raise ValueError(
+            f"spec row_item block_id='{block_id or '?'}' line {line or '?'} "
+            "must use 'left || right' format"
+        )
+    left, right = raw.split("||", 1)
+    left = left.strip()
+    right = right.strip()
+    if not left or not right:
+        raise ValueError(
+            f"spec row_item block_id='{block_id or '?'}' line {line or '?'} "
+            "has empty left or right cell"
+        )
+    return left, right
+
+
+def _split_spec_lines(text: str) -> list[str]:
+    raw = rst_escape(text).replace("\\n", "\n")
+    parts = [rst_escape(x) for x in raw.splitlines() if rst_escape(x)]
+    return parts or [""]
+
+
+def _spec_latex_escape(text: str) -> str:
+    # Keep special glyphs renderable on environments where brand fonts miss unicode glyphs.
+    special = {
+        "①": r"\textsuperscript{1}",
+        "②": r"\textsuperscript{2}",
+        "※": r"\textasteriskcentered",
+    }
+    base = {
+        "\\": r"\textbackslash{}",
+        "{": r"\{",
+        "}": r"\}",
+        "%": r"\%",
+        "_": r"\_",
+        "#": r"\#",
+        "&": r"\&",
+        "$": r"\$",
+        "~": r"\textasciitilde{}",
+        "^": r"\textasciicircum{}",
+    }
+    out: list[str] = []
+    for ch in rst_escape(text):
+        if ch in special:
+            out.append(special[ch])
+        else:
+            out.append(base.get(ch, ch))
+    return "".join(out)
+
+
+def _spec_latex_cell(text: str) -> str:
+    parts = _split_spec_lines(text)
+    escaped = [_spec_latex_escape(x) for x in parts if x]
+    return r" \newline ".join(escaped) if escaped else ""
+
+
+def _raw_latex_block(lines: list[str]) -> str:
+    body = "\n".join(f"   {x}" if x else "   " for x in lines)
+    return f".. raw:: latex\n\n{body}\n\n"
+
+
+def _indent_block(text: str, spaces: int = 3) -> str:
+    if not text:
+        return ""
+    prefix = " " * spaces
+    return "\n".join(prefix + line for line in text.splitlines())
+
+
+def _render_spec_sections_latex(
+    sections: list[dict[str, object]],
+) -> str:
+    blocks: list[str] = []
+    for sec in sections:
+        title = rst_escape(str(sec.get("title") or ""))
+        rows = sec.get("rows") or []
+        tex_lines: list[str] = [
+            r"\vspace*{0.4mm}",
+            r"{\noindent\bfseries\fontsize{10.8pt}{11.6pt}\selectfont\textbullet\hspace{0.45em}"
+            + _spec_latex_escape(title)
+            + r"\par}",
+            r"\vspace*{0.8mm}",
+            r"\begin{tableframe}",
+            r"\begingroup",
+            r"\setlength{\tabcolsep}{3.0pt}",
+            r"\renewcommand{\arraystretch}{1.03}",
+            r"\HBTypeListStart",
+            r"\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.33\textwidth}|>{\raggedright\arraybackslash}X|}",
+            r"\hline",
+        ]
+        for left, right in rows:
+            left_txt = _spec_latex_cell(str(left))
+            right_txt = _spec_latex_cell(str(right))
+            tex_lines.append(f"{left_txt} & {right_txt} \\\\")
+            tex_lines.append(r"\hline")
+        tex_lines += [
+            r"\end{tabularx}",
+            r"\endgroup",
+            r"\end{tableframe}",
+            r"\vspace*{0.8mm}",
+        ]
+        blocks.append(_raw_latex_block(tex_lines))
+    return "".join(blocks)
+
+
+def _render_spec_sections_html(
+    sections: list[dict[str, object]],
+) -> str:
+    lines: list[str] = []
+    for sec in sections:
+        title = rst_escape(str(sec.get("title") or ""))
+        rows = sec.get("rows") or []
+        lines.append(f".. rubric:: ● {title}")
+        lines.append("")
+        lines.append(".. list-table::")
+        lines.append("   :widths: 33 67")
+        lines.append("   :header-rows: 0")
+        lines.append("")
+        for left, right in rows:
+            left_txt = rst_escape(str(left))
+            right_txt = rst_escape(" / ".join(_split_spec_lines(str(right))))
+            lines.append(f"   * - {left_txt}")
+            lines.append(f"     - {right_txt}")
+        lines.append("")
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def _render_text_blocks_latex(rows: list[str], leading_space_mm: float = 0.0) -> str:
+    if not rows:
+        return ""
+    lines: list[str] = []
+    if leading_space_mm > 0:
+        lines.append(rf"\vspace*{{{leading_space_mm:.1f}mm}}")
+    lines.append(r"{\noindent\fontsize{7.2pt}{8.0pt}\selectfont")
+    for row in rows:
+        lines.append(_spec_latex_escape(row) + r"\par")
+    lines.append("}")
+    return _raw_latex_block(lines)
+
+
+def _render_text_blocks_html(rows: list[str]) -> str:
+    if not rows:
+        return ""
+    lines: list[str] = []
+    for row in rows:
+        lines.append(rst_escape(row))
+        lines.append("")
+    return "\n".join(lines)
+
+
+def render_spec_page(
+    template: str,
+    blocks: list[dict[str, str]],
+    sku_id: str,
+    lang: str,
+    vars_map: dict[str, str],
+) -> str:
+    lang_col = f"text_{lang}"
+    if not blocks:
+        raise ValueError(f"spec page has no blocks for sku={sku_id} lang={lang}")
+    if lang_col not in blocks[0]:
+        raise ValueError(f"content csv missing language column: {lang_col}")
+
+    use: list[dict[str, str]] = []
+    for b in blocks:
+        if not _enabled(b.get("enabled", "1")):
+            continue
+        if not _scope_allows(b.get("sku_scope", "ALL"), sku_id):
+            continue
+        txt = apply_vars(b.get(lang_col, "") or "", vars_map)
+        if txt.strip() == "":
+            continue
+        use.append(
+            {
+                "block_type": (b.get("block_type") or "").strip(),
+                "order": (b.get("order") or "").strip(),
+                "text": txt,
+                "block_id": (b.get("block_id") or "").strip(),
+                "line": (b.get("__line__") or "").strip(),
+            }
+        )
+
+    if not use:
+        raise ValueError(f"spec page has no enabled blocks for sku={sku_id} lang={lang}")
+
+    def sort_key(r: dict[str, str]) -> float:
+        try:
+            return float(r.get("order") or "0")
+        except ValueError:
+            return 0.0
+
+    def pick(block_type: str) -> str:
+        for r in sorted(use, key=sort_key):
+            if r["block_type"] == block_type:
+                return r["text"]
+        raise ValueError(f"Missing required block_type='{block_type}' sku={sku_id} lang={lang}")
+
+    sections: list[dict[str, object]] = []
+    notes: list[str] = []
+    footnotes: list[str] = []
+    current_section: dict[str, object] | None = None
+
+    for r in sorted(use, key=sort_key):
+        bt = r["block_type"]
+        if bt in {"title_main"}:
+            continue
+        if bt == "section_title":
+            current_section = {"title": r["text"], "rows": []}
+            sections.append(current_section)
+            continue
+        if bt == "row_item":
+            if current_section is None:
+                raise ValueError(
+                    f"spec row_item appears before section_title "
+                    f"(block_id='{r.get('block_id') or '?'}' line {r.get('line') or '?'})"
+                )
+            left, right = _split_spec_row_text(
+                r["text"], r.get("block_id") or "?", r.get("line") or "?"
+            )
+            rows = current_section.get("rows")
+            assert isinstance(rows, list)
+            rows.append((left, right))
+            continue
+        if bt == "note_line":
+            notes.append(r["text"])
+            continue
+        if bt == "footnote":
+            footnotes.append(r["text"])
+            continue
+
+    if not sections:
+        raise ValueError(f"spec page has no section_title blocks sku={sku_id} lang={lang}")
+
+    title_main = pick("title_main")
+    title_main_latex = rf"\section{{{latex_arg_escape(title_main)}}}"
+    sections_latex = _render_spec_sections_latex(sections)
+    notes_latex = _render_text_blocks_latex(notes, leading_space_mm=0.3)
+    footnotes_latex = _render_text_blocks_latex(footnotes, leading_space_mm=0.9)
+
+    sections_html = _render_spec_sections_html(sections)
+    notes_html = _render_text_blocks_html(notes)
+    footnotes_html = _render_text_blocks_html(footnotes)
+
+    return (
+        template.replace(PH_SPEC_TITLE_MAIN, title_main_latex)
+        .replace(PH_SPEC_TITLE_MAIN_HTML, html_escape(title_main))
+        .replace(PH_SPEC_SECTIONS_LATEX, sections_latex)
+        .replace(PH_SPEC_NOTES_LATEX, notes_latex)
+        .replace(PH_SPEC_FOOTNOTES_LATEX, footnotes_latex)
+        .replace(PH_SPEC_SECTIONS_HTML, _indent_block(sections_html, spaces=3))
+        .replace(PH_SPEC_NOTES_HTML, _indent_block(notes_html, spaces=3))
+        .replace(PH_SPEC_FOOTNOTES_HTML, _indent_block(footnotes_html, spaces=3))
+    )
+
+
 PAGE_RENDERERS: dict[str, Renderer] = {
     "safety": render_safety_page,
+    "spec": render_spec_page,
 }
 
 

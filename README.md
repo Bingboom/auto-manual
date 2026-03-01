@@ -1,7 +1,7 @@
 # Auto-Manual Tool
 
-> 目标：把“能跑的 demo”升级为“可解释、可维护、可扩展的排版引擎”。
-> 本文档覆盖：整体数据流、分层职责、文件边界、参数体系、构建流程、常见坑、扩展玩法与迭代路线。
+> 目标：把“能跑的 demo”升级为“可解释、可维护、可扩展的基于csv构建文档的pipeline”。
+> 本文档覆盖：整体数据流、分层职责、文件边界、参数体系、构建流程、常见坑、扩展方法与迭代路线。
 
 ---
 
@@ -118,7 +118,6 @@ renderers/latex/
 1. 把 `top/bottom` 的条目渲染为 bullet list
 2. 把 `lead_top/save_title` 渲染为 `.. raw:: latex` 调用命令（如 `\safetylead{...}`）
 
-
 **内容层仍然是 RST，但关键排版组件通过 LaTeX 命令注入**，把“内容结构”和“视觉组件”连接起来。
 
 建议长期扩展时也遵循：
@@ -136,7 +135,6 @@ Sphinx 在 latex builder 里：
 
 * 会把 `latex_additional_files` 列表里的文件复制到 `_build/latex` 根目录
 * 因此 `\input{...}` 最稳的写法是 **输入文件名**（而不是 `renderers/latex/xxx.tex`）
-
 
 新文件必须同时满足：
 
@@ -156,6 +154,15 @@ Sphinx 在 latex builder 里：
 
 原则：**fonts.tex 必须“稳定可编译”**，需要 fallback 机制。
 
+### 7.1 平台字体策略记录（260301）
+
+* 目标：本地 mac 主要用于视觉预览；正式产线构建环境为 Windows。
+* 当前实现：`fonts.tex` 按平台分支。
+* macOS：优先使用本机路径字体 `~/Library/Fonts/gilroy-regular-3.otf`（含 bold/italic/bolditalic 映射）。
+* Windows/Linux：保持 `\IfFontExistsTF{Gilroy}` 优先逻辑，不受 mac 方案影响。
+* 设计原因：部分 mac + XeLaTeX 组合下，`Gilroy` 家族名匹配可能误判；路径加载可保证本地预览一致性。
+* 维护约束：不要把 mac 绝对路径方案覆盖到 Windows 分支；Windows 构建问题应在 non-mac 分支单独修复。
+
 ---
 
 ## 8. 出版级精调层（L5）
@@ -173,7 +180,6 @@ Sphinx 在 latex builder 里：
 * 最好可分对象：只压正文，不压标题/警示框
 
 ### 8.2 L5 的建议参数命名（避免 lint warning）
-
 
 ---
 

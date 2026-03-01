@@ -23,7 +23,12 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         raise FileNotFoundError(f"Missing CSV: {path}")
     with path.open("r", encoding="utf-8-sig", newline="") as f:
-        return list(csv.DictReader(f))
+        reader = csv.DictReader(f)
+        rows: list[dict[str, str]] = []
+        for lineno, row in enumerate(reader, start=2):
+            row["__line__"] = str(lineno)
+            rows.append(row)
+        return rows
 
 
 def _parse_langs(value: str) -> list[str]:
@@ -65,12 +70,18 @@ def _normalize_content_blocks(rows: list[dict[str, str]]) -> list[dict[str, str]
     if not rows:
         return rows
 
-    if "page_id" in rows[0]:
+    headers = set(rows[0].keys())
+
+    if "page_id" in headers:
         return rows
 
     required = {"id", "part"}
-    if not required.issubset(rows[0].keys()):
-        return rows
+    if not required.issubset(headers):
+        missing = sorted(required - headers)
+        raise ValueError(
+            "Unsupported content_blocks schema: expected either canonical "
+            f"columns with 'page_id' or compact columns {sorted(required)}. Missing: {missing}"
+        )
 
     part_to_type = {
         "lead_top": "lead_top",
@@ -84,13 +95,20 @@ def _normalize_content_blocks(rows: list[dict[str, str]]) -> list[dict[str, str]
 
     out: list[dict[str, str]] = []
     for row in rows:
+        line = (row.get("__line__") or "?").strip()
+
+        data_cols = [k for k in row.keys() if not k.startswith("__")]
+        is_blank = not any((row.get(k) or "").strip() for k in data_cols)
+        if is_blank:
+            continue
+
         part = (row.get("part") or "").strip()
         if not part:
-            continue
+            raise ValueError(f"content_blocks compact row missing 'part' at line {line}")
 
         block_type = part_to_type.get(part, "")
         if not block_type:
-            continue
+            raise ValueError(f"Unknown content_blocks.part='{part}' at line {line}")
 
         block: dict[str, str] = {
             "block_id": (row.get("id") or "").strip() or f"auto_{len(out) + 1}",
@@ -100,6 +118,7 @@ def _normalize_content_blocks(rows: list[dict[str, str]]) -> list[dict[str, str]
             "sku_scope": "ALL",
             "meta_json": "{}",
             "enabled": "1",
+            "__line__": line,
         }
 
         if part in {"top", "bottom"}:
@@ -220,10 +239,45 @@ class Phase1Builder:
             return self.paths.root / candidate
         return self.paths.template_dir / candidate
 
+    def _load_page_blocks(self, page_id: str, default_blocks: list[dict[str, str]]) -> list[dict[str, str]]:
+        per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"
+        if not per_page_csv.exists():
+            return [b for b in default_blocks if (b.get("page_id") or "").strip() == page_id]
+
+        rows = _read_csv(per_page_csv)
+        if not rows:
+            return []
+
+        headers = set(rows[0].keys())
+        if "block_type" not in headers:
+            if {"id", "part"}.issubset(headers):
+                if page_id != "safety":
+                    raise ValueError(
+                        f"Compact schema is only supported for safety page, got page_id='{page_id}' in {per_page_csv}"
+                    )
+                rows = _normalize_content_blocks(rows)
+            else:
+                raise ValueError(
+                    f"Unsupported schema in {per_page_csv}: missing required column 'block_type'"
+                )
+        else:
+            # Canonical schema for page-level csv can omit page_id; we set it explicitly.
+            for row in rows:
+                row_page = (row.get("page_id") or "").strip()
+                if not row_page:
+                    row["page_id"] = page_id
+                elif row_page != page_id:
+                    line = (row.get("__line__") or "?").strip()
+                    raise ValueError(
+                        f"{per_page_csv} line {line}: page_id='{row_page}' does not match target page_id='{page_id}'"
+                    )
+
+        return [b for b in rows if (b.get("page_id") or "").strip() == page_id]
+
     def build(self, selector: BuildSelector, strict_renderer: bool = True) -> BuildResult:
         pages = self._load_pages()
         vars_by_sku = self._load_vars_by_sku()
-        blocks = _normalize_content_blocks(_read_csv(self.paths.content_blocks))
+        default_blocks = _normalize_content_blocks(_read_csv(self.paths.content_blocks))
 
         written: list[Path] = []
         skipped: list[str] = []
@@ -249,7 +303,7 @@ class Phase1Builder:
                 raise FileNotFoundError(f"Missing template for page '{page.page_id}': {template_path}")
             template = template_path.read_text(encoding="utf-8")
 
-            page_blocks = [b for b in blocks if (b.get("page_id") or "").strip() == page.page_id]
+            page_blocks = self._load_page_blocks(page.page_id, default_blocks)
             if not page_blocks:
                 raise RuntimeError(f"No content blocks for page_id='{page.page_id}'")
 

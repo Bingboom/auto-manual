@@ -164,12 +164,38 @@
 
 \providecommand{\HBOverrideFromKey}[2]{%
   \ifcsname HB#2\endcsname
-    \HBOverrideParam{#1}{\csname HB#2\endcsname}%
+    \expandafter\ifx\csname HB#2\endcsname\relax
+      % Skip undefined placeholder keys.
+    \else
+      \expandafter\edef\csname HB#1\endcsname{\csname HB#2\endcsname}%
+    \fi
   \fi
 }
 
+\providecommand{\HBStoreBaseFromKey}[1]{%
+  \expandafter\edef\csname HBbase_#1\endcsname{\csname HB#1\endcsname}%
+}
+
+% Capture defaults once so language switching can safely reset.
+\HBStoreBaseFromKey{comp_h1_pill_after}%
+\HBStoreBaseFromKey{comp_subbar_after}%
+\HBStoreBaseFromKey{comp_twocol_tighten}%
+\HBStoreBaseFromKey{comp_lead_after}%
+\HBStoreBaseFromKey{comp_warning_box_before}%
+\HBStoreBaseFromKey{comp_warning_box_after}%
+\HBStoreBaseFromKey{type_list_font_leading}%
+
 \providecommand{\HBApplyLang}[1]{%
   \def\HB@lang{#1}%
+
+  % ===== Reset to base layer defaults first =====
+  \HBOverrideFromKey{comp_h1_pill_after}{base_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_subbar_after}{base_comp_subbar_after}%
+  \HBOverrideFromKey{comp_twocol_tighten}{base_comp_twocol_tighten}%
+  \HBOverrideFromKey{comp_lead_after}{base_comp_lead_after}%
+  \HBOverrideFromKey{comp_warning_box_before}{base_comp_warning_box_before}%
+  \HBOverrideFromKey{comp_warning_box_after}{base_comp_warning_box_after}%
+  \HBOverrideFromKey{type_list_font_leading}{base_type_list_font_leading}%
 
   % ===== Component layer =====
   \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%

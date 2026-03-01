@@ -2,6 +2,7 @@ doc_type: manual_bundle
 
 build:
   languages: [en, fr]
+  default_sku: JB1000
   main_tex: manual_demo.tex
   output_pdf: manual_demo.pdf
   xelatex_runs: 3
@@ -23,6 +24,12 @@ pages:
 - type: csv_page
   source: phase1
   page: safety
+  langs: [en, fr]
+  include_dir: generated/{sku}
+
+- type: csv_page
+  source: phase1
+  page: spec
   langs: [en, fr]
   include_dir: generated/{sku}
 

@@ -128,14 +128,14 @@ def resolve_build_sku(cfg: dict, arg_sku: str | None, root: Path) -> str | None:
             "config uses '{sku}' but no SKU was found in data/phase1/product_variables.csv"
         )
 
-    picked = skus[0]
     if len(skus) > 1:
-        print(
-            "[gen_index_bundle] sku not provided while config uses '{sku}'; "
-            f"using '{picked}' from available SKUs {skus}. Pass --sku to override."
+        raise RuntimeError(
+            "config uses '{sku}' and multiple SKUs are available "
+            f"({skus}). Please pass --sku or set build.default_sku."
         )
-    else:
-        print(f"[gen_index_bundle] sku not provided, inferred '{picked}' from product_variables.csv")
+
+    picked = skus[0]
+    print(f"[gen_index_bundle] sku not provided, inferred '{picked}' from product_variables.csv")
     return picked
 
 
