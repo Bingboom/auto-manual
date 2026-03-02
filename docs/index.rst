@@ -21,6 +21,18 @@
 
    \HBApplyLang{en}
 
+.. include:: generated/JB1000/symbols_en.rst
+
+.. raw:: latex
+
+   \HBApplyLang{fr}
+
+.. include:: generated/JB1000/symbols_fr.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
 .. include:: generated/JB1000/spec_en.rst
 
 .. raw:: latex

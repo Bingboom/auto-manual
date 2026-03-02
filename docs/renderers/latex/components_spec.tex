@@ -29,10 +29,6 @@
 \expandafter\providecommand\csname HBtype_spec_note_font_size\endcsname{5.9pt}
 \expandafter\providecommand\csname HBtype_spec_note_font_leading\endcsname{6.7pt}
 
-% Spec table palette.
-\colorlet{SpecLeftBg}{black!14}
-\colorlet{SpecFrameColor}{black}
-
 % ---- spec section title (bullet + uppercase heading) ----
 \providecommand{\specsectiontitle}[1]{%
   \par\noindent
@@ -48,45 +44,13 @@
   \vspace*{\csname HBcomp_spec_section_after\endcsname}%
 }
 
-% ---- dedicated spec table frame ----
-% Style rule from spec design:
-% outer border >= 0.4pt (thicker than inner), inner grid >= 0.2pt, K5 background.
-\newtcolorbox{spectableframe}{
-  enhanced,
-  clip upper,
-  colback=white,
-  colframe=SpecFrameColor,
-  arc=\csname HBcomp_table_outer_arc\endcsname,
-  boxrule=\csname HBcomp_table_outer_rule\endcsname,
-  boxsep=0mm,
-  left=0mm,right=0mm,top=0mm,bottom=0mm,
-  overlay unbroken={
-    \begin{tcbclipinterior}
-      \fill[SpecLeftBg]
-        (interior.south west)
-        rectangle
-        ([xshift=\dimexpr\csname HBcomp_spec_table_left_ratio\endcsname\linewidth+\csname HBcomp_spec_table_tabcolsep\endcsname\relax]interior.north west);
-    \end{tcbclipinterior}
-  },
-}
-
-\providecommand{\HBspecXcolumn}[1]{m{#1}}
-
+% ---- spec table wrapper (reuses shared style from components_base.tex) ----
 \newenvironment{spectable}{%
-  \begin{spectableframe}
-  \begingroup
-  \parindent=0pt\relax
-  \arrayrulecolor{SpecFrameColor}
-  \let\tabularxcolumn\HBspecXcolumn
-  \setlength{\tabcolsep}{\csname HBcomp_spec_table_tabcolsep\endcsname}
-  \renewcommand{\arraystretch}{\csname HBcomp_spec_table_row_stretch\endcsname}
-  % Inner grid lines: same color as frame, at least 0.24pt for visible black.
-  % Keep 1/2 relation when outer rule is larger.
-  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
-  \ifdim\arrayrulewidth<0.24pt\arrayrulewidth=0.24pt\fi
+  \begin{HBSharedDataTable}
+    {\csname HBcomp_spec_table_left_ratio\endcsname}
+    {\csname HBcomp_spec_table_tabcolsep\endcsname}
 }{%
-  \endgroup
-  \end{spectableframe}
+  \end{HBSharedDataTable}
 }
 
 % ---- spec text styles ----

@@ -29,6 +29,12 @@ pages:
 
 - type: csv_page
   source: phase1
+  page: symbols
+  langs: [en, fr]
+  include_dir: generated/{sku}
+
+- type: csv_page
+  source: phase1
   page: spec
   langs: [en, fr]
   include_dir: generated/{sku}

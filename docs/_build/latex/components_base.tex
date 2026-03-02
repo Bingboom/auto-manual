@@ -4,6 +4,8 @@
 % Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
+\usepackage{colortbl}
+
 % ------------------------------
 % List base (enumitem)
 % ------------------------------
@@ -30,6 +32,62 @@
   arc=\csname HBcomp_table_outer_arc\endcsname,
   boxrule=\csname HBcomp_table_outer_rule\endcsname,
   left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+% ------------------------------
+% Shared spec-like table style
+% - Used by spec page and symbols page
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_spec_table_left_ratio\endcsname{0.33}
+\expandafter\providecommand\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
+\expandafter\providecommand\csname HBcomp_spec_table_row_stretch\endcsname{1.10}
+
+\colorlet{HBSharedTableLeftBg}{black!14}
+\colorlet{HBSharedTableFrameColor}{black}
+
+\providecommand{\HBsharedXcolumn}[1]{m{#1}}
+\providecommand{\HBsharedTableLeftRatio}{0.33}
+\providecommand{\HBsharedTableTabcolsep}{3.2pt}
+
+\providecommand{\HBSetSharedTableGeometry}[2]{%
+  \def\HBsharedTableLeftRatio{#1}%
+  \def\HBsharedTableTabcolsep{#2}%
+}
+
+\newtcolorbox{hbsharedtableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=HBSharedTableFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+  overlay unbroken={
+    \begin{tcbclipinterior}
+      \fill[HBSharedTableLeftBg]
+        (interior.south west)
+        rectangle
+        ([xshift=\dimexpr\HBsharedTableLeftRatio\linewidth+\HBsharedTableTabcolsep\relax]interior.north west);
+    \end{tcbclipinterior}
+  },
+}
+
+\newenvironment{HBSharedDataTable}[2]{%
+  \HBSetSharedTableGeometry{#1}{#2}%
+  \begin{hbsharedtableframe}
+  \begingroup
+  \parindent=0pt\relax
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \let\tabularxcolumn\HBsharedXcolumn
+  \setlength{\tabcolsep}{#2}
+  \renewcommand{\arraystretch}{\csname HBcomp_spec_table_row_stretch\endcsname}
+  % Inner lines follow the spec rule: same color as frame, thinner than outer box.
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.24pt\arrayrulewidth=0.24pt\fi
+}{%
+  \endgroup
+  \end{hbsharedtableframe}
 }
 
 % ------------------------------

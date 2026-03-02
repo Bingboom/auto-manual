@@ -213,6 +213,34 @@ class TestPhase1Renderers(unittest.TestCase):
                 vars_map={},
             )
 
+    def _symbols_template(self) -> str:
+        return renderers.PH_SYMBOLS_CONTENT_LATEX + "\n"
+
+    def _symbols_blocks(self) -> list[dict[str, str]]:
+        return [
+            {"block_type": "danger_title", "order": "100", "sku_scope": "ALL", "enabled": "1", "text_en": "DANGER"},
+            {"block_type": "danger_line", "order": "101", "sku_scope": "ALL", "enabled": "1", "text_en": "Indoor use only."},
+            {"block_type": "danger_note", "order": "102", "sku_scope": "ALL", "enabled": "1", "text_en": "! Keep dry."},
+            {"block_type": "maintenance_title", "order": "110", "sku_scope": "ALL", "enabled": "1", "text_en": "USER MAINTENANCE INSTRUCTIONS"},
+            {"block_type": "maintenance_paragraph", "order": "111", "sku_scope": "ALL", "enabled": "1", "text_en": "Degradation is expected over time."},
+            {"block_type": "symbols_title", "order": "120", "sku_scope": "ALL", "enabled": "1", "text_en": "MEANING OF SYMBOLS"},
+            {"block_type": "main_row", "order": "130", "sku_scope": "ALL", "enabled": "1", "text_en": "! WARNING || Severe hazard."},
+            {"block_type": "left_row", "order": "140", "sku_scope": "ALL", "enabled": "1", "text_en": "! || Risk symbol."},
+            {"block_type": "right_row", "order": "150", "sku_scope": "ALL", "enabled": "1", "text_en": "! || Do not dismantle."},
+        ]
+
+    def test_render_symbols_page_happy_path(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("! DANGER", out)
+        self.assertIn("MEANING OF SYMBOLS", out)
+        self.assertIn("Do not dismantle", out)
+
 
 if __name__ == "__main__":
     unittest.main()
