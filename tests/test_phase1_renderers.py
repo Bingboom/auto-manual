@@ -213,6 +213,134 @@ class TestPhase1Renderers(unittest.TestCase):
                 vars_map={},
             )
 
+    def _spec_master_blocks(self) -> list[dict[str, str]]:
+        return [
+            {
+                "项目代码": "HTE152-US",
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_key": "ac_input",
+                "Row_label_en": "1 x AC Input",
+                "Line_order": "1",
+                "Param_en": "Charge Mode",
+                "Value_en": "100V-120V~60Hz, 15A Max, 1750W Max",
+                "row_order": "2",
+                "page_title_en": "SPECIFICATIONS",
+                "section_title_en": "GENERAL INFO",
+                "sku_scope": "ALL",
+                "enabled": "1",
+            },
+            {
+                "项目代码": "HTE152-US",
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_key": "ac_input",
+                "Row_label_en": "1 x AC Input",
+                "Line_order": "2",
+                "Param_en": "Bypass Mode①",
+                "Value_en": "100V-120V~60Hz, 12A Max, 1440W",
+                "row_order": "2",
+                "page_title_en": "",
+                "section_title_en": "GENERAL INFO",
+                "sku_scope": "ALL",
+                "enabled": "1",
+            },
+            {
+                "项目代码": "HTE152-US",
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_key": "model_no",
+                "Row_label_en": "Model No.",
+                "Line_order": "1",
+                "Param_en": "",
+                "Value_en": "JHP-2000A",
+                "row_order": "1",
+                "page_title_en": "",
+                "section_title_en": "GENERAL INFO",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "custom_extra_column": "kept for forward compatibility",
+            },
+            {
+                "项目代码": "HTE152-US",
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "META",
+                "Section_order": "90",
+                "Row_key": "note_1",
+                "Row_label_en": "NOTE",
+                "Line_order": "1",
+                "Param_en": "",
+                "Value_en": "",
+                "row_kind": "note",
+                "note_text_en": "※ Demo note",
+                "sku_scope": "ALL",
+                "enabled": "1",
+            },
+            {
+                "项目代码": "HTE152-US",
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "META",
+                "Section_order": "91",
+                "Row_key": "fn_1",
+                "Row_label_en": "FOOTNOTE",
+                "Line_order": "1",
+                "Param_en": "",
+                "Value_en": "",
+                "row_kind": "footnote",
+                "footnote_mark": "①",
+                "footnote_text_en": "Demo footnote text",
+                "sku_scope": "ALL",
+                "enabled": "1",
+            },
+        ]
+
+    def test_render_spec_page_supports_spec_master_schema(self) -> None:
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=self._spec_master_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("SPECIFICATIONS", out)
+        self.assertIn("GENERAL INFO", out)
+        self.assertIn("Model No.", out)
+        self.assertIn("Charge Mode: 100V-120V\\textasciitilde{}60Hz, 15A Max, 1750W Max", out)
+        self.assertIn("※ Demo note", out)
+        self.assertIn("①Demo footnote text", out)
+
+        model_pos = out.find("Model No.")
+        ac_pos = out.find("1 x AC Input")
+        self.assertGreater(model_pos, -1)
+        self.assertGreater(ac_pos, -1)
+        self.assertLess(model_pos, ac_pos)
+
+    def test_render_spec_page_rejects_unquoted_comma_overflow(self) -> None:
+        blocks = self._spec_master_blocks()
+        blocks[0][None] = [" 15A Max", " 1750W Max"]
+
+        with self.assertRaisesRegex(ValueError, "unquoted commas|Quote the full cell value"):
+            renderers.render_spec_page(
+                template=self._spec_template(),
+                blocks=blocks,
+                sku_id="JB1000",
+                lang="en",
+                vars_map={},
+            )
+
     def _symbols_template(self) -> str:
         return renderers.PH_SYMBOLS_CONTENT_LATEX + "\n"
 

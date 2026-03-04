@@ -195,6 +195,14 @@ class Phase1Builder:
     def __init__(self, paths: BuildPaths):
         self.paths = paths
 
+    @staticmethod
+    def _looks_like_spec_master_rows(rows: list[dict[str, str]]) -> bool:
+        if not rows:
+            return False
+        headers = set(rows[0].keys())
+        required = {"Section", "Row_key", "Line_order"}
+        return "block_type" not in headers and required.issubset(headers)
+
     def _load_pages(self) -> list[PageSpec]:
         rows = _read_csv(self.paths.page_registry)
         pages: list[PageSpec] = []
@@ -240,6 +248,20 @@ class Phase1Builder:
         return self.paths.template_dir / candidate
 
     def _load_page_blocks(self, page_id: str, default_blocks: list[dict[str, str]]) -> list[dict[str, str]]:
+        if page_id == "spec":
+            # Main source: Draft-tool master (single source of truth for spec table rows).
+            # Fallback keeps backward compatibility for existing phase1-only repos.
+            sources = [
+                self.paths.root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv",
+                self.paths.root / "data" / "phase1" / "Spec_Master.csv",
+            ]
+            for spec_master_csv in sources:
+                if not spec_master_csv.exists():
+                    continue
+                rows = _read_csv(spec_master_csv)
+                if rows and self._looks_like_spec_master_rows(rows):
+                    return rows
+
         per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"
         if not per_page_csv.exists():
             return [b for b in default_blocks if (b.get("page_id") or "").strip() == page_id]
