@@ -81,6 +81,37 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             rows = builder._load_page_blocks("spec", default_blocks=[])
             self.assertEqual("draft_row", rows[0]["Row_key"])
 
+    def test_load_spec_merges_draft_tool_footnotes_csv(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            draft_csv = root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv"
+            draft_fn_csv = root / "tools" / "Draft-tool" / "data" / "Spec_Footnotes.csv"
+            draft_csv.parent.mkdir(parents=True, exist_ok=True)
+
+            draft_csv.write_text(
+                "Section,Row_key,Line_order,Value_en\n"
+                "GENERAL INFO,draft_row,1,draft\n",
+                encoding="utf-8",
+            )
+            draft_fn_csv.write_text(
+                "Page,row_kind,footnote_mark,footnote_text_en\n"
+                "specifications,footnote,①,Demo footnote from dedicated csv\n",
+                encoding="utf-8",
+            )
+
+            paths = BuildPaths(
+                root=root,
+                page_registry=root / "dummy_registry.csv",
+                content_blocks=root / "dummy_content.csv",
+                product_variables=root / "dummy_vars.csv",
+                template_dir=root / "docs" / "templates",
+                output_dir=root / "docs" / "generated",
+            )
+            builder = Phase1Builder(paths)
+            rows = builder._load_page_blocks("spec", default_blocks=[])
+            marks = [row.get("footnote_mark", "") for row in rows]
+            self.assertIn("①", marks)
+
 
 if __name__ == "__main__":
     unittest.main()

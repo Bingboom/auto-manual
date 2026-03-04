@@ -72,7 +72,22 @@
 
 
 
+.. raw:: latex
 
+   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
+   {\noindent
+   \HBTypeSpecNote{\HBSpecMarkerAsterisk{} USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
+   }
+
+
+
+.. raw:: latex
+
+   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
+   {\noindent
+   \HBTypeSpecNote{\HBSpecMarkerOne{}The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.}\par
+   \HBTypeSpecNote{\HBSpecMarkerTwo{}Indicates that two or more AC output ports work together.}\par
+   }
 
 
 

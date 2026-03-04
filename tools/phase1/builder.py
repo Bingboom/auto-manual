@@ -203,6 +203,16 @@ class Phase1Builder:
         required = {"Section", "Row_key", "Line_order"}
         return "block_type" not in headers and required.issubset(headers)
 
+    @staticmethod
+    def _load_first_existing_csv(candidates: list[Path]) -> list[dict[str, str]]:
+        for candidate in candidates:
+            if not candidate.exists():
+                continue
+            rows = _read_csv(candidate)
+            if rows:
+                return rows
+        return []
+
     def _load_pages(self) -> list[PageSpec]:
         rows = _read_csv(self.paths.page_registry)
         pages: list[PageSpec] = []
@@ -255,11 +265,18 @@ class Phase1Builder:
                 self.paths.root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv",
                 self.paths.root / "data" / "phase1" / "Spec_Master.csv",
             ]
+            aux_footnote_sources = [
+                self.paths.root / "tools" / "Draft-tool" / "data" / "Spec_Footnotes.csv",
+                self.paths.root / "data" / "phase1" / "Spec_Footnotes.csv",
+            ]
             for spec_master_csv in sources:
                 if not spec_master_csv.exists():
                     continue
                 rows = _read_csv(spec_master_csv)
                 if rows and self._looks_like_spec_master_rows(rows):
+                    aux_rows = self._load_first_existing_csv(aux_footnote_sources)
+                    if aux_rows:
+                        rows.extend(aux_rows)
                     return rows
 
         per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"

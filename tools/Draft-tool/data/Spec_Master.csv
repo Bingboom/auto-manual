@@ -1,30 +1,23 @@
-项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,2048 Wh (40Ah/51.2V DC)
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO₄
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 40.56 lbs / 18.4 kg
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,dimensions,Dimensions,1,,14.4 × 10.0 × 10.8 in / 36.5 × 25.5 × 27.5 cm
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity
-
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V–120V~60Hz, 15A Max, 1750W Max"
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode¹,"100V–120V~60Hz, 12A Max, 1440W"
-
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc8020,2 × DC8020 Ports,1,16V–60V⎓,"12A Max, Double to 21A / 800W Max"
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc8020,2 × DC8020 Ports,2,11V–16V⎓,8A Max
-
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc_expansion,1 × DC Expansion Port,1,,36.8V–57.6V⎓ 75A Max
-
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,4 × AC Output,1,,"120V~60Hz, 20A Max, 2400W Rated, 4800W Surge Peak"
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_total,AC Total Output,1,,"2400W Rated, 4800W Surge peak"
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_bypass,AC Output in Bypass Mode¹,1,,"100V–120V~60Hz, 12A Max, 1440W Max"
-
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A Output,1,,"18W Max, 5V⎓3A, 6V⎓2A, 9V⎓2A, 9-12V⎓1.5A"
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C Output,1,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A"
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C Output,2,,"140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A"
-
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12,1 × DC 12V Port,1,,12V⎓10A Max
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,dc_expansion_out,1 × DC Expansion Port,1,,36.8V–57.6V⎓ 75A Max
-
-HTE152-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charge_temp,Charge Temperature,1,,−4°F to 113°F / −20°C to 45°C
-HTE152-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharge_temp,Discharge Temperature,1,,−4°F to 113°F / −20°C to 45°C
+项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Row_label_fr,Param_fr,Value_fr,page_title_fr,section_title_fr
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,Nom du produit,,Jackery HomePower 2000 Plus v2,SPÉCIFICATIONS,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,N° modèle,,JHP-2000A,,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,2048 Wh (40Ah/51.2V DC),Capacité,,"2048 Wh (40 Ah/51,2 V DC)",,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO₄,Cellule Chimique,,LiFePO₄,,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 40.56 lbs / 18.4 kg,Poids,,"Environ 40,56 lbs / 18,4 kg",,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,dimensions,Dimensions,1,,14.4 × 10.0 × 10.8 in / 36.5 × 25.5 × 27.5 cm,Dimensions,,"14,4 × 10,0 × 10,8 in / 36,5 × 25,5 × 27,5 cm",,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,Durée de vie,,Capacité de 6000 cycles à 70 % ou plus,,INFORMATIONS GÉNÉRALES
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V–120V~60Hz, 15A Max, 1750W Max",1 × Entrée CA,Mode charge,"100-120 V~60 Hz, 15 A max., 1750 W max.",,PORTS D’ENTRÉE
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode¹,"100V–120V~60Hz, 12A Max, 1440W",1 × Entrée CA,Mode dérivation¹,"100-120 V~60 Hz, 12 A max., 1440 W",,PORTS D’ENTRÉE
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc8020,2 × DC8020 Ports,1,16V–60V⎓,"12A Max, Double to 21A / 800W Max",2 × Ports DC8020,16 V–60 V⎓,"12 A max., double à 21 A/800 W max.",,PORTS D’ENTRÉE
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc8020,2 × DC8020 Ports,2,11V–16V⎓,8A Max,2 × Ports DC8020,11 V–16 V⎓,8 A max.,,PORTS D’ENTRÉE
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc_expansion,1 × DC Expansion Port,1,,36.8V–57.6V⎓ 75A Max,1 × Port d’extension CC,,"36,8 V–57,6 V⎓ 75 A max.",,PORTS D’ENTRÉE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,4 × AC Output,1,,"120V~60Hz, 20A Max, 2400W Rated, 4800W Surge Peak",4 × Sortie CA,,"120V~ 60Hz, 20A Max, 2400W Rated, 4800W Surge Peak",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_total,AC Total Output,1,,"2400W Rated, 4800W Surge peak",Sortie totale CA,,"2400W Rated, 4800W Surge peak",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_bypass,AC Output in Bypass Mode¹,1,,"100V–120V~60Hz, 12A Max, 1440W Max",Sortie CA en mode dérivation¹,,"100V-120V~60Hz, 12A Max, 1440W Max",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A Output,1,,"18W Max, 5V⎓3A, 6V⎓2A, 9V⎓2A, 9-12V⎓1.5A",1 × Sortie USB-A,,"18 W max., 5V⎓3 A, 6V⎓2 A, 9V⎓2 A, 9-12V⎓1,5 A",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C Output,1,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",2 × Sortie USB-C,,"30W max., 5V⎓3 A, 9V⎓3 A, 12V⎓2.5 A, 15V⎓2 A, 20V⎓1.5 A",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C Output,2,,"140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A",2 × Sortie USB-C,,"140 W max., 5V⎓3 A, 9V⎓3 A, 12V⎓3 A, 15V⎓3 A, 20V⎓5 A, 28V⎓5 A",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12,1 × DC 12V Port,1,,12V⎓10A Max,1 × Port CC 12V,,12V⎓10A Max,,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,dc_expansion_out,1 × DC Expansion Port,1,,36.8V–57.6V⎓ 75A Max,1 × Port d’extension CC,,"36,8 V–57,6 V⎓ 75 A max.",,PORTS DE SORTIE
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charge_temp,Charge Temperature,1,,−4°F to 113°F / −20°C to 45°C,Température de charge,,- 4 °F à 113 °F / - 20 °C à 45 °C,,TEMPÉRATURE DE FONCTIONNEMENT
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharge_temp,Discharge Temperature,1,,−4°F to 113°F / −20°C to 45°C,Température de décharge,,- 4 °F à 113 °F / - 20 °C à 45 °C,,TEMPÉRATURE DE FONCTIONNEMENT
