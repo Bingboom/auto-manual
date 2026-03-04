@@ -1,12 +1,16 @@
 doc_type: manual_bundle
 
 build:
-  languages: [en, fr]
+  languages: [en]
   default_sku: JB1000
   main_tex: manual_demo.tex
   output_pdf: manual_demo.pdf
   xelatex_runs: 3
   open_pdf: true
+  build_word: true
+  word_output: manual_demo_en.docx
+  word_source: html
+  open_word: false
   build_html: false
   open_html: false
 
@@ -24,23 +28,63 @@ pages:
 - type: csv_page
   source: phase1
   page: safety
-  langs: [en, fr]
-  include_dir: generated/{sku}
-
-- type: csv_page
-  source: phase1
-  page: symbols
-  langs: [en, fr]
+  langs: [en]
   include_dir: generated/{sku}
 
 - type: csv_page
   source: phase1
   page: spec
-  langs: [en, fr]
+  langs: [en]
   include_dir: generated/{sku}
 
-- type: pdf_insert
-  langs: [en, fr]
-  file_map:
-    en: product_overview-en.pdf
-    fr: product_overview-fr.pdf
+- type: rst_include
+  lang: en
+  file: templates/00_preface.rst
+
+- type: rst_include
+  lang: en
+  file: templates/01_meaning_of_symbols.rst
+
+- type: rst_include
+  lang: en
+  file: templates/02_whats_in_the_box.rst
+
+- type: rst_include
+  lang: en
+  file: templates/03_product_overview_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/04_lcd_display_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/05_operation_guide_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/06_ups_mode.rst
+
+- type: rst_include
+  lang: en
+  file: templates/07_expansion_battery_pack.rst
+
+- type: rst_include
+  lang: en
+  file: templates/08_charging_methods.rst
+
+- type: rst_include
+  lang: en
+  file: templates/09_storage_and_maintenance.rst
+
+- type: rst_include
+  lang: en
+  file: templates/10_troubleshooting.rst
+
+- type: rst_include
+  lang: en
+  file: templates/11_warranty.rst
+
+- type: rst_include
+  lang: en
+  file: templates/12_app_setup_placeholder.rst

@@ -97,3 +97,75 @@
    .. raw:: html
 
       <div class="hb-h1-pill">SPECIFICATIONS</div>
+
+   .. rubric:: ● GENERAL INFO
+   
+   .. list-table::
+      :widths: 33 67
+      :header-rows: 0
+   
+      * - Product Name
+        - Jackery HomePower 2000 Plus v2
+      * - Model No.
+        - JHP-2000A
+      * - Capacity
+        - 2048 Wh (40Ah/51.2V DC)
+      * - Cell Chemistry
+        - LiFePO₄
+      * - Weight
+        - About 40.56 lbs / 18.4 kg
+      * - Dimensions
+        - 14.4 × 10.0 × 10.8 in / 36.5 × 25.5 × 27.5 cm
+      * - Cycle Life
+        - 6000 cycles to 70%+ capacity
+   
+   .. rubric:: ● INPUT PORTS
+   
+   .. list-table::
+      :widths: 33 67
+      :header-rows: 0
+   
+      * - 1 × AC Input
+        - Charge Mode: 100V–120V~60Hz, 15A Max, 1750W Max / Bypass Mode¹: 100V–120V~60Hz, 12A Max, 1440W
+      * - 2 × DC8020 Ports
+        - 16V–60V⎓: 12A Max, Double to 21A / 800W Max / 11V–16V⎓: 8A Max
+      * - 1 × DC Expansion Port
+        - 36.8V–57.6V⎓ 75A Max
+   
+   .. rubric:: ● OUTPUT PORTS
+   
+   .. list-table::
+      :widths: 33 67
+      :header-rows: 0
+   
+      * - 4 × AC Output
+        - 120V~60Hz, 20A Max, 2400W Rated, 4800W Surge Peak
+      * - AC Total Output
+        - 2400W Rated, 4800W Surge peak
+      * - AC Output in Bypass Mode¹
+        - 100V–120V~60Hz, 12A Max, 1440W Max
+      * - 1 × USB-A Output
+        - 18W Max, 5V⎓3A, 6V⎓2A, 9V⎓2A, 9-12V⎓1.5A
+      * - 2 × USB-C Output
+        - 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A / 140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A
+      * - 1 × DC 12V Port
+        - 12V⎓10A Max
+      * - 1 × DC Expansion Port
+        - 36.8V–57.6V⎓ 75A Max
+   
+   .. rubric:: ● ENVIRONMENTAL OPERATING TEMPERATURE
+   
+   .. list-table::
+      :widths: 33 67
+      :header-rows: 0
+   
+      * - Charge Temperature
+        - −4°F to 113°F / −20°C to 45°C
+      * - Discharge Temperature
+        - −4°F to 113°F / −20°C to 45°C
+
+   ※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.
+
+   ①The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.
+   
+   ②Indicates that two or more AC output ports work together.

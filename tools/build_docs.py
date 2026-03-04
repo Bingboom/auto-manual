@@ -162,9 +162,20 @@ def resolve_build_sku(cfg: dict, arg_sku: str | None) -> str | None:
     return picked
 
 
-def sphinx_build_html() -> None:
+def sphinx_build_html(minimal_theme: bool = False) -> None:
     print("[build] Sphinx -> HTML")
-    run(["sphinx-build", "-b", "html", ".", "_build/html"], cwd=paths.docs_dir)
+    cmd = ["sphinx-build", "-b", "html", ".", "_build/html"]
+    if minimal_theme:
+        # Built-in theme path for HTML->DOCX conversion, avoids optional third-party theme dependency.
+        cmd += [
+            "-D",
+            "html_theme=alabaster",
+            "-D",
+            "html_css_files=[]",
+            "-D",
+            "html_js_files=[]",
+        ]
+    run(cmd, cwd=paths.docs_dir)
 
 
 def sphinx_build_latex() -> None:
@@ -175,6 +186,68 @@ def sphinx_build_latex() -> None:
 def patch_fonts(patch_fonts_script: str, main_tex: str) -> None:
     print("[build] Patch fonts (inject fonts.tex)")
     run([sys.executable, patch_fonts_script, "--tex", main_tex], cwd=paths.root)
+
+
+def export_word_from_latex(main_tex: str, word_output: str) -> Path:
+    pandoc = shutil.which("pandoc")
+    if not pandoc:
+        raise RuntimeError("pandoc is required for Word export. Please install pandoc first.")
+
+    tex_path = paths.main_tex(main_tex)
+    if not tex_path.exists():
+        raise RuntimeError(f"LaTeX source not found for Word export: {tex_path}")
+
+    out_path = Path(word_output)
+    if not out_path.is_absolute():
+        out_path = paths.docs_build_dir / "word" / out_path
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    print("[build] Convert LaTeX -> DOCX")
+    run(
+        [
+            pandoc,
+            str(tex_path),
+            "--from=latex",
+            "--to=docx",
+            "--resource-path",
+            str(paths.latex_build_dir),
+            "-o",
+            str(out_path),
+        ],
+        cwd=paths.root,
+    )
+    return out_path
+
+
+def export_word_from_html(word_output: str) -> Path:
+    pandoc = shutil.which("pandoc")
+    if not pandoc:
+        raise RuntimeError("pandoc is required for Word export. Please install pandoc first.")
+
+    html_index = paths.docs_dir / "_build" / "html" / "index.html"
+    if not html_index.exists():
+        raise RuntimeError(f"HTML source not found for Word export: {html_index}")
+
+    out_path = Path(word_output)
+    if not out_path.is_absolute():
+        out_path = paths.docs_build_dir / "word" / out_path
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    print("[build] Convert HTML -> DOCX")
+    run(
+        [
+            pandoc,
+            str(html_index),
+            "--from=html",
+            "--to=docx",
+            "--resource-path",
+            str(html_index.parent),
+            "-o",
+            str(out_path),
+        ],
+        cwd=paths.root,
+    )
+    return out_path
 
 
 def main() -> None:
@@ -207,6 +280,10 @@ def main() -> None:
     output_pdf = build_cfg.get("output_pdf", "manual_demo.pdf")
     xelatex_runs = int(build_cfg.get("xelatex_runs", 3))
     open_after = bool(build_cfg.get("open_pdf", True)) and (not args.no_open)
+    build_word = bool(build_cfg.get("build_word", False))
+    word_output = str(build_cfg.get("word_output", "manual_demo.docx"))
+    word_source = str(build_cfg.get("word_source", "latex")).strip().lower()
+    open_word = bool(build_cfg.get("open_word", False)) and (not args.no_open)
 
     patch_fonts_script = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
 
@@ -232,6 +309,9 @@ def main() -> None:
     if build_html:
         sphinx_build_html()
 
+    if build_word and word_source == "html" and not build_html:
+        sphinx_build_html(minimal_theme=True)
+
     sphinx_build_latex()
     patch_fonts(patch_fonts_script, main_tex)
     compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
@@ -243,6 +323,17 @@ def main() -> None:
     print(f"[build] Done. PDF: {pdf_path}")
     if open_after:
         open_file(pdf_path)
+
+    if build_word:
+        if word_source == "html":
+            docx_path = export_word_from_html(word_output)
+        elif word_source == "latex":
+            docx_path = export_word_from_latex(main_tex, word_output)
+        else:
+            raise RuntimeError("build.word_source must be either 'latex' or 'html'")
+        print(f"[build] Done. DOCX: {docx_path}")
+        if open_word:
+            open_file(docx_path)
 
     if build_html and open_html:
         index_html = paths.docs_dir / "_build" / "html" / "index.html"

@@ -79,7 +79,7 @@ def load_yaml(path: Path) -> dict:
     return data
 
 
-SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "pdf_insert"}
+SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "pdf_insert", "rst_include"}
 
 
 def validate(cfg: dict, strict_files: bool) -> list[Issue]:
@@ -149,6 +149,15 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                             issues.append(Issue("WARN", f"pages[{idx}] pdf_insert '{lang}' is tokenized, skip strict check"))
                         elif not as_path(fname).exists():
                             issues.append(Issue("ERROR", f"pdf_insert file not found: {fname}"))
+
+        elif ptype == "rst_include":
+            file_name = p.get("file")
+            if not isinstance(file_name, str) or not file_name.strip():
+                issues.append(Issue("ERROR", f"pages[{idx}] rst_include requires non-empty file"))
+                continue
+            lang = p.get("lang")
+            if lang is not None and not isinstance(lang, str):
+                issues.append(Issue("ERROR", f"pages[{idx}] rst_include.lang must be string"))
 
     return issues
 

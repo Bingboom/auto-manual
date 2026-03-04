@@ -93,6 +93,10 @@ def _config_uses_sku_token(cfg: dict) -> bool:
                 for v in file_map.values():
                     if isinstance(v, str) and "{sku}" in v:
                         return True
+        elif ptype == "rst_include":
+            file_name = page.get("file")
+            if isinstance(file_name, str) and "{sku}" in file_name:
+                return True
     return False
 
 
@@ -196,6 +200,15 @@ def build_index_from_pages(cfg: dict, sku: str | None = None) -> str:
                 out += latex_apply_lang(lang)
                 include_path = _csv_include_path(page, page_name, lang, sku)
                 out += [f".. include:: {include_path}", ""]
+
+        elif ptype == "rst_include":
+            file_name = page.get("file")
+            if not isinstance(file_name, str) or not file_name.strip():
+                raise RuntimeError("rst_include requires non-empty 'file'")
+            lang = page.get("lang")
+            if isinstance(lang, str) and lang.strip():
+                out += latex_apply_lang(lang.strip())
+            out += [f".. include:: {_format_tokenized(file_name.strip(), sku)}", ""]
 
         else:
             raise RuntimeError(f"Unsupported page type: {ptype}")

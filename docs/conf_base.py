@@ -28,6 +28,11 @@ html_title = "User Manual"
 # 方案 A：直接把 renderers/latex/assets 作为 html_extra_path 暴露（最省事）
 html_extra_path = ["renderers/latex/assets"]
 
+# Shared substitutions for template rst pages.
+rst_epilog = r"""
+.. |PRODUCT_NAME| replace:: Jackery HomePower 2000 Plus v2
+"""
+
 
 # 渲染器主题文件（放在 docs/renderers/latex/ 下）
 latex_additional_files = [

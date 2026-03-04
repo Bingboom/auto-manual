@@ -13,39 +13,85 @@
 
 .. raw:: latex
 
-   \HBApplyLang{fr}
-
-.. include:: generated/JB1000/safety_fr.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: generated/JB1000/symbols_en.rst
-
-.. raw:: latex
-
-   \HBApplyLang{fr}
-
-.. include:: generated/JB1000/symbols_fr.rst
-
-.. raw:: latex
-
    \HBApplyLang{en}
 
 .. include:: generated/JB1000/spec_en.rst
 
 .. raw:: latex
 
-   \HBApplyLang{fr}
+   \HBApplyLang{en}
 
-.. include:: generated/JB1000/spec_fr.rst
-
-.. raw:: latex
-
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-en.pdf}
+.. include:: templates/00_preface.rst
 
 .. raw:: latex
 
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-fr.pdf}
+   \HBApplyLang{en}
+
+.. include:: templates/01_meaning_of_symbols.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/02_whats_in_the_box.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/03_product_overview_placeholder.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/04_lcd_display_placeholder.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/05_operation_guide_placeholder.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/06_ups_mode.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/07_expansion_battery_pack.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/08_charging_methods.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/09_storage_and_maintenance.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/10_troubleshooting.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/11_warranty.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: templates/12_app_setup_placeholder.rst
 
