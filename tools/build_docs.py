@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import open_file, run  # noqa: E402
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
+from tools.word_bundle import export_word_from_bundle  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
@@ -329,8 +330,10 @@ def main() -> None:
             docx_path = export_word_from_html(word_output)
         elif word_source == "latex":
             docx_path = export_word_from_latex(main_tex, word_output)
+        elif word_source == "bundle":
+            docx_path = export_word_from_bundle(cfg, target_sku, word_output)
         else:
-            raise RuntimeError("build.word_source must be either 'latex' or 'html'")
+            raise RuntimeError("build.word_source must be one of 'latex', 'html', or 'bundle'")
         print(f"[build] Done. DOCX: {docx_path}")
         if open_word:
             open_file(docx_path)

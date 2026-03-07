@@ -76,7 +76,7 @@
 
    \vspace*{\csname HBcomp_spec_notes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{\HBSpecMarkerAsterisk{} USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
+   \HBTypeSpecNote{※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
    }
 
 

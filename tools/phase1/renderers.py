@@ -163,13 +163,12 @@ def _scope_allows(scope: str, sku_id: str) -> bool:
     return sku_id in allowed
 
 
-def render_safety_page(
-    template: str,
+def collect_safety_content(
     blocks: list[dict[str, str]],
     sku_id: str,
     lang: str,
     vars_map: dict[str, str],
-) -> str:
+) -> dict[str, object]:
     lang_col = f"text_{lang}"
     if not blocks:
         raise ValueError(f"safety page has no blocks for sku={sku_id} lang={lang}")
@@ -211,8 +210,8 @@ def render_safety_page(
                 return r["text"]
         raise ValueError(f"Missing required block_type='{block_type}' sku={sku_id} lang={lang}")
 
-    def list_rows(part: str) -> list[dict[str, str]]:
-        out: list[dict[str, str]] = []
+    def list_items(part: str) -> list[str]:
+        out: list[str] = []
         for r in sorted(use, key=sort_key):
             if r["block_type"] != "list_item":
                 continue
@@ -225,29 +224,56 @@ def render_safety_page(
                     f"Invalid meta_json for block_id='{block_id}' line {line}: {exc}"
                 ) from exc
             if (meta.get("list_part") or "").strip().lower() == part:
-                out.append(r)
+                out.append(r["text"])
         if not out:
             raise ValueError(f"No list items for list_part='{part}' sku={sku_id} lang={lang}")
         return out
 
-    title_main_line = rf"\section{{{latex_arg_escape(pick('title_main'))}}}"
-    warning_line = rf"\safetywarning{{{latex_arg_escape(pick('warning_title'))}}}"
-    title_oper_line = rf"\safetysubbar{{{latex_arg_escape(pick('title_operating'))}}}"
+    return {
+        "title_main": pick("title_main"),
+        "warning_title": pick("warning_title"),
+        "title_operating": pick("title_operating"),
+        "lead_top": pick("lead_top"),
+        "save_title": pick("save_title"),
+        "top_items": list_items("top"),
+        "bottom_items": list_items("bottom"),
+    }
 
-    lead_latex = render_latex_cmd("safetylead", pick("lead_top"))
-    save_latex = render_latex_cmd("safetylead", pick("save_title"))
 
-    top_rst = build_list_block(list_rows("top"))
-    bottom_rst = build_list_block(list_rows("bottom"))
+def render_safety_page(
+    template: str,
+    blocks: list[dict[str, str]],
+    sku_id: str,
+    lang: str,
+    vars_map: dict[str, str],
+) -> str:
+    data = collect_safety_content(blocks, sku_id, lang, vars_map)
+    title_main = str(data["title_main"])
+    warning_title = str(data["warning_title"])
+    title_operating = str(data["title_operating"])
+    lead_top = str(data["lead_top"])
+    save_title = str(data["save_title"])
+    top_rows = [{"text": str(item)} for item in data["top_items"]]
+    bottom_rows = [{"text": str(item)} for item in data["bottom_items"]]
 
-    title_main_html = html_escape(pick("title_main"))
-    warning_html = html_escape(pick("warning_title"))
-    title_oper_html = html_escape(pick("title_operating"))
+    title_main_line = rf"\section{{{latex_arg_escape(title_main)}}}"
+    warning_line = rf"\safetywarning{{{latex_arg_escape(warning_title)}}}"
+    title_oper_line = rf"\safetysubbar{{{latex_arg_escape(title_operating)}}}"
 
-    lead_html = render_lead_html(pick("lead_top"))
-    save_html = render_lead_html(pick("save_title"))
-    top_html = render_list_html(list_rows("top"))
-    bottom_html = render_list_html(list_rows("bottom"))
+    lead_latex = render_latex_cmd("safetylead", lead_top)
+    save_latex = render_latex_cmd("safetylead", save_title)
+
+    top_rst = build_list_block(top_rows)
+    bottom_rst = build_list_block(bottom_rows)
+
+    title_main_html = html_escape(title_main)
+    warning_html = html_escape(warning_title)
+    title_oper_html = html_escape(title_operating)
+
+    lead_html = render_lead_html(lead_top)
+    save_html = render_lead_html(save_title)
+    top_html = render_list_html(top_rows)
+    bottom_html = render_list_html(bottom_rows)
 
     return (
         template.replace(PH_TITLE_MAIN, title_main_line)
@@ -265,7 +291,6 @@ def render_safety_page(
         .replace(PH_TOP_HTML, top_html)
         .replace(PH_BOTTOM_HTML, bottom_html)
     )
-
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
     raw = rst_escape(text)
@@ -294,9 +319,9 @@ def _split_spec_lines(text: str) -> list[str]:
 def _spec_latex_escape(text: str) -> str:
     # Keep special glyphs renderable on environments where brand fonts miss unicode glyphs.
     special = {
-        "①": r"\HBSpecMarkerOne{}",
-        "②": r"\HBSpecMarkerTwo{}",
-        "※": r"\HBSpecMarkerAsterisk{}",
+        "\u2460": r"\HBSpecMarkerOne{}",
+        "\u2461": r"\HBSpecMarkerTwo{}",
+        "*": r"\HBSpecMarkerAsterisk{}",
     }
     base = {
         "\\": r"\textbackslash{}",
@@ -373,7 +398,7 @@ def _render_spec_sections_html(
     for sec in sections:
         title = rst_escape(str(sec.get("title") or ""))
         rows = sec.get("rows") or []
-        lines.append(f".. rubric:: ● {title}")
+        lines.append(f".. rubric:: \u25cf {title}")
         lines.append("")
         lines.append(".. list-table::")
         lines.append("   :widths: 33 67")
@@ -487,7 +512,7 @@ def _parse_spec_master_sections(
 
     var_project_code = _first_non_empty(
         vars_map,
-        ["project_code", "product_code", "项目代码", "product_id"],
+        ["project_code", "product_code", "\u9879\u76ee\u4ee3\u7801", "product_id"],
     )
     var_region = _first_non_empty(vars_map, ["region", "Region"])
 
@@ -513,7 +538,7 @@ def _parse_spec_master_sections(
             if row_sku and row_sku != sku_id:
                 continue
 
-        row_project = _first_non_empty(row, ["project_code", "项目代码"])
+        row_project = _first_non_empty(row, ["project_code", "\u9879\u76ee\u4ee3\u7801"])
         if var_project_code and row_project and row_project != var_project_code:
             continue
         row_region = _first_non_empty(row, ["Region", "region"])
@@ -689,18 +714,17 @@ def _parse_spec_master_sections(
     title_main = (
         sorted(title_candidates, key=lambda t: t[0])[0][1]
         if title_candidates
-        else ("SPÉCIFICATIONS" if lang == "fr" else "SPECIFICATIONS")
+        else ("SP\u00c9CIFICATIONS" if lang == "fr" else "SPECIFICATIONS")
     )
     return title_main, sections, notes_text, footnotes_text
 
 
-def render_spec_page(
-    template: str,
+def collect_spec_content(
     blocks: list[dict[str, str]],
     sku_id: str,
     lang: str,
     vars_map: dict[str, str],
-) -> str:
+) -> dict[str, object]:
     if not blocks:
         raise ValueError(f"spec page has no blocks for sku={sku_id} lang={lang}")
 
@@ -711,27 +735,12 @@ def render_spec_page(
             lang=lang,
             vars_map=vars_map,
         )
-        title_main_latex = rf"\section{{{latex_arg_escape(title_main)}}}"
-        sections_latex = _render_spec_sections_latex(sections)
-        notes_latex = _render_text_blocks_latex(
-            notes, before_vspace_tex=r"\csname HBcomp_spec_notes_before\endcsname"
-        )
-        footnotes_latex = _render_text_blocks_latex(
-            footnotes, before_vspace_tex=r"\csname HBcomp_spec_footnotes_before\endcsname"
-        )
-        sections_html = _render_spec_sections_html(sections)
-        notes_html = _render_text_blocks_html(notes)
-        footnotes_html = _render_text_blocks_html(footnotes)
-        return (
-            template.replace(PH_SPEC_TITLE_MAIN, title_main_latex)
-            .replace(PH_SPEC_TITLE_MAIN_HTML, html_escape(title_main))
-            .replace(PH_SPEC_SECTIONS_LATEX, sections_latex)
-            .replace(PH_SPEC_NOTES_LATEX, notes_latex)
-            .replace(PH_SPEC_FOOTNOTES_LATEX, footnotes_latex)
-            .replace(PH_SPEC_SECTIONS_HTML, _indent_block(sections_html, spaces=3))
-            .replace(PH_SPEC_NOTES_HTML, _indent_block(notes_html, spaces=3))
-            .replace(PH_SPEC_FOOTNOTES_HTML, _indent_block(footnotes_html, spaces=3))
-        )
+        return {
+            "title_main": title_main,
+            "sections": sections,
+            "notes": notes,
+            "footnotes": footnotes,
+        }
 
     lang_col = f"text_{lang}"
     if lang_col not in blocks[0]:
@@ -807,7 +816,27 @@ def render_spec_page(
     if not sections:
         raise ValueError(f"spec page has no section_title blocks sku={sku_id} lang={lang}")
 
-    title_main = pick("title_main")
+    return {
+        "title_main": pick("title_main"),
+        "sections": sections,
+        "notes": notes,
+        "footnotes": footnotes,
+    }
+
+
+def render_spec_page(
+    template: str,
+    blocks: list[dict[str, str]],
+    sku_id: str,
+    lang: str,
+    vars_map: dict[str, str],
+) -> str:
+    data = collect_spec_content(blocks, sku_id, lang, vars_map)
+    title_main = str(data["title_main"])
+    sections = data["sections"]
+    notes = data["notes"]
+    footnotes = data["footnotes"]
+
     title_main_latex = rf"\section{{{latex_arg_escape(title_main)}}}"
     sections_latex = _render_spec_sections_latex(sections)
     notes_latex = _render_text_blocks_latex(
@@ -831,7 +860,6 @@ def render_spec_page(
         .replace(PH_SPEC_NOTES_HTML, _indent_block(notes_html, spaces=3))
         .replace(PH_SPEC_FOOTNOTES_HTML, _indent_block(footnotes_html, spaces=3))
     )
-
 
 def _split_symbols_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
     raw = rst_escape(text)

@@ -9,7 +9,9 @@ build:
   open_pdf: true
   build_word: true
   word_output: manual_demo_en.docx
-  word_source: html
+  word_source: bundle
+  word_reference_doc: C:/Users/Administrator/Downloads/EN-HomePower*HP2000 Plus.docx
+  word_title: EN-HomePower 2000 Plus User Manual V0.5
   open_word: false
   build_html: false
   open_html: false
