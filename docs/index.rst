@@ -15,18 +15,6 @@
 
    \HBApplyLang{en}
 
-.. include:: generated/JB1000/spec_en.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/00_preface.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
 .. include:: templates/01_meaning_of_symbols.rst
 
 .. raw:: latex
@@ -82,6 +70,12 @@
    \HBApplyLang{en}
 
 .. include:: templates/10_troubleshooting.rst
+
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. include:: generated/JB1000/spec_en.rst
 
 .. raw:: latex
 

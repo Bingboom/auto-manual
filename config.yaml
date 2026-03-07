@@ -10,7 +10,7 @@ build:
   build_word: true
   word_output: manual_demo_en.docx
   word_source: bundle
-  word_reference_doc: C:/Users/Administrator/Downloads/EN-HomePower*HP2000 Plus.docx
+  word_reference_doc: /Users/pika/Downloads/EN-HomePower*HP2000 Plus.docx
   word_title: EN-HomePower 2000 Plus User Manual V0.5
   open_word: false
   build_html: false
@@ -32,16 +32,6 @@ pages:
   page: safety
   langs: [en]
   include_dir: generated/{sku}
-
-- type: csv_page
-  source: phase1
-  page: spec
-  langs: [en]
-  include_dir: generated/{sku}
-
-- type: rst_include
-  lang: en
-  file: templates/00_preface.rst
 
 - type: rst_include
   lang: en
@@ -82,6 +72,12 @@ pages:
 - type: rst_include
   lang: en
   file: templates/10_troubleshooting.rst
+
+- type: csv_page
+  source: phase1
+  page: spec
+  langs: [en]
+  include_dir: generated/{sku}
 
 - type: rst_include
   lang: en

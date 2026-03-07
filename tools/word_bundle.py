@@ -6,6 +6,9 @@ from __future__ import annotations
 import argparse
 import glob
 import html
+import os
+import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -176,6 +179,63 @@ def _render_table_cell_html(text: str) -> str:
     return "<br/>".join(lines)
 
 
+_IMG_TAG_RE = re.compile(r"<img\b[^>]*>", re.IGNORECASE)
+_STYLE_ATTR_RE = re.compile(r'style="([^"]*)"', re.IGNORECASE)
+_WIDTH_ATTR_RE = re.compile(r"\bwidth\s*=", re.IGNORECASE)
+_HEIGHT_ATTR_RE = re.compile(r"\bheight\s*=", re.IGNORECASE)
+_STYLE_WIDTH_RE = re.compile(r"\bwidth\s*:\s*([^;]+)", re.IGNORECASE)
+_STYLE_HEIGHT_RE = re.compile(r"\bheight\s*:\s*([^;]+)", re.IGNORECASE)
+
+
+def _normalize_css_size(value: str) -> str | None:
+    token = value.strip()
+    if not token:
+        return None
+
+    px_match = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)px", token, re.IGNORECASE)
+    if px_match:
+        return str(int(round(float(px_match.group(1)))))
+
+    pct_match = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)%", token, re.IGNORECASE)
+    if pct_match:
+        number = float(pct_match.group(1))
+        if number.is_integer():
+            return f"{int(number)}%"
+        return f"{number}%"
+
+    return None
+
+
+def _inject_img_dimensions(html_doc: str) -> str:
+    def replace_tag(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        style_match = _STYLE_ATTR_RE.search(tag)
+        if not style_match:
+            return tag
+
+        style = style_match.group(1)
+        additions: list[str] = []
+
+        width_match = _STYLE_WIDTH_RE.search(style)
+        if width_match and not _WIDTH_ATTR_RE.search(tag):
+            width_value = _normalize_css_size(width_match.group(1))
+            if width_value:
+                additions.append(f'width="{width_value}"')
+
+        height_match = _STYLE_HEIGHT_RE.search(style)
+        if height_match and not _HEIGHT_ATTR_RE.search(tag):
+            height_value = _normalize_css_size(height_match.group(1))
+            if height_value:
+                additions.append(f'height="{height_value}"')
+
+        if not additions:
+            return tag
+
+        return tag[:-1] + " " + " ".join(additions) + ">"
+
+    return _IMG_TAG_RE.sub(replace_tag, html_doc)
+
+
 def render_spec_word_html(data: dict[str, object]) -> str:
     parts = [
         '<section class="manual-section spec-section">',
@@ -323,7 +383,7 @@ def build_word_bundle_html(cfg: dict, sku: str | None) -> tuple[Path, Path | Non
             "</html>",
         ]
     )
-    bundle_html.write_text(html_doc, encoding="utf-8")
+    bundle_html.write_text(_inject_img_dimensions(html_doc), encoding="utf-8")
     return bundle_html, reference_doc
 
 
@@ -331,9 +391,40 @@ def _ps_quote(value: str) -> str:
     return value.replace("'", "''")
 
 
+def _export_docx_via_pandoc(bundle_html: Path, out_path: Path, reference_doc: Path | None) -> None:
+    pandoc = shutil.which("pandoc")
+    if not pandoc:
+        raise RuntimeError("pandoc is required for non-Windows word bundle export")
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    resource_path = os.pathsep.join(
+        [
+            str(bundle_html.parent),
+            str(paths.docs_dir),
+            str(paths.root),
+        ]
+    )
+
+    cmd = [
+        pandoc,
+        str(bundle_html),
+        "--from=html",
+        "--to=docx",
+        "--resource-path",
+        resource_path,
+        "-o",
+        str(out_path),
+    ]
+    if reference_doc is not None:
+        cmd += ["--reference-doc", str(reference_doc)]
+
+    subprocess.run(cmd, check=True, cwd=str(paths.root))
+
+
 def _export_docx_via_word(bundle_html: Path, out_path: Path, reference_doc: Path | None) -> None:
     if not sys.platform.startswith("win"):
-        raise RuntimeError("word bundle export currently requires Windows")
+        _export_docx_via_pandoc(bundle_html, out_path, reference_doc)
+        return
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     ref_literal = _ps_quote(str(reference_doc)) if reference_doc else ""
