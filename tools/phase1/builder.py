@@ -136,6 +136,7 @@ class BuildPaths:
     output_dir: Path
     spec_master_csv: Path
     spec_footnotes_csv: Path | None = None
+    spec_titles_csv: Path | None = None
 
     @classmethod
     def from_root(cls, root: Path) -> "BuildPaths":
@@ -147,6 +148,7 @@ class BuildPaths:
             output_dir=root / "docs" / "generated",
             spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
             spec_footnotes_csv=root / "data" / "phase1" / "Spec_Footnotes.csv",
+            spec_titles_csv=root / "data" / "phase1" / "spec_titles.csv",
         )
 
 
@@ -436,6 +438,8 @@ class Phase1Builder:
                         render_vars["model"] = model_value
                     if region_value and not self._pick_region_from_vars(render_vars):
                         render_vars["region"] = region_value
+                    if page.page_id == "spec" and self.paths.spec_titles_csv is not None:
+                        render_vars["spec_titles_csv"] = str(self.paths.spec_titles_csv)
                     self._inject_product_name(render_vars, lang=lang)
                     render_sku = (render_vars.get("sku_id") or render_vars.get("sku") or "").strip()
                     rst = renderer(template, page_blocks, render_sku, lang, render_vars)

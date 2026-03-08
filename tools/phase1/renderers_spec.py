@@ -68,7 +68,9 @@ def _render_spec_sections_html(
     for sec in sections:
         title = rst_escape(str(sec.get("title") or ""))
         rows = sec.get("rows") or []
-        lines.append(f".. rubric:: ● {title}")
+        lines.append(".. raw:: html")
+        lines.append("")
+        lines.append(f"   <h2 class=\"hb-spec-section\">● {html_escape(title)}</h2>")
         lines.append("")
         lines.append(".. list-table::")
         lines.append("   :widths: 33 67")
@@ -142,4 +144,3 @@ def render_spec_page(
         .replace(PH_SPEC_NOTES_HTML, _indent_block(notes_html, spaces=3))
         .replace(PH_SPEC_FOOTNOTES_HTML, _indent_block(footnotes_html, spaces=3))
     )
-

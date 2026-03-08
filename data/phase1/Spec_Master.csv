@@ -1,23 +1,198 @@
-项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Row_label_fr,Param_fr,Value_fr,page_title_fr,section_title_fr,Model
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,Nom du produit,,Jackery HomePower 2000 Plus v2,SPÉCIFICATIONS,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,N° modèle,,JHP-2000A,,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,2048 Wh (40Ah/51.2V DC),Capacité,,"2048 Wh (40 Ah/51,2 V DC)",,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO₄,Cellule Chimique,,LiFePO₄,,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 40.56 lbs / 18.4 kg,Poids,,"Environ 40,56 lbs / 18,4 kg",,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,dimensions,Dimensions,1,,14.4 × 10.0 × 10.8 in / 36.5 × 25.5 × 27.5 cm,Dimensions,,"14,4 × 10,0 × 10,8 in / 36,5 × 25,5 × 27,5 cm",,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,Durée de vie,,Capacité de 6000 cycles à 70 % ou plus,,INFORMATIONS GÉNÉRALES,JHP-2000A
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V–120V~60Hz, 15A Max, 1750W Max",1 × Entrée CA,Mode charge,"100-120 V~60 Hz, 15 A max., 1750 W max.",,PORTS D’ENTRÉE,JHP-2000A
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode¹,"100V–120V~60Hz, 12A Max, 1440W",1 × Entrée CA,Mode dérivation¹,"100-120 V~60 Hz, 12 A max., 1440 W",,PORTS D’ENTRÉE,JHP-2000A
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc8020,2 × DC8020 Ports,1,16V–60V⎓,"12A Max, Double to 21A / 800W Max",2 × Ports DC8020,16 V–60 V⎓,"12 A max., double à 21 A/800 W max.",,PORTS D’ENTRÉE,JHP-2000A
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc8020,2 × DC8020 Ports,2,11V–16V⎓,8A Max,2 × Ports DC8020,11 V–16 V⎓,8 A max.,,PORTS D’ENTRÉE,JHP-2000A
-HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc_expansion,1 × DC Expansion Port,1,,36.8V–57.6V⎓ 75A Max,1 × Port d’extension CC,,"36,8 V–57,6 V⎓ 75 A max.",,PORTS D’ENTRÉE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,4 × AC Output,1,,"120V~60Hz, 20A Max, 2400W Rated, 4800W Surge Peak",4 × Sortie CA,,"120V~ 60Hz, 20A Max, 2400W Rated, 4800W Surge Peak",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_total,AC Total Output,1,,"2400W Rated, 4800W Surge peak",Sortie totale CA,,"2400W Rated, 4800W Surge peak",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_bypass,AC Output in Bypass Mode¹,1,,"100V–120V~60Hz, 12A Max, 1440W Max",Sortie CA en mode dérivation¹,,"100V-120V~60Hz, 12A Max, 1440W Max",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A Output,1,,"18W Max, 5V⎓3A, 6V⎓2A, 9V⎓2A, 9-12V⎓1.5A",1 × Sortie USB-A,,"18 W max., 5V⎓3 A, 6V⎓2 A, 9V⎓2 A, 9-12V⎓1,5 A",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C Output,1,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",2 × Sortie USB-C,,"30W max., 5V⎓3 A, 9V⎓3 A, 12V⎓2.5 A, 15V⎓2 A, 20V⎓1.5 A",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C Output,2,,"140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A",2 × Sortie USB-C,,"140 W max., 5V⎓3 A, 9V⎓3 A, 12V⎓3 A, 15V⎓3 A, 20V⎓5 A, 28V⎓5 A",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12,1 × DC 12V Port,1,,12V⎓10A Max,1 × Port CC 12V,,12V⎓10A Max,,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,dc_expansion_out,1 × DC Expansion Port,1,,36.8V–57.6V⎓ 75A Max,1 × Port d’extension CC,,"36,8 V–57,6 V⎓ 75 A max.",,PORTS DE SORTIE,JHP-2000A
-HTE152-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charge_temp,Charge Temperature,1,,−4°F to 113°F / −20°C to 45°C,Température de charge,,- 4 °F à 113 °F / - 20 °C à 45 °C,,TEMPÉRATURE DE FONCTIONNEMENT,JHP-2000A
-HTE152-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharge_temp,Discharge Temperature,1,,−4°F to 113°F / −20°C to 45°C,Température de décharge,,- 4 °F à 113 °F / - 20 °C à 45 °C,,TEMPÉRATURE DE FONCTIONNEMENT,JHP-2000A
+﻿项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Row_label_fr,Param_fr,Value_fr,page_title_fr,section_title_fr,Model
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_003,交流输出额定功率,1,,2400W,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_004,交流输出峰值功率,1,,4800W,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_005,交流输出电压/频率,1,,AC 120V 60Hz,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_006,交流输出电流,1,,20A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac,AC插座数量,1,,4,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc,DC输入功率上限,1,,800W Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_2,AC输入规格,1,,AC 100V~120V 60Hz 15A Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_3,AC充电功率最大,1,,约1750W±50W @25℃,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,field_011,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,field_012,扩容口最大电流,1,,75A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_013,产品重量,1,,18.4kg,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_014,尺寸-长,1,,365mm,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_015,尺寸-宽,1,,255mm,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_016,尺寸-高,1,,275mm,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,field_017,产品名称,1,,Jackery HomePower 2000 Plus,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,field_018,型号,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_019,电池化学体系,1,,LiFePO4,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_020,循环寿命,1,,"6000 cycles (90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A 输出,1,,"18W Max
+5-6V⎓3A
+6-9V⎓2A
+9-12V⎓1.5A",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C 输出,1,,"30W Max
+5V⎓3A
+9V⎓3A
+12V⎓2.5A
+15V⎓2A
+20V⎓1.5A",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c_pd,USB-C PD 输出,1,,"100W Max
+5V⎓3A
+9V⎓3A
+12V⎓3A
+15V⎓3A
+20V⎓5A",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_4,AC旁路输出,1,,12A Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_025,放电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_026,充电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_027,储存环境温度,1,,"1 year: 0~25℃
+ 3 months: 0~45℃
+ 1 month: -20~45℃",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,field_028,充电输入,1,,16V–60V,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_029,车充输出,1,,12V 10A Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_030,外壳材质,1,,PC+ABS (94V-0),,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_031,工作湿度,1,,0~60% RH (不冷凝),,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_032,放电容量,1,,">1597Wh (@AC 2400W, 25℃)",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_033,污染等级,1,,Ⅲ,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_003,交流输出额定功率,1,,2400W,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_004,交流输出峰值功率,1,,4800W,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_005,交流输出电压/频率,1,,AC 100V 60Hz,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_006,交流输出电流,1,,24A,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac,AC插座数量,1,,4,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,dc,DC输入功率上限,1,,800W Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_2,AC输入规格,1,,AC 100V~120V 60Hz 15A Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_3,AC充电功率最大,1,,约1500W±50W @25℃,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,field_011,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,field_012,扩容口最大电流,1,,75A,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_013,产品重量,1,,18.4kg,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_014,尺寸-长,1,,365mm,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_015,尺寸-宽,1,,255mm,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_016,尺寸-高,1,,275mm,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,field_017,产品名称,1,,Jackery ポータブル電源 2000 Plus,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,field_018,型号,1,,JE-2000E,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_019,电池化学体系,1,,LiFePO4,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_020,循环寿命,1,,"6000 cycles (90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A 输出,1,,"18W Max
+5-6V⎓3A
+6-9V⎓2A
+9-12V⎓1.5A",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C 输出,1,,"30W Max
+5V⎓3A
+9V⎓3A
+12V⎓2.5A
+15V⎓2A
+20V⎓1.5A",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c_pd,USB-C PD 输出,1,,"100W Max
+5V⎓3A
+9V⎓3A
+12V⎓3A
+15V⎓3A
+20V⎓5A",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_4,AC旁路输出,1,,12A Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_025,放电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_026,充电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_027,储存环境温度,1,,"1 year: 0~25℃
+ 3 months: 0~45℃
+ 1 month: -20~45℃",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_028,车充输出,1,,12V 10A Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_029,外壳材质,1,,PC+ABS (94V-0),,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_030,工作湿度,1,,0~60% RH (不冷凝),,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_031,放电容量,1,,">1597Wh (@AC 2400W, 25℃)",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_032,污染等级,1,,Ⅱ,,,,,,JHP-2000A
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 2000,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-2000F,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,2048 Wh (40Ah/51.2V DC),,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO4,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 40.34 lbs/18.3 kg,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,dimension,Dimension,1,,14.4 × 10.0 × 10.6 in / 36.5 × 25.5 × 26.9 cm,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode①,"100V-120V~60Hz, 12A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,1,,"11V-16V⎓8A Max, Double to 8A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,2,,"16V-60V⎓12A Max, Double to 21A / 400W Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,1,,"120V~ 60Hz, 18.3A Max, 2200W Rated (14°F to 113°F / -10°C to 45°C)",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,2,,"120V~ 60Hz, 13.3A, 1600W Rated (-4°F to 14°F / -20°C to -10°C)",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output②,1,,"2200W Rated, 4400W Surge peak",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode①,1,,"100V-120V~60Hz, 12A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,1,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,2,,"100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (14°F to 113°F / -10°C to 45°C)",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,3,,USB-C 100W output disabled (-4°F to 14°F / -20°C to -10°C),,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A,1,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,1 × DC 12V Port,1,,12V⎓10A Max,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharging_temperature,Discharging Temperature,1,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,製品の名称,1,,Jackery ポータブル電源 2000 New,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,型番,1,,JE-2000F,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,rated_capacity,定格容量,1,,2048Wh (40Ah/51.2V DC),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,battery_type,バッテリータイプ,1,,LiFePO4 (リン酸鉄リチウムイオン電池),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,サイクル寿命,1,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,size_weight,サイズ&重量,1,,約365×255×269 mm (約18.3 kg),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,1×ACポート,1,,"100V-120V~ 50Hz/60Hz, 最大15A, 最大1500W①",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,1×ACポート,2,,"パススルー②:100V-120V~ 50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,1,,"PV:16V-60V⎓12A, 2ポート最大21A, 最大400W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,2,,"シガーソケット:11V-16V⎓最大8A, 2ポート最大8A",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_ports,3×ACポート,1,,"100V~50Hz/60Hz, 最大20A, 定格2000W (-10°C~45°C)",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_ports,3×ACポート,2,,"100V~50Hz/60Hz, 最大16A, 定格1600W (-20°C~-10°C)",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total,AC出力合計,1,,"2200W, 瞬間最大4400W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_bypass,AC出力(パススルー)②,1,,"100V-120V~ 50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,1,,"5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,2,,"5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10°C~45°C)",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,3,,出力を停止する (-20°C~-10°C),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,1×USB-Aポート,1,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,cigarette_output,シガーソケット出力,1,,12V⎓最大10A,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,充電温度,1,,-20°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,動作温度,1,,-20°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,1,,1ヶ月 -20°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,2,,3ヶ月 0°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,3,,1年 0°C ~ 25°C,,,,,,JE-2000F
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,INPUT PORTS,2,field_003,充电方式,1,,只能接主机充电,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,INPUT PORTS,2,field_004,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,INPUT PORTS,2,field_005,扩容口最大电流,1,,75A,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_006,产品重量,1,,15.6kg,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_007,尺寸-长,1,,365mm,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_008,尺寸-宽,1,,255mm,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_009,尺寸-高,1,,205mm,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,field_010,产品名称,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,field_011,型号,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_012,电池化学体系,1,,LiFePO4,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_013,循环寿命,1,,"6000 cycles (90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_014,充电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_015,放电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_016,放电容量,1,,">1597Wh (@AC 2400W, 25℃)",,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_017,储存环境温度,1,,"1 year: 0~25℃
+3 months: 0~45℃
+1 month: -20~45℃",,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_018,工作湿度,1,,0~60% RH (不冷凝),,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_019,外壳材质,1,,PC+ABS (94V-0),,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_020,污染等级,1,,Ⅲ,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,INPUT PORTS,2,field_003,充电方式,1,,只能接主机充电,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,INPUT PORTS,2,field_004,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,INPUT PORTS,2,field_005,扩容口最大电流,1,,75A,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_006,产品重量,1,,15.6kg,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_007,尺寸-长,1,,365mm,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_008,尺寸-宽,1,,255mm,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_009,尺寸-高,1,,205mm,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,field_010,产品名称,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,field_011,型号,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_012,电池化学体系,1,,LiFePO4,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_013,循环寿命,1,,"6000 cycles
+(90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_014,充电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_015,放电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_016,放电容量,1,,>1597Wh (@AC output 2400W & Ta=25℃),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_017,储存环境温度,1,,"1 year: 0~25℃
+3 months: 0~45℃
+1 month: -20~45℃",,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_018,工作湿度,1,,0~60% RH (不冷凝),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_019,外壳材质,1,,PC+ABS (94V-0),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_020,污染等级,1,,Ⅱ,,,,,,JBP-2000B
+HTE152-JP,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
+HTE152-JP,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-JP,US,TRUE,specifications,INPUT PORTS,2,field_001,充电输入,1,,16V–60V,,,,,,JHP-2000A

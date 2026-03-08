@@ -106,35 +106,6 @@
 }
 
 % ==================================================
-% H1 PILL
-% ==================================================
-
-\providecommand{\hbsectiontitle}[1]{#1}
-
-\renewcommand{\hbsectiontitle}[1]{%
-  \par\noindent
-  \hspace*{-\leftskip}%
-  \begin{tcolorbox}[
-    colback=BrandDark,
-    colframe=BrandDark,
-    arc=\csname HBcomp_h1_pill_arc\endcsname,
-    rounded corners=south,
-    sharp corners=north,
-    boxrule=0pt,
-    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
-    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
-    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
-    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
-    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
-    before skip=0mm,
-    after skip=\csname HBcomp_h1_pill_after\endcsname
-  ]
-    \HBTypeHOne{#1}
-  \end{tcolorbox}%
-  \par\noindent
-}
-
-% ==================================================
 % LEAD
 % ==================================================
 
@@ -144,14 +115,6 @@
   \HBTypeBody{#1}
   \par\vspace{\csname HBcomp_lead_after\endcsname}%
 }
-
-% ==================================================
-% SECTION PATCH
-% ==================================================
-
-\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
-\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
-\setcounter{secnumdepth}{0}
 
 % ==================================================
 % Language density overrides (SAFE v2 - includes TYPE layer)

@@ -129,6 +129,7 @@ flowchart TD
 - `paths.layout_params_csv`
 - `paths.spec_master_csv`
 - `paths.spec_footnotes_csv`（可空字符串，表示不加载脚注补充 CSV）
+- `paths.spec_titles_csv`（可空字符串，表示不加载 spec 多语言标题覆盖 CSV）
 - `tools.patch_fonts`
 - `pages`（页面顺序与来源）
 
@@ -202,6 +203,7 @@ flowchart TD
 
 1. 主数据仅使用 `paths.spec_master_csv`
 2. 脚注补充仅使用 `paths.spec_footnotes_csv`（可为空禁用）
+3. 页面标题/分节标题多语言映射仅使用 `paths.spec_titles_csv`（`title_en` 为主键/默认值，可为空禁用）
 
 渲染器限制：
 
@@ -266,7 +268,7 @@ python3 tools/validate_layout_params.py --csv data/layout_params.csv
 
 ```bash
 python3 tools/phase1_build.py
-python3 tools/phase1_build.py --model JHP-2000A --region US --page safety,spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv
+python3 tools/phase1_build.py --model JHP-2000A --region US --page safety,spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv --spec-titles-csv data/phase1/spec_titles.csv
 ```
 
 仅重建 index：

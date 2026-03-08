@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+import csv
+from pathlib import Path
+
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 
 
@@ -86,6 +89,54 @@ def _pick_spec_lang_text(
     return _first_non_empty(row, keys)
 
 
+def _pick_title_lang(lang: str, vars_map: dict[str, str]) -> str:
+    explicit = _first_non_empty(vars_map, ["title_lang", "spec_title_lang", "language"])
+    if explicit:
+        value = explicit.strip().lower()
+    else:
+        region = _first_non_empty(vars_map, ["region", "Region"]).strip().upper()
+        if region in {"JP", "JAPAN"}:
+            value = "jp"
+        elif region in {"CN", "CHINA", "ZH"}:
+            value = "zh"
+        else:
+            value = (lang or "").strip().lower()
+
+    if value in {"ja", "jp"}:
+        return "jp"
+    if value.startswith("zh"):
+        return "zh"
+    return "en"
+
+
+def _load_spec_title_map(csv_path: Path, *, title_lang: str) -> dict[str, str]:
+    if not csv_path.exists():
+        return {}
+    with csv_path.open("r", encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        return {}
+
+    target_col = f"title_{title_lang}"
+    title_map: dict[str, str] = {}
+    for row in rows:
+        key = rst_escape(row.get("title_en") or "")
+        if not key:
+            continue
+        value = rst_escape(row.get(target_col) or "")
+        if not value:
+            value = key
+        title_map[key.lower()] = value
+    return title_map
+
+
+def _apply_spec_title_map(title: str, title_map: dict[str, str]) -> str:
+    raw = rst_escape(title)
+    if not raw:
+        return raw
+    return title_map.get(raw.lower(), raw)
+
+
 def _parse_spec_master_sections(
     blocks: list[dict[str, str]],
     *,
@@ -97,6 +148,7 @@ def _parse_spec_master_sections(
     notes: list[tuple[float, str]] = []
     footnotes: list[tuple[float, str]] = []
     title_candidates: list[tuple[float, str]] = []
+    section_title_overrides: dict[str, str] = {}
 
     var_project_code = _first_non_empty(
         vars_map,
@@ -155,6 +207,23 @@ def _parse_spec_master_sections(
         )
         if title_text:
             title_candidates.append((base_order, apply_vars(title_text, vars_map)))
+
+        section_key_for_title = _first_non_empty(row, ["Section", "section"])
+        section_title_for_title = _pick_spec_lang_text(
+            row,
+            base="section_title",
+            lang=lang,
+            default_keys=[f"Section_{lang}", "Section_en", "Section"],
+        )
+        if (
+            section_key_for_title
+            and section_title_for_title
+            and row_kind in {"title", "section_title", "title_map"}
+        ):
+            section_title_overrides[section_key_for_title] = apply_vars(
+                section_title_for_title,
+                vars_map,
+            )
 
         note_text = _pick_spec_lang_text(
             row,
@@ -253,6 +322,12 @@ def _parse_spec_master_sections(
             }
         )
 
+    if section_title_overrides:
+        for row in rows:
+            key = str(row.get("section_key") or "")
+            if key in section_title_overrides:
+                row["section_title"] = section_title_overrides[key]
+
     if not rows:
         model_msg = f" model={var_model}" if var_model else ""
         raise ValueError(
@@ -308,11 +383,26 @@ def _parse_spec_master_sections(
     notes_text = [x[1] for x in sorted(notes, key=lambda t: t[0])]
     footnotes_text = [x[1] for x in sorted(footnotes, key=lambda t: t[0])]
 
-    title_main = (
-        sorted(title_candidates, key=lambda t: t[0])[0][1]
-        if title_candidates
-        else ("SPÉCIFICATIONS" if lang == "fr" else "SPECIFICATIONS")
-    )
+    if title_candidates:
+        title_main = sorted(title_candidates, key=lambda t: t[0])[0][1]
+    elif lang == "fr":
+        title_main = "SPÉCIFICATIONS"
+    elif lang in {"ja", "jp"}:
+        title_main = "主な仕様"
+    else:
+        title_main = "SPECIFICATIONS"
+
+    spec_titles_cfg = _first_non_empty(vars_map, ["spec_titles_csv"])
+    if spec_titles_cfg:
+        title_map = _load_spec_title_map(
+            Path(spec_titles_cfg),
+            title_lang=_pick_title_lang(lang, vars_map),
+        )
+        if title_map:
+            title_main = _apply_spec_title_map(title_main, title_map)
+            for sec in sections:
+                sec["title"] = _apply_spec_title_map(str(sec.get("title") or ""), title_map)
+
     return title_main, sections, notes_text, footnotes_text
 
 

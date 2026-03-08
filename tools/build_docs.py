@@ -117,6 +117,9 @@ def render_csv_pages(
         spec_footnotes_csv = paths_cfg.get("spec_footnotes_csv")
         if isinstance(spec_footnotes_csv, str):
             cmd += ["--spec-footnotes-csv", spec_footnotes_csv.strip()]
+        spec_titles_csv = paths_cfg.get("spec_titles_csv")
+        if isinstance(spec_titles_csv, str):
+            cmd += ["--spec-titles-csv", spec_titles_csv.strip()]
         run(cmd, cwd=paths.root)
 
 

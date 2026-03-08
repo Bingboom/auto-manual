@@ -15,7 +15,7 @@
 
    .. raw:: html
 
-      <div class="hb-h1-pill">{{ spec_title_main_html }}</div>
+      <h1 class="hb-h1-pill">{{ spec_title_main_html }}</h1>
 
 {{ spec_sections_html }}
 

@@ -50,6 +50,40 @@ def _collect_word_heading_style_ids(styles_xml: bytes) -> tuple[set[str], set[st
     return h1_ids, h2_ids
 
 
+def _set_paragraph_style_and_outline(
+    para: ET.Element,
+    ns: dict[str, str],
+    *,
+    style_id: str,
+    outline_level: str,
+) -> bool:
+    changed = False
+    ppr = para.find("w:pPr", ns)
+    if ppr is None:
+        ppr = ET.SubElement(para, f"{{{_W_NS}}}pPr")
+        changed = True
+
+    pstyle = ppr.find("w:pStyle", ns)
+    if pstyle is None:
+        pstyle = ET.SubElement(ppr, f"{{{_W_NS}}}pStyle")
+        changed = True
+    prev_style = pstyle.attrib.get(_W_VAL)
+    if prev_style != style_id:
+        pstyle.attrib[_W_VAL] = style_id
+        changed = True
+
+    outline = ppr.find("w:outlineLvl", ns)
+    if outline is None:
+        outline = ET.SubElement(ppr, f"{{{_W_NS}}}outlineLvl")
+        changed = True
+    prev_outline = outline.attrib.get(_W_VAL)
+    if prev_outline != outline_level:
+        outline.attrib[_W_VAL] = outline_level
+        changed = True
+
+    return changed
+
+
 def _enforce_docx_outline_levels(docx_path: Path) -> None:
     with zipfile.ZipFile(docx_path, "r") as zin:
         infos = zin.infolist()
@@ -74,19 +108,23 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
             continue
         style_id = pstyle.attrib.get(_W_VAL, "").strip()
         if style_id in h1_ids:
-            target_lvl = "0"
-        elif style_id in h2_ids:
-            target_lvl = "1"
-        else:
+            if _set_paragraph_style_and_outline(
+                para,
+                ns,
+                style_id=style_id,
+                outline_level="0",
+            ):
+                changed = True
             continue
-
-        outline = ppr.find("w:outlineLvl", ns)
-        if outline is None:
-            outline = ET.SubElement(ppr, f"{{{_W_NS}}}outlineLvl")
-        prev = outline.attrib.get(_W_VAL)
-        if prev != target_lvl:
-            outline.attrib[_W_VAL] = target_lvl
-            changed = True
+        if style_id in h2_ids:
+            if _set_paragraph_style_and_outline(
+                para,
+                ns,
+                style_id=style_id,
+                outline_level="1",
+            ):
+                changed = True
+            continue
 
     if not changed:
         return

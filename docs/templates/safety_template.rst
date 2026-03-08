@@ -46,7 +46,7 @@
    .. raw:: html
 
       <div class="hb-safety">
-        <div class="hb-h1-pill">{{ safety_title_main_html }}</div>
+        <h1 class="hb-h1-pill">{{ safety_title_main_html }}</h1>
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
@@ -60,7 +60,7 @@
           {{ safety_top_items_html }}
         </div>
 
-        <div class="hb-subbar">{{ safety_title_operating_html }}</div>
+        <h2 class="hb-subbar">{{ safety_title_operating_html }}</h2>
 
         <div class="hb-two-col">
           {{ safety_save_title_html }}

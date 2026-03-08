@@ -132,6 +132,14 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             if not as_path(spec_footnotes_csv).exists():
                 issues.append(Issue("ERROR", f"spec_footnotes_csv file not found: {spec_footnotes_csv}"))
 
+    spec_titles_csv = paths.get("spec_titles_csv")
+    if spec_titles_csv is not None:
+        if not isinstance(spec_titles_csv, str):
+            issues.append(Issue("ERROR", "paths.spec_titles_csv must be a string when provided"))
+        elif spec_titles_csv.strip() and strict_files and not has_tokenized_value(spec_titles_csv):
+            if not as_path(spec_titles_csv).exists():
+                issues.append(Issue("ERROR", f"spec_titles_csv file not found: {spec_titles_csv}"))
+
     # ---- pages ----
     parsed_pages, page_issues = parse_config_pages(
         cfg.get("pages", None),

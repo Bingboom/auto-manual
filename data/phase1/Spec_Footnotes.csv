@@ -1,4 +1,8 @@
-项目代码,Region,Is_Latest,Page,row_kind,row_order,note_order,footnote_order,note_text_en,note_text_fr,footnote_mark,footnote_text_en,footnote_text_fr,enabled,sku_scope
-HTE152-US,US,TRUE,specifications,note,900,1,,"※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.","※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",,,,1,ALL
-HTE152-US,US,TRUE,specifications,footnote,910,,1,,,①,"The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.","Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.",1,ALL
+﻿项目代码,Region,Is_Latest,Page,row_kind,row_order,note_order,footnote_order,note_text_en,note_text_fr,footnote_mark,footnote_text_en,footnote_text_fr,enabled,sku_scope
+HTE152-US,US,TRUE,specifications,note,900,1,,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,,,,1,ALL
+HTE152-US,US,TRUE,specifications,footnote,910,,1,,,①,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.,1,ALL
 HTE152-US,US,TRUE,specifications,footnote,920,,2,,,②,Indicates that two or more AC output ports work together.,Indique que deux ports de sortie CA ou plus fonctionnent ensemble.,1,ALL
+HTE154-JP,JP,TRUE,specifications,note,900,1,,認証:,,,,,1,ALL
+HTE154-JP,JP,TRUE,specifications,note,901,2,,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,,,,,1,ALL
+HTE154-JP,JP,TRUE,specifications,footnote,910,,1,,,①,この数値は最大充電電力のみを示しています。実際の充電電力は、温度/バッテリー残量(SOC)、アプリの設定により変動する場合があります。,,1,ALL
+HTE154-JP,JP,TRUE,specifications,footnote,920,,2,,,②,本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。,,1,ALL

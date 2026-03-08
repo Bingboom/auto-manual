@@ -4,6 +4,19 @@
   padding:10px 14px; border-radius:10px;
   margin: 10px 0 12px 0;
 }
+.hb-h1-pill{
+  font-size: 1.58rem;
+  line-height: 1.2;
+}
+.hb-subbar{
+  font-size: 1.08rem;
+  line-height: 1.2;
+}
+.hb-spec-section{
+  margin: 8px 0 6px 0;
+  font-size: 1.02rem;
+  line-height: 1.2;
+}
 .hb-warning-box{
   border:1px solid #888; border-radius:10px;
   padding:10px 12px; margin: 0 0 12px 0;

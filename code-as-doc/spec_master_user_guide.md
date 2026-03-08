@@ -10,6 +10,7 @@
 
 - 主表：`config.yaml -> paths.spec_master_csv`
 - 脚注补充（可选）：`config.yaml -> paths.spec_footnotes_csv`
+- 标题覆盖（可选）：`config.yaml -> paths.spec_titles_csv`
 
 当前仓库默认配置：
 
@@ -17,6 +18,7 @@
 paths:
   spec_master_csv: data/phase1/Spec_Master.csv
   spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
+  spec_titles_csv: data/phase1/spec_titles.csv
 ```
 
 构建链路（统一内容源）：
@@ -27,9 +29,13 @@ paths:
 4. `tools/phase1_build.py` 读取同一份 `Spec_Master.csv` 生成 `docs/generated/<model>/spec_<lang>.rst`
 5. `html/pdf/word` 都基于同一份 `generated rst + templates rst` 继续构建
 
-结论：`spec` 页面内容与产品名变量都来自同一个 `Spec_Master.csv`。
+结论：
 
-## 2. 构建必备字段
+- `spec` 行数据与产品名变量来自 `Spec_Master.csv`
+- 脚注来自 `Spec_Footnotes.csv`（可选）
+- 页面标题/分节标题多语言覆盖来自 `spec_titles.csv`（可选）
+
+## 2. 构建必备字段（Spec_Master）
 
 ### 2.1 `spec` 页面可构建的硬必备表头
 
@@ -88,7 +94,7 @@ GENERAL INFO,1,spec,JHP-2000A,US,model_no,Model No.,1,JHP-2000A,1,1
 ## 5. 快速自检
 
 ```bash
-python3 tools/phase1_build.py --model JHP-2000A --region US --page spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv
+python3 tools/phase1_build.py --model JHP-2000A --region US --page spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv --spec-titles-csv data/phase1/spec_titles.csv
 python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
 ```
 
@@ -97,3 +103,27 @@ python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
 1. `Spec_Master.csv` 是否包含 `Section/Row_key/Line_order`
 2. 是否存在 `Row_key=product_name` 且能取到 `Value_en`（或回退值）
 3. `Model/Region/Page/Is_Latest/enabled` 是否把行过滤掉
+
+## 6. `spec_titles.csv`（页面/分节多语言标题字典）
+
+当前采用简化字典结构：
+
+- `title_en`（主键/默认值）
+- `title_zh`
+- `title_jp`
+- 可继续扩展：`title_fr` / `title_es` ...
+
+示例：
+
+```csv
+title_en,title_zh,title_jp
+SPECIFICATIONS,主要规格,主な仕様
+GENERAL INFO,基本信息,基本情報
+INPUT PORTS,输入端口,入力ポート
+```
+
+说明：
+
+- `Spec_Master.csv` 保持结构化数据（行/列/顺序）
+- `spec_titles.csv` 只做标题多语言映射，不参与数据行过滤
+- 渲染时以 `title_en` 作为 lookup key；找不到目标语言值时回退到 `title_en`

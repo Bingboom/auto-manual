@@ -14,6 +14,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths.from_root(root)
             self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase1" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
+            self.assertEqual(root / "data" / "phase1" / "spec_titles.csv", paths.spec_titles_csv)
 
     def test_compact_schema_can_be_normalized(self) -> None:
         rows = [
@@ -114,6 +115,39 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             rows = builder._load_page_blocks("spec", default_blocks=[])
             marks = [row.get("footnote_mark", "") for row in rows]
             self.assertIn("①", marks)
+
+    def test_load_spec_keeps_master_rows_when_titles_csv_is_configured(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            spec_master_csv = root / "data" / "phase1" / "Spec_Master.csv"
+            spec_titles_csv = root / "data" / "phase1" / "spec_titles.csv"
+            spec_master_csv.parent.mkdir(parents=True, exist_ok=True)
+
+            spec_master_csv.write_text(
+                "Section,Row_key,Line_order,Value_en\n"
+                "GENERAL INFO,draft_row,1,draft\n",
+                encoding="utf-8",
+            )
+            spec_titles_csv.write_text(
+                "title_en,title_jp\n"
+                "SPECIFICATIONS,主な仕様\n",
+                encoding="utf-8",
+            )
+
+            paths = BuildPaths(
+                root=root,
+                page_registry=root / "dummy_registry.csv",
+                content_blocks=root / "dummy_content.csv",
+                template_dir=root / "docs" / "templates",
+                output_dir=root / "docs" / "generated",
+                spec_master_csv=spec_master_csv,
+                spec_footnotes_csv=None,
+                spec_titles_csv=spec_titles_csv,
+            )
+            builder = Phase1Builder(paths)
+            rows = builder._load_page_blocks("spec", default_blocks=[])
+            self.assertEqual(1, len(rows))
+            self.assertEqual("draft_row", rows[0]["Row_key"])
 
     def test_select_targets_supports_model_and_region_filters(self) -> None:
         with tempfile.TemporaryDirectory() as td:

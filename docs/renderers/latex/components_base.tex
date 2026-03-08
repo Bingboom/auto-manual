@@ -106,11 +106,58 @@
 }
 
 % ------------------------------
+% Shared H1 section title
+% - all rst top-level headings ("=") should pass this style path
+% ------------------------------
+\providecommand{\hbsectiontitle}[1]{#1}
+
+\renewcommand{\hbsectiontitle}[1]{%
+  \par\noindent
+  \hspace*{-\leftskip}%
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
+    boxrule=0pt,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
+    before skip=0mm,
+    after skip=\csname HBcomp_h1_pill_after\endcsname
+  ]
+    \HBTypeHOne{#1}
+  \end{tcolorbox}%
+  \par\noindent
+}
+
+% Apply shared H1 styling to all section-level headings generated from rst.
+\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
+\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
+\setcounter{secnumdepth}{0}
+
+% ------------------------------
 % Rubric style (subsubsection*)
 % - spacing: COMPONENT
 % - font: TYPE SYSTEM
 % ------------------------------
+\expandafter\providecommand\csname HBcomp_subsection_before\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_subsection_after\endcsname{0.8mm}
+\expandafter\providecommand\csname HBtype_subsection_font_size\endcsname{10.8pt}
+\expandafter\providecommand\csname HBtype_subsection_font_leading\endcsname{11.8pt}
+
 \makeatletter
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
+  {\csname HBcomp_subsection_before\endcsname}%
+  {\csname HBcomp_subsection_after\endcsname}%
+  {\bfseries
+   \fontsize{\csname HBtype_subsection_font_size\endcsname}
+            {\csname HBtype_subsection_font_leading\endcsname}
+   \color{\csname HBtype_body_color\endcsname}
+   \selectfont}}%
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
   {\csname HBcomp_rubric_before\endcsname}%
   {\csname HBcomp_rubric_after\endcsname}%

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
+import tempfile
 
 from tools.phase1 import renderers
 
@@ -426,6 +428,56 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         joined = "\n".join("\n".join(str(x) for x in sec["rows"]) for sec in data["sections"])
         self.assertNotIn("SHOULD_NOT_BE_RENDERED", joined)
+
+    def test_collect_spec_content_supports_title_override_rows(self) -> None:
+        blocks = self._spec_master_blocks()
+        blocks.append(
+            {
+                "Page": "specifications",
+                "Region": "US",
+                "Model": "JHP-2000A",
+                "row_kind": "title",
+                "row_order": "0.1",
+                "page_title_en": "MAIN SPECIFICATIONS",
+                "Section": "GENERAL INFO",
+                "section_title_en": "GENERAL INFORMATION",
+                "Is_Latest": "TRUE",
+                "enabled": "1",
+            }
+        )
+
+        data = renderers.collect_spec_content(
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JHP-2000A", "region": "US"},
+        )
+        self.assertEqual("MAIN SPECIFICATIONS", data["title_main"])
+        self.assertEqual("GENERAL INFORMATION", data["sections"][0]["title"])
+
+    def test_collect_spec_content_applies_spec_titles_csv_map_for_region(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            titles_csv = Path(td) / "spec_titles.csv"
+            titles_csv.write_text(
+                "title_en,title_jp\n"
+                "SPECIFICATIONS,主な仕様\n"
+                "GENERAL INFO,基本情報\n",
+                encoding="utf-8",
+            )
+
+            data = renderers.collect_spec_content(
+                blocks=self._spec_master_blocks(),
+                sku_id="JB1000",
+                lang="en",
+                vars_map={
+                    "model": "JHP-2000A",
+                    "region": "US",
+                    "title_lang": "jp",
+                    "spec_titles_csv": str(titles_csv),
+                },
+            )
+            self.assertEqual("主な仕様", data["title_main"])
+            self.assertEqual("基本情報", data["sections"][0]["title"])
 
 if __name__ == "__main__":
     unittest.main()
