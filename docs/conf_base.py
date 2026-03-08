@@ -31,6 +31,7 @@ html_extra_path = ["renderers/latex/assets"]
 # Shared substitutions for template rst pages.
 rst_epilog = r"""
 .. |PRODUCT_NAME| replace:: Jackery HomePower 2000 Plus v2
+.. |PRODUCT_NAME_BOLD| replace:: **Jackery HomePower 2000 Plus v2**
 """
 
 

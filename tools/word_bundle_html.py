@@ -13,6 +13,7 @@ from tools.word_bundle_common import (
     apply_rst_substitutions,
     derive_word_title,
     ensure_csv_page_rsts,
+    fill_product_name_from_spec_master,
     load_rst_substitutions,
     load_word_context,
     paths,
@@ -270,7 +271,11 @@ def _convert_rst_fragment_to_html(rst_text: str) -> str:
     return html_fragment
 
 
-def build_word_bundle_html(cfg: dict, sku: str | None, model: str | None) -> tuple[Path, Path | None]:
+def build_word_bundle_html(
+    cfg: dict,
+    model: str | None,
+    region: str | None,
+) -> tuple[Path, Path | None]:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     build_langs = list(build_cfg.get("languages", ["en"]))
@@ -280,12 +285,25 @@ def build_word_bundle_html(cfg: dict, sku: str | None, model: str | None) -> tup
         error_prefix="config.pages",
     )
 
-    builder, vars_by_sku = load_word_context(cfg, sku, model)
-    ensure_csv_page_rsts(cfg, builder, sku, model)
-    vars_map = pick_vars_map(vars_by_sku, sku, model)
-    substitutions = load_rst_substitutions(paths.docs_dir / "conf_base.py")
+    builder = load_word_context(cfg, model, region)
+    ensure_csv_page_rsts(cfg, builder, model, region)
+    base_vars_map = pick_vars_map(model, region)
+    primary_lang = str(build_langs[0]) if build_langs else "en"
+    title_vars = fill_product_name_from_spec_master(
+        base_vars_map,
+        spec_master_csv=builder.paths.spec_master_csv,
+        model=model,
+        region=region,
+        lang=primary_lang,
+    )
+    base_substitutions = load_rst_substitutions(paths.docs_dir / "conf_base.py")
+    title_substitutions = dict(base_substitutions)
+    if title_vars.get("product_name"):
+        resolved_name = str(title_vars["product_name"])
+        title_substitutions["PRODUCT_NAME"] = resolved_name
+        title_substitutions["PRODUCT_NAME_BOLD"] = f"**{resolved_name}**"
     reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=paths.root)
-    title = derive_word_title(build_cfg, reference_doc, substitutions, vars_map)
+    title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
 
     bundle_dir = paths.docs_build_dir / "word"
     bundle_dir.mkdir(parents=True, exist_ok=True)
@@ -313,21 +331,46 @@ def build_word_bundle_html(cfg: dict, sku: str | None, model: str | None) -> tup
             for idx, lang in enumerate(langs):
                 if idx > 0:
                     body_parts.append(_render_page_break_html())
-                rst_path = resolve_csv_include_rst_path(page, str(lang), sku, model)
+                rst_path = resolve_csv_include_rst_path(page, str(lang), model, region)
                 if not rst_path.exists():
                     raise RuntimeError(
                         f"Missing generated RST for csv_page: {rst_path}. "
                         "Run tools/phase1_build.py (or tools/build_docs.py) first."
                     )
                 rst_text = rst_path.read_text(encoding="utf-8")
-                rst_text = apply_rst_substitutions(rst_text, substitutions, vars_map)
+                page_vars = fill_product_name_from_spec_master(
+                    base_vars_map,
+                    spec_master_csv=builder.paths.spec_master_csv,
+                    model=model,
+                    region=region,
+                    lang=str(lang),
+                )
+                page_substitutions = dict(base_substitutions)
+                if page_vars.get("product_name"):
+                    resolved_name = str(page_vars["product_name"])
+                    page_substitutions["PRODUCT_NAME"] = resolved_name
+                    page_substitutions["PRODUCT_NAME_BOLD"] = f"**{resolved_name}**"
+                rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
                 body_parts.append(_convert_rst_fragment_to_html(rst_text))
             continue
 
         if isinstance(page, RstIncludePage):
-            rst_path = resolve_config_path(paths.docs_dir, page.file, sku, model)
+            rst_path = resolve_config_path(paths.docs_dir, page.file, model, region)
             rst_text = rst_path.read_text(encoding="utf-8")
-            rst_text = apply_rst_substitutions(rst_text, substitutions, vars_map)
+            page_lang = page.lang or primary_lang
+            page_vars = fill_product_name_from_spec_master(
+                base_vars_map,
+                spec_master_csv=builder.paths.spec_master_csv,
+                model=model,
+                region=region,
+                lang=page_lang,
+            )
+            page_substitutions = dict(base_substitutions)
+            if page_vars.get("product_name"):
+                resolved_name = str(page_vars["product_name"])
+                page_substitutions["PRODUCT_NAME"] = resolved_name
+                page_substitutions["PRODUCT_NAME_BOLD"] = f"**{resolved_name}**"
+            rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
             body_parts.append(_convert_rst_fragment_to_html(rst_text))
             continue
 
@@ -363,4 +406,3 @@ def build_word_bundle_html(cfg: dict, sku: str | None, model: str | None) -> tup
     )
     bundle_html.write_text(_inject_img_dimensions(html_doc), encoding="utf-8")
     return bundle_html, reference_doc
-

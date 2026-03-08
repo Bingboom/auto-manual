@@ -204,8 +204,13 @@ try {{
     )
 
 
-def export_word_from_bundle(cfg: dict, sku: str | None, model: str | None, word_output: str) -> Path:
-    bundle_html, reference_doc = build_word_bundle_html(cfg, sku, model)
+def export_word_from_bundle(
+    cfg: dict,
+    model: str | None,
+    region: str | None,
+    word_output: str,
+) -> Path:
+    bundle_html, reference_doc = build_word_bundle_html(cfg, model, region)
 
     out_path = Path(word_output)
     if not out_path.is_absolute():
@@ -214,4 +219,3 @@ def export_word_from_bundle(cfg: dict, sku: str | None, model: str | None, word_
     _export_docx_via_word(bundle_html, out_path, reference_doc)
     _enforce_docx_outline_levels(out_path)
     return out_path
-

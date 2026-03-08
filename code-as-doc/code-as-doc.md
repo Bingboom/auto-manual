@@ -82,6 +82,7 @@
 
 条件更新：
 - 如果目录层级或标题级别策略变化，需更新 `README.md` 对应说明。
+- 如果改动涉及产品名文案，模板中必须使用 `|PRODUCT_NAME|` / `|PRODUCT_NAME_BOLD|`，并在 `README.md` 与 `spec_master_user_guide.md` 说明变量来源。
 
 ---
 
@@ -109,7 +110,7 @@
 python3 tools/validate_config.py --config config.yaml
 python3 tools/validate_layout_params.py --csv data/layout_params.csv
 python3 -m unittest discover -s tests -v
-python3 tools/build_docs.py --model JHP-2000A --clean --no-open
+python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
 ```
 
 ---
@@ -128,4 +129,3 @@ python3 tools/build_docs.py --model JHP-2000A --clean --no-open
 - 小改动：最少更新 `README.md` 或相关专题文档，并补回归结果。
 - 中改动：同步更新 `README.md + code-as-doc/code_optimization_log.md`。
 - 大改动（重构）：同步更新 `README.md + code-as-doc/code_style_guide.md + code-as-doc/code_optimization_log.md`，必要时补专题指南。
-

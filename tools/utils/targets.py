@@ -3,21 +3,24 @@
 
 from __future__ import annotations
 
-import csv
-from pathlib import Path
 from typing import Any, Iterable
 
 from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage, parse_config_pages
 
-MODEL_VAR_KEYS = {"model", "product_model", "model_no", "model_number"}
 
-
-def format_tokenized(text: str, sku: str | None, model: str | None) -> str:
-    if "{sku}" in text and not sku:
-        raise RuntimeError("config uses '{sku}' but no --sku was provided")
+def format_tokenized(
+    text: str,
+    sku: str | None,
+    model: str | None,
+    region: str | None = None,
+) -> str:
+    if "{sku}" in text:
+        raise RuntimeError("config uses unsupported '{sku}' token; use '{model}' and/or '{region}'")
     if "{model}" in text and not model:
         raise RuntimeError("config uses '{model}' but no --model was provided")
-    return text.format(sku=sku or "", model=model or "")
+    if "{region}" in text and not region:
+        raise RuntimeError("config uses '{region}' but no --region was provided")
+    return text.format(sku=sku or "", model=model or "", region=region or "")
 
 
 def config_uses_token_in_pages(
@@ -79,40 +82,6 @@ def config_uses_token(
     return False
 
 
-def list_skus(product_vars_csv: Path) -> list[str]:
-    if not product_vars_csv.exists():
-        return []
-    skus: set[str] = set()
-    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
-        for row in csv.DictReader(f):
-            sku = (row.get("sku_id") or "").strip()
-            if sku:
-                skus.add(sku)
-    return sorted(skus)
-
-
-def list_skus_by_model(
-    product_vars_csv: Path,
-    model: str,
-    *,
-    model_var_keys: set[str] | None = None,
-) -> list[str]:
-    if not product_vars_csv.exists():
-        return []
-    keys = model_var_keys or MODEL_VAR_KEYS
-    matched: set[str] = set()
-    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
-        for row in csv.DictReader(f):
-            sku = (row.get("sku_id") or "").strip()
-            key = (row.get("var_key") or "").strip().lower()
-            value = (row.get("var_value") or "").strip()
-            if not sku or key not in keys:
-                continue
-            if value == model:
-                matched.add(sku)
-    return sorted(matched)
-
-
 def resolve_build_model(cfg: dict[str, Any], arg_model: str | None) -> str | None:
     if arg_model and arg_model.strip():
         return arg_model.strip()
@@ -125,56 +94,13 @@ def resolve_build_model(cfg: dict[str, Any], arg_model: str | None) -> str | Non
     return None
 
 
-def resolve_sku_from_inputs(
-    cfg: dict[str, Any],
-    arg_sku: str | None,
-    arg_model: str | None,
-    root: Path,
-    *,
-    requires_sku_token: bool,
-    log_prefix: str | None = None,
-) -> str | None:
-    if arg_sku and arg_sku.strip():
-        return arg_sku.strip()
-
-    product_vars_csv = root / "data" / "phase1" / "product_variables.csv"
-    target_model = resolve_build_model(cfg, arg_model)
-
-    if target_model:
-        matched_skus = list_skus_by_model(product_vars_csv, target_model)
-        if len(matched_skus) == 1:
-            picked = matched_skus[0]
-            if log_prefix:
-                print(
-                    f"[{log_prefix}] sku not provided, using "
-                    f"build/default model='{target_model}' -> sku='{picked}'"
-                )
-            return picked
-        if len(matched_skus) > 1:
-            raise RuntimeError(
-                f"build/default model '{target_model}' maps to multiple SKUs {matched_skus}. "
-                "Please pass --sku explicitly."
-            )
-        raise RuntimeError(
-            f"build/default model '{target_model}' was not found in "
-            "data/phase1/product_variables.csv "
-            "(var_key in: model, product_model, model_no, model_number)."
-        )
-
-    if not requires_sku_token:
+def resolve_build_region(cfg: dict[str, Any], arg_region: str | None) -> str | None:
+    if arg_region and arg_region.strip():
+        return arg_region.strip()
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
         return None
-
-    skus = list_skus(product_vars_csv)
-    if not skus:
-        raise RuntimeError(
-            "config uses '{sku}' but no SKU was found in data/phase1/product_variables.csv"
-        )
-    if len(skus) > 1:
-        raise RuntimeError(
-            "config uses '{sku}' and multiple SKUs are available "
-            f"({skus}). Please pass --sku or set build.default_model."
-        )
-    picked = skus[0]
-    if log_prefix:
-        print(f"[{log_prefix}] sku not provided, inferred '{picked}' from product_variables.csv")
-    return picked
+    default_region = build_cfg.get("default_region")
+    if isinstance(default_region, str) and default_region.strip():
+        return default_region.strip()
+    return None

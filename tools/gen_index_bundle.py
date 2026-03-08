@@ -21,10 +21,9 @@ from tools.config_pages import (
 )
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
-    config_uses_token_in_pages,
     format_tokenized,
     resolve_build_model as resolve_target_model,
-    resolve_sku_from_inputs,
+    resolve_build_region as resolve_target_region,
 )
 
 
@@ -68,50 +67,42 @@ def latex_overview_block(file_name: str) -> list[str]:
     ]
 
 
-def _format_tokenized(text: str, sku: str | None, model: str | None) -> str:
-    return format_tokenized(text, sku, model)
-
-
-def _config_uses_sku_token(cfg: dict) -> bool:
-    return config_uses_token_in_pages(cfg, "sku", include_rst_include=True)
+def _format_tokenized(
+    text: str,
+    model: str | None,
+    region: str | None,
+) -> str:
+    return format_tokenized(text, None, model, region)
 
 
 def resolve_build_model(cfg: dict, arg_model: str | None) -> str | None:
     return resolve_target_model(cfg, arg_model)
 
 
-def resolve_build_sku(
-    cfg: dict,
-    arg_sku: str | None,
-    root: Path,
-    arg_model: str | None = None,
-) -> str | None:
-    return resolve_sku_from_inputs(
-        cfg,
-        arg_sku=arg_sku,
-        arg_model=arg_model,
-        root=root,
-        requires_sku_token=_config_uses_sku_token(cfg),
-        log_prefix="gen_index_bundle",
-    )
+def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
+    return resolve_target_region(cfg, arg_region)
 
 
 def _csv_include_path(
     page: CsvPage,
     lang: str,
-    sku: str | None,
     model: str | None,
+    region: str | None,
 ) -> str:
     include_dir = page.include_dir
     page_name = page.page
     if include_dir is None:
         return f"{page_name}_{lang}.rst"
 
-    rendered_dir = _format_tokenized(include_dir, sku, model)
+    rendered_dir = _format_tokenized(include_dir, model, region)
     return str(Path(rendered_dir) / f"{page_name}_{lang}.rst").replace("\\", "/")
 
 
-def build_index_from_pages(cfg: dict, sku: str | None = None, model: str | None = None) -> str:
+def build_index_from_pages(
+    cfg: dict,
+    model: str | None = None,
+    region: str | None = None,
+) -> str:
     langs = cfg.get("build", {}).get("languages", ["en", "fr", "es"])
     langs = list(langs)
 
@@ -126,7 +117,7 @@ def build_index_from_pages(cfg: dict, sku: str | None = None, model: str | None 
 
     for page in pages:
         if isinstance(page, CoverPdfPage):
-            out += latex_cover_block(_format_tokenized(page.file, sku, model))
+            out += latex_cover_block(_format_tokenized(page.file, model, region))
             saw_cover = True
 
         elif isinstance(page, PdfInsertPage):
@@ -136,20 +127,20 @@ def build_index_from_pages(cfg: dict, sku: str | None = None, model: str | None 
             for lang in plangs:
                 if lang not in file_map:
                     raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
-                out += latex_overview_block(_format_tokenized(file_map[lang], sku, model))
+                out += latex_overview_block(_format_tokenized(file_map[lang], model, region))
 
         elif isinstance(page, CsvPage):
             plangs = list(page.langs) or langs
 
             for lang in plangs:
                 out += latex_apply_lang(lang)
-                include_path = _csv_include_path(page, lang, sku, model)
+                include_path = _csv_include_path(page, lang, model, region)
                 out += [f".. include:: {include_path}", ""]
 
         elif isinstance(page, RstIncludePage):
             if page.lang:
                 out += latex_apply_lang(page.lang)
-            out += [f".. include:: {_format_tokenized(page.file, sku, model)}", ""]
+            out += [f".. include:: {_format_tokenized(page.file, model, region)}", ""]
 
         else:
             raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
@@ -165,8 +156,8 @@ def build_index_from_pages(cfg: dict, sku: str | None = None, model: str | None 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
-    ap.add_argument("--sku", default=None, help="Optional SKU for tokenized include/file paths")
-    ap.add_argument("--model", default=None, help="Optional product model for SKU resolving")
+    ap.add_argument("--model", default=None, help="Optional product model for include/file paths")
+    ap.add_argument("--region", default=None, help="Optional region for include/file paths")
     args = ap.parse_args()
 
     paths = get_paths()
@@ -181,14 +172,12 @@ def main() -> None:
         raise RuntimeError(f"gen_index_bundle supports doc_type=manual_bundle only, got: {doc_type}")
 
     target_model = resolve_build_model(cfg, args.model)
-    explicit_sku = (args.sku or "").strip() or None
-    if explicit_sku:
-        target_sku = explicit_sku
-    elif _config_uses_sku_token(cfg) or not target_model:
-        target_sku = resolve_build_sku(cfg, None, paths.root, args.model)
-    else:
-        target_sku = None
-    index_text = build_index_from_pages(cfg, sku=target_sku, model=target_model)
+    target_region = resolve_build_region(cfg, args.region)
+    index_text = build_index_from_pages(
+        cfg,
+        model=target_model,
+        region=target_region,
+    )
 
     out_path = paths.docs_dir / "index.rst"
     out_path.write_text(index_text, encoding="utf-8")

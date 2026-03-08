@@ -106,6 +106,10 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if default_model is not None and (not isinstance(default_model, str) or not default_model.strip()):
         issues.append(Issue("ERROR", "build.default_model must be a non-empty string when provided"))
 
+    default_region = build.get("default_region")
+    if default_region is not None and (not isinstance(default_region, str) or not default_region.strip()):
+        issues.append(Issue("ERROR", "build.default_region must be a non-empty string when provided"))
+
     # ---- paths ----
     paths = cfg.get("paths", {})
     if paths is not None and not isinstance(paths, dict):

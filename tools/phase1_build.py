@@ -16,8 +16,8 @@ from tools.phase1 import BuildPaths, BuildSelector, Phase1Builder  # noqa: E402
 
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser("phase1 builder")
-    ap.add_argument("--sku", default=None, help="comma-separated sku ids")
     ap.add_argument("--model", default=None, help="comma-separated product models")
+    ap.add_argument("--region", default=None, help="comma-separated regions")
     ap.add_argument("--page", default=None, help="comma-separated page ids")
     ap.add_argument("--lang", default=None, help="comma-separated langs")
     ap.add_argument(
@@ -28,17 +28,16 @@ def parse_args() -> argparse.Namespace:
 
     ap.add_argument("--page-registry", default="data/phase1/page_registry.csv")
     ap.add_argument("--content-blocks", default="data/phase1/content_blocks.csv")
-    ap.add_argument("--product-vars", default="data/phase1/product_variables.csv")
     ap.add_argument("--template-dir", default="docs/templates")
     ap.add_argument("--out-dir", default="docs/generated")
     ap.add_argument(
         "--spec-master-csv",
-        default="tools/Draft-tool/data/Spec_Master.csv",
+        default="data/phase1/Spec_Master.csv",
         help="single source for spec page master rows",
     )
     ap.add_argument(
         "--spec-footnotes-csv",
-        default="tools/Draft-tool/data/Spec_Footnotes.csv",
+        default="data/phase1/Spec_Footnotes.csv",
         help="optional source for spec notes/footnotes (pass empty to disable)",
     )
     return ap.parse_args()
@@ -63,7 +62,6 @@ def main() -> None:
         root=ROOT,
         page_registry=as_path(args.page_registry),
         content_blocks=as_path(args.content_blocks),
-        product_variables=as_path(args.product_vars),
         template_dir=as_path(args.template_dir),
         output_dir=as_path(args.out_dir),
         spec_master_csv=as_path(args.spec_master_csv),
@@ -71,8 +69,8 @@ def main() -> None:
     )
 
     selector = BuildSelector.from_args(
-        skus=args.sku,
         models=args.model,
+        regions=args.region,
         pages=args.page,
         langs=args.lang,
     )

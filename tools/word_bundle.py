@@ -4,7 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from tools.word_bundle_common import derive_word_title, paths, resolve_bundle_targets, resolve_reference_doc
 from tools.word_bundle_docx import export_word_from_bundle
@@ -14,8 +19,8 @@ from tools.word_bundle_html import render_safety_word_html, render_spec_word_htm
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
-    ap.add_argument("--sku", default=None, help="Optional SKU for word bundle")
-    ap.add_argument("--model", default=None, help="Optional model for spec filtering / SKU resolving")
+    ap.add_argument("--model", default=None, help="Optional model for spec filtering")
+    ap.add_argument("--region", default=None, help="Optional region for spec filtering")
     ap.add_argument("--output", default="manual_bundle.docx", help="Output docx path")
     args = ap.parse_args()
 
@@ -28,11 +33,14 @@ def main() -> None:
     with cfg_path.open("r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f) or {}
 
-    target_sku, target_model = resolve_bundle_targets(cfg, args.sku, args.model)
-    docx_path = export_word_from_bundle(cfg, target_sku, target_model, args.output)
+    target_model, target_region = resolve_bundle_targets(
+        cfg,
+        args.model,
+        args.region,
+    )
+    docx_path = export_word_from_bundle(cfg, target_model, target_region, args.output)
     print(f"[word_bundle] Done. DOCX: {docx_path}")
 
 
 if __name__ == "__main__":
     main()
-

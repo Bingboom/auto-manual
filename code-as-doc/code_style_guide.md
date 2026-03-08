@@ -41,11 +41,10 @@ P1 已完成：
 - 主流程清晰：`build_docs -> phase1_build -> gen_index_bundle -> sphinx/latex -> word`
 - 配置驱动明显：`config.yaml` 的 `pages` 控制页面顺序与来源
 - 有基础数据校验：`validate_config.py`、`validate_layout_params.py`
-- 有单元测试基线（30 个用例，覆盖核心路径）
+- 有单元测试基线（34 个用例，覆盖核心路径）
 
 主要问题：
-- `renderers_spec_parser.py` 仍承担较多 spec schema 兼容逻辑，后续可继续按“schema 识别/过滤/聚合”再拆一层
-- `Phase1Builder` 仍存在跨模块私有方法调用（`_load_vars_by_sku()`），建议逐步补公开只读接口
+- `renderers_spec_parser.py` 仍承担较多 spec schema 兼容逻辑（含 legacy `sku_scope/sku_id` 分支），后续可继续按“schema 识别/过滤/聚合”再拆一层
 - 构建输出缺少快照回归（当前以 smoke + unittest 为主）
 
 ### 1.2 继承与迭代能力评估
@@ -54,7 +53,7 @@ P1 已完成：
 
 优点：
 - 通过 `PAGE_RENDERERS` + `page_registry.csv` 支持按页扩展
-- `BuildSelector` 支持 `sku/model/page/lang` 过滤，利于增量构建
+- `BuildSelector` 支持 `model/region/page/lang` 过滤，利于增量构建
 - `spec_master_csv` 已收敛为配置单一来源，方向正确
 
 主要问题：
@@ -70,10 +69,10 @@ P1 已完成：
 
 - L0 数据契约层：`config.yaml`、CSV schema、字段校验
 - L1 数据装配层：`tools/phase1/builder.py`（读取、过滤、归一）
-- L2 渲染层：`tools/phase1/renderers.py`（纯渲染，不做 I/O）
+- L2 渲染层：`tools/phase1/renderers_*.py`（纯渲染，不做 I/O；`renderers.py` 仅做入口分发）
 - L3 编排层：`tools/gen_index_bundle.py`（组装 index）
 - L4 构建入口层：`tools/build_docs.py`（流程调度）
-- L5 导出层：`tools/word_bundle.py`（bundle/docx 导出）
+- L5 导出层：`tools/word_bundle*.py`（bundle/html/docx 导出；`word_bundle.py` 仅做入口编排）
 
 ### 2.2 依赖方向
 
@@ -110,8 +109,7 @@ P1 已完成：
 ### 3.2 重用与去重
 
 以下能力必须抽到共享模块（如 `tools/utils/targets.py`）：
-- `{sku}/{model}` token 检测与格式化
-- `model -> sku` 映射
+- `{model}/{region}` token 检测与格式化（`{sku}` 禁用）
 - default target 解析策略
 
 禁止在 2 个以上脚本重复复制相同解析逻辑。
@@ -138,8 +136,10 @@ P1 已完成：
 
 强制标准：
 - 主链路默认以 `build.default_model` 驱动
+- 区域相关构建默认以 `build.default_region` 驱动
 - 新功能必须通过 config 控制，禁止硬编码路径
-- token 仅允许 `{model}` / `{sku}`，新增 token 必须先补校验器
+- token 仅允许 `{model}` / `{region}`，新增 token 必须先补校验器
+- 禁止恢复 `sku` 作为构建筛选条件；`{sku}` token 视为无效配置
 
 ### 4.3 单一事实源（Single Source of Truth）
 
@@ -181,7 +181,7 @@ P1 已完成：
 python3 tools/validate_config.py --config config.yaml
 python3 tools/validate_layout_params.py --csv data/layout_params.csv
 python3 -m unittest discover -s tests -v
-python3 tools/build_docs.py --model JHP-2000A --clean --no-open
+python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
 ```
 
 ### 6.2 测试分层

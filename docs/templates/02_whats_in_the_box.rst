@@ -38,7 +38,7 @@ INCLUDED ITEMS
           :alt: Power station image placeholder.
           :width: 120px
 
-       **Jackery HomePower 2000 Plus**
+       |PRODUCT_NAME_BOLD|
      - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: AC charging cable image placeholder.
           :width: 120px

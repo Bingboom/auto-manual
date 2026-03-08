@@ -18,10 +18,11 @@ from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import open_file, run  # noqa: E402
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 from tools.config_pages import CsvPage, parse_config_pages_or_raise
+from tools.utils.spec_master import resolve_product_name_from_spec_master
 from tools.utils.targets import (
     config_uses_token_in_pages,
     resolve_build_model as resolve_target_model,
-    resolve_sku_from_inputs,
+    resolve_build_region as resolve_target_region,
 )
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
 
@@ -68,7 +69,11 @@ def validate_layout_csv(layout_csv_path: Path) -> None:
         raise RuntimeError("Layout params validation failed")
 
 
-def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
+def render_csv_pages(
+    cfg: dict,
+    model: str | None,
+    region: str | None,
+) -> None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     pages = parse_config_pages_or_raise(
@@ -102,10 +107,10 @@ def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
         cmd += ["--page", ",".join(sorted(phase1_pages))]
         if phase1_langs:
             cmd += ["--lang", ",".join(sorted(phase1_langs))]
-        if sku:
-            cmd += ["--sku", sku]
         if model:
             cmd += ["--model", model]
+        if region:
+            cmd += ["--region", region]
         spec_master_csv = paths_cfg.get("spec_master_csv")
         if isinstance(spec_master_csv, str) and spec_master_csv.strip():
             cmd += ["--spec-master-csv", spec_master_csv.strip()]
@@ -115,30 +120,65 @@ def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
         run(cmd, cwd=paths.root)
 
 
-def _config_uses_sku_token(cfg: dict) -> bool:
-    return config_uses_token_in_pages(cfg, "sku")
-
-
 def _config_uses_model_token(cfg: dict) -> bool:
     return config_uses_token_in_pages(cfg, "model")
+
+
+def _config_uses_region_token(cfg: dict) -> bool:
+    return config_uses_token_in_pages(cfg, "region")
 
 
 def resolve_build_model(cfg: dict, arg_model: str | None) -> str | None:
     return resolve_target_model(cfg, arg_model)
 
 
-def resolve_build_sku(cfg: dict, arg_sku: str | None, arg_model: str | None = None) -> str | None:
-    return resolve_sku_from_inputs(
-        cfg,
-        arg_sku=arg_sku,
-        arg_model=arg_model,
-        root=paths.root,
-        requires_sku_token=_config_uses_sku_token(cfg),
-        log_prefix="build",
+def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
+    return resolve_target_region(cfg, arg_region)
+
+
+def _resolve_spec_master_csv_path(cfg: dict) -> Path:
+    paths_cfg_raw = cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get("spec_master_csv")
+    if isinstance(raw, str) and raw.strip():
+        p = Path(raw.strip())
+        return p if p.is_absolute() else (paths.root / p)
+    return paths.root / "data" / "phase1" / "Spec_Master.csv"
+
+
+def resolve_product_name_for_build(
+    cfg: dict,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> str | None:
+    if not (model or "").strip():
+        return None
+    spec_master_csv = _resolve_spec_master_csv_path(cfg)
+    match = resolve_product_name_from_spec_master(
+        spec_master_csv,
+        model=model,
+        region=region,
+        lang=lang,
     )
+    if not match:
+        return None
+    return match.product_name
 
 
-def sphinx_build_html(minimal_theme: bool = False) -> None:
+def _with_product_name_epilog(cmd: list[str], product_name: str | None) -> list[str]:
+    if not (product_name or "").strip():
+        return cmd
+    name = product_name.strip()
+    epilog = (
+        f".. |PRODUCT_NAME| replace:: {name}\n"
+        f".. |PRODUCT_NAME_BOLD| replace:: **{name}**"
+    )
+    return [*cmd, "-D", f"rst_epilog={epilog}"]
+
+
+def sphinx_build_html(minimal_theme: bool = False, product_name: str | None = None) -> None:
     print("[build] Sphinx -> HTML")
     cmd = ["sphinx-build", "-b", "html", ".", "_build/html"]
     if minimal_theme:
@@ -151,12 +191,14 @@ def sphinx_build_html(minimal_theme: bool = False) -> None:
             "-D",
             "html_js_files=[]",
         ]
+    cmd = _with_product_name_epilog(cmd, product_name)
     run(cmd, cwd=paths.docs_dir)
 
 
-def sphinx_build_latex() -> None:
+def sphinx_build_latex(product_name: str | None = None) -> None:
     print("[build] Sphinx -> LaTeX")
-    run(["sphinx-build", "-b", "latex", ".", "_build/latex"], cwd=paths.docs_dir)
+    cmd = _with_product_name_epilog(["sphinx-build", "-b", "latex", ".", "_build/latex"], product_name)
+    run(cmd, cwd=paths.docs_dir)
 
 
 def patch_fonts(patch_fonts_script: str, main_tex: str) -> None:
@@ -229,8 +271,8 @@ def export_word_from_html(word_output: str) -> Path:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
-    ap.add_argument("--sku", default=None, help="Target SKU for phase1 pages / index includes")
-    ap.add_argument("--model", default=None, help="Target product model for spec filtering / sku resolving")
+    ap.add_argument("--model", default=None, help="Target product model for spec filtering")
+    ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
     ap.add_argument("--no-open", action="store_true", help="Do not open PDF after build (override config)")
     args = ap.parse_args()
@@ -268,28 +310,39 @@ def main() -> None:
         clean_build_dir()
 
     target_model = resolve_build_model(cfg, args.model)
-    needs_sku_token = _config_uses_sku_token(cfg)
+    target_region = resolve_build_region(cfg, args.region)
     needs_model_token = _config_uses_model_token(cfg)
+    needs_region_token = _config_uses_region_token(cfg)
     if needs_model_token and not target_model:
         raise RuntimeError("config uses '{model}' but no --model was provided and build.default_model is empty")
+    if needs_region_token and not target_region:
+        raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
 
-    explicit_sku = (args.sku or "").strip() or None
-    if explicit_sku:
-        target_sku = explicit_sku
-    elif needs_sku_token or not target_model:
-        target_sku = resolve_build_sku(cfg, None, args.model)
-    else:
-        target_sku = None
+    build_langs = list(build_cfg.get("languages", ["en"]))
+    primary_lang = str(build_langs[0]) if build_langs else "en"
+    product_name = resolve_product_name_for_build(
+        cfg,
+        model=target_model,
+        region=target_region,
+        lang=primary_lang,
+    )
+    if target_model and not product_name:
+        spec_master_csv = _resolve_spec_master_csv_path(cfg)
+        raise RuntimeError(
+            "Failed to resolve Product Name from Spec_Master.csv for "
+            f"model='{target_model}', region='{target_region or ''}', lang='{primary_lang}'. "
+            f"Source: {spec_master_csv}"
+        )
 
-    render_csv_pages(cfg, sku=target_sku, model=target_model)
+    render_csv_pages(cfg, model=target_model, region=target_region)
 
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type == "manual_bundle":
         index_cmd = [sys.executable, "tools/gen_index_bundle.py", "--config", str(cfg_path)]
-        if target_sku:
-            index_cmd += ["--sku", target_sku]
         if target_model:
             index_cmd += ["--model", target_model]
+        if target_region:
+            index_cmd += ["--region", target_region]
         run(index_cmd, cwd=paths.root)
     else:
         raise RuntimeError(f"Unsupported doc_type: {doc_type}")
@@ -298,12 +351,12 @@ def main() -> None:
     open_html = bool(build_cfg.get("open_html", False)) and (not args.no_open)
 
     if build_html:
-        sphinx_build_html()
+        sphinx_build_html(product_name=product_name)
 
     if build_word and word_source == "html" and not build_html:
-        sphinx_build_html(minimal_theme=True)
+        sphinx_build_html(minimal_theme=True, product_name=product_name)
 
-    sphinx_build_latex()
+    sphinx_build_latex(product_name=product_name)
     patch_fonts(patch_fonts_script, main_tex)
     compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
 
@@ -321,7 +374,7 @@ def main() -> None:
         elif word_source == "latex":
             docx_path = export_word_from_latex(main_tex, word_output)
         elif word_source == "bundle":
-            docx_path = export_word_from_bundle(cfg, target_sku, target_model, word_output)
+            docx_path = export_word_from_bundle(cfg, target_model, target_region, word_output)
         else:
             raise RuntimeError("build.word_source must be one of 'latex', 'html', or 'bundle'")
         print(f"[build] Done. DOCX: {docx_path}")

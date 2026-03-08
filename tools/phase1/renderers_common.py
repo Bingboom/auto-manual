@@ -123,6 +123,8 @@ def _enabled(v: str) -> bool:
 
 def _scope_allows(scope: str, sku_id: str) -> bool:
     value = (scope or "").strip()
+    if not (sku_id or "").strip():
+        return True
     if not value or value.upper() == "ALL":
         return True
     allowed = {x.strip() for x in value.split("|") if x.strip()}
@@ -172,4 +174,3 @@ def spec_latex_cell(text: str) -> str:
 def raw_latex_block(lines: list[str]) -> str:
     body = "\n".join(f"   {x}" if x else "   " for x in lines)
     return f".. raw:: latex\n\n{body}\n\n"
-

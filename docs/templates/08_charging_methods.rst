@@ -1,7 +1,7 @@
 CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 -------------------------------------------
 
-Jackery Explorer 2000 has two DC8020 input ports and is compatible with Jackery solar panels.
+|PRODUCT_NAME| has two DC8020 input ports and is compatible with Jackery solar panels.
 If one DC8020 input port needs to connect two solar panels simultaneously,
 use a solar panel connector (sold separately, not included as standard).
 
@@ -18,7 +18,7 @@ use a solar panel connector (sold separately, not included as standard).
   Doing so may blow the car fuse or cause charging failure.
 
 It is recommended to use Jackery solar panels. Ensure the open-circuit voltage (Voc)
-of the solar panel is within the DC input range (16V-60V) of the Explorer 2000.
+of the solar panel is within the DC input range (16V-60V) of |PRODUCT_NAME|.
 Jackery is not responsible for damage or loss caused by third-party solar panels.
 
 CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)

@@ -10,22 +10,31 @@ from tools.config_pages import CsvPage, parse_config_pages_or_raise
 from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 from tools.phase1.renderers import apply_vars
 from tools.utils.path_utils import get_paths
+from tools.utils.spec_master import resolve_product_name_from_spec_master
 from tools.utils.targets import (
-    config_uses_token,
     format_tokenized,
     resolve_build_model,
-    resolve_sku_from_inputs,
+    resolve_build_region,
 )
 
 paths = get_paths()
 
 
-def format_tokenized_value(text: str, sku: str | None, model: str | None) -> str:
-    return format_tokenized(text, sku, model)
+def format_tokenized_value(
+    text: str,
+    model: str | None,
+    region: str | None,
+) -> str:
+    return format_tokenized(text, None, model, region)
 
 
-def resolve_config_path(base_dir: Path, value: str, sku: str | None, model: str | None) -> Path:
-    rendered = format_tokenized_value(value, sku, model)
+def resolve_config_path(
+    base_dir: Path,
+    value: str,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    rendered = format_tokenized_value(value, model, region)
     path = Path(rendered)
     if path.is_absolute():
         return path
@@ -35,20 +44,27 @@ def resolve_config_path(base_dir: Path, value: str, sku: str | None, model: str 
 def resolve_optional_config_path(
     base_dir: Path,
     value: str | None,
-    sku: str | None,
     model: str | None,
+    region: str | None,
 ) -> Path | None:
     if not isinstance(value, str) or not value.strip():
         return None
-    return resolve_config_path(base_dir, value.strip(), sku, model)
+    return resolve_config_path(base_dir, value.strip(), model, region)
 
 
-def resolve_csv_include_rst_path(page: CsvPage, lang: str, sku: str | None, model: str | None) -> Path:
+def resolve_csv_include_rst_path(
+    page: CsvPage,
+    lang: str,
+    model: str | None,
+    region: str | None,
+) -> Path:
     page_name = page.page
     if page.include_dir is None:
         rel = f"{page_name}_{lang}.rst"
     else:
-        rel = str(Path(format_tokenized_value(page.include_dir, sku, model)) / f"{page_name}_{lang}.rst")
+        rel = str(
+            Path(format_tokenized_value(page.include_dir, model, region)) / f"{page_name}_{lang}.rst"
+        )
     return paths.docs_dir / rel
 
 
@@ -126,21 +142,21 @@ def derive_word_title(
 
 def load_word_context(
     cfg: dict,
-    sku: str | None,
     model: str | None,
-) -> tuple[Phase1Builder, dict[str, dict[str, str]]]:
+    region: str | None,
+) -> Phase1Builder:
     base_paths = BuildPaths.from_root(paths.root)
     cfg_paths_raw = cfg.get("paths", {})
     cfg_paths = cfg_paths_raw if isinstance(cfg_paths_raw, dict) else {}
     spec_master_cfg = cfg_paths.get("spec_master_csv")
     spec_footnotes_cfg = cfg_paths.get("spec_footnotes_csv")
     spec_master_csv = (
-        resolve_config_path(paths.root, spec_master_cfg.strip(), sku, model)
+        resolve_config_path(paths.root, spec_master_cfg.strip(), model, region)
         if isinstance(spec_master_cfg, str) and spec_master_cfg.strip()
         else base_paths.spec_master_csv
     )
     spec_footnotes_csv = (
-        resolve_optional_config_path(paths.root, spec_footnotes_cfg, sku, model)
+        resolve_optional_config_path(paths.root, spec_footnotes_cfg, model, region)
         if isinstance(spec_footnotes_cfg, str)
         else base_paths.spec_footnotes_csv
     )
@@ -149,18 +165,20 @@ def load_word_context(
         root=base_paths.root,
         page_registry=base_paths.page_registry,
         content_blocks=base_paths.content_blocks,
-        product_variables=base_paths.product_variables,
         template_dir=base_paths.template_dir,
         output_dir=base_paths.output_dir,
         spec_master_csv=spec_master_csv,
         spec_footnotes_csv=spec_footnotes_csv,
     )
-    builder = Phase1Builder(build_paths)
-    vars_by_sku = builder._load_vars_by_sku()
-    return builder, vars_by_sku
+    return Phase1Builder(build_paths)
 
 
-def ensure_csv_page_rsts(cfg: dict, builder: Phase1Builder, sku: str | None, model: str | None) -> None:
+def ensure_csv_page_rsts(
+    cfg: dict,
+    builder: Phase1Builder,
+    model: str | None,
+    region: str | None,
+) -> None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     build_langs = list(build_cfg.get("languages", ["en"]))
@@ -183,8 +201,8 @@ def ensure_csv_page_rsts(cfg: dict, builder: Phase1Builder, sku: str | None, mod
         return
 
     selector = BuildSelector(
-        skus={sku} if sku else None,
         models={model} if model else None,
+        regions={region} if region else None,
         pages=page_ids,
         langs=langs or None,
     )
@@ -199,49 +217,62 @@ def _pick_model_from_vars(vars_map: dict[str, str]) -> str:
     return ""
 
 
+def _pick_region_from_vars(vars_map: dict[str, str]) -> str:
+    for key in ("region", "Region"):
+        value = (vars_map.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
 def pick_vars_map(
-    vars_by_sku: dict[str, dict[str, str]],
-    sku: str | None,
     model: str | None,
+    region: str | None,
 ) -> dict[str, str]:
-    if sku:
-        return vars_by_sku.get(sku, {})
+    out: dict[str, str] = {}
     if model:
-        matched = [
-            vars_map
-            for vars_map in vars_by_sku.values()
-            if _pick_model_from_vars(vars_map) == model
-        ]
-        if len(matched) == 1:
-            return matched[0]
-    return {}
+        out["model"] = model
+    if region:
+        out["region"] = region
+    return out
 
 
-def _config_uses_sku_token(cfg: dict) -> bool:
-    return config_uses_token(
-        cfg,
-        "sku",
-        include_rst_include=True,
-        paths_keys=("spec_master_csv", "spec_footnotes_csv"),
-        build_keys=("word_reference_doc",),
+def fill_product_name_from_spec_master(
+    vars_map: dict[str, str],
+    *,
+    spec_master_csv: Path,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> dict[str, str]:
+    out = dict(vars_map)
+    target_model = (model or _pick_model_from_vars(out)).strip()
+    target_region = (region or _pick_region_from_vars(out)).strip() or None
+    if not target_model:
+        return out
+
+    match = resolve_product_name_from_spec_master(
+        spec_master_csv,
+        model=target_model,
+        region=target_region,
+        lang=lang,
     )
+    if not match:
+        return out
+
+    out["product_name"] = match.product_name
+    if match.region and not target_region:
+        out["region"] = match.region
+    if target_model and not _pick_model_from_vars(out):
+        out["model"] = target_model
+    return out
 
 
-def resolve_bundle_targets(cfg: dict, sku: str | None, model: str | None) -> tuple[str | None, str | None]:
+def resolve_bundle_targets(
+    cfg: dict,
+    model: str | None,
+    region: str | None,
+) -> tuple[str | None, str | None]:
     picked_model = resolve_build_model(cfg, model)
-    if sku and sku.strip():
-        return sku.strip(), picked_model
-
-    if not _config_uses_sku_token(cfg):
-        return None, picked_model
-
-    picked_sku = resolve_sku_from_inputs(
-        cfg,
-        arg_sku=None,
-        arg_model=picked_model,
-        root=paths.root,
-        requires_sku_token=True,
-        log_prefix=None,
-    )
-    return picked_sku, picked_model
-
+    picked_region = resolve_build_region(cfg, region)
+    return picked_model, picked_region

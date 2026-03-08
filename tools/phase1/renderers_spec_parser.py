@@ -104,6 +104,7 @@ def _parse_spec_master_sections(
     )
     var_region = _first_non_empty(vars_map, ["region", "Region"])
     var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
+    target_sku = _first_non_empty(vars_map, ["sku_id", "sku"]) or rst_escape(sku_id)
 
     for idx, raw in enumerate(blocks):
         row = dict(raw)
@@ -120,11 +121,11 @@ def _parse_spec_master_sections(
         if not _is_latest_row(row):
             continue
 
-        if "sku_scope" in row and not _scope_allows(row.get("sku_scope", "ALL"), sku_id):
+        if target_sku and "sku_scope" in row and not _scope_allows(row.get("sku_scope", "ALL"), target_sku):
             continue
-        if "sku_id" in row:
+        if target_sku and "sku_id" in row:
             row_sku = rst_escape(row.get("sku_id") or "")
-            if row_sku and row_sku != sku_id:
+            if row_sku and row_sku != target_sku:
                 continue
 
         row_project = _first_non_empty(row, ["project_code", "项目代码"])
@@ -418,4 +419,3 @@ def collect_spec_content(
         "notes": notes,
         "footnotes": footnotes,
     }
-

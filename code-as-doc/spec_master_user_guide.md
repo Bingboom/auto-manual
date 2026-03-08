@@ -1,10 +1,12 @@
 # Spec Master User Guide
 
-本文说明 `Spec_Master.csv` 在当前仓库构建链路中的作用，并明确哪些字段是“构建 Word 时必备”的。
+更新时间：2026-03-08
+
+本文说明 `Spec_Master.csv` 在当前仓库构建链路中的作用，并明确“构建 Word/PDF/HTML 时必备字段”。
 
 ## 1. `Spec_Master.csv` 在构建链路中的作用
 
-当前 `spec` 页数据来源是**单一配置源**（代码：`tools/phase1/builder.py`）：
+当前 `spec` 页面数据源是单一配置源：
 
 - 主表：`config.yaml -> paths.spec_master_csv`
 - 脚注补充（可选）：`config.yaml -> paths.spec_footnotes_csv`
@@ -13,140 +15,85 @@
 
 ```yaml
 paths:
-  spec_master_csv: tools/Draft-tool/data/Spec_Master.csv
-  spec_footnotes_csv: tools/Draft-tool/data/Spec_Footnotes.csv
+  spec_master_csv: data/phase1/Spec_Master.csv
+  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
 ```
 
-整体链路：
+构建链路（统一内容源）：
 
-1. `tools/build_docs.py` 调用 `tools/phase1_build.py`
-2. `Phase1Builder._load_page_blocks(page_id="spec")` 读取 `Spec_Master.csv`
-3. `tools/phase1/renderers.py::collect_spec_content()` 识别 Spec_Master schema 并解析
-4. 生成 `docs/generated/<model>/spec_<lang>.rst`
-5. 构建 PDF / DOCX
-   - `word_source=latex/html`：间接使用这份 `spec_<lang>.rst`
-   - `word_source=bundle`：`tools/word_bundle.py` 也先触发/复用 phase1 生成，再读取同一份 `spec_<lang>.rst`
+1. `tools/build_docs.py` 解析构建目标（`model/region/lang`）
+2. 按 `Model + Region + Language` 从 `Spec_Master.csv` 解析 `Row_key=product_name` 对应值
+3. 注入 `|PRODUCT_NAME|` / `|PRODUCT_NAME_BOLD|`，供 RST 模板和 Word bundle 使用
+4. `tools/phase1_build.py` 读取同一份 `Spec_Master.csv` 生成 `docs/generated/<model>/spec_<lang>.rst`
+5. `html/pdf/word` 都基于同一份 `generated rst + templates rst` 继续构建
 
-结论：`paths.spec_master_csv` 指向的 `Spec_Master.csv` 是 `spec` 页面（含 Word 规格页）内容的单一事实来源。
+结论：`spec` 页面内容与产品名变量都来自同一个 `Spec_Master.csv`。
 
-## 2. 构建 Word 的必备字段
+## 2. 构建必备字段
 
-注意：这里说的“必备”是按当前代码真实规则定义，不是业务约定。
+### 2.1 `spec` 页面可构建的硬必备表头
 
-### 2.1 硬必备（表头级，缺失会导致无法按 Spec_Master 模式解析）
-
-`Spec_Master.csv` 必须包含以下列名（大小写敏感）：
+`Spec_Master.csv` 必须包含：
 
 - `Section`
 - `Row_key`
 - `Line_order`
 
-如果你启用了 `--model` / `build.default_model` 的按型号构建，建议在主表增加并填写：
+缺失时会被判定为非 Spec_Master schema，`spec` 页无法按当前主链路正常构建。
 
-- `Model`（例如 `JHP-2000A`）
+### 2.2 产品名变量注入的硬必备字段
 
-原因：
+当你使用 `build_docs.py --model ...`（或配置了 `build.default_model`）时，以下字段是硬必备：
 
-- `Phase1Builder` 和 `renderers` 都用这 3 列判断是否属于 Spec_Master schema。
-- 如果缺失，会退回其他 schema 路径，通常会导致 `spec` 页无有效内容或构建失败。
+- `Row_key`：必须存在 `product_name` 行
+- `Value_<lang>`（例如 `Value_en`）或可回退的 `Value` / `Spec_Value`
+- `Model`（建议显式填写，按型号精确匹配）
+- `Region`（建议显式填写，按区域精确匹配）
 
-### 2.2 行级必备（没有就会被丢行；全丢会报错）
+`build_docs.py` 在有目标 `model` 的情况下会 fail-fast：如果无法从 `Spec_Master.csv` 解析到 `product_name`，构建直接失败。
 
-每一条要进入 Word 规格表格的“数据行”，至少要满足：
+### 2.3 推荐字段（提升可控性）
 
-1. `Section` 非空
-2. `Row_key` 非空
-3. 能得到行左侧标签 `row_label`（三选一）
-   - `Row_label_<lang>`（如 `Row_label_en`）
-   - `Row_label_en`
-   - `Row_key`（兜底）
-4. 能得到行右侧内容 `line_text`（两种路径二选一）
-   - 直接提供：`line_text_<lang>` / `line_text_en` / `line_text`
-   - 或拼接提供：
-     - `Param_<lang>` / `Param_en` / `Param_name`
-     - `Value_<lang>` / `Value_en` / `Spec_Value`
-     - 解析器会按 `Param + sep + Value` 或仅 `Value/Param` 组装
+- `Section_order`：章节排序
+- `Row_order` / `row_order`：行排序
+- `Row_label_<lang>`：左侧字段显示名
+- `Param_<lang>` + `Value_<lang>`：右侧内容拼装
+- `Page`：建议标注为 `spec` 或 `specifications`
+- `Is_Latest`、`enabled`：版本与启用控制
 
-如果某行缺少 `row_label` 或 `line_text`，该行会被跳过。  
-如果最终所有数据行都被跳过，会报错：
+## 3. 过滤规则（常见“行被吃掉”原因）
 
-- `spec page has no usable Spec_Master rows for sku=... lang=... [model=...]`
+以下字段不是必填，但填写不当会导致内容被过滤：
 
-### 2.3 推荐必填（不是硬必备，但强烈建议）
-
-- `Section_order`：控制章节排序
-- `row_order` / `Row_order`：控制行排序
-- `Line_order`：控制同一行多行值顺序（虽然表头硬必备，但值也建议规范填写数值）
-- `page_title_<lang>`：控制 `SPECIFICATIONS` 主标题（否则用默认）
-- `section_title_<lang>`：控制章节显示名（否则回退到 `Section`）
-
-## 3. 会影响“是否出现在 Word 里”的过滤字段（可选但高风险）
-
-这些字段不是必填，但如果填错，行会被过滤掉：
-
-- `Is_Latest` / `is_latest`：仅保留 truthy 行
 - `enabled`：仅保留 truthy 行
-- `sku_scope`、`sku_id`：按 SKU 过滤
-- `project_code` / `项目代码`：与 `product_variables.csv` 的变量匹配
-- `Region` / `region`：与变量匹配
-- `Model` / `model`：当构建目标传入 model 时按 model 精确过滤（建议在主表显式填写）
-- `Page` / `page`：若存在，必须是 `spec` 或 `specifications`
-- `row_kind` / `Row_kind` / `kind`：
-  - `data`（默认）进入规格表
-  - `note` 进入 notes
-  - `footnote` 进入 footnotes
-  - `title` 不进数据表
+- `Is_Latest`：仅保留 truthy 行
+- `Model`：若传入构建 model，会做精确匹配
+- `Region`：若传入构建 region，会做精确匹配
+- `Page`：若存在，必须是 `spec` / `specifications`
 
-## 4. `Spec_Footnotes.csv` 与 Word 的关系
-
-`Spec_Footnotes.csv` 不是构建 Word 规格表格的硬必需。  
-它用于补充 `notes/footnotes` 文本，最终显示在规格表后。
-
-常见字段（建议）：
-
-- `row_kind`：`note` 或 `footnote`
-- `note_text_<lang>`（note 场景）
-- `footnote_mark` + `footnote_text_<lang>`（footnote 场景）
-- 可配合 `enabled` / `sku_scope` / `Is_Latest` 使用
-
-## 5. 最小可用样例（可用于验证 Word 构建）
-
-下面是一个最小可工作的 `Spec_Master.csv`（English）示例：
+## 4. 最小可用示例
 
 ```csv
-Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en
-GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2
-GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A
+Section,Section_order,Page,Model,Region,Row_key,Row_label_en,Line_order,Value_en,Is_Latest,enabled
+GENERAL INFO,1,spec,JHP-2000A,US,product_name,Product Name,1,Jackery HomePower 2000 Plus v2,1,1
+GENERAL INFO,1,spec,JHP-2000A,US,model_no,Model No.,1,JHP-2000A,1,1
 ```
 
-说明：
+这份示例可同时满足：
 
-- 这份样例满足硬必备表头（`Section, Row_key, Line_order`）
-- 行级可用（`Row_label_en` + `Value_en`）
-- `Param_en` 可留空
+- `spec` 页面基础渲染
+- `PRODUCT_NAME` 变量注入
+- `build_docs.py --model JHP-2000A --region US` 的 fail-fast 校验
 
-## 6. 快速自检命令
-
-只验证 spec 页面渲染：
+## 5. 快速自检
 
 ```bash
-python3 tools/phase1_build.py --model JHP-2000A --page spec --lang en
-```
-
-查看产物：
-
-```bash
-ls docs/generated/JHP-2000A/spec_en.rst
-```
-
-完整构建（含 Word）：
-
-```bash
-python3 tools/build_docs.py --model JHP-2000A --clean --no-open
+python3 tools/phase1_build.py --model JHP-2000A --region US --page spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv
+python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
 ```
 
 如果失败，优先检查：
 
-1. `Spec_Master.csv` 是否包含硬必备表头
-2. 数据行是否能生成 `row_label` 和 `line_text`
-3. 过滤字段（`Is_Latest/enabled/sku_scope/Region/project_code/Model/Page`）是否把行全部过滤掉
+1. `Spec_Master.csv` 是否包含 `Section/Row_key/Line_order`
+2. 是否存在 `Row_key=product_name` 且能取到 `Value_en`（或回退值）
+3. `Model/Region/Page/Is_Latest/enabled` 是否把行过滤掉

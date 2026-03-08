@@ -18,6 +18,8 @@ try:
 except ImportError:  # pragma: no cover - direct script execution fallback
     from tools.phase1.renderers import get_renderer
 
+from tools.utils.spec_master import resolve_product_name_from_spec_master
+
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
     if not path.exists():
@@ -44,14 +46,6 @@ def _parse_order(value: str) -> float:
 
 def _is_enabled(value: str) -> bool:
     return (value or "1").strip().lower() in {"1", "true"}
-
-
-def _scope_allows(scope: str, sku_id: str) -> bool:
-    s = (scope or "").strip()
-    if not s or s.upper() == "ALL":
-        return True
-    allowed = {x.strip() for x in s.split("|") if x.strip()}
-    return sku_id in allowed
 
 
 def _csv_set(value: str | None) -> set[str] | None:
@@ -138,7 +132,6 @@ class BuildPaths:
     root: Path
     page_registry: Path
     content_blocks: Path
-    product_variables: Path
     template_dir: Path
     output_dir: Path
     spec_master_csv: Path
@@ -150,32 +143,31 @@ class BuildPaths:
             root=root,
             page_registry=root / "data" / "phase1" / "page_registry.csv",
             content_blocks=root / "data" / "phase1" / "content_blocks.csv",
-            product_variables=root / "data" / "phase1" / "product_variables.csv",
             template_dir=root / "docs" / "templates",
             output_dir=root / "docs" / "generated",
-            spec_master_csv=root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv",
-            spec_footnotes_csv=root / "tools" / "Draft-tool" / "data" / "Spec_Footnotes.csv",
+            spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
+            spec_footnotes_csv=root / "data" / "phase1" / "Spec_Footnotes.csv",
         )
 
 
 @dataclass(frozen=True)
 class BuildSelector:
-    skus: set[str] | None = None
     models: set[str] | None = None
+    regions: set[str] | None = None
     pages: set[str] | None = None
     langs: set[str] | None = None
 
     @classmethod
     def from_args(
         cls,
-        skus: str | None = None,
         models: str | None = None,
+        regions: str | None = None,
         pages: str | None = None,
         langs: str | None = None,
     ) -> "BuildSelector":
         return cls(
-            skus=_csv_set(skus),
             models=_csv_set(models),
+            regions=_csv_set(regions),
             pages=_csv_set(pages),
             langs=_csv_set(langs),
         )
@@ -213,6 +205,20 @@ class Phase1Builder:
             if value:
                 return value
         return ""
+
+    @staticmethod
+    def _pick_region_from_vars(vars_map: dict[str, str]) -> str:
+        for key in ("region", "Region"):
+            value = (vars_map.get(key) or "").strip()
+            if value:
+                return value
+        return ""
+
+    @staticmethod
+    def _single_selector_value(values: set[str] | None) -> str:
+        if not values or len(values) != 1:
+            return ""
+        return next(iter(values))
 
     @staticmethod
     def _safe_output_key(value: str) -> str:
@@ -257,17 +263,50 @@ class Phase1Builder:
         pages.sort(key=lambda p: p.order)
         return pages
 
-    def _load_vars_by_sku(self) -> dict[str, dict[str, str]]:
-        rows = _read_csv(self.paths.product_variables)
-        out: dict[str, dict[str, str]] = {}
-        for r in rows:
-            sku = (r.get("sku_id") or "").strip()
-            key = (r.get("var_key") or "").strip()
-            value = r.get("var_value") or ""
-            if not sku or not key:
-                continue
-            out.setdefault(sku, {})[key] = value
-        return out
+    def _select_targets(
+        self,
+        selector: BuildSelector,
+    ) -> list[tuple[str, dict[str, str]]]:
+        targets: list[tuple[str, dict[str, str]]] = []
+        selected_model = self._single_selector_value(selector.models)
+        selected_region = self._single_selector_value(selector.regions)
+
+        if selector.models:
+            for model in sorted(selector.models):
+                vars_map = {"model": model}
+                if selected_region:
+                    vars_map["region"] = selected_region
+                targets.append((model, vars_map))
+            return targets
+
+        if selector.regions:
+            for region in sorted(selector.regions):
+                targets.append((region, {"region": region}))
+            return targets
+
+        return [("default", {})]
+
+    def _inject_product_name(
+        self,
+        render_vars: dict[str, str],
+        *,
+        lang: str,
+    ) -> None:
+        model_value = self._pick_model_from_vars(render_vars)
+        if not model_value:
+            return
+        region_value = self._pick_region_from_vars(render_vars) or None
+        match = resolve_product_name_from_spec_master(
+            self.paths.spec_master_csv,
+            model=model_value,
+            region=region_value,
+            lang=lang,
+        )
+        if not match:
+            return
+        render_vars["product_name"] = match.product_name
+        if match.region and not region_value:
+            render_vars["region"] = match.region
 
     def _resolve_template(self, page: PageSpec) -> Path:
         raw = page.template or f"{page.page_id}_template.rst"
@@ -339,8 +378,10 @@ class Phase1Builder:
 
     def build(self, selector: BuildSelector, strict_renderer: bool = True) -> BuildResult:
         pages = self._load_pages()
-        vars_by_sku = self._load_vars_by_sku()
+        targets = self._select_targets(selector)
         default_blocks = _normalize_content_blocks(_read_csv(self.paths.content_blocks))
+        selected_model = self._single_selector_value(selector.models)
+        selected_region = self._single_selector_value(selector.regions)
 
         written: list[Path] = []
         skipped: list[str] = []
@@ -370,19 +411,20 @@ class Phase1Builder:
             if not page_blocks:
                 raise RuntimeError(f"No content blocks for page_id='{page.page_id}'")
 
-            for sku_id, sku_vars in vars_by_sku.items():
-                if selector.skus and sku_id not in selector.skus:
-                    continue
-                if not _scope_allows(page.sku_scope, sku_id):
-                    continue
-                model_value = self._pick_model_from_vars(sku_vars)
+            for sku_id, sku_vars in targets:
+                model_value = self._pick_model_from_vars(sku_vars) or selected_model
+                region_value = self._pick_region_from_vars(sku_vars) or selected_region
+
                 if selector.models:
                     if not model_value or model_value not in selector.models:
                         continue
+                if selector.regions:
+                    if not region_value or region_value not in selector.regions:
+                        continue
 
                 out_key = sku_id
-                if selector.models and not selector.skus:
-                    out_key = self._safe_output_key(model_value) or sku_id
+                if selector.models:
+                    out_key = self._safe_output_key(model_value or sku_id) or sku_id
                 out_dir = self.paths.output_dir / out_key
                 out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -390,11 +432,13 @@ class Phase1Builder:
                     if selector.langs and lang not in selector.langs:
                         continue
                     render_vars = dict(sku_vars)
-                    if model_value and not render_vars.get("model"):
+                    if model_value and not self._pick_model_from_vars(render_vars):
                         render_vars["model"] = model_value
-                    if selector.models and not render_vars.get("model") and len(selector.models) == 1:
-                        render_vars["model"] = next(iter(selector.models))
-                    rst = renderer(template, page_blocks, sku_id, lang, render_vars)
+                    if region_value and not self._pick_region_from_vars(render_vars):
+                        render_vars["region"] = region_value
+                    self._inject_product_name(render_vars, lang=lang)
+                    render_sku = (render_vars.get("sku_id") or render_vars.get("sku") or "").strip()
+                    rst = renderer(template, page_blocks, render_sku, lang, render_vars)
                     out_path = out_dir / f"{page.page_id}_{lang}.rst"
                     out_path.write_text(rst, encoding="utf-8")
                     written.append(out_path)
@@ -405,7 +449,7 @@ class Phase1Builder:
 def _main() -> None:
     raise SystemExit(
         "tools/phase1/builder.py is a library module. "
-        "Use: python tools/phase1_build.py [--sku ...] [--page ...] [--lang ...]"
+        "Use: python tools/phase1_build.py [--model ...] [--region ...] [--page ...] [--lang ...]"
     )
 
 

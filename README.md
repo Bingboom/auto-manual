@@ -11,7 +11,8 @@
 - `pages` 已有 dataclass schema（`tools/config_pages.py`），构建入口不再直接裸读字典
 - `csv_page` 目前只支持 `source: phase1`
 - 默认 `doc_type` 只支持 `manual_bundle`
-- 构建目标解析（model/sku/token）已统一收敛到 `tools/utils/targets.py`
+- 构建目标解析（model/region/token）已统一收敛到 `tools/utils/targets.py`
+- `spec` 页 `product_name` 按 `Model + Region + Language` 从 `Spec_Master.csv` 解析
 - `renderers` 与 `word_bundle` 已拆分为多模块（P1）
 
 ---
@@ -57,7 +58,7 @@ python3 tools/csv_to_tex_params.py
 ### 2.3 构建整本（推荐）
 
 ```bash
-python3 tools/build_docs.py --model JHP-2000A --clean --no-open
+python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
 ```
 
 或：
@@ -74,13 +75,15 @@ make build-noview MODEL=JHP-2000A
 
 1. 读取并校验 `config.yaml`
 2. 校验 `paths.layout_params_csv`（默认 `data/layout_params.csv`）
-3. 收集 `pages` 中的 `csv_page`，调用 `tools/phase1_build.py`
-4. 调用 `tools/gen_index_bundle.py` 生成 `docs/index.rst`
-5. 按配置决定是否构建 HTML
-6. 固定构建 LaTeX（`sphinx-build -b latex`）
-7. 调用 `tools/patch_latex_fonts.py` 注入 `fonts.tex`
-8. 多轮运行 `xelatex`
-9. 按 `build.word_source` 导出 DOCX（可选）
+3. 按 `Model + Region + Language` 从 `Spec_Master.csv` 解析 `Row_key=product_name`（即 `Product Name` 对应值）
+4. 将 `|PRODUCT_NAME|` / `|PRODUCT_NAME_BOLD|` 注入 `rst_epilog`
+5. 收集 `pages` 中的 `csv_page`，调用 `tools/phase1_build.py`
+6. 调用 `tools/gen_index_bundle.py` 生成 `docs/index.rst`
+7. 按配置决定是否构建 HTML
+8. 固定构建 LaTeX（`sphinx-build -b latex`）
+9. 调用 `tools/patch_latex_fonts.py` 注入 `fonts.tex`
+10. 多轮运行 `xelatex`
+11. 按 `build.word_source` 导出 DOCX（可选）
 
 补充：`build_docs.py` 调用 `validate_config` 时使用的是 `strict_files=False`，  
 所以像 `cover_pdf/rst_include` 的文件存在性不会在这一步强校验，而是在后续阶段暴露问题。
@@ -113,6 +116,7 @@ flowchart TD
 `build_docs.py` 直接依赖的关键字段：
 
 - `build.default_model`（推荐）
+- `build.default_region`（推荐）
 - `build.main_tex`
 - `build.output_pdf`
 - `build.xelatex_runs`
@@ -139,15 +143,18 @@ flowchart TD
 
 优先级：
 
-1. 命令行 `--sku`
-2. 命令行 `--model` 或 `build.default_model`（通过 `product_variables.csv` 中的 `model/product_model/model_no/model_number` 映射到 SKU）
-3. 若配置里用了 `{sku}` 且 `data/phase1/product_variables.csv` 只有一个 SKU，则自动推断
-4. 若配置里用了 `{sku}` 且存在多个 SKU，报错并要求显式指定
+1. 命令行 `--model` / `--region`
+2. 若命令行未传，则使用 `build.default_model` / `build.default_region`
+
+说明：
+
+- 构建目标仅由 `model` / `region` 决定
+- `product_name` 由 `Spec_Master.csv` 中 `Row_key=product_name` 的行解析（通常该行 `Row_label` 为 `Product Name`）
 
 实现说明（P0 已完成）：
 
 - `build_docs.py`、`gen_index_bundle.py`、`word_bundle.py` 都复用 `tools/utils/targets.py`
-- token 检测、`build.default_model` 解析、`model -> sku` 映射、fail-fast 报错语义已统一
+- token 检测与 `build.default_model/default_region` 解析语义已统一
 - 结论：三个入口脚本对 target 选择策略保持一致，减少分叉行为
 
 ---
@@ -176,7 +183,15 @@ flowchart TD
 
 - 页面定义：`data/phase1/page_registry.csv`
 - 默认块：`data/phase1/content_blocks.csv`
-- 变量：`data/phase1/product_variables.csv`
+- 每页块覆盖：`data/phase1/<page_id>_blocks.csv`（如存在则优先）
+
+当前说明：
+
+- `phase1` 不再读取 `product_variables.csv`
+- 渲染变量来源为构建参数（`--model/--region`）与 `Spec_Master.csv` 解析出的 `product_name`
+- `docs/templates/*.rst`（除 `safety_template.rst/spec_template.rst`）若需要产品名，统一使用：
+  - `|PRODUCT_NAME|`
+  - `|PRODUCT_NAME_BOLD|`
 
 每页块数据优先级：
 
@@ -251,19 +266,19 @@ python3 tools/validate_layout_params.py --csv data/layout_params.csv
 
 ```bash
 python3 tools/phase1_build.py
-python3 tools/phase1_build.py --model JHP-2000A --page safety,spec --lang en
+python3 tools/phase1_build.py --model JHP-2000A --region US --page safety,spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv
 ```
 
 仅重建 index：
 
 ```bash
-python3 tools/gen_index_bundle.py --config config.yaml --model JHP-2000A
+python3 tools/gen_index_bundle.py --config config.yaml --model JHP-2000A --region US
 ```
 
 单独导出 Word bundle：
 
 ```bash
-python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output manual_demo_en.docx
+python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --region US --output manual_demo_en.docx
 ```
 
 ---
@@ -273,8 +288,8 @@ python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output man
 - `xelatex not found`  
   安装 TeX Live/MiKTeX，并保证 `xelatex` 在 PATH 中
 
-- `config uses '{sku}' ... multiple SKUs`  
-  传 `--sku`，或让 `product_variables.csv` 的 model 映射唯一后传 `--model`
+- `config uses unsupported '{sku}' token`  
+  把配置中的 `{sku}` 改为 `{model}` 或 `{region}`
 
 - `Word reference doc not found`  
   检查 `build.word_reference_doc` 路径或通配符是否匹配到文件
@@ -301,6 +316,7 @@ python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output man
 以当前 `config.yaml` 为准：
 
 - `build.default_model: JHP-2000A`
+- `build.default_region: US`
 - `build.main_tex: manual_demo.tex`
 - `build.output_pdf: manual_demo.pdf`
 - `build.xelatex_runs: 3`
@@ -308,8 +324,8 @@ python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output man
 - `build.word_source: bundle`
 - `build.word_output: manual_demo_en.docx`
 - `build.build_html: false`
-- `paths.spec_master_csv: tools/Draft-tool/data/Spec_Master.csv`
-- `paths.spec_footnotes_csv: tools/Draft-tool/data/Spec_Footnotes.csv`
+- `paths.spec_master_csv: data/phase1/Spec_Master.csv`
+- `paths.spec_footnotes_csv: data/phase1/Spec_Footnotes.csv`
 
 如果你改了这些值，请以你的 `config.yaml` 为最终事实来源。
 
@@ -321,7 +337,7 @@ python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output man
 
 - 代码规范主文档：`code-as-doc/code_style_guide.md`
 - 本次 P0 优化记录：`code-as-doc/code_optimization_log.md`
-- 文档维护规范：`code-as-doc/代码文档化.md`
+- 文档维护规范：`code-as-doc/code-as-doc.md`
 
 P1 结构优化（已完成）：
 

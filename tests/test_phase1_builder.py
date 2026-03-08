@@ -4,10 +4,17 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.phase1.builder import BuildPaths, Phase1Builder, _normalize_content_blocks
+from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder, _normalize_content_blocks
 
 
 class TestPhase1BuilderNormalization(unittest.TestCase):
+    def test_build_paths_from_root_should_use_phase1_spec_defaults(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            paths = BuildPaths.from_root(root)
+            self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
+            self.assertEqual(root / "data" / "phase1" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
+
     def test_compact_schema_can_be_normalized(self) -> None:
         rows = [
             {
@@ -51,21 +58,15 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
         ]
         self.assertTrue(Phase1Builder._looks_like_spec_master_rows(rows))
 
-    def test_load_spec_prefers_draft_tool_master(self) -> None:
+    def test_load_spec_prefers_configured_spec_master_source(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            draft_csv = root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv"
-            phase1_csv = root / "data" / "phase1" / "Spec_Master.csv"
-            draft_csv.parent.mkdir(parents=True, exist_ok=True)
-            phase1_csv.parent.mkdir(parents=True, exist_ok=True)
+            spec_master_csv = root / "data" / "phase1" / "Spec_Master.csv"
+            spec_master_csv.parent.mkdir(parents=True, exist_ok=True)
 
             csv_head = "Section,Row_key,Line_order,Value_en\n"
-            draft_csv.write_text(
+            spec_master_csv.write_text(
                 csv_head + "GENERAL INFO,draft_row,1,draft\n",
-                encoding="utf-8",
-            )
-            phase1_csv.write_text(
-                csv_head + "GENERAL INFO,phase_row,1,phase\n",
                 encoding="utf-8",
             )
 
@@ -73,29 +74,28 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 root=root,
                 page_registry=root / "dummy_registry.csv",
                 content_blocks=root / "dummy_content.csv",
-                product_variables=root / "dummy_vars.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
-                spec_master_csv=draft_csv,
-                spec_footnotes_csv=draft_csv.parent / "Spec_Footnotes.csv",
+                spec_master_csv=spec_master_csv,
+                spec_footnotes_csv=spec_master_csv.parent / "Spec_Footnotes.csv",
             )
             builder = Phase1Builder(paths)
             rows = builder._load_page_blocks("spec", default_blocks=[])
             self.assertEqual("draft_row", rows[0]["Row_key"])
 
-    def test_load_spec_merges_draft_tool_footnotes_csv(self) -> None:
+    def test_load_spec_merges_configured_footnotes_csv(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            draft_csv = root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv"
-            draft_fn_csv = root / "tools" / "Draft-tool" / "data" / "Spec_Footnotes.csv"
-            draft_csv.parent.mkdir(parents=True, exist_ok=True)
+            spec_master_csv = root / "data" / "phase1" / "Spec_Master.csv"
+            spec_footnotes_csv = root / "data" / "phase1" / "Spec_Footnotes.csv"
+            spec_master_csv.parent.mkdir(parents=True, exist_ok=True)
 
-            draft_csv.write_text(
+            spec_master_csv.write_text(
                 "Section,Row_key,Line_order,Value_en\n"
                 "GENERAL INFO,draft_row,1,draft\n",
                 encoding="utf-8",
             )
-            draft_fn_csv.write_text(
+            spec_footnotes_csv.write_text(
                 "Page,row_kind,footnote_mark,footnote_text_en\n"
                 "specifications,footnote,①,Demo footnote from dedicated csv\n",
                 encoding="utf-8",
@@ -105,16 +105,50 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 root=root,
                 page_registry=root / "dummy_registry.csv",
                 content_blocks=root / "dummy_content.csv",
-                product_variables=root / "dummy_vars.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
-                spec_master_csv=draft_csv,
-                spec_footnotes_csv=draft_fn_csv,
+                spec_master_csv=spec_master_csv,
+                spec_footnotes_csv=spec_footnotes_csv,
             )
             builder = Phase1Builder(paths)
             rows = builder._load_page_blocks("spec", default_blocks=[])
             marks = [row.get("footnote_mark", "") for row in rows]
             self.assertIn("①", marks)
+
+    def test_select_targets_supports_model_and_region_filters(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            paths = BuildPaths(
+                root=root,
+                page_registry=root / "dummy_registry.csv",
+                content_blocks=root / "dummy_content.csv",
+                template_dir=root / "docs" / "templates",
+                output_dir=root / "docs" / "generated",
+                spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
+            )
+            builder = Phase1Builder(paths)
+            selector = BuildSelector(models={"JHP-2000A"}, regions={"US"})
+            targets = builder._select_targets(selector)
+
+            self.assertEqual(1, len(targets))
+            target_key, vars_map = targets[0]
+            self.assertEqual("JHP-2000A", target_key)
+            self.assertEqual("JHP-2000A", vars_map.get("model"))
+            self.assertEqual("US", vars_map.get("region"))
+
+    def test_select_targets_uses_default_target_without_model_or_region(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            paths = BuildPaths(
+                root=root,
+                page_registry=root / "dummy_registry.csv",
+                content_blocks=root / "dummy_content.csv",
+                template_dir=root / "docs" / "templates",
+                output_dir=root / "docs" / "generated",
+                spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
+            )
+            builder = Phase1Builder(paths)
+            self.assertEqual([("default", {})], builder._select_targets(BuildSelector()))
 
 
 if __name__ == "__main__":
