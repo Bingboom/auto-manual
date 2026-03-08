@@ -10,6 +10,7 @@
 - `config.yaml` 的 `pages` 决定整本页面顺序
 - `csv_page` 目前只支持 `source: phase1`
 - 默认 `doc_type` 只支持 `manual_bundle`
+- 构建目标解析（model/sku/token）已统一收敛到 `tools/utils/targets.py`
 
 ---
 
@@ -140,6 +141,12 @@ flowchart TD
 2. 命令行 `--model` 或 `build.default_model`（通过 `product_variables.csv` 中的 `model/product_model/model_no/model_number` 映射到 SKU）
 3. 若配置里用了 `{sku}` 且 `data/phase1/product_variables.csv` 只有一个 SKU，则自动推断
 4. 若配置里用了 `{sku}` 且存在多个 SKU，报错并要求显式指定
+
+实现说明（P0 已完成）：
+
+- `build_docs.py`、`gen_index_bundle.py`、`word_bundle.py` 都复用 `tools/utils/targets.py`
+- token 检测、`build.default_model` 解析、`model -> sku` 映射、fail-fast 报错语义已统一
+- 结论：三个入口脚本对 target 选择策略保持一致，减少分叉行为
 
 ---
 
@@ -302,3 +309,19 @@ python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output man
 - `paths.spec_footnotes_csv: tools/Draft-tool/data/Spec_Footnotes.csv`
 
 如果你改了这些值，请以你的 `config.yaml` 为最终事实来源。
+
+---
+
+## 13. 维护规范与仓库卫生（P0）
+
+规范文档：
+
+- 代码规范主文档：`code-as-doc/code_style_guide.md`
+- 本次 P0 优化记录：`code-as-doc/code_optimization_log.md`
+- 文档维护规范：`code-as-doc/代码文档化.md`
+
+仓库卫生规则：
+
+- `docs/_build/`、`docs/generated/`、`__pycache__/`、`.DS_Store` 已加入 `.gitignore`
+- 这些目录/文件属于构建产物或缓存，不应进入版本库
+- 如果后续发现再次被追踪，先检查 `.gitignore`，再执行 `git rm --cached <path>`

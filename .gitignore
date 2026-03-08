@@ -1,1 +1,12 @@
 .venv/
+
+# Build outputs
+docs/_build/
+docs/generated/
+
+# Python caches
+**/__pycache__/
+*.pyc
+
+# OS junk
+.DS_Store

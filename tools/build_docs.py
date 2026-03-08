@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import csv
 import shutil
 import sys
 from pathlib import Path
@@ -18,6 +17,11 @@ if str(ROOT) not in sys.path:
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import open_file, run  # noqa: E402
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
+from tools.utils.targets import (
+    config_uses_token_in_pages,
+    resolve_build_model as resolve_target_model,
+    resolve_sku_from_inputs,
+)
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg
@@ -108,133 +112,26 @@ def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
 
 
 def _config_uses_sku_token(cfg: dict) -> bool:
-    for page in cfg.get("pages", []):
-        if not isinstance(page, dict):
-            continue
-        ptype = (page.get("type") or "").strip()
-        if ptype == "cover_pdf":
-            file_name = page.get("file")
-            if isinstance(file_name, str) and "{sku}" in file_name:
-                return True
-        elif ptype == "csv_page":
-            include_dir = page.get("include_dir")
-            if isinstance(include_dir, str) and "{sku}" in include_dir:
-                return True
-        elif ptype == "pdf_insert":
-            file_map = page.get("file_map")
-            if isinstance(file_map, dict):
-                for v in file_map.values():
-                    if isinstance(v, str) and "{sku}" in v:
-                        return True
-    return False
+    return config_uses_token_in_pages(cfg, "sku")
 
 
 def _config_uses_model_token(cfg: dict) -> bool:
-    for page in cfg.get("pages", []):
-        if not isinstance(page, dict):
-            continue
-        ptype = (page.get("type") or "").strip()
-        if ptype == "cover_pdf":
-            file_name = page.get("file")
-            if isinstance(file_name, str) and "{model}" in file_name:
-                return True
-        elif ptype == "csv_page":
-            include_dir = page.get("include_dir")
-            if isinstance(include_dir, str) and "{model}" in include_dir:
-                return True
-        elif ptype == "pdf_insert":
-            file_map = page.get("file_map")
-            if isinstance(file_map, dict):
-                for v in file_map.values():
-                    if isinstance(v, str) and "{model}" in v:
-                        return True
-    return False
-
-
-def _list_skus(product_vars_csv: Path) -> list[str]:
-    if not product_vars_csv.exists():
-        return []
-    skus: set[str] = set()
-    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
-        for row in csv.DictReader(f):
-            sku = (row.get("sku_id") or "").strip()
-            if sku:
-                skus.add(sku)
-    return sorted(skus)
-
-
-def _list_skus_by_model(product_vars_csv: Path, model: str) -> list[str]:
-    if not product_vars_csv.exists():
-        return []
-    model_keys = {"model", "product_model", "model_no", "model_number"}
-    matched: set[str] = set()
-    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
-        for row in csv.DictReader(f):
-            sku = (row.get("sku_id") or "").strip()
-            key = (row.get("var_key") or "").strip().lower()
-            value = (row.get("var_value") or "").strip()
-            if not sku or key not in model_keys:
-                continue
-            if value == model:
-                matched.add(sku)
-    return sorted(matched)
+    return config_uses_token_in_pages(cfg, "model")
 
 
 def resolve_build_model(cfg: dict, arg_model: str | None) -> str | None:
-    if arg_model and arg_model.strip():
-        return arg_model.strip()
-    build_cfg = cfg.get("build", {})
-    default_model = build_cfg.get("default_model")
-    if isinstance(default_model, str) and default_model.strip():
-        return default_model.strip()
-    return None
+    return resolve_target_model(cfg, arg_model)
 
 
 def resolve_build_sku(cfg: dict, arg_sku: str | None, arg_model: str | None = None) -> str | None:
-    if arg_sku and arg_sku.strip():
-        return arg_sku.strip()
-
-    target_model = resolve_build_model(cfg, arg_model)
-    product_vars_csv = paths.root / "data" / "phase1" / "product_variables.csv"
-
-    if target_model:
-        matched_skus = _list_skus_by_model(product_vars_csv, target_model)
-        if len(matched_skus) == 1:
-            picked = matched_skus[0]
-            print(
-                "[build] sku not provided, using "
-                f"build/default model='{target_model}' -> sku='{picked}'"
-            )
-            return picked
-        if len(matched_skus) > 1:
-            raise RuntimeError(
-                f"build/default model '{target_model}' maps to multiple SKUs {matched_skus}. "
-                "Please pass --sku explicitly."
-            )
-        raise RuntimeError(
-            f"build/default model '{target_model}' was not found in "
-            "data/phase1/product_variables.csv "
-            "(var_key in: model, product_model, model_no, model_number)."
-        )
-
-    if not _config_uses_sku_token(cfg):
-        return None
-
-    skus = _list_skus(product_vars_csv)
-    if not skus:
-        raise RuntimeError(
-            "config uses '{sku}' but no SKU was found in data/phase1/product_variables.csv"
-        )
-
-    if len(skus) > 1:
-        raise RuntimeError(
-            "config uses '{sku}' and multiple SKUs are available "
-            f"({skus}). Please pass --sku or set build.default_model."
-        )
-
-    picked = skus[0]
-    print(f"[build] sku not provided, inferred '{picked}' from product_variables.csv")
-    return picked
+    return resolve_sku_from_inputs(
+        cfg,
+        arg_sku=arg_sku,
+        arg_model=arg_model,
+        root=paths.root,
+        requires_sku_token=_config_uses_sku_token(cfg),
+        log_prefix="build",
+    )
 
 
 def sphinx_build_html(minimal_theme: bool = False) -> None:

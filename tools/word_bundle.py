@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import csv
 import glob
 import html
 import os
@@ -27,16 +26,18 @@ from tools.phase1.renderers import (
     rst_escape,
 )
 from tools.utils.path_utils import get_paths
+from tools.utils.targets import (
+    config_uses_token,
+    format_tokenized,
+    resolve_build_model,
+    resolve_sku_from_inputs,
+)
 
 paths = get_paths()
 
 
 def _format_tokenized(text: str, sku: str | None, model: str | None) -> str:
-    if "{sku}" in text and not sku:
-        raise RuntimeError("config uses '{sku}' but no --sku was provided")
-    if "{model}" in text and not model:
-        raise RuntimeError("config uses '{model}' but no --model was provided")
-    return text.format(sku=sku or "", model=model or "")
+    return format_tokenized(text, sku, model)
 
 
 def _resolve_config_path(base_dir: Path, value: str, sku: str | None, model: str | None) -> Path:
@@ -486,84 +487,33 @@ def _pick_vars_map(
     return {}
 
 
-def _list_skus_by_model(product_vars_csv: Path, model: str) -> list[str]:
-    if not product_vars_csv.exists():
-        return []
-    model_keys = {"model", "product_model", "model_no", "model_number"}
-    matched: set[str] = set()
-    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
-        for row in csv.DictReader(f):
-            sku = (row.get("sku_id") or "").strip()
-            key = (row.get("var_key") or "").strip().lower()
-            value = (row.get("var_value") or "").strip()
-            if not sku or key not in model_keys:
-                continue
-            if value == model:
-                matched.add(sku)
-    return sorted(matched)
-
-
 def _config_uses_sku_token(cfg: dict) -> bool:
-    pages = cfg.get("pages", [])
-    if isinstance(pages, list):
-        for page in pages:
-            if not isinstance(page, dict):
-                continue
-            ptype = (page.get("type") or "").strip()
-            if ptype in {"cover_pdf", "rst_include"}:
-                file_name = page.get("file")
-                if isinstance(file_name, str) and "{sku}" in file_name:
-                    return True
-            elif ptype == "csv_page":
-                include_dir = page.get("include_dir")
-                if isinstance(include_dir, str) and "{sku}" in include_dir:
-                    return True
-            elif ptype == "pdf_insert":
-                file_map = page.get("file_map")
-                if isinstance(file_map, dict):
-                    for value in file_map.values():
-                        if isinstance(value, str) and "{sku}" in value:
-                            return True
-
-    paths_cfg = cfg.get("paths", {})
-    if isinstance(paths_cfg, dict):
-        for key in ("spec_master_csv", "spec_footnotes_csv"):
-            value = paths_cfg.get(key)
-            if isinstance(value, str) and "{sku}" in value:
-                return True
-
-    build_cfg = cfg.get("build", {})
-    if isinstance(build_cfg, dict):
-        reference_doc = build_cfg.get("word_reference_doc")
-        if isinstance(reference_doc, str) and "{sku}" in reference_doc:
-            return True
-
-    return False
+    return config_uses_token(
+        cfg,
+        "sku",
+        include_rst_include=True,
+        paths_keys=("spec_master_csv", "spec_footnotes_csv"),
+        build_keys=("word_reference_doc",),
+    )
 
 
 def resolve_bundle_targets(cfg: dict, sku: str | None, model: str | None) -> tuple[str | None, str | None]:
-    picked_model = (model or "").strip() or (cfg.get("build", {}).get("default_model") or "").strip() or None
+    picked_model = resolve_build_model(cfg, model)
     if sku and sku.strip():
         return sku.strip(), picked_model
 
     if not _config_uses_sku_token(cfg):
         return None, picked_model
 
-    if picked_model:
-        product_vars_csv = paths.root / "data" / "phase1" / "product_variables.csv"
-        matched = _list_skus_by_model(product_vars_csv, picked_model)
-        if len(matched) == 1:
-            return matched[0], picked_model
-        if len(matched) > 1:
-            raise RuntimeError(
-                f"Model '{picked_model}' maps to multiple SKUs {matched}. "
-                "Please pass --sku explicitly."
-            )
-        raise RuntimeError(
-            f"Model '{picked_model}' was not found in data/phase1/product_variables.csv "
-            "(var_key in: model, product_model, model_no, model_number)."
-        )
-    return None, None
+    picked_sku = resolve_sku_from_inputs(
+        cfg,
+        arg_sku=None,
+        arg_model=picked_model,
+        root=paths.root,
+        requires_sku_token=True,
+        log_prefix=None,
+    )
+    return picked_sku, picked_model
 
 
 def build_word_bundle_html(cfg: dict, sku: str | None, model: str | None) -> tuple[Path, Path | None]:
