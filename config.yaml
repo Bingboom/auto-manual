@@ -39,43 +39,43 @@ pages:
 
 - type: rst_include
   lang: en
-  file: templates/01_meaning_of_symbols.rst
+  file: templates/page_en/01_meaning_of_symbols.rst
 
 - type: rst_include
   lang: en
-  file: templates/02_whats_in_the_box.rst
+  file: templates/page_en/02_whats_in_the_box.rst
 
 - type: rst_include
   lang: en
-  file: templates/03_product_overview_placeholder.rst
+  file: templates/page_en/03_product_overview_placeholder.rst
 
 - type: rst_include
   lang: en
-  file: templates/04_lcd_display_placeholder.rst
+  file: templates/page_en/04_lcd_display_placeholder.rst
 
 - type: rst_include
   lang: en
-  file: templates/05_operation_guide_placeholder.rst
+  file: templates/page_en/05_operation_guide_placeholder.rst
 
 - type: rst_include
   lang: en
-  file: templates/06_ups_mode.rst
+  file: templates/page_en/06_ups_mode.rst
 
 - type: rst_include
   lang: en
-  file: templates/07_expansion_battery_pack.rst
+  file: templates/page_en/07_expansion_battery_pack.rst
 
 - type: rst_include
   lang: en
-  file: templates/08_charging_methods.rst
+  file: templates/page_en/08_charging_methods.rst
 
 - type: rst_include
   lang: en
-  file: templates/09_storage_and_maintenance.rst
+  file: templates/page_en/09_storage_and_maintenance.rst
 
 - type: rst_include
   lang: en
-  file: templates/10_troubleshooting.rst
+  file: templates/page_en/10_troubleshooting.rst
 
 - type: csv_page
   source: phase1
@@ -85,8 +85,8 @@ pages:
 
 - type: rst_include
   lang: en
-  file: templates/11_warranty.rst
+  file: templates/page_en/11_warranty.rst
 
 - type: rst_include
   lang: en
-  file: templates/12_app_setup_placeholder.rst
+  file: templates/page_en/12_app_setup_placeholder.rst

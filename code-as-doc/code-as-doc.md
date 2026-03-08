@@ -84,6 +84,29 @@
 - 如果目录层级或标题级别策略变化，需更新 `README.md` 对应说明。
 - 如果改动涉及产品名文案，模板中必须使用 `|PRODUCT_NAME|` / `|PRODUCT_NAME_BOLD|`，并在 `README.md` 与 `spec_master_user_guide.md` 说明变量来源。
 
+## 3.7 新增语言模板链路（如 `page_ja` -> Word）
+
+必须更新：
+- 对应语言配置文件（如 `config.ja.yaml`）：`build.languages`、`build.word_source`、`pages`。
+- `code-as-doc/title_style_guide.md`：补充该语言标题语义与样式继承规则。
+- `code-as-doc/tests/README.md`：补充该语言最小 smoke 命令。
+
+必须满足：
+- 模板入口放在 `docs/templates/page_<lang>/`，页面顺序由 `config.<lang>.yaml` 的 `pages` 控制。
+- `csv_page` 页面（当前主要是 `spec`）必须在 `pages` 中显式启用该语言（如 `langs: [ja]`）。
+- 产品名统一由 `Spec_Master.csv` 基于 `model + region (+ lang)` 解析并注入 `|PRODUCT_NAME|`。
+
+推荐回归（JA Word）：
+
+```bash
+python3 tools/gen_index_bundle.py --config config.ja.yaml --model JE-2000F --region JP
+python3 tools/word_bundle.py --config config.ja.yaml --model JE-2000F --region JP --output manual_demo_ja.docx
+```
+
+补充说明：
+- `tools/build_docs.py` 会先走 PDF，再走 Word；若使用该入口，需保证 `build.output_pdf` 与实际 LaTeX 输出文件名一致。
+- 只验证 Word 导出时，优先使用 `tools/word_bundle.py` 直接构建。
+
 ---
 
 ## 4. 文档维护最小规则（强制）
@@ -103,6 +126,7 @@
 - [ ] 若改动规范/架构边界，已更新 `code-as-doc/code_style_guide.md`。
 - [ ] 若改动 `Spec_Master.csv` 契约，已更新 `code-as-doc/spec_master_user_guide.md`。
 - [ ] 单测与构建 smoke 至少执行一次并记录结果。
+- [ ] 若新增语言模板，已跑该语言 Word smoke（`word_bundle.py --config config.<lang>.yaml`）。
 
 推荐回归命令：
 

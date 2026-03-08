@@ -117,14 +117,41 @@ python3 tools/phase1_build.py --page spec --lang en --model JE-2000F --region JP
 ### 6.3 Word 导航层级
 
 ```bash
-python3 tools/gen_index_bundle.py --config config.yaml --model JE-2000F --region JP
-python3 tools/word_bundle.py --config config.yaml --model JE-2000F --region JP --output docs/_build/word/manual_demo_je2000f_jp.docx
+python3 tools/gen_index_bundle.py --config config.ja.yaml --model JE-2000F --region JP
+python3 tools/word_bundle.py --config config.ja.yaml --model JE-2000F --region JP --output docs/_build/word/manual_demo_ja.docx
 ```
 
 检查 Word 导航窗格：
 
 - H1：章节标题
 - H2：章节子标题 / spec 分节
+
+### 6.4 日语模板 Word 构建流程（`page_ja`）
+
+输入源：
+- RST 模板：`docs/templates/page_ja/*.rst`（含 `cover_jp.rst`）
+- CSV 页面：`data/phase1/Spec_Master.csv` + `data/phase1/Spec_Footnotes.csv` + `data/phase1/spec_titles.csv`
+- 页面编排：`config.ja.yaml -> pages`
+
+执行顺序：
+1. `tools/gen_index_bundle.py` 读取 `config.ja.yaml`，按 `pages` 生成 `docs/index.rst`。
+2. `tools/word_bundle.py` 调用 `word_bundle_html.py`，解析 `rst_include/csv_page` 页面。
+3. 遇到 `csv_page` 时触发 `phase1`，生成 `docs/generated/{model}/spec_ja.rst`。
+4. `word_bundle_common.py` 从 `Spec_Master.csv` 按 `model + region + lang` 解析产品名，注入 `|PRODUCT_NAME|` 与 `|PRODUCT_NAME_BOLD|`。
+5. `word_bundle_docx.py` 将 bundle HTML 转为 DOCX，并做通用 heading outline 规范化。
+
+标准命令：
+
+```bash
+python3 tools/word_bundle.py --config config.ja.yaml --model JE-2000F --region JP --output manual_demo_ja.docx
+```
+
+产物：
+- `docs/_build/word/manual_demo_ja.docx`
+
+维护约束：
+- 禁止在脚本里按标题文案硬编码层级；标题层级仅由 RST/模板语义决定。
+- `page_ja` 与 `page_en` 仅做语言内容差异，样式继承同一套 `components_base.tex` 与 Word/HTML 样式体系。
 
 ## 7. 禁止事项
 
