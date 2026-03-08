@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  7 MAR 2026 22:47
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  8 MAR 2026 12:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1910,24 +1910,183 @@ anual_en/01_meaning_of_symbols/
 
 
 [5]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--503
+\TU/gilroy-regular-3.otf(0)/b/n/10 Power 2000
+ []
+
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 506--508
+[]\TU/gilroy-regular-3.otf(0)/b/n/10 AC Charging
+ []
+
+File: fig.png Graphic file (type bmp)
+<fig.png>
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
 
 [6]
 
 [7]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
 
 [8]
 
 [9]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--766
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Quiet Charging
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 774--776
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Battery Saving
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 784--786
+\TU/gilroy-regular-3.otf(0)/m/n/10 Self-powered /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 814--816
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Output Voltage
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 834--836
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Remaining
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 864--866
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Solar Charging
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 867--870
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Charging via DC input from solar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 874--876
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Charging Power
+ []
+
+
+Underfull \hbox (badness 5245) in paragraph at lines 887--890
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Ring animation while charging; ring
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 904--906
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Remaining Bat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 924--926
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Temperature
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--936
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Energy Saving
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 954--956
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Remaining Dis-
+ []
+
+
 
 [10]
+Overfull \vbox (117.10437pt too high) has occurred while \output is active []
+
+
 
 [11]
+Underfull \hbox (badness 6078) in paragraph at lines 1037--1039
+[]\TU/gilroy-regular-3.otf(0)/m/n/10 Only connect devices/accessories compliant
+ with IEC/EN/UL
+ []
+
+
+
+[12]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[13]
+Underfull \hbox (badness 7116) in paragraph at lines 1168--1170
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Main POWER button + AC
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1178--1180
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Main POWER button +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1187
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Reset Wi-Fi and
+ []
+
+
+Underfull \hbox (badness 6608) in paragraph at lines 1194--1197
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Turn on/off Wi-Fi
+ []
+
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[14]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[15]
+
+[16]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[17]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[18]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 1412--1414
+[]|\TU/gilroy-regular-3.otf(0)/m/n/10 Error
+ []
+
 Missing character: There is no ₄ (U+2084) in font [/Users/pika/Library/Fonts/gi
 lroy-regular-3.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ₄ (U+2084) in font [/Users/pika/Library/Fonts/gi
 lroy-regular-3.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ₄ (U+2084) in font [/Users/pika/Library/Fonts/gi
 lroy-regular-3.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
+
+
+[20]
 Missing character: There is no ¹ (U+00B9) in font [/Users/pika/Library/Fonts/gi
 lroy-regular-3.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ⎓ (U+2393) in font [/Users/pika/Library/Fonts/gi
@@ -2064,27 +2223,42 @@ Missing character: There is no ※ (U+203B) in font [/Users/pika/Library/Fonts/g
 lroy-regular-3.otf]/OT:script=latn;language=dflt;mapping=tex-text;!
 
 
-[12]
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 1628--1633
+\TU/gilroy-regular-3.otf(0)/m/n/10 product online or contact
+ []
 
-[13]
+
+
+[22]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
+
+[23]
+
+[24]
+File: fig.png Graphic file (type bmp)
+<fig.png>
+
 No file manual_demo.ind.
 
 
-[14] (./manual_demo.aux)
+[25] (./manual_demo.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `manual_demo.out' has not changed.
-(rerunfilecheck)             Checksum: 6E045EFD0CE05114847883378BF64BC3;5239.
+(rerunfilecheck)             Checksum: B7838D4109A25A383B81E4A8698FDACB;5175.
  ) 
 Here is how much of TeX's memory you used:
- 39504 strings out of 473832
- 857056 string characters out of 5729482
- 1325835 words of memory out of 5000000
- 61743 multiletter control sequences out of 15000+600000
+ 39498 strings out of 473832
+ 857511 string characters out of 5729482
+ 1325666 words of memory out of 5000000
+ 61740 multiletter control sequences out of 15000+600000
  562086 words of font info for 126 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  103i,17n,115p,1200b,873s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on manual_demo.pdf (15 pages).
+Output written on manual_demo.pdf (26 pages).

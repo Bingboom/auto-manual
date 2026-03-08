@@ -515,6 +515,7 @@ def _parse_spec_master_sections(
         ["project_code", "product_code", "\u9879\u76ee\u4ee3\u7801", "product_id"],
     )
     var_region = _first_non_empty(vars_map, ["region", "Region"])
+    var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
 
     for idx, raw in enumerate(blocks):
         row = dict(raw)
@@ -543,6 +544,12 @@ def _parse_spec_master_sections(
             continue
         row_region = _first_non_empty(row, ["Region", "region"])
         if var_region and row_region and row_region != var_region:
+            continue
+        row_model = _first_non_empty(
+            row,
+            ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
+        )
+        if var_model and row_model and row_model != var_model:
             continue
 
         page_value = _first_non_empty(row, ["Page", "page"])
@@ -658,8 +665,9 @@ def _parse_spec_master_sections(
         )
 
     if not rows:
+        model_msg = f" model={var_model}" if var_model else ""
         raise ValueError(
-            f"spec page has no usable Spec_Master rows for sku={sku_id} lang={lang}"
+            f"spec page has no usable Spec_Master rows for sku={sku_id} lang={lang}{model_msg}"
         )
 
     section_dict: dict[str, dict[str, object]] = {}

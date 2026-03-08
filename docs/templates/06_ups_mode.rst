@@ -1,26 +1,19 @@
-UPS Mode
-========
+UNINTERRUPTIBLE POWER SUPPLY (UPS)
+==================================
 
-|PRODUCT_NAME| supports Uninterruptible Power Supply (UPS) functionality.
+Connect the product to a wall outlet with the AC charging cable, then press the AC power button and power your appliances at the same time.
 
-When the unit is connected to an AC power source, it can supply power to
-connected devices while simultaneously charging its internal battery.
+An uninterruptible power supply (UPS) is a continual power system that provides automated backup electric power to a load when the mains grid power fails.
+In the event of a sudden loss of grid power, the Explorer 2000 switches to stored power within 10 ms to keep appliances running.
+In UPS mode, the unit peak output reaches 12A (1440W) before power outages. As simultaneous charging and discharging is enabled in Bypass Mode,
+the actual output power is lower than rated output power in this mode, but returns to rated output power during outages.
 
-In the event of a power outage:
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+   :alt: UPS connection diagram placeholder.
+   :width: 360px
 
-- The system automatically switches to battery power.
-- Connected devices continue to receive power without interruption.
+**CAUTION**
 
-Typical Use Cases
------------------
-
-UPS mode is suitable for powering devices that require continuous power supply, such as:
-
-- Desktop computers
-- Network routers
-- Security systems
-- Home office equipment
-
-.. caution::
-
-   Ensure the total load does not exceed the rated output power of the unit.
+- This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations.
+- Before use, test compatibility with your device multiple times.
+- Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered.

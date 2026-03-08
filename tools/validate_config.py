@@ -95,6 +95,32 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if not is_list_of_str(languages) or not languages:
         issues.append(Issue("ERROR", "build.languages must be non-empty list of strings"))
 
+    default_model = build.get("default_model")
+    if default_model is not None and (not isinstance(default_model, str) or not default_model.strip()):
+        issues.append(Issue("ERROR", "build.default_model must be a non-empty string when provided"))
+
+    # ---- paths ----
+    paths = cfg.get("paths", {})
+    if paths is not None and not isinstance(paths, dict):
+        issues.append(Issue("ERROR", "paths must be a mapping"))
+        paths = {}
+
+    spec_master_csv = paths.get("spec_master_csv")
+    if spec_master_csv is not None:
+        if not isinstance(spec_master_csv, str) or not spec_master_csv.strip():
+            issues.append(Issue("ERROR", "paths.spec_master_csv must be a non-empty string when provided"))
+        elif strict_files and not has_tokenized_value(spec_master_csv):
+            if not as_path(spec_master_csv).exists():
+                issues.append(Issue("ERROR", f"spec_master_csv file not found: {spec_master_csv}"))
+
+    spec_footnotes_csv = paths.get("spec_footnotes_csv")
+    if spec_footnotes_csv is not None:
+        if not isinstance(spec_footnotes_csv, str):
+            issues.append(Issue("ERROR", "paths.spec_footnotes_csv must be a string when provided"))
+        elif spec_footnotes_csv.strip() and strict_files and not has_tokenized_value(spec_footnotes_csv):
+            if not as_path(spec_footnotes_csv).exists():
+                issues.append(Issue("ERROR", f"spec_footnotes_csv file not found: {spec_footnotes_csv}"))
+
     # ---- pages ----
     pages = cfg.get("pages", None)
     if not isinstance(pages, list) or not pages:

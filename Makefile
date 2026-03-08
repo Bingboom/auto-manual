@@ -1,5 +1,5 @@
 PY ?= python3
-SKU ?= JB1000
+MODEL ?= JHP-2000A
 
 .PHONY: validate build build-noview phase1-generate clean
 
@@ -8,10 +8,10 @@ validate:
 	$(PY) tools/validate_layout_params.py --csv data/layout_params.csv
 
 build:
-	$(PY) tools/build_docs.py --sku $(SKU) --clean
+	$(PY) tools/build_docs.py --model $(MODEL) --clean
 
 build-noview:
-	$(PY) tools/build_docs.py --sku $(SKU) --clean --no-open
+	$(PY) tools/build_docs.py --model $(MODEL) --clean --no-open
 
 phase1-generate:
 	$(PY) tools/phase1_build.py

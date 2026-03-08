@@ -1,4 +1,4 @@
-Meaning of Symbols
+MEANING OF SYMBOLS
 ==================
 
 Danger

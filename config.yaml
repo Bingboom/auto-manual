@@ -2,7 +2,7 @@ doc_type: manual_bundle
 
 build:
   languages: [en]
-  default_sku: JB1000
+  default_model: JHP-2000A
   main_tex: manual_demo.tex
   output_pdf: manual_demo.pdf
   xelatex_runs: 3
@@ -19,6 +19,8 @@ build:
 paths:
   docs_dir: docs
   layout_params_csv: data/layout_params.csv
+  spec_master_csv: tools/Draft-tool/data/Spec_Master.csv
+  spec_footnotes_csv: tools/Draft-tool/data/Spec_Footnotes.csv
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
@@ -31,7 +33,7 @@ pages:
   source: phase1
   page: safety
   langs: [en]
-  include_dir: generated/{sku}
+  include_dir: generated/{model}
 
 - type: rst_include
   lang: en
@@ -77,7 +79,7 @@ pages:
   source: phase1
   page: spec
   langs: [en]
-  include_dir: generated/{sku}
+  include_dir: generated/{model}
 
 - type: rst_include
   lang: en

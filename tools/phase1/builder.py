@@ -141,6 +141,8 @@ class BuildPaths:
     product_variables: Path
     template_dir: Path
     output_dir: Path
+    spec_master_csv: Path
+    spec_footnotes_csv: Path | None = None
 
     @classmethod
     def from_root(cls, root: Path) -> "BuildPaths":
@@ -151,12 +153,15 @@ class BuildPaths:
             product_variables=root / "data" / "phase1" / "product_variables.csv",
             template_dir=root / "docs" / "templates",
             output_dir=root / "docs" / "generated",
+            spec_master_csv=root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv",
+            spec_footnotes_csv=root / "tools" / "Draft-tool" / "data" / "Spec_Footnotes.csv",
         )
 
 
 @dataclass(frozen=True)
 class BuildSelector:
     skus: set[str] | None = None
+    models: set[str] | None = None
     pages: set[str] | None = None
     langs: set[str] | None = None
 
@@ -164,10 +169,16 @@ class BuildSelector:
     def from_args(
         cls,
         skus: str | None = None,
+        models: str | None = None,
         pages: str | None = None,
         langs: str | None = None,
     ) -> "BuildSelector":
-        return cls(skus=_csv_set(skus), pages=_csv_set(pages), langs=_csv_set(langs))
+        return cls(
+            skus=_csv_set(skus),
+            models=_csv_set(models),
+            pages=_csv_set(pages),
+            langs=_csv_set(langs),
+        )
 
 
 @dataclass
@@ -196,6 +207,21 @@ class Phase1Builder:
         self.paths = paths
 
     @staticmethod
+    def _pick_model_from_vars(vars_map: dict[str, str]) -> str:
+        for key in ("model", "product_model", "model_no", "model_number", "Model"):
+            value = (vars_map.get(key) or "").strip()
+            if value:
+                return value
+        return ""
+
+    @staticmethod
+    def _safe_output_key(value: str) -> str:
+        text = (value or "").strip()
+        if not text:
+            return ""
+        return text.replace("/", "_").replace("\\", "_")
+
+    @staticmethod
     def _looks_like_spec_master_rows(rows: list[dict[str, str]]) -> bool:
         if not rows:
             return False
@@ -204,14 +230,10 @@ class Phase1Builder:
         return "block_type" not in headers and required.issubset(headers)
 
     @staticmethod
-    def _load_first_existing_csv(candidates: list[Path]) -> list[dict[str, str]]:
-        for candidate in candidates:
-            if not candidate.exists():
-                continue
-            rows = _read_csv(candidate)
-            if rows:
-                return rows
-        return []
+    def _load_optional_csv(path: Path | None) -> list[dict[str, str]]:
+        if path is None or not path.exists():
+            return []
+        return _read_csv(path)
 
     def _load_pages(self) -> list[PageSpec]:
         rows = _read_csv(self.paths.page_registry)
@@ -259,25 +281,27 @@ class Phase1Builder:
 
     def _load_page_blocks(self, page_id: str, default_blocks: list[dict[str, str]]) -> list[dict[str, str]]:
         if page_id == "spec":
-            # Main source: Draft-tool master (single source of truth for spec table rows).
-            # Fallback keeps backward compatibility for existing phase1-only repos.
-            sources = [
-                self.paths.root / "tools" / "Draft-tool" / "data" / "Spec_Master.csv",
-                self.paths.root / "data" / "phase1" / "Spec_Master.csv",
-            ]
-            aux_footnote_sources = [
-                self.paths.root / "tools" / "Draft-tool" / "data" / "Spec_Footnotes.csv",
-                self.paths.root / "data" / "phase1" / "Spec_Footnotes.csv",
-            ]
-            for spec_master_csv in sources:
-                if not spec_master_csv.exists():
-                    continue
-                rows = _read_csv(spec_master_csv)
-                if rows and self._looks_like_spec_master_rows(rows):
-                    aux_rows = self._load_first_existing_csv(aux_footnote_sources)
-                    if aux_rows:
-                        rows.extend(aux_rows)
-                    return rows
+            spec_master_csv = self.paths.spec_master_csv
+            if not spec_master_csv.exists():
+                raise FileNotFoundError(
+                    "Spec master source not found. "
+                    f"Expected at: {spec_master_csv}. "
+                    "Configure paths.spec_master_csv in config.yaml."
+                )
+
+            rows = _read_csv(spec_master_csv)
+            if not rows:
+                raise RuntimeError(f"Spec master source is empty: {spec_master_csv}")
+            if not self._looks_like_spec_master_rows(rows):
+                raise ValueError(
+                    "Spec master source does not match Spec_Master schema "
+                    f"(requires Section, Row_key, Line_order): {spec_master_csv}"
+                )
+
+            aux_rows = self._load_optional_csv(self.paths.spec_footnotes_csv)
+            if aux_rows:
+                rows.extend(aux_rows)
+            return rows
 
         per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"
         if not per_page_csv.exists():
@@ -351,14 +375,26 @@ class Phase1Builder:
                     continue
                 if not _scope_allows(page.sku_scope, sku_id):
                     continue
+                model_value = self._pick_model_from_vars(sku_vars)
+                if selector.models:
+                    if not model_value or model_value not in selector.models:
+                        continue
 
-                out_dir = self.paths.output_dir / sku_id
+                out_key = sku_id
+                if selector.models and not selector.skus:
+                    out_key = self._safe_output_key(model_value) or sku_id
+                out_dir = self.paths.output_dir / out_key
                 out_dir.mkdir(parents=True, exist_ok=True)
 
                 for lang in page.langs:
                     if selector.langs and lang not in selector.langs:
                         continue
-                    rst = renderer(template, page_blocks, sku_id, lang, sku_vars)
+                    render_vars = dict(sku_vars)
+                    if model_value and not render_vars.get("model"):
+                        render_vars["model"] = model_value
+                    if selector.models and not render_vars.get("model") and len(selector.models) == 1:
+                        render_vars["model"] = next(iter(selector.models))
+                    rst = renderer(template, page_blocks, sku_id, lang, render_vars)
                     out_path = out_dir / f"{page.page_id}_{lang}.rst"
                     out_path.write_text(rst, encoding="utf-8")
                     written.append(out_path)

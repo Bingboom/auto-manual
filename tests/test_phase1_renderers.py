@@ -214,7 +214,7 @@ class TestPhase1Renderers(unittest.TestCase):
             )
 
     def _spec_master_blocks(self) -> list[dict[str, str]]:
-        return [
+        blocks = [
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
@@ -306,6 +306,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 "enabled": "1",
             },
         ]
+        for row in blocks:
+            row.setdefault("Model", "JHP-2000A")
+        return blocks
 
     def test_render_spec_page_supports_spec_master_schema(self) -> None:
         out = renderers.render_spec_page(
@@ -391,6 +394,38 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertEqual("SPECIFICATIONS", data["title_main"])
         self.assertEqual("GENERAL INFO", data["sections"][0]["title"])
         self.assertIn("Demo footnote text", data["footnotes"][0])
+
+    def test_collect_spec_content_filters_by_model_when_model_column_exists(self) -> None:
+        blocks = self._spec_master_blocks()
+        blocks.append(
+            {
+                "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_key": "model_no_alt",
+                "Row_label_en": "Model Alt",
+                "Line_order": "1",
+                "Param_en": "",
+                "Value_en": "SHOULD_NOT_BE_RENDERED",
+                "row_order": "1.1",
+                "section_title_en": "GENERAL INFO",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "Model": "JHP-9999X",
+            }
+        )
+
+        data = renderers.collect_spec_content(
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JHP-2000A"},
+        )
+        joined = "\n".join("\n".join(str(x) for x in sec["rows"]) for sec in data["sections"])
+        self.assertNotIn("SHOULD_NOT_BE_RENDERED", joined)
 
 if __name__ == "__main__":
     unittest.main()

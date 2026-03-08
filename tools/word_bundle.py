@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import glob
 import html
 import os
@@ -11,13 +12,18 @@ import re
 import shutil
 import subprocess
 import sys
+import zipfile
+from xml.etree import ElementTree as ET
 from pathlib import Path
 
-from tools.phase1.builder import BuildPaths, Phase1Builder, _normalize_content_blocks, _read_csv
+# Ensure repo root is importable when running "python tools/xxx.py"
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 from tools.phase1.renderers import (
     apply_vars,
-    collect_safety_content,
-    collect_spec_content,
     rst_escape,
 )
 from tools.utils.path_utils import get_paths
@@ -25,18 +31,45 @@ from tools.utils.path_utils import get_paths
 paths = get_paths()
 
 
-def _format_tokenized(text: str, sku: str | None) -> str:
+def _format_tokenized(text: str, sku: str | None, model: str | None) -> str:
     if "{sku}" in text and not sku:
         raise RuntimeError("config uses '{sku}' but no --sku was provided")
-    return text.format(sku=sku or "")
+    if "{model}" in text and not model:
+        raise RuntimeError("config uses '{model}' but no --model was provided")
+    return text.format(sku=sku or "", model=model or "")
 
 
-def _resolve_config_path(base_dir: Path, value: str, sku: str | None) -> Path:
-    rendered = _format_tokenized(value, sku)
+def _resolve_config_path(base_dir: Path, value: str, sku: str | None, model: str | None) -> Path:
+    rendered = _format_tokenized(value, sku, model)
     path = Path(rendered)
     if path.is_absolute():
         return path
     return base_dir / path
+
+
+def _resolve_optional_config_path(
+    base_dir: Path,
+    value: str | None,
+    sku: str | None,
+    model: str | None,
+) -> Path | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    return _resolve_config_path(base_dir, value.strip(), sku, model)
+
+
+def _resolve_csv_include_rst_path(page: dict, lang: str, sku: str | None, model: str | None) -> Path:
+    page_name = (page.get("page") or "").strip()
+    if not page_name:
+        raise RuntimeError("csv_page requires non-empty 'page'")
+    include_dir = page.get("include_dir")
+    if include_dir is None:
+        rel = f"{page_name}_{lang}.rst"
+    else:
+        if not isinstance(include_dir, str) or not include_dir.strip():
+            raise RuntimeError("csv_page.include_dir must be a non-empty string")
+        rel = str(Path(_format_tokenized(include_dir.strip(), sku, model)) / f"{page_name}_{lang}.rst")
+    return paths.docs_dir / rel
 
 
 def _load_rst_substitutions(conf_base_path: Path) -> dict[str, str]:
@@ -116,7 +149,7 @@ def _render_cover_html(title: str) -> str:
     return "".join(
         [
             '<section class="manual-cover">',
-            f"<h1>{title_html}</h1>",
+            f'<div class="cover-title">{title_html}</div>',
             "</section>",
         ]
     )
@@ -185,6 +218,9 @@ _WIDTH_ATTR_RE = re.compile(r"\bwidth\s*=", re.IGNORECASE)
 _HEIGHT_ATTR_RE = re.compile(r"\bheight\s*=", re.IGNORECASE)
 _STYLE_WIDTH_RE = re.compile(r"\bwidth\s*:\s*([^;]+)", re.IGNORECASE)
 _STYLE_HEIGHT_RE = re.compile(r"\bheight\s*:\s*([^;]+)", re.IGNORECASE)
+_RST_HEADING_CHARS = set("=-~^\"`:+*#")
+_W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+_W_VAL = f"{{{_W_NS}}}val"
 
 
 def _normalize_css_size(value: str) -> str | None:
@@ -236,6 +272,70 @@ def _inject_img_dimensions(html_doc: str) -> str:
     return _IMG_TAG_RE.sub(replace_tag, html_doc)
 
 
+def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
+    """
+    Convert Sphinx-only blocks for docutils parsing:
+    - keep `.. only:: html` content
+    - drop non-html `.. only:: ...` content (e.g. latex)
+    """
+    lines = rst_text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.lstrip()
+        indent = len(line) - len(stripped)
+
+        if stripped.startswith(".. only::"):
+            expr = stripped.split("::", 1)[1].strip().lower()
+            i += 1
+            block: list[str] = []
+            while i < len(lines):
+                cur = lines[i]
+                cur_stripped = cur.lstrip()
+                cur_indent = len(cur) - len(cur_stripped)
+                if cur_stripped and cur_indent <= indent:
+                    break
+                block.append(cur)
+                i += 1
+
+            if expr == "html":
+                base = indent + 3
+                for b in block:
+                    if not b.strip():
+                        out.append("")
+                    elif len(b) > base:
+                        out.append(b[base:])
+                    else:
+                        out.append(b.lstrip())
+            continue
+
+        out.append(line)
+        i += 1
+
+    return "\n".join(out)
+
+
+def _extract_rst_first_heading(text: str) -> tuple[str | None, str | None]:
+    lines = text.splitlines()
+    for idx in range(len(lines) - 1):
+        title = lines[idx].strip()
+        underline = lines[idx + 1].strip()
+        if not title or title.startswith(".. "):
+            continue
+        if not underline:
+            continue
+        if len(set(underline)) != 1:
+            continue
+        ch = underline[0]
+        if ch not in _RST_HEADING_CHARS:
+            continue
+        if len(underline) < len(title):
+            continue
+        return title, ch
+    return None, None
+
+
 def render_spec_word_html(data: dict[str, object]) -> str:
     parts = [
         '<section class="manual-section spec-section">',
@@ -267,38 +367,213 @@ def render_spec_word_html(data: dict[str, object]) -> str:
 def _convert_rst_fragment_to_html(rst_text: str) -> str:
     from docutils.core import publish_parts
 
+    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text)
     parts = publish_parts(
-        source=rst_text,
+        source=normalized_rst,
         writer_name="html5",
         settings_overrides={
             "report_level": 5,
             "halt_level": 6,
             "file_insertion_enabled": False,
-            "raw_enabled": False,
+            "raw_enabled": True,
             "syntax_highlight": "none",
         },
     )
     fragment = parts.get("fragment") or parts.get("body") or parts.get("html_body")
     if not fragment:
         raise RuntimeError("docutils did not return an HTML fragment for the RST input")
-    return fragment.strip()
+    html_fragment = fragment.strip()
+
+    # docutils treats top "=" headings as document titles and drops them from fragment output.
+    # Restore them as h1 so Word navigation keeps chapter hierarchy aligned with the manual TOC.
+    title, adorn = _extract_rst_first_heading(normalized_rst)
+    if title and adorn == "=":
+        title_html = html.escape(rst_escape(title))
+        return f"<h1>{title_html}</h1>{html_fragment}"
+    return html_fragment
 
 
-def _load_word_context() -> tuple[Phase1Builder, list[dict[str, str]], dict[str, dict[str, str]]]:
-    build_paths = BuildPaths.from_root(paths.root)
+def _load_word_context(
+    cfg: dict,
+    sku: str | None,
+    model: str | None,
+) -> tuple[Phase1Builder, dict[str, dict[str, str]]]:
+    base_paths = BuildPaths.from_root(paths.root)
+    cfg_paths_raw = cfg.get("paths", {})
+    cfg_paths = cfg_paths_raw if isinstance(cfg_paths_raw, dict) else {}
+    spec_master_cfg = cfg_paths.get("spec_master_csv")
+    spec_footnotes_cfg = cfg_paths.get("spec_footnotes_csv")
+    spec_master_csv = (
+        _resolve_config_path(paths.root, spec_master_cfg.strip(), sku, model)
+        if isinstance(spec_master_cfg, str) and spec_master_cfg.strip()
+        else base_paths.spec_master_csv
+    )
+    spec_footnotes_csv = (
+        _resolve_optional_config_path(paths.root, spec_footnotes_cfg, sku, model)
+        if isinstance(spec_footnotes_cfg, str)
+        else base_paths.spec_footnotes_csv
+    )
+
+    build_paths = BuildPaths(
+        root=base_paths.root,
+        page_registry=base_paths.page_registry,
+        content_blocks=base_paths.content_blocks,
+        product_variables=base_paths.product_variables,
+        template_dir=base_paths.template_dir,
+        output_dir=base_paths.output_dir,
+        spec_master_csv=spec_master_csv,
+        spec_footnotes_csv=spec_footnotes_csv,
+    )
     builder = Phase1Builder(build_paths)
-    default_blocks = _normalize_content_blocks(_read_csv(build_paths.content_blocks))
     vars_by_sku = builder._load_vars_by_sku()
-    return builder, default_blocks, vars_by_sku
+    return builder, vars_by_sku
 
 
-def build_word_bundle_html(cfg: dict, sku: str | None) -> tuple[Path, Path | None]:
+def _ensure_csv_page_rsts(cfg: dict, builder: Phase1Builder, sku: str | None, model: str | None) -> None:
+    pages_cfg = cfg.get("pages", [])
+    build_cfg = cfg.get("build", {})
+    build_langs = list(build_cfg.get("languages", ["en"]))
+
+    page_ids: set[str] = set()
+    langs: set[str] = set()
+    for page in pages_cfg:
+        if not isinstance(page, dict):
+            continue
+        if (page.get("type") or "").strip() != "csv_page":
+            continue
+        page_name = (page.get("page") or "").strip()
+        if not page_name:
+            raise RuntimeError("csv_page requires non-empty 'page'")
+        page_ids.add(page_name)
+        for lang in page.get("langs", build_langs):
+            langs.add(str(lang))
+
+    if not page_ids:
+        return
+
+    selector = BuildSelector(
+        skus={sku} if sku else None,
+        models={model} if model else None,
+        pages=page_ids,
+        langs=langs or None,
+    )
+    builder.build(selector, strict_renderer=True)
+
+
+def _pick_model_from_vars(vars_map: dict[str, str]) -> str:
+    for key in ("model", "product_model", "model_no", "model_number", "Model"):
+        value = (vars_map.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _pick_vars_map(
+    vars_by_sku: dict[str, dict[str, str]],
+    sku: str | None,
+    model: str | None,
+) -> dict[str, str]:
+    if sku:
+        return vars_by_sku.get(sku, {})
+    if model:
+        matched = [
+            vars_map
+            for vars_map in vars_by_sku.values()
+            if _pick_model_from_vars(vars_map) == model
+        ]
+        if len(matched) == 1:
+            return matched[0]
+    return {}
+
+
+def _list_skus_by_model(product_vars_csv: Path, model: str) -> list[str]:
+    if not product_vars_csv.exists():
+        return []
+    model_keys = {"model", "product_model", "model_no", "model_number"}
+    matched: set[str] = set()
+    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            sku = (row.get("sku_id") or "").strip()
+            key = (row.get("var_key") or "").strip().lower()
+            value = (row.get("var_value") or "").strip()
+            if not sku or key not in model_keys:
+                continue
+            if value == model:
+                matched.add(sku)
+    return sorted(matched)
+
+
+def _config_uses_sku_token(cfg: dict) -> bool:
+    pages = cfg.get("pages", [])
+    if isinstance(pages, list):
+        for page in pages:
+            if not isinstance(page, dict):
+                continue
+            ptype = (page.get("type") or "").strip()
+            if ptype in {"cover_pdf", "rst_include"}:
+                file_name = page.get("file")
+                if isinstance(file_name, str) and "{sku}" in file_name:
+                    return True
+            elif ptype == "csv_page":
+                include_dir = page.get("include_dir")
+                if isinstance(include_dir, str) and "{sku}" in include_dir:
+                    return True
+            elif ptype == "pdf_insert":
+                file_map = page.get("file_map")
+                if isinstance(file_map, dict):
+                    for value in file_map.values():
+                        if isinstance(value, str) and "{sku}" in value:
+                            return True
+
+    paths_cfg = cfg.get("paths", {})
+    if isinstance(paths_cfg, dict):
+        for key in ("spec_master_csv", "spec_footnotes_csv"):
+            value = paths_cfg.get(key)
+            if isinstance(value, str) and "{sku}" in value:
+                return True
+
+    build_cfg = cfg.get("build", {})
+    if isinstance(build_cfg, dict):
+        reference_doc = build_cfg.get("word_reference_doc")
+        if isinstance(reference_doc, str) and "{sku}" in reference_doc:
+            return True
+
+    return False
+
+
+def resolve_bundle_targets(cfg: dict, sku: str | None, model: str | None) -> tuple[str | None, str | None]:
+    picked_model = (model or "").strip() or (cfg.get("build", {}).get("default_model") or "").strip() or None
+    if sku and sku.strip():
+        return sku.strip(), picked_model
+
+    if not _config_uses_sku_token(cfg):
+        return None, picked_model
+
+    if picked_model:
+        product_vars_csv = paths.root / "data" / "phase1" / "product_variables.csv"
+        matched = _list_skus_by_model(product_vars_csv, picked_model)
+        if len(matched) == 1:
+            return matched[0], picked_model
+        if len(matched) > 1:
+            raise RuntimeError(
+                f"Model '{picked_model}' maps to multiple SKUs {matched}. "
+                "Please pass --sku explicitly."
+            )
+        raise RuntimeError(
+            f"Model '{picked_model}' was not found in data/phase1/product_variables.csv "
+            "(var_key in: model, product_model, model_no, model_number)."
+        )
+    return None, None
+
+
+def build_word_bundle_html(cfg: dict, sku: str | None, model: str | None) -> tuple[Path, Path | None]:
     build_cfg = cfg.get("build", {})
     pages_cfg = cfg.get("pages", [])
     build_langs = list(build_cfg.get("languages", ["en"]))
 
-    builder, default_blocks, vars_by_sku = _load_word_context()
-    vars_map = vars_by_sku.get(sku or "", {}) if sku else {}
+    builder, vars_by_sku = _load_word_context(cfg, sku, model)
+    _ensure_csv_page_rsts(cfg, builder, sku, model)
+    vars_map = _pick_vars_map(vars_by_sku, sku, model)
     substitutions = _load_rst_substitutions(paths.docs_dir / "conf_base.py")
     reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=paths.root)
     title = derive_word_title(build_cfg, reference_doc, substitutions, vars_map)
@@ -326,28 +601,26 @@ def build_word_bundle_html(cfg: dict, sku: str | None) -> tuple[Path, Path | Non
         started = True
 
         if ptype == "csv_page":
-            page_name = (page.get("page") or "").strip()
-            page_blocks = builder._load_page_blocks(page_name, default_blocks)
             langs = list(page.get("langs", build_langs))
             for idx, lang in enumerate(langs):
                 if idx > 0:
                     body_parts.append(_render_page_break_html())
-                if page_name == "safety":
-                    data = collect_safety_content(page_blocks, sku or "", str(lang), vars_map)
-                    body_parts.append(render_safety_word_html(data))
-                    continue
-                if page_name == "spec":
-                    data = collect_spec_content(page_blocks, sku or "", str(lang), vars_map)
-                    body_parts.append(render_spec_word_html(data))
-                    continue
-                raise RuntimeError(f"word bundle does not support csv_page '{page_name}' yet")
+                rst_path = _resolve_csv_include_rst_path(page, str(lang), sku, model)
+                if not rst_path.exists():
+                    raise RuntimeError(
+                        f"Missing generated RST for csv_page: {rst_path}. "
+                        "Run tools/phase1_build.py (or tools/build_docs.py) first."
+                    )
+                rst_text = rst_path.read_text(encoding="utf-8")
+                rst_text = _apply_rst_substitutions(rst_text, substitutions, vars_map)
+                body_parts.append(_convert_rst_fragment_to_html(rst_text))
             continue
 
         if ptype == "rst_include":
             file_name = page.get("file")
             if not isinstance(file_name, str) or not file_name.strip():
                 raise RuntimeError("rst_include requires non-empty 'file'")
-            rst_path = _resolve_config_path(paths.docs_dir, file_name.strip(), sku)
+            rst_path = _resolve_config_path(paths.docs_dir, file_name.strip(), sku, model)
             rst_text = rst_path.read_text(encoding="utf-8")
             rst_text = _apply_rst_substitutions(rst_text, substitutions, vars_map)
             body_parts.append(_convert_rst_fragment_to_html(rst_text))
@@ -369,7 +642,7 @@ def build_word_bundle_html(cfg: dict, sku: str | None) -> tuple[Path, Path | Non
             "body { font-family: Calibri, Arial, sans-serif; line-height: 1.45; margin: 0; }",
             "h1, h2 { page-break-after: avoid; }",
             ".manual-cover { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; }",
-            ".manual-cover h1 { font-size: 24pt; }",
+            ".manual-cover .cover-title { font-size: 24pt; font-weight: 700; }",
             ".manual-page-break { page-break-after: always; }",
             ".manual-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
             ".manual-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
@@ -389,6 +662,85 @@ def build_word_bundle_html(cfg: dict, sku: str | None) -> tuple[Path, Path | Non
 
 def _ps_quote(value: str) -> str:
     return value.replace("'", "''")
+
+
+def _collect_word_heading_style_ids(styles_xml: bytes) -> tuple[set[str], set[str]]:
+    ns = {"w": _W_NS}
+    root = ET.fromstring(styles_xml)
+    h1_ids: set[str] = set()
+    h2_ids: set[str] = set()
+
+    for style in root.findall(".//w:style", ns):
+        if style.attrib.get(f"{{{_W_NS}}}type") != "paragraph":
+            continue
+        style_id = style.attrib.get(f"{{{_W_NS}}}styleId", "").strip()
+        if not style_id:
+            continue
+        name_el = style.find("w:name", ns)
+        name = (name_el.attrib.get(_W_VAL, "") if name_el is not None else "").strip().lower()
+
+        if name in {"heading 1", "heading1", "标题 1", "标题1"}:
+            h1_ids.add(style_id)
+        elif name in {"heading 2", "heading2", "标题 2", "标题2"}:
+            h2_ids.add(style_id)
+
+    # Fallback for common built-in IDs when the style name lookup is unavailable.
+    if not h1_ids:
+        h1_ids.update({"Heading1", "1"})
+    if not h2_ids:
+        h2_ids.update({"Heading2", "2"})
+    return h1_ids, h2_ids
+
+
+def _enforce_docx_outline_levels(docx_path: Path) -> None:
+    with zipfile.ZipFile(docx_path, "r") as zin:
+        infos = zin.infolist()
+        blobs = {info.filename: zin.read(info.filename) for info in infos}
+
+    styles_xml = blobs.get("word/styles.xml")
+    doc_xml = blobs.get("word/document.xml")
+    if not styles_xml or not doc_xml:
+        return
+
+    h1_ids, h2_ids = _collect_word_heading_style_ids(styles_xml)
+    ns = {"w": _W_NS}
+    root = ET.fromstring(doc_xml)
+    changed = False
+
+    for para in root.findall(".//w:body//w:p", ns):
+        ppr = para.find("w:pPr", ns)
+        if ppr is None:
+            continue
+        pstyle = ppr.find("w:pStyle", ns)
+        if pstyle is None:
+            continue
+        style_id = pstyle.attrib.get(_W_VAL, "").strip()
+        if style_id in h1_ids:
+            target_lvl = "0"
+        elif style_id in h2_ids:
+            target_lvl = "1"
+        else:
+            continue
+
+        outline = ppr.find("w:outlineLvl", ns)
+        if outline is None:
+            outline = ET.SubElement(ppr, f"{{{_W_NS}}}outlineLvl")
+        prev = outline.attrib.get(_W_VAL)
+        if prev != target_lvl:
+            outline.attrib[_W_VAL] = target_lvl
+            changed = True
+
+    if not changed:
+        return
+
+    ET.register_namespace("w", _W_NS)
+    blobs["word/document.xml"] = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+
+    tmp_path = docx_path.with_suffix(".tmp.docx")
+    with zipfile.ZipFile(tmp_path, "w") as zout:
+        for info in infos:
+            zout.writestr(info, blobs[info.filename])
+    tmp_path.replace(docx_path)
 
 
 def _export_docx_via_pandoc(bundle_html: Path, out_path: Path, reference_doc: Path | None) -> None:
@@ -494,14 +846,15 @@ try {{
     )
 
 
-def export_word_from_bundle(cfg: dict, sku: str | None, word_output: str) -> Path:
-    bundle_html, reference_doc = build_word_bundle_html(cfg, sku)
+def export_word_from_bundle(cfg: dict, sku: str | None, model: str | None, word_output: str) -> Path:
+    bundle_html, reference_doc = build_word_bundle_html(cfg, sku, model)
 
     out_path = Path(word_output)
     if not out_path.is_absolute():
         out_path = paths.docs_build_dir / "word" / out_path
 
     _export_docx_via_word(bundle_html, out_path, reference_doc)
+    _enforce_docx_outline_levels(out_path)
     return out_path
 
 
@@ -509,6 +862,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
     ap.add_argument("--sku", default=None, help="Optional SKU for word bundle")
+    ap.add_argument("--model", default=None, help="Optional model for spec filtering / SKU resolving")
     ap.add_argument("--output", default="manual_bundle.docx", help="Output docx path")
     args = ap.parse_args()
 
@@ -521,7 +875,8 @@ def main() -> None:
     with cfg_path.open("r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f) or {}
 
-    docx_path = export_word_from_bundle(cfg, args.sku, args.output)
+    target_sku, target_model = resolve_bundle_targets(cfg, args.sku, args.model)
+    docx_path = export_word_from_bundle(cfg, target_sku, target_model, args.output)
     print(f"[word_bundle] Done. DOCX: {docx_path}")
 
 

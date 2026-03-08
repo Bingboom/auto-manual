@@ -76,6 +76,8 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 product_variables=root / "dummy_vars.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
+                spec_master_csv=draft_csv,
+                spec_footnotes_csv=draft_csv.parent / "Spec_Footnotes.csv",
             )
             builder = Phase1Builder(paths)
             rows = builder._load_page_blocks("spec", default_blocks=[])
@@ -106,6 +108,8 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 product_variables=root / "dummy_vars.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
+                spec_master_csv=draft_csv,
+                spec_footnotes_csv=draft_fn_csv,
             )
             builder = Phase1Builder(paths)
             rows = builder._load_page_blocks("spec", default_blocks=[])

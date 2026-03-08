@@ -1,0 +1,248 @@
+% ==================================================
+% components_safety.tex
+% L3 COMPONENT LAYER
+% 只负责结构，不直接控制字号/颜色/对齐
+% ==================================================
+
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+% ==================================================
+% WARNING LOCKUP
+% ==================================================
+
+\providecommand{\warninglockup}{}
+\renewcommand{\warninglockup}{%
+  \includegraphics[
+    height=\csname HBcomp_lockup_height\endcsname,
+    viewport=79 22 2125 549,
+    clip
+  ]{warning_lockup.png}%
+}
+
+% ==================================================
+% WARNING BOX
+% ==================================================
+
+\newtcolorbox{safetywarningbox}{
+  enhanced,
+  colback=white,
+  colframe=LineK40,
+  flush left,
+  boxsep=\csname HBcomp_warning_box_sep\endcsname,
+  top=\csname HBcomp_warning_box_pad_tb\endcsname,
+  bottom=\csname HBcomp_warning_box_pad_tb\endcsname,
+  arc=\csname HBcomp_warning_box_arc\endcsname,
+  boxrule=\csname HBcomp_warning_box_rule\endcsname,
+  left=\csname HBcomp_warning_box_pad_lr\endcsname,
+  right=\csname HBcomp_warning_box_pad_lr\endcsname,
+  before skip=\csname HBcomp_warning_box_before\endcsname,
+  after skip=\csname HBcomp_warning_box_after\endcsname,
+  width=\csname HBcomp_warning_box_width\endcsname\textwidth,
+}
+
+% ==================================================
+% WARNING LAYOUT（结构层，不控制排版）
+% ==================================================
+
+\providecommand{\safetywarning}[1]{}
+\renewcommand{\safetywarning}[1]{%
+  \begin{safetywarningbox}%
+    \noindent
+    \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+                    @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
+                    m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}%
+      \centering\warninglockup
+      &
+      \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
+        \HBTypeWarningTextStart
+        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
+      }%
+    \end{tabular}%
+  \end{safetywarningbox}%
+}
+
+% ==================================================
+% SUBBAR
+% ==================================================
+
+\providecommand{\safetysubbar}[1]{}
+\renewcommand{\safetysubbar}[1]{%
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_subbar_arc\endcsname,
+    left=\csname HBcomp_subbar_pad_lr\endcsname,
+    right=\csname HBcomp_subbar_pad_lr\endcsname,
+    top=\csname HBcomp_subbar_pad_tb\endcsname,
+    bottom=\csname HBcomp_subbar_pad_tb\endcsname,
+    boxrule=0pt,
+    width=\csname HBcomp_subbar_width\endcsname\textwidth
+  ]
+    \HBTypeSubbar{#1}
+  \end{tcolorbox}
+  \par\noindent
+  \vspace*{\csname HBcomp_subbar_after\endcsname}%
+  \vspace*{-\csname HBcomp_subbar_tighten\endcsname}%
+}
+
+% ==================================================
+% TWO COLUMN
+% ==================================================
+
+\setlength{\columnsep}{\csname HBcomp_twocol_sep\endcsname}
+
+\newenvironment{safetytwocol}{%
+  \par\noindent
+  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
+  \begin{multicols}{2}
+    \HBTypeListStart
+}{%
+  \end{multicols}
+  \par
+}
+
+% ==================================================
+% H1 PILL
+% ==================================================
+
+\providecommand{\hbsectiontitle}[1]{#1}
+
+\renewcommand{\hbsectiontitle}[1]{%
+  \par\noindent
+  \hspace*{-\leftskip}%
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
+    boxrule=0pt,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
+    before skip=0mm,
+    after skip=\csname HBcomp_h1_pill_after\endcsname
+  ]
+    \HBTypeHOne{#1}
+  \end{tcolorbox}%
+  \par\noindent
+}
+
+% ==================================================
+% LEAD
+% ==================================================
+
+\providecommand{\safetylead}[1]{}
+\renewcommand{\safetylead}[1]{%
+  \par\noindent
+  \HBTypeBody{#1}
+  \par\vspace{\csname HBcomp_lead_after\endcsname}%
+}
+
+% ==================================================
+% SECTION PATCH
+% ==================================================
+
+\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
+\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
+\setcounter{secnumdepth}{0}
+
+% ==================================================
+% Language density overrides (SAFE v2 - includes TYPE layer)
+% ==================================================
+\makeatletter
+
+\providecommand{\HBOverrideParam}[2]{%
+  \expandafter\def\csname HB#1\endcsname{#2}%
+}
+
+\providecommand{\HBOverrideFromKey}[2]{%
+  \ifcsname HB#2\endcsname
+    \expandafter\ifx\csname HB#2\endcsname\relax
+      % Skip undefined placeholder keys.
+    \else
+      \expandafter\edef\csname HB#1\endcsname{\csname HB#2\endcsname}%
+    \fi
+  \fi
+}
+
+\providecommand{\HBStoreBaseFromKey}[1]{%
+  \expandafter\edef\csname HBbase_#1\endcsname{\csname HB#1\endcsname}%
+}
+
+% Capture defaults once so language switching can safely reset.
+\HBStoreBaseFromKey{comp_h1_pill_after}%
+\HBStoreBaseFromKey{comp_subbar_after}%
+\HBStoreBaseFromKey{comp_twocol_tighten}%
+\HBStoreBaseFromKey{comp_lead_after}%
+\HBStoreBaseFromKey{comp_warning_box_before}%
+\HBStoreBaseFromKey{comp_warning_box_after}%
+\HBStoreBaseFromKey{comp_spec_section_before}%
+\HBStoreBaseFromKey{comp_spec_section_after}%
+\HBStoreBaseFromKey{comp_spec_table_tabcolsep}%
+\HBStoreBaseFromKey{comp_spec_table_row_stretch}%
+\HBStoreBaseFromKey{comp_spec_notes_before}%
+\HBStoreBaseFromKey{comp_spec_footnotes_before}%
+\HBStoreBaseFromKey{type_list_font_leading}%
+\HBStoreBaseFromKey{type_spec_label_font_size}%
+\HBStoreBaseFromKey{type_spec_label_font_leading}%
+\HBStoreBaseFromKey{type_spec_value_font_size}%
+\HBStoreBaseFromKey{type_spec_value_font_leading}%
+\HBStoreBaseFromKey{type_spec_note_font_size}%
+\HBStoreBaseFromKey{type_spec_note_font_leading}%
+
+\providecommand{\HBApplyLang}[1]{%
+  \def\HB@lang{#1}%
+
+  % ===== Reset to base layer defaults first =====
+  \HBOverrideFromKey{comp_h1_pill_after}{base_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_subbar_after}{base_comp_subbar_after}%
+  \HBOverrideFromKey{comp_twocol_tighten}{base_comp_twocol_tighten}%
+  \HBOverrideFromKey{comp_lead_after}{base_comp_lead_after}%
+  \HBOverrideFromKey{comp_warning_box_before}{base_comp_warning_box_before}%
+  \HBOverrideFromKey{comp_warning_box_after}{base_comp_warning_box_after}%
+  \HBOverrideFromKey{comp_spec_section_before}{base_comp_spec_section_before}%
+  \HBOverrideFromKey{comp_spec_section_after}{base_comp_spec_section_after}%
+  \HBOverrideFromKey{comp_spec_table_tabcolsep}{base_comp_spec_table_tabcolsep}%
+  \HBOverrideFromKey{comp_spec_table_row_stretch}{base_comp_spec_table_row_stretch}%
+  \HBOverrideFromKey{comp_spec_notes_before}{base_comp_spec_notes_before}%
+  \HBOverrideFromKey{comp_spec_footnotes_before}{base_comp_spec_footnotes_before}%
+  \HBOverrideFromKey{type_list_font_leading}{base_type_list_font_leading}%
+  \HBOverrideFromKey{type_spec_label_font_size}{base_type_spec_label_font_size}%
+  \HBOverrideFromKey{type_spec_label_font_leading}{base_type_spec_label_font_leading}%
+  \HBOverrideFromKey{type_spec_value_font_size}{base_type_spec_value_font_size}%
+  \HBOverrideFromKey{type_spec_value_font_leading}{base_type_spec_value_font_leading}%
+  \HBOverrideFromKey{type_spec_note_font_size}{base_type_spec_note_font_size}%
+  \HBOverrideFromKey{type_spec_note_font_leading}{base_type_spec_note_font_leading}%
+
+  % ===== Component layer =====
+  \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
+  \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
+  \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%
+  \HBOverrideFromKey{comp_warning_box_before}{lang_\HB@lang_comp_warning_box_before}%
+  \HBOverrideFromKey{comp_warning_box_after}{lang_\HB@lang_comp_warning_box_after}%
+  \HBOverrideFromKey{comp_spec_section_before}{lang_\HB@lang_comp_spec_section_before}%
+  \HBOverrideFromKey{comp_spec_section_after}{lang_\HB@lang_comp_spec_section_after}%
+  \HBOverrideFromKey{comp_spec_table_tabcolsep}{lang_\HB@lang_comp_spec_table_tabcolsep}%
+  \HBOverrideFromKey{comp_spec_table_row_stretch}{lang_\HB@lang_comp_spec_table_row_stretch}%
+  \HBOverrideFromKey{comp_spec_notes_before}{lang_\HB@lang_comp_spec_notes_before}%
+  \HBOverrideFromKey{comp_spec_footnotes_before}{lang_\HB@lang_comp_spec_footnotes_before}%
+
+  % ===== Type layer =====
+  \HBOverrideFromKey{type_list_font_leading}{lang_\HB@lang_type_list_font_leading}%
+  \HBOverrideFromKey{type_spec_label_font_size}{lang_\HB@lang_type_spec_label_font_size}%
+  \HBOverrideFromKey{type_spec_label_font_leading}{lang_\HB@lang_type_spec_label_font_leading}%
+  \HBOverrideFromKey{type_spec_value_font_size}{lang_\HB@lang_type_spec_value_font_size}%
+  \HBOverrideFromKey{type_spec_value_font_leading}{lang_\HB@lang_type_spec_value_font_leading}%
+  \HBOverrideFromKey{type_spec_note_font_size}{lang_\HB@lang_type_spec_note_font_size}%
+  \HBOverrideFromKey{type_spec_note_font_leading}{lang_\HB@lang_type_spec_note_font_leading}%
+}
+
+\makeatother

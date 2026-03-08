@@ -9,7 +9,7 @@
 
    \HBApplyLang{en}
 
-.. include:: generated/JB1000/safety_en.rst
+.. include:: generated/JHP-2000A/safety_en.rst
 
 .. raw:: latex
 
@@ -75,7 +75,7 @@
 
    \HBApplyLang{en}
 
-.. include:: generated/JB1000/spec_en.rst
+.. include:: generated/JHP-2000A/spec_en.rst
 
 .. raw:: latex
 

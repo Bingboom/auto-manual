@@ -1,23 +1,14 @@
-Storage and Maintenance
-=======================
+STORAGE
+=======
 
-Proper storage and maintenance can help prolong the lifespan of |PRODUCT_NAME|.
+Store the product in a dry, clean place with proper ventilation.
 
-Storage Guidelines
-------------------
+Storage temperature and humidity:
 
-- Store the product in a dry and cool environment.
-- Avoid exposure to direct sunlight.
-- Keep the device away from water and high humidity.
+- 1 month: -4 F to 113 F / -20 C to 45 C (0-60%RH)
+- 3 months: 32 F to 113 F / 0 C to 45 C (0-60%RH)
+- 12 months: 32 F to 77 F / 0 C to 25 C (0-60%RH)
 
-Battery Maintenance
--------------------
-
-If the power station will not be used for an extended period:
-
-- Charge the battery to approximately 60–80%.
-- Recharge the battery every 3–6 months.
-
-.. caution::
-
-   Failure to maintain battery charge may result in battery degradation.
+If the product is stored for a long period (3 to 6 months) with power depleted, it may become unchargeable.
+To maintain battery health, check and recharge the product every three months,
+and perform a full charge and discharge cycle at least once every 6 to 12 months.

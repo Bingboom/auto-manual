@@ -63,9 +63,11 @@ def validate_layout_csv(layout_csv_path: Path) -> None:
         raise RuntimeError("Layout params validation failed")
 
 
-def render_csv_pages(cfg: dict, sku: str | None) -> None:
+def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
     pages = cfg.get("pages", [])
     build_langs = cfg.get("build", {}).get("languages", [])
+    paths_cfg_raw = cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
 
     phase1_pages: set[str] = set()
     phase1_langs: set[str] = set()
@@ -94,6 +96,14 @@ def render_csv_pages(cfg: dict, sku: str | None) -> None:
             cmd += ["--lang", ",".join(sorted(phase1_langs))]
         if sku:
             cmd += ["--sku", sku]
+        if model:
+            cmd += ["--model", model]
+        spec_master_csv = paths_cfg.get("spec_master_csv")
+        if isinstance(spec_master_csv, str) and spec_master_csv.strip():
+            cmd += ["--spec-master-csv", spec_master_csv.strip()]
+        spec_footnotes_csv = paths_cfg.get("spec_footnotes_csv")
+        if isinstance(spec_footnotes_csv, str):
+            cmd += ["--spec-footnotes-csv", spec_footnotes_csv.strip()]
         run(cmd, cwd=paths.root)
 
 
@@ -119,6 +129,28 @@ def _config_uses_sku_token(cfg: dict) -> bool:
     return False
 
 
+def _config_uses_model_token(cfg: dict) -> bool:
+    for page in cfg.get("pages", []):
+        if not isinstance(page, dict):
+            continue
+        ptype = (page.get("type") or "").strip()
+        if ptype == "cover_pdf":
+            file_name = page.get("file")
+            if isinstance(file_name, str) and "{model}" in file_name:
+                return True
+        elif ptype == "csv_page":
+            include_dir = page.get("include_dir")
+            if isinstance(include_dir, str) and "{model}" in include_dir:
+                return True
+        elif ptype == "pdf_insert":
+            file_map = page.get("file_map")
+            if isinstance(file_map, dict):
+                for v in file_map.values():
+                    if isinstance(v, str) and "{model}" in v:
+                        return True
+    return False
+
+
 def _list_skus(product_vars_csv: Path) -> list[str]:
     if not product_vars_csv.exists():
         return []
@@ -131,21 +163,63 @@ def _list_skus(product_vars_csv: Path) -> list[str]:
     return sorted(skus)
 
 
-def resolve_build_sku(cfg: dict, arg_sku: str | None) -> str | None:
+def _list_skus_by_model(product_vars_csv: Path, model: str) -> list[str]:
+    if not product_vars_csv.exists():
+        return []
+    model_keys = {"model", "product_model", "model_no", "model_number"}
+    matched: set[str] = set()
+    with product_vars_csv.open("r", encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            sku = (row.get("sku_id") or "").strip()
+            key = (row.get("var_key") or "").strip().lower()
+            value = (row.get("var_value") or "").strip()
+            if not sku or key not in model_keys:
+                continue
+            if value == model:
+                matched.add(sku)
+    return sorted(matched)
+
+
+def resolve_build_model(cfg: dict, arg_model: str | None) -> str | None:
+    if arg_model and arg_model.strip():
+        return arg_model.strip()
+    build_cfg = cfg.get("build", {})
+    default_model = build_cfg.get("default_model")
+    if isinstance(default_model, str) and default_model.strip():
+        return default_model.strip()
+    return None
+
+
+def resolve_build_sku(cfg: dict, arg_sku: str | None, arg_model: str | None = None) -> str | None:
     if arg_sku and arg_sku.strip():
         return arg_sku.strip()
 
-    build_cfg = cfg.get("build", {})
-    default_sku = build_cfg.get("default_sku")
-    if isinstance(default_sku, str) and default_sku.strip():
-        picked = default_sku.strip()
-        print(f"[build] sku not provided, using build.default_sku='{picked}'")
-        return picked
+    target_model = resolve_build_model(cfg, arg_model)
+    product_vars_csv = paths.root / "data" / "phase1" / "product_variables.csv"
+
+    if target_model:
+        matched_skus = _list_skus_by_model(product_vars_csv, target_model)
+        if len(matched_skus) == 1:
+            picked = matched_skus[0]
+            print(
+                "[build] sku not provided, using "
+                f"build/default model='{target_model}' -> sku='{picked}'"
+            )
+            return picked
+        if len(matched_skus) > 1:
+            raise RuntimeError(
+                f"build/default model '{target_model}' maps to multiple SKUs {matched_skus}. "
+                "Please pass --sku explicitly."
+            )
+        raise RuntimeError(
+            f"build/default model '{target_model}' was not found in "
+            "data/phase1/product_variables.csv "
+            "(var_key in: model, product_model, model_no, model_number)."
+        )
 
     if not _config_uses_sku_token(cfg):
         return None
 
-    product_vars_csv = paths.root / "data" / "phase1" / "product_variables.csv"
     skus = _list_skus(product_vars_csv)
     if not skus:
         raise RuntimeError(
@@ -155,7 +229,7 @@ def resolve_build_sku(cfg: dict, arg_sku: str | None) -> str | None:
     if len(skus) > 1:
         raise RuntimeError(
             "config uses '{sku}' and multiple SKUs are available "
-            f"({skus}). Please pass --sku or set build.default_sku."
+            f"({skus}). Please pass --sku or set build.default_model."
         )
 
     picked = skus[0]
@@ -255,6 +329,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
     ap.add_argument("--sku", default=None, help="Target SKU for phase1 pages / index includes")
+    ap.add_argument("--model", default=None, help="Target product model for spec filtering / sku resolving")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
     ap.add_argument("--no-open", action="store_true", help="Do not open PDF after build (override config)")
     args = ap.parse_args()
@@ -291,15 +366,29 @@ def main() -> None:
     if args.clean:
         clean_build_dir()
 
-    target_sku = resolve_build_sku(cfg, args.sku)
+    target_model = resolve_build_model(cfg, args.model)
+    needs_sku_token = _config_uses_sku_token(cfg)
+    needs_model_token = _config_uses_model_token(cfg)
+    if needs_model_token and not target_model:
+        raise RuntimeError("config uses '{model}' but no --model was provided and build.default_model is empty")
 
-    render_csv_pages(cfg, sku=target_sku)
+    explicit_sku = (args.sku or "").strip() or None
+    if explicit_sku:
+        target_sku = explicit_sku
+    elif needs_sku_token or not target_model:
+        target_sku = resolve_build_sku(cfg, None, args.model)
+    else:
+        target_sku = None
+
+    render_csv_pages(cfg, sku=target_sku, model=target_model)
 
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type == "manual_bundle":
         index_cmd = [sys.executable, "tools/gen_index_bundle.py", "--config", str(cfg_path)]
         if target_sku:
             index_cmd += ["--sku", target_sku]
+        if target_model:
+            index_cmd += ["--model", target_model]
         run(index_cmd, cwd=paths.root)
     else:
         raise RuntimeError(f"Unsupported doc_type: {doc_type}")
@@ -331,7 +420,7 @@ def main() -> None:
         elif word_source == "latex":
             docx_path = export_word_from_latex(main_tex, word_output)
         elif word_source == "bundle":
-            docx_path = export_word_from_bundle(cfg, target_sku, word_output)
+            docx_path = export_word_from_bundle(cfg, target_sku, target_model, word_output)
         else:
             raise RuntimeError("build.word_source must be one of 'latex', 'html', or 'bundle'")
         print(f"[build] Done. DOCX: {docx_path}")
