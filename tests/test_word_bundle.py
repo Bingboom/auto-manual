@@ -1,13 +1,31 @@
 from __future__ import annotations
 
+import struct
 import tempfile
 import unittest
 from pathlib import Path
 
 from tools.word_bundle import derive_word_title, render_safety_word_html, resolve_reference_doc
+from tools.word_bundle_html import _inject_img_dimensions
 
 
 class TestWordBundle(unittest.TestCase):
+    def test_inject_img_dimensions_should_add_proportional_height_for_local_png(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            image_path = root / "demo.png"
+            image_path.write_bytes(
+                b"\x89PNG\r\n\x1a\n"
+                + b"\x00\x00\x00\rIHDR"
+                + struct.pack(">II", 620, 486)
+            )
+
+            html = f'<img src="{image_path.resolve().as_uri()}" style="width: 40px;" />'
+            out = _inject_img_dimensions(html)
+
+            self.assertIn('width="40"', out)
+            self.assertIn('height="31"', out)
+
     def test_resolve_reference_doc_supports_glob(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

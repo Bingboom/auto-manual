@@ -1,17 +1,18 @@
-doc_type: manual_bundle
+﻿doc_type: manual_bundle
 
 build:
   languages: [ja]
   default_model: JE-2000F
   default_region: JP
   main_tex: manual_demo.tex
-  output_pdf: manual_demo_ja.pdf
+  output_pdf: manual_demo.pdf
   xelatex_runs: 3
   open_pdf: false
   build_word: true
   word_output: manual_demo_ja.docx
   word_source: bundle
-  word_title: JP-2000 New 取扱説明書
+  word_reference_doc: C:/Users/Administrator/Downloads/JP-2000*取扱説明書.docx
+  word_title: JP-2000 New取扱説明書
   open_word: false
   build_html: false
   open_html: false
@@ -31,9 +32,19 @@ pages:
   lang: ja
   file: templates/page_ja/cover_jp.rst
 
+- type: csv_page
+  source: phase1
+  page: safety
+  langs: [ja]
+  include_dir: generated/{model}
+
 - type: rst_include
   lang: ja
   file: templates/page_ja/01_meaning_of_symbols.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/09_storage_and_maintenance.rst
 
 - type: rst_include
   lang: ja
@@ -58,14 +69,6 @@ pages:
 - type: rst_include
   lang: ja
   file: templates/page_ja/07_expansion_battery_pack.rst
-
-- type: rst_include
-  lang: ja
-  file: templates/page_ja/08_charging_methods.rst
-
-- type: rst_include
-  lang: ja
-  file: templates/page_ja/09_storage_and_maintenance.rst
 
 - type: rst_include
   lang: ja
