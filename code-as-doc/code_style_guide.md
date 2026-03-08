@@ -12,7 +12,7 @@
 
 ---
 
-## 0. P0 执行状态（2026-03-08）
+## 0. P0/P1 执行状态（2026-03-08）
 
 已完成：
 - 已抽离 target 公共解析模块：`tools/utils/targets.py`
@@ -21,7 +21,13 @@
 - 已将历史已追踪的构建产物与缓存文件从 git index 移除（`git rm --cached`）
 
 后续建议：
-- P1 开始执行模块拆分（`renderers.py`、`word_bundle.py`）
+- P2 继续执行 CI 与快照回归（见路线图）
+
+P1 已完成：
+- `tools/phase1/renderers.py` 已拆分为 `renderers_common/safety/spec/spec_parser/symbols` 多模块
+- `tools/word_bundle.py` 已拆分为 `word_bundle_common/html/docx` 多模块
+- 新增 `tools/config_pages.py`，`config.pages` 已引入 dataclass schema（四类页面对象）
+- `build_docs.py`、`gen_index_bundle.py`、`word_bundle`、`validate_config.py` 已切换到 schema 解析，减少裸字典访问
 
 ---
 
@@ -29,23 +35,22 @@
 
 ### 1.1 结构化程度评估
 
-综合评分：**7/10**
+综合评分：**8.2/10**
 
 优点：
 - 主流程清晰：`build_docs -> phase1_build -> gen_index_bundle -> sphinx/latex -> word`
 - 配置驱动明显：`config.yaml` 的 `pages` 控制页面顺序与来源
 - 有基础数据校验：`validate_config.py`、`validate_layout_params.py`
-- 有单元测试基线（26 个用例，覆盖核心路径）
+- 有单元测试基线（30 个用例，覆盖核心路径）
 
 主要问题：
-- 模块过大：`tools/phase1/renderers.py`（1000+ 行）、`tools/word_bundle.py`（800+ 行）
-- 重复逻辑较多：target 解析、token 处理、model->sku 映射在多个文件重复实现
-- 存在跨模块私有方法调用（如 `word_bundle` 调 `builder._load_vars_by_sku()`）
-- 构建产物被版本管理追踪（`docs/_build/**`），噪声大且影响可审查性（已在 P0 处理）
+- `renderers_spec_parser.py` 仍承担较多 spec schema 兼容逻辑，后续可继续按“schema 识别/过滤/聚合”再拆一层
+- `Phase1Builder` 仍存在跨模块私有方法调用（`_load_vars_by_sku()`），建议逐步补公开只读接口
+- 构建输出缺少快照回归（当前以 smoke + unittest 为主）
 
 ### 1.2 继承与迭代能力评估
 
-综合评分：**6.5/10**
+综合评分：**8.0/10**
 
 优点：
 - 通过 `PAGE_RENDERERS` + `page_registry.csv` 支持按页扩展
@@ -54,8 +59,8 @@
 
 主要问题：
 - 新增页面仍需改动多个点（模板、renderers、config、测试），缺少标准脚手架
-- `spec` 的 schema 解析逻辑集中且复杂，修改风险高
-- HTML/PDF/Word 虽已趋同，但实现层还未完全共享“统一 target 解析组件”
+- `spec` 的 schema 解析逻辑仍较复杂，修改风险相对其他页面更高
+- `word_bundle_common` 仍直接读取 `Phase1Builder` 变量数据，建议补稳定抽象层
 
 ---
 
@@ -90,16 +95,17 @@
 - 单函数建议不超过 **80 行**；超过 **120 行** 必拆
 - 每个文件只承载一个主职责
 
-落地拆分建议（现状改造优先级）：
-- `tools/phase1/renderers.py` 拆为：
-  - `renderers/safety.py`
-  - `renderers/spec.py`
-  - `renderers/symbols.py`
-  - `renderers/common.py`
-- `tools/word_bundle.py` 拆为：
-  - target/path 解析
-  - rst->html 转换
-  - docx 导出与后处理
+落地拆分结果（P1 已完成）：
+- `tools/phase1/renderers.py`（入口）
+- `tools/phase1/renderers_common.py`
+- `tools/phase1/renderers_safety.py`
+- `tools/phase1/renderers_spec.py`
+- `tools/phase1/renderers_spec_parser.py`
+- `tools/phase1/renderers_symbols.py`
+- `tools/word_bundle.py`（入口）
+- `tools/word_bundle_common.py`
+- `tools/word_bundle_html.py`
+- `tools/word_bundle_docx.py`
 
 ### 3.2 重用与去重
 
@@ -248,7 +254,7 @@ P0（已完成）：
 - 抽离 `target` 解析共享模块，消除 `build_docs/gen_index_bundle/word_bundle` 重复逻辑
 - 清理并禁止跟踪构建产物（`.gitignore` 与仓库清理）
 
-P1（短期）：
+P1（已完成）：
 - 拆分 `renderers.py`、`word_bundle.py`
 - 为 `config/pages` 引入 dataclass schema，减少裸字典访问
 

@@ -8,9 +8,11 @@
 - 主入口：`tools/build_docs.py`
 - `docs/index.rst` 不建议手改；每次构建会由 `tools/gen_index_bundle.py` 覆盖生成
 - `config.yaml` 的 `pages` 决定整本页面顺序
+- `pages` 已有 dataclass schema（`tools/config_pages.py`），构建入口不再直接裸读字典
 - `csv_page` 目前只支持 `source: phase1`
 - 默认 `doc_type` 只支持 `manual_bundle`
 - 构建目标解析（model/sku/token）已统一收敛到 `tools/utils/targets.py`
+- `renderers` 与 `word_bundle` 已拆分为多模块（P1）
 
 ---
 
@@ -164,6 +166,7 @@ flowchart TD
 - `csv_page.source` 仅支持 `phase1`
 - `rst_include` 直接 include 指定 rst
 - `docs/index.rst` 每次由 `gen_index_bundle.py` 重写
+- `pages` 解析统一走 `tools/config_pages.py`（`CoverPdfPage/CsvPage/PdfInsertPage/RstIncludePage`）
 
 ---
 
@@ -312,13 +315,27 @@ python3 tools/word_bundle.py --config config.yaml --model JHP-2000A --output man
 
 ---
 
-## 13. 维护规范与仓库卫生（P0）
+## 13. 维护规范与仓库卫生（P0/P1）
 
 规范文档：
 
 - 代码规范主文档：`code-as-doc/code_style_guide.md`
 - 本次 P0 优化记录：`code-as-doc/code_optimization_log.md`
 - 文档维护规范：`code-as-doc/代码文档化.md`
+
+P1 结构优化（已完成）：
+
+- `tools/phase1/renderers.py` 已拆分为：
+  - `tools/phase1/renderers_common.py`
+  - `tools/phase1/renderers_safety.py`
+  - `tools/phase1/renderers_spec.py`
+  - `tools/phase1/renderers_spec_parser.py`
+  - `tools/phase1/renderers_symbols.py`
+- `tools/word_bundle.py` 已拆分为：
+  - `tools/word_bundle_common.py`
+  - `tools/word_bundle_html.py`
+  - `tools/word_bundle_docx.py`
+- `config/pages` schema 已 dataclass 化：`tools/config_pages.py`
 
 仓库卫生规则：
 

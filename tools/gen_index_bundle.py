@@ -6,12 +6,19 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.config_pages import (
+    ConfigPage,
+    CoverPdfPage,
+    CsvPage,
+    PdfInsertPage,
+    RstIncludePage,
+    parse_config_pages_or_raise,
+)
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
     config_uses_token_in_pages,
@@ -29,18 +36,6 @@ def load_config(cfg_path: Path) -> dict:
 
     with cfg_path.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
-
-
-def ensure_mapping(obj: Any, name: str) -> dict:
-    if not isinstance(obj, dict):
-        raise RuntimeError(f"{name} must be a mapping")
-    return obj
-
-
-def ensure_list(obj: Any, name: str) -> list:
-    if not isinstance(obj, list):
-        raise RuntimeError(f"{name} must be a list")
-    return obj
 
 
 def latex_cover_block(file_name: str) -> list[str]:
@@ -102,19 +97,17 @@ def resolve_build_sku(
 
 
 def _csv_include_path(
-    page: dict,
-    page_name: str,
+    page: CsvPage,
     lang: str,
     sku: str | None,
     model: str | None,
 ) -> str:
-    include_dir = page.get("include_dir")
+    include_dir = page.include_dir
+    page_name = page.page
     if include_dir is None:
         return f"{page_name}_{lang}.rst"
-    if not isinstance(include_dir, str) or not include_dir.strip():
-        raise RuntimeError("csv_page.include_dir must be a non-empty string")
 
-    rendered_dir = _format_tokenized(include_dir.strip(), sku, model)
+    rendered_dir = _format_tokenized(include_dir, sku, model)
     return str(Path(rendered_dir) / f"{page_name}_{lang}.rst").replace("\\", "/")
 
 
@@ -122,60 +115,44 @@ def build_index_from_pages(cfg: dict, sku: str | None = None, model: str | None 
     langs = cfg.get("build", {}).get("languages", ["en", "fr", "es"])
     langs = list(langs)
 
-    pages = ensure_list(cfg.get("pages"), "config.pages")
+    pages: list[ConfigPage] = parse_config_pages_or_raise(
+        cfg.get("pages"),
+        default_languages=langs,
+        error_prefix="config.pages",
+    )
 
     out: list[str] = []
     saw_cover = False
 
-    for i, page in enumerate(pages, start=1):
-        page = ensure_mapping(page, f"config.pages[{i}]")
-        ptype = page.get("type")
-
-        if ptype == "cover_pdf":
-            file_name = page.get("file")
-            if not isinstance(file_name, str) or not file_name:
-                raise RuntimeError("cover_pdf page requires 'file'")
-            out += latex_cover_block(_format_tokenized(file_name, sku, model))
+    for page in pages:
+        if isinstance(page, CoverPdfPage):
+            out += latex_cover_block(_format_tokenized(page.file, sku, model))
             saw_cover = True
 
-        elif ptype == "pdf_insert":
-            file_map = ensure_mapping(page.get("file_map"), "pdf_insert.file_map")
-
-            plangs = page.get("langs", langs)
-            plangs = list(plangs)
+        elif isinstance(page, PdfInsertPage):
+            file_map = page.file_map
+            plangs = list(page.langs) or langs
 
             for lang in plangs:
                 if lang not in file_map:
                     raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
-                if not isinstance(file_map[lang], str) or not file_map[lang]:
-                    raise RuntimeError(f"pdf_insert.file_map['{lang}'] must be non-empty string")
-
                 out += latex_overview_block(_format_tokenized(file_map[lang], sku, model))
 
-        elif ptype == "csv_page":
-            page_name = page.get("page")
-            if not isinstance(page_name, str) or not page_name:
-                raise RuntimeError("csv_page requires 'page'")
-
-            plangs = page.get("langs", langs)
-            plangs = list(plangs)
+        elif isinstance(page, CsvPage):
+            plangs = list(page.langs) or langs
 
             for lang in plangs:
                 out += latex_apply_lang(lang)
-                include_path = _csv_include_path(page, page_name, lang, sku, model)
+                include_path = _csv_include_path(page, lang, sku, model)
                 out += [f".. include:: {include_path}", ""]
 
-        elif ptype == "rst_include":
-            file_name = page.get("file")
-            if not isinstance(file_name, str) or not file_name.strip():
-                raise RuntimeError("rst_include requires non-empty 'file'")
-            lang = page.get("lang")
-            if isinstance(lang, str) and lang.strip():
-                out += latex_apply_lang(lang.strip())
-            out += [f".. include:: {_format_tokenized(file_name.strip(), sku, model)}", ""]
+        elif isinstance(page, RstIncludePage):
+            if page.lang:
+                out += latex_apply_lang(page.lang)
+            out += [f".. include:: {_format_tokenized(page.file, sku, model)}", ""]
 
         else:
-            raise RuntimeError(f"Unsupported page type: {ptype}")
+            raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
 
     # Safety: if no cover was specified, still start numbering when document starts.
     if not saw_cover:

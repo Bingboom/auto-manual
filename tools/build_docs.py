@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import open_file, run  # noqa: E402
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
+from tools.config_pages import CsvPage, parse_config_pages_or_raise
 from tools.utils.targets import (
     config_uses_token_in_pages,
     resolve_build_model as resolve_target_model,
@@ -68,7 +69,13 @@ def validate_layout_csv(layout_csv_path: Path) -> None:
 
 
 def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
-    pages = cfg.get("pages", [])
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    pages = parse_config_pages_or_raise(
+        cfg.get("pages"),
+        default_languages=list(build_cfg.get("languages", [])),
+        error_prefix="config.pages",
+    )
     build_langs = cfg.get("build", {}).get("languages", [])
     paths_cfg_raw = cfg.get("paths", {})
     paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
@@ -76,20 +83,17 @@ def render_csv_pages(cfg: dict, sku: str | None, model: str | None) -> None:
     phase1_pages: set[str] = set()
     phase1_langs: set[str] = set()
 
-    for p in pages:
-        if p.get("type") != "csv_page":
+    for page in pages:
+        if not isinstance(page, CsvPage):
             continue
 
-        page_name = p.get("page")
-        if not isinstance(page_name, str) or not page_name.strip():
-            raise RuntimeError("csv_page requires non-empty 'page'")
-
-        source = (p.get("source") or "phase1").strip().lower()
+        page_name = page.page
+        source = page.source
         if source != "phase1":
             raise RuntimeError(f"Unsupported csv_page source='{source}' for page='{page_name}' (phase1-only)")
 
         phase1_pages.add(page_name)
-        langs = p.get("langs", build_langs)
+        langs = list(page.langs) or build_langs
         for lang in langs:
             phase1_langs.add(str(lang))
 

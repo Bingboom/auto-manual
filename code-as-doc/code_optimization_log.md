@@ -1,7 +1,7 @@
 # Code Optimization Log
 
 日期：2026-03-08  
-范围：P0（target 解析去重 + 构建噪声清理）
+范围：P0 + P1（target 解析去重 / 构建噪声清理 / 模块拆分 / pages schema）
 
 ---
 
@@ -68,7 +68,7 @@
 ## 4. 规范文档同步
 
 已修改：
-- `code_style_guide.md`
+- `code-as-doc/code_style_guide.md`
 
 同步内容：
 - 新增 “P0 执行状态（2026-03-08）”
@@ -115,6 +115,69 @@ python3 tools/build_docs.py --model JHP-2000A --clean --no-open
 - `tools/build_docs.py`
 - `tools/gen_index_bundle.py`
 - `tools/word_bundle.py`
-- `code_style_guide.md`
-- `code_optimization_log.md`（新增）
+- `code-as-doc/code_style_guide.md`
+- `code-as-doc/code_optimization_log.md`（新增）
 
+---
+
+## 7. P1 执行记录（2026-03-08）
+
+范围：模块拆分 + `config.pages` dataclass schema
+
+### 7.1 目标
+
+- 拆分 `tools/phase1/renderers.py`，降低单文件复杂度
+- 拆分 `tools/word_bundle.py`，分离 context/html/docx 职责
+- 为 `config/pages` 引入 typed schema，减少入口脚本裸字典访问
+
+### 7.2 代码改造
+
+新增：
+- `tools/config_pages.py`
+- `tools/phase1/renderers_common.py`
+- `tools/phase1/renderers_safety.py`
+- `tools/phase1/renderers_spec.py`
+- `tools/phase1/renderers_spec_parser.py`
+- `tools/phase1/renderers_symbols.py`
+- `tools/word_bundle_common.py`
+- `tools/word_bundle_html.py`
+- `tools/word_bundle_docx.py`
+- `tests/test_config_pages.py`
+
+重构：
+- `tools/phase1/renderers.py` 改为薄入口 + renderer 注册
+- `tools/word_bundle.py` 改为薄入口 + CLI/兼容导出
+- `tools/build_docs.py` 切换 `CsvPage` schema 读取 `config.pages`
+- `tools/gen_index_bundle.py` 切换 typed page 对象生成 `index.rst`
+- `tools/validate_config.py` 切换 schema 解析校验
+- `tools/utils/targets.py` 的 pages token 检测切换 schema 解析
+
+### 7.3 验证
+
+语法检查：
+
+```bash
+python3 -m py_compile tools/config_pages.py tools/build_docs.py tools/gen_index_bundle.py tools/validate_config.py tools/utils/targets.py tools/word_bundle.py tools/word_bundle_common.py tools/word_bundle_html.py tools/word_bundle_docx.py tools/phase1/renderers.py tools/phase1/renderers_common.py tools/phase1/renderers_safety.py tools/phase1/renderers_spec.py tools/phase1/renderers_spec_parser.py tools/phase1/renderers_symbols.py
+```
+
+结果：通过
+
+单元测试：
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+结果：30/30 通过
+
+构建回归：
+
+```bash
+python3 tools/build_docs.py --model JHP-2000A --clean --no-open
+```
+
+结果：
+- `docs/generated/JHP-2000A/safety_en.rst` 生成成功
+- `docs/generated/JHP-2000A/spec_en.rst` 生成成功
+- PDF 生成成功：`docs/_build/latex/manual_demo.pdf`
+- DOCX 生成成功：`docs/_build/word/manual_demo_en.docx`

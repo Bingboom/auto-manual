@@ -7,6 +7,8 @@ import csv
 from pathlib import Path
 from typing import Any, Iterable
 
+from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage, parse_config_pages
+
 MODEL_VAR_KEYS = {"model", "product_model", "model_no", "model_number"}
 
 
@@ -25,27 +27,25 @@ def config_uses_token_in_pages(
     include_rst_include: bool = False,
 ) -> bool:
     placeholder = f"{{{token}}}"
-    for page in cfg.get("pages", []):
-        if not isinstance(page, dict):
-            continue
-        ptype = (page.get("type") or "").strip()
-        if ptype == "cover_pdf":
-            file_name = page.get("file")
-            if isinstance(file_name, str) and placeholder in file_name:
+    build_cfg = cfg.get("build", {})
+    langs = build_cfg.get("languages", []) if isinstance(build_cfg, dict) else []
+    pages, _issues = parse_config_pages(
+        cfg.get("pages"),
+        default_languages=langs if isinstance(langs, list) else [],
+    )
+
+    for page in pages:
+        if isinstance(page, CoverPdfPage):
+            if placeholder in page.file:
                 return True
-        elif ptype == "csv_page":
-            include_dir = page.get("include_dir")
-            if isinstance(include_dir, str) and placeholder in include_dir:
+        elif isinstance(page, CsvPage):
+            if page.include_dir and placeholder in page.include_dir:
                 return True
-        elif ptype == "pdf_insert":
-            file_map = page.get("file_map")
-            if isinstance(file_map, dict):
-                for value in file_map.values():
-                    if isinstance(value, str) and placeholder in value:
-                        return True
-        elif include_rst_include and ptype == "rst_include":
-            file_name = page.get("file")
-            if isinstance(file_name, str) and placeholder in file_name:
+        elif isinstance(page, PdfInsertPage):
+            if any(placeholder in value for value in page.file_map.values()):
+                return True
+        elif include_rst_include and isinstance(page, RstIncludePage):
+            if placeholder in page.file:
                 return True
     return False
 

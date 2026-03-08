@@ -23,6 +23,16 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.config_pages import (
+    CoverPdfPage,
+    CsvPage,
+    PdfInsertPage,
+    RstIncludePage,
+    parse_config_pages,
+)
 
 
 @dataclass
@@ -79,9 +89,6 @@ def load_yaml(path: Path) -> dict:
     return data
 
 
-SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "pdf_insert", "rst_include"}
-
-
 def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     issues: list[Issue] = []
 
@@ -122,68 +129,47 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 issues.append(Issue("ERROR", f"spec_footnotes_csv file not found: {spec_footnotes_csv}"))
 
     # ---- pages ----
-    pages = cfg.get("pages", None)
-    if not isinstance(pages, list) or not pages:
-        issues.append(Issue("ERROR", "pages must be non-empty list"))
+    parsed_pages, page_issues = parse_config_pages(
+        cfg.get("pages", None),
+        default_languages=languages if is_list_of_str(languages) else None,
+    )
+    issues.extend(Issue(level=i.level, msg=i.msg) for i in page_issues)
+    if any(i.level == "ERROR" for i in page_issues):
         return issues
 
-    for idx, p in enumerate(pages, start=1):
-        if not isinstance(p, dict):
-            issues.append(Issue("ERROR", f"pages[{idx}] must be mapping"))
+    for idx, page in enumerate(parsed_pages, start=1):
+        if isinstance(page, CoverPdfPage):
+            if strict_files:
+                if has_tokenized_value(page.file):
+                    issues.append(
+                        Issue(
+                            "WARN",
+                            f"pages[{idx}] cover_pdf file is tokenized, skip strict check",
+                        )
+                    )
+                elif not as_path(page.file).exists():
+                    issues.append(Issue("ERROR", f"cover file not found: {page.file}"))
             continue
 
-        ptype = p.get("type")
-        if ptype not in SUPPORTED_PAGE_TYPES:
-            issues.append(Issue("ERROR", f"pages[{idx}].type invalid: {ptype}"))
+        if isinstance(page, CsvPage):
             continue
 
-        if ptype == "cover_pdf":
-            if "file" not in p:
-                issues.append(Issue("ERROR", f"pages[{idx}] cover_pdf requires file"))
-            elif strict_files:
-                f = p["file"]
-                if has_tokenized_value(f):
-                    issues.append(Issue("WARN", f"pages[{idx}] cover_pdf file is tokenized, skip strict check"))
-                elif not as_path(f).exists():
-                    issues.append(Issue("ERROR", f"cover file not found: {p['file']}"))
+        if isinstance(page, PdfInsertPage):
+            if strict_files:
+                for lang, fname in page.file_map.items():
+                    if has_tokenized_value(fname):
+                        issues.append(
+                            Issue(
+                                "WARN",
+                                f"pages[{idx}] pdf_insert '{lang}' is tokenized, skip strict check",
+                            )
+                        )
+                    elif not as_path(fname).exists():
+                        issues.append(Issue("ERROR", f"pdf_insert file not found: {fname}"))
+            continue
 
-        elif ptype == "csv_page":
-            page_name = p.get("page")
-            if not page_name:
-                issues.append(Issue("ERROR", f"pages[{idx}] csv_page requires page"))
-                continue
-
-            source = str(p.get("source", "phase1")).strip().lower()
-            if source != "phase1":
-                issues.append(Issue("ERROR", f"pages[{idx}] csv_page.source invalid: {source}"))
-
-            plangs = p.get("langs", languages)
-            if not is_list_of_str(plangs):
-                issues.append(Issue("ERROR", f"pages[{idx}] csv_page.langs invalid"))
-
-            if "include_dir" in p and not isinstance(p.get("include_dir"), str):
-                issues.append(Issue("ERROR", f"pages[{idx}] csv_page.include_dir must be string"))
-
-        elif ptype == "pdf_insert":
-            file_map = p.get("file_map")
-            if not isinstance(file_map, dict):
-                issues.append(Issue("ERROR", f"pages[{idx}] pdf_insert requires file_map"))
-            else:
-                for lang, fname in file_map.items():
-                    if strict_files:
-                        if has_tokenized_value(fname):
-                            issues.append(Issue("WARN", f"pages[{idx}] pdf_insert '{lang}' is tokenized, skip strict check"))
-                        elif not as_path(fname).exists():
-                            issues.append(Issue("ERROR", f"pdf_insert file not found: {fname}"))
-
-        elif ptype == "rst_include":
-            file_name = p.get("file")
-            if not isinstance(file_name, str) or not file_name.strip():
-                issues.append(Issue("ERROR", f"pages[{idx}] rst_include requires non-empty file"))
-                continue
-            lang = p.get("lang")
-            if lang is not None and not isinstance(lang, str):
-                issues.append(Issue("ERROR", f"pages[{idx}] rst_include.lang must be string"))
+        if isinstance(page, RstIncludePage):
+            continue
 
     return issues
 
