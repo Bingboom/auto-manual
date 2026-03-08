@@ -1,10 +1,12 @@
-WHAT'S IN THE BOX
-=================
+.. raw:: latex
 
-FCC
----
+   \subsection{FCC}
 
-This device complies with Part 15 of the FCC Rules. Operation is subject to the following two conditions:
+.. raw:: html
+
+   <h2>FCC</h2>
+
+This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions:
 (1) This device may not cause harmful interference, and
 (2) This device must accept any interference received, including interference that may cause undesired operation.
 
@@ -24,11 +26,16 @@ by one or more of the following measures:
 - Consult the dealer or an experienced radio/TV technician for help.
 
 **MODIFICATION:**
-Any changes or modifications not expressly approved by the grantee of this device could void the user's
+Any changes or modifications not expressly approved by the grantee of this device could void the user’s
 authority to operate the device.
 
-INCLUDED ITEMS
---------------
+.. raw:: latex
+
+   \section{WHAT'S IN THE BOX}
+
+.. raw:: html
+
+   <h1>WHAT'S IN THE BOX</h1>
 
 .. list-table::
    :header-rows: 0

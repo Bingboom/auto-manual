@@ -1,0 +1,86 @@
+doc_type: manual_bundle
+
+build:
+  languages: [ja]
+  default_model: JE-2000F
+  default_region: JP
+  main_tex: manual_demo.tex
+  output_pdf: manual_demo_ja.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_demo_ja.docx
+  word_source: bundle
+  word_title: JP-2000 New 取扱説明書
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  layout_params_csv: data/layout_params.csv
+  spec_master_csv: data/phase1/Spec_Master.csv
+  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
+  spec_titles_csv: data/phase1/spec_titles.csv
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py
+
+pages:
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/cover_jp.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/01_meaning_of_symbols.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/02_whats_in_the_box.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/03_product_overview_placeholder.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/04_lcd_display_placeholder.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/05_operation_guide_placeholder.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/06_ups_mode.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/07_expansion_battery_pack.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/08_charging_methods.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/09_storage_and_maintenance.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/10_troubleshooting.rst
+
+- type: csv_page
+  source: phase1
+  page: spec
+  langs: [ja]
+  include_dir: generated/{model}
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/11_warranty.rst
+
+- type: rst_include
+  lang: ja
+  file: templates/page_ja/12_app_setup_placeholder.rst

@@ -1,6 +1,3 @@
-MEANING OF SYMBOLS
-==================
-
 Danger
 ------
 
@@ -14,8 +11,13 @@ During the lifecycle of energy storage products, a certain degree of capacity an
 As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify,
 which is a normal phenomenon consistent with the natural aging of battery cells.
 
-Signal Words
-------------
+.. raw:: latex
+
+   \section{MEANING OF SYMBOLS}
+
+.. raw:: html
+
+   <h1>MEANING OF SYMBOLS</h1>
 
 .. list-table::
    :header-rows: 1
@@ -101,11 +103,21 @@ Symbols
      - This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling.
        Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.
    * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+          :alt: Hot surface symbol placeholder.
+          :width: 40px
+     - Caution! Hot surface.
+     -
+     -
+   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: Heavy object symbol placeholder.
           :width: 40px
      - Heavy object.
-     -
-     -
+     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+          :alt: Battery disposal symbol placeholder.
+          :width: 40px
+     - Batteries and accumulators must not be disposed of with household waste.
+       As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.
+       Please return used batteries and accumulators to a local collection point, recycling center, or the retailer where they were purchased.
 
 .. note::
 

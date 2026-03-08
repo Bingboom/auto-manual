@@ -23,10 +23,15 @@ If the fault persists, contact Jackery Customer Support.
    * - F5
      - Charge the product via solar panels or an AC wall outlet until the fault disappears.
    * - F6
-     - Wait for the grid to normalize before charging via AC wall outlet; check whether intake/exhaust vents are blocked and keep at least 0.66 ft (20 cm) clearance on both sides;
-       keep the product away from direct sunlight and high ambient temperature; disconnect all loads and let the product idle until the fault disappears; then restart.
+     - 1. Wait for the grid to normalize before charging the product via AC wall outlet.
+       2. Check whether intake/exhaust vents are blocked; ensure at least 0.66 ft (20 cm) clearance on both sides.
+       3. Place the product away from direct sunlight and high ambient temperature.
+       4. Disconnect all loads and keep the product idle until the fault disappears.
+       5. Restart the product.
    * - F7
-     - Remove all DC inputs; check the solar panel open-circuit voltage (Voc) (maximum allowed DC input is 60V); restart and keep the product idle until the fault disappears.
+     - 1. Remove all DC inputs from the product.
+       2. Check the open-circuit voltage (Voc) of connected solar panels. Maximum allowed DC input voltage is 60V.
+       3. Restart the product and keep it idle until the fault disappears.
    * - F8
      - Contact Jackery Customer Support.
    * - F9
