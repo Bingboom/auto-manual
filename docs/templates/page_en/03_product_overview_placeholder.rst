@@ -57,14 +57,10 @@ RIGHT SIDE VIEW
    * - **Handle**
      - **AC Input**
 
-       100V-120V~60Hz, 15A Max
+       100V-120V~60 Hz, 15A Max
    * -
-     - **DC Input (2 x DC8020 Ports)**
+     - **DC Input (2×DC8020 Ports)**
 
-       PV: 16V-60V⎓12A Max, Double to 21A / 400W Max
+       PV: 16-60V⎓12A Max, Double to 21A / 400W Max
 
-       Car: 11V-16V⎓8A Max, Double to 8A Max
-
-.. note::
-
-   Replace both overview placeholders with design-exported diagrams, while keeping the image path stable.
+       Car: 11-16V⎓8A Max, Double to 8A Max

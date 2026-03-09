@@ -11,7 +11,7 @@ This device complies with part 15 of the FCC Rules. Operation is subject to the 
 (2) This device must accept any interference received, including interference that may cause undesired operation.
 
 **NOTE:** This equipment has been tested and found to comply with the limits for a Class B digital device,
-pursuant to Part 15 of the FCC Rules.
+pursuant to part 15 of the FCC Rules.
 These limits are designed to provide reasonable protection against harmful interference in a residential
 installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed
 and used in accordance with the instructions, may cause harmful interference to communications.
@@ -26,7 +26,7 @@ by one or more of the following measures:
 - Consult the dealer or an experienced radio/TV technician for help.
 
 **MODIFICATION:**
-Any changes or modifications not expressly approved by the grantee of this device could void the user’s
+Any changes or modifications not expressly approved by the grantee of this device could void the user's
 authority to operate the device.
 
 .. raw:: latex
@@ -65,7 +65,3 @@ authority to operate the device.
    * - **TIPS**
      - The car charging cable is not included but is available for purchase separately on our website.
        For assistance, please contact Jackery customer service.
-
-.. note::
-
-   Replace the placeholder images on this page with design-exported assets while keeping each file path stable.

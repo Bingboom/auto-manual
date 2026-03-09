@@ -11,7 +11,7 @@ Limited Warranty
 
 Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects
 in workmanship and material under normal consumer use during the applicable warranty period identified in
-this "Warranty Period" section below, subject to the exclusions set forth below.
+the 'Warranty Period' section below, subject to the exclusions set forth below.
 
 This warranty statement sets forth Jackery's total and exclusive warranty obligation.
 We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.
@@ -41,12 +41,12 @@ Warranty Period
        or contact our customer service team at hello@jackery.com
        to extend the standard warranty runtime.
 
-Repair or Replacement
+Repair or replacement
 ---------------------
 
 Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate
 during the applicable warranty period due to a defect in workmanship or material.
-The repaired or replaced product assumes the remaining warranty of the original date of purchase.
+The repaired/replaced product assumes the remaining warranty of the original date of purchase.
 
 Limited to Original Consumer Buyer
 ----------------------------------
@@ -67,4 +67,4 @@ Jackery's warranty does not apply to:
 Interpretation Rights
 ---------------------
 
-Jackery reserves the right to final interpretation of the above customer after-sales policy.
+Jackery reserves the right to the final interpretation of the above customer after-sales policy.

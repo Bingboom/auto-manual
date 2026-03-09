@@ -28,33 +28,33 @@ LCD DISPLAY
        **Off:** Bluetooth disconnected.
    * - 3
      - Quiet Charging Mode
-     - **On:** The noise during charging is significantly minimized, while charging power is reduced and charging speed slows down.
+     - **On:** The noise during charging is significantly minimized, while the charging power is reduced, and the charging speed slows down.
 
        **Off:** Quiet Charging Mode is disabled.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * - 5
      - Charging Plan
-     - Customizes charging time for |PRODUCT_NAME|. Suitable for fluctuating electricity prices and allows charging plans based on peak and off-peak electricity times.
+     - Customizes the charging time of |PRODUCT_NAME|. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * -
      - Self-powered Mode
-     - Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy.
+     - Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs.
 
-       The power station must be connected to both solar panels and grid power simultaneously, and load power is limited by bypass power.
+       The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * -
      - TOU Mode
-     - **On:** TOU mode is enabled (default backup SOC: 60%). During peak periods, when stored energy exceeds backup SOC, battery discharge is prioritized; during off-peak periods, the product charges from grid power.
+     - **On:** TOU mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, the product prioritizes battery discharge to reduce peak electricity costs. During off-peak periods, the product charges the battery from the grid to achieve peak-shaving and valley-filling.
 
-       **Off:** TOU mode is disabled and the product runs with default power-supply and charging logic.
+       **Off:** TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * - 6
      - UPS
-     - **On:** The product is in bypass mode; switchover from grid power to internal battery is 10 ms.
+     - **On:** The product is in bypass mode, and the switchover time from grid power to the internal battery is 10 ms.
 
        **Off:** The product is not in bypass mode.
    * - 7
@@ -62,22 +62,22 @@ LCD DISPLAY
      - The AC output (pure sine wave) is on.
    * - 8
      - Output Voltage and Frequency
-     - Displays the output voltage and frequency when AC output is turned on.
+     - Displays the output voltage and frequency when the AC output is turned on.
    * - 9
      - Input Power
-     - Displays input power in watts.
+     - Displays the input power in watts.
    * - 10
      - Remaining Charge Time
-     - Displays remaining charging time.
+     - Displays the remaining charging time.
    * - 11
      - AC Wall Charging Indicator
-     - The product is charged via the AC input using grid power.
+     - The product is charged via the AC Input using grid power.
    * - 12
      - Car Charging Indicator
-     - The product is charged via the DC input (DC8020) using DC 12V (car charging).
+     - The product is charged via the DC Input (DC8020) using DC 12V (car charging).
    * - 13
      - Solar Charging Indicator
-     - The product is charged via the DC input (DC8020) using solar panel(s).
+     - The product is charged via the DC Input (DC8020) using solar panel(s).
    * - 4
      - Battery Saving Mode
      - **On:** Limits the maximum usable battery capacity to extend battery life.
@@ -86,59 +86,55 @@ LCD DISPLAY
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
 
-       When enabled, the product occasionally performs a full charge/discharge cycle to calibrate SOC.
+       When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.
    * - 14
      - Charging Power Limit
-     - **On:** Charging power limit is enabled in the Jackery App.
+     - **On:** Charging Power limit is enabled in the Jackery app.
 
-       **Off:** Charging power limit is disabled in the Jackery App.
+       **Off:** Charging Power limit is disabled in the Jackery app.
 
        The setting is retained when the device is powered off.
    * - 16
      - Battery Power Indicator
-     - When charging, the orange circle around battery percentage lights up in sequence.
+     - When the product is being charged, the orange circle around the battery percentage will light up in sequence.
 
-       When charging other devices, the orange circle stays on.
+       When charging other devices, the orange circle will stay on.
    * - 18
      - Remaining Battery Percentage
-     - Displays remaining battery SOC percentage.
+     - Displays the remaining battery percentage.
    * - 17
      - Low Battery Indicator
-     - **On:** Battery level is below 20%.
+     - **On:** The battery level is below 20%.
 
-       **Blink:** Battery level is below 5%.
+       **Blink:** The battery level is below 5%.
 
-       **Off:** Battery level is not below 20% or the product is charging.
+       **Off:** The battery level is not below 20% or the product is charging.
    * -
      - Discharge Timer
      - **On:** A discharge timer is set.
 
        **Off:** No discharge timer is set.
 
-       Enable/disable this feature in the Jackery App. This setting is not retained when the device is powered off.
-   * - 20
-     - Fault Code
-     - Indicates product fault. Refer to Troubleshooting.
+       Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.
    * - 22
      - Energy Saving Mode
-     - When AC or DC output is turned on using the AC or DC/USB power button:
+     - When the AC or DC output is turned on by pressing the AC or DC/USB power button:
 
        **On:** Energy Saving Mode is enabled.
 
        **Off:** Energy Saving Mode is disabled.
    * - 21
      - High Temperature Indicator
-     - High temperature protection is triggered. The product may stop functioning until temperature returns to the normal operating range.
-   * - 21
+     - High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
+   * -
      - Low Temperature Indicator
-     - Low temperature protection is triggered. The product may stop functioning until temperature returns to the normal operating range.
+     - Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
+   * - 20
+     - Fault code
+     - A product error has occurred. Please refer to the Troubleshooting section for details.
    * - 23
      - Output Power
-     - Displays output power in watts.
+     - Displays the output power in watts.
    * - 24
      - Remaining Discharge Time
-     - Displays remaining discharging time.
-
-.. note::
-
-   Replace the LCD placeholder with the final UI icon diagram and keep numbering aligned with this table.
+     - Displays the remaining discharging time.

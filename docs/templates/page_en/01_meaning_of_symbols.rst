@@ -1,15 +1,13 @@
-Danger
+DANGER
 ------
 
-- This device is intended for indoor use only (please place this device in a similar indoor environment when using it outdoors, e.g., home RVs, tents, cabins, etc.).
+- This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).
 - This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
 
-User Maintenance Instructions
+USER MAINTENANCE INSTRUCTIONS
 -----------------------------
 
-During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected.
-As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify,
-which is a normal phenomenon consistent with the natural aging of battery cells.
+During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.
 
 .. raw:: latex
 
@@ -50,21 +48,18 @@ which is a normal phenomenon consistent with the natural aging of battery cells.
        **TIP**
      - Supplements the important information or operation tips in the text.
 
-Symbols
--------
-
 .. list-table::
    :header-rows: 1
    :widths: 12 38 12 38
 
    * - Symbol
-     - Meaning
+     - meaning
      - Symbol
-     - Meaning
+     - meaning
    * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Warning and Caution Symbols placeholder.
+          :alt: Warning and caution symbols placeholder.
           :width: 40px
-     - Warning and Caution Symbols: Must read to alert individuals to potential hazards or risks.
+     - Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.
      - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: Do not dismantle symbol placeholder.
           :width: 40px
@@ -78,7 +73,7 @@ Symbols
           :width: 40px
      - Keep the product away from fire.
    * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Risk of electric shock symbol placeholder.
+          :alt: Electric shock symbol placeholder.
           :width: 40px
      - Risk of electric shock.
      - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
@@ -90,7 +85,7 @@ Symbols
           :width: 40px
      - Battery charging.
      - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Li-ion symbol placeholder.
+          :alt: Li-ion battery symbol placeholder.
           :width: 40px
      - This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.
    * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
@@ -117,9 +112,4 @@ Symbols
           :width: 40px
      - Batteries and accumulators must not be disposed of with household waste.
        As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.
-       Please return used batteries and accumulators to a local collection point, recycling center, or the retailer where they were purchased.
-
-.. note::
-
-   Replace ``docs/_static/manual_en/01_meaning_of_symbols/fig.png`` with the real design export,
-   and keep the same filename to display it directly in the build output.
+       Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.
