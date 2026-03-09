@@ -1,0 +1,34 @@
+.. raw:: latex
+
+   \section{WHAT'S IN THE BOX}
+
+.. raw:: html
+
+   <h1>WHAT'S IN THE BOX</h1>
+
+.. list-table::
+   :header-rows: 0
+   :widths: 34 33 33
+
+   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+          :alt: Power station image placeholder.
+          :width: 120px
+
+       |PRODUCT_NAME_BOLD|
+     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+          :alt: AC charging cable image placeholder.
+          :width: 120px
+
+       **AC Charging Cable**
+     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+          :alt: User manual image placeholder.
+          :width: 120px
+
+       **User Manual**
+
+.. list-table::
+   :header-rows: 0
+   :widths: 10 90
+
+   * - **TIPS**
+     - The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.

@@ -22,6 +22,7 @@ from tools.word_bundle_common import (
     load_word_context,
     paths,
     pick_vars_map,
+    resolve_spec_master_substitutions,
     resolve_config_path,
     resolve_csv_include_rst_path,
     resolve_reference_doc,
@@ -502,11 +503,15 @@ def build_word_bundle_html(
         lang=primary_lang,
     )
     base_substitutions = load_rst_substitutions(paths.docs_dir / "conf_base.py")
-    title_substitutions = dict(base_substitutions)
-    if title_vars.get("product_name"):
-        resolved_name = str(title_vars["product_name"])
-        title_substitutions["PRODUCT_NAME"] = resolved_name
-        title_substitutions["PRODUCT_NAME_BOLD"] = f"**{resolved_name}**"
+    title_substitutions = {
+        **base_substitutions,
+        **resolve_spec_master_substitutions(
+            spec_master_csv=builder.paths.spec_master_csv,
+            model=model,
+            region=region,
+            lang=primary_lang,
+        ),
+    }
     reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=paths.root)
     title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
 
@@ -550,11 +555,15 @@ def build_word_bundle_html(
                     region=region,
                     lang=str(lang),
                 )
-                page_substitutions = dict(base_substitutions)
-                if page_vars.get("product_name"):
-                    resolved_name = str(page_vars["product_name"])
-                    page_substitutions["PRODUCT_NAME"] = resolved_name
-                    page_substitutions["PRODUCT_NAME_BOLD"] = f"**{resolved_name}**"
+                page_substitutions = {
+                    **base_substitutions,
+                    **resolve_spec_master_substitutions(
+                        spec_master_csv=builder.paths.spec_master_csv,
+                        model=model,
+                        region=region,
+                        lang=str(lang),
+                    ),
+                }
                 rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
                 body_parts.append(_convert_rst_fragment_to_html(rst_text, rst_path, bundle_dir))
             continue
@@ -570,11 +579,15 @@ def build_word_bundle_html(
                 region=region,
                 lang=page_lang,
             )
-            page_substitutions = dict(base_substitutions)
-            if page_vars.get("product_name"):
-                resolved_name = str(page_vars["product_name"])
-                page_substitutions["PRODUCT_NAME"] = resolved_name
-                page_substitutions["PRODUCT_NAME_BOLD"] = f"**{resolved_name}**"
+            page_substitutions = {
+                **base_substitutions,
+                **resolve_spec_master_substitutions(
+                    spec_master_csv=builder.paths.spec_master_csv,
+                    model=model,
+                    region=region,
+                    lang=page_lang,
+                ),
+            }
             rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
             body_parts.append(_convert_rst_fragment_to_html(rst_text, rst_path, bundle_dir))
             continue

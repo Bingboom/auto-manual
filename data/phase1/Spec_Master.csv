@@ -196,3 +196,56 @@ HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_020,污染等级,1,,Ⅱ,,
 HTE152-JP,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
 HTE152-JP,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
 HTE152-JP,US,TRUE,specifications,INPUT PORTS,2,field_001,充电输入,1,,16V–60V,,,,,,JHP-2000A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 3600 Plus,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-3600A,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,"80Ah / 44.8V DC (3584 Wh)",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO4,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 35 kg,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,dimensions,Dimensions,1,,38.5×30.9×49.1 cm,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"220-240V~50Hz, 10A Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode①,"220-240V~50Hz, 10A Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,1,,12-16V⎓8A Max,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,2,,"16-60V⎓12A, double to 24A Max / 1000W Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,dc_expansion_port,1 × DC Expansion Port,1,,36.4V-50.4V⎓100A Max,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,1,,"230V~ 50Hz, 20A Max, 3600W",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output②,1,,"3600W Rated, 7200W Surge peak",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode①,1,,"220-240V~50Hz, 10A Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C 100W,1,,"100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,usb_a,2 × USB-A 18W,1,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,dc_expansion_port,1 × DC Expansion Port,1,,36.4V-50.4V⎓60A Max,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,maximum_short_circuit_current_and_duration,Maximum Short Circuit Current and Duration,1,,1160A/860μs,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charge_temperature,Charge Temperature,1,,-20°C to 45°C,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharge_temperature,Discharge Temperature,1,,-20°C to 45°C,,,,,,JE-3600A
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000 v2,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,HTE1531000A-US-JAK,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,AC Flash Charge,"About 1650W±50W @25°C",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,1,,"11V-16V⎓8A Max, Double to 8A Max",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,2,,"16V-60V⎓12A, Double to 21A Max / 400W Max",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,1,,"120V~ 60Hz, 12.5A, 1500W Rated (-10°C to 45°C)",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,2,,"120V~ 60Hz, 5.8A, 700W Rated (-20°C to -10°C)",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,1500W,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,1,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,2,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,3,,USB-C 100W output disabled (-20°C to -10°C),,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A,1,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,1 × DC 12V Port,1,,12V⎓10A Max,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,HTE1531000A-US-JAK
+HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main POWER Button,1,,Main POWER Button,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-2000F
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_power_button_label,POWER Button,1,,POWER Button,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_power_button_label,USB Power Button,1,,USB Power Button,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_battery_pack_name,Battery Pack Name,1,,Jackery Battery Pack 3600,,,,,,JE-3600A
+HTE1531000A-US-JAK,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main POWER Button,1,,Main POWER Button,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,HTE1531000A-US-JAK

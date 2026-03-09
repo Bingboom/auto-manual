@@ -15,16 +15,20 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.utils.path_utils import get_paths  # noqa: E402
-from tools.utils.process_utils import open_file, run  # noqa: E402
+from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 from tools.config_pages import CsvPage, parse_config_pages_or_raise
-from tools.utils.spec_master import resolve_product_name_from_spec_master
+from tools.utils.spec_master import (
+    resolve_product_name_from_spec_master,
+    resolve_template_substitutions_from_spec_master,
+)
 from tools.utils.targets import (
     config_uses_token_in_pages,
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
 )
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
+from tools.word_bundle_common import load_rst_substitutions  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
@@ -170,20 +174,73 @@ def resolve_product_name_for_build(
     return match.product_name
 
 
+def resolve_rst_substitutions_for_build(
+    cfg: dict,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> dict[str, str]:
+    base_substitutions = load_rst_substitutions(paths.docs_dir / "conf_base.py")
+    if not (model or "").strip():
+        return base_substitutions
+    spec_master_csv = _resolve_spec_master_csv_path(cfg)
+    return {
+        **base_substitutions,
+        **resolve_template_substitutions_from_spec_master(
+            spec_master_csv,
+            model=model,
+            region=region,
+            lang=lang,
+        ),
+    }
+
+
+def _build_rst_epilog(substitutions: dict[str, str]) -> str:
+    lines: list[str] = []
+    for key, value in substitutions.items():
+        text = (value or "").strip()
+        if not text:
+            continue
+        lines.append(f".. |{key}| replace:: {text}")
+    return "\n".join(lines)
+
+
+def _with_rst_epilog(cmd: list[str], substitutions: dict[str, str] | None) -> list[str]:
+    if not substitutions:
+        return cmd
+    epilog = _build_rst_epilog(substitutions)
+    if not epilog:
+        return cmd
+    return [*cmd, "-D", f"rst_epilog={epilog}"]
+
+
 def _with_product_name_epilog(cmd: list[str], product_name: str | None) -> list[str]:
     if not (product_name or "").strip():
         return cmd
     name = product_name.strip()
-    epilog = (
-        f".. |PRODUCT_NAME| replace:: {name}\n"
-        f".. |PRODUCT_NAME_BOLD| replace:: **{name}**"
+    return _with_rst_epilog(
+        cmd,
+        {
+            "PRODUCT_NAME": name,
+            "PRODUCT_NAME_BOLD": f"**{name}**",
+        },
     )
-    return [*cmd, "-D", f"rst_epilog={epilog}"]
 
 
-def sphinx_build_html(minimal_theme: bool = False, product_name: str | None = None) -> None:
+def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
+    sphinx_build = find_exe(["sphinx-build"])
+    if sphinx_build:
+        return [sphinx_build, "-b", builder]
+    return [sys.executable, "-m", "sphinx", "-b", builder]
+
+
+def sphinx_build_html(
+    minimal_theme: bool = False,
+    substitutions: dict[str, str] | None = None,
+) -> None:
     print("[build] Sphinx -> HTML")
-    cmd = ["sphinx-build", "-b", "html", ".", "_build/html"]
+    cmd = _resolve_sphinx_build_cmd("html") + [".", "_build/html"]
     if minimal_theme:
         # Built-in theme path for HTML->DOCX conversion, avoids optional third-party theme dependency.
         cmd += [
@@ -194,13 +251,16 @@ def sphinx_build_html(minimal_theme: bool = False, product_name: str | None = No
             "-D",
             "html_js_files=[]",
         ]
-    cmd = _with_product_name_epilog(cmd, product_name)
+    cmd = _with_rst_epilog(cmd, substitutions)
     run(cmd, cwd=paths.docs_dir)
 
 
-def sphinx_build_latex(product_name: str | None = None) -> None:
+def sphinx_build_latex(substitutions: dict[str, str] | None = None) -> None:
     print("[build] Sphinx -> LaTeX")
-    cmd = _with_product_name_epilog(["sphinx-build", "-b", "latex", ".", "_build/latex"], product_name)
+    cmd = _with_rst_epilog(
+        _resolve_sphinx_build_cmd("latex") + [".", "_build/latex"],
+        substitutions,
+    )
     run(cmd, cwd=paths.docs_dir)
 
 
@@ -336,6 +396,12 @@ def main() -> None:
             f"model='{target_model}', region='{target_region or ''}', lang='{primary_lang}'. "
             f"Source: {spec_master_csv}"
         )
+    rst_substitutions = resolve_rst_substitutions_for_build(
+        cfg,
+        model=target_model,
+        region=target_region,
+        lang=primary_lang,
+    )
 
     render_csv_pages(cfg, model=target_model, region=target_region)
 
@@ -354,12 +420,12 @@ def main() -> None:
     open_html = bool(build_cfg.get("open_html", False)) and (not args.no_open)
 
     if build_html:
-        sphinx_build_html(product_name=product_name)
+        sphinx_build_html(substitutions=rst_substitutions)
 
     if build_word and word_source == "html" and not build_html:
-        sphinx_build_html(minimal_theme=True, product_name=product_name)
+        sphinx_build_html(minimal_theme=True, substitutions=rst_substitutions)
 
-    sphinx_build_latex(product_name=product_name)
+    sphinx_build_latex(substitutions=rst_substitutions)
     patch_fonts(patch_fonts_script, main_tex)
     compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
 

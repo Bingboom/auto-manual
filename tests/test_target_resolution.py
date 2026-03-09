@@ -92,6 +92,31 @@ class TestTargetResolution(unittest.TestCase):
         cfg = {"paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"}}
         self.assertIsNone(build_docs.resolve_product_name_for_build(cfg, model=None, region="US", lang="en"))
 
+    def test_resolve_rst_substitutions_for_build_should_include_custom_template_vars(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            spec_master_csv = Path(td) / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "GENERAL INFO,product_name,1,specifications,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2\n"
+                "GENERAL INFO,model_no,1,specifications,JHP-2000A,US,1,1,JHP-2000A\n"
+                "TEMPLATE VARS,tpl_main_power_button_label,1,specifications,JHP-2000A,US,1,1,Main POWER Button\n",
+                encoding="utf-8",
+            )
+            cfg = {"paths": {"spec_master_csv": str(spec_master_csv)}}
+
+            substitutions = build_docs.resolve_rst_substitutions_for_build(
+                cfg,
+                model="JHP-2000A",
+                region="US",
+                lang="en",
+            )
+
+            self.assertEqual("Jackery HomePower 2000 Plus v2", substitutions["PRODUCT_NAME"])
+            self.assertEqual("HomePower 2000 Plus v2", substitutions["PRODUCT_SHORT_NAME"])
+            self.assertEqual("JHP-2000A", substitutions["MODEL_NO"])
+            self.assertEqual("Main POWER Button", substitutions["MAIN_POWER_BUTTON_LABEL"])
+            self.assertEqual("main POWER button", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
+
 
 if __name__ == "__main__":
     unittest.main()

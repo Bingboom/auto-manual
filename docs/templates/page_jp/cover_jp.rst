@@ -5,7 +5,7 @@
    * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: Jackery logo placeholder.
           :width: 260px
-     - **型番：JE-2000F**
+     - **型番：|MODEL_NO|**
 
 
 写真はイメージです。実際の商品とは異なる場合があります。

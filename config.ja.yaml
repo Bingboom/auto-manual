@@ -30,7 +30,7 @@ tools:
 pages:
 - type: rst_include
   lang: ja
-  file: templates/page_ja/cover_jp.rst
+  file: templates/page_jp/cover_jp.rst
 
 - type: csv_page
   source: phase1
@@ -40,39 +40,39 @@ pages:
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/01_meaning_of_symbols.rst
+  file: templates/page_jp/01_meaning_of_symbols.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/09_storage_and_maintenance.rst
+  file: templates/page_jp/09_storage_and_maintenance.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/02_whats_in_the_box.rst
+  file: templates/page_jp/02_whats_in_the_box.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/03_product_overview_placeholder.rst
+  file: templates/page_jp/03_product_overview_placeholder.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/04_lcd_display_placeholder.rst
+  file: templates/page_jp/04_lcd_display_placeholder.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/05_operation_guide_placeholder.rst
+  file: templates/page_jp/05_operation_guide_placeholder.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/06_ups_mode.rst
+  file: templates/page_jp/06_ups_mode.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/07_expansion_battery_pack.rst
+  file: templates/page_jp/07_expansion_battery_pack.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/10_troubleshooting.rst
+  file: templates/page_jp/10_troubleshooting.rst
 
 - type: csv_page
   source: phase1
@@ -82,8 +82,8 @@ pages:
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/11_warranty.rst
+  file: templates/page_jp/11_warranty.rst
 
 - type: rst_include
   lang: ja
-  file: templates/page_ja/12_app_setup_placeholder.rst
+  file: templates/page_jp/12_app_setup_placeholder.rst

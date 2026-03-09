@@ -14,7 +14,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 2.1 Click the add-device button in the App.
 
-2.2 Press the POWER button on the device to turn on.
+2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn on.
 When the Wi-Fi and Bluetooth icons on the device flash, the device has entered the network configuration mode.
 Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
 
@@ -22,11 +22,11 @@ Tap the "Icon Flashed" button, and allow the App to connect to nearby devices an
    :alt: App add device step placeholder.
    :width: 320px
 
-Main Power Button
+|MAIN_POWER_BUTTON_LABEL|
 
-AC Power Button
+|AC_POWER_BUTTON_LABEL|
 
-DC/USB Power Button
+|DC_USB_POWER_BUTTON_LABEL|
 
 2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
 
@@ -35,7 +35,7 @@ DC/USB Power Button
 If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
 
 - The device owner will share this device with other users through the App.
-- Press and hold the POWER button and DC/USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+- Press and hold the |MAIN_POWER_BUTTON_LABEL_LOWER| and |DC_USB_POWER_BUTTON_LABEL_LOWER| for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
 
 2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.
 
@@ -64,12 +64,12 @@ Click the Settings icon in the upper right corner of the main interface of the d
 **4.1 To turn on Wi-Fi and Bluetooth**
 
 - Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
-- Hold the DC/USB power button and the AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
+- Hold the |DC_USB_POWER_BUTTON_LABEL_LOWER| and the |AC_POWER_BUTTON_LABEL_LOWER| at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
 
 **4.2 To turn off Wi-Fi and Bluetooth**
 
-Hold the DC/USB power button and the AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
+Hold the |DC_USB_POWER_BUTTON_LABEL_LOWER| and the |AC_POWER_BUTTON_LABEL_LOWER| at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
 
 **4.3 To reset Wi-Fi and Bluetooth**
 
-Hold the POWER button and DC/USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
+Hold the |MAIN_POWER_BUTTON_LABEL_LOWER| and |DC_USB_POWER_BUTTON_LABEL_LOWER| at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.

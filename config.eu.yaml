@@ -1,0 +1,93 @@
+doc_type: manual_bundle
+
+build:
+  languages: [ en ]
+  default_model: JE-3600A
+  default_region: EU
+  main_tex: manual_demo.tex
+  output_pdf: manual_demo.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_demo_eu.docx
+  word_source: bundle
+  word_reference_doc: "C:/Users/Administrator/Downloads/EN-3600Plus-DVT（原文HTE139美规）.docx"
+  word_title: EN-3600Plus-DVT
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  layout_params_csv: data/layout_params.csv
+  spec_master_csv: data/phase1/Spec_Master.csv
+  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
+  spec_titles_csv: data/phase1/spec_titles.csv
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py
+
+pages:
+- type: rst_include
+  lang: en
+  file: templates/page_eu/00_preface.rst
+
+- type: csv_page
+  source: phase1
+  page: safety
+  langs: [ en ]
+  include_dir: generated/{model}
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/01_meaning_of_symbols.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/02_whats_in_the_box.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/03_product_overview_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/04_lcd_display_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/05_operation_guide_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/06_ups_mode.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/07_expansion_battery_pack.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/08_charging_methods.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/09_storage_and_maintenance.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/10_troubleshooting.rst
+
+- type: csv_page
+  source: phase1
+  page: spec
+  langs: [ en ]
+  include_dir: generated/{model}
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/11_warranty.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_eu/12_app_setup_placeholder.rst

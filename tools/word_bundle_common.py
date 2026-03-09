@@ -10,7 +10,10 @@ from tools.config_pages import CsvPage, parse_config_pages_or_raise
 from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 from tools.phase1.renderers import apply_vars
 from tools.utils.path_utils import get_paths
-from tools.utils.spec_master import resolve_product_name_from_spec_master
+from tools.utils.spec_master import (
+    resolve_product_name_from_spec_master,
+    resolve_template_substitutions_from_spec_master,
+)
 from tools.utils.targets import (
     format_tokenized,
     resolve_build_model,
@@ -273,6 +276,23 @@ def fill_product_name_from_spec_master(
     if target_model and not _pick_model_from_vars(out):
         out["model"] = target_model
     return out
+
+
+def resolve_spec_master_substitutions(
+    *,
+    spec_master_csv: Path,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> dict[str, str]:
+    if not (model or "").strip():
+        return {}
+    return resolve_template_substitutions_from_spec_master(
+        spec_master_csv,
+        model=model,
+        region=region,
+        lang=lang,
+    )
 
 
 def resolve_bundle_targets(

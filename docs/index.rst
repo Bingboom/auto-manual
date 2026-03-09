@@ -1,97 +1,84 @@
 .. raw:: latex
 
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{cover-en.pdf}
-   \clearpage
-   \pagenumbering{arabic}
-   \setcounter{page}{1}
+   \HBApplyLang{ja}
+
+.. include:: templates/page_jp/cover_jp.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/00_preface.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: generated/JE-2000F/safety_en.rst
+.. include:: generated/JE-2000F/safety_ja.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/01_meaning_of_symbols.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/page_en/02_whats_in_the_box.rst
+.. include:: templates/page_jp/01_meaning_of_symbols.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/03_product_overview_placeholder.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/page_en/04_lcd_display_placeholder.rst
+.. include:: templates/page_jp/09_storage_and_maintenance.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/05_operation_guide_placeholder.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/page_en/06_ups_mode.rst
+.. include:: templates/page_jp/02_whats_in_the_box.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/07_expansion_battery_pack.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/page_en/08_charging_methods.rst
+.. include:: templates/page_jp/03_product_overview_placeholder.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/09_storage_and_maintenance.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/page_en/10_troubleshooting.rst
+.. include:: templates/page_jp/04_lcd_display_placeholder.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: generated/JE-2000F/spec_en.rst
-
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: templates/page_en/11_warranty.rst
+.. include:: templates/page_jp/05_operation_guide_placeholder.rst
 
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ja}
 
-.. include:: templates/page_en/12_app_setup_placeholder.rst
+.. include:: templates/page_jp/06_ups_mode.rst
+
+.. raw:: latex
+
+   \HBApplyLang{ja}
+
+.. include:: templates/page_jp/07_expansion_battery_pack.rst
+
+.. raw:: latex
+
+   \HBApplyLang{ja}
+
+.. include:: templates/page_jp/10_troubleshooting.rst
+
+.. raw:: latex
+
+   \HBApplyLang{ja}
+
+.. include:: generated/JE-2000F/spec_ja.rst
+
+.. raw:: latex
+
+   \HBApplyLang{ja}
+
+.. include:: templates/page_jp/11_warranty.rst
+
+.. raw:: latex
+
+   \HBApplyLang{ja}
+
+.. include:: templates/page_jp/12_app_setup_placeholder.rst
 

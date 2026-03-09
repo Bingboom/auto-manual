@@ -118,7 +118,7 @@ LCD DISPLAY
        Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.
    * - 22
      - Energy Saving Mode
-     - When the AC or DC output is turned on by pressing the AC or DC/USB power button:
+- When the AC or DC output is turned on by pressing the |AC_POWER_BUTTON_LABEL_LOWER| or |DC_USB_POWER_BUTTON_LABEL_LOWER|:
 
        **On:** Energy Saving Mode is enabled.
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools.utils.spec_master import resolve_product_name_from_rows
+from tools.utils.spec_master import resolve_product_name_from_rows, resolve_template_substitutions_from_rows
 
 
 class TestSpecMasterLookup(unittest.TestCase):
@@ -23,6 +23,30 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Page": "specifications",
                 "Row_key": "product_name",
                 "Value_en": "Jackery HomePower 2000 Plus EU",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Row_key": "model_no",
+                "Value_en": "JHP-2000A",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Row_key": "tpl_main_power_button_label",
+                "Value_en": "Main POWER Button",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Row_key": "tpl_battery_pack_name",
+                "Value_en": "Jackery Battery Pack 3600",
                 "Model": "JHP-2000A",
             },
         ]
@@ -58,6 +82,21 @@ class TestSpecMasterLookup(unittest.TestCase):
             lang="en",
         )
         self.assertIsNone(match)
+
+    def test_template_substitutions_should_include_derived_and_custom_values(self) -> None:
+        substitutions = resolve_template_substitutions_from_rows(
+            self._rows(),
+            model="JHP-2000A",
+            region="US",
+            lang="en",
+        )
+
+        self.assertEqual("Jackery HomePower 2000 Plus v2", substitutions["PRODUCT_NAME"])
+        self.assertEqual("HomePower 2000 Plus v2", substitutions["PRODUCT_SHORT_NAME"])
+        self.assertEqual("JHP-2000A", substitutions["MODEL_NO"])
+        self.assertEqual("Main POWER Button", substitutions["MAIN_POWER_BUTTON_LABEL"])
+        self.assertEqual("main POWER button", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
+        self.assertEqual("**Jackery Battery Pack 3600**", substitutions["BATTERY_PACK_NAME_BOLD"])
 
 
 if __name__ == "__main__":

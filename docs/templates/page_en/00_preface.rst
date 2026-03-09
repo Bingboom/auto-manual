@@ -1,7 +1,7 @@
 IMPORTANT
 =========
 
-Congratulations on your new Jackery Explorer 2000. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.
+Congratulations on your new |PRODUCT_NAME|. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.
 
 In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear.
 
@@ -11,7 +11,7 @@ Please note that no further notifications will be given in case of any update, r
 
 **FR IMPORTANT**
 
-Felicitations pour votre nouveau Jackery Explorer 2000. Veuillez lire attentivement ce manuel avant d'utiliser le produit, en particulier les precautions a prendre pour garantir une utilisation correcte du produit. Conservez ce manuel dans un endroit accessible pour pouvoir vous y referer ulterieurement.
+Felicitations pour votre nouveau |PRODUCT_NAME|. Veuillez lire attentivement ce manuel avant d'utiliser le produit, en particulier les precautions a prendre pour garantir une utilisation correcte du produit. Conservez ce manuel dans un endroit accessible pour pouvoir vous y referer ulterieurement.
 
 Conformement aux lois et reglementations en vigueur, le droit d'interpretation final de ce document et de tous les documents associes a ce produit appartient a l'entreprise. Bien que tous les efforts aient ete deployes pour garantir l'exactitude de ce manuel, Jackery Inc. n'assume aucune responsabilite pour les erreurs qui pourraient y figurer.
 
@@ -21,7 +21,7 @@ Veuillez noter qu'aucune autre notification ne sera faite en cas de mise a jour,
 
 **ES IMPORTANTE**
 
-Felicitaciones por su nuevo Jackery Explorer 2000. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas.
+Felicitaciones por su nuevo |PRODUCT_NAME|. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas.
 
 De acuerdo con las leyes y regulaciones, el derecho de interpretacion final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer.
 

@@ -12,13 +12,13 @@ FRONT VIEW
    :header-rows: 0
    :widths: 50 50
 
-   * - **Main POWER Button**
+   * - **|MAIN_POWER_BUTTON_LABEL|**
      - **Handle**
    * - **DC 12V Port**
 
        12V⎓10A Max
      - **LCD**
-   * - **DC/USB Power Button**
+   * - **|DC_USB_POWER_BUTTON_LABEL|**
      - **LED Light Button**
    * - **USB-C 30W Output**
 
@@ -27,7 +27,7 @@ FRONT VIEW
    * - **USB-C 100W Output**
 
        100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A
-     - **AC Power Button**
+     - **|AC_POWER_BUTTON_LABEL|**
    * - **USB-A 18W Output**
 
        18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A
