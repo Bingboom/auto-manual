@@ -1,0 +1,50 @@
+% ==================================================
+% tools.tex
+% TOOL MACROS LAYER
+% Pure technical helpers — no business layout here
+% ==================================================
+
+\usepackage{ragged2e}
+
+% ==================================================
+% Alignment helper
+% Reads: HBtype_warning_text_align
+% ==================================================
+
+\providecommand{\HBapplyalignment}{%
+  \edef\HB@tmpalign{\csname HBtype_warning_text_align\endcsname}%
+  \ifnum\pdfstrcmp{\HB@tmpalign}{justified}=0
+    \justifying
+  \else
+    \raggedright
+  \fi
+}
+
+% ==================================================
+% Tight lines helper
+% Locks natural-wrap leading in tabular/parbox
+% ==================================================
+
+\providecommand{\HBtightlines}[2]{%
+  \begingroup
+    \setlength{\baselineskip}{#1}%
+    \setlength{\lineskip}{0pt}%
+    \setlength{\lineskiplimit}{0pt}%
+    \setlength{\parskip}{0pt}%
+    \setlength{\parindent}{0pt}%
+    \strut #2\strut
+  \endgroup
+}
+
+% ==================================================
+% Optional debug height tool (future use)
+% ==================================================
+
+\providecommand{\HBdebugheight}[1]{%
+  \setbox0=\hbox{#1}%
+  \typeout{=== DEBUG HEIGHT ===}%
+  \typeout{Height = \the\ht0}%
+  \typeout{Depth  = \the\dp0}%
+  \typeout{Total  = \the\dimexpr\ht0+\dp0\relax}%
+  \typeout{====================}%
+}

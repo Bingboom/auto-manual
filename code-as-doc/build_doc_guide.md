@@ -14,6 +14,7 @@ python build.py word
 python build.py html
 python build.py pdf
 python build.py all
+python build.py diff-report
 python build.py clean
 ```
 
@@ -25,6 +26,7 @@ python build.py clean
 - `pdf` 会先生成 RST，再导出 PDF
 - `all` 会一次性构建 `html + word + pdf`
 - `validate` 会校验 `config.yaml` 和 `layout_params.csv`
+- `diff-report` 会导出 `docs/_build/JE-1000F` 的 Git 变更表格
 - `clean` 会删除 `docs/_build` 和 `docs/renderers/latex/params.tex`
   这是全量清理入口
 
@@ -233,7 +235,46 @@ python build.py pdf --pdf-mode word
 
 ---
 
-## 8. 兼容层
+## 8. 版本跟踪
+
+当前仓库已经放开了 `JE-1000F` 的 rst 产物跟踪：
+
+```text
+docs\_build\JE-1000F\*\rst\index.rst
+docs\_build\JE-1000F\*\rst\page\*.rst
+docs\_build\JE-1000F\*\rst\generated\JE-1000F\*.rst
+```
+
+推荐流程：
+
+1. 先构建 `JE-1000F` 的 rst
+2. 把上述 rst 文件 `git add` 并提交，作为基线版本
+3. 后续再次修改、提交后，执行：
+
+```powershell
+python build.py diff-report
+```
+
+如果要比较指定提交范围：
+
+```powershell
+python build.py diff-report --from-ref HEAD~3 --to-ref HEAD
+```
+
+默认输出：
+
+```text
+reports\version_tracking\JE-1000F\
+```
+
+产物包括：
+
+- `*.csv`：适合直接用 Excel 打开
+- `*.html`：适合本地查看和筛选
+
+---
+
+## 9. 兼容层
 
 仓库里的 `Makefile` 还保留着，但现在只是薄封装：
 

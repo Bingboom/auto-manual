@@ -21,7 +21,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "action",
-        choices=("validate", *BUILD_ACTIONS, "clean"),
+        choices=("validate", *BUILD_ACTIONS, "clean", "diff-report"),
         help="Action to run",
     )
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
@@ -30,6 +30,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
     ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")
     ap.add_argument("--no-clean", action="store_true", help="Skip cleaning current target outputs before build")
+    ap.add_argument("--tracked-root", default="docs/_build/JE-1000F", help="Tracked subtree for diff-report")
+    ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report")
+    ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report")
+    ap.add_argument(
+        "--report-dir",
+        default="reports/version_tracking/JE-1000F",
+        help="Output directory for diff-report CSV/HTML",
+    )
     return ap.parse_args(argv)
 
 
@@ -176,6 +184,23 @@ def run_validate(config_path: Path) -> None:
     )
 
 
+def run_diff_report(args: argparse.Namespace) -> None:
+    run_checked(
+        [
+            sys.executable,
+            str(ROOT / "tools" / "diff_report.py"),
+            "--tracked-root",
+            str(resolve_path_from_root(args.tracked_root)),
+            "--from-ref",
+            args.from_ref,
+            "--to-ref",
+            args.to_ref,
+            "--output-dir",
+            str(resolve_path_from_root(args.report_dir)),
+        ]
+    )
+
+
 def clean_build_artifacts(config_path: Path, *, remove_params_tex: bool = True) -> None:
     build_dir, params_tex = clean_targets_for_config(config_path)
     docs_dir = resolve_docs_dir(config_path)
@@ -196,6 +221,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.action == "validate":
             run_validate(config_path)
+        elif args.action == "diff-report":
+            run_diff_report(args)
         elif args.action == "clean":
             clean_build_artifacts(config_path)
         else:

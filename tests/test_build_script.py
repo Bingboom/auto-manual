@@ -90,6 +90,15 @@ class TestBuildScript(unittest.TestCase):
                 set(legacy_dirs),
             )
 
+    def test_parse_args_should_support_diff_report_defaults(self) -> None:
+        args = build_cli.parse_args(["diff-report"])
+
+        self.assertEqual("diff-report", args.action)
+        self.assertEqual("docs/_build/JE-1000F", args.tracked_root)
+        self.assertEqual("HEAD~1", args.from_ref)
+        self.assertEqual("HEAD", args.to_ref)
+        self.assertEqual("reports/version_tracking/JE-1000F", args.report_dir)
+
 
 if __name__ == "__main__":
     unittest.main()

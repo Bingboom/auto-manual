@@ -13,6 +13,7 @@
 - 默认 `doc_type` 只支持 `manual_bundle`
 - 构建目标解析（model/region/token）已统一收敛到 `tools/utils/targets.py`
 - 当前推荐入口是：`python build.py rst|word|html|pdf|all`（CI / Windows / macOS / Linux 共用）
+- `python build.py diff-report` 可导出 `docs/_build/JE-1000F` 的 Git 变更表格
 - 批量构建由配置文件中的 `build.targets` 驱动
 - `spec` 页 `product_name` 按 `Model + Region + Language` 从 `Spec_Master.csv` 解析
 - `renderers` 与 `word_bundle` 已拆分为多模块（P1）
@@ -342,6 +343,25 @@ python build.py pdf
 ```powershell
 python build.py all
 ```
+
+导出 `JE-1000F` 版本变更表：
+
+```powershell
+python build.py diff-report
+python build.py diff-report --from-ref HEAD~3 --to-ref HEAD
+```
+
+输出默认位于：
+
+```text
+reports/version_tracking/JE-1000F/
+```
+
+说明：
+
+- 当前只对 `docs/_build/JE-1000F/*/rst/**/*.rst` 开放 Git 跟踪
+- `diff-report` 会导出同一批文件在两个 Git ref 之间的 `CSV + HTML`
+- 第一次使用前，需要先把 `JE-1000F` 的 rst 文件加入 Git 并提交一次，作为基线版本
 
 切换配置文件：
 
