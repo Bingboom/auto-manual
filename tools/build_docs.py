@@ -8,6 +8,7 @@ import importlib.util
 import shutil
 import subprocess
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -17,7 +18,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.config_pages import CsvPage, parse_config_pages_or_raise
-from tools.gen_index_bundle import MaterializedBundle, materialize_bundle
+from tools.gen_index_bundle import (
+    MaterializedBundle,
+    bundle_dir_for_target,
+    cleanup_legacy_rst_artifacts,
+    materialize_bundle,
+)
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
 from tools.utils.spec_master import (
@@ -41,6 +47,12 @@ VALID_FORMATS = {"html", "word", "pdf"}
 VALID_PDF_MODES = {"latex", "word"}
 
 
+@dataclass(frozen=True)
+class BuildTarget:
+    model: str | None
+    region: str | None
+
+
 def load_config(cfg_path: Path) -> dict:
     if not cfg_path.exists():
         raise RuntimeError(f"Config not found: {cfg_path}")
@@ -54,10 +66,49 @@ def load_config(cfg_path: Path) -> dict:
         return yaml.safe_load(f) or {}
 
 
-def clean_build_dir() -> None:
-    if paths.docs_build_dir.exists():
-        print(f"[build] Cleaning: {paths.docs_build_dir}")
-        shutil.rmtree(paths.docs_build_dir)
+def discover_existing_bundle_targets(*, docs_dir: Path | None = None) -> list[BuildTarget]:
+    actual_docs_dir = docs_dir or paths.docs_dir
+    build_root = actual_docs_dir / "_build"
+    if not build_root.exists():
+        return []
+
+    targets: list[BuildTarget] = []
+    for model_dir in sorted(path for path in build_root.iterdir() if path.is_dir()):
+        for region_dir in sorted(path for path in model_dir.iterdir() if path.is_dir()):
+            if (region_dir / "rst" / "index.rst").exists():
+                targets.append(BuildTarget(model=model_dir.name, region=region_dir.name))
+    return targets
+
+
+def build_root_for_target(
+    model: str | None,
+    region: str | None,
+    *,
+    docs_build_dir: Path | None = None,
+) -> Path:
+    actual_docs_build_dir = docs_build_dir or paths.docs_build_dir
+    return actual_docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
+
+
+def clean_build_targets(targets: list[BuildTarget], *, docs_dir: Path | None = None) -> None:
+    actual_docs_dir = docs_dir or paths.docs_dir
+    actual_docs_build_dir = actual_docs_dir / "_build"
+
+    for target in targets:
+        target_build_root = build_root_for_target(
+            target.model,
+            target.region,
+            docs_build_dir=actual_docs_build_dir,
+        )
+        if target_build_root.exists():
+            print(f"[build] Cleaning target output: {target_build_root}")
+            shutil.rmtree(target_build_root)
+
+        cleanup_legacy_rst_artifacts(
+            docs_dir=actual_docs_dir,
+            model=target.model,
+            region=target.region,
+        )
 
 
 def validate_loaded_config(cfg: dict) -> None:
@@ -146,6 +197,66 @@ def resolve_build_model(cfg: dict, arg_model: str | None) -> str | None:
 
 def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
     return resolve_target_region(cfg, arg_region)
+
+
+def _configured_build_targets(cfg: dict) -> list[BuildTarget]:
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    raw_targets = build_cfg.get("targets")
+    if raw_targets is None:
+        return []
+    if not isinstance(raw_targets, list):
+        raise RuntimeError("build.targets must be a list when provided")
+
+    default_model = resolve_build_model(cfg, None)
+    default_region = resolve_build_region(cfg, None)
+    targets: list[BuildTarget] = []
+    seen: set[tuple[str | None, str | None]] = set()
+
+    for idx, item in enumerate(raw_targets, start=1):
+        if not isinstance(item, dict):
+            raise RuntimeError(f"build.targets[{idx}] must be a mapping")
+
+        raw_model = item.get("model")
+        raw_region = item.get("region")
+
+        model = raw_model.strip() if isinstance(raw_model, str) and raw_model.strip() else default_model
+        region = raw_region.strip() if isinstance(raw_region, str) and raw_region.strip() else default_region
+        if not model:
+            raise RuntimeError(
+                f"build.targets[{idx}] could not resolve a model; set targets[{idx}].model or build.default_model"
+            )
+
+        key = (model, region)
+        if key in seen:
+            continue
+        seen.add(key)
+        targets.append(BuildTarget(model=model, region=region))
+
+    return targets
+
+
+def resolve_build_targets(
+    cfg: dict,
+    *,
+    arg_model: str | None,
+    arg_region: str | None,
+    all_targets: bool,
+) -> list[BuildTarget]:
+    if all_targets and ((arg_model or "").strip() or (arg_region or "").strip()):
+        raise RuntimeError("Cannot combine --all-targets with --model or --region")
+
+    if all_targets:
+        targets = _configured_build_targets(cfg)
+        if targets:
+            return targets
+
+    return [
+        BuildTarget(
+            model=resolve_build_model(cfg, arg_model),
+            region=resolve_build_region(cfg, arg_region),
+        )
+    ]
 
 
 def _resolve_spec_master_csv_path(cfg: dict) -> Path:
@@ -268,10 +379,6 @@ def _should_use_minimal_html_theme(conf_dir: Path, requested_minimal: bool) -> b
 def _target_component(value: str | None, fallback: str) -> str:
     text = (value or "").strip() or fallback
     return text.replace("/", "_").replace("\\", "_").replace(":", "_")
-
-
-def build_root_for_target(model: str | None, region: str | None) -> Path:
-    return paths.docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
 
 
 def _parse_csv_values(raw: str) -> list[str]:
@@ -500,58 +607,79 @@ def prepare_manual_bundle(
     model: str | None,
     region: str | None,
 ) -> MaterializedBundle:
-    render_csv_pages(cfg, model=model, region=region)
-
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
         raise RuntimeError(f"Unsupported doc_type: {doc_type}")
 
-    bundle = materialize_bundle(cfg, model=model, region=region)
+    bundle = materialize_bundle(
+        cfg,
+        model=model,
+        region=region,
+        ensure_csv_pages=True,
+    )
     print(f"[build] Prepared bundle: {bundle.bundle_dir}")
     return bundle
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
-    ap.add_argument("--model", default=None, help="Target product model for spec filtering")
-    ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
-    ap.add_argument("--formats", default=None, help="Comma-separated outputs: html,word,pdf")
-    ap.add_argument("--pdf-mode", default=None, help="PDF backend: latex or word")
-    ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
-    ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
-    ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
-    args = ap.parse_args()
+def write_docs_root_index_for_targets(targets: list[BuildTarget]) -> None:
+    merged_targets: list[BuildTarget] = []
+    seen: set[tuple[str | None, str | None]] = set()
+    for target in [*discover_existing_bundle_targets(), *targets]:
+        key = (target.model, target.region)
+        if key in seen:
+            continue
+        seen.add(key)
+        merged_targets.append(target)
 
-    cfg_path = Path(args.config)
-    if not cfg_path.is_absolute():
-        cfg_path = paths.root / cfg_path
+    if not merged_targets:
+        return
 
-    cfg = load_config(cfg_path)
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    tools_cfg_raw = cfg.get("tools", {})
-    tools_cfg = tools_cfg_raw if isinstance(tools_cfg_raw, dict) else {}
+    if len(merged_targets) == 1:
+        target = merged_targets[0]
+        bundle_rel = bundle_dir_for_target(
+            docs_dir=paths.docs_dir,
+            model=target.model,
+            region=target.region,
+        ).relative_to(paths.docs_dir)
+        lines = [
+            ".. Auto-generated by tools/build_docs.py. Do not edit directly.",
+            "",
+            f".. include:: {bundle_rel.as_posix()}/index",
+            "",
+        ]
+        (paths.docs_dir / "index.rst").write_text("\n".join(lines), encoding="utf-8")
+        return
 
-    print("[build] validating config...")
-    validate_loaded_config(cfg)
+    lines = [
+        "Available Manual Bundles",
+        "========================",
+        "",
+        ".. toctree::",
+        "   :maxdepth: 1",
+        "",
+    ]
+    for target in merged_targets:
+        bundle_rel = bundle_dir_for_target(
+            docs_dir=paths.docs_dir,
+            model=target.model,
+            region=target.region,
+        ).relative_to(paths.docs_dir)
+        lines.append(f"   {bundle_rel.as_posix()}/index")
+    lines.append("")
+    (paths.docs_dir / "index.rst").write_text("\n".join(lines), encoding="utf-8")
 
-    print("[build] validating layout params...")
-    layout_csv = cfg.get("paths", {}).get("layout_params_csv")
-    if not layout_csv:
-        raise RuntimeError("config missing paths.layout_params_csv")
-    validate_layout_csv(paths.root / layout_csv)
 
-    if args.clean:
-        clean_build_dir()
-
-    target_model = resolve_build_model(cfg, args.model)
-    target_region = resolve_build_region(cfg, args.region)
-    if _config_uses_model_token(cfg) and not target_model:
-        raise RuntimeError("config uses '{model}' but no --model was provided and build.default_model is empty")
-    if _config_uses_region_token(cfg) and not target_region:
-        raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
-
+def build_target(
+    cfg: dict,
+    *,
+    target_model: str | None,
+    target_region: str | None,
+    requested_formats: list[str],
+    pdf_mode: str,
+    build_cfg: dict,
+    tools_cfg: dict,
+    no_open: bool,
+) -> None:
     build_langs = list(build_cfg.get("languages", ["en"]))
     primary_lang = str(build_langs[0]) if build_langs else "en"
     ensure_target_identity(
@@ -566,11 +694,6 @@ def main() -> None:
         model=target_model,
         region=target_region,
     )
-    if args.prepare_only:
-        return
-
-    requested_formats = resolve_requested_formats(cfg, args.formats)
-    pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
 
     main_tex = str(build_cfg.get("main_tex", "manual_demo.tex"))
     output_pdf_name = str(build_cfg.get("output_pdf", "manual_demo.pdf"))
@@ -579,9 +702,9 @@ def main() -> None:
     word_source = str(build_cfg.get("word_source", "bundle")).strip().lower()
     patch_fonts_script = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
 
-    open_html = bool(build_cfg.get("open_html", False)) and (not args.no_open)
-    open_word = bool(build_cfg.get("open_word", False)) and (not args.no_open)
-    open_pdf = bool(build_cfg.get("open_pdf", False)) and (not args.no_open)
+    open_html = bool(build_cfg.get("open_html", False)) and (not no_open)
+    open_word = bool(build_cfg.get("open_word", False)) and (not no_open)
+    open_pdf = bool(build_cfg.get("open_pdf", False)) and (not no_open)
 
     build_root = build_root_for_target(target_model, target_region)
     html_out_dir = build_root / "html"
@@ -693,6 +816,73 @@ def main() -> None:
         print(f"[build] Done. HTML: {html_index}")
         if open_html and html_index.exists():
             open_file(html_index)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
+    ap.add_argument("--model", default=None, help="Target product model for spec filtering")
+    ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
+    ap.add_argument("--all-targets", action="store_true", help="Build all targets declared in build.targets")
+    ap.add_argument("--formats", default=None, help="Comma-separated outputs: html,word,pdf")
+    ap.add_argument("--pdf-mode", default=None, help="PDF backend: latex or word")
+    ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
+    ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
+    ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
+    args = ap.parse_args()
+
+    cfg_path = Path(args.config)
+    if not cfg_path.is_absolute():
+        cfg_path = paths.root / cfg_path
+
+    cfg = load_config(cfg_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    tools_cfg_raw = cfg.get("tools", {})
+    tools_cfg = tools_cfg_raw if isinstance(tools_cfg_raw, dict) else {}
+
+    print("[build] validating config...")
+    validate_loaded_config(cfg)
+
+    print("[build] validating layout params...")
+    layout_csv = cfg.get("paths", {}).get("layout_params_csv")
+    if not layout_csv:
+        raise RuntimeError("config missing paths.layout_params_csv")
+    validate_layout_csv(paths.root / layout_csv)
+
+    targets = resolve_build_targets(
+        cfg,
+        arg_model=args.model,
+        arg_region=args.region,
+        all_targets=args.all_targets,
+    )
+    if _config_uses_model_token(cfg) and any(not target.model for target in targets):
+        raise RuntimeError("config uses '{model}' but no --model was provided and build.default_model is empty")
+    if _config_uses_region_token(cfg) and any(not target.region for target in targets):
+        raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
+
+    if args.clean:
+        clean_build_targets(targets)
+
+    requested_formats = resolve_requested_formats(cfg, args.formats)
+    pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
+    for target in targets:
+        print(
+            "[build] target: "
+            f"model='{target.model or ''}', region='{target.region or ''}'"
+        )
+        build_target(
+            cfg,
+            target_model=target.model,
+            target_region=target.region,
+            requested_formats=requested_formats if not args.prepare_only else [],
+            pdf_mode=pdf_mode,
+            build_cfg=build_cfg,
+            tools_cfg=tools_cfg,
+            no_open=args.no_open,
+        )
+
+    write_docs_root_index_for_targets(targets)
 
 
 if __name__ == "__main__":

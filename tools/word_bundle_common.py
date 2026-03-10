@@ -147,6 +147,8 @@ def load_word_context(
     cfg: dict,
     model: str | None,
     region: str | None,
+    *,
+    phase1_output_dir: Path | None = None,
 ) -> Phase1Builder:
     base_paths = BuildPaths.from_root(paths.root)
     cfg_paths_raw = cfg.get("paths", {})
@@ -175,7 +177,7 @@ def load_word_context(
         page_registry=base_paths.page_registry,
         content_blocks=base_paths.content_blocks,
         template_dir=base_paths.template_dir,
-        output_dir=base_paths.output_dir,
+        output_dir=phase1_output_dir or base_paths.output_dir,
         spec_master_csv=spec_master_csv,
         spec_footnotes_csv=spec_footnotes_csv,
         spec_titles_csv=spec_titles_csv,

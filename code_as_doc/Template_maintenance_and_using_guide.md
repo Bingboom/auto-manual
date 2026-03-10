@@ -1,116 +1,166 @@
 # Template Maintenance and Using Guide
 
-更新时间: 2026-03-10
+Updated: 2026-03-10
 
-本文档说明当前说明书模板系统的维护方式和使用方式。目标是让后续切换机型时，优先通过 `Spec_Master.csv` 驱动模板，而不是反复硬改 `docs/templates/**/*.rst`。
-
----
-
-## 1. 当前模板体系概览
-
-当前整本说明书由两类内容组成:
-
-1. `safety` 页
-   - 来源: `data/phase1/content_blocks.csv`
-   - 先由 `tools/phase1_build.py` 生成 `docs/generated/{model}/safety_{lang}.rst`
-   - 再进入 Word / PDF 构建链路
-
-2. `spec` 页
-   - 来源: `data/phase1/Spec_Master.csv` 和 `data/phase1/Spec_Footnotes.csv`
-   - 先由 `tools/phase1_build.py` 生成 `docs/generated/{model}/spec_{lang}.rst`
-   - 再进入 Word / PDF 构建链路
-
-3. 其余页面
-   - 来源: `docs/templates/page_en/*.rst`
-   - 来源: `docs/templates/page_eu/*.rst`
-   - 来源: `docs/templates/page_jp/*.rst`
-   - 这些页面是“模板页”，用于承载不同机型复用的正文结构
-
-结论:
-
-- `safety` 和 `spec` 不应手改生成后的 `docs/generated/**/*.rst`
-- 普通正文页应修改 `docs/templates/page_*/*.rst`
-- 能抽象成“机型变量”的内容，优先做成占位符并从 `Spec_Master.csv` 注入
+This document describes the current maintenance rules for the manual template system in this repository.
+The goal is simple: keep structure and prose in `docs/templates`, keep product-specific values in CSV, and never maintain generated files by hand.
 
 ---
 
-## 2. 关键目录
+## 1. Source of Truth
 
-### 2.1 模板目录
+The current manual pipeline has three layers:
 
-- `docs/templates/page_en`
-- `docs/templates/page_eu`
-- `docs/templates/page_jp`
+1. Template layer
+   - Main source: `docs/templates/page_en/*.rst`
+   - Main source: `docs/templates/page_eu/*.rst`
+   - Main source: `docs/templates/page_jp/*.rst`
+   - Responsibility: page structure, headings, reusable prose, list/table layout
 
-### 2.2 数据目录
+2. Data layer
+   - Specs: `data/phase1/Spec_Master.csv`
+   - Spec notes: `data/phase1/Spec_Footnotes.csv`
+   - Spec title overrides: `data/phase1/spec_titles.csv`
+   - Safety/content blocks: `data/phase1/content_blocks.csv`
+   - Page registry: `data/phase1/page_registry.csv`
+   - Responsibility: model-specific values, safety/spec content, placeholder values
 
+3. Generated layer
+   - `docs/generated/<model>/*.rst`
+   - `docs/<model>/<region>/**`
+   - `docs/index.rst`
+   - `docs/_build/**`
+   - Responsibility: build artifacts only
+
+Rules:
+
+- Edit templates when the structure or wording changes.
+- Edit CSV when the product value changes.
+- Do not manually maintain generated files.
+
+---
+
+## 2. Current Build Pipeline
+
+The real entrypoint is `tools/build_docs.py`.
+
+Current flow:
+
+1. Load and validate config.
+2. Validate `paths.layout_params_csv`.
+3. Resolve target `model` and `region`.
+4. Resolve `product_name` from `Spec_Master.csv`.
+5. Collect all `csv_page` entries in `config.pages`.
+6. Run `tools/phase1_build.py` for those CSV-backed pages.
+7. Materialize a target bundle with `tools/gen_index_bundle.py`.
+8. Write bundle files into `docs/<model>/<region>/`.
+9. Rewrite `docs/index.rst` as a wrapper that includes the materialized bundle.
+10. Build HTML, Word, and/or PDF depending on config and CLI flags.
+
+Important:
+
+- Building Word for a target already implies generating `docs/<model>/<region>/index.rst` first.
+- If you want only the materialized bundle and not the final output, use `--prepare-only`.
+
+---
+
+## 3. Materialized Bundle Layout
+
+For a target such as `JE-1000F / US`, the bundle is written to:
+
+- `docs/JE-1000F/US/index.rst`
+- `docs/JE-1000F/US/page/*.rst`
+- `docs/JE-1000F/US/conf.py`
+- `docs/JE-1000F/US/conf_base.py`
+
+This directory is generated from config plus templates plus CSV data.
+
+Do not treat `docs/<model>/<region>/page/*.rst` as the maintenance source.
+They are generated working copies used by Sphinx and Word export.
+
+---
+
+## 4. Supported `pages` Types
+
+`config.pages` is parsed by `tools/config_pages.py`.
+
+Supported page types:
+
+- `cover_pdf`
+- `csv_page`
+- `pdf_insert`
+- `rst_include`
+
+Current constraints:
+
+- `csv_page.source` only supports `phase1`
+- `rst_include` points directly to a source `.rst`
+- `pdf_insert` is materialized into the bundle, but Word bundle export does not support PDF content itself
+
+---
+
+## 5. Which Files You Should Edit
+
+Edit these when the prose or structure changes:
+
+- `docs/templates/page_en/*.rst`
+- `docs/templates/page_eu/*.rst`
+- `docs/templates/page_jp/*.rst`
+
+Edit these when safety/spec values change:
+
+- `data/phase1/content_blocks.csv`
 - `data/phase1/Spec_Master.csv`
 - `data/phase1/Spec_Footnotes.csv`
-- `data/phase1/content_blocks.csv`
+- `data/phase1/spec_titles.csv`
 
-### 2.3 构建与注入逻辑
-
-- `tools/build_docs.py`
-- `tools/utils/spec_master.py`
-- `tools/word_bundle_common.py`
-- `tools/word_bundle_html.py`
-- `docs/conf_base.py`
-
-### 2.4 配置文件
-
-- `config.yaml`
-- `config.eu.yaml`
-- `config.ja.yaml`
-- 其他按机型新增的配置，例如 `config.hte1531000a.yaml`
-
----
-
-## 3. 当前页面归属规则
-
-### 3.1 必须走 CSV 自动构建的页面
-
-- `safety`
-- `spec`
-
-不要直接修改这些生成结果:
+Do not edit these directly:
 
 - `docs/generated/*/safety_*.rst`
 - `docs/generated/*/spec_*.rst`
-
-正确修改入口:
-
-- 安全页改 `content_blocks.csv`
-- 规格页改 `Spec_Master.csv` / `Spec_Footnotes.csv`
-
-### 3.2 应该改模板 RST 的页面
-
-典型页面:
-
-- `00_preface.rst`
-- `01_meaning_of_symbols.rst`
-- `02_whats_in_the_box.rst`
-- `03_product_overview_placeholder.rst`
-- `04_lcd_display_placeholder.rst`
-- `05_operation_guide_placeholder.rst`
-- `06_ups_mode.rst`
-- `07_expansion_battery_pack.rst`
-- `08_charging_methods.rst`
-- `09_storage_and_maintenance.rst`
-- `10_troubleshooting.rst`
-- `11_warranty.rst`
-- `12_app_setup_placeholder.rst`
-
-这些页面的“固定正文结构”保留在模板里。
-
-如果里面出现机型名、型号、按钮名、电池包名等耦合信息，应优先改成占位符。
+- `docs/<model>/<region>/*.rst`
+- `docs/index.rst`
+- `docs/_build/**`
 
 ---
 
-## 4. 占位符体系
+## 6. How `safety` and `spec` Pages Work
 
-### 4.1 基础占位符
+### 6.1 Safety
 
-当前公共注入的基础占位符包括:
+Safety content is generated by `tools/phase1_build.py`.
+
+Primary inputs:
+
+- `data/phase1/page_registry.csv`
+- `data/phase1/content_blocks.csv`
+- optional page override CSV such as `data/phase1/<page_id>_blocks.csv`
+
+Generated output:
+
+- `docs/generated/<model>/safety_<lang>.rst`
+
+### 6.2 Spec
+
+Spec content is generated from:
+
+- `data/phase1/Spec_Master.csv`
+- optional `data/phase1/Spec_Footnotes.csv`
+- optional `data/phase1/spec_titles.csv`
+
+Generated output:
+
+- `docs/generated/<model>/spec_<lang>.rst`
+
+The spec parser now treats `Spec_Master.csv` as the main source of truth for spec sections, rows, and template variables.
+
+---
+
+## 7. Placeholder Rules
+
+### 7.1 Core placeholders
+
+These are resolved from `Spec_Master.csv`:
 
 - `|PRODUCT_NAME|`
 - `|PRODUCT_NAME_BOLD|`
@@ -118,326 +168,288 @@
 - `|PRODUCT_SHORT_NAME_BOLD|`
 - `|MODEL_NO|`
 
-说明:
+Resolution source:
 
-- `PRODUCT_NAME` 取自 `Spec_Master.csv` 中 `Row_key=product_name`
-- `MODEL_NO` 取自 `Spec_Master.csv` 中 `Row_key=model_no`
-- `PRODUCT_SHORT_NAME` 默认由 `PRODUCT_NAME` 去掉前缀 `Jackery ` 自动得到
+- `product_name` comes from `Row_key=product_name`
+- `model_no` comes from `Row_key=model_no`
+- `PRODUCT_SHORT_NAME` is derived from `PRODUCT_NAME`
+  - if the name starts with `Jackery `, that prefix is removed
 
-示例:
+### 7.2 Template placeholders from `tpl_*`
 
-```rst
-Congratulations on your new |PRODUCT_NAME|.
+Any `Row_key` beginning with `tpl_` becomes a placeholder.
 
-**型番：|MODEL_NO|**
-
-In the event of a sudden loss of grid power, the |PRODUCT_SHORT_NAME| will automatically switch to stored power.
-```
-
-### 4.2 模板专用占位符
-
-模板中还支持从 `Spec_Master.csv` 的 `tpl_*` 行读取自定义字段。
-
-规则:
-
-- CSV 里写 `Row_key=tpl_xxx`
-- 注入后占位符名变成 `|XXX|`
-- 如果该值存在，还会自动派生 `|XXX_BOLD|`
-- 如果字段名以 `_label` 结尾，还会自动派生 `|XXX_LOWER|`
-
-例如:
+Examples:
 
 - `tpl_main_power_button_label` -> `|MAIN_POWER_BUTTON_LABEL|`
-- `tpl_main_power_button_label` -> `|MAIN_POWER_BUTTON_LABEL_LOWER|`
+- `tpl_side_ac_input_spec` -> `|SIDE_AC_INPUT_SPEC|`
 - `tpl_battery_pack_name` -> `|BATTERY_PACK_NAME|`
-- `tpl_battery_pack_name` -> `|BATTERY_PACK_NAME_BOLD|`
 
-### 4.3 当前已经在使用的模板变量
+Derived placeholders:
 
-英文美规页:
+- any non-empty placeholder also gets `..._BOLD`
+- any placeholder ending in `_LABEL` also gets `..._LOWER`
 
-- `MAIN_POWER_BUTTON_LABEL`
-- `DC_USB_POWER_BUTTON_LABEL`
-- `AC_POWER_BUTTON_LABEL`
+Example:
 
-欧规页:
+- `tpl_ac_power_button_label` -> `|AC_POWER_BUTTON_LABEL|`
+- derived -> `|AC_POWER_BUTTON_LABEL_BOLD|`
+- derived -> `|AC_POWER_BUTTON_LABEL_LOWER|`
 
-- `POWER_BUTTON_LABEL`
-- `USB_POWER_BUTTON_LABEL`
-- `AC_POWER_BUTTON_LABEL`
-- `BATTERY_PACK_NAME`
+### 7.3 Multi-line `tpl_*` rows
 
-日文页:
+If the same `tpl_*` key uses multiple line orders:
 
-- `PRODUCT_NAME`
-- `MODEL_NO`
+- `Line_order = 1` keeps the base name
+- other line orders gain a suffix
+
+Example:
+
+- `tpl_example_key` line 1 -> `|EXAMPLE_KEY|`
+- `tpl_example_key` line 2 -> `|EXAMPLE_KEY_2|`
 
 ---
 
-## 5. Spec_Master.csv 如何写模板变量
+## 8. How `Spec_Master.csv` Is Matched
 
-### 5.1 最小字段要求
+Matching is driven mainly by:
 
-模板变量行至少应保证这些列正确:
-
-- `项目代码`
+- `Model`
 - `Region`
 - `Is_Latest`
 - `Page`
-- `Section`
-- `Section_order`
 - `Row_key`
-- `Row_label_en`
-- `Line_order`
-- `Value_en`
-- `Model`
+- target language
 
-建议:
+Language value lookup order is:
 
-- `Page` 统一写 `specifications`
-- `Section` 可写 `TEMPLATE VARS`
-- `Section_order` 可统一放到较后位置，如 `99`
+1. `Value_<lang>`
+2. language case variants such as `Value_JA`
+3. `Value_en`
+4. `Value`
+5. `Spec_Value`
 
-### 5.2 示例
+For template maintenance, this means:
 
-```csv
-项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Model
-HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main POWER Button,1,,Main POWER Button,JE-2000F
-HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,JE-2000F
-HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,JE-2000F
-```
-
-欧规电池包名示例:
-
-```csv
-项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Model
-HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_battery_pack_name,Battery Pack Name,1,,Jackery Battery Pack 3600,JE-3600A
-```
+- if your target language column is missing, the build may silently fall back to English
+- if the wrong `Model` or `Region` is set, a different row may be selected
 
 ---
 
-## 6. 新机型接入流程
+## 9. Recommended Maintenance Workflow
 
-### 6.1 只换参数，不换正文结构
+### 9.1 Only parameters change
 
-适用场景:
+Use this when the manual structure is already correct.
 
-- 说明书结构和现有模板基本一致
-- 只需要替换产品名、型号、按钮名、部分称呼
+Steps:
 
-步骤:
+1. Add or update `product_name` and `model_no` rows in `Spec_Master.csv`.
+2. Add or update any required `tpl_*` rows.
+3. If specs changed, update the corresponding spec rows in `Spec_Master.csv`.
+4. Build the target bundle.
+5. Export Word/PDF and verify.
 
-1. 在 `Spec_Master.csv` 中补该机型的 `product_name`
-2. 在 `Spec_Master.csv` 中补该机型的 `model_no`
-3. 如模板内按钮命名不同，补对应 `tpl_*`
-4. 如欧规扩容包名称不同，补 `tpl_battery_pack_name`
-5. 新建对应配置文件，或复用已有配置文件并改 `default_model/default_region`
-6. 执行构建命令验证
+This is the preferred path for same-family products.
 
-### 6.2 既换参数，也换正文内容
+### 9.2 Structure or prose changes
 
-适用场景:
+Use this when the attached Word/PDF source differs from current templates.
 
-- 附件说明书和现有模板差异较大
-- 需要按附件复刻大段正文
+Steps:
 
-步骤:
-
-1. 先确定走哪一套模板目录
+1. Choose the correct template family:
    - `page_en`
    - `page_eu`
    - `page_jp`
-2. 逐页对照附件，修改对应 `*.rst`
-3. 将机型绑定文案优先改成占位符
-4. 不改图片路径时，可继续使用占位图
-5. 补齐 `Spec_Master.csv` 的模板变量
-6. 重新构建并核对 Word
+2. Edit the relevant `docs/templates/.../*.rst`.
+3. Replace hard-coded product words with placeholders where possible.
+4. Backfill missing `tpl_*` values in `Spec_Master.csv`.
+5. Build and verify.
+
+### 9.3 Safety/spec page changes
+
+Do not patch generated `safety_*.rst` or `spec_*.rst`.
+
+Instead:
+
+- modify the upstream CSV
+- rerun `tools/phase1_build.py` or `tools/build_docs.py`
 
 ---
 
-## 7. 实际构建命令
+## 10. Build Commands
 
-### 7.1 英文默认模板
+### 10.1 Build only the target bundle
+
+```powershell
+.\.venv\Scripts\python.exe tools\build_docs.py --config config.je1000f.us.yaml --model JE-1000F --region US --prepare-only
+```
+
+This regenerates:
+
+- `docs/generated/JE-1000F/*.rst`
+- `docs/JE-1000F/US/index.rst`
+- `docs/JE-1000F/US/page/*.rst`
+- wrapper `docs/index.rst`
+
+### 10.2 Export Word for a target
+
+```powershell
+.\.venv\Scripts\python.exe tools\build_docs.py --config config.je1000f.us.yaml --model JE-1000F --region US --formats word --no-open
+```
+
+Expected output:
+
+- `docs/_build/JE-1000F/US/word/manual_je1000f_us_en.docx`
+
+### 10.3 Full build using default config target
 
 ```powershell
 .\.venv\Scripts\python.exe tools\build_docs.py --config config.yaml --no-open
 ```
 
-### 7.2 欧规模板
+### 10.4 Regenerate only phase1 pages
 
 ```powershell
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.eu.yaml --no-open
+.\.venv\Scripts\python.exe tools\phase1_build.py --model JE-1000F --region US --page safety,spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv --spec-titles-csv data/phase1/spec_titles.csv
 ```
 
-### 7.3 日文模板
+### 10.5 Materialize bundle without full build entrypoint
 
 ```powershell
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.ja.yaml --no-open
-```
-
-### 7.4 指定单独机型配置
-
-```powershell
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.hte1531000a.yaml --no-open
+.\.venv\Scripts\python.exe tools\gen_index_bundle.py --config config.je1000f.us.yaml --model JE-1000F --region US
 ```
 
 ---
 
-## 8. 当前配置与模板的对应关系
+## 11. Word Export Rules
 
-### 8.1 `config.yaml`
+Word export behavior depends on `build.word_source`.
 
-- 语言: `en`
-- 模板目录: `docs/templates/page_en`
-- `safety/spec` 走 CSV 自动页
+### 11.1 `word_source=bundle`
 
-### 8.2 `config.eu.yaml`
+This is the main path used in this repo.
 
-- 语言: `en`
-- 模板目录: `docs/templates/page_eu`
-- `safety/spec` 走 CSV 自动页
+Behavior:
 
-### 8.3 `config.ja.yaml`
+- materializes the bundle first
+- rebuilds HTML from the same bundle content
+- exports `.docx` from the bundle
 
-- 语言: `ja`
-- 模板目录: `docs/templates/page_jp`
-- `safety/spec` 走 CSV 自动页
+Platform details:
 
-注意:
+- Windows: uses Word COM
+- macOS/Linux: falls back to `pandoc`
 
-- `config.ja.yaml` 现在已经指向 `page_jp`
-- 不应再继续使用已删除的 `page_ja`
+Reference document:
 
----
+- `build.word_reference_doc` is optional but usually recommended
+- glob patterns are supported
 
-## 9. 常见维护原则
+Title behavior:
 
-### 9.1 什么时候改模板
+- `build.word_title` can use placeholders such as `|PRODUCT_NAME|`
+- if not set, the exporter falls back to the reference doc stem or `PRODUCT_NAME`
 
-改模板的情况:
+### 11.2 `word_source=html`
 
-- 文字内容来自 Word 附件正文
-- 页面结构、段落、标题、列表、表格需要复刻
-- 该段文字不是“机型参数”，而是“说明书话术”
+- uses generated HTML as the source
+- requires `pandoc`
 
-### 9.2 什么时候改 CSV
+### 11.3 `word_source=latex`
 
-改 CSV 的情况:
-
-- 产品名称变了
-- 型号变了
-- 按钮名称变了
-- 电池包名称变了
-- 规格参数变了
-- `safety/spec` 页内容变了
-
-### 9.3 不要做的事情
-
-- 不要直接改 `docs/generated/**/*.rst`
-- 不要把整机型名称硬编码回模板，除非它就是永久固定文案
-- 不要把 `safety/spec` 手动塞回模板页
+- uses LaTeX output as the source
+- requires `pandoc`
 
 ---
 
-## 10. 常见坑
+## 12. Common Pitfalls
 
-### 10.1 RST 替换引用两侧黏连
+### 12.1 Editing generated files
 
-在日文里，`|PRODUCT_NAME|の` 这种写法容易被 docutils 误判。
+This is the most common mistake.
 
-建议写法:
+If you edit:
+
+- `docs/generated/**`
+- `docs/<model>/<region>/**`
+- `docs/index.rst`
+
+your changes will be overwritten on the next build.
+
+### 12.2 `?` appears in output
+
+If you see many `?` characters in product overview or operation pages, the issue is usually not the template structure.
+The issue is usually that `tpl_*` values in `Spec_Master.csv` contain placeholder text, mojibake, or unclean copied values.
+
+### 12.3 Old model names survive in the new manual
+
+This usually means one of these happened:
+
+- a template still contains hard-coded model text
+- `product_name` in `Spec_Master.csv` was not updated
+- the wrong `config` / `model` / `region` was used
+
+### 12.4 Missing dependencies
+
+Common failures:
+
+- `PyYAML not installed`
+- `xelatex not found`
+- `pandoc not found`
+- `Word reference doc not found`
+
+### 12.5 Broken placeholder adjacency in Japanese text
+
+When mixing placeholders with Japanese, prefer adding spacing when needed for readability and parser stability.
+
+Good:
 
 ```rst
-|PRODUCT_NAME| のDC入力電圧範囲
+|PRODUCT_NAME| の AC 入力範囲
 ```
 
-不要写:
+Avoid:
 
 ```rst
-|PRODUCT_NAME|のDC入力電圧範囲
+|PRODUCT_NAME|のAC入力範囲
 ```
 
-### 10.2 表格项缩进被破坏
+### 12.6 Hard-coded title in config
 
-在 `list-table` 中替换文字时，必须保持原有缩进，否则会触发 docutils 警告。
+If `build.word_title` is fixed to an old model name, the generated Word title will stay wrong even if `PRODUCT_NAME` is correct.
+Prefer a placeholder-based title such as:
 
-重点检查:
-
-- `* -`
-- `  -`
-- 多行单元格内容
-
-### 10.3 把生成页和模板页混改
-
-如果同时改了:
-
-- `docs/templates/page_*/...`
-- `docs/generated/...`
-
-最终很容易出现“构建后一覆盖，改动丢失”的假象。
-
-原则:
-
-- 只改上游源文件
-
-### 10.4 忘记补 `Spec_Master.csv`
-
-如果模板里已经用了占位符，但对应机型没有补 `product_name/model_no/tpl_*`，构建时会退回默认值，或者最终文案不对。
+```yaml
+word_title: "|PRODUCT_NAME| User Manual"
+```
 
 ---
 
-## 11. 回归检查清单
+## 13. Verification Checklist
 
-每次修改模板或模板变量后，至少做以下检查:
+After changing templates or CSV values, verify at least the following:
 
-1. 运行目标配置的 `build_docs.py`
-2. 确认 `docx` 文件成功生成
-3. 搜索生成 Word 中是否还残留占位符:
-   - `|PRODUCT_NAME|`
-   - `|MODEL_NO|`
-   - `|...|`
-4. 确认旧机型硬编码是否已经消失:
-   - 如 `Explorer 2000`
-   - 如 `Explorer 3600 Plus`
-   - 如 `JE-2000F`
-5. 检查 `safety` 和 `spec` 页是否仍来自自动生成
-6. 检查 Sphinx 是否出现新的 docutils 语法警告
+1. The target bundle builds successfully.
+2. The expected `.docx` file is generated.
+3. Generated pages contain no unresolved placeholders such as `|PRODUCT_NAME|`.
+4. Generated pages contain no stale model names from older products.
+5. `safety` and `spec` still come from generated CSV-backed pages.
+6. Product overview and operation pages contain the expected `tpl_*` substitutions.
+7. There are no obvious `?` artifacts caused by dirty CSV values.
 
----
+Useful checks:
 
-## 12. 推荐维护顺序
-
-建议每次按这个顺序工作:
-
-1. 先定模板目录
-2. 再抽取正文到 `page_*/*.rst`
-3. 再把机型耦合文案抽成占位符
-4. 再补 `Spec_Master.csv`
-5. 再构建 Word 验证
-6. 最后再做文字细调和版面微调
-
-这样成本最低，也最不容易把模板越改越散。
+```powershell
+Select-String -Path docs\JE-1000F\US\page\*.rst -Pattern '\|[A-Z0-9_]+\|'
+Select-String -Path docs\JE-1000F\US\page\*.rst -Pattern '\?'
+```
 
 ---
 
-## 13. 后续扩展建议
+## 14. One-Sentence Rule
 
-如果后续还有新的固定差异需要抽象，建议继续沿用 `tpl_*` 机制，例如:
-
-- `tpl_customer_support_email`
-- `tpl_app_name`
-- `tpl_solar_adapter_name`
-- `tpl_dc_input_port_label`
-- `tpl_battery_pack_max_count`
-
-原则:
-
-- 先确认这个差异是否跨机型重复出现
-- 如果会重复出现，就抽成 `tpl_*`
-- 如果只存在于单一本说明书，优先留在模板正文
-
----
-
-## 14. 一句话原则
-
-模板负责“结构和话术”，CSV 负责“机型和参数”，生成文件只作为结果，不作为维护入口。
+Templates are responsible for structure and reusable wording.
+CSV is responsible for model-specific values.
+Generated files are results, not maintenance entrypoints.

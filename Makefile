@@ -1,21 +1,35 @@
-PY ?= python3
-MODEL ?= JHP-2000A
+PY ?= python
+CONFIG ?= config.yaml
+OPEN_FLAG :=
+NO_CLEAN_FLAG :=
 
-.PHONY: validate build build-noview phase1-generate clean
+ifeq ($(OPEN),1)
+OPEN_FLAG := --open
+endif
+
+ifeq ($(NO_CLEAN),1)
+NO_CLEAN_FLAG := --no-clean
+endif
+
+.PHONY: validate rst word html pdf all clean
 
 validate:
-	$(PY) tools/validate_config.py --config config.yaml
-	$(PY) tools/validate_layout_params.py --csv data/layout_params.csv
+	$(PY) build.py validate --config $(CONFIG)
 
-build:
-	$(PY) tools/build_docs.py --model $(MODEL) --clean
+rst:
+	$(PY) build.py rst --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
 
-build-noview:
-	$(PY) tools/build_docs.py --model $(MODEL) --clean --no-open
+word:
+	$(PY) build.py word --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
 
-phase1-generate:
-	$(PY) tools/phase1_build.py
+html:
+	$(PY) build.py html --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
+
+pdf:
+	$(PY) build.py pdf --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
+
+all:
+	$(PY) build.py all --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
 
 clean:
-	rm -rf docs/_build
-	rm -f docs/renderers/latex/params.tex
+	$(PY) build.py clean --config $(CONFIG)

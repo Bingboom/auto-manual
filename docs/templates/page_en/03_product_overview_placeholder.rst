@@ -14,34 +14,34 @@ FRONT VIEW
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
      - **Handle**
-   * - **DC 12V Port**
+   * - **|FRONT_DC12_PORT_LABEL|**
 
-       12V⎓10A Max
+       |FRONT_DC12_PORT_SPEC|
      - **LCD**
    * - **|DC_USB_POWER_BUTTON_LABEL|**
      - **LED Light Button**
-   * - **USB-C 30W Output**
+   * - **|FRONT_USB_C_LOW_LABEL|**
 
-       30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A
+       |FRONT_USB_C_LOW_SPEC|
      - **LED Light**
-   * - **USB-C 100W Output**
+   * - **|FRONT_USB_C_HIGH_LABEL|**
 
-       100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A
+       |FRONT_USB_C_HIGH_SPEC|
      - **|AC_POWER_BUTTON_LABEL|**
-   * - **USB-A 18W Output**
+   * - **|FRONT_USB_A_LABEL|**
 
-       18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A
-     - **AC Output**
+       |FRONT_USB_A_SPEC|
+     - **|FRONT_AC_OUTPUT_LABEL|**
 
-       120V~ 60Hz, 18.3A Max, 2200W Rated
+       |FRONT_AC_OUTPUT_SPEC|
 
 .. list-table::
    :header-rows: 0
    :widths: 100
 
-   * - **Total Output**
+   * - **|FRONT_TOTAL_OUTPUT_LABEL|**
 
-       2200W Rated, 4400W Surge Peak
+       |FRONT_TOTAL_OUTPUT_SPEC|
 
 RIGHT SIDE VIEW
 ---------------
@@ -55,12 +55,12 @@ RIGHT SIDE VIEW
    :widths: 50 50
 
    * - **Handle**
-     - **AC Input**
+     - **|SIDE_AC_INPUT_LABEL|**
 
-       100V-120V~60 Hz, 15A Max
+       |SIDE_AC_INPUT_SPEC|
    * -
-     - **DC Input (2×DC8020 Ports)**
+     - **|SIDE_DC_INPUT_LABEL|**
 
-       PV: 16-60V⎓12A Max, Double to 21A / 400W Max
+       |SIDE_DC_INPUT_PV_SPEC|
 
-       Car: 11-16V⎓8A Max, Double to 8A Max
+       |SIDE_DC_INPUT_CAR_SPEC|

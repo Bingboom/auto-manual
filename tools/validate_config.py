@@ -110,6 +110,24 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if default_region is not None and (not isinstance(default_region, str) or not default_region.strip()):
         issues.append(Issue("ERROR", "build.default_region must be a non-empty string when provided"))
 
+    raw_targets = build.get("targets")
+    if raw_targets is not None:
+        if not isinstance(raw_targets, list) or not raw_targets:
+            issues.append(Issue("ERROR", "build.targets must be a non-empty list when provided"))
+        else:
+            for idx, item in enumerate(raw_targets, start=1):
+                if not isinstance(item, dict):
+                    issues.append(Issue("ERROR", f"build.targets[{idx}] must be a mapping"))
+                    continue
+
+                model = item.get("model")
+                if not isinstance(model, str) or not model.strip():
+                    issues.append(Issue("ERROR", f"build.targets[{idx}].model must be a non-empty string"))
+
+                region = item.get("region")
+                if region is not None and (not isinstance(region, str) or not region.strip()):
+                    issues.append(Issue("ERROR", f"build.targets[{idx}].region must be a non-empty string when provided"))
+
     # ---- paths ----
     paths = cfg.get("paths", {})
     if paths is not None and not isinstance(paths, dict):

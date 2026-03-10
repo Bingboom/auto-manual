@@ -12,7 +12,7 @@ build:
   word_output: manual_je1000f_us_en.docx
   word_source: bundle
   word_reference_doc: C:/Users/Administrator/Downloads/EN-Explorer 2000 User Manual V1.0 - E2000V2.docx
-  word_title: Jackery Explorer 1000 User Manual
+  word_title: "|PRODUCT_NAME| User Manual"
   open_word: false
   build_html: false
   open_html: false

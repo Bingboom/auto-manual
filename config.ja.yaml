@@ -12,7 +12,7 @@ build:
   word_output: manual_demo_ja.docx
   word_source: bundle
   word_reference_doc: C:/Users/Administrator/Downloads/JP-2000*取扱説明書.docx
-  word_title: JP-2000 New取扱説明書
+  word_title: "|PRODUCT_NAME| 取扱説明書"
   open_word: false
   build_html: false
   open_html: false

@@ -256,6 +256,8 @@ def _parse_spec_master_sections(
         row_key = _first_non_empty(row, ["Row_key", "row_key"])
         if not section_key or not row_key:
             continue
+        if row_key.lower().startswith("tpl_") or section_key.strip().lower() == "template vars":
+            continue
 
         section_title = _pick_spec_lang_text(
             row,

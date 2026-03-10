@@ -12,28 +12,28 @@
    :header-rows: 0
    :widths: 50 50
 
-   * - **主電源ボタン**
+   * - **|MAIN_POWER_BUTTON_LABEL|**
      - **持ち手**
-   * - **シガーソケット出力ポート**
+   * - **|FRONT_DC12_PORT_LABEL|**
 
-       12V⎓最大10A
+       |FRONT_DC12_PORT_SPEC|
      - **LCDディスプレイ**
-   * - **DC/USB出力ボタン**
+   * - **|DC_USB_POWER_BUTTON_LABEL|**
      - **LEDライトボタン**
-   * - **USB-C 30W出力ポート**
+   * - **|FRONT_USB_C_LOW_LABEL|**
 
-       5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W
+       |FRONT_USB_C_LOW_SPEC|
      - **LEDライト**
-   * - **USB-C 100W出力ポート**
+   * - **|FRONT_USB_C_HIGH_LABEL|**
 
-       5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，最大100W
-     - **AC出力ボタン**
-   * - **USB-A 18W出力ポート**
+       |FRONT_USB_C_HIGH_SPEC|
+     - **|AC_POWER_BUTTON_LABEL|**
+   * - **|FRONT_USB_A_LABEL|**
 
-       5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W
-     - **AC出力ポート**
+       |FRONT_USB_A_SPEC|
+     - **|FRONT_AC_OUTPUT_LABEL|**
 
-       100V~ 50Hz/60Hz，最大20A，定格2000W，3ポート合計2200W，瞬間最大4400W
+       |FRONT_AC_OUTPUT_SPEC|
 
 右側面
 ------
@@ -46,14 +46,14 @@
    :header-rows: 0
    :widths: 100
 
-   * - **DC入力ポート（DC8020）**
+   * - **|SIDE_DC_INPUT_LABEL|**
 
-       PV：16V-60V⎓12A，2ポート最大21A，最大400W
+       |SIDE_DC_INPUT_PV_SPEC|
 
-       シガーソケット：11V-16V⎓最大8A，2ポート最大8A
-   * - **AC入力ポート**
+       |SIDE_DC_INPUT_CAR_SPEC|
+   * - **|SIDE_AC_INPUT_LABEL|**
 
-       100V-120V~ 50Hz/60Hz，最大15A，最大1500W
+       |SIDE_AC_INPUT_SPEC|
 
 .. note::
 

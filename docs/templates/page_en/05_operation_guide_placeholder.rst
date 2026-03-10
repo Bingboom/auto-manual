@@ -12,13 +12,13 @@ On: Press once.
 
 Off: Press and hold for 3s.
 
-**Default standby time:** 2 hours.
+**Default standby time:** |DEFAULT_STANDBY_DURATION|.
 
-The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.
+The product will automatically shut down after |DEFAULT_STANDBY_DURATION| of inactivity, with no charging or discharging.
 
 *The standby time can be set in the Jackery App.*
 
-When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or |DC_USB_POWER_BUTTON_LABEL_LOWER| is ON but the product is neither charging nor discharging.
+When Energy Saving Mode is enabled, the product will automatically shut down after |ENERGY_SAVING_AUTO_OFF_DURATION| if the AC or |DC_USB_POWER_BUTTON_LABEL_LOWER| is ON but the product is neither charging nor discharging.
 
 AC OUTPUT ON/OFF
 ----------------
@@ -48,11 +48,11 @@ Off: Press once.
 
 **CAUTION**
 
-- **USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
+- **|USB_C_HIGH_POWER_PORT_LABEL| is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
 - Only connect |PRODUCT_NAME| to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
-- To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W).
+- To obtain maximum output power, use the official |USB_C_HIGH_POWER_CABLE_NAME| (20V DC/5A, 100W).
 
-The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
+The product can charge your car battery using the |CAR_BATTERY_CHARGING_CABLE_NAME|, which is sold separately and available on our website.
 
 **CAUTION**
 
@@ -63,11 +63,11 @@ The product can charge your car battery using the Jackery 12V automobile battery
 ENERGY SAVING MODE
 ------------------
 
-To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W DC/USB output) for 12 hours, the product automatically turns off the outputs. Please set the Energy Saving Mode duration in the Jackery app.
+To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (|ENERGY_SAVING_AC_THRESHOLD| AC output or |ENERGY_SAVING_DC_THRESHOLD| DC/USB output) for |ENERGY_SAVING_AUTO_OFF_DURATION|, the product automatically turns off the outputs. Please set the Energy Saving Mode duration in the Jackery app.
 
 To disable the energy saving mode, press and hold both the |AC_POWER_BUTTON_LABEL_LOWER| and the |MAIN_POWER_BUTTON_LABEL_LOWER| for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
 
-When powering low-power devices (AC <= 25 W or DC/USB <= 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
+When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
 .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: Energy saving mode key operation placeholder.
@@ -130,7 +130,7 @@ LCD SCREEN
    * -
      - Steady On (in charging or discharging state)
      - Auto-off
-     - The LCD turns off automatically after 2 hours of inactivity.
+     - The LCD turns off automatically after |DEFAULT_STANDBY_DURATION| of inactivity.
 
 You can also set the screen display mode in the Jackery App.
 

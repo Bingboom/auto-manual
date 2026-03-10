@@ -32,6 +32,43 @@ class TestTargetResolution(unittest.TestCase):
         self.assertEqual("JHP-2000A", build_docs.resolve_build_model(cfg, None))
         self.assertEqual("US", build_docs.resolve_build_region(cfg, None))
 
+    def test_resolve_build_targets_should_expand_configured_targets(self) -> None:
+        cfg = {
+            "build": {
+                "default_region": "US",
+                "targets": [
+                    {"model": "JE-2000F", "region": "US"},
+                    {"model": "JE-1000F"},
+                ],
+            }
+        }
+
+        targets = build_docs.resolve_build_targets(
+            cfg,
+            arg_model=None,
+            arg_region=None,
+            all_targets=True,
+        )
+
+        self.assertEqual(
+            [
+                build_docs.BuildTarget(model="JE-2000F", region="US"),
+                build_docs.BuildTarget(model="JE-1000F", region="US"),
+            ],
+            targets,
+        )
+
+    def test_resolve_build_targets_should_reject_explicit_target_with_all_targets(self) -> None:
+        cfg = {"build": {"targets": [{"model": "JE-2000F", "region": "US"}]}}
+
+        with self.assertRaisesRegex(RuntimeError, "Cannot combine --all-targets"):
+            build_docs.resolve_build_targets(
+                cfg,
+                arg_model="JE-2000F",
+                arg_region=None,
+                all_targets=True,
+            )
+
     def test_resolve_requested_formats_should_honor_cli(self) -> None:
         cfg = {"build": {"build_word": True}}
         self.assertEqual(["html", "word"], build_docs.resolve_requested_formats(cfg, "html,word"))
@@ -170,7 +207,7 @@ class TestTargetResolution(unittest.TestCase):
                 repo_root=root,
             )
 
-            self.assertEqual(docs_dir / "M1" / "US", bundle.bundle_dir)
+            self.assertEqual(docs_dir / "_build" / "M1" / "US" / "rst", bundle.bundle_dir)
             self.assertTrue(bundle.index_path.exists())
             self.assertTrue(bundle.wrapper_index_path.exists())
             self.assertEqual("Demo Product User Manual", bundle.title)
@@ -184,16 +221,14 @@ class TestTargetResolution(unittest.TestCase):
             self.assertIn("_static/demo.png", page_text)
 
             wrapper_text = bundle.wrapper_index_path.read_text(encoding="utf-8")
-            self.assertIn(".. include:: M1/US/page/demo.rst", wrapper_text)
+            self.assertIn(".. include:: _build/M1/US/rst/index", wrapper_text)
 
     def test_materialize_bundle_should_copy_csv_rst_into_target_page_dir(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             docs_dir = root / "docs"
-            generated_dir = docs_dir / "generated" / "M1"
-            generated_dir.mkdir(parents=True)
+            docs_dir.mkdir(parents=True)
             (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
-            (generated_dir / "safety_en.rst").write_text("CSV page body\n", encoding="utf-8")
             spec_master = root / "data" / "phase1" / "Spec_Master.csv"
             spec_master.parent.mkdir(parents=True)
             spec_master.write_text(
@@ -218,9 +253,15 @@ class TestTargetResolution(unittest.TestCase):
 
             fake_builder = mock.Mock()
             fake_builder.paths.spec_master_csv = spec_master
+            fake_builder.paths.output_dir = docs_dir / "_build" / "M1" / "US" / "rst" / "generated"
+
+            def write_generated_csv(*args, **kwargs) -> None:
+                generated_dir = fake_builder.paths.output_dir / "M1"
+                generated_dir.mkdir(parents=True, exist_ok=True)
+                (generated_dir / "safety_en.rst").write_text("CSV page body\n", encoding="utf-8")
 
             with mock.patch("tools.gen_index_bundle.load_word_context", return_value=fake_builder):
-                with mock.patch("tools.gen_index_bundle.ensure_csv_page_rsts", return_value=None):
+                with mock.patch("tools.gen_index_bundle.ensure_csv_page_rsts", side_effect=write_generated_csv):
                     bundle = gen_index_bundle.materialize_bundle(
                         cfg,
                         docs_dir=docs_dir,
@@ -230,6 +271,88 @@ class TestTargetResolution(unittest.TestCase):
             page_text = (bundle.page_dir / "safety_en.rst").read_text(encoding="utf-8")
             self.assertIn("CSV page body", page_text)
             self.assertIn(".. include:: page/safety_en.rst", bundle.index_path.read_text(encoding="utf-8"))
+
+    def test_materialize_bundle_should_remove_legacy_rst_directories(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            legacy_bundle_dir = docs_dir / "M1" / "US"
+            legacy_generated_dir = docs_dir / "generated" / "M1"
+            template_dir = docs_dir / "templates" / "page_en"
+            data_dir = root / "data" / "phase1"
+
+            legacy_bundle_dir.mkdir(parents=True)
+            legacy_generated_dir.mkdir(parents=True)
+            template_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+
+            (legacy_bundle_dir / "stale.rst").write_text("old bundle", encoding="utf-8")
+            (legacy_generated_dir / "stale.rst").write_text("old generated", encoding="utf-8")
+            (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
+            (template_dir / "demo.rst").write_text("Hello\n", encoding="utf-8")
+            (data_dir / "Spec_Master.csv").write_text(
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
+                encoding="utf-8",
+            )
+
+            cfg = {
+                "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
+                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "pages": [
+                    {
+                        "type": "rst_include",
+                        "lang": "en",
+                        "file": "templates/page_en/demo.rst",
+                    }
+                ],
+            }
+
+            bundle = gen_index_bundle.materialize_bundle(
+                cfg,
+                docs_dir=docs_dir,
+                repo_root=root,
+            )
+
+            self.assertEqual(docs_dir / "_build" / "M1" / "US" / "rst", bundle.bundle_dir)
+            self.assertFalse(legacy_bundle_dir.exists())
+            self.assertFalse(legacy_generated_dir.exists())
+
+    def test_discover_existing_bundle_targets_should_find_all_built_targets(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            (docs_dir / "_build" / "M1" / "US" / "rst").mkdir(parents=True)
+            (docs_dir / "_build" / "M2" / "JP" / "rst").mkdir(parents=True)
+            (docs_dir / "_build" / "M1" / "US" / "rst" / "index.rst").write_text("", encoding="utf-8")
+            (docs_dir / "_build" / "M2" / "JP" / "rst" / "index.rst").write_text("", encoding="utf-8")
+
+            targets = build_docs.discover_existing_bundle_targets(docs_dir=docs_dir)
+
+            self.assertEqual(
+                [
+                    build_docs.BuildTarget(model="M1", region="US"),
+                    build_docs.BuildTarget(model="M2", region="JP"),
+                ],
+                targets,
+            )
+
+    def test_clean_build_targets_should_only_remove_requested_target_output(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            keep_dir = docs_dir / "_build" / "M2" / "JP" / "rst"
+            drop_dir = docs_dir / "_build" / "M1" / "US" / "rst"
+            drop_dir.mkdir(parents=True)
+            keep_dir.mkdir(parents=True)
+            (drop_dir / "index.rst").write_text("", encoding="utf-8")
+            (keep_dir / "index.rst").write_text("", encoding="utf-8")
+
+            build_docs.clean_build_targets(
+                [build_docs.BuildTarget(model="M1", region="US")],
+                docs_dir=docs_dir,
+            )
+
+            self.assertFalse((docs_dir / "_build" / "M1" / "US").exists())
+            self.assertTrue((docs_dir / "_build" / "M2" / "JP" / "rst" / "index.rst").exists())
 
 
 if __name__ == "__main__":
