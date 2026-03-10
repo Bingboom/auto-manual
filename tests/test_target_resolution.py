@@ -181,7 +181,7 @@ class TestTargetResolution(unittest.TestCase):
             page_text = (bundle.page_dir / "demo.rst").read_text(encoding="utf-8")
             self.assertIn("Hello Demo Product", page_text)
             self.assertNotIn("|PRODUCT_NAME|", page_text)
-            self.assertIn("../_static/demo.png", page_text)
+            self.assertIn("_static/demo.png", page_text)
 
             wrapper_text = bundle.wrapper_index_path.read_text(encoding="utf-8")
             self.assertIn(".. include:: M1/US/page/demo.rst", wrapper_text)

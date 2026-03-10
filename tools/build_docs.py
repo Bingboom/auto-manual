@@ -598,7 +598,7 @@ def main() -> None:
             "html",
             src_dir=bundle.bundle_dir,
             out_dir=html_out_dir,
-            conf_dir=paths.docs_dir,
+            conf_dir=bundle.bundle_dir,
             minimal_theme=("html" not in requested_formats and word_source == "html"),
         )
         html_built = True
@@ -620,7 +620,7 @@ def main() -> None:
                     "html",
                     src_dir=bundle.bundle_dir,
                     out_dir=html_out_dir,
-                    conf_dir=paths.docs_dir,
+                    conf_dir=bundle.bundle_dir,
                     minimal_theme=True,
                 )
                 html_built = True
@@ -634,7 +634,7 @@ def main() -> None:
                     "latex",
                     src_dir=bundle.bundle_dir,
                     out_dir=latex_out_dir,
-                    conf_dir=paths.docs_dir,
+                    conf_dir=bundle.bundle_dir,
                 )
                 patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
                 compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)
@@ -658,7 +658,7 @@ def main() -> None:
                     "latex",
                     src_dir=bundle.bundle_dir,
                     out_dir=latex_out_dir,
-                    conf_dir=paths.docs_dir,
+                    conf_dir=bundle.bundle_dir,
                 )
                 patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
                 compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)

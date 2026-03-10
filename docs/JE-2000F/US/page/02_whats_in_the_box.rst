@@ -45,17 +45,17 @@ authority to operate the device.
    :header-rows: 0
    :widths: 25 25 25 25
 
-   * - .. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: Power station image placeholder.
           :width: 120px
 
        **Jackery Explorer 2000**
-     - .. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: AC charging cable image placeholder.
           :width: 120px
 
        **AC Charging Cable**
-     - .. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: User manual image placeholder.
           :width: 120px
 

@@ -1,0 +1,169 @@
+% ==================================================
+% components_base.tex
+% 通用组件 / 通用排版规则（基础层, layered params）
+% Parameter access: \csname HB<key>\endcsname
+% ==================================================
+
+\usepackage{colortbl}
+
+% ------------------------------
+% List base (enumitem)
+% ------------------------------
+\setlist[itemize]{
+  leftmargin=\csname HBcomp_list_leftmargin\endcsname,
+  labelsep=\csname HBcomp_list_labelsep\endcsname,
+  itemsep=\csname HBcomp_list_itemsep\endcsname,
+  topsep=\csname HBcomp_list_topsep\endcsname,
+  parsep=\csname HBcomp_list_parsep\endcsname,
+  partopsep=\csname HBcomp_list_partopsep\endcsname,
+  label=\raisebox{\csname HBcomp_list_bullet_raise\endcsname}{\csname HBcomp_list_bullet_symbol\endcsname}
+}
+
+% ------------------------------
+% Table base
+% ------------------------------
+\arrayrulewidth=\csname HBcomp_table_inner_rule\endcsname
+\setlength{\tabcolsep}{\csname HBcomp_table_tabcolsep\endcsname}
+
+\newtcolorbox{tableframe}{
+  enhanced,
+  colback=white,
+  colframe=LineK40,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+% ------------------------------
+% Shared spec-like table style
+% - Used by spec page and symbols page
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_spec_table_left_ratio\endcsname{0.33}
+\expandafter\providecommand\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
+\expandafter\providecommand\csname HBcomp_spec_table_row_stretch\endcsname{1.10}
+
+\colorlet{HBSharedTableLeftBg}{black!14}
+\colorlet{HBSharedTableFrameColor}{black}
+
+\providecommand{\HBsharedXcolumn}[1]{m{#1}}
+\providecommand{\HBsharedTableLeftRatio}{0.33}
+\providecommand{\HBsharedTableTabcolsep}{3.2pt}
+
+\providecommand{\HBSetSharedTableGeometry}[2]{%
+  \def\HBsharedTableLeftRatio{#1}%
+  \def\HBsharedTableTabcolsep{#2}%
+}
+
+\newtcolorbox{hbsharedtableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=HBSharedTableFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+  overlay unbroken={
+    \begin{tcbclipinterior}
+      \fill[HBSharedTableLeftBg]
+        (interior.south west)
+        rectangle
+        ([xshift=\dimexpr\HBsharedTableLeftRatio\linewidth+\HBsharedTableTabcolsep\relax]interior.north west);
+    \end{tcbclipinterior}
+  },
+}
+
+\newenvironment{HBSharedDataTable}[2]{%
+  \HBSetSharedTableGeometry{#1}{#2}%
+  \begin{hbsharedtableframe}
+  \begingroup
+  \parindent=0pt\relax
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \let\tabularxcolumn\HBsharedXcolumn
+  \setlength{\tabcolsep}{#2}
+  \renewcommand{\arraystretch}{\csname HBcomp_spec_table_row_stretch\endcsname}
+  % Inner lines follow the spec rule: same color as frame, thinner than outer box.
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.24pt\arrayrulewidth=0.24pt\fi
+}{%
+  \endgroup
+  \end{hbsharedtableframe}
+}
+
+% ------------------------------
+% Note box
+% ------------------------------
+\newtcolorbox{notebox}{
+  enhanced,
+  colback=BgK05,
+  colframe=BgK05,
+  arc=\csname HBcomp_note_arc\endcsname,
+  boxrule=0pt,
+  left=\csname HBcomp_note_pad_lr\endcsname,
+  right=\csname HBcomp_note_pad_lr\endcsname,
+  top=\csname HBcomp_note_pad_tb\endcsname,
+  bottom=\csname HBcomp_note_pad_tb\endcsname,
+}
+
+% ------------------------------
+% Shared H1 section title
+% - all rst top-level headings ("=") should pass this style path
+% ------------------------------
+\providecommand{\hbsectiontitle}[1]{#1}
+
+\renewcommand{\hbsectiontitle}[1]{%
+  \par\noindent
+  \hspace*{-\leftskip}%
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
+    boxrule=0pt,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
+    before skip=0mm,
+    after skip=\csname HBcomp_h1_pill_after\endcsname
+  ]
+    \HBTypeHOne{#1}
+  \end{tcolorbox}%
+  \par\noindent
+}
+
+% Apply shared H1 styling to all section-level headings generated from rst.
+\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
+\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
+\setcounter{secnumdepth}{0}
+
+% ------------------------------
+% Rubric style (subsubsection*)
+% - spacing: COMPONENT
+% - font: TYPE SYSTEM
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_subsection_before\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_subsection_after\endcsname{0.8mm}
+\expandafter\providecommand\csname HBtype_subsection_font_size\endcsname{10.8pt}
+\expandafter\providecommand\csname HBtype_subsection_font_leading\endcsname{11.8pt}
+
+\makeatletter
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
+  {\csname HBcomp_subsection_before\endcsname}%
+  {\csname HBcomp_subsection_after\endcsname}%
+  {\bfseries
+   \fontsize{\csname HBtype_subsection_font_size\endcsname}
+            {\csname HBtype_subsection_font_leading\endcsname}
+   \color{\csname HBtype_body_color\endcsname}
+   \selectfont}}%
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
+  {\csname HBcomp_rubric_before\endcsname}%
+  {\csname HBcomp_rubric_after\endcsname}%
+  {\bfseries
+   \fontsize{\csname HBtype_rubric_font_size\endcsname}
+            {\csname HBtype_rubric_font_leading\endcsname}
+   \color{\csname HBtype_rubric_color\endcsname}
+   \selectfont\color{black}}}
+\makeatother

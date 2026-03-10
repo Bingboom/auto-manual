@@ -8,7 +8,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -29,7 +29,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -42,7 +42,7 @@ DC 12V/USB OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 
@@ -73,7 +73,7 @@ To disable the energy saving mode, press and hold both the AC power button and t
 
 When powering low-power devices (AC <= 25 W or DC/USB <= 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
-.. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
@@ -88,7 +88,7 @@ LED LIGHT ON/OFF
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light.
 
-.. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: LED light mode operation placeholder.
    :width: 360px
 
@@ -109,7 +109,7 @@ LCD SCREEN
      - Mode
      - Action
      - Behavior
-   * - .. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
           :alt: LCD display mode placeholder.
           :width: 140px
      - Shortly On

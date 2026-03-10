@@ -5,7 +5,7 @@
 LCD DISPLAY
 ===========
 
-.. image:: ../_static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
    :alt: LCD icon map placeholder.
    :width: 420px
 
@@ -122,7 +122,7 @@ LCD DISPLAY
        Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.
    * - 22
      - Energy Saving Mode
-- When the AC or DC output is turned on by pressing the AC power button or DC/USB power button:
+     - When the AC or DC output is turned on by pressing the AC power button or DC/USB power button:
 
        **On:** Energy Saving Mode is enabled.
 

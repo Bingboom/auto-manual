@@ -249,3 +249,47 @@ HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_battery_pack_name,
 HTE1531000A-US-JAK,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main POWER Button,1,,Main POWER Button,,,,,,HTE1531000A-US-JAK
 HTE1531000A-US-JAK,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,,,,,,HTE1531000A-US-JAK
 HTE1531000A-US-JAK,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,HTE1531000A-US-JAK
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,"1024 Wh (20Ah/51.2V DC)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,"About 10.6 kg",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,"6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,2,AC Flash Charge,"About 1650W±50W @25°C",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,1,,"11V-16V⎓8A Max, Double 8A Max",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,2,,"16V-60V⎓12A, Double 21A Max / 400W Max",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,1,,"120V~60Hz, 12.5A, 1500W Rated (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,2,,"120V~60Hz, 5.8A, 700W Rated (-20°C to -10°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,1500W,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,1,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,2,,USB-C 100W output disabled (-20°C to -10°C),,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,3,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A,1,,"1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery ポータブル電源 1000 New v2,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,"1024 Wh (20Ah/51.2V DC)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,"About 10.6 kg",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,"6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,1,Charge Mode,"100V-120V~50/60Hz, 15A Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,2,AC Flash Charge,"About 1450W±50W @25°C",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,1,,"11V-16V⎓8A Max, Double 8A Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,2,,"16V-60V⎓12A, Double 21A Max / 400W Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,1,,"100V~50/60Hz, 15A, 1500W Rated (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,2,,"100V~50/60Hz, 7A, 700W Rated (-20°C to -10°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,"15A Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,1,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,2,,USB-C 100W output disabled (-20°C to -10°C),,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,3,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A,1,,"1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,dc12_port,DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,JE-1000F

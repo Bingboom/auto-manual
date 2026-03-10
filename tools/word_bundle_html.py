@@ -396,6 +396,7 @@ def _resolve_fragment_asset_path(src: str, source_path: Path) -> Path | None:
         probe_paths.extend(
             [
                 source_path.parent / raw_path,
+                source_path.parent.parent / raw_path,
                 paths.docs_dir / raw_path,
                 paths.root / raw_path,
             ]
