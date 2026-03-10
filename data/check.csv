@@ -1,0 +1,43 @@
+Category,Concept_CN,Term_EN,Typical User Scenario,Why It Matters,Notes
+Energy/Battery,容量,Capacity (Wh),露营时给灯+投影仪供电一整晚,决定设备能用多久,1000Wh≈1kWh
+Energy/Battery,电池类型,Battery Chemistry,比较不同品牌电源安全性和寿命,影响安全与寿命,常见 Li-ion / LiFePO4
+Energy/Battery,循环寿命,Cycle Life,每天充放电的家庭备用电源,决定长期耐用度,如3000 cycles to 80%
+Energy/Battery,电池管理系统,BMS,过充或过放时系统自动保护,保护电池安全,Battery Management System
+Energy/Battery,电池包,Battery Pack,电源内部储能模块,所有能量来源,由多节电芯组成
+
+AC Power,交流输出,AC Output,给电饭煲、电风扇、电脑供电,驱动家用电器,逆变器提供
+AC Power,额定功率,Rated Power,持续使用电磁炉或电水壶,决定能带多大设备,如1800W
+AC Power,峰值功率,Surge Power,冰箱或压缩机启动瞬间,决定启动能力,通常2倍额定功率
+AC Power,逆变器,Inverter,把电池DC转换为AC供电,AC供电核心模块,DC→AC
+AC Power,纯正弦波,Pure Sine Wave,给电脑或音响供电,保护精密设备,优于Modified Sine Wave
+
+Charging,交流输入,AC Input,在家用墙壁插座给电源充电,最常见充电方式,Wall charging
+Charging,AC充电功率,AC Charging Power,出门前快速充满电,决定充电速度,如800W或1800W
+Charging,车充输入,Car Input,开车途中补电,车载充电方式,12V/24V
+Charging,太阳能输入,Solar Input,露营使用太阳能板,离网供电方式,环保能源
+Charging,MPPT,Maximum Power Point Tracking,太阳能板效率最大化,提高太阳能充电效率,Solar controller
+
+USB/DC,USB-A接口,USB-A Port,给手机或相机充电,常见低功率接口,5V/2A等
+USB/DC,USB-C接口,USB-C Port,给笔记本或平板充电,高功率接口,PD协议
+USB/DC,USB PD协议,Power Delivery,给MacBook快速充电,支持高功率USB,USB-C快充标准
+USB/DC,PPS,Programmable Power Supply,给手机快充,动态调节电压,PD3.0
+USB/DC,AVS,Adjustable Voltage Supply,给高功率USB-C设备供电,支持更高电压档位,PD3.1
+
+System Functions,UPS,Uninterruptible Power Supply,停电时电脑不断电,家庭备用电源功能,自动切换
+System Functions,UPS切换时间,UPS Switching Time,停电瞬间切换供电,越小越好,如10ms
+System Functions,旁路模式,Bypass Mode,电源接市电时直接供电,减少转换损耗,AC passthrough
+System Functions,应急闪充,Emergency Charging,短时间快速充电,缩短充电时间,提高AC输入功率
+
+Solar System,太阳能板,Solar Panel,户外露营供电,可再生能源,光伏组件
+Solar System,太阳能输入功率,Solar Input Power,使用多块太阳能板,决定充电速度,如1200W
+Solar System,输入电压范围,Solar Voltage Range,接不同规格太阳能板,兼容性,如12-60V
+
+Monitoring,显示屏,Display,查看电量与输入输出功率,用户交互界面,LCD或LED
+Monitoring,输入功率,Input Power,查看当前充电功率,判断充电效率,单位W
+Monitoring,输出功率,Output Power,查看设备耗电,监控负载,单位W
+Monitoring,剩余时间,Remaining Runtime,判断还能用多久,帮助规划使用时间,估算值
+
+Physical,重量,Weight,露营搬运设备,便携性,kg
+Physical,尺寸,Dimensions,车载存放空间,安装空间,cm/mm
+Physical,工作温度,Operating Temperature,户外环境使用,可靠性,如-10~40°C
+Physical,防护等级,IP Rating,雨天或沙地环境使用,防尘防水,如IPX4
