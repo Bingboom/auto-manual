@@ -8,7 +8,13 @@ from pathlib import Path
 project = ""
 author = ""
 extensions: list[str] = []
-exclude_patterns = ["_build", "templates/*"]
+exclude_patterns = [
+    "_build",
+    "templates/*",
+    "*/*/page/*",
+    "*/*/index.rst",
+    "generated/*/*.rst",
+]
 
 # 默认入口（子类可覆盖）
 master_doc = "index"

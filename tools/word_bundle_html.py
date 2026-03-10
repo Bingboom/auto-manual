@@ -11,22 +11,9 @@ import struct
 from pathlib import Path
 from urllib.parse import unquote
 
-from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage, parse_config_pages_or_raise
+from tools.gen_index_bundle import MaterializedBundle, materialize_bundle
 from tools.phase1.renderers import rst_escape
-from tools.word_bundle_common import (
-    apply_rst_substitutions,
-    derive_word_title,
-    ensure_csv_page_rsts,
-    fill_product_name_from_spec_master,
-    load_rst_substitutions,
-    load_word_context,
-    paths,
-    pick_vars_map,
-    resolve_spec_master_substitutions,
-    resolve_config_path,
-    resolve_csv_include_rst_path,
-    resolve_reference_doc,
-)
+from tools.word_bundle_common import paths
 
 
 def _render_cover_html(title: str) -> str:
@@ -481,121 +468,25 @@ def build_word_bundle_html(
     cfg: dict,
     model: str | None,
     region: str | None,
+    *,
+    materialized_bundle: MaterializedBundle | None = None,
+    output_dir: Path | None = None,
 ) -> tuple[Path, Path | None]:
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    build_langs = list(build_cfg.get("languages", ["en"]))
-    pages_cfg = parse_config_pages_or_raise(
-        cfg.get("pages"),
-        default_languages=build_langs,
-        error_prefix="config.pages",
-    )
+    materialized = materialized_bundle or materialize_bundle(cfg, model, region)
+    title = materialized.title
+    reference_doc = materialized.reference_doc
 
-    builder = load_word_context(cfg, model, region)
-    ensure_csv_page_rsts(cfg, builder, model, region)
-    base_vars_map = pick_vars_map(model, region)
-    primary_lang = str(build_langs[0]) if build_langs else "en"
-    title_vars = fill_product_name_from_spec_master(
-        base_vars_map,
-        spec_master_csv=builder.paths.spec_master_csv,
-        model=model,
-        region=region,
-        lang=primary_lang,
-    )
-    base_substitutions = load_rst_substitutions(paths.docs_dir / "conf_base.py")
-    title_substitutions = {
-        **base_substitutions,
-        **resolve_spec_master_substitutions(
-            spec_master_csv=builder.paths.spec_master_csv,
-            model=model,
-            region=region,
-            lang=primary_lang,
-        ),
-    }
-    reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=paths.root)
-    title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
-
-    bundle_dir = paths.docs_build_dir / "word"
-    bundle_dir.mkdir(parents=True, exist_ok=True)
-    bundle_html = bundle_dir / "manual_bundle.html"
+    bundle_output_dir = output_dir or (paths.docs_build_dir / "word")
+    bundle_output_dir.mkdir(parents=True, exist_ok=True)
+    bundle_html = bundle_output_dir / "manual_bundle.html"
 
     body_parts: list[str] = []
-    started = False
-    cover_added = False
-
-    for page in pages_cfg:
-        if isinstance(page, CoverPdfPage):
-            if cover_added:
-                continue
-            body_parts.append(_render_cover_html(title))
-            cover_added = True
-            started = True
-            continue
-
-        if started:
+    for idx, rst_path in enumerate(materialized.page_paths):
+        if idx > 0:
             body_parts.append(_render_page_break_html())
-        started = True
-
-        if isinstance(page, CsvPage):
-            langs = list(page.langs) or build_langs
-            for idx, lang in enumerate(langs):
-                if idx > 0:
-                    body_parts.append(_render_page_break_html())
-                rst_path = resolve_csv_include_rst_path(page, str(lang), model, region)
-                if not rst_path.exists():
-                    raise RuntimeError(
-                        f"Missing generated RST for csv_page: {rst_path}. "
-                        "Run tools/phase1_build.py (or tools/build_docs.py) first."
-                    )
-                rst_text = rst_path.read_text(encoding="utf-8")
-                page_vars = fill_product_name_from_spec_master(
-                    base_vars_map,
-                    spec_master_csv=builder.paths.spec_master_csv,
-                    model=model,
-                    region=region,
-                    lang=str(lang),
-                )
-                page_substitutions = {
-                    **base_substitutions,
-                    **resolve_spec_master_substitutions(
-                        spec_master_csv=builder.paths.spec_master_csv,
-                        model=model,
-                        region=region,
-                        lang=str(lang),
-                    ),
-                }
-                rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
-                body_parts.append(_convert_rst_fragment_to_html(rst_text, rst_path, bundle_dir))
-            continue
-
-        if isinstance(page, RstIncludePage):
-            rst_path = resolve_config_path(paths.docs_dir, page.file, model, region)
-            rst_text = rst_path.read_text(encoding="utf-8")
-            page_lang = page.lang or primary_lang
-            page_vars = fill_product_name_from_spec_master(
-                base_vars_map,
-                spec_master_csv=builder.paths.spec_master_csv,
-                model=model,
-                region=region,
-                lang=page_lang,
-            )
-            page_substitutions = {
-                **base_substitutions,
-                **resolve_spec_master_substitutions(
-                    spec_master_csv=builder.paths.spec_master_csv,
-                    model=model,
-                    region=region,
-                    lang=page_lang,
-                ),
-            }
-            rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
-            body_parts.append(_convert_rst_fragment_to_html(rst_text, rst_path, bundle_dir))
-            continue
-
-        if isinstance(page, PdfInsertPage):
-            raise RuntimeError("word bundle does not support pdf_insert pages")
-
-        raise RuntimeError(f"Unsupported page type for word bundle: {type(page).__name__}")
+        rst_text = rst_path.read_text(encoding="utf-8")
+        html_fragment = _convert_rst_fragment_to_html(rst_text, rst_path, bundle_output_dir)
+        body_parts.append(html_fragment or "<div></div>")
 
     html_doc = "".join(
         [

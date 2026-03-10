@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -14,10 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.config_pages import CsvPage, parse_config_pages_or_raise
+from tools.gen_index_bundle import MaterializedBundle, materialize_bundle
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
-from tools.utils.tex_utils import compile_xelatex  # noqa: E402
-from tools.config_pages import CsvPage, parse_config_pages_or_raise
 from tools.utils.spec_master import (
     resolve_product_name_from_spec_master,
     resolve_template_substitutions_from_spec_master,
@@ -27,6 +29,7 @@ from tools.utils.targets import (
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
 )
+from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
 from tools.word_bundle_common import load_rst_substitutions  # noqa: E402
 
@@ -34,6 +37,8 @@ from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
 
 paths = get_paths()
+VALID_FORMATS = {"html", "word", "pdf"}
+VALID_PDF_MODES = {"latex", "word"}
 
 
 def load_config(cfg_path: Path) -> dict:
@@ -235,14 +240,104 @@ def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
     return [sys.executable, "-m", "sphinx", "-b", builder]
 
 
-def sphinx_build_html(
+def _load_configured_html_theme(conf_base_path: Path) -> str | None:
+    if not conf_base_path.exists():
+        return None
+    for line in conf_base_path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("html_theme"):
+            continue
+        _, _, raw = stripped.partition("=")
+        value = raw.split("#", 1)[0].strip().strip("\"'")
+        return value or None
+    return None
+
+
+def _should_use_minimal_html_theme(conf_dir: Path, requested_minimal: bool) -> bool:
+    if requested_minimal:
+        return True
+    theme_name = _load_configured_html_theme(conf_dir / "conf_base.py")
+    if not theme_name or theme_name in {"alabaster", "classic", "basic"}:
+        return False
+    if importlib.util.find_spec(theme_name) is not None:
+        return False
+    print(f"[build] HTML theme '{theme_name}' not available, fallback to alabaster")
+    return True
+
+
+def _target_component(value: str | None, fallback: str) -> str:
+    text = (value or "").strip() or fallback
+    return text.replace("/", "_").replace("\\", "_").replace(":", "_")
+
+
+def build_root_for_target(model: str | None, region: str | None) -> Path:
+    return paths.docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
+
+
+def _parse_csv_values(raw: str) -> list[str]:
+    items = [item.strip().lower() for item in raw.split(",")]
+    return [item for item in items if item]
+
+
+def resolve_requested_formats(cfg: dict, cli_formats: str | None) -> list[str]:
+    if cli_formats and cli_formats.strip():
+        formats = _parse_csv_values(cli_formats)
+    else:
+        build_cfg_raw = cfg.get("build", {})
+        build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+        configured = build_cfg.get("formats")
+        if isinstance(configured, str) and configured.strip():
+            formats = _parse_csv_values(configured)
+        elif isinstance(configured, list):
+            formats = [str(item).strip().lower() for item in configured if str(item).strip()]
+        else:
+            formats = []
+            if bool(build_cfg.get("build_html", False)):
+                formats.append("html")
+            if bool(build_cfg.get("build_word", False)):
+                formats.append("word")
+            if not formats:
+                formats.append("pdf")
+
+    unknown = sorted(set(formats) - VALID_FORMATS)
+    if unknown:
+        raise RuntimeError(f"Unsupported formats: {', '.join(unknown)}")
+    return list(dict.fromkeys(formats))
+
+
+def resolve_pdf_mode(cfg: dict, cli_pdf_mode: str | None) -> str:
+    if cli_pdf_mode and cli_pdf_mode.strip():
+        mode = cli_pdf_mode.strip().lower()
+    else:
+        pdf_cfg_raw = cfg.get("pdf", {})
+        pdf_cfg = pdf_cfg_raw if isinstance(pdf_cfg_raw, dict) else {}
+        mode = str(pdf_cfg.get("mode", "latex")).strip().lower()
+    if mode not in VALID_PDF_MODES:
+        raise RuntimeError(f"Unsupported pdf mode: {mode}")
+    return mode
+
+
+def resolve_output_path(base_dir: Path, configured_name: str) -> Path:
+    out_path = Path(configured_name)
+    if out_path.is_absolute():
+        return out_path
+    return base_dir / out_path
+
+
+def sphinx_build(
+    builder: str,
+    *,
+    src_dir: Path,
+    out_dir: Path,
+    conf_dir: Path,
     minimal_theme: bool = False,
     substitutions: dict[str, str] | None = None,
 ) -> None:
-    print("[build] Sphinx -> HTML")
-    cmd = _resolve_sphinx_build_cmd("html") + [".", "_build/html"]
-    if minimal_theme:
-        # Built-in theme path for HTML->DOCX conversion, avoids optional third-party theme dependency.
+    print(f"[build] Sphinx -> {builder.upper()}")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    actual_minimal_theme = _should_use_minimal_html_theme(conf_dir, minimal_theme) if builder == "html" else False
+    cmd = _resolve_sphinx_build_cmd(builder) + [str(src_dir), str(out_dir), "-c", str(conf_dir)]
+    if builder == "html" and actual_minimal_theme:
         cmd += [
             "-D",
             "html_theme=alabaster",
@@ -252,37 +347,37 @@ def sphinx_build_html(
             "html_js_files=[]",
         ]
     cmd = _with_rst_epilog(cmd, substitutions)
-    run(cmd, cwd=paths.docs_dir)
+    run(cmd, cwd=paths.root)
 
 
-def sphinx_build_latex(substitutions: dict[str, str] | None = None) -> None:
-    print("[build] Sphinx -> LaTeX")
-    cmd = _with_rst_epilog(
-        _resolve_sphinx_build_cmd("latex") + [".", "_build/latex"],
-        substitutions,
-    )
-    run(cmd, cwd=paths.docs_dir)
-
-
-def patch_fonts(patch_fonts_script: str, main_tex: str) -> None:
+def patch_fonts(patch_fonts_script: str, main_tex: str, *, build_dir: Path) -> None:
     print("[build] Patch fonts (inject fonts.tex)")
-    run([sys.executable, patch_fonts_script, "--tex", main_tex], cwd=paths.root)
+    run(
+        [
+            sys.executable,
+            patch_fonts_script,
+            "--tex",
+            main_tex,
+            "--build-dir",
+            str(build_dir),
+        ],
+        cwd=paths.root,
+    )
 
 
-def export_word_from_latex(main_tex: str, word_output: str) -> Path:
+def export_word_from_latex(
+    tex_path: Path,
+    *,
+    resource_dir: Path,
+    out_path: Path,
+) -> Path:
     pandoc = shutil.which("pandoc")
     if not pandoc:
         raise RuntimeError("pandoc is required for Word export. Please install pandoc first.")
-
-    tex_path = paths.main_tex(main_tex)
     if not tex_path.exists():
         raise RuntimeError(f"LaTeX source not found for Word export: {tex_path}")
 
-    out_path = Path(word_output)
-    if not out_path.is_absolute():
-        out_path = paths.docs_build_dir / "word" / out_path
     out_path.parent.mkdir(parents=True, exist_ok=True)
-
     print("[build] Convert LaTeX -> DOCX")
     run(
         [
@@ -291,7 +386,7 @@ def export_word_from_latex(main_tex: str, word_output: str) -> Path:
             "--from=latex",
             "--to=docx",
             "--resource-path",
-            str(paths.latex_build_dir),
+            str(resource_dir),
             "-o",
             str(out_path),
         ],
@@ -300,20 +395,18 @@ def export_word_from_latex(main_tex: str, word_output: str) -> Path:
     return out_path
 
 
-def export_word_from_html(word_output: str) -> Path:
+def export_word_from_html(
+    html_index: Path,
+    *,
+    out_path: Path,
+) -> Path:
     pandoc = shutil.which("pandoc")
     if not pandoc:
         raise RuntimeError("pandoc is required for Word export. Please install pandoc first.")
-
-    html_index = paths.docs_dir / "_build" / "html" / "index.html"
     if not html_index.exists():
         raise RuntimeError(f"HTML source not found for Word export: {html_index}")
 
-    out_path = Path(word_output)
-    if not out_path.is_absolute():
-        out_path = paths.docs_build_dir / "word" / out_path
     out_path.parent.mkdir(parents=True, exist_ok=True)
-
     print("[build] Convert HTML -> DOCX")
     run(
         [
@@ -331,13 +424,103 @@ def export_word_from_html(word_output: str) -> Path:
     return out_path
 
 
+def export_pdf_from_docx_via_word(docx_path: Path, pdf_path: Path) -> Path:
+    if not sys.platform.startswith("win"):
+        raise RuntimeError("pdf mode 'word' is supported on Windows only")
+    if not docx_path.exists():
+        raise RuntimeError(f"DOCX source not found for PDF export: {docx_path}")
+
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    docx_literal = str(docx_path).replace("'", "''")
+    pdf_literal = str(pdf_path).replace("'", "''")
+    script = f"""
+$ErrorActionPreference = 'Stop'
+$docxPath = '{docx_literal}'
+$pdfPath = '{pdf_literal}'
+$word = $null
+$doc = $null
+$wdFormatPDF = 17
+try {{
+    $word = New-Object -ComObject Word.Application
+    $word.Visible = $false
+    $doc = $word.Documents.Open($docxPath, $false, $true)
+    $doc.SaveAs([ref]$pdfPath, [ref]$wdFormatPDF)
+}} finally {{
+    if ($doc) {{
+        $doc.Close([ref]$false)
+    }}
+    if ($word) {{
+        $word.Quit()
+    }}
+}}
+"""
+    subprocess.run(
+        [
+            "powershell",
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command",
+            script,
+        ],
+        check=True,
+        cwd=str(paths.root),
+    )
+    return pdf_path
+
+
+def ensure_target_identity(
+    cfg: dict,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> None:
+    if not model:
+        return
+    product_name = resolve_product_name_for_build(
+        cfg,
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    if product_name:
+        return
+    spec_master_csv = _resolve_spec_master_csv_path(cfg)
+    raise RuntimeError(
+        "Failed to resolve Product Name from Spec_Master.csv for "
+        f"model='{model}', region='{region or ''}', lang='{lang}'. "
+        f"Source: {spec_master_csv}"
+    )
+
+
+def prepare_manual_bundle(
+    cfg: dict,
+    *,
+    model: str | None,
+    region: str | None,
+) -> MaterializedBundle:
+    render_csv_pages(cfg, model=model, region=region)
+
+    doc_type = cfg.get("doc_type", "manual_bundle")
+    if doc_type != "manual_bundle":
+        raise RuntimeError(f"Unsupported doc_type: {doc_type}")
+
+    bundle = materialize_bundle(cfg, model=model, region=region)
+    print(f"[build] Prepared bundle: {bundle.bundle_dir}")
+    return bundle
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
     ap.add_argument("--model", default=None, help="Target product model for spec filtering")
     ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
+    ap.add_argument("--formats", default=None, help="Comma-separated outputs: html,word,pdf")
+    ap.add_argument("--pdf-mode", default=None, help="PDF backend: latex or word")
+    ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
-    ap.add_argument("--no-open", action="store_true", help="Do not open PDF after build (override config)")
+    ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
     args = ap.parse_args()
 
     cfg_path = Path(args.config)
@@ -345,8 +528,10 @@ def main() -> None:
         cfg_path = paths.root / cfg_path
 
     cfg = load_config(cfg_path)
-    build_cfg = cfg.get("build", {})
-    tools_cfg = cfg.get("tools", {})
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    tools_cfg_raw = cfg.get("tools", {})
+    tools_cfg = tools_cfg_raw if isinstance(tools_cfg_raw, dict) else {}
 
     print("[build] validating config...")
     validate_loaded_config(cfg)
@@ -355,105 +540,159 @@ def main() -> None:
     layout_csv = cfg.get("paths", {}).get("layout_params_csv")
     if not layout_csv:
         raise RuntimeError("config missing paths.layout_params_csv")
-
     validate_layout_csv(paths.root / layout_csv)
-
-    main_tex = build_cfg.get("main_tex", "manual_demo.tex")
-    output_pdf = build_cfg.get("output_pdf", "manual_demo.pdf")
-    xelatex_runs = int(build_cfg.get("xelatex_runs", 3))
-    open_after = bool(build_cfg.get("open_pdf", True)) and (not args.no_open)
-    build_word = bool(build_cfg.get("build_word", False))
-    word_output = str(build_cfg.get("word_output", "manual_demo.docx"))
-    word_source = str(build_cfg.get("word_source", "latex")).strip().lower()
-    open_word = bool(build_cfg.get("open_word", False)) and (not args.no_open)
-
-    patch_fonts_script = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
 
     if args.clean:
         clean_build_dir()
 
     target_model = resolve_build_model(cfg, args.model)
     target_region = resolve_build_region(cfg, args.region)
-    needs_model_token = _config_uses_model_token(cfg)
-    needs_region_token = _config_uses_region_token(cfg)
-    if needs_model_token and not target_model:
+    if _config_uses_model_token(cfg) and not target_model:
         raise RuntimeError("config uses '{model}' but no --model was provided and build.default_model is empty")
-    if needs_region_token and not target_region:
+    if _config_uses_region_token(cfg) and not target_region:
         raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
 
     build_langs = list(build_cfg.get("languages", ["en"]))
     primary_lang = str(build_langs[0]) if build_langs else "en"
-    product_name = resolve_product_name_for_build(
-        cfg,
-        model=target_model,
-        region=target_region,
-        lang=primary_lang,
-    )
-    if target_model and not product_name:
-        spec_master_csv = _resolve_spec_master_csv_path(cfg)
-        raise RuntimeError(
-            "Failed to resolve Product Name from Spec_Master.csv for "
-            f"model='{target_model}', region='{target_region or ''}', lang='{primary_lang}'. "
-            f"Source: {spec_master_csv}"
-        )
-    rst_substitutions = resolve_rst_substitutions_for_build(
+    ensure_target_identity(
         cfg,
         model=target_model,
         region=target_region,
         lang=primary_lang,
     )
 
-    render_csv_pages(cfg, model=target_model, region=target_region)
+    bundle = prepare_manual_bundle(
+        cfg,
+        model=target_model,
+        region=target_region,
+    )
+    if args.prepare_only:
+        return
 
-    doc_type = cfg.get("doc_type", "manual_bundle")
-    if doc_type == "manual_bundle":
-        index_cmd = [sys.executable, "tools/gen_index_bundle.py", "--config", str(cfg_path)]
-        if target_model:
-            index_cmd += ["--model", target_model]
-        if target_region:
-            index_cmd += ["--region", target_region]
-        run(index_cmd, cwd=paths.root)
-    else:
-        raise RuntimeError(f"Unsupported doc_type: {doc_type}")
+    requested_formats = resolve_requested_formats(cfg, args.formats)
+    pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
 
-    build_html = bool(build_cfg.get("build_html", False))
+    main_tex = str(build_cfg.get("main_tex", "manual_demo.tex"))
+    output_pdf_name = str(build_cfg.get("output_pdf", "manual_demo.pdf"))
+    xelatex_runs = int(build_cfg.get("xelatex_runs", 3))
+    word_output_name = str(build_cfg.get("word_output", "manual_demo.docx"))
+    word_source = str(build_cfg.get("word_source", "bundle")).strip().lower()
+    patch_fonts_script = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
+
     open_html = bool(build_cfg.get("open_html", False)) and (not args.no_open)
+    open_word = bool(build_cfg.get("open_word", False)) and (not args.no_open)
+    open_pdf = bool(build_cfg.get("open_pdf", False)) and (not args.no_open)
 
-    if build_html:
-        sphinx_build_html(substitutions=rst_substitutions)
+    build_root = build_root_for_target(target_model, target_region)
+    html_out_dir = build_root / "html"
+    word_out_dir = build_root / "word"
+    pdf_out_dir = build_root / "pdf"
+    latex_out_dir = build_root / "latex"
 
-    if build_word and word_source == "html" and not build_html:
-        sphinx_build_html(minimal_theme=True, substitutions=rst_substitutions)
+    html_built = False
+    latex_built = False
+    docx_path: Path | None = None
 
-    sphinx_build_latex(substitutions=rst_substitutions)
-    patch_fonts(patch_fonts_script, main_tex)
-    compile_xelatex(main_tex, xelatex_runs, cwd=paths.latex_build_dir)
+    if "html" in requested_formats or word_source == "html":
+        sphinx_build(
+            "html",
+            src_dir=bundle.bundle_dir,
+            out_dir=html_out_dir,
+            conf_dir=paths.docs_dir,
+            minimal_theme=("html" not in requested_formats and word_source == "html"),
+        )
+        html_built = True
 
-    pdf_path = paths.output_pdf(output_pdf)
-    if not pdf_path.exists():
-        raise RuntimeError(f"PDF not found: {pdf_path}")
-
-    print(f"[build] Done. PDF: {pdf_path}")
-    if open_after:
-        open_file(pdf_path)
-
-    if build_word:
-        if word_source == "html":
-            docx_path = export_word_from_html(word_output)
+    if "word" in requested_formats or ("pdf" in requested_formats and pdf_mode == "word"):
+        word_target_path = resolve_output_path(word_out_dir, word_output_name)
+        if word_source == "bundle":
+            docx_path = export_word_from_bundle(
+                cfg,
+                target_model,
+                target_region,
+                str(word_target_path),
+                materialized_bundle=bundle,
+                output_dir=word_target_path.parent,
+            )
+        elif word_source == "html":
+            if not html_built:
+                sphinx_build(
+                    "html",
+                    src_dir=bundle.bundle_dir,
+                    out_dir=html_out_dir,
+                    conf_dir=paths.docs_dir,
+                    minimal_theme=True,
+                )
+                html_built = True
+            docx_path = export_word_from_html(
+                html_out_dir / "index.html",
+                out_path=word_target_path,
+            )
         elif word_source == "latex":
-            docx_path = export_word_from_latex(main_tex, word_output)
-        elif word_source == "bundle":
-            docx_path = export_word_from_bundle(cfg, target_model, target_region, word_output)
+            if not latex_built:
+                sphinx_build(
+                    "latex",
+                    src_dir=bundle.bundle_dir,
+                    out_dir=latex_out_dir,
+                    conf_dir=paths.docs_dir,
+                )
+                patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
+                compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)
+                latex_built = True
+            docx_path = export_word_from_latex(
+                latex_out_dir / main_tex,
+                resource_dir=latex_out_dir,
+                out_path=word_target_path,
+            )
         else:
-            raise RuntimeError("build.word_source must be one of 'latex', 'html', or 'bundle'")
+            raise RuntimeError("build.word_source must be one of 'bundle', 'html', or 'latex'")
+
         print(f"[build] Done. DOCX: {docx_path}")
-        if open_word:
+        if "word" in requested_formats and open_word and docx_path.exists():
             open_file(docx_path)
 
-    if build_html and open_html:
-        index_html = paths.docs_dir / "_build" / "html" / "index.html"
-        if index_html.exists():
-            open_file(index_html)
+    if "pdf" in requested_formats:
+        if pdf_mode == "latex":
+            if not latex_built:
+                sphinx_build(
+                    "latex",
+                    src_dir=bundle.bundle_dir,
+                    out_dir=latex_out_dir,
+                    conf_dir=paths.docs_dir,
+                )
+                patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
+                compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)
+                latex_built = True
+            latex_pdf = latex_out_dir / output_pdf_name
+            if not latex_pdf.exists():
+                raise RuntimeError(f"PDF not found after LaTeX build: {latex_pdf}")
+            pdf_target_path = resolve_output_path(pdf_out_dir, output_pdf_name)
+            pdf_target_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(latex_pdf, pdf_target_path)
+            pdf_path = pdf_target_path
+        else:
+            if docx_path is None:
+                temp_docx_path = resolve_output_path(word_out_dir, word_output_name)
+                docx_path = export_word_from_bundle(
+                    cfg,
+                    target_model,
+                    target_region,
+                    str(temp_docx_path),
+                    materialized_bundle=bundle,
+                    output_dir=temp_docx_path.parent,
+                )
+            pdf_target_path = resolve_output_path(pdf_out_dir, output_pdf_name)
+            pdf_path = export_pdf_from_docx_via_word(docx_path, pdf_target_path)
+
+        print(f"[build] Done. PDF: {pdf_path}")
+        if open_pdf and pdf_path.exists():
+            open_file(pdf_path)
+
+    if "html" in requested_formats:
+        html_index = html_out_dir / "index.html"
+        print(f"[build] Done. HTML: {html_index}")
+        if open_html and html_index.exists():
+            open_file(html_index)
 
 
 if __name__ == "__main__":

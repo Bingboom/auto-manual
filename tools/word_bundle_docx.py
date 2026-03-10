@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import unquote
 from xml.etree import ElementTree as ET
 
+from tools.gen_index_bundle import MaterializedBundle
 from tools.word_bundle_common import paths
 from tools.word_bundle_html import build_word_bundle_html
 
@@ -357,12 +358,23 @@ def export_word_from_bundle(
     model: str | None,
     region: str | None,
     word_output: str,
+    *,
+    materialized_bundle: MaterializedBundle | None = None,
+    output_dir: Path | None = None,
 ) -> Path:
-    bundle_html, reference_doc = build_word_bundle_html(cfg, model, region)
+    bundle_output_dir = output_dir
+    bundle_html, reference_doc = build_word_bundle_html(
+        cfg,
+        model,
+        region,
+        materialized_bundle=materialized_bundle,
+        output_dir=bundle_output_dir,
+    )
 
     out_path = Path(word_output)
     if not out_path.is_absolute():
-        out_path = paths.docs_build_dir / "word" / out_path
+        out_root = bundle_output_dir or (paths.docs_build_dir / "word")
+        out_path = out_root / out_path
 
     _export_docx_via_word(bundle_html, out_path, reference_doc)
     _embed_external_docx_images(out_path)

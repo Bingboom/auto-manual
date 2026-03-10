@@ -4,7 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import html
+import os
+import re
+import shutil
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +30,47 @@ from tools.utils.targets import (
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
 )
+from tools.word_bundle_common import (  # noqa: E402
+    apply_rst_substitutions,
+    derive_word_title,
+    ensure_csv_page_rsts,
+    fill_product_name_from_spec_master,
+    load_rst_substitutions,
+    load_word_context,
+    pick_vars_map,
+    resolve_config_path,
+    resolve_reference_doc,
+    resolve_spec_master_substitutions,
+)
+
+paths = get_paths()
+
+_RST_ASSET_DIRECTIVE_RE = re.compile(
+    r"^(\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:image|figure)::\s+)(\S+)(\s*)$",
+    re.MULTILINE,
+)
+_HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
+_INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
+
+
+@dataclass(frozen=True)
+class PlannedPage:
+    page: ConfigPage
+    lang: str | None
+    file_name: str
+
+
+@dataclass(frozen=True)
+class MaterializedBundle:
+    bundle_dir: Path
+    page_dir: Path
+    index_path: Path
+    wrapper_index_path: Path
+    page_paths: tuple[Path, ...]
+    title: str
+    reference_doc: Path | None
+    model: str | None
+    region: str | None
 
 
 def load_config(cfg_path: Path) -> dict:
@@ -83,19 +129,171 @@ def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
     return resolve_target_region(cfg, arg_region)
 
 
-def _csv_include_path(
+def _build_langs(cfg: dict) -> list[str]:
+    langs = cfg.get("build", {}).get("languages", ["en"])
+    return list(langs)
+
+
+def _bundle_component(value: str | None, fallback: str) -> str:
+    text = (value or "").strip() or fallback
+    return text.replace("/", "_").replace("\\", "_").replace(":", "_")
+
+
+def bundle_dir_for_target(
+    *,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    return docs_dir / _bundle_component(model, "_shared") / _bundle_component(region, "_default")
+
+
+def _resolve_spec_master_csv_path(
+    cfg: dict,
+    *,
+    repo_root: Path,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    paths_cfg_raw = cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get("spec_master_csv")
+    if isinstance(raw, str) and raw.strip():
+        return resolve_config_path(repo_root, raw.strip(), model, region)
+    return repo_root / "data" / "phase1" / "Spec_Master.csv"
+
+
+def _resolve_csv_rst_path(
+    *,
+    docs_dir: Path,
     page: CsvPage,
     lang: str,
     model: str | None,
     region: str | None,
-) -> str:
-    include_dir = page.include_dir
-    page_name = page.page
-    if include_dir is None:
-        return f"{page_name}_{lang}.rst"
+) -> Path:
+    if page.include_dir is None:
+        rel = f"{page.page}_{lang}.rst"
+    else:
+        rel = str(Path(_format_tokenized(page.include_dir, model, region)) / f"{page.page}_{lang}.rst")
+    return docs_dir / rel
 
-    rendered_dir = _format_tokenized(include_dir, model, region)
-    return str(Path(rendered_dir) / f"{page_name}_{lang}.rst").replace("\\", "/")
+
+def _base_file_name_for_plan(
+    page: ConfigPage,
+    *,
+    lang: str | None,
+    model: str | None,
+    region: str | None,
+) -> str:
+    if isinstance(page, CoverPdfPage):
+        return "cover.rst"
+    if isinstance(page, CsvPage):
+        assert lang is not None
+        return f"{page.page}_{lang}.rst"
+    if isinstance(page, PdfInsertPage):
+        assert lang is not None
+        pdf_path = _format_tokenized(page.file_map[lang], model, region)
+        stem = Path(pdf_path).stem or "pdf_insert"
+        return f"{stem}_{lang}.rst"
+    if isinstance(page, RstIncludePage):
+        rst_path = _format_tokenized(page.file, model, region)
+        name = Path(rst_path).name
+        return name if name.lower().endswith(".rst") else f"{name}.rst"
+    raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
+
+
+def _ensure_unique_name(file_name: str, seen: set[str], ordinal: int) -> str:
+    if file_name not in seen:
+        seen.add(file_name)
+        return file_name
+
+    prefixed = f"p{ordinal:02d}_{file_name}"
+    if prefixed not in seen:
+        seen.add(prefixed)
+        return prefixed
+
+    seq = 2
+    stem = Path(file_name).stem
+    suffix = Path(file_name).suffix
+    while True:
+        candidate = f"p{ordinal:02d}_{stem}_{seq}{suffix}"
+        if candidate not in seen:
+            seen.add(candidate)
+            return candidate
+        seq += 1
+
+
+def plan_materialized_pages(
+    cfg: dict,
+    model: str | None = None,
+    region: str | None = None,
+) -> list[PlannedPage]:
+    langs = _build_langs(cfg)
+    pages = parse_config_pages_or_raise(
+        cfg.get("pages"),
+        default_languages=langs,
+        error_prefix="config.pages",
+    )
+
+    planned: list[PlannedPage] = []
+    seen_names: set[str] = set()
+
+    for ordinal, page in enumerate(pages, start=1):
+        if isinstance(page, CoverPdfPage):
+            base_name = _base_file_name_for_plan(page, lang=None, model=model, region=region)
+            planned.append(
+                PlannedPage(
+                    page=page,
+                    lang=None,
+                    file_name=_ensure_unique_name(base_name, seen_names, ordinal),
+                )
+            )
+            continue
+
+        if isinstance(page, PdfInsertPage):
+            page_langs = list(page.langs) or langs
+            for lang in page_langs:
+                if lang not in page.file_map:
+                    raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
+                base_name = _base_file_name_for_plan(page, lang=lang, model=model, region=region)
+                planned.append(
+                    PlannedPage(
+                        page=page,
+                        lang=lang,
+                        file_name=_ensure_unique_name(base_name, seen_names, ordinal),
+                    )
+                )
+            continue
+
+        if isinstance(page, CsvPage):
+            page_langs = list(page.langs) or langs
+            if page.include_dir:
+                _format_tokenized(page.include_dir, model, region)
+            for lang in page_langs:
+                base_name = _base_file_name_for_plan(page, lang=lang, model=model, region=region)
+                planned.append(
+                    PlannedPage(
+                        page=page,
+                        lang=lang,
+                        file_name=_ensure_unique_name(base_name, seen_names, ordinal),
+                    )
+                )
+            continue
+
+        if isinstance(page, RstIncludePage):
+            base_name = _base_file_name_for_plan(page, lang=page.lang, model=model, region=region)
+            planned.append(
+                PlannedPage(
+                    page=page,
+                    lang=page.lang,
+                    file_name=_ensure_unique_name(base_name, seen_names, ordinal),
+                )
+            )
+            continue
+
+        raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
+
+    return planned
 
 
 def build_index_from_pages(
@@ -103,54 +301,401 @@ def build_index_from_pages(
     model: str | None = None,
     region: str | None = None,
 ) -> str:
-    langs = cfg.get("build", {}).get("languages", ["en", "fr", "es"])
-    langs = list(langs)
+    lines: list[str] = []
+    for planned in plan_materialized_pages(cfg, model=model, region=region):
+        lines.extend([f".. include:: page/{planned.file_name}", ""])
+    return "\n".join(lines) + "\n"
 
-    pages: list[ConfigPage] = parse_config_pages_or_raise(
-        cfg.get("pages"),
-        default_languages=langs,
-        error_prefix="config.pages",
-    )
 
-    out: list[str] = []
-    saw_cover = False
+def build_wrapper_index_text(
+    *,
+    docs_dir: Path,
+    bundle_dir: Path,
+    planned_pages: list[PlannedPage],
+) -> str:
+    lines = [".. Auto-generated by tools/gen_index_bundle.py. Do not edit directly.", ""]
+    bundle_rel = bundle_dir.relative_to(docs_dir).as_posix()
+    for planned in planned_pages:
+        lines.extend([f".. include:: {bundle_rel}/page/{planned.file_name}", ""])
+    return "\n".join(lines)
 
-    for page in pages:
-        if isinstance(page, CoverPdfPage):
-            out += latex_cover_block(_format_tokenized(page.file, model, region))
-            saw_cover = True
 
-        elif isinstance(page, PdfInsertPage):
-            file_map = page.file_map
-            plangs = list(page.langs) or langs
+def read_included_page_paths(index_path: Path) -> list[Path]:
+    out: list[Path] = []
+    for line in index_path.read_text(encoding="utf-8").splitlines():
+        match = _INCLUDE_RE.match(line)
+        if not match:
+            continue
+        out.append((index_path.parent / match.group(1)).resolve())
+    return out
 
-            for lang in plangs:
-                if lang not in file_map:
-                    raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
-                out += latex_overview_block(_format_tokenized(file_map[lang], model, region))
 
-        elif isinstance(page, CsvPage):
-            plangs = list(page.langs) or langs
+def _is_external_path(value: str) -> bool:
+    token = value.strip()
+    if not token:
+        return True
+    lowered = token.lower()
+    return lowered.startswith(("http://", "https://", "data:", "file://", "mailto:", "#")) or Path(token).is_absolute()
 
-            for lang in plangs:
-                out += latex_apply_lang(lang)
-                include_path = _csv_include_path(page, lang, model, region)
-                out += [f".. include:: {include_path}", ""]
 
-        elif isinstance(page, RstIncludePage):
-            if page.lang:
-                out += latex_apply_lang(page.lang)
-            out += [f".. include:: {_format_tokenized(page.file, model, region)}", ""]
+def _resolve_rst_asset_path(
+    raw_value: str,
+    *,
+    source_path: Path,
+    docs_dir: Path,
+    repo_root: Path,
+) -> Path | None:
+    token = raw_value.strip()
+    if not token or _is_external_path(token):
+        return None
 
-        else:
-            raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
+    raw_path = Path(token)
+    probe_paths = [
+        source_path.parent / raw_path,
+        docs_dir / raw_path,
+        repo_root / raw_path,
+    ]
 
-    # Safety: if no cover was specified, still start numbering when document starts.
-    if not saw_cover:
-        # Not enforced; just a hint for future.
+    for probe in probe_paths:
+        if probe.exists() and probe.is_file():
+            return probe.resolve()
+    return None
+
+
+def _bundle_asset_target_path(
+    resolved: Path,
+    *,
+    bundle_dir: Path,
+    docs_dir: Path,
+    repo_root: Path,
+) -> Path:
+    try:
+        rel = resolved.relative_to(docs_dir)
+        return bundle_dir / rel
+    except ValueError:
         pass
 
-    return "\n".join(out) + "\n"
+    try:
+        rel = resolved.relative_to(repo_root)
+        return bundle_dir / "_repo_assets" / rel
+    except ValueError:
+        pass
+
+    return bundle_dir / "_external_assets" / resolved.name
+
+
+def _stage_bundle_asset(
+    resolved: Path,
+    *,
+    bundle_dir: Path,
+    docs_dir: Path,
+    repo_root: Path,
+) -> Path:
+    target = _bundle_asset_target_path(
+        resolved,
+        bundle_dir=bundle_dir,
+        docs_dir=docs_dir,
+        repo_root=repo_root,
+    )
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if not target.exists():
+        shutil.copy2(resolved, target)
+    return target
+
+
+def _rewrite_single_asset_path(
+    raw_value: str,
+    *,
+    source_path: Path,
+    target_path: Path,
+    bundle_dir: Path,
+    docs_dir: Path,
+    repo_root: Path,
+) -> str:
+    token = raw_value.strip()
+    if not token or _is_external_path(token):
+        return raw_value
+
+    resolved = _resolve_rst_asset_path(
+        raw_value,
+        source_path=source_path,
+        docs_dir=docs_dir,
+        repo_root=repo_root,
+    )
+    if resolved is None:
+        return raw_value
+
+    staged = _stage_bundle_asset(
+        resolved,
+        bundle_dir=bundle_dir,
+        docs_dir=docs_dir,
+        repo_root=repo_root,
+    )
+    return Path(os.path.relpath(staged, start=target_path.parent)).as_posix()
+
+
+def rewrite_rst_asset_paths(
+    text: str,
+    *,
+    source_path: Path,
+    target_path: Path,
+    bundle_dir: Path,
+    docs_dir: Path,
+    repo_root: Path,
+) -> str:
+    def replace_directive(match: re.Match[str]) -> str:
+        prefix, raw_value, suffix = match.groups()
+        rewritten = _rewrite_single_asset_path(
+            raw_value,
+            source_path=source_path,
+            target_path=target_path,
+            bundle_dir=bundle_dir,
+            docs_dir=docs_dir,
+            repo_root=repo_root,
+        )
+        return f"{prefix}{rewritten}{suffix}"
+
+    def replace_html_src(match: re.Match[str]) -> str:
+        prefix, raw_value, suffix = match.groups()
+        rewritten = _rewrite_single_asset_path(
+            raw_value,
+            source_path=source_path,
+            target_path=target_path,
+            bundle_dir=bundle_dir,
+            docs_dir=docs_dir,
+            repo_root=repo_root,
+        )
+        return f"{prefix}{rewritten}{suffix}"
+
+    out = _RST_ASSET_DIRECTIVE_RE.sub(replace_directive, text)
+    return _HTML_SRC_RE.sub(replace_html_src, out)
+
+
+def _prepend_latex_lang(text: str, lang: str | None) -> str:
+    body = text if text.endswith("\n") else f"{text}\n"
+    if not (lang or "").strip():
+        return body
+    return "\n".join(latex_apply_lang(lang)) + "\n" + body
+
+
+def _render_cover_page_rst(title: str, file_name: str) -> str:
+    title_html = html.escape(title)
+    return "\n".join(
+        [
+            ".. only:: html",
+            "",
+            "   .. raw:: html",
+            "",
+            f"      <section class=\"manual-cover\"><div class=\"cover-title\">{title_html}</div></section>",
+            "",
+            ".. only:: latex",
+            "",
+            *("   " + line if line else "" for line in latex_cover_block(file_name)),
+            "",
+        ]
+    )
+
+
+def _render_pdf_insert_page_rst(file_name: str, lang: str) -> str:
+    return "\n".join(
+        [
+            ".. only:: html",
+            "",
+            "   .. raw:: html",
+            "",
+            "      <div class=\"manual-pdf-insert\"></div>",
+            "",
+            ".. only:: latex",
+            "",
+            *("   " + line if line else "" for line in (latex_apply_lang(lang) + latex_overview_block(file_name))),
+            "",
+        ]
+    )
+
+
+def _materialize_planned_page(
+    planned: PlannedPage,
+    *,
+    cfg: dict,
+    target_path: Path,
+    bundle_dir: Path,
+    docs_dir: Path,
+    repo_root: Path,
+    spec_master_csv: Path,
+    base_substitutions: dict[str, str],
+    base_vars_map: dict[str, str],
+    primary_lang: str,
+    title: str,
+    model: str | None,
+    region: str | None,
+) -> str:
+    page = planned.page
+
+    if isinstance(page, CoverPdfPage):
+        return _render_cover_page_rst(title, _format_tokenized(page.file, model, region))
+
+    if isinstance(page, PdfInsertPage):
+        if planned.lang is None:
+            raise RuntimeError("pdf_insert planned page is missing lang")
+        return _render_pdf_insert_page_rst(
+            _format_tokenized(page.file_map[planned.lang], model, region),
+            planned.lang,
+        )
+
+    page_lang = planned.lang or primary_lang
+    page_vars = fill_product_name_from_spec_master(
+        base_vars_map,
+        spec_master_csv=spec_master_csv,
+        model=model,
+        region=region,
+        lang=page_lang,
+    )
+    page_substitutions = {
+        **base_substitutions,
+        **resolve_spec_master_substitutions(
+            spec_master_csv=spec_master_csv,
+            model=model,
+            region=region,
+            lang=page_lang,
+        ),
+    }
+
+    if isinstance(page, CsvPage):
+        if planned.lang is None:
+            raise RuntimeError("csv_page planned page is missing lang")
+        source_path = _resolve_csv_rst_path(
+            docs_dir=docs_dir,
+            page=page,
+            lang=planned.lang,
+            model=model,
+            region=region,
+        )
+    elif isinstance(page, RstIncludePage):
+        source_path = resolve_config_path(docs_dir, page.file, model, region)
+    else:
+        raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
+
+    if not source_path.exists():
+        raise RuntimeError(f"Missing source RST for bundle materialization: {source_path}")
+
+    rst_text = source_path.read_text(encoding="utf-8")
+    rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
+    rst_text = rewrite_rst_asset_paths(
+        rst_text,
+        source_path=source_path,
+        target_path=target_path,
+        bundle_dir=bundle_dir,
+        docs_dir=docs_dir,
+        repo_root=repo_root,
+    )
+    return _prepend_latex_lang(rst_text, planned.lang)
+
+
+def materialize_bundle(
+    cfg: dict,
+    model: str | None = None,
+    region: str | None = None,
+    *,
+    docs_dir: Path | None = None,
+    repo_root: Path | None = None,
+) -> MaterializedBundle:
+    actual_docs_dir = docs_dir or paths.docs_dir
+    actual_root = repo_root or paths.root
+    target_model = resolve_build_model(cfg, model)
+    target_region = resolve_build_region(cfg, region)
+    build_langs = _build_langs(cfg)
+    primary_lang = str(build_langs[0]) if build_langs else "en"
+    planned_pages = plan_materialized_pages(cfg, model=target_model, region=target_region)
+
+    spec_master_csv = _resolve_spec_master_csv_path(
+        cfg,
+        repo_root=actual_root,
+        model=target_model,
+        region=target_region,
+    )
+    base_vars_map = pick_vars_map(target_model, target_region)
+    title_vars = fill_product_name_from_spec_master(
+        base_vars_map,
+        spec_master_csv=spec_master_csv,
+        model=target_model,
+        region=target_region,
+        lang=primary_lang,
+    )
+    base_substitutions = load_rst_substitutions(actual_docs_dir / "conf_base.py")
+    title_substitutions = {
+        **base_substitutions,
+        **resolve_spec_master_substitutions(
+            spec_master_csv=spec_master_csv,
+            model=target_model,
+            region=target_region,
+            lang=primary_lang,
+        ),
+    }
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=actual_root)
+    title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
+
+    if any(isinstance(item.page, CsvPage) for item in planned_pages):
+        builder = load_word_context(cfg, target_model, target_region)
+        ensure_csv_page_rsts(cfg, builder, target_model, target_region)
+
+    bundle_dir = bundle_dir_for_target(
+        docs_dir=actual_docs_dir,
+        model=target_model,
+        region=target_region,
+    )
+    page_dir = bundle_dir / "page"
+    index_path = bundle_dir / "index.rst"
+    wrapper_index_path = actual_docs_dir / "index.rst"
+
+    if bundle_dir.exists():
+        shutil.rmtree(bundle_dir)
+    page_dir.mkdir(parents=True, exist_ok=True)
+
+    page_paths: list[Path] = []
+    for planned in planned_pages:
+        target_path = page_dir / planned.file_name
+        rendered = _materialize_planned_page(
+            planned,
+            cfg=cfg,
+            target_path=target_path,
+            bundle_dir=bundle_dir,
+            docs_dir=actual_docs_dir,
+            repo_root=actual_root,
+            spec_master_csv=spec_master_csv,
+            base_substitutions=base_substitutions,
+            base_vars_map=base_vars_map,
+            primary_lang=primary_lang,
+            title=title,
+            model=target_model,
+            region=target_region,
+        )
+        target_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")
+        page_paths.append(target_path)
+
+    index_text = build_index_from_pages(cfg, model=target_model, region=target_region)
+    index_path.write_text(index_text, encoding="utf-8")
+    wrapper_index_path.write_text(
+        build_wrapper_index_text(
+            docs_dir=actual_docs_dir,
+            bundle_dir=bundle_dir,
+            planned_pages=planned_pages,
+        ),
+        encoding="utf-8",
+    )
+
+    return MaterializedBundle(
+        bundle_dir=bundle_dir,
+        page_dir=page_dir,
+        index_path=index_path,
+        wrapper_index_path=wrapper_index_path,
+        page_paths=tuple(page_paths),
+        title=title,
+        reference_doc=reference_doc,
+        model=target_model,
+        region=target_region,
+    )
 
 
 def main() -> None:
@@ -160,7 +705,6 @@ def main() -> None:
     ap.add_argument("--region", default=None, help="Optional region for include/file paths")
     args = ap.parse_args()
 
-    paths = get_paths()
     cfg_path = Path(args.config)
     if not cfg_path.is_absolute():
         cfg_path = paths.root / cfg_path
@@ -171,17 +715,13 @@ def main() -> None:
     if doc_type != "manual_bundle":
         raise RuntimeError(f"gen_index_bundle supports doc_type=manual_bundle only, got: {doc_type}")
 
-    target_model = resolve_build_model(cfg, args.model)
-    target_region = resolve_build_region(cfg, args.region)
-    index_text = build_index_from_pages(
+    bundle = materialize_bundle(
         cfg,
-        model=target_model,
-        region=target_region,
+        model=args.model,
+        region=args.region,
     )
-
-    out_path = paths.docs_dir / "index.rst"
-    out_path.write_text(index_text, encoding="utf-8")
-    print(f"[gen_index_bundle] Wrote: {out_path}")
+    print(f"[gen_index_bundle] Wrote bundle index: {bundle.index_path}")
+    print(f"[gen_index_bundle] Wrote wrapper index: {bundle.wrapper_index_path}")
 
 
 if __name__ == "__main__":
