@@ -33,6 +33,3 @@
 
 本機の仕様および外観は、改善のため予告なく変更することがあります。
 
-.. note::
-
-   Images were extracted from the source Word manual and may differ slightly from the packaged items.
