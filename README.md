@@ -62,11 +62,7 @@ pip install -r requirements.txt
     - Windows：优先走 Word COM，可不依赖 `pandoc`
     - macOS / Linux：走 `pandoc`
 
-如果你要显式构建 HTML（例如 `build.build_html: true`），请确保安装 `furo` 主题：
-
-```bash
-pip install furo
-```
+如果你是通过 `pip install -r requirements.txt` 安装环境，`furo` 已经会一并安装；如果是手动精简安装环境，请确保额外安装 `furo` 主题。
 
 ### 2.2 生成 LaTeX 参数（首次构建前建议执行）
 
@@ -471,7 +467,7 @@ python tools\word_bundle.py --config config.yaml --model JE-2000F --region US --
   - 重新执行 `python3 tools/csv_to_tex_params.py`
 
 - `build_html=true` 但缺少主题
-  - 安装 `furo`
+  - 重新执行 `pip install -r requirements.txt`，或单独安装 `furo`
 
 - review 文本没有跟随参数更新
   - 执行 `python build.py sync-review --config ... --model ... --region ...`
