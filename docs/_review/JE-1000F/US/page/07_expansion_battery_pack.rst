@@ -20,7 +20,7 @@ CHARGING VIA AC WALL OUTLET
 
 Connect the AC charging cable to the AC input port of the product and a wall outlet.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_template/page_en/07_expansion_battery_pack/slot_01.png
    :alt: AC wall charging diagram placeholder.
    :width: 360px
 

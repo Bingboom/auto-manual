@@ -1,0 +1,304 @@
+from __future__ import annotations
+
+import tempfile
+import unittest
+from pathlib import Path
+
+from tools import check_docs
+
+
+class TestCheckDocs(unittest.TestCase):
+    def test_collect_check_issues_should_report_12_app_setup_contract_missing_placeholders(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_en").mkdir(parents=True)
+            (docs_dir / "templates" / "contracts").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/12_app_setup_placeholder.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "12_app_setup_placeholder.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_en" / "12_app_setup_placeholder.rst").write_text(
+                "\n".join(
+                    [
+                        "|MAIN_POWER_BUTTON_LABEL|",
+                        "|AC_POWER_BUTTON_LABEL|",
+                        "|DC_USB_POWER_BUTTON_LABEL|",
+                        "|MAIN_POWER_BUTTON_LABEL_LOWER|",
+                        "|AC_POWER_BUTTON_LABEL_LOWER|",
+                        "|DC_USB_POWER_BUTTON_LABEL_LOWER|",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "contracts" / "12_app_setup.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: 12_app_setup",
+                        "source_files:",
+                        "  - templates/page_en/12_app_setup_placeholder.rst",
+                        "required_placeholders:",
+                        "  default:",
+                        "    - MAIN_POWER_BUTTON_LABEL",
+                        "    - AC_POWER_BUTTON_LABEL",
+                        "    - DC_USB_POWER_BUTTON_LABEL",
+                        "  en:",
+                        "    - MAIN_POWER_BUTTON_LABEL_LOWER",
+                        "    - AC_POWER_BUTTON_LABEL_LOWER",
+                        "    - DC_USB_POWER_BUTTON_LABEL_LOWER",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main POWER Button",
+                        "JE-1000F,US,TRUE,specifications,tpl_ac_power_button_label,AC Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        "pages:",
+                        "  - type: rst_include",
+                        "    lang: en",
+                        "    file: templates/page_en/12_app_setup_placeholder.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            messages = [issue.message for issue in issues if issue.code == "CONTRACT_MISSING_PLACEHOLDERS"]
+            self.assertTrue(messages)
+            self.assertTrue(any("DC_USB_POWER_BUTTON_LABEL" in message for message in messages))
+
+    def test_collect_check_issues_should_report_contract_missing_placeholders(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_en").mkdir(parents=True)
+            (docs_dir / "templates" / "contracts").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/03_product_overview_placeholder.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "03_product_overview_placeholder.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_en" / "03_product_overview_placeholder.rst").write_text(
+                "|MAIN_POWER_BUTTON_LABEL|\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "contracts" / "03_product_overview.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: 03_product_overview",
+                        "source_files:",
+                        "  - templates/page_en/03_product_overview_placeholder.rst",
+                        "required_placeholders:",
+                        "  default:",
+                        "    - MAIN_POWER_BUTTON_LABEL",
+                        "    - FRONT_DC12_PORT_LABEL",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main POWER Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        "pages:",
+                        "  - type: rst_include",
+                        "    lang: en",
+                        "    file: templates/page_en/03_product_overview_placeholder.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("CONTRACT_MISSING_PLACEHOLDERS", codes)
+
+    def test_collect_check_issues_should_report_missing_model_no_placeholder_and_asset(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/spec_en.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "spec_en.rst").write_text(
+                "\n".join(
+                    [
+                        "PRODUCT OVERVIEW",
+                        "================",
+                        "",
+                        ".. image:: missing.png",
+                        "",
+                        "|MISSING_TOKEN|",
+                        "",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("MISSING_MODEL_NO", codes)
+            self.assertIn("UNRESOLVED_PLACEHOLDER", codes)
+            self.assertIn("MISSING_ASSET", codes)
+
+    def test_collect_check_issues_should_pass_for_clean_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "_static").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/spec_en.rst\n", encoding="utf-8")
+            (bundle_dir / "_static" / "ok.png").write_text("png", encoding="utf-8")
+            (bundle_dir / "page" / "spec_en.rst").write_text(
+                "\n".join(
+                    [
+                        "PRODUCT OVERVIEW",
+                        "================",
+                        "",
+                        ".. image:: _static/ok.png",
+                        "",
+                        "Ready",
+                        "",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            self.assertEqual([], issues)
+
+
+if __name__ == "__main__":
+    unittest.main()

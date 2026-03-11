@@ -11,7 +11,7 @@ build:
   build_word: true
   word_output: manual_demo_eu.docx
   word_source: bundle
-  word_reference_doc: "C:/Users/Administrator/Downloads/EN-3600Plus-DVT（原文HTE139美规）.docx"
+  word_reference_doc: docs/templates/word_template/template.docx
   word_title: EN-3600Plus-DVT
   open_word: false
   build_html: false

@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = "config.yaml"
 BUILD_ACTIONS = ("rst", "word", "html", "pdf", "all")
 ALL_OUTPUT_FORMATS = "html,word,pdf"
+REVIEW_TRACKED_ROOT = "docs/_review/JE-1000F"
+REVIEW_REPORT_DIR = "reports/version_tracking/JE-1000F"
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -21,21 +23,37 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "action",
-        choices=("validate", *BUILD_ACTIONS, "clean", "diff-report"),
+        choices=("validate", *BUILD_ACTIONS, "review", "check", "publish", "clean", "diff-report"),
         help="Action to run",
     )
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
     ap.add_argument("--model", default=None, help="Build a single model instead of build.targets")
     ap.add_argument("--region", default=None, help="Build a single region instead of build.targets")
+    ap.add_argument(
+        "--source",
+        choices=("auto", "runtime", "review"),
+        default="runtime",
+        help="Content source for build actions: auto, runtime, or review",
+    )
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
     ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")
     ap.add_argument("--no-clean", action="store_true", help="Skip cleaning current target outputs before build")
-    ap.add_argument("--tracked-root", default="docs/_build/JE-1000F", help="Tracked subtree for diff-report")
+    ap.add_argument(
+        "--refresh-review",
+        action="store_true",
+        help="Refresh an existing review bundle from the runtime template/data output",
+    )
+    ap.add_argument("--tracked-root", default=REVIEW_TRACKED_ROOT, help="Tracked subtree for diff-report")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report")
     ap.add_argument(
+        "--ignore-initial-adds",
+        action="store_true",
+        help="Ignore initial all-Added rows when the tracked subtree is first introduced",
+    )
+    ap.add_argument(
         "--report-dir",
-        default="reports/version_tracking/JE-1000F",
+        default=REVIEW_REPORT_DIR,
         help="Output directory for diff-report CSV/HTML",
     )
     return ap.parse_args(argv)
@@ -95,6 +113,11 @@ def clean_targets_for_config(config_path: Path) -> tuple[Path, Path]:
     return docs_dir / "_build", docs_dir / "renderers" / "latex" / "params.tex"
 
 
+def review_root_for_config(config_path: Path) -> Path:
+    docs_dir = resolve_docs_dir(config_path)
+    return docs_dir / "_review"
+
+
 def is_legacy_bundle_dir(path: Path) -> bool:
     return path.is_dir() and (path / "index.rst").exists() and (path / "page").is_dir()
 
@@ -130,9 +153,25 @@ def run_checked(cmd: list[str]) -> None:
     subprocess.run(cmd, cwd=str(ROOT), check=True)
 
 
-def build_docs_command(args: argparse.Namespace) -> list[str]:
-    if args.action not in BUILD_ACTIONS:
-        raise RuntimeError(f"Action '{args.action}' is not a build action")
+def _append_target_args(cmd: list[str], args: argparse.Namespace) -> list[str]:
+    if args.model:
+        cmd += ["--model", args.model]
+    if args.region:
+        cmd += ["--region", args.region]
+    if not (args.model or args.region):
+        cmd.append("--all-targets")
+    return cmd
+
+
+def build_docs_command(
+    args: argparse.Namespace,
+    *,
+    action_override: str | None = None,
+    source_override: str | None = None,
+) -> list[str]:
+    action = action_override or args.action
+    if action not in BUILD_ACTIONS:
+        raise RuntimeError(f"Action '{action}' is not a build action")
 
     config_path = resolve_path_from_root(args.config)
     cmd = [
@@ -141,20 +180,15 @@ def build_docs_command(args: argparse.Namespace) -> list[str]:
         "--config",
         str(config_path),
     ]
+    _append_target_args(cmd, args)
+    cmd += ["--source", source_override or args.source]
 
-    if args.model:
-        cmd += ["--model", args.model]
-    if args.region:
-        cmd += ["--region", args.region]
-    if not (args.model or args.region):
-        cmd.append("--all-targets")
-
-    if args.action == "rst":
+    if action == "rst":
         cmd.append("--prepare-only")
-    elif args.action == "all":
+    elif action == "all":
         cmd += ["--formats", ALL_OUTPUT_FORMATS]
     else:
-        cmd += ["--formats", args.action]
+        cmd += ["--formats", action]
 
     if args.pdf_mode:
         cmd += ["--pdf-mode", args.pdf_mode]
@@ -163,6 +197,31 @@ def build_docs_command(args: argparse.Namespace) -> list[str]:
     if not args.open:
         cmd.append("--no-open")
     return cmd
+
+
+def review_bundle_command(args: argparse.Namespace) -> list[str]:
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "review_bundle.py"),
+        "--config",
+        str(config_path),
+    ]
+    _append_target_args(cmd, args)
+    if args.refresh_review:
+        cmd.append("--refresh-existing")
+    return cmd
+
+
+def check_docs_command(args: argparse.Namespace) -> list[str]:
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "check_docs.py"),
+        "--config",
+        str(config_path),
+    ]
+    return _append_target_args(cmd, args)
 
 
 def run_validate(config_path: Path) -> None:
@@ -185,27 +244,83 @@ def run_validate(config_path: Path) -> None:
 
 
 def run_diff_report(args: argparse.Namespace) -> None:
-    run_checked(
-        [
-            sys.executable,
-            str(ROOT / "tools" / "diff_report.py"),
-            "--tracked-root",
-            str(resolve_path_from_root(args.tracked_root)),
-            "--from-ref",
-            args.from_ref,
-            "--to-ref",
-            args.to_ref,
-            "--output-dir",
-            str(resolve_path_from_root(args.report_dir)),
-        ]
+    run_diff_report_with_paths(
+        args,
+        tracked_root=resolve_path_from_root(args.tracked_root),
+        report_dir=resolve_path_from_root(args.report_dir),
     )
+
+
+def run_diff_report_with_paths(
+    args: argparse.Namespace,
+    *,
+    tracked_root: Path,
+    report_dir: Path,
+) -> None:
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "diff_report.py"),
+        "--tracked-root",
+        str(tracked_root),
+        "--config",
+        str(resolve_path_from_root(args.config)),
+        "--from-ref",
+        args.from_ref,
+        "--to-ref",
+        args.to_ref,
+        "--output-dir",
+        str(report_dir),
+    ]
+    if args.ignore_initial_adds:
+        cmd.append("--ignore-initial-adds")
+    run_checked(cmd)
+
+
+def run_check(args: argparse.Namespace, *, source_override: str = "runtime") -> None:
+    config_path = resolve_path_from_root(args.config)
+    run_validate(config_path)
+    run_checked(build_docs_command(args, action_override="rst", source_override=source_override))
+    run_checked(check_docs_command(args))
+
+
+def _publish_target_components(args: argparse.Namespace) -> tuple[str, str]:
+    model = (args.model or "").strip()
+    region = (args.region or "").strip()
+    if not model or not region:
+        raise RuntimeError("publish requires --model and --region so the release target is explicit")
+    return model, region
+
+
+def _publish_tracked_root(args: argparse.Namespace) -> Path:
+    model, region = _publish_target_components(args)
+    if args.tracked_root == REVIEW_TRACKED_ROOT:
+        return ROOT / "docs" / "_review" / model / region
+    return resolve_path_from_root(args.tracked_root)
+
+
+def _publish_report_dir(args: argparse.Namespace) -> Path:
+    model, region = _publish_target_components(args)
+    if args.report_dir == REVIEW_REPORT_DIR:
+        return ROOT / "reports" / "version_tracking" / model / region
+    return resolve_path_from_root(args.report_dir)
+
+
+def run_publish(args: argparse.Namespace) -> None:
+    tracked_root = _publish_tracked_root(args)
+    report_dir = _publish_report_dir(args)
+    run_check(args, source_override="review")
+    run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
+    run_checked(build_docs_command(args, action_override="word", source_override="review"))
 
 
 def clean_build_artifacts(config_path: Path, *, remove_params_tex: bool = True) -> None:
     build_dir, params_tex = clean_targets_for_config(config_path)
+    review_dir = review_root_for_config(config_path)
     docs_dir = resolve_docs_dir(config_path)
     print(f"[build.py] remove {build_dir}")
     shutil.rmtree(build_dir, ignore_errors=True)
+    print(f"[build.py] remove {review_dir}")
+    shutil.rmtree(review_dir, ignore_errors=True)
     if remove_params_tex:
         print(f"[build.py] remove {params_tex}")
         params_tex.unlink(missing_ok=True)
@@ -221,6 +336,13 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.action == "validate":
             run_validate(config_path)
+        elif args.action == "review":
+            run_checked(build_docs_command(args, action_override="rst", source_override="runtime"))
+            run_checked(review_bundle_command(args))
+        elif args.action == "check":
+            run_check(args)
+        elif args.action == "publish":
+            run_publish(args)
         elif args.action == "diff-report":
             run_diff_report(args)
         elif args.action == "clean":

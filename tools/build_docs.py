@@ -24,6 +24,7 @@ from tools.gen_index_bundle import (
     cleanup_legacy_rst_artifacts,
     materialize_bundle,
 )
+from tools.review_support import overlay_review_onto_bundle, review_bundle_exists
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
 from tools.utils.spec_master import (
@@ -45,6 +46,7 @@ from tools.validate_layout_params import validate as validate_layout
 paths = get_paths()
 VALID_FORMATS = {"html", "word", "pdf"}
 VALID_PDF_MODES = {"latex", "word"}
+VALID_SOURCE_MODES = {"auto", "runtime", "review"}
 
 
 @dataclass(frozen=True)
@@ -606,10 +608,13 @@ def prepare_manual_bundle(
     *,
     model: str | None,
     region: str | None,
+    source_mode: str = "runtime",
 ) -> MaterializedBundle:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
         raise RuntimeError(f"Unsupported doc_type: {doc_type}")
+    if source_mode not in VALID_SOURCE_MODES:
+        raise RuntimeError(f"Unsupported source mode: {source_mode}")
 
     bundle = materialize_bundle(
         cfg,
@@ -617,7 +622,27 @@ def prepare_manual_bundle(
         region=region,
         ensure_csv_pages=True,
     )
+    review_applied = False
+    if source_mode in {"auto", "review"}:
+        if review_bundle_exists(docs_dir=paths.docs_dir, model=model, region=region):
+            overlay_review_onto_bundle(
+                bundle_dir=bundle.bundle_dir,
+                docs_dir=paths.docs_dir,
+                model=model,
+                region=region,
+            )
+            review_applied = True
+        elif source_mode == "review":
+            raise RuntimeError(
+                "Review bundle not found for "
+                f"model='{model or ''}', region='{region or ''}'. "
+                "Run 'python build.py review ...' first."
+            )
     print(f"[build] Prepared bundle: {bundle.bundle_dir}")
+    if review_applied:
+        print("[build] Bundle source: review")
+    else:
+        print("[build] Bundle source: runtime")
     return bundle
 
 
@@ -679,6 +704,7 @@ def build_target(
     build_cfg: dict,
     tools_cfg: dict,
     no_open: bool,
+    source_mode: str,
 ) -> None:
     build_langs = list(build_cfg.get("languages", ["en"]))
     primary_lang = str(build_langs[0]) if build_langs else "en"
@@ -693,6 +719,7 @@ def build_target(
         cfg,
         model=target_model,
         region=target_region,
+        source_mode=source_mode,
     )
 
     main_tex = str(build_cfg.get("main_tex", "manual_demo.tex"))
@@ -829,6 +856,12 @@ def main() -> None:
     ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
     ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
+    ap.add_argument(
+        "--source",
+        choices=sorted(VALID_SOURCE_MODES),
+        default="runtime",
+        help="Content source for bundle materialization: auto, runtime, or review",
+    )
     args = ap.parse_args()
 
     cfg_path = Path(args.config)
@@ -880,6 +913,7 @@ def main() -> None:
             build_cfg=build_cfg,
             tools_cfg=tools_cfg,
             no_open=args.no_open,
+            source_mode=args.source,
         )
 
     write_docs_root_index_for_targets(targets)

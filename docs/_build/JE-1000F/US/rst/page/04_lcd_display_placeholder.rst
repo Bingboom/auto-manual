@@ -5,7 +5,7 @@
 LCD DISPLAY
 ===========
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_template/page_en/04_lcd_display_placeholder/slot_01.png
    :alt: LCD icon map placeholder.
    :width: 420px
 

@@ -461,8 +461,7 @@ def _stage_bundle_asset(
         repo_root=repo_root,
     )
     target.parent.mkdir(parents=True, exist_ok=True)
-    if not target.exists():
-        shutil.copy2(resolved, target)
+    shutil.copy2(resolved, target)
     return target
 
 

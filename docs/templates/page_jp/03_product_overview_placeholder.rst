@@ -4,9 +4,9 @@
 正面
 ----
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: 正面図プレースホルダー
-   :width: 420px
+.. image:: _static/manual_assets/hte153_jp/overview/front_product.jpg
+   :alt: Front product image.
+   :width: 360px
 
 .. list-table::
    :header-rows: 0
@@ -38,8 +38,8 @@
 右側面
 ------
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: 右側面図プレースホルダー
+.. image:: _static/manual_assets/hte153_jp/overview/right_side_ports.png
+   :alt: Right side port overview.
    :width: 420px
 
 .. list-table::
@@ -55,6 +55,3 @@
 
        |SIDE_AC_INPUT_SPEC|
 
-.. note::
-
-   図はプレースホルダーです。実画像は既存の画像パスに同名で配置してください。

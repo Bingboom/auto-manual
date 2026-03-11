@@ -8,7 +8,7 @@
 メイン電源ボタン オン/オフ
 -----------------
 
-.. image:: _static/manual_assets/hte153_jp/operation/main_power.png
+.. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_01.png
    :alt: Main power operation diagram.
    :width: 360px
 
@@ -29,7 +29,7 @@ AC出力のオン/オフ
 
 ● 前提：メイン電源ボタンがオンになっていることを確認してください。
 
-.. image:: _static/manual_assets/hte153_jp/operation/ac_output.png
+.. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_02.png
    :alt: AC output operation diagram.
    :width: 360px
 
@@ -49,7 +49,7 @@ AC出力のオン/オフ
 
 手動調整：AC出力がオンの状態で、AC出力ボタンを5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
 
-.. image:: _static/manual_assets/hte153_jp/operation/frequency_switch.png
+.. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_03.png
    :alt: Frequency switch diagram.
    :width: 360px
 
@@ -58,7 +58,7 @@ USB/カーポート出力オン/オフ
 
 ● 前提：メイン電源ボタンがオンになっていることを確認してください。
 
-.. image:: _static/manual_assets/hte153_jp/operation/dc_usb_output.png
+.. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_04.png
    :alt: DC and USB output operation diagram.
    :width: 360px
 
@@ -109,7 +109,7 @@ USB/カーポート出力オン/オフ
 
 AC出力ボタンがオンの状態で、AC出力ボタンとメイン電源ボタンを同時に長押しし、省エネアイコンの表示（オン）/ 非表示（オフ）が切り替わるまで押し続けてください。
 
-.. image:: _static/manual_assets/hte153_jp/operation/energy_saving.png
+.. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_05.png
    :alt: Energy saving mode diagram.
    :width: 320px
 
@@ -126,7 +126,7 @@ LEDライト
 
 LEDライトには、照明モードとSOSモードの2つのモードがあります。いずれのモードでも、LEDスイッチを長押しすることでLEDライトを消灯できます。
 
-.. image:: _static/manual_assets/hte153_jp/operation/led_light.png
+.. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_06.png
    :alt: LED light operation diagram.
    :width: 360px
 
@@ -143,7 +143,7 @@ LCDスクリーン
      - モード
      - 操作
      - 動作
-   * - .. image:: _static/manual_assets/hte153_jp/operation/lcd_mode.png
+   * - .. image:: _static/manual_template/page_jp/05_operation_guide_placeholder/slot_07.png
           :alt: LCD display mode diagram.
           :width: 140px
      - 短くオン

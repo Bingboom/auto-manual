@@ -11,7 +11,7 @@ build:
   build_word: true
   word_output: manual_je1000f_us_en.docx
   word_source: bundle
-  word_reference_doc: C:/Users/Administrator/Downloads/EN-Explorer 2000 User Manual V1.0 - E2000V2.docx
+  word_reference_doc: docs/templates/word_template/template.docx
   word_title: "|PRODUCT_NAME| User Manual"
   open_word: false
   build_html: false

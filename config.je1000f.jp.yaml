@@ -11,7 +11,7 @@ build:
   build_word: true
   word_output: manual_je1000f_jp.docx
   word_source: bundle
-  word_reference_doc: C:/Users/Administrator/Downloads/JP-2000*取扱説明書.docx
+  word_reference_doc: docs/templates/word_template/template.docx
   word_title: Jackery ポータブル電源 1000 New v2 取扱説明書
   open_word: false
   build_html: false

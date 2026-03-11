@@ -5,7 +5,7 @@
 液晶画面
 ========
 
-.. image:: _static/manual_assets/hte153_jp/lcd/lcd_map.png
+.. image:: _static/manual_template/page_jp/04_lcd_display_placeholder/slot_01.png
    :alt: LCD icon map.
    :width: 420px
 

@@ -1,0 +1,122 @@
+% docs/renderers/latex/fonts.tex
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% Apply late so we override Sphinx/class defaults
+\newcommand{\HBSetupFonts}{%
+
+  % =========================
+  % Latin fonts (main/sans)
+  % =========================
+  % NOTE:
+  % On some macOS + XeLaTeX setups, \IfFontExistsTF{Gilroy} can false-negative.
+  % Use file-path loading on macOS (local preview target);
+  % keep Windows/Linux behavior unchanged (production build target).
+  \IfFileExists{/System/Library/Fonts/Helvetica.ttc}{%
+    % macOS branch: force Gilroy via file path.
+    \IfFileExists{/Users/pika/Library/Fonts/gilroy-regular-3.otf}{%
+      \setmainfont{gilroy-regular-3.otf}[
+        Path=/Users/pika/Library/Fonts/,
+        Ligatures=TeX,
+        BoldFont=gilroy-bold-4.otf,
+        ItalicFont=Gilroy-LightItalic-12.otf,
+        BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf
+      ]
+      \setsansfont{gilroy-regular-3.otf}[
+        Path=/Users/pika/Library/Fonts/,
+        Ligatures=TeX,
+        BoldFont=gilroy-bold-4.otf,
+        ItalicFont=Gilroy-LightItalic-12.otf,
+        BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf
+      ]
+    }{%
+      % Fallback if the specific local files are missing.
+      \IfFontExistsTF{System Font}{%
+        \setmainfont{System Font}[Ligatures=TeX]
+        \setsansfont{System Font}[Ligatures=TeX]
+      }{%
+        \IfFontExistsTF{Helvetica Neue}{%
+          \setmainfont{Helvetica Neue}[Ligatures=TeX]
+          \setsansfont{Helvetica Neue}[Ligatures=TeX]
+        }{%
+          \setmainfont{Times New Roman}[Ligatures=TeX]
+          \setsansfont{Arial}[Ligatures=TeX]
+        }%
+      }%
+    }%
+  }{%
+    % non-macOS branch (Windows/Linux): preserve existing Gilroy-first behavior.
+    \IfFontExistsTF{Gilroy}{%
+      \setmainfont{Gilroy}[Ligatures=TeX]
+      \setsansfont{Gilroy}[Ligatures=TeX]
+    }{%
+      \IfFontExistsTF{Calibri}{%
+        \setmainfont{Calibri}[Ligatures=TeX]
+        \setsansfont{Calibri}[Ligatures=TeX]
+      }{%
+        \setmainfont{Times New Roman}[Ligatures=TeX]
+        \setsansfont{Arial}[Ligatures=TeX]
+      }%
+    }%
+  }%
+
+  % =========================
+  % Mono font
+  % =========================
+  \IfFontExistsTF{JetBrains Mono}{%
+    \setmonofont{JetBrains Mono}[Scale=MatchLowercase]
+  }{%
+    % macOS default mono
+    \IfFontExistsTF{Menlo}{%
+      \setmonofont{Menlo}[Scale=MatchLowercase]
+    }{%
+      \IfFontExistsTF{Consolas}{%
+        \setmonofont{Consolas}[Scale=MatchLowercase]
+      }{%
+        \setmonofont{Courier New}[Scale=MatchLowercase]
+      }%
+    }%
+  }%
+
+  % =========================
+  % CJK fonts (Chinese)
+  % =========================
+  % 1) Your preferred CN fonts (if installed)
+  \IfFontExistsTF{方正兰亭中黑简体}{%
+    \setCJKmainfont{方正兰亭中黑简体}
+    \setCJKsansfont{方正兰亭中黑简体}
+  }{%
+    \IfFontExistsTF{方正兰亭黑简体}{%
+      \setCJKmainfont{方正兰亭黑简体}
+      \setCJKsansfont{方正兰亭黑简体}
+    }{%
+      % 2) Windows common
+      \IfFontExistsTF{Microsoft YaHei}{%
+        \setCJKmainfont{Microsoft YaHei}
+        \setCJKsansfont{Microsoft YaHei}
+      }{%
+        % 3) macOS common
+        \IfFontExistsTF{PingFang SC}{%
+          \setCJKmainfont{PingFang SC}
+          \setCJKsansfont{PingFang SC}
+        }{%
+          \IfFontExistsTF{Songti SC}{%
+            \setCJKmainfont{Songti SC}
+            \setCJKsansfont{Songti SC}
+          }{%
+            \IfFontExistsTF{Heiti SC}{%
+              \setCJKmainfont{Heiti SC}
+              \setCJKsansfont{Heiti SC}
+            }{%
+              % 4) last resort: TeXLive built-in (prevents xeCJK Fandol warning + keeps build alive)
+              \setCJKmainfont{FandolSong-Regular}
+              \setCJKsansfont{FandolSong-Regular}
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+
+\AtBeginDocument{\HBSetupFonts}

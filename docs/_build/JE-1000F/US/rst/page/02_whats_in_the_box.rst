@@ -45,17 +45,17 @@ authority to operate the device.
    :header-rows: 0
    :widths: 25 25 25 25
 
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+   * - .. image:: _static/manual_template/page_en/02_whats_in_the_box/slot_01.png
           :alt: Power station image placeholder.
           :width: 120px
 
        **Jackery ポータブル電源 1000 New v2**
-     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+     - .. image:: _static/manual_template/page_en/02_whats_in_the_box/slot_02.png
           :alt: AC charging cable image placeholder.
           :width: 120px
 
        **AC Charging Cable**
-     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+     - .. image:: _static/manual_template/page_en/02_whats_in_the_box/slot_03.png
           :alt: User manual image placeholder.
           :width: 120px
 

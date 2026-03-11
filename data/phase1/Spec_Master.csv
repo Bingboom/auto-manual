@@ -247,28 +247,6 @@ HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,dc_expansion_port,1 × D
 HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,maximum_short_circuit_current_and_duration,Maximum Short Circuit Current and Duration,1,,1160A/860μs,,,,,,JE-3600A
 HTE132500A-EU-JAK,EU,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charge_temperature,Charge Temperature,1,,-20°C to 45°C,,,,,,JE-3600A
 HTE132500A-EU-JAK,EU,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharge_temperature,Discharge Temperature,1,,-20°C to 45°C,,,,,,JE-3600A
-HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000 v2,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,HTE1531000A-US-JAK,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,AC Flash Charge,About 1650W±50W @25°C,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,1,,"11V-16V⎓8A Max, Double to 8A Max",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,2,,"16V-60V⎓12A, Double to 21A Max / 400W Max",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,1,,"120V~ 60Hz, 12.5A, 1500W Rated (-10°C to 45°C)",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,2,,"120V~ 60Hz, 5.8A, 700W Rated (-20°C to -10°C)",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,1500W,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,1,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,2,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,3,,USB-C 100W output disabled (-20°C to -10°C),,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A,1,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,1 × DC 12V Port,1,,12V⎓10A Max,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,HTE1531000A-US-JAK
-HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,HTE1531000A-US-JAK
 HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_power_button_label,POWER Button,1,,POWER Button,,,,,,JE-3600A
 HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_power_button_label,USB Power Button,1,,USB Power Button,,,,,,JE-3600A
 HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-3600A
@@ -451,31 +429,3 @@ HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,
 ,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A ケーブル,,,,,,JE-1000F
 ,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V 自動車用バッテリー充電ケーブル,,,,,,JE-1000F
 ,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,1500W,,,,,,JE-1000F
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,,Main POWER Button,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC USB Power Button Label,1,,DC/USB Power Button,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button Label,1,,AC Power Button,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_label,Front DC12 Port Label,1,,DC 12V Port,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_spec,Front DC12 Port Spec,1,,12V?10A Max,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_label,Front USB-C Low Label,1,,USB-C 30W Output,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_spec,Front USB-C Low Spec,1,,"30W Max, 5V?3A, 9V?3A, 12V?2.5A, 15V?2A, 20V?1.5A",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_label,Front USB-C High Label,1,,USB-C 100W Output,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_spec,Front USB-C High Spec,1,,"100W Max, 5V?3A, 9V?3A, 12V?3A, 15V?3A, 20V?5A",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_label,Front USB-A Label,1,,USB-A 18W Output,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_spec,Front USB-A Spec,1,,"18W Max, 5-6V?3A, 6-9V?2A, 9-12V?1.5A",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_label,Front AC Output Label,1,,AC Output,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_spec,Front AC Output Spec,1,,"120V~60Hz, 12.5A, 1500W Rated",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_total_output_label,Front Total Output Label,1,,Total Output,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_total_output_spec,Front Total Output Spec,1,,"1500W Rated, 3000W Surge Peak",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_label,Side DC Input Label,1,,DC Input (2?DC8020 Ports),,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_pv_spec,Side DC Input PV Spec,1,,"PV: 16-60V?12A Max, Double to 21A / 400W Max",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_car_spec,Side DC Input Car Spec,1,,"Car: 11-16V?8A Max, Double to 8A Max",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_label,Side AC Input Label,1,,AC Input,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_spec,Side AC Input Spec,1,,"100V-120V~60Hz, 15A Max",,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default Standby Duration,1,,2 hours,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12 hours,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_port_label,USB-C High Power Port Label,1,,USB-C 100W,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A cable,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V automobile battery charging cable,,,,,,HTE1531000A-US-JAK
-,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,1500W,,,,,,HTE1531000A-US-JAK

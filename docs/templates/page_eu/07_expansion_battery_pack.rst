@@ -6,7 +6,7 @@ CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)
 
 This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the |BATTERY_PACK_NAME| User Manual.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/overview/front_product.jpg
    :alt: Battery pack connection placeholder.
    :width: 360px
 
@@ -19,17 +19,17 @@ This product can support up to 5 battery packs to meet the need for large power 
    :header-rows: 0
    :widths: 25 25 25 25
 
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+   * - .. image:: _static/manual_assets/hte153_jp/in_the_box/main_unit.png
           :alt: Battery pack image placeholder.
           :width: 120px
 
        |BATTERY_PACK_NAME_BOLD|
-     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+     - .. image:: _static/manual_assets/hte153_jp/in_the_box/ac_charging.png
           :alt: Expansion cable image placeholder.
           :width: 120px
 
        **Expansion Cable**
-     - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+     - .. image:: _static/manual_assets/hte153_jp/in_the_box/manual_icon.png
           :alt: User manual image placeholder.
           :width: 120px
 

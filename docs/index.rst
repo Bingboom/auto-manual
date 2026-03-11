@@ -6,5 +6,7 @@ Available Manual Bundles
 
    _build/JE-1000F/JP/rst/index
    _build/JE-1000F/US/rst/index
+   _build/JE-2000E/JP/rst/index
    _build/JE-2000F/JP/rst/index
    _build/JE-2000F/US/rst/index
+   _build/JE-3600A/EU/rst/index

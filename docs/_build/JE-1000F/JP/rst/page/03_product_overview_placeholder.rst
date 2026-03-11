@@ -8,9 +8,9 @@
 正面
 ----
 
-.. image:: _static/manual_assets/hte153_jp/overview/front_controls.png
-   :alt: Front control overview.
-   :width: 420px
+.. image:: _static/manual_template/page_jp/03_product_overview_placeholder/slot_01.jpg
+   :alt: Front product image.
+   :width: 360px
 
 .. list-table::
    :header-rows: 0
@@ -42,7 +42,7 @@
 右側面
 ------
 
-.. image:: _static/manual_assets/hte153_jp/overview/right_side_ports.png
+.. image:: _static/manual_template/page_jp/03_product_overview_placeholder/slot_02.png
    :alt: Right side port overview.
    :width: 420px
 
@@ -59,6 +59,3 @@
 
        100V-120V~50/60Hz、15A 最大、急速充電 約1450W
 
-.. note::
-
-   Illustrations were extracted from the source Word manual and matched to the closest overview layout.

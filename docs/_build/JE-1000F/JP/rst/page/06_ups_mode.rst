@@ -5,7 +5,7 @@
 UPS 機能
 ========
 
-.. image:: _static/manual_assets/hte153_jp/operation/ups_mode.png
+.. image:: _static/manual_template/page_jp/06_ups_mode/slot_01.png
    :alt: UPS connection diagram.
    :width: 360px
 

@@ -15,7 +15,7 @@ CHARGING VIA AC WALL OUTLET
 
 Connect the AC charging cable to the AC input port of the product and a wall outlet.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/charging/ac_wall.png
    :alt: AC wall charging diagram placeholder.
    :width: 360px
 
@@ -28,7 +28,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 
 |PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/charging/solar_adapter.png
    :alt: Solar charging connection diagram placeholder.
    :width: 360px
 
@@ -50,7 +50,7 @@ CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)
 
 This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/charging/car_charge.png
    :alt: Car charging connection diagram placeholder.
    :width: 360px
 

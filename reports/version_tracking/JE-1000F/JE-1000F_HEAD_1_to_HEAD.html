@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>RST Diff Report - Files</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    th, td { border: 1px solid #d0d7de; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #f6f8fa; position: sticky; top: 0; }
+    .summary { display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+    .card { border: 1px solid #d0d7de; border-radius: 8px; padding: 10px 12px; min-width: 120px; }
+    .notices { display: grid; gap: 10px; margin: 16px 0; }
+    .notice { border: 1px solid #d8b566; background: #fff8c5; border-radius: 8px; padding: 12px 14px; color: #5c4700; }
+    .filters { border: 1px solid #d0d7de; border-radius: 8px; padding: 12px; margin: 16px 0; background: #f6f8fa; }
+    .filters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .filter-item { display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+    .filter-item input, .filter-item select { border: 1px solid #d0d7de; border-radius: 6px; padding: 8px 10px; font-size: 13px; background: #fff; }
+    .muted { color: #57606a; }
+  </style>
+</head>
+<body>
+  <h1>RST Diff Report - Files</h1>
+  <p class="muted">HEAD~1 -> HEAD</p>
+  <div class="summary"><div class="card"><strong>18</strong><div class="muted">files</div></div><div class="card"><strong>18</strong><div class="muted">added</div></div><div class="card"><strong>0</strong><div class="muted">modified</div></div><div class="card"><strong>0</strong><div class="muted">deleted</div></div><div class="card"><strong>0</strong><div class="muted">renamed</div></div></div>
+
+  <div class="filters">
+    <div class="filters-grid">
+      <label class="filter-item"><span>Search</span><input id="filter-search" type="search" placeholder="Search rows" /></label>
+      <label class="filter-item"><span>model</span><select id="filter-model" data-filter-token="model"><option value="">All</option><option value="JE-1000F">JE-1000F</option></select></label>
+      <label class="filter-item"><span>region</span><select id="filter-region" data-filter-token="region"><option value="">All</option><option value="JP">JP</option></select></label>
+      <label class="filter-item"><span>section</span><select id="filter-section" data-filter-token="section"><option value="">All</option><option value="generated">generated</option><option value="page">page</option></select></label>
+      <label class="filter-item"><span>change_type</span><select id="filter-change_type" data-filter-token="change_type"><option value="">All</option><option value="A">A</option></select></label>
+    </div>
+    <div class="muted" id="filter-result-count"></div>
+  </div>
+  <table>
+    <thead><tr><th>tracked_root</th><th>model</th><th>region</th><th>artifact</th><th>section</th><th>page_key</th><th>file_name</th><th>relative_path</th><th>change_type</th><th>insertions</th><th>deletions</th><th>old_path</th><th>new_path</th><th>from_ref</th><th>to_ref</th></tr></thead>
+    <tbody><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review generated safety_ja safety_ja.rst generated/je-1000f/safety_ja.rst a 104 0  docs/_review/je-1000f/jp/generated/je-1000f/safety_ja.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="generated" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>generated</td><td>safety_ja</td><td>safety_ja.rst</td><td>generated/JE-1000F/safety_ja.rst</td><td>A</td><td>104</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/generated/JE-1000F/safety_ja.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review generated spec_ja spec_ja.rst generated/je-1000f/spec_ja.rst a 146 0  docs/_review/je-1000f/jp/generated/je-1000f/spec_ja.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="generated" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>generated</td><td>spec_ja</td><td>spec_ja.rst</td><td>generated/JE-1000F/spec_ja.rst</td><td>A</td><td>146</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/generated/JE-1000F/spec_ja.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review  index index.rst index.rst a 28 0  docs/_review/je-1000f/jp/index.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td></td><td>index</td><td>index.rst</td><td>index.rst</td><td>A</td><td>28</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/index.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review  manifest manifest.json manifest.json a 29 0  docs/_review/je-1000f/jp/manifest.json head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td></td><td>manifest</td><td>manifest.json</td><td>manifest.json</td><td>A</td><td>29</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/manifest.json</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 01_meaning_of_symbols 01_meaning_of_symbols.rst page/01_meaning_of_symbols.rst a 229 0  docs/_review/je-1000f/jp/page/01_meaning_of_symbols.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>01_meaning_of_symbols</td><td>01_meaning_of_symbols.rst</td><td>page/01_meaning_of_symbols.rst</td><td>A</td><td>229</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/01_meaning_of_symbols.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 02_whats_in_the_box 02_whats_in_the_box.rst page/02_whats_in_the_box.rst a 20 0  docs/_review/je-1000f/jp/page/02_whats_in_the_box.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>02_whats_in_the_box</td><td>02_whats_in_the_box.rst</td><td>page/02_whats_in_the_box.rst</td><td>A</td><td>20</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/02_whats_in_the_box.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 03_product_overview_placeholder 03_product_overview_placeholder.rst page/03_product_overview_placeholder.rst a 61 0  docs/_review/je-1000f/jp/page/03_product_overview_placeholder.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>03_product_overview_placeholder</td><td>03_product_overview_placeholder.rst</td><td>page/03_product_overview_placeholder.rst</td><td>A</td><td>61</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/03_product_overview_placeholder.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 04_lcd_display_placeholder 04_lcd_display_placeholder.rst page/04_lcd_display_placeholder.rst a 141 0  docs/_review/je-1000f/jp/page/04_lcd_display_placeholder.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>04_lcd_display_placeholder</td><td>04_lcd_display_placeholder.rst</td><td>page/04_lcd_display_placeholder.rst</td><td>A</td><td>141</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/04_lcd_display_placeholder.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 05_operation_guide_placeholder 05_operation_guide_placeholder.rst page/05_operation_guide_placeholder.rst a 193 0  docs/_review/je-1000f/jp/page/05_operation_guide_placeholder.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>05_operation_guide_placeholder</td><td>05_operation_guide_placeholder.rst</td><td>page/05_operation_guide_placeholder.rst</td><td>A</td><td>193</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/05_operation_guide_placeholder.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 06_ups_mode 06_ups_mode.rst page/06_ups_mode.rst a 27 0  docs/_review/je-1000f/jp/page/06_ups_mode.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>06_ups_mode</td><td>06_ups_mode.rst</td><td>page/06_ups_mode.rst</td><td>A</td><td>27</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/06_ups_mode.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 07_expansion_battery_pack 07_expansion_battery_pack.rst page/07_expansion_battery_pack.rst a 107 0  docs/_review/je-1000f/jp/page/07_expansion_battery_pack.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>07_expansion_battery_pack</td><td>07_expansion_battery_pack.rst</td><td>page/07_expansion_battery_pack.rst</td><td>A</td><td>107</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/07_expansion_battery_pack.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 09_storage_and_maintenance 09_storage_and_maintenance.rst page/09_storage_and_maintenance.rst a 18 0  docs/_review/je-1000f/jp/page/09_storage_and_maintenance.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>09_storage_and_maintenance</td><td>09_storage_and_maintenance.rst</td><td>page/09_storage_and_maintenance.rst</td><td>A</td><td>18</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/09_storage_and_maintenance.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 10_troubleshooting 10_troubleshooting.rst page/10_troubleshooting.rst a 43 0  docs/_review/je-1000f/jp/page/10_troubleshooting.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>10_troubleshooting</td><td>10_troubleshooting.rst</td><td>page/10_troubleshooting.rst</td><td>A</td><td>43</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/10_troubleshooting.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 11_warranty 11_warranty.rst page/11_warranty.rst a 109 0  docs/_review/je-1000f/jp/page/11_warranty.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>11_warranty</td><td>11_warranty.rst</td><td>page/11_warranty.rst</td><td>A</td><td>109</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/11_warranty.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page 12_app_setup_placeholder 12_app_setup_placeholder.rst page/12_app_setup_placeholder.rst a 82 0  docs/_review/je-1000f/jp/page/12_app_setup_placeholder.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>12_app_setup_placeholder</td><td>12_app_setup_placeholder.rst</td><td>page/12_app_setup_placeholder.rst</td><td>A</td><td>82</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/12_app_setup_placeholder.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page cover_jp cover_jp.rst page/cover_jp.rst a 25 0  docs/_review/je-1000f/jp/page/cover_jp.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>cover_jp</td><td>cover_jp.rst</td><td>page/cover_jp.rst</td><td>A</td><td>25</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/cover_jp.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page safety_ja safety_ja.rst page/safety_ja.rst a 108 0  docs/_review/je-1000f/jp/page/safety_ja.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>safety_ja</td><td>safety_ja.rst</td><td>page/safety_ja.rst</td><td>A</td><td>108</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/safety_ja.rst</td><td>HEAD~1</td><td>HEAD</td></tr><tr data-report-row="1" data-search="docs/_review/je-1000f je-1000f jp review page spec_ja spec_ja.rst page/spec_ja.rst a 150 0  docs/_review/je-1000f/jp/page/spec_ja.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="JP" data-filter-section="page" data-filter-change_type="A"><td>docs/_review/JE-1000F</td><td>JE-1000F</td><td>JP</td><td>review</td><td>page</td><td>spec_ja</td><td>spec_ja.rst</td><td>page/spec_ja.rst</td><td>A</td><td>150</td><td>0</td><td></td><td>docs/_review/JE-1000F/JP/page/spec_ja.rst</td><td>HEAD~1</td><td>HEAD</td></tr></tbody>
+  </table>
+  <script>
+    (function () {
+      const rows = Array.from(document.querySelectorAll('tr[data-report-row="1"]'));
+      const searchInput = document.getElementById('filter-search');
+      const selects = Array.from(document.querySelectorAll('select[data-filter-token]'));
+      const resultCount = document.getElementById('filter-result-count');
+      const params = new URLSearchParams(window.location.search);
+      function syncQueryString() {
+        const next = new URLSearchParams();
+        if (searchInput && searchInput.value.trim()) {
+          next.set('search', searchInput.value.trim());
+        }
+        selects.forEach((select) => {
+          const token = select.getAttribute('data-filter-token');
+          if (token && select.value) {
+            next.set(token, select.value);
+          }
+        });
+        const query = next.toString();
+        const target = `${window.location.pathname}${query ? '?' + query : ''}${window.location.hash}`;
+        window.history.replaceState(null, '', target);
+      }
+      function applyFilters() {
+        const search = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        let visible = 0;
+        rows.forEach((row) => {
+          let ok = true;
+          if (search) {
+            const haystack = (row.getAttribute('data-search') || '').toLowerCase();
+            ok = haystack.includes(search);
+          }
+          if (ok) {
+            selects.forEach((select) => {
+              const token = select.getAttribute('data-filter-token');
+              const wanted = select.value;
+              if (!wanted) {
+                return;
+              }
+              const actual = row.getAttribute('data-filter-' + token) || '';
+              if (actual !== wanted) {
+                ok = false;
+              }
+            });
+          }
+          row.hidden = !ok;
+          if (ok) {
+            visible += 1;
+          }
+        });
+        if (resultCount) {
+          resultCount.textContent = `${visible} / ${rows.length} rows visible`;
+        }
+      }
+      if (searchInput) {
+        const initialSearch = params.get('search') || '';
+        if (initialSearch) {
+          searchInput.value = initialSearch;
+        }
+      }
+      selects.forEach((select) => {
+        const token = select.getAttribute('data-filter-token');
+        if (!token) {
+          return;
+        }
+        const wanted = params.get(token);
+        if (!wanted) {
+          return;
+        }
+        const option = Array.from(select.options).find((item) => item.value === wanted);
+        if (option) {
+          select.value = wanted;
+        }
+      });
+      if (searchInput) {
+        searchInput.addEventListener('input', () => { syncQueryString(); applyFilters(); });
+      }
+      selects.forEach((select) => select.addEventListener('change', () => { syncQueryString(); applyFilters(); }));
+      applyFilters();
+    }());
+  </script>
+</body>
+</html>

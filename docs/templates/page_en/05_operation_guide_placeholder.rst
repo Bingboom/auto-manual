@@ -4,7 +4,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/operation/main_power.png
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/operation/ac_output.png
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -38,7 +38,7 @@ DC 12V/USB OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/operation/dc_usb_output.png
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 
@@ -69,7 +69,7 @@ To disable the energy saving mode, press and hold both the |AC_POWER_BUTTON_LABE
 
 When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/operation/energy_saving.png
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
@@ -84,7 +84,7 @@ LED LIGHT ON/OFF
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_assets/hte153_jp/operation/led_light.png
    :alt: LED light mode operation placeholder.
    :width: 360px
 
@@ -105,7 +105,7 @@ LCD SCREEN
      - Mode
      - Action
      - Behavior
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+   * - .. image:: _static/manual_assets/hte153_jp/operation/lcd_mode.png
           :alt: LCD display mode placeholder.
           :width: 140px
      - Shortly On

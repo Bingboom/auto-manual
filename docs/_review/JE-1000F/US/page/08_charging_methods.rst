@@ -7,13 +7,13 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 
 Jackery ポータブル電源 1000 New v2 has two DC8020 input ports and is compatible with the Jackery solar panels.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_template/page_en/08_charging_methods/slot_01.png
    :alt: Solar charging connection diagram placeholder 1.
    :width: 360px
 
 If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_template/page_en/08_charging_methods/slot_02.png
    :alt: Solar charging connection diagram placeholder 2.
    :width: 360px
 
@@ -35,7 +35,7 @@ CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)
 
 This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection.
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
+.. image:: _static/manual_template/page_en/08_charging_methods/slot_03.png
    :alt: Car charging connection diagram placeholder.
    :width: 360px
 
