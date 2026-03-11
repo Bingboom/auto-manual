@@ -68,4 +68,4 @@ authority to operate the device.
 
    * - **TIPS**
      - The car charging cable is not included but is available for purchase separately on our website.
-       For assistance, please contact Jackery customer service.
+       For assistance, please contact Jackery customer service. hahahah
