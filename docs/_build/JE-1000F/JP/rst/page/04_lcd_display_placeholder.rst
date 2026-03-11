@@ -5,8 +5,8 @@
 液晶画面
 ========
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: LCDアイコンマッププレースホルダー
+.. image:: _static/manual_assets/hte153_jp/lcd/lcd_map.png
+   :alt: LCD icon map.
    :width: 420px
 
 .. list-table::
@@ -141,4 +141,4 @@
 
 .. note::
 
-   LCD 図はプレースホルダーです。実画像を差し替える場合も番号と説明の対応は維持してください。
+   The LCD figure was extracted from the source Word manual and keeps the numbered callouts used below.

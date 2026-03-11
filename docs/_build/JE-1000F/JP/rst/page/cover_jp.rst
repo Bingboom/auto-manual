@@ -6,8 +6,8 @@
    :header-rows: 0
    :widths: 72 28
 
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Jackery logo placeholder.
+   * - .. image:: _static/manual_assets/hte153_jp/cover/jackery_logo.png
+          :alt: Jackery logo.
           :width: 260px
      - **型番：JE-1000F**
 
@@ -24,8 +24,8 @@
    :header-rows: 0
    :widths: 8 92
 
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Customer support icon placeholder.
+   * - .. image:: _static/manual_assets/hte153_jp/cover/support_icon.png
+          :alt: Customer support icon.
           :width: 22px
      - **カスタマーサポート: jackery.jp@jackery.com**
 
