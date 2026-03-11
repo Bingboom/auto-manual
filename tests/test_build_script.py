@@ -4,6 +4,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import build as build_cli
 
@@ -72,12 +73,8 @@ class TestBuildScript(unittest.TestCase):
             root = Path(td)
             docs_dir = root / "custom-docs"
             config_path = root / "config.custom.yaml"
-            config_path.write_text(
-                f"paths:\n  docs_dir: {docs_dir.as_posix()}\n",
-                encoding="utf-8",
-            )
-
-            build_dir, params_tex = build_cli.clean_targets_for_config(config_path)
+            with mock.patch.object(build_cli, "load_config", return_value={"paths": {"docs_dir": docs_dir.as_posix()}}):
+                build_dir, params_tex = build_cli.clean_targets_for_config(config_path)
 
             self.assertEqual(docs_dir / "_build", build_dir)
             self.assertEqual(docs_dir / "renderers" / "latex" / "params.tex", params_tex)
@@ -111,6 +108,12 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("HEAD", args.to_ref)
         self.assertEqual(build_cli.REVIEW_REPORT_DIR, args.report_dir)
         self.assertFalse(args.ignore_initial_adds)
+
+    def test_parse_args_should_support_doctor_action(self) -> None:
+        args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml"])
+
+        self.assertEqual("doctor", args.action)
+        self.assertEqual("config.ja.yaml", args.config)
 
     def test_run_diff_report_should_forward_config_to_tool(self) -> None:
         args = build_cli.parse_args(["diff-report", "--config", "config.ja.yaml"])
@@ -236,6 +239,81 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("word", seen[3])
         self.assertIn("--source", seen[3])
         self.assertIn("review", seen[3])
+
+    def test_collect_doctor_findings_should_require_word_com_for_windows_bundle(self) -> None:
+        args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
+        cfg = {
+            "build": {
+                "languages": ["ja"],
+                "default_model": "JE-2000F",
+                "default_region": "JP",
+                "word_source": "bundle",
+            },
+            "paths": {
+                "layout_params_csv": "data/layout_params.csv",
+            },
+        }
+
+        with mock.patch.object(build_cli, "_is_windows_platform", return_value=True), \
+            mock.patch.object(build_cli, "load_config", return_value=cfg), \
+            mock.patch.object(build_cli, "resolve_layout_params_csv", return_value=build_cli.ROOT / "data" / "layout_params.csv"), \
+            mock.patch.object(build_cli, "_doctor_import", return_value=(True, "")), \
+            mock.patch.object(build_cli, "_resolve_doctor_target", return_value=("JE-1000F", "JP")), \
+            mock.patch.object(build_cli, "_check_word_com_available", return_value=(False, "Word COM unavailable")), \
+            mock.patch.object(build_cli, "_find_xelatex", return_value="C:\\tex\\xelatex.exe"), \
+            mock.patch.object(build_cli, "clean_targets_for_config", return_value=(build_cli.ROOT / "docs" / "_build", build_cli.ROOT / "docs" / "renderers" / "latex" / "params.tex")), \
+            mock.patch("build.shutil.which", return_value=None), \
+            mock.patch("tools.validate_config.load_yaml", return_value=cfg), \
+            mock.patch("tools.validate_config.validate", return_value=[]), \
+            mock.patch("tools.validate_layout_params.validate", return_value=[]):
+            findings = build_cli._collect_doctor_findings(args)
+
+        areas = {(finding.area, finding.level, finding.message) for finding in findings}
+        self.assertIn(("word.runtime", "ERROR", "Word COM unavailable"), areas)
+
+    def test_collect_doctor_findings_should_flag_missing_params_tex_for_latex_pdf(self) -> None:
+        args = build_cli.parse_args(["doctor", "--config", "config.yaml"])
+        cfg = {
+            "build": {
+                "languages": ["en"],
+                "default_model": "JE-2000F",
+                "default_region": "US",
+                "word_source": "bundle",
+            },
+            "pdf": {
+                "mode": "latex",
+            },
+            "paths": {
+                "layout_params_csv": "data/layout_params.csv",
+            },
+            "tools": {
+                "patch_fonts": "tools/patch_latex_fonts.py",
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as td:
+            temp_root = Path(td)
+            missing_params = temp_root / "docs" / "renderers" / "latex" / "params.tex"
+            patch_fonts = temp_root / "tools" / "patch_latex_fonts.py"
+            patch_fonts.parent.mkdir(parents=True, exist_ok=True)
+            patch_fonts.write_text("# stub", encoding="utf-8")
+
+            with mock.patch.object(build_cli, "_is_windows_platform", return_value=False), \
+                mock.patch.object(build_cli, "_doctor_import", return_value=(True, "")), \
+                mock.patch.object(build_cli, "_resolve_doctor_target", return_value=("JE-2000F", "US")), \
+                mock.patch.object(build_cli, "_find_xelatex", return_value=None), \
+                mock.patch.object(build_cli, "resolve_layout_params_csv", return_value=temp_root / "data" / "layout_params.csv"), \
+                mock.patch.object(build_cli, "clean_targets_for_config", return_value=(temp_root / "docs" / "_build", missing_params)), \
+                mock.patch.object(build_cli, "resolve_path_from_root", side_effect=lambda raw: patch_fonts if raw == "tools/patch_latex_fonts.py" else build_cli.ROOT / raw), \
+                mock.patch("build.shutil.which", return_value=None), \
+                mock.patch("tools.validate_config.load_yaml", return_value=cfg), \
+                mock.patch("tools.validate_config.validate", return_value=[]), \
+                mock.patch("tools.validate_layout_params.validate", return_value=[]):
+                findings = build_cli._collect_doctor_findings(args)
+
+        levels_by_area = {(finding.area, finding.level) for finding in findings}
+        self.assertIn(("pdf.xelatex", "ERROR"), levels_by_area)
+        self.assertIn(("pdf.params_tex", "ERROR"), levels_by_area)
 
 
 if __name__ == "__main__":

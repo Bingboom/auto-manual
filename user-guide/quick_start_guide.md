@@ -112,6 +112,19 @@ For `manual_je1000f_jp`, the real flow is:
 
 ## 4. Stage A: Create the First Draft from Template/Data
 
+Before the first real Word / PDF build on a machine, run environment self-check once:
+
+```powershell
+python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
+```
+
+This tells you whether the current machine is ready for:
+
+- Word export for the current `word_source`
+- PDF export for the current `pdf.mode`
+- required Python modules
+- required system tools such as Word COM, `pandoc`, and `xelatex`
+
 If this target has not entered review yet, prepare the runtime draft from template/data.
 
 ```powershell

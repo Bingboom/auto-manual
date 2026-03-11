@@ -58,7 +58,7 @@ It wraps [`tools/build_docs.py`](../tools/build_docs.py), which still drives the
 
 Current flow:
 
-1. `python build.py rst|html|word|pdf|all|review|check|sync-review|publish`
+1. `python build.py rst|html|word|pdf|all|review|check|sync-review|publish|doctor`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
 4. `product_name` is resolved from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
@@ -232,6 +232,7 @@ Derived behavior:
 Cross-platform entrypoint:
 
 ```powershell
+python build.py doctor --config config.yaml --model JE-1000F --region US
 python build.py rst
 python build.py review
 python build.py check
@@ -254,6 +255,7 @@ Config scope rule:
 Useful target-scoped examples:
 
 ```powershell
+python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 python build.py rst --config config.ja.yaml
 python build.py review --config config.yaml --model JE-1000F --region US
 python build.py review --config config.yaml --model JE-1000F --region US --refresh-review
@@ -566,12 +568,13 @@ word_title: "|PRODUCT_NAME| User Manual"
 After changing templates or CSV values, verify at least the following:
 
 1. `python build.py check --config ...` succeeds
-2. the target bundle appears under [`docs/_build/<model>/<region>/rst/`](../docs/_build)
-3. the review bundle appears under [`docs/_review/<model>/<region>/`](../docs/_review)
-4. generated pages contain no unresolved placeholders such as `|PRODUCT_NAME|`
-5. generated pages contain no stale model names from older products
-6. safety and spec still come from CSV-backed generated pages
-7. the expected `.docx`, `.html`, or `.pdf` file is generated when requested
+2. `python build.py doctor --config ... --model ... --region ...` reports no blocking errors for the current Word/PDF path
+3. the target bundle appears under [`docs/_build/<model>/<region>/rst/`](../docs/_build)
+4. the review bundle appears under [`docs/_review/<model>/<region>/`](../docs/_review)
+5. generated pages contain no unresolved placeholders such as `|PRODUCT_NAME|`
+6. generated pages contain no stale model names from older products
+7. safety and spec still come from CSV-backed generated pages
+8. the expected `.docx`, `.html`, or `.pdf` file is generated when requested
 
 Useful checks:
 

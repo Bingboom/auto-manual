@@ -25,7 +25,7 @@
 - `csv_page` 当前只支持 `source: phase1`
 - 默认 `doc_type` 只支持 `manual_bundle`
 - 构建目标解析（`model / region / token`）已统一收敛到 [tools/utils/targets.py](tools/utils/targets.py)
-- 当前推荐入口是：`python build.py rst|review|check|sync-review|publish|word|html|pdf|all`
+- 当前推荐入口是：`python build.py doctor|rst|review|check|sync-review|publish|word|html|pdf|all`
 - 版本跟踪推荐对 [docs/_review/](docs/_review) 做 `diff-report`，而不是只盯 `_build`
 - 批量构建由配置文件中的 `build.targets` 驱动
 - `spec` 页的 `product_name` 按 `Model + Region + Language` 从 [data/phase1/Spec_Master.csv](data/phase1/Spec_Master.csv) 解析
@@ -82,6 +82,7 @@ python3 tools/csv_to_tex_params.py
 当前推荐直接使用根目录的 [build.py](build.py)，它会读取配置里的 `build.targets` 并批量构建所有目标：
 
 ```powershell
+python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 python build.py rst
 python build.py word
 python build.py html
@@ -364,6 +365,12 @@ python build.py sync-review --config ... --model ... --region ...
 
 ```powershell
 python build.py validate
+```
+
+检查当前机器能否构建 Word / PDF：
+
+```powershell
+python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 只生成 RST bundle：
