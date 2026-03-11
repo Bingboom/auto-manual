@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-11T15:22:25.146604+00:00",
-  "git_sha": "eacf6a76802bc60427a8ed8cb597138eb0bb7dc6",
+  "generated_at": "2026-03-11T16:57:25.545506+00:00",
+  "git_sha": "9a7a958e4638108cda4a545d2f1986bae54bbd61",
   "model": "JE-1000F",
   "region": "US",
   "runtime_bundle_dir": "docs/_build/JE-1000F/US/rst",
@@ -20,6 +20,7 @@
     "docs/_review/JE-1000F/US/page/10_troubleshooting.rst",
     "docs/_review/JE-1000F/US/page/11_warranty.rst",
     "docs/_review/JE-1000F/US/page/12_app_setup_placeholder.rst",
+    "docs/_review/JE-1000F/US/page/cover.rst",
     "docs/_review/JE-1000F/US/page/safety_en.rst",
     "docs/_review/JE-1000F/US/page/spec_en.rst"
   ],

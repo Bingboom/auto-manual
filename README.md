@@ -380,7 +380,7 @@ python build.py word --config config.yaml --model JE-2000F --region US
 ```powershell
 python tools\phase1_build.py --model JE-2000F --region US --page safety,spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv --spec-titles-csv data/phase1/spec_titles.csv
 python tools\gen_index_bundle.py --config config.yaml --model JE-2000F --region US
-python tools\word_bundle.py --config config.yaml --model JE-2000F --region US --output manual_demo_en.docx
+python tools\word_bundle.py --config config.yaml --model JE-2000F --region US --output manual_je2000f_us.docx
 ```
 
 ---
@@ -415,7 +415,7 @@ python tools\word_bundle.py --config config.yaml --model JE-2000F --region US --
   ???????? `word_source=html + build_html=false` ???????
 
 - `PDF not found: docs/_build/<model>/<region>/latex/<output_pdf>`  
-  `output_pdf` ?? `main_tex` ????????? `main_tex: manual_demo.tex` ?????? `manual_demo.pdf`?
+  `output_pdf` ?? `main_tex` ????????? `main_tex: manual_demo.tex` ?????? `manual_{model_slug}_{region_slug}.pdf`?
 
 ---
 
@@ -427,11 +427,11 @@ python tools\word_bundle.py --config config.yaml --model JE-2000F --region US --
 - `build.default_region: US`
 - `build.targets: [{ model: JE-2000F, region: US }]`
 - `build.main_tex: manual_demo.tex`
-- `build.output_pdf: manual_demo.pdf`
+- `build.output_pdf: manual_{model_slug}_{region_slug}.pdf`
 - `build.xelatex_runs: 3`
 - `build.build_word: true`
 - `build.word_source: bundle`
-- `build.word_output: manual_demo_en.docx`
+- `build.word_output: manual_{model_slug}_{region_slug}.docx`
 - `build.build_html: false`
 - `paths.spec_master_csv: data/phase1/Spec_Master.csv`
 - `paths.spec_footnotes_csv: data/phase1/Spec_Footnotes.csv`

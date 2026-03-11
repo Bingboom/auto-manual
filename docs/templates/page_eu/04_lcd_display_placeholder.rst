@@ -1,7 +1,7 @@
 LCD DISPLAY
 ===========
 
-.. image:: _static/manual_assets/hte153_jp/lcd/lcd_map.png
+.. image:: templates/word_template/common_assets/lcd/lcd_map.png
    :alt: LCD icon map placeholder.
    :width: 420px
 

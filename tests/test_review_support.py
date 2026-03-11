@@ -1,14 +1,15 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from tools.review_support import overlay_review_onto_bundle
+from tools.review_support import overlay_review_onto_bundle, sync_review_from_runtime
 
 
 class TestReviewSupport(unittest.TestCase):
-    def test_overlay_review_onto_bundle_should_replace_runtime_page_and_copy_overrides(self) -> None:
+    def test_overlay_review_onto_bundle_should_merge_review_pages_and_keep_runtime_only_files(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "JP" / "rst"
@@ -16,18 +17,20 @@ class TestReviewSupport(unittest.TestCase):
 
             (bundle_dir / "page").mkdir(parents=True)
             (bundle_dir / "generated" / "JE-1000F").mkdir(parents=True)
-            (bundle_dir / "_static" / "manual_template").mkdir(parents=True)
+            (bundle_dir / "_assets" / "templates" / "word_template" / "common_assets").mkdir(parents=True)
             (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
             (bundle_dir / "page" / "spec_ja.rst").write_text("runtime page\n", encoding="utf-8")
+            (bundle_dir / "page" / "cover.rst").write_text("runtime cover\n", encoding="utf-8")
             (bundle_dir / "generated" / "JE-1000F" / "spec_ja.rst").write_text("runtime generated\n", encoding="utf-8")
+            (bundle_dir / "generated" / "JE-1000F" / "safety_ja.rst").write_text("runtime safety\n", encoding="utf-8")
 
             (review_dir / "page").mkdir(parents=True)
             (review_dir / "generated" / "JE-1000F").mkdir(parents=True)
-            (review_dir / "overrides" / "_static" / "manual_template").mkdir(parents=True)
+            (review_dir / "overrides" / "_assets" / "templates" / "word_template" / "common_assets").mkdir(parents=True)
             (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
             (review_dir / "page" / "spec_ja.rst").write_text("review page\n", encoding="utf-8")
             (review_dir / "generated" / "JE-1000F" / "spec_ja.rst").write_text("review generated\n", encoding="utf-8")
-            (review_dir / "overrides" / "_static" / "manual_template" / "slot.jpg").write_text(
+            (review_dir / "overrides" / "_assets" / "templates" / "word_template" / "common_assets" / "slot.jpg").write_text(
                 "override asset\n",
                 encoding="utf-8",
             )
@@ -41,14 +44,77 @@ class TestReviewSupport(unittest.TestCase):
 
             self.assertEqual("review index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
             self.assertEqual("review page\n", (bundle_dir / "page" / "spec_ja.rst").read_text(encoding="utf-8"))
+            self.assertEqual("runtime cover\n", (bundle_dir / "page" / "cover.rst").read_text(encoding="utf-8"))
             self.assertEqual(
                 "review generated\n",
                 (bundle_dir / "generated" / "JE-1000F" / "spec_ja.rst").read_text(encoding="utf-8"),
             )
             self.assertEqual(
-                "override asset\n",
-                (bundle_dir / "_static" / "manual_template" / "slot.jpg").read_text(encoding="utf-8"),
+                "runtime safety\n",
+                (bundle_dir / "generated" / "JE-1000F" / "safety_ja.rst").read_text(encoding="utf-8"),
             )
+            self.assertEqual(
+                "override asset\n",
+                (bundle_dir / "_assets" / "templates" / "word_template" / "common_assets" / "slot.jpg").read_text(encoding="utf-8"),
+            )
+
+    def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "JP" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "JP"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (runtime_dir / "generated" / "JE-1000F").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "generated" / "JE-1000F").mkdir(parents=True)
+
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            (runtime_dir / "page" / "03_product_overview_placeholder.rst").write_text("runtime placeholder\n", encoding="utf-8")
+            (runtime_dir / "page" / "02_whats_in_the_box.rst").write_text("runtime ordinary\n", encoding="utf-8")
+            (runtime_dir / "page" / "spec_ja.rst").write_text("runtime spec page\n", encoding="utf-8")
+            (runtime_dir / "page" / "cover_jp.rst").write_text("runtime cover\n", encoding="utf-8")
+            (runtime_dir / "generated" / "JE-1000F" / "spec_ja.rst").write_text("runtime generated\n", encoding="utf-8")
+
+            (review_dir / "page" / "03_product_overview_placeholder.rst").write_text("review placeholder\n", encoding="utf-8")
+            (review_dir / "page" / "02_whats_in_the_box.rst").write_text("review ordinary\n", encoding="utf-8")
+            (review_dir / "page" / "spec_ja.rst").write_text("review spec page\n", encoding="utf-8")
+            (review_dir / "page" / "cover_jp.rst").write_text("review cover\n", encoding="utf-8")
+            (review_dir / "generated" / "JE-1000F" / "spec_ja.rst").write_text("review generated\n", encoding="utf-8")
+
+            copied = sync_review_from_runtime(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+            )
+
+            self.assertGreaterEqual(len(copied), 4)
+            self.assertEqual(
+                "runtime placeholder\n",
+                (review_dir / "page" / "03_product_overview_placeholder.rst").read_text(encoding="utf-8"),
+            )
+            self.assertEqual(
+                "review ordinary\n",
+                (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8"),
+            )
+            self.assertEqual(
+                "runtime spec page\n",
+                (review_dir / "page" / "spec_ja.rst").read_text(encoding="utf-8"),
+            )
+            self.assertEqual(
+                "runtime cover\n",
+                (review_dir / "page" / "cover_jp.rst").read_text(encoding="utf-8"),
+            )
+            self.assertEqual(
+                "runtime generated\n",
+                (review_dir / "generated" / "JE-1000F" / "spec_ja.rst").read_text(encoding="utf-8"),
+            )
+
+            manifest = json.loads((review_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual("params", manifest["last_sync_scope"])
+            self.assertIn("page/03_product_overview_placeholder.rst", manifest["last_sync_files"])
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
 |MAIN_POWER_BUTTON_LABEL| オン/オフ
 -----------------
 
-.. image:: _static/manual_assets/hte153_jp/operation/main_power.png
+.. image:: templates/word_template/common_assets/operation/main_power.png
    :alt: Main power operation diagram.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC出力のオン/オフ
 
 ● 前提：|MAIN_POWER_BUTTON_LABEL|がオンになっていることを確認してください。
 
-.. image:: _static/manual_assets/hte153_jp/operation/ac_output.png
+.. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output operation diagram.
    :width: 360px
 
@@ -45,7 +45,7 @@ AC出力のオン/オフ
 
 手動調整：AC出力がオンの状態で、|AC_POWER_BUTTON_LABEL|を5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
 
-.. image:: _static/manual_assets/hte153_jp/operation/frequency_switch.png
+.. image:: templates/word_template/common_assets/operation/frequency_switch.png
    :alt: Frequency switch diagram.
    :width: 360px
 
@@ -54,7 +54,7 @@ USB/カーポート出力オン/オフ
 
 ● 前提：|MAIN_POWER_BUTTON_LABEL|がオンになっていることを確認してください。
 
-.. image:: _static/manual_assets/hte153_jp/operation/dc_usb_output.png
+.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: DC and USB output operation diagram.
    :width: 360px
 
@@ -105,7 +105,7 @@ USB/カーポート出力オン/オフ
 
 |AC_POWER_BUTTON_LABEL|がオンの状態で、|AC_POWER_BUTTON_LABEL|と|MAIN_POWER_BUTTON_LABEL|を同時に長押しし、省エネアイコンの表示（オン）/ 非表示（オフ）が切り替わるまで押し続けてください。
 
-.. image:: _static/manual_assets/hte153_jp/operation/energy_saving.png
+.. image:: templates/word_template/common_assets/operation/energy_saving.png
    :alt: Energy saving mode diagram.
    :width: 320px
 
@@ -122,7 +122,7 @@ LEDライト
 
 LEDライトには、照明モードとSOSモードの2つのモードがあります。いずれのモードでも、LEDスイッチを長押しすることでLEDライトを消灯できます。
 
-.. image:: _static/manual_assets/hte153_jp/operation/led_light.png
+.. image:: templates/word_template/common_assets/operation/led_light.png
    :alt: LED light operation diagram.
    :width: 360px
 
@@ -139,7 +139,7 @@ LCDスクリーン
      - モード
      - 操作
      - 動作
-   * - .. image:: _static/manual_assets/hte153_jp/operation/lcd_mode.png
+   * - .. image:: templates/word_template/common_assets/operation/lcd_mode.png
           :alt: LCD display mode diagram.
           :width: 140px
      - 短くオン

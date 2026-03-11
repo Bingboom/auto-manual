@@ -8,7 +8,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: _static/manual_template/page_en/05_operation_guide_placeholder/slot_01.png
+.. image:: _assets/templates/word_template/common_assets/operation/main_power.png
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -29,7 +29,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: _static/manual_template/page_en/05_operation_guide_placeholder/slot_02.png
+.. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -42,7 +42,7 @@ DC 12V/USB OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: _static/manual_template/page_en/05_operation_guide_placeholder/slot_03.png
+.. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 
@@ -73,7 +73,7 @@ To disable the energy saving mode, press and hold both the AC power button and t
 
 When powering low-power devices (AC <= 25W or DC/USB <= 2W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
-.. image:: _static/manual_template/page_en/05_operation_guide_placeholder/slot_04.png
+.. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
@@ -88,7 +88,7 @@ LED LIGHT ON/OFF
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light.
 
-.. image:: _static/manual_template/page_en/05_operation_guide_placeholder/slot_05.png
+.. image:: _assets/templates/word_template/common_assets/operation/led_light.png
    :alt: LED light mode operation placeholder.
    :width: 360px
 
@@ -109,7 +109,7 @@ LCD SCREEN
      - Mode
      - Action
      - Behavior
-   * - .. image:: _static/manual_template/page_en/05_operation_guide_placeholder/slot_06.png
+   * - .. image:: _assets/templates/word_template/common_assets/operation/lcd_mode.png
           :alt: LCD display mode placeholder.
           :width: 140px
      - Shortly On

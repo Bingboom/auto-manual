@@ -4,7 +4,7 @@ PRODUCT OVERVIEW
 FRONT VIEW
 ----------
 
-.. image:: _static/manual_assets/hte153_jp/overview/front_product.jpg
+.. image:: templates/word_template/common_assets/overview/front_product.jpg
    :alt: Front view diagram placeholder.
    :width: 420px
 
@@ -32,7 +32,7 @@ FRONT VIEW
 RIGHT SIDE VIEW
 ---------------
 
-.. image:: _static/manual_assets/hte153_jp/overview/right_side_ports.png
+.. image:: templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Right side view diagram placeholder.
    :width: 420px
 

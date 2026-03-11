@@ -1,1 +1,10 @@
 ﻿tracked_root,model,region,artifact,section,page_key,file_count,change_types,insertions,deletions,fields_changed,relative_paths,from_ref,to_ref
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,,manifest,1,M,56,2,0,manifest.json,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,overrides,README,1,A,9,0,0,overrides/README.md,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,01_meaning_of_symbols,1,M,29,29,38,page/01_meaning_of_symbols.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,03_product_overview_placeholder,1,M,2,2,0,page/03_product_overview_placeholder.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,04_lcd_display_placeholder,1,M,1,1,0,page/04_lcd_display_placeholder.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,05_operation_guide_placeholder,1,M,7,7,2,page/05_operation_guide_placeholder.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,06_ups_mode,1,M,1,1,0,page/06_ups_mode.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,07_expansion_battery_pack,1,M,4,4,0,page/07_expansion_battery_pack.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,12_app_setup_placeholder,1,M,7,3,0,page/12_app_setup_placeholder.rst,HEAD~1,HEAD

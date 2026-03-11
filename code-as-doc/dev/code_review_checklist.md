@@ -1,157 +1,54 @@
 # Code Review Checklist
 
-适用范围：
+Updated: 2026-03-12
 
-* 所有 tools/*.py
-* 所有 CSV → RST 渲染逻辑
-* 所有构建入口脚本
-* 所有参数系统相关代码
+Use this checklist when reviewing changes to code, config, data, or review workflow.
 
----
+## 1. Source of Truth
 
-## 1️⃣ 结构层（Architecture Layer）
+- [ ] Is it clear whether this change belongs in templates, phase1 CSV data, `_review`, or runtime `_build` output?
+- [ ] If review has already started for a target, are target-specific text changes being made in [`docs/_review/<model>/<region>/`](../../docs/_review) instead of shared templates?
+- [ ] If the change affects many manuals, is it being implemented in templates or shared data rather than copied into one review bundle?
 
-### 1.1 模块职责是否单一？
+## 2. Build and Release Flow
 
-* [ ] 是否存在一个函数做了 3 件以上的事情？
-* [ ] I/O 是否与核心逻辑分离？
-* [ ] 逻辑是否可以被单独调用（不依赖 CLI）？
+- [ ] Does the change preserve the current [`build.py`](../../build.py) entrypoint?
+- [ ] If command behavior changed, were [`README.md`](../../README.md), [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md), and the user guides under [`user-guide/`](../../user-guide) updated?
+- [ ] If publish behavior changed, was `python build.py publish ...` kept or updated intentionally?
+- [ ] If diff-report behavior changed, were the report docs updated too?
 
-正确结构：
+## 3. Config Discipline
 
-```python
-def parse_csv(path) -> List[Row]:
-    ...
+- [ ] Did we avoid creating a new config file only because the model changed?
+- [ ] If a new config was added, is there a real template-family or page-stack reason for it?
+- [ ] Does the config still use `manual_{model_slug}_{region_slug}` style output naming where expected?
 
-def render_rows(rows) -> str:
-    ...
+## 4. Data Contract
 
-def write_rst(path, content):
-    ...
-```
+- [ ] If [`Spec_Master.csv`](../../data/phase1/Spec_Master.csv) semantics changed, was [`code-as-doc/spec_master_user_guide.md`](../spec_master_user_guide.md) updated?
+- [ ] If new `tpl_*` placeholders were introduced, are the affected templates and contracts aligned?
+- [ ] If safety/spec data behavior changed, are [`Spec_Footnotes.csv`](../../data/phase1/Spec_Footnotes.csv), [`spec_titles.csv`](../../data/phase1/spec_titles.csv), and [`content_blocks.csv`](../../data/phase1/content_blocks.csv) interactions still correct?
 
----
+## 5. Review Workflow
 
-### 1.2 是否有明确的输入输出契约？
+- [ ] If the target is already in review, is `sync-review` used for data-driven refresh instead of resetting the whole review bundle?
+- [ ] If `review --refresh-review` is used, is that intentional and documented?
+- [ ] Does `_review` still remain the durable editing surface after review starts?
 
-每个脚本必须说明：
+## 6. Contracts and Validation
 
-* 输入文件类型
-* 必需字段
-* 输出文件路径
-* 输出格式
+- [ ] If a placeholder-heavy page was added or changed, is there an appropriate page contract under [`docs/templates/contracts/`](../../docs/templates/contracts)?
+- [ ] Does `check` still fail fast for missing identity, unresolved placeholders, missing assets, or missing contract data?
+- [ ] Are error messages still specific enough to locate the problem?
 
----
+## 7. Tests and Verification
 
-## 2️⃣ 数据层（CSV / Snapshot 安全）
+- [ ] Was `python -m unittest` run if logic changed?
+- [ ] Was at least one relevant smoke build run for the affected family?
+- [ ] If JP review/publish flow changed, was `python build.py publish --config config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
 
-### 2.1 字段校验是否存在？
+## 8. Documentation and History
 
-* [ ] 是否校验字段名？
-* [ ] 是否校验必填字段？
-* [ ] 是否校验枚举值（如 level / type）？
-* [ ] 是否校验多语言字段完整性？
-
-建议必须有：
-
-```python
-def validate_schema(headers: List[str]) -> None:
-```
-
----
-
-### 2.2 构建是否确定性？
-
-* [ ] glob() 是否排序？
-* [ ] dict 遍历是否排序？
-* [ ] 是否避免时间戳写入输出文件？
-* [ ] 同 snapshot 是否 100% 可复现？
-
-这关系到版本可追溯性（你流程里明确强调的目标）。
-
----
-
-## 3️⃣ 错误处理层
-
-### 3.1 是否 Fail Fast？
-
-严重错误必须：
-
-* 打印文件名
-* 打印 CSV 行号
-* 打印字段名
-* 退出非 0 状态码
-
-例如：
-
-```python
-raise ValueError(
-    f"[schema error] {file} line {lineno}: missing field 'text_en'"
-)
-```
-
----
-
-### 3.2 是否存在 Silent Fail？
-
-* [ ] 是否有 except: pass？
-* [ ] subprocess 是否检查 returncode？
-* [ ] 是否存在 try/except 包住整个 main()？
-
-严禁“执行没反应”。
-
----
-
-## 4️⃣ 渲染安全层（RST / LaTeX）
-
-### 4.1 是否统一 escape？
-
-必须有集中函数：
-
-```python
-def escape_rst(text: str) -> str:
-    ...
-
-def escape_latex(text: str) -> str:
-    ...
-```
-
-禁止在代码里散落 replace()。
-
----
-
-### 4.2 raw:: latex 是否受控？
-
-* [ ] 是否只允许白名单组件？
-* [ ] 是否禁止 CSV 直接写 raw 指令？
-
----
-
-## 5️⃣ 副作用控制
-
-* [ ] 所有写入是否集中在 docs/ 或 build/？
-* [ ] 是否有危险删除操作？
-* [ ] 是否支持 --dry-run？
-
----
-
-## 6️⃣ 日志可读性
-
-每个阶段必须有：
-
-```
-[phase1] validating csv...
-[phase2] rendering rst...
-[phase3] building latex...
-```
-
-不允许黑盒执行。
-
----
-
-## 7️⃣ 可测试性
-
-* [ ] 核心逻辑是否是纯函数？
-* [ ] 是否能用一个小 CSV 跑完整流程？
-* [ ] 是否可写最小 regression 样例？
-
+- [ ] Were the current normative docs updated in the same change?
+- [ ] If this is a major milestone, was [`code-as-doc/code_optimization_log.md`](../code_optimization_log.md) updated?
+- [ ] If a document became historical or draft-only, is it clearly marked as such?

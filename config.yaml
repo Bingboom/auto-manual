@@ -12,14 +12,14 @@ build:
   #   - model: JE-1000F
   #     region: US
   main_tex: manual_demo.tex
-  output_pdf: manual_demo.pdf
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
   xelatex_runs: 3
   open_pdf: true
   build_word: true
-  word_output: manual_demo_en.docx
+  word_output: manual_{model_slug}_{region_slug}.docx
   word_source: bundle
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: EN-Explorer 2000 User Manual V1.0
+  word_title: "|PRODUCT_NAME| User Manual"
   open_word: false
   build_html: false
   open_html: false

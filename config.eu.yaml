@@ -5,14 +5,14 @@ build:
   default_model: JE-3600A
   default_region: EU
   main_tex: manual_demo.tex
-  output_pdf: manual_demo.pdf
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
   xelatex_runs: 3
   open_pdf: false
   build_word: true
-  word_output: manual_demo_eu.docx
+  word_output: manual_{model_slug}_{region_slug}.docx
   word_source: bundle
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: EN-3600Plus-DVT
+  word_title: "|PRODUCT_NAME| User Manual"
   open_word: false
   build_html: false
   open_html: false

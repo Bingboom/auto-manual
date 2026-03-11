@@ -107,6 +107,25 @@ class TestTargetResolution(unittest.TestCase):
         cmd = ["sphinx-build", "-b", "latex", ".", "_build/latex"]
         self.assertEqual(cmd, build_docs._with_product_name_epilog(cmd, ""))
 
+    def test_render_build_template_should_support_model_region_slug_tokens(self) -> None:
+        rendered = build_docs.render_build_template(
+            "manual_{model_slug}_{region_slug}.docx",
+            model="JE-1000F",
+            region="JP",
+            lang="ja",
+        )
+
+        self.assertEqual("manual_je1000f_jp.docx", rendered)
+
+    def test_render_build_template_should_reject_missing_required_token_values(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "requires value"):
+            build_docs.render_build_template(
+                "manual_{model_slug}_{region_slug}.docx",
+                model="JE-1000F",
+                region=None,
+                lang="ja",
+            )
+
     def test_resolve_product_name_for_build_should_read_from_spec_master(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             spec_master_csv = Path(td) / "Spec_Master.csv"

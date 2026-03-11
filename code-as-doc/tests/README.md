@@ -1,29 +1,82 @@
-# Tests
+# Tests Guide
 
-Run all tests:
+Updated: 2026-03-12
 
-```bash
-python3 -m unittest discover -s tests -v
+This file describes the current test entrypoints and recommended smoke checks.
+
+## 1. Run the Full Test Suite
+
+```powershell
+python -m unittest
 ```
 
-Notes:
+Current test coverage includes:
 
-- Current tests are all hard assertions and should pass.
-- If new known issues are intentionally tracked before fix, use `@unittest.expectedFailure` temporarily and remove it after remediation.
+- build script behavior
+- target resolution
+- config validation
+- layout param validation
+- phase1 rendering
+- review bundle flow
+- sync-review
+- diff-report
+- page contracts
+- Word bundle logic
 
-## Build Smoke (Word)
+## 2. Baseline Smoke Checks
 
-JA template to Word (`page_ja`) smoke:
+### 2.1 EN / US family
 
-```bash
-python3 tools/gen_index_bundle.py --config config.ja.yaml --model JE-2000F --region JP
-python3 tools/word_bundle.py --config config.ja.yaml --model JE-2000F --region JP --output manual_demo_ja.docx
+```powershell
+python build.py check --config config.yaml --model JE-1000F --region US
+python build.py word --config config.yaml --model JE-1000F --region US
 ```
 
-Expected output:
+### 2.2 JP family
 
-- `docs/_build/word/manual_demo_ja.docx`
+```powershell
+python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+```
 
-Note:
+### 2.3 EU family
 
-- When using `tools/build_docs.py` for JA full chain, ensure `build.output_pdf` matches the actual generated LaTeX PDF filename.
+```powershell
+python build.py check --config config.eu.yaml --model JE-3600A --region EU
+```
+
+## 3. Review-Specific Smoke Checks
+
+Seed review once:
+
+```powershell
+python build.py review --config config.ja.yaml --model JE-1000F --region JP
+```
+
+Refresh data-driven review content:
+
+```powershell
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
+```
+
+Export review revision report:
+
+```powershell
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+```
+
+## 4. Expected Output Examples
+
+- Word:
+  - [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
+- PDF:
+  - [`docs/_build/JE-1000F/JP/pdf/manual_je1000f_jp.pdf`](../../docs/_build/JE-1000F/JP)
+- Review bundle:
+  - [`docs/_review/JE-1000F/JP/`](../../docs/_review/JE-1000F/JP)
+- Diff report:
+  - [`reports/version_tracking/JE-1000F/JP/`](../../reports/version_tracking/JE-1000F/JP)
+
+## 5. Notes
+
+- Historical test reports under [`code-as-doc/tests/`](../tests) are archive material, not the current source of truth.
+- Prefer [`build.py`](../../build.py) for smoke checks instead of calling old low-level scripts directly.

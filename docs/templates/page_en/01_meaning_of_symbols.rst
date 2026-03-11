@@ -23,25 +23,25 @@ During the lifecycle of energy storage products, a certain degree of capacity an
 
    * - Symbol
      - Meaning
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/warning_triangle.png
+   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: WARNING symbol placeholder.
           :width: 40px
 
        **WARNING**
      - Hazardous practices that may result in severe injury, death, and/or property damage.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/warning_triangle.png
+   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: CAUTION symbol placeholder.
           :width: 40px
 
        **CAUTION**
      - Hazardous practices that may result in personal injury and/or property damage.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/mandatory.png
+   * - .. image:: templates/word_template/common_assets/symbols/mandatory.png
           :alt: NOTE symbol placeholder.
           :width: 40px
 
        **NOTE**
      - Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/mandatory.png
+   * - .. image:: templates/word_template/common_assets/symbols/mandatory.png
           :alt: TIP symbol placeholder.
           :width: 40px
 
@@ -56,58 +56,58 @@ During the lifecycle of energy storage products, a certain degree of capacity an
      - meaning
      - Symbol
      - meaning
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/warning_triangle.png
+   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Warning and caution symbols placeholder.
           :width: 40px
      - Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.
-     - .. image:: _static/manual_assets/hte153_jp/symbols/do_not_dismantle.png
+     - .. image:: templates/word_template/common_assets/symbols/do_not_dismantle.png
           :alt: Do not dismantle symbol placeholder.
           :width: 40px
      - Do not dismantle the product.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/read_manual.png
+   * - .. image:: templates/word_template/common_assets/symbols/read_manual.png
           :alt: Read manual symbol placeholder.
           :width: 40px
      - Read the user manual before operation.
-     - .. image:: _static/manual_assets/hte153_jp/symbols/prohibited.png
+     - .. image:: templates/word_template/common_assets/symbols/prohibited.png
           :alt: Keep away from fire symbol placeholder.
           :width: 40px
      - Keep the product away from fire.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/grounding.png
+   * - .. image:: templates/word_template/common_assets/symbols/grounding.png
           :alt: Electric shock symbol placeholder.
           :width: 40px
      - Risk of electric shock.
-     - .. image:: _static/manual_assets/hte153_jp/symbols/prohibited.png
+     - .. image:: templates/word_template/common_assets/symbols/prohibited.png
           :alt: Keep away from children symbol placeholder.
           :width: 40px
      - Keep away from children.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/battery_recycle.png
+   * - .. image:: templates/word_template/common_assets/symbols/battery_recycle.png
           :alt: Battery charging symbol placeholder.
           :width: 40px
      - Battery charging.
-     - .. image:: _static/manual_assets/hte153_jp/symbols/li_ion.png
+     - .. image:: templates/word_template/common_assets/symbols/li_ion.png
           :alt: Li-ion battery symbol placeholder.
           :width: 40px
      - This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/warning_triangle.png
+   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Explosive material symbol placeholder.
           :width: 40px
      - Explosive material.
-     - .. image:: _static/manual_assets/hte153_jp/symbols/weee.png
+     - .. image:: templates/word_template/common_assets/symbols/weee.png
           :alt: WEEE disposal symbol placeholder.
           :width: 40px
      - This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling.
        Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/warning_triangle.png
+   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Hot surface symbol placeholder.
           :width: 40px
      - Caution! Hot surface.
      -
      -
-   * - .. image:: _static/manual_assets/hte153_jp/symbols/warning_triangle.png
+   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Heavy object symbol placeholder.
           :width: 40px
      - Heavy object.
-     - .. image:: _static/manual_assets/hte153_jp/symbols/battery_recycle.png
+     - .. image:: templates/word_template/common_assets/symbols/battery_recycle.png
           :alt: Battery disposal symbol placeholder.
           :width: 40px
      - Batteries and accumulators must not be disposed of with household waste.

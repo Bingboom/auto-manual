@@ -3,7 +3,7 @@ APP SETUP
 
 **1. Download the App and log in**
 
-.. image:: _static/manual_assets/hte153_jp/app/download.png
+.. image:: templates/word_template/common_assets/app/download.png
    :alt: App download QR and marketplace placeholder.
    :width: 320px
 
@@ -18,7 +18,7 @@ Alternatively, scan the QR code below to download and install the App.
 When the Wi-Fi and Bluetooth icons on the device flash, the device has entered the network configuration mode.
 Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
 
-.. image:: _static/manual_assets/hte153_jp/app/add_device.png
+.. image:: templates/word_template/common_assets/app/add_device.png
    :alt: App add device step placeholder.
    :width: 320px
 
@@ -45,7 +45,7 @@ If "the device has been bound" is prompted during the binding process, the follo
 
 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
 
-.. image:: _static/manual_assets/hte153_jp/app/connect_result.png
+.. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: App setup result screen placeholder.
    :width: 360px
 

@@ -456,7 +456,7 @@ Mitigation:
 
 - keep `rst`, `word`, `html`, `pdf`, `all` unchanged
 - add new commands without breaking current workflow
-- document each command in README and `hello-doc-user-guide.md`
+- document each command in README and `user-guide/hello_auto-doc.md`
 
 ---
 

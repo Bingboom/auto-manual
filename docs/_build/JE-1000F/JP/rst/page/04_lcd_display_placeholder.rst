@@ -5,7 +5,7 @@
 液晶画面
 ========
 
-.. image:: _static/manual_template/page_jp/04_lcd_display_placeholder/slot_01.png
+.. image:: _assets/templates/word_template/common_assets/lcd/lcd_map.png
    :alt: LCD icon map.
    :width: 420px
 

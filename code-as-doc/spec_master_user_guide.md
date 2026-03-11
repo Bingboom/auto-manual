@@ -1,129 +1,210 @@
 # Spec Master User Guide
 
-更新时间：2026-03-08
+Updated: 2026-03-12
 
-本文说明 `Spec_Master.csv` 在当前仓库构建链路中的作用，并明确“构建 Word/PDF/HTML 时必备字段”。
+This file explains the current phase1 data layer, with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as the center.
 
-## 1. `Spec_Master.csv` 在构建链路中的作用
+## 1. Active Phase1 CSV Files
 
-当前 `spec` 页面数据源是单一配置源：
+The current manual data layer uses these files:
 
-- 主表：`config.yaml -> paths.spec_master_csv`
-- 脚注补充（可选）：`config.yaml -> paths.spec_footnotes_csv`
-- 标题覆盖（可选）：`config.yaml -> paths.spec_titles_csv`
+- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+  - main product parameters
+  - spec rows
+  - `product_name`
+  - `model_no`
+  - `tpl_*` placeholders
+- [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+  - spec footnotes
+- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+  - localized spec section title mapping
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+  - block-based safety and content sections
+- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
+  - page/block registry used by phase1 safety flow
 
-当前仓库默认配置：
+[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main structured source for product identity and placeholder substitution.
 
-```yaml
-paths:
-  spec_master_csv: data/phase1/Spec_Master.csv
-  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
-  spec_titles_csv: data/phase1/spec_titles.csv
-```
+## 2. Where [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) Is Used
 
-构建链路（统一内容源）：
+Current flow:
 
-1. `tools/build_docs.py` 解析构建目标（`model/region/lang`）
-2. 按 `Model + Region + Language` 从 `Spec_Master.csv` 解析 `Row_key=product_name` 对应值
-3. 注入 `|PRODUCT_NAME|` / `|PRODUCT_NAME_BOLD|`，供 RST 模板和 Word bundle 使用
-4. `tools/phase1_build.py` 读取同一份 `Spec_Master.csv` 生成 `docs/generated/<model>/spec_<lang>.rst`
-5. `html/pdf/word` 都基于同一份 `generated rst + templates rst` 继续构建
+1. [`build.py`](../build.py) or [`tools/build_docs.py`](../tools/build_docs.py) resolves target `model` and `region`
+2. product identity is resolved from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+3. [`tools/phase1_build.py`](../tools/phase1_build.py) renders CSV-driven content
+4. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes runtime pages
+5. `_review` can then be seeded or synced from that runtime output
+6. `word`, `html`, `pdf`, and `publish` consume the prepared bundle
 
-结论：
+That means one data change can affect:
 
-- `spec` 行数据与产品名变量来自 `Spec_Master.csv`
-- 脚注来自 `Spec_Footnotes.csv`（可选）
-- 页面标题/分节标题多语言覆盖来自 `spec_titles.csv`（可选）
+- generated spec content
+- placeholder pages
+- Word title
+- review sync results
+- diff-report field tracing
 
-## 2. 构建必备字段（Spec_Master）
+## 3. Required Data for Current Builds
 
-### 2.1 `spec` 页面可构建的硬必备表头
+At minimum, [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) needs enough data to resolve the target identity and render spec content.
 
-`Spec_Master.csv` 必须包含：
+Important columns commonly used by the current system:
 
 - `Section`
 - `Row_key`
 - `Line_order`
+- `Model`
+- `Region`
+- language-specific value columns such as `Value_en` / `Value_ja`
 
-缺失时会被判定为非 Spec_Master schema，`spec` 页无法按当前主链路正常构建。
+Important row keys:
 
-### 2.2 产品名变量注入的硬必备字段
+- `product_name`
+- `model_no`
+- `tpl_*`
 
-当你使用 `build_docs.py --model ...`（或配置了 `build.default_model`）时，以下字段是硬必备：
+If `product_name` cannot be resolved for `model + region + lang`, `build.py check` and [`tools/build_docs.py`](../tools/build_docs.py) will fail fast for target identity.
 
-- `Row_key`：必须存在 `product_name` 行
-- `Value_<lang>`（例如 `Value_en`）或可回退的 `Value` / `Spec_Value`
-- `Model`（建议显式填写，按型号精确匹配）
-- `Region`（建议显式填写，按区域精确匹配）
+## 4. Current Placeholder Rules
 
-`build_docs.py` 在有目标 `model` 的情况下会 fail-fast：如果无法从 `Spec_Master.csv` 解析到 `product_name`，构建直接失败。
+### 4.1 Core Identity Placeholders
 
-### 2.3 推荐字段（提升可控性）
+Resolved from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv):
 
-- `Section_order`：章节排序
-- `Row_order` / `row_order`：行排序
-- `Row_label_<lang>`：左侧字段显示名
-- `Param_<lang>` + `Value_<lang>`：右侧内容拼装
-- `Page`：建议标注为 `spec` 或 `specifications`
-- `Is_Latest`、`enabled`：版本与启用控制
+- `|PRODUCT_NAME|`
+- `|PRODUCT_NAME_BOLD|`
+- `|PRODUCT_SHORT_NAME|`
+- `|PRODUCT_SHORT_NAME_BOLD|`
+- `|MODEL_NO|`
 
-## 3. 过滤规则（常见“行被吃掉”原因）
+### 4.2 Template Placeholders
 
-以下字段不是必填，但填写不当会导致内容被过滤：
+Any row with `Row_key` starting with `tpl_` becomes a placeholder.
 
-- `enabled`：仅保留 truthy 行
-- `Is_Latest`：仅保留 truthy 行
-- `Model`：若传入构建 model，会做精确匹配
-- `Region`：若传入构建 region，会做精确匹配
-- `Page`：若存在，必须是 `spec` / `specifications`
+Examples:
 
-## 4. 最小可用示例
+- `tpl_main_power_button_label` -> `|MAIN_POWER_BUTTON_LABEL|`
+- `tpl_battery_pack_name` -> `|BATTERY_PACK_NAME|`
+- `tpl_side_ac_input_spec` -> `|SIDE_AC_INPUT_SPEC|`
 
-```csv
-Section,Section_order,Page,Model,Region,Row_key,Row_label_en,Line_order,Value_en,Is_Latest,enabled
-GENERAL INFO,1,spec,JHP-2000A,US,product_name,Product Name,1,Jackery HomePower 2000 Plus v2,1,1
-GENERAL INFO,1,spec,JHP-2000A,US,model_no,Model No.,1,JHP-2000A,1,1
-```
+Derived variants may also exist, for example:
 
-这份示例可同时满足：
+- `_BOLD`
+- `_LOWER`
+- suffixed placeholders for multi-line values
 
-- `spec` 页面基础渲染
-- `PRODUCT_NAME` 变量注入
-- `build_docs.py --model JHP-2000A --region US` 的 fail-fast 校验
+### 4.3 Current Usage Rule
 
-## 5. 快速自检
+If the same text should be shared across many models, keep it in template or config.
+If the text is target-specific and data-driven, keep it in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as `tpl_*`.
 
-```bash
-python3 tools/phase1_build.py --model JHP-2000A --region US --page spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv --spec-titles-csv data/phase1/spec_titles.csv
-python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
-```
+## 5. [`spec_titles.csv`](../data/phase1/spec_titles.csv) Rule
 
-如果失败，优先检查：
+[`spec_titles.csv`](../data/phase1/spec_titles.csv) is a localized title dictionary for spec sections.
 
-1. `Spec_Master.csv` 是否包含 `Section/Row_key/Line_order`
-2. 是否存在 `Row_key=product_name` 且能取到 `Value_en`（或回退值）
-3. `Model/Region/Page/Is_Latest/enabled` 是否把行过滤掉
+Typical fields:
 
-## 6. `spec_titles.csv`（页面/分节多语言标题字典）
-
-当前采用简化字典结构：
-
-- `title_en`（主键/默认值）
+- `title_en`
 - `title_zh`
 - `title_jp`
-- 可继续扩展：`title_fr` / `title_es` ...
 
-示例：
+Use it for section title localization.
+Do not use it as the place for general product parameter storage.
 
-```csv
-title_en,title_zh,title_jp
-SPECIFICATIONS,主要规格,主な仕様
-GENERAL INFO,基本信息,基本情報
-INPUT PORTS,输入端口,入力ポート
+## 6. [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) Rule
+
+Keep footnotes separate from the main spec rows.
+This makes spec tables and note content easier to maintain independently.
+
+## 7. [`content_blocks.csv`](../data/phase1/content_blocks.csv) and [`page_registry.csv`](../data/phase1/page_registry.csv)
+
+These files support the phase1 content block system used mainly for safety or block-driven pages.
+
+Current rule:
+
+- use [`content_blocks.csv`](../data/phase1/content_blocks.csv) for content blocks
+- use [`page_registry.csv`](../data/phase1/page_registry.csv) for block/page structure
+- do not push safety prose into [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) unless it is really a parameterized row
+
+## 8. Review-Phase Data Changes
+
+When a target is already in review and you change:
+
+- [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- [`spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`content_blocks.csv`](../data/phase1/content_blocks.csv)
+
+do not reset the whole review bundle by default.
+
+Use:
+
+```powershell
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-说明：
+This syncs the runtime result of data-driven pages back into `_review`.
 
-- `Spec_Master.csv` 保持结构化数据（行/列/顺序）
-- `spec_titles.csv` 只做标题多语言映射，不参与数据行过滤
-- 渲染时以 `title_en` 作为 lookup key；找不到目标语言值时回退到 `title_en`
+Useful variants:
+
+```powershell
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --sync-scope generated
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --page-file 02_whats_in_the_box.rst
+```
+
+Use `review --refresh-review` only if you intentionally want to reseed the whole review bundle.
+
+## 9. Common Failures
+
+### 9.1 Product Name Resolution Failure
+
+Symptom:
+
+- `Failed to resolve Product Name from Spec_Master.csv`
+
+Check:
+
+- target `model`
+- target `region`
+- language coverage
+- `Row_key=product_name`
+
+### 9.2 Template Placeholder Leaks
+
+Symptom:
+
+- `|PLACEHOLDER|` still appears in `_build` or `_review`
+
+Check:
+
+- matching `tpl_*` row exists
+- value is not empty
+- page contract covers the page if it is placeholder-heavy
+
+### 9.3 Review Not Updated After Data Change
+
+Symptom:
+
+- runtime draft changed but `_review` still shows old parameter text
+
+Check:
+
+- run `python build.py sync-review ...`
+- confirm the page is in the default sync scope or include it with `--page-file`
+
+## 10. Minimal Example
+
+For `JE-1000F / JP`, a common data-change flow is:
+
+```powershell
+python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+```
+
+This is the current maintainable path:
+
+- change data
+- validate
+- sync review
+- publish from review

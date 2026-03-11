@@ -4,7 +4,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: _static/manual_assets/hte153_jp/operation/main_power.png
+.. image:: templates/word_template/common_assets/operation/main_power.png
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite:** The product is powered on.
 
-.. image:: _static/manual_assets/hte153_jp/operation/ac_output.png
+.. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -38,7 +38,7 @@ USB OUTPUT ON/OFF
 
 **Prerequisite:** The product is turned on.
 
-.. image:: _static/manual_assets/hte153_jp/operation/dc_usb_output.png
+.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: USB output on/off operation placeholder.
    :width: 360px
 
@@ -74,7 +74,7 @@ LCD SCREEN
      - Mode
      - Action
      - Behavior
-   * - .. image:: _static/manual_assets/hte153_jp/operation/lcd_mode.png
+   * - .. image:: templates/word_template/common_assets/operation/lcd_mode.png
           :alt: LCD display mode placeholder.
           :width: 140px
      - Shortly On

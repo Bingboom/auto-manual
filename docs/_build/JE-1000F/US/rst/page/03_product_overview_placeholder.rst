@@ -8,7 +8,7 @@ PRODUCT OVERVIEW
 FRONT VIEW
 ----------
 
-.. image:: _static/manual_template/page_en/03_product_overview_placeholder/slot_01.png
+.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
    :alt: Front view diagram placeholder.
    :width: 420px
 
@@ -50,7 +50,7 @@ FRONT VIEW
 RIGHT SIDE VIEW
 ---------------
 
-.. image:: _static/manual_template/page_en/03_product_overview_placeholder/slot_02.png
+.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Right side view diagram placeholder.
    :width: 420px
 

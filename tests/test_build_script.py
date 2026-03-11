@@ -143,6 +143,7 @@ class TestBuildScript(unittest.TestCase):
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
+        sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
 
         self.assertEqual("review", review_args.action)
         self.assertEqual("check", check_args.action)
@@ -150,6 +151,9 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("publish", publish_args.action)
         self.assertEqual("JE-1000F", publish_args.model)
         self.assertEqual("JP", publish_args.region)
+        self.assertEqual("sync-review", sync_args.action)
+        self.assertEqual("generated", sync_args.sync_scope)
+        self.assertEqual(["03_product_overview_placeholder.rst"], sync_args.page_file)
 
     def test_review_and_check_commands_should_forward_targets_like_build_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
@@ -173,6 +177,29 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertIn("--refresh-existing", cmd)
 
+    def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "sync-review",
+                "--model",
+                "JE-1000F",
+                "--region",
+                "JP",
+                "--sync-scope",
+                "generated",
+                "--page-file",
+                "03_product_overview_placeholder.rst",
+            ]
+        )
+
+        cmd = build_cli.sync_review_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_review.py"), cmd[1])
+        self.assertIn("--sync-scope", cmd)
+        self.assertIn("generated", cmd)
+        self.assertIn("--page-file", cmd)
+        self.assertIn("03_product_overview_placeholder.rst", cmd)
+
     def test_publish_should_require_explicit_model_and_region(self) -> None:
         args = build_cli.parse_args(["publish"])
 
@@ -180,7 +207,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_publish(args)
 
     def test_publish_should_run_check_diff_report_and_word_from_review(self) -> None:
-        args = build_cli.parse_args(["publish", "--config", "config.je1000f.jp.yaml", "--model", "JE-1000F", "--region", "JP"])
+        args = build_cli.parse_args(["publish", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
         seen: list[list[str]] = []
         original_validate = build_cli.run_validate
         original_run_checked = build_cli.run_checked

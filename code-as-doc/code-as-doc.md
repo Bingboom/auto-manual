@@ -1,155 +1,189 @@
-# 代码文档化规范（Documentation Maintenance）
+# Documentation Maintenance Policy
 
-更新时间：2026-03-08
+Updated: 2026-03-12
 
-本规范用于明确：每次代码结构优化、功能修改或新增代码时，必须同步维护哪些文档，保证仓库长期可读、可维护、结构清晰。
+This file defines how documentation must be maintained together with code and data changes.
+The goal is simple:
 
----
+- code history should remain traceable
+- code and data should stay maintainable
+- maintainers should not have to guess which document is still valid
 
-## 1. 适用范围
+## 1. Scope
 
-- `tools/**/*.py`
-- `docs/templates/**/*.rst`
-- `data/**/*.csv`
-- `config.yaml`
-- 测试与构建脚本
+This policy applies to changes in:
 
----
+- [`build.py`](../build.py)
+- [`tools/**/*.py`](../tools)
+- [`docs/templates/**/*.rst`](../docs/templates)
+- [`docs/_review/**`](../docs/_review)
+- [`data/**/*.csv`](../data)
+- `config*.yaml`
+- [`tests/**`](../tests)
+- [`README.md`](../README.md)
+- [`code-as-doc/**`](../code-as-doc)
+- [`user-guide/**`](../user-guide)
 
-## 2. 文档职责（Single Source of Truth）
+## 2. Documentation Roles
 
-- `README.md`
-  - 面向使用者的真实构建逻辑、命令入口、配置项说明、链路说明。
-- `code-as-doc/code_style_guide.md`
-  - 面向开发者的架构分层、编码规范、测试门禁、重构路线。
-- `code-as-doc/code_optimization_log.md`
-  - 每次结构优化/重构的变更记录、影响范围、验证结果。
-- `code-as-doc/spec_master_user_guide.md`
-  - `Spec_Master.csv` 在构建链路中的作用、字段定义、Word 构建必需字段。
-- `code-as-doc/tests/README.md`（如存在测试策略变化）
-  - 测试组织方式、执行命令、覆盖边界。
+Current documentation roles are split like this:
 
----
+- [`README.md`](../README.md)
+  - repo overview
+  - top-level build usage
+- [`code-as-doc/*.md`](../code-as-doc)
+  - maintainer rules
+  - architecture and change-control notes
+- [`user-guide/*.md`](../user-guide)
+  - user workflow guides
+  - review and publishing procedures
+- [`code-as-doc/*log*.md`](../code-as-doc)
+  - historical record
 
-## 3. 变更类型 -> 必维护文档
+Do not mix normative guidance and historical notes in the same place without saying so explicitly.
 
-## 3.1 代码结构优化/重构（模块拆分、公共逻辑抽离、依赖方向调整）
+## 3. Change Type -> Required Doc Updates
 
-必须更新：
-- `code-as-doc/code_optimization_log.md`：记录目标、改动文件、回归结果。
-- `code-as-doc/code_style_guide.md`：若规范/分层约束发生变化，必须同步。
-- `README.md`：若入口命令、构建流程、配置语义变化，必须同步。
+### 3.1 Build Entrypoint or Command Behavior
 
-至少补充：
-- 对应测试或回归命令结果（单测/构建 smoke）。
+Examples:
 
-## 3.2 新增功能（新页面类型、新渲染器、新 CLI 参数、新导出路径）
+- [`build.py`](../build.py) action changes
+- output path changes
+- review / publish / diff-report behavior changes
 
-必须更新：
-- `README.md`：功能用途、配置方式、执行命令、限制条件。
-- `code-as-doc/code_style_guide.md`：若引入新的层级边界或开发约束，必须同步。
+Must update:
 
-条件更新：
-- 若涉及 `Spec_Master.csv` 读取逻辑或字段语义：同步更新 `code-as-doc/spec_master_user_guide.md`。
-- 若测试策略变化：同步更新 `code-as-doc/tests/README.md`。
+- [`README.md`](../README.md)
+- [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
+- [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+- [`user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md) if an example workflow changed
 
-## 3.3 配置变更（`config.yaml` 字段新增/删除/重命名）
+### 3.2 Architecture or Maintainability Rules
 
-必须更新：
-- `README.md`：配置字段说明、默认值、优先级、迁移方式。
-- `code-as-doc/code_optimization_log.md`：记录兼容性影响和回归结论。
+Examples:
 
-## 3.4 数据契约变更（CSV 字段、过滤条件、必填规则）
+- source-of-truth changes
+- `_review` / `_build` responsibility changes
+- module boundary changes
+- shared config strategy changes
 
-必须更新：
-- `code-as-doc/spec_master_user_guide.md`：字段定义、必填项、筛选逻辑、示例。
-- `README.md`：如果构建链路的输入源、路径或行为变化，必须同步。
-- `code-as-doc/code_optimization_log.md`：记录契约变更影响范围与验证结果。
+Must update:
 
-## 3.5 构建链路变更（html/pdf/word 任一流程）
+- [`code-as-doc/code_style_guide.md`](code_style_guide.md)
+- [`code-as-doc/code-as-doc.md`](code-as-doc.md)
+- [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
 
-必须更新：
-- `README.md`：构建顺序、工具依赖、命令示例。
-- `code-as-doc/code_optimization_log.md`：记录为何改、改了什么、如何验证。
+### 3.3 Data Contract Changes
 
-强制要求：
-- 明确说明是否仍保持 `html/pdf/word` 同源（同一 CSV + RST 内容源）。
+Examples:
 
-## 3.6 纯内容改动（RST 文案、版式、不改代码逻辑）
+- [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) field semantics
+- new `tpl_*` placeholders
+- [`content_blocks.csv`](../data/phase1/content_blocks.csv) or [`spec_titles.csv`](../data/phase1/spec_titles.csv) usage changes
+- sync-review behavior after CSV edits
 
-必须更新：
-- 相关 RST 页面文件本身。
+Must update:
 
-条件更新：
-- 如果目录层级或标题级别策略变化，需更新 `README.md` 对应说明。
-- 如果改动涉及产品名文案，模板中必须使用 `|PRODUCT_NAME|` / `|PRODUCT_NAME_BOLD|`，并在 `README.md` 与 `spec_master_user_guide.md` 说明变量来源。
+- [`code-as-doc/spec_master_user_guide.md`](spec_master_user_guide.md)
+- [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+- [`user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md) if the workflow changed
 
-## 3.7 新增语言模板链路（如 `page_ja` -> Word）
+### 3.4 Title or Layout Behavior Changes
 
-必须更新：
-- 对应语言配置文件（如 `config.ja.yaml`）：`build.languages`、`build.word_source`、`pages`。
-- `code-as-doc/title_style_guide.md`：补充该语言标题语义与样式继承规则。
-- `code-as-doc/tests/README.md`：补充该语言最小 smoke 命令。
+Examples:
 
-必须满足：
-- 模板入口放在 `docs/templates/page_<lang>/`，页面顺序由 `config.<lang>.yaml` 的 `pages` 控制。
-- `csv_page` 页面（当前主要是 `spec`）必须在 `pages` 中显式启用该语言（如 `langs: [ja]`）。
-- 产品名统一由 `Spec_Master.csv` 基于 `model + region (+ lang)` 解析并注入 `|PRODUCT_NAME|`。
+- title source changes
+- CSS / LaTeX / Word heading behavior changes
+- [`layout_params.csv`](../data/layout_params.csv) usage changes
 
-推荐回归（JA Word）：
+Must update:
 
-```bash
-python3 tools/gen_index_bundle.py --config config.ja.yaml --model JE-2000F --region JP
-python3 tools/word_bundle.py --config config.ja.yaml --model JE-2000F --region JP --output manual_demo_ja.docx
+- [`code-as-doc/title_style_guide.md`](title_style_guide.md)
+- [`code-as-doc/dev/layout_params_guide.md`](dev/layout_params_guide.md)
+- [`code-as-doc/dev/layout_params_change_log_template.md`](dev/layout_params_change_log_template.md) if the tuning process changed
+
+### 3.5 Test Strategy Changes
+
+Examples:
+
+- new smoke command
+- new mandatory test gate
+- changed review or publish verification path
+
+Must update:
+
+- [`code-as-doc/tests/README.md`](tests/README.md)
+- [`code-as-doc/dev/code_review_checklist.md`](dev/code_review_checklist.md)
+
+### 3.6 Major Refactor or Milestone
+
+Examples:
+
+- new review layer
+- cross-platform builder
+- new diff-report stage
+- new page contract system
+
+Must update:
+
+- [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
+- any normative guide affected by the new behavior
+
+## 4. Mandatory Maintenance Rules
+
+Rule 1:
+Do not land a behavior change without updating the matching docs in the same change.
+
+Rule 2:
+If a document is historical, mark it as historical.
+Do not let old commands look current.
+
+Rule 3:
+If a document is draft-only, say it is draft-only in the first screenful.
+
+Rule 4:
+If a workflow changes for reviewers or document editors, update [`user-guide/`](../user-guide) as well, not only [`code-as-doc/`](../code-as-doc).
+
+Rule 5:
+Do not treat generated runtime output as the authoring source unless the current workflow explicitly says so.
+In the current system, `_review` is the authoring surface after review starts.
+
+## 5. Minimal Verification Before Commit
+
+Run the smallest check set that matches the change.
+
+Recommended baseline:
+
+```powershell
+python build.py validate --config config.yaml
+python -m unittest
 ```
 
-补充说明：
-- `tools/build_docs.py` 会先走 PDF，再走 Word；若使用该入口，需保证 `build.output_pdf` 与实际 LaTeX 输出文件名一致。
-- 只验证 Word 导出时，优先使用 `tools/word_bundle.py` 直接构建。
+If build flow changed:
 
----
-
-## 4. 文档维护最小规则（强制）
-
-- 规则 1：任何“用户可见行为”变化，必须更新 `README.md`。
-- 规则 2：任何“架构/分层/共享逻辑”变化，必须更新 `code-as-doc/code_style_guide.md` 或 `code-as-doc/code_optimization_log.md`。
-- 规则 3：任何“CSV 字段/过滤条件”变化，必须更新对应数据指南（`code-as-doc/spec_master_user_guide.md`）。
-- 规则 4：文档更新与代码改动必须同 PR/同提交链路完成，禁止后补。
-
----
-
-## 5. 提交前检查清单（可直接执行）
-
-- [ ] 代码改动与文档改动已一一对应。
-- [ ] `README.md` 中命令和配置示例可执行。
-- [ ] 若改动构建链路，已记录在 `code-as-doc/code_optimization_log.md`。
-- [ ] 若改动规范/架构边界，已更新 `code-as-doc/code_style_guide.md`。
-- [ ] 若改动 `Spec_Master.csv` 契约，已更新 `code-as-doc/spec_master_user_guide.md`。
-- [ ] 单测与构建 smoke 至少执行一次并记录结果。
-- [ ] 若新增语言模板，已跑该语言 Word smoke（`word_bundle.py --config config.<lang>.yaml`）。
-
-推荐回归命令：
-
-```bash
-python3 tools/validate_config.py --config config.yaml
-python3 tools/validate_layout_params.py --csv data/layout_params.csv
-python3 -m unittest discover -s tests -v
-python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
+```powershell
+python build.py check --config config.yaml --model JE-1000F --region US
 ```
 
----
+If JP review flow changed:
 
-## 6. 评审口径（Review Checklist）
+```powershell
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+```
 
-- 是否新增了重复逻辑而未抽象复用。
-- 是否出现跨层调用私有函数或职责混杂。
-- 是否更新了对应文档且内容与当前代码一致。
-- 是否破坏 `html/pdf/word` 同源构建原则。
+If diff-report changed:
 
----
+```powershell
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+```
 
-## 7. 执行策略（建议）
+## 6. Review Questions
 
-- 小改动：最少更新 `README.md` 或相关专题文档，并补回归结果。
-- 中改动：同步更新 `README.md + code-as-doc/code_optimization_log.md`。
-- 大改动（重构）：同步更新 `README.md + code-as-doc/code_style_guide.md + code-as-doc/code_optimization_log.md`，必要时补专题指南。
+Before merging, check:
+
+- Is the current source of truth still clear?
+- Did we accidentally reintroduce model-specific config duplication?
+- Did we document new data assumptions?
+- Did we preserve history while keeping normative docs current?
+- Can another maintainer follow the updated commands without reading the code first?

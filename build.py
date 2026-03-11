@@ -23,7 +23,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "action",
-        choices=("validate", *BUILD_ACTIONS, "review", "check", "publish", "clean", "diff-report"),
+        choices=("validate", *BUILD_ACTIONS, "review", "check", "sync-review", "publish", "clean", "diff-report"),
         help="Action to run",
     )
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
@@ -32,7 +32,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument(
         "--source",
         choices=("auto", "runtime", "review"),
-        default="runtime",
+        default="auto",
         help="Content source for build actions: auto, runtime, or review",
     )
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
@@ -42,6 +42,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--refresh-review",
         action="store_true",
         help="Refresh an existing review bundle from the runtime template/data output",
+    )
+    ap.add_argument(
+        "--sync-scope",
+        choices=("generated", "params"),
+        default="params",
+        help="For sync-review: generated = spec/safety only; params = generated plus placeholder/cover pages",
+    )
+    ap.add_argument(
+        "--page-file",
+        action="append",
+        default=[],
+        help="For sync-review: extra review page file name to sync from runtime/page",
     )
     ap.add_argument("--tracked-root", default=REVIEW_TRACKED_ROOT, help="Tracked subtree for diff-report")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report")
@@ -224,6 +236,22 @@ def check_docs_command(args: argparse.Namespace) -> list[str]:
     return _append_target_args(cmd, args)
 
 
+def sync_review_command(args: argparse.Namespace) -> list[str]:
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "sync_review.py"),
+        "--config",
+        str(config_path),
+        "--sync-scope",
+        args.sync_scope,
+    ]
+    _append_target_args(cmd, args)
+    for page_file in args.page_file:
+        cmd += ["--page-file", page_file]
+    return cmd
+
+
 def run_validate(config_path: Path) -> None:
     run_checked(
         [
@@ -276,7 +304,7 @@ def run_diff_report_with_paths(
     run_checked(cmd)
 
 
-def run_check(args: argparse.Namespace, *, source_override: str = "runtime") -> None:
+def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> None:
     config_path = resolve_path_from_root(args.config)
     run_validate(config_path)
     run_checked(build_docs_command(args, action_override="rst", source_override=source_override))
@@ -341,6 +369,9 @@ def main(argv: list[str] | None = None) -> int:
             run_checked(review_bundle_command(args))
         elif args.action == "check":
             run_check(args)
+        elif args.action == "sync-review":
+            run_checked(build_docs_command(args, action_override="rst", source_override="runtime"))
+            run_checked(sync_review_command(args))
         elif args.action == "publish":
             run_publish(args)
         elif args.action == "diff-report":

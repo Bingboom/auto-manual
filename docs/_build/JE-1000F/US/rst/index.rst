@@ -1,3 +1,5 @@
+.. include:: page/cover.rst
+
 .. include:: page/00_preface.rst
 
 .. include:: page/safety_en.rst

@@ -16,7 +16,7 @@ CHARGING VIA AC WALL OUTLET
 
 Connect the AC charging cable to the AC input port of the product and a wall outlet.
 
-.. image:: _static/manual_assets/hte153_jp/charging/ac_wall.png
+.. image:: templates/word_template/common_assets/charging/ac_wall.png
    :alt: AC wall charging diagram placeholder.
    :width: 360px
 

@@ -3,7 +3,7 @@ APP SETUP
 
 **Download the App and log in**
 
-.. image:: _static/manual_assets/hte153_jp/app/download.png
+.. image:: templates/word_template/common_assets/app/download.png
    :alt: App download QR and marketplace placeholder.
    :width: 320px
 
@@ -19,7 +19,7 @@ Search for "Jackery" in Google Play or App Store to install the App. After that,
 
 After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold the |USB_POWER_BUTTON_LABEL_LOWER| and the |AC_POWER_BUTTON_LABEL_LOWER| to turn on Wi-Fi and Bluetooth again.
 
-.. image:: _static/manual_assets/hte153_jp/app/add_device.png
+.. image:: templates/word_template/common_assets/app/add_device.png
    :alt: App add device step placeholder.
    :width: 320px
 
@@ -40,7 +40,7 @@ If "the device has been bound" is prompted during the binding process, the follo
 
 After the device is successfully added on the app, the Wi-Fi icon on the device will be always on.
 
-.. image:: _static/manual_assets/hte153_jp/app/connect_result.png
+.. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: App setup result screen placeholder.
    :width: 360px
 

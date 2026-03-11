@@ -1,342 +1,254 @@
 # Windows Build Guide
 
-更新时间：2026-03-10
+Updated: 2026-03-12
 
-本文面向 Windows + PowerShell 环境，说明当前仓库的标准构建方式。
-当前主入口已经统一为根目录的 `build.py`。
+This file is the maintainer-facing Windows and PowerShell build guide.
+The current cross-platform entrypoint is [`build.py`](../build.py).
 
-## 1. 推荐入口
+For user-facing review workflow details, read:
+
+- [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+- [`user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md)
+
+## 1. Recommended Entrypoint
 
 ```powershell
 python build.py validate
 python build.py rst
-python build.py word
+python build.py review
+python build.py check
+python build.py sync-review
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
+python build.py word
 python build.py pdf
 python build.py all
 python build.py diff-report
 python build.py clean
 ```
 
-说明：
+Meaning:
 
-- `rst` 只生成 RST bundle
-- `word` 会先生成 RST，再导出 Word
-- `html` 会先生成 RST，再导出 HTML
-- `pdf` 会先生成 RST，再导出 PDF
-- `all` 会一次性构建 `html + word + pdf`
-- `validate` 会校验 `config.yaml` 和 `layout_params.csv`
-- `diff-report` 会导出 `docs/_build/JE-1000F` 的 Git 变更表格
-- `clean` 会删除 `docs/_build` 和 `docs/renderers/latex/params.tex`
-  这是全量清理入口
+- `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
+- `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
+- `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
+- `check`: run validation + prepare bundle + content checks
+- `sync-review`: refresh review files affected by CSV data changes
+- `publish`: run `check -> diff-report -> word` for one explicit target
+- `html`, `word`, `pdf`: prepare RST first, then export
+- `all`: export `html + word + pdf`
+- `diff-report`: export Git-based revision tables
+- `clean`: remove [`docs/_build/`](../docs/_build), [`docs/_review/`](../docs/_review), old legacy output directories, and generated [`params.tex`](../docs/renderers/latex/params.tex)
 
-默认行为：
+## 2. Config Rule
 
-- 默认读取 `config.yaml`
-- 默认遍历配置文件里的 `build.targets`
-- 默认带 `--clean`
-- 默认带 `--no-open`
-- `--clean` 只清当前 target 的输出目录，并顺带清理该 target 对应的旧布局历史产物
+Do not create one config file per model.
 
-这套命令不依赖 `make`，适合 Windows、本地 CI、GitHub Actions、macOS。
+Current shared config families:
 
----
+- [`config.yaml`](../config.yaml): shared EN / US template family
+- [`config.ja.yaml`](../config.ja.yaml): shared JP template family
+- [`config.eu.yaml`](../config.eu.yaml): shared EU template family
 
-## 2. 前提
+Pass target differences through:
 
-### 2.1 进入仓库
+- `--model`
+- `--region`
+- `build.targets`
+- [`data/phase1/*.csv`](../data/phase1)
 
-```powershell
-cd C:\Users\Administrator\Documents\GitHub\CMS\auto-manual
-```
+Only create a new config when one of these really changes:
 
-### 2.2 激活虚拟环境
+- page stack
+- template family
+- output convention
+- language family
+- Word reference template
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+## 3. Standard Windows Flow
 
-如果 PowerShell 禁止脚本执行，可先在当前终端临时放开：
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.venv\Scripts\Activate.ps1
-```
-
-如果你不想激活虚拟环境，也可以直接写成：
+### 3.1 Validate Environment and Config
 
 ```powershell
-.\.venv\Scripts\python.exe build.py rst
+python build.py validate --config config.yaml
 ```
 
-### 2.3 系统依赖
-
-- PDF 需要 `xelatex`
-- `word_source=latex` 或 `word_source=html` 需要 `pandoc`
-- `word_source=bundle` 时：
-  - Windows 走 Word COM，可不依赖 `pandoc`
-  - macOS / Linux 走 `pandoc`
-
----
-
-## 3. 配置文件写法
-
-批量构建的关键是 `build.targets`。
-
-```yaml
-build:
-  languages: [en]
-  default_region: US
-  targets:
-    - model: JE-2000F
-      region: US
-    - model: JE-1000F
-      region: US
-```
-
-说明：
-
-- `python build.py rst|word|html|pdf|all` 会遍历 `build.targets`
-- 每个 target 都按 `model + region` 单独构建
-- `region` 可以省略，省略时回退到 `build.default_region`
-
-如果是 JP 配置，建议单独维护 `config.ja.yaml` 里的 `build.targets`。
-
----
-
-## 4. 标准命令
-
-### 4.1 校验配置
-
-```powershell
-python build.py validate
-```
-
-等价到底层命令：
+Equivalent low-level checks:
 
 ```powershell
 python tools\validate_config.py --config config.yaml
 python tools\validate_layout_params.py --csv data\layout_params.csv
 ```
 
-### 4.2 只生成 RST bundle
+### 3.2 Create a Runtime Draft
 
 ```powershell
-python build.py rst
+python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
 ```
 
-等价到底层命令：
+This creates:
+
+- [`docs/_build/JE-1000F/JP/rst/`](../docs/_build/JE-1000F/JP/rst)
+
+Use `--source runtime` when you want a fresh draft from template + data only.
+
+### 3.3 Enter Review
 
 ```powershell
-python tools\build_docs.py --config config.yaml --all-targets --prepare-only --clean --no-open
+python build.py review --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-### 4.3 构建 Word
+This seeds:
+
+- [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)
+
+After review starts, daily editing should happen in `_review`, not in `_build`.
+
+### 3.4 Refresh Review After Data Changes
+
+If you update any of these:
+
+- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+
+run:
 
 ```powershell
-python build.py word
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-等价到底层命令：
+By default this updates data-driven files in the review bundle without resetting the entire review text.
+
+Useful variants:
 
 ```powershell
-python tools\build_docs.py --config config.yaml --all-targets --formats word --clean --no-open
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --sync-scope generated
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --page-file 02_whats_in_the_box.rst
 ```
 
-### 4.4 构建 HTML
+### 3.5 Build from Review
+
+Once `_review` exists, these commands use review content by default because `--source auto` overlays review on top of the runtime bundle:
 
 ```powershell
-python build.py html
+python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py html --config config.ja.yaml --model JE-1000F --region JP
+python build.py word --config config.ja.yaml --model JE-1000F --region JP
+python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-等价到底层命令：
+### 3.6 Publish a Final Word Release
 
 ```powershell
-python tools\build_docs.py --config config.yaml --all-targets --formats html --clean --no-open
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-### 4.5 构建 PDF
+This is the formal release command.
+It requires an explicit `--model` and `--region`.
+
+Outputs:
+
+- review diff report: [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
+- final Word: [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
+
+## 4. Output Layout
+
+Runtime outputs:
+
+- [`docs/_build/<model>/<region>/rst/`](../docs/_build)
+- [`docs/_build/<model>/<region>/html/`](../docs/_build)
+- [`docs/_build/<model>/<region>/word/`](../docs/_build)
+- [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
+
+Review working bundle:
+
+- [`docs/_review/<model>/<region>/`](../docs/_review)
+
+Revision reports:
+
+- [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking)
+
+## 5. Typical Commands
+
+Build all targets defined in one config:
 
 ```powershell
-python build.py pdf
+python build.py rst --config config.yaml
+python build.py word --config config.yaml
+python build.py all --config config.eu.yaml
 ```
 
-等价到底层命令：
+Build one explicit target:
 
 ```powershell
-python tools\build_docs.py --config config.yaml --all-targets --formats pdf --clean --no-open
+python build.py word --config config.yaml --model JE-1000F --region US
+python build.py pdf --config config.eu.yaml --model JE-3600A --region EU
 ```
 
-### 4.6 一次性构建全部产物
+Keep existing build artifacts:
 
 ```powershell
-python build.py all
+python build.py html --config config.yaml --no-clean
 ```
 
-等价到底层命令：
+Open generated artifacts if the backend supports it:
 
 ```powershell
-python tools\build_docs.py --config config.yaml --all-targets --formats html,word,pdf --clean --no-open
+python build.py pdf --config config.yaml --open
 ```
 
----
-
-## 5. 切换配置文件
-
-默认读取 `config.yaml`。
-
-如果要切到 JP 配置：
+Override PDF backend:
 
 ```powershell
-python build.py rst --config config.ja.yaml
-python build.py word --config config.ja.yaml
-python build.py html --config config.ja.yaml
-python build.py pdf --config config.ja.yaml
-python build.py all --config config.ja.yaml
+python build.py pdf --config config.yaml --pdf-mode latex
+python build.py pdf --config config.yaml --pdf-mode word
 ```
 
----
+## 6. Diff Report
 
-## 6. 构建单个型号
-
-如果只是临时构建某一个型号，不想走 `build.targets`，可以直接指定：
+Typical usage:
 
 ```powershell
-python build.py word --config config.yaml --model JE-2000F --region US
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --ignore-initial-adds
 ```
 
-说明：
+Generated report types:
 
-- 只要传了 `--model` 或 `--region`，`build.py` 就不会再追加 `--all-targets`
-- `--region` 可以省略；省略时仍然会回退到配置里的默认 region
+- `*_files.csv` / `*_files.html`
+- `*_pages.csv` / `*_pages.html`
+- `*_fields.csv` / `*_fields.html`
+- `*_index.html`
 
----
+The current report defaults are review-oriented, not `_build`-oriented.
 
-## 7. 可选参数
+## 7. Common Mistakes
 
-### 7.1 保留已有产物，不清空 `docs/_build`
+- Editing [`docs/_build/**`](../docs/_build) as if it were the authoring surface
+- Creating a new config only because the model changed
+- Using `review --refresh-review` when only parameter pages need to be synced
+- Forgetting to commit `_review/<model>/<region>/` after each review round
+- Treating `_build/rst` and `_review` as the same thing
 
-```powershell
-python build.py html --no-clean
-```
+## 8. Minimal Troubleshooting
 
-### 7.2 允许按配置自动打开产物
+`Failed to resolve Product Name from Spec_Master.csv`
 
-```powershell
-python build.py pdf --open
-```
+- Check [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) for `Row_key=product_name`
+- Check model / region / language coverage
+- Run `python build.py check --config ... --model ... --region ...`
 
-### 7.3 覆盖 PDF 后端
+Review bundle not found
 
-```powershell
-python build.py pdf --pdf-mode latex
-python build.py pdf --pdf-mode word
-```
+- Seed it first with `python build.py review --config ... --model ... --region ...`
 
----
+Need to rebuild the first draft from template/data only
 
-## 8. 版本跟踪
+- Use `--source runtime`
 
-当前仓库已经放开了 `JE-1000F` 的 rst 产物跟踪：
+Need to release from reviewed text only
 
-```text
-docs\_build\JE-1000F\*\rst\index.rst
-docs\_build\JE-1000F\*\rst\page\*.rst
-docs\_build\JE-1000F\*\rst\generated\JE-1000F\*.rst
-```
-
-推荐流程：
-
-1. 先构建 `JE-1000F` 的 rst
-2. 把上述 rst 文件 `git add` 并提交，作为基线版本
-3. 后续再次修改、提交后，执行：
-
-```powershell
-python build.py diff-report
-```
-
-如果要比较指定提交范围：
-
-```powershell
-python build.py diff-report --from-ref HEAD~3 --to-ref HEAD
-```
-
-默认输出：
-
-```text
-reports\version_tracking\JE-1000F\
-```
-
-产物包括：
-
-- `*.csv`：适合直接用 Excel 打开
-- `*.html`：适合本地查看和筛选
-
----
-
-## 9. 兼容层
-
-仓库里的 `Makefile` 还保留着，但现在只是薄封装：
-
-```powershell
-make rst
-make word
-make html
-make pdf
-make all
-```
-
-它们本质上都会转发到：
-
-```powershell
-python build.py ...
-```
-
-所以：
-
-- Windows 没装 `make` 时，直接用 `python build.py ...`
-- CI 里也建议直接用 `python build.py ...`
-- 根 `docs\index.rst` 会自动汇总当前 `docs\_build\` 下已存在的 bundle
-
-macOS / Linux 通常写成：
-
-```bash
-python3 build.py all
-```
-
----
-
-## 9. 输出路径
-
-RST bundle 在：
-
-```text
-docs\_build\<model>\<region>\rst\
-```
-
-构建产物在：
-
-```text
-docs\_build\<model>\<region>\
-```
-
-常见子目录：
-
-- `rst\`
-- `html\`
-- `word\`
-- `pdf\`
-- `latex\`
-
----
-
-## 10. 常见问题
-
-- `Failed to resolve Product Name from Spec_Master.csv`
-  - 检查 `Spec_Master.csv` 是否存在该 `Model + Region` 的 `Row_key=product_name`
-- `make : The term 'make' is not recognized ...`
-  - 直接改用 `python build.py ...`
-- `xelatex not found`
-  - 安装 TeX Live 或 MiKTeX，并确保 `xelatex` 在 `PATH`
-- `Word reference doc not found`
-  - 检查 `build.word_reference_doc` 路径是否有效
+- Use `python build.py publish --config ... --model ... --region ...`

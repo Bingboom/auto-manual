@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import re
 import shutil
 import subprocess
 import sys
@@ -47,6 +48,7 @@ paths = get_paths()
 VALID_FORMATS = {"html", "word", "pdf"}
 VALID_PDF_MODES = {"latex", "word"}
 VALID_SOURCE_MODES = {"auto", "runtime", "review"}
+_TEMPLATE_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 
 
 @dataclass(frozen=True)
@@ -433,6 +435,38 @@ def resolve_output_path(base_dir: Path, configured_name: str) -> Path:
     return base_dir / out_path
 
 
+def _slug_token(value: str | None) -> str:
+    text = (value or "").strip().lower()
+    if not text:
+        return ""
+    return re.sub(r"[^a-z0-9]+", "", text)
+
+
+def render_build_template(
+    template: str,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> str:
+    values = {
+        "model": (model or "").strip(),
+        "region": (region or "").strip(),
+        "lang": (lang or "").strip(),
+        "model_slug": _slug_token(model),
+        "region_slug": _slug_token(region),
+        "lang_slug": _slug_token(lang),
+    }
+    required_tokens = {match.group(1) for match in _TEMPLATE_TOKEN_RE.finditer(template)}
+    unknown = sorted(token for token in required_tokens if token not in values)
+    if unknown:
+        raise RuntimeError(f"Unsupported build output token(s): {', '.join(unknown)}")
+    missing = sorted(token for token in required_tokens if not values[token])
+    if missing:
+        raise RuntimeError(f"Build output template requires value(s) for: {', '.join(missing)}")
+    return template.format(**values)
+
+
 def sphinx_build(
     builder: str,
     *,
@@ -608,7 +642,7 @@ def prepare_manual_bundle(
     *,
     model: str | None,
     region: str | None,
-    source_mode: str = "runtime",
+    source_mode: str = "auto",
 ) -> MaterializedBundle:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
@@ -722,10 +756,25 @@ def build_target(
         source_mode=source_mode,
     )
 
-    main_tex = str(build_cfg.get("main_tex", "manual_demo.tex"))
-    output_pdf_name = str(build_cfg.get("output_pdf", "manual_demo.pdf"))
+    main_tex = render_build_template(
+        str(build_cfg.get("main_tex", "manual_demo.tex")),
+        model=target_model,
+        region=target_region,
+        lang=primary_lang,
+    )
+    output_pdf_name = render_build_template(
+        str(build_cfg.get("output_pdf", "manual_demo.pdf")),
+        model=target_model,
+        region=target_region,
+        lang=primary_lang,
+    )
     xelatex_runs = int(build_cfg.get("xelatex_runs", 3))
-    word_output_name = str(build_cfg.get("word_output", "manual_demo.docx"))
+    word_output_name = render_build_template(
+        str(build_cfg.get("word_output", "manual_demo.docx")),
+        model=target_model,
+        region=target_region,
+        lang=primary_lang,
+    )
     word_source = str(build_cfg.get("word_source", "bundle")).strip().lower()
     patch_fonts_script = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
 
@@ -859,7 +908,7 @@ def main() -> None:
     ap.add_argument(
         "--source",
         choices=sorted(VALID_SOURCE_MODES),
-        default="runtime",
+        default="auto",
         help="Content source for bundle materialization: auto, runtime, or review",
     )
     args = ap.parse_args()

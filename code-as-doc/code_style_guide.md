@@ -1,273 +1,271 @@
-# Code Style Guide (Manual Demo)
+# Code Style Guide
 
-本规范用于约束本仓库后续代码演进，目标是让 `rst/html/pdf/word` 构建链路在长期迭代中保持可维护、可扩展、可回归。
+Updated: 2026-03-12
 
-适用范围：
-- `tools/**/*.py`
-- `docs/templates/**/*.rst`
-- `data/**/*.csv`
-- `config.yaml` 与构建入口脚本
+This file defines the current architecture and maintainability rules for the manual system.
+It is not a generic Python style guide.
+It focuses on keeping the build chain, review flow, and data model maintainable.
 
-更新时间：2026-03-08
+## 1. Current System Shape
 
----
+The current manual system has four layers.
 
-## 0. P0/P1 执行状态（2026-03-08）
+### 1.1 Template Seed Layer
 
-已完成：
-- 已抽离 target 公共解析模块：`tools/utils/targets.py`
-- 已将 `build_docs.py`、`gen_index_bundle.py`、`word_bundle.py` 的重复 target/token 逻辑切换为共享实现
-- 已清理并禁止追踪构建噪声：`.gitignore` 增加 `docs/_build/`、`docs/generated/`、`**/__pycache__/`、`.DS_Store`
-- 已将历史已追踪的构建产物与缓存文件从 git index 移除（`git rm --cached`）
+- [`docs/templates/page_en/*.rst`](../docs/templates/page_en)
+- [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
+- [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 
-后续建议：
-- P2 继续执行 CI 与快照回归（见路线图）
+Purpose:
 
-P1 已完成：
-- `tools/phase1/renderers.py` 已拆分为 `renderers_common/safety/spec/spec_parser/symbols` 多模块
-- `tools/word_bundle.py` 已拆分为 `word_bundle_common/html/docx` 多模块
-- 新增 `tools/config_pages.py`，`config.pages` 已引入 dataclass schema（四类页面对象）
-- `build_docs.py`、`gen_index_bundle.py`、`word_bundle`、`validate_config.py` 已切换到 schema 解析，减少裸字典访问
+- shared page structure
+- reusable wording
+- initial draft creation
 
----
+### 1.2 Data Layer
 
-## 1. 现状评估（基线）
+- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
+- [`data/layout_params.csv`](../data/layout_params.csv)
 
-### 1.1 结构化程度评估
+Purpose:
 
-综合评分：**8.2/10**
+- structured product data
+- placeholder values
+- safety/spec content
+- PDF layout parameters
 
-优点：
-- 主流程清晰：`build_docs -> phase1_build -> gen_index_bundle -> sphinx/latex -> word`
-- 配置驱动明显：`config.yaml` 的 `pages` 控制页面顺序与来源
-- 有基础数据校验：`validate_config.py`、`validate_layout_params.py`
-- 有单元测试基线（34 个用例，覆盖核心路径）
+### 1.3 Review Working Layer
 
-主要问题：
-- `renderers_spec_parser.py` 仍承担较多 spec schema 兼容逻辑（含 legacy `sku_scope/sku_id` 分支），后续可继续按“schema 识别/过滤/聚合”再拆一层
-- 构建输出缺少快照回归（当前以 smoke + unittest 为主）
+- [`docs/_review/<model>/<region>/`](../docs/_review)
 
-### 1.2 继承与迭代能力评估
+Purpose:
 
-综合评分：**8.0/10**
+- target-specific authoring surface after review starts
+- Git review history
+- release source for reviewed manuals
 
-优点：
-- 通过 `PAGE_RENDERERS` + `page_registry.csv` 支持按页扩展
-- `BuildSelector` 支持 `model/region/page/lang` 过滤，利于增量构建
-- `spec_master_csv` 已收敛为配置单一来源，方向正确
+### 1.4 Runtime Build Layer
 
-主要问题：
-- 新增页面仍需改动多个点（模板、renderers、config、测试），缺少标准脚手架
-- `spec` 的 schema 解析逻辑仍较复杂，修改风险相对其他页面更高
-- `word_bundle_common` 仍直接读取 `Phase1Builder` 变量数据，建议补稳定抽象层
+- [`docs/_build/<model>/<region>/rst/`](../docs/_build)
+- [`docs/_build/<model>/<region>/html/`](../docs/_build)
+- [`docs/_build/<model>/<region>/word/`](../docs/_build)
+- [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
 
----
+Purpose:
 
-## 2. 架构分层规范（必须遵守）
+- generated runtime bundle
+- export outputs
 
-### 2.1 分层模型
+Rule:
 
-- L0 数据契约层：`config.yaml`、CSV schema、字段校验
-- L1 数据装配层：`tools/phase1/builder.py`（读取、过滤、归一）
-- L2 渲染层：`tools/phase1/renderers_*.py`（纯渲染，不做 I/O；`renderers.py` 仅做入口分发）
-- L3 编排层：`tools/gen_index_bundle.py`（组装 index）
-- L4 构建入口层：`tools/build_docs.py`（流程调度）
-- L5 导出层：`tools/word_bundle*.py`（bundle/html/docx 导出；`word_bundle.py` 仅做入口编排）
+- before review starts, create drafts from template + data
+- after review starts, edit `_review`
+- do not treat `_build` as the long-lived authoring source
 
-### 2.2 依赖方向
+## 2. Primary Entrypoint
 
-必须满足：`L4 -> L3/L1/L5 -> L2`，禁止反向依赖。
+The cross-platform primary entrypoint is:
 
-禁止事项：
-- 导出层直接调用其他模块的私有方法（`_xxx`）
-- 渲染层直接执行 subprocess 或文件写入
-- 校验层依赖构建输出目录
+- [`build.py`](../build.py)
 
----
+[`build.py`](../build.py) orchestrates current high-level actions:
 
-## 3. 代码组织规范
+- `validate`
+- `rst`
+- `review`
+- `check`
+- `sync-review`
+- `publish`
+- `html`
+- `word`
+- `pdf`
+- `all`
+- `diff-report`
+- `clean`
 
-### 3.1 文件与函数规模
+Low-level scripts still exist, but the default maintainer path should go through [`build.py`](../build.py).
 
-强制标准：
-- 单文件建议不超过 **500 行**；超过必须拆分
-- 单函数建议不超过 **80 行**；超过 **120 行** 必拆
-- 每个文件只承载一个主职责
+## 3. Current Module Boundaries
 
-落地拆分结果（P1 已完成）：
-- `tools/phase1/renderers.py`（入口）
-- `tools/phase1/renderers_common.py`
-- `tools/phase1/renderers_safety.py`
-- `tools/phase1/renderers_spec.py`
-- `tools/phase1/renderers_spec_parser.py`
-- `tools/phase1/renderers_symbols.py`
-- `tools/word_bundle.py`（入口）
-- `tools/word_bundle_common.py`
-- `tools/word_bundle_html.py`
-- `tools/word_bundle_docx.py`
+### 3.1 Build Orchestration
 
-### 3.2 重用与去重
+- [`build.py`](../build.py)
+- [`tools/build_docs.py`](../tools/build_docs.py)
 
-以下能力必须抽到共享模块（如 `tools/utils/targets.py`）：
-- `{model}/{region}` token 检测与格式化（`{sku}` 禁用）
-- default target 解析策略
+Responsibilities:
 
-禁止在 2 个以上脚本重复复制相同解析逻辑。
+- target resolution
+- action routing
+- runtime bundle preparation
+- export ordering
 
-### 3.3 类型与数据结构
+### 3.2 Data Rendering
 
-强制标准：
-- 跨层传参（尤其 config/page/path）优先 `dataclass`，避免深层 `dict.get(...)`
-- 新增公共函数必须写类型注解
-- 复杂返回值必须用具名结构（dataclass / TypedDict），禁止“隐式 tuple 协议”
+- [`tools/phase1_build.py`](../tools/phase1_build.py)
+- [`tools/phase1/builder.py`](../tools/phase1/builder.py)
+- [`tools/phase1/renderers*.py`](../tools/phase1)
 
----
+Responsibilities:
 
-## 4. 数据契约与配置规范
+- read phase1 CSV data
+- render safety/spec content
+- provide structured substitutions
 
-### 4.1 CSV 契约
+### 3.3 Bundle Materialization
 
-强制标准：
-- 每个 CSV 必须有“最小必需字段”定义
-- 校验失败必须包含：文件名 + 行号 + 字段名
-- 禁止 silent skip（除非明确记录为可选字段）
+- [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
 
-### 4.2 config 规范
+Responsibilities:
 
-强制标准：
-- 主链路默认以 `build.default_model` 驱动
-- 区域相关构建默认以 `build.default_region` 驱动
-- 新功能必须通过 config 控制，禁止硬编码路径
-- token 仅允许 `{model}` / `{region}`，新增 token 必须先补校验器
-- 禁止恢复 `sku` 作为构建筛选条件；`{sku}` token 视为无效配置
+- resolve config pages
+- materialize `index.rst`
+- build runtime bundle layout
 
-### 4.3 单一事实源（Single Source of Truth）
+### 3.4 Review Support
 
-强制标准：
-- `spec` 页面仅使用 `paths.spec_master_csv`（主源）+ `paths.spec_footnotes_csv`（可选补充）
-- `html/pdf/word(bundle)` 必须共享同一 `csv_page -> generated rst` 内容源
+- [`tools/review_bundle.py`](../tools/review_bundle.py)
+- [`tools/review_support.py`](../tools/review_support.py)
+- [`tools/sync_review.py`](../tools/sync_review.py)
 
----
+Responsibilities:
 
-## 5. 渲染与构建规范
+- seed `_review`
+- overlay review onto runtime bundles
+- sync data-driven runtime files back into review
 
-### 5.1 渲染层
+### 3.5 Validation and Contracts
 
-强制标准：
-- 统一 escape 入口（RST/LaTeX/HTML）
-- 模板占位符替换必须可预测，不得注入动态副作用
-- 对 `raw:: latex/html` 使用白名单模式，不允许 CSV 直接透传原始命令
+- [`tools/validate_config.py`](../tools/validate_config.py)
+- [`tools/validate_layout_params.py`](../tools/validate_layout_params.py)
+- [`tools/check_docs.py`](../tools/check_docs.py)
+- [`tools/page_contracts.py`](../tools/page_contracts.py)
 
-### 5.2 构建可复现性
+Responsibilities:
 
-强制标准：
-- 遍历顺序必须显式排序（glob/list/dict）
-- 同输入应产出可复现输出
-- 禁止将构建产物提交到版本库
+- config schema checks
+- layout param validation
+- bundle quality checks
+- page placeholder contracts
 
-必须调整 `.gitignore`（P0）：
-- `docs/_build/`
-- `docs/generated/*`（若需要保留样例，放单独 fixtures 目录）
-- `**/__pycache__/`
-- `.DS_Store`
+### 3.6 Export
 
----
+- [`tools/word_bundle.py`](../tools/word_bundle.py)
+- [`tools/word_bundle_common.py`](../tools/word_bundle_common.py)
+- [`tools/word_bundle_html.py`](../tools/word_bundle_html.py)
+- [`tools/word_bundle_docx.py`](../tools/word_bundle_docx.py)
+- PDF build path via Sphinx / LaTeX in [`tools/build_docs.py`](../tools/build_docs.py)
 
-## 6. 测试规范
+### 3.7 Version Tracking
 
-### 6.1 测试门禁（合并前必须通过）
+- [`tools/diff_report.py`](../tools/diff_report.py)
 
-```bash
-python3 tools/validate_config.py --config config.yaml
-python3 tools/validate_layout_params.py --csv data/layout_params.csv
-python3 -m unittest discover -s tests -v
-python3 tools/build_docs.py --model JHP-2000A --region US --clean --no-open
+Responsibilities:
+
+- Git-based file/page/field diff reports
+- report index generation
+- source-row tracing back to phase1 CSV
+
+## 4. Maintainability Rules
+
+### 4.1 Shared Config Rule
+
+Prefer one config per template family, not one config per model.
+
+Current rule:
+
+- [`config.yaml`](../config.yaml): EN / US family
+- [`config.ja.yaml`](../config.ja.yaml): JP family
+- [`config.eu.yaml`](../config.eu.yaml): EU family
+
+Do not clone a config only because the model changed.
+
+### 4.2 No Model-Specific Logic in Templates by Default
+
+Target-specific manual edits belong in:
+
+- [`docs/_review/<model>/<region>/`](../docs/_review)
+
+Shared changes belong in:
+
+- [`docs/templates/**`](../docs/templates)
+- [`data/phase1/**`](../data/phase1)
+
+### 4.3 Use `sync-review` for Parameter Changes During Review
+
+If CSV data changes while a manual is already in review, the safe default is:
+
+```powershell
+python build.py sync-review --config ... --model ... --region ...
 ```
 
-### 6.2 测试分层
+Do not use `review --refresh-review` unless you intentionally want to reset the review bundle from template/data.
 
-必须覆盖：
-- 单元测试：解析函数、过滤逻辑、escape、target 解析
-- 契约测试：CSV 缺字段/错字段/多语言缺失行为
-- 集成测试：最小链路（phase1 -> index -> latex）
+### 4.4 Keep Data Contracts Explicit
 
-新增/修改页面时，至少新增：
-- 1 个正常路径测试
-- 1 个 schema 错误测试
-- 1 个过滤条件测试（model/region/project_code/enable）
+When a template page depends on placeholders, enforce it with a page contract under:
 
----
+- [`docs/templates/contracts/*.yaml`](../docs/templates/contracts)
 
-## 7. 错误处理与日志规范
+Current contract coverage already exists for:
 
-### 7.1 错误处理
+- `03_product_overview`
+- `05_operation_guide`
+- `12_app_setup`
 
-强制标准：
-- Fail Fast，禁止吞错
-- 错误信息必须可定位数据源
-- CLI 失败必须返回非 0
+When adding new placeholder-heavy pages, add or update a contract.
 
-推荐错误格式：
-`[module] <file> line <n>: <field> <reason>`
+### 4.5 Generated Output Is Not the Same as Review Source
 
-### 7.2 日志
+[`docs/_build/**`](../docs/_build) can be committed for traceability, but it is still generated.
+Current durable review authoring happens in `_review`.
 
-强制标准：
-- 关键阶段必须打日志：validate / render / build / export
-- 日志前缀统一（如 `[build]`、`[phase1_build]`）
+### 4.6 Keep History and Rules Separate
 
----
+- normative guidance goes in [`README.md`](../README.md), [`code-as-doc/`](../code-as-doc), and [`user-guide/`](../user-guide)
+- historical milestones go in [`code-as-doc/code_optimization_log.md`](code_optimization_log.md) and [`code-as-doc/dev/dev_log.md`](dev/dev_log.md)
 
-## 8. 变更流程规范（PR/Review）
+Do not hide current rules inside historical logs.
 
-每个 PR 必须包含：
-- 改动动机（问题/目标）
-- 影响范围（数据契约/渲染/构建/导出）
-- 回归命令与结果
-- 若改 CSV schema，必须更新文档（README 或专门 guide）
+## 5. Code-Level Expectations
 
-Review 必查项：
-- 是否新增重复逻辑（target/token/selector）
-- 是否引入跨层耦合
-- 是否破坏 html/pdf/word 同源性
+- Put reusable target logic in shared helpers instead of duplicating it across entry scripts.
+- Keep rendering logic separate from file-system side effects where practical.
+- Keep error messages specific enough to identify the file, target, and field involved.
+- Prefer fail-fast validation over silent skipping.
+- When a workflow changes, update the doc that owns that workflow in the same change.
 
----
+## 6. Test Expectations
 
-## 9. Do / Don't（硬性清单）
+Baseline:
 
-Do：
-- 用配置驱动行为，不写死路径
-- 把复杂逻辑拆成可测试纯函数
-- 所有新增字段先加校验再加业务逻辑
+```powershell
+python -m unittest
+```
 
-Don't：
-- 不要在多个入口脚本复制同一解析逻辑
-- 不要从一个模块调用另一个模块的私有函数
-- 不要把 `_build` 产物提交到仓库
-- 不要在渲染函数里混入 I/O 或 subprocess
+When build or review flow changes, also run at least one targeted smoke command:
 
----
+```powershell
+python build.py check --config config.yaml --model JE-1000F --region US
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+```
 
-## 10. 分阶段改造路线（建议）
+When diff-report changes:
 
-P0（已完成）：
-- 抽离 `target` 解析共享模块，消除 `build_docs/gen_index_bundle/word_bundle` 重复逻辑
-- 清理并禁止跟踪构建产物（`.gitignore` 与仓库清理）
+```powershell
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+```
 
-P1（已完成）：
-- 拆分 `renderers.py`、`word_bundle.py`
-- 为 `config/pages` 引入 dataclass schema，减少裸字典访问
+## 7. Review Triggers
 
-P2（中期）：
-- 增加 CI（至少跑 validate + unittest + model 构建 smoke）
-- 引入快照测试（generated rst 与关键模板片段）
+Update this file when any of these change:
 
----
-
-## 11. Definition of Done（完成定义）
-
-任意功能改动满足以下条件才可视为完成：
-- 代码符合本规范（分层、去重、类型、错误处理）
-- 测试与构建门禁全部通过
-- 文档与契约同步更新
-- 不引入新的构建噪声文件
+- the source-of-truth layers
+- the default build entrypoint
+- the role of `_review` or `_build`
+- config family strategy
+- page contract policy
+- major validation or reporting stages

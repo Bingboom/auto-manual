@@ -8,7 +8,7 @@
 正面
 ----
 
-.. image:: _static/manual_template/page_jp/03_product_overview_placeholder/slot_01.jpg
+.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
    :alt: Front product image.
    :width: 360px
 
@@ -42,7 +42,7 @@
 右側面
 ------
 
-.. image:: _static/manual_template/page_jp/03_product_overview_placeholder/slot_02.png
+.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Right side port overview.
    :width: 420px
 
