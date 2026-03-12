@@ -9,7 +9,7 @@ Input:
     columns: key,value,unit,comment
 
 Output:
-  docs/latex_theme/params.tex
+  docs/renderers/latex/params.tex
 
 Generated TeX:
   \\expandafter\\def\\csname HB<key>\\endcsname{<value><unit>}
@@ -30,7 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CSV_PATH = ROOT / "data" / "layout_params.csv"
-OUT_TEX = ROOT / "docs" / "latex_theme" / "params.tex"
+OUT_TEX = ROOT / "docs" / "renderers" / "latex" / "params.tex"
 
 
 def fmt_value(value: str, unit: str) -> str:

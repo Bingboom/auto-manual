@@ -1,0 +1,22 @@
+page_id: 05_operation_guide
+source_files:
+  - templates/page_en/05_operation_guide_placeholder.rst
+  - templates/page_jp/05_operation_guide_placeholder.rst
+required_placeholders:
+  default:
+    - PRODUCT_NAME
+    - MAIN_POWER_BUTTON_LABEL
+    - DC_USB_POWER_BUTTON_LABEL
+    - DEFAULT_STANDBY_DURATION
+    - ENERGY_SAVING_AUTO_OFF_DURATION
+    - ENERGY_SAVING_AC_THRESHOLD
+    - ENERGY_SAVING_DC_THRESHOLD
+    - USB_C_HIGH_POWER_PORT_LABEL
+    - USB_C_HIGH_POWER_CABLE_NAME
+    - CAR_BATTERY_CHARGING_CABLE_NAME
+  en:
+    - MAIN_POWER_BUTTON_LABEL_LOWER
+    - DC_USB_POWER_BUTTON_LABEL_LOWER
+    - AC_POWER_BUTTON_LABEL_LOWER
+  ja:
+    - AC_POWER_BUTTON_LABEL

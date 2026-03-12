@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 BUILD = DOCS / "_build" / "latex"
 
-FONTS_SRC = DOCS / "latex_theme" / "fonts.tex"
+FONTS_SRC = DOCS / "renderers" / "latex" / "fonts.tex"
 FONTS_DST = BUILD / "fonts.tex"
 
 
@@ -119,19 +119,23 @@ def patch_build_fonts_tex_windows(fonts_path: Path) -> int:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tex", default="manual_demo.tex", help="main tex filename in _build/latex")
+    ap.add_argument("--build-dir", default=None, help="LaTeX build directory (defaults to docs/_build/latex)")
     args = ap.parse_args()
 
-    if not BUILD.exists():
-        die(f"build dir not found: {BUILD}")
+    build_dir = Path(args.build_dir).resolve() if args.build_dir else BUILD
+    fonts_dst = build_dir / "fonts.tex"
+
+    if not build_dir.exists():
+        die(f"build dir not found: {build_dir}")
     if not FONTS_SRC.exists():
         die(f"fonts.tex not found: {FONTS_SRC}")
 
-    shutil.copyfile(FONTS_SRC, FONTS_DST)
-    print(f"[patch_latex_fonts] copied fonts.tex -> {FONTS_DST}")
+    shutil.copyfile(FONTS_SRC, fonts_dst)
+    print(f"[patch_latex_fonts] copied fonts.tex -> {fonts_dst}")
 
-    patch_build_fonts_tex_windows(FONTS_DST)
+    patch_build_fonts_tex_windows(fonts_dst)
 
-    main_tex = find_main_tex(BUILD, args.tex)
+    main_tex = find_main_tex(build_dir, args.tex)
     inject_before_begin_document(main_tex)
 
 

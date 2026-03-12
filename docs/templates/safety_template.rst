@@ -1,35 +1,69 @@
-.. raw:: latex
+.. only:: latex
 
-   {{ safety_title_main }}
+   .. raw:: latex
 
-.. raw:: latex
+      {{ safety_title_main }}
 
-   {{ safety_warning_title }}
+   .. raw:: latex
 
-.. raw:: latex
+      {{ safety_warning_title }}
 
-   \begin{safetytwocol}
+   .. raw:: latex
 
-{{ safety_lead_top }}
+      \begin{safetytwocol}
 
-{{ safety_top_items }}
 
-.. raw:: latex
+   {{ safety_lead_top }}
 
-   \end{safetytwocol}
+   {{ safety_top_items }}
 
-.. raw:: latex
 
-   {{ safety_title_operating }}
+   .. raw:: latex
 
-.. raw:: latex
+      \end{safetytwocol}
 
-   \begin{safetytwocol}
+   .. raw:: latex
 
-{{ safety_save_title }}
+      {{ safety_title_operating }}
 
-{{ safety_bottom_items }}
+   .. raw:: latex
 
-.. raw:: latex
+      \begin{safetytwocol}
 
-   \end{safetytwocol}
+
+   {{ safety_save_title }}
+
+   {{ safety_bottom_items }}
+
+
+   .. raw:: latex
+
+      \end{safetytwocol}
+
+
+.. only:: html
+
+   .. raw:: html
+
+      <div class="hb-safety">
+        <h1 class="hb-h1-pill">{{ safety_title_main_html }}</h1>
+
+        <div class="hb-warning-box">
+          <div class="hb-warning-row">
+            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-text">{{ safety_warning_title_html }}</div>
+          </div>
+        </div>
+
+        <div class="hb-two-col">
+          {{ safety_lead_top_html }}
+          {{ safety_top_items_html }}
+        </div>
+
+        <h2 class="hb-subbar">{{ safety_title_operating_html }}</h2>
+
+        <div class="hb-two-col">
+          {{ safety_save_title_html }}
+          {{ safety_bottom_items_html }}
+        </div>
+      </div>

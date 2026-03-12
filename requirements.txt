@@ -1,27 +1,24 @@
 # =====================================================
-# Auto-Doc Documentation Build System
+# Auto-Manual build dependencies
 # Python >= 3.9 recommended
+# Covers Python-side dependencies for:
+# - RST / HTML build
+# - Word export
+# - PDF build orchestration
 # =====================================================
 
-# -----------------------------
-# Core build engine
-# -----------------------------
+# Core build / config
 Sphinx>=7.0,<9.0
-Jinja2>=3.1
 PyYAML>=6.0
+docutils>=0.20,<0.22
+furo>=2024.8.6
 
-# -----------------------------
-# CSV processing
-# -----------------------------
-pandas>=2.0
+# Asset utilities
+Pillow>=10.0
+numpy>=1.26
 
-# -----------------------------
-# Sphinx extensions (current system)
-# -----------------------------
-sphinx-copybutton>=0.5
-sphinx-rtd-theme>=1.3
-
-# -----------------------------
-# Optional (future-proof)
-# -----------------------------
-typing-extensions>=4.0
+# Notes:
+# - DOCX export via pandoc still requires pandoc installed separately.
+# - Windows Word COM export still requires Microsoft Word installed locally.
+# - PDF export still requires xelatex installed separately (TeX Live / MiKTeX).
+# - xelatex / pandoc are system dependencies, so they are not installed by pip.

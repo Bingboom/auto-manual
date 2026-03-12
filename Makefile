@@ -1,16 +1,35 @@
-PY ?= python3
+PY ?= python
+CONFIG ?= config.yaml
+OPEN_FLAG :=
+NO_CLEAN_FLAG :=
 
-.PHONY: build build-noview lint clean
+ifeq ($(OPEN),1)
+OPEN_FLAG := --open
+endif
 
-lint:
-	$(PY) tools/lint_layout_params.py
+ifeq ($(NO_CLEAN),1)
+NO_CLEAN_FLAG := --no-clean
+endif
 
-build:
-	$(PY) tools/build.py --open
+.PHONY: validate rst word html pdf all clean
 
-build-noview:
-	$(PY) tools/build.py
+validate:
+	$(PY) build.py validate --config $(CONFIG)
+
+rst:
+	$(PY) build.py rst --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
+
+word:
+	$(PY) build.py word --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
+
+html:
+	$(PY) build.py html --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
+
+pdf:
+	$(PY) build.py pdf --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
+
+all:
+	$(PY) build.py all --config $(CONFIG) $(OPEN_FLAG) $(NO_CLEAN_FLAG)
 
 clean:
-	rm -rf docs/_build
-	rm -f docs/latex_theme/params.tex
+	$(PY) build.py clean --config $(CONFIG)

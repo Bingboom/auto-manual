@@ -1,37 +1,12 @@
-.. raw:: latex
+Available Manual Bundles
+========================
 
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{cover-en.pdf}
-   \clearpage
-   \pagenumbering{arabic}
-   \setcounter{page}{1}
+.. toctree::
+   :maxdepth: 1
 
-.. raw:: latex
-
-   \HBApplyLang{en}
-
-.. include:: safety_en.rst
-
-.. raw:: latex
-
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-en.pdf}
-
-.. raw:: latex
-
-   \HBApplyLang{fr}
-
-.. include:: safety_fr.rst
-
-.. raw:: latex
-
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-fr.pdf}
-
-.. raw:: latex
-
-   \HBApplyLang{es}
-
-.. include:: safety_es.rst
-
-.. raw:: latex
-
-   \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{normal}}]{product_overview-es.pdf}
-
+   _build/JE-1000F/JP/rst/index
+   _build/JE-1000F/US/rst/index
+   _build/JE-2000E/JP/rst/index
+   _build/JE-2000F/JP/rst/index
+   _build/JE-2000F/US/rst/index
+   _build/JE-3600A/EU/rst/index

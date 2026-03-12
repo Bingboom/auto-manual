@@ -1,0 +1,431 @@
+﻿项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Row_label_fr,Param_fr,Value_fr,page_title_fr,section_title_fr,Model
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_003,交流输出额定功率,1,,2400W,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_004,交流输出峰值功率,1,,4800W,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_005,交流输出电压/频率,1,,AC 120V 60Hz,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_006,交流输出电流,1,,20A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac,AC插座数量,1,,4,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,dc,DC输入功率上限,1,,800W Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_2,AC输入规格,1,,AC 100V~120V 60Hz 15A Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,ac_3,AC充电功率最大,1,,约1750W±50W @25℃,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,field_011,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,field_012,扩容口最大电流,1,,75A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_013,产品重量,1,,18.4kg,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_014,尺寸-长,1,,365mm,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_015,尺寸-宽,1,,255mm,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_016,尺寸-高,1,,275mm,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,field_017,产品名称,1,,Jackery HomePower 2000 Plus,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,GENERAL INFO,1,field_018,型号,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_019,电池化学体系,1,,LiFePO4,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_020,循环寿命,1,,"6000 cycles (90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A 输出,1,,"18W Max
+5-6V⎓3A
+6-9V⎓2A
+9-12V⎓1.5A",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C 输出,1,,"30W Max
+5V⎓3A
+9V⎓3A
+12V⎓2.5A
+15V⎓2A
+20V⎓1.5A",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c_pd,USB-C PD 输出,1,,"100W Max
+5V⎓3A
+9V⎓3A
+12V⎓3A
+15V⎓3A
+20V⎓5A",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_4,AC旁路输出,1,,12A Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_025,放电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_026,充电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_027,储存环境温度,1,,"1 year: 0~25℃
+ 3 months: 0~45℃
+ 1 month: -20~45℃",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,INPUT PORTS,2,field_028,充电输入,1,,16V–60V,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,OUTPUT PORTS,3,field_029,车充输出,1,,12V 10A Max,,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,MECHANICAL,6,field_030,外壳材质,1,,PC+ABS (94V-0),,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_031,工作湿度,1,,0~60% RH (不冷凝),,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,BATTERY,5,field_032,放电容量,1,,">1597Wh (@AC 2400W, 25℃)",,,,,,JHP-2000A
+HTE152-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_033,污染等级,1,,Ⅲ,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_003,交流输出额定功率,1,,2400W,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_004,交流输出峰值功率,1,,4800W,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_005,交流输出电压/频率,1,,AC 100V 60Hz,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_006,交流输出电流,1,,24A,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac,AC插座数量,1,,4,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,dc,DC输入功率上限,1,,800W Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_2,AC输入规格,1,,AC 100V~120V 60Hz 15A Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_3,AC充电功率最大,1,,约1500W±50W @25℃,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,field_011,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,INPUT PORTS,2,field_012,扩容口最大电流,1,,75A,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_013,产品重量,1,,18.4kg,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_014,尺寸-长,1,,365mm,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_015,尺寸-宽,1,,255mm,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_016,尺寸-高,1,,275mm,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,field_017,产品名称,1,,Jackery ポータブル電源 2000 Plus,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,GENERAL INFO,1,field_018,型号,1,,JE-2000E,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_019,电池化学体系,1,,LiFePO4,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_020,循环寿命,1,,"6000 cycles (90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A 输出,1,,"18W Max
+5-6V⎓3A
+6-9V⎓2A
+9-12V⎓1.5A",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C 输出,1,,"30W Max
+5V⎓3A
+9V⎓3A
+12V⎓2.5A
+15V⎓2A
+20V⎓1.5A",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c_pd,USB-C PD 输出,1,,"100W Max
+5V⎓3A
+9V⎓3A
+12V⎓3A
+15V⎓3A
+20V⎓5A",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_4,AC旁路输出,1,,12A Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_025,放电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_026,充电温度,1,,-20℃ ~ 45℃,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_027,储存环境温度,1,,"1 year: 0~25℃
+ 3 months: 0~45℃
+ 1 month: -20~45℃",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,OUTPUT PORTS,3,field_028,车充输出,1,,12V 10A Max,,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,MECHANICAL,6,field_029,外壳材质,1,,PC+ABS (94V-0),,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_030,工作湿度,1,,0~60% RH (不冷凝),,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,BATTERY,5,field_031,放电容量,1,,">1597Wh (@AC 2400W, 25℃)",,,,,,JHP-2000A
+HTE152-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_032,污染等级,1,,Ⅱ,,,,,,JHP-2000A
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,product_name,製品の名称,1,,Jackery ポータブル電源 2000 Plus,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,model_no,型番,1,,JE-2000E,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,rated_capacity,定格容量,1,,2048Wh (40Ah/51.2V DC),,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,battery_voltage,電圧構成,1,,51.2V/40Ah (16S2P),,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,battery_type,バッテリータイプ,1,,LiFePO4 (リン酸鉄リチウムイオン電池),,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,サイクル寿命,1,,"6000回 (90%DOD, 0.5C/0.5C, 25°C, 初期容量の70%以上を維持)",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,weight,重量,1,,約18.4 kg,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC入力,1,,"100V-120V~60Hz, 最大15A, 最大1500W",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,1,,"PV:16V-60V⎓12A, 2ポート合計最大21A, 最大800W",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,2,,"シガーソケット:11V-16V⎓最大8A, 2ポート合計最大8A",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,charging_time,充電時間,1,,AC充電: 約118分,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,charging_time,充電時間,2,,AC+DC充電: 約85分,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,charging_time,充電時間,3,,DC充電: 約3.5時間,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,expansion_port,拡張バッテリーポート,1,,"DC 36.8V-57.6V, 入出力最大75A",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_ports,AC出力,1,,"100V~60Hz, 最大24A, 定格2400W (-10°C~45°C)",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_ports,AC出力,2,,"100V~60Hz, 最大16A, 定格1600W (-20°C~-10°C)",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total,AC出力合計,1,,"2400W, 瞬間最大4800W",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_bypass,AC出力(パススルー時),1,,最大12A（ピーク13.2A）,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-Cポート,1,,"5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-Cポート,2,,"5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-Aポート,1,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,cigarette_output,シガーソケット出力,1,,12V⎓最大10A,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,充電温度,1,,-20°C ~ 45°C,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,動作温度,1,,-20°C ~ 45°C,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,1,,1年 0°C ~ 25°C,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,2,,3ヶ月 0°C ~ 45°C,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,3,,1ヶ月 -20°C ~ 45°C,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL,4,humidity,動作湿度,1,,0~60% RH（結露なきこと）,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL,4,pollution_level,汚染度,1,,Ⅱ,,,,,,JE-2000E
+HTE1522000A-JP-JAK,JP,TRUE,specifications,BATTERY,5,discharge_capacity,放電容量,1,,">1597Wh (@AC出力2400W, 25°C)",,,,,,JE-2000E
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 2000,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-2000F,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,2048 Wh (40Ah/51.2V DC),,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO4,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 40.34 lbs/18.3 kg,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,dimension,Dimension,1,,14.4 × 10.0 × 10.6 in / 36.5 × 25.5 × 26.9 cm,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode①,"100V-120V~60Hz, 12A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,1,,"11V-16V⎓8A Max, Double to 8A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,2,,"16V-60V⎓12A Max, Double to 21A / 400W Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,1,,"120V~ 60Hz, 18.3A Max, 2200W Rated (14°F to 113°F / -10°C to 45°C)",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,2,,"120V~ 60Hz, 13.3A, 1600W Rated (-4°F to 14°F / -20°C to -10°C)",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output②,1,,"2200W Rated, 4400W Surge peak",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode①,1,,"100V-120V~60Hz, 12A Max",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,1,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,2,,"100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (14°F to 113°F / -10°C to 45°C)",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C,3,,USB-C 100W output disabled (-4°F to 14°F / -20°C to -10°C),,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A,1,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,1 × DC 12V Port,1,,12V⎓10A Max,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-2000F
+HTE154-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharging_temperature,Discharging Temperature,1,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,製品の名称,1,,Jackery ポータブル電源 2000 New,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,型番,1,,JE-2000F,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,rated_capacity,定格容量,1,,2048Wh (40Ah/51.2V DC),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,battery_type,バッテリータイプ,1,,LiFePO4 (リン酸鉄リチウムイオン電池),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,サイクル寿命,1,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,GENERAL INFO,1,size_weight,サイズ&重量,1,,約365×255×269 mm (約18.3 kg),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,1×ACポート,1,,"100V-120V~ 50Hz/60Hz, 最大15A, 最大1500W①",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,1×ACポート,2,,"パススルー②:100V-120V~ 50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,1,,"PV:16V-60V⎓12A, 2ポート最大21A, 最大400W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,2,,"シガーソケット:11V-16V⎓最大8A, 2ポート最大8A",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_ports,3×ACポート,1,,"100V~50Hz/60Hz, 最大20A, 定格2000W (-10°C~45°C)",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_ports,3×ACポート,2,,"100V~50Hz/60Hz, 最大16A, 定格1600W (-20°C~-10°C)",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total,AC出力合計,1,,"2200W, 瞬間最大4400W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_bypass,AC出力(パススルー)②,1,,"100V-120V~ 50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,1,,"5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,2,,"5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10°C~45°C)",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,3,,出力を停止する (-20°C~-10°C),,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,1×USB-Aポート,1,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,OUTPUT PORTS,3,cigarette_output,シガーソケット出力,1,,12V⎓最大10A,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,充電温度,1,,-20°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,動作温度,1,,-20°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,1,,1ヶ月 -20°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,2,,3ヶ月 0°C ~ 45°C,,,,,,JE-2000F
+HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,3,,1年 0°C ~ 25°C,,,,,,JE-2000F
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,INPUT PORTS,2,field_003,充电方式,1,,只能接主机充电,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,INPUT PORTS,2,field_004,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,INPUT PORTS,2,field_005,扩容口最大电流,1,,75A,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_006,产品重量,1,,15.6kg,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_007,尺寸-长,1,,365mm,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_008,尺寸-宽,1,,255mm,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_009,尺寸-高,1,,205mm,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,field_010,产品名称,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,GENERAL INFO,1,field_011,型号,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_012,电池化学体系,1,,LiFePO4,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_013,循环寿命,1,,"6000 cycles (90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_014,充电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_015,放电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_016,放电容量,1,,">1597Wh (@AC 2400W, 25℃)",,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,BATTERY,5,field_017,储存环境温度,1,,"1 year: 0~25℃
+3 months: 0~45℃
+1 month: -20~45℃",,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_018,工作湿度,1,,0~60% RH (不冷凝),,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,MECHANICAL,6,field_019,外壳材质,1,,PC+ABS (94V-0),,,,,,JBP-2000B
+HTP017-US,US,TRUE,specifications,ENVIRONMENTAL,4,field_020,污染等级,1,,Ⅲ,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_001,额定容量,1,,2048Wh,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_002,电压结构,1,,51.2V/40Ah (16S2P),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,INPUT PORTS,2,field_003,充电方式,1,,只能接主机充电,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,INPUT PORTS,2,field_004,扩容口电压范围,1,,DC 36.8–57.6V,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,INPUT PORTS,2,field_005,扩容口最大电流,1,,75A,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_006,产品重量,1,,15.6kg,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_007,尺寸-长,1,,365mm,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_008,尺寸-宽,1,,255mm,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_009,尺寸-高,1,,205mm,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,field_010,产品名称,1,,Jackery Battery Pack 2000,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,GENERAL INFO,1,field_011,型号,1,,JBP-2000B,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_012,电池化学体系,1,,LiFePO4,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_013,循环寿命,1,,"6000 cycles
+(90%DOD, 0.5C/0.5C, ≥70%, 25℃)",,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_014,充电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_015,放电温度,1,,-20℃ ~ 45℃,,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_016,放电容量,1,,>1597Wh (@AC output 2400W & Ta=25℃),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,BATTERY,5,field_017,储存环境温度,1,,"1 year: 0~25℃
+3 months: 0~45℃
+1 month: -20~45℃",,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_018,工作湿度,1,,0~60% RH (不冷凝),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,MECHANICAL,6,field_019,外壳材质,1,,PC+ABS (94V-0),,,,,,JBP-2000B
+HTP017-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,field_020,污染等级,1,,Ⅱ,,,,,,JBP-2000B
+HTE152-JP,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery HomePower 2000 Plus v2,,,,,,JHP-2000A
+HTE152-JP,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JHP-2000A,,,,,,JHP-2000A
+HTE152-JP,US,TRUE,specifications,INPUT PORTS,2,field_001,充电输入,1,,16V–60V,,,,,,JHP-2000A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 3600 Plus,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-3600A,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,80Ah / 44.8V DC (3584 Wh),,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,cell_chemistry,Cell Chemistry,1,,LiFePO4,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 35 kg,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,dimensions,Dimensions,1,,38.5×30.9×49.1 cm,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,6000 cycles to 70%+ capacity,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,1,Charge Mode,"220-240V~50Hz, 10A Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,ac_input,1 × AC Input,2,Bypass Mode①,"220-240V~50Hz, 10A Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,1,,12-16V⎓8A Max,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2 × DC8020 Ports,2,,"16-60V⎓12A, double to 24A Max / 1000W Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,INPUT PORTS,2,dc_expansion_port,1 × DC Expansion Port,1,,36.4V-50.4V⎓100A Max,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output,3 × AC,1,,"230V~ 50Hz, 20A Max, 3600W",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output②,1,,"3600W Rated, 7200W Surge peak",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode①,1,,"220-240V~50Hz, 10A Max",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,usb_c,2 × USB-C 100W,1,,"100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,usb_a,2 × USB-A 18W,1,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,dc_expansion_port,1 × DC Expansion Port,1,,36.4V-50.4V⎓60A Max,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,OUTPUT PORTS,3,maximum_short_circuit_current_and_duration,Maximum Short Circuit Current and Duration,1,,1160A/860μs,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charge_temperature,Charge Temperature,1,,-20°C to 45°C,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharge_temperature,Discharge Temperature,1,,-20°C to 45°C,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_power_button_label,POWER Button,1,,POWER Button,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_power_button_label,USB Power Button,1,,USB Power Button,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-3600A
+HTE132500A-EU-JAK,EU,TRUE,specifications,TEMPLATE VARS,99,tpl_battery_pack_name,Battery Pack Name,1,,Jackery Battery Pack 3600,,,,,,JE-3600A
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery ポータブル電源 1000 New v2,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,"6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,2,AC Flash Charge,About 1650W±50W @25°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,1,,"11V-16V⎓8A Max, Double 8A Max",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,2,,"16V-60V⎓12A, Double 21A Max / 400W Max",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,1,,"120V~60Hz, 12.5A, 1500W Rated (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,2,,"120V~60Hz, 5.8A, 700W Rated (-20°C to -10°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,1500W,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,1,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,2,,USB-C 100W output disabled (-20°C to -10°C),,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,3,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A,1,,"1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,JE-1000F
+HTE1531000A-US-JAK,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery ポータブル電源 1000 New v2,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,"6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,1,Charge Mode,"100V-120V~50/60Hz, 15A Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,2,AC Flash Charge,About 1450W±50W @25°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,1,,"11V-16V⎓8A Max, Double 8A Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,2,,"16V-60V⎓12A, Double 21A Max / 400W Max",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,1,,"100V~50/60Hz, 15A, 1500W Rated (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,2,,"100V~50/60Hz, 7A, 700W Rated (-20°C to -10°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,15A Max,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,1,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,2,,USB-C 100W output disabled (-20°C to -10°C),,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,3,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A,1,,"1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,OUTPUT PORTS,3,dc12_port,DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,JE-1000F
+HTE1531000A-JP-JAK,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,,Main POWER Button,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC USB Power Button Label,1,,DC/USB Power Button,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button Label,1,,AC Power Button,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_label,Front DC12 Port Label,1,,DC 12V Port,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_spec,Front DC12 Port Spec,1,,12V?10A Max,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_label,Front USB-C Low Label,1,,USB-C 30W Output,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_spec,Front USB-C Low Spec,1,,"30W Max, 5V?3A, 9V?3A, 12V?2.5A, 15V?2A, 20V?1.5A",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_label,Front USB-C High Label,1,,USB-C 100W Output,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_spec,Front USB-C High Spec,1,,"100W Max, 5V?3A, 9V?3A, 12V?3A, 15V?3A, 20V?5A",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_label,Front USB-A Label,1,,USB-A 18W Output,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_spec,Front USB-A Spec,1,,"18W Max, 5-6V?3A, 6-9V?2A, 9-12V?1.5A",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_label,Front AC Output Label,1,,AC Output,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_spec,Front AC Output Spec,1,,"120V~ 60Hz, 18.3A Max, 2200W Rated",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_total_output_label,Front Total Output Label,1,,Total Output,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_total_output_spec,Front Total Output Spec,1,,"2200W Rated, 4400W Surge Peak",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_label,Side DC Input Label,1,,DC Input (2?DC8020 Ports),,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_pv_spec,Side DC Input PV Spec,1,,"PV: 16-60V?12A Max, Double to 21A / 400W Max",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_car_spec,Side DC Input Car Spec,1,,"Car: 11-16V?8A Max, Double to 8A Max",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_label,Side AC Input Label,1,,AC Input,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_spec,Side AC Input Spec,1,,"100V-120V~60 Hz, 15A Max",,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default Standby Duration,1,,2 hours,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12 hours,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_port_label,USB-C High Power Port Label,1,,USB-C 100W,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A cable,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V automobile battery charging cable,,,,,,JE-2000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,12A (1440W),,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,,??????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC USB Power Button Label,1,,DC/USB?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button Label,1,,AC?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_label,Front DC12 Port Label,1,,????????????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_spec,Front DC12 Port Spec,1,,12V???10A,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_label,Front USB-C Low Label,1,,USB-C 30W?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_spec,Front USB-C Low Spec,1,,5V?3A?9V?3A?12V?2.5A?15V?2A?20V?1.5A???30W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_label,Front USB-C High Label,1,,USB-C 100W?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_spec,Front USB-C High Spec,1,,5V?3A?9V?3A?12V?3A?15V?3A?20V?5A???100W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_label,Front USB-A Label,1,,USB-A 18W?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_spec,Front USB-A Spec,1,,5-6V?3A?6-9V?2A?9-12V?1.5A???18W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_label,Front AC Output Label,1,,AC?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_spec,Front AC Output Spec,1,,100V~ 50Hz/60Hz???20A???2000W?3?????2200W?????4400W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_label,Side DC Input Label,1,,DC??????DC8020?,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_pv_spec,Side DC Input PV Spec,1,,PV?16V-60V?12A?2?????21A???400W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_car_spec,Side DC Input Car Spec,1,,????????11V-16V???8A?2?????8A,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_label,Side AC Input Label,1,,AC?????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_spec,Side AC Input Spec,1,,100V-120V~ 50Hz/60Hz???15A???1500W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default Standby Duration,1,,2??,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12??,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_port_label,USB-C High Power Port Label,1,,USB-C 100W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V ???????????????,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,1500W,,,,,,JE-2000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,,POWERボタン,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC USB Power Button Label,1,,DC/USBボタン,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button Label,1,,ACボタン,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_label,Front DC12 Port Label,1,,シガーソケット出力,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_spec,Front DC12 Port Spec,1,,12V/10A 最大,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_label,Front USB-C Low Label,1,,USB-C 30W出力,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_spec,Front USB-C Low Spec,1,,"5V/3A、9V/3A、12V/2.5A、15V/2A、20V/1.5A、最大30W",,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_label,Front USB-C High Label,1,,USB-C 100W出力,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_spec,Front USB-C High Spec,1,,"5V/3A、9V/3A、12V/3A、15V/3A、20V/5A、最大100W",,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_label,Front USB-A Label,1,,USB-A 18W出力,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_spec,Front USB-A Spec,1,,"5-6V/3A、6-9V/2A、9-12V/1.5A、最大18W",,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_label,Front AC Output Label,1,,AC出力,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_spec,Front AC Output Spec,1,,"100V~60Hz、24A、定格2400W、瞬間最大4800W",,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_label,Side DC Input Label,1,,DC入力（DC8020ポート×2）,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_pv_spec,Side DC Input PV Spec,1,,PV: 16-60V/12A、2ポート合計最大21A/800W,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_car_spec,Side DC Input Car Spec,1,,車載充電: 11-16V/8A、2ポート合計最大8A,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_label,Side AC Input Label,1,,AC入力,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_spec,Side AC Input Spec,1,,100V-120V~60Hz、15A 最大、急速充電 約1500W,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default Standby Duration,1,,2時間,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12時間,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_port_label,USB-C High Power Port Label,1,,USB-C 100W高出力ポート,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A ケーブル,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V 自動車用バッテリー充電ケーブル,,,,,,JE-2000E
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,12A（ピーク13.2A）,,,,,,JE-2000E
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,,Main POWER Button,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC USB Power Button Label,1,,DC/USB Power Button,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button Label,1,,AC Power Button,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_label,Front DC12 Port Label,1,,DC 12V Port,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_spec,Front DC12 Port Spec,1,,12V/10A Max,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_label,Front USB-C Low Label,1,,USB-C 30W Output,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_spec,Front USB-C Low Spec,1,,"30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_label,Front USB-C High Label,1,,USB-C 100W Output,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_spec,Front USB-C High Spec,1,,"100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_label,Front USB-A Label,1,,USB-A 18W Output,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_spec,Front USB-A Spec,1,,"18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_label,Front AC Output Label,1,,AC Output,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_spec,Front AC Output Spec,1,,"120V~60Hz, 12.5A, 1500W Rated",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_total_output_label,Front Total Output Label,1,,Total Output,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_front_total_output_spec,Front Total Output Spec,1,,"1500W Rated, 3000W Surge Peak",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_label,Side DC Input Label,1,,DC Input (2 x DC8020 Ports),,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_pv_spec,Side DC Input PV Spec,1,,"PV: 16-60V/12A Max, combined up to 21A / 400W Max",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_car_spec,Side DC Input Car Spec,1,,"Car: 11-16V/8A Max, combined up to 8A Max",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_label,Side AC Input Label,1,,AC Input,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_spec,Side AC Input Spec,1,,"100V-120V~60Hz, 15A Max, Flash Charge approx. 1650W",,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default Standby Duration,1,,2 hours,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12 hours,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_port_label,USB-C High Power Port Label,1,,USB-C 100W,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A cable,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V automobile battery charging cable,,,,,,JE-1000F
+,US,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,1500W,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,,メイン電源ボタン,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_dc_usb_power_button_label,DC USB Power Button Label,1,,DC/USB出力ボタン,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ac_power_button_label,AC Power Button Label,1,,AC出力ボタン,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_label,Front DC12 Port Label,1,,12Vシガーソケット出力,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_dc12_port_spec,Front DC12 Port Spec,1,,12V/10A 最大,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_label,Front USB-C Low Label,1,,USB-C 30W出力,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_low_spec,Front USB-C Low Spec,1,,"5V/3A、9V/3A、12V/2.5A、15V/2A、20V/1.5A、最大30W",,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_label,Front USB-C High Label,1,,USB-C 100W出力,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_c_high_spec,Front USB-C High Spec,1,,"5V/3A、9V/3A、12V/3A、15V/3A、20V/5A、最大100W",,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_label,Front USB-A Label,1,,USB-A 18W出力,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_usb_a_spec,Front USB-A Spec,1,,"5-6V/3A、6-9V/2A、9-12V/1.5A、最大18W",,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_label,Front AC Output Label,1,,AC出力,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_front_ac_output_spec,Front AC Output Spec,1,,"100V~50/60Hz、15A、定格1500W、瞬間最大3000W",,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_label,Side DC Input Label,1,,DC入力（DC8020ポート×2）,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_pv_spec,Side DC Input PV Spec,1,,PV: 16-60V/12A、2ポート合計最大21A/400W,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_dc_input_car_spec,Side DC Input Car Spec,1,,車載充電: 11-16V/8A、2ポート合計最大8A,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_label,Side AC Input Label,1,,AC入力,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_side_ac_input_spec,Side AC Input Spec,1,,100V-120V~50/60Hz、15A 最大、急速充電 約1450W,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default Standby Duration,1,,2時間,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12時間,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_port_label,USB-C High Power Port Label,1,,USB-C 100W,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_usb_c_high_power_cable_name,USB-C High Power Cable Name,1,,Jackery USB-C to USB-C 5A ケーブル,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_car_battery_charging_cable_name,Car Battery Charging Cable Name,1,,Jackery 12V 自動車用バッテリー充電ケーブル,,,,,,JE-1000F
+,JP,TRUE,specifications,TEMPLATE VARS,99,tpl_ups_bypass_output_text,UPS Bypass Output Text,1,,1500W,,,,,,JE-1000F

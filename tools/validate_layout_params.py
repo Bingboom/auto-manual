@@ -83,20 +83,20 @@ def validate(csv_path: Path) -> list[Issue]:
             keys_present.add(key)
 
             if unit not in KNOWN_UNITS:
-                issues.append(Issue("ERROR", f"Unknown unit '{unit}' for key '{key}'"))
+                issues.append(Issue("ERROR", f"Unknown unit '{unit}' for key '{key}' line {idx}"))
 
             if unit in {"mm", "pt", "em", "ex", "ratio"}:
                 if not parse_number(val):
-                    issues.append(Issue("ERROR", f"Numeric value expected for '{key}'"))
+                    issues.append(Issue("ERROR", f"Numeric value expected for '{key}' line {idx}"))
             elif unit == "int":
                 try:
                     int(val)
                 except Exception:
-                    issues.append(Issue("ERROR", f"Integer value expected for '{key}'"))
+                    issues.append(Issue("ERROR", f"Integer value expected for '{key}' line {idx}"))
             elif unit == "cmyk":
                 parts = val.strip('"').split(",")
                 if len(parts) != 4:
-                    issues.append(Issue("ERROR", f"CMYK requires 4 values for '{key}'"))
+                    issues.append(Issue("ERROR", f"CMYK requires 4 values for '{key}' line {idx}"))
 
         missing = REQUIRED_KEYS - keys_present
         if missing:

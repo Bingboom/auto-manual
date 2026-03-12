@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>RST Diff Report - Files</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    th, td { border: 1px solid #d0d7de; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #f6f8fa; position: sticky; top: 0; }
+    .summary { display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+    .card { border: 1px solid #d0d7de; border-radius: 8px; padding: 10px 12px; min-width: 120px; }
+    .notices { display: grid; gap: 10px; margin: 16px 0; }
+    .notice { border: 1px solid #d8b566; background: #fff8c5; border-radius: 8px; padding: 12px 14px; color: #5c4700; }
+    .filters { border: 1px solid #d0d7de; border-radius: 8px; padding: 12px; margin: 16px 0; background: #f6f8fa; }
+    .filters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .filter-item { display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+    .filter-item input, .filter-item select { border: 1px solid #d0d7de; border-radius: 6px; padding: 8px 10px; font-size: 13px; background: #fff; }
+    .muted { color: #57606a; }
+  </style>
+</head>
+<body>
+  <h1>RST Diff Report - Files</h1>
+  <p class="muted">HEAD~1 -> HEAD</p>
+  <div class="summary"><div class="card"><strong>1</strong><div class="muted">files</div></div><div class="card"><strong>0</strong><div class="muted">added</div></div><div class="card"><strong>1</strong><div class="muted">modified</div></div><div class="card"><strong>0</strong><div class="muted">deleted</div></div><div class="card"><strong>0</strong><div class="muted">renamed</div></div></div>
+
+  <div class="filters">
+    <div class="filters-grid">
+      <label class="filter-item"><span>Search</span><input id="filter-search" type="search" placeholder="Search rows" /></label>
+      <label class="filter-item"><span>model</span><select id="filter-model" data-filter-token="model"><option value="">All</option><option value="JE-1000F">JE-1000F</option></select></label>
+      <label class="filter-item"><span>region</span><select id="filter-region" data-filter-token="region"><option value="">All</option><option value="US">US</option></select></label>
+      <label class="filter-item"><span>section</span><select id="filter-section" data-filter-token="section"><option value="">All</option><option value="page">page</option></select></label>
+      <label class="filter-item"><span>change_type</span><select id="filter-change_type" data-filter-token="change_type"><option value="">All</option><option value="M">M</option></select></label>
+    </div>
+    <div class="muted" id="filter-result-count"></div>
+  </div>
+  <table>
+    <thead><tr><th>tracked_root</th><th>model</th><th>region</th><th>artifact</th><th>section</th><th>page_key</th><th>file_name</th><th>relative_path</th><th>change_type</th><th>insertions</th><th>deletions</th><th>old_path</th><th>new_path</th><th>from_ref</th><th>to_ref</th></tr></thead>
+    <tbody><tr data-report-row="1" data-search="docs/_review/je-1000f/us je-1000f us review page 02_whats_in_the_box 02_whats_in_the_box.rst page/02_whats_in_the_box.rst m 1 1  docs/_review/je-1000f/us/page/02_whats_in_the_box.rst head~1 head" data-filter-model="JE-1000F" data-filter-region="US" data-filter-section="page" data-filter-change_type="M"><td>docs/_review/JE-1000F/US</td><td>JE-1000F</td><td>US</td><td>review</td><td>page</td><td>02_whats_in_the_box</td><td>02_whats_in_the_box.rst</td><td>page/02_whats_in_the_box.rst</td><td>M</td><td>1</td><td>1</td><td></td><td>docs/_review/JE-1000F/US/page/02_whats_in_the_box.rst</td><td>HEAD~1</td><td>HEAD</td></tr></tbody>
+  </table>
+  <script>
+    (function () {
+      const rows = Array.from(document.querySelectorAll('tr[data-report-row="1"]'));
+      const searchInput = document.getElementById('filter-search');
+      const selects = Array.from(document.querySelectorAll('select[data-filter-token]'));
+      const resultCount = document.getElementById('filter-result-count');
+      const params = new URLSearchParams(window.location.search);
+      function syncQueryString() {
+        const next = new URLSearchParams();
+        if (searchInput && searchInput.value.trim()) {
+          next.set('search', searchInput.value.trim());
+        }
+        selects.forEach((select) => {
+          const token = select.getAttribute('data-filter-token');
+          if (token && select.value) {
+            next.set(token, select.value);
+          }
+        });
+        const query = next.toString();
+        const target = `${window.location.pathname}${query ? '?' + query : ''}${window.location.hash}`;
+        window.history.replaceState(null, '', target);
+      }
+      function applyFilters() {
+        const search = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        let visible = 0;
+        rows.forEach((row) => {
+          let ok = true;
+          if (search) {
+            const haystack = (row.getAttribute('data-search') || '').toLowerCase();
+            ok = haystack.includes(search);
+          }
+          if (ok) {
+            selects.forEach((select) => {
+              const token = select.getAttribute('data-filter-token');
+              const wanted = select.value;
+              if (!wanted) {
+                return;
+              }
+              const actual = row.getAttribute('data-filter-' + token) || '';
+              if (actual !== wanted) {
+                ok = false;
+              }
+            });
+          }
+          row.hidden = !ok;
+          if (ok) {
+            visible += 1;
+          }
+        });
+        if (resultCount) {
+          resultCount.textContent = `${visible} / ${rows.length} rows visible`;
+        }
+      }
+      if (searchInput) {
+        const initialSearch = params.get('search') || '';
+        if (initialSearch) {
+          searchInput.value = initialSearch;
+        }
+      }
+      selects.forEach((select) => {
+        const token = select.getAttribute('data-filter-token');
+        if (!token) {
+          return;
+        }
+        const wanted = params.get(token);
+        if (!wanted) {
+          return;
+        }
+        const option = Array.from(select.options).find((item) => item.value === wanted);
+        if (option) {
+          select.value = wanted;
+        }
+      });
+      if (searchInput) {
+        searchInput.addEventListener('input', () => { syncQueryString(); applyFilters(); });
+      }
+      selects.forEach((select) => select.addEventListener('change', () => { syncQueryString(); applyFilters(); }));
+      applyFilters();
+    }());
+  </script>
+</body>
+</html>

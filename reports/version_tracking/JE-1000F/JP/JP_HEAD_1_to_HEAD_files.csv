@@ -1,0 +1,10 @@
+﻿tracked_root,model,region,artifact,section,page_key,file_name,relative_path,change_type,insertions,deletions,old_path,new_path,from_ref,to_ref
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,,manifest,manifest.json,manifest.json,M,56,2,,docs/_review/JE-1000F/JP/manifest.json,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,overrides,README,README.md,overrides/README.md,A,9,0,,docs/_review/JE-1000F/JP/overrides/README.md,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,01_meaning_of_symbols,01_meaning_of_symbols.rst,page/01_meaning_of_symbols.rst,M,29,29,,docs/_review/JE-1000F/JP/page/01_meaning_of_symbols.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,03_product_overview_placeholder,03_product_overview_placeholder.rst,page/03_product_overview_placeholder.rst,M,2,2,,docs/_review/JE-1000F/JP/page/03_product_overview_placeholder.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,04_lcd_display_placeholder,04_lcd_display_placeholder.rst,page/04_lcd_display_placeholder.rst,M,1,1,,docs/_review/JE-1000F/JP/page/04_lcd_display_placeholder.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,05_operation_guide_placeholder,05_operation_guide_placeholder.rst,page/05_operation_guide_placeholder.rst,M,7,7,,docs/_review/JE-1000F/JP/page/05_operation_guide_placeholder.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,06_ups_mode,06_ups_mode.rst,page/06_ups_mode.rst,M,1,1,,docs/_review/JE-1000F/JP/page/06_ups_mode.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,07_expansion_battery_pack,07_expansion_battery_pack.rst,page/07_expansion_battery_pack.rst,M,4,4,,docs/_review/JE-1000F/JP/page/07_expansion_battery_pack.rst,HEAD~1,HEAD
+docs/_review/JE-1000F/JP,JE-1000F,JP,review,page,12_app_setup_placeholder,12_app_setup_placeholder.rst,page/12_app_setup_placeholder.rst,M,7,3,,docs/_review/JE-1000F/JP/page/12_app_setup_placeholder.rst,HEAD~1,HEAD

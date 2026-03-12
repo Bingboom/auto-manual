@@ -1,254 +1,536 @@
 # Auto-Manual Tool
 
-> 目标：把“能跑的 demo”升级为“可解释、可维护、可扩展的排版引擎”。
-> 本文档覆盖：整体数据流、分层职责、文件边界、参数体系、构建流程、常见坑、扩展玩法与迭代路线。
+基于 CSV + RST 的说明书构建仓库。
+
+当前主流程已经统一到跨平台入口 [build.py](build.py)，并且采用 review-first 工作方式：
+
+- 先用模板和数据生成 draft
+- review 开始后改 [docs/_review/](docs/_review)
+- 用 `check / diff-report / publish` 完成质检、修订记录和终稿导出
+
+相关文档：
+
+- 用户工作流：[user-guide/hello_auto-doc.md](user-guide/hello_auto-doc.md)
+- 快速示例：[user-guide/quick_start_guide.md](user-guide/quick_start_guide.md)
+- 维护文档索引：[code-as-doc/README.md](code-as-doc/README.md)
 
 ---
 
-## 0. 这个仓库是什么
+## 1. 先看结论（当前真实逻辑）
 
-这是一个 **CSV 驱动的工业说明书生成器**：
-
-* 内容来自 CSV（由 CMS 产出）
-* 版式来自 LaTeX 主题（参数化）
-* 中间通过 Sphinx 把 RST 转 LsaTeX，再编译成 PDF
-
-核心价值：**把“内容”和“排版”解耦**，并把排版尽可能“参数化”，让你能在 CMS 输出 CSV 后，快速产出稳定一致的 PDF，同时保留出版级精调的入口。
+- 用户入口是 [build.py](build.py)；底层构建器仍然是 [tools/build_docs.py](tools/build_docs.py)
+- `docs/index.rst` 不建议手改；它会自动汇总当前 [docs/_build/](docs/_build) 下已存在的 bundle 入口
+- `config.yaml` / `config.ja.yaml` / `config.eu.yaml` 是按模板族共享的配置，不再按型号复制一份 YAML
+- `config.pages` 决定整本页面顺序，`pages` 已有 dataclass schema，由 [tools/config_pages.py](tools/config_pages.py) 统一解析
+- `csv_page` 当前只支持 `source: phase1`
+- 默认 `doc_type` 只支持 `manual_bundle`
+- 构建目标解析（`model / region / token`）已统一收敛到 [tools/utils/targets.py](tools/utils/targets.py)
+- 当前推荐入口是：`python build.py doctor|rst|review|check|sync-review|publish|word|html|pdf|all`
+- 版本跟踪推荐对 [docs/_review/](docs/_review) 做 `diff-report`，而不是只盯 `_build`
+- 批量构建由配置文件中的 `build.targets` 驱动
+- `spec` 页的 `product_name` 按 `Model + Region + Language` 从 [data/phase1/Spec_Master.csv](data/phase1/Spec_Master.csv) 解析
+- `renderers` 与 `word_bundle` 已拆分为多模块，review / diff-report / contract 校验已接到主流程上
 
 ---
 
-## 1. 总体数据流
+## 2. 快速开始
 
-### 1.1 Pipeline（从 CSV 到 PDF）
+### 2.1 安装依赖
+
+Windows PowerShell：
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+macOS / Linux：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+系统依赖：
+
+- PDF 必需：`xelatex`（TeX Live / MiKTeX）
+- DOCX 需要：
+  - `word_source=latex` 或 `word_source=html`：必需 `pandoc`
+  - `word_source=bundle`：
+    - Windows：优先走 Word COM，可不依赖 `pandoc`
+    - macOS / Linux：走 `pandoc`
+
+如果你是通过 `pip install -r requirements.txt` 安装环境，`furo` 已经会一并安装；如果是手动精简安装环境，请确保额外安装 `furo` 主题。
+
+### 2.2 生成 LaTeX 参数（首次构建前建议执行）
+
+```bash
+python3 tools/csv_to_tex_params.py
+```
+
+说明：
+
+- 输入：[data/layout_params.csv](data/layout_params.csv)
+- 输出：[docs/renderers/latex/params.tex](docs/renderers/latex/params.tex)
+- [tools/build_docs.py](tools/build_docs.py) 不会自动重建 `params.tex`
+- `python build.py clean` 会删除 [docs/renderers/latex/params.tex](docs/renderers/latex/params.tex)
+
+### 2.3 Windows 构建命令
+
+当前推荐直接使用根目录的 [build.py](build.py)，它会读取配置里的 `build.targets` 并批量构建所有目标：
+
+```powershell
+python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
+python build.py rst
+python build.py word
+python build.py html
+python build.py pdf
+python build.py all
+```
+
+说明：
+
+- `python build.py rst` 只生成每个 target 的 RST bundle
+- `python build.py word` 会先生成 RST，再导出 Word
+- `python build.py html` 会先生成 RST，再导出 HTML
+- `python build.py pdf` 会先生成 RST，再导出 PDF
+- `python build.py all` 会一次性构建 `html + word + pdf`
+- 默认 `clean` 只清当前 target 的输出目录，并顺带清理该 target 对应的旧布局历史产物
+
+`config.yaml` 示例：
+
+```yaml
+build:
+  default_region: US
+  targets:
+    - model: JE-2000F
+      region: US
+    - model: JE-1000F
+      region: US
+```
+
+切换配置文件时：
+
+```powershell
+python build.py rst --config config.ja.yaml
+python build.py word --config config.ja.yaml
+```
+
+如果只想构建单个型号，也可以直接指定：
+
+```powershell
+python build.py word --config config.yaml --model JE-2000F --region US
+```
+
+[Makefile](Makefile) 仍然保留，但现在只是兼容层；Windows 没有 `make` 也不影响构建。更完整的 Windows 说明见 [code-as-doc/build_doc_guide.md](code-as-doc/build_doc_guide.md)。
+
+### 2.4 Review-first 流程（推荐）
+
+以 `JE-1000F / JP` 为例：
+
+```powershell
+python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
+python build.py review --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+```
+
+更完整的用户流程见：
+
+- [user-guide/hello_auto-doc.md](user-guide/hello_auto-doc.md)
+- [user-guide/quick_start_guide.md](user-guide/quick_start_guide.md)
+
+---
+
+## 3. build_docs 实际执行顺序
+
+[tools/build_docs.py](tools/build_docs.py) 当前真实顺序如下：
+
+1. 读取并校验 config
+2. 校验 `paths.layout_params_csv`，默认是 [data/layout_params.csv](data/layout_params.csv)
+3. 解析构建目标：
+   - 优先使用 `--model` / `--region`
+   - 批量模式使用 `--all-targets` + `build.targets`
+   - 单目标默认回退到 `build.default_model` / `build.default_region`
+4. 按 target 的 `Model + Region + Language` 从 [data/phase1/Spec_Master.csv](data/phase1/Spec_Master.csv) 解析 `product_name`
+5. 对 `csv_page` 运行 [tools/phase1_build.py](tools/phase1_build.py)，输出到 `docs/_build/<model>/<region>/rst/generated/<model>/`
+6. 调用 [tools/gen_index_bundle.py](tools/gen_index_bundle.py)，生成 `docs/_build/<model>/<region>/rst/index.rst`
+7. 如果 source 是 `auto` 或 `review`，并且对应 review bundle 存在，则把 [docs/_review/](docs/_review) 叠加到 runtime bundle
+8. 如果是 `--prepare-only`，到这里结束
+9. 按请求格式继续构建：
+   - `html`：Sphinx HTML
+   - `word`：按 `build.word_source` 导出 DOCX
+   - `pdf`：按 PDF backend 导出
+10. 最后重写根 [docs/index.rst](docs/index.rst)，让它指向 `_build/.../rst/index`
+
+补充：
+
+- `build_docs.py` 调用 `validate_config` 时使用 `strict_files=False`
+- `cover_pdf` / `rst_include` 这类文件的存在性问题通常会在后续阶段暴露
+- `check / html / word / pdf` 默认是 `source=auto`，所以 review 存在时会优先使用 review 内容
+
+可视化：
 
 ```mermaid
 flowchart TD
-  A[data/safety_items.csv] -->|tools/csv_to_rst.py| B[docs/safety.rst]
-  C[data/layout_params.csv] -->|tools/csv_to_tex_params.py| D[docs/latex_theme/params.tex]
-
-  B -->|sphinx-build -b latex| E[docs/_build/latex/*.tex]
-  D -->|sphinx copies additional files| E
-  F[docs/latex_theme/*.tex] -->|sphinx copies additional files| E
-  G[tools/patch_latex_fonts.py] -->|inject fonts.tex into main .tex| E
-  E -->|latexmk -xelatex| H[PDF]
+  A["config.yaml"] --> B["tools/build_docs.py"]
+  B --> C["validate_config"]
+  B --> D["validate_layout_params"]
+  B --> E["resolve targets"]
+  E --> F["for each model/region"]
+  F --> G["tools/phase1_build.py"]
+  G --> H["docs/_build/<model>/<region>/rst/generated/<model>/*.rst"]
+  F --> I["tools/gen_index_bundle.py"]
+  I --> J["docs/_build/<model>/<region>/rst/index.rst"]
+  J --> R["overlay docs/_review if present"]
+  R --> K["requested formats"]
+  K --> L["HTML"]
+  K --> M["WORD"]
+  K --> N["PDF"]
+  F --> O["docs/_build/<model>/<region>/..."]
+  B --> P["docs/index.rst"]
 ```
 
-* `csv_to_rst.py` 负责把内容 CSV 渲染成 RST 主体。
-* `csv_to_tex_params.py` 负责把布局 CSV 渲染成 `params.tex`（TeX 宏）。
-* Sphinx 负责把 RST 转换成主 `.tex` 并拷贝主题文件到 `_build/latex`。
-* `patch_latex_fonts.py` 负责把 `fonts.tex` 注入主 `.tex`，确保字体“压轴生效”。
+---
+
+## 4. `config.yaml` / `config.ja.yaml` / `config.eu.yaml` 关键字段
+
+当前 `build_docs.py` 主要会读取这些字段：
+
+- `build.targets`
+- `build.default_model`
+- `build.default_region`
+- `build.main_tex`
+- `build.output_pdf`
+- `build.xelatex_runs`
+- `build.build_word`
+- `build.word_source`：`latex | html | bundle`
+- `build.word_output`
+- `build.word_reference_doc`
+- `build.word_title`
+- `build.build_html`
+- `build.open_pdf / build.open_word / build.open_html`
+- `paths.layout_params_csv`
+- `paths.spec_master_csv`
+- `paths.spec_footnotes_csv`
+- `paths.spec_titles_csv`
+- `tools.patch_fonts`
+- `pages`
+
+CLI 相关控制：
+
+- `--all-targets`：按 `build.targets` 批量构建
+- `--prepare-only`：只生成 bundle rst，不继续导出 Word / HTML / PDF
+- `--no-open`：覆盖 `open_pdf / open_word / open_html`
+- `--source auto|runtime|review`：控制构建内容来自 runtime 还是 review
+- `doc_type` 当前只支持 `manual_bundle`
+
+当前共享配置规则：
+
+- [config.yaml](config.yaml)：EN / US 模板族
+- [config.ja.yaml](config.ja.yaml)：JP 模板族
+- [config.eu.yaml](config.eu.yaml)：EU 模板族
 
 ---
 
-## 2. 分层架构（你现在的引擎骨架）
+## 5. 构建目标解析逻辑
 
-目前已经在实践的分层模型：
+优先级：
 
-* **L0 参数层**：CSV → TeX 宏（纯数据）
-* **L1 类型系统层**：字体/字号/行距/颜色/大写规则（“字怎么长”）
-* **L2 工具宏层**：对齐、行距锁死、调试宏等（“怎么排得稳”）
-* **L3 组件层**：warning、subbar、two-column、pill 等（“模块怎么搭”）
-* **L4 页面布局层**：geometry、页脚、页面模板（“页面怎么放”）
-* **L5 出版精调层（Page Fit）**：轻微压缩/微调以“塞页”（“最后 5% 现实适配”）
+1. 命令行 `--model` / `--region`
+2. `--all-targets` + `build.targets`
+3. `build.default_model` / `build.default_region`
+
+说明：
+
+- 构建目标只由 `model` / `region` 决定
+- `build.targets` 是批量构建的唯一声明入口
+- `product_name` 从 [data/phase1/Spec_Master.csv](data/phase1/Spec_Master.csv) 中 `Row_key=product_name` 的记录解析
+- 根 [docs/index.rst](docs/index.rst) 每次都会被重写成最新入口；单目标时直接 include `_build/<model>/<region>/rst/index`，多目标时写成总目录页
+
+实现上：
+
+- [tools/build_docs.py](tools/build_docs.py)、[tools/gen_index_bundle.py](tools/gen_index_bundle.py)、[tools/word_bundle.py](tools/word_bundle.py) 统一复用 [tools/utils/targets.py](tools/utils/targets.py)
+- `build.default_model / build.default_region / build.targets` 的解析语义已经统一
+- 同一个 target 在不同构建入口下不会再分叉到不同目录结构
 
 ---
 
-## 3. 仓库关键目录与文件职责
+## 6. 页面类型与约束（pages DSL）
 
-### 3.1 `latex_theme/` 结构
+支持类型：
 
+- `cover_pdf`
+- `csv_page`
+- `pdf_insert`
+- `rst_include`
+
+当前约束：
+
+- `csv_page.source` 仅支持 `phase1`
+- `rst_include` 直接 include 指定 rst
+- [docs/index.rst](docs/index.rst) 每次由构建入口重写，用来指向 `_build/.../rst/index`
+- `pages` 解析统一走 [tools/config_pages.py](tools/config_pages.py)
+
+---
+
+## 7. Phase1 真实数据来源
+
+默认路径：
+
+- 页面定义：[data/phase1/page_registry.csv](data/phase1/page_registry.csv)
+- 默认块：[data/phase1/content_blocks.csv](data/phase1/content_blocks.csv)
+- 每页块覆盖：`data/phase1/<page_id>_blocks.csv`（如存在则优先）
+
+当前说明：
+
+- `phase1` 不再读取 `product_variables.csv`
+- 渲染变量来源为构建参数（`--model / --region`）与 [Spec_Master.csv](data/phase1/Spec_Master.csv) 解析出的 `product_name`
+- 模板页若需要产品名，统一使用：
+  - `|PRODUCT_NAME|`
+  - `|PRODUCT_NAME_BOLD|`
+
+每页块数据优先级：
+
+1. 若存在 `data/phase1/<page_id>_blocks.csv`，优先使用该页文件
+2. 否则回退到 [content_blocks.csv](data/phase1/content_blocks.csv) 中 `page_id=<page_id>` 的块
+
+`spec` 页特殊逻辑（当前已改为单一来源）：
+
+1. 主数据仅使用 `paths.spec_master_csv`
+2. 脚注补充仅使用 `paths.spec_footnotes_csv`
+3. 页面标题 / 分节标题多语言映射仅使用 `paths.spec_titles_csv`
+
+渲染器限制：
+
+- 当前注册渲染器只有：`safety`、`spec`、`symbols`
+- 若 `csv_page` 指向未注册渲染器，默认会直接报错
+
+review 阶段如果你改了数据表，推荐直接：
+
+```powershell
+python build.py sync-review --config ... --model ... --region ...
 ```
-latex_theme/
-├── assets/
-├── colors.tex          ← L0 (品牌色定义：从 params 取色值并 definecolor)
-├── params.tex          ← L0 (CSV生成；只定义宏，不写逻辑)
-├── type_system.tex     ← L1 (字体/字号/行距/大写策略：只定义 Type macros)
-├── tools.tex           ← L2 (稳定性工具宏：对齐/行距锁死/调试)
-├── components_base.tex ← L3-base (通用组件基础：list/table/note/rubric等结构)
-├── components_safety.tex ← L3 (安全页专属组件：warning/subbar/twocol/h1/lead)
-├── layout_core.tex     ← L4-core (页面机制：geometry, fancyhdr基础, 全局段落)
-├── layout_templates.tex← L4-template (页面模板：Standard/NoFooter/Cover等组合)
-├── theme.tex           ← 入口编排：按顺序 input 各层文件
-├── fonts.tex           ← 字体（通过 patch 注入主 tex，保证生效）
-└── page_fit.tex        ← L5 (出版精调层：全局/局部压缩的入口)
+
+而不是默认用 `review --refresh-review` 重刷整包。
+
+---
+
+## 8. DOCX 导出模式（`build.word_source`）
+
+### 8.1 `word_source=latex`
+
+- 输入：`docs/_build/<model>/<region>/latex/<main_tex>`
+- 工具：pandoc
+- 优点：接近 LaTeX 排版结果
+
+### 8.2 `word_source=html`
+
+- 输入：`docs/_build/<model>/<region>/html/index.html`
+- 工具：pandoc
+- 若 `build_html=false` 但选择 html 导出，脚本会临时用 `alabaster` 最小主题构建 HTML
+
+### 8.3 `word_source=bundle`
+
+- 输入：`docs/_build/<model>/<region>/rst/` 下的 bundle 内容
+- `csv_page`：先走 phase1 生成 `docs/_build/<model>/<region>/rst/generated/<model>/<page>_<lang>.rst`，再读取该 RST 转 HTML
+- `rst_include`：读取配置中的 RST 文件转 HTML
+- 中间 HTML 产物位于 `docs/_build/<model>/<region>/word/manual_bundle.html`
+- `html / pdf / word(bundle)` 当前都基于同一份 `rst/generated` 内容源
+- 不支持：`pdf_insert`
+- 参考模板：`build.word_reference_doc`
+- 导出后会强制补齐 Word 大纲级别，确保导航层级稳定
+
+---
+
+## 9. 输出文件
+
+- RST bundle：`docs/_build/<model>/<region>/rst/`
+- phase1 generated：`docs/_build/<model>/<region>/rst/generated/<model>/`
+- HTML：`docs/_build/<model>/<region>/html/`
+- DOCX：`docs/_build/<model>/<region>/word/<word_output>`
+- PDF：`docs/_build/<model>/<region>/pdf/<output_pdf>`
+- LaTeX 中间文件：`docs/_build/<model>/<region>/latex/`
+- Word bundle HTML：`docs/_build/<model>/<region>/word/manual_bundle.html`
+- Review bundle：`docs/_review/<model>/<region>/`
+- 修订记录：`reports/version_tracking/<model>/<region>/`
+
+---
+
+## 10. 常用命令
+
+校验配置：
+
+```powershell
+python build.py validate
 ```
 
-### 3.2 维护规则
+检查当前机器能否构建 Word / PDF：
 
-* `params.tex`：**只定义宏**（`HBxxx`），不要写任何逻辑。
-* `colors.tex`：**只负责 definecolor**，不要写排版结构。
-* `type_system.tex`：**只定义 Type Macros**（例如 `\HBTypeWarningTextStart`），不要定义组件。
-* `tools.tex`：**只定义工具宏**（例如 lock lines / apply alignment / debug），不要写具体组件结构。
-* `components_*.tex`：**只定义结构**（盒子、tabular、tcolorbox 组合），字体/对齐/行距必须调用 L1/L2。
-* `layout_*.tex`：只管页面结构、模板组合；页码数字规则最好也放到 L1（可选）。
-* `page_fit.tex`：可以“hack”，但必须**可开关**且默认关闭，避免污染品牌系统。
-
----
-
-## 4. 参数体系（layout_params.csv → params.tex）
-
-### 4.1 `layout_params.csv` 设计原则
-
-整个引擎的“控制台”。
-
-长期遵守：
-
-* key 命名统一前缀：`page_` / `type_` / `comp_` / `brand_color_` / 其它少量特例（如 `section_after_fix`）
-* unit 严格枚举：`mm/pt/int/ratio/cmyk/...`（lint 会卡住非法 unit）
-* ratio 表示纯比例数字（无单位），适合各种 scale / width ratio 等
-
-### 4.2 `csv_to_tex_params.py` 的规则与输出
-
-该脚本把 CSV 变成：
-
-```tex
-\expandafter\def\csname HB<key>\endcsname{<value><unit>}
+```powershell
+python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-其中 ratio/int/cmyk/none 等 unit 走“raw value”，不会加后缀。
+只生成 RST bundle：
 
-这意味着：**所有上层 TeX 都应该只通过 `\csname HBxxx\endcsname` 读取参数**，不要硬编码数字。
+```powershell
+python build.py rst
+```
 
----
+进入 review：
 
-## 5. 内容体系（safety_items.csv → safety.rst）
+```powershell
+python build.py review --config config.ja.yaml --model JE-1000F --region JP
+```
 
-`csv_to_rst.py` 做了两件关键事：
+同步数据变更到 review：
 
-1. 把 `top/bottom` 的条目渲染为 bullet list
-2. 把 `lead_top/save_title` 渲染为 `.. raw:: latex` 调用命令（如 `\safetylead{...}`）
+```powershell
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
+```
 
+构建 Word：
 
-**内容层仍然是 RST，但关键排版组件通过 LaTeX 命令注入**，把“内容结构”和“视觉组件”连接起来。
+```powershell
+python build.py word
+```
 
-建议长期扩展时也遵循：
+构建 HTML：
 
-* 内容结构优先在 RST（更易 diff、翻译）
-* 需要强排版一致性的块，通过 `raw latex` 调用组件命令
+```powershell
+python build.py html
+```
 
----
+构建 PDF：
 
-## 6. 构建系统与“复制规则”
+```powershell
+python build.py pdf
+```
 
-### 6.1 Sphinx 的关键约束
+一次性构建全部产物：
 
-Sphinx 在 latex builder 里：
+```powershell
+python build.py all
+```
 
-* 会把 `latex_additional_files` 列表里的文件复制到 `_build/latex` 根目录
-* 因此 `\input{...}` 最稳的写法是 **输入文件名**（而不是 `latex_theme/xxx.tex`）
+正式发布：
 
+```powershell
+python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+```
 
-新文件必须同时满足：
+导出版本变更表：
 
-1. `theme.tex` 里 `\input{xxx.tex}`
-2. `conf_base.py` 的 `latex_additional_files` 里包含 `latex_theme/xxx.tex`
+```powershell
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
+```
 
----
+切换配置文件：
 
-## 7. 字体注入机制
+```powershell
+python build.py word --config config.ja.yaml
+```
 
-在 Sphinx 生成主 tex 后，向主 tex 注入 `\input{fonts.tex}`，从而保证字体设置在最终编译阶段生效。
+只构建单个目标：
 
-这是为了对抗：
+```powershell
+python build.py word --config config.yaml --model JE-2000F --region US
+```
 
-* Sphinx 模板/cls/宏包后置覆盖字体
-* 不同平台字体可用性差异
+如果你需要直接排查底层链路，也可以分别执行：
 
-原则：**fonts.tex 必须“稳定可编译”**，需要 fallback 机制。
-
----
-
-## 8. 出版级精调层（L5）
-
-需求：
-
-* 品牌样式、H1/H2/H3、品牌色永远不动
-* 希望通过微调字距/行距/图像比例，让多两行塞回同一页
-
-### 8.1 L5 的关键设计原则
-
-* 默认关闭（参数=1）
-* 只允许微量（0.97–1.00）
-* 必须可回退
-* 最好可分对象：只压正文，不压标题/警示框
-
-### 8.2 L5 的建议参数命名（避免 lint warning）
-
-
----
-
-## 9. 如何扩展到“多产品、多主题”
-
-目前已经非常接近“插件化主题系统”。
-
-建议的扩展方式：
-
-### 9.1 不动核心（base frozen）
-
-* `colors.tex`
-* `type_system.tex`
-* `tools.tex`
-* `components_base.tex`
-* `layout_core.tex`
-
-这些当作“平台内核”，尽量冻结。
-
-### 9.2 产品/文档类型做“可插拔组件集”
-
-例如：
-
-* `components_safety.tex`（安全页组件集）
-* `cover.tex`（封面页组件集）
-* `components_qsg.tex`（快速上手组件集）
-
-然后在 `theme.tex` 里选择 input 哪一个组件集，形成“主题变体”。
-
-### 9.3 参数化优先用于“数值”，而不是“结构”
-
-* **数值类**（pad/size/leading/color/width）应在 CSV
-* **结构类**（tabular 结构/box 结构/对齐算法）应在组件层
-  否则 CSV 会变成“控制结构的脚本语言”，维护成本会爆炸。
+```powershell
+python tools\phase1_build.py --model JE-2000F --region US --page safety,spec --lang en --spec-master-csv data/phase1/Spec_Master.csv --spec-footnotes-csv data/phase1/Spec_Footnotes.csv --spec-titles-csv data/phase1/spec_titles.csv
+python tools\gen_index_bundle.py --config config.yaml --model JE-2000F --region US
+python tools\word_bundle.py --config config.yaml --model JE-2000F --region US --output manual_je2000f_us.docx
+```
 
 ---
 
-## 10. 常见坑与排查手册
+## 11. 常见问题
 
-### 10.1 新增文件后找不到
+- `xelatex not found`
+  - 安装 TeX Live / MiKTeX，并确保 `xelatex` 在 PATH 中
 
-现象：`File xxx.tex not found`
-排查：
+- `Word reference doc not found`
+  - 检查 `build.word_reference_doc` 路径是否有效
 
-1. `theme.tex` 是否 `\input{xxx.tex}`
-2. `conf_base.py` 是否把 `latex_theme/xxx.tex` 加到 `latex_additional_files`
+- `Failed to resolve Product Name from Spec_Master.csv`
+  - 检查 [Spec_Master.csv](data/phase1/Spec_Master.csv) 中是否存在对应 `Model + Region + Language` 的 `Row_key=product_name`
 
-### 10.2 “Missing endcsname inserted”
+- `make : The term 'make' is not recognized ...`
+  - 直接改用 `python build.py ...`
 
-通常原因：
+- `No content blocks for page_id=...`
+  - 检查 [content_blocks.csv](data/phase1/content_blocks.csv) 和 `data/phase1/<page_id>_blocks.csv`
 
-* `\csname ...\endcsname` 中间出现非法 token
-* `\edef` 过度展开把 token 拼坏
-  建议：
-* 在 L5 等敏感层避免 `\edef`，用延迟展开或在 BeginDocument 执行
-* 先在 `_build/latex/params.tex` grep 对应 HB 宏是否存在
+- `missing renderer for page_id=...`
+  - 检查 `csv_page` 是否错误指向未注册渲染器
 
-### 10.3 行距调不动（tabular 内）
+- `File params.tex not found`
+  - 重新执行 `python3 tools/csv_to_tex_params.py`
 
-目前实战过：tabular/array 里 TeX 可能触发 `lineskip` fallback
-解决：工具宏层提供“锁死行距”宏（lineskip=0, lineskiplimit=0）并在正确作用域调用。
+- `build_html=true` 但缺少主题
+  - 重新执行 `pip install -r requirements.txt`，或单独安装 `furo`
 
----
-
-## 11. 迭代路线建议
-
-1. **规范化命名**：把 L5 参数升级到 `page_` 前缀
-2. **page_fit 分对象压缩**：只压正文/list，不压标题/warning
-3. **引入“密度报告”**：构建时输出每页溢出风险（可先用日志统计/盒模型 debug）
-4. **组件集插件化**：components_{domain}.tex
-5. **主题变体**：theme_{variant}.tex 或通过 conf.py 注入不同的 additional_files
+- review 文本没有跟随参数更新
+  - 执行 `python build.py sync-review --config ... --model ... --region ...`
 
 ---
 
-## 12. 总结
+## 12. 常用配置片段
 
-> 这是一个 CSV 驱动的文档排版引擎：
-> 内容由 CMS 输出结构化 CSV，版式由分层 LaTeX 主题参数化控制，通过 Sphinx 将 RST → LaTeX → PDF，实现可维护、可扩展、可出版级精调的自动化说明书生产流水线。
+一个最小共享配置通常会包含：
+
+```yaml
+build:
+  default_model: JE-2000F
+  default_region: US
+  targets:
+    - model: JE-2000F
+      region: US
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
+  xelatex_runs: 3
+  build_word: true
+  word_source: bundle
+  word_output: manual_{model_slug}_{region_slug}.docx
+  build_html: false
+
+paths:
+  spec_master_csv: data/phase1/Spec_Master.csv
+  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
+  spec_titles_csv: data/phase1/spec_titles.csv
+```
+
+更完整示例请直接看：
+
+- [config.yaml](config.yaml)
+- [config.ja.yaml](config.ja.yaml)
+- [config.eu.yaml](config.eu.yaml)
+
+---
+
+## 13. 维护规范与仓库卫生
+
+规范文档：
+
+- 代码规范主文档：[code-as-doc/code_style_guide.md](code-as-doc/code_style_guide.md)
+- 优化记录：[code-as-doc/code_optimization_log.md](code-as-doc/code_optimization_log.md)
+- 文档维护规范：[code-as-doc/code-as-doc.md](code-as-doc/code-as-doc.md)
+
+当前结构优化要点：
+
+- [tools/phase1/renderers.py](tools/phase1/renderers.py) 已拆分为多模块
+- [tools/word_bundle.py](tools/word_bundle.py) 已拆分为 `common / html / docx`
+- `config/pages` schema 已 dataclass 化
+- `review / sync-review / publish / diff-report` 已进入主流程
+
+仓库卫生规则：
+
+- `docs/_build/`、`__pycache__/`、`.DS_Store` 已加入 [.gitignore](.gitignore)
+- `docs/_review/` 是 review 工作面，可以按需要提交
+- 如果后续发现不该追踪的缓存重新进入版本库，先检查 [.gitignore](.gitignore)，再执行 `git rm --cached <path>`

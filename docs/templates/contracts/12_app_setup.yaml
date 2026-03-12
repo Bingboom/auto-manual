@@ -1,0 +1,13 @@
+page_id: 12_app_setup
+source_files:
+  - templates/page_en/12_app_setup_placeholder.rst
+  - templates/page_jp/12_app_setup_placeholder.rst
+required_placeholders:
+  default:
+    - MAIN_POWER_BUTTON_LABEL
+    - AC_POWER_BUTTON_LABEL
+    - DC_USB_POWER_BUTTON_LABEL
+  en:
+    - MAIN_POWER_BUTTON_LABEL_LOWER
+    - AC_POWER_BUTTON_LABEL_LOWER
+    - DC_USB_POWER_BUTTON_LABEL_LOWER

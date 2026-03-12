@@ -10,7 +10,7 @@ Checks:
 - Detect duplicate YAML keys (fail-fast)
 - Required sections exist
 - pages DSL structure valid
-- csv_page has matching generator
+- csv_page source check (phase1-only)
 - Optional file existence checks
 """
 
@@ -23,6 +23,16 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.config_pages import (
+    CoverPdfPage,
+    CsvPage,
+    PdfInsertPage,
+    RstIncludePage,
+    parse_config_pages,
+)
 
 
 @dataclass
@@ -38,6 +48,10 @@ def is_list_of_str(x: Any) -> bool:
 def as_path(p: str) -> Path:
     pp = Path(p)
     return pp if pp.is_absolute() else (ROOT / pp)
+
+
+def has_tokenized_value(v: Any) -> bool:
+    return isinstance(v, str) and ("{" in v and "}" in v)
 
 
 def load_yaml(path: Path) -> dict:
@@ -75,9 +89,6 @@ def load_yaml(path: Path) -> dict:
     return data
 
 
-SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "pdf_insert"}
-
-
 def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     issues: list[Issue] = []
 
@@ -91,53 +102,104 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if not is_list_of_str(languages) or not languages:
         issues.append(Issue("ERROR", "build.languages must be non-empty list of strings"))
 
-    # ---- tools.generators ----
-    tools = cfg.get("tools", {})
-    generators = tools.get("generators", {}) if isinstance(tools, dict) else {}
+    default_model = build.get("default_model")
+    if default_model is not None and (not isinstance(default_model, str) or not default_model.strip()):
+        issues.append(Issue("ERROR", "build.default_model must be a non-empty string when provided"))
+
+    default_region = build.get("default_region")
+    if default_region is not None and (not isinstance(default_region, str) or not default_region.strip()):
+        issues.append(Issue("ERROR", "build.default_region must be a non-empty string when provided"))
+
+    raw_targets = build.get("targets")
+    if raw_targets is not None:
+        if not isinstance(raw_targets, list) or not raw_targets:
+            issues.append(Issue("ERROR", "build.targets must be a non-empty list when provided"))
+        else:
+            for idx, item in enumerate(raw_targets, start=1):
+                if not isinstance(item, dict):
+                    issues.append(Issue("ERROR", f"build.targets[{idx}] must be a mapping"))
+                    continue
+
+                model = item.get("model")
+                if not isinstance(model, str) or not model.strip():
+                    issues.append(Issue("ERROR", f"build.targets[{idx}].model must be a non-empty string"))
+
+                region = item.get("region")
+                if region is not None and (not isinstance(region, str) or not region.strip()):
+                    issues.append(Issue("ERROR", f"build.targets[{idx}].region must be a non-empty string when provided"))
+
+    # ---- paths ----
+    paths = cfg.get("paths", {})
+    if paths is not None and not isinstance(paths, dict):
+        issues.append(Issue("ERROR", "paths must be a mapping"))
+        paths = {}
+
+    spec_master_csv = paths.get("spec_master_csv")
+    if spec_master_csv is not None:
+        if not isinstance(spec_master_csv, str) or not spec_master_csv.strip():
+            issues.append(Issue("ERROR", "paths.spec_master_csv must be a non-empty string when provided"))
+        elif strict_files and not has_tokenized_value(spec_master_csv):
+            if not as_path(spec_master_csv).exists():
+                issues.append(Issue("ERROR", f"spec_master_csv file not found: {spec_master_csv}"))
+
+    spec_footnotes_csv = paths.get("spec_footnotes_csv")
+    if spec_footnotes_csv is not None:
+        if not isinstance(spec_footnotes_csv, str):
+            issues.append(Issue("ERROR", "paths.spec_footnotes_csv must be a string when provided"))
+        elif spec_footnotes_csv.strip() and strict_files and not has_tokenized_value(spec_footnotes_csv):
+            if not as_path(spec_footnotes_csv).exists():
+                issues.append(Issue("ERROR", f"spec_footnotes_csv file not found: {spec_footnotes_csv}"))
+
+    spec_titles_csv = paths.get("spec_titles_csv")
+    if spec_titles_csv is not None:
+        if not isinstance(spec_titles_csv, str):
+            issues.append(Issue("ERROR", "paths.spec_titles_csv must be a string when provided"))
+        elif spec_titles_csv.strip() and strict_files and not has_tokenized_value(spec_titles_csv):
+            if not as_path(spec_titles_csv).exists():
+                issues.append(Issue("ERROR", f"spec_titles_csv file not found: {spec_titles_csv}"))
 
     # ---- pages ----
-    pages = cfg.get("pages", None)
-    if not isinstance(pages, list) or not pages:
-        issues.append(Issue("ERROR", "pages must be non-empty list"))
+    parsed_pages, page_issues = parse_config_pages(
+        cfg.get("pages", None),
+        default_languages=languages if is_list_of_str(languages) else None,
+    )
+    issues.extend(Issue(level=i.level, msg=i.msg) for i in page_issues)
+    if any(i.level == "ERROR" for i in page_issues):
         return issues
 
-    for idx, p in enumerate(pages, start=1):
-        if not isinstance(p, dict):
-            issues.append(Issue("ERROR", f"pages[{idx}] must be mapping"))
+    for idx, page in enumerate(parsed_pages, start=1):
+        if isinstance(page, CoverPdfPage):
+            if strict_files:
+                if has_tokenized_value(page.file):
+                    issues.append(
+                        Issue(
+                            "WARN",
+                            f"pages[{idx}] cover_pdf file is tokenized, skip strict check",
+                        )
+                    )
+                elif not as_path(page.file).exists():
+                    issues.append(Issue("ERROR", f"cover file not found: {page.file}"))
             continue
 
-        ptype = p.get("type")
-        if ptype not in SUPPORTED_PAGE_TYPES:
-            issues.append(Issue("ERROR", f"pages[{idx}].type invalid: {ptype}"))
+        if isinstance(page, CsvPage):
             continue
 
-        if ptype == "cover_pdf":
-            if "file" not in p:
-                issues.append(Issue("ERROR", f"pages[{idx}] cover_pdf requires file"))
-            elif strict_files and not as_path(p["file"]).exists():
-                issues.append(Issue("ERROR", f"cover file not found: {p['file']}"))
-
-        elif ptype == "csv_page":
-            page_name = p.get("page")
-            if not page_name:
-                issues.append(Issue("ERROR", f"pages[{idx}] csv_page requires page"))
-                continue
-
-            if page_name not in generators:
-                issues.append(Issue("ERROR", f"csv_page.page '{page_name}' missing in tools.generators"))
-
-            plangs = p.get("langs", languages)
-            if not is_list_of_str(plangs):
-                issues.append(Issue("ERROR", f"pages[{idx}] csv_page.langs invalid"))
-
-        elif ptype == "pdf_insert":
-            file_map = p.get("file_map")
-            if not isinstance(file_map, dict):
-                issues.append(Issue("ERROR", f"pages[{idx}] pdf_insert requires file_map"))
-            else:
-                for lang, fname in file_map.items():
-                    if strict_files and not as_path(fname).exists():
+        if isinstance(page, PdfInsertPage):
+            if strict_files:
+                for lang, fname in page.file_map.items():
+                    if has_tokenized_value(fname):
+                        issues.append(
+                            Issue(
+                                "WARN",
+                                f"pages[{idx}] pdf_insert '{lang}' is tokenized, skip strict check",
+                            )
+                        )
+                    elif not as_path(fname).exists():
                         issues.append(Issue("ERROR", f"pdf_insert file not found: {fname}"))
+            continue
+
+        if isinstance(page, RstIncludePage):
+            continue
 
     return issues
 
