@@ -353,6 +353,10 @@ try {{
     )
 
 
+def _docx_is_valid(docx_path: Path) -> bool:
+    return docx_path.exists() and zipfile.is_zipfile(docx_path)
+
+
 def export_word_from_bundle(
     cfg: dict,
     model: str | None,
@@ -377,6 +381,9 @@ def export_word_from_bundle(
         out_path = out_root / out_path
 
     _export_docx_via_word(bundle_html, out_path, reference_doc)
+    if not _docx_is_valid(out_path):
+        print(f"[word_bundle_docx] Word COM produced an invalid DOCX, retrying with pandoc: {out_path}")
+        _export_docx_via_pandoc(bundle_html, out_path, reference_doc)
     _embed_external_docx_images(out_path)
     _enforce_docx_outline_levels(out_path)
     return out_path

@@ -864,7 +864,11 @@ def build_target(
                 latex_built = True
             latex_pdf = latex_out_dir / output_pdf_name
             if not latex_pdf.exists():
-                raise RuntimeError(f"PDF not found after LaTeX build: {latex_pdf}")
+                fallback_pdf = latex_out_dir / Path(main_tex).with_suffix(".pdf")
+                if fallback_pdf.exists():
+                    latex_pdf = fallback_pdf
+                else:
+                    raise RuntimeError(f"PDF not found after LaTeX build: {latex_pdf}")
             pdf_target_path = resolve_output_path(pdf_out_dir, output_pdf_name)
             pdf_target_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(latex_pdf, pdf_target_path)

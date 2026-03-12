@@ -144,11 +144,11 @@ LCDスクリーン
           :width: 140px
      - 短くオン
      - オンにする
-      - |MAIN_POWER_BUTTON_LABEL|を押すか、充電入力がある場合。
+     - |MAIN_POWER_BUTTON_LABEL|を押すか、充電入力がある場合。
    * -
      - 短くオン
      - オフにする
-      - |MAIN_POWER_BUTTON_LABEL|を押します。
+     - |MAIN_POWER_BUTTON_LABEL|を押します。
    * -
      - 短くオン
      - 自動オフ
@@ -156,15 +156,15 @@ LCDスクリーン
    * -
      - 常時オン
      - オンにする
-      - デバイスが起動している状態で|MAIN_POWER_BUTTON_LABEL|を2回押します。
+     - デバイスが起動している状態で|MAIN_POWER_BUTTON_LABEL|を2回押します。
    * -
      - 常時オン
      - オフにする
-      - |MAIN_POWER_BUTTON_LABEL|を押します。
+     - |MAIN_POWER_BUTTON_LABEL|を押します。
    * -
      - 常時オン
      - 自動オフ
-      - 常時点灯ディスプレイモードは、|DEFAULT_STANDBY_DURATION|操作がないと自動的に消灯します。
+     - 常時点灯ディスプレイモードは、|DEFAULT_STANDBY_DURATION|操作がないと自動的に消灯します。
 
 Jackeryアプリで画面表示モードを設定することもできます。
 
