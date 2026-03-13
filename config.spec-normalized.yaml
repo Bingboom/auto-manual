@@ -1,0 +1,99 @@
+doc_type: manual_bundle
+
+build:
+  languages: [ en ]
+  default_model: JE-2000F
+  default_region: US
+  targets:
+    - model: JE-2000F
+      region: US
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
+  xelatex_runs: 3
+  open_pdf: true
+  build_word: true
+  word_output: manual_{model_slug}_{region_slug}.docx
+  word_source: bundle
+  word_reference_doc: docs/templates/word_template/template.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  layout_params_csv: data/layout_params.csv
+  spec_master_csv: reports/spec_master/Spec_Master.normalized.csv
+  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
+  spec_titles_csv: data/phase1/spec_titles.csv
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py
+
+pages:
+- type: cover_pdf
+  file: cover-en.pdf
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/00_preface.rst
+
+- type: csv_page
+  source: phase1
+  page: safety
+  langs: [ en ]
+  include_dir: generated/{model}
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/01_meaning_of_symbols.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/02_whats_in_the_box.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/03_product_overview_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/04_lcd_display_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/05_operation_guide_placeholder.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/06_ups_mode.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/07_expansion_battery_pack.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/08_charging_methods.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/09_storage_and_maintenance.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/10_troubleshooting.rst
+
+- type: csv_page
+  source: phase1
+  page: spec
+  langs: [ en ]
+  include_dir: generated/{model}
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/11_warranty.rst
+
+- type: rst_include
+  lang: en
+  file: templates/page_en/12_app_setup_placeholder.rst

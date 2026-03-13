@@ -5,8 +5,8 @@
 UPS 機能
 ========
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: UPS接続図プレースホルダー
+.. image:: _assets/templates/word_template/common_assets/operation/ups_mode.png
+   :alt: UPS connection diagram.
    :width: 360px
 
 電気製品のコンセントをポータブル電源のAC出力ポートに接続し、ポータブル電源のAC入力ポートを家庭のコンセントにつなぐことで、停電時などにポータブル電源を予備電源として活用できます。

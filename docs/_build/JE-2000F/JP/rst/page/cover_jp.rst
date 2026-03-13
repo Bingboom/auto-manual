@@ -2,32 +2,20 @@
 
    \HBApplyLang{ja}
 
-.. list-table::
-   :header-rows: 0
-   :widths: 72 28
+HTE153-Explorer1000_V0.1_JP_UserManual
+======================================
 
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Jackery logo placeholder.
-          :width: 260px
-     - **型番：JE-2000F**
-
+型番: **JE-2000F**
 
 写真はイメージです。実際の商品とは異なる場合があります。
 
-**Jackery ポータブル電源 2000 New**
+Jackery Jackery ポータブル電源 2000 New
 
 **取扱説明書**
 
 **国内専用/For use only in Japan**
 
-.. list-table::
-   :header-rows: 0
-   :widths: 8 92
-
-   * - .. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-          :alt: Customer support icon placeholder.
-          :width: 22px
-     - **カスタマーサポート: jackery.jp@jackery.com**
+カスタマーサポート: **jackery.jp@jackery.com**
 
 お買い上げありがとうございます。
 

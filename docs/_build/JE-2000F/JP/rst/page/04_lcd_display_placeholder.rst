@@ -5,8 +5,8 @@
 液晶画面
 ========
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: LCDアイコンマッププレースホルダー
+.. image:: _assets/templates/word_template/common_assets/lcd/lcd_map.png
+   :alt: LCD icon map.
    :width: 420px
 
 .. list-table::
@@ -139,6 +139,3 @@
      - バッテリー使用可能時間
      - 接続した機器の使用可能な時間を表示します。
 
-.. note::
-
-   LCD 図はプレースホルダーです。実画像を差し替える場合も番号と説明の対応は維持してください。

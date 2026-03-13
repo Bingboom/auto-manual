@@ -2,7 +2,7 @@
 
    .. raw:: html
 
-      <section class="manual-cover"><div class="cover-title">EN-Explorer 2000 User Manual V1.0</div></section>
+      <section class="manual-cover"><div class="cover-title">Jackery Explorer 2000 User Manual</div></section>
 
 .. only:: latex
 

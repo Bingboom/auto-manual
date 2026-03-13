@@ -8,57 +8,54 @@
 正面
 ----
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: 正面図プレースホルダー
-   :width: 420px
+.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
+   :alt: Front product image.
+   :width: 360px
 
 .. list-table::
    :header-rows: 0
    :widths: 50 50
 
-   * - **??????**
+   * - **メイン電源ボタン**
      - **持ち手**
-   * - **????????????**
+   * - **12Vシガーソケット出力**
 
-       12V???10A
+       12V/10A 最大
      - **LCDディスプレイ**
-   * - **DC/USB?????**
+   * - **DC/USB出力ボタン**
      - **LEDライトボタン**
-   * - **USB-C 30W?????**
+   * - **USB-C 30W出力**
 
-       5V?3A?9V?3A?12V?2.5A?15V?2A?20V?1.5A???30W
+       5V/3A、9V/3A、12V/2.5A、15V/2A、20V/1.5A、最大30W
      - **LEDライト**
-   * - **USB-C 100W?????**
+   * - **USB-C 100W出力**
 
-       5V?3A?9V?3A?12V?3A?15V?3A?20V?5A???100W
-     - **AC?????**
-   * - **USB-A 18W?????**
+       5V/3A、9V/3A、12V/3A、15V/3A、20V/5A、最大100W
+     - **AC出力ボタン**
+   * - **USB-A 18W出力**
 
-       5-6V?3A?6-9V?2A?9-12V?1.5A???18W
-     - **AC?????**
+       5-6V/3A、6-9V/2A、9-12V/1.5A、最大18W
+     - **AC出力**
 
-       100V~ 50Hz/60Hz???20A???2000W?3?????2200W?????4400W
+       100V~ 50Hz/60Hz、20A、定格2000W、3秒2200W、瞬間最大4400W
 
 右側面
 ------
 
-.. image:: _static/manual_en/01_meaning_of_symbols/fig.png
-   :alt: 右側面図プレースホルダー
+.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
+   :alt: Right side port overview.
    :width: 420px
 
 .. list-table::
    :header-rows: 0
    :widths: 100
 
-   * - **DC??????DC8020?**
+   * - **DC入力（DC8020ポート×2）**
 
-       PV?16V-60V?12A?2?????21A???400W
+       PV: 16-60V/12A、2ポート合計最大21A/400W
 
-       ????????11V-16V???8A?2?????8A
-   * - **AC?????**
+       車載充電: 11-16V/8A、2ポート合計最大8A
+   * - **AC入力**
 
-       100V-120V~ 50Hz/60Hz???15A???1500W
+       100V-120V~ 50Hz/60Hz、15A 最大、急速充電 約1500W
 
-.. note::
-
-   図はプレースホルダーです。実画像は既存の画像パスに同名で配置してください。
