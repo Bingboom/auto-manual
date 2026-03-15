@@ -6,7 +6,7 @@
 
 - 先用模板和数据生成 draft
 - review 开始后改 [docs/_review/](docs/_review)
-- 用 `check / diff-report / publish` 完成质检、修订记录和终稿导出
+- 用 `check / diff-report / publish / release-manifest` 完成质检、修订记录和终稿导出
 
 相关文档：
 
@@ -25,11 +25,12 @@
 - `csv_page` 当前只支持 `source: phase1`
 - 默认 `doc_type` 只支持 `manual_bundle`
 - 构建目标解析（`model / region / token`）已统一收敛到 [tools/utils/targets.py](tools/utils/targets.py)
-- 当前推荐入口是：`python build.py doctor|rst|review|check|sync-review|publish|word|html|pdf|all`
+- 当前推荐入口是：`python build.py doctor|rst|review|check|sync-review|publish|release-manifest|preview|fast|word|html|pdf|all|diff-report`
 - 版本跟踪推荐对 [docs/_review/](docs/_review) 做 `diff-report`，而不是只盯 `_build`
+- `diff-report` 在未显式传 `--tracked-root` 时，会按 target 自动推导到 `docs/_review/<model>/<region>/`
 - 批量构建由配置文件中的 `build.targets` 驱动
 - `spec` 页的 `product_name` 按 `Model + Region + Language` 从 [data/phase1/Spec_Master.csv](data/phase1/Spec_Master.csv) 解析
-- `renderers` 与 `word_bundle` 已拆分为多模块，review / diff-report / contract 校验已接到主流程上
+- `renderers` 与 `word_bundle` 已拆分为多模块，review / diff-report / stale identity scan / contract 校验已接到主流程上
 
 ---
 
@@ -84,19 +85,25 @@ python3 tools/csv_to_tex_params.py
 ```powershell
 python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 python build.py rst
+python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
+python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py word
 python build.py html
 python build.py pdf
 python build.py all
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 说明：
 
 - `python build.py rst` 只生成每个 target 的 RST bundle
+- `python build.py preview` 只物化一个精确 page selector，并输出到 `docs/_build/<model>/<region>/preview/<page>/rst/`
+- `python build.py fast` 等价于 runtime draft 的 `rst --prepare-only --no-clean`
 - `python build.py word` 会先生成 RST，再导出 Word
 - `python build.py html` 会先生成 RST，再导出 HTML
 - `python build.py pdf` 会先生成 RST，再导出 PDF
 - `python build.py all` 会一次性构建 `html + word + pdf`
+- `python build.py release-manifest` 会为一个显式 target 写出发布追溯 JSON/CSV
 - 默认 `clean` 只清当前 target 的输出目录，并顺带清理该 target 对应的旧布局历史产物
 
 `config.yaml` 示例：
@@ -170,6 +177,7 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 - `build_docs.py` 调用 `validate_config` 时使用 `strict_files=False`
 - `cover_pdf` / `rst_include` 这类文件的存在性问题通常会在后续阶段暴露
 - `check / html / word / pdf` 默认是 `source=auto`，所以 review 存在时会优先使用 review 内容
+- `preview` 会跳过根 `docs/index.rst` 回写；`fast` 则固定走 runtime draft，便于模板/占位符快速调试
 
 可视化：
 
@@ -424,8 +432,22 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 导出版本变更表：
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD
 python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
+```
+
+生成正式发布追溯清单：
+
+```powershell
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+```
+
+单页预览与快速 draft：
+
+```powershell
+python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
+python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 切换配置文件：
@@ -504,6 +526,10 @@ paths:
   spec_master_csv: data/phase1/Spec_Master.csv
   spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
   spec_titles_csv: data/phase1/spec_titles.csv
+
+checks:
+  allowed_foreign_identity_literals:
+    - "Jackery Explorer 2000 Pro"
 ```
 
 更完整示例请直接看：
@@ -527,7 +553,7 @@ paths:
 - [tools/phase1/renderers.py](tools/phase1/renderers.py) 已拆分为多模块
 - [tools/word_bundle.py](tools/word_bundle.py) 已拆分为 `common / html / docx`
 - `config/pages` schema 已 dataclass 化
-- `review / sync-review / publish / diff-report` 已进入主流程
+- `review / sync-review / publish / diff-report / release-manifest / preview / fast` 已进入主流程
 
 仓库卫生规则：
 

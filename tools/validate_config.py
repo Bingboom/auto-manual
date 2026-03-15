@@ -158,6 +158,19 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             if not as_path(spec_titles_csv).exists():
                 issues.append(Issue("ERROR", f"spec_titles_csv file not found: {spec_titles_csv}"))
 
+    # ---- checks ----
+    checks = cfg.get("checks", {})
+    if checks is not None and not isinstance(checks, dict):
+        issues.append(Issue("ERROR", "checks must be a mapping"))
+        checks = {}
+
+    allowed_foreign_identity_literals = checks.get("allowed_foreign_identity_literals")
+    if allowed_foreign_identity_literals is not None:
+        if not is_list_of_str(allowed_foreign_identity_literals):
+            issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must be a list of strings"))
+        elif any(not item.strip() for item in allowed_foreign_identity_literals):
+            issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must not contain empty strings"))
+
     # ---- pages ----
     parsed_pages, page_issues = parse_config_pages(
         cfg.get("pages", None),

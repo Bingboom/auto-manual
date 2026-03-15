@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Updated: 2026-03-11
+Updated: 2026-03-15
 
 This guide describes the real working flow for `manual_je1000f_jp`.
 It assumes the final editable manual lives under [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) after review starts.
@@ -92,6 +92,12 @@ If review needs a replacement image, put it under:
 - [`docs/_review/JE-1000F/JP/overrides/_static/**`](../docs/_review/JE-1000F/JP/overrides/_static)
 
 using the same relative path as the public asset.
+
+Only these override subtrees are overlaid into the runtime bundle:
+
+- [`docs/_review/JE-1000F/JP/overrides/_static/**`](../docs/_review/JE-1000F/JP/overrides/_static)
+- [`docs/_review/JE-1000F/JP/overrides/_assets/**`](../docs/_review/JE-1000F/JP/overrides/_assets)
+- [`docs/_review/JE-1000F/JP/overrides/renderers/**`](../docs/_review/JE-1000F/JP/overrides/renderers)
 
 ---
 
@@ -209,10 +215,11 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 What it checks:
 
 - target identity
+- stale foreign model names
 - unresolved placeholders
 - missing include targets
 - missing assets
-- page contract missing keys
+- page contract missing placeholders, spec keys, `tpl_*` keys, and assets
 
 ---
 
@@ -240,6 +247,22 @@ If you want to temporarily ignore review and preview only template/data output:
 
 ```powershell
 python build.py word --config config.ja.yaml --model JE-1000F --region JP --source runtime
+```
+
+If you want one isolated page preview without rewriting the standard runtime bundle:
+
+```powershell
+python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
+```
+
+This writes to:
+
+- [`docs/_build/JE-1000F/JP/preview/03_product_overview_placeholder/rst/`](../docs/_build/JE-1000F/JP/preview/03_product_overview_placeholder/rst)
+
+If you only want a fresh runtime draft for template or placeholder debugging:
+
+```powershell
+python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 ---
@@ -361,18 +384,18 @@ After at least two review commits exist, export the revision report.
 Recommended command:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD
 ```
 
 If this is the first baseline and you do not want one-time Added rows in the report:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
 ```
 
 Main output directory:
 
-- [`reports/version_tracking/JE-1000F/`](../reports/version_tracking/JE-1000F)
+- [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
 
 Recommended open order:
 
@@ -397,6 +420,7 @@ What `publish` does:
 1. runs `check` against review content
 2. exports the diff report from [`docs/_review/JE-1000F/JP`](../docs/_review/JE-1000F/JP)
 3. builds the final Word document from review
+4. writes a release manifest to [`reports/releases/JE-1000F/JP/`](../reports/releases/JE-1000F/JP)
 
 Default diff output directory for publish:
 
@@ -404,6 +428,12 @@ Default diff output directory for publish:
 
 If the review bundle does not exist, `publish` fails.
 This is intentional. Formal release should not silently fall back to template draft content.
+
+If you need the traceability record without rerunning the whole publish sequence:
+
+```powershell
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+```
 
 ---
 

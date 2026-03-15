@@ -27,13 +27,16 @@ class TestReviewSupport(unittest.TestCase):
             (review_dir / "page").mkdir(parents=True)
             (review_dir / "generated" / "JE-1000F").mkdir(parents=True)
             (review_dir / "overrides" / "_assets" / "templates" / "word_template" / "common_assets").mkdir(parents=True)
+            (review_dir / "overrides" / "_static").mkdir(parents=True)
             (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
             (review_dir / "page" / "spec_ja.rst").write_text("review page\n", encoding="utf-8")
             (review_dir / "generated" / "JE-1000F" / "spec_ja.rst").write_text("review generated\n", encoding="utf-8")
+            (review_dir / "overrides" / "README.md").write_text("metadata\n", encoding="utf-8")
             (review_dir / "overrides" / "_assets" / "templates" / "word_template" / "common_assets" / "slot.jpg").write_text(
                 "override asset\n",
                 encoding="utf-8",
             )
+            (review_dir / "overrides" / "_static" / "replacement.css").write_text("body {}\n", encoding="utf-8")
 
             overlay_review_onto_bundle(
                 bundle_dir=bundle_dir,
@@ -57,6 +60,11 @@ class TestReviewSupport(unittest.TestCase):
                 "override asset\n",
                 (bundle_dir / "_assets" / "templates" / "word_template" / "common_assets" / "slot.jpg").read_text(encoding="utf-8"),
             )
+            self.assertEqual(
+                "body {}\n",
+                (bundle_dir / "_static" / "replacement.css").read_text(encoding="utf-8"),
+            )
+            self.assertFalse((bundle_dir / "README.md").exists())
 
     def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:

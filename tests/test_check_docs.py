@@ -8,6 +8,175 @@ from tools import check_docs
 
 
 class TestCheckDocs(unittest.TestCase):
+    def test_collect_check_issues_should_report_stale_identity_literal(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/overview_en.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "overview_en.rst").write_text(
+                "Compare this unit with Jackery Explorer 2000 Pro.\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                        "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
+                        "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            stale_issues = [issue for issue in issues if issue.code == "STALE_IDENTITY_LITERAL"]
+            self.assertEqual(1, len(stale_issues))
+            self.assertIn("Jackery Explorer 2000 Pro", stale_issues[0].message)
+
+    def test_collect_check_issues_should_not_report_current_target_identity_as_stale(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/overview_en.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "overview_en.rst").write_text(
+                "\n".join(
+                    [
+                        "Jackery Explorer 1000 Pro keeps the current naming.",
+                        ".. include:: page/JE-2000F_reference.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                        "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
+                        "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            stale_issues = [issue for issue in issues if issue.code == "STALE_IDENTITY_LITERAL"]
+            self.assertEqual([], stale_issues)
+
+    def test_collect_check_issues_should_allow_whitelisted_foreign_identity_literals(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/overview_en.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "overview_en.rst").write_text(
+                "Accessory matches Jackery Explorer 2000 Pro battery pack.\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                        "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
+                        "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "checks:",
+                        "  allowed_foreign_identity_literals:",
+                        "    - Jackery Explorer 2000 Pro",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            stale_issues = [issue for issue in issues if issue.code == "STALE_IDENTITY_LITERAL"]
+            self.assertEqual([], stale_issues)
+
     def test_collect_check_issues_should_report_12_app_setup_contract_missing_placeholders(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -172,6 +341,162 @@ class TestCheckDocs(unittest.TestCase):
 
             codes = {issue.code for issue in issues}
             self.assertIn("CONTRACT_MISSING_PLACEHOLDERS", codes)
+
+    def test_collect_check_issues_should_report_contract_v2_missing_spec_tpl_keys_and_assets(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_en").mkdir(parents=True)
+            (docs_dir / "templates" / "contracts").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/05_operation_guide_placeholder.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "05_operation_guide_placeholder.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_en" / "05_operation_guide_placeholder.rst").write_text(
+                "|PRODUCT_NAME|\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "contracts" / "05_operation_guide.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: 05_operation_guide",
+                        "source_files:",
+                        "  - templates/page_en/05_operation_guide_placeholder.rst",
+                        "required_placeholders:",
+                        "  default:",
+                        "    - PRODUCT_NAME",
+                        "required_spec_keys:",
+                        "  default:",
+                        "    - battery_capacity",
+                        "required_tpl_keys:",
+                        "  default:",
+                        "    - tpl_main_power_button_label",
+                        "required_assets:",
+                        "  default:",
+                        "    - templates/word_template/common_assets/overview/front_product.jpg",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        "pages:",
+                        "  - type: rst_include",
+                        "    lang: en",
+                        "    file: templates/page_en/05_operation_guide_placeholder.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("CONTRACT_MISSING_SPEC_KEYS", codes)
+            self.assertIn("CONTRACT_MISSING_TPL_KEYS", codes)
+            self.assertIn("CONTRACT_MISSING_ASSETS", codes)
+
+    def test_collect_check_issues_should_skip_contract_when_scope_does_not_apply(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_en").mkdir(parents=True)
+            (docs_dir / "templates" / "contracts").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/03_product_overview_placeholder.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "03_product_overview_placeholder.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_en" / "03_product_overview_placeholder.rst").write_text(
+                "Ready\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "contracts" / "03_product_overview.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: 03_product_overview",
+                        "source_files:",
+                        "  - templates/page_en/03_product_overview_placeholder.rst",
+                        "required_spec_keys:",
+                        "  default:",
+                        "    - battery_capacity",
+                        "allowed_regions: [EU]",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        "pages:",
+                        "  - type: rst_include",
+                        "    lang: en",
+                        "    file: templates/page_en/03_product_overview_placeholder.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            contract_issues = [issue for issue in issues if issue.code.startswith("CONTRACT_")]
+            self.assertEqual([], contract_issues)
 
     def test_collect_check_issues_should_report_missing_model_no_placeholder_and_asset(self) -> None:
         with tempfile.TemporaryDirectory() as td:

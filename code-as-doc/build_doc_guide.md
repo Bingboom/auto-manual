@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-12
+Updated: 2026-03-15
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -19,6 +19,9 @@ python build.py review
 python build.py check
 python build.py sync-review
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
+python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
 python build.py word
 python build.py pdf
@@ -32,12 +35,15 @@ Meaning:
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
-- `check`: run validation + prepare bundle + content checks
+- `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
 - `sync-review`: refresh review files affected by CSV data changes
-- `publish`: run `check -> diff-report -> word` for one explicit target
+- `publish`: run `check -> diff-report -> word -> release-manifest` for one explicit target
+- `release-manifest`: write JSON / CSV release traceability for one explicit target
+- `preview`: materialize one exact page selector under a preview-only output root
+- `fast`: materialize a runtime draft only, with `prepare-only + no-clean`
 - `html`, `word`, `pdf`: prepare RST first, then export
 - `all`: export `html + word + pdf`
-- `diff-report`: export Git-based revision tables
+- `diff-report`: export Git-based revision tables, defaulting to the resolved target review root
 - `clean`: remove [`docs/_build/`](../docs/_build), [`docs/_review/`](../docs/_review), old legacy output directories, and generated [`params.tex`](../docs/renderers/latex/params.tex)
 
 ## 2. Config Rule
@@ -139,6 +145,8 @@ python build.py word --config config.ja.yaml --model JE-1000F --region JP
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
 
+`check` now also catches stale foreign model names and contract-required spec keys, `tpl_*` keys, and assets.
+
 ### 3.6 Publish a Final Word Release
 
 ```powershell
@@ -152,12 +160,14 @@ Outputs:
 
 - review diff report: [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
 - final Word: [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
+- release manifest: [`reports/releases/JE-1000F/JP/`](../reports/releases/JE-1000F/JP)
 
 ## 4. Output Layout
 
 Runtime outputs:
 
 - [`docs/_build/<model>/<region>/rst/`](../docs/_build)
+- [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build)
 - [`docs/_build/<model>/<region>/html/`](../docs/_build)
 - [`docs/_build/<model>/<region>/word/`](../docs/_build)
 - [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
@@ -169,6 +179,10 @@ Review working bundle:
 Revision reports:
 
 - [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking)
+
+Release manifests:
+
+- [`reports/releases/<model>/<region>/`](../reports/releases)
 
 ## 5. Typical Commands
 
@@ -185,6 +199,19 @@ Build one explicit target:
 ```powershell
 python build.py word --config config.yaml --model JE-1000F --region US
 python build.py pdf --config config.eu.yaml --model JE-3600A --region EU
+```
+
+Single-page preview and fast draft:
+
+```powershell
+python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.yaml --model JE-1000F --region US
+```
+
+Standalone release traceability:
+
+```powershell
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 Keep existing build artifacts:
@@ -211,6 +238,8 @@ python build.py pdf --config config.yaml --pdf-mode word
 Typical usage:
 
 ```powershell
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD
 python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
 python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
 python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --ignore-initial-adds
@@ -224,6 +253,7 @@ Generated report types:
 - `*_index.html`
 
 The current report defaults are review-oriented, not `_build`-oriented.
+If `--tracked-root` is omitted, `build.py` resolves `docs/_review/<model>/<region>/` and `reports/version_tracking/<model>/<region>/` automatically from the target.
 
 ## 7. Common Mistakes
 
@@ -232,6 +262,7 @@ The current report defaults are review-oriented, not `_build`-oriented.
 - Using `review --refresh-review` when only parameter pages need to be synced
 - Forgetting to commit `_review/<model>/<region>/` after each review round
 - Treating `_build/rst` and `_review` as the same thing
+- Putting review metadata in `overrides/` and expecting it to overlay; only `_assets`, `_static`, and `renderers` are copied into the runtime bundle
 
 ## 8. Minimal Troubleshooting
 
@@ -252,3 +283,8 @@ Need to rebuild the first draft from template/data only
 Need to release from reviewed text only
 
 - Use `python build.py publish --config ... --model ... --region ...`
+
+`STALE_IDENTITY_LITERAL` or another model name is reported during `check`
+
+- fix the template or review text if the model mention is stale
+- if the foreign literal is intentional, add it to `checks.allowed_foreign_identity_literals`

@@ -12,13 +12,19 @@ class PageContract:
     page_id: str
     source_files: tuple[str, ...]
     required_placeholders: dict[str, tuple[str, ...]]
+    required_spec_keys: dict[str, tuple[str, ...]]
+    required_tpl_keys: dict[str, tuple[str, ...]]
+    required_assets: dict[str, tuple[str, ...]]
+    allowed_languages: tuple[str, ...]
+    allowed_regions: tuple[str, ...]
+    allowed_models: tuple[str, ...]
 
 
 def _normalize_rel_path(value: str) -> str:
     return Path(value.strip().replace("\\", "/")).as_posix()
 
 
-def _normalize_placeholder_map(raw: object) -> dict[str, tuple[str, ...]]:
+def _normalize_requirement_map(raw: object) -> dict[str, tuple[str, ...]]:
     if isinstance(raw, list):
         values = tuple(str(item).strip() for item in raw if str(item).strip())
         return {"default": values}
@@ -33,6 +39,29 @@ def _normalize_placeholder_map(raw: object) -> dict[str, tuple[str, ...]]:
         values = tuple(str(item).strip() for item in values_raw if str(item).strip())
         out[str(lang).strip().lower() or "default"] = values
     return out
+
+
+def _normalize_allowed_list(raw: object, *, lower: bool = False) -> tuple[str, ...]:
+    if raw is None:
+        return ()
+    if not isinstance(raw, list):
+        raise RuntimeError("allowed_* must be a list when provided")
+
+    values: list[str] = []
+    for item in raw:
+        value = str(item).strip()
+        if not value:
+            continue
+        values.append(value.lower() if lower else value)
+    return tuple(values)
+
+
+def _validate_tpl_keys(values: dict[str, tuple[str, ...]], *, path: Path) -> None:
+    for lang, items in values.items():
+        for item in items:
+            if item.startswith("tpl_"):
+                continue
+            raise RuntimeError(f"required_tpl_keys.{lang} must keep the 'tpl_' prefix in contract: {path}")
 
 
 def load_page_contracts(contracts_dir: Path) -> list[PageContract]:
@@ -61,12 +90,25 @@ def load_page_contracts(contracts_dir: Path) -> list[PageContract]:
         if not source_files:
             raise RuntimeError(f"source_files must contain at least one non-empty entry in contract: {path}")
 
-        placeholders = _normalize_placeholder_map(data.get("required_placeholders", []))
+        placeholders = _normalize_requirement_map(data.get("required_placeholders", []))
+        required_spec_keys = _normalize_requirement_map(data.get("required_spec_keys", []))
+        required_tpl_keys = _normalize_requirement_map(data.get("required_tpl_keys", []))
+        _validate_tpl_keys(required_tpl_keys, path=path)
+        required_assets = _normalize_requirement_map(data.get("required_assets", []))
+        allowed_languages = _normalize_allowed_list(data.get("allowed_languages"), lower=True)
+        allowed_regions = _normalize_allowed_list(data.get("allowed_regions"))
+        allowed_models = _normalize_allowed_list(data.get("allowed_models"))
         contracts.append(
             PageContract(
                 page_id=page_id,
                 source_files=source_files,
                 required_placeholders=placeholders,
+                required_spec_keys=required_spec_keys,
+                required_tpl_keys=required_tpl_keys,
+                required_assets=required_assets,
+                allowed_languages=allowed_languages,
+                allowed_regions=allowed_regions,
+                allowed_models=allowed_models,
             )
         )
     return contracts
@@ -80,10 +122,10 @@ def find_contract_for_source(source_rel_path: str, contracts: list[PageContract]
     return None
 
 
-def required_placeholders_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+def _requirements_for_lang(requirements: dict[str, tuple[str, ...]], lang: str | None) -> tuple[str, ...]:
     lang_key = (lang or "").strip().lower()
-    default_values = list(contract.required_placeholders.get("default", ()))
-    lang_values = list(contract.required_placeholders.get(lang_key, ())) if lang_key else []
+    default_values = list(requirements.get("default", ()))
+    lang_values = list(requirements.get(lang_key, ())) if lang_key else []
 
     seen: set[str] = set()
     out: list[str] = []
@@ -93,3 +135,36 @@ def required_placeholders_for_lang(contract: PageContract, lang: str | None) -> 
         seen.add(item)
         out.append(item)
     return tuple(out)
+
+
+def required_placeholders_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+    return _requirements_for_lang(contract.required_placeholders, lang)
+
+
+def required_spec_keys_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+    return _requirements_for_lang(contract.required_spec_keys, lang)
+
+
+def required_tpl_keys_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+    return _requirements_for_lang(contract.required_tpl_keys, lang)
+
+
+def required_assets_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+    return _requirements_for_lang(contract.required_assets, lang)
+
+
+def contract_applies_to(
+    contract: PageContract,
+    *,
+    lang: str | None,
+    model: str | None,
+    region: str | None,
+) -> bool:
+    lang_key = (lang or "").strip().lower()
+    if contract.allowed_languages and lang_key not in contract.allowed_languages:
+        return False
+    if contract.allowed_models and (model or "").strip() not in contract.allowed_models:
+        return False
+    if contract.allowed_regions and (region or "").strip() not in contract.allowed_regions:
+        return False
+    return True

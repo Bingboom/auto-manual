@@ -17,16 +17,22 @@ from tools.config_pages import RstIncludePage, parse_config_pages_or_raise  # no
 from tools.build_docs import (  # noqa: E402
     BuildTarget,
     load_config,
+    render_build_template,
     resolve_build_targets,
     resolve_product_name_for_build,
 )
+from tools.check_identity_drift import find_identity_drift_matches  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.page_contracts import (  # noqa: E402
+    contract_applies_to,
     find_contract_for_source,
     load_page_contracts,
+    required_assets_for_lang,
     required_placeholders_for_lang,
+    required_spec_keys_for_lang,
+    required_tpl_keys_for_lang,
 )
-from tools.utils.spec_master import resolve_template_substitutions_from_spec_master  # noqa: E402
+from tools.utils.spec_master import read_spec_master_rows, resolve_spec_value_from_rows, resolve_template_substitutions_from_spec_master  # noqa: E402
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
@@ -69,6 +75,11 @@ def _build_langs(cfg: dict) -> list[str]:
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     langs = build_cfg.get("languages", ["en"])
     return [str(item).strip() for item in langs if str(item).strip()] or ["en"]
+
+
+def _checks_cfg(cfg: dict) -> dict:
+    checks_cfg_raw = cfg.get("checks", {})
+    return checks_cfg_raw if isinstance(checks_cfg_raw, dict) else {}
 
 
 def resolve_spec_master_csv_path(cfg: dict) -> Path:
@@ -269,6 +280,44 @@ def collect_bundle_issues(*, bundle_dir: Path, model: str | None, region: str | 
     return issues
 
 
+def collect_identity_drift_issues(
+    cfg: dict,
+    *,
+    bundle_dir: Path,
+    target: BuildTarget,
+    langs: list[str],
+) -> list[CheckIssue]:
+    spec_master_csv = resolve_spec_master_csv_path(cfg)
+    checks_cfg = _checks_cfg(cfg)
+    allowlist_raw = checks_cfg.get("allowed_foreign_identity_literals", [])
+    allowlist = tuple(str(item).strip() for item in allowlist_raw if str(item).strip()) if isinstance(allowlist_raw, list) else ()
+
+    matches = find_identity_drift_matches(
+        bundle_dir=bundle_dir,
+        spec_master_csv=spec_master_csv,
+        model=target.model,
+        region=target.region,
+        langs=langs,
+        allowlist=allowlist,
+    )
+    issues: list[CheckIssue] = []
+    for match in matches:
+        source_target = "/".join(bit for bit in (match.source_model, match.source_region) if bit) or "_shared/_default"
+        issues.append(
+            CheckIssue(
+                code="STALE_IDENTITY_LITERAL",
+                message=(
+                    f"Found foreign identity literal '{match.literal}' on line {match.line_no} "
+                    f"(latest source target: {source_target})"
+                ),
+                model=target.model,
+                region=target.region,
+                path=match.path,
+            )
+        )
+    return issues
+
+
 def collect_page_contract_issues(
     cfg: dict,
     *,
@@ -290,6 +339,7 @@ def collect_page_contract_issues(
         error_prefix="config.pages",
     )
     spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}
     issues: list[CheckIssue] = []
 
@@ -308,10 +358,9 @@ def collect_page_contract_issues(
 
         page_langs = [page.lang] if page.lang else langs
         for lang in page_langs:
-            required = required_placeholders_for_lang(contract, lang)
-            if not required:
+            if not contract_applies_to(contract, lang=lang, model=target.model, region=target.region):
                 continue
-
+            required = required_placeholders_for_lang(contract, lang)
             substitutions = substitutions_by_lang.get(lang)
             if substitutions is None:
                 substitutions = resolve_template_substitutions_from_spec_master(
@@ -322,14 +371,91 @@ def collect_page_contract_issues(
                 )
                 substitutions_by_lang[lang] = substitutions
 
-            missing = [key for key in required if not (substitutions.get(key) or "").strip()]
-            if missing:
+            missing_placeholders = [key for key in required if not (substitutions.get(key) or "").strip()]
+            if missing_placeholders:
                 issues.append(
                     CheckIssue(
                         code="CONTRACT_MISSING_PLACEHOLDERS",
                         message=(
                             f"Page contract '{contract.page_id}' is missing required placeholders "
-                            f"for lang '{lang}': {', '.join(missing)}"
+                            f"for lang '{lang}': {', '.join(missing_placeholders)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=source_path,
+                        lang=lang,
+                    )
+                )
+            missing_spec_keys = [
+                row_key
+                for row_key in required_spec_keys_for_lang(contract, lang)
+                if resolve_spec_value_from_rows(
+                    spec_rows,
+                    model=target.model,
+                    region=target.region,
+                    lang=lang,
+                    row_key=row_key,
+                )
+                is None
+            ]
+            if missing_spec_keys:
+                issues.append(
+                    CheckIssue(
+                        code="CONTRACT_MISSING_SPEC_KEYS",
+                        message=(
+                            f"Page contract '{contract.page_id}' is missing required spec row keys "
+                            f"for lang '{lang}': {', '.join(missing_spec_keys)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=source_path,
+                        lang=lang,
+                    )
+                )
+            missing_tpl_keys = [
+                row_key
+                for row_key in required_tpl_keys_for_lang(contract, lang)
+                if resolve_spec_value_from_rows(
+                    spec_rows,
+                    model=target.model,
+                    region=target.region,
+                    lang=lang,
+                    row_key=row_key,
+                )
+                is None
+            ]
+            if missing_tpl_keys:
+                issues.append(
+                    CheckIssue(
+                        code="CONTRACT_MISSING_TPL_KEYS",
+                        message=(
+                            f"Page contract '{contract.page_id}' is missing required tpl row keys "
+                            f"for lang '{lang}': {', '.join(missing_tpl_keys)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=source_path,
+                        lang=lang,
+                    )
+                )
+            missing_assets = [
+                asset_path
+                for asset_path in required_assets_for_lang(contract, lang)
+                if not _contract_asset_exists(
+                    asset_path,
+                    docs_dir=docs_dir,
+                    model=target.model,
+                    region=target.region,
+                    lang=lang,
+                )
+            ]
+            if missing_assets:
+                issues.append(
+                    CheckIssue(
+                        code="CONTRACT_MISSING_ASSETS",
+                        message=(
+                            f"Page contract '{contract.page_id}' is missing required assets "
+                            f"for lang '{lang}': {', '.join(missing_assets)}"
                         ),
                         model=target.model,
                         region=target.region,
@@ -338,6 +464,47 @@ def collect_page_contract_issues(
                     )
                 )
     return issues
+
+
+def _resolve_contract_asset_path(
+    raw_value: str,
+    *,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> Path:
+    rendered = render_build_template(
+        raw_value,
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    candidate = Path(rendered)
+    if candidate.is_absolute():
+        return candidate
+
+    docs_candidate = docs_dir / candidate
+    if docs_candidate.exists():
+        return docs_candidate
+    return ROOT / candidate
+
+
+def _contract_asset_exists(
+    raw_value: str,
+    *,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> bool:
+    return _resolve_contract_asset_path(
+        raw_value,
+        docs_dir=docs_dir,
+        model=model,
+        region=region,
+        lang=lang,
+    ).exists()
 
 
 def collect_check_issues(
@@ -378,6 +545,14 @@ def collect_check_issues(
                 bundle_dir=bundle_dir,
                 model=target.model,
                 region=target.region,
+            )
+        )
+        issues.extend(
+            collect_identity_drift_issues(
+                cfg,
+                bundle_dir=bundle_dir,
+                target=target,
+                langs=langs,
             )
         )
     return issues

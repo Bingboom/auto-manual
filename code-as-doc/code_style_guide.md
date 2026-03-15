@@ -1,6 +1,6 @@
 # Code Style Guide
 
-Updated: 2026-03-12
+Updated: 2026-03-15
 
 This file defines the current architecture and maintainability rules for the manual system.
 It is not a generic Python style guide.
@@ -80,6 +80,9 @@ The cross-platform primary entrypoint is:
 - `check`
 - `sync-review`
 - `publish`
+- `release-manifest`
+- `preview`
+- `fast`
 - `html`
 - `word`
 - `pdf`
@@ -142,6 +145,7 @@ Responsibilities:
 - [`tools/validate_config.py`](../tools/validate_config.py)
 - [`tools/validate_layout_params.py`](../tools/validate_layout_params.py)
 - [`tools/check_docs.py`](../tools/check_docs.py)
+- [`tools/check_identity_drift.py`](../tools/check_identity_drift.py)
 - [`tools/page_contracts.py`](../tools/page_contracts.py)
 
 Responsibilities:
@@ -149,7 +153,8 @@ Responsibilities:
 - config schema checks
 - layout param validation
 - bundle quality checks
-- page placeholder contracts
+- stale identity detection
+- page placeholder and asset contracts
 
 ### 3.6 Export
 
@@ -168,6 +173,16 @@ Responsibilities:
 - Git-based file/page/field diff reports
 - report index generation
 - source-row tracing back to phase1 CSV
+
+### 3.8 Release Traceability
+
+- [`tools/release_manifest.py`](../tools/release_manifest.py)
+
+Responsibilities:
+
+- release JSON / CSV manifests
+- output file existence and SHA256 hashing
+- publish traceability after Word export
 
 ## 4. Maintainability Rules
 
@@ -217,6 +232,7 @@ Current contract coverage already exists for:
 - `12_app_setup`
 
 When adding new placeholder-heavy pages, add or update a contract.
+Prefer explicit contract fields such as `required_placeholders`, `required_spec_keys`, `required_tpl_keys`, and `required_assets`, and use `allowed_languages`, `allowed_regions`, or `allowed_models` when a contract only applies to part of the target matrix.
 
 ### 4.5 Generated Output Is Not the Same as Review Source
 
@@ -251,12 +267,13 @@ When build or review flow changes, also run at least one targeted smoke command:
 ```powershell
 python build.py check --config config.yaml --model JE-1000F --region US
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 When diff-report changes:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 ## 7. Review Triggers
