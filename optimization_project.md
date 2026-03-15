@@ -1,6 +1,14 @@
 # Optimization Project
 
-Updated: 2026-03-10
+Updated: 2026-03-15
+
+## 0. Status Note
+
+Implementation status as of 2026-03-15:
+
+- review bundle, `check`, contract validation, diff-report upgrade, `release-manifest`, `preview`, and `fast` now have working baseline implementations in the repo
+- the remaining deferred strategy item is Phase 4: multi-target conditional content
+- the preferred direction for Phase 4 is now table-driven content filtering, not template-heavy conditional directives
 
 ## 1. Background
 
@@ -279,27 +287,96 @@ Goal:
 
 - reduce page duplication across US, JP, EU, and future regions
 
-Implementation direction:
+Status:
+
+- deferred
+- do not implement in the current wave
+- resume after the current review / check / traceability baseline is stable
+
+Preferred implementation direction:
 
 1. Keep one canonical page template when structure is shared.
-2. Introduce block-level condition mechanisms:
-   - `region_only`
-   - `lang_only`
-   - `model_only`
-   - `feature_flag`
-3. Prefer small conditional blocks over full page forks.
+2. Move region/model/language applicability into phase1 data tables.
+3. Export normalized CSV from the multi-dimensional editing table before build.
+4. Filter blocks and pages by target during phase1 rendering.
+5. Prefer data-driven conditional content over template forks or large amounts of inline conditional RST.
 
-Possible implementation forms:
+Preferred authoring model:
 
-- custom RST directives
-- preprocessing markers resolved before materialization
-- YAML-driven page fragment assembly
+- maintain content in a multi-dimensional table outside the repo if needed
+- mark applicability with fields such as `regions`, `models`, `langs`, and `feature_flags`
+- export into normalized CSV consumed by the current phase1 pipeline
+
+Preferred repo-side normalized CSV shape:
+
+`content_blocks.csv`
+
+- `block_id`
+- `page_id`
+- `part`
+- `order`
+- `enabled`
+- `regions`
+- `models`
+- `langs`
+- `feature_flags`
+- `text_en`
+- `text_fr`
+- `text_es`
+- `text_ja`
+
+`page_registry.csv`
+
+- keep current columns
+- add optional `regions`
+- add optional `models`
+- add optional `feature_flags`
+
+Filtering rule:
+
+- empty value or `*` means unrestricted
+- comma-separated values mean OR within the same dimension
+- all dimensions must match for a block or page to be included
+- effective rule is:
+  - `enabled && region_match && model_match && lang_match && feature_match`
+
+Scope rule:
+
+- use page-level filters for whole-page inclusion or exclusion
+- use block-level filters for page-internal regional differences
+- do not put large region-specific prose into `Spec_Master.csv`
+- keep `Spec_Master.csv` focused on product identity, `tpl_*`, and spec rows
+
+Preferred implementation points:
+
+1. Extend [data/phase1/content_blocks.csv](C:\Users\Administrator\Documents\GitHub\CMS\auto-manual\data\phase1\content_blocks.csv) with the normalized target-scope columns.
+2. Extend [data/phase1/page_registry.csv](C:\Users\Administrator\Documents\GitHub\CMS\auto-manual\data\phase1\page_registry.csv) with page-level scope columns.
+3. Update [tools/phase1/builder.py](C:\Users\Administrator\Documents\GitHub\CMS\auto-manual\tools\phase1\builder.py) to filter rows by `model`, `region`, `lang`, and optional feature flags before RST emission.
+4. Add optional build-level feature flag configuration in `config*.yaml`, for example `build.feature_flags`.
+5. Keep [tools/gen_index_bundle.py](C:\Users\Administrator\Documents\GitHub\CMS\auto-manual\tools\gen_index_bundle.py) unchanged as much as possible by feeding it already filtered target-specific RST.
+6. Add tests for:
+   - region-only blocks
+   - model-only blocks
+   - lang-only blocks
+   - feature-flagged blocks
+   - unrestricted `*` blocks
+   - disabled blocks
+
+Recommended rollout:
+
+1. Pilot with `regions + langs + enabled` only.
+2. Validate on one placeholder-heavy page such as `03_product_overview`.
+3. Expand to `models`.
+4. Expand to `feature_flags`.
+5. Only after the data path is stable, consider whether any remaining edge cases need lightweight template directives.
 
 Expected benefit:
 
 - less copy-paste drift
 - easier translation sync
 - lower maintenance cost
+- region-specific content stays in structured data instead of template branches
+- future regions can be added without multiplying page template families
 
 ### Phase 5: Diff Report Upgrade
 
@@ -476,6 +553,7 @@ Reason:
 - steps 1 and 2 produce immediate operational value
 - steps 3 and 4 reduce maintenance ambiguity
 - steps 5 and 6 improve release discipline and developer experience
+- the multi-target conditional content strategy should be resumed only after these foundations remain stable in real use
 
 ---
 
@@ -512,6 +590,24 @@ Reason:
 - it is easy to verify
 - it directly benefits spec onboarding
 
+### Task D: Table-Driven Multi-Target Content Pilot
+
+Suggested pilot page:
+
+- `03_product_overview`
+
+Pilot scope:
+
+- add normalized target-scope columns to `content_blocks.csv`
+- support `regions`, `langs`, and `enabled`
+- keep `models` and `feature_flags` for the second step
+
+Reason:
+
+- this page already contains product-specific and region-sensitive wording
+- it is visible in review, preview, and publish flows
+- it is a good fit for proving that table-driven filtering can replace template forks
+
 ---
 
 ## 12. Success Criteria
@@ -523,6 +619,7 @@ This optimization project is successful when:
 3. local `python build.py check` matches CI behavior
 4. diff reports can show field-level changes
 5. each release artifact can be traced back to config, source CSV, and Git SHA
+6. one shared content source can emit correct US / EU / JP variants without cloning full page templates
 
 ---
 
