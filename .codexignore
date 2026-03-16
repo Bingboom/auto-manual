@@ -1,0 +1,20 @@
+# Environment and caches
+.git/
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.DS_Store
+
+# Temporary work products
+tmp/
+
+# Generated runtime bundle and preview outputs
+docs/_build/**
+docs/generated/**
+
+# Generated reports and release metadata
+reports/version_tracking/**
+reports/releases/**
+
+# Keep docs/_review visible because it is the durable review/editing surface.

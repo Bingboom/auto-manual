@@ -57,7 +57,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
+   \specsectiontitle{ENVIRONMENTAL}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{Charging Temperature} & \HBTypeSpecValue{-4°F to 113°F / -20°C to 45°C} \\
@@ -138,7 +138,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section">● ENVIRONMENTAL OPERATING TEMPERATURE</h2>
+      <h2 class="hb-spec-section">● ENVIRONMENTAL</h2>
    
    .. list-table::
       :widths: 33 67

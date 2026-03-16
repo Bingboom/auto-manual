@@ -1,13 +1,50 @@
 # Hello Auto Doc
 
-Updated: 2026-03-15
+Updated: 2026-03-17
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
+It is the current workflow and editing-surface guide.
+It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
 
 ---
 
-## 1. Source of Truth
+## 1. Environment Setup
+
+Before running any build, review, check, or publish command, prepare the local environment in the repository root.
+
+### 1.1 Python Environment
+
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
+The dependency install step is mandatory.
+Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip install -r requirements.txt` when preparing a fresh environment.
+
+### 1.2 External Tools
+
+- PDF export requires `xelatex`.
+- Word export requires `pandoc` on macOS / Linux and on non-Word-COM paths.
+- The Python dependencies in [`requirements.txt`](../requirements.txt) include the Sphinx theme and build libraries used by the current workflow.
+
+If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
+
+---
+
+## 2. Source of Truth
 
 The manual system now has four layers, but they are used at different stages.
 
@@ -51,7 +88,7 @@ Rules:
 
 ---
 
-## 2. Current Build Pipeline
+## 3. Current Build Pipeline
 
 The cross-platform entrypoint is [`build.py`](../build.py).
 It wraps [`tools/build_docs.py`](../tools/build_docs.py), which still drives the actual build logic.
@@ -91,7 +128,7 @@ Important:
 
 ---
 
-## 3. Materialized Bundle Layout
+## 4. Materialized Bundle Layout
 
 For a target such as `JE-1000F / US`, the working bundle now lives here:
 
@@ -108,7 +145,7 @@ It is not the editing surface. After review starts, `_review/...` is overlaid on
 
 ---
 
-## 4. Git Tracking Rule for Review Bundles
+## 5. Git Tracking Rule for Review Bundles
 
 The current repo allows two Git-visible surfaces:
 
