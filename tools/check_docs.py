@@ -43,8 +43,14 @@ from tools.page_contracts import (  # noqa: E402
     required_spec_keys_for_lang,
     required_tpl_keys_for_lang,
 )
-from tools.utils.spec_master import read_spec_master_rows, resolve_spec_value_from_rows, resolve_template_substitutions_from_spec_master  # noqa: E402
-from tools.word_bundle_common import resolve_config_path  # noqa: E402
+from tools.utils.spec_master import (  # noqa: E402
+    collect_matching_spec_rows,
+    collect_spec_value_matches_from_rows,
+    read_spec_master_rows,
+    resolve_spec_value_from_rows,
+    resolve_template_substitutions_from_spec_master,
+)
+from tools.word_bundle_common import load_rst_substitutions, resolve_config_path  # noqa: E402
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
 INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
@@ -142,6 +148,36 @@ def _resolve_local_reference(raw_value: str, *, rst_path: Path, bundle_dir: Path
         if probe.exists():
             return probe.resolve()
     return None
+
+
+def _pick_spec_value(row: dict[str, str], lang: str) -> str:
+    for key in (
+        f"Value_{lang}",
+        f"Value_{lang.lower()}",
+        f"Value_{lang.upper()}",
+        "Value_en",
+        "Value",
+        "Spec_Value",
+    ):
+        value = (row.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _collect_placeholder_tokens(text: str) -> set[str]:
+    return {match.group(1).strip() for match in PLACEHOLDER_RE.finditer(text) if match.group(1).strip()}
+
+
+def _field_binding_is_used(placeholder: str, used_placeholders: set[str]) -> bool:
+    return any(
+        candidate in used_placeholders
+        for candidate in (
+            placeholder,
+            f"{placeholder}_BOLD",
+            f"{placeholder}_LOWER",
+        )
+    )
 
 
 def collect_placeholder_issues(
@@ -531,6 +567,7 @@ def collect_generated_page_issues(
     contracts = load_page_contracts(resolve_contracts_dir(docs_dir=docs_dir))
     contract_ids = {contract.page_id for contract in contracts}
     contract_file_names = {f"{contract.page_id}.yaml" for contract in contracts}
+    base_substitutions = load_rst_substitutions(docs_dir / "conf_base.py")
     issues: list[CheckIssue] = []
     used_snippet_ids: set[str] = set()
 
@@ -616,6 +653,7 @@ def collect_generated_page_issues(
 
         page_langs = list(page.langs) or langs
         for lang in page_langs:
+            combined_placeholder_sources = [template_text]
             missing_row_keys = missing_required_row_keys(
                 recipe,
                 spec_rows=spec_rows,
@@ -668,6 +706,56 @@ def collect_generated_page_issues(
                     )
                 )
 
+            for placeholder, binding in recipe.field_map.items():
+                matching_rows = collect_matching_spec_rows(
+                    spec_rows,
+                    model=target.model,
+                    region=target.region,
+                    lang=lang,
+                    row_key=binding.row_key,
+                    pages=binding.pages,
+                    line_order=binding.line_order,
+                )
+                distinct_values = sorted({_pick_spec_value(row, lang) for row in matching_rows if _pick_spec_value(row, lang)})
+                if len(distinct_values) > 1:
+                    issues.append(
+                        CheckIssue(
+                            code="AMBIGUOUS_FIELD_MAP_ROWS",
+                            message=(
+                                f"Recipe '{recipe.page_id}' field_map.{placeholder} resolves to multiple values "
+                                f"for lang '{lang}': {', '.join(distinct_values)}"
+                            ),
+                            model=target.model,
+                            region=target.region,
+                            path=recipe_path,
+                            lang=lang,
+                        )
+                    )
+
+            for row_key in recipe.required_row_keys:
+                value_matches = collect_spec_value_matches_from_rows(
+                    spec_rows,
+                    model=target.model,
+                    region=target.region,
+                    lang=lang,
+                    row_key=row_key,
+                )
+                distinct_values = sorted({match.value for match in value_matches if match.value.strip()})
+                if len(distinct_values) > 1:
+                    issues.append(
+                        CheckIssue(
+                            code="AMBIGUOUS_REQUIRED_ROW_KEY",
+                            message=(
+                                f"Recipe '{recipe.page_id}' required_row_key '{row_key}' resolves to multiple values "
+                                f"for lang '{lang}': {', '.join(distinct_values)}"
+                            ),
+                            model=target.model,
+                            region=target.region,
+                            path=recipe_path,
+                            lang=lang,
+                        )
+                    )
+
             substitutions = resolve_recipe_substitutions(
                 recipe,
                 spec_rows=spec_rows,
@@ -675,6 +763,7 @@ def collect_generated_page_issues(
                 region=target.region,
                 lang=lang,
             )
+            available_placeholders = {**base_substitutions, **substitutions}
             if registry_error is not None:
                 issues.append(
                     CheckIssue(
@@ -730,10 +819,11 @@ def collect_generated_page_issues(
                     )
                     continue
 
+                combined_placeholder_sources.append(snippet_path.read_text(encoding="utf-8"))
                 missing_placeholders = [
                     placeholder
                     for placeholder in entry.required_placeholders
-                    if not (substitutions.get(placeholder) or "").strip()
+                    if not (available_placeholders.get(placeholder) or "").strip()
                 ]
                 if missing_placeholders:
                     issues.append(
@@ -749,6 +839,50 @@ def collect_generated_page_issues(
                             lang=lang,
                         )
                     )
+
+            used_placeholders: set[str] = set()
+            for text in combined_placeholder_sources:
+                used_placeholders.update(_collect_placeholder_tokens(text))
+
+            unused_field_map = sorted(
+                placeholder
+                for placeholder in recipe.field_map
+                if not _field_binding_is_used(placeholder, used_placeholders)
+            )
+            if unused_field_map:
+                issues.append(
+                    CheckIssue(
+                        code="UNUSED_FIELD_MAP_PLACEHOLDER",
+                        message=(
+                            f"Recipe '{recipe.page_id}' declares field_map placeholders not used by the template/snippets "
+                            f"for lang '{lang}': {', '.join(unused_field_map)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=recipe_path,
+                        lang=lang,
+                    )
+                )
+
+            unknown_placeholders = sorted(
+                placeholder
+                for placeholder in used_placeholders
+                if placeholder not in available_placeholders
+            )
+            if unknown_placeholders:
+                issues.append(
+                    CheckIssue(
+                        code="UNKNOWN_RECIPE_PLACEHOLDERS",
+                        message=(
+                            f"Recipe '{recipe.page_id}' uses placeholders that are not supplied by Spec_Master, "
+                            f"field_map, or conf_base for lang '{lang}': {', '.join(unknown_placeholders)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=template_path,
+                        lang=lang,
+                    )
+                )
 
         missing_contracts = [
             contract_ref

@@ -321,6 +321,14 @@ def run_validate(config_path: Path) -> None:
             str(resolve_layout_params_csv(config_path)),
         ]
     )
+    run_checked(
+        [
+            sys.executable,
+            str(ROOT / "tools" / "validate_spec_master.py"),
+            "--config",
+            str(config_path),
+        ]
+    )
 
 
 def _doctor_add(findings: list[DoctorFinding], level: str, area: str, message: str) -> None:

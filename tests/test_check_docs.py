@@ -717,6 +717,188 @@ class TestCheckDocs(unittest.TestCase):
             self.assertIn("RECIPE_MISSING_ROW_KEYS", codes)
             self.assertIn("MISSING_SNIPPET", codes)
 
+    def test_collect_check_issues_should_report_unused_field_map_placeholders(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
+            (docs_dir / "templates" / "recipes").mkdir(parents=True)
+            (docs_dir / "templates" / "snippets").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/demo.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "demo.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_us-en" / "demo.rst").write_text(
+                "|PRODUCT_NAME|\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "recipes" / "demo.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: demo",
+                        "template: templates/page_us-en/demo.rst",
+                        "field_map:",
+                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "required_row_keys:",
+                        "  - product_name",
+                        "  - model_no",
+                        "snippet_slots: {}",
+                        "contracts: []",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "snippets" / "registry.yaml").write_text("snippets: []\n", encoding="utf-8")
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main POWER Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            manifest_path = root / "manual.yaml"
+            manifest_path.write_text(
+                "\n".join(
+                    [
+                        "pages:",
+                        "  - type: generated_page",
+                        "    page: demo",
+                        "    engine: draft_v1",
+                        "    recipe: templates/recipes/demo.yaml",
+                        "    template: templates/page_us-en/demo.rst",
+                        "    langs: [en]",
+                        "    include_dir: generated/{model}/draft",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        f"  page_manifest: {manifest_path.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("UNUSED_FIELD_MAP_PLACEHOLDER", codes)
+
+    def test_collect_check_issues_should_report_unknown_recipe_placeholders(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
+            (docs_dir / "templates" / "recipes").mkdir(parents=True)
+            (docs_dir / "templates" / "snippets").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/demo.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "demo.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_us-en" / "demo.rst").write_text(
+                "|MYSTERY_TOKEN|\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "recipes" / "demo.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: demo",
+                        "template: templates/page_us-en/demo.rst",
+                        "field_map: {}",
+                        "required_row_keys:",
+                        "  - product_name",
+                        "  - model_no",
+                        "snippet_slots: {}",
+                        "contracts: []",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "snippets" / "registry.yaml").write_text("snippets: []\n", encoding="utf-8")
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            manifest_path = root / "manual.yaml"
+            manifest_path.write_text(
+                "\n".join(
+                    [
+                        "pages:",
+                        "  - type: generated_page",
+                        "    page: demo",
+                        "    engine: draft_v1",
+                        "    recipe: templates/recipes/demo.yaml",
+                        "    template: templates/page_us-en/demo.rst",
+                        "    langs: [en]",
+                        "    include_dir: generated/{model}/draft",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        f"  page_manifest: {manifest_path.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("UNKNOWN_RECIPE_PLACEHOLDERS", codes)
+
 
 if __name__ == "__main__":
     unittest.main()

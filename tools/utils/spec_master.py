@@ -596,6 +596,62 @@ def resolve_spec_value_from_rows(
     return None
 
 
+def collect_matching_spec_rows(
+    rows: list[dict[str, str]],
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+    row_key: str,
+    pages: str | list[str] | tuple[str, ...] | set[str] | None = ("spec", "specifications"),
+    line_order: str | int | None = None,
+) -> tuple[dict[str, str], ...]:
+    return tuple(
+        _iter_ranked_rows(
+            rows,
+            model=model,
+            region=region,
+            lang=lang,
+            row_key=row_key,
+            pages=pages,
+            line_order=line_order,
+        )
+    )
+
+
+def collect_spec_value_matches_from_rows(
+    rows: list[dict[str, str]],
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+    row_key: str,
+    pages: str | list[str] | tuple[str, ...] | set[str] | None = ("spec", "specifications"),
+    line_order: str | int | None = None,
+) -> tuple[SpecValueMatch, ...]:
+    matches: list[SpecValueMatch] = []
+    for row in collect_matching_spec_rows(
+        rows,
+        model=model,
+        region=region,
+        lang=lang,
+        row_key=row_key,
+        pages=pages,
+        line_order=line_order,
+    ):
+        value = _pick_lang_value(row, "Value", lang)
+        if not value:
+            continue
+        matches.append(
+            SpecValueMatch(
+                value=value,
+                region=_pick_row_region(row) or None,
+                row=row,
+            )
+        )
+    return tuple(matches)
+
+
 def _derive_short_product_name(name: str) -> str:
     text = (name or "").strip()
     if not text:

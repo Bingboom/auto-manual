@@ -260,6 +260,20 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertIn("--refresh-existing", cmd)
 
+    def test_run_validate_should_include_spec_master_validation(self) -> None:
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        try:
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_validate(build_cli.ROOT / "config.yaml")
+        finally:
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(3, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(
             [
