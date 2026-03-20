@@ -1,9 +1,14 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-17
+Updated: 2026-03-20
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
+
+For the fixed US + JP release matrix, you can also use:
+
+- [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1): PowerShell wrapper for one-command `US/en + US/es + US/fr + JP/ja`
+- [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py): same workflow with `--languages`, `--formats`, `--check-first`, `--open-html`, and `--dry-run`
 
 ## 1. Current Role
 
@@ -30,6 +35,19 @@ python3 build.py review --config config.yaml --model JE-1000F --region US
 python3 build.py check --config config.yaml --model JE-1000F --region US
 python3 build.py publish --config config.yaml --model JE-1000F --region US
 ```
+
+Batch export example:
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
+```
+
+Windows note:
+
+- build actions except `fast` clean the current target output first
+- if File Explorer, a browser, Word, or a PDF viewer is open under [`docs/_build/`](docs/_build), close it before rerunning
+- if you only need an in-place rebuild, add `--no-clean`
 
 Do not treat this file as the full command reference.
 The command semantics and output layout are maintained in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).

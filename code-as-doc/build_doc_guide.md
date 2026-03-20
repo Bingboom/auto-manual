@@ -1,9 +1,10 @@
 # Windows Build Guide
 
-Updated: 2026-03-15
+Updated: 2026-03-20
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
+For the fixed four-language release pack, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) or [`../scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py).
 
 For user-facing review workflow details, read:
 
@@ -28,6 +29,8 @@ python build.py pdf
 python build.py all
 python build.py diff-report
 python build.py clean
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 ```
 
 Meaning:
@@ -45,6 +48,14 @@ Meaning:
 - `all`: export `html + word + pdf`
 - `diff-report`: export Git-based revision tables, defaulting to the resolved target review root
 - `clean`: remove [`docs/_build/`](../docs/_build), [`docs/_review/`](../docs/_review), old legacy output directories, and generated [`params.tex`](../docs/renderers/latex/params.tex)
+- `build_us_jp_manuals.ps1`: build the fixed `US/en + US/es + US/fr + JP/ja` target set from one command, with selectable format combinations such as `html,word` or `word,pdf`
+- `--open-html`: after the batch finishes, open the generated HTML entry pages for the selected language set
+
+Windows cleanup note:
+
+- build actions except `fast` run with clean enabled unless you pass `--no-clean`
+- if cleanup fails with a file-in-use error under [`docs/_build/`](../docs/_build), close File Explorer, browser, Word, or PDF windows pointing at that target output and rerun
+- `--no-clean` is the temporary workaround when you only need to rebuild in place
 
 ## 2. Config Rule
 

@@ -12,6 +12,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -58,6 +59,7 @@ MANUAL_META_FILE_NAME = "manual_meta.json"
 SWITCHER_BLOCK_START = "<!-- HB_MANUAL_SWITCHER_START -->"
 SWITCHER_BLOCK_END = "<!-- HB_MANUAL_SWITCHER_END -->"
 BODY_SWITCHER_CLASS = "hb-manual-switcher-body"
+_REMOVE_TREE_RETRY_DELAYS = (0.2, 0.5, 1.0)
 _SWITCHER_BLOCK_RE = re.compile(
     rf"{re.escape(SWITCHER_BLOCK_START)}.*?{re.escape(SWITCHER_BLOCK_END)}",
     re.DOTALL,
@@ -155,7 +157,7 @@ def clean_build_targets(
         )
         if target_build_root.exists():
             print(f"[build] Cleaning target output: {target_build_root}")
-            shutil.rmtree(target_build_root)
+            remove_tree_with_retries(target_build_root)
 
         if preview_name is None:
             cleanup_legacy_rst_artifacts(
@@ -163,6 +165,41 @@ def clean_build_targets(
                 model=target.model,
                 region=target.region,
             )
+
+
+def _is_retryable_cleanup_error(exc: OSError) -> bool:
+    return getattr(exc, "winerror", None) == 32 or (os.name == "nt" and isinstance(exc, PermissionError))
+
+
+def remove_tree_with_retries(path: Path) -> None:
+    last_exc: OSError | None = None
+    retry_count = len(_REMOVE_TREE_RETRY_DELAYS)
+
+    for attempt in range(retry_count + 1):
+        try:
+            shutil.rmtree(path)
+            return
+        except FileNotFoundError:
+            return
+        except OSError as exc:
+            if not _is_retryable_cleanup_error(exc):
+                raise
+            last_exc = exc
+            if attempt >= retry_count:
+                break
+            delay = _REMOVE_TREE_RETRY_DELAYS[attempt]
+            print(
+                "[build] Cleanup blocked by an open handle; "
+                f"retrying in {delay:.1f}s ({attempt + 1}/{retry_count})..."
+            )
+            time.sleep(delay)
+
+    raise RuntimeError(
+        "Could not clean build output: "
+        f"{path}. Another program is still using this folder, or Windows has not released the handle yet. "
+        "Close any File Explorer, browser, Word, or PDF windows pointing at docs/_build and rerun. "
+        "If you only need to rebuild in place, rerun with --no-clean."
+    ) from last_exc
 
 
 def validate_loaded_config(cfg: dict) -> None:

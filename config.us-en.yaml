@@ -32,9 +32,6 @@ tools:
   patch_fonts: tools/patch_latex_fonts.py
 
 pages:
-- type: cover_pdf
-  file: cover-en.pdf
-
 - type: rst_include
   lang: en
   file: templates/page_us-en/00_preface.rst

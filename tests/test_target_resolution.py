@@ -643,6 +643,49 @@ class TestTargetResolution(unittest.TestCase):
             self.assertFalse((docs_dir / "_build" / "M1" / "US").exists())
             self.assertTrue((docs_dir / "_build" / "M2" / "JP" / "rst" / "index.rst").exists())
 
+    def test_clean_build_targets_should_retry_when_windows_handle_is_transient(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            target_root = docs_dir / "_build" / "M1" / "US"
+            (target_root / "rst").mkdir(parents=True)
+
+            with mock.patch.object(
+                build_docs.shutil,
+                "rmtree",
+                side_effect=[PermissionError(13, "file in use"), None],
+            ) as rmtree_mock, mock.patch.object(build_docs.time, "sleep") as sleep_mock, mock.patch.object(
+                build_docs, "cleanup_legacy_rst_artifacts"
+            ):
+                build_docs.clean_build_targets(
+                    [build_docs.BuildTarget(model="M1", region="US")],
+                    docs_dir=docs_dir,
+                )
+
+            self.assertEqual(2, rmtree_mock.call_count)
+            sleep_mock.assert_called_once_with(build_docs._REMOVE_TREE_RETRY_DELAYS[0])
+
+    def test_clean_build_targets_should_raise_actionable_error_when_windows_handle_persists(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            target_root = docs_dir / "_build" / "M1" / "US"
+            (target_root / "rst").mkdir(parents=True)
+
+            with mock.patch.object(
+                build_docs.shutil,
+                "rmtree",
+                side_effect=PermissionError(13, "file in use"),
+            ) as rmtree_mock, mock.patch.object(build_docs.time, "sleep") as sleep_mock, mock.patch.object(
+                build_docs, "cleanup_legacy_rst_artifacts"
+            ):
+                with self.assertRaisesRegex(RuntimeError, "rerun with --no-clean"):
+                    build_docs.clean_build_targets(
+                        [build_docs.BuildTarget(model="M1", region="US")],
+                        docs_dir=docs_dir,
+                    )
+
+            self.assertEqual(len(build_docs._REMOVE_TREE_RETRY_DELAYS) + 1, rmtree_mock.call_count)
+            self.assertEqual(len(build_docs._REMOVE_TREE_RETRY_DELAYS), sleep_mock.call_count)
+
 
 if __name__ == "__main__":
     unittest.main()

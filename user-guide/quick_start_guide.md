@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Updated: 2026-03-17
+Updated: 2026-03-20
 
 This guide describes the real working flow for `manual_je1000f_jp`.
 It assumes the final editable manual lives under [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) after review starts.
@@ -39,6 +39,13 @@ python3 -m pip install -r requirements.txt
 
 Also make sure the external tools required by your target export path are installed.
 For the full environment notes, including `xelatex` and `pandoc`, use [`hello_auto-doc.md`](hello_auto-doc.md).
+
+If you need the fixed four-language pack `US/en + US/es + US/fr + JP/ja`, you can run:
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
+```
 
 ---
 

@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-03-17
+Updated: 2026-03-20
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -92,6 +92,7 @@ Rules:
 
 The cross-platform entrypoint is [`build.py`](../build.py).
 It wraps [`tools/build_docs.py`](../tools/build_docs.py), which still drives the actual build logic.
+If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) as a thin wrapper over `build.py`.
 
 Current flow:
 
@@ -118,11 +119,14 @@ Important:
 - `python build.py rst` only materializes the RST bundle.
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
+- build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.
 - `python build.py review` prepares a runtime draft from template/data, then seeds review only if review does not already exist.
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) changes during review.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
+- `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
+- `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
 - `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / `tpl_*` keys / assets.
 - review overrides only overlay `overrides/_assets/**`, `overrides/_static/**`, and `overrides/renderers/**` into the runtime bundle.
 
