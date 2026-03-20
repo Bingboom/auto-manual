@@ -24,6 +24,7 @@ from tools.config_pages import (
     RstIncludePage,
     parse_config_pages_or_raise,
 )
+from tools.page_contracts import contract_applies_to, find_contract_for_source, load_page_contracts, required_assets_for_lang  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
     format_tokenized,
@@ -53,6 +54,7 @@ _RST_ASSET_DIRECTIVE_RE = re.compile(
 )
 _HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
+_CONTRACT_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 
 
 @dataclass(frozen=True)
@@ -75,6 +77,23 @@ class MaterializedBundle:
     reference_doc: Path | None
     model: str | None
     region: str | None
+
+
+def _select_planned_pages(planned_pages: list[PlannedPage], page_selector: str | None) -> list[PlannedPage]:
+    if not (page_selector or "").strip():
+        return planned_pages
+
+    selector = page_selector.strip()
+    csv_matches = [planned for planned in planned_pages if isinstance(planned.page, CsvPage) and planned.page.page == selector]
+    if csv_matches:
+        return csv_matches
+
+    stem_matches = [planned for planned in planned_pages if Path(planned.file_name).stem == selector]
+    if not stem_matches:
+        raise RuntimeError(f"Page selector did not match any materialized page: {selector}")
+    if len(stem_matches) > 1:
+        raise RuntimeError(f"Page selector matched multiple materialized pages: {selector}")
+    return stem_matches
 
 
 def load_config(cfg_path: Path) -> dict:
@@ -431,25 +450,30 @@ def _bundle_asset_target_path(
     docs_dir: Path,
     repo_root: Path,
 ) -> Path:
+    resolved_path = resolved.resolve(strict=False)
+    docs_static_dir = (docs_dir / "_static").resolve(strict=False)
+    docs_root = docs_dir.resolve(strict=False)
+    repo_root_resolved = repo_root.resolve(strict=False)
+
     try:
-        rel = resolved.relative_to(docs_dir / "_static")
+        rel = resolved_path.relative_to(docs_static_dir)
         return bundle_dir / "_static" / rel
     except ValueError:
         pass
 
     try:
-        rel = resolved.relative_to(docs_dir)
+        rel = resolved_path.relative_to(docs_root)
         return bundle_dir / "_assets" / rel
     except ValueError:
         pass
 
     try:
-        rel = resolved.relative_to(repo_root)
+        rel = resolved_path.relative_to(repo_root_resolved)
         return bundle_dir / "_repo_assets" / rel
     except ValueError:
         pass
 
-    return bundle_dir / "_external_assets" / resolved.name
+    return bundle_dir / "_external_assets" / resolved_path.name
 
 
 def _stage_bundle_asset(
@@ -584,6 +608,105 @@ def _copytree_replace(src: Path, dst: Path) -> None:
     if dst.exists():
         shutil.rmtree(dst)
     shutil.copytree(src, dst)
+
+
+def _render_contract_asset_path(
+    raw_value: str,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> str:
+    values = {
+        "model": (model or "").strip(),
+        "region": (region or "").strip(),
+        "lang": (lang or "").strip(),
+    }
+    tokens = {match.group(1) for match in _CONTRACT_TOKEN_RE.finditer(raw_value)}
+    unknown = sorted(token for token in tokens if token not in values)
+    if unknown:
+        raise RuntimeError(f"Unsupported contract asset token(s): {', '.join(unknown)}")
+    missing = sorted(token for token in tokens if not values[token])
+    if missing:
+        raise RuntimeError(f"Contract asset path requires value(s) for: {', '.join(missing)}")
+    return raw_value.format(**values)
+
+
+def _resolve_contract_asset_path(
+    raw_value: str,
+    *,
+    docs_dir: Path,
+    repo_root: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> Path:
+    rendered = _render_contract_asset_path(
+        raw_value,
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    candidate = Path(rendered)
+    if candidate.is_absolute():
+        return candidate
+
+    docs_candidate = docs_dir / candidate
+    if docs_candidate.exists():
+        return docs_candidate
+    return repo_root / candidate
+
+
+def _preflight_contract_assets(
+    *,
+    cfg: dict,
+    docs_dir: Path,
+    repo_root: Path,
+    model: str | None,
+    region: str | None,
+    langs: list[str],
+    planned_pages: list[PlannedPage],
+) -> None:
+    contracts = load_page_contracts(docs_dir / "templates" / "contracts")
+    if not contracts:
+        return
+
+    seen_sources: set[tuple[str, str | None]] = set()
+    for planned in planned_pages:
+        page = planned.page
+        if not isinstance(page, RstIncludePage):
+            continue
+        source_key = (page.file, planned.lang or page.lang)
+        if source_key in seen_sources:
+            continue
+        seen_sources.add(source_key)
+        source_path = resolve_config_path(docs_dir, page.file, model, region)
+        try:
+            source_rel = source_path.relative_to(docs_dir).as_posix()
+        except ValueError:
+            source_rel = source_path.as_posix()
+        contract = find_contract_for_source(source_rel, contracts)
+        if contract is None:
+            continue
+        page_langs = [planned.lang or page.lang] if (planned.lang or page.lang) else langs
+        for lang in page_langs:
+            if not contract_applies_to(contract, lang=lang, model=model, region=region):
+                continue
+            for asset_path in required_assets_for_lang(contract, lang):
+                resolved = _resolve_contract_asset_path(
+                    asset_path,
+                    docs_dir=docs_dir,
+                    repo_root=repo_root,
+                    model=model,
+                    region=region,
+                    lang=lang,
+                )
+                if resolved.exists():
+                    continue
+                raise RuntimeError(
+                    f"Page contract '{contract.page_id}' is missing required asset "
+                    f"for lang '{lang}': {asset_path}"
+                )
 
 
 def _write_bundle_conf_files(
@@ -731,6 +854,9 @@ def materialize_bundle(
     docs_dir: Path | None = None,
     repo_root: Path | None = None,
     ensure_csv_pages: bool = True,
+    page_selector: str | None = None,
+    bundle_dir_override: Path | None = None,
+    write_wrapper_index: bool = True,
 ) -> MaterializedBundle:
     actual_docs_dir = docs_dir or paths.docs_dir
     actual_root = repo_root or paths.root
@@ -739,7 +865,19 @@ def materialize_bundle(
     build_langs = _build_langs(cfg)
     primary_lang = str(build_langs[0]) if build_langs else "en"
     output_lang = resolve_output_lang(cfg)
-    planned_pages = plan_materialized_pages(cfg, model=target_model, region=target_region)
+    planned_pages = _select_planned_pages(
+        plan_materialized_pages(cfg, model=target_model, region=target_region),
+        page_selector,
+    )
+    _preflight_contract_assets(
+        cfg=cfg,
+        docs_dir=actual_docs_dir,
+        repo_root=actual_root,
+        model=target_model,
+        region=target_region,
+        langs=build_langs,
+        planned_pages=planned_pages,
+    )
 
     spec_master_csv = _resolve_spec_master_csv_path(
         cfg,
@@ -770,7 +908,7 @@ def materialize_bundle(
     reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=actual_root)
     title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
 
-    bundle_dir = bundle_dir_for_target(
+    bundle_dir = bundle_dir_override or bundle_dir_for_target(
         docs_dir=actual_docs_dir,
         model=target_model,
         region=target_region,
@@ -781,11 +919,12 @@ def materialize_bundle(
     index_path = bundle_dir / "index.rst"
     wrapper_index_path = actual_docs_dir / "index.rst"
 
-    cleanup_legacy_rst_artifacts(
-        docs_dir=actual_docs_dir,
-        model=target_model,
-        region=target_region,
-    )
+    if bundle_dir_override is None:
+        cleanup_legacy_rst_artifacts(
+            docs_dir=actual_docs_dir,
+            model=target_model,
+            region=target_region,
+        )
 
     if bundle_dir.exists():
         shutil.rmtree(bundle_dir)
@@ -829,13 +968,14 @@ def materialize_bundle(
 
     index_text = build_index_from_pages(cfg, model=target_model, region=target_region)
     index_path.write_text(index_text, encoding="utf-8")
-    wrapper_index_path.write_text(
-        build_wrapper_index_text(
-            docs_dir=actual_docs_dir,
-            bundle_dir=bundle_dir,
-        ),
-        encoding="utf-8",
-    )
+    if write_wrapper_index:
+        wrapper_index_path.write_text(
+            build_wrapper_index_text(
+                docs_dir=actual_docs_dir,
+                bundle_dir=bundle_dir,
+            ),
+            encoding="utf-8",
+        )
 
     return MaterializedBundle(
         bundle_dir=bundle_dir,

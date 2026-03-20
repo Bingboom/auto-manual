@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Updated: 2026-03-11
+Updated: 2026-03-17
 
 This guide describes the real working flow for `manual_je1000f_jp`.
 It assumes the final editable manual lives under [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) after review starts.
@@ -15,7 +15,34 @@ Target in this guide:
 
 ---
 
-## 1. Three Layers in the Real Workflow
+## 1. Environment Preparation
+
+Before starting this JP example, complete the environment setup described in [`hello_auto-doc.md`](hello_auto-doc.md).
+
+Minimum expected setup in the repository root:
+
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
+Also make sure the external tools required by your target export path are installed.
+For the full environment notes, including `xelatex` and `pandoc`, use [`hello_auto-doc.md`](hello_auto-doc.md).
+
+---
+
+## 2. Three Layers in the Real Workflow
 
 There are three different content layers. They are not used the same way.
 
@@ -58,9 +85,9 @@ Rule:
 
 ---
 
-## 2. What You Should Edit
+## 3. What You Should Edit
 
-### 2.1 Edit template/data only in these cases
+### 3.1 Edit template/data only in these cases
 
 Edit [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp) or CSV when the change should be reusable for other products too.
 
@@ -71,7 +98,7 @@ Typical examples:
 - a new placeholder family that should exist for many models
 - a real product parameter update in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 
-### 2.2 Edit `_review` in normal manual production
+### 3.2 Edit `_review` in normal manual production
 
 Once `JE-1000F / JP` has entered review, normal copy changes should happen here:
 
@@ -85,7 +112,7 @@ Use this for:
 - temporary release-specific edits
 - final release polishing
 
-### 2.3 Asset overrides during review
+### 3.3 Asset overrides during review
 
 If review needs a replacement image, put it under:
 
@@ -93,9 +120,15 @@ If review needs a replacement image, put it under:
 
 using the same relative path as the public asset.
 
+Only these override subtrees are overlaid into the runtime bundle:
+
+- [`docs/_review/JE-1000F/JP/overrides/_static/**`](../docs/_review/JE-1000F/JP/overrides/_static)
+- [`docs/_review/JE-1000F/JP/overrides/_assets/**`](../docs/_review/JE-1000F/JP/overrides/_assets)
+- [`docs/_review/JE-1000F/JP/overrides/renderers/**`](../docs/_review/JE-1000F/JP/overrides/renderers)
+
 ---
 
-## 3. End-to-End Flow
+## 4. End-to-End Flow
 
 For `manual_je1000f_jp`, the real flow is:
 
@@ -110,7 +143,7 @@ For `manual_je1000f_jp`, the real flow is:
 
 ---
 
-## 4. Stage A: Create the First Draft from Template/Data
+## 5. Stage A: Create the First Draft from Template/Data
 
 Before the first real Word / PDF build on a machine, run environment self-check once:
 
@@ -146,7 +179,7 @@ Use `--source runtime` here on purpose:
 
 ---
 
-## 5. Stage B: Initialize Review Once
+## 6. Stage B: Initialize Review Once
 
 When the draft is ready to enter formal review, seed the review bundle.
 
@@ -174,7 +207,7 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 
 ---
 
-## 6. Stage C: Edit the Review Bundle
+## 7. Stage C: Edit the Review Bundle
 
 After review starts, this becomes the normal editing surface:
 
@@ -192,7 +225,7 @@ If you later discover a change should actually be shared by many products, move 
 
 ---
 
-## 7. Stage D: Run the Quality Gate Against Review Content
+## 8. Stage D: Run the Quality Gate Against Review Content
 
 `check` now uses source `auto` by default.
 That means:
@@ -209,14 +242,15 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 What it checks:
 
 - target identity
+- stale foreign model names
 - unresolved placeholders
 - missing include targets
 - missing assets
-- page contract missing keys
+- page contract missing placeholders, spec keys, `tpl_*` keys, and assets
 
 ---
 
-## 8. Stage E: Build Preview Outputs from Review
+## 9. Stage E: Build Preview Outputs from Review
 
 After review starts, build actions use source `auto` by default.
 If [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) exists, the review content is overlaid onto the runtime bundle before export.
@@ -242,9 +276,25 @@ If you want to temporarily ignore review and preview only template/data output:
 python build.py word --config config.ja.yaml --model JE-1000F --region JP --source runtime
 ```
 
+If you want one isolated page preview without rewriting the standard runtime bundle:
+
+```powershell
+python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
+```
+
+This writes to:
+
+- [`docs/_build/JE-1000F/JP/preview/03_product_overview_placeholder/rst/`](../docs/_build/JE-1000F/JP/preview/03_product_overview_placeholder/rst)
+
+If you only want a fresh runtime draft for template or placeholder debugging:
+
+```powershell
+python build.py fast --config config.ja.yaml --model JE-1000F --region JP
+```
+
 ---
 
-## 9. Stage F: Commit Every Review Round
+## 10. Stage F: Commit Every Review Round
 
 Each meaningful review round should be committed.
 
@@ -270,7 +320,7 @@ Rule:
 
 ---
 
-## 10. Stage G: When Parameters Change During Review
+## 11. Stage G: When Parameters Change During Review
 
 This is the important special case.
 
@@ -325,9 +375,9 @@ python build.py sync-review --config config.yaml
 
 ---
 
-## 11. Stage H: Baseline and Normal Review Rounds
+## 12. Stage H: Baseline and Normal Review Rounds
 
-### 10.1 First baseline
+### 12.1 First baseline
 
 ```powershell
 python build.py review --config config.ja.yaml --model JE-1000F --region JP
@@ -335,7 +385,7 @@ git add docs/_review/JE-1000F/JP
 git commit -m "Add JE-1000F JP review baseline"
 ```
 
-### 10.2 Normal follow-up round
+### 12.2 Normal follow-up round
 
 ```powershell
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
@@ -354,25 +404,25 @@ Do this only intentionally.
 
 ---
 
-## 12. Stage I: Export the Revision Record
+## 13. Stage I: Export the Revision Record
 
 After at least two review commits exist, export the revision report.
 
 Recommended command:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD
 ```
 
 If this is the first baseline and you do not want one-time Added rows in the report:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
 ```
 
 Main output directory:
 
-- [`reports/version_tracking/JE-1000F/`](../reports/version_tracking/JE-1000F)
+- [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
 
 Recommended open order:
 
@@ -384,7 +434,7 @@ For day-to-day revision sheets, `*_fields.csv` is usually the best table to send
 
 ---
 
-## 13. Stage J: Publish the Final Release
+## 14. Stage J: Publish the Final Release
 
 Use `publish` as the formal release command.
 
@@ -397,6 +447,7 @@ What `publish` does:
 1. runs `check` against review content
 2. exports the diff report from [`docs/_review/JE-1000F/JP`](../docs/_review/JE-1000F/JP)
 3. builds the final Word document from review
+4. writes a release manifest to [`reports/releases/JE-1000F/JP/`](../reports/releases/JE-1000F/JP)
 
 Default diff output directory for publish:
 
@@ -405,9 +456,15 @@ Default diff output directory for publish:
 If the review bundle does not exist, `publish` fails.
 This is intentional. Formal release should not silently fall back to template draft content.
 
+If you need the traceability record without rerunning the whole publish sequence:
+
+```powershell
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+```
+
 ---
 
-## 14. Stage K: Build the Final Word Document Directly
+## 15. Stage K: Build the Final Word Document Directly
 
 If you only need the Word file and do not want the full release sequence, you can still run:
 
@@ -434,7 +491,7 @@ Expected output:
 
 ---
 
-## 15. Stage L: Archive and Push
+## 16. Stage L: Archive and Push
 
 Your review bundle itself is the archiveable editable source.
 
@@ -453,9 +510,9 @@ git push
 
 ---
 
-## 16. Full Example for `manual_je1000f_jp`
+## 17. Full Example for `manual_je1000f_jp`
 
-### 14.1 First-time setup
+### 17.1 First-time setup
 
 ```powershell
 python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
@@ -464,7 +521,7 @@ git add docs/_review/JE-1000F/JP
 git commit -m "Add JE-1000F JP review baseline"
 ```
 
-### 14.2 Normal review loop
+### 17.2 Normal review loop
 
 ```powershell
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
@@ -474,7 +531,7 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 git push
 ```
 
-### 16.3 Parameter change during review
+### 17.3 Parameter change during review
 
 ```powershell
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
@@ -483,7 +540,7 @@ git commit -m "Sync JE-1000F JP parameter updates"
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-### 16.4 Intentional reseed from template/data
+### 17.4 Intentional reseed from template/data
 
 ```powershell
 python build.py review --config config.ja.yaml --model JE-1000F --region JP --refresh-review
@@ -493,7 +550,7 @@ Use this only when you have decided to replace the current review text with a ne
 
 ---
 
-## 17. Common Mistakes
+## 18. Common Mistakes
 
 - Editing [`docs/_build/JE-1000F/JP/rst/**`](../docs/_build/JE-1000F/JP/rst) and expecting the edits to survive
 - Running `python build.py review` and assuming it always refreshes review content
@@ -506,7 +563,7 @@ Use this only when you have decided to replace the current review text with a ne
 
 ---
 
-## 18. One-Sentence Rule
+## 19. One-Sentence Rule
 
 For `manual_je1000f_jp`, the correct flow is:
 

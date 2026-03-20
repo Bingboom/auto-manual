@@ -395,6 +395,101 @@ class TestTargetResolution(unittest.TestCase):
             self.assertIn("CSV page body", page_text)
             self.assertIn(".. include:: page/safety_en.rst", bundle.index_path.read_text(encoding="utf-8"))
 
+    def test_materialize_bundle_should_fail_fast_when_contract_asset_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            template_dir = docs_dir / "templates" / "page_en"
+            contracts_dir = docs_dir / "templates" / "contracts"
+            data_dir = root / "data" / "phase1"
+            template_dir.mkdir(parents=True)
+            contracts_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+
+            (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
+            (template_dir / "demo.rst").write_text("Hello\n", encoding="utf-8")
+            (contracts_dir / "demo.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: demo",
+                        "source_files:",
+                        "  - templates/page_en/demo.rst",
+                        "required_assets:",
+                        "  default:",
+                        "    - templates/word_template/common_assets/overview/front_product.jpg",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (data_dir / "Spec_Master.csv").write_text(
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
+                encoding="utf-8",
+            )
+
+            cfg = {
+                "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
+                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "pages": [
+                    {
+                        "type": "rst_include",
+                        "lang": "en",
+                        "file": "templates/page_en/demo.rst",
+                    }
+                ],
+            }
+
+            with self.assertRaisesRegex(RuntimeError, "missing required asset"):
+                gen_index_bundle.materialize_bundle(
+                    cfg,
+                    docs_dir=docs_dir,
+                    repo_root=root,
+                )
+
+    def test_materialize_bundle_should_support_preview_page_selector_without_rewriting_root_index(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            template_dir = docs_dir / "templates" / "page_en"
+            data_dir = root / "data" / "phase1"
+            template_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+
+            (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
+            (docs_dir / "index.rst").write_text("keep root index\n", encoding="utf-8")
+            (template_dir / "alpha.rst").write_text("Alpha\n", encoding="utf-8")
+            (template_dir / "beta.rst").write_text("Beta\n", encoding="utf-8")
+            (data_dir / "Spec_Master.csv").write_text(
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
+                encoding="utf-8",
+            )
+
+            cfg = {
+                "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
+                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "pages": [
+                    {"type": "rst_include", "lang": "en", "file": "templates/page_en/alpha.rst"},
+                    {"type": "rst_include", "lang": "en", "file": "templates/page_en/beta.rst"},
+                ],
+            }
+
+            preview_root = docs_dir / "_build" / "M1" / "US" / "preview" / "beta"
+            bundle = gen_index_bundle.materialize_bundle(
+                cfg,
+                docs_dir=docs_dir,
+                repo_root=root,
+                page_selector="beta",
+                bundle_dir_override=preview_root / "rst",
+                write_wrapper_index=False,
+            )
+
+            self.assertEqual(preview_root / "rst", bundle.bundle_dir)
+            self.assertEqual(["beta.rst"], [path.name for path in bundle.page_paths])
+            self.assertEqual("keep root index\n", (docs_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertIn(".. include:: page/beta.rst", bundle.index_path.read_text(encoding="utf-8"))
+
     def test_materialize_bundle_should_remove_legacy_rst_directories(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

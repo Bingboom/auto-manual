@@ -17,8 +17,6 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = "config.yaml"
 BUILD_ACTIONS = ("rst", "word", "html", "pdf", "all")
 ALL_OUTPUT_FORMATS = "html,word,pdf"
-REVIEW_TRACKED_ROOT = "docs/_review/JE-1000F"
-REVIEW_REPORT_DIR = "reports/version_tracking/JE-1000F"
 VALID_PDF_MODES = {"latex", "word"}
 
 
@@ -35,7 +33,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "action",
-        choices=("validate", "doctor", *BUILD_ACTIONS, "review", "check", "sync-review", "publish", "clean", "diff-report"),
+        choices=("validate", "doctor", *BUILD_ACTIONS, "review", "check", "sync-review", "publish", "clean", "diff-report", "release-manifest", "preview", "fast"),
         help="Action to run",
     )
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
@@ -67,7 +65,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=[],
         help="For sync-review: extra review page file name to sync from runtime/page",
     )
-    ap.add_argument("--tracked-root", default=REVIEW_TRACKED_ROOT, help="Tracked subtree for diff-report")
+    ap.add_argument("--page", default=None, help="For preview: exact page selector to materialize")
+    ap.add_argument("--tracked-root", default=None, help="Tracked subtree for diff-report")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report")
     ap.add_argument(
@@ -77,7 +76,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "--report-dir",
-        default=REVIEW_REPORT_DIR,
+        default=None,
         help="Output directory for diff-report CSV/HTML",
     )
     return ap.parse_args(argv)
@@ -142,6 +141,20 @@ def review_root_for_config(config_path: Path) -> Path:
     return docs_dir / "_review"
 
 
+def version_tracking_root() -> Path:
+    return ROOT / "reports" / "version_tracking"
+
+
+def _path_component(value: str) -> str:
+    text = value.strip()
+    return text.replace("/", "_").replace("\\", "_").replace(":", "_")
+
+
+def _preview_output_root(config_path: Path, *, model: str, region: str, page: str) -> Path:
+    docs_dir = resolve_docs_dir(config_path)
+    return docs_dir / "_build" / _path_component(model) / _path_component(region) / "preview" / _path_component(page)
+
+
 def is_legacy_bundle_dir(path: Path) -> bool:
     return path.is_dir() and (path / "index.rst").exists() and (path / "page").is_dir()
 
@@ -194,7 +207,7 @@ def build_docs_command(
     source_override: str | None = None,
 ) -> list[str]:
     action = action_override or args.action
-    if action not in BUILD_ACTIONS:
+    if action not in (*BUILD_ACTIONS, "preview", "fast"):
         raise RuntimeError(f"Action '{action}' is not a build action")
 
     config_path = resolve_path_from_root(args.config)
@@ -205,18 +218,30 @@ def build_docs_command(
         str(config_path),
     ]
     _append_target_args(cmd, args)
-    cmd += ["--source", source_override or args.source]
+    effective_source = source_override or args.source
+    if action == "fast":
+        effective_source = "runtime"
+    cmd += ["--source", effective_source]
 
-    if action == "rst":
+    if action in {"rst", "preview", "fast"}:
         cmd.append("--prepare-only")
     elif action == "all":
         cmd += ["--formats", ALL_OUTPUT_FORMATS]
     else:
         cmd += ["--formats", action]
 
+    if action == "preview":
+        model, region = _require_explicit_target(args, action_name="preview")
+        page = (args.page or "").strip()
+        if not page:
+            raise RuntimeError("preview requires --page so the bundle scope is explicit")
+        cmd += ["--page-selector", page]
+        cmd += ["--output-root", str(_preview_output_root(config_path, model=model, region=region, page=page))]
+        cmd.append("--skip-root-index")
+
     if args.pdf_mode:
         cmd += ["--pdf-mode", args.pdf_mode]
-    if not args.no_clean:
+    if action != "fast" and not args.no_clean:
         cmd.append("--clean")
     if not args.open:
         cmd.append("--no-open")
@@ -262,6 +287,21 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
     for page_file in args.page_file:
         cmd += ["--page-file", page_file]
     return cmd
+
+
+def release_manifest_command(args: argparse.Namespace) -> list[str]:
+    model, region = _require_explicit_target(args, action_name="release-manifest")
+    config_path = resolve_path_from_root(args.config)
+    return [
+        sys.executable,
+        str(ROOT / "tools" / "release_manifest.py"),
+        "--config",
+        str(config_path),
+        "--model",
+        model,
+        "--region",
+        region,
+    ]
 
 
 def run_validate(config_path: Path) -> None:
@@ -583,11 +623,36 @@ def run_doctor(args: argparse.Namespace) -> None:
 
 
 def run_diff_report(args: argparse.Namespace) -> None:
-    run_diff_report_with_paths(
-        args,
-        tracked_root=resolve_path_from_root(args.tracked_root),
-        report_dir=resolve_path_from_root(args.report_dir),
-    )
+    config_path = resolve_path_from_root(args.config)
+    tracked_root_explicit = args.tracked_root is not None
+    report_dir_explicit = args.report_dir is not None
+
+    if tracked_root_explicit:
+        tracked_root = resolve_path_from_root(args.tracked_root)
+        if report_dir_explicit:
+            report_dir = resolve_path_from_root(args.report_dir)
+        else:
+            report_dir = _default_report_dir_for_tracked_root(config_path, tracked_root)
+        run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
+        return
+
+    targets = _resolve_diff_report_targets(args)
+    if report_dir_explicit and len(targets) != 1:
+        raise RuntimeError("diff-report with explicit --report-dir requires a single resolved target or explicit --tracked-root")
+
+    for target in targets:
+        if len(target) == 2:
+            model, region = target
+            lang = None
+        else:
+            model, region, lang = target
+        tracked_root = _tracked_root_for_target(config_path, model=model, region=region, lang=lang)
+        report_dir = (
+            resolve_path_from_root(args.report_dir)
+            if report_dir_explicit
+            else _report_dir_for_target(model, region, lang=lang)
+        )
+        run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
 
 
 def run_diff_report_with_paths(
@@ -623,34 +688,76 @@ def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> Non
 
 
 def _publish_target_components(args: argparse.Namespace) -> tuple[str, str, str | None]:
-    model = (args.model or "").strip()
-    region = (args.region or "").strip()
-    if not model or not region:
-        raise RuntimeError("publish requires --model and --region so the release target is explicit")
+    model, region = _require_explicit_target(args, action_name="publish")
     from tools.utils.targets import resolve_output_lang
 
     cfg = load_config(resolve_path_from_root(args.config))
     return model, region, resolve_output_lang(cfg)
 
 
+def _require_explicit_target(args: argparse.Namespace, *, action_name: str) -> tuple[str, str]:
+    model = (args.model or "").strip()
+    region = (args.region or "").strip()
+    if not model or not region:
+        raise RuntimeError(f"{action_name} requires --model and --region so the release target is explicit")
+    return model, region
+
+
 def _publish_tracked_root(args: argparse.Namespace) -> Path:
     model, region, lang = _publish_target_components(args)
-    if args.tracked_root == REVIEW_TRACKED_ROOT:
-        base = ROOT / "docs" / "_review" / model / region
-        if (lang or "").strip():
-            return base / lang
-        return base
-    return resolve_path_from_root(args.tracked_root)
+    if args.tracked_root is not None:
+        return resolve_path_from_root(args.tracked_root)
+    return _tracked_root_for_target(resolve_path_from_root(args.config), model=model, region=region, lang=lang)
 
 
 def _publish_report_dir(args: argparse.Namespace) -> Path:
     model, region, lang = _publish_target_components(args)
-    if args.report_dir == REVIEW_REPORT_DIR:
-        base = ROOT / "reports" / "version_tracking" / model / region
-        if (lang or "").strip():
-            return base / lang
-        return base
-    return resolve_path_from_root(args.report_dir)
+    if args.report_dir is not None:
+        return resolve_path_from_root(args.report_dir)
+    return _report_dir_for_target(model, region, lang=lang)
+
+
+def _tracked_root_for_target(
+    config_path: Path,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str | None = None,
+) -> Path:
+    base = review_root_for_config(config_path) / (model or "_shared") / (region or "_default")
+    if (lang or "").strip():
+        return base / lang
+    return base
+
+
+def _report_dir_for_target(model: str | None, region: str | None, *, lang: str | None = None) -> Path:
+    base = version_tracking_root() / (model or "_shared") / (region or "_default")
+    if (lang or "").strip():
+        return base / lang
+    return base
+
+
+def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path) -> Path:
+    review_root = review_root_for_config(config_path)
+    try:
+        rel = tracked_root.resolve(strict=False).relative_to(review_root.resolve(strict=False))
+    except ValueError:
+        return version_tracking_root() / tracked_root.name
+    return version_tracking_root() / rel
+
+
+def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | None, str | None, str | None]]:
+    from tools.build_docs import resolve_build_targets
+
+    config_path = resolve_path_from_root(args.config)
+    cfg = load_config(config_path)
+    targets = resolve_build_targets(
+        cfg,
+        arg_model=args.model,
+        arg_region=args.region,
+        all_targets=not (args.model or args.region),
+    )
+    return [(target.model, target.region, target.lang) for target in targets]
 
 
 def run_publish(args: argparse.Namespace) -> None:
@@ -659,6 +766,7 @@ def run_publish(args: argparse.Namespace) -> None:
     run_check(args, source_override="review")
     run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
     run_checked(build_docs_command(args, action_override="word", source_override="review"))
+    run_checked(release_manifest_command(args))
 
 
 def clean_build_artifacts(config_path: Path, *, remove_params_tex: bool = True) -> None:
@@ -698,6 +806,8 @@ def main(argv: list[str] | None = None) -> int:
             run_publish(args)
         elif args.action == "diff-report":
             run_diff_report(args)
+        elif args.action == "release-manifest":
+            run_checked(release_manifest_command(args))
         elif args.action == "clean":
             clean_build_artifacts(config_path)
         else:

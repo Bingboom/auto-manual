@@ -1,13 +1,50 @@
 # Hello Auto Doc
 
-Updated: 2026-03-11
+Updated: 2026-03-17
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
+It is the current workflow and editing-surface guide.
+It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
 
 ---
 
-## 1. Source of Truth
+## 1. Environment Setup
+
+Before running any build, review, check, or publish command, prepare the local environment in the repository root.
+
+### 1.1 Python Environment
+
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
+The dependency install step is mandatory.
+Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip install -r requirements.txt` when preparing a fresh environment.
+
+### 1.2 External Tools
+
+- PDF export requires `xelatex`.
+- Word export requires `pandoc` on macOS / Linux and on non-Word-COM paths.
+- The Python dependencies in [`requirements.txt`](../requirements.txt) include the Sphinx theme and build libraries used by the current workflow.
+
+If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
+
+---
+
+## 2. Source of Truth
 
 The manual system now has four layers, but they are used at different stages.
 
@@ -51,14 +88,14 @@ Rules:
 
 ---
 
-## 2. Current Build Pipeline
+## 3. Current Build Pipeline
 
 The cross-platform entrypoint is [`build.py`](../build.py).
 It wraps [`tools/build_docs.py`](../tools/build_docs.py), which still drives the actual build logic.
 
 Current flow:
 
-1. `python build.py rst|html|word|pdf|all|review|check|sync-review|publish|doctor`
+1. `python build.py rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|preview|fast|doctor`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
 4. `product_name` is resolved from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
@@ -70,7 +107,11 @@ Current flow:
 10. `html`, `word`, and `pdf` outputs are built from the prepared bundle when requested
 11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
-13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for minimal content issues
+13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
+14. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+15. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
+16. `python build.py preview` materializes one exact page selector under a preview-only output root
+17. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
@@ -81,12 +122,13 @@ Important:
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) changes during review.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
-- `python build.py publish` uses review content only, then runs `check -> diff-report -> word` as one formal release command.
-- the current `check` flow already includes contract coverage for `03_product_overview`, `05_operation_guide`, and `12_app_setup`
+- `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
+- `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / `tpl_*` keys / assets.
+- review overrides only overlay `overrides/_assets/**`, `overrides/_static/**`, and `overrides/renderers/**` into the runtime bundle.
 
 ---
 
-## 3. Materialized Bundle Layout
+## 4. Materialized Bundle Layout
 
 For a target such as `JE-1000F / US`, the working bundle now lives here:
 
@@ -103,7 +145,7 @@ It is not the editing surface. After review starts, `_review/...` is overlaid on
 
 ---
 
-## 4. Git Tracking Rule for Review Bundles
+## 5. Git Tracking Rule for Review Bundles
 
 The current repo allows two Git-visible surfaces:
 
@@ -152,7 +194,9 @@ Edit these during target review and final polish:
 - [`docs/_review/<model>/<region>/index.rst`](../docs/_review)
 - [`docs/_review/<model>/<region>/page/*.rst`](../docs/_review)
 - [`docs/_review/<model>/<region>/generated/<model>/*.rst`](../docs/_review)
-- [`docs/_review/<model>/<region>/overrides/**`](../docs/_review)
+- [`docs/_review/<model>/<region>/overrides/_assets/**`](../docs/_review)
+- [`docs/_review/<model>/<region>/overrides/_static/**`](../docs/_review)
+- [`docs/_review/<model>/<region>/overrides/renderers/**`](../docs/_review)
 
 Do not use these as the primary authoring source:
 
@@ -238,6 +282,9 @@ python build.py review
 python build.py check
 python build.py sync-review
 python build.py publish
+python build.py release-manifest
+python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.yaml --model JE-1000F --region US
 python build.py html
 python build.py word
 python build.py pdf
@@ -285,6 +332,19 @@ Source mode meaning:
 - requires explicit `--model` and `--region`
 - requires an existing `_review/<model>/<region>/`
 - exports revision reports to [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking) by default
+- writes a release manifest to [`reports/releases/<model>/<region>/`](../reports/releases)
+
+`preview` behavior:
+
+- requires explicit `--model`, `--region`, and `--page`
+- `--page` must match one exact page selector
+- writes to [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build)
+- does not rewrite root [`docs/index.rst`](../docs/index.rst)
+
+`fast` behavior:
+
+- equivalent to a runtime-only `rst --prepare-only --no-clean`
+- useful for template or placeholder debugging without export steps
 
 `sync-review` behavior:
 
@@ -375,7 +435,7 @@ Recommended default:
 Example report export for one model:
 
 ```powershell
-python build.py diff-report --config config.yaml
+python build.py diff-report --config config.yaml --model JE-1000F --region US
 python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD
 python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
 ```
@@ -405,14 +465,14 @@ Examples:
 
 Default outputs:
 
-- [`reports/version_tracking/JE-1000F/*_files.csv`](../reports/version_tracking/JE-1000F)
-- [`reports/version_tracking/JE-1000F/*_files.html`](../reports/version_tracking/JE-1000F)
-- [`reports/version_tracking/JE-1000F/*_pages.csv`](../reports/version_tracking/JE-1000F)
-- [`reports/version_tracking/JE-1000F/*_pages.html`](../reports/version_tracking/JE-1000F)
-- [`reports/version_tracking/JE-1000F/*_fields.csv`](../reports/version_tracking/JE-1000F)
-- [`reports/version_tracking/JE-1000F/*_fields.html`](../reports/version_tracking/JE-1000F)
-- [`reports/version_tracking/JE-1000F/*_index.html`](../reports/version_tracking/JE-1000F)
-- legacy compatibility aliases remain available as [`reports/version_tracking/JE-1000F/*.csv`](../reports/version_tracking/JE-1000F) and `*.html`
+- [`reports/version_tracking/JE-1000F/US/*_files.csv`](../reports/version_tracking/JE-1000F/US)
+- [`reports/version_tracking/JE-1000F/US/*_files.html`](../reports/version_tracking/JE-1000F/US)
+- [`reports/version_tracking/JE-1000F/US/*_pages.csv`](../reports/version_tracking/JE-1000F/US)
+- [`reports/version_tracking/JE-1000F/US/*_pages.html`](../reports/version_tracking/JE-1000F/US)
+- [`reports/version_tracking/JE-1000F/US/*_fields.csv`](../reports/version_tracking/JE-1000F/US)
+- [`reports/version_tracking/JE-1000F/US/*_fields.html`](../reports/version_tracking/JE-1000F/US)
+- [`reports/version_tracking/JE-1000F/US/*_index.html`](../reports/version_tracking/JE-1000F/US)
+- legacy compatibility aliases remain available as [`reports/version_tracking/JE-1000F/US/*.csv`](../reports/version_tracking/JE-1000F/US) and `*.html`
 
 Use `--report-dir` if you want a different output folder.
 
@@ -481,7 +541,7 @@ python build.py publish --config config.yaml --model JE-1000F --region US
 
 Then:
 
-1. open [`reports/version_tracking/JE-1000F/*_index.html`](../reports/version_tracking/JE-1000F)
+1. open [`reports/version_tracking/JE-1000F/US/*_index.html`](../reports/version_tracking/JE-1000F/US)
 2. click the `JE-1000F/US` target link
 3. open `fields`
 4. filter `source_row_key` when you want to inspect one spec or placeholder family
@@ -510,9 +570,20 @@ The repo now supports page contract checks under:
 Current scope:
 
 - contracts are matched by source template path from `config.pages`
-- `check` validates required placeholders directly against [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- `check` validates required placeholders, spec row keys, `tpl_*` row keys, and required assets
 - current coverage includes `03_product_overview`, `05_operation_guide`, and `12_app_setup`
 - `EN`, `JP`, and `EU` template families can each declare their own required placeholder sets
+- contracts can be scoped by `allowed_languages`, `allowed_regions`, and `allowed_models`
+
+Current contract keys:
+
+- `required_placeholders`
+- `required_spec_keys`
+- `required_tpl_keys`
+- `required_assets`
+- `allowed_languages`
+- `allowed_regions`
+- `allowed_models`
 
 Why this matters:
 
@@ -552,6 +623,9 @@ This usually means one of these happened:
 - `product_name` in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) was not updated
 - the wrong `config`, `model`, or `region` was used
 
+`check` now reports this as `STALE_IDENTITY_LITERAL`.
+If a foreign model mention is intentional, add it to `checks.allowed_foreign_identity_literals` in the config.
+
 ### 11.4 Hard-coded title in config
 
 If `build.word_title` is fixed to an old model name, the generated Word title will stay wrong even if `PRODUCT_NAME` is correct.
@@ -575,6 +649,7 @@ After changing templates or CSV values, verify at least the following:
 6. generated pages contain no stale model names from older products
 7. safety and spec still come from CSV-backed generated pages
 8. the expected `.docx`, `.html`, or `.pdf` file is generated when requested
+9. `publish` or `release-manifest` produced a JSON / CSV record under [`reports/releases/<model>/<region>/`](../reports/releases)
 
 Useful checks:
 

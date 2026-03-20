@@ -125,15 +125,23 @@ def build_root_for_target(
     lang: str | None = None,
     *,
     docs_build_dir: Path | None = None,
+    preview_name: str | None = None,
 ) -> Path:
     actual_docs_build_dir = docs_build_dir or paths.docs_build_dir
     target_root = actual_docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
+    if preview_name:
+        return target_root / "preview" / _target_component(preview_name, "_preview")
     if (lang or "").strip():
         return target_root / _target_component(lang, "_default")
     return target_root
 
 
-def clean_build_targets(targets: list[BuildTarget], *, docs_dir: Path | None = None) -> None:
+def clean_build_targets(
+    targets: list[BuildTarget],
+    *,
+    docs_dir: Path | None = None,
+    preview_name: str | None = None,
+) -> None:
     actual_docs_dir = docs_dir or paths.docs_dir
     actual_docs_build_dir = actual_docs_dir / "_build"
 
@@ -143,16 +151,18 @@ def clean_build_targets(targets: list[BuildTarget], *, docs_dir: Path | None = N
             target.region,
             target.lang,
             docs_build_dir=actual_docs_build_dir,
+            preview_name=preview_name,
         )
         if target_build_root.exists():
             print(f"[build] Cleaning target output: {target_build_root}")
             shutil.rmtree(target_build_root)
 
-        cleanup_legacy_rst_artifacts(
-            docs_dir=actual_docs_dir,
-            model=target.model,
-            region=target.region,
-        )
+        if preview_name is None:
+            cleanup_legacy_rst_artifacts(
+                docs_dir=actual_docs_dir,
+                model=target.model,
+                region=target.region,
+            )
 
 
 def validate_loaded_config(cfg: dict) -> None:
@@ -930,6 +940,9 @@ def prepare_manual_bundle(
     region: str | None,
     lang: str | None = None,
     source_mode: str = "auto",
+    page_selector: str | None = None,
+    output_root: Path | None = None,
+    write_wrapper_index: bool = True,
 ) -> MaterializedBundle:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
@@ -942,6 +955,9 @@ def prepare_manual_bundle(
         model=model,
         region=region,
         ensure_csv_pages=True,
+        page_selector=page_selector,
+        bundle_dir_override=(output_root / "rst") if output_root else None,
+        write_wrapper_index=write_wrapper_index,
     )
     review_applied = False
     if source_mode in {"auto", "review"}:
@@ -1030,6 +1046,9 @@ def build_target(
     tools_cfg: dict,
     no_open: bool,
     source_mode: str,
+    page_selector: str | None = None,
+    output_root: Path | None = None,
+    write_wrapper_index: bool = True,
 ) -> None:
     build_langs = resolve_cfg_languages({"build": build_cfg})
     primary_lang = str(target_lang or (build_langs[0] if build_langs else "en"))
@@ -1046,6 +1065,9 @@ def build_target(
         region=target_region,
         lang=target_lang,
         source_mode=source_mode,
+        page_selector=page_selector,
+        output_root=output_root,
+        write_wrapper_index=write_wrapper_index,
     )
 
     main_tex = render_build_template(
@@ -1075,6 +1097,8 @@ def build_target(
     open_pdf = bool(build_cfg.get("open_pdf", False)) and (not no_open)
 
     build_root = build_root_for_target(target_model, target_region, target_lang)
+    if output_root is not None:
+        build_root = output_root
     html_out_dir = build_root / "html"
     word_out_dir = build_root / "word"
     pdf_out_dir = build_root / "pdf"
@@ -1213,6 +1237,9 @@ def main() -> None:
     ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
     ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
+    ap.add_argument("--page-selector", default=None, help="Only materialize one exact page selector")
+    ap.add_argument("--output-root", default=None, help="Override target output root for this build")
+    ap.add_argument("--skip-root-index", action="store_true", help="Do not rewrite docs/index.rst")
     ap.add_argument(
         "--source",
         choices=sorted(VALID_SOURCE_MODES),
@@ -1230,6 +1257,11 @@ def main() -> None:
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     tools_cfg_raw = cfg.get("tools", {})
     tools_cfg = tools_cfg_raw if isinstance(tools_cfg_raw, dict) else {}
+    output_root = None
+    if isinstance(args.output_root, str) and args.output_root.strip():
+        output_root = Path(args.output_root.strip())
+        if not output_root.is_absolute():
+            output_root = paths.root / output_root
 
     print("[build] validating config...")
     validate_loaded_config(cfg)
@@ -1252,7 +1284,7 @@ def main() -> None:
         raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
 
     if args.clean:
-        clean_build_targets(targets)
+        clean_build_targets(targets, preview_name=args.page_selector if output_root else None)
 
     requested_formats = resolve_requested_formats(cfg, args.formats)
     pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
@@ -1272,9 +1304,13 @@ def main() -> None:
             tools_cfg=tools_cfg,
             no_open=args.no_open,
             source_mode=args.source,
+            page_selector=args.page_selector,
+            output_root=output_root,
+            write_wrapper_index=not args.skip_root_index,
         )
 
-    write_docs_root_index_for_targets(targets)
+    if not args.skip_root_index:
+        write_docs_root_index_for_targets(targets)
 
 
 if __name__ == "__main__":

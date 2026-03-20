@@ -35,6 +35,14 @@ def _overlay_file_tree(src_dir: Path, dst_dir: Path, pattern: str = "*") -> None
         shutil.copy2(src_file, target_path)
 
 
+def _overlay_override_assets(overrides_src: Path, bundle_dir: Path) -> None:
+    for allowed_dir in ("_assets", "_static", "renderers"):
+        src_dir = overrides_src / allowed_dir
+        if not src_dir.exists():
+            continue
+        _overlay_file_tree(src_dir, bundle_dir / allowed_dir)
+
+
 def overlay_review_onto_bundle(
     *,
     bundle_dir: Path,
@@ -66,10 +74,7 @@ def overlay_review_onto_bundle(
         _overlay_file_tree(generated_src, generated_dst, "*.rst")
 
     if overrides_src.exists():
-        for src_file in sorted(path for path in overrides_src.rglob("*") if path.is_file()):
-            target_path = bundle_dir / src_file.relative_to(overrides_src)
-            target_path.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src_file, target_path)
+        _overlay_override_assets(overrides_src, bundle_dir)
 
     return review_dir
 

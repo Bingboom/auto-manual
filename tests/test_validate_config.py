@@ -52,6 +52,30 @@ class TestValidateConfig(unittest.TestCase):
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertIn("build.include_lang_in_output_path requires exactly one build language", errors)
 
+    def test_validate_should_accept_allowed_foreign_identity_literals(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "checks": {"allowed_foreign_identity_literals": ["Jackery Explorer 2000 Pro"]},
+            "paths": {},
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
+
+    def test_validate_should_reject_invalid_allowed_foreign_identity_literals(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "checks": {"allowed_foreign_identity_literals": ["", 123]},
+            "paths": {},
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertTrue(any("checks.allowed_foreign_identity_literals" in msg for msg in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

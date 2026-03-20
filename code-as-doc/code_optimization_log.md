@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-03-12
+Updated: 2026-03-15
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -127,3 +127,24 @@ The system is now optimized around:
 - `diff-report` as the revision export layer
 
 Future optimization logs should keep recording only meaningful maintainability milestones, not every small edit.
+
+## 8. 2026-03-15: Stability, Contract V2, Release Traceability, and Preview Flow
+
+Main outcomes:
+
+- removed hardcoded `JE-1000F` defaults from `build.py diff-report`
+- fixed runtime bundle asset classification when canonical paths pass through symlinked or temp-backed roots
+- limited review overrides to `_assets`, `_static`, and `renderers` so review metadata files do not leak into publish bundles
+- added stale identity scanning to `check`
+- extended page contracts with `required_spec_keys`, `required_tpl_keys`, `required_assets`, and `allowed_*` scope fields
+- added `build.py release-manifest`
+- added `build.py preview` and `build.py fast`
+- added the GitHub Actions baseline workflow at [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
+
+Why it mattered:
+
+- target-aware diff reports no longer silently inspect the wrong subtree
+- review metadata is now separated cleanly from runtime publish inputs
+- missing CSV keys, missing assets, and stale model names are caught earlier in `check`
+- release outputs now have a JSON / CSV traceability record with file hashes
+- maintainers have a fast page-scoped preview path and a lightweight runtime draft path
