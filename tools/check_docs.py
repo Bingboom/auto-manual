@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.config_pages import RstIncludePage, parse_config_pages_or_raise  # noqa: E402
+from tools.config_pages import GeneratedPage, RstIncludePage  # noqa: E402
 from tools.build_docs import (  # noqa: E402
     BuildTarget,
     load_config,
@@ -22,7 +22,18 @@ from tools.build_docs import (  # noqa: E402
     resolve_product_name_for_build,
 )
 from tools.check_identity_drift import find_identity_drift_matches  # noqa: E402
+from tools.draft_engine import (  # noqa: E402
+    collect_registry_snippet_ids,
+    load_draft_recipe,
+    load_snippet_registry,
+    missing_required_row_keys,
+    resolve_recipe_substitutions,
+    resolve_snippet_file_path,
+    resolve_snippet_registry_path,
+    select_snippet_entry,
+)
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
+from tools.page_manifest import resolve_config_pages_or_raise, resolve_page_manifest_path  # noqa: E402
 from tools.page_contracts import (  # noqa: E402
     contract_applies_to,
     find_contract_for_source,
@@ -39,6 +50,7 @@ PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
 INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
 ASSET_RE = re.compile(r"^\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:image|figure)::\s+(\S+)\s*$")
 HTML_SRC_RE = re.compile(r'\bsrc="([^"]+)"', re.IGNORECASE)
+SNIPPET_SLOT_RE = re.compile(r"\{\{snippet:([a-zA-Z0-9_.-]+)\}\}")
 
 
 @dataclass(frozen=True)
@@ -94,6 +106,17 @@ def resolve_spec_master_csv_path(cfg: dict) -> Path:
 
 def resolve_contracts_dir(*, docs_dir: Path) -> Path:
     return docs_dir / "templates" / "contracts"
+
+
+def _page_source_path(
+    *,
+    docs_dir: Path,
+    page: RstIncludePage | GeneratedPage,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    raw_path = page.file if isinstance(page, RstIncludePage) else page.template
+    return resolve_config_path(docs_dir, raw_path, model, region)
 
 
 def _is_external_reference(value: str) -> bool:
@@ -329,24 +352,28 @@ def collect_page_contract_issues(
     if not contracts:
         return []
 
-    pages_raw = cfg.get("pages")
-    if not isinstance(pages_raw, list) or not pages_raw:
-        return []
-
-    pages = parse_config_pages_or_raise(
-        pages_raw,
+    pages = resolve_config_pages_or_raise(
+        cfg,
         default_languages=langs,
+        root=ROOT,
+        model=target.model,
+        region=target.region,
         error_prefix="config.pages",
-    )
+    ).pages
     spec_master_csv = resolve_spec_master_csv_path(cfg)
     spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}
     issues: list[CheckIssue] = []
 
     for page in pages:
-        if not isinstance(page, RstIncludePage):
+        if not isinstance(page, (RstIncludePage, GeneratedPage)):
             continue
-        source_path = resolve_config_path(docs_dir, page.file, target.model, target.region)
+        source_path = _page_source_path(
+            docs_dir=docs_dir,
+            page=page,
+            model=target.model,
+            region=target.region,
+        )
         try:
             source_rel = source_path.relative_to(docs_dir).as_posix()
         except ValueError:
@@ -356,7 +383,7 @@ def collect_page_contract_issues(
         if contract is None:
             continue
 
-        page_langs = [page.lang] if page.lang else langs
+        page_langs = [page.lang] if isinstance(page, RstIncludePage) and page.lang else list(page.langs) if isinstance(page, GeneratedPage) else langs
         for lang in page_langs:
             if not contract_applies_to(contract, lang=lang, model=target.model, region=target.region):
                 continue
@@ -466,6 +493,298 @@ def collect_page_contract_issues(
     return issues
 
 
+def collect_generated_page_issues(
+    cfg: dict,
+    *,
+    docs_dir: Path,
+    target: BuildTarget,
+    langs: list[str],
+) -> list[CheckIssue]:
+    manifest_path = resolve_page_manifest_path(cfg, root=ROOT, model=target.model, region=target.region)
+    if manifest_path is None:
+        pages_raw = cfg.get("pages")
+        if not isinstance(pages_raw, list) or not pages_raw:
+            return []
+
+    pages = resolve_config_pages_or_raise(
+        cfg,
+        default_languages=langs,
+        root=ROOT,
+        model=target.model,
+        region=target.region,
+        error_prefix="config.pages",
+    ).pages
+    generated_pages = [page for page in pages if isinstance(page, GeneratedPage)]
+    if not generated_pages:
+        return []
+
+    spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_rows = read_spec_master_rows(spec_master_csv)
+    registry_path = resolve_snippet_registry_path(docs_dir)
+    registry_entries: list = []
+    registry_error: RuntimeError | None = None
+    try:
+        registry_entries = load_snippet_registry(registry_path)
+    except RuntimeError as exc:
+        registry_error = exc
+
+    contracts = load_page_contracts(resolve_contracts_dir(docs_dir=docs_dir))
+    contract_ids = {contract.page_id for contract in contracts}
+    contract_file_names = {f"{contract.page_id}.yaml" for contract in contracts}
+    issues: list[CheckIssue] = []
+    used_snippet_ids: set[str] = set()
+
+    for page in generated_pages:
+        recipe_path = resolve_config_path(docs_dir, page.recipe, target.model, target.region)
+        template_path = resolve_config_path(docs_dir, page.template, target.model, target.region)
+        if not recipe_path.exists():
+            issues.append(
+                CheckIssue(
+                    code="MISSING_RECIPE",
+                    message=f"Generated page recipe not found: {recipe_path}",
+                    model=target.model,
+                    region=target.region,
+                    path=recipe_path,
+                )
+            )
+            continue
+        if not template_path.exists():
+            issues.append(
+                CheckIssue(
+                    code="MISSING_GENERATED_TEMPLATE",
+                    message=f"Generated page template not found: {template_path}",
+                    model=target.model,
+                    region=target.region,
+                    path=template_path,
+                )
+            )
+            continue
+
+        try:
+            recipe = load_draft_recipe(recipe_path)
+        except RuntimeError as exc:
+            issues.append(
+                CheckIssue(
+                    code="INVALID_RECIPE",
+                    message=str(exc),
+                    model=target.model,
+                    region=target.region,
+                    path=recipe_path,
+                )
+            )
+            continue
+
+        if recipe.page_id != page.page:
+            issues.append(
+                CheckIssue(
+                    code="RECIPE_PAGE_ID_MISMATCH",
+                    message=(
+                        f"Generated page '{page.page}' references recipe page_id '{recipe.page_id}'. "
+                        "These values should match."
+                    ),
+                    model=target.model,
+                    region=target.region,
+                    path=recipe_path,
+                )
+            )
+
+        template_text = template_path.read_text(encoding="utf-8")
+        template_slots = {match.group(1).strip() for match in SNIPPET_SLOT_RE.finditer(template_text) if match.group(1).strip()}
+        missing_slots = sorted(template_slots - set(recipe.snippet_slots))
+        if missing_slots:
+            issues.append(
+                CheckIssue(
+                    code="UNBOUND_SNIPPET_SLOT",
+                    message=f"Recipe '{recipe.page_id}' is missing snippet_slots for: {', '.join(missing_slots)}",
+                    model=target.model,
+                    region=target.region,
+                    path=recipe_path,
+                )
+            )
+
+        unused_slots = sorted(set(recipe.snippet_slots) - template_slots)
+        if unused_slots:
+            issues.append(
+                CheckIssue(
+                    code="UNUSED_SNIPPET_SLOT",
+                    message=f"Recipe '{recipe.page_id}' declares unused snippet_slots: {', '.join(unused_slots)}",
+                    model=target.model,
+                    region=target.region,
+                    path=recipe_path,
+                )
+            )
+
+        page_langs = list(page.langs) or langs
+        for lang in page_langs:
+            missing_row_keys = missing_required_row_keys(
+                recipe,
+                spec_rows=spec_rows,
+                model=target.model,
+                region=target.region,
+                lang=lang,
+            )
+            if missing_row_keys:
+                issues.append(
+                    CheckIssue(
+                        code="RECIPE_MISSING_ROW_KEYS",
+                        message=(
+                            f"Recipe '{recipe.page_id}' is missing required Spec_Master rows for lang '{lang}': "
+                            f"{', '.join(missing_row_keys)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=recipe_path,
+                        lang=lang,
+                    )
+                )
+
+            field_binding_misses = [
+                placeholder
+                for placeholder, binding in recipe.field_map.items()
+                if resolve_spec_value_from_rows(
+                    spec_rows,
+                    model=target.model,
+                    region=target.region,
+                    lang=lang,
+                    row_key=binding.row_key,
+                    pages=binding.pages,
+                    line_order=binding.line_order,
+                )
+                is None
+                and binding.default is None
+            ]
+            if field_binding_misses:
+                issues.append(
+                    CheckIssue(
+                        code="RECIPE_MISSING_FIELD_MAP_ROWS",
+                        message=(
+                            f"Recipe '{recipe.page_id}' is missing field_map rows for lang '{lang}': "
+                            f"{', '.join(field_binding_misses)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=recipe_path,
+                        lang=lang,
+                    )
+                )
+
+            substitutions = resolve_recipe_substitutions(
+                recipe,
+                spec_rows=spec_rows,
+                model=target.model,
+                region=target.region,
+                lang=lang,
+            )
+            if registry_error is not None:
+                issues.append(
+                    CheckIssue(
+                        code="MISSING_SNIPPET_REGISTRY",
+                        message=str(registry_error),
+                        model=target.model,
+                        region=target.region,
+                        path=registry_path,
+                        lang=lang,
+                    )
+                )
+                continue
+
+            for slot_name, snippet_id in recipe.snippet_slots.items():
+                used_snippet_ids.add(snippet_id)
+                try:
+                    entry = select_snippet_entry(
+                        registry_entries,
+                        snippet_id=snippet_id,
+                        lang=lang,
+                        region=target.region,
+                    )
+                except RuntimeError as exc:
+                    issues.append(
+                        CheckIssue(
+                            code="MISSING_SNIPPET",
+                            message=f"Recipe '{recipe.page_id}' slot '{slot_name}': {exc}",
+                            model=target.model,
+                            region=target.region,
+                            path=recipe_path,
+                            lang=lang,
+                        )
+                    )
+                    continue
+
+                snippet_path = resolve_snippet_file_path(
+                    entry,
+                    docs_dir=docs_dir,
+                    registry_path=registry_path,
+                    model=target.model,
+                    region=target.region,
+                )
+                if not snippet_path.exists():
+                    issues.append(
+                        CheckIssue(
+                            code="MISSING_SNIPPET_FILE",
+                            message=f"Snippet '{snippet_id}' file not found: {snippet_path}",
+                            model=target.model,
+                            region=target.region,
+                            path=snippet_path,
+                            lang=lang,
+                        )
+                    )
+                    continue
+
+                missing_placeholders = [
+                    placeholder
+                    for placeholder in entry.required_placeholders
+                    if not (substitutions.get(placeholder) or "").strip()
+                ]
+                if missing_placeholders:
+                    issues.append(
+                        CheckIssue(
+                            code="SNIPPET_MISSING_PLACEHOLDERS",
+                            message=(
+                                f"Snippet '{snippet_id}' is missing required placeholders for lang '{lang}': "
+                                f"{', '.join(missing_placeholders)}"
+                            ),
+                            model=target.model,
+                            region=target.region,
+                            path=snippet_path,
+                            lang=lang,
+                        )
+                    )
+
+        missing_contracts = [
+            contract_ref
+            for contract_ref in recipe.contracts
+            if contract_ref not in contract_ids and contract_ref not in contract_file_names
+        ]
+        if missing_contracts:
+            issues.append(
+                CheckIssue(
+                    code="RECIPE_MISSING_CONTRACTS",
+                    message=(
+                        f"Recipe '{recipe.page_id}' references missing contracts: "
+                        f"{', '.join(missing_contracts)}"
+                    ),
+                    model=target.model,
+                    region=target.region,
+                    path=recipe_path,
+                )
+            )
+
+    if registry_error is None and registry_entries:
+        orphan_snippet_ids = sorted(collect_registry_snippet_ids(registry_entries) - used_snippet_ids)
+        for snippet_id in orphan_snippet_ids:
+            issues.append(
+                CheckIssue(
+                    code="ORPHAN_SNIPPET",
+                    message=f"Snippet '{snippet_id}' is defined in the registry but not used by any draft recipe",
+                    model=target.model,
+                    region=target.region,
+                    path=registry_path,
+                )
+            )
+
+    return issues
+
+
 def _resolve_contract_asset_path(
     raw_value: str,
     *,
@@ -517,6 +836,7 @@ def collect_check_issues(
     cfg = load_config(cfg_path)
     docs_dir = resolve_docs_dir(cfg)
     langs = _build_langs(cfg)
+    manifest_path = resolve_page_manifest_path(cfg, root=ROOT, model=model, region=region)
     targets = resolve_build_targets(
         cfg,
         arg_model=model,
@@ -525,6 +845,16 @@ def collect_check_issues(
     )
 
     issues: list[CheckIssue] = []
+    if manifest_path is not None and not manifest_path.exists():
+        issues.append(
+            CheckIssue(
+                code="MISSING_PAGE_MANIFEST",
+                message=f"Configured page manifest not found: {manifest_path}",
+                model=model,
+                region=region,
+                path=manifest_path,
+            )
+        )
     for target in targets:
         target_langs = [target.lang] if (target.lang or "").strip() else langs
         bundle_dir = bundle_dir_for_target(
@@ -536,6 +866,14 @@ def collect_check_issues(
         issues.extend(collect_target_identity_issues(cfg, target=target, langs=target_langs))
         issues.extend(
             collect_page_contract_issues(
+                cfg,
+                docs_dir=docs_dir,
+                target=target,
+                langs=target_langs,
+            )
+        )
+        issues.extend(
+            collect_generated_page_issues(
                 cfg,
                 docs_dir=docs_dir,
                 target=target,

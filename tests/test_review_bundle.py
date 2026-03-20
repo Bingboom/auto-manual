@@ -20,6 +20,20 @@ class TestReviewBundle(unittest.TestCase):
             (runtime_dir / "page" / "spec_en.rst").write_text("Spec page\n", encoding="utf-8")
             (runtime_dir / "generated" / "JE-1000F" / "spec_en.rst").write_text("Generated spec\n", encoding="utf-8")
             (runtime_dir / "conf.py").write_text("ignored\n", encoding="utf-8")
+            (runtime_dir / "bundle_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "page_manifest": "docs/manifests/manual_us-en.yaml",
+                        "recipe_ids": ["03_product_overview"],
+                        "snippet_ids": ["wireless_reset_buttons"],
+                        "spec_master": {"path": "data/phase1/Spec_Master.csv", "sha256": "abc"},
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
 
             bundle = review_bundle.materialize_review_bundle(
                 docs_dir=docs_dir,
@@ -37,6 +51,9 @@ class TestReviewBundle(unittest.TestCase):
             self.assertEqual("US", manifest["region"])
             self.assertIn("docs/_build/JE-1000F/US/rst", manifest["runtime_bundle_dir"])
             self.assertIn("docs/_review/JE-1000F/US", manifest["review_dir"])
+            self.assertEqual("docs/manifests/manual_us-en.yaml", manifest["page_manifest"])
+            self.assertEqual(["03_product_overview"], manifest["recipe_ids"])
+            self.assertEqual(["wireless_reset_buttons"], manifest["snippet_ids"])
 
     def test_materialize_review_bundle_should_keep_existing_review_by_default(self) -> None:
         with tempfile.TemporaryDirectory() as td:

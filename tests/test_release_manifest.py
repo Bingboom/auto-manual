@@ -85,6 +85,6 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertTrue(manifest["html_output"]["exists"])
             self.assertTrue(manifest["pdf_output"]["exists"])
             self.assertEqual(
-                hashlib.sha256(b"docx\n").hexdigest(),
+                hashlib.sha256((build_root / "word" / "manual_je1000f_us.docx").read_bytes()).hexdigest(),
                 manifest["word_output"]["sha256"],
             )

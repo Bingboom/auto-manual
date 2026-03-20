@@ -293,6 +293,114 @@ class TestTargetResolution(unittest.TestCase):
             wrapper_text = bundle.wrapper_index_path.read_text(encoding="utf-8")
             self.assertIn(".. include:: _build/M1/US/rst/index", wrapper_text)
 
+    def test_materialize_bundle_should_support_page_manifest_and_generated_page(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            (docs_dir / "_static").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
+            (docs_dir / "templates" / "recipes").mkdir(parents=True)
+            (docs_dir / "templates" / "snippets" / "en").mkdir(parents=True)
+            (docs_dir / "templates" / "word_template" / "common_assets" / "overview").mkdir(parents=True)
+            data_dir = root / "data" / "phase1"
+            data_dir.mkdir(parents=True)
+
+            (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
+            (docs_dir / "templates" / "page_us-en" / "draft.rst").write_text(
+                ".. image:: templates/word_template/common_assets/overview/front_product.jpg\n\n{{snippet:intro}}\n\n|MAIN_POWER_BUTTON_LABEL|\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "word_template" / "common_assets" / "overview" / "front_product.jpg").write_bytes(
+                b"asset"
+            )
+            (docs_dir / "templates" / "recipes" / "draft.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: draft_page",
+                        "template: templates/page_us-en/draft.rst",
+                        "field_map:",
+                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "required_row_keys:",
+                        "  - tpl_main_power_button_label",
+                        "snippet_slots:",
+                        "  intro: intro_snippet",
+                        "contracts: []",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "snippets" / "registry.yaml").write_text(
+                "\n".join(
+                    [
+                        "snippets:",
+                        "  - snippet_id: intro_snippet",
+                        "    file: templates/snippets/en/intro_snippet.rst",
+                        "    lang: en",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "snippets" / "en" / "intro_snippet.rst").write_text(
+                "Welcome.\n",
+                encoding="utf-8",
+            )
+            manifest_path = docs_dir / "manual.yaml"
+            manifest_path.write_text(
+                "\n".join(
+                    [
+                        "manifest_id: draft_manifest",
+                        "pages:",
+                        "  - type: generated_page",
+                        "    page: draft_page",
+                        "    engine: draft_v1",
+                        "    recipe: templates/recipes/draft.yaml",
+                        "    template: templates/page_us-en/draft.rst",
+                        "    langs: [en]",
+                        "    include_dir: generated/{model}/draft",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (data_dir / "Spec_Master.csv").write_text(
+                "\n".join(
+                    [
+                        "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en",
+                        "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product",
+                        "TEMPLATE VARS,tpl_main_power_button_label,1,specifications,M1,US,1,1,Main Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            cfg = {
+                "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
+                "paths": {
+                    "page_manifest": str(manifest_path),
+                    "spec_master_csv": "data/phase1/Spec_Master.csv",
+                },
+            }
+
+            bundle = gen_index_bundle.materialize_bundle(
+                cfg,
+                docs_dir=docs_dir,
+                repo_root=root,
+            )
+
+            page_text = (bundle.page_dir / "draft.rst").read_text(encoding="utf-8")
+            self.assertIn("Welcome.", page_text)
+            self.assertIn("Main Button", page_text)
+            self.assertIn("_assets/templates/word_template/common_assets/overview/front_product.jpg", page_text)
+            self.assertEqual(("draft",), bundle.recipe_ids)
+            self.assertEqual(("intro_snippet",), bundle.snippet_ids)
+            self.assertEqual(manifest_path, bundle.page_manifest_path)
+            self.assertTrue((bundle.bundle_dir / "bundle_manifest.json").exists())
+            generated_text = (bundle.bundle_dir / "generated" / "M1" / "draft" / "draft_page_en.rst").read_text(encoding="utf-8")
+            self.assertIn("_assets/templates/word_template/common_assets/overview/front_product.jpg", generated_text)
+
     def test_materialize_bundle_should_write_resolved_page_rst_under_model_region_lang_when_enabled(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

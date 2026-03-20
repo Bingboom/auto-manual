@@ -5,7 +5,10 @@ from __future__ import annotations
 
 from typing import Any, Iterable
 
-from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage, parse_config_pages
+from pathlib import Path
+
+from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, PdfInsertPage, RstIncludePage, parse_config_pages
+from tools.page_manifest import resolve_config_pages
 
 
 def format_tokenized(
@@ -32,16 +35,29 @@ def config_uses_token_in_pages(
     placeholder = f"{{{token}}}"
     build_cfg = cfg.get("build", {})
     langs = build_cfg.get("languages", []) if isinstance(build_cfg, dict) else []
-    pages, _issues = parse_config_pages(
-        cfg.get("pages"),
-        default_languages=langs if isinstance(langs, list) else [],
-    )
+    try:
+        resolved_pages = resolve_config_pages(
+            cfg,
+            default_languages=langs if isinstance(langs, list) else [],
+            root=Path(__file__).resolve().parents[2],
+        )
+        pages = resolved_pages.pages
+    except RuntimeError:
+        pages, _issues = parse_config_pages(
+            cfg.get("pages"),
+            default_languages=langs if isinstance(langs, list) else [],
+        )
 
     for page in pages:
         if isinstance(page, CoverPdfPage):
             if placeholder in page.file:
                 return True
         elif isinstance(page, CsvPage):
+            if page.include_dir and placeholder in page.include_dir:
+                return True
+        elif isinstance(page, GeneratedPage):
+            if placeholder in page.recipe or placeholder in page.template:
+                return True
             if page.include_dir and placeholder in page.include_dir:
                 return True
         elif isinstance(page, PdfInsertPage):

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
 from tools.validate_config import validate
 
@@ -75,6 +77,31 @@ class TestValidateConfig(unittest.TestCase):
         issues = validate(cfg, strict_files=False)
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertTrue(any("checks.allowed_foreign_identity_literals" in msg for msg in errors))
+
+    def test_validate_should_accept_page_manifest_without_inline_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            manifest_path = Path(td) / "manual.yaml"
+            manifest_path.write_text(
+                "\n".join(
+                    [
+                        "pages:",
+                        "  - type: rst_include",
+                        "    lang: en",
+                        "    file: templates/page_us-en/00_preface.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            cfg = {
+                "build": {"languages": ["en"]},
+                "paths": {"page_manifest": manifest_path.as_posix()},
+            }
+
+            issues = validate(cfg, strict_files=False)
+
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
 
 
 if __name__ == "__main__":

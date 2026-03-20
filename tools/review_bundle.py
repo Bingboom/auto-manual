@@ -106,6 +106,17 @@ def _collect_existing_rst_paths(review_dir: Path, relative_dir: str) -> tuple[Pa
     return tuple(sorted(path for path in root_dir.rglob("*.rst") if path.is_file()))
 
 
+def _load_runtime_bundle_manifest(runtime_bundle_dir: Path) -> dict[str, object]:
+    manifest_path = runtime_bundle_dir / "bundle_manifest.json"
+    if not manifest_path.exists():
+        return {}
+    try:
+        raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return raw if isinstance(raw, dict) else {}
+
+
 def _load_existing_review_bundle(
     review_dir: Path,
     *,
@@ -194,6 +205,12 @@ def materialize_review_bundle(
         "generated_files": [_repo_relative(path) for path in generated_paths],
         "override_files": [_repo_relative(path) for path in override_paths],
     }
+    runtime_bundle_manifest = _load_runtime_bundle_manifest(runtime_bundle_dir)
+    if runtime_bundle_manifest:
+        manifest["page_manifest"] = runtime_bundle_manifest.get("page_manifest")
+        manifest["recipe_ids"] = runtime_bundle_manifest.get("recipe_ids", [])
+        manifest["snippet_ids"] = runtime_bundle_manifest.get("snippet_ids", [])
+        manifest["spec_master"] = runtime_bundle_manifest.get("spec_master", {})
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     return ReviewBundle(
