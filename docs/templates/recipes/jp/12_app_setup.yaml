@@ -1,0 +1,16 @@
+page_id: 12_app_setup
+template: templates/page_jp/12_app_setup_placeholder.rst
+field_map:
+  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label
+  AC_POWER_BUTTON_LABEL: tpl_ac_power_button_label
+  DC_USB_POWER_BUTTON_LABEL: tpl_dc_usb_power_button_label
+required_row_keys:
+  - tpl_main_power_button_label
+  - tpl_ac_power_button_label
+  - tpl_dc_usb_power_button_label
+snippet_slots:
+  app_button_reference: app_button_reference
+  wireless_reset_buttons: wireless_reset_buttons
+  wireless_toggle_buttons: wireless_toggle_buttons
+contracts:
+  - 12_app_setup

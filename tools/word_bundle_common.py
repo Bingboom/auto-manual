@@ -6,7 +6,8 @@ from __future__ import annotations
 import glob
 from pathlib import Path
 
-from tools.config_pages import CsvPage, parse_config_pages_or_raise
+from tools.config_pages import CsvPage
+from tools.page_manifest import resolve_config_pages_or_raise
 from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 from tools.phase1.renderers import apply_vars
 from tools.utils.path_utils import get_paths
@@ -194,11 +195,14 @@ def ensure_csv_page_rsts(
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     build_langs = list(build_cfg.get("languages", ["en"]))
-    pages_cfg = parse_config_pages_or_raise(
-        cfg.get("pages"),
+    pages_cfg = resolve_config_pages_or_raise(
+        cfg,
         default_languages=build_langs,
+        root=paths.root,
+        model=model,
+        region=region,
         error_prefix="config.pages",
-    )
+    ).pages
 
     page_ids: set[str] = set()
     langs: set[str] = set()

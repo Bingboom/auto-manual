@@ -22,13 +22,14 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.config_pages import CsvPage, parse_config_pages_or_raise
+from tools.config_pages import CsvPage
 from tools.gen_index_bundle import (
     MaterializedBundle,
     bundle_dir_for_target,
     cleanup_legacy_rst_artifacts,
     materialize_bundle,
 )
+from tools.page_manifest import resolve_config_pages_or_raise
 from tools.review_support import overlay_review_onto_bundle, review_bundle_exists
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
@@ -227,11 +228,14 @@ def render_csv_pages(
 ) -> None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    pages = parse_config_pages_or_raise(
-        cfg.get("pages"),
+    pages = resolve_config_pages_or_raise(
+        cfg,
         default_languages=list(build_cfg.get("languages", [])),
+        root=paths.root,
+        model=model,
+        region=region,
         error_prefix="config.pages",
-    )
+    ).pages
     build_langs = cfg.get("build", {}).get("languages", [])
     paths_cfg_raw = cfg.get("paths", {})
     paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}

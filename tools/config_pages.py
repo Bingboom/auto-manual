@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, TypeAlias
 
-SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "pdf_insert", "rst_include"}
+SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "generated_page", "pdf_insert", "rst_include"}
 
 
 @dataclass(frozen=True)
@@ -31,6 +31,17 @@ class CsvPage:
 
 
 @dataclass(frozen=True)
+class GeneratedPage:
+    page_type: str
+    page: str
+    engine: str
+    recipe: str
+    template: str
+    langs: tuple[str, ...]
+    include_dir: str | None
+
+
+@dataclass(frozen=True)
 class PdfInsertPage:
     page_type: str
     file_map: dict[str, str]
@@ -44,7 +55,7 @@ class RstIncludePage:
     lang: str | None
 
 
-ConfigPage: TypeAlias = CoverPdfPage | CsvPage | PdfInsertPage | RstIncludePage
+ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
 
 
 def _is_list_of_str(value: Any) -> bool:
@@ -114,6 +125,70 @@ def parse_config_pages(
                     page_type=page_type,
                     page=page_name.strip(),
                     source=source,
+                    langs=page_langs,
+                    include_dir=include_dir_text,
+                )
+            )
+            continue
+
+        if page_type == "generated_page":
+            page_name = raw.get("page")
+            if not isinstance(page_name, str) or not page_name.strip():
+                issues.append(PageParseIssue("ERROR", f"pages[{idx}] generated_page requires page"))
+                continue
+
+            engine = str(raw.get("engine", "")).strip().lower()
+            if engine != "draft_v1":
+                issues.append(
+                    PageParseIssue(
+                        "ERROR",
+                        f"pages[{idx}] generated_page.engine invalid: {engine}",
+                    )
+                )
+                continue
+
+            recipe = raw.get("recipe")
+            if not isinstance(recipe, str) or not recipe.strip():
+                issues.append(PageParseIssue("ERROR", f"pages[{idx}] generated_page requires recipe"))
+                continue
+
+            template = raw.get("template")
+            if not isinstance(template, str) or not template.strip():
+                issues.append(PageParseIssue("ERROR", f"pages[{idx}] generated_page requires template"))
+                continue
+
+            page_langs_raw = raw.get("langs", list(default_langs))
+            if not _is_list_of_str(page_langs_raw):
+                issues.append(PageParseIssue("ERROR", f"pages[{idx}] generated_page.langs invalid"))
+                continue
+            page_langs = tuple(page_langs_raw)
+
+            include_dir = raw.get("include_dir")
+            if include_dir is not None and not isinstance(include_dir, str):
+                issues.append(
+                    PageParseIssue(
+                        "ERROR",
+                        f"pages[{idx}] generated_page.include_dir must be string",
+                    )
+                )
+                continue
+            include_dir_text = include_dir.strip() if isinstance(include_dir, str) else None
+            if include_dir_text == "":
+                issues.append(
+                    PageParseIssue(
+                        "ERROR",
+                        f"pages[{idx}] generated_page.include_dir must be non-empty string",
+                    )
+                )
+                continue
+
+            parsed.append(
+                GeneratedPage(
+                    page_type=page_type,
+                    page=page_name.strip(),
+                    engine=engine,
+                    recipe=recipe.strip(),
+                    template=template.strip(),
                     langs=page_langs,
                     include_dir=include_dir_text,
                 )

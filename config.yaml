@@ -2,10 +2,10 @@ doc_type: manual_bundle
 
 build:
   languages: [ en ]
-  default_model: JE-2000F
+  default_model: JE-1000F
   default_region: US
   targets:
-    - model: JE-2000F
+    - model: JE-1000F
       region: US
   # Add more targets here. `python build.py rst|word|html|pdf|all` will iterate this list.
   # Example:
@@ -30,74 +30,7 @@ paths:
   spec_master_csv: data/phase1/Spec_Master.csv
   spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
   spec_titles_csv: data/phase1/spec_titles.csv
+  page_manifest: docs/manifests/manual_us-en.yaml
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
-
-pages:
-- type: cover_pdf
-  file: cover-en.pdf
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/00_preface.rst
-
-- type: csv_page
-  source: phase1
-  page: safety
-  langs: [ en ]
-  include_dir: generated/{model}
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/01_meaning_of_symbols.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/02_whats_in_the_box.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/03_product_overview_placeholder.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/04_lcd_display_placeholder.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/05_operation_guide_placeholder.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/06_ups_mode.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/07_expansion_battery_pack.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/08_charging_methods.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/09_storage_and_maintenance.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/10_troubleshooting.rst
-
-- type: csv_page
-  source: phase1
-  page: spec
-  langs: [ en ]
-  include_dir: generated/{model}
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/11_warranty.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/12_app_setup_placeholder.rst

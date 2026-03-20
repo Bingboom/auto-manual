@@ -18,6 +18,9 @@ These files describe the current repo behavior today.
 - [`spec_master_user_guide.md`](spec_master_user_guide.md)
   - current phase1 CSV semantics
   - current placeholder, review-sync, and data-change rules
+- [`generated_page_authoring.md`](generated_page_authoring.md)
+  - page manifest vs static include decision
+  - generated_page, recipe, and snippet authoring rules
 - [`code-as-doc.md`](code-as-doc.md)
   - documentation maintenance policy
   - doc update expectations when code or data changes
