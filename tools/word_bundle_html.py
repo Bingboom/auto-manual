@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from copy import deepcopy
 import hashlib
 import html
 import re
@@ -10,6 +11,7 @@ import shutil
 import struct
 from pathlib import Path
 from urllib.parse import unquote
+from xml.etree import ElementTree as ET
 
 from tools.gen_index_bundle import MaterializedBundle, materialize_bundle
 from tools.phase1.renderers import rst_escape
@@ -120,6 +122,29 @@ _HEIGHT_ATTR_RE = re.compile(r"\bheight\s*=", re.IGNORECASE)
 _STYLE_WIDTH_RE = re.compile(r"\bwidth\s*:\s*([^;]+)", re.IGNORECASE)
 _STYLE_HEIGHT_RE = re.compile(r"\bheight\s*:\s*([^;]+)", re.IGNORECASE)
 _RST_HEADING_CHARS = set("=-~^\"`:+*#")
+_ALERT_LABELS = {"WARNING", "CAUTION", "DANGER", "NOTE", "TIP", "TIPS"}
+_SIGNAL_WORD_BANNERS = {
+    "WARNING": "templates/word_template/common_assets/symbols/warning_bar.png",
+    "CAUTION": "templates/word_template/common_assets/symbols/caution_bar.png",
+    "NOTE": "templates/word_template/common_assets/symbols/note_bar.png",
+    "TIP": "templates/word_template/common_assets/symbols/tip_bar.png",
+}
+_SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    (
+        "Do not charge the battery in extremely hot or cold environments",
+        (
+            "Charging temperature:",
+            "Discharging temperature:",
+        ),
+    ),
+    (
+        "To ensure proper air circulation",
+        (
+            "Charging in damp or poorly ventilated spaces",
+            "Water can cause short circuits",
+        ),
+    ),
+)
 
 
 def _normalize_css_size(value: str) -> str | None:
@@ -319,6 +344,297 @@ def _inject_img_dimensions(html_doc: str) -> str:
     return _IMG_TAG_RE.sub(replace_tag, html_doc)
 
 
+def _html_tag_name(element: ET.Element) -> str:
+    return element.tag.rsplit("}", 1)[-1].lower()
+
+
+def _html_class_names(element: ET.Element) -> set[str]:
+    return {
+        token.strip()
+        for token in (element.attrib.get("class") or "").split()
+        if token.strip()
+    }
+
+
+def _normalize_inline_text(text: str) -> str:
+    return " ".join((text or "").split()).strip()
+
+
+def _match_safety_sublist_rule(text: str) -> tuple[str, ...] | None:
+    normalized = _normalize_inline_text(text)
+    for parent_prefix, child_prefixes in _SAFETY_SUBLIST_RULES:
+        if normalized.startswith(parent_prefix):
+            return child_prefixes
+    return None
+
+
+def _extract_alert_label(element: ET.Element) -> str | None:
+    tag = _html_tag_name(element)
+    text = _normalize_inline_text("".join(element.itertext())).rstrip(":").upper()
+    if text not in _ALERT_LABELS:
+        return None
+
+    if tag in {"h1", "h2", "h3"}:
+        return text
+
+    if tag != "p":
+        return None
+
+    if _normalize_inline_text(element.text or ""):
+        return None
+    for child in element:
+        if _html_tag_name(child) not in {"strong", "b"}:
+            return None
+        if _normalize_inline_text(child.tail or ""):
+            return None
+    return text
+
+
+def _is_standalone_strong_paragraph(element: ET.Element) -> bool:
+    if _html_tag_name(element) != "p":
+        return False
+    if _normalize_inline_text(element.text or ""):
+        return False
+    children = list(element)
+    if not children:
+        return False
+    for child in children:
+        if _html_tag_name(child) not in {"strong", "b"}:
+            return False
+        if _normalize_inline_text(child.tail or ""):
+            return False
+    return True
+
+
+def _set_element_children(element: ET.Element, new_children: list[ET.Element]) -> ET.Element:
+    for child in list(element):
+        element.remove(child)
+    for child in new_children:
+        element.append(child)
+    return element
+
+
+def _rewrite_known_safety_sublists(element: ET.Element) -> ET.Element:
+    if _html_tag_name(element) != "ul" or "hb-list" not in _html_class_names(element):
+        return element
+
+    children = list(element)
+    rewritten: list[ET.Element] = []
+    index = 0
+    while index < len(children):
+        child = deepcopy(children[index])
+        if _html_tag_name(child) != "li":
+            rewritten.append(child)
+            index += 1
+            continue
+
+        child_prefixes = _match_safety_sublist_rule("".join(child.itertext()))
+        if not child_prefixes:
+            rewritten.append(child)
+            index += 1
+            continue
+
+        sub_items: list[ET.Element] = []
+        next_index = index + 1
+        while next_index < len(children):
+            next_child = children[next_index]
+            if _html_tag_name(next_child) != "li":
+                break
+            next_text = _normalize_inline_text("".join(next_child.itertext()))
+            if not any(next_text.startswith(prefix) for prefix in child_prefixes):
+                break
+            sub_items.append(deepcopy(next_child))
+            next_index += 1
+
+        if sub_items:
+            sublist = ET.Element("ul", {"class": "hb-sublist"})
+            for sub_item in sub_items:
+                sublist.append(sub_item)
+            child.append(sublist)
+            rewritten.append(child)
+            index = next_index
+            continue
+
+        rewritten.append(child)
+        index += 1
+
+    return _set_element_children(element, rewritten)
+
+
+def _rewrite_signal_word_banner_table(element: ET.Element) -> ET.Element:
+    if _html_tag_name(element) != "table":
+        return element
+
+    head_row = element.find("./thead/tr")
+    if head_row is None:
+        return element
+
+    head_cells = head_row.findall("./th")
+    headers = [_normalize_inline_text("".join(cell.itertext())).lower() for cell in head_cells]
+    if headers != ["symbol", "meaning"]:
+        return element
+
+    changed = False
+    for row in element.findall("./tbody/tr"):
+        cells = row.findall("./td")
+        if len(cells) != 2:
+            continue
+        first_cell = cells[0]
+        label = _normalize_inline_text("".join(first_cell.itertext())).upper()
+        banner_src = _SIGNAL_WORD_BANNERS.get(label)
+        if not banner_src:
+            continue
+
+        image = ET.Element(
+            "img",
+            {
+                "alt": f"{label} banner placeholder.",
+                "src": banner_src,
+                "style": "width: 140px;",
+            },
+        )
+        _set_element_children(first_cell, [image])
+        first_cell.text = None
+        changed = True
+
+    return element if changed else element
+
+
+def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
+    table = ET.Element(
+        "table",
+        {
+            "class": "manual-callout-table",
+            "style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;",
+        },
+    )
+    tbody = ET.SubElement(table, "tbody")
+    row = ET.SubElement(tbody, "tr")
+
+    label_cell = ET.SubElement(
+        row,
+        "td",
+        {
+            "class": "manual-callout-label",
+            "style": "width:16%; border:1px solid #888; padding:6px 8px; vertical-align:top; background:#f3c27b;",
+        },
+    )
+    label_p = ET.SubElement(label_cell, "p")
+    label_strong = ET.SubElement(label_p, "strong")
+    label_strong.text = label
+
+    body_cell = ET.SubElement(
+        row,
+        "td",
+        {
+            "class": "manual-callout-body",
+            "style": "border:1px solid #888; padding:6px 8px; vertical-align:top;",
+        },
+    )
+    if not body_nodes:
+        ET.SubElement(body_cell, "p")
+        return table
+
+    for node in body_nodes:
+        body_cell.append(deepcopy(node))
+    return table
+
+
+def _rewrite_word_friendly_children(children: list[ET.Element]) -> list[ET.Element]:
+    normalized_children: list[ET.Element] = []
+    for child in children:
+        rewritten_child = deepcopy(child)
+        if list(rewritten_child):
+            _set_element_children(
+                rewritten_child,
+                _rewrite_word_friendly_children(list(rewritten_child)),
+            )
+        rewritten_child = _rewrite_known_safety_sublists(rewritten_child)
+        rewritten_child = _rewrite_signal_word_banner_table(rewritten_child)
+        normalized_children.append(rewritten_child)
+
+    rewritten: list[ET.Element] = []
+    index = 0
+    while index < len(normalized_children):
+        child = normalized_children[index]
+        child_tag = _html_tag_name(child)
+        child_classes = _html_class_names(child)
+
+        if child_tag == "section" and "manual-cover" in child_classes:
+            title = _normalize_inline_text("".join(child.itertext()))
+            if title:
+                heading = ET.Element("h1")
+                heading.text = title
+                rewritten.append(heading)
+            index += 1
+            continue
+
+        if child_tag == "div" and "hb-warning-box" in child_classes:
+            warning_text = ""
+            for node in child.iter():
+                if "hb-warning-text" in _html_class_names(node):
+                    warning_text = _normalize_inline_text("".join(node.itertext()))
+                    break
+            body_nodes: list[ET.Element] = []
+            if warning_text:
+                para = ET.Element("p")
+                para.text = warning_text
+                body_nodes.append(para)
+            rewritten.append(_build_alert_table("WARNING", body_nodes))
+            index += 1
+            continue
+
+        alert_label = _extract_alert_label(child)
+        if alert_label is not None:
+            body_nodes: list[ET.Element] = []
+            next_index = index + 1
+            saw_terminal_block = False
+            while next_index < len(normalized_children):
+                next_child = normalized_children[next_index]
+                next_tag = _html_tag_name(next_child)
+                if next_tag == "div" and "manual-page-break" in _html_class_names(next_child):
+                    break
+                if _extract_alert_label(next_child) is not None:
+                    break
+                if next_tag in {"h1", "h2", "h3", "section"}:
+                    break
+                if _is_standalone_strong_paragraph(next_child):
+                    break
+                if saw_terminal_block:
+                    break
+                if next_tag in {"ul", "ol", "img", "table"}:
+                    body_nodes.append(next_child)
+                    saw_terminal_block = True
+                    next_index += 1
+                    continue
+                if next_tag in {"p", "div"}:
+                    body_nodes.append(next_child)
+                    next_index += 1
+                    continue
+                break
+
+            if body_nodes:
+                rewritten.append(_build_alert_table(alert_label, body_nodes))
+                index = next_index
+                continue
+
+        rewritten.append(child)
+        index += 1
+
+    return rewritten
+
+
+def _rewrite_word_friendly_fragment(fragment: str) -> str:
+    wrapped = f"<root>{fragment}</root>"
+    try:
+        root = ET.fromstring(wrapped)
+    except ET.ParseError:
+        return fragment
+
+    rewritten = _rewrite_word_friendly_children(list(root))
+    return "".join(ET.tostring(node, encoding="unicode", method="html") for node in rewritten)
+
+
 def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
     """
     Convert Sphinx-only blocks for docutils parsing:
@@ -462,7 +778,8 @@ def _convert_rst_fragment_to_html(
         title_html = html.escape(rst_escape(title))
         html_fragment = f"<h1>{title_html}</h1>{html_fragment}"
 
-    return _stage_fragment_assets(html_fragment, source_path, bundle_dir)
+    rewritten_fragment = _rewrite_word_friendly_fragment(html_fragment)
+    return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
 
 def build_word_bundle_html(
@@ -482,12 +799,14 @@ def build_word_bundle_html(
     bundle_html = bundle_output_dir / "manual_bundle.html"
 
     body_parts: list[str] = []
+    previous_was_cover = False
     for idx, rst_path in enumerate(materialized.page_paths):
-        if idx > 0:
+        if idx > 0 and not previous_was_cover:
             body_parts.append(_render_page_break_html())
         rst_text = rst_path.read_text(encoding="utf-8")
         html_fragment = _convert_rst_fragment_to_html(rst_text, rst_path, bundle_output_dir)
         body_parts.append(html_fragment or "<div></div>")
+        previous_was_cover = rst_path.name.startswith("cover")
 
     html_doc = "".join(
         [
@@ -508,6 +827,9 @@ def build_word_bundle_html(
             ".manual-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
             ".manual-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
             ".manual-table td:first-child { width: 34%; }",
+            ".manual-callout-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
+            ".manual-callout-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
+            ".manual-callout-table td:first-child { width: 16%; }",
             "p, li { font-size: 10.5pt; }",
             "</style>",
             "</head>",

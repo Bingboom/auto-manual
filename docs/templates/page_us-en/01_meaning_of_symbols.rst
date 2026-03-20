@@ -23,29 +23,21 @@ During the lifecycle of energy storage products, a certain degree of capacity an
 
    * - Symbol
      - Meaning
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
-          :alt: WARNING symbol placeholder.
-          :width: 40px
-
-       **WARNING**
+   * - .. image:: templates/word_template/common_assets/symbols/warning_bar.png
+          :alt: WARNING banner placeholder.
+          :width: 140px
      - Hazardous practices that may result in severe injury, death, and/or property damage.
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
-          :alt: CAUTION symbol placeholder.
-          :width: 40px
-
-       **CAUTION**
+   * - .. image:: templates/word_template/common_assets/symbols/caution_bar.png
+          :alt: CAUTION banner placeholder.
+          :width: 140px
      - Hazardous practices that may result in personal injury and/or property damage.
-   * - .. image:: templates/word_template/common_assets/symbols/mandatory.png
-          :alt: NOTE symbol placeholder.
-          :width: 40px
-
-       **NOTE**
+   * - .. image:: templates/word_template/common_assets/symbols/note_bar.png
+          :alt: NOTE banner placeholder.
+          :width: 140px
      - Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.
-   * - .. image:: templates/word_template/common_assets/symbols/mandatory.png
-          :alt: TIP symbol placeholder.
-          :width: 40px
-
-       **TIP**
+   * - .. image:: templates/word_template/common_assets/symbols/tip_bar.png
+          :alt: TIP banner placeholder.
+          :width: 140px
      - Supplements the important information or operation tips in the text.
 
 .. list-table::
