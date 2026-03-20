@@ -12,7 +12,7 @@ The current manual system has four layers.
 
 ### 1.1 Template Seed Layer
 
-- [`docs/templates/page_en/*.rst`](../docs/templates/page_en)
+- [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
 - [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
 - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 

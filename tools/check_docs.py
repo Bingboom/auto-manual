@@ -359,18 +359,20 @@ def collect_check_issues(
 
     issues: list[CheckIssue] = []
     for target in targets:
+        target_langs = [target.lang] if (target.lang or "").strip() else langs
         bundle_dir = bundle_dir_for_target(
             docs_dir=docs_dir,
             model=target.model,
             region=target.region,
+            lang=target.lang,
         )
-        issues.extend(collect_target_identity_issues(cfg, target=target, langs=langs))
+        issues.extend(collect_target_identity_issues(cfg, target=target, langs=target_langs))
         issues.extend(
             collect_page_contract_issues(
                 cfg,
                 docs_dir=docs_dir,
                 target=target,
-                langs=langs,
+                langs=target_langs,
             )
         )
         issues.extend(

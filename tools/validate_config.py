@@ -102,6 +102,16 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if not is_list_of_str(languages) or not languages:
         issues.append(Issue("ERROR", "build.languages must be non-empty list of strings"))
 
+    include_lang_in_output_path = build.get("include_lang_in_output_path")
+    if include_lang_in_output_path is not None and not isinstance(include_lang_in_output_path, bool):
+        issues.append(Issue("ERROR", "build.include_lang_in_output_path must be a boolean when provided"))
+    elif (
+        include_lang_in_output_path is True
+        and is_list_of_str(languages)
+        and len(languages) != 1
+    ):
+        issues.append(Issue("ERROR", "build.include_lang_in_output_path requires exactly one build language"))
+
     default_model = build.get("default_model")
     if default_model is not None and (not isinstance(default_model, str) or not default_model.strip()):
         issues.append(Issue("ERROR", "build.default_model must be a non-empty string when provided"))

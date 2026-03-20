@@ -7,28 +7,46 @@
   "review_dir": "docs/_review/JE-1000F/US",
   "index_path": "docs/_review/JE-1000F/US/index.rst",
   "page_files": [
-    "docs/_review/JE-1000F/US/page/00_preface.rst",
-    "docs/_review/JE-1000F/US/page/01_meaning_of_symbols.rst",
-    "docs/_review/JE-1000F/US/page/02_whats_in_the_box.rst",
-    "docs/_review/JE-1000F/US/page/03_product_overview_placeholder.rst",
-    "docs/_review/JE-1000F/US/page/04_lcd_display_placeholder.rst",
-    "docs/_review/JE-1000F/US/page/05_operation_guide_placeholder.rst",
-    "docs/_review/JE-1000F/US/page/06_ups_mode.rst",
-    "docs/_review/JE-1000F/US/page/07_expansion_battery_pack.rst",
-    "docs/_review/JE-1000F/US/page/08_charging_methods.rst",
-    "docs/_review/JE-1000F/US/page/09_storage_and_maintenance.rst",
-    "docs/_review/JE-1000F/US/page/10_troubleshooting.rst",
-    "docs/_review/JE-1000F/US/page/11_warranty.rst",
-    "docs/_review/JE-1000F/US/page/12_app_setup_placeholder.rst",
-    "docs/_review/JE-1000F/US/page/cover.rst",
-    "docs/_review/JE-1000F/US/page/safety_en.rst",
-    "docs/_review/JE-1000F/US/page/spec_en.rst"
+    "page/00_preface.rst",
+    "page/01_meaning_of_symbols.rst",
+    "page/02_whats_in_the_box.rst",
+    "page/03_product_overview_placeholder.rst",
+    "page/04_lcd_display_placeholder.rst",
+    "page/05_operation_guide_placeholder.rst",
+    "page/06_ups_mode.rst",
+    "page/07_expansion_battery_pack.rst",
+    "page/08_charging_methods.rst",
+    "page/09_storage_and_maintenance.rst",
+    "page/10_troubleshooting.rst",
+    "page/11_warranty.rst",
+    "page/12_app_setup_placeholder.rst",
+    "page/cover.rst",
+    "page/safety_en.rst",
+    "page/spec_en.rst"
   ],
   "generated_files": [
-    "docs/_review/JE-1000F/US/generated/JE-1000F/safety_en.rst",
-    "docs/_review/JE-1000F/US/generated/JE-1000F/spec_en.rst"
+    "generated/JE-1000F/safety_en.rst",
+    "generated/JE-1000F/spec_en.rst"
   ],
   "override_files": [
     "docs/_review/JE-1000F/US/overrides/README.md"
+  ],
+  "last_synced_at": "2026-03-20T04:56:57.170207+00:00",
+  "last_sync_scope": "params",
+  "last_sync_files": [
+    "generated/JE-1000F/safety_en.rst",
+    "generated/JE-1000F/spec_en.rst",
+    "page/00_preface.rst",
+    "page/02_whats_in_the_box.rst",
+    "page/03_product_overview_placeholder.rst",
+    "page/04_lcd_display_placeholder.rst",
+    "page/05_operation_guide_placeholder.rst",
+    "page/06_ups_mode.rst",
+    "page/08_charging_methods.rst",
+    "page/11_warranty.rst",
+    "page/12_app_setup_placeholder.rst",
+    "page/cover.rst",
+    "page/safety_en.rst",
+    "page/spec_en.rst"
   ]
 }

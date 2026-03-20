@@ -27,8 +27,10 @@ from tools.config_pages import (
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
     format_tokenized,
+    resolve_build_languages,
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
+    resolve_output_lang,
 )
 from tools.word_bundle_common import (  # noqa: E402
     apply_rst_substitutions,
@@ -132,8 +134,8 @@ def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
 
 
 def _build_langs(cfg: dict) -> list[str]:
-    langs = cfg.get("build", {}).get("languages", ["en"])
-    return list(langs)
+    langs = resolve_build_languages(cfg)
+    return langs or ["en"]
 
 
 def _bundle_component(value: str | None, fallback: str) -> str:
@@ -146,14 +148,17 @@ def bundle_dir_for_target(
     docs_dir: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
 ) -> Path:
-    return (
+    target_root = (
         docs_dir
         / "_build"
         / _bundle_component(model, "_shared")
         / _bundle_component(region, "_default")
-        / "rst"
     )
+    if (lang or "").strip():
+        target_root = target_root / _bundle_component(lang, "_default")
+    return target_root / "rst"
 
 
 def _legacy_bundle_dir_for_target(
@@ -733,6 +738,7 @@ def materialize_bundle(
     target_region = resolve_build_region(cfg, region)
     build_langs = _build_langs(cfg)
     primary_lang = str(build_langs[0]) if build_langs else "en"
+    output_lang = resolve_output_lang(cfg)
     planned_pages = plan_materialized_pages(cfg, model=target_model, region=target_region)
 
     spec_master_csv = _resolve_spec_master_csv_path(
@@ -768,6 +774,7 @@ def materialize_bundle(
         docs_dir=actual_docs_dir,
         model=target_model,
         region=target_region,
+        lang=output_lang,
     )
     generated_dir = bundle_dir / "generated"
     page_dir = bundle_dir / "page"

@@ -1,6 +1,8 @@
 page_id: 05_operation_guide
 source_files:
-  - templates/page_en/05_operation_guide_placeholder.rst
+  - templates/page_us-en/05_operation_guide_placeholder.rst
+  - templates/page_us-es/05_operation_guide_placeholder.rst
+  - templates/page_us-fr/05_operation_guide_placeholder.rst
   - templates/page_jp/05_operation_guide_placeholder.rst
 required_placeholders:
   default:
@@ -15,6 +17,14 @@ required_placeholders:
     - USB_C_HIGH_POWER_CABLE_NAME
     - CAR_BATTERY_CHARGING_CABLE_NAME
   en:
+    - MAIN_POWER_BUTTON_LABEL_LOWER
+    - DC_USB_POWER_BUTTON_LABEL_LOWER
+    - AC_POWER_BUTTON_LABEL_LOWER
+  es:
+    - MAIN_POWER_BUTTON_LABEL_LOWER
+    - DC_USB_POWER_BUTTON_LABEL_LOWER
+    - AC_POWER_BUTTON_LABEL_LOWER
+  fr:
     - MAIN_POWER_BUTTON_LABEL_LOWER
     - DC_USB_POWER_BUTTON_LABEL_LOWER
     - AC_POWER_BUTTON_LABEL_LOWER

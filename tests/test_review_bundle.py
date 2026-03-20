@@ -57,6 +57,29 @@ class TestReviewBundle(unittest.TestCase):
             self.assertTrue(bundle.reused_existing)
             self.assertEqual("Edited review content\n", (review_dir / "page" / "custom.rst").read_text(encoding="utf-8"))
 
+    def test_materialize_review_bundle_should_support_lang_scoped_runtime_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "es" / "rst"
+            (runtime_dir / "page").mkdir(parents=True)
+            (runtime_dir / "generated" / "JE-1000F").mkdir(parents=True)
+
+            (runtime_dir / "index.rst").write_text(".. include:: page/spec_es.rst\n", encoding="utf-8")
+            (runtime_dir / "page" / "spec_es.rst").write_text("Spec page\n", encoding="utf-8")
+            (runtime_dir / "generated" / "JE-1000F" / "spec_es.rst").write_text("Generated spec\n", encoding="utf-8")
+
+            bundle = review_bundle.materialize_review_bundle(
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang="es",
+            )
+
+            manifest = json.loads(bundle.manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual("es", manifest["lang"])
+            self.assertIn("docs/_build/JE-1000F/US/es/rst", manifest["runtime_bundle_dir"])
+            self.assertIn("docs/_review/JE-1000F/US/es", manifest["review_dir"])
+
 
 if __name__ == "__main__":
     unittest.main()

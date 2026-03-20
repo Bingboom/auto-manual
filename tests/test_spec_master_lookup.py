@@ -1,8 +1,14 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 
-from tools.utils.spec_master import resolve_product_name_from_rows, resolve_template_substitutions_from_rows
+from tools.utils.spec_master import (
+    resolve_product_name_from_rows,
+    resolve_product_name_from_spec_master,
+    resolve_template_substitutions_from_rows,
+    resolve_template_substitutions_from_spec_master,
+)
 
 
 class TestSpecMasterLookup(unittest.TestCase):
@@ -97,6 +103,30 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("Main POWER Button", substitutions["MAIN_POWER_BUTTON_LABEL"])
         self.assertEqual("main POWER button", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
         self.assertEqual("**Jackery Battery Pack 3600**", substitutions["BATTERY_PACK_NAME_BOLD"])
+
+    def test_real_spec_master_should_resolve_je1000f_us_product_name_for_western_langs(self) -> None:
+        spec_master_csv = Path(__file__).resolve().parents[1] / "data" / "phase1" / "Spec_Master.csv"
+
+        for lang in ("en", "es", "fr"):
+            match = resolve_product_name_from_spec_master(
+                spec_master_csv,
+                model="JE-1000F",
+                region="US",
+                lang=lang,
+            )
+            self.assertIsNotNone(match)
+            assert match is not None
+            self.assertEqual("Jackery Explorer 1000", match.product_name)
+            self.assertEqual("US", match.region)
+
+        substitutions = resolve_template_substitutions_from_spec_master(
+            spec_master_csv,
+            model="JE-1000F",
+            region="US",
+            lang="en",
+        )
+        self.assertEqual("Jackery Explorer 1000", substitutions["PRODUCT_NAME"])
+        self.assertEqual("Explorer 1000", substitutions["PRODUCT_SHORT_NAME"])
 
 
 if __name__ == "__main__":

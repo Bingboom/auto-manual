@@ -12,7 +12,7 @@ It documents the current build layout, maintenance rules, the review bundle laye
 The manual system now has four layers, but they are used at different stages.
 
 1. Template seed layer
-   - [`docs/templates/page_en/*.rst`](../docs/templates/page_en)
+   - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
    - [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
    - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
    - Responsibility: reusable page structure, headings, shared prose, and initial draft layout
@@ -136,7 +136,7 @@ Recommended use:
 
 Edit these when the change should be shared across products or when creating the first draft:
 
-- [`docs/templates/page_en/*.rst`](../docs/templates/page_en)
+- [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
 - [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
 - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 

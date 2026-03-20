@@ -249,7 +249,7 @@ HTE132-EU,EU,TRUE,specifications,CONTROLS,7,tpl_power_button_label,Power Button,
 HTE132-EU,EU,TRUE,specifications,CONTROLS,7,tpl_usb_power_button_label,USB Power Button,1,,USB Power Button,,,,,,JE-3600A
 HTE132-EU,EU,TRUE,specifications,CONTROLS,7,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-3600A
 HTE132-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_battery_pack_name,Battery Pack Name,1,,Jackery Battery Pack 3600,,,,,,JE-3600A
-HTE153-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery ポータブル電源 1000 New v2,,,,,,JE-1000F
+HTE153-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,JE-1000F

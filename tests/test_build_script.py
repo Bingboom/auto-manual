@@ -240,6 +240,32 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--source", seen[3])
         self.assertIn("review", seen[3])
 
+    def test_publish_should_scope_review_and_report_dirs_by_lang_when_enabled(self) -> None:
+        args = build_cli.parse_args(["publish", "--config", "config.us-es.yaml", "--model", "JE-1000F", "--region", "US"])
+        seen: list[list[str]] = []
+        original_validate = build_cli.run_validate
+        original_run_checked = build_cli.run_checked
+        original_load_config = build_cli.load_config
+        try:
+            build_cli.run_validate = lambda config_path: None  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.load_config = lambda config_path: {  # type: ignore[assignment]
+                "build": {
+                    "languages": ["es"],
+                    "include_lang_in_output_path": True,
+                }
+            }
+            build_cli.run_publish(args)
+        finally:
+            build_cli.run_validate = original_validate  # type: ignore[assignment]
+            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli.load_config = original_load_config  # type: ignore[assignment]
+
+        self.assertEqual(4, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[2][1])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[2])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[2])
+
     def test_collect_doctor_findings_should_require_word_com_for_windows_bundle(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
         cfg = {

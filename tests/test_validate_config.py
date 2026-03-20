@@ -17,7 +17,7 @@ class TestValidateConfig(unittest.TestCase):
                 ],
             },
             "paths": {},
-            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_en/00_preface.rst"}],
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
         }
 
         issues = validate(cfg, strict_files=False)
@@ -31,12 +31,26 @@ class TestValidateConfig(unittest.TestCase):
                 "targets": [{"region": "US"}],
             },
             "paths": {},
-            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_en/00_preface.rst"}],
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
         }
 
         issues = validate(cfg, strict_files=False)
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertTrue(any("build.targets[1].model" in msg for msg in errors))
+
+    def test_validate_should_require_single_language_when_lang_is_in_output_path(self) -> None:
+        cfg = {
+            "build": {
+                "languages": ["en", "es"],
+                "include_lang_in_output_path": True,
+            },
+            "paths": {},
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertIn("build.include_lang_in_output_path requires exactly one build language", errors)
 
 
 if __name__ == "__main__":

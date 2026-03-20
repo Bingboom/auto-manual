@@ -16,7 +16,7 @@ class TestPageContracts(unittest.TestCase):
                     [
                         "page_id: 03_product_overview",
                         "source_files:",
-                        "  - templates/page_en/03_product_overview_placeholder.rst",
+                        "  - templates/page_us-en/03_product_overview_placeholder.rst",
                         "required_placeholders:",
                         "  default:",
                         "    - MAIN_POWER_BUTTON_LABEL",
@@ -45,12 +45,12 @@ class TestPageContracts(unittest.TestCase):
     def test_find_contract_for_source_should_match_normalized_relative_paths(self) -> None:
         contract = page_contracts.PageContract(
             page_id="03_product_overview",
-            source_files=("templates/page_en/03_product_overview_placeholder.rst",),
+            source_files=("templates/page_us-en/03_product_overview_placeholder.rst",),
             required_placeholders={"default": ("MAIN_POWER_BUTTON_LABEL",)},
         )
 
         matched = page_contracts.find_contract_for_source(
-            r"templates\page_en\03_product_overview_placeholder.rst",
+            r"templates\page_us-en\03_product_overview_placeholder.rst",
             [contract],
         )
 

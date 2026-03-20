@@ -13,7 +13,7 @@
    \specsectiontitle{GENERAL INFO}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Product Name} & \HBTypeSpecValue{Jackery ポータブル電源 1000 New v2} \\
+   \HBTypeSpecLabel{Product Name} & \HBTypeSpecValue{Jackery Explorer 1000} \\
    \hline
    \HBTypeSpecLabel{Model No.} & \HBTypeSpecValue{JE-1000F} \\
    \hline
@@ -57,7 +57,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
+   \specsectiontitle{ENVIRONMENTAL}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{Operating Temperature} & \HBTypeSpecValue{-20°C to 45°C} \\
@@ -88,7 +88,7 @@
       :header-rows: 0
    
       * - Product Name
-        - Jackery ポータブル電源 1000 New v2
+        - Jackery Explorer 1000
       * - Model No.
         - JE-1000F
       * - Capacity
@@ -134,7 +134,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section">● ENVIRONMENTAL OPERATING TEMPERATURE</h2>
+      <h2 class="hb-spec-section">● ENVIRONMENTAL</h2>
    
    .. list-table::
       :widths: 33 67

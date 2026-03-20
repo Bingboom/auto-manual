@@ -104,3 +104,29 @@ def resolve_build_region(cfg: dict[str, Any], arg_region: str | None) -> str | N
     if isinstance(default_region, str) and default_region.strip():
         return default_region.strip()
     return None
+
+
+def resolve_build_languages(cfg: dict[str, Any]) -> list[str]:
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        return []
+    raw = build_cfg.get("languages", [])
+    if not isinstance(raw, list):
+        return []
+    return [str(item).strip() for item in raw if str(item).strip()]
+
+
+def include_lang_in_output_path(cfg: dict[str, Any]) -> bool:
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        return False
+    return bool(build_cfg.get("include_lang_in_output_path", False))
+
+
+def resolve_output_lang(cfg: dict[str, Any]) -> str | None:
+    if not include_lang_in_output_path(cfg):
+        return None
+    langs = resolve_build_languages(cfg)
+    if not langs:
+        return None
+    return langs[0]

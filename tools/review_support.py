@@ -14,12 +14,15 @@ def _target_component(value: str | None, fallback: str) -> str:
     return text.replace("/", "_").replace("\\", "_").replace(":", "_")
 
 
-def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | None) -> Path:
-    return docs_dir / "_review" / _target_component(model, "_shared") / _target_component(region, "_default")
+def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> Path:
+    target_root = docs_dir / "_review" / _target_component(model, "_shared") / _target_component(region, "_default")
+    if (lang or "").strip():
+        return target_root / _target_component(lang, "_default")
+    return target_root
 
 
-def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | None) -> bool:
-    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> bool:
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     return (review_dir / "index.rst").exists() and (review_dir / "page").is_dir()
 
 
@@ -38,8 +41,9 @@ def overlay_review_onto_bundle(
     docs_dir: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
 ) -> Path | None:
-    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     index_src = review_dir / "index.rst"
     page_src = review_dir / "page"
     generated_src = review_dir / "generated"

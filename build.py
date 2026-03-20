@@ -622,25 +622,34 @@ def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> Non
     run_checked(check_docs_command(args))
 
 
-def _publish_target_components(args: argparse.Namespace) -> tuple[str, str]:
+def _publish_target_components(args: argparse.Namespace) -> tuple[str, str, str | None]:
     model = (args.model or "").strip()
     region = (args.region or "").strip()
     if not model or not region:
         raise RuntimeError("publish requires --model and --region so the release target is explicit")
-    return model, region
+    from tools.utils.targets import resolve_output_lang
+
+    cfg = load_config(resolve_path_from_root(args.config))
+    return model, region, resolve_output_lang(cfg)
 
 
 def _publish_tracked_root(args: argparse.Namespace) -> Path:
-    model, region = _publish_target_components(args)
+    model, region, lang = _publish_target_components(args)
     if args.tracked_root == REVIEW_TRACKED_ROOT:
-        return ROOT / "docs" / "_review" / model / region
+        base = ROOT / "docs" / "_review" / model / region
+        if (lang or "").strip():
+            return base / lang
+        return base
     return resolve_path_from_root(args.tracked_root)
 
 
 def _publish_report_dir(args: argparse.Namespace) -> Path:
-    model, region = _publish_target_components(args)
+    model, region, lang = _publish_target_components(args)
     if args.report_dir == REVIEW_REPORT_DIR:
-        return ROOT / "reports" / "version_tracking" / model / region
+        base = ROOT / "reports" / "version_tracking" / model / region
+        if (lang or "").strip():
+            return base / lang
+        return base
     return resolve_path_from_root(args.report_dir)
 
 

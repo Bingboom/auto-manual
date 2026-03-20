@@ -14,12 +14,12 @@ class TestCheckDocs(unittest.TestCase):
             docs_dir = root / "docs"
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
             (bundle_dir / "page").mkdir(parents=True)
-            (docs_dir / "templates" / "page_en").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
             (docs_dir / "templates" / "contracts").mkdir(parents=True)
 
             (bundle_dir / "index.rst").write_text(".. include:: page/12_app_setup_placeholder.rst\n", encoding="utf-8")
             (bundle_dir / "page" / "12_app_setup_placeholder.rst").write_text("Ready\n", encoding="utf-8")
-            (docs_dir / "templates" / "page_en" / "12_app_setup_placeholder.rst").write_text(
+            (docs_dir / "templates" / "page_us-en" / "12_app_setup_placeholder.rst").write_text(
                 "\n".join(
                     [
                         "|MAIN_POWER_BUTTON_LABEL|",
@@ -38,7 +38,7 @@ class TestCheckDocs(unittest.TestCase):
                     [
                         "page_id: 12_app_setup",
                         "source_files:",
-                        "  - templates/page_en/12_app_setup_placeholder.rst",
+                        "  - templates/page_us-en/12_app_setup_placeholder.rst",
                         "required_placeholders:",
                         "  default:",
                         "    - MAIN_POWER_BUTTON_LABEL",
@@ -81,7 +81,7 @@ class TestCheckDocs(unittest.TestCase):
                         "pages:",
                         "  - type: rst_include",
                         "    lang: en",
-                        "    file: templates/page_en/12_app_setup_placeholder.rst",
+                        "    file: templates/page_us-en/12_app_setup_placeholder.rst",
                     ]
                 )
                 + "\n",
@@ -105,12 +105,12 @@ class TestCheckDocs(unittest.TestCase):
             docs_dir = root / "docs"
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
             (bundle_dir / "page").mkdir(parents=True)
-            (docs_dir / "templates" / "page_en").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
             (docs_dir / "templates" / "contracts").mkdir(parents=True)
 
             (bundle_dir / "index.rst").write_text(".. include:: page/03_product_overview_placeholder.rst\n", encoding="utf-8")
             (bundle_dir / "page" / "03_product_overview_placeholder.rst").write_text("Ready\n", encoding="utf-8")
-            (docs_dir / "templates" / "page_en" / "03_product_overview_placeholder.rst").write_text(
+            (docs_dir / "templates" / "page_us-en" / "03_product_overview_placeholder.rst").write_text(
                 "|MAIN_POWER_BUTTON_LABEL|\n",
                 encoding="utf-8",
             )
@@ -119,7 +119,7 @@ class TestCheckDocs(unittest.TestCase):
                     [
                         "page_id: 03_product_overview",
                         "source_files:",
-                        "  - templates/page_en/03_product_overview_placeholder.rst",
+                        "  - templates/page_us-en/03_product_overview_placeholder.rst",
                         "required_placeholders:",
                         "  default:",
                         "    - MAIN_POWER_BUTTON_LABEL",
@@ -156,7 +156,7 @@ class TestCheckDocs(unittest.TestCase):
                         "pages:",
                         "  - type: rst_include",
                         "    lang: en",
-                        "    file: templates/page_en/03_product_overview_placeholder.rst",
+                        "    file: templates/page_us-en/03_product_overview_placeholder.rst",
                     ]
                 )
                 + "\n",
