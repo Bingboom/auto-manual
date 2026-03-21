@@ -21,7 +21,7 @@
     "docs/_build/JE-1000F/US/rst/page/cover.rst",
     "docs/_build/JE-1000F/US/rst/page/00_preface.rst",
     "docs/_build/JE-1000F/US/rst/page/safety_en.rst",
-    "docs/_build/JE-1000F/US/rst/page/01_meaning_of_symbols.rst",
+    "docs/_build/JE-1000F/US/rst/page/symbols_en.rst",
     "docs/_build/JE-1000F/US/rst/page/02_whats_in_the_box.rst",
     "docs/_build/JE-1000F/US/rst/page/03_product_overview_placeholder.rst",
     "docs/_build/JE-1000F/US/rst/page/04_lcd_display_placeholder.rst",
@@ -40,6 +40,7 @@
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/05_operation_guide_en.rst",
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/12_app_setup_en.rst",
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/safety_en.rst",
-    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/spec_en.rst"
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/spec_en.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/symbols_en.rst"
   ]
 }

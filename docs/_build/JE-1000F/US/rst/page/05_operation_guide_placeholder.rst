@@ -151,9 +151,9 @@ KEY COMBINATION
    * - Main POWER Button + AC power button
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - Main POWER Button + DC/USB power button
+   * - main POWER button + DC/USB power button
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
-   * - DC/USB Power Button + AC power button
+   * - DC/USB power button + AC power button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth

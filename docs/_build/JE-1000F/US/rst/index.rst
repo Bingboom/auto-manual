@@ -4,7 +4,7 @@
 
 .. include:: page/safety_en.rst
 
-.. include:: page/01_meaning_of_symbols.rst
+.. include:: page/symbols_en.rst
 
 .. include:: page/02_whats_in_the_box.rst
 
