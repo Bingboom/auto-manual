@@ -624,6 +624,33 @@ class TestCheckDocs(unittest.TestCase):
 
             self.assertEqual([], issues)
 
+    def test_collect_reference_issues_should_resolve_docs_relative_assets_for_generated_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            generated_dir = bundle_dir / "generated" / "JE-1000F"
+            asset_dir = docs_dir / "templates" / "word_template" / "common_assets" / "symbols"
+            generated_dir.mkdir(parents=True)
+            asset_dir.mkdir(parents=True)
+
+            (asset_dir / "warning_triangle.png").write_text("png", encoding="utf-8")
+            rst_path = generated_dir / "symbols_en.rst"
+            rst_path.write_text(
+                ".. image:: templates/word_template/common_assets/symbols/warning_triangle.png\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_reference_issues(
+                rst_path=rst_path,
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+            )
+
+            self.assertEqual([], issues)
+
     def test_collect_check_issues_should_report_generated_page_snippet_problems(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

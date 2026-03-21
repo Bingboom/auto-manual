@@ -3,10 +3,10 @@ doc_type: manual_bundle
 build:
   languages: [ en ]
   include_lang_in_output_path: true
-  default_model: JE-2000F
+  default_model: JE-1000F
   default_region: US
   targets:
-    - model: JE-2000F
+    - model: JE-1000F
       region: US
   main_tex: manual_demo.tex
   output_pdf: manual_{model_slug}_{region_slug}_{lang_slug}.pdf
@@ -42,9 +42,11 @@ pages:
   langs: [ en ]
   include_dir: generated/{model}
 
-- type: rst_include
-  lang: en
-  file: templates/page_us-en/01_meaning_of_symbols.rst
+- type: csv_page
+  source: phase1
+  page: symbols
+  langs: [ en ]
+  include_dir: generated/{model}
 
 - type: rst_include
   lang: en

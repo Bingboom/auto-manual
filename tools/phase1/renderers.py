@@ -46,7 +46,11 @@ from .renderers_spec import (
     collect_spec_content,
     render_spec_page,
 )
-from .renderers_symbols import PH_SYMBOLS_CONTENT_LATEX, render_symbols_page
+from .renderers_symbols import (
+    PH_SYMBOLS_ICON_TABLE_RST,
+    PH_SYMBOLS_SIGNAL_SECTION_RST,
+    render_symbols_page,
+)
 
 Renderer = Callable[[str, list[dict[str, str]], str, str, dict[str, str]], str]
 

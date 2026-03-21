@@ -133,7 +133,13 @@ def _is_external_reference(value: str) -> bool:
     return lowered.startswith(("http://", "https://", "data:", "file://", "mailto:", "#"))
 
 
-def _resolve_local_reference(raw_value: str, *, rst_path: Path, bundle_dir: Path) -> Path | None:
+def _resolve_local_reference(
+    raw_value: str,
+    *,
+    rst_path: Path,
+    bundle_dir: Path,
+    docs_dir: Path,
+) -> Path | None:
     token = raw_value.strip()
     if not token or _is_external_reference(token):
         return None
@@ -142,6 +148,7 @@ def _resolve_local_reference(raw_value: str, *, rst_path: Path, bundle_dir: Path
     probe_paths = [
         rst_path.parent / raw_path,
         bundle_dir / raw_path,
+        docs_dir / raw_path,
         ROOT / raw_path,
     ]
     for probe in probe_paths:
@@ -204,6 +211,7 @@ def collect_reference_issues(
     *,
     rst_path: Path,
     bundle_dir: Path,
+    docs_dir: Path,
     model: str | None,
     region: str | None,
 ) -> list[CheckIssue]:
@@ -212,7 +220,12 @@ def collect_reference_issues(
         include_match = INCLUDE_RE.match(line)
         if include_match:
             raw_value = include_match.group(1)
-            resolved = _resolve_local_reference(raw_value, rst_path=rst_path, bundle_dir=bundle_dir)
+            resolved = _resolve_local_reference(
+                raw_value,
+                rst_path=rst_path,
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+            )
             if resolved is None:
                 issues.append(
                     CheckIssue(
@@ -227,7 +240,12 @@ def collect_reference_issues(
         asset_match = ASSET_RE.match(line)
         if asset_match:
             raw_value = asset_match.group(1)
-            resolved = _resolve_local_reference(raw_value, rst_path=rst_path, bundle_dir=bundle_dir)
+            resolved = _resolve_local_reference(
+                raw_value,
+                rst_path=rst_path,
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+            )
             if resolved is None:
                 issues.append(
                     CheckIssue(
@@ -241,7 +259,12 @@ def collect_reference_issues(
 
         for html_match in HTML_SRC_RE.finditer(line):
             raw_value = html_match.group(1)
-            resolved = _resolve_local_reference(raw_value, rst_path=rst_path, bundle_dir=bundle_dir)
+            resolved = _resolve_local_reference(
+                raw_value,
+                rst_path=rst_path,
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+            )
             if resolved is None:
                 issues.append(
                     CheckIssue(
@@ -294,7 +317,13 @@ def collect_target_identity_issues(cfg: dict, *, target: BuildTarget, langs: lis
     return issues
 
 
-def collect_bundle_issues(*, bundle_dir: Path, model: str | None, region: str | None) -> list[CheckIssue]:
+def collect_bundle_issues(
+    *,
+    bundle_dir: Path,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+) -> list[CheckIssue]:
     issues: list[CheckIssue] = []
     index_path = bundle_dir / "index.rst"
     page_dir = bundle_dir / "page"
@@ -332,6 +361,7 @@ def collect_bundle_issues(*, bundle_dir: Path, model: str | None, region: str | 
             collect_reference_issues(
                 rst_path=rst_path,
                 bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
                 model=model,
                 region=region,
             )
@@ -1017,6 +1047,7 @@ def collect_check_issues(
         issues.extend(
             collect_bundle_issues(
                 bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
                 model=target.model,
                 region=target.region,
             )
