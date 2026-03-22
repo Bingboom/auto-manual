@@ -4,11 +4,15 @@
 from __future__ import annotations
 
 import argparse
+import html
 import importlib.util
+import json
+import os
 import re
 import shutil
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -18,13 +22,14 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.config_pages import CsvPage, parse_config_pages_or_raise
+from tools.config_pages import CsvPage
 from tools.gen_index_bundle import (
     MaterializedBundle,
     bundle_dir_for_target,
     cleanup_legacy_rst_artifacts,
     materialize_bundle,
 )
+from tools.page_manifest import resolve_config_pages_or_raise
 from tools.review_support import overlay_review_onto_bundle, review_bundle_exists
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
@@ -34,8 +39,10 @@ from tools.utils.spec_master import (
 )
 from tools.utils.targets import (
     config_uses_token_in_pages,
+    resolve_build_languages as resolve_cfg_languages,
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
+    resolve_output_lang,
 )
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
@@ -49,12 +56,40 @@ VALID_FORMATS = {"html", "word", "pdf"}
 VALID_PDF_MODES = {"latex", "word"}
 VALID_SOURCE_MODES = {"auto", "runtime", "review"}
 _TEMPLATE_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
+MANUAL_META_FILE_NAME = "manual_meta.json"
+SWITCHER_BLOCK_START = "<!-- HB_MANUAL_SWITCHER_START -->"
+SWITCHER_BLOCK_END = "<!-- HB_MANUAL_SWITCHER_END -->"
+BODY_SWITCHER_CLASS = "hb-manual-switcher-body"
+_REMOVE_TREE_RETRY_DELAYS = (0.2, 0.5, 1.0)
+_SWITCHER_BLOCK_RE = re.compile(
+    rf"{re.escape(SWITCHER_BLOCK_START)}.*?{re.escape(SWITCHER_BLOCK_END)}",
+    re.DOTALL,
+)
+_BODY_TAG_RE = re.compile(r"<body\b([^>]*)>", re.IGNORECASE)
+LANGUAGE_LABELS = {
+    "en": "English",
+    "es": "Espanol",
+    "fr": "Francais",
+    "ja": "日本語",
+}
 
 
 @dataclass(frozen=True)
 class BuildTarget:
     model: str | None
     region: str | None
+    lang: str | None = None
+
+
+@dataclass(frozen=True)
+class HtmlManualVariant:
+    model: str
+    region: str
+    lang: str
+    title: str
+    html_dir: Path
+    html_dir_token: str
+    lang_in_output_path: bool
 
 
 def load_config(cfg_path: Path) -> dict:
@@ -81,20 +116,35 @@ def discover_existing_bundle_targets(*, docs_dir: Path | None = None) -> list[Bu
         for region_dir in sorted(path for path in model_dir.iterdir() if path.is_dir()):
             if (region_dir / "rst" / "index.rst").exists():
                 targets.append(BuildTarget(model=model_dir.name, region=region_dir.name))
+            for lang_dir in sorted(path for path in region_dir.iterdir() if path.is_dir()):
+                if (lang_dir / "rst" / "index.rst").exists():
+                    targets.append(BuildTarget(model=model_dir.name, region=region_dir.name, lang=lang_dir.name))
     return targets
 
 
 def build_root_for_target(
     model: str | None,
     region: str | None,
+    lang: str | None = None,
     *,
     docs_build_dir: Path | None = None,
+    preview_name: str | None = None,
 ) -> Path:
     actual_docs_build_dir = docs_build_dir or paths.docs_build_dir
-    return actual_docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
+    target_root = actual_docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
+    if preview_name:
+        return target_root / "preview" / _target_component(preview_name, "_preview")
+    if (lang or "").strip():
+        return target_root / _target_component(lang, "_default")
+    return target_root
 
 
-def clean_build_targets(targets: list[BuildTarget], *, docs_dir: Path | None = None) -> None:
+def clean_build_targets(
+    targets: list[BuildTarget],
+    *,
+    docs_dir: Path | None = None,
+    preview_name: str | None = None,
+) -> None:
     actual_docs_dir = docs_dir or paths.docs_dir
     actual_docs_build_dir = actual_docs_dir / "_build"
 
@@ -102,17 +152,55 @@ def clean_build_targets(targets: list[BuildTarget], *, docs_dir: Path | None = N
         target_build_root = build_root_for_target(
             target.model,
             target.region,
+            target.lang,
             docs_build_dir=actual_docs_build_dir,
+            preview_name=preview_name,
         )
         if target_build_root.exists():
             print(f"[build] Cleaning target output: {target_build_root}")
-            shutil.rmtree(target_build_root)
+            remove_tree_with_retries(target_build_root)
 
-        cleanup_legacy_rst_artifacts(
-            docs_dir=actual_docs_dir,
-            model=target.model,
-            region=target.region,
-        )
+        if preview_name is None:
+            cleanup_legacy_rst_artifacts(
+                docs_dir=actual_docs_dir,
+                model=target.model,
+                region=target.region,
+            )
+
+
+def _is_retryable_cleanup_error(exc: OSError) -> bool:
+    return getattr(exc, "winerror", None) == 32 or (os.name == "nt" and isinstance(exc, PermissionError))
+
+
+def remove_tree_with_retries(path: Path) -> None:
+    last_exc: OSError | None = None
+    retry_count = len(_REMOVE_TREE_RETRY_DELAYS)
+
+    for attempt in range(retry_count + 1):
+        try:
+            shutil.rmtree(path)
+            return
+        except FileNotFoundError:
+            return
+        except OSError as exc:
+            if not _is_retryable_cleanup_error(exc):
+                raise
+            last_exc = exc
+            if attempt >= retry_count:
+                break
+            delay = _REMOVE_TREE_RETRY_DELAYS[attempt]
+            print(
+                "[build] Cleanup blocked by an open handle; "
+                f"retrying in {delay:.1f}s ({attempt + 1}/{retry_count})..."
+            )
+            time.sleep(delay)
+
+    raise RuntimeError(
+        "Could not clean build output: "
+        f"{path}. Another program is still using this folder, or Windows has not released the handle yet. "
+        "Close any File Explorer, browser, Word, or PDF windows pointing at docs/_build and rerun. "
+        "If you only need to rebuild in place, rerun with --no-clean."
+    ) from last_exc
 
 
 def validate_loaded_config(cfg: dict) -> None:
@@ -140,11 +228,14 @@ def render_csv_pages(
 ) -> None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    pages = parse_config_pages_or_raise(
-        cfg.get("pages"),
+    pages = resolve_config_pages_or_raise(
+        cfg,
         default_languages=list(build_cfg.get("languages", [])),
+        root=paths.root,
+        model=model,
+        region=region,
         error_prefix="config.pages",
-    )
+    ).pages
     build_langs = cfg.get("build", {}).get("languages", [])
     paths_cfg_raw = cfg.get("paths", {})
     paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
@@ -214,8 +305,9 @@ def _configured_build_targets(cfg: dict) -> list[BuildTarget]:
 
     default_model = resolve_build_model(cfg, None)
     default_region = resolve_build_region(cfg, None)
+    output_lang = resolve_output_lang(cfg)
     targets: list[BuildTarget] = []
-    seen: set[tuple[str | None, str | None]] = set()
+    seen: set[tuple[str | None, str | None, str | None]] = set()
 
     for idx, item in enumerate(raw_targets, start=1):
         if not isinstance(item, dict):
@@ -231,11 +323,11 @@ def _configured_build_targets(cfg: dict) -> list[BuildTarget]:
                 f"build.targets[{idx}] could not resolve a model; set targets[{idx}].model or build.default_model"
             )
 
-        key = (model, region)
+        key = (model, region, output_lang)
         if key in seen:
             continue
         seen.add(key)
-        targets.append(BuildTarget(model=model, region=region))
+        targets.append(BuildTarget(model=model, region=region, lang=output_lang))
 
     return targets
 
@@ -259,6 +351,7 @@ def resolve_build_targets(
         BuildTarget(
             model=resolve_build_model(cfg, arg_model),
             region=resolve_build_region(cfg, arg_region),
+            lang=resolve_output_lang(cfg),
         )
     ]
 
@@ -385,6 +478,254 @@ def _target_component(value: str | None, fallback: str) -> str:
     return text.replace("/", "_").replace("\\", "_").replace(":", "_")
 
 
+def _body_tag_with_class(body_tag: str, class_name: str) -> str:
+    class_match = re.search(r'\bclass=(["\'])(.*?)\1', body_tag, re.IGNORECASE | re.DOTALL)
+    if class_match:
+        quote = class_match.group(1)
+        classes = class_match.group(2).split()
+        if class_name in classes:
+            return body_tag
+        new_classes = " ".join([*classes, class_name]).strip()
+        return body_tag[: class_match.start()] + f'class={quote}{new_classes}{quote}' + body_tag[class_match.end() :]
+    return body_tag[:-1] + f' class="{class_name}">'
+
+
+def _language_label(lang: str) -> str:
+    key = (lang or "").strip().lower()
+    return LANGUAGE_LABELS.get(key, key.upper() or "Unknown")
+
+
+def _variant_key(variant: HtmlManualVariant) -> tuple[str, str]:
+    return (variant.region.upper(), variant.lang.lower())
+
+
+def _variant_priority(variant: HtmlManualVariant) -> tuple[int, str]:
+    return (1 if variant.lang_in_output_path else 0, variant.html_dir_token)
+
+
+def _effective_variants_for_current(
+    variants: list[HtmlManualVariant],
+    *,
+    current_variant: HtmlManualVariant,
+) -> list[HtmlManualVariant]:
+    selected: dict[tuple[str, str], HtmlManualVariant] = {}
+    for variant in sorted(variants, key=lambda item: (item.region.upper(), item.lang.lower(), item.html_dir_token)):
+        key = _variant_key(variant)
+        existing = selected.get(key)
+        if existing is None or _variant_priority(variant) > _variant_priority(existing):
+            selected[key] = variant
+    selected[_variant_key(current_variant)] = current_variant
+    return sorted(selected.values(), key=lambda item: (item.region.upper(), item.lang.lower(), item.html_dir_token))
+
+
+def write_html_manual_meta(
+    html_out_dir: Path,
+    *,
+    docs_build_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str,
+    title: str,
+    lang_in_output_path: bool,
+) -> Path:
+    if not (model or "").strip():
+        raise RuntimeError("HTML manual metadata requires a model")
+    if not (region or "").strip():
+        raise RuntimeError("HTML manual metadata requires a region")
+
+    html_dir_token = html_out_dir.relative_to(docs_build_dir).as_posix()
+    payload = {
+        "model": model.strip(),
+        "region": region.strip(),
+        "lang": lang.strip(),
+        "title": title.strip(),
+        "html_dir": html_dir_token,
+        "lang_in_output_path": bool(lang_in_output_path),
+    }
+    meta_path = html_out_dir / MANUAL_META_FILE_NAME
+    meta_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return meta_path
+
+
+def _load_html_manual_variant(meta_path: Path, *, docs_build_dir: Path) -> HtmlManualVariant | None:
+    try:
+        raw = json.loads(meta_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(raw, dict):
+        return None
+
+    model = str(raw.get("model", "")).strip()
+    region = str(raw.get("region", "")).strip()
+    lang = str(raw.get("lang", "")).strip().lower()
+    title = str(raw.get("title", "")).strip()
+    html_dir_token = str(raw.get("html_dir", "")).strip()
+    if not (model and region and lang and html_dir_token):
+        return None
+
+    html_dir = docs_build_dir / Path(html_dir_token)
+    lang_in_output_path = bool(raw.get("lang_in_output_path", False))
+    return HtmlManualVariant(
+        model=model,
+        region=region,
+        lang=lang,
+        title=title,
+        html_dir=html_dir,
+        html_dir_token=html_dir_token,
+        lang_in_output_path=lang_in_output_path,
+    )
+
+
+def collect_model_html_variants(
+    *,
+    model: str | None,
+    docs_build_dir: Path | None = None,
+) -> list[HtmlManualVariant]:
+    if not (model or "").strip():
+        return []
+
+    actual_docs_build_dir = docs_build_dir or paths.docs_build_dir
+    model_dir = actual_docs_build_dir / _target_component(model, "_shared")
+    if not model_dir.exists():
+        return []
+
+    variants: list[HtmlManualVariant] = []
+    for meta_path in sorted(model_dir.rglob(MANUAL_META_FILE_NAME)):
+        variant = _load_html_manual_variant(meta_path, docs_build_dir=actual_docs_build_dir)
+        if variant is None or variant.model != model:
+            continue
+        if not (variant.html_dir / "index.html").exists():
+            continue
+        variants.append(variant)
+    return variants
+
+
+def _resolve_variant_target_page(current_html_path: Path, target_variant: HtmlManualVariant) -> Path:
+    target_page = target_variant.html_dir / current_html_path.name
+    if target_page.exists():
+        return target_page
+    return target_variant.html_dir / "index.html"
+
+
+def build_manual_switcher_markup(
+    *,
+    current_variant: HtmlManualVariant,
+    variants: list[HtmlManualVariant],
+    current_html_path: Path,
+) -> str | None:
+    effective_variants = _effective_variants_for_current(variants, current_variant=current_variant)
+    if len(effective_variants) <= 1:
+        return None
+
+    grouped: dict[str, list[HtmlManualVariant]] = {}
+    for variant in effective_variants:
+        grouped.setdefault(variant.region.upper(), []).append(variant)
+
+    region_buttons: list[str] = []
+    language_groups: list[str] = []
+    current_region = current_variant.region.upper()
+    current_lang = current_variant.lang.lower()
+
+    for region in sorted(grouped):
+        is_region_active = region == current_region
+        button_class = "hb-manual-switcher__region"
+        if is_region_active:
+            button_class += " is-active"
+        region_buttons.append(
+            (
+                f'<button type="button" class="{button_class}" data-hb-region-button="{html.escape(region)}" '
+                f'aria-pressed="{str(is_region_active).lower()}">{html.escape(region)}</button>'
+            )
+        )
+
+        tokens: list[str] = [
+            (
+                f'<div class="hb-manual-switcher__language-group{" is-active" if is_region_active else ""}" '
+                f'data-hb-region-group="{html.escape(region)}">'
+            ),
+            f'<span class="hb-manual-switcher__group-label">{html.escape(region)}</span>',
+        ]
+        for variant in sorted(grouped[region], key=lambda item: (item.lang.lower(), item.html_dir_token)):
+            label = html.escape(_language_label(variant.lang))
+            target_title = html.escape(variant.title or f"{variant.model} {region} {variant.lang.upper()}")
+            is_current = region == current_region and variant.lang.lower() == current_lang
+            if is_current:
+                tokens.append(
+                    f'<span class="hb-manual-switcher__lang is-active" aria-current="page" title="{target_title}">{label}</span>'
+                )
+                continue
+            href = Path(
+                os.path.relpath(
+                    _resolve_variant_target_page(current_html_path, variant),
+                    start=current_html_path.parent,
+                )
+            ).as_posix()
+            tokens.append(
+                f'<a class="hb-manual-switcher__lang" href="{html.escape(href)}" title="{target_title}">{label}</a>'
+            )
+        tokens.append("</div>")
+        language_groups.append("\n".join(tokens))
+
+    return "\n".join(
+        [
+            SWITCHER_BLOCK_START,
+            (
+                f'<div class="hb-manual-switcher" data-current-region="{html.escape(current_region)}" '
+                f'data-current-lang="{html.escape(current_lang)}" data-model="{html.escape(current_variant.model)}">'
+            ),
+            '  <div class="hb-manual-switcher__inner">',
+            '    <div class="hb-manual-switcher__meta">',
+            '      <span class="hb-manual-switcher__eyebrow">Region / Language</span>',
+            f'      <strong class="hb-manual-switcher__model">{html.escape(current_variant.model)}</strong>',
+            "    </div>",
+            f'    <div class="hb-manual-switcher__regions" aria-label="Available regions">\n{"".join(region_buttons)}\n    </div>',
+            f'    <div class="hb-manual-switcher__languages">\n{"".join(language_groups)}\n    </div>',
+            "  </div>",
+            "</div>",
+            SWITCHER_BLOCK_END,
+        ]
+    )
+
+
+def inject_manual_switcher_into_html(html_path: Path, markup: str | None) -> bool:
+    original = html_path.read_text(encoding="utf-8")
+    stripped = _SWITCHER_BLOCK_RE.sub("", original).strip()
+    body_match = _BODY_TAG_RE.search(stripped)
+    if body_match is None:
+        return False
+
+    body_tag = body_match.group(0)
+    new_body_tag = _body_tag_with_class(body_tag, BODY_SWITCHER_CLASS)
+    updated = stripped[: body_match.start()] + new_body_tag + stripped[body_match.end() :]
+    insert_at = body_match.start() + len(new_body_tag)
+    if markup:
+        updated = updated[:insert_at] + "\n" + markup + "\n" + updated[insert_at:]
+    updated = updated + "\n"
+    if updated == original:
+        return False
+    html_path.write_text(updated, encoding="utf-8")
+    return True
+
+
+def refresh_model_html_switchers(
+    *,
+    model: str | None,
+    docs_build_dir: Path | None = None,
+) -> None:
+    variants = collect_model_html_variants(model=model, docs_build_dir=docs_build_dir)
+    if not variants:
+        return
+
+    for current_variant in variants:
+        for html_path in sorted(current_variant.html_dir.glob("*.html")):
+            markup = build_manual_switcher_markup(
+                current_variant=current_variant,
+                variants=variants,
+                current_html_path=html_path,
+            )
+            inject_manual_switcher_into_html(html_path, markup)
+
+
 def _parse_csv_values(raw: str) -> list[str]:
     items = [item.strip().lower() for item in raw.split(",")]
     return [item for item in items if item]
@@ -484,10 +825,6 @@ def sphinx_build(
         cmd += [
             "-D",
             "html_theme=alabaster",
-            "-D",
-            "html_css_files=[]",
-            "-D",
-            "html_js_files=[]",
         ]
     cmd = _with_rst_epilog(cmd, substitutions)
     run(cmd, cwd=paths.root)
@@ -642,7 +979,11 @@ def prepare_manual_bundle(
     *,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
     source_mode: str = "auto",
+    page_selector: str | None = None,
+    output_root: Path | None = None,
+    write_wrapper_index: bool = True,
 ) -> MaterializedBundle:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
@@ -655,15 +996,19 @@ def prepare_manual_bundle(
         model=model,
         region=region,
         ensure_csv_pages=True,
+        page_selector=page_selector,
+        bundle_dir_override=(output_root / "rst") if output_root else None,
+        write_wrapper_index=write_wrapper_index,
     )
     review_applied = False
     if source_mode in {"auto", "review"}:
-        if review_bundle_exists(docs_dir=paths.docs_dir, model=model, region=region):
+        if review_bundle_exists(docs_dir=paths.docs_dir, model=model, region=region, lang=lang):
             overlay_review_onto_bundle(
                 bundle_dir=bundle.bundle_dir,
                 docs_dir=paths.docs_dir,
                 model=model,
                 region=region,
+                lang=lang,
             )
             review_applied = True
         elif source_mode == "review":
@@ -682,9 +1027,9 @@ def prepare_manual_bundle(
 
 def write_docs_root_index_for_targets(targets: list[BuildTarget]) -> None:
     merged_targets: list[BuildTarget] = []
-    seen: set[tuple[str | None, str | None]] = set()
+    seen: set[tuple[str | None, str | None, str | None]] = set()
     for target in [*discover_existing_bundle_targets(), *targets]:
-        key = (target.model, target.region)
+        key = (target.model, target.region, target.lang)
         if key in seen:
             continue
         seen.add(key)
@@ -699,6 +1044,7 @@ def write_docs_root_index_for_targets(targets: list[BuildTarget]) -> None:
             docs_dir=paths.docs_dir,
             model=target.model,
             region=target.region,
+            lang=target.lang,
         ).relative_to(paths.docs_dir)
         lines = [
             ".. Auto-generated by tools/build_docs.py. Do not edit directly.",
@@ -722,6 +1068,7 @@ def write_docs_root_index_for_targets(targets: list[BuildTarget]) -> None:
             docs_dir=paths.docs_dir,
             model=target.model,
             region=target.region,
+            lang=target.lang,
         ).relative_to(paths.docs_dir)
         lines.append(f"   {bundle_rel.as_posix()}/index")
     lines.append("")
@@ -733,15 +1080,19 @@ def build_target(
     *,
     target_model: str | None,
     target_region: str | None,
+    target_lang: str | None,
     requested_formats: list[str],
     pdf_mode: str,
     build_cfg: dict,
     tools_cfg: dict,
     no_open: bool,
     source_mode: str,
+    page_selector: str | None = None,
+    output_root: Path | None = None,
+    write_wrapper_index: bool = True,
 ) -> None:
-    build_langs = list(build_cfg.get("languages", ["en"]))
-    primary_lang = str(build_langs[0]) if build_langs else "en"
+    build_langs = resolve_cfg_languages({"build": build_cfg})
+    primary_lang = str(target_lang or (build_langs[0] if build_langs else "en"))
     ensure_target_identity(
         cfg,
         model=target_model,
@@ -753,7 +1104,11 @@ def build_target(
         cfg,
         model=target_model,
         region=target_region,
+        lang=target_lang,
         source_mode=source_mode,
+        page_selector=page_selector,
+        output_root=output_root,
+        write_wrapper_index=write_wrapper_index,
     )
 
     main_tex = render_build_template(
@@ -782,7 +1137,9 @@ def build_target(
     open_word = bool(build_cfg.get("open_word", False)) and (not no_open)
     open_pdf = bool(build_cfg.get("open_pdf", False)) and (not no_open)
 
-    build_root = build_root_for_target(target_model, target_region)
+    build_root = build_root_for_target(target_model, target_region, target_lang)
+    if output_root is not None:
+        build_root = output_root
     html_out_dir = build_root / "html"
     word_out_dir = build_root / "word"
     pdf_out_dir = build_root / "pdf"
@@ -891,6 +1248,18 @@ def build_target(
         if open_pdf and pdf_path.exists():
             open_file(pdf_path)
 
+    if html_built and (target_model or "").strip() and (target_region or "").strip():
+        write_html_manual_meta(
+            html_out_dir,
+            docs_build_dir=paths.docs_build_dir,
+            model=target_model,
+            region=target_region,
+            lang=primary_lang,
+            title=bundle.title,
+            lang_in_output_path=bool((target_lang or "").strip()),
+        )
+        refresh_model_html_switchers(model=target_model, docs_build_dir=paths.docs_build_dir)
+
     if "html" in requested_formats:
         html_index = html_out_dir / "index.html"
         print(f"[build] Done. HTML: {html_index}")
@@ -909,6 +1278,9 @@ def main() -> None:
     ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")
     ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
+    ap.add_argument("--page-selector", default=None, help="Only materialize one exact page selector")
+    ap.add_argument("--output-root", default=None, help="Override target output root for this build")
+    ap.add_argument("--skip-root-index", action="store_true", help="Do not rewrite docs/index.rst")
     ap.add_argument(
         "--source",
         choices=sorted(VALID_SOURCE_MODES),
@@ -926,6 +1298,11 @@ def main() -> None:
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     tools_cfg_raw = cfg.get("tools", {})
     tools_cfg = tools_cfg_raw if isinstance(tools_cfg_raw, dict) else {}
+    output_root = None
+    if isinstance(args.output_root, str) and args.output_root.strip():
+        output_root = Path(args.output_root.strip())
+        if not output_root.is_absolute():
+            output_root = paths.root / output_root
 
     print("[build] validating config...")
     validate_loaded_config(cfg)
@@ -948,28 +1325,33 @@ def main() -> None:
         raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
 
     if args.clean:
-        clean_build_targets(targets)
+        clean_build_targets(targets, preview_name=args.page_selector if output_root else None)
 
     requested_formats = resolve_requested_formats(cfg, args.formats)
     pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
     for target in targets:
         print(
             "[build] target: "
-            f"model='{target.model or ''}', region='{target.region or ''}'"
+            f"model='{target.model or ''}', region='{target.region or ''}', lang='{target.lang or ''}'"
         )
         build_target(
             cfg,
             target_model=target.model,
             target_region=target.region,
+            target_lang=target.lang,
             requested_formats=requested_formats if not args.prepare_only else [],
             pdf_mode=pdf_mode,
             build_cfg=build_cfg,
             tools_cfg=tools_cfg,
             no_open=args.no_open,
             source_mode=args.source,
+            page_selector=args.page_selector,
+            output_root=output_root,
+            write_wrapper_index=not args.skip_root_index,
         )
 
-    write_docs_root_index_for_targets(targets)
+    if not args.skip_root_index:
+        write_docs_root_index_for_targets(targets)
 
 
 if __name__ == "__main__":

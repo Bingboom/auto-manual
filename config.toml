@@ -1,0 +1,5 @@
+# Project-local Codex defaults for a multi-step documentation toolchain.
+# This repo has many cross-file workflow rules and benefits from deeper reasoning by default.
+
+model = "gpt-5.4"
+model_reasoning_effort = "xhigh"

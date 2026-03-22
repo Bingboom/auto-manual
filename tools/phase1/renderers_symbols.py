@@ -3,67 +3,428 @@
 
 from __future__ import annotations
 
-from .renderers_common import (
-    _enabled,
-    _scope_allows,
-    apply_vars,
-    latex_arg_escape,
-    raw_latex_block,
-    render_latex_cmd,
-    rst_escape,
-    spec_latex_cell,
-)
+from dataclasses import dataclass
 
-# Template placeholders (symbols page)
-PH_SYMBOLS_CONTENT_LATEX = "{{ symbols_content_latex }}"
+from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
+
+PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
+PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
 
 
-def _split_symbols_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
-    raw = rst_escape(text)
-    if "||" not in raw:
-        raise ValueError(
-            f"symbols row block_id='{block_id or '?'}' line {line or '?'} "
-            "must use 'left || right' format"
+@dataclass(frozen=True)
+class SymbolAsset:
+    path: str
+    alt: str
+    width: str = "40px"
+
+
+SYMBOL_ASSETS: dict[str, SymbolAsset] = {
+    "warning_triangle": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/warning_triangle.png",
+        alt="Warning symbol.",
+    ),
+    "read_manual": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/read_manual_operator.png",
+        alt="Read manual symbol.",
+    ),
+    "electric_shock": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/electric_shock.png",
+        alt="Electric shock symbol.",
+    ),
+    "battery_charging": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/battery_charging.png",
+        alt="Battery charging symbol.",
+    ),
+    "explosive_material": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/explosive_material.png",
+        alt="Explosive material symbol.",
+    ),
+    "heavy_object": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/heavy_object.png",
+        alt="Heavy object symbol.",
+    ),
+    "do_not_dismantle": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        alt="Do not dismantle symbol.",
+    ),
+    "no_open_flame": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/no_open_flame.png",
+        alt="No open flame symbol.",
+    ),
+    "keep_away_from_children": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        alt="Keep away from children symbol.",
+    ),
+    "li_ion": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/li_ion.png",
+        alt="Li-ion battery symbol.",
+    ),
+    "weee": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/weee.png",
+        alt="WEEE disposal symbol.",
+    ),
+}
+
+
+LANG_COPY: dict[str, dict[str, object]] = {
+    "en": {
+        "danger_title": "DANGER",
+        "danger_bullets": [
+            "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).",
+            "This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
+        ],
+        "maintenance_title": "USER MAINTENANCE INSTRUCTIONS",
+        "maintenance_paragraph": (
+            "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation "
+            "is expected. As the number of charge and discharge cycles increases and storage time extends, this "
+            "degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging "
+            "of battery cells."
+        ),
+        "page_title": "MEANING OF SYMBOLS",
+        "header_symbol": "Symbol",
+        "header_meaning": "Meaning",
+        "signal_rows": [
+            {
+                "mode": "banner",
+                "image": "templates/word_template/common_assets/symbols/warning_bar.png",
+                "alt": "WARNING banner placeholder.",
+                "width": "140px",
+                "meaning": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+            },
+            {
+                "mode": "banner",
+                "image": "templates/word_template/common_assets/symbols/caution_bar.png",
+                "alt": "CAUTION banner placeholder.",
+                "width": "140px",
+                "meaning": "Hazardous practices that may result in personal injury and/or property damage.",
+            },
+            {
+                "mode": "banner",
+                "image": "templates/word_template/common_assets/symbols/note_bar.png",
+                "alt": "NOTE banner placeholder.",
+                "width": "140px",
+                "meaning": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+            },
+            {
+                "mode": "banner",
+                "image": "templates/word_template/common_assets/symbols/tip_bar.png",
+                "alt": "TIP banner placeholder.",
+                "width": "140px",
+                "meaning": "Supplements the important information or operation tips in the text.",
+            },
+        ],
+    },
+    "fr": {
+        "danger_title": "AVERTISSEMENT",
+        "danger_bullets": [
+            "Cet appareil est destiné à un usage intérieur uniquement. Lors d'une utilisation en extérieur, placez-le dans un environnement similaire à un intérieur, par exemple une maison, un camping-car, une tente ou un chalet.",
+            "Cet appareil n'est ni étanche ni résistant à la poussière. Tenez-le éloigné de la pluie et des environnements humides pendant son utilisation.",
+        ],
+        "maintenance_title": "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR",
+        "maintenance_paragraph": (
+            "Au cours du cycle de vie des produits de stockage d'énergie, un certain degré de dégradation de la "
+            "capacité et de l'énergie est attendu. À mesure que le nombre de cycles de charge et de décharge "
+            "augmente et que la durée de stockage s'allonge, cette dégradation s'intensifie progressivement. "
+            "Il s'agit d'un phénomène normal conforme au vieillissement naturel des cellules de batterie."
+        ),
+        "page_title": "SIGNIFICATION DES SYMBOLES",
+        "header_symbol": "Symbole",
+        "header_meaning": "Signification",
+        "signal_rows": [
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Symbole d'avertissement.",
+                "label": "AVERTISSEMENT",
+                "meaning": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Symbole de mise en garde.",
+                "label": "ATTENTION",
+                "meaning": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Symbole de remarque.",
+                "label": "REMARQUE",
+                "meaning": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une dégradation des performances ou des résultats inattendus.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Symbole de conseil.",
+                "label": "CONSEILS",
+                "meaning": "Complète les informations importantes ou les conseils d'utilisation du texte.",
+            },
+        ],
+    },
+    "es": {
+        "danger_title": "PELIGRO",
+        "danger_bullets": [
+            "Este dispositivo está diseñado únicamente para uso en interiores. Cuando lo utilice en exteriores, colóquelo en un entorno similar al interior, por ejemplo en el hogar, una autocaravana, una tienda de campaña o una cabaña.",
+            "Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.",
+        ],
+        "maintenance_title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
+        "maintenance_paragraph": (
+            "Durante el ciclo de vida de los productos de almacenamiento de energía, se producirá cierto grado de "
+            "degradación de capacidad y energía. A medida que aumenta el número de ciclos de carga y descarga y "
+            "se prolonga el tiempo de almacenamiento, esta degradación se intensificará gradualmente, lo cual es "
+            "un fenómeno normal acorde con el envejecimiento natural de las celdas de la batería."
+        ),
+        "page_title": "SIGNIFICADO DE LOS SÍMBOLOS",
+        "header_symbol": "Símbolo",
+        "header_meaning": "Significado",
+        "signal_rows": [
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Símbolo de advertencia.",
+                "label": "ADVERTENCIA",
+                "meaning": "Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Símbolo de precaución.",
+                "label": "PRECAUCIÓN",
+                "meaning": "Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Símbolo de nota.",
+                "label": "NOTA",
+                "meaning": "Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Símbolo de consejo.",
+                "label": "CONSEJOS",
+                "meaning": "Complementa la información importante o los consejos de operación del texto.",
+            },
+        ],
+    },
+}
+
+
+def _sort_key(row: dict[str, str]) -> float:
+    try:
+        return float(row.get("order") or "0")
+    except ValueError:
+        return 0.0
+
+
+def _rst_heading(title: str) -> list[str]:
+    title = rst_escape(title)
+    return [title, "-" * len(title)]
+
+
+def _append_text_cell(lines: list[str], prefix: str, text: str) -> None:
+    raw_lines = [rst_escape(part) for part in (text or "").splitlines()]
+    if not raw_lines:
+        lines.append(prefix.rstrip())
+        return
+    lines.append(prefix + raw_lines[0])
+    continuation = " " * len(prefix)
+    for line in raw_lines[1:]:
+        lines.append(continuation + line)
+
+
+def _append_image_cell(
+    lines: list[str],
+    prefix: str,
+    *,
+    image_path: str,
+    alt: str,
+    width: str,
+    label: str | None = None,
+) -> None:
+    lines.append(prefix + f".. image:: {image_path}")
+    lines.append(f"          :alt: {rst_escape(alt)}")
+    lines.append(f"          :width: {width}")
+    if label:
+        lines.append("")
+        lines.append(f"       **{rst_escape(label)}**")
+
+
+def _signal_section(lang: str) -> str:
+    copy = LANG_COPY.get(lang)
+    if copy is None:
+        raise ValueError(f"unsupported symbols language: {lang}")
+
+    danger_title = str(copy["danger_title"])
+    maintenance_title = str(copy["maintenance_title"])
+    maintenance_paragraph = str(copy["maintenance_paragraph"])
+    page_title = str(copy["page_title"])
+    header_symbol = str(copy["header_symbol"])
+    header_meaning = str(copy["header_meaning"])
+    danger_bullets = [str(item) for item in copy["danger_bullets"]]
+    signal_rows = list(copy["signal_rows"])
+
+    lines: list[str] = []
+    lines.extend(_rst_heading(danger_title))
+    lines.append("")
+    for bullet in danger_bullets:
+        lines.append(f"- {rst_escape(bullet)}")
+    lines.append("")
+    lines.extend(_rst_heading(maintenance_title))
+    lines.append("")
+    lines.append(rst_escape(maintenance_paragraph))
+    lines.append("")
+    lines.extend(
+        [
+            ".. raw:: latex",
+            "",
+            f"   \\section{{{rst_escape(page_title)}}}",
+            "",
+            ".. raw:: html",
+            "",
+            f"   <h1>{rst_escape(page_title)}</h1>",
+            "",
+            ".. list-table::",
+            "   :header-rows: 1",
+            "   :widths: 22 78",
+            "",
+            f"   * - {header_symbol}",
+            f"     - {header_meaning}",
+        ]
+    )
+
+    for row in signal_rows:
+        mode = str(row["mode"]).strip()
+        _append_image_cell(
+            lines,
+            "   * - ",
+            image_path=str(row["image"]),
+            alt=str(row["alt"]),
+            width=str(row.get("width", "40px")),
+            label=str(row["label"]) if mode == "icon_label" else None,
         )
-    left, right = raw.split("||", 1)
-    left = left.strip()
-    right = right.strip()
-    if not left or not right:
-        raise ValueError(
-            f"symbols row block_id='{block_id or '?'}' line {line or '?'} "
-            "has empty left or right cell"
+        _append_text_cell(lines, "     - ", str(row["meaning"]))
+
+    return "\n".join(lines) + "\n"
+
+
+def _collect_icon_rows(
+    blocks: list[dict[str, str]],
+    *,
+    sku_id: str,
+    lang: str,
+    vars_map: dict[str, str],
+) -> dict[str, list[dict[str, str]]]:
+    lang_col = f"text_{lang}"
+    if not blocks:
+        raise ValueError(f"symbols page has no blocks for sku={sku_id} lang={lang}")
+    if lang_col not in blocks[0]:
+        raise ValueError(f"content csv missing language column: {lang_col}")
+
+    groups: dict[str, list[dict[str, str]]] = {"left": [], "right": []}
+    for block in blocks:
+        if not _enabled(block.get("enabled", "1")):
+            continue
+        if not _scope_allows(block.get("sku_scope", "ALL"), sku_id):
+            continue
+
+        block_type = (block.get("block_type") or "").strip()
+        if block_type != "table_row":
+            raise ValueError(
+                f"symbols page only supports block_type='table_row', got '{block_type or '?'}'"
+            )
+
+        text = apply_vars(block.get(lang_col, "") or "", vars_map)
+        if not text.strip():
+            raise ValueError(
+                f"symbols row missing {lang_col} text at line {(block.get('__line__') or '?').strip()}"
+            )
+
+        group = (block.get("column_group") or "").strip().lower()
+        if group not in groups:
+            raise ValueError(
+                f"symbols row has invalid column_group='{group or '?'}' at line {(block.get('__line__') or '?').strip()}"
+            )
+
+        symbol_key = (block.get("symbol_key") or "").strip()
+        if not symbol_key:
+            raise ValueError(
+                f"symbols row missing symbol_key at line {(block.get('__line__') or '?').strip()}"
+            )
+        if symbol_key not in SYMBOL_ASSETS:
+            raise ValueError(f"unknown symbols symbol_key='{symbol_key}'")
+
+        groups[group].append(
+            {
+                "symbol_key": symbol_key,
+                "text": rst_escape(text),
+                "order": (block.get("order") or "").strip(),
+            }
         )
-    return left, right
+
+    for group, rows in groups.items():
+        rows.sort(key=_sort_key)
+        if not rows:
+            raise ValueError(f"symbols page has no '{group}' rows sku={sku_id} lang={lang}")
+    return groups
 
 
-def _build_symbols_table_lines(
-    rows: list[tuple[str, str]], left_ratio: str, with_header: bool = True
-) -> list[str]:
-    lines: list[str] = [
-        r"\begin{HBSharedDataTable}{"
-        + left_ratio
-        + r"}{\csname HBcomp_spec_table_tabcolsep\endcsname}",
-        r"\noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{"
-        + left_ratio
-        + r"\linewidth}|>{\raggedright\arraybackslash}X@{}}",
+def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
+    copy = LANG_COPY.get(lang)
+    if copy is None:
+        raise ValueError(f"unsupported symbols language: {lang}")
+
+    header_symbol = str(copy["header_symbol"])
+    header_meaning = str(copy["header_meaning"])
+    left_rows = groups["left"]
+    right_rows = groups["right"]
+    max_rows = max(len(left_rows), len(right_rows))
+
+    lines = [
+        ".. list-table::",
+        "   :header-rows: 1",
+        "   :widths: 12 38 12 38",
+        "",
+        f"   * - {header_symbol}",
+        f"     - {header_meaning}",
+        f"     - {header_symbol}",
+        f"     - {header_meaning}",
     ]
-    if with_header:
-        lines.append(r"\HBTypeSpecLabel{\textbf{Symbol}} & \HBTypeSpecValue{\textbf{Meaning}} \\")
-        lines.append(r"\hline")
 
-    row_count = len(rows)
-    for left, right in rows:
-        left_txt = spec_latex_cell(left)
-        right_txt = spec_latex_cell(right)
-        lines.append(rf"\HBTypeSpecLabel{{{left_txt}}} & \HBTypeSpecValue{{{right_txt}}} \\")
-        row_count -= 1
-        if row_count > 0:
-            lines.append(r"\hline")
-    lines += [
-        r"\end{tabularx}",
-        r"\end{HBSharedDataTable}",
-    ]
-    return lines
+    for idx in range(max_rows):
+        left = left_rows[idx] if idx < len(left_rows) else None
+        right = right_rows[idx] if idx < len(right_rows) else None
+
+        if left is not None:
+            left_asset = SYMBOL_ASSETS[left["symbol_key"]]
+            _append_image_cell(
+                lines,
+                "   * - ",
+                image_path=left_asset.path,
+                alt=left_asset.alt,
+                width=left_asset.width,
+            )
+            _append_text_cell(lines, "     - ", left["text"])
+        else:
+            lines.append("   * -")
+            lines.append("     -")
+
+        if right is not None:
+            right_asset = SYMBOL_ASSETS[right["symbol_key"]]
+            _append_image_cell(
+                lines,
+                "     - ",
+                image_path=right_asset.path,
+                alt=right_asset.alt,
+                width=right_asset.width,
+            )
+            _append_text_cell(lines, "     - ", right["text"])
+        else:
+            lines.append("     -")
+            lines.append("     -")
+
+    return "\n".join(lines) + "\n"
 
 
 def render_symbols_page(
@@ -73,108 +434,7 @@ def render_symbols_page(
     lang: str,
     vars_map: dict[str, str],
 ) -> str:
-    lang_col = f"text_{lang}"
-    if not blocks:
-        raise ValueError(f"symbols page has no blocks for sku={sku_id} lang={lang}")
-    if lang_col not in blocks[0]:
-        raise ValueError(f"content csv missing language column: {lang_col}")
-
-    use: list[dict[str, str]] = []
-    for b in blocks:
-        if not _enabled(b.get("enabled", "1")):
-            continue
-        if not _scope_allows(b.get("sku_scope", "ALL"), sku_id):
-            continue
-        txt = apply_vars(b.get(lang_col, "") or "", vars_map)
-        if txt.strip() == "":
-            continue
-        use.append(
-            {
-                "block_type": (b.get("block_type") or "").strip(),
-                "order": (b.get("order") or "").strip(),
-                "text": txt,
-                "block_id": (b.get("block_id") or "").strip(),
-                "line": (b.get("__line__") or "").strip(),
-            }
-        )
-
-    if not use:
-        raise ValueError(f"symbols page has no enabled blocks for sku={sku_id} lang={lang}")
-
-    def sort_key(r: dict[str, str]) -> float:
-        try:
-            return float(r.get("order") or "0")
-        except ValueError:
-            return 0.0
-
-    def pick(block_type: str) -> str:
-        for r in sorted(use, key=sort_key):
-            if r["block_type"] == block_type:
-                return r["text"]
-        raise ValueError(f"Missing required block_type='{block_type}' sku={sku_id} lang={lang}")
-
-    def rows_of(block_type: str) -> list[tuple[str, str]]:
-        out: list[tuple[str, str]] = []
-        for r in sorted(use, key=sort_key):
-            if r["block_type"] != block_type:
-                continue
-            out.append(
-                _split_symbols_row_text(
-                    r["text"], r.get("block_id") or "?", r.get("line") or "?"
-                )
-            )
-        if not out:
-            raise ValueError(f"symbols page has no '{block_type}' rows sku={sku_id} lang={lang}")
-        return out
-
-    danger_title = rst_escape(pick("danger_title"))
-    danger_line = pick("danger_line")
-    danger_note = pick("danger_note")
-    maintenance_title = pick("maintenance_title")
-    maintenance_paragraph = pick("maintenance_paragraph")
-    symbols_title = pick("symbols_title")
-
-    main_rows = rows_of("main_row")
-    left_rows = rows_of("left_row")
-    right_rows = rows_of("right_row")
-
-    danger_right_parts = [x for x in [danger_line, danger_note] if x]
-    danger_right = r"\n".join(danger_right_parts)
-
-    danger_block = raw_latex_block(
-        _build_symbols_table_lines(
-            [(f"! {danger_title}", danger_right)],
-            left_ratio="0.22",
-            with_header=False,
-        )
-    )
-
-    maintenance_title_block = render_latex_cmd("safetysubbar", maintenance_title)
-    maintenance_paragraph_block = render_latex_cmd("safetylead", maintenance_paragraph)
-    symbols_title_block = raw_latex_block([rf"\section{{{latex_arg_escape(symbols_title)}}}"])
-    main_table_block = raw_latex_block(_build_symbols_table_lines(main_rows, "0.24"))
-
-    side_by_side_block = raw_latex_block(
-        [
-            r"\vspace*{1.0mm}",
-            r"\noindent",
-            r"\begin{minipage}[t]{0.495\textwidth}",
-            *_build_symbols_table_lines(left_rows, "0.27"),
-            r"\end{minipage}\hfill",
-            r"\begin{minipage}[t]{0.495\textwidth}",
-            *_build_symbols_table_lines(right_rows, "0.27"),
-            r"\end{minipage}",
-        ]
-    )
-
-    content_latex = (
-        danger_block
-        + maintenance_title_block
-        + maintenance_paragraph_block
-        + symbols_title_block
-        + main_table_block
-        + side_by_side_block
-    )
-
-    return template.replace(PH_SYMBOLS_CONTENT_LATEX, content_latex)
-
+    groups = _collect_icon_rows(blocks, sku_id=sku_id, lang=lang, vars_map=vars_map)
+    rendered = template.replace(PH_SYMBOLS_SIGNAL_SECTION_RST, _signal_section(lang))
+    rendered = rendered.replace(PH_SYMBOLS_ICON_TABLE_RST, _icon_table(lang, groups))
+    return rendered

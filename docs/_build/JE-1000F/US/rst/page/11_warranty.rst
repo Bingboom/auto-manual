@@ -31,7 +31,7 @@ Warranty Period
 
        **Standard Warranty**
 
-       The standard warranty period for Jackery ポータブル電源 1000 New v2 is 36 months.
+       The standard warranty period for Jackery Explorer 1000 is 36 months.
        In each case, the warranty period is measured starting on the date of purchase
        by the original consumer purchaser.
        The sales receipt from the first consumer purchaser, or other reasonable documentary proof,

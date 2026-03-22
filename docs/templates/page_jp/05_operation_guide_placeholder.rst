@@ -181,9 +181,9 @@ Jackeryアプリで画面表示モードを設定することもできます。
    * - |MAIN_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL|
      - 両方を3秒間長押し
      - 省エネモードのオン/ オフを切り替えます。
-   * - |MAIN_POWER_BUTTON_LABEL| + |DC_USB_POWER_BUTTON_LABEL|
+   * - {{snippet:wireless_reset_buttons}}
      - 両方を3秒間長押し
      - Wi-Fiのリセット
-   * - |AC_POWER_BUTTON_LABEL| + |DC_USB_POWER_BUTTON_LABEL|
+   * - {{snippet:wireless_toggle_buttons}}
      - 両方を1秒間長押し
      - Wi-Fi＆Bluetooth オン/オフ

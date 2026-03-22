@@ -1,6 +1,6 @@
 # Tests Guide
 
-Updated: 2026-03-12
+Updated: 2026-03-22
 
 This file describes the current test entrypoints and recommended smoke checks.
 
@@ -21,6 +21,9 @@ Current test coverage includes:
 - sync-review
 - diff-report
 - page contracts
+- stale identity scan
+- release manifest
+- preview / fast
 - Word bundle logic
 
 ## 2. Baseline Smoke Checks
@@ -37,12 +40,13 @@ python build.py word --config config.yaml --model JE-1000F --region US
 ```powershell
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 ### 2.3 EU family
 
 ```powershell
-python build.py check --config config.eu.yaml --model JE-3600A --region EU
+python build.py check --config config.eu.yaml --model JE-1000F --region EU
 ```
 
 ## 3. Review-Specific Smoke Checks
@@ -62,7 +66,14 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 Export review revision report:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
+```
+
+Preview one page and prepare a fast runtime draft:
+
+```powershell
+python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.yaml --model JE-1000F --region US
 ```
 
 ## 4. Expected Output Examples
@@ -75,8 +86,13 @@ python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/
   - [`docs/_review/JE-1000F/JP/`](../../docs/_review/JE-1000F/JP)
 - Diff report:
   - [`reports/version_tracking/JE-1000F/JP/`](../../reports/version_tracking/JE-1000F/JP)
+- Release manifest:
+  - [`reports/releases/JE-1000F/JP/`](../../reports/releases/JE-1000F/JP)
+- Preview bundle:
+  - [`docs/_build/JE-1000F/US/preview/03_product_overview_placeholder/rst/`](../../docs/_build/JE-1000F/US/preview/03_product_overview_placeholder/rst)
 
 ## 5. Notes
 
 - Historical test reports under [`code-as-doc/tests/`](../tests) are archive material, not the current source of truth.
 - Prefer [`build.py`](../../build.py) for smoke checks instead of calling old low-level scripts directly.
+- CI baseline lives in [`.github/workflows/manual-validation.yml`](../../.github/workflows/manual-validation.yml) and currently runs `unit`, `doctor-en`, `check-en`, `check-jp`, and `check-eu`.

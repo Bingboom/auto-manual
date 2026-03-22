@@ -60,7 +60,7 @@ class TestSyncReview(unittest.TestCase):
             cfg = {
                 "build": {"languages": ["en"]},
                 "pages": [
-                    {"type": "rst_include", "lang": "en", "file": "templates/page_en/00_preface.rst"},
+                    {"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"},
                     {"type": "csv_page", "source": "phase1", "page": "safety", "langs": ["en"], "include_dir": "generated/{model}"},
                 ],
             }

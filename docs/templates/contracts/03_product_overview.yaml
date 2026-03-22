@@ -1,6 +1,8 @@
 page_id: 03_product_overview
 source_files:
-  - templates/page_en/03_product_overview_placeholder.rst
+  - templates/page_us-en/03_product_overview_placeholder.rst
+  - templates/page_us-es/03_product_overview_placeholder.rst
+  - templates/page_us-fr/03_product_overview_placeholder.rst
   - templates/page_jp/03_product_overview_placeholder.rst
 required_placeholders:
   default:
@@ -23,5 +25,11 @@ required_placeholders:
     - SIDE_DC_INPUT_PV_SPEC
     - SIDE_DC_INPUT_CAR_SPEC
   en:
+    - FRONT_TOTAL_OUTPUT_LABEL
+    - FRONT_TOTAL_OUTPUT_SPEC
+  es:
+    - FRONT_TOTAL_OUTPUT_LABEL
+    - FRONT_TOTAL_OUTPUT_SPEC
+  fr:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC

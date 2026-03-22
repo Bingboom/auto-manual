@@ -39,7 +39,7 @@ LCD DISPLAY
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * - 5
      - Charging Plan
-     - Customizes the charging time of Jackery ポータブル電源 1000 New v2. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.
+     - Customizes the charging time of Jackery Explorer 1000. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * -

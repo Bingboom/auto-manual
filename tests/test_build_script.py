@@ -68,6 +68,35 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--source", cmd)
         self.assertIn("review", cmd)
 
+    def test_build_docs_command_should_build_preview_into_isolated_root(self) -> None:
+        args = build_cli.parse_args(
+            ["preview", "--config", "config.yaml", "--model", "JE-1000F", "--region", "US", "--page", "05_operation_guide"]
+        )
+
+        cmd = build_cli.build_docs_command(args)
+
+        self.assertIn("--prepare-only", cmd)
+        self.assertIn("--page-selector", cmd)
+        self.assertIn("05_operation_guide", cmd)
+        self.assertIn("--output-root", cmd)
+        self.assertIn("--skip-root-index", cmd)
+
+    def test_build_docs_command_should_require_explicit_preview_scope(self) -> None:
+        args = build_cli.parse_args(["preview", "--model", "JE-1000F", "--region", "US"])
+
+        with self.assertRaisesRegex(RuntimeError, "preview requires --page"):
+            build_cli.build_docs_command(args)
+
+    def test_build_docs_command_should_force_runtime_prepare_only_for_fast(self) -> None:
+        args = build_cli.parse_args(["fast", "--source", "review", "--model", "JE-1000F", "--region", "US"])
+
+        cmd = build_cli.build_docs_command(args)
+
+        self.assertIn("--prepare-only", cmd)
+        self.assertIn("--source", cmd)
+        self.assertIn("runtime", cmd)
+        self.assertNotIn("--clean", cmd)
+
     def test_clean_targets_for_config_should_honor_custom_docs_dir(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -103,10 +132,10 @@ class TestBuildScript(unittest.TestCase):
         args = build_cli.parse_args(["diff-report"])
 
         self.assertEqual("diff-report", args.action)
-        self.assertEqual(build_cli.REVIEW_TRACKED_ROOT, args.tracked_root)
+        self.assertIsNone(args.tracked_root)
         self.assertEqual("HEAD~1", args.from_ref)
         self.assertEqual("HEAD", args.to_ref)
-        self.assertEqual(build_cli.REVIEW_REPORT_DIR, args.report_dir)
+        self.assertIsNone(args.report_dir)
         self.assertFalse(args.ignore_initial_adds)
 
     def test_parse_args_should_support_doctor_action(self) -> None:
@@ -116,21 +145,50 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("config.ja.yaml", args.config)
 
     def test_run_diff_report_should_forward_config_to_tool(self) -> None:
-        args = build_cli.parse_args(["diff-report", "--config", "config.ja.yaml"])
+        args = build_cli.parse_args(["diff-report", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
         seen: list[list[str]] = []
         original = build_cli.run_checked
+        original_targets = build_cli._resolve_diff_report_targets
         try:
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "JP")]  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli.run_diff_report(args)
         finally:
+            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
             build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertIn("--config", seen[0])
         self.assertIn(str(build_cli.ROOT / "config.ja.yaml"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[0])
 
     def test_run_diff_report_should_forward_ignore_initial_adds_flag(self) -> None:
-        args = build_cli.parse_args(["diff-report", "--ignore-initial-adds"])
+        args = build_cli.parse_args(["diff-report", "--ignore-initial-adds", "--model", "JE-1000F", "--region", "US"])
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        original_targets = build_cli._resolve_diff_report_targets
+        try:
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_diff_report(args)
+        finally:
+            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(1, len(seen))
+        self.assertIn("--ignore-initial-adds", seen[0])
+
+    def test_run_diff_report_should_derive_report_dir_from_explicit_tracked_root(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "diff-report",
+                "--config",
+                "config.yaml",
+                "--tracked-root",
+                "docs/_review/JE-1000F/EU",
+            ]
+        )
         seen: list[list[str]] = []
         original = build_cli.run_checked
         try:
@@ -140,12 +198,33 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
-        self.assertIn("--ignore-initial-adds", seen[0])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "EU"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "EU"), seen[0])
+
+    def test_run_diff_report_should_run_per_target_when_defaults_are_inferred(self) -> None:
+        args = build_cli.parse_args(["diff-report", "--config", "config.yaml"])
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        original_targets = build_cli._resolve_diff_report_targets
+        try:
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US"), ("JE-1000F", "EU")]  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_diff_report(args)
+        finally:
+            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(2, len(seen))
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "EU"), seen[1])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "EU"), seen[1])
 
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
+        release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
 
         self.assertEqual("review", review_args.action)
@@ -154,6 +233,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("publish", publish_args.action)
         self.assertEqual("JE-1000F", publish_args.model)
         self.assertEqual("JP", publish_args.region)
+        self.assertEqual("release-manifest", release_args.action)
         self.assertEqual("sync-review", sync_args.action)
         self.assertEqual("generated", sync_args.sync_scope)
         self.assertEqual(["03_product_overview_placeholder.rst"], sync_args.page_file)
@@ -179,6 +259,20 @@ class TestBuildScript(unittest.TestCase):
         cmd = build_cli.review_bundle_command(args)
 
         self.assertIn("--refresh-existing", cmd)
+
+    def test_run_validate_should_include_spec_master_validation(self) -> None:
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        try:
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_validate(build_cli.ROOT / "config.yaml")
+        finally:
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(3, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
 
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(
@@ -222,7 +316,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_validate = original_validate  # type: ignore[assignment]
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
 
-        self.assertEqual(4, len(seen))
+        self.assertEqual(5, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
         self.assertIn("--source", seen[0])
         self.assertIn("review", seen[0])
@@ -239,6 +333,45 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("word", seen[3])
         self.assertIn("--source", seen[3])
         self.assertIn("review", seen[3])
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[4][1])
+        self.assertIn("--model", seen[4])
+        self.assertIn("JE-1000F", seen[4])
+        self.assertIn("--region", seen[4])
+        self.assertIn("JP", seen[4])
+
+    def test_release_manifest_command_should_require_explicit_target(self) -> None:
+        args = build_cli.parse_args(["release-manifest"])
+
+        with self.assertRaisesRegex(RuntimeError, "release-manifest requires --model and --region"):
+            build_cli.release_manifest_command(args)
+
+    def test_publish_should_scope_review_and_report_dirs_by_lang_when_enabled(self) -> None:
+        args = build_cli.parse_args(["publish", "--config", "config.us-es.yaml", "--model", "JE-1000F", "--region", "US"])
+        seen: list[list[str]] = []
+        original_validate = build_cli.run_validate
+        original_run_checked = build_cli.run_checked
+        original_load_config = build_cli.load_config
+        try:
+            build_cli.run_validate = lambda config_path: None  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.load_config = lambda config_path: {  # type: ignore[assignment]
+                "build": {
+                    "languages": ["es"],
+                    "include_lang_in_output_path": True,
+                }
+            }
+            build_cli.run_publish(args)
+        finally:
+            build_cli.run_validate = original_validate  # type: ignore[assignment]
+            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli.load_config = original_load_config  # type: ignore[assignment]
+
+        self.assertEqual(5, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[2][1])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[2])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[2])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[4][1])
 
     def test_collect_doctor_findings_should_require_word_com_for_windows_bundle(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])

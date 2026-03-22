@@ -30,6 +30,7 @@ class ReviewBundle:
     generated_paths: tuple[Path, ...]
     model: str | None
     region: str | None
+    lang: str | None
     reused_existing: bool = False
 
 
@@ -105,7 +106,24 @@ def _collect_existing_rst_paths(review_dir: Path, relative_dir: str) -> tuple[Pa
     return tuple(sorted(path for path in root_dir.rglob("*.rst") if path.is_file()))
 
 
-def _load_existing_review_bundle(review_dir: Path, *, model: str | None, region: str | None) -> ReviewBundle:
+def _load_runtime_bundle_manifest(runtime_bundle_dir: Path) -> dict[str, object]:
+    manifest_path = runtime_bundle_dir / "bundle_manifest.json"
+    if not manifest_path.exists():
+        return {}
+    try:
+        raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return raw if isinstance(raw, dict) else {}
+
+
+def _load_existing_review_bundle(
+    review_dir: Path,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> ReviewBundle:
     return ReviewBundle(
         review_dir=review_dir,
         index_path=review_dir / "index.rst",
@@ -114,6 +132,7 @@ def _load_existing_review_bundle(review_dir: Path, *, model: str | None, region:
         generated_paths=_collect_existing_rst_paths(review_dir, "generated"),
         model=model,
         region=region,
+        lang=lang,
         reused_existing=True,
     )
 
@@ -123,9 +142,10 @@ def materialize_review_bundle(
     docs_dir: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
     refresh_existing: bool = False,
 ) -> ReviewBundle:
-    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     if review_dir.exists() and not refresh_existing:
         index_path = review_dir / "index.rst"
         page_dir = review_dir / "page"
@@ -134,9 +154,9 @@ def materialize_review_bundle(
                 "Review bundle exists but is incomplete. "
                 f"Re-run with --refresh-existing: {review_dir}"
             )
-        return _load_existing_review_bundle(review_dir, model=model, region=region)
+        return _load_existing_review_bundle(review_dir, model=model, region=region, lang=lang)
 
-    runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     index_src = runtime_bundle_dir / "index.rst"
     page_src = runtime_bundle_dir / "page"
     generated_src = runtime_bundle_dir / "generated"
@@ -177,6 +197,7 @@ def materialize_review_bundle(
         "git_sha": _read_git_sha(),
         "model": model,
         "region": region,
+        "lang": lang,
         "runtime_bundle_dir": _repo_relative(runtime_bundle_dir),
         "review_dir": _repo_relative(review_dir),
         "index_path": _repo_relative(index_dst),
@@ -184,6 +205,12 @@ def materialize_review_bundle(
         "generated_files": [_repo_relative(path) for path in generated_paths],
         "override_files": [_repo_relative(path) for path in override_paths],
     }
+    runtime_bundle_manifest = _load_runtime_bundle_manifest(runtime_bundle_dir)
+    if runtime_bundle_manifest:
+        manifest["page_manifest"] = runtime_bundle_manifest.get("page_manifest")
+        manifest["recipe_ids"] = runtime_bundle_manifest.get("recipe_ids", [])
+        manifest["snippet_ids"] = runtime_bundle_manifest.get("snippet_ids", [])
+        manifest["spec_master"] = runtime_bundle_manifest.get("spec_master", {})
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     return ReviewBundle(
@@ -194,6 +221,7 @@ def materialize_review_bundle(
         generated_paths=tuple(generated_paths),
         model=model,
         region=region,
+        lang=lang,
         reused_existing=False,
     )
 
@@ -232,12 +260,13 @@ def main(argv: list[str] | None = None) -> int:
                 docs_dir=docs_dir,
                 model=target.model,
                 region=target.region,
+                lang=target.lang,
                 refresh_existing=args.refresh_existing,
             )
             action = "kept existing" if review_bundle.reused_existing else "seeded"
             print(
                 "[review] bundle: "
-                f"model='{target.model or ''}', region='{target.region or ''}', "
+                f"model='{target.model or ''}', region='{target.region or ''}', lang='{target.lang or ''}', "
                 f"action='{action}', path='{review_bundle.review_dir}'"
             )
     except RuntimeError as exc:

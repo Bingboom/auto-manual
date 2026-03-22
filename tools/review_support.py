@@ -14,12 +14,15 @@ def _target_component(value: str | None, fallback: str) -> str:
     return text.replace("/", "_").replace("\\", "_").replace(":", "_")
 
 
-def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | None) -> Path:
-    return docs_dir / "_review" / _target_component(model, "_shared") / _target_component(region, "_default")
+def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> Path:
+    target_root = docs_dir / "_review" / _target_component(model, "_shared") / _target_component(region, "_default")
+    if (lang or "").strip():
+        return target_root / _target_component(lang, "_default")
+    return target_root
 
 
-def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | None) -> bool:
-    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> bool:
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     return (review_dir / "index.rst").exists() and (review_dir / "page").is_dir()
 
 
@@ -32,14 +35,23 @@ def _overlay_file_tree(src_dir: Path, dst_dir: Path, pattern: str = "*") -> None
         shutil.copy2(src_file, target_path)
 
 
+def _overlay_override_assets(overrides_src: Path, bundle_dir: Path) -> None:
+    for allowed_dir in ("_assets", "_static", "renderers"):
+        src_dir = overrides_src / allowed_dir
+        if not src_dir.exists():
+            continue
+        _overlay_file_tree(src_dir, bundle_dir / allowed_dir)
+
+
 def overlay_review_onto_bundle(
     *,
     bundle_dir: Path,
     docs_dir: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
 ) -> Path | None:
-    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     index_src = review_dir / "index.rst"
     page_src = review_dir / "page"
     generated_src = review_dir / "generated"
@@ -62,10 +74,7 @@ def overlay_review_onto_bundle(
         _overlay_file_tree(generated_src, generated_dst, "*.rst")
 
     if overrides_src.exists():
-        for src_file in sorted(path for path in overrides_src.rglob("*") if path.is_file()):
-            target_path = bundle_dir / src_file.relative_to(overrides_src)
-            target_path.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src_file, target_path)
+        _overlay_override_assets(overrides_src, bundle_dir)
 
     return review_dir
 

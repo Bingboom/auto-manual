@@ -109,8 +109,18 @@ def main(argv: list[str] | None = None) -> int:
             all_targets=args.all_targets,
         )
         for target in targets:
-            runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=target.model, region=target.region)
-            review_dir = review_dir_for_target(docs_dir=docs_dir, model=target.model, region=target.region)
+            runtime_bundle_dir = bundle_dir_for_target(
+                docs_dir=docs_dir,
+                model=target.model,
+                region=target.region,
+                lang=target.lang,
+            )
+            review_dir = review_dir_for_target(
+                docs_dir=docs_dir,
+                model=target.model,
+                region=target.region,
+                lang=target.lang,
+            )
             relative_paths = resolve_sync_relative_paths(
                 cfg=cfg,
                 docs_dir=docs_dir,
@@ -128,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
             )
             print(
                 "[sync-review] bundle: "
-                f"model='{target.model or ''}', region='{target.region or ''}', "
+                f"model='{target.model or ''}', region='{target.region or ''}', lang='{target.lang or ''}', "
                 f"scope='{args.sync_scope}', files='{len(copied)}', path='{review_dir}'"
             )
     except RuntimeError as exc:

@@ -5,7 +5,10 @@ from __future__ import annotations
 
 from typing import Any, Iterable
 
-from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage, parse_config_pages
+from pathlib import Path
+
+from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, PdfInsertPage, RstIncludePage, parse_config_pages
+from tools.page_manifest import resolve_config_pages
 
 
 def format_tokenized(
@@ -32,16 +35,29 @@ def config_uses_token_in_pages(
     placeholder = f"{{{token}}}"
     build_cfg = cfg.get("build", {})
     langs = build_cfg.get("languages", []) if isinstance(build_cfg, dict) else []
-    pages, _issues = parse_config_pages(
-        cfg.get("pages"),
-        default_languages=langs if isinstance(langs, list) else [],
-    )
+    try:
+        resolved_pages = resolve_config_pages(
+            cfg,
+            default_languages=langs if isinstance(langs, list) else [],
+            root=Path(__file__).resolve().parents[2],
+        )
+        pages = resolved_pages.pages
+    except RuntimeError:
+        pages, _issues = parse_config_pages(
+            cfg.get("pages"),
+            default_languages=langs if isinstance(langs, list) else [],
+        )
 
     for page in pages:
         if isinstance(page, CoverPdfPage):
             if placeholder in page.file:
                 return True
         elif isinstance(page, CsvPage):
+            if page.include_dir and placeholder in page.include_dir:
+                return True
+        elif isinstance(page, GeneratedPage):
+            if placeholder in page.recipe or placeholder in page.template:
+                return True
             if page.include_dir and placeholder in page.include_dir:
                 return True
         elif isinstance(page, PdfInsertPage):
@@ -104,3 +120,29 @@ def resolve_build_region(cfg: dict[str, Any], arg_region: str | None) -> str | N
     if isinstance(default_region, str) and default_region.strip():
         return default_region.strip()
     return None
+
+
+def resolve_build_languages(cfg: dict[str, Any]) -> list[str]:
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        return []
+    raw = build_cfg.get("languages", [])
+    if not isinstance(raw, list):
+        return []
+    return [str(item).strip() for item in raw if str(item).strip()]
+
+
+def include_lang_in_output_path(cfg: dict[str, Any]) -> bool:
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        return False
+    return bool(build_cfg.get("include_lang_in_output_path", False))
+
+
+def resolve_output_lang(cfg: dict[str, Any]) -> str | None:
+    if not include_lang_in_output_path(cfg):
+        return None
+    langs = resolve_build_languages(cfg)
+    if not langs:
+        return None
+    return langs[0]

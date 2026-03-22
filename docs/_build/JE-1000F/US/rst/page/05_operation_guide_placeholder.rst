@@ -53,7 +53,7 @@ Off: Press once.
 **CAUTION**
 
 - **USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
-- Only connect Jackery ポータブル電源 1000 New v2 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
+- Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
 - To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
 The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
@@ -151,9 +151,9 @@ KEY COMBINATION
    * - Main POWER Button + AC power button
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - Main POWER Button + DC/USB power button
+   * - main POWER button + DC/USB power button
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
-   * - DC/USB Power Button + AC power button
+   * - DC/USB power button + AC power button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth

@@ -49,7 +49,7 @@ authority to operate the device.
           :alt: Power station image placeholder.
           :width: 120px
 
-       **Jackery ポータブル電源 1000 New v2**
+       **Jackery Explorer 1000**
      - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging.png
           :alt: AC charging cable image placeholder.
           :width: 120px

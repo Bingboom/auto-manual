@@ -2,7 +2,7 @@
 
    .. raw:: html
 
-      <section class="manual-cover"><div class="cover-title">Jackery ポータブル電源 1000 New v2 User Manual</div></section>
+      <section class="manual-cover"><div class="cover-title">Jackery Explorer 1000 User Manual</div></section>
 
 .. only:: latex
 

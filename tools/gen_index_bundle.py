@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
+import json
 import os
 import re
 import shutil
@@ -20,15 +22,24 @@ from tools.config_pages import (
     ConfigPage,
     CoverPdfPage,
     CsvPage,
+    GeneratedPage,
     PdfInsertPage,
     RstIncludePage,
-    parse_config_pages_or_raise,
 )
+from tools.draft_engine import (
+    GeneratedPageRender,
+    render_generated_page,
+    resolve_snippet_registry_path,
+)
+from tools.page_manifest import resolve_config_pages_or_raise
+from tools.page_contracts import contract_applies_to, find_contract_for_source, load_page_contracts, required_assets_for_lang  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
     format_tokenized,
+    resolve_build_languages,
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
+    resolve_output_lang,
 )
 from tools.word_bundle_common import (  # noqa: E402
     apply_rst_substitutions,
@@ -51,6 +62,7 @@ _RST_ASSET_DIRECTIVE_RE = re.compile(
 )
 _HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
+_CONTRACT_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 
 
 @dataclass(frozen=True)
@@ -73,6 +85,48 @@ class MaterializedBundle:
     reference_doc: Path | None
     model: str | None
     region: str | None
+    lang: str | None
+    manifest_path: Path | None = None
+    page_manifest_path: Path | None = None
+    recipe_ids: tuple[str, ...] = ()
+    snippet_ids: tuple[str, ...] = ()
+
+
+def _repo_relative(path: Path | None, *, repo_root: Path) -> str | None:
+    if path is None:
+        return None
+    try:
+        return path.resolve(strict=False).relative_to(repo_root.resolve(strict=False)).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
+def _file_sha256(path: Path | None) -> str | None:
+    if path is None or not path.exists() or not path.is_file():
+        return None
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _select_planned_pages(planned_pages: list[PlannedPage], page_selector: str | None) -> list[PlannedPage]:
+    if not (page_selector or "").strip():
+        return planned_pages
+
+    selector = page_selector.strip()
+    csv_matches = [planned for planned in planned_pages if isinstance(planned.page, CsvPage) and planned.page.page == selector]
+    if csv_matches:
+        return csv_matches
+    generated_matches = [
+        planned for planned in planned_pages if isinstance(planned.page, GeneratedPage) and planned.page.page == selector
+    ]
+    if generated_matches:
+        return generated_matches
+
+    stem_matches = [planned for planned in planned_pages if Path(planned.file_name).stem == selector]
+    if not stem_matches:
+        raise RuntimeError(f"Page selector did not match any materialized page: {selector}")
+    if len(stem_matches) > 1:
+        raise RuntimeError(f"Page selector matched multiple materialized pages: {selector}")
+    return stem_matches
 
 
 def load_config(cfg_path: Path) -> dict:
@@ -132,8 +186,8 @@ def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
 
 
 def _build_langs(cfg: dict) -> list[str]:
-    langs = cfg.get("build", {}).get("languages", ["en"])
-    return list(langs)
+    langs = resolve_build_languages(cfg)
+    return langs or ["en"]
 
 
 def _bundle_component(value: str | None, fallback: str) -> str:
@@ -146,14 +200,17 @@ def bundle_dir_for_target(
     docs_dir: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
 ) -> Path:
-    return (
+    target_root = (
         docs_dir
         / "_build"
         / _bundle_component(model, "_shared")
         / _bundle_component(region, "_default")
-        / "rst"
     )
+    if (lang or "").strip():
+        target_root = target_root / _bundle_component(lang, "_default")
+    return target_root / "rst"
 
 
 def _legacy_bundle_dir_for_target(
@@ -232,6 +289,66 @@ def _resolve_csv_rst_path(
     return source_root / rel
 
 
+def _resolve_generated_source_path(
+    *,
+    bundle_dir: Path,
+    page: GeneratedPage,
+    lang: str,
+    model: str | None,
+    region: str | None,
+) -> Path | None:
+    if page.include_dir is None:
+        return None
+    rel = Path(_format_tokenized(page.include_dir, model, region)) / f"{page.page}_{lang}.rst"
+    return bundle_dir / rel
+
+
+def _resolve_generated_template_path(
+    *,
+    docs_dir: Path,
+    page: GeneratedPage,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    return resolve_config_path(docs_dir, page.template, model, region)
+
+
+def _resolve_generated_recipe_path(
+    *,
+    docs_dir: Path,
+    page: GeneratedPage,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    return resolve_config_path(docs_dir, page.recipe, model, region)
+
+
+def _source_path_for_contract(
+    page: ConfigPage,
+    *,
+    docs_dir: Path,
+    bundle_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> Path | None:
+    if isinstance(page, RstIncludePage):
+        return resolve_config_path(docs_dir, page.file, model, region)
+    if isinstance(page, GeneratedPage):
+        return _resolve_generated_template_path(docs_dir=docs_dir, page=page, model=model, region=region)
+    if isinstance(page, CsvPage):
+        if lang is None:
+            return None
+        return _resolve_csv_rst_path(
+            source_root=bundle_dir,
+            page=page,
+            lang=lang,
+            model=model,
+            region=region,
+        )
+    return None
+
+
 def _base_file_name_for_plan(
     page: ConfigPage,
     *,
@@ -244,6 +361,10 @@ def _base_file_name_for_plan(
     if isinstance(page, CsvPage):
         assert lang is not None
         return f"{page.page}_{lang}.rst"
+    if isinstance(page, GeneratedPage):
+        rst_path = _format_tokenized(page.template, model, region)
+        name = Path(rst_path).name
+        return name if name.lower().endswith(".rst") else f"{name}.rst"
     if isinstance(page, PdfInsertPage):
         assert lang is not None
         pdf_path = _format_tokenized(page.file_map[lang], model, region)
@@ -281,13 +402,18 @@ def plan_materialized_pages(
     cfg: dict,
     model: str | None = None,
     region: str | None = None,
+    *,
+    root: Path | None = None,
 ) -> list[PlannedPage]:
     langs = _build_langs(cfg)
-    pages = parse_config_pages_or_raise(
-        cfg.get("pages"),
+    pages = resolve_config_pages_or_raise(
+        cfg,
         default_languages=langs,
+        root=root or paths.root,
+        model=model,
+        region=region,
         error_prefix="config.pages",
-    )
+    ).pages
 
     planned: list[PlannedPage] = []
     seen_names: set[str] = set()
@@ -334,6 +460,23 @@ def plan_materialized_pages(
                 )
             continue
 
+        if isinstance(page, GeneratedPage):
+            page_langs = list(page.langs) or langs
+            _format_tokenized(page.recipe, model, region)
+            _format_tokenized(page.template, model, region)
+            if page.include_dir:
+                _format_tokenized(page.include_dir, model, region)
+            for lang in page_langs:
+                base_name = _base_file_name_for_plan(page, lang=lang, model=model, region=region)
+                planned.append(
+                    PlannedPage(
+                        page=page,
+                        lang=lang,
+                        file_name=_ensure_unique_name(base_name, seen_names, ordinal),
+                    )
+                )
+            continue
+
         if isinstance(page, RstIncludePage):
             base_name = _base_file_name_for_plan(page, lang=page.lang, model=model, region=region)
             planned.append(
@@ -354,9 +497,11 @@ def build_index_from_pages(
     cfg: dict,
     model: str | None = None,
     region: str | None = None,
+    *,
+    root: Path | None = None,
 ) -> str:
     lines: list[str] = []
-    for planned in plan_materialized_pages(cfg, model=model, region=region):
+    for planned in plan_materialized_pages(cfg, model=model, region=region, root=root):
         lines.extend([f".. include:: page/{planned.file_name}", ""])
     return "\n".join(lines) + "\n"
 
@@ -426,25 +571,30 @@ def _bundle_asset_target_path(
     docs_dir: Path,
     repo_root: Path,
 ) -> Path:
+    resolved_path = resolved.resolve(strict=False)
+    docs_static_dir = (docs_dir / "_static").resolve(strict=False)
+    docs_root = docs_dir.resolve(strict=False)
+    repo_root_resolved = repo_root.resolve(strict=False)
+
     try:
-        rel = resolved.relative_to(docs_dir / "_static")
+        rel = resolved_path.relative_to(docs_static_dir)
         return bundle_dir / "_static" / rel
     except ValueError:
         pass
 
     try:
-        rel = resolved.relative_to(docs_dir)
+        rel = resolved_path.relative_to(docs_root)
         return bundle_dir / "_assets" / rel
     except ValueError:
         pass
 
     try:
-        rel = resolved.relative_to(repo_root)
+        rel = resolved_path.relative_to(repo_root_resolved)
         return bundle_dir / "_repo_assets" / rel
     except ValueError:
         pass
 
-    return bundle_dir / "_external_assets" / resolved.name
+    return bundle_dir / "_external_assets" / resolved_path.name
 
 
 def _stage_bundle_asset(
@@ -581,6 +731,112 @@ def _copytree_replace(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
+def _render_contract_asset_path(
+    raw_value: str,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> str:
+    values = {
+        "model": (model or "").strip(),
+        "region": (region or "").strip(),
+        "lang": (lang or "").strip(),
+    }
+    tokens = {match.group(1) for match in _CONTRACT_TOKEN_RE.finditer(raw_value)}
+    unknown = sorted(token for token in tokens if token not in values)
+    if unknown:
+        raise RuntimeError(f"Unsupported contract asset token(s): {', '.join(unknown)}")
+    missing = sorted(token for token in tokens if not values[token])
+    if missing:
+        raise RuntimeError(f"Contract asset path requires value(s) for: {', '.join(missing)}")
+    return raw_value.format(**values)
+
+
+def _resolve_contract_asset_path(
+    raw_value: str,
+    *,
+    docs_dir: Path,
+    repo_root: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> Path:
+    rendered = _render_contract_asset_path(
+        raw_value,
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    candidate = Path(rendered)
+    if candidate.is_absolute():
+        return candidate
+
+    docs_candidate = docs_dir / candidate
+    if docs_candidate.exists():
+        return docs_candidate
+    return repo_root / candidate
+
+
+def _preflight_contract_assets(
+    *,
+    cfg: dict,
+    docs_dir: Path,
+    repo_root: Path,
+    model: str | None,
+    region: str | None,
+    langs: list[str],
+    planned_pages: list[PlannedPage],
+) -> None:
+    contracts = load_page_contracts(docs_dir / "templates" / "contracts")
+    if not contracts:
+        return
+
+    seen_sources: set[tuple[str, str | None]] = set()
+    for planned in planned_pages:
+        page = planned.page
+        source_path = _source_path_for_contract(
+            page,
+            docs_dir=docs_dir,
+            bundle_dir=bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region),
+            model=model,
+            region=region,
+            lang=planned.lang or getattr(page, "lang", None),
+        )
+        if source_path is None:
+            continue
+        source_key = (source_path.as_posix(), planned.lang or getattr(page, "lang", None))
+        if source_key in seen_sources:
+            continue
+        seen_sources.add(source_key)
+        try:
+            source_rel = source_path.relative_to(docs_dir).as_posix()
+        except ValueError:
+            source_rel = source_path.as_posix()
+        contract = find_contract_for_source(source_rel, contracts)
+        if contract is None:
+            continue
+        page_langs = [planned.lang or getattr(page, "lang", None)] if (planned.lang or getattr(page, "lang", None)) else langs
+        for lang in page_langs:
+            if not contract_applies_to(contract, lang=lang, model=model, region=region):
+                continue
+            for asset_path in required_assets_for_lang(contract, lang):
+                resolved = _resolve_contract_asset_path(
+                    asset_path,
+                    docs_dir=docs_dir,
+                    repo_root=repo_root,
+                    model=model,
+                    region=region,
+                    lang=lang,
+                )
+                if resolved.exists():
+                    continue
+                raise RuntimeError(
+                    f"Page contract '{contract.page_id}' is missing required asset "
+                    f"for lang '{lang}': {asset_path}"
+                )
+
+
 def _write_bundle_conf_files(
     *,
     cfg: dict,
@@ -655,18 +911,21 @@ def _materialize_planned_page(
     title: str,
     model: str | None,
     region: str | None,
-) -> str:
+) -> tuple[str, GeneratedPageRender | None]:
     page = planned.page
 
     if isinstance(page, CoverPdfPage):
-        return _render_cover_page_rst(title, _format_tokenized(page.file, model, region))
+        return _render_cover_page_rst(title, _format_tokenized(page.file, model, region)), None
 
     if isinstance(page, PdfInsertPage):
         if planned.lang is None:
             raise RuntimeError("pdf_insert planned page is missing lang")
-        return _render_pdf_insert_page_rst(
-            _format_tokenized(page.file_map[planned.lang], model, region),
-            planned.lang,
+        return (
+            _render_pdf_insert_page_rst(
+                _format_tokenized(page.file_map[planned.lang], model, region),
+                planned.lang,
+            ),
+            None,
         )
 
     page_lang = planned.lang or primary_lang
@@ -697,16 +956,56 @@ def _materialize_planned_page(
             model=model,
             region=region,
         )
+        generated_render: GeneratedPageRender | None = None
+    elif isinstance(page, GeneratedPage):
+        if planned.lang is None:
+            raise RuntimeError("generated_page planned page is missing lang")
+        recipe_path = _resolve_generated_recipe_path(
+            docs_dir=docs_dir,
+            page=page,
+            model=model,
+            region=region,
+        )
+        template_path = _resolve_generated_template_path(
+            docs_dir=docs_dir,
+            page=page,
+            model=model,
+            region=region,
+        )
+        generated_source_path = _resolve_generated_source_path(
+            bundle_dir=bundle_dir,
+            page=page,
+            lang=planned.lang,
+            model=model,
+            region=region,
+        )
+        generated_render = render_generated_page(
+            docs_dir=docs_dir,
+            recipe_path=recipe_path,
+            template_path=template_path,
+            spec_master_csv=spec_master_csv,
+            registry_path=resolve_snippet_registry_path(docs_dir),
+            vars_map=page_vars,
+            base_substitutions=page_substitutions,
+            model=model,
+            region=region,
+            lang=planned.lang,
+            rendered_source_path=generated_source_path,
+        )
+        source_path = generated_render.template_path
+        rst_text = generated_render.text
     elif isinstance(page, RstIncludePage):
         source_path = resolve_config_path(docs_dir, page.file, model, region)
+        generated_render = None
     else:
         raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
 
     if not source_path.exists():
         raise RuntimeError(f"Missing source RST for bundle materialization: {source_path}")
 
-    rst_text = source_path.read_text(encoding="utf-8")
-    rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
+    if not isinstance(page, GeneratedPage):
+        rst_text = source_path.read_text(encoding="utf-8")
+        rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
     rst_text = rewrite_rst_asset_paths(
         rst_text,
         source_path=source_path,
@@ -715,7 +1014,11 @@ def _materialize_planned_page(
         docs_dir=docs_dir,
         repo_root=repo_root,
     )
-    return _prepend_latex_lang(rst_text, planned.lang)
+    final_text = _prepend_latex_lang(rst_text, planned.lang)
+    if generated_render is not None and generated_render.rendered_source_path is not None:
+        generated_render.rendered_source_path.parent.mkdir(parents=True, exist_ok=True)
+        generated_render.rendered_source_path.write_text(final_text, encoding="utf-8")
+    return final_text, generated_render
 
 
 def materialize_bundle(
@@ -726,6 +1029,9 @@ def materialize_bundle(
     docs_dir: Path | None = None,
     repo_root: Path | None = None,
     ensure_csv_pages: bool = True,
+    page_selector: str | None = None,
+    bundle_dir_override: Path | None = None,
+    write_wrapper_index: bool = True,
 ) -> MaterializedBundle:
     actual_docs_dir = docs_dir or paths.docs_dir
     actual_root = repo_root or paths.root
@@ -733,7 +1039,29 @@ def materialize_bundle(
     target_region = resolve_build_region(cfg, region)
     build_langs = _build_langs(cfg)
     primary_lang = str(build_langs[0]) if build_langs else "en"
-    planned_pages = plan_materialized_pages(cfg, model=target_model, region=target_region)
+    output_lang = resolve_output_lang(cfg)
+    resolved_page_source = resolve_config_pages_or_raise(
+        cfg,
+        default_languages=build_langs,
+        root=actual_root,
+        model=target_model,
+        region=target_region,
+        error_prefix="config.pages",
+    )
+    page_manifest_path = resolved_page_source.manifest_path
+    planned_pages = _select_planned_pages(
+        plan_materialized_pages(cfg, model=target_model, region=target_region, root=actual_root),
+        page_selector,
+    )
+    _preflight_contract_assets(
+        cfg=cfg,
+        docs_dir=actual_docs_dir,
+        repo_root=actual_root,
+        model=target_model,
+        region=target_region,
+        langs=build_langs,
+        planned_pages=planned_pages,
+    )
 
     spec_master_csv = _resolve_spec_master_csv_path(
         cfg,
@@ -764,21 +1092,24 @@ def materialize_bundle(
     reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=actual_root)
     title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
 
-    bundle_dir = bundle_dir_for_target(
+    bundle_dir = bundle_dir_override or bundle_dir_for_target(
         docs_dir=actual_docs_dir,
         model=target_model,
         region=target_region,
+        lang=output_lang,
     )
     generated_dir = bundle_dir / "generated"
     page_dir = bundle_dir / "page"
     index_path = bundle_dir / "index.rst"
     wrapper_index_path = actual_docs_dir / "index.rst"
+    bundle_manifest_path = bundle_dir / "bundle_manifest.json"
 
-    cleanup_legacy_rst_artifacts(
-        docs_dir=actual_docs_dir,
-        model=target_model,
-        region=target_region,
-    )
+    if bundle_dir_override is None:
+        cleanup_legacy_rst_artifacts(
+            docs_dir=actual_docs_dir,
+            model=target_model,
+            region=target_region,
+        )
 
     if bundle_dir.exists():
         shutil.rmtree(bundle_dir)
@@ -800,9 +1131,11 @@ def materialize_bundle(
     )
 
     page_paths: list[Path] = []
+    recipe_ids: list[str] = []
+    snippet_ids: list[str] = []
     for planned in planned_pages:
         target_path = page_dir / planned.file_name
-        rendered = _materialize_planned_page(
+        rendered, generated_render = _materialize_planned_page(
             planned,
             cfg=cfg,
             target_path=target_path,
@@ -819,16 +1152,39 @@ def materialize_bundle(
         )
         target_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")
         page_paths.append(target_path)
+        if generated_render is not None:
+            recipe_ids.append(generated_render.recipe_path.stem)
+            snippet_ids.extend(generated_render.used_snippet_ids)
 
-    index_text = build_index_from_pages(cfg, model=target_model, region=target_region)
+    index_text = build_index_from_pages(cfg, model=target_model, region=target_region, root=actual_root)
     index_path.write_text(index_text, encoding="utf-8")
-    wrapper_index_path.write_text(
-        build_wrapper_index_text(
-            docs_dir=actual_docs_dir,
-            bundle_dir=bundle_dir,
-        ),
-        encoding="utf-8",
-    )
+    if write_wrapper_index:
+        wrapper_index_path.write_text(
+            build_wrapper_index_text(
+                docs_dir=actual_docs_dir,
+                bundle_dir=bundle_dir,
+            ),
+            encoding="utf-8",
+        )
+
+    bundle_manifest = {
+        "model": target_model,
+        "region": target_region,
+        "lang": output_lang,
+        "page_manifest": _repo_relative(page_manifest_path, repo_root=actual_root),
+        "spec_master": {
+            "path": _repo_relative(spec_master_csv, repo_root=actual_root),
+            "sha256": _file_sha256(spec_master_csv),
+        },
+        "recipe_ids": list(dict.fromkeys(recipe_ids)),
+        "snippet_ids": list(dict.fromkeys(snippet_ids)),
+        "page_files": [_repo_relative(path, repo_root=actual_root) for path in page_paths],
+        "generated_files": [
+            _repo_relative(path, repo_root=actual_root)
+            for path in sorted(path for path in generated_dir.rglob("*.rst") if path.is_file())
+        ],
+    }
+    bundle_manifest_path.write_text(json.dumps(bundle_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     return MaterializedBundle(
         bundle_dir=bundle_dir,
@@ -842,6 +1198,11 @@ def materialize_bundle(
         reference_doc=reference_doc,
         model=target_model,
         region=target_region,
+        lang=output_lang,
+        manifest_path=bundle_manifest_path,
+        page_manifest_path=page_manifest_path,
+        recipe_ids=tuple(dict.fromkeys(recipe_ids)),
+        snippet_ids=tuple(dict.fromkeys(snippet_ids)),
     )
 
 

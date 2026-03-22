@@ -29,10 +29,11 @@ if str(ROOT) not in sys.path:
 from tools.config_pages import (
     CoverPdfPage,
     CsvPage,
+    GeneratedPage,
     PdfInsertPage,
     RstIncludePage,
-    parse_config_pages,
 )
+from tools.page_manifest import resolve_config_pages, resolve_page_manifest_path
 
 
 @dataclass
@@ -91,6 +92,7 @@ def load_yaml(path: Path) -> dict:
 
 def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     issues: list[Issue] = []
+    docs_dir_value = ROOT / "docs"
 
     # ---- build ----
     build = cfg.get("build", {})
@@ -101,6 +103,16 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     languages = build.get("languages", [])
     if not is_list_of_str(languages) or not languages:
         issues.append(Issue("ERROR", "build.languages must be non-empty list of strings"))
+
+    include_lang_in_output_path = build.get("include_lang_in_output_path")
+    if include_lang_in_output_path is not None and not isinstance(include_lang_in_output_path, bool):
+        issues.append(Issue("ERROR", "build.include_lang_in_output_path must be a boolean when provided"))
+    elif (
+        include_lang_in_output_path is True
+        and is_list_of_str(languages)
+        and len(languages) != 1
+    ):
+        issues.append(Issue("ERROR", "build.include_lang_in_output_path requires exactly one build language"))
 
     default_model = build.get("default_model")
     if default_model is not None and (not isinstance(default_model, str) or not default_model.strip()):
@@ -133,6 +145,10 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if paths is not None and not isinstance(paths, dict):
         issues.append(Issue("ERROR", "paths must be a mapping"))
         paths = {}
+    else:
+        docs_dir_raw = paths.get("docs_dir") if isinstance(paths, dict) else None
+        if isinstance(docs_dir_raw, str) and docs_dir_raw.strip():
+            docs_dir_value = as_path(docs_dir_raw.strip())
 
     spec_master_csv = paths.get("spec_master_csv")
     if spec_master_csv is not None:
@@ -158,13 +174,41 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             if not as_path(spec_titles_csv).exists():
                 issues.append(Issue("ERROR", f"spec_titles_csv file not found: {spec_titles_csv}"))
 
+    page_manifest = paths.get("page_manifest")
+    if page_manifest is not None:
+        if not isinstance(page_manifest, str) or not page_manifest.strip():
+            issues.append(Issue("ERROR", "paths.page_manifest must be a non-empty string when provided"))
+        elif strict_files and not has_tokenized_value(page_manifest):
+            manifest_path = resolve_page_manifest_path(cfg, root=ROOT)
+            if manifest_path is not None and not manifest_path.exists():
+                issues.append(Issue("ERROR", f"page_manifest file not found: {page_manifest}"))
+
+    # ---- checks ----
+    checks = cfg.get("checks", {})
+    if checks is not None and not isinstance(checks, dict):
+        issues.append(Issue("ERROR", "checks must be a mapping"))
+        checks = {}
+
+    allowed_foreign_identity_literals = checks.get("allowed_foreign_identity_literals")
+    if allowed_foreign_identity_literals is not None:
+        if not is_list_of_str(allowed_foreign_identity_literals):
+            issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must be a list of strings"))
+        elif any(not item.strip() for item in allowed_foreign_identity_literals):
+            issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must not contain empty strings"))
+
     # ---- pages ----
-    parsed_pages, page_issues = parse_config_pages(
-        cfg.get("pages", None),
-        default_languages=languages if is_list_of_str(languages) else None,
-    )
-    issues.extend(Issue(level=i.level, msg=i.msg) for i in page_issues)
-    if any(i.level == "ERROR" for i in page_issues):
+    try:
+        resolved_pages = resolve_config_pages(
+            cfg,
+            default_languages=languages if is_list_of_str(languages) else None,
+            root=ROOT,
+        )
+    except RuntimeError as exc:
+        issues.append(Issue("ERROR", str(exc)))
+        return issues
+    parsed_pages = resolved_pages.pages
+    issues.extend(Issue(level=i.level, msg=i.msg) for i in resolved_pages.issues)
+    if any(i.level == "ERROR" for i in resolved_pages.issues):
         return issues
 
     for idx, page in enumerate(parsed_pages, start=1):
@@ -182,6 +226,24 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             continue
 
         if isinstance(page, CsvPage):
+            continue
+
+        if isinstance(page, GeneratedPage):
+            if strict_files:
+                for raw_path, label in ((page.recipe, "recipe"), (page.template, "template")):
+                    if has_tokenized_value(raw_path):
+                        issues.append(
+                            Issue(
+                                "WARN",
+                                f"pages[{idx}] generated_page {label} is tokenized, skip strict check",
+                            )
+                        )
+                        continue
+                    candidate = as_path(raw_path)
+                    if not candidate.exists():
+                        candidate = docs_dir_value / raw_path
+                    if not candidate.exists():
+                        issues.append(Issue("ERROR", f"generated_page {label} not found: {raw_path}"))
             continue
 
         if isinstance(page, PdfInsertPage):

@@ -1,6 +1,6 @@
 # Documentation Maintenance Policy
 
-Updated: 2026-03-12
+Updated: 2026-03-15
 
 This file defines how documentation must be maintained together with code and data changes.
 The goal is simple:
@@ -50,7 +50,7 @@ Examples:
 
 - [`build.py`](../build.py) action changes
 - output path changes
-- review / publish / diff-report behavior changes
+- review / publish / diff-report / preview / fast / release-manifest behavior changes
 
 Must update:
 
@@ -110,6 +110,7 @@ Examples:
 - new smoke command
 - new mandatory test gate
 - changed review or publish verification path
+- new CI workflow baseline
 
 Must update:
 
@@ -124,6 +125,7 @@ Examples:
 - cross-platform builder
 - new diff-report stage
 - new page contract system
+- new release manifest stage
 
 Must update:
 
@@ -175,7 +177,13 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 If diff-report changed:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
+```
+
+If release traceability changed:
+
+```powershell
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 ## 6. Review Questions

@@ -347,19 +347,48 @@ class TestPhase1Renderers(unittest.TestCase):
             )
 
     def _symbols_template(self) -> str:
-        return renderers.PH_SYMBOLS_CONTENT_LATEX + "\n"
+        return (
+            renderers.PH_SYMBOLS_SIGNAL_SECTION_RST
+            + "\n\n"
+            + renderers.PH_SYMBOLS_ICON_TABLE_RST
+            + "\n"
+        )
 
     def _symbols_blocks(self) -> list[dict[str, str]]:
         return [
-            {"block_type": "danger_title", "order": "100", "sku_scope": "ALL", "enabled": "1", "text_en": "DANGER"},
-            {"block_type": "danger_line", "order": "101", "sku_scope": "ALL", "enabled": "1", "text_en": "Indoor use only."},
-            {"block_type": "danger_note", "order": "102", "sku_scope": "ALL", "enabled": "1", "text_en": "! Keep dry."},
-            {"block_type": "maintenance_title", "order": "110", "sku_scope": "ALL", "enabled": "1", "text_en": "USER MAINTENANCE INSTRUCTIONS"},
-            {"block_type": "maintenance_paragraph", "order": "111", "sku_scope": "ALL", "enabled": "1", "text_en": "Degradation is expected over time."},
-            {"block_type": "symbols_title", "order": "120", "sku_scope": "ALL", "enabled": "1", "text_en": "MEANING OF SYMBOLS"},
-            {"block_type": "main_row", "order": "130", "sku_scope": "ALL", "enabled": "1", "text_en": "! WARNING || Severe hazard."},
-            {"block_type": "left_row", "order": "140", "sku_scope": "ALL", "enabled": "1", "text_en": "! || Risk symbol."},
-            {"block_type": "right_row", "order": "150", "sku_scope": "ALL", "enabled": "1", "text_en": "! || Do not dismantle."},
+            {
+                "block_type": "table_row",
+                "column_group": "left",
+                "symbol_key": "warning_triangle",
+                "order": "10",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "text_en": "Warning symbol meaning.",
+                "text_fr": "Signification du symbole d'avertissement.",
+                "text_es": "Significado del símbolo de advertencia.",
+            },
+            {
+                "block_type": "table_row",
+                "column_group": "left",
+                "symbol_key": "read_manual",
+                "order": "20",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "text_en": "Read the manual.",
+                "text_fr": "Lire le manuel.",
+                "text_es": "Lea el manual.",
+            },
+            {
+                "block_type": "table_row",
+                "column_group": "right",
+                "symbol_key": "do_not_dismantle",
+                "order": "10",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "text_en": "Do not dismantle.",
+                "text_fr": "Ne démontez pas.",
+                "text_es": "No desarme.",
+            },
         ]
 
     def test_render_symbols_page_happy_path(self) -> None:
@@ -370,9 +399,36 @@ class TestPhase1Renderers(unittest.TestCase):
             lang="en",
             vars_map={},
         )
-        self.assertIn("! DANGER", out)
+        self.assertIn("DANGER", out)
         self.assertIn("MEANING OF SYMBOLS", out)
-        self.assertIn("Do not dismantle", out)
+        self.assertIn("warning_bar.png", out)
+        self.assertIn("read_manual_operator.png", out)
+        self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_uses_language_specific_copy(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="fr",
+            vars_map={},
+        )
+        self.assertIn("SIGNIFICATION DES SYMBOLES", out)
+        self.assertIn("Symbole", out)
+        self.assertIn("Signification du symbole d'avertissement.", out)
+
+    def test_render_symbols_page_rejects_unknown_symbol_key(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["symbol_key"] = "missing_symbol"
+
+        with self.assertRaisesRegex(ValueError, "unknown symbols symbol_key"):
+            renderers.render_symbols_page(
+                template=self._symbols_template(),
+                blocks=blocks,
+                sku_id="JB1000",
+                lang="en",
+                vars_map={},
+            )
 
 
     def test_collect_safety_content_returns_structured_lists(self) -> None:

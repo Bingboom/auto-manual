@@ -1,8 +1,10 @@
 # Spec Master User Guide
 
-Updated: 2026-03-12
+Updated: 2026-03-17
 
 This file explains the current phase1 data layer, with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as the center.
+It is the operational guide for the CSV files used by the current repo.
+For the future canonical data model and CMS-direction schema boundary, see [`architecture/Content_Data_Model.md`](architecture/Content_Data_Model.md).
 
 ## 1. Active Phase1 CSV Files
 
@@ -34,7 +36,7 @@ Current flow:
 3. [`tools/phase1_build.py`](../tools/phase1_build.py) renders CSV-driven content
 4. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes runtime pages
 5. `_review` can then be seeded or synced from that runtime output
-6. `word`, `html`, `pdf`, and `publish` consume the prepared bundle
+6. `word`, `html`, `pdf`, `publish`, and `release-manifest` consume the prepared bundle or its outputs
 
 That means one data change can affect:
 
@@ -43,6 +45,7 @@ That means one data change can affect:
 - Word title
 - review sync results
 - diff-report field tracing
+- release manifest metadata
 
 ## 3. Required Data for Current Builds
 
@@ -97,6 +100,18 @@ Derived variants may also exist, for example:
 
 If the same text should be shared across many models, keep it in template or config.
 If the text is target-specific and data-driven, keep it in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as `tpl_*`.
+
+### 4.4 Contract V2 Rule
+
+For placeholder-heavy or data-heavy pages, contracts can now validate:
+
+- `required_placeholders`
+- `required_spec_keys`
+- `required_tpl_keys`
+- `required_assets`
+
+`required_tpl_keys` must keep the `tpl_` prefix.
+Use `allowed_languages`, `allowed_regions`, and `allowed_models` when the contract is intentionally scoped.
 
 ## 5. [`spec_titles.csv`](../data/phase1/spec_titles.csv) Rule
 
@@ -181,6 +196,18 @@ Check:
 - value is not empty
 - page contract covers the page if it is placeholder-heavy
 
+### 9.4 Stale Foreign Identity in Review or Runtime Output
+
+Symptom:
+
+- `STALE_IDENTITY_LITERAL` appears during `python build.py check`
+
+Check:
+
+- the template or review text is not carrying an old product name
+- the current target `product_name` and `model_no` are correct
+- if the foreign literal is intentional, add it to `checks.allowed_foreign_identity_literals`
+
 ### 9.3 Review Not Updated After Data Change
 
 Symptom:
@@ -200,6 +227,7 @@ For `JE-1000F / JP`, a common data-change flow is:
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 This is the current maintainable path:
@@ -208,3 +236,4 @@ This is the current maintainable path:
 - validate
 - sync review
 - publish from review
+- keep the release manifest with the exported outputs
