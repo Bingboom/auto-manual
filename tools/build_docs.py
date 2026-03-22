@@ -169,7 +169,14 @@ def clean_build_targets(
 
 
 def _is_retryable_cleanup_error(exc: OSError) -> bool:
-    return getattr(exc, "winerror", None) == 32 or (os.name == "nt" and isinstance(exc, PermissionError))
+    if getattr(exc, "winerror", None) == 32:
+        return True
+    if isinstance(exc, PermissionError):
+        if os.name == "nt":
+            return True
+        message = str(exc).lower()
+        return "file in use" in message or "resource busy" in message
+    return False
 
 
 def remove_tree_with_retries(path: Path) -> None:
