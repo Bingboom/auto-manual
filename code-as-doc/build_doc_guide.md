@@ -67,6 +67,11 @@ Current shared config families:
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.eu.yaml`](../config.eu.yaml): shared EU template family
 
+Page-stack note:
+
+- shared config families may resolve their page stack through `paths.page_manifest`
+- keep manifest-driven page order changes under [`docs/manifests/`](../docs/manifests)
+
 Pass target differences through:
 
 - `--model`

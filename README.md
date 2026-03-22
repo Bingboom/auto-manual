@@ -75,6 +75,7 @@ The current user workflow and source-of-truth rules are maintained in [`user-gui
 Use the document that owns the topic:
 
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
+- current JP / US / EU family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
@@ -88,6 +89,7 @@ Use the document that owns the topic:
 
 - [`build.py`](build.py): top-level CLI entrypoint
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
+- [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`data/phase1/`](data/phase1): current operational CSV snapshot inputs
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`docs/_review/`](docs/_review): target-specific review layer

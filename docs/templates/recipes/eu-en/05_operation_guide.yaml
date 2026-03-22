@@ -1,0 +1,26 @@
+page_id: 05_operation_guide
+template: templates/page_eu/05_operation_guide_placeholder.rst
+field_map:
+  PRODUCT_NAME: product_name
+  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label
+  AC_POWER_BUTTON_LABEL: tpl_ac_power_button_label
+  DC_USB_POWER_BUTTON_LABEL: tpl_dc_usb_power_button_label
+  DEFAULT_STANDBY_DURATION: tpl_default_standby_duration
+  ENERGY_SAVING_AUTO_OFF_DURATION: tpl_energy_saving_auto_off_duration
+  ENERGY_SAVING_AC_THRESHOLD: tpl_energy_saving_ac_threshold
+  ENERGY_SAVING_DC_THRESHOLD: tpl_energy_saving_dc_threshold
+  USB_C_HIGH_POWER_PORT_LABEL: tpl_usb_c_high_power_port_label
+  USB_C_HIGH_POWER_CABLE_NAME: tpl_usb_c_high_power_cable_name
+  CAR_BATTERY_CHARGING_CABLE_NAME: tpl_car_battery_charging_cable_name
+required_row_keys:
+  - product_name
+  - tpl_main_power_button_label
+  - tpl_ac_power_button_label
+  - tpl_dc_usb_power_button_label
+  - tpl_default_standby_duration
+  - tpl_energy_saving_auto_off_duration
+snippet_slots:
+  wireless_reset_buttons: wireless_reset_buttons
+  wireless_toggle_buttons: wireless_toggle_buttons
+contracts:
+  - 05_operation_guide_eu

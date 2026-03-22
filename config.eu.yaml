@@ -23,71 +23,7 @@ paths:
   spec_master_csv: data/phase1/Spec_Master.csv
   spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
   spec_titles_csv: data/phase1/spec_titles.csv
+  page_manifest: docs/manifests/manual_eu-en.yaml
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
-
-pages:
-- type: rst_include
-  lang: en
-  file: templates/page_eu/00_preface.rst
-
-- type: csv_page
-  source: phase1
-  page: safety
-  langs: [ en ]
-  include_dir: generated/{model}
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/01_meaning_of_symbols.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/02_whats_in_the_box.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/03_product_overview_placeholder.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/04_lcd_display_placeholder.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/05_operation_guide_placeholder.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/06_ups_mode.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/07_expansion_battery_pack.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/08_charging_methods.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/09_storage_and_maintenance.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/10_troubleshooting.rst
-
-- type: csv_page
-  source: phase1
-  page: spec
-  langs: [ en ]
-  include_dir: generated/{model}
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/11_warranty.rst
-
-- type: rst_include
-  lang: en
-  file: templates/page_eu/12_app_setup_placeholder.rst
