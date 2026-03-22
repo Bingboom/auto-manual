@@ -97,3 +97,56 @@ HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_usb_c_high_power_port_label,
 HTE153-JP,JP,TRUE,specifications,ACCESSORIES,9,tpl_usb_c_high_power_cable_name,USB-C High Power Cable,1,,Jackery USB-C to USB-C 5A ケーブル,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,ACCESSORIES,9,tpl_car_battery_charging_cable_name,Car Battery Charging Cable,1,,Jackery 12V 自動車用バッテリー充電ケーブル,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_ups_bypass_output_text,UPS Bypass Output,1,,1500W,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,"6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,1,Charge Mode,"100V-120V~60Hz, 15A Max",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,2,AC Flash Charge,About 1650W±50W @25°C,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,1,,"11V-16V⎓8A Max, Double 8A Max",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,2,,"16V-60V⎓12A, Double 21A Max / 400W Max",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,1,,"120V~60Hz, 12.5A, 1500W Rated (-10°C to 45°C)",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,2,,"120V~60Hz, 5.8A, 700W Rated (-20°C to -10°C)",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,1500W,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,1,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,2,,USB-C 100W output disabled (-20°C to -10°C),,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,3,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A,1,,"1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,dc12_port,DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ENVIRONMENTAL,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ENVIRONMENTAL,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ENVIRONMENTAL,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ENVIRONMENTAL,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,CONTROLS,7,tpl_main_power_button_label,Main Power Button,1,,Main POWER Button,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,CONTROLS,7,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,CONTROLS,7,tpl_power_button_label,Power Button,1,,Main POWER Button,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,CONTROLS,7,tpl_usb_power_button_label,USB Power Button,1,,DC/USB Power Button,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,CONTROLS,7,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_dc12_port_label,DC 12V Port,1,,DC 12V Port,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_dc12_port_spec,DC 12V Port,1,,12V/10A Max,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_c_low_label,USB-C 30W Output,1,,USB-C 30W Output,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_c_low_spec,USB-C 30W Output,1,,"30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_c_high_label,USB-C 100W Output,1,,USB-C 100W Output,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_c_high_spec,USB-C 100W Output,1,,"100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_a_label,USB-A 18W Output,1,,USB-A 18W Output,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_a_spec,USB-A 18W Output,1,,"18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_ac_output_label,AC Output,1,,AC Output,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_ac_output_spec,AC Output,1,,"120V~60Hz, 12.5A, 1500W Rated",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_total_output_label,Total Output,1,,Total Output,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_front_total_output_spec,Total Output,1,,"1500W Rated, 3000W Surge Peak",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_label,DC Input (2 x DC8020 Ports),1,,DC Input (2 x DC8020 Ports),,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_pv_spec,PV Input,1,,"PV: 16-60V/12A Max, combined up to 21A / 400W Max",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_car_spec,Car Input,1,,"Car: 11-16V/8A Max, combined up to 8A Max",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,,AC Input,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,,"100V-120V~60Hz, 15A Max, Flash Charge approx. 1650W",,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_default_standby_duration,Default Standby Duration,1,,2 hours,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12 hours,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_usb_c_high_power_port_label,USB-C 100W Port,1,,USB-C 100W,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_usb_c_high_power_cable_name,USB-C High Power Cable,1,,Jackery USB-C to USB-C 5A cable,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_car_battery_charging_cable_name,Car Battery Charging Cable,1,,Jackery 12V automobile battery charging cable,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_battery_pack_name,Battery Pack Name,1,,Jackery Battery Pack,,,,,,JE-1000F
+HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_ups_bypass_output_text,UPS Bypass Output,1,,1500W,,,,,,JE-1000F

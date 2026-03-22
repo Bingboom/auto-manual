@@ -302,6 +302,7 @@ Config scope rule:
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
 - [`config.eu.yaml`](../config.eu.yaml): shared EU template-family config
+- the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / EU`
 - do not create a new config only because the model changed; pass `--model` and `--region` instead
 - create a new config only when the page stack, template family, or output conventions are genuinely different
 

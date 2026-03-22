@@ -4,6 +4,7 @@ Updated: 2026-03-22
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
+The current maintained smoke-check baseline is centered on `JE-1000F` across the active US, JP, and EU config families.
 
 For the fixed US + JP release matrix, you can also use:
 

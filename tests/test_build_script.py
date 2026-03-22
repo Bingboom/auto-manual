@@ -186,7 +186,7 @@ class TestBuildScript(unittest.TestCase):
                 "--config",
                 "config.yaml",
                 "--tracked-root",
-                "docs/_review/JE-3600A/EU",
+                "docs/_review/JE-1000F/EU",
             ]
         )
         seen: list[list[str]] = []
@@ -198,8 +198,8 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
-        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-3600A" / "EU"), seen[0])
-        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-3600A" / "EU"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "EU"), seen[0])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "EU"), seen[0])
 
     def test_run_diff_report_should_run_per_target_when_defaults_are_inferred(self) -> None:
         args = build_cli.parse_args(["diff-report", "--config", "config.yaml"])
@@ -207,7 +207,7 @@ class TestBuildScript(unittest.TestCase):
         original = build_cli.run_checked
         original_targets = build_cli._resolve_diff_report_targets
         try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US"), ("JE-3600A", "EU")]  # type: ignore[assignment]
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US"), ("JE-1000F", "EU")]  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli.run_diff_report(args)
         finally:
@@ -217,8 +217,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(2, len(seen))
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US"), seen[0])
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US"), seen[0])
-        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-3600A" / "EU"), seen[1])
-        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-3600A" / "EU"), seen[1])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "EU"), seen[1])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "EU"), seen[1])
 
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])

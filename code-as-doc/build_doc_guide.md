@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-20
+Updated: 2026-03-22
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -209,7 +209,7 @@ Build one explicit target:
 
 ```powershell
 python build.py word --config config.yaml --model JE-1000F --region US
-python build.py pdf --config config.eu.yaml --model JE-3600A --region EU
+python build.py pdf --config config.eu.yaml --model JE-1000F --region EU
 ```
 
 Single-page preview and fast draft:

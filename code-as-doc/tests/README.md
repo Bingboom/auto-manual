@@ -1,6 +1,6 @@
 # Tests Guide
 
-Updated: 2026-03-15
+Updated: 2026-03-22
 
 This file describes the current test entrypoints and recommended smoke checks.
 
@@ -46,7 +46,7 @@ python build.py release-manifest --config config.ja.yaml --model JE-1000F --regi
 ### 2.3 EU family
 
 ```powershell
-python build.py check --config config.eu.yaml --model JE-3600A --region EU
+python build.py check --config config.eu.yaml --model JE-1000F --region EU
 ```
 
 ## 3. Review-Specific Smoke Checks
