@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-03-20
+Updated: 2026-03-22
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -175,6 +175,8 @@ Recommended use:
 3. Build preview/final outputs with `check/html/word/pdf`
 4. Commit the resulting review bundle
 5. Use `python build.py diff-report ...` when you need a table-style change export
+
+For the current maintainer branch model, pull request rules, and GitHub protection settings, use [`../code-as-doc/dev/git_branching_guide.md`](../code-as-doc/dev/git_branching_guide.md).
 
 ---
 

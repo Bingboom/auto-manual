@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-03-17
+Updated: 2026-03-22
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single owning document for the topic you are changing.
@@ -21,6 +21,9 @@ These files describe the current repo behavior today.
 - [`generated_page_authoring.md`](generated_page_authoring.md)
   - page manifest vs static include decision
   - generated_page, recipe, and snippet authoring rules
+- [`dev/git_branching_guide.md`](dev/git_branching_guide.md)
+  - current Git branching policy
+  - GitHub branch protection and merge settings for this repo
 - [`code-as-doc.md`](code-as-doc.md)
   - documentation maintenance policy
   - doc update expectations when code or data changes
