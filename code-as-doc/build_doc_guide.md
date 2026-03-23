@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-23
+Updated: 2026-03-24
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -63,6 +63,7 @@ GitHub validation note:
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
+- `Review Preview Package` is a separate artifact workflow for design sharing and does not gate merge
 
 ## 2. Config Rule
 
@@ -170,7 +171,26 @@ python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 
 `check` now also catches stale foreign model names and contract-required spec keys, `tpl_*` keys, and assets.
 
-### 3.6 Publish a Final Word Release
+### 3.6 Package a Review Preview for Design
+
+Use this when design needs the rendered review HTML plus the current diff-report set:
+
+```powershell
+python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+```
+
+Default packaged output:
+
+- [`../site/review-preview/dist/`](../site/review-preview/dist)
+
+This package contains:
+
+- `manual/`: review-based HTML
+- `changes/`: latest diff-report HTML set
+- `generated/meta.json`: branch / commit metadata
+- `generated/changes.json`: grouped changed files and review pages
+
+### 3.7 Publish a Final Word Release
 
 ```powershell
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
@@ -198,6 +218,10 @@ Runtime outputs:
 Review working bundle:
 
 - [`docs/_review/<model>/<region>/`](../docs/_review)
+
+Review preview package:
+
+- [`../site/review-preview/dist/`](../site/review-preview/dist)
 
 Revision reports:
 
