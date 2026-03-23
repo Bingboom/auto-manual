@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-22
+Updated: 2026-03-23
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -56,6 +56,13 @@ Windows cleanup note:
 - build actions except `fast` run with clean enabled unless you pass `--no-clean`
 - if cleanup fails with a file-in-use error under [`docs/_build/`](../docs/_build), close File Explorer, browser, Word, or PDF windows pointing at that target output and rerun
 - `--no-clean` is the temporary workaround when you only need to rebuild in place
+
+GitHub validation note:
+
+- `Manual Validation` is the repository CI workflow
+- pull requests run the required merge-gating checks
+- pushes to `main` run the same workflow again after merge
+- feature branches no longer run a duplicate `push` validation pass in GitHub
 
 ## 2. Config Rule
 

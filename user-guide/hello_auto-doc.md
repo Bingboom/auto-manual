@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-03-22
+Updated: 2026-03-23
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -42,6 +42,12 @@ Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip insta
 - The Python dependencies in [`requirements.txt`](../requirements.txt) include the Sphinx theme and build libraries used by the current workflow.
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
+
+GitHub note:
+
+- pull requests are gated by the `Manual Validation` workflow
+- after merge, `main` runs the same validation workflow again
+- feature-branch pushes are not expected to run a second duplicate `push` validation pass
 
 ---
 

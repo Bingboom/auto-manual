@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-22
+Updated: 2026-03-23
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -22,6 +22,12 @@ This repository is responsible for:
 
 This repository is not the place to define the long-term platform strategy.
 That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md).
+
+CI note:
+
+- GitHub `Manual Validation` runs on pull requests for merge gating
+- the same workflow runs again on `main` after merge for post-merge validation
+- feature-branch pushes do not need a second duplicate `push` validation run
 
 ## 2. Primary Entrypoint
 

@@ -2,7 +2,13 @@ name: Manual Validation
 
 on:
   push:
+    branches:
+      - main
   pull_request:
+
+concurrency:
+  group: manual-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   unit:
