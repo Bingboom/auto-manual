@@ -190,6 +190,11 @@ This package contains:
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files and review pages
 
+Vercel note:
+
+- the repo-level Vercel entrypoint is [`../tools/process_docs/vercel_build_review_preview.py`](../tools/process_docs/vercel_build_review_preview.py)
+- keep the Vercel project `Install Command` empty and let [`../vercel.json`](../vercel.json) drive the build
+
 ### 3.7 Publish a Final Word Release
 
 ```powershell
