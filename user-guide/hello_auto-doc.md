@@ -1,11 +1,12 @@
 # Hello Auto Doc
 
-Updated: 2026-03-22
+Updated: 2026-03-23
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
 It is the current workflow and editing-surface guide.
 It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
+For the current JP / US / EU family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
 
 ---
 
@@ -42,6 +43,12 @@ Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip insta
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
 
+GitHub note:
+
+- pull requests are gated by the `Manual Validation` workflow
+- after merge, `main` runs the same validation workflow again
+- feature-branch pushes are not expected to run a second duplicate `push` validation pass
+
 ---
 
 ## 2. Source of Truth
@@ -52,6 +59,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
    - [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
    - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
+   - [`docs/manifests/*.yaml`](../docs/manifests)
    - Responsibility: reusable page structure, headings, shared prose, and initial draft layout
 
 2. Data layer
@@ -85,6 +93,7 @@ Rules:
 - Edit templates only when the change should be shared by multiple manuals.
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
+- Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 
 ---
 

@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-22
+Updated: 2026-03-23
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -57,6 +57,13 @@ Windows cleanup note:
 - if cleanup fails with a file-in-use error under [`docs/_build/`](../docs/_build), close File Explorer, browser, Word, or PDF windows pointing at that target output and rerun
 - `--no-clean` is the temporary workaround when you only need to rebuild in place
 
+GitHub validation note:
+
+- `Manual Validation` is the repository CI workflow
+- pull requests run the required merge-gating checks
+- pushes to `main` run the same workflow again after merge
+- feature branches no longer run a duplicate `push` validation pass in GitHub
+
 ## 2. Config Rule
 
 Do not create one config file per model.
@@ -66,6 +73,11 @@ Current shared config families:
 - [`config.yaml`](../config.yaml): shared EN / US template family
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.eu.yaml`](../config.eu.yaml): shared EU template family
+
+Page-stack note:
+
+- shared config families may resolve their page stack through `paths.page_manifest`
+- keep manifest-driven page order changes under [`docs/manifests/`](../docs/manifests)
 
 Pass target differences through:
 

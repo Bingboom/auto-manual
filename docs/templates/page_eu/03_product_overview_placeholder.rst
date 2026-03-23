@@ -12,22 +12,36 @@ FRONT VIEW
    :header-rows: 0
    :widths: 50 50
 
-   * - **|POWER_BUTTON_LABEL|**
+   * - **|MAIN_POWER_BUTTON_LABEL|**
+     - **Handle**
+   * - **|FRONT_DC12_PORT_LABEL|**
+
+       |FRONT_DC12_PORT_SPEC|
      - **LCD**
-   * - **USB-C 100W Output**
+   * - **|DC_USB_POWER_BUTTON_LABEL|**
+     - **LED Light Button**
+   * - **|FRONT_USB_C_LOW_LABEL|**
 
-       100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A
-     - **USB-A 18W Output**
+       |FRONT_USB_C_LOW_SPEC|
+     - **LED Light**
+   * - **|FRONT_USB_C_HIGH_LABEL|**
 
-       18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A
-   * - **AC Output**
-
-       230V~50 Hz, 3600W
-     - **AC Total Output**
-
-       3600W
-   * - **|USB_POWER_BUTTON_LABEL|**
+       |FRONT_USB_C_HIGH_SPEC|
      - **|AC_POWER_BUTTON_LABEL|**
+   * - **|FRONT_USB_A_LABEL|**
+
+       |FRONT_USB_A_SPEC|
+     - **|FRONT_AC_OUTPUT_LABEL|**
+
+       |FRONT_AC_OUTPUT_SPEC|
+
+.. list-table::
+   :header-rows: 0
+   :widths: 100
+
+   * - **|FRONT_TOTAL_OUTPUT_LABEL|**
+
+       |FRONT_TOTAL_OUTPUT_SPEC|
 
 RIGHT SIDE VIEW
 ---------------
@@ -40,19 +54,13 @@ RIGHT SIDE VIEW
    :header-rows: 0
    :widths: 50 50
 
-   * - **Retractable Handle**
+   * - **Handle**
+     - **|SIDE_AC_INPUT_LABEL|**
 
-       Press the button on the retractable handle and pull up to extend.
-     - **DC Input (2×DC8020 Ports)**
+       |SIDE_AC_INPUT_SPEC|
+   * -
+     - **|SIDE_DC_INPUT_LABEL|**
 
-       12-16V⎓8A Max
+       |SIDE_DC_INPUT_PV_SPEC|
 
-       16-60V⎓12A, double to 24A Max / 1000W Max
-   * - **DC Expansion Port**
-
-       Connect to Battery Pack
-     - **AC Input**
-
-       220V-240V~50 Hz, 10A Max
-   * - **Wheels**
-     -
+       |SIDE_DC_INPUT_CAR_SPEC|

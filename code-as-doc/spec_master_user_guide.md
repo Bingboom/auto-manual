@@ -5,6 +5,7 @@ Updated: 2026-03-17
 This file explains the current phase1 data layer, with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as the center.
 It is the operational guide for the CSV files used by the current repo.
 For the future canonical data model and CMS-direction schema boundary, see [`architecture/Content_Data_Model.md`](architecture/Content_Data_Model.md).
+For current JP / US / EU family differences and what must remain family-specific, see [`manual_family_guide.md`](manual_family_guide.md).
 
 ## 1. Active Phase1 CSV Files
 

@@ -18,6 +18,9 @@ These files describe the current repo behavior today.
 - [`spec_master_user_guide.md`](spec_master_user_guide.md)
   - current phase1 CSV semantics
   - current placeholder, review-sync, and data-change rules
+- [`manual_family_guide.md`](manual_family_guide.md)
+  - current JP / US / EU family difference boundary
+  - what must remain family-specific before the future table-driven model exists
 - [`generated_page_authoring.md`](generated_page_authoring.md)
   - page manifest vs static include decision
   - generated_page, recipe, and snippet authoring rules
