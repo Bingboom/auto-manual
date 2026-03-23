@@ -107,7 +107,9 @@ Current first-phase Vercel build target:
 Vercel build note:
 
 - the project skips the standalone Vercel `Install Command`
-- the `buildCommand` creates a local `.vercel-python/` virtual environment first
+- the repo uses a short wrapper entrypoint:
+  [`../../tools/process_docs/vercel_build_review_preview.py`](../../tools/process_docs/vercel_build_review_preview.py)
+- that wrapper creates a local `.vercel-python/` virtual environment first
 - dependencies are installed into that local environment before the review preview package is generated
 
 This avoids the `externally-managed-environment` error on build images where the system Python is managed outside normal `pip install` expectations.
