@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-03-23
+Updated: 2026-03-24
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -48,6 +48,7 @@ GitHub note:
 - pull requests are gated by the `Manual Validation` workflow
 - after merge, `main` runs the same validation workflow again
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
+- `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
 
 ---
 
@@ -94,6 +95,7 @@ Rules:
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
+- When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
 
 ---
 
@@ -118,10 +120,11 @@ Current flow:
 11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-14. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
-15. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
-16. `python build.py preview` materializes one exact page selector under a preview-only output root
-17. `python build.py fast` materializes a runtime-only draft without export
+14. `python tools/process_docs/build_review_preview.py` packages review HTML plus diff-report HTML for design sharing
+15. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+16. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
+17. `python build.py preview` materializes one exact page selector under a preview-only output root
+18. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 

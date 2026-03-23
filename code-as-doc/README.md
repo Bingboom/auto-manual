@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-03-22
+Updated: 2026-03-24
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single owning document for the topic you are changing.
@@ -27,6 +27,9 @@ These files describe the current repo behavior today.
 - [`dev/git_branching_guide.md`](dev/git_branching_guide.md)
   - current Git branching policy
   - GitHub branch protection and merge settings for this repo
+- [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)
+  - current review-preview packaging flow for design collaboration
+  - how review HTML and diff-report HTML are bundled for Vercel/static sharing
 - [`code-as-doc.md`](code-as-doc.md)
   - documentation maintenance policy
   - doc update expectations when code or data changes

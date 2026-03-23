@@ -16,3 +16,6 @@ docs/generated/
 
 # OS junk
 .DS_Store
+
+# Review preview packaging
+site/review-preview/dist/

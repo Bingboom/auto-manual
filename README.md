@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-23
+Updated: 2026-03-24
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -28,6 +28,7 @@ CI note:
 - GitHub `Manual Validation` runs on pull requests for merge gating
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
+- `Review Preview Package` is a separate non-gating workflow that packages review HTML plus diff-report HTML for sharing
 
 ## 2. Primary Entrypoint
 
@@ -48,6 +49,12 @@ Batch export example:
 ```powershell
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
+```
+
+Review-sharing example:
+
+```powershell
+python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
 Windows note:
@@ -83,6 +90,7 @@ Use the document that owns the topic:
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - current JP / US / EU family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
+- current Vercel review-preview packaging flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md)
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
 - maintainer doc index: [`code-as-doc/README.md`](code-as-doc/README.md)

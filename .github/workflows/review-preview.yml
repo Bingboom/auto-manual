@@ -1,0 +1,54 @@
+name: Review Preview Package
+
+on:
+  pull_request:
+    paths:
+      - "docs/_review/**"
+      - "docs/templates/**"
+      - "data/phase1/**"
+      - "build.py"
+      - "tools/**"
+      - "config.yaml"
+      - "config.ja.yaml"
+      - "config.eu.yaml"
+      - "README.md"
+      - "code-as-doc/**"
+      - "user-guide/**"
+      - "site/review-preview/**"
+  workflow_dispatch:
+
+concurrency:
+  group: review-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package-review-preview:
+    runs-on: ubuntu-latest
+    env:
+      FROM_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || 'HEAD~1' }}
+      TO_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'HEAD' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - name: Build review preview package (US)
+        run: >
+          python tools/process_docs/build_review_preview.py
+          --config config.yaml
+          --model JE-1000F
+          --region US
+          --source review
+          --from-ref "$FROM_REF"
+          --to-ref "$TO_REF"
+      - name: Upload review preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-preview-us
+          path: site/review-preview/dist
