@@ -57,6 +57,11 @@ Review-sharing example:
 python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
+Vercel note:
+
+- the review-preview project should use the repo-level [`vercel.json`](vercel.json)
+- the Vercel build entrypoint is [`tools/process_docs/vercel_build_review_preview.py`](tools/process_docs/vercel_build_review_preview.py)
+
 Windows note:
 
 - build actions except `fast` clean the current target output first
