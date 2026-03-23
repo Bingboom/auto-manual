@@ -104,6 +104,14 @@ Current first-phase Vercel build target:
 - `US`
 - `source=review`
 
+Vercel build note:
+
+- the project skips the standalone Vercel `Install Command`
+- the `buildCommand` creates a local `.vercel-python/` virtual environment first
+- dependencies are installed into that local environment before the review preview package is generated
+
+This avoids the `externally-managed-environment` error on build images where the system Python is managed outside normal `pip install` expectations.
+
 Do not ask Vercel to render raw `.rst`.
 Let the repo generate review HTML first, then let Vercel host the resulting static package.
 
