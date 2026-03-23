@@ -1,6 +1,6 @@
 # Git Branching Guide
 
-Updated: 2026-03-22
+Updated: 2026-03-23
 
 Use this file for the current Git branching, pull request, merge, tag, and GitHub branch protection rules for this repo.
 
@@ -125,7 +125,12 @@ If multiple people are already pushing to the same branch, coordinate before rew
 
 ### 4.4 Validate Before Opening A Pull Request
 
-Use the validation set that matches the change.
+Use both personal validation and machine validation.
+
+Personal validation means the checks you run locally before opening or updating a pull request.
+Machine validation means the GitHub `Manual Validation` workflow that must pass before merge.
+
+Use the local validation set that matches the change.
 
 - logic changes: `python -m unittest`
 - build or quality-gate changes: `python build.py check --config config.yaml --model JE-1000F --region US`
@@ -135,6 +140,12 @@ Use the validation set that matches the change.
 - docs-only changes: self-review links, paths, examples, and command accuracy
 
 Do not open a pull request with unreviewed generated `html`, `word`, or `pdf` outputs.
+
+Current rule:
+
+- personal validation happens first on the branch owner machine
+- machine validation happens in GitHub on the pull request
+- `main` should only accept changes that passed the required machine validation checks
 
 ### 4.5 Open A Pull Request To Main
 
@@ -223,24 +234,36 @@ If you use legacy branch protection, create the equivalent branch protection rul
 
 - Target branch: `main`
 - Require a pull request before merging: `ON`
-- Required approvals: `1`
+- Required approvals: `0` for the current single-maintainer workflow
 - Dismiss stale pull request approvals when new commits are pushed: `ON`
-- Require approval of the most recent reviewable push: `ON`
+- Require approval of the most recent reviewable push: `OFF` for the current single-maintainer workflow
 - Require conversation resolution before merging: `ON`
 - Require status checks to pass before merging: `ON`
 - Require branches to be up to date before merging: `ON`
 - Required status checks:
-  - `unit`
-  - `doctor-en`
-  - `check-en`
-  - `check-jp`
-  - `check-eu`
+  - `Manual Validation / unit (pull_request)`
+  - `Manual Validation / doctor-en (pull_request)`
+  - `Manual Validation / check-en (pull_request)`
+  - `Manual Validation / check-jp (pull_request)`
+  - `Manual Validation / check-eu (pull_request)`
 - Require linear history: `ON`
 - Allow force pushes: `OFF`
 - Allow deletions: `OFF`
 - Lock branch: `OFF`
 - Restrict who can push to matching branches: `OFF` for normal contributors if pull requests are already required
 - Bypass list: keep empty if possible; if your team needs an emergency path, limit bypass to a very small maintainer set and document who owns that responsibility
+
+Current CI binding rule:
+
+- GitHub `Manual Validation` is the required machine-validation workflow
+- pull requests run the merge-gating checks
+- pushes to `main` run the same workflow again after merge for post-merge validation
+- feature branches should not depend on a second duplicate GitHub `push` validation run
+
+If the repo later becomes a real multi-maintainer repo, revisit these two settings:
+
+- Required approvals: move from `0` to `1`
+- Require approval of the most recent reviewable push: move from `OFF` to `ON`
 
 ### 8.2 Optional Release Branch Rule
 
@@ -267,6 +290,20 @@ These are not branch protection toggles, but they should match this policy.
 - Automatically delete head branches: `ON`
 
 If your team later adopts `CODEOWNERS`, turn on `Require review from Code Owners` for `main`.
+
+### 8.4 Status Check Troubleshooting
+
+If a pull request shows successful GitHub Actions runs but the merge box still says `Expected — Waiting for status to be reported`:
+
+- first confirm there is no legacy rule under `Settings -> Branches`
+- then open the active `Protect main` ruleset under `Settings -> Rules`
+- remove the required checks and add them again from the latest successful pull request run
+- prefer the exact `Manual Validation / ... (pull_request)` check names
+- refresh the pull request page after saving the ruleset
+
+Typical cause:
+
+- the ruleset is still bound to an older required-check context after workflow or branch-protection changes
 
 ## 9. Migration Rule For The Current Repo
 
