@@ -686,24 +686,12 @@ def build_download_links(downloads: dict[str, object], *, prefix: str) -> list[t
 
 
 def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> str:
-    areas = changes.get("areas", [])
-    if not isinstance(areas, list):
-        areas = []
-    top_pages = changes.get("review_pages", [])
-    if not isinstance(top_pages, list):
-        top_pages = []
-    changed_files = changes.get("changed_files", [])
-    if not isinstance(changed_files, list):
-        changed_files = []
     downloads = changes.get("downloads", {})
     if not isinstance(downloads, dict):
         downloads = {}
     download_links = build_download_links(downloads, prefix="./")
-    page_state = "No review page changes detected in the selected diff range."
-    page_state_class = "warning"
-    if top_pages:
-        page_state = f"{len(top_pages)} review page(s) changed in this round."
-        page_state_class = ""
+    word_download = next((target for label, target in download_links if label == "Download Word"), None)
+    workbook_download = next((target for label, target in download_links if label == "Download Change Workbook"), None)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -717,51 +705,25 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
     <section class="hero">
       <span class="eyebrow">Review Preview</span>
       <h1>{escape(str(meta['title']))}</h1>
-      <p class="lede">Share the current review-stage manual with design, then use the linked change report and downloads to review exactly what changed in this round.</p>
+      <p class="lede">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p>
       <div class="actions">
         <a class="button primary" href="./manual/index.html">Open Review HTML</a>
-        <a class="button secondary" href="./changes/index.html">Open Change Report</a>
+        {f'<a class="button download" href="{escape(word_download)}">Download Word</a>' if word_download else ''}
+        {f'<a class="button download" href="{escape(workbook_download)}">Download Change Workbook</a>' if workbook_download else ''}
       </div>
-      <div class="downloads">
-        {''.join(f'<a class="button download" href="{escape(target)}">{escape(label)}</a>' for label, target in download_links[:2])}
-      </div>
-      <div class="state {page_state_class}">{escape(page_state)}</div>
-      <div class="banner">Use <strong>Open Review HTML</strong> to inspect layout and page effect, then use <strong>Open Change Report</strong> or the download buttons to brief design on the deltas.</div>
-      <div class="meta">
-        <div class="meta-item"><span class="label">Model</span><strong>{escape(str(meta['model']))}</strong></div>
-        <div class="meta-item"><span class="label">Region</span><strong>{escape(str(meta['region']))}</strong></div>
-        <div class="meta-item"><span class="label">Source</span><strong>{escape(str(meta['source']))}</strong></div>
-        <div class="meta-item"><span class="label">Branch</span><strong>{escape(str(meta['branch']))}</strong></div>
-        <div class="meta-item"><span class="label">Commit</span><strong><code>{escape(str(meta['commit_sha_short']))}</code></strong></div>
-        <div class="meta-item"><span class="label">Generated</span><strong>{escape(str(meta['generated_at']))}</strong></div>
-      </div>
-      <p class="foot">Commit message: <code>{escape(str(meta['commit_message']))}</code></p>
+      <p class="foot">Need the detailed diff? <a href="./changes/index.html">Open Change Report</a>.</p>
     </section>
 
     <section class="grid">
       <article class="card">
-        <h2>Review Pages Touched</h2>
-        <ul>{render_list([str(item) for item in top_pages], "No review pages changed in the selected diff range.")}</ul>
+        <h2>Doc Information</h2>
+        <ul>
+          <li><strong>Model:</strong> {escape(str(meta['model']))} / {escape(str(meta['region']))}</li>
+          <li><strong>Region:</strong> {escape(str(meta['region']))}</li>
+          <li><strong>Format:</strong> HTML / Word / Change Workbook</li>
+        </ul>
+        <p class="foot">Use the Excel workbook for an offline handoff, or open the change report for the full page and field diff.</p>
       </article>
-      <article class="card">
-        <h2>Changed Files</h2>
-        <ul>{render_list([str(item) for item in changed_files[:12]], "No files changed in the selected diff range.")}</ul>
-      </article>
-    </section>
-
-    <section class="grid">
-      <article class="card">
-        <h2>Downloads</h2>
-        <ul>{render_link_list(download_links)}</ul>
-      </article>
-      <article class="card">
-        <h2>What Changed</h2>
-        <p>Use the change report for page and field deltas. Use the Excel workbook when you need a portable handoff for review meetings or offline markup.</p>
-      </article>
-    </section>
-
-    <section class="grid">
-      {render_areas([item for item in areas if isinstance(item, dict)])}
     </section>
   </main>
 </body>
@@ -821,6 +783,13 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
         <h2>Diff Links</h2>
         <ul>{render_link_list(report_links)}</ul>
       </article>
+      <article class="card">
+        <h2>Downloadables</h2>
+        <ul>{render_link_list(download_links)}</ul>
+      </article>
+    </section>
+
+    <section class="grid">
       <article class="card">
         <h2>Downloadables</h2>
         <ul>{render_link_list(download_links)}</ul>
