@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Updated: 2026-03-20
+Updated: 2026-03-25
 
 This guide describes the real working flow for `manual_je1000f_jp`.
 It assumes the final editable manual lives under [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) after review starts.
@@ -298,6 +298,27 @@ If you only want a fresh runtime draft for template or placeholder debugging:
 ```powershell
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 ```
+
+If you need the design-facing hosted review package, use the dedicated review preview packager.
+For the current first-phase shared preview target, the repo packages `JE-1000F / US` as a static site that can be hosted on Vercel:
+
+```powershell
+python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+```
+
+That package writes to:
+
+- [`site/review-preview/dist/`](../site/review-preview/dist)
+
+The summary page is intentionally minimal now.
+It should only be used as the entry page for:
+
+- `Open Review HTML`
+- `Download Word`
+- `Download Change Workbook`
+- `Doc Information`
+
+For the detailed page/field/file diff, open the linked change report from the summary page instead of adding more cards to the summary itself.
 
 ---
 
