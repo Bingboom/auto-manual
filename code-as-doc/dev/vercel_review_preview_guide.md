@@ -39,6 +39,12 @@ Generated structure:
 - `generated/meta.json`: branch / commit / author metadata
 - `generated/changes.json`: changed files, review pages, and grouped change areas
 
+The current summary page is intentionally designer-facing:
+
+- it tells design what to open first
+- it separates rendered manual review from change tracing
+- it explains whether the current round contains page-level review edits or mostly workflow / docs changes
+
 ## 3. Why This Uses Review Content
 
 After review starts, the durable editing surface is:
@@ -78,7 +84,7 @@ Current workflow:
 - [`../../.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
 
 It does not gate merge.
-It packages the same review preview bundle in CI and uploads it as an artifact.
+It packages the same review preview bundle in CI, uploads it as an artifact, and deploys the static output to Vercel.
 
 This keeps the responsibilities separate:
 
@@ -106,13 +112,9 @@ Current first-phase Vercel build target:
 
 Vercel build note:
 
-- the project skips the standalone Vercel `Install Command`
-- the repo uses a short wrapper entrypoint:
-  [`../../tools/process_docs/vercel_build_review_preview.py`](../../tools/process_docs/vercel_build_review_preview.py)
-- that wrapper creates a local `.vercel-python/` virtual environment first
-- dependencies are installed into that local environment before the review preview package is generated
-
-This avoids the `externally-managed-environment` error on build images where the system Python is managed outside normal `pip install` expectations.
+- GitHub Actions builds the review preview package and prepares `.vercel/output/static`
+- GitHub Actions then deploys the prebuilt static output to Vercel with the CLI
+- Vercel should not run the Python build itself for this flow
 
 Do not ask Vercel to render raw `.rst`.
 Let the repo generate review HTML first, then let Vercel host the resulting static package.

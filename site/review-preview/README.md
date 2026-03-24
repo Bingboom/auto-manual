@@ -18,3 +18,9 @@ It is generated from:
 - review HTML under `docs/_build/<model>/<region>/html/`
 - diff-report HTML under `reports/version_tracking/<model>/<region>/`
 - metadata produced by `tools/process_docs/build_review_preview.py`
+
+The generated `index.html` is meant to be the designer-facing entry page:
+
+- start from the rendered manual
+- then open the change report shortcuts
+- use raw file-level diff links only when deeper maintainer tracing is needed

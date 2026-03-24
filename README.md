@@ -29,6 +29,7 @@ CI note:
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML plus diff-report HTML for sharing
+- the published review preview summary page is optimized for design review: open the rendered manual first, then open the change report for this round
 
 ## 2. Primary Entrypoint
 

@@ -189,11 +189,13 @@ This package contains:
 - `changes/`: latest diff-report HTML set
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files and review pages
+- `index.html`: designer-facing entry page with a recommended review order and direct links to manual / page diff / field diff
 
 Vercel note:
 
-- the repo-level Vercel entrypoint is [`../tools/process_docs/vercel_build_review_preview.py`](../tools/process_docs/vercel_build_review_preview.py)
-- keep the Vercel project `Install Command` empty and let [`../vercel.json`](../vercel.json) drive the build
+- GitHub Actions builds the review preview package and deploys the static output to Vercel
+- Vercel should host the prebuilt package only; it should not run the Python review-preview build itself
+- keep the Vercel project `Install Command`, `Build Command`, and `Output Directory` empty and let the repo workflow drive deployment
 
 ### 3.7 Publish a Final Word Release
 

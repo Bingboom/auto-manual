@@ -96,7 +96,8 @@ Rules:
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
-- when that review preview is published through Vercel, let [`../vercel.json`](../vercel.json) drive the build instead of manually entering a long build command in the Vercel UI
+- when that review preview is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
+- designers should start from the summary page, then open the rendered manual and the change report from there
 
 ---
 
