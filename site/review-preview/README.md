@@ -12,6 +12,12 @@ The generated site is built by:
 python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
+When Vercel hosting is enabled for design sharing, GitHub Actions should:
+
+- run the command above
+- convert `dist/` into `.vercel/output/static`
+- deploy the static result with `vercel deploy --prebuilt`
+
 Do not hand-edit `dist/`.
 It is generated from:
 

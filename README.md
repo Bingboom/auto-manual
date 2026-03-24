@@ -28,7 +28,7 @@ CI note:
 - GitHub `Manual Validation` runs on pull requests for merge gating
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
-- `Review Preview Package` is a separate non-gating workflow that packages review HTML plus diff-report HTML for sharing
+- `Review Preview` is a separate non-gating workflow that packages review HTML plus diff-report HTML and deploys the static preview to Vercel for sharing
 
 ## 2. Primary Entrypoint
 
@@ -60,7 +60,8 @@ python tools/process_docs/build_review_preview.py --config config.yaml --model J
 Vercel note:
 
 - the review-preview project should use the repo-level [`vercel.json`](vercel.json)
-- the Vercel build entrypoint is [`tools/process_docs/vercel_build_review_preview.py`](tools/process_docs/vercel_build_review_preview.py)
+- GitHub Actions builds the review preview package and deploys it to Vercel
+- Vercel should host the prebuilt static output only; it should not run the Python review-preview build itself
 
 Windows note:
 
