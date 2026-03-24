@@ -97,6 +97,7 @@ Rules:
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
 - when that review preview is published through Vercel, let GitHub Actions build the package and let Vercel host the prebuilt static result
+- if you run `Review Preview` manually from GitHub Actions, you can optionally fill `from_ref` / `to_ref`; otherwise it compares the selected ref with its previous commit
 
 ---
 
@@ -108,7 +109,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|preview|fast|doctor`
+1. `python build.py rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
 4. `product_name` is resolved from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
@@ -125,8 +126,9 @@ Current flow:
 15. `.github/workflows/review-preview.yml` can deploy that packaged static preview to Vercel
 16. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
 17. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
-18. `python build.py preview` materializes one exact page selector under a preview-only output root
-19. `python build.py fast` materializes a runtime-only draft without export
+18. `python build.py handoff` creates a minimal design handoff package for one explicit target and one baseline input
+19. `python build.py preview` materializes one exact page selector under a preview-only output root
+20. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
@@ -139,6 +141,7 @@ Important:
 - `python build.py sync-review` is the safe path after [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) changes during review.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
+- `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
 - `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / `tpl_*` keys / assets.
