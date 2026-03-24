@@ -140,13 +140,15 @@ Only these override subtrees are overlaid into the runtime bundle:
 For `manual_je1000f_jp`, the real flow is:
 
 1. create or update the draft seed from template/data
-2. initialize the review bundle once
-3. edit the review bundle during the whole review cycle
-4. run `check` against the review content
-5. commit each review round
-6. export the revision record table
-7. publish from review
-8. push
+2. create a dedicated review branch
+3. initialize the review bundle once
+4. edit the review bundle during the whole review cycle
+5. run `check` against the review content
+6. commit and push each review round
+7. open or update the pull request
+8. let `Review Preview Package` build the hosted review preview on Vercel
+9. export the revision record table
+10. publish from review
 
 ---
 
@@ -324,6 +326,19 @@ For the detailed page/field/file diff, open the linked change report from the su
 
 ## 10. Stage F: Commit Every Review Round
 
+Before the first review round, create a dedicated branch for this manual line.
+
+Recommended pattern:
+
+```powershell
+git switch main
+git pull
+git switch -c codex/review-je1000f-jp
+```
+
+Keep the review work for this target on that branch.
+If the same manual needs more review rounds later, continue pushing to the same branch and keep the pull request open until the line is ready to merge.
+
 Each meaningful review round should be committed.
 
 Recommended pattern:
@@ -345,6 +360,38 @@ Rule:
 - commit the real editing source for that round
 - for target-only changes, that source is usually `_review`
 - for shared changes, commit template/data and `_review` together
+
+After committing, push the branch and open or update the pull request:
+
+```powershell
+git push -u origin codex/review-je1000f-jp
+```
+
+Then:
+
+1. create the pull request if this is the first review round on the branch
+2. keep pushing new commits to the same branch for follow-up review rounds
+3. let GitHub Actions rerun on each push
+
+Current hosted review-preview flow:
+
+1. build the first draft from template/data or runtime as needed
+2. run `python build.py review --config ...` once to seed `_review`
+3. edit the review bundle under [`docs/_review/<model>/<region>/`](../docs/_review)
+4. commit and push the review branch
+5. create or update the pull request
+6. `Review Preview Package` packages the current review HTML, Word handoff, diff-report HTML, diff CSV files, and Excel workbook
+7. the workflow deploys that static package to Vercel and comments the preview URL on the pull request when permissions allow it
+
+For the current first-phase shared preview target, the hosted Vercel review page is `JE-1000F / US`.
+That summary page is the stable entry point for design and should stay minimal:
+
+- `Open Review HTML`
+- `Download Word`
+- `Download Change Workbook`
+- `Doc Information`
+
+If there is no open pull request yet, or if you need to rebuild the preview manually, run `Review Preview Package` from the `Actions` tab after pushing the branch.
 
 ---
 
