@@ -145,6 +145,10 @@ class TestBuildReviewPreview(unittest.TestCase):
 
         self.assertIn('href="./downloads/review-manual.docx"', index_html)
         self.assertIn('href="./downloads/change-report.xlsx"', index_html)
+        self.assertIn("What Changed", index_html)
+        self.assertNotIn("Review Pages Touched", index_html)
+        self.assertNotIn("Changed Files</h2>", index_html)
+        self.assertIn('href="./changes/index.html"', index_html)
         self.assertIn('href="../downloads/review-manual.docx"', change_html)
         self.assertIn('href="../downloads/change-report.xlsx"', change_html)
         self.assertIn('href="./report-pages.html"', change_html)
