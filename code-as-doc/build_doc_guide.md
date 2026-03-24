@@ -21,6 +21,7 @@ python build.py check
 python build.py sync-review
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py handoff --config config.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
@@ -42,6 +43,7 @@ Meaning:
 - `sync-review`: refresh review files affected by CSV data changes
 - `publish`: run `check -> diff-report -> word -> release-manifest` for one explicit target
 - `release-manifest`: write JSON / CSV release traceability for one explicit target
+- `handoff`: create a minimal explicit target design handoff package with rule-based diff outputs and traceability metadata
 - `preview`: materialize one exact page selector under a preview-only output root
 - `fast`: materialize a runtime draft only, with `prepare-only + no-clean`
 - `html`, `word`, `pdf`: prepare RST first, then export
@@ -195,8 +197,35 @@ Vercel note:
 - GitHub Actions builds this package first, then deploys it to Vercel as prebuilt static output
 - [`../vercel.json`](../vercel.json) should be used only to disable Git-triggered Vercel builds for this repo
 - do not configure Vercel to run the Python review-preview build directly
+- when you trigger `Review Preview` manually in GitHub Actions, you can optionally override `from_ref` / `to_ref`; if you leave them empty, the workflow uses the selected ref and its previous commit
 
-### 3.7 Publish a Final Word Release
+### 3.7 Generate a Design Handoff Package
+
+Use this when you want to start an explicit design handoff package for one target and one baseline input:
+
+```powershell
+python build.py handoff --config config.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/rst
+```
+
+Current minimal v0.1 behavior:
+
+- requires explicit `--model`, `--region`, `--version`, and `--baseline`
+- resolves current input from `--current` or from the target review/build roots
+- loads supported `rst/html` baseline and current inputs into a normalized document structure
+- computes a rule-based section/block diff for add/delete/replace cases
+- writes to [`docs/_handoff/<model>/<region>/<lang>/<version>/<timestamp>/`](../docs)
+- creates `draft/`, `changes/`, and `handoff/` directories plus `manifest.json`
+- writes `draft/manual.md`
+- writes `draft/manual.docx` when `pandoc` is available
+- copies referenced image assets into `draft/assets/`
+- copies `draft/manual.html` when the current input is HTML
+- writes `changes/change_log.csv`
+- writes `changes/change_log.xlsx`
+- writes `changes/change_summary.md`
+- writes `handoff/design_handoff.md`
+- does not yet provide final page mapping or advanced semantic change classification
+
+### 3.8 Publish a Final Word Release
 
 ```powershell
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
@@ -224,6 +253,10 @@ Runtime outputs:
 Review working bundle:
 
 - [`docs/_review/<model>/<region>/`](../docs/_review)
+
+Handoff package output:
+
+- [`docs/_handoff/<model>/<region>/<lang>/<version>/<timestamp>/`](../docs)
 
 Review preview package:
 

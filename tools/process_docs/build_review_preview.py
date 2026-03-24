@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -79,11 +80,31 @@ def capture(cmd: list[str]) -> str:
     ).stdout.strip()
 
 
-def git_value(env_name: str, fallback_cmd: list[str]) -> str:
-    value = os.environ.get(env_name, "").strip()
+def env_value(env_names: list[str]) -> str:
+    for env_name in env_names:
+        value = os.environ.get(env_name, "").strip()
+        if value:
+            return value
+    return ""
+
+
+def git_value(env_names: list[str], fallback_cmd: list[str]) -> str:
+    value = env_value(env_names)
     if value:
         return value
     return capture(fallback_cmd)
+
+
+def github_pull_request_id() -> str:
+    explicit = env_value(["VERCEL_GIT_PULL_REQUEST_ID"])
+    if explicit:
+        return explicit
+
+    github_ref = os.environ.get("GITHUB_REF", "").strip()
+    match = re.fullmatch(r"refs/pull/(\d+)/(?:head|merge)", github_ref)
+    if match:
+        return match.group(1)
+    return ""
 
 
 def collect_changed_files(from_ref: str, to_ref: str) -> list[str]:
@@ -502,11 +523,11 @@ def main() -> int:
     copy_tree(html_root, manual_dir)
     report_files = copy_report_set(report_root, prefix, changes_dir)
 
-    commit_sha = git_value("VERCEL_GIT_COMMIT_SHA", ["git", "rev-parse", "HEAD"])
-    commit_message = git_value("VERCEL_GIT_COMMIT_MESSAGE", ["git", "log", "-1", "--pretty=%s"])
-    branch = git_value("VERCEL_GIT_COMMIT_REF", ["git", "rev-parse", "--abbrev-ref", "HEAD"])
-    author = git_value("VERCEL_GIT_COMMIT_AUTHOR_NAME", ["git", "log", "-1", "--pretty=%an"])
-    pr_id = os.environ.get("VERCEL_GIT_PULL_REQUEST_ID", "").strip()
+    commit_sha = git_value(["VERCEL_GIT_COMMIT_SHA", "GITHUB_SHA"], ["git", "rev-parse", "HEAD"])
+    commit_message = git_value(["VERCEL_GIT_COMMIT_MESSAGE"], ["git", "log", "-1", "--pretty=%s"])
+    branch = git_value(["VERCEL_GIT_COMMIT_REF", "GITHUB_HEAD_REF", "GITHUB_REF_NAME"], ["git", "rev-parse", "--abbrev-ref", "HEAD"])
+    author = git_value(["VERCEL_GIT_COMMIT_AUTHOR_NAME"], ["git", "log", "-1", "--pretty=%an"])
+    pr_id = github_pull_request_id()
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
     meta = {
