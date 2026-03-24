@@ -814,6 +814,13 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
 
     <section class="grid">
       <article class="card">
+        <h2>Downloadables</h2>
+        <ul>{render_link_list(download_links)}</ul>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card">
         <h2>Review Pages Touched</h2>
         <ul>{render_list([str(item) for item in review_pages], "No review pages changed in the selected diff range.")}</ul>
       </article>
