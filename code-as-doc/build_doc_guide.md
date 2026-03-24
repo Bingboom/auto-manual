@@ -21,6 +21,7 @@ python build.py check
 python build.py sync-review
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py handoff --config config.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
@@ -42,6 +43,7 @@ Meaning:
 - `sync-review`: refresh review files affected by CSV data changes
 - `publish`: run `check -> diff-report -> word -> release-manifest` for one explicit target
 - `release-manifest`: write JSON / CSV release traceability for one explicit target
+- `handoff`: create a minimal explicit target design handoff package with rule-based diff outputs and traceability metadata
 - `preview`: materialize one exact page selector under a preview-only output root
 - `fast`: materialize a runtime draft only, with `prepare-only + no-clean`
 - `html`, `word`, `pdf`: prepare RST first, then export
