@@ -229,9 +229,9 @@ jobs:
         shell: bash
         run: |
           if [[ "${{ steps.environment.outputs.vercel_environment }}" == "production" ]]; then
-            DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" --team="$VERCEL_ORG_ID" --project="$VERCEL_PROJECT_ID")
+            DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN")
           else
-            DEPLOYMENT_URL=$(vercel deploy --prebuilt --token="$VERCEL_TOKEN" --team="$VERCEL_ORG_ID" --project="$VERCEL_PROJECT_ID")
+            DEPLOYMENT_URL=$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")
           fi
           echo "deployment_url=$DEPLOYMENT_URL" >> "$GITHUB_OUTPUT"
 
