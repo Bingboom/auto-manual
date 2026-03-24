@@ -78,44 +78,56 @@ Current workflow:
 - [`../../.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
 
 It does not gate merge.
-It packages the same review preview bundle in CI and uploads it as an artifact.
+It is the build system for review preview publishing.
+
+Current CI responsibilities:
+
+- build the review HTML package from `_review`
+- generate the matching `diff-report`
+- upload the packaged preview as a GitHub artifact
+- convert the packaged site into `.vercel/output/static`
+- deploy the static result to Vercel with `vercel deploy --prebuilt`
+- comment preview links back onto the pull request
 
 This keeps the responsibilities separate:
 
 - `Manual Validation`: machine validation and merge gating
-- `Review Preview Package`: render-and-share packaging for collaboration
+- `Review Preview`: render, package, and deploy preview-only collaboration output
+
+Required repo secrets for Vercel deployment:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+One-time setup rule:
+
+- create one dedicated Vercel project for review preview hosting
+- connect it to this repository only for project identity
+- do not rely on Vercel Git auto-builds for preview generation
 
 ## 6. Vercel Role
 
-Vercel should publish the generated static package only.
+Vercel should host the generated static package only.
 
-Recommended published directory:
+Recommended published surface:
 
-- `site/review-preview/dist`
+- `/`: summary page
+- `/manual/index.html`: rendered review HTML
+- `/changes/index.html`: diff-report landing page
 
 Current repo-level Vercel config:
 
 - [`../../vercel.json`](../../vercel.json)
 
-Current first-phase Vercel build target:
+Current role of that config:
 
-- `config.yaml`
-- `JE-1000F`
-- `US`
-- `source=review`
-
-Vercel build note:
-
-- the project skips the standalone Vercel `Install Command`
-- the repo uses a short wrapper entrypoint:
-  [`../../tools/process_docs/vercel_build_review_preview.py`](../../tools/process_docs/vercel_build_review_preview.py)
-- that wrapper creates a local `.vercel-python/` virtual environment first
-- dependencies are installed into that local environment before the review preview package is generated
-
-This avoids the `externally-managed-environment` error on build images where the system Python is managed outside normal `pip install` expectations.
+- disable Git-triggered Vercel deployments for this repo
+- keep Vercel out of the review-preview build path
 
 Do not ask Vercel to render raw `.rst`.
-Let the repo generate review HTML first, then let Vercel host the resulting static package.
+Do not ask Vercel to run the review-preview Python build.
+Let GitHub Actions build the review HTML and `diff-report` first, then let Vercel host the prebuilt static output.
 
 Vercel should be used for:
 
@@ -123,7 +135,16 @@ Vercel should be used for:
 - lightweight design review sharing
 - showing branch / commit / author metadata on the summary page
 
-Vercel should not be used as a required merge-gating check for this repo.
+Vercel should not be used as:
+
+- the build environment for this repo's review preview
+- a required merge-gating check for this repo
+
+If a Vercel project is still connected to the repo's Git auto-deploy flow, disconnect that behavior in the project settings.
+The intended model is:
+
+- GitHub Actions builds and deploys
+- Vercel serves the deployed static output
 
 ## 7. First-Phase Scope
 

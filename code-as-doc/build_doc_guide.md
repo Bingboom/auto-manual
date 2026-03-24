@@ -63,7 +63,7 @@ GitHub validation note:
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
-- `Review Preview Package` is a separate artifact workflow for design sharing and does not gate merge
+- `Review Preview` is a separate non-gating workflow that builds review HTML plus `diff-report` and deploys the static package to Vercel
 
 ## 2. Config Rule
 
@@ -192,8 +192,9 @@ This package contains:
 
 Vercel note:
 
-- the repo-level Vercel entrypoint is [`../tools/process_docs/vercel_build_review_preview.py`](../tools/process_docs/vercel_build_review_preview.py)
-- keep the Vercel project `Install Command` empty and let [`../vercel.json`](../vercel.json) drive the build
+- GitHub Actions builds this package first, then deploys it to Vercel as prebuilt static output
+- [`../vercel.json`](../vercel.json) should be used only to disable Git-triggered Vercel builds for this repo
+- do not configure Vercel to run the Python review-preview build directly
 
 ### 3.7 Publish a Final Word Release
 

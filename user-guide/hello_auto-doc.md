@@ -48,7 +48,7 @@ GitHub note:
 - pull requests are gated by the `Manual Validation` workflow
 - after merge, `main` runs the same validation workflow again
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
-- `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
+- `Review Preview` is the separate packaging-and-deploy path when you need to share rendered review HTML with design
 
 ---
 
@@ -96,7 +96,7 @@ Rules:
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
-- when that review preview is published through Vercel, let [`../vercel.json`](../vercel.json) drive the build instead of manually entering a long build command in the Vercel UI
+- when that review preview is published through Vercel, let GitHub Actions build the package and let Vercel host the prebuilt static result
 
 ---
 
@@ -122,10 +122,11 @@ Current flow:
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
 14. `python tools/process_docs/build_review_preview.py` packages review HTML plus diff-report HTML for design sharing
-15. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
-16. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
-17. `python build.py preview` materializes one exact page selector under a preview-only output root
-18. `python build.py fast` materializes a runtime-only draft without export
+15. `.github/workflows/review-preview.yml` can deploy that packaged static preview to Vercel
+16. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+17. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
+18. `python build.py preview` materializes one exact page selector under a preview-only output root
+19. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
