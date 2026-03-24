@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "git": {
-    "deploymentEnabled": false
-  }
+  "installCommand": "",
+  "buildCommand": "python tools/process_docs/vercel_build_review_preview.py",
+  "outputDirectory": "site/review-preview/dist"
 }

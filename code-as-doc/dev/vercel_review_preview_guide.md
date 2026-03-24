@@ -16,7 +16,8 @@ Use this flow when:
 The preview package combines:
 
 - review-based HTML from [`docs/_build/<model>/<region>/html/`](../../docs/_build)
-- diff-report HTML from [`reports/version_tracking/<model>/<region>/`](../../reports/version_tracking)
+- review-based Word from [`docs/_build/<model>/<region>/word/`](../../docs/_build)
+- diff-report HTML / CSV from [`reports/version_tracking/<model>/<region>/`](../../reports/version_tracking)
 - a small summary page that links both surfaces together
 
 ## 2. Current Entry Point
@@ -36,8 +37,16 @@ Generated structure:
 - `index.html`: summary page for design
 - `manual/`: rendered review HTML
 - `changes/`: diff-report HTML plus a simple landing page
-- `generated/meta.json`: branch / commit / author metadata
-- `generated/changes.json`: changed files, review pages, and grouped change areas
+- `downloads/`: `review-manual.docx`, `change-report.xlsx`, `changes-summary.csv`, `changes-pages.csv`, `changes-fields.csv`, `changes-files.csv`
+- `generated/meta.json`: branch / commit / author metadata plus download metadata
+- `generated/changes.json`: changed files, review pages, grouped change areas, and download metadata
+
+The current summary page is intentionally designer-facing:
+
+- it tells design what to open first
+- it separates rendered manual review from change tracing
+- it offers direct Word / Excel handoff downloads for offline review meetings
+- it explains whether the current round contains page-level review edits or mostly workflow / docs changes
 
 ## 3. Why This Uses Review Content
 
@@ -71,6 +80,17 @@ The preview package copies the latest report set into stable paths under `change
 - `changes/pages.html`
 - `changes/files.html`
 
+It also copies the diff CSV set under `downloads/` and builds one Excel workbook from the same inputs:
+
+- `downloads/changes-summary.csv`
+- `downloads/changes-pages.csv`
+- `downloads/changes-fields.csv`
+- `downloads/changes-files.csv`
+- `downloads/change-report.xlsx`
+
+The Excel workbook is only a packaging layer over the existing diff CSV outputs.
+It does not introduce a second change model.
+
 ## 5. GitHub Actions Role
 
 Current workflow:
@@ -78,56 +98,49 @@ Current workflow:
 - [`../../.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
 
 It does not gate merge.
-It is the build system for review preview publishing.
-
-Current CI responsibilities:
-
-- build the review HTML package from `_review`
-- generate the matching `diff-report`
-- upload the packaged preview as a GitHub artifact
-- convert the packaged site into `.vercel/output/static`
-- deploy the static result to Vercel with `vercel deploy --prebuilt`
-- comment preview links back onto the pull request
+It installs `pandoc`, packages the same review preview bundle in CI, uploads it as an artifact, and deploys the static output to Vercel through `vercel pull -> vercel build -> vercel deploy --prebuilt`.
 
 This keeps the responsibilities separate:
 
 - `Manual Validation`: machine validation and merge gating
-- `Review Preview`: render, package, and deploy preview-only collaboration output
+- `Review Preview Package`: render-and-share packaging for collaboration
 
-Required repo secrets for Vercel deployment:
+Practical maintainer rule:
 
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-One-time setup rule:
-
-- create one dedicated Vercel project for review preview hosting
-- connect it to this repository only for project identity
-- do not rely on Vercel Git auto-builds for preview generation
+- keep a pull request open for the working review branch
+- after that, each matching push to the PR branch reruns `Review Preview Package`
+- once the workflow succeeds, the Vercel preview reflects the latest review round automatically
+- if there is no PR yet, use `workflow_dispatch` to run it manually
+- make sure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` are configured in repository secrets before expecting the deploy step to run
 
 ## 6. Vercel Role
 
-Vercel should host the generated static package only.
+Vercel should publish the generated static package only.
 
-Recommended published surface:
+Recommended published directory:
 
-- `/`: summary page
-- `/manual/index.html`: rendered review HTML
-- `/changes/index.html`: diff-report landing page
+- `site/review-preview/dist`
 
 Current repo-level Vercel config:
 
 - [`../../vercel.json`](../../vercel.json)
 
-Current role of that config:
+Current first-phase Vercel build target:
 
-- disable Git-triggered Vercel deployments for this repo
-- keep Vercel out of the review-preview build path
+- `config.yaml`
+- `JE-1000F`
+- `US`
+- `source=review`
+
+Vercel build note:
+
+- GitHub Actions builds the review preview package first and treats the package contract as required
+- `review-manual.docx` and `change-report.xlsx` are required artifacts in CI; a missing download blocks preview deployment
+- GitHub Actions then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
+- Vercel should not be the source of truth for packaging; disable or stop relying on Git-triggered Vercel builds for this flow
 
 Do not ask Vercel to render raw `.rst`.
-Do not ask Vercel to run the review-preview Python build.
-Let GitHub Actions build the review HTML and `diff-report` first, then let Vercel host the prebuilt static output.
+Let the repo generate review HTML first, then let Vercel host the resulting static package.
 
 Vercel should be used for:
 
@@ -135,16 +148,7 @@ Vercel should be used for:
 - lightweight design review sharing
 - showing branch / commit / author metadata on the summary page
 
-Vercel should not be used as:
-
-- the build environment for this repo's review preview
-- a required merge-gating check for this repo
-
-If a Vercel project is still connected to the repo's Git auto-deploy flow, disconnect that behavior in the project settings.
-The intended model is:
-
-- GitHub Actions builds and deploys
-- Vercel serves the deployed static output
+Vercel should not be used as a required merge-gating check for this repo.
 
 ## 7. First-Phase Scope
 

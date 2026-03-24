@@ -1,8 +1,11 @@
-name: Review Preview
+name: Review Preview Package
+run-name: >-
+  ${{ github.event_name == 'pull_request'
+      && format('Review Preview Package - PR #{0} - {1}', github.event.pull_request.number, github.event.pull_request.head.ref)
+      || format('Review Preview Package - {0}', github.ref_name) }}
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
     paths:
       - "docs/_review/**"
       - "docs/templates/**"
@@ -12,279 +15,124 @@ on:
       - "config.yaml"
       - "config.ja.yaml"
       - "config.eu.yaml"
-      - "vercel.json"
-      - "README.md"
-      - "code-as-doc/**"
-      - "user-guide/**"
-      - "site/review-preview/**"
-  push:
-    branches:
-      - "main"
-    paths:
-      - "docs/_review/**"
-      - "docs/templates/**"
-      - "data/phase1/**"
-      - "build.py"
-      - "tools/**"
-      - "config.yaml"
-      - "config.ja.yaml"
-      - "config.eu.yaml"
-      - "vercel.json"
       - "README.md"
       - "code-as-doc/**"
       - "user-guide/**"
       - "site/review-preview/**"
   workflow_dispatch:
-    inputs:
-      from_ref:
-        description: "Optional git base ref for diff-report (commit, branch, or tag). Defaults to the previous commit on the selected ref."
-        required: false
-        type: string
-      to_ref:
-        description: "Optional git head ref to build and diff. Defaults to the selected branch HEAD."
-        required: false
-        type: string
+
+concurrency:
+  group: review-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
   issues: write
   pull-requests: write
 
-concurrency:
-  group: review-preview-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  build-review-preview:
+  package-review-preview:
     runs-on: ubuntu-latest
+    env:
+      FROM_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || 'HEAD~1' }}
+      TO_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'HEAD' }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.to_ref || github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-
-      - name: Normalize diff refs
-        id: refs
-        shell: bash
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          INPUT_FROM_REF: ${{ inputs.from_ref || '' }}
-          PR_BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
-          PUSH_BEFORE_SHA: ${{ github.event_name == 'push' && github.event.before || '' }}
-        run: |
-          TO_VALUE="$(git rev-parse HEAD)"
-          FROM_VALUE=""
-
-          if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            FROM_VALUE="$PR_BASE_SHA"
-          elif [[ "$EVENT_NAME" == "push" ]]; then
-            FROM_VALUE="$PUSH_BEFORE_SHA"
-          elif [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
-            FROM_VALUE="$INPUT_FROM_REF"
-          fi
-
-          if [[ -z "$FROM_VALUE" || "$FROM_VALUE" =~ ^0+$ ]]; then
-            if git rev-parse "${TO_VALUE}^" >/dev/null 2>&1; then
-              FROM_VALUE="$(git rev-parse "${TO_VALUE}^")"
-            else
-              FROM_VALUE="$TO_VALUE"
-            fi
-          fi
-
-          echo "Resolved diff range: $FROM_VALUE -> $TO_VALUE"
-          echo "from_ref=$FROM_VALUE" >> "$GITHUB_OUTPUT"
-          echo "to_ref=$TO_VALUE" >> "$GITHUB_OUTPUT"
-
       - name: Build review preview package (US)
-        env:
-          VERCEL_GIT_COMMIT_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.to_ref || github.head_ref || github.ref_name }}
-          VERCEL_GIT_PULL_REQUEST_ID: ${{ github.event_name == 'pull_request' && github.event.pull_request.number || '' }}
         run: >
           python tools/process_docs/build_review_preview.py
           --config config.yaml
           --model JE-1000F
           --region US
           --source review
-          --from-ref "${{ steps.refs.outputs.from_ref }}"
-          --to-ref "${{ steps.refs.outputs.to_ref }}"
-
+          --from-ref "$FROM_REF"
+          --to-ref "$TO_REF"
       - name: Upload review preview artifact
         uses: actions/upload-artifact@v4
         with:
           name: review-preview-us
           path: site/review-preview/dist
-
-  deploy-review-preview:
-    needs: build-review-preview
-    runs-on: ubuntu-latest
-    env:
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    steps:
-      - name: Decide whether Vercel deployment should run
-        id: gate
-        shell: bash
-        run: |
-          SHOULD_DEPLOY="true"
-
-          if [[ -z "$VERCEL_TOKEN" || -z "$VERCEL_ORG_ID" || -z "$VERCEL_PROJECT_ID" ]]; then
-            SHOULD_DEPLOY="false"
-          fi
-
-          if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]]; then
-            SHOULD_DEPLOY="false"
-          fi
-
-          echo "should_deploy=$SHOULD_DEPLOY" >> "$GITHUB_OUTPUT"
-
-      - name: Skip deployment summary
-        if: steps.gate.outputs.should_deploy != 'true'
-        shell: bash
-        run: |
-          {
-            echo "## Review preview deployment skipped"
-            echo
-            echo "- Reason: missing Vercel secrets or pull request from a fork."
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - uses: actions/checkout@v4
-        if: steps.gate.outputs.should_deploy == 'true'
-        with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.to_ref || github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-
-      - uses: actions/setup-python@v5
-        if: steps.gate.outputs.should_deploy == 'true'
-        with:
-          python-version: "3.12"
-
-      - uses: actions/setup-node@v4
-        if: steps.gate.outputs.should_deploy == 'true'
-        with:
-          node-version: "20"
-
-      - name: Download packaged review preview
-        if: steps.gate.outputs.should_deploy == 'true'
-        uses: actions/download-artifact@v4
-        with:
-          name: review-preview-us
-          path: site/review-preview/dist
-
       - name: Install Vercel CLI
-        if: steps.gate.outputs.should_deploy == 'true'
+        if: ${{ env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         run: npm install --global vercel@latest
-
-      - name: Resolve Vercel environment
-        if: steps.gate.outputs.should_deploy == 'true'
-        id: environment
-        shell: bash
-        run: |
-          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            echo "vercel_environment=production" >> "$GITHUB_OUTPUT"
-          else
-            echo "vercel_environment=preview" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Validate Vercel binding secrets
-        if: steps.gate.outputs.should_deploy == 'true'
-        shell: bash
-        run: |
-          if [[ ! "$VERCEL_ORG_ID" =~ ^team_ ]]; then
-            echo "VERCEL_ORG_ID must start with team_"
-            exit 1
-          fi
-          if [[ ! "$VERCEL_PROJECT_ID" =~ ^prj_ ]]; then
-            echo "VERCEL_PROJECT_ID must start with prj_"
-            exit 1
-          fi
-
-      - name: Write Vercel project link
-        if: steps.gate.outputs.should_deploy == 'true'
-        shell: bash
-        run: |
-          mkdir -p .vercel
-          cat > .vercel/project.json <<EOF
-          {"orgId":"$VERCEL_ORG_ID","projectId":"$VERCEL_PROJECT_ID"}
-          EOF
-
-      - name: Prepare static output for Vercel
-        if: steps.gate.outputs.should_deploy == 'true'
-        run: >
-          python tools/process_docs/package_vercel_static_output.py
-          --dist-dir site/review-preview/dist
-          --output-root .vercel/output
-
-      - name: Deploy static preview to Vercel
-        if: steps.gate.outputs.should_deploy == 'true'
+      - name: Pull Vercel preview settings
+        if: ${{ env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        run: vercel pull --yes --environment=preview --token="${{ secrets.VERCEL_TOKEN }}"
+      - name: Build Vercel prebuilt output
+        if: ${{ env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        run: vercel build --token="${{ secrets.VERCEL_TOKEN }}"
+      - name: Deploy preview to Vercel
         id: deploy
-        shell: bash
+        if: ${{ env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         run: |
-          if [[ "${{ steps.environment.outputs.vercel_environment }}" == "production" ]]; then
-            DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN")
-          else
-            DEPLOYMENT_URL=$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")
-          fi
-          echo "deployment_url=$DEPLOYMENT_URL" >> "$GITHUB_OUTPUT"
-
-      - name: Write deployment summary
-        if: steps.gate.outputs.should_deploy == 'true'
-        shell: bash
+          preview_url="$(vercel deploy --prebuilt --token="${{ secrets.VERCEL_TOKEN }}")"
+          echo "preview_url=${preview_url}" >> "$GITHUB_OUTPUT"
+      - name: Publish Vercel preview summary
+        if: ${{ steps.deploy.outputs.preview_url != '' }}
         run: |
-          {
-            echo "## Review preview deployed"
-            echo
-            echo "- Summary: ${{ steps.deploy.outputs.deployment_url }}"
-            echo "- Review HTML: ${{ steps.deploy.outputs.deployment_url }}/manual/index.html"
-            echo "- Change report: ${{ steps.deploy.outputs.deployment_url }}/changes/index.html"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Comment preview links on pull request
-        if: github.event_name == 'pull_request' && steps.gate.outputs.should_deploy == 'true'
+          echo "Vercel preview: ${{ steps.deploy.outputs.preview_url }}" >> "$GITHUB_STEP_SUMMARY"
+      - name: Comment preview URL on PR
+        if: ${{ github.event_name == 'pull_request' && steps.deploy.outputs.preview_url != '' }}
+        continue-on-error: true
         uses: actions/github-script@v7
         env:
-          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment_url }}
+          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
         with:
           script: |
-            const marker = '<!-- review-preview-links -->';
+            const marker = '<!-- review-preview-comment -->';
+            const previewUrl = process.env.PREVIEW_URL;
             const body = `${marker}
-            Review preview is ready for design sharing.
+            Review preview is ready for this PR.
 
-            - Summary: ${process.env.DEPLOYMENT_URL}
-            - Review HTML: ${process.env.DEPLOYMENT_URL}/manual/index.html
-            - Change report: ${process.env.DEPLOYMENT_URL}/changes/index.html`;
+            - Preview: ${previewUrl}
+            - Review HTML: ${previewUrl}/manual/index.html
+            - Change Report: ${previewUrl}/changes/index.html
+            - Word: ${previewUrl}/downloads/review-manual.docx
+            - Excel: ${previewUrl}/downloads/change-report.xlsx
+            `;
 
-            const { owner, repo } = context.repo;
-            const issue_number = context.issue.number;
-            const comments = await github.paginate(github.rest.issues.listComments, {
-              owner,
-              repo,
-              issue_number,
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
             });
+
             const existing = comments.find((comment) =>
-              comment.user?.type === 'Bot' && comment.body?.includes(marker)
+              comment.user?.login === 'github-actions[bot]' && comment.body?.includes(marker)
             );
 
             if (existing) {
               await github.rest.issues.updateComment({
-                owner,
-                repo,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
                 comment_id: existing.id,
                 body,
               });
             } else {
               await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
                 body,
               });
             }

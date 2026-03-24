@@ -29,7 +29,8 @@ CI note:
 - GitHub `Manual Validation` runs on pull requests for merge gating
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
-- `Review Preview` is a separate non-gating workflow that packages review HTML plus diff-report HTML and deploys the static preview to Vercel for sharing
+- `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
+- the published review preview summary page is optimized for design review: open the rendered manual first, then open the change report or download the review handoff files for this round
 
 ## 2. Primary Entrypoint
 
@@ -58,25 +59,12 @@ Review-sharing example:
 python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
-Design handoff example:
-
-```powershell
-python build.py handoff --config config.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/rst
-```
-
-Current note:
-
-- `handoff` now provides the Phase 2 minimal package path for explicit target delivery prep
-- it resolves explicit target inputs, loads supported `rst/html` baseline and current documents, computes a rule-based section/block diff, and writes a target/version/timestamp package root
-- the minimal package currently includes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html` when the current input is HTML, copied draft image assets, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`
-- it does not yet provide final page references or advanced semantic change classification
-
 Vercel note:
 
 - the review-preview project should use the repo-level [`vercel.json`](vercel.json)
-- GitHub Actions builds the review preview package and deploys it to Vercel
-- Vercel should host the prebuilt static output only; it should not run the Python review-preview build itself
-- manual `Review Preview` runs in GitHub Actions support optional `from_ref` / `to_ref` inputs; when omitted, the workflow compares the selected ref against its previous commit
+- GitHub Actions is the supported build-and-deploy path for review preview publishing
+- the workflow installs `pandoc`, builds [`site/review-preview/dist/`](site/review-preview/dist), runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
+- the Vercel bridge entrypoint is [`tools/process_docs/vercel_build_review_preview.py`](tools/process_docs/vercel_build_review_preview.py), which reuses the packaged preview when Actions already built it
 
 Windows note:
 

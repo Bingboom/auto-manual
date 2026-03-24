@@ -65,7 +65,7 @@ GitHub validation note:
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
-- `Review Preview` is a separate non-gating workflow that builds review HTML plus `diff-report` and deploys the static package to Vercel
+- `Review Preview Package` is a separate artifact workflow for design sharing and does not gate merge
 
 ## 2. Config Rule
 
@@ -189,43 +189,26 @@ This package contains:
 
 - `manual/`: review-based HTML
 - `changes/`: latest diff-report HTML set
+- `downloads/`: `review-manual.docx`, `change-report.xlsx`, and the copied diff-report CSV files
 - `generated/meta.json`: branch / commit metadata
-- `generated/changes.json`: grouped changed files and review pages
+- `generated/changes.json`: grouped changed files, review pages, and download metadata
+- `index.html`: designer-facing entry page with direct links to review HTML, change report, Word, and Excel
+
+Packaging rule:
+
+- the review preview output contract is `manual/`, `changes/`, `downloads/`, and `generated/`
+- CI treats `review-manual.docx` and `change-report.xlsx` as required artifacts
+- `--skip-word` is for local debugging only and is not used by the CI workflow
 
 Vercel note:
 
-- GitHub Actions builds this package first, then deploys it to Vercel as prebuilt static output
-- [`../vercel.json`](../vercel.json) should be used only to disable Git-triggered Vercel builds for this repo
-- do not configure Vercel to run the Python review-preview build directly
-- when you trigger `Review Preview` manually in GitHub Actions, you can optionally override `from_ref` / `to_ref`; if you leave them empty, the workflow uses the selected ref and its previous commit
+- GitHub Actions installs `pandoc`, builds the review preview package, uploads it as an artifact, then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
+- Vercel should host the prebuilt package only; do not rely on Git-triggered Vercel Python builds for this flow
+- configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
+- in normal use, open a pull request first; then each push to that PR branch will refresh the review preview automatically when the change hits the configured workflow paths
+- if you are still iterating before opening a PR, use `Actions -> Review Preview Package -> Run workflow`
 
-### 3.7 Generate a Design Handoff Package
-
-Use this when you want to start an explicit design handoff package for one target and one baseline input:
-
-```powershell
-python build.py handoff --config config.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/rst
-```
-
-Current minimal v0.1 behavior:
-
-- requires explicit `--model`, `--region`, `--version`, and `--baseline`
-- resolves current input from `--current` or from the target review/build roots
-- loads supported `rst/html` baseline and current inputs into a normalized document structure
-- computes a rule-based section/block diff for add/delete/replace cases
-- writes to [`docs/_handoff/<model>/<region>/<lang>/<version>/<timestamp>/`](../docs)
-- creates `draft/`, `changes/`, and `handoff/` directories plus `manifest.json`
-- writes `draft/manual.md`
-- writes `draft/manual.docx` when `pandoc` is available
-- copies referenced image assets into `draft/assets/`
-- copies `draft/manual.html` when the current input is HTML
-- writes `changes/change_log.csv`
-- writes `changes/change_log.xlsx`
-- writes `changes/change_summary.md`
-- writes `handoff/design_handoff.md`
-- does not yet provide final page mapping or advanced semantic change classification
-
-### 3.8 Publish a Final Word Release
+### 3.7 Publish a Final Word Release
 
 ```powershell
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
@@ -253,10 +236,6 @@ Runtime outputs:
 Review working bundle:
 
 - [`docs/_review/<model>/<region>/`](../docs/_review)
-
-Handoff package output:
-
-- [`docs/_handoff/<model>/<region>/<lang>/<version>/<timestamp>/`](../docs)
 
 Review preview package:
 

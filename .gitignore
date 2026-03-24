@@ -19,4 +19,3 @@ docs/generated/
 
 # Review preview packaging
 site/review-preview/dist/
-.vercel/

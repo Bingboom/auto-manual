@@ -29,7 +29,7 @@ These files describe the current repo behavior today.
   - GitHub branch protection and merge settings for this repo
 - [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)
   - current review-preview packaging flow for design collaboration
-  - how review HTML and diff-report HTML are built in GitHub Actions and deployed to Vercel as static output
+  - how review HTML and diff-report HTML are bundled for Vercel/static sharing
 - [`code-as-doc.md`](code-as-doc.md)
   - documentation maintenance policy
   - doc update expectations when code or data changes
