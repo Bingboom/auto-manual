@@ -187,15 +187,24 @@ This package contains:
 
 - `manual/`: review-based HTML
 - `changes/`: latest diff-report HTML set
+- `downloads/`: `review-manual.docx`, `change-report.xlsx`, and the copied diff-report CSV files
 - `generated/meta.json`: branch / commit metadata
-- `generated/changes.json`: grouped changed files and review pages
-- `index.html`: designer-facing entry page with a recommended review order and direct links to manual / page diff / field diff
+- `generated/changes.json`: grouped changed files, review pages, and download metadata
+- `index.html`: designer-facing entry page with direct links to review HTML, change report, Word, and Excel
+
+Packaging rule:
+
+- the review preview output contract is `manual/`, `changes/`, `downloads/`, and `generated/`
+- CI treats `review-manual.docx` and `change-report.xlsx` as required artifacts
+- `--skip-word` is for local debugging only and is not used by the CI workflow
 
 Vercel note:
 
-- GitHub Actions builds the review preview package and deploys the static output to Vercel
-- Vercel should host the prebuilt package only; it should not run the Python review-preview build itself
-- keep the Vercel project `Install Command`, `Build Command`, and `Output Directory` empty and let the repo workflow drive deployment
+- GitHub Actions installs `pandoc`, builds the review preview package, uploads it as an artifact, then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
+- Vercel should host the prebuilt package only; do not rely on Git-triggered Vercel Python builds for this flow
+- configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
+- in normal use, open a pull request first; then each push to that PR branch will refresh the review preview automatically when the change hits the configured workflow paths
+- if you are still iterating before opening a PR, use `Actions -> Review Preview Package -> Run workflow`
 
 ### 3.7 Publish a Final Word Release
 

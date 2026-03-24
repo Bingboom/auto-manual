@@ -1,17 +1,40 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import shutil
 import subprocess
 import sys
+import zipfile
 from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
+from xml.sax.saxutils import escape as xml_escape
 
 
 ROOT = Path(__file__).resolve().parents[2]
+REQUIRED_CHANGE_REPORT_FILES = (
+    "report-index.html",
+    "report-summary.html",
+    "report-fields.html",
+    "report-pages.html",
+    "report-files.html",
+)
+REQUIRED_DOWNLOAD_CSVS = (
+    "changes-summary.csv",
+    "changes-pages.csv",
+    "changes-fields.csv",
+    "changes-files.csv",
+)
+REQUIRED_PREVIEW_FILES = (
+    "index.html",
+    "manual/index.html",
+    "changes/index.html",
+    "generated/meta.json",
+    "generated/changes.json",
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -42,7 +65,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument(
         "--clean-build",
         action="store_true",
-        help="Allow build.py html to clean the current target output first.",
+        help="Allow build.py exports to clean the current target output first.",
     )
     ap.add_argument(
         "--skip-build",
@@ -53,6 +76,11 @@ def parse_args() -> argparse.Namespace:
         "--skip-diff",
         action="store_true",
         help="Skip diff-report generation and reuse the latest report set.",
+    )
+    ap.add_argument(
+        "--skip-word",
+        action="store_true",
+        help="Skip the optional Word export step.",
     )
     return ap.parse_args()
 
@@ -136,12 +164,301 @@ def copy_report_set(report_root: Path, prefix: str, changes_dir: Path) -> dict[s
     }
     copied: dict[str, str] = {}
     changes_dir.mkdir(parents=True, exist_ok=True)
+    missing_sources: list[str] = []
     for src_name, dst_name in mapping.items():
         src = report_root / src_name
-        if src.exists():
-            shutil.copy2(src, changes_dir / dst_name)
-            copied[src_name] = dst_name
+        if not src.exists():
+            missing_sources.append(src_name)
+            continue
+        shutil.copy2(src, changes_dir / dst_name)
+        copied[dst_name] = dst_name
+    if missing_sources:
+        joined = ", ".join(sorted(missing_sources))
+        raise FileNotFoundError(f"Review preview requires diff-report HTML outputs under {report_root}: {joined}")
     return copied
+
+
+def copy_report_csvs(report_root: Path, prefix: str, downloads_dir: Path) -> dict[str, str]:
+    mapping = {
+        f"{prefix}.csv": "changes-summary.csv",
+        f"{prefix}_pages.csv": "changes-pages.csv",
+        f"{prefix}_fields.csv": "changes-fields.csv",
+        f"{prefix}_files.csv": "changes-files.csv",
+    }
+    copied: dict[str, str] = {}
+    downloads_dir.mkdir(parents=True, exist_ok=True)
+    missing_sources: list[str] = []
+    for src_name, dst_name in mapping.items():
+        src = report_root / src_name
+        if not src.exists():
+            missing_sources.append(src_name)
+            continue
+        shutil.copy2(src, downloads_dir / dst_name)
+        copied[dst_name] = f"downloads/{dst_name}"
+    if missing_sources:
+        joined = ", ".join(sorted(missing_sources))
+        raise FileNotFoundError(f"Review preview requires diff-report CSV outputs under {report_root}: {joined}")
+    return copied
+
+
+def locate_latest_docx(word_root: Path) -> Path | None:
+    if not word_root.exists():
+        return None
+    docx_files = [path for path in word_root.rglob("*.docx") if path.is_file()]
+    if not docx_files:
+        return None
+    return max(docx_files, key=lambda path: path.stat().st_mtime)
+
+
+def build_word_download(
+    *,
+    args: argparse.Namespace,
+    config_path: Path,
+    downloads_dir: Path,
+) -> str | None:
+    if args.skip_word:
+        return None
+
+    word_root = ROOT / "docs" / "_build" / args.model / args.region / "word"
+    cmd = [
+        sys.executable,
+        str(ROOT / "build.py"),
+        "word",
+        "--config",
+        str(config_path),
+        "--model",
+        args.model,
+        "--region",
+        args.region,
+        "--source",
+        args.source,
+    ]
+    if not args.clean_build:
+        cmd.append("--no-clean")
+
+    try:
+        run(cmd)
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError("Review preview failed to build the required Word download.") from exc
+
+    latest_docx = locate_latest_docx(word_root)
+    if latest_docx is None:
+        raise FileNotFoundError(f"Review preview Word export finished but no DOCX was found under {word_root}")
+
+    target = downloads_dir / "review-manual.docx"
+    shutil.copy2(latest_docx, target)
+    return "downloads/review-manual.docx"
+
+
+def read_csv_rows(path: Path) -> list[list[str]]:
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        return [row for row in csv.reader(handle)]
+
+
+def xlsx_column_name(index: int) -> str:
+    result = ""
+    value = index
+    while value > 0:
+        value, remainder = divmod(value - 1, 26)
+        result = chr(65 + remainder) + result
+    return result
+
+
+def make_cell(ref: str, value: str) -> str:
+    safe = xml_escape(value)
+    if value.startswith(" ") or value.endswith(" ") or "\n" in value:
+        return f'<c r="{ref}" t="inlineStr"><is><t xml:space="preserve">{safe}</t></is></c>'
+    return f'<c r="{ref}" t="inlineStr"><is><t>{safe}</t></is></c>'
+
+
+def build_sheet_xml(rows: list[list[str]]) -> str:
+    xml_rows: list[str] = []
+    for row_index, row in enumerate(rows, start=1):
+        cells = []
+        for column_index, value in enumerate(row, start=1):
+            ref = f"{xlsx_column_name(column_index)}{row_index}"
+            cells.append(make_cell(ref, value))
+        xml_rows.append(f'<row r="{row_index}">{"".join(cells)}</row>')
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        "<sheetData>"
+        + "".join(xml_rows)
+        + "</sheetData></worksheet>"
+    )
+
+
+def build_workbook_xlsx(path: Path, sheets: list[tuple[str, list[list[str]]]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    workbook_sheets = []
+    workbook_rels = []
+    content_type_overrides = []
+    app_sheet_names = []
+
+    for index, (sheet_name, _rows) in enumerate(sheets, start=1):
+        worksheet_path = f"xl/worksheets/sheet{index}.xml"
+        workbook_sheets.append(
+            f'<sheet name="{xml_escape(sheet_name)}" sheetId="{index}" r:id="rId{index}"/>'
+        )
+        workbook_rels.append(
+            f'<Relationship Id="rId{index}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet{index}.xml"/>'
+        )
+        content_type_overrides.append(
+            f'<Override PartName="/{worksheet_path}" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+        )
+        app_sheet_names.append(f"<vt:lpstr>{xml_escape(sheet_name)}</vt:lpstr>")
+
+    workbook_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+        "<sheets>"
+        + "".join(workbook_sheets)
+        + "</sheets></workbook>"
+    )
+    workbook_rels_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        + "".join(workbook_rels)
+        + '<Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>'
+        + "</Relationships>"
+    )
+    root_rels_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'
+        '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>'
+        '<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>'
+        "</Relationships>"
+    )
+    content_types_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+        '<Default Extension="xml" ContentType="application/xml"/>'
+        '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+        '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'
+        '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>'
+        '<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>'
+        + "".join(content_type_overrides)
+        + "</Types>"
+    )
+    styles_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        '<fonts count="1"><font><sz val="11"/><name val="Calibri"/></font></fonts>'
+        '<fills count="1"><fill><patternFill patternType="none"/></fill></fills>'
+        '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>'
+        '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
+        '<cellXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs>'
+        '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>'
+        "</styleSheet>"
+    )
+    created = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    core_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" '
+        'xmlns:dc="http://purl.org/dc/elements/1.1/" '
+        'xmlns:dcterms="http://purl.org/dc/terms/" '
+        'xmlns:dcmitype="http://purl.org/dc/dcmitype/" '
+        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+        "<dc:title>Review Preview Change Report</dc:title>"
+        "<dc:creator>auto-manual</dc:creator>"
+        "<cp:lastModifiedBy>auto-manual</cp:lastModifiedBy>"
+        f'<dcterms:created xsi:type="dcterms:W3CDTF">{created}</dcterms:created>'
+        f'<dcterms:modified xsi:type="dcterms:W3CDTF">{created}</dcterms:modified>'
+        "</cp:coreProperties>"
+    )
+    app_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" '
+        'xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">'
+        "<Application>auto-manual</Application>"
+        f"<TitlesOfParts><vt:vector size=\"{len(sheets)}\" baseType=\"lpstr\">{''.join(app_sheet_names)}</vt:vector></TitlesOfParts>"
+        f"<HeadingPairs><vt:vector size=\"2\" baseType=\"variant\"><vt:variant><vt:lpstr>Worksheets</vt:lpstr></vt:variant><vt:variant><vt:i4>{len(sheets)}</vt:i4></vt:variant></vt:vector></HeadingPairs>"
+        "</Properties>"
+    )
+
+    with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
+        bundle.writestr("[Content_Types].xml", content_types_xml)
+        bundle.writestr("_rels/.rels", root_rels_xml)
+        bundle.writestr("docProps/core.xml", core_xml)
+        bundle.writestr("docProps/app.xml", app_xml)
+        bundle.writestr("xl/workbook.xml", workbook_xml)
+        bundle.writestr("xl/_rels/workbook.xml.rels", workbook_rels_xml)
+        bundle.writestr("xl/styles.xml", styles_xml)
+        for index, (_name, rows) in enumerate(sheets, start=1):
+            bundle.writestr(f"xl/worksheets/sheet{index}.xml", build_sheet_xml(rows))
+
+
+def build_change_workbook(downloads_dir: Path, csv_files: dict[str, str]) -> str | None:
+    sheet_mapping = [
+        ("changes-summary.csv", "Summary"),
+        ("changes-pages.csv", "Pages"),
+        ("changes-fields.csv", "Fields"),
+        ("changes-files.csv", "Files"),
+    ]
+    sheets: list[tuple[str, list[list[str]]]] = []
+    for file_name, sheet_name in sheet_mapping:
+        csv_name = csv_files.get(file_name)
+        if not csv_name:
+            continue
+        csv_path = ROOT / csv_name if Path(csv_name).is_absolute() else ROOT / csv_name
+        if not csv_path.exists():
+            csv_path = downloads_dir / file_name
+        if csv_path.exists():
+            sheets.append((sheet_name, read_csv_rows(csv_path)))
+    if not sheets:
+        return None
+
+    workbook_path = downloads_dir / "change-report.xlsx"
+    build_workbook_xlsx(workbook_path, sheets)
+    return "downloads/change-report.xlsx"
+
+
+def build_downloads_metadata(
+    *,
+    word_path: str | None,
+    workbook_path: str | None,
+    csv_files: dict[str, str],
+) -> dict[str, object]:
+    return {
+        "word_docx": word_path,
+        "change_workbook": workbook_path,
+        "csv_reports": dict(csv_files),
+    }
+
+
+def assert_preview_output_contract(output_dir: Path, downloads: dict[str, object], *, require_word: bool) -> None:
+    missing: list[str] = []
+
+    for relative_path in REQUIRED_PREVIEW_FILES:
+        if not (output_dir / relative_path).exists():
+            missing.append(relative_path)
+
+    for relative_path in REQUIRED_CHANGE_REPORT_FILES:
+        if not (output_dir / "changes" / relative_path).exists():
+            missing.append(f"changes/{relative_path}")
+
+    csv_reports = downloads.get("csv_reports")
+    if not isinstance(csv_reports, dict):
+        missing.extend(f"downloads/{name}" for name in REQUIRED_DOWNLOAD_CSVS)
+    else:
+        for file_name in REQUIRED_DOWNLOAD_CSVS:
+            target = csv_reports.get(file_name)
+            if not isinstance(target, str) or not (output_dir / target).exists():
+                missing.append(f"downloads/{file_name}")
+
+    workbook_path = downloads.get("change_workbook")
+    if not isinstance(workbook_path, str) or not (output_dir / workbook_path).exists():
+        missing.append("downloads/change-report.xlsx")
+
+    word_path = downloads.get("word_docx")
+    if require_word and (not isinstance(word_path, str) or not (output_dir / word_path).exists()):
+        missing.append("downloads/review-manual.docx")
+
+    if missing:
+        raise RuntimeError("Review preview output contract is incomplete: " + ", ".join(sorted(set(missing))))
 
 
 def write_json(path: Path, payload: dict[str, object]) -> None:
@@ -149,10 +466,16 @@ def write_json(path: Path, payload: dict[str, object]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
 
 
-def render_list(items: list[str]) -> str:
+def render_list(items: list[str], empty_text: str) -> str:
     if not items:
-        return "<li>No files changed in the selected diff range.</li>"
+        return f"<li>{escape(empty_text)}</li>"
     return "".join(f"<li><code>{escape(item)}</code></li>" for item in items)
+
+
+def render_link_list(items: list[tuple[str, str]]) -> str:
+    if not items:
+        return "<li>No downloads available for this review round.</li>"
+    return "".join(f'<li><a href="{escape(target)}">{escape(label)}</a></li>' for label, target in items)
 
 
 def render_areas(areas: list[dict[str, object]]) -> str:
@@ -174,89 +497,6 @@ def render_areas(areas: list[dict[str, object]]) -> str:
     return "".join(blocks)
 
 
-def render_area_list(areas: list[dict[str, object]]) -> str:
-    if not areas:
-        return "<p class=\"muted-note\">No grouped changes were detected.</p>"
-    rows: list[str] = []
-    for area in areas:
-        files = area.get("files", [])
-        if not isinstance(files, list):
-            continue
-        rows.append(
-            "<li><strong>{name}</strong><br><span class=\"muted-note\">{count} file(s)</span></li>".format(
-                name=escape(str(area["name"])),
-                count=len(files),
-            )
-        )
-    return "<ul>{}</ul>".format("".join(rows))
-
-
-def display_review_pages(review_pages: list[str]) -> list[str]:
-    labels: list[str] = []
-    seen: set[str] = set()
-    for raw_path in review_pages:
-        path = Path(raw_path)
-        name = path.stem if path.suffix else path.name
-        if name == "index" and len(path.parts) >= 2:
-            name = path.parts[-2]
-        tokens = [token for token in name.replace("-", "_").split("_") if token]
-        if not tokens:
-            label = raw_path
-        else:
-            head = []
-            tail = []
-            for token in tokens:
-                if token.isdigit() and not tail:
-                    head.append(token)
-                else:
-                    tail.append(token.upper() if token.isupper() else token.capitalize())
-            label = " ".join(head + tail).strip()
-        if label not in seen:
-            seen.add(label)
-            labels.append(label)
-    return labels
-
-
-def report_link_cards(prefix: str = "./changes/") -> list[dict[str, str]]:
-    return [
-        {
-            "title": "页面差异",
-            "href": f"{prefix}report-pages.html",
-            "description": "先看哪些页面或章节被改动，最适合设计同事快速判断要不要细看。",
-        },
-        {
-            "title": "字段差异",
-            "href": f"{prefix}report-fields.html",
-            "description": "看参数、字段和文案级变化，适合确认规格、术语和局部内容调整。",
-        },
-        {
-            "title": "文件差异",
-            "href": f"{prefix}report-files.html",
-            "description": "面向维护人，保留原始文件级视角，适合追查变更来源。",
-        },
-        {
-            "title": "汇总总览",
-            "href": f"{prefix}report-index.html",
-            "description": "查看完整 diff-report 导航页，适合需要逐项深挖时再打开。",
-        },
-    ]
-
-
-def render_report_cards(cards: list[dict[str, str]]) -> str:
-    return "".join(
-        "<a class=\"report-card\" href=\"{href}\">"
-        "<span class=\"report-kicker\">Change report</span>"
-        "<strong>{title}</strong>"
-        "<span>{description}</span>"
-        "</a>".format(
-            href=escape(card["href"]),
-            title=escape(card["title"]),
-            description=escape(card["description"]),
-        )
-        for card in cards
-    )
-
-
 def page_title(model: str, region: str) -> str:
     return f"{model} / {region} Review Preview"
 
@@ -264,55 +504,45 @@ def page_title(model: str, region: str) -> str:
 def base_css() -> str:
     return """
 :root {
-  --bg: #f4efe6;
-  --panel: #fffdfa;
-  --panel-strong: #fff7ea;
-  --ink: #1d2733;
-  --muted: #5e6d7a;
-  --line: #d8ccbb;
-  --accent: #1c4cff;
+  --bg: #f5f1e8;
+  --panel: #fffdf8;
+  --ink: #1f2933;
+  --muted: #52606d;
+  --line: #d9d1c3;
+  --accent: #1f5eff;
   --accent-soft: #e8efff;
-  --accent-ink: #11318e;
-  --signal: #b65c18;
-  --signal-soft: #fff1e5;
   --success: #1f845a;
-  --success-soft: #e7f6ee;
+  --warning: #b54708;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: "Segoe UI", "Noto Sans SC", "Noto Sans", sans-serif;
+  font-family: "Segoe UI", "Noto Sans", sans-serif;
   background:
-    radial-gradient(circle at top right, rgba(28,76,255,0.12), transparent 26%),
-    radial-gradient(circle at top left, rgba(182,92,24,0.08), transparent 22%),
-    linear-gradient(180deg, #f7f2e8 0%, #efe6d7 100%);
+    radial-gradient(circle at top right, rgba(31,94,255,0.08), transparent 28%),
+    linear-gradient(180deg, #f7f3ea 0%, #efe8db 100%);
   color: var(--ink);
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .shell {
-  max-width: 1180px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 36px 24px 56px;
+  padding: 40px 24px 56px;
 }
 .hero {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 28px;
+  border-radius: 24px;
   padding: 28px;
-  box-shadow: 0 20px 50px rgba(31, 41, 51, 0.08);
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
-  gap: 22px;
+  box-shadow: 0 16px 40px rgba(31, 41, 51, 0.08);
 }
 .eyebrow {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 999px;
-  background: var(--signal-soft);
-  color: var(--signal);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -320,8 +550,7 @@ a:hover { text-decoration: underline; }
 }
 h1 {
   margin: 14px 0 10px;
-  font-family: "Aptos Display", "Trebuchet MS", "Segoe UI", sans-serif;
-  font-size: 44px;
+  font-size: 40px;
   line-height: 1.1;
 }
 .lede {
@@ -329,6 +558,15 @@ h1 {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.7;
+}
+.banner {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: #fff8ec;
+  border: 1px solid #f3d4a5;
+  color: #7a4f04;
+  font-size: 14px;
 }
 .grid {
   display: grid;
@@ -339,25 +577,17 @@ h1 {
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 20px;
   padding: 18px 20px;
 }
 .card h2, .card h3 {
   margin: 0 0 12px;
 }
-.card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.65;
-}
 .card ul {
   margin: 0;
   padding-left: 20px;
 }
-.card li + li {
-  margin-top: 8px;
-}
-.actions {
+.actions, .downloads {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -367,8 +597,8 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 190px;
-  padding: 13px 18px;
+  min-width: 180px;
+  padding: 12px 18px;
   border-radius: 999px;
   font-weight: 700;
   border: 1px solid var(--accent);
@@ -381,71 +611,10 @@ h1 {
   background: white;
   color: var(--accent);
 }
-.button.ghost {
-  background: transparent;
-  color: var(--accent-ink);
-  border-color: rgba(17, 49, 142, 0.24);
-}
-.guide-panel {
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,247,234,0.96));
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 22px;
-}
-.guide-panel h2 {
-  margin: 0 0 12px;
-  font-size: 22px;
-}
-.step-list {
-  margin: 0;
-  padding-left: 20px;
-}
-.step-list li {
-  color: var(--muted);
-  line-height: 1.7;
-}
-.step-list li + li {
-  margin-top: 10px;
-}
-.status-banner {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.7);
-}
-.status-banner strong {
-  display: block;
-  margin-bottom: 4px;
-}
-.status-banner.success {
-  background: var(--success-soft);
-  border-color: rgba(31, 132, 90, 0.18);
-}
-.status-banner.signal {
-  background: var(--signal-soft);
-  border-color: rgba(182, 92, 24, 0.18);
-}
-.status-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  flex: 0 0 auto;
-}
-.status-banner.success .status-icon {
-  background: rgba(31, 132, 90, 0.14);
-  color: var(--success);
-}
-.status-banner.signal .status-icon {
-  background: rgba(182, 92, 24, 0.14);
-  color: var(--signal);
+.button.download {
+  background: #12335f;
+  border-color: #12335f;
+  color: white;
 }
 .meta {
   display: grid;
@@ -467,90 +636,53 @@ h1 {
   letter-spacing: 0.08em;
   margin-bottom: 4px;
 }
-.value {
-  display: block;
-  font-size: 18px;
-}
 .foot {
   margin-top: 24px;
   color: var(--muted);
   font-size: 14px;
 }
-.section-title {
-  margin: 28px 0 14px;
-  font-size: 24px;
-}
-.section-kicker {
-  margin: 0 0 8px;
-  color: var(--signal);
-  font-size: 12px;
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: #effaf4;
+  color: var(--success);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-.review-card {
-  display: block;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 18px 18px 16px;
-  box-shadow: 0 10px 24px rgba(31, 41, 51, 0.05);
-}
-.review-card strong,
-.report-card strong {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 18px;
-}
-.review-card span,
-.report-card span {
-  color: var(--muted);
-  line-height: 1.65;
-}
-.report-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-.report-card {
-  display: block;
-  background: var(--panel-strong);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 18px;
-}
-.report-kicker {
-  display: inline-block;
-  margin-bottom: 8px;
-  color: var(--accent-ink);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.muted-note {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
+.state.warning {
+  background: #fff4e5;
+  color: var(--warning);
 }
 code {
   font-family: "Cascadia Code", "Consolas", monospace;
   font-size: 0.95em;
 }
-@media (max-width: 900px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-  h1 {
-    font-size: 36px;
-  }
-}
 """
+
+
+def build_download_links(downloads: dict[str, object], *, prefix: str) -> list[tuple[str, str]]:
+    links: list[tuple[str, str]] = []
+    word_path = downloads.get("word_docx")
+    workbook_path = downloads.get("change_workbook")
+    csv_reports = downloads.get("csv_reports", {})
+    if isinstance(word_path, str):
+        links.append(("Download Word", f"{prefix}{word_path}"))
+    if isinstance(workbook_path, str):
+        links.append(("Download Change Workbook", f"{prefix}{workbook_path}"))
+    if isinstance(csv_reports, dict):
+        for file_name, label in (
+            ("changes-summary.csv", "Download Summary CSV"),
+            ("changes-pages.csv", "Download Page CSV"),
+            ("changes-fields.csv", "Download Field CSV"),
+            ("changes-files.csv", "Download File CSV"),
+        ):
+            target = csv_reports.get(file_name)
+            if isinstance(target, str):
+                links.append((label, f"{prefix}{target}"))
+    return links
 
 
 def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> str:
@@ -563,15 +695,15 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
     changed_files = changes.get("changed_files", [])
     if not isinstance(changed_files, list):
         changed_files = []
-    review_labels = display_review_pages([str(item) for item in top_pages])
-    cards = report_link_cards()
-    status_title = "本轮包含页面级改动"
-    status_body = "建议先看“页面差异”，确认受影响章节，再打开完整 HTML 看最终呈现。"
-    status_kind = "success"
-    if not review_labels:
-        status_title = "本轮没有直接修改 review 页面"
-        status_body = "这轮更像流程、文档或配置调整。设计同事可优先看变更说明，再决定是否需要做视觉复核。"
-        status_kind = "signal"
+    downloads = changes.get("downloads", {})
+    if not isinstance(downloads, dict):
+        downloads = {}
+    download_links = build_download_links(downloads, prefix="./")
+    page_state = "No review page changes detected in the selected diff range."
+    page_state_class = "warning"
+    if top_pages:
+        page_state = f"{len(top_pages)} review page(s) changed in this round."
+        page_state_class = ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -582,96 +714,54 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
 </head>
 <body>
   <main class="shell">
-    <section class="hero hero-grid">
-      <div>
-        <span class="eyebrow">Design Review Hub</span>
-        <h1>{escape(str(meta['model']))} / {escape(str(meta['region']))} 设计评审入口</h1>
-        <p class="lede">先看最终页面效果，再看这轮改动说明。这个入口页是给设计同事快速判断“该看什么、这轮改了哪里”用的，不需要先理解源码结构。</p>
-        <div class="actions">
-          <a class="button primary" href="./manual/index.html">先看页面效果</a>
-          <a class="button secondary" href="./changes/index.html">再看本轮改动</a>
-          <a class="button ghost" href="./changes/report-pages.html">直接看页面差异</a>
-        </div>
-        <div class="status-banner {status_kind}">
-          <span class="status-icon">i</span>
-          <div>
-            <strong>{escape(status_title)}</strong>
-            <span>{escape(status_body)}</span>
-          </div>
-        </div>
+    <section class="hero">
+      <span class="eyebrow">Review Preview</span>
+      <h1>{escape(str(meta['title']))}</h1>
+      <p class="lede">Share the current review-stage manual with design, then use the linked change report and downloads to review exactly what changed in this round.</p>
+      <div class="actions">
+        <a class="button primary" href="./manual/index.html">Open Review HTML</a>
+        <a class="button secondary" href="./changes/index.html">Open Change Report</a>
       </div>
-      <aside class="guide-panel">
-        <h2>建议评审顺序</h2>
-        <ol class="step-list">
-          <li>先打开 <strong>页面效果</strong>，确认整体层级、图文比例、告警块和留白节奏。</li>
-          <li>再打开 <strong>页面差异</strong>，快速锁定这轮真正变动的章节和页面。</li>
-          <li>如果涉及规格或术语，再补看 <strong>字段差异</strong>，避免只看版式漏掉关键内容变化。</li>
-        </ol>
-      </aside>
+      <div class="downloads">
+        {''.join(f'<a class="button download" href="{escape(target)}">{escape(label)}</a>' for label, target in download_links[:2])}
+      </div>
+      <div class="state {page_state_class}">{escape(page_state)}</div>
+      <div class="banner">Use <strong>Open Review HTML</strong> to inspect layout and page effect, then use <strong>Open Change Report</strong> or the download buttons to brief design on the deltas.</div>
       <div class="meta">
-        <div class="meta-item"><span class="label">目标手册</span><strong class="value">{escape(str(meta['model']))} / {escape(str(meta['region']))}</strong></div>
-        <div class="meta-item"><span class="label">页面改动数</span><strong class="value">{len(review_labels)}</strong></div>
-        <div class="meta-item"><span class="label">文件改动数</span><strong class="value">{len(changed_files)}</strong></div>
-        <div class="meta-item"><span class="label">变更类别数</span><strong class="value">{len(areas)}</strong></div>
-        <div class="meta-item"><span class="label">版本标识</span><strong class="value"><code>{escape(str(meta['commit_sha_short']))}</code></strong></div>
-        <div class="meta-item"><span class="label">生成时间</span><strong class="value">{escape(str(meta['generated_at']))}</strong></div>
+        <div class="meta-item"><span class="label">Model</span><strong>{escape(str(meta['model']))}</strong></div>
+        <div class="meta-item"><span class="label">Region</span><strong>{escape(str(meta['region']))}</strong></div>
+        <div class="meta-item"><span class="label">Source</span><strong>{escape(str(meta['source']))}</strong></div>
+        <div class="meta-item"><span class="label">Branch</span><strong>{escape(str(meta['branch']))}</strong></div>
+        <div class="meta-item"><span class="label">Commit</span><strong><code>{escape(str(meta['commit_sha_short']))}</code></strong></div>
+        <div class="meta-item"><span class="label">Generated</span><strong>{escape(str(meta['generated_at']))}</strong></div>
       </div>
-      <p class="foot">Branch: <code>{escape(str(meta['branch']))}</code> | Commit message: <code>{escape(str(meta['commit_message']))}</code></p>
+      <p class="foot">Commit message: <code>{escape(str(meta['commit_message']))}</code></p>
     </section>
 
-    <p class="section-kicker">Start here</p>
-    <h2 class="section-title">设计同事先看这三块</h2>
-    <section class="review-grid">
-      <a class="review-card" href="./manual/index.html">
-        <strong>完整页面效果</strong>
-        <span>看最终渲染后的页面层级、排版节奏、图片关系和整页观感。</span>
-      </a>
-      <a class="review-card" href="./changes/report-pages.html">
-        <strong>页面差异</strong>
-        <span>快速确认这轮到底改了哪些页面、章节或段落，适合先筛选范围。</span>
-      </a>
-      <a class="review-card" href="./changes/report-fields.html">
-        <strong>字段差异</strong>
-        <span>当页面改动牵涉规格、文案或数据字段时，从这里看最直接。</span>
-      </a>
-    </section>
-
-    <p class="section-kicker">This round</p>
-    <h2 class="section-title">本轮重点</h2>
     <section class="grid">
       <article class="card">
-        <h2>受影响页面</h2>
-        <ul>{render_list(review_labels)}</ul>
+        <h2>Review Pages Touched</h2>
+        <ul>{render_list([str(item) for item in top_pages], "No review pages changed in the selected diff range.")}</ul>
       </article>
       <article class="card">
-        <h2>设计关注点</h2>
-        <ul>
-          <li>页面结构和信息层级是否仍然清晰。</li>
-          <li>警示块、图标、图片和正文是否仍然协调。</li>
-          <li>改动页面之间的排版语言是否保持一致。</li>
-          <li>若涉及规格或术语变化，再补看字段差异。</li>
-        </ul>
+        <h2>Changed Files</h2>
+        <ul>{render_list([str(item) for item in changed_files[:12]], "No files changed in the selected diff range.")}</ul>
       </article>
     </section>
 
-    <p class="section-kicker">Reports</p>
-    <h2 class="section-title">变更入口</h2>
-    <section class="report-grid">
-      {render_report_cards(cards)}
-    </section>
-
-    <p class="section-kicker">Technical context</p>
-    <h2 class="section-title">技术参考</h2>
     <section class="grid">
       <article class="card">
-        <h2>变更类别</h2>
-        {render_area_list([item for item in areas if isinstance(item, dict)])}
+        <h2>Downloads</h2>
+        <ul>{render_link_list(download_links)}</ul>
       </article>
       <article class="card">
-        <h2>改动文件</h2>
-        <ul>{render_list([str(item) for item in changed_files[:12]])}</ul>
-        <p class="muted-note">这块更偏维护视角，设计同事通常只需要确认受影响页面和差异入口即可。</p>
+        <h2>What Changed</h2>
+        <p>Use the change report for page and field deltas. Use the Excel workbook when you need a portable handoff for review meetings or offline markup.</p>
       </article>
+    </section>
+
+    <section class="grid">
+      {render_areas([item for item in areas if isinstance(item, dict)])}
     </section>
   </main>
 </body>
@@ -686,33 +776,23 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
     review_pages = changes.get("review_pages", [])
     if not isinstance(review_pages, list):
         review_pages = []
-    review_labels = display_review_pages([str(item) for item in review_pages])
     reports = changes.get("report_files", {})
     if not isinstance(reports, dict):
         reports = {}
-    report_cards = []
-    for label, target, description in (
-        ("页面差异", reports.get("report-pages.html"), "先看这一轮改了哪些页面或章节。"),
-        ("字段差异", reports.get("report-fields.html"), "规格、术语、字段内容变化优先看这里。"),
-        ("文件差异", reports.get("report-files.html"), "需要追文件来源时再打开。"),
-        ("汇总总览", reports.get("report-index.html"), "完整 diff-report 导航。"),
-        ("原始摘要", reports.get("report-summary.html"), "保留系统生成的原始摘要页。"),
+    downloads = changes.get("downloads", {})
+    if not isinstance(downloads, dict):
+        downloads = {}
+    report_links = []
+    for label, target in (
+        ("Report overview", reports.get("report-index.html")),
+        ("Field diff", reports.get("report-fields.html")),
+        ("Page diff", reports.get("report-pages.html")),
+        ("File diff", reports.get("report-files.html")),
+        ("Raw summary", reports.get("report-summary.html")),
     ):
         if target:
-            report_cards.append(
-                {
-                    "title": label,
-                    "href": f"./{target}",
-                    "description": description,
-                }
-            )
-    status_title = "这轮没有直接改动 review 页面"
-    status_body = "如果你只关心版面变化，可以先看页面差异；若页面差异为空，这轮大概率是流程或文档调整。"
-    status_kind = "signal"
-    if review_labels:
-        status_title = "这轮包含页面级调整"
-        status_body = "建议先打开页面差异，再回到完整 HTML 查看修改后的最终效果。"
-        status_kind = "success"
+            report_links.append((label, f"./{str(target)}"))
+    download_links = build_download_links(downloads, prefix="../")
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -725,38 +805,41 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
   <main class="shell">
     <section class="hero">
       <span class="eyebrow">Change Report</span>
-      <h1>{escape(str(meta['model']))} / {escape(str(meta['region']))} 本轮改动说明</h1>
-      <p class="lede">先用这里判断这轮具体动了哪些页面、字段和文件，再决定要不要逐页看完整 HTML。</p>
+      <h1>{escape(str(meta['title']))}</h1>
+      <p class="lede">Use this page to brief design on what changed in the current review round before they open the rendered manual or download a change handoff package.</p>
       <div class="actions">
-        <a class="button primary" href="../manual/index.html">打开完整页面</a>
-        <a class="button secondary" href="../index.html">返回入口页</a>
+        <a class="button primary" href="../manual/index.html">Open Review HTML</a>
+        <a class="button secondary" href="../index.html">Back To Summary</a>
       </div>
-      <div class="status-banner {status_kind}">
-        <span class="status-icon">i</span>
-        <div>
-          <strong>{escape(status_title)}</strong>
-          <span>{escape(status_body)}</span>
-        </div>
+      <div class="downloads">
+        {''.join(f'<a class="button download" href="{escape(target)}">{escape(label)}</a>' for label, target in download_links[:2])}
       </div>
     </section>
 
-    <p class="section-kicker">Diff shortcuts</p>
-    <h2 class="section-title">先从哪类差异开始看</h2>
-    <section class="report-grid">
-      {render_report_cards(report_cards)}
-    </section>
-
-    <p class="section-kicker">This round</p>
-    <h2 class="section-title">本轮改动范围</h2>
     <section class="grid">
       <article class="card">
-        <h2>受影响页面</h2>
-        <ul>{render_list(review_labels)}</ul>
+        <h2>Diff Links</h2>
+        <ul>{render_link_list(report_links)}</ul>
       </article>
       <article class="card">
-        <h2>变更类别</h2>
-        {render_area_list([item for item in areas if isinstance(item, dict)])}
+        <h2>Downloadables</h2>
+        <ul>{render_link_list(download_links)}</ul>
       </article>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Review Pages Touched</h2>
+        <ul>{render_list([str(item) for item in review_pages], "No review pages changed in the selected diff range.")}</ul>
+      </article>
+      <article class="card">
+        <h2>Review Context</h2>
+        <p>Open <strong>Field diff</strong> for text or value deltas and <strong>Page diff</strong> for page-level impact. Use the Excel workbook for a single-file handoff.</p>
+      </article>
+    </section>
+
+    <section class="grid">
+      {render_areas([item for item in areas if isinstance(item, dict)])}
     </section>
   </main>
 </body>
@@ -831,11 +914,15 @@ def main() -> int:
         shutil.rmtree(output_dir)
     manual_dir = output_dir / "manual"
     changes_dir = output_dir / "changes"
+    downloads_dir = output_dir / "downloads"
     generated_dir = output_dir / "generated"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     copy_tree(html_root, manual_dir)
     report_files = copy_report_set(report_root, prefix, changes_dir)
+    csv_files = copy_report_csvs(report_root, prefix, downloads_dir)
+    workbook_path = build_change_workbook(downloads_dir, csv_files)
+    word_path = build_word_download(args=args, config_path=config_path, downloads_dir=downloads_dir)
 
     commit_sha = git_value("VERCEL_GIT_COMMIT_SHA", ["git", "rev-parse", "HEAD"])
     commit_message = git_value("VERCEL_GIT_COMMIT_MESSAGE", ["git", "log", "-1", "--pretty=%s"])
@@ -844,6 +931,14 @@ def main() -> int:
     pr_id = os.environ.get("VERCEL_GIT_PULL_REQUEST_ID", "").strip()
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
+    if workbook_path is None:
+        raise RuntimeError("Review preview failed to build the required change-report workbook.")
+
+    downloads = build_downloads_metadata(
+        word_path=word_path,
+        workbook_path=workbook_path,
+        csv_files=csv_files,
+    )
     meta = {
         "title": page_title(args.model, args.region),
         "model": args.model,
@@ -860,6 +955,7 @@ def main() -> int:
         "generated_at": generated_at,
         "vercel_env": os.environ.get("VERCEL_ENV", "").strip(),
         "vercel_url": os.environ.get("VERCEL_URL", "").strip(),
+        "downloads": downloads,
     }
     changes = {
         "from_ref": args.from_ref,
@@ -869,12 +965,14 @@ def main() -> int:
         "areas": areas,
         "report_prefix": prefix,
         "report_files": report_files,
+        "downloads": downloads,
     }
 
     write_json(generated_dir / "meta.json", meta)
     write_json(generated_dir / "changes.json", changes)
     (output_dir / "index.html").write_text(render_index_html(meta, changes), encoding="utf-8")
     (changes_dir / "index.html").write_text(render_changes_html(meta, changes), encoding="utf-8")
+    assert_preview_output_contract(output_dir, downloads, require_word=not args.skip_word)
     return 0
 
 

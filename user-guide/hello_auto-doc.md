@@ -49,6 +49,7 @@ GitHub note:
 - after merge, `main` runs the same validation workflow again
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
+- that workflow expects `pandoc` for the review Word export path and blocks preview deployment if the required Word / Excel downloads are missing
 
 ---
 
@@ -98,6 +99,10 @@ Rules:
 - When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
 - when that review preview is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
 - designers should start from the summary page, then open the rendered manual and the change report from there
+- the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, and the raw diff CSV files for offline handoff
+- if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
+- after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
+- if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
 
 ---
 
@@ -122,7 +127,7 @@ Current flow:
 11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-14. `python tools/process_docs/build_review_preview.py` packages review HTML plus diff-report HTML for design sharing
+14. `python tools/process_docs/build_review_preview.py` packages review HTML, review Word, diff-report HTML, diff-report CSV, and a single Excel workbook for design sharing
 15. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
 16. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
 17. `python build.py preview` materializes one exact page selector under a preview-only output root

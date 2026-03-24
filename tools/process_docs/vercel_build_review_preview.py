@@ -1,12 +1,19 @@
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.process_docs.build_review_preview import assert_preview_output_contract, build_downloads_metadata
+
+
 VENV_DIR = ROOT / ".vercel-python"
+DIST_DIR = ROOT / "site" / "review-preview" / "dist"
 
 
 def run(cmd: list[str]) -> None:
@@ -24,7 +31,29 @@ def venv_python() -> Path:
     return candidates[0]
 
 
+def existing_preview_is_ready() -> bool:
+    downloads = build_downloads_metadata(
+        word_path="downloads/review-manual.docx",
+        workbook_path="downloads/change-report.xlsx",
+        csv_files={
+            "changes-summary.csv": "downloads/changes-summary.csv",
+            "changes-pages.csv": "downloads/changes-pages.csv",
+            "changes-fields.csv": "downloads/changes-fields.csv",
+            "changes-files.csv": "downloads/changes-files.csv",
+        },
+    )
+    try:
+        assert_preview_output_contract(DIST_DIR, downloads, require_word=True)
+    except RuntimeError:
+        return False
+    return True
+
+
 def main() -> int:
+    if existing_preview_is_ready():
+        print("[vercel-review-preview] Reusing existing preview package under site/review-preview/dist")
+        return 0
+
     python_exe = venv_python()
 
     if not python_exe.exists():
@@ -46,9 +75,9 @@ def main() -> int:
             "--source",
             "review",
             "--from-ref",
-            "HEAD~1",
+            os.environ.get("FROM_REF", "HEAD~1"),
             "--to-ref",
-            "HEAD",
+            os.environ.get("TO_REF", "HEAD"),
         ]
     )
     return 0
