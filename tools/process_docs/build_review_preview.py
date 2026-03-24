@@ -478,15 +478,6 @@ def render_link_list(items: list[tuple[str, str]]) -> str:
     return "".join(f'<li><a href="{escape(target)}">{escape(label)}</a></li>' for label, target in items)
 
 
-def summarize_items(items: list[str], *, limit: int = 5) -> str:
-    if not items:
-        return "None"
-    visible = [str(item) for item in items[:limit]]
-    if len(items) > limit:
-        visible.append(f"+{len(items) - limit} more")
-    return ", ".join(escape(item) for item in visible)
-
-
 def render_areas(areas: list[dict[str, object]]) -> str:
     if not areas:
         return "<p>No grouped changes were detected.</p>"
@@ -695,21 +686,12 @@ def build_download_links(downloads: dict[str, object], *, prefix: str) -> list[t
 
 
 def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> str:
-    top_pages = changes.get("review_pages", [])
-    if not isinstance(top_pages, list):
-        top_pages = []
-    changed_files = changes.get("changed_files", [])
-    if not isinstance(changed_files, list):
-        changed_files = []
     downloads = changes.get("downloads", {})
     if not isinstance(downloads, dict):
         downloads = {}
     download_links = build_download_links(downloads, prefix="./")
     word_download = next((target for label, target in download_links if label == "Download Word"), None)
     workbook_download = next((target for label, target in download_links if label == "Download Change Workbook"), None)
-    page_state = "No review page changes detected in the selected diff range."
-    if top_pages:
-        page_state = f"{len(top_pages)} review page(s) changed in this round."
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -734,16 +716,11 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
 
     <section class="grid">
       <article class="card">
-        <h2>What Changed</h2>
+        <h2>Doc Information</h2>
         <ul>
           <li><strong>Model:</strong> {escape(str(meta['model']))} / {escape(str(meta['region']))}</li>
-          <li><strong>Source:</strong> {escape(str(meta['source']))}</li>
-          <li><strong>Branch:</strong> <code>{escape(str(meta['branch']))}</code></li>
-          <li><strong>Commit:</strong> <code>{escape(str(meta['commit_sha_short']))}</code></li>
-          <li><strong>Generated:</strong> {escape(str(meta['generated_at']))}</li>
-          <li><strong>Review pages:</strong> {escape(page_state)}</li>
-          <li><strong>Touched pages:</strong> {summarize_items([str(item) for item in top_pages])}</li>
-          <li><strong>Changed files:</strong> {summarize_items([str(item) for item in changed_files], limit=6)}</li>
+          <li><strong>Region:</strong> {escape(str(meta['region']))}</li>
+          <li><strong>Format:</strong> HTML / Word / Change Workbook</li>
         </ul>
         <p class="foot">Use the Excel workbook for an offline handoff, or open the change report for the full page and field diff.</p>
       </article>
