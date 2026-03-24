@@ -96,38 +96,65 @@ jobs:
   deploy-review-preview:
     needs: build-review-preview
     runs-on: ubuntu-latest
-    if: >
-      secrets.VERCEL_TOKEN != '' &&
-      secrets.VERCEL_ORG_ID != '' &&
-      secrets.VERCEL_PROJECT_ID != '' &&
-      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     env:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
+      - name: Decide whether Vercel deployment should run
+        id: gate
+        shell: bash
+        run: |
+          SHOULD_DEPLOY="true"
+
+          if [[ -z "$VERCEL_TOKEN" || -z "$VERCEL_ORG_ID" || -z "$VERCEL_PROJECT_ID" ]]; then
+            SHOULD_DEPLOY="false"
+          fi
+
+          if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]]; then
+            SHOULD_DEPLOY="false"
+          fi
+
+          echo "should_deploy=$SHOULD_DEPLOY" >> "$GITHUB_OUTPUT"
+
+      - name: Skip deployment summary
+        if: steps.gate.outputs.should_deploy != 'true'
+        shell: bash
+        run: |
+          {
+            echo "## Review preview deployment skipped"
+            echo
+            echo "- Reason: missing Vercel secrets or pull request from a fork."
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.should_deploy == 'true'
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.should_deploy == 'true'
         with:
           python-version: "3.12"
 
       - uses: actions/setup-node@v4
+        if: steps.gate.outputs.should_deploy == 'true'
         with:
           node-version: "20"
 
       - name: Download packaged review preview
+        if: steps.gate.outputs.should_deploy == 'true'
         uses: actions/download-artifact@v4
         with:
           name: review-preview-us
           path: site/review-preview/dist
 
       - name: Install Vercel CLI
+        if: steps.gate.outputs.should_deploy == 'true'
         run: npm install --global vercel@latest
 
       - name: Resolve Vercel environment
+        if: steps.gate.outputs.should_deploy == 'true'
         id: environment
         shell: bash
         run: |
@@ -138,6 +165,7 @@ jobs:
           fi
 
       - name: Pull Vercel project settings
+        if: steps.gate.outputs.should_deploy == 'true'
         run: >
           vercel pull
           --yes
@@ -145,12 +173,14 @@ jobs:
           --token="$VERCEL_TOKEN"
 
       - name: Prepare static output for Vercel
+        if: steps.gate.outputs.should_deploy == 'true'
         run: >
           python tools/process_docs/package_vercel_static_output.py
           --dist-dir site/review-preview/dist
           --output-root .vercel/output
 
       - name: Deploy static preview to Vercel
+        if: steps.gate.outputs.should_deploy == 'true'
         id: deploy
         shell: bash
         run: |
@@ -162,6 +192,7 @@ jobs:
           echo "deployment_url=$DEPLOYMENT_URL" >> "$GITHUB_OUTPUT"
 
       - name: Write deployment summary
+        if: steps.gate.outputs.should_deploy == 'true'
         shell: bash
         run: |
           {
@@ -173,7 +204,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Comment preview links on pull request
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.gate.outputs.should_deploy == 'true'
         uses: actions/github-script@v7
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment_url }}
