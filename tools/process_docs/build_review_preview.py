@@ -510,7 +510,7 @@ def path_for_display(path: Path) -> str:
 
 
 def workspace_title(model: str) -> str:
-    return f"{model} Review Handoff Workspace"
+    return f"{model} Review Preview"
 
 
 def family_change_title(model: str, family: str) -> str:
@@ -575,7 +575,6 @@ def workspace_css() -> str:
 :root {
   --bg: #f4efe4;
   --panel: rgba(255, 252, 246, 0.96);
-  --panel-soft: rgba(255, 255, 255, 0.78);
   --ink: #172b4d;
   --muted: #5b6777;
   --line: #d9cfbf;
@@ -584,9 +583,6 @@ def workspace_css() -> str:
   --accent-soft: #eaf0ff;
   --chip: #f4f7ff;
   --chip-line: #d7e2ff;
-  --callout-bg: #fff6e8;
-  --callout-line: #efd19d;
-  --callout-ink: #7a4b04;
   --shadow: 0 22px 48px rgba(23, 43, 77, 0.10);
 }
 * { box-sizing: border-box; }
@@ -607,7 +603,7 @@ a:hover {
   text-decoration: underline;
 }
 .workspace-shell {
-  max-width: 1240px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 40px 24px 56px;
 }
@@ -615,15 +611,8 @@ a:hover {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 28px;
-  padding: 30px;
+  padding: 32px;
   box-shadow: var(--shadow);
-}
-.workspace-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
 }
 .eyebrow {
   display: inline-flex;
@@ -637,59 +626,32 @@ a:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.eyebrow-muted {
-  background: #eef2f7;
-  color: var(--accent-dark);
-}
-.family-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.family-tab {
-  border: 1px solid var(--line);
-  background: white;
-  color: var(--ink);
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.family-tab.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-}
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.92fr);
   gap: 22px;
-  margin-top: 24px;
   align-items: start;
 }
+.hero-copy {
+  padding-top: 4px;
+}
 h1 {
-  margin: 0 0 10px;
+  margin: 16px 0 10px;
   font-size: 44px;
   line-height: 1.06;
 }
 .product-line {
   margin: 0;
   color: var(--accent);
-  font-size: 22px;
-  font-weight: 800;
-}
-.manual-line {
-  margin: 10px 0 0;
-  color: var(--muted);
   font-size: 18px;
-  line-height: 1.6;
+  font-weight: 800;
 }
 .lede {
   margin: 18px 0 0;
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.75;
-  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 700px;
 }
 .actions {
   display: flex;
@@ -720,35 +682,14 @@ h1 {
   border-color: var(--accent-dark);
   color: white;
 }
-.family-note {
-  margin: 18px 0 0;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: var(--callout-bg);
-  border: 1px solid var(--callout-line);
-  color: var(--callout-ink);
-  line-height: 1.65;
-}
-.resource-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-.resource-link,
-.resource-empty {
-  display: inline-flex;
-  align-items: center;
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: #f7f9fc;
-  border: 1px solid #dde5f0;
-  color: var(--accent-dark);
-  font-size: 13px;
-  font-weight: 700;
+.detail-link {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  min-height: 24px;
 }
 .identity-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(248,243,234,0.98));
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,243,234,0.98));
   border: 1px solid var(--line);
   border-radius: 22px;
   padding: 22px;
@@ -764,24 +705,22 @@ h1 {
 }
 .identity-card h2 {
   margin: 0;
-  font-size: 32px;
-  line-height: 1.08;
+  font-size: 18px;
+  line-height: 1.3;
 }
 .identity-title {
   margin: 10px 0 0;
   color: var(--muted);
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.55;
 }
-.pill-row,
-.lang-row {
+.pill-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 16px;
 }
-.pill,
-.lang-pill {
+.pill {
   display: inline-flex;
   align-items: center;
   padding: 8px 12px;
@@ -792,28 +731,10 @@ h1 {
   font-size: 12px;
   font-weight: 800;
 }
-.lang-pill {
-  cursor: pointer;
-}
-.lang-pill.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-}
-.meta-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+.switch-group {
   margin-top: 16px;
 }
-.meta-item {
-  min-width: 0;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.74);
-  border: 1px solid var(--line);
-}
-.meta-item span {
+.switch-label {
   display: block;
   color: var(--muted);
   font-size: 11px;
@@ -821,71 +742,27 @@ h1 {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.meta-item strong {
-  display: block;
-  margin-top: 6px;
-  font-size: 14px;
-  line-height: 1.55;
-  word-break: break-word;
-}
-.model-section {
-  margin-top: 30px;
-}
-.section-head h2 {
-  margin: 10px 0 8px;
-  font-size: 30px;
-}
-.section-head p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.model-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
-  margin-top: 18px;
-}
-.model-card {
-  background: var(--panel-soft);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 18px;
-}
-.model-card.is-active {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(31, 94, 255, 0.10);
-}
-.model-card-top {
+.switch-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+  margin-top: 8px;
 }
-.model-toggle {
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  padding: 0;
-  font-size: 20px;
+.switch-pill {
+  border: 1px solid var(--chip-line);
+  background: var(--chip);
+  color: #20438f;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
   font-weight: 800;
   cursor: pointer;
-  text-align: left;
 }
-.model-state {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-.model-card h3 {
-  margin: 12px 0 8px;
-  font-size: 26px;
-  line-height: 1.15;
-}
-.model-card p {
-  margin: 0 0 16px;
-  color: var(--muted);
-  line-height: 1.65;
+.switch-pill.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
 }
 .error-card {
   text-align: center;
@@ -905,12 +782,8 @@ h1 {
   h1 {
     font-size: 34px;
   }
-  .identity-card h2,
-  .section-head h2 {
-    font-size: 28px;
-  }
-  .meta-grid {
-    grid-template-columns: 1fr;
+  .identity-card h2 {
+    font-size: 18px;
   }
   .button {
     width: 100%;
@@ -1102,7 +975,7 @@ def render_workspace_html(title: str) -> str:
         "</head>\n"
         "<body>\n"
         "  <main class=\"workspace-shell\">\n"
-        "    <div id=\"workspace-app\" class=\"workspace-card\">Loading review handoff workspace...</div>\n"
+        "    <div id=\"workspace-app\">Loading review preview...</div>\n"
         "  </main>\n"
         "  <script>\n"
         "const app = document.getElementById('workspace-app');\n"
@@ -1171,42 +1044,6 @@ def render_workspace_html(title: str) -> str:
         "  const downloadAttr = downloadName ? ` download=\"${escapeHtml(downloadName)}\"` : '';\n"
         "  return `<a class=\"button ${className}\" href=\"${escapeHtml(href)}\"${downloadAttr}>${escapeHtml(label)}</a>`;\n"
         "}\n"
-        "function renderCsvLinks(csvUrls) {\n"
-        "  const links = [\n"
-        "    ['changes-summary.csv', 'Summary CSV'],\n"
-        "    ['changes-pages.csv', 'Page CSV'],\n"
-        "    ['changes-fields.csv', 'Field CSV'],\n"
-        "    ['changes-files.csv', 'File CSV'],\n"
-        "  ].map(([key, label]) => {\n"
-        "    const href = csvUrls && csvUrls[key];\n"
-        "    return href ? `<a class=\"resource-link\" href=\"${escapeHtml(href)}\" download=\"${escapeHtml(key)}\">${escapeHtml(label)}</a>` : '';\n"
-        "  }).join('');\n"
-        "  return links || '<span class=\"resource-empty\">No CSV exports packaged for this family.</span>';\n"
-        "}\n"
-        "function renderMetaRows(selection, workspace) {\n"
-        "  const rows = [\n"
-        "    ['Build config', valueOr(selection.languageEntry.config)],\n"
-        "    ['Manual source', valueOr(selection.languageEntry.manual_source)],\n"
-        "    ['Tracked root', valueOr(selection.familyEntry.tracked_root)],\n"
-        "    ['Branch', valueOr(workspace.branch)],\n"
-        "    ['Commit', valueOr(workspace.commit_sha_short)],\n"
-        "    ['Updated', valueOr(workspace.generated_at_display || workspace.generated_at)],\n"
-        "  ];\n"
-        "  return rows.map(([label, value]) => `<div class=\"meta-item\"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');\n"
-        "}\n"
-        "function renderModelCards(selection) {\n"
-        "  return asArray(selection.familyEntry.models).map((modelEntry) => {\n"
-        "    const isActive = modelEntry.model === selection.model;\n"
-        "    const languageButtons = asArray(modelEntry.languages).map((languageEntry) => {\n"
-        "      const selected = isActive && languageEntry.lang === selection.lang;\n"
-        "      return `<button type=\"button\" class=\"lang-pill ${selected ? 'is-active' : ''}\" data-model=\"${escapeHtml(modelEntry.model)}\" data-lang=\"${escapeHtml(languageEntry.lang)}\">${escapeHtml(valueOr(languageEntry.language_label, languageEntry.lang.toUpperCase()))}</button>`;\n"
-        "    }).join('');\n"
-        "    const productName = valueOr(modelEntry.product_name, modelEntry.model);\n"
-        "    const languageCount = asArray(modelEntry.languages).length;\n"
-        "    const subtitle = `${languageCount} language${languageCount === 1 ? '' : 's'} packaged in this group.`;\n"
-        "    return `<article class=\"model-card ${isActive ? 'is-active' : ''}\"><div class=\"model-card-top\"><button type=\"button\" class=\"model-toggle\" data-model-select=\"${escapeHtml(modelEntry.model)}\">${escapeHtml(modelEntry.model)}</button><span class=\"model-state\">${isActive ? 'Current selection' : 'Available model group'}</span></div><h3>${escapeHtml(productName)}</h3><p>${escapeHtml(subtitle)}</p><div class=\"lang-row\">${languageButtons}</div></article>`;\n"
-        "  }).join('');\n"
-        "}\n"
         "function bindEvents(workspace, currentSelection) {\n"
         "  document.querySelectorAll('[data-family-tab]').forEach((button) => {\n"
         "    button.addEventListener('click', () => {\n"
@@ -1225,19 +1062,10 @@ def render_workspace_html(title: str) -> str:
         "      render(selection, workspace);\n"
         "    });\n"
         "  });\n"
-        "  document.querySelectorAll('[data-model-select]').forEach((button) => {\n"
+        "  document.querySelectorAll('[data-lang-tab]').forEach((button) => {\n"
         "    button.addEventListener('click', () => {\n"
-        "      const model = normalizeToken(button.getAttribute('data-model-select'));\n"
-        "      const selection = normalizeSelection(workspace, { family: currentSelection.family, model, lang: currentSelection.lang });\n"
-        "      writeUrl(selection, 'push');\n"
-        "      render(selection, workspace);\n"
-        "    });\n"
-        "  });\n"
-        "  document.querySelectorAll('[data-model][data-lang]').forEach((button) => {\n"
-        "    button.addEventListener('click', () => {\n"
-        "      const model = normalizeToken(button.getAttribute('data-model'));\n"
-        "      const lang = normalizeToken(button.getAttribute('data-lang')).toLowerCase();\n"
-        "      const selection = normalizeSelection(workspace, { family: currentSelection.family, model, lang });\n"
+        "      const lang = normalizeToken(button.getAttribute('data-lang-tab')).toLowerCase();\n"
+        "      const selection = normalizeSelection(workspace, { family: currentSelection.family, model: currentSelection.model, lang });\n"
         "      writeUrl(selection, 'push');\n"
         "      render(selection, workspace);\n"
         "    });\n"
@@ -1246,24 +1074,23 @@ def render_workspace_html(title: str) -> str:
         "function render(selection, workspace) {\n"
         "  const productName = valueOr(selection.languageEntry.product_name, selection.modelEntry.product_name || selection.model);\n"
         "  const manualTitle = valueOr(selection.languageEntry.manual_title, selection.modelEntry.manual_title || workspace.title);\n"
-        "  const familyLanguages = asArray(selection.familyEntry.shared_language_labels).join(', ');\n"
         "  const familyTabs = asArray(workspace.families).map((familyEntry) => {\n"
         "    const active = familyEntry.family === selection.family;\n"
-        "    return `<button type=\"button\" class=\"family-tab ${active ? 'is-active' : ''}\" data-family-tab=\"${escapeHtml(familyEntry.family)}\">${escapeHtml(familyEntry.family)}</button>`;\n"
+        "    return `<button type=\"button\" class=\"switch-pill ${active ? 'is-active' : ''}\" data-family-tab=\"${escapeHtml(familyEntry.family)}\">${escapeHtml(familyEntry.family)}</button>`;\n"
         "  }).join('');\n"
-        "  const pills = [\n"
-        "    `Model ${selection.model}`,\n"
-        "    `Family ${selection.family}`,\n"
-        "    `Language ${valueOr(selection.languageEntry.language_label, selection.lang.toUpperCase())}`,\n"
-        "  ].map((item) => `<span class=\"pill\">${escapeHtml(item)}</span>`).join('');\n"
+        "  const languageTabs = asArray(selection.modelEntry.languages).map((languageEntry) => {\n"
+        "    const active = languageEntry.lang === selection.lang;\n"
+        "    const label = valueOr(languageEntry.language_label, languageEntry.lang.toUpperCase());\n"
+        "    return `<button type=\"button\" class=\"switch-pill ${active ? 'is-active' : ''}\" data-lang-tab=\"${escapeHtml(languageEntry.lang)}\">${escapeHtml(label)}</button>`;\n"
+        "  }).join('');\n"
         "  const actions = [\n"
         "    actionButton('Open Review HTML', selection.languageEntry.manual_url, 'primary', ''),\n"
         "    actionButton('Download Word', selection.languageEntry.word_url, 'download', 'review-manual.docx'),\n"
-        "    actionButton('Open Change Report', selection.familyEntry.change_index_url, 'secondary', ''),\n"
         "    actionButton('Download Change Workbook', selection.familyEntry.change_workbook_url, 'download', 'change-report.xlsx'),\n"
         "  ].join('');\n"
-        "  app.innerHTML = `<section class=\"workspace-card\"><div class=\"workspace-top\"><span class=\"eyebrow\">Review Handoff Workspace</span><div class=\"family-tabs\">${familyTabs}</div></div><div class=\"hero-grid\"><section><h1>${escapeHtml(selection.model)} Review Handoff Workspace</h1><p class=\"product-line\">${escapeHtml(productName)}</p><p class=\"manual-line\">${escapeHtml(manualTitle)}</p><p class=\"lede\">Open the selected manual HTML, download the Word handoff, and use one family-level diff package to brief design on this round.</p><div class=\"actions\">${actions}</div><p class=\"family-note\">Change report, workbook, and CSV exports are shared across all ${escapeHtml(selection.family)} family languages${familyLanguages ? ': ' + escapeHtml(familyLanguages) : ''}.</p><div class=\"resource-row\">${renderCsvLinks(selection.familyEntry.csv_urls)}</div></section><aside class=\"identity-card\"><span class=\"label\">Document Identity</span><h2>${escapeHtml(productName)}</h2><p class=\"identity-title\">${escapeHtml(manualTitle)}</p><div class=\"pill-row\">${pills}</div><div class=\"meta-grid\">${renderMetaRows(selection, workspace)}</div></aside></div><section class=\"model-section\"><div class=\"section-head\"><span class=\"eyebrow eyebrow-muted\">Current Family</span><h2>${escapeHtml(selection.family)} model groups</h2><p>Choose a model group, then switch language inside that group. The diff package remains family-scoped.</p></div><div class=\"model-grid\">${renderModelCards(selection)}</div></section></section>`;\n"
-        "  document.title = `${selection.model} / ${selection.family} / ${selection.lang.toUpperCase()} Review Handoff Workspace`;\n"
+        "  const changeReportLink = selection.familyEntry.change_index_url ? `<a href=\"${escapeHtml(selection.familyEntry.change_index_url)}\">Open Change Report.</a>` : '';\n"
+        "  app.innerHTML = `<section class=\"workspace-card\"><div class=\"hero-grid\"><section class=\"hero-copy\"><span class=\"eyebrow\">Review Preview</span><h1>${escapeHtml(selection.model)} Review Preview</h1><p class=\"product-line\">Product Name: ${escapeHtml(productName)}</p><p class=\"lede\">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p><div class=\"actions\">${actions}</div><p class=\"detail-link\">${changeReportLink ? `Need the detailed diff? ${changeReportLink}` : ''}</p></section><aside class=\"identity-card\"><span class=\"label\">Document Identity</span><h2>${escapeHtml(productName)}</h2><p class=\"identity-title\">${escapeHtml(manualTitle)}</p><div class=\"pill-row\"><span class=\"pill\">Model ${escapeHtml(selection.model)}</span></div><div class=\"switch-group\"><span class=\"switch-label\">Region</span><div class=\"switch-row\">${familyTabs}</div></div><div class=\"switch-group\"><span class=\"switch-label\">Language</span><div class=\"switch-row\">${languageTabs}</div></div></aside></div></section>`;\n"
+        "  document.title = `${selection.model} / ${selection.family} / ${selection.lang.toUpperCase()} Review Preview`;\n"
         "  bindEvents(workspace, selection);\n"
         "}\n"
         "async function boot() {\n"
