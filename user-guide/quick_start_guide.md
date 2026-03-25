@@ -393,6 +393,9 @@ That summary page is the stable entry point for design and should stay minimal:
 
 If there is no open pull request yet, or if you need to rebuild the preview manually, run `Review Preview Package` from the `Actions` tab after pushing the branch.
 
+If the commented preview URL still redirects to a Vercel login page, check the Vercel project protection settings first.
+`auto-manual-preview` must not stay on `Standard Protection` if you expect the plain preview URL to be accessible without login.
+
 ---
 
 ## 11. Stage G: When Parameters Change During Review
