@@ -209,6 +209,9 @@ Vercel note:
 - GitHub Actions installs `pandoc`, builds the review preview package, uploads it as an artifact, then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
 - Vercel should host the prebuilt package only; do not rely on Git-triggered Vercel Python builds for this flow
 - configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
+- if you want a stable workspace entry in addition to the one-off deployment URL, configure repository variables `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` and / or `VERCEL_PREVIEW_FIXED_ALIAS`
+- `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` must include `{branch}` and resolves the current PR branch into a host such as `review-preview-{branch}.example.com`
+- `VERCEL_PREVIEW_FIXED_ALIAS` points to one shared host such as `review-preview-auto-manual.example.com`
 - in normal use, open a pull request first; then each push to that PR branch will refresh the review preview automatically when the change hits the configured workflow paths
 - if you are still iterating before opening a PR, use `Actions -> Review Preview Package -> Run workflow`
 

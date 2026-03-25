@@ -104,6 +104,7 @@ Rules:
 - families without `_review` content are hidden, so the preview only shows available families
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
+- the PR comment now keeps the one-off deployment snapshot URL and can also surface stable alias links when repository variables `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` or `VERCEL_PREVIEW_FIXED_ALIAS` are configured
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
 
 ---
