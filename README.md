@@ -31,6 +31,7 @@ CI note:
 - feature-branch pushes do not need a second duplicate `push` validation run
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
 - the published review preview summary page is optimized for design review: open the rendered manual first, then open the change report or download the review handoff files for this round
+- the summary page also surfaces document identity and build metadata such as product name, manual title, branch, commit, and tracked review root
 
 ## 2. Primary Entrypoint
 

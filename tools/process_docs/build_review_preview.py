@@ -466,6 +466,57 @@ def write_json(path: Path, payload: dict[str, object]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
 
 
+def read_json_if_exists(path: Path) -> dict[str, object]:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def display_text(value: object, fallback: str = "Not available") -> str:
+    text = str(value or "").strip()
+    return text or fallback
+
+
+def format_generated_at(value: str) -> str:
+    text = value.strip()
+    if not text:
+        return "Not available"
+    try:
+        parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return text
+    return parsed.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+
+def preview_language_label(code: str) -> str:
+    labels = {
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French",
+        "ja": "Japanese",
+    }
+    token = code.strip().lower()
+    if not token:
+        return "Not available"
+    return labels.get(token, token.upper())
+
+
+def derive_product_name(manual_title: str, fallback: str) -> str:
+    text = manual_title.strip()
+    if not text:
+        return fallback
+    for suffix in (" User Manual", " 取扱説明書", " Manual", " Benutzerhandbuch"):
+        if text.endswith(suffix):
+            candidate = text[: -len(suffix)].strip()
+            if candidate:
+                return candidate
+    return text
+
+
 def render_list(items: list[str], empty_text: str) -> str:
     if not items:
         return f"<li>{escape(empty_text)}</li>"
@@ -498,7 +549,39 @@ def render_areas(areas: list[dict[str, object]]) -> str:
 
 
 def page_title(model: str, region: str) -> str:
-    return f"{model} / {region} Review Preview"
+    _ = region
+    return f"{model} Review Preview"
+
+
+def render_fact(label: str, value: str, *, code: bool = False, wide: bool = False) -> str:
+    card_class = "fact-card fact-card--wide" if wide else "fact-card"
+    body = f"<code>{escape(value)}</code>" if code else f"<strong>{escape(value)}</strong>"
+    return f'<div class="{card_class}"><span class="label">{escape(label)}</span>{body}</div>'
+
+
+def render_pills(items: list[str]) -> str:
+    return "".join(f'<span class="pill">{escape(item)}</span>' for item in items if item.strip())
+
+
+def package_artifact_labels(downloads: dict[str, object]) -> list[str]:
+    labels = ["Review HTML"]
+    if isinstance(downloads.get("word_docx"), str):
+        labels.append("Word Handoff")
+    if isinstance(downloads.get("change_workbook"), str):
+        labels.append("Change Workbook")
+    csv_reports = downloads.get("csv_reports", {})
+    if isinstance(csv_reports, dict):
+        labels.extend(
+            label
+            for file_name, label in (
+                ("changes-summary.csv", "Summary CSV"),
+                ("changes-pages.csv", "Page CSV"),
+                ("changes-fields.csv", "Field CSV"),
+                ("changes-files.csv", "File CSV"),
+            )
+            if isinstance(csv_reports.get(file_name), str)
+        )
+    return labels
 
 
 def base_css() -> str:
@@ -534,8 +617,31 @@ a:hover { text-decoration: underline; }
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 24px;
-  padding: 28px;
+  padding: 30px;
   box-shadow: 0 16px 40px rgba(31, 41, 51, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -120px -120px auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(31, 94, 255, 0.14), rgba(31, 94, 255, 0));
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+  gap: 22px;
+  align-items: start;
+}
+.hero-copy,
+.hero-side {
+  position: relative;
+  z-index: 1;
 }
 .eyebrow {
   display: inline-block;
@@ -558,6 +664,12 @@ h1 {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.7;
+}
+.hero-product {
+  margin: 0 0 14px;
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 700;
 }
 .banner {
   margin-top: 18px;
@@ -593,6 +705,49 @@ h1 {
   gap: 12px;
   margin-top: 22px;
 }
+.hero-side {
+  display: grid;
+  gap: 14px;
+}
+.hero-side-card {
+  padding: 18px 18px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+.hero-side-card h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+.hero-side-title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+}
+.hero-side-subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f2f6ff;
+  border: 1px solid #dbe5ff;
+  color: #1d3f91;
+  font-size: 12px;
+  font-weight: 700;
+}
 .button {
   display: inline-flex;
   align-items: center;
@@ -615,6 +770,117 @@ h1 {
   background: #12335f;
   border-color: #12335f;
   color: white;
+}
+.section {
+  margin-top: 24px;
+}
+.section-heading {
+  margin-bottom: 16px;
+}
+.section-heading h2 {
+  margin: 10px 0 8px;
+  font-size: 32px;
+}
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
+  gap: 18px;
+}
+.doc-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 22px;
+}
+.doc-panel--wide {
+  grid-column: 1 / -1;
+}
+.doc-panel h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+.doc-copy {
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.fact-card {
+  min-width: 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid var(--line);
+}
+.fact-card--wide {
+  grid-column: 1 / -1;
+}
+.fact-card strong,
+.fact-card code {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.identity-name {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.08;
+}
+.identity-title {
+  margin: 10px 0 16px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.snapshot {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.stat-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: #fbf8f1;
+  border: 1px solid var(--line);
+}
+.stat-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 28px;
+  line-height: 1;
+}
+.detail-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(82, 96, 109, 0.24);
+}
+.detail-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.detail-row span {
+  color: var(--muted);
+}
+.detail-row strong {
+  text-align: right;
 }
 .meta {
   display: grid;
@@ -660,6 +926,49 @@ code {
   font-family: "Cascadia Code", "Consolas", monospace;
   font-size: 0.95em;
 }
+@media (max-width: 900px) {
+  .hero-grid,
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
+  .doc-panel--wide {
+    grid-column: auto;
+  }
+}
+@media (max-width: 720px) {
+  .shell {
+    padding: 24px 16px 40px;
+  }
+  .hero,
+  .doc-panel,
+  .card {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  .section-heading h2,
+  .identity-name {
+    font-size: 28px;
+  }
+  .facts,
+  .snapshot {
+    grid-template-columns: 1fr;
+  }
+  .fact-card--wide {
+    grid-column: auto;
+  }
+  .detail-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .detail-row strong {
+    text-align: left;
+  }
+  .button {
+    width: 100%;
+  }
+}
 """
 
 
@@ -689,9 +998,28 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
     downloads = changes.get("downloads", {})
     if not isinstance(downloads, dict):
         downloads = {}
+    changed_files = changes.get("changed_files", [])
+    if not isinstance(changed_files, list):
+        changed_files = []
+    review_pages = changes.get("review_pages", [])
+    if not isinstance(review_pages, list):
+        review_pages = []
+    areas = changes.get("areas", [])
+    if not isinstance(areas, list):
+        areas = []
     download_links = build_download_links(downloads, prefix="./")
     word_download = next((target for label, target in download_links if label == "Download Word"), None)
     workbook_download = next((target for label, target in download_links if label == "Download Change Workbook"), None)
+    product_name = display_text(meta.get("product_name"), display_text(meta.get("model")))
+    manual_title = display_text(meta.get("manual_title"), display_text(meta.get("title")))
+    language = preview_language_label(str(meta.get("manual_lang", "")))
+    generated_at = format_generated_at(str(meta.get("generated_at", "")))
+    artifact_pills = render_pills(package_artifact_labels(downloads))
+    change_range = f"{display_text(changes.get('from_ref'))} -> {display_text(changes.get('to_ref'))}"
+    pr_id = str(meta.get("pr_id", "")).strip()
+    pr_display = f"PR #{pr_id}" if pr_id else "Not attached"
+    published_url = str(meta.get("vercel_url", "")).strip()
+    published_display = published_url if published_url else "Local / not deployed"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -703,27 +1031,104 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
 <body>
   <main class="shell">
     <section class="hero">
-      <span class="eyebrow">Review Preview</span>
-      <h1>{escape(str(meta['title']))}</h1>
-      <p class="lede">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p>
-      <div class="actions">
-        <a class="button primary" href="./manual/index.html">Open Review HTML</a>
-        {f'<a class="button download" href="{escape(word_download)}">Download Word</a>' if word_download else ''}
-        {f'<a class="button download" href="{escape(workbook_download)}">Download Change Workbook</a>' if workbook_download else ''}
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Review Preview</span>
+          <h1>{escape(str(meta['title']))}</h1>
+          <p class="hero-product">Product Name: {escape(product_name)}</p>
+          <p class="lede">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p>
+          <div class="actions">
+            <a class="button primary" href="./manual/index.html">Open Review HTML</a>
+            {f'<a class="button download" href="{escape(word_download)}">Download Word</a>' if word_download else ''}
+            {f'<a class="button download" href="{escape(workbook_download)}">Download Change Workbook</a>' if workbook_download else ''}
+          </div>
+          <p class="foot">Need the detailed diff? <a href="./changes/index.html">Open Change Report</a>.</p>
+        </div>
+        <aside class="hero-side">
+          <section class="hero-side-card">
+            <span class="label">Document Identity</span>
+            <h2 class="hero-side-title">{escape(product_name)}</h2>
+            <p class="hero-side-subtitle">{escape(manual_title)}</p>
+            <div class="pill-row">
+              <span class="pill">Model {escape(display_text(meta.get("model")))}</span>
+              <span class="pill">Region {escape(display_text(meta.get("region")))}</span>
+              <span class="pill">Language {escape(language)}</span>
+            </div>
+          </section>
+          <section class="hero-side-card">
+            <span class="label">Package Includes</span>
+            <div class="pill-row">{artifact_pills}</div>
+          </section>
+        </aside>
       </div>
-      <p class="foot">Need the detailed diff? <a href="./changes/index.html">Open Change Report</a>.</p>
     </section>
 
-    <section class="grid">
-      <article class="card">
-        <h2>Doc Information</h2>
-        <ul>
-          <li><strong>Model:</strong> {escape(str(meta['model']))} / {escape(str(meta['region']))}</li>
-          <li><strong>Region:</strong> {escape(str(meta['region']))}</li>
-          <li><strong>Format:</strong> HTML / Word / Change Workbook</li>
-        </ul>
-        <p class="foot">Use the Excel workbook for an offline handoff, or open the change report for the full page and field diff.</p>
-      </article>
+    <section class="section">
+      <header class="section-heading">
+        <span class="eyebrow">Doc Information</span>
+        <h2>Metadata Snapshot</h2>
+        <p>Use this section to confirm document identity, build context, and the exact handoff package attached to this review round.</p>
+      </header>
+      <div class="doc-grid">
+        <article class="doc-panel">
+          <span class="label">Document Identity</span>
+          <h3 class="identity-name">{escape(product_name)}</h3>
+          <p class="identity-title">{escape(manual_title)}</p>
+          <div class="facts">
+            {render_fact("Product Name", product_name)}
+            {render_fact("Model", display_text(meta.get("model")))}
+            {render_fact("Region", display_text(meta.get("region")))}
+            {render_fact("Language", language)}
+            {render_fact("Preview Title", display_text(meta.get("title")), wide=True)}
+            {render_fact("Manual Title", manual_title, wide=True)}
+          </div>
+        </article>
+
+        <article class="doc-panel">
+          <span class="label">Package Snapshot</span>
+          <h3>Review Round At A Glance</h3>
+          <p class="doc-copy">The preview package is meant to help design validate both the rendered manual and the exact diff bundle for this round.</p>
+          <div class="snapshot">
+            <div class="stat-card">
+              <span class="label">Changed Files</span>
+              <strong>{len(changed_files)}</strong>
+            </div>
+            <div class="stat-card">
+              <span class="label">Review Pages</span>
+              <strong>{len(review_pages)}</strong>
+            </div>
+            <div class="stat-card">
+              <span class="label">Change Groups</span>
+              <strong>{len([item for item in areas if isinstance(item, dict)])}</strong>
+            </div>
+          </div>
+          <div class="detail-list">
+            <div class="detail-row"><span>Formats</span><strong>HTML / Word / Change Workbook</strong></div>
+            <div class="detail-row"><span>Change Range</span><strong><code>{escape(change_range)}</code></strong></div>
+            <div class="detail-row"><span>Published URL</span><strong><code>{escape(published_display)}</code></strong></div>
+          </div>
+          <div class="pill-row">{artifact_pills}</div>
+        </article>
+
+        <article class="doc-panel doc-panel--wide">
+          <span class="label">Build Context</span>
+          <h3>Traceability And Build Metadata</h3>
+          <p class="doc-copy">These fields make it easier to confirm which branch, commit, config, and review subtree produced the current preview package.</p>
+          <div class="facts">
+            {render_fact("Source", display_text(meta.get("source")))}
+            {render_fact("Config", display_text(meta.get("config")), code=True)}
+            {render_fact("Tracked Root", display_text(meta.get("tracked_root")), code=True, wide=True)}
+            {render_fact("Branch", display_text(meta.get("branch")), code=True)}
+            {render_fact("Commit", display_text(meta.get("commit_sha_short")), code=True)}
+            {render_fact("Author", display_text(meta.get("author")))}
+            {render_fact("Pull Request", pr_display)}
+            {render_fact("Generated At", generated_at)}
+            {render_fact("Vercel Environment", display_text(meta.get("vercel_env"), "Local / not deployed"))}
+            {render_fact("Commit Message", display_text(meta.get("commit_message")), wide=True)}
+          </div>
+        </article>
+      </div>
+      <p class="foot">Use the Excel workbook for an offline handoff, or open the change report for the full page and field diff.</p>
     </section>
   </main>
 </body>
@@ -888,6 +1293,7 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     copy_tree(html_root, manual_dir)
+    manual_meta = read_json_if_exists(html_root / "manual_meta.json")
     report_files = copy_report_set(report_root, prefix, changes_dir)
     csv_files = copy_report_csvs(report_root, prefix, downloads_dir)
     workbook_path = build_change_workbook(downloads_dir, csv_files)
@@ -908,13 +1314,19 @@ def main() -> int:
         workbook_path=workbook_path,
         csv_files=csv_files,
     )
+    manual_title = display_text(manual_meta.get("title"), f"{args.model} User Manual")
+    manual_lang = str(manual_meta.get("lang", "")).strip().lower()
+    product_name = derive_product_name(manual_title, args.model)
     meta = {
         "title": page_title(args.model, args.region),
         "model": args.model,
+        "product_name": product_name,
         "region": args.region,
+        "manual_title": manual_title,
+        "manual_lang": manual_lang,
         "source": args.source,
-        "config": str(config_path.relative_to(ROOT)),
-        "tracked_root": str(tracked_root.relative_to(ROOT)),
+        "config": config_path.relative_to(ROOT).as_posix(),
+        "tracked_root": tracked_root.relative_to(ROOT).as_posix(),
         "branch": branch,
         "commit_sha": commit_sha,
         "commit_sha_short": commit_sha[:7],
