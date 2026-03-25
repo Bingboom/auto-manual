@@ -42,8 +42,6 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_PREVIEW_FIXED_ALIAS: ${{ vars.VERCEL_PREVIEW_FIXED_ALIAS }}
-      VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE: ${{ vars.VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -91,135 +89,35 @@ jobs:
         run: |
           preview_url="$(vercel deploy --prebuilt --token="${{ secrets.VERCEL_TOKEN }}")"
           echo "preview_url=${preview_url}" >> "$GITHUB_OUTPUT"
-      - name: Assign stable Vercel aliases
-        id: alias
-        if: ${{ steps.deploy.outputs.preview_url != '' }}
-        env:
-          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
-          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
-        run: |
-          set -euo pipefail
-
-          normalize_host() {
-            local value="$1"
-            value="${value#https://}"
-            value="${value#http://}"
-            value="${value%%/}"
-            printf '%s' "$value"
-          }
-
-          slugify_branch() {
-            local value="$1"
-            value="$(printf '%s' "$value" | tr '[:upper:]' '[:lower:]')"
-            value="$(printf '%s' "$value" | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//; s/-+/-/g')"
-            value="${value:0:48}"
-            value="${value%-}"
-            printf '%s' "$value"
-          }
-
-          validate_labels() {
-            local host="$1"
-            IFS='.' read -r -a labels <<< "$host"
-            for label in "${labels[@]}"; do
-              if [[ -z "$label" ]]; then
-                echo "::error::Alias host contains an empty label: $host"
-                exit 1
-              fi
-              if (( ${#label} > 63 )); then
-                echo "::error::Alias label is longer than 63 characters: $label"
-                exit 1
-              fi
-            done
-          }
-
-          preview_host="$(normalize_host "$PREVIEW_URL")"
-          branch_slug="$(slugify_branch "$BRANCH_NAME")"
-          if [[ -z "$branch_slug" ]]; then
-            echo "::error::Branch alias slug resolved to an empty value for branch '$BRANCH_NAME'."
-            exit 1
-          fi
-
-          branch_alias=""
-          fixed_alias=""
-
-          if [[ -n "${VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE:-}" ]]; then
-            if [[ "${VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE}" != *"{branch}"* ]]; then
-              echo "::error::VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE must include the {branch} placeholder."
-              exit 1
-            fi
-            branch_alias="${VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE//\{branch\}/${branch_slug}}"
-            branch_alias="$(normalize_host "$branch_alias")"
-            validate_labels "$branch_alias"
-            vercel alias set "$preview_host" "$branch_alias" --token="${{ secrets.VERCEL_TOKEN }}"
-            echo "branch_alias=${branch_alias}" >> "$GITHUB_OUTPUT"
-            echo "branch_alias_url=https://${branch_alias}" >> "$GITHUB_OUTPUT"
-          fi
-
-          if [[ -n "${VERCEL_PREVIEW_FIXED_ALIAS:-}" ]]; then
-            fixed_alias="$(normalize_host "$VERCEL_PREVIEW_FIXED_ALIAS")"
-            validate_labels "$fixed_alias"
-            if [[ "$fixed_alias" != "$branch_alias" ]]; then
-              vercel alias set "$preview_host" "$fixed_alias" --token="${{ secrets.VERCEL_TOKEN }}"
-            fi
-            echo "fixed_alias=${fixed_alias}" >> "$GITHUB_OUTPUT"
-            echo "fixed_alias_url=https://${fixed_alias}" >> "$GITHUB_OUTPUT"
-          fi
       - name: Publish Vercel workspace summary
         if: ${{ steps.deploy.outputs.preview_url != '' }}
-        env:
-          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
-          BRANCH_ALIAS_URL: ${{ steps.alias.outputs.branch_alias_url }}
-          FIXED_ALIAS_URL: ${{ steps.alias.outputs.fixed_alias_url }}
         run: |
-          echo "Vercel deployment snapshot: ${PREVIEW_URL}" >> "$GITHUB_STEP_SUMMARY"
-          if [[ -n "${BRANCH_ALIAS_URL}" ]]; then
-            echo "Stable branch alias: ${BRANCH_ALIAS_URL}" >> "$GITHUB_STEP_SUMMARY"
-          fi
-          if [[ -n "${FIXED_ALIAS_URL}" ]]; then
-            echo "Stable shared alias: ${FIXED_ALIAS_URL}" >> "$GITHUB_STEP_SUMMARY"
-          fi
+          echo "Vercel workspace: ${{ steps.deploy.outputs.preview_url }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Comment workspace URL on PR
         if: ${{ github.event_name == 'pull_request' && steps.deploy.outputs.preview_url != '' }}
         continue-on-error: true
         uses: actions/github-script@v7
         env:
           PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
-          BRANCH_ALIAS_URL: ${{ steps.alias.outputs.branch_alias_url }}
-          FIXED_ALIAS_URL: ${{ steps.alias.outputs.fixed_alias_url }}
         with:
           script: |
             const fs = require('fs');
             const path = require('path');
             const marker = '<!-- review-preview-comment -->';
             const previewUrl = process.env.PREVIEW_URL;
-            const branchAliasUrl = process.env.BRANCH_ALIAS_URL || '';
-            const fixedAliasUrl = process.env.FIXED_ALIAS_URL || '';
-            const stableWorkspaceUrl = branchAliasUrl || fixedAliasUrl || previewUrl;
             const workspacePath = path.join(process.env.GITHUB_WORKSPACE, 'site', 'review-preview', 'dist', 'generated', 'workspace.json');
             const workspace = JSON.parse(fs.readFileSync(workspacePath, 'utf8'));
             const defaultManualUrl = workspace?.defaults?.manual_url || 'manual/index.html';
             const defaultChangeUrl = workspace?.defaults?.change_url || 'changes/index.html';
-            const manualUrl = new URL(defaultManualUrl, `${stableWorkspaceUrl}/`).toString();
-            const changeUrl = new URL(defaultChangeUrl, `${stableWorkspaceUrl}/`).toString();
-            const lines = [
-              marker,
-              'Review workspace is ready for this PR.',
-              '',
-              `- Workspace: ${stableWorkspaceUrl}`,
-              `- Deployment Snapshot: ${previewUrl}`,
-            ];
+            const manualUrl = new URL(defaultManualUrl, `${previewUrl}/`).toString();
+            const changeUrl = new URL(defaultChangeUrl, `${previewUrl}/`).toString();
+            const body = `${marker}
+            Review workspace is ready for this PR.
 
-            if (branchAliasUrl) {
-              lines.push(`- Stable Branch Alias: ${branchAliasUrl}`);
-            }
-            if (fixedAliasUrl) {
-              lines.push(`- Stable Shared Alias: ${fixedAliasUrl}`);
-            }
-
-            lines.push(`- Default Review HTML: ${manualUrl}`);
-            lines.push(`- Default Change Report: ${changeUrl}`);
-
-            const body = lines.join('\n');
+            - Workspace: ${previewUrl}
+            - Default Review HTML: ${manualUrl}
+            - Default Change Report: ${changeUrl}
+            `;
 
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,

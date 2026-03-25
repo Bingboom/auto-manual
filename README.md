@@ -70,10 +70,6 @@ Vercel note:
 - the review-preview project should use the repo-level [`vercel.json`](vercel.json)
 - GitHub Actions is the supported build-and-deploy path for review preview publishing
 - the workflow installs `pandoc`, builds [`site/review-preview/dist/`](site/review-preview/dist), runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
-- the workflow keeps the one-off deployment snapshot URL and can also assign stable aliases after deploy
-- configure repository variables `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` and / or `VERCEL_PREVIEW_FIXED_ALIAS` when you want stable entry links
-- `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` must include `{branch}` and can be set to patterns such as `review-preview-{branch}.example.com`
-- `VERCEL_PREVIEW_FIXED_ALIAS` can point to one shared host such as `review-preview-auto-manual.example.com`
 - the Vercel bridge entrypoint is [`tools/process_docs/vercel_build_review_preview.py`](tools/process_docs/vercel_build_review_preview.py), which reuses the packaged preview when Actions already built it
 
 Windows note:

@@ -116,10 +116,6 @@ Practical maintainer rule:
 - once the workflow succeeds, the Vercel preview reflects the latest review round automatically
 - if there is no PR yet, use `workflow_dispatch` to run it manually
 - make sure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` are configured in repository secrets before expecting the deploy step to run
-- if you want stable preview entry links, configure repository variables `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` and / or `VERCEL_PREVIEW_FIXED_ALIAS`
-- `VERCEL_PREVIEW_BRANCH_ALIAS_TEMPLATE` must include `{branch}` and resolves the current branch slug into a host such as `review-preview-{branch}.example.com`
-- `VERCEL_PREVIEW_FIXED_ALIAS` points to one shared host such as `review-preview-auto-manual.example.com`
-- the PR comment and Actions summary keep the one-off deployment snapshot URL and also surface any configured stable aliases
 
 ## 6. Vercel Role
 
@@ -145,7 +141,6 @@ Vercel build note:
 - GitHub Actions builds the review preview package first and treats the package contract as required
 - `review-manual.docx` and `change-report.xlsx` are required artifacts in CI; a missing download blocks preview deployment
 - GitHub Actions then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
-- after deploy, GitHub Actions can run `vercel alias set` to bind stable branch and shared entry hosts
 - Vercel should not be the source of truth for packaging; disable or stop relying on Git-triggered Vercel builds for this flow
 
 Do not ask Vercel to render raw `.rst`.
