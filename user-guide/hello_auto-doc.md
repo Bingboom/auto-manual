@@ -383,6 +383,7 @@ Source mode meaning:
   - all materialized `spec_*` / `safety_*` pages
   - all template pages whose source contains placeholders such as `|PRODUCT_NAME|` or `|MAIN_POWER_BUTTON_LABEL|`
   - cover pages generated from title/product identity
+- generated cover pages still feed PDF/LaTeX output, but HTML now opens directly on the first manual content section instead of a blank cover-style landing screen
 
 Equivalent lower-level examples:
 

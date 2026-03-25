@@ -53,6 +53,10 @@ Batch export example:
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 ```
 
+HTML output note:
+
+- generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
+
 Review-sharing example:
 
 ```powershell

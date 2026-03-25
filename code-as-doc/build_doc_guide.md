@@ -233,6 +233,8 @@ Runtime outputs:
 - [`docs/_build/<model>/<region>/word/`](../docs/_build)
 - [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
 
+HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
+
 Review working bundle:
 
 - [`docs/_review/<model>/<region>/`](../docs/_review)
