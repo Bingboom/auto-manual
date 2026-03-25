@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.process_docs.build_review_preview import assert_preview_output_contract, build_downloads_metadata
+from tools.process_docs.build_review_preview import assert_preview_output_contract, read_json_if_exists
 
 
 VENV_DIR = ROOT / ".vercel-python"
@@ -32,18 +32,9 @@ def venv_python() -> Path:
 
 
 def existing_preview_is_ready() -> bool:
-    downloads = build_downloads_metadata(
-        word_path="downloads/review-manual.docx",
-        workbook_path="downloads/change-report.xlsx",
-        csv_files={
-            "changes-summary.csv": "downloads/changes-summary.csv",
-            "changes-pages.csv": "downloads/changes-pages.csv",
-            "changes-fields.csv": "downloads/changes-fields.csv",
-            "changes-files.csv": "downloads/changes-files.csv",
-        },
-    )
+    workspace = read_json_if_exists(DIST_DIR / "generated" / "workspace.json")
     try:
-        assert_preview_output_contract(DIST_DIR, downloads, require_word=True)
+        assert_preview_output_contract(DIST_DIR, workspace, require_word=True)
     except RuntimeError:
         return False
     return True

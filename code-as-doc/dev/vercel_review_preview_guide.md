@@ -18,7 +18,7 @@ The preview package combines:
 - review-based HTML from [`docs/_build/<model>/<region>/html/`](../../docs/_build)
 - review-based Word from [`docs/_build/<model>/<region>/word/`](../../docs/_build)
 - diff-report HTML / CSV from [`reports/version_tracking/<model>/<region>/`](../../reports/version_tracking)
-- a small summary page that links both surfaces together
+- a workspace root that links families, models, and languages together
 
 ## 2. Current Entry Point
 
@@ -34,19 +34,22 @@ Default output:
 
 Generated structure:
 
-- `index.html`: summary page for design
-- `manual/`: rendered review HTML
-- `changes/`: diff-report HTML plus a simple landing page
-- `downloads/`: `review-manual.docx`, `change-report.xlsx`, `changes-summary.csv`, `changes-pages.csv`, `changes-fields.csv`, `changes-files.csv`
+- `index.html`: workspace root for design
+- `manual/`: rendered review HTML, grouped by family and model
+- `changes/`: family-level diff pages plus a compatibility redirect at `changes/index.html`
+- `manual/index.html` and `changes/index.html`: compatibility redirects to the default workspace entries
+- `downloads/`: family-scoped `review-manual.docx`, `change-report.xlsx`, `changes-summary.csv`, `changes-pages.csv`, `changes-fields.csv`, `changes-files.csv`
 - `generated/meta.json`: branch / commit / author metadata plus download metadata
 - `generated/changes.json`: changed files, review pages, grouped change areas, and download metadata
+- `generated/workspace.json`: workspace data for family tabs, model groups, and language switching
 
-The current summary page is intentionally designer-facing:
+The workspace is intentionally designer-facing:
 
 - it tells design what to open first
-- it separates rendered manual review from change tracing
+- it separates rendered manual review from family-level change tracing
 - it offers direct Word / Excel handoff downloads for offline review meetings
 - it explains whether the current round contains page-level review edits or mostly workflow / docs changes
+- it hides families that do not have `_review` content for the current round
 
 ## 3. Why This Uses Review Content
 
@@ -73,14 +76,14 @@ For review collaboration, the most useful outputs are:
 - `*_pages.html`
 - `*_files.html`
 
-The preview package copies the latest report set into stable paths under `changes/` so design can open:
+The preview package copies the latest report set into stable paths under `changes/<family>/` so design can open:
 
-- `changes/index.html`
-- `changes/fields.html`
-- `changes/pages.html`
-- `changes/files.html`
+- `changes/<family>/index.html`
+- `changes/<family>/report-fields.html`
+- `changes/<family>/report-pages.html`
+- `changes/<family>/report-files.html`
 
-It also copies the diff CSV set under `downloads/` and builds one Excel workbook from the same inputs:
+It also copies the diff CSV set under `downloads/<family>/` and builds one Excel workbook from the same inputs:
 
 - `downloads/changes-summary.csv`
 - `downloads/changes-pages.csv`
@@ -90,6 +93,7 @@ It also copies the diff CSV set under `downloads/` and builds one Excel workbook
 
 The Excel workbook is only a packaging layer over the existing diff CSV outputs.
 It does not introduce a second change model.
+These diff, workbook, and CSV files stay family-level shared assets across the languages in that family.
 
 ## 5. GitHub Actions Role
 
@@ -146,7 +150,7 @@ Vercel should be used for:
 
 - preview URL distribution
 - lightweight design review sharing
-- showing branch / commit / author metadata on the summary page
+- showing branch / commit / author metadata on the workspace root
 
 Vercel should not be used as a required merge-gating check for this repo.
 
@@ -154,12 +158,11 @@ Vercel should not be used as a required merge-gating check for this repo.
 
 Current first-phase target:
 
-- `JE-1000F / US`
+- `JE-1000F` workspace with `US`, `JP`, and `EU` families when those `_review` roots exist
 
 Later expansion can add:
 
-- `JE-1000F / JP`
-- `JE-1000F / EU`
-- a target selector on the summary page
+- more models inside each family
+- richer workspace filters and deep links
 
-Do not expand the scope until the first single-target flow is stable.
+Do not expand the scope until the workspace flow is stable.

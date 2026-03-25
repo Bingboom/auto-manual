@@ -30,7 +30,9 @@ CI note:
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
-- the published review preview summary page is optimized for design review: open the rendered manual first, then open the change report or download the review handoff files for this round
+- the published review preview root is now a region-family managed review handoff workspace: families are hidden when `_review` content is missing, models are grouped, and language switching happens inside each model group
+- family-level diff assets stay shared across the languages in that family, while the workspace keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
+- `manual/index.html` and `changes/index.html` remain compatibility entries that redirect to the workspace default manual and family diff pages
 
 ## 2. Primary Entrypoint
 
@@ -52,6 +54,10 @@ Batch export example:
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 ```
+
+HTML output note:
+
+- generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
 
 Review-sharing example:
 

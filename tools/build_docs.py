@@ -66,6 +66,10 @@ _SWITCHER_BLOCK_RE = re.compile(
     re.DOTALL,
 )
 _BODY_TAG_RE = re.compile(r"<body\b([^>]*)>", re.IGNORECASE)
+_MANUAL_COVER_SECTION_RE = re.compile(
+    r"<section class=\"manual-cover\">.*?</section>",
+    re.IGNORECASE | re.DOTALL,
+)
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Espanol",
@@ -714,6 +718,15 @@ def inject_manual_switcher_into_html(html_path: Path, markup: str | None) -> boo
     return True
 
 
+def strip_html_cover_section(html_path: Path) -> bool:
+    original = html_path.read_text(encoding="utf-8")
+    updated, count = _MANUAL_COVER_SECTION_RE.subn("", original, count=1)
+    if count == 0 or updated == original:
+        return False
+    html_path.write_text(updated, encoding="utf-8")
+    return True
+
+
 def refresh_model_html_switchers(
     *,
     model: str | None,
@@ -1256,6 +1269,7 @@ def build_target(
             open_file(pdf_path)
 
     if html_built and (target_model or "").strip() and (target_region or "").strip():
+        strip_html_cover_section(html_out_dir / "index.html")
         write_html_manual_meta(
             html_out_dir,
             docs_build_dir=paths.docs_build_dir,

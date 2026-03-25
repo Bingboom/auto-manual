@@ -175,7 +175,7 @@ python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 
 ### 3.6 Package a Review Preview for Design
 
-Use this when design needs the rendered review HTML plus the current diff-report set:
+Use this when design needs the rendered review HTML plus the current family-level diff package:
 
 ```powershell
 python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
@@ -187,18 +187,22 @@ Default packaged output:
 
 This package contains:
 
-- `manual/`: review-based HTML
-- `changes/`: latest diff-report HTML set
-- `downloads/`: `review-manual.docx`, `change-report.xlsx`, and the copied diff-report CSV files
+- `index.html`: the workspace root for region-family navigation
+- `manual/`: review-based HTML, grouped by family and model, with language-specific entries inside each model group
+- `changes/`: family-level diff pages plus a compatibility redirect at `changes/index.html`
+- `downloads/`: family-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files, review pages, and download metadata
-- `index.html`: designer-facing entry page with direct links to review HTML, change report, Word, and Excel
+- `generated/workspace.json`: the workspace data contract used by the root page
+- `manual/index.html` and `changes/index.html`: compatibility entries that point to the default manual and default family diff page
 
 Packaging rule:
 
-- the review preview output contract is `manual/`, `changes/`, `downloads/`, and `generated/`
+- the review preview output contract is `index.html`, `manual/`, `changes/`, `downloads/`, and `generated/`
 - CI treats `review-manual.docx` and `change-report.xlsx` as required artifacts
 - `--skip-word` is for local debugging only and is not used by the CI workflow
+- the workspace hides families with no `_review` content, so the packaged site only shows available families
+- diff, workbook, and CSV outputs stay family-level shared assets, not language-specific artifacts
 
 Vercel note:
 
@@ -233,11 +237,13 @@ Runtime outputs:
 - [`docs/_build/<model>/<region>/word/`](../docs/_build)
 - [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
 
+HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
+
 Review working bundle:
 
 - [`docs/_review/<model>/<region>/`](../docs/_review)
 
-Review preview package:
+Review handoff workspace:
 
 - [`../site/review-preview/dist/`](../site/review-preview/dist)
 
