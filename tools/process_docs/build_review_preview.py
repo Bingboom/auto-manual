@@ -4,10 +4,12 @@ import argparse
 import csv
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
 import zipfile
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
@@ -34,26 +36,73 @@ REQUIRED_PREVIEW_FILES = (
     "changes/index.html",
     "generated/meta.json",
     "generated/changes.json",
+    "generated/workspace.json",
 )
+FAMILY_ORDER = ("US", "JP", "EU")
+LANGUAGE_LABELS = {
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "ja": "Japanese",
+}
+_MANUAL_SWITCHER_BLOCK_RE = re.compile(
+    r"<!-- HB_MANUAL_SWITCHER_START -->.*?<!-- HB_MANUAL_SWITCHER_END -->\s*",
+    re.DOTALL,
+)
+_BODY_CLASS_RE = re.compile(r"<body\b([^>]*)class=\"([^\"]*)\"([^>]*)>", re.IGNORECASE)
+_HB_MANUAL_CSS_RE = re.compile(
+    r'\s*<link[^>]+href="_static/hb_manual\.css[^"]*"[^>]*>\s*',
+    re.IGNORECASE,
+)
+_HB_MANUAL_JS_RE = re.compile(
+    r'\s*<script[^>]+src="_static/hb_manual\.js[^"]*"[^>]*></script>\s*',
+    re.IGNORECASE,
+)
+
+
+@dataclass(frozen=True)
+class WorkspaceTarget:
+    family: str
+    language: str
+    config: str
+    include_lang_in_output_path: bool
+
+    @property
+    def label(self) -> str:
+        return f"{self.family}/{self.language}"
+
+
+WORKSPACE_TARGETS: tuple[WorkspaceTarget, ...] = (
+    WorkspaceTarget(family="US", language="en", config="config.us-en.yaml", include_lang_in_output_path=True),
+    WorkspaceTarget(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
+    WorkspaceTarget(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
+    WorkspaceTarget(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
+    WorkspaceTarget(family="EU", language="en", config="config.eu.yaml", include_lang_in_output_path=False),
+)
+FAMILY_DIFF_CONFIGS = {
+    "US": "config.yaml",
+    "JP": "config.ja.yaml",
+    "EU": "config.eu.yaml",
+}
 
 
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
-        description="Build a review-first HTML preview package for Vercel or local sharing."
+        description="Build the review handoff workspace package for Vercel or local sharing."
     )
-    ap.add_argument("--config", default="config.yaml", help="Config YAML path, relative to repo root by default.")
+    ap.add_argument("--config", default="config.yaml", help="Primary family config YAML path.")
     ap.add_argument("--model", required=True, help="Target model, for example JE-1000F.")
-    ap.add_argument("--region", required=True, help="Target region, for example US.")
+    ap.add_argument("--region", required=True, help="Preferred default family, for example US.")
     ap.add_argument(
         "--source",
         default="review",
         choices=("auto", "runtime", "review"),
-        help="Bundle source passed to build.py html. Default keeps the preview tied to review content.",
+        help="Bundle source passed to build.py html/word. Default keeps the workspace tied to review content.",
     )
     ap.add_argument(
         "--tracked-root",
         default=None,
-        help="Tracked subtree for diff-report. Defaults to docs/_review/<model>/<region>.",
+        help="Tracked subtree for diff-report on the preferred family. Defaults to docs/_review/<model>/<region>.",
     )
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report.")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report.")
@@ -65,17 +114,17 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument(
         "--clean-build",
         action="store_true",
-        help="Allow build.py exports to clean the current target output first.",
+        help="Allow the first export per family to clean its target output first.",
     )
     ap.add_argument(
         "--skip-build",
         action="store_true",
-        help="Skip build.py html and reuse an existing HTML bundle.",
+        help="Skip build.py html exports and reuse existing HTML bundles.",
     )
     ap.add_argument(
         "--skip-diff",
         action="store_true",
-        help="Skip diff-report generation and reuse the latest report set.",
+        help="Skip diff-report generation and reuse the latest report set for each family.",
     )
     ap.add_argument(
         "--skip-word",
@@ -141,6 +190,15 @@ def classify_changes(changed_files: list[str], model: str, region: str) -> list[
     return areas
 
 
+def review_pages_for_family(changed_files: list[str], model: str, family: str) -> list[str]:
+    prefix = f"docs/_review/{model}/{family}/"
+    return [
+        path.removeprefix(prefix)
+        for path in changed_files
+        if path.startswith(f"{prefix}page/") or path.startswith(f"{prefix}generated/")
+    ]
+
+
 def latest_report_prefix(report_root: Path) -> str:
     candidates = sorted(report_root.glob("*_index.html"), key=lambda p: p.stat().st_mtime, reverse=True)
     if not candidates:
@@ -154,7 +212,7 @@ def copy_tree(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
-def copy_report_set(report_root: Path, prefix: str, changes_dir: Path) -> dict[str, str]:
+def copy_report_set(report_root: Path, prefix: str, changes_dir: Path, *, relative_dir: str) -> dict[str, str]:
     mapping = {
         f"{prefix}_index.html": "report-index.html",
         f"{prefix}.html": "report-summary.html",
@@ -171,14 +229,14 @@ def copy_report_set(report_root: Path, prefix: str, changes_dir: Path) -> dict[s
             missing_sources.append(src_name)
             continue
         shutil.copy2(src, changes_dir / dst_name)
-        copied[dst_name] = dst_name
+        copied[dst_name] = f"{relative_dir}/{dst_name}"
     if missing_sources:
         joined = ", ".join(sorted(missing_sources))
         raise FileNotFoundError(f"Review preview requires diff-report HTML outputs under {report_root}: {joined}")
     return copied
 
 
-def copy_report_csvs(report_root: Path, prefix: str, downloads_dir: Path) -> dict[str, str]:
+def copy_report_csvs(report_root: Path, prefix: str, downloads_dir: Path, *, relative_dir: str) -> dict[str, str]:
     mapping = {
         f"{prefix}.csv": "changes-summary.csv",
         f"{prefix}_pages.csv": "changes-pages.csv",
@@ -194,7 +252,7 @@ def copy_report_csvs(report_root: Path, prefix: str, downloads_dir: Path) -> dic
             missing_sources.append(src_name)
             continue
         shutil.copy2(src, downloads_dir / dst_name)
-        copied[dst_name] = f"downloads/{dst_name}"
+        copied[dst_name] = f"{relative_dir}/{dst_name}"
     if missing_sources:
         joined = ", ".join(sorted(missing_sources))
         raise FileNotFoundError(f"Review preview requires diff-report CSV outputs under {report_root}: {joined}")
@@ -208,46 +266,6 @@ def locate_latest_docx(word_root: Path) -> Path | None:
     if not docx_files:
         return None
     return max(docx_files, key=lambda path: path.stat().st_mtime)
-
-
-def build_word_download(
-    *,
-    args: argparse.Namespace,
-    config_path: Path,
-    downloads_dir: Path,
-) -> str | None:
-    if args.skip_word:
-        return None
-
-    word_root = ROOT / "docs" / "_build" / args.model / args.region / "word"
-    cmd = [
-        sys.executable,
-        str(ROOT / "build.py"),
-        "word",
-        "--config",
-        str(config_path),
-        "--model",
-        args.model,
-        "--region",
-        args.region,
-        "--source",
-        args.source,
-    ]
-    if not args.clean_build:
-        cmd.append("--no-clean")
-
-    try:
-        run(cmd)
-    except subprocess.CalledProcessError as exc:
-        raise RuntimeError("Review preview failed to build the required Word download.") from exc
-
-    latest_docx = locate_latest_docx(word_root)
-    if latest_docx is None:
-        raise FileNotFoundError(f"Review preview Word export finished but no DOCX was found under {word_root}")
-
-    target = downloads_dir / "review-manual.docx"
-    shutil.copy2(latest_docx, target)
-    return "downloads/review-manual.docx"
 
 
 def read_csv_rows(path: Path) -> list[list[str]]:
@@ -391,7 +409,7 @@ def build_workbook_xlsx(path: Path, sheets: list[tuple[str, list[list[str]]]]) -
             bundle.writestr(f"xl/worksheets/sheet{index}.xml", build_sheet_xml(rows))
 
 
-def build_change_workbook(downloads_dir: Path, csv_files: dict[str, str]) -> str | None:
+def build_change_workbook(downloads_dir: Path, csv_files: dict[str, str], *, relative_path: str) -> str | None:
     sheet_mapping = [
         ("changes-summary.csv", "Summary"),
         ("changes-pages.csv", "Pages"),
@@ -400,12 +418,9 @@ def build_change_workbook(downloads_dir: Path, csv_files: dict[str, str]) -> str
     ]
     sheets: list[tuple[str, list[list[str]]]] = []
     for file_name, sheet_name in sheet_mapping:
-        csv_name = csv_files.get(file_name)
-        if not csv_name:
+        if file_name not in csv_files:
             continue
-        csv_path = ROOT / csv_name if Path(csv_name).is_absolute() else ROOT / csv_name
-        if not csv_path.exists():
-            csv_path = downloads_dir / file_name
+        csv_path = downloads_dir / file_name
         if csv_path.exists():
             sheets.append((sheet_name, read_csv_rows(csv_path)))
     if not sheets:
@@ -413,7 +428,7 @@ def build_change_workbook(downloads_dir: Path, csv_files: dict[str, str]) -> str
 
     workbook_path = downloads_dir / "change-report.xlsx"
     build_workbook_xlsx(workbook_path, sheets)
-    return "downloads/change-report.xlsx"
+    return relative_path
 
 
 def build_downloads_metadata(
@@ -427,38 +442,6 @@ def build_downloads_metadata(
         "change_workbook": workbook_path,
         "csv_reports": dict(csv_files),
     }
-
-
-def assert_preview_output_contract(output_dir: Path, downloads: dict[str, object], *, require_word: bool) -> None:
-    missing: list[str] = []
-
-    for relative_path in REQUIRED_PREVIEW_FILES:
-        if not (output_dir / relative_path).exists():
-            missing.append(relative_path)
-
-    for relative_path in REQUIRED_CHANGE_REPORT_FILES:
-        if not (output_dir / "changes" / relative_path).exists():
-            missing.append(f"changes/{relative_path}")
-
-    csv_reports = downloads.get("csv_reports")
-    if not isinstance(csv_reports, dict):
-        missing.extend(f"downloads/{name}" for name in REQUIRED_DOWNLOAD_CSVS)
-    else:
-        for file_name in REQUIRED_DOWNLOAD_CSVS:
-            target = csv_reports.get(file_name)
-            if not isinstance(target, str) or not (output_dir / target).exists():
-                missing.append(f"downloads/{file_name}")
-
-    workbook_path = downloads.get("change_workbook")
-    if not isinstance(workbook_path, str) or not (output_dir / workbook_path).exists():
-        missing.append("downloads/change-report.xlsx")
-
-    word_path = downloads.get("word_docx")
-    if require_word and (not isinstance(word_path, str) or not (output_dir / word_path).exists()):
-        missing.append("downloads/review-manual.docx")
-
-    if missing:
-        raise RuntimeError("Review preview output contract is incomplete: " + ", ".join(sorted(set(missing))))
 
 
 def write_json(path: Path, payload: dict[str, object]) -> None:
@@ -493,28 +476,45 @@ def format_generated_at(value: str) -> str:
 
 
 def preview_language_label(code: str) -> str:
-    labels = {
-        "en": "English",
-        "es": "Spanish",
-        "fr": "French",
-        "ja": "Japanese",
-    }
     token = code.strip().lower()
     if not token:
         return "Not available"
-    return labels.get(token, token.upper())
+    return LANGUAGE_LABELS.get(token, token.upper())
 
 
 def derive_product_name(manual_title: str, fallback: str) -> str:
     text = manual_title.strip()
     if not text:
         return fallback
-    for suffix in (" User Manual", " 取扱説明書", " Manual", " Benutzerhandbuch"):
+    for suffix in (
+        " User Manual",
+        " Manual de usuario",
+        " Manuel d'utilisation",
+        " Benutzerhandbuch",
+        " 取扱説明書",
+        " Manual",
+    ):
         if text.endswith(suffix):
             candidate = text[: -len(suffix)].strip()
             if candidate:
                 return candidate
     return text
+
+
+def path_for_display(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(ROOT).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
+def workspace_title(model: str) -> str:
+    return f"{model} Review Handoff Workspace"
+
+
+def family_change_title(model: str, family: str) -> str:
+    return f"{model} {family} Family Change Report"
 
 
 def render_list(items: list[str], empty_text: str) -> str:
@@ -531,445 +531,21 @@ def render_link_list(items: list[tuple[str, str]]) -> str:
 
 def render_areas(areas: list[dict[str, object]]) -> str:
     if not areas:
-        return "<p>No grouped changes were detected.</p>"
+        return "<article class=\"card\"><h2>Change Areas</h2><p>No grouped changes were detected.</p></article>"
     blocks: list[str] = []
     for area in areas:
         files = area.get("files", [])
         if not isinstance(files, list):
             continue
         blocks.append(
-            "<section class=\"card\">"
-            f"<h3>{escape(str(area['name']))}</h3>"
+            "<article class=\"card\">"
+            f"<h2>{escape(str(area['name']))}</h2>"
             "<ul>"
             + "".join(f"<li><code>{escape(str(item))}</code></li>" for item in files)
             + "</ul>"
-            "</section>"
+            "</article>"
         )
     return "".join(blocks)
-
-
-def page_title(model: str, region: str) -> str:
-    _ = region
-    return f"{model} Review Preview"
-
-
-def render_fact(label: str, value: str, *, code: bool = False, wide: bool = False) -> str:
-    card_class = "fact-card fact-card--wide" if wide else "fact-card"
-    body = f"<code>{escape(value)}</code>" if code else f"<strong>{escape(value)}</strong>"
-    return f'<div class="{card_class}"><span class="label">{escape(label)}</span>{body}</div>'
-
-
-def render_pills(items: list[str]) -> str:
-    return "".join(f'<span class="pill">{escape(item)}</span>' for item in items if item.strip())
-
-
-def package_artifact_labels(downloads: dict[str, object]) -> list[str]:
-    labels = ["Review HTML"]
-    if isinstance(downloads.get("word_docx"), str):
-        labels.append("Word Handoff")
-    if isinstance(downloads.get("change_workbook"), str):
-        labels.append("Change Workbook")
-    csv_reports = downloads.get("csv_reports", {})
-    if isinstance(csv_reports, dict):
-        labels.extend(
-            label
-            for file_name, label in (
-                ("changes-summary.csv", "Summary CSV"),
-                ("changes-pages.csv", "Page CSV"),
-                ("changes-fields.csv", "Field CSV"),
-                ("changes-files.csv", "File CSV"),
-            )
-            if isinstance(csv_reports.get(file_name), str)
-        )
-    return labels
-
-
-def base_css() -> str:
-    return """
-:root {
-  --bg: #f5f1e8;
-  --panel: #fffdf8;
-  --ink: #1f2933;
-  --muted: #52606d;
-  --line: #d9d1c3;
-  --accent: #1f5eff;
-  --accent-soft: #e8efff;
-  --success: #1f845a;
-  --warning: #b54708;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: "Segoe UI", "Noto Sans", sans-serif;
-  background:
-    radial-gradient(circle at top right, rgba(31,94,255,0.08), transparent 28%),
-    linear-gradient(180deg, #f7f3ea 0%, #efe8db 100%);
-  color: var(--ink);
-}
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.shell {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 40px 24px 56px;
-}
-.hero {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 30px;
-  box-shadow: 0 16px 40px rgba(31, 41, 51, 0.08);
-  position: relative;
-  overflow: hidden;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto -120px -120px auto;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(31, 94, 255, 0.14), rgba(31, 94, 255, 0));
-  pointer-events: none;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
-  gap: 22px;
-  align-items: start;
-}
-.hero-copy,
-.hero-side {
-  position: relative;
-  z-index: 1;
-}
-.eyebrow {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-h1 {
-  margin: 14px 0 10px;
-  font-size: 40px;
-  line-height: 1.1;
-}
-.lede {
-  margin: 0;
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.7;
-}
-.hero-product {
-  margin: 0 0 14px;
-  color: var(--accent);
-  font-size: 18px;
-  font-weight: 700;
-}
-.banner {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: #fff8ec;
-  border: 1px solid #f3d4a5;
-  color: #7a4f04;
-  font-size: 14px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 22px;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 18px 20px;
-}
-.card h2, .card h3 {
-  margin: 0 0 12px;
-}
-.card ul {
-  margin: 0;
-  padding-left: 20px;
-}
-.actions, .downloads {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
-}
-.hero-side {
-  display: grid;
-  gap: 14px;
-}
-.hero-side-card {
-  padding: 18px 18px 16px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid var(--line);
-  backdrop-filter: blur(6px);
-}
-.hero-side-card h2 {
-  margin: 0 0 12px;
-  font-size: 18px;
-}
-.hero-side-title {
-  margin: 0;
-  font-size: 28px;
-  line-height: 1.1;
-}
-.hero-side-subtitle {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-}
-.pill-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-.pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 10px;
-  border-radius: 999px;
-  background: #f2f6ff;
-  border: 1px solid #dbe5ff;
-  color: #1d3f91;
-  font-size: 12px;
-  font-weight: 700;
-}
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 180px;
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-weight: 700;
-  border: 1px solid var(--accent);
-}
-.button.primary {
-  background: var(--accent);
-  color: white;
-}
-.button.secondary {
-  background: white;
-  color: var(--accent);
-}
-.button.download {
-  background: #12335f;
-  border-color: #12335f;
-  color: white;
-}
-.section {
-  margin-top: 24px;
-}
-.section-heading {
-  margin-bottom: 16px;
-}
-.section-heading h2 {
-  margin: 10px 0 8px;
-  font-size: 32px;
-}
-.section-heading p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.7;
-}
-.doc-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
-  gap: 18px;
-}
-.doc-panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 22px;
-}
-.doc-panel--wide {
-  grid-column: 1 / -1;
-}
-.doc-panel h3 {
-  margin: 0 0 12px;
-  font-size: 22px;
-}
-.doc-copy {
-  margin: 0 0 18px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.fact-card {
-  min-width: 0;
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.72);
-  border: 1px solid var(--line);
-}
-.fact-card--wide {
-  grid-column: 1 / -1;
-}
-.fact-card strong,
-.fact-card code {
-  display: block;
-  font-size: 16px;
-  line-height: 1.5;
-}
-.identity-name {
-  margin: 0;
-  font-size: 34px;
-  line-height: 1.08;
-}
-.identity-title {
-  margin: 10px 0 16px;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.7;
-}
-.snapshot {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 16px;
-}
-.stat-card {
-  padding: 16px;
-  border-radius: 18px;
-  background: #fbf8f1;
-  border: 1px solid var(--line);
-}
-.stat-card strong {
-  display: block;
-  margin-top: 6px;
-  font-size: 28px;
-  line-height: 1;
-}
-.detail-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 16px;
-}
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed rgba(82, 96, 109, 0.24);
-}
-.detail-row:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-.detail-row span {
-  color: var(--muted);
-}
-.detail-row strong {
-  text-align: right;
-}
-.meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-  margin-top: 24px;
-}
-.meta-item {
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.72);
-  border: 1px solid var(--line);
-}
-.label {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
-}
-.foot {
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 14px;
-}
-.state {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 18px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: #effaf4;
-  color: var(--success);
-  font-weight: 700;
-}
-.state.warning {
-  background: #fff4e5;
-  color: var(--warning);
-}
-code {
-  font-family: "Cascadia Code", "Consolas", monospace;
-  font-size: 0.95em;
-}
-@media (max-width: 900px) {
-  .hero-grid,
-  .doc-grid {
-    grid-template-columns: 1fr;
-  }
-  .doc-panel--wide {
-    grid-column: auto;
-  }
-}
-@media (max-width: 720px) {
-  .shell {
-    padding: 24px 16px 40px;
-  }
-  .hero,
-  .doc-panel,
-  .card {
-    padding: 20px;
-  }
-  h1 {
-    font-size: 32px;
-  }
-  .section-heading h2,
-  .identity-name {
-    font-size: 28px;
-  }
-  .facts,
-  .snapshot {
-    grid-template-columns: 1fr;
-  }
-  .fact-card--wide {
-    grid-column: auto;
-  }
-  .detail-row {
-    flex-direction: column;
-    gap: 6px;
-  }
-  .detail-row strong {
-    text-align: left;
-  }
-  .button {
-    width: 100%;
-  }
-}
-"""
 
 
 def build_download_links(downloads: dict[str, object], *, prefix: str) -> list[tuple[str, str]]:
@@ -994,52 +570,748 @@ def build_download_links(downloads: dict[str, object], *, prefix: str) -> list[t
     return links
 
 
-def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> str:
-    downloads = changes.get("downloads", {})
-    if not isinstance(downloads, dict):
-        downloads = {}
-    download_links = build_download_links(downloads, prefix="./")
-    word_download = next((target for label, target in download_links if label == "Download Word"), None)
-    workbook_download = next((target for label, target in download_links if label == "Download Change Workbook"), None)
-    product_name = display_text(meta.get("product_name"), display_text(meta.get("model")))
-    manual_title = display_text(meta.get("manual_title"), display_text(meta.get("title")))
-    language = preview_language_label(str(meta.get("manual_lang", "")))
+def workspace_css() -> str:
+    return """
+:root {
+  --bg: #f4efe4;
+  --panel: rgba(255, 252, 246, 0.96);
+  --panel-soft: rgba(255, 255, 255, 0.78);
+  --ink: #172b4d;
+  --muted: #5b6777;
+  --line: #d9cfbf;
+  --accent: #1f5eff;
+  --accent-dark: #12335f;
+  --accent-soft: #eaf0ff;
+  --chip: #f4f7ff;
+  --chip-line: #d7e2ff;
+  --callout-bg: #fff6e8;
+  --callout-line: #efd19d;
+  --callout-ink: #7a4b04;
+  --shadow: 0 22px 48px rgba(23, 43, 77, 0.10);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Aptos", "Segoe UI", "Noto Sans", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(31, 94, 255, 0.10), transparent 30%),
+    radial-gradient(circle at top right, rgba(18, 51, 95, 0.08), transparent 26%),
+    linear-gradient(180deg, #f8f4ea 0%, #eee7db 100%);
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.workspace-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+}
+.workspace-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+.workspace-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.eyebrow-muted {
+  background: #eef2f7;
+  color: var(--accent-dark);
+}
+.family-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.family-tab {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.family-tab.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.92fr);
+  gap: 22px;
+  margin-top: 24px;
+  align-items: start;
+}
+h1 {
+  margin: 0 0 10px;
+  font-size: 44px;
+  line-height: 1.06;
+}
+.product-line {
+  margin: 0;
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 800;
+}
+.manual-line {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+.lede {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+  max-width: 760px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 188px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  border: 1px solid var(--accent);
+}
+.button.primary {
+  background: var(--accent);
+  color: white;
+}
+.button.secondary {
+  background: white;
+  color: var(--accent);
+}
+.button.download {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: white;
+}
+.family-note {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-line);
+  color: var(--callout-ink);
+  line-height: 1.65;
+}
+.resource-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.resource-link,
+.resource-empty {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: #f7f9fc;
+  border: 1px solid #dde5f0;
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+}
+.identity-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(248,243,234,0.98));
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px;
+}
+.label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.identity-card h2 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.08;
+}
+.identity-title {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.pill-row,
+.lang-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.pill,
+.lang-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid var(--chip-line);
+  color: #20438f;
+  font-size: 12px;
+  font-weight: 800;
+}
+.lang-pill {
+  cursor: pointer;
+}
+.lang-pill.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.meta-item {
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.74);
+  border: 1px solid var(--line);
+}
+.meta-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.meta-item strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+.model-section {
+  margin-top: 30px;
+}
+.section-head h2 {
+  margin: 10px 0 8px;
+  font-size: 30px;
+}
+.section-head p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.model-card {
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px;
+}
+.model-card.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(31, 94, 255, 0.10);
+}
+.model-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.model-toggle {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 0;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: left;
+}
+.model-state {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.model-card h3 {
+  margin: 12px 0 8px;
+  font-size: 26px;
+  line-height: 1.15;
+}
+.model-card p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.error-card {
+  text-align: center;
+}
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .workspace-shell {
+    padding: 24px 16px 40px;
+  }
+  .workspace-card {
+    padding: 22px;
+  }
+  h1 {
+    font-size: 34px;
+  }
+  .identity-card h2,
+  .section-head h2 {
+    font-size: 28px;
+  }
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .button {
+    width: 100%;
+  }
+}
+"""
+
+
+def base_css() -> str:
+    return """
+:root {
+  --bg: #f4efe4;
+  --panel: rgba(255, 252, 246, 0.96);
+  --ink: #172b4d;
+  --muted: #5b6777;
+  --line: #d9cfbf;
+  --accent: #1f5eff;
+  --accent-dark: #12335f;
+  --accent-soft: #eaf0ff;
+  --callout-bg: #fff6e8;
+  --callout-line: #efd19d;
+  --callout-ink: #7a4b04;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Aptos", "Segoe UI", "Noto Sans", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top right, rgba(31, 94, 255, 0.10), transparent 28%),
+    linear-gradient(180deg, #f8f4ea 0%, #eee7db 100%);
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.shell {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+}
+.hero,
+.card,
+.redirect-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 18px 42px rgba(23, 43, 77, 0.10);
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 14px 0 10px;
+  font-size: 40px;
+  line-height: 1.08;
+}
+.lede,
+.note,
+.redirect-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+.note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-line);
+  color: var(--callout-ink);
+  font-size: 15px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 188px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  border: 1px solid var(--accent);
+}
+.button.primary {
+  background: var(--accent);
+  color: white;
+}
+.button.secondary {
+  background: white;
+  color: var(--accent);
+}
+.button.download {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: white;
+}
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #f4f7ff;
+  border: 1px solid #d7e2ff;
+  color: #20438f;
+  font-size: 12px;
+  font-weight: 800;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+.card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.redirect-card {
+  max-width: 760px;
+  margin: 72px auto;
+}
+code {
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.95em;
+}
+@media (max-width: 720px) {
+  .shell {
+    padding: 24px 16px 40px;
+  }
+  .hero,
+  .card,
+  .redirect-card {
+    padding: 22px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  .button {
+    width: 100%;
+  }
+}
+"""
+
+
+def render_workspace_html(title: str) -> str:
+    return (
+        "<!doctype html>\n"
+        "<html lang=\"en\">\n"
+        "<head>\n"
+        "  <meta charset=\"utf-8\">\n"
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+        f"  <title>{escape(title)}</title>\n"
+        f"  <style>{workspace_css()}</style>\n"
+        "</head>\n"
+        "<body>\n"
+        "  <main class=\"workspace-shell\">\n"
+        "    <div id=\"workspace-app\" class=\"workspace-card\">Loading review handoff workspace...</div>\n"
+        "  </main>\n"
+        "  <script>\n"
+        "const app = document.getElementById('workspace-app');\n"
+        "function asArray(value) { return Array.isArray(value) ? value : []; }\n"
+        "function normalizeToken(value) { return typeof value === 'string' ? value.trim() : ''; }\n"
+        "function valueOr(value, fallback = 'Not available') { const text = normalizeToken(value == null ? '' : String(value)); return text || fallback; }\n"
+        "function escapeHtml(value) {\n"
+        "  return String(value == null ? '' : value).replace(/[&<>\"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' }[char]));\n"
+        "}\n"
+        "function readQuery() {\n"
+        "  const params = new URLSearchParams(window.location.search);\n"
+        "  return {\n"
+        "    family: normalizeToken(params.get('family')).toUpperCase(),\n"
+        "    model: normalizeToken(params.get('model')),\n"
+        "    lang: normalizeToken(params.get('lang')).toLowerCase(),\n"
+        "  };\n"
+        "}\n"
+        "function findFamily(workspace, family) {\n"
+        "  return asArray(workspace.families).find((item) => normalizeToken(item.family).toUpperCase() === normalizeToken(family).toUpperCase());\n"
+        "}\n"
+        "function findModel(familyEntry, model) {\n"
+        "  return asArray(familyEntry.models).find((item) => normalizeToken(item.model) === normalizeToken(model));\n"
+        "}\n"
+        "function findLanguage(modelEntry, lang) {\n"
+        "  return asArray(modelEntry.languages).find((item) => normalizeToken(item.lang).toLowerCase() === normalizeToken(lang).toLowerCase());\n"
+        "}\n"
+        "function normalizeSelection(workspace, requested) {\n"
+        "  const families = asArray(workspace.families);\n"
+        "  if (!families.length) {\n"
+        "    throw new Error('No families available in generated/workspace.json.');\n"
+        "  }\n"
+        "  const defaults = workspace.defaults || {};\n"
+        "  const familyEntry = findFamily(workspace, requested.family) || findFamily(workspace, defaults.family) || families[0];\n"
+        "  const models = asArray(familyEntry.models);\n"
+        "  if (!models.length) {\n"
+        "    throw new Error(`No model groups are available for family ${familyEntry.family}.`);\n"
+        "  }\n"
+        "  const modelEntry = findModel(familyEntry, requested.model) || findModel(familyEntry, defaults.model) || models[0];\n"
+        "  const languages = asArray(modelEntry.languages);\n"
+        "  if (!languages.length) {\n"
+        "    throw new Error(`No languages are available for model ${modelEntry.model}.`);\n"
+        "  }\n"
+        "  const languageEntry = findLanguage(modelEntry, requested.lang) || findLanguage(modelEntry, defaults.lang) || languages[0];\n"
+        "  return {\n"
+        "    family: String(familyEntry.family),\n"
+        "    model: String(modelEntry.model),\n"
+        "    lang: String(languageEntry.lang),\n"
+        "    familyEntry,\n"
+        "    modelEntry,\n"
+        "    languageEntry,\n"
+        "  };\n"
+        "}\n"
+        "function writeUrl(selection, mode) {\n"
+        "  const params = new URLSearchParams(window.location.search);\n"
+        "  params.set('family', selection.family);\n"
+        "  params.set('model', selection.model);\n"
+        "  params.set('lang', selection.lang);\n"
+        "  const next = `${window.location.pathname}?${params.toString()}`;\n"
+        "  const method = mode === 'push' ? 'pushState' : 'replaceState';\n"
+        "  window.history[method]({ family: selection.family, model: selection.model, lang: selection.lang }, '', next);\n"
+        "}\n"
+        "function actionButton(label, href, className, downloadName) {\n"
+        "  if (!href) {\n"
+        "    return '';\n"
+        "  }\n"
+        "  const downloadAttr = downloadName ? ` download=\"${escapeHtml(downloadName)}\"` : '';\n"
+        "  return `<a class=\"button ${className}\" href=\"${escapeHtml(href)}\"${downloadAttr}>${escapeHtml(label)}</a>`;\n"
+        "}\n"
+        "function renderCsvLinks(csvUrls) {\n"
+        "  const links = [\n"
+        "    ['changes-summary.csv', 'Summary CSV'],\n"
+        "    ['changes-pages.csv', 'Page CSV'],\n"
+        "    ['changes-fields.csv', 'Field CSV'],\n"
+        "    ['changes-files.csv', 'File CSV'],\n"
+        "  ].map(([key, label]) => {\n"
+        "    const href = csvUrls && csvUrls[key];\n"
+        "    return href ? `<a class=\"resource-link\" href=\"${escapeHtml(href)}\" download=\"${escapeHtml(key)}\">${escapeHtml(label)}</a>` : '';\n"
+        "  }).join('');\n"
+        "  return links || '<span class=\"resource-empty\">No CSV exports packaged for this family.</span>';\n"
+        "}\n"
+        "function renderMetaRows(selection, workspace) {\n"
+        "  const rows = [\n"
+        "    ['Build config', valueOr(selection.languageEntry.config)],\n"
+        "    ['Manual source', valueOr(selection.languageEntry.manual_source)],\n"
+        "    ['Tracked root', valueOr(selection.familyEntry.tracked_root)],\n"
+        "    ['Branch', valueOr(workspace.branch)],\n"
+        "    ['Commit', valueOr(workspace.commit_sha_short)],\n"
+        "    ['Updated', valueOr(workspace.generated_at_display || workspace.generated_at)],\n"
+        "  ];\n"
+        "  return rows.map(([label, value]) => `<div class=\"meta-item\"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');\n"
+        "}\n"
+        "function renderModelCards(selection) {\n"
+        "  return asArray(selection.familyEntry.models).map((modelEntry) => {\n"
+        "    const isActive = modelEntry.model === selection.model;\n"
+        "    const languageButtons = asArray(modelEntry.languages).map((languageEntry) => {\n"
+        "      const selected = isActive && languageEntry.lang === selection.lang;\n"
+        "      return `<button type=\"button\" class=\"lang-pill ${selected ? 'is-active' : ''}\" data-model=\"${escapeHtml(modelEntry.model)}\" data-lang=\"${escapeHtml(languageEntry.lang)}\">${escapeHtml(valueOr(languageEntry.language_label, languageEntry.lang.toUpperCase()))}</button>`;\n"
+        "    }).join('');\n"
+        "    const productName = valueOr(modelEntry.product_name, modelEntry.model);\n"
+        "    const languageCount = asArray(modelEntry.languages).length;\n"
+        "    const subtitle = `${languageCount} language${languageCount === 1 ? '' : 's'} packaged in this group.`;\n"
+        "    return `<article class=\"model-card ${isActive ? 'is-active' : ''}\"><div class=\"model-card-top\"><button type=\"button\" class=\"model-toggle\" data-model-select=\"${escapeHtml(modelEntry.model)}\">${escapeHtml(modelEntry.model)}</button><span class=\"model-state\">${isActive ? 'Current selection' : 'Available model group'}</span></div><h3>${escapeHtml(productName)}</h3><p>${escapeHtml(subtitle)}</p><div class=\"lang-row\">${languageButtons}</div></article>`;\n"
+        "  }).join('');\n"
+        "}\n"
+        "function bindEvents(workspace, currentSelection) {\n"
+        "  document.querySelectorAll('[data-family-tab]').forEach((button) => {\n"
+        "    button.addEventListener('click', () => {\n"
+        "      const family = normalizeToken(button.getAttribute('data-family-tab')).toUpperCase();\n"
+        "      const familyEntry = findFamily(workspace, family);\n"
+        "      if (!familyEntry) {\n"
+        "        return;\n"
+        "      }\n"
+        "      const modelEntry = asArray(familyEntry.models)[0];\n"
+        "      const languageEntry = modelEntry && asArray(modelEntry.languages)[0];\n"
+        "      if (!modelEntry || !languageEntry) {\n"
+        "        return;\n"
+        "      }\n"
+        "      const selection = normalizeSelection(workspace, { family: familyEntry.family, model: modelEntry.model, lang: languageEntry.lang });\n"
+        "      writeUrl(selection, 'push');\n"
+        "      render(selection, workspace);\n"
+        "    });\n"
+        "  });\n"
+        "  document.querySelectorAll('[data-model-select]').forEach((button) => {\n"
+        "    button.addEventListener('click', () => {\n"
+        "      const model = normalizeToken(button.getAttribute('data-model-select'));\n"
+        "      const selection = normalizeSelection(workspace, { family: currentSelection.family, model, lang: currentSelection.lang });\n"
+        "      writeUrl(selection, 'push');\n"
+        "      render(selection, workspace);\n"
+        "    });\n"
+        "  });\n"
+        "  document.querySelectorAll('[data-model][data-lang]').forEach((button) => {\n"
+        "    button.addEventListener('click', () => {\n"
+        "      const model = normalizeToken(button.getAttribute('data-model'));\n"
+        "      const lang = normalizeToken(button.getAttribute('data-lang')).toLowerCase();\n"
+        "      const selection = normalizeSelection(workspace, { family: currentSelection.family, model, lang });\n"
+        "      writeUrl(selection, 'push');\n"
+        "      render(selection, workspace);\n"
+        "    });\n"
+        "  });\n"
+        "}\n"
+        "function render(selection, workspace) {\n"
+        "  const productName = valueOr(selection.languageEntry.product_name, selection.modelEntry.product_name || selection.model);\n"
+        "  const manualTitle = valueOr(selection.languageEntry.manual_title, selection.modelEntry.manual_title || workspace.title);\n"
+        "  const familyLanguages = asArray(selection.familyEntry.shared_language_labels).join(', ');\n"
+        "  const familyTabs = asArray(workspace.families).map((familyEntry) => {\n"
+        "    const active = familyEntry.family === selection.family;\n"
+        "    return `<button type=\"button\" class=\"family-tab ${active ? 'is-active' : ''}\" data-family-tab=\"${escapeHtml(familyEntry.family)}\">${escapeHtml(familyEntry.family)}</button>`;\n"
+        "  }).join('');\n"
+        "  const pills = [\n"
+        "    `Model ${selection.model}`,\n"
+        "    `Family ${selection.family}`,\n"
+        "    `Language ${valueOr(selection.languageEntry.language_label, selection.lang.toUpperCase())}`,\n"
+        "  ].map((item) => `<span class=\"pill\">${escapeHtml(item)}</span>`).join('');\n"
+        "  const actions = [\n"
+        "    actionButton('Open Review HTML', selection.languageEntry.manual_url, 'primary', ''),\n"
+        "    actionButton('Download Word', selection.languageEntry.word_url, 'download', 'review-manual.docx'),\n"
+        "    actionButton('Open Change Report', selection.familyEntry.change_index_url, 'secondary', ''),\n"
+        "    actionButton('Download Change Workbook', selection.familyEntry.change_workbook_url, 'download', 'change-report.xlsx'),\n"
+        "  ].join('');\n"
+        "  app.innerHTML = `<section class=\"workspace-card\"><div class=\"workspace-top\"><span class=\"eyebrow\">Review Handoff Workspace</span><div class=\"family-tabs\">${familyTabs}</div></div><div class=\"hero-grid\"><section><h1>${escapeHtml(selection.model)} Review Handoff Workspace</h1><p class=\"product-line\">${escapeHtml(productName)}</p><p class=\"manual-line\">${escapeHtml(manualTitle)}</p><p class=\"lede\">Open the selected manual HTML, download the Word handoff, and use one family-level diff package to brief design on this round.</p><div class=\"actions\">${actions}</div><p class=\"family-note\">Change report, workbook, and CSV exports are shared across all ${escapeHtml(selection.family)} family languages${familyLanguages ? ': ' + escapeHtml(familyLanguages) : ''}.</p><div class=\"resource-row\">${renderCsvLinks(selection.familyEntry.csv_urls)}</div></section><aside class=\"identity-card\"><span class=\"label\">Document Identity</span><h2>${escapeHtml(productName)}</h2><p class=\"identity-title\">${escapeHtml(manualTitle)}</p><div class=\"pill-row\">${pills}</div><div class=\"meta-grid\">${renderMetaRows(selection, workspace)}</div></aside></div><section class=\"model-section\"><div class=\"section-head\"><span class=\"eyebrow eyebrow-muted\">Current Family</span><h2>${escapeHtml(selection.family)} model groups</h2><p>Choose a model group, then switch language inside that group. The diff package remains family-scoped.</p></div><div class=\"model-grid\">${renderModelCards(selection)}</div></section></section>`;\n"
+        "  document.title = `${selection.model} / ${selection.family} / ${selection.lang.toUpperCase()} Review Handoff Workspace`;\n"
+        "  bindEvents(workspace, selection);\n"
+        "}\n"
+        "async function boot() {\n"
+        "  try {\n"
+        "    const response = await fetch('./generated/workspace.json', { cache: 'no-store' });\n"
+        "    if (!response.ok) {\n"
+        "      throw new Error(`Failed to load generated/workspace.json (${response.status}).`);\n"
+        "    }\n"
+        "    const workspace = await response.json();\n"
+        "    const selection = normalizeSelection(workspace, readQuery());\n"
+        "    writeUrl(selection, 'replace');\n"
+        "    render(selection, workspace);\n"
+        "    window.addEventListener('popstate', () => {\n"
+        "      const nextSelection = normalizeSelection(workspace, readQuery());\n"
+        "      writeUrl(nextSelection, 'replace');\n"
+        "      render(nextSelection, workspace);\n"
+        "    });\n"
+        "  } catch (error) {\n"
+        "    const message = error && error.message ? error.message : 'Unable to load workspace data.';\n"
+        "    app.innerHTML = `<section class=\"workspace-card error-card\"><span class=\"eyebrow\">Preview Error</span><h1>Workspace data is not available</h1><p class=\"lede\">${escapeHtml(message)}</p></section>`;\n"
+        "  }\n"
+        "}\n"
+        "boot();\n"
+        "  </script>\n"
+        "</body>\n"
+        "</html>\n"
+    )
+
+
+def render_redirect_html(*, title: str, target: str, heading: str, copy: str) -> str:
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(str(meta['title']))}</title>
+  <meta http-equiv="refresh" content="0; url={escape(target)}">
+  <title>{escape(title)}</title>
   <style>{base_css()}</style>
 </head>
 <body>
   <main class="shell">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Review Preview</span>
-          <h1>{escape(str(meta['title']))}</h1>
-          <p class="hero-product">Product Name: {escape(product_name)}</p>
-          <p class="lede">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p>
-          <div class="actions">
-            <a class="button primary" href="./manual/index.html">Open Review HTML</a>
-            {f'<a class="button download" href="{escape(word_download)}">Download Word</a>' if word_download else ''}
-            {f'<a class="button download" href="{escape(workbook_download)}">Download Change Workbook</a>' if workbook_download else ''}
-          </div>
-          <p class="foot">Need the detailed diff? <a href="./changes/index.html">Open Change Report</a>.</p>
-        </div>
-        <aside class="hero-side">
-          <section class="hero-side-card">
-            <span class="label">Document Identity</span>
-            <h2 class="hero-side-title">{escape(product_name)}</h2>
-            <p class="hero-side-subtitle">{escape(manual_title)}</p>
-            <div class="pill-row">
-              <span class="pill">Model {escape(display_text(meta.get("model")))}</span>
-              <span class="pill">Region {escape(display_text(meta.get("region")))}</span>
-              <span class="pill">Language {escape(language)}</span>
-            </div>
-          </section>
-        </aside>
+    <section class="redirect-card">
+      <span class="eyebrow">Redirecting</span>
+      <h1>{escape(heading)}</h1>
+      <p class="redirect-copy">{escape(copy)}</p>
+      <div class="actions">
+        <a class="button primary" href="{escape(target)}">Open default entry</a>
+        <a class="button secondary" href="../index.html">Back to workspace</a>
       </div>
     </section>
   </main>
@@ -1048,51 +1320,71 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
 """
 
 
-def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> str:
-    areas = changes.get("areas", [])
-    if not isinstance(areas, list):
-        areas = []
-    review_pages = changes.get("review_pages", [])
-    if not isinstance(review_pages, list):
-        review_pages = []
-    reports = changes.get("report_files", {})
-    if not isinstance(reports, dict):
-        reports = {}
-    downloads = changes.get("downloads", {})
+def render_changes_html(meta: dict[str, object], family_entry: dict[str, object], family_changes: dict[str, object]) -> str:
+    family = display_text(family_entry.get("family"))
+    default_model = display_text(family_entry.get("default_model"), display_text(meta.get("model")))
+    default_lang = display_text(family_entry.get("default_lang"), "en").lower()
+    manual_url = display_text(family_entry.get("default_manual_url"), "")
+    downloads = family_changes.get("downloads", {})
     if not isinstance(downloads, dict):
         downloads = {}
+    report_files = family_changes.get("report_files", {})
+    if not isinstance(report_files, dict):
+        report_files = {}
+    areas = family_changes.get("areas", [])
+    if not isinstance(areas, list):
+        areas = []
+    review_pages = family_changes.get("review_pages", [])
+    if not isinstance(review_pages, list):
+        review_pages = []
+
     report_links = []
-    for label, target in (
-        ("Report overview", reports.get("report-index.html")),
-        ("Field diff", reports.get("report-fields.html")),
-        ("Page diff", reports.get("report-pages.html")),
-        ("File diff", reports.get("report-files.html")),
-        ("Raw summary", reports.get("report-summary.html")),
+    for label, key in (
+        ("Report overview", "report-index.html"),
+        ("Field diff", "report-fields.html"),
+        ("Page diff", "report-pages.html"),
+        ("File diff", "report-files.html"),
+        ("Raw summary", "report-summary.html"),
     ):
-        if target:
-            report_links.append((label, f"./{str(target)}"))
-    download_links = build_download_links(downloads, prefix="../")
+        target = report_files.get(key)
+        if isinstance(target, str):
+            report_links.append((label, f"../../{target}"))
+    download_links = build_download_links(downloads, prefix="../../")
+    workspace_back_link = f"../../index.html?family={escape(family)}&model={escape(default_model)}&lang={escape(default_lang)}"
+    shared_languages = family_entry.get("shared_language_labels", [])
+    language_copy = ", ".join(str(item) for item in shared_languages if str(item).strip())
+    manual_href = f"../../{manual_url}" if manual_url else "../../manual/index.html"
+    workbook_href = downloads.get("change_workbook")
+    workbook_button = (
+        f'<a class="button download" href="../../{escape(str(workbook_href))}" download="change-report.xlsx">Download Change Workbook</a>'
+        if isinstance(workbook_href, str)
+        else ""
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(str(meta['title']))} - Changes</title>
+  <title>{escape(family_change_title(display_text(meta.get("model")), family))}</title>
   <style>{base_css()}</style>
 </head>
 <body>
   <main class="shell">
     <section class="hero">
-      <span class="eyebrow">Change Report</span>
-      <h1>{escape(str(meta['title']))}</h1>
-      <p class="lede">Use this page to brief design on what changed in the current review round before they open the rendered manual or download a change handoff package.</p>
+      <span class="eyebrow">{escape(family)} Family Diff</span>
+      <h1>{escape(display_text(meta.get("model")))} change report</h1>
+      <p class="lede">Use this page to brief design on the family-level diff package for {escape(family)}. The change report, workbook, and CSV exports are shared across the language variants in this family{escape(': ' + language_copy) if language_copy else ''}.</p>
+      <div class="pill-row">
+        <span class="pill">Model {escape(default_model)}</span>
+        <span class="pill">Family {escape(family)}</span>
+        <span class="pill">Diff scope Family-level</span>
+      </div>
       <div class="actions">
-        <a class="button primary" href="../manual/index.html">Open Review HTML</a>
-        <a class="button secondary" href="../index.html">Back To Summary</a>
+        <a class="button primary" href="{manual_href}">Open default review HTML</a>
+        <a class="button secondary" href="{workspace_back_link}">Back to workspace</a>
+        {workbook_button}
       </div>
-      <div class="downloads">
-        {''.join(f'<a class="button download" href="{escape(target)}">{escape(label)}</a>' for label, target in download_links[:2])}
-      </div>
+      <p class="note">Language switching happens in the workspace entry page. The diff package on this page stays shared across the full {escape(family)} family.</p>
     </section>
 
     <section class="grid">
@@ -1101,14 +1393,7 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
         <ul>{render_link_list(report_links)}</ul>
       </article>
       <article class="card">
-        <h2>Downloadables</h2>
-        <ul>{render_link_list(download_links)}</ul>
-      </article>
-    </section>
-
-    <section class="grid">
-      <article class="card">
-        <h2>Downloadables</h2>
+        <h2>Downloads</h2>
         <ul>{render_link_list(download_links)}</ul>
       </article>
     </section>
@@ -1120,7 +1405,7 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
       </article>
       <article class="card">
         <h2>Review Context</h2>
-        <p>Open <strong>Field diff</strong> for text or value deltas and <strong>Page diff</strong> for page-level impact. Use the Excel workbook for a single-file handoff.</p>
+        <p>Open <strong>Field diff</strong> for text or value deltas and <strong>Page diff</strong> for page-level impact. Use the workbook when design needs one offline handoff file for this family.</p>
       </article>
     </section>
 
@@ -1133,83 +1418,409 @@ def render_changes_html(meta: dict[str, object], changes: dict[str, object]) -> 
 """
 
 
+def output_root_for_target(model: str, target: WorkspaceTarget) -> Path:
+    root = ROOT / "docs" / "_build" / model / target.family
+    if target.include_lang_in_output_path:
+        root = root / target.language
+    return root
+
+
+def html_root_for_target(model: str, target: WorkspaceTarget) -> Path:
+    return output_root_for_target(model, target) / "html"
+
+
+def word_root_for_target(model: str, target: WorkspaceTarget) -> Path:
+    return output_root_for_target(model, target) / "word"
+
+
+def tracked_root_for_family(args: argparse.Namespace, family: str) -> Path:
+    if args.tracked_root and family == args.region:
+        return resolve_path(args.tracked_root)
+    return (ROOT / "docs" / "_review" / args.model / family).resolve()
+
+
+def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
+    if family == args.region:
+        return resolve_path(args.config)
+    return resolve_path(FAMILY_DIFF_CONFIGS[family])
+
+
+def family_targets(family: str) -> list[WorkspaceTarget]:
+    return [target for target in WORKSPACE_TARGETS if target.family == family]
+
+
+def build_spec_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> dict[str, object]:
+    config_path = resolve_path(target.config)
+    source_mode = args.source
+    output_root = output_root_for_target(args.model, target)
+    source_label = args.source
+
+    if args.source == "review" and target.family == "US":
+        if target.language == "en":
+            config_path = resolve_path("config.yaml")
+            output_root = ROOT / "docs" / "_build" / args.model / target.family
+            source_mode = "review"
+            source_label = "review"
+        else:
+            source_mode = "runtime"
+            source_label = "runtime fallback"
+
+    return {
+        "config_path": config_path,
+        "source_mode": source_mode,
+        "source_label": source_label,
+        "output_root": output_root,
+    }
+
+
+def build_export_command(
+    *,
+    action: str,
+    args: argparse.Namespace,
+    config_path: Path,
+    family: str,
+    source_mode: str,
+    no_clean: bool,
+) -> list[str]:
+    cmd = [
+        sys.executable,
+        str(ROOT / "build.py"),
+        action,
+        "--config",
+        str(config_path),
+        "--model",
+        args.model,
+        "--region",
+        family,
+        "--source",
+        source_mode,
+    ]
+    if no_clean:
+        cmd.append("--no-clean")
+    return cmd
+
+
+def build_diff_command(*, args: argparse.Namespace, family: str, tracked_root: Path) -> list[str]:
+    return [
+        sys.executable,
+        str(ROOT / "build.py"),
+        "diff-report",
+        "--config",
+        str(diff_config_for_family(args, family)),
+        "--model",
+        args.model,
+        "--region",
+        family,
+        "--tracked-root",
+        str(tracked_root),
+        "--from-ref",
+        args.from_ref,
+        "--to-ref",
+        args.to_ref,
+    ]
+
+
+def strip_manual_switcher(text: str) -> str:
+    cleaned = _MANUAL_SWITCHER_BLOCK_RE.sub("", text)
+    cleaned = _HB_MANUAL_CSS_RE.sub("\n", cleaned)
+    cleaned = _HB_MANUAL_JS_RE.sub("\n", cleaned)
+
+    def replace_body(match: re.Match[str]) -> str:
+        classes = [token for token in match.group(2).split() if token != "hb-manual-switcher-body"]
+        before = match.group(1)
+        after = match.group(3)
+        if classes:
+            return f'<body{before}class="{" ".join(classes)}"{after}>'
+        return f"<body{before}{after}>"
+
+    return _BODY_CLASS_RE.sub(replace_body, cleaned, count=1)
+
+
+def sanitize_manual_tree(manual_dir: Path) -> None:
+    for html_file in manual_dir.rglob("*.html"):
+        try:
+            text = html_file.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        html_file.write_text(strip_manual_switcher(text), encoding="utf-8")
+
+
+def discover_workspace_families(args: argparse.Namespace) -> list[tuple[str, list[WorkspaceTarget], Path]]:
+    discovered: list[tuple[str, list[WorkspaceTarget], Path]] = []
+    for family in FAMILY_ORDER:
+        targets = family_targets(family)
+        if not targets:
+            continue
+        tracked_root = tracked_root_for_family(args, family)
+        if args.source == "review" and not tracked_root.exists():
+            continue
+        discovered.append((family, targets, tracked_root))
+    return discovered
+
+
+def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object], *, require_word: bool) -> None:
+    missing: list[str] = []
+
+    for relative_path in REQUIRED_PREVIEW_FILES:
+        if not (output_dir / relative_path).exists():
+            missing.append(relative_path)
+
+    defaults = workspace.get("defaults", {})
+    if not isinstance(defaults, dict):
+        missing.append("generated/workspace.json#defaults")
+    else:
+        for key in ("manual_url", "change_url"):
+            target = defaults.get(key)
+            if not isinstance(target, str) or not (output_dir / target).exists():
+                missing.append(f"generated/workspace.json#defaults.{key}")
+
+    families = workspace.get("families", [])
+    if not isinstance(families, list) or not families:
+        missing.append("generated/workspace.json#families")
+    else:
+        for family_entry in families:
+            if not isinstance(family_entry, dict):
+                missing.append("generated/workspace.json#families[]")
+                continue
+            family = display_text(family_entry.get("family"), "")
+            if not family:
+                missing.append("generated/workspace.json#families[].family")
+                continue
+            if not (output_dir / f"changes/{family}/index.html").exists():
+                missing.append(f"changes/{family}/index.html")
+            for relative_path in REQUIRED_CHANGE_REPORT_FILES:
+                if not (output_dir / "changes" / family / relative_path).exists():
+                    missing.append(f"changes/{family}/{relative_path}")
+
+            change_workbook = family_entry.get("change_workbook_url")
+            if not isinstance(change_workbook, str) or not (output_dir / change_workbook).exists():
+                missing.append(f"downloads/{family}/change-report.xlsx")
+
+            csv_urls = family_entry.get("csv_urls")
+            if not isinstance(csv_urls, dict):
+                missing.extend(f"downloads/{family}/{name}" for name in REQUIRED_DOWNLOAD_CSVS)
+            else:
+                for file_name in REQUIRED_DOWNLOAD_CSVS:
+                    target = csv_urls.get(file_name)
+                    if not isinstance(target, str) or not (output_dir / target).exists():
+                        missing.append(f"downloads/{family}/{file_name}")
+
+            models = family_entry.get("models", [])
+            if not isinstance(models, list) or not models:
+                missing.append(f"generated/workspace.json#families[{family}]#models")
+                continue
+            for model_entry in models:
+                if not isinstance(model_entry, dict):
+                    missing.append(f"generated/workspace.json#families[{family}]#models[]")
+                    continue
+                languages = model_entry.get("languages", [])
+                if not isinstance(languages, list) or not languages:
+                    missing.append(f"generated/workspace.json#families[{family}]#models[{display_text(model_entry.get('model'), '')}]#languages")
+                    continue
+                for language_entry in languages:
+                    if not isinstance(language_entry, dict):
+                        missing.append(f"generated/workspace.json#families[{family}]#languages[]")
+                        continue
+                    manual_url = language_entry.get("manual_url")
+                    if not isinstance(manual_url, str) or not (output_dir / manual_url).exists():
+                        missing.append(f"manual/{family}/{display_text(language_entry.get('lang'), '').lower()}/index.html")
+                    word_url = language_entry.get("word_url")
+                    if require_word and (not isinstance(word_url, str) or not (output_dir / word_url).exists()):
+                        missing.append(f"downloads/{family}/{display_text(language_entry.get('lang'), '').lower()}/review-manual.docx")
+
+    if missing:
+        raise RuntimeError("Review preview output contract is incomplete: " + ", ".join(sorted(set(missing))))
+
+
 def main() -> int:
     args = parse_args()
-    config_path = resolve_path(args.config)
-    tracked_root = resolve_path(args.tracked_root) if args.tracked_root else ROOT / "docs" / "_review" / args.model / args.region
-    tracked_root = tracked_root.resolve()
     output_dir = resolve_path(args.output_dir)
-    html_root = ROOT / "docs" / "_build" / args.model / args.region / "html"
-    report_root = ROOT / "reports" / "version_tracking" / args.model / args.region
-
-    if args.source == "review" and not tracked_root.exists():
-        raise FileNotFoundError(f"Review root not found: {tracked_root}")
-
-    if not args.skip_build:
-        cmd = [
-            sys.executable,
-            str(ROOT / "build.py"),
-            "html",
-            "--config",
-            str(config_path),
-            "--model",
-            args.model,
-            "--region",
-            args.region,
-            "--source",
-            args.source,
-        ]
-        if not args.clean_build:
-            cmd.append("--no-clean")
-        run(cmd)
-
-    if not html_root.exists():
-        raise FileNotFoundError(f"HTML output not found: {html_root}")
-
-    if not args.skip_diff:
-        cmd = [
-            sys.executable,
-            str(ROOT / "build.py"),
-            "diff-report",
-            "--config",
-            str(config_path),
-            "--model",
-            args.model,
-            "--region",
-            args.region,
-            "--tracked-root",
-            str(tracked_root),
-            "--from-ref",
-            args.from_ref,
-            "--to-ref",
-            args.to_ref,
-        ]
-        run(cmd)
-
-    prefix = latest_report_prefix(report_root)
     changed_files = collect_changed_files(args.from_ref, args.to_ref)
-    review_pages = [
-        path.removeprefix(f"docs/_review/{args.model}/{args.region}/")
-        for path in changed_files
-        if path.startswith(f"docs/_review/{args.model}/{args.region}/page/")
-        or path.startswith(f"docs/_review/{args.model}/{args.region}/generated/")
-    ]
-    areas = classify_changes(changed_files, args.model, args.region)
+    family_matrix = discover_workspace_families(args)
+
+    if not family_matrix:
+        if args.source == "review":
+            raise FileNotFoundError(f"No review families are available under docs/_review/{args.model}/")
+        raise RuntimeError("No workspace families were resolved for the review preview build.")
 
     if output_dir.exists():
         shutil.rmtree(output_dir)
-    manual_dir = output_dir / "manual"
-    changes_dir = output_dir / "changes"
-    downloads_dir = output_dir / "downloads"
+    manual_root = output_dir / "manual"
+    changes_root = output_dir / "changes"
+    downloads_root = output_dir / "downloads"
     generated_dir = output_dir / "generated"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    copy_tree(html_root, manual_dir)
-    manual_meta = read_json_if_exists(html_root / "manual_meta.json")
-    report_files = copy_report_set(report_root, prefix, changes_dir)
-    csv_files = copy_report_csvs(report_root, prefix, downloads_dir)
-    workbook_path = build_change_workbook(downloads_dir, csv_files)
-    word_path = build_word_download(args=args, config_path=config_path, downloads_dir=downloads_dir)
+    families_payload: list[dict[str, object]] = []
+    changes_by_family: dict[str, object] = {}
+
+    for family, targets, tracked_root in family_matrix:
+        export_plan: list[tuple[str, WorkspaceTarget]] = []
+        if not args.skip_build:
+            export_plan.extend(("html", target) for target in targets)
+        if not args.skip_word:
+            export_plan.extend(("word", target) for target in targets)
+
+        target_specs = {target.label: build_spec_for_target(args, target) for target in targets}
+        first_export = True
+        for action, target in export_plan:
+            no_clean = (not args.clean_build) or (not first_export)
+            spec = target_specs[target.label]
+            try:
+                run(
+                    build_export_command(
+                        action=action,
+                        args=args,
+                        config_path=spec["config_path"],
+                        family=target.family,
+                        source_mode=str(spec["source_mode"]),
+                        no_clean=no_clean,
+                    )
+                )
+            except subprocess.CalledProcessError as exc:
+                raise RuntimeError(f"Review preview failed to build {action.upper()} for {target.label}.") from exc
+            first_export = False
+
+        if not args.skip_diff:
+            try:
+                run(build_diff_command(args=args, family=family, tracked_root=tracked_root))
+            except subprocess.CalledProcessError as exc:
+                raise RuntimeError(f"Review preview failed to build the diff-report set for {family}.") from exc
+
+        report_root = ROOT / "reports" / "version_tracking" / args.model / family
+        prefix = latest_report_prefix(report_root)
+        family_changes_dir = changes_root / family
+        family_downloads_dir = downloads_root / family
+
+        report_files = copy_report_set(
+            report_root,
+            prefix,
+            family_changes_dir,
+            relative_dir=f"changes/{family}",
+        )
+        csv_files = copy_report_csvs(
+            report_root,
+            prefix,
+            family_downloads_dir,
+            relative_dir=f"downloads/{family}",
+        )
+        workbook_path = build_change_workbook(
+            family_downloads_dir,
+            csv_files,
+            relative_path=f"downloads/{family}/change-report.xlsx",
+        )
+        if workbook_path is None:
+            raise RuntimeError(f"Review preview failed to build the required change workbook for {family}.")
+
+        models_by_name: dict[str, dict[str, object]] = {}
+        model_order: list[str] = []
+
+        for target in targets:
+            spec = target_specs[target.label]
+            output_root = Path(spec["output_root"])
+            html_root = output_root / "html"
+            if not html_root.exists():
+                raise FileNotFoundError(f"HTML output not found for {target.label}: {html_root}")
+
+            manual_dest = manual_root / family / target.language
+            copy_tree(html_root, manual_dest)
+            sanitize_manual_tree(manual_dest)
+
+            manual_meta = read_json_if_exists(html_root / "manual_meta.json")
+            manual_title = display_text(manual_meta.get("title"), f"{args.model} User Manual")
+            manual_lang = str(manual_meta.get("lang") or target.language).strip().lower() or target.language
+            product_name = derive_product_name(manual_title, args.model)
+
+            word_path: str | None = None
+            if not args.skip_word:
+                latest_docx = locate_latest_docx(output_root / "word")
+                if latest_docx is None:
+                    raise FileNotFoundError(
+                        f"Review preview Word export finished but no DOCX was found for {target.label}."
+                    )
+                language_download_dir = downloads_root / family / target.language
+                language_download_dir.mkdir(parents=True, exist_ok=True)
+                copied_docx = language_download_dir / "review-manual.docx"
+                shutil.copy2(latest_docx, copied_docx)
+                word_path = f"downloads/{family}/{target.language}/review-manual.docx"
+
+            model_name = display_text(manual_meta.get("model"), args.model)
+            if model_name not in models_by_name:
+                model_order.append(model_name)
+                models_by_name[model_name] = {
+                    "model": model_name,
+                    "product_name": product_name,
+                    "manual_title": manual_title,
+                    "languages": [],
+                }
+
+            language_entry = {
+                "lang": manual_lang,
+                "language_label": preview_language_label(manual_lang),
+                "manual_url": f"manual/{family}/{target.language}/index.html",
+                "word_url": word_path,
+                "change_index_url": f"changes/{family}/index.html",
+                "change_workbook_url": workbook_path,
+                "csv_urls": dict(csv_files),
+                "product_name": product_name,
+                "manual_title": manual_title,
+                "region": family,
+                "model": model_name,
+                "config": path_for_display(Path(spec["config_path"])),
+                "manual_source": str(spec["source_label"]),
+                "tracked_root": path_for_display(tracked_root),
+            }
+            models_by_name[model_name]["languages"].append(language_entry)
+
+        model_payloads = [models_by_name[name] for name in model_order]
+        shared_language_labels = [
+            str(language_entry.get("language_label"))
+            for model_entry in model_payloads
+            for language_entry in model_entry.get("languages", [])
+            if str(language_entry.get("language_label", "")).strip()
+        ]
+        first_model = model_payloads[0]
+        first_language = first_model["languages"][0]
+
+        family_payload = {
+            "family": family,
+            "tracked_root": path_for_display(tracked_root),
+            "diff_config": path_for_display(diff_config_for_family(args, family)),
+            "change_index_url": f"changes/{family}/index.html",
+            "change_workbook_url": workbook_path,
+            "csv_urls": dict(csv_files),
+            "shared_language_labels": shared_language_labels,
+            "default_model": display_text(first_model.get("model"), args.model),
+            "default_lang": display_text(first_language.get("lang"), "en"),
+            "default_manual_url": display_text(first_language.get("manual_url"), ""),
+            "models": model_payloads,
+        }
+        families_payload.append(family_payload)
+
+        changes_by_family[family] = {
+            "family": family,
+            "from_ref": args.from_ref,
+            "to_ref": args.to_ref,
+            "changed_files": changed_files,
+            "review_pages": review_pages_for_family(changed_files, args.model, family),
+            "areas": classify_changes(changed_files, args.model, family),
+            "report_prefix": prefix,
+            "report_files": report_files,
+            "downloads": build_downloads_metadata(
+                word_path=None,
+                workbook_path=workbook_path,
+                csv_files=csv_files,
+            ),
+        }
+
+    default_family_entry = next(
+        (item for item in families_payload if display_text(item.get("family")) == args.region),
+        families_payload[0],
+    )
+    default_model = display_text(default_family_entry.get("default_model"), args.model)
+    default_lang = display_text(default_family_entry.get("default_lang"), "en").lower()
+    default_manual_url = display_text(default_family_entry.get("default_manual_url"), "")
+    default_change_url = display_text(default_family_entry.get("change_index_url"), "")
 
     commit_sha = git_value("VERCEL_GIT_COMMIT_SHA", ["git", "rev-parse", "HEAD"])
     commit_message = git_value("VERCEL_GIT_COMMIT_MESSAGE", ["git", "log", "-1", "--pretty=%s"])
@@ -1218,27 +1829,20 @@ def main() -> int:
     pr_id = os.environ.get("VERCEL_GIT_PULL_REQUEST_ID", "").strip()
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
-    if workbook_path is None:
-        raise RuntimeError("Review preview failed to build the required change-report workbook.")
-
-    downloads = build_downloads_metadata(
-        word_path=word_path,
-        workbook_path=workbook_path,
-        csv_files=csv_files,
-    )
-    manual_title = display_text(manual_meta.get("title"), f"{args.model} User Manual")
-    manual_lang = str(manual_meta.get("lang", "")).strip().lower()
-    product_name = derive_product_name(manual_title, args.model)
     meta = {
-        "title": page_title(args.model, args.region),
+        "title": workspace_title(args.model),
         "model": args.model,
-        "product_name": product_name,
-        "region": args.region,
-        "manual_title": manual_title,
-        "manual_lang": manual_lang,
         "source": args.source,
-        "config": config_path.relative_to(ROOT).as_posix(),
-        "tracked_root": tracked_root.relative_to(ROOT).as_posix(),
+        "requested_family": args.region,
+        "default_family": display_text(default_family_entry.get("family"), args.region),
+        "default_model": default_model,
+        "default_lang": default_lang,
+        "default_manual_url": default_manual_url,
+        "default_change_url": default_change_url,
+        "available_families": [display_text(item.get("family")) for item in families_payload],
+        "family_count": len(families_payload),
+        "from_ref": args.from_ref,
+        "to_ref": args.to_ref,
         "branch": branch,
         "commit_sha": commit_sha,
         "commit_sha_short": commit_sha[:7],
@@ -1246,26 +1850,63 @@ def main() -> int:
         "author": author,
         "pr_id": pr_id,
         "generated_at": generated_at,
+        "generated_at_display": format_generated_at(generated_at),
         "vercel_env": os.environ.get("VERCEL_ENV", "").strip(),
         "vercel_url": os.environ.get("VERCEL_URL", "").strip(),
-        "downloads": downloads,
+    }
+    workspace = {
+        **meta,
+        "defaults": {
+            "family": display_text(default_family_entry.get("family"), args.region),
+            "model": default_model,
+            "lang": default_lang,
+            "manual_url": default_manual_url,
+            "change_url": default_change_url,
+        },
+        "families": families_payload,
     }
     changes = {
         "from_ref": args.from_ref,
         "to_ref": args.to_ref,
-        "changed_files": changed_files,
-        "review_pages": review_pages,
-        "areas": areas,
-        "report_prefix": prefix,
-        "report_files": report_files,
-        "downloads": downloads,
+        "defaults": dict(workspace["defaults"]),
+        "families": changes_by_family,
     }
 
+    for family_entry in families_payload:
+        family_name = display_text(family_entry.get("family"))
+        family_changes_payload = changes_by_family[family_name]
+        (changes_root / family_name / "index.html").parent.mkdir(parents=True, exist_ok=True)
+        (changes_root / family_name / "index.html").write_text(
+            render_changes_html(meta, family_entry, family_changes_payload),
+            encoding="utf-8",
+        )
+
     write_json(generated_dir / "meta.json", meta)
+    write_json(generated_dir / "workspace.json", workspace)
     write_json(generated_dir / "changes.json", changes)
-    (output_dir / "index.html").write_text(render_index_html(meta, changes), encoding="utf-8")
-    (changes_dir / "index.html").write_text(render_changes_html(meta, changes), encoding="utf-8")
-    assert_preview_output_contract(output_dir, downloads, require_word=not args.skip_word)
+    (output_dir / "index.html").write_text(render_workspace_html(display_text(meta.get("title"))), encoding="utf-8")
+    (manual_root / "index.html").parent.mkdir(parents=True, exist_ok=True)
+    (manual_root / "index.html").write_text(
+        render_redirect_html(
+            title=f"{display_text(meta.get('title'))} - Manual",
+            target=f"./{default_manual_url.removeprefix('manual/')}",
+            heading="Open the default review HTML",
+            copy="This compatibility entry now redirects to the default manual inside the review handoff workspace.",
+        ),
+        encoding="utf-8",
+    )
+    (changes_root / "index.html").parent.mkdir(parents=True, exist_ok=True)
+    (changes_root / "index.html").write_text(
+        render_redirect_html(
+            title=f"{display_text(meta.get('title'))} - Change Report",
+            target=f"./{default_change_url.removeprefix('changes/')}",
+            heading="Open the default family change report",
+            copy="This compatibility entry now redirects to the default family diff page inside the review handoff workspace.",
+        ),
+        encoding="utf-8",
+    )
+
+    assert_preview_output_contract(output_dir, workspace, require_word=not args.skip_word)
     return 0
 
 

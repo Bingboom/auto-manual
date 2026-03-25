@@ -30,8 +30,9 @@ CI note:
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
-- the published review preview summary page is optimized for design review: open the rendered manual first, then open the change report or download the review handoff files for this round
-- the summary page keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
+- the published review preview root is now a region-family managed review handoff workspace: families are hidden when `_review` content is missing, models are grouped, and language switching happens inside each model group
+- family-level diff assets stay shared across the languages in that family, while the workspace keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
+- `manual/index.html` and `changes/index.html` remain compatibility entries that redirect to the workspace default manual and family diff pages
 
 ## 2. Primary Entrypoint
 

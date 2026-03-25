@@ -96,11 +96,12 @@ Rules:
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
-- When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
-- when that review preview is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
-- designers should start from the summary page, then open the rendered manual and the change report from there
-- the summary page now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
-- the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, and the raw diff CSV files for offline handoff
+- When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
+- when that workspace is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
+- designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
+- the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
+- the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
+- families without `_review` content are hidden, so the preview only shows available families
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
