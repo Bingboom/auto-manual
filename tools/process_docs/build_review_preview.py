@@ -998,28 +998,12 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
     downloads = changes.get("downloads", {})
     if not isinstance(downloads, dict):
         downloads = {}
-    changed_files = changes.get("changed_files", [])
-    if not isinstance(changed_files, list):
-        changed_files = []
-    review_pages = changes.get("review_pages", [])
-    if not isinstance(review_pages, list):
-        review_pages = []
-    areas = changes.get("areas", [])
-    if not isinstance(areas, list):
-        areas = []
     download_links = build_download_links(downloads, prefix="./")
     word_download = next((target for label, target in download_links if label == "Download Word"), None)
     workbook_download = next((target for label, target in download_links if label == "Download Change Workbook"), None)
     product_name = display_text(meta.get("product_name"), display_text(meta.get("model")))
     manual_title = display_text(meta.get("manual_title"), display_text(meta.get("title")))
     language = preview_language_label(str(meta.get("manual_lang", "")))
-    generated_at = format_generated_at(str(meta.get("generated_at", "")))
-    artifact_pills = render_pills(package_artifact_labels(downloads))
-    change_range = f"{display_text(changes.get('from_ref'))} -> {display_text(changes.get('to_ref'))}"
-    pr_id = str(meta.get("pr_id", "")).strip()
-    pr_display = f"PR #{pr_id}" if pr_id else "Not attached"
-    published_url = str(meta.get("vercel_url", "")).strip()
-    published_display = published_url if published_url else "Local / not deployed"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -1055,80 +1039,8 @@ def render_index_html(meta: dict[str, object], changes: dict[str, object]) -> st
               <span class="pill">Language {escape(language)}</span>
             </div>
           </section>
-          <section class="hero-side-card">
-            <span class="label">Package Includes</span>
-            <div class="pill-row">{artifact_pills}</div>
-          </section>
         </aside>
       </div>
-    </section>
-
-    <section class="section">
-      <header class="section-heading">
-        <span class="eyebrow">Doc Information</span>
-        <h2>Metadata Snapshot</h2>
-        <p>Use this section to confirm document identity, build context, and the exact handoff package attached to this review round.</p>
-      </header>
-      <div class="doc-grid">
-        <article class="doc-panel">
-          <span class="label">Document Identity</span>
-          <h3 class="identity-name">{escape(product_name)}</h3>
-          <p class="identity-title">{escape(manual_title)}</p>
-          <div class="facts">
-            {render_fact("Product Name", product_name)}
-            {render_fact("Model", display_text(meta.get("model")))}
-            {render_fact("Region", display_text(meta.get("region")))}
-            {render_fact("Language", language)}
-            {render_fact("Preview Title", display_text(meta.get("title")), wide=True)}
-            {render_fact("Manual Title", manual_title, wide=True)}
-          </div>
-        </article>
-
-        <article class="doc-panel">
-          <span class="label">Package Snapshot</span>
-          <h3>Review Round At A Glance</h3>
-          <p class="doc-copy">The preview package is meant to help design validate both the rendered manual and the exact diff bundle for this round.</p>
-          <div class="snapshot">
-            <div class="stat-card">
-              <span class="label">Changed Files</span>
-              <strong>{len(changed_files)}</strong>
-            </div>
-            <div class="stat-card">
-              <span class="label">Review Pages</span>
-              <strong>{len(review_pages)}</strong>
-            </div>
-            <div class="stat-card">
-              <span class="label">Change Groups</span>
-              <strong>{len([item for item in areas if isinstance(item, dict)])}</strong>
-            </div>
-          </div>
-          <div class="detail-list">
-            <div class="detail-row"><span>Formats</span><strong>HTML / Word / Change Workbook</strong></div>
-            <div class="detail-row"><span>Change Range</span><strong><code>{escape(change_range)}</code></strong></div>
-            <div class="detail-row"><span>Published URL</span><strong><code>{escape(published_display)}</code></strong></div>
-          </div>
-          <div class="pill-row">{artifact_pills}</div>
-        </article>
-
-        <article class="doc-panel doc-panel--wide">
-          <span class="label">Build Context</span>
-          <h3>Traceability And Build Metadata</h3>
-          <p class="doc-copy">These fields make it easier to confirm which branch, commit, config, and review subtree produced the current preview package.</p>
-          <div class="facts">
-            {render_fact("Source", display_text(meta.get("source")))}
-            {render_fact("Config", display_text(meta.get("config")), code=True)}
-            {render_fact("Tracked Root", display_text(meta.get("tracked_root")), code=True, wide=True)}
-            {render_fact("Branch", display_text(meta.get("branch")), code=True)}
-            {render_fact("Commit", display_text(meta.get("commit_sha_short")), code=True)}
-            {render_fact("Author", display_text(meta.get("author")))}
-            {render_fact("Pull Request", pr_display)}
-            {render_fact("Generated At", generated_at)}
-            {render_fact("Vercel Environment", display_text(meta.get("vercel_env"), "Local / not deployed"))}
-            {render_fact("Commit Message", display_text(meta.get("commit_message")), wide=True)}
-          </div>
-        </article>
-      </div>
-      <p class="foot">Use the Excel workbook for an offline handoff, or open the change report for the full page and field diff.</p>
     </section>
   </main>
 </body>

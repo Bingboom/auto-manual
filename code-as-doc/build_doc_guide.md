@@ -193,7 +193,7 @@ This package contains:
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files, review pages, and download metadata
 - `index.html`: designer-facing entry page with direct links to review HTML, change report, Word, and Excel
-- the summary page also highlights document metadata such as product name, manual title, model, region, language, branch, commit, and tracked review root
+- the summary page keeps the primary review actions and a compact document-identity card with product name, manual title, model, region, and language
 
 Packaging rule:
 

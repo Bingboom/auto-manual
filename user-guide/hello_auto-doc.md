@@ -99,7 +99,7 @@ Rules:
 - When design needs to review layout or page effect, share a review preview package built from `_review`, not the raw `.rst`.
 - when that review preview is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
 - designers should start from the summary page, then open the rendered manual and the change report from there
-- the summary page now shows document identity and traceability metadata first, including product name, manual title, model, region, language, branch, commit, and tracked review root
+- the summary page now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, and the raw diff CSV files for offline handoff
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
