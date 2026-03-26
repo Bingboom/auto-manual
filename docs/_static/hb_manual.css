@@ -80,7 +80,7 @@
 .hb-sublist{ margin: 6px 0 0 16px; padding-left: 14px; }
 
 body.hb-manual-switcher-body{
-  padding-top: 92px;
+  padding-top: 20px;
   background: #f3f4f6;
   color-scheme: light;
 }
@@ -138,9 +138,9 @@ body.hb-manual-switcher-body .article-container{
 body.hb-manual-switcher-body .sidebar-drawer{
   display: block;
   position: sticky;
-  top: 108px;
+  top: 24px;
   align-self: start;
-  max-height: calc(100vh - 128px);
+  max-height: calc(100vh - 40px);
   min-width: 0;
 }
 
@@ -169,7 +169,7 @@ body.hb-manual-switcher-body #searchbox{
 }
 
 body.hb-manual-switcher-body .sidebar-scroll{
-  max-height: calc(100vh - 176px);
+  max-height: calc(100vh - 88px);
   overflow: auto;
   padding-right: 8px;
 }
@@ -331,7 +331,7 @@ body.hb-manual-switcher-body #furo-main-content > section > section > ol li{
 body.hb-manual-switcher-body #furo-main-content > section,
 body.hb-manual-switcher-body #furo-main-content > section > section{
   margin-top: 42px;
-  scroll-margin-top: 108px;
+  scroll-margin-top: 28px;
 }
 
 body.hb-manual-switcher-body #furo-main-content > section:first-child{
@@ -469,13 +469,7 @@ body.hb-manual-switcher-body #furo-main-content em{
 }
 
 .hb-manual-switcher{
-  position: fixed;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  width: min(960px, calc(100% - 24px));
-  color: #101828;
+  display: none !important;
 }
 
 .hb-manual-switcher__inner{
@@ -608,7 +602,7 @@ body.hb-manual-switcher-body #furo-main-content em{
 
 @media (max-width: 900px){
   body.hb-manual-switcher-body{
-    padding-top: 132px;
+    padding-top: 12px;
   }
 
   body.hb-manual-switcher-body .page{
@@ -616,25 +610,6 @@ body.hb-manual-switcher-body #furo-main-content em{
     width: calc(100% - 16px);
     padding-left: 8px;
     padding-right: 8px;
-  }
-
-  .hb-manual-switcher{
-    top: 10px;
-    width: calc(100% - 16px);
-  }
-
-  .hb-manual-switcher__inner{
-    padding: 12px;
-    gap: 10px;
-  }
-
-  .hb-manual-switcher__meta{
-    min-width: auto;
-    width: 100%;
-  }
-
-  .hb-manual-switcher__languages{
-    min-width: 100%;
   }
 
   body.hb-manual-switcher-body .sidebar-drawer{

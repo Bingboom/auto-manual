@@ -680,7 +680,7 @@ class TestTargetResolution(unittest.TestCase):
                 targets,
             )
 
-    def test_refresh_model_html_switchers_should_inject_region_and_language_links(self) -> None:
+    def test_refresh_model_html_switchers_should_keep_manual_mode_without_top_switcher(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_build_dir = Path(td) / "docs" / "_build"
 
@@ -720,6 +720,14 @@ class TestTargetResolution(unittest.TestCase):
             us_en_index = (us_en_html / "index.html").read_text(encoding="utf-8")
             us_search = (us_html / "search.html").read_text(encoding="utf-8")
             jp_index = (jp_html / "index.html").read_text(encoding="utf-8")
+
+            self.assertNotIn(build_docs.SWITCHER_BLOCK_START, us_en_index)
+            self.assertIn('class="hb-manual-switcher-body"', us_en_index)
+            self.assertNotIn(build_docs.SWITCHER_BLOCK_START, us_search)
+            self.assertIn('class="hb-manual-switcher-body"', us_search)
+            self.assertNotIn(build_docs.SWITCHER_BLOCK_START, jp_index)
+            self.assertIn('class="hb-manual-switcher-body"', jp_index)
+            return
 
             self.assertIn(build_docs.SWITCHER_BLOCK_START, us_en_index)
             self.assertIn('data-current-region="US"', us_en_index)
