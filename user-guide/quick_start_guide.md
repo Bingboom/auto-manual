@@ -2,22 +2,42 @@
 
 Updated: 2026-03-26
 
-本文档描述当前仓库里一条真实可用的手册工作流。
-主示例仍然使用 `manual_je1000f_jp`，并假设正式评审开始后，可编辑源位于 [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)。
+本文档描述当前仓库里一条真实可用的四语言手册工作流。
+主示例使用 `JE-1000F` 的固定 4 语言集合：
+
+- `US/en`
+- `US/es`
+- `US/fr`
+- `JP/ja`
+
+正式评审开始后，可编辑源通常位于：
+
+- `docs/_review/JE-1000F/US/en/`
+- `docs/_review/JE-1000F/US/es/`
+- `docs/_review/JE-1000F/US/fr/`
+- [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)
 
 本文档中的示例目标：
 
 - 产品：`JE-1000F`
-- 区域：`JP`
-- 配置：[`config.ja.yaml`](../config.ja.yaml)
-- 最终 Word 输出：[`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
-- 配置规则：使用 JP 模板族配置，再通过 `--model` 和 `--region` 指定目标
+- 目标语言集：`US/en + US/es + US/fr + JP/ja`
+- 配置：
+  - [`config.us-en.yaml`](../config.us-en.yaml)
+  - [`config.us-es.yaml`](../config.us-es.yaml)
+  - [`config.us-fr.yaml`](../config.us-fr.yaml)
+  - [`config.ja.yaml`](../config.ja.yaml)
+- 最终 Word 输出：
+  - [`docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx`](../docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx)
+  - [`docs/_build/JE-1000F/US/es/word/manual_je1000f_us_es.docx`](../docs/_build/JE-1000F/US/es/word/manual_je1000f_us_es.docx)
+  - [`docs/_build/JE-1000F/US/fr/word/manual_je1000f_us_fr.docx`](../docs/_build/JE-1000F/US/fr/word/manual_je1000f_us_fr.docx)
+  - [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
+- 配置规则：批量构建优先使用 [`scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1)，单目标 review / publish / diff-report 仍然通过 `build.py` 分目标执行
 
 ---
 
 ## 1. 环境准备
 
-开始这个 JP 示例前，请先完成 [`hello_auto-doc.md`](hello_auto-doc.md) 中的环境准备。
+开始这个四语言示例前，请先完成 [`hello_auto-doc.md`](hello_auto-doc.md) 中的环境准备。
 
 仓库根目录下的最小环境要求：
 
@@ -57,6 +77,9 @@ python3 -m pip install -r requirements.txt
 ### 2.1 模板与数据种子层
 
 - 模板：
+  - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
+  - [`docs/templates/page_us-es/*.rst`](../docs/templates/page_us-es)
+  - [`docs/templates/page_us-fr/*.rst`](../docs/templates/page_us-fr)
   - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 - 结构化数据：
   - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
@@ -72,23 +95,23 @@ python3 -m pip install -r requirements.txt
 
 ### 2.2 评审工作层
 
-- [`docs/_review/JE-1000F/JP/index.rst`](../docs/_review/JE-1000F/JP/index.rst)
-- [`docs/_review/JE-1000F/JP/page/*.rst`](../docs/_review/JE-1000F/JP/page)
-- [`docs/_review/JE-1000F/JP/generated/JE-1000F/*.rst`](../docs/_review/JE-1000F/JP/generated/JE-1000F)
-- [`docs/_review/JE-1000F/JP/overrides/**`](../docs/_review/JE-1000F/JP/overrides)
+- `docs/_review/JE-1000F/US/en/**`
+- `docs/_review/JE-1000F/US/es/**`
+- `docs/_review/JE-1000F/US/fr/**`
+- [`docs/_review/JE-1000F/JP/**`](../docs/_review/JE-1000F/JP)
 
 用途：
 
-- 这个目标的日常评审修改
+- 4 个目标各自的日常评审修改
 - Git 可追踪的评审历史
 - 评审开始后的正式发布源
 
 ### 2.3 运行时输出层
 
-- [`docs/_build/JE-1000F/JP/rst/**`](../docs/_build/JE-1000F/JP)
-- [`docs/_build/JE-1000F/JP/html/**`](../docs/_build/JE-1000F/JP)
-- [`docs/_build/JE-1000F/JP/word/**`](../docs/_build/JE-1000F/JP/word)
-- [`docs/_build/JE-1000F/JP/pdf/**`](../docs/_build/JE-1000F/JP/pdf)
+- [`docs/_build/JE-1000F/US/en/**`](../docs/_build/JE-1000F/US/en)
+- [`docs/_build/JE-1000F/US/es/**`](../docs/_build/JE-1000F/US/es)
+- [`docs/_build/JE-1000F/US/fr/**`](../docs/_build/JE-1000F/US/fr)
+- [`docs/_build/JE-1000F/JP/**`](../docs/_build/JE-1000F/JP)
 
 用途：
 
@@ -98,7 +121,7 @@ python3 -m pip install -r requirements.txt
 规则：
 
 - 评审开始前，用模板和数据生成第一版草稿
-- 评审开始后，编辑 [`docs/_review/JE-1000F/JP/**`](../docs/_review/JE-1000F/JP)
+- 评审开始后，编辑对应语言自己的 `_review` 根目录
 - 不要把 [`docs/_build/**`](../docs/_build) 当成编辑面
 
 ---
@@ -107,21 +130,23 @@ python3 -m pip install -r requirements.txt
 
 ### 3.1 什么时候改模板或 CSV
 
-只有当变更应该被多个产品复用时，才去改 [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp) 或 CSV。
+只有当变更应该被多个目标复用时，才去改模板或 CSV。
 
 典型场景：
 
-- 通用 JP 页面结构调整
+- 通用 US / JP 页面结构调整
 - 可复用的标题、版式或样式改动
 - 需要被多个机型复用的新占位符族
 - [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) 中真实参数更新
 
 ### 3.2 日常手册生产时改 `_review`
 
-一旦 `JE-1000F / JP` 进入评审，日常文案修改应该放在：
+一旦某个语言目标进入评审，日常文案修改应该放在它自己的 `_review` 根目录里，例如：
 
+- `docs/_review/JE-1000F/US/en/page/*.rst`
+- `docs/_review/JE-1000F/US/es/page/*.rst`
+- `docs/_review/JE-1000F/US/fr/page/*.rst`
 - [`docs/_review/JE-1000F/JP/page/*.rst`](../docs/_review/JE-1000F/JP/page)
-- [`docs/_review/JE-1000F/JP/generated/JE-1000F/*.rst`](../docs/_review/JE-1000F/JP/generated/JE-1000F)
 
 适用场景：
 
@@ -134,32 +159,36 @@ python3 -m pip install -r requirements.txt
 
 如果评审期需要替换图片，请放到：
 
+- `docs/_review/JE-1000F/US/en/overrides/_static/**`
+- `docs/_review/JE-1000F/US/es/overrides/_static/**`
+- `docs/_review/JE-1000F/US/fr/overrides/_static/**`
 - [`docs/_review/JE-1000F/JP/overrides/_static/**`](../docs/_review/JE-1000F/JP/overrides/_static)
 
 并保持与公共资源相同的相对路径。
 
 只有下面这几类 override 会叠加到运行时 bundle：
 
-- [`docs/_review/JE-1000F/JP/overrides/_static/**`](../docs/_review/JE-1000F/JP/overrides/_static)
-- [`docs/_review/JE-1000F/JP/overrides/_assets/**`](../docs/_review/JE-1000F/JP/overrides/_assets)
-- [`docs/_review/JE-1000F/JP/overrides/renderers/**`](../docs/_review/JE-1000F/JP/overrides/renderers)
+- `docs/_review/JE-1000F/<region>/<lang>/overrides/_static/**`
+- `docs/_review/JE-1000F/<region>/<lang>/overrides/_assets/**`
+- `docs/_review/JE-1000F/<region>/<lang>/overrides/renderers/**`
+- JP 目标对应的是 [`docs/_review/JE-1000F/JP/overrides/**`](../docs/_review/JE-1000F/JP/overrides)
 
 ---
 
 ## 4. 端到端流程
 
-对 `manual_je1000f_jp` 来说，真实流程是：
+对 `JE-1000F` 的 4 语言集合来说，真实流程是：
 
-1. 用模板和数据创建或更新草稿种子
+1. 用模板和数据创建或更新 4 个语言目标的草稿种子
 2. 创建独立评审分支
-3. 初始化评审 bundle 一次
-4. 在整个评审周期内持续编辑 `_review`
-5. 对评审内容运行 `check`
+3. 初始化 4 个目标各自的 review bundle
+4. 在整个评审周期内持续编辑各自的 `_review`
+5. 对 4 个目标的评审内容运行 `check`
 6. 每轮评审都 commit 并 push
 7. 打开或更新 PR
-8. 让 `Review Preview Package` 在 Vercel 上托管评审预览
-9. 导出 revision record
-10. 从 review 正式发布
+8. 让 `Review Preview Package` 在 Vercel 上托管 4 语言评审预览
+9. 按目标导出 revision record
+10. 按目标正式发布，或用批量脚本导出整套 HTML / Word / PDF
 
 ---
 
@@ -168,6 +197,9 @@ python3 -m pip install -r requirements.txt
 第一次在某台机器上跑 Word / PDF 前，建议先跑一次环境自检：
 
 ```powershell
+python build.py doctor --config config.us-en.yaml --model JE-1000F --region US
+python build.py doctor --config config.us-es.yaml --model JE-1000F --region US
+python build.py doctor --config config.us-fr.yaml --model JE-1000F --region US
 python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 ```
 
@@ -178,18 +210,28 @@ python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 - 需要的 Python 模块
 - 需要的系统工具，比如 Word COM、`pandoc`、`xelatex`
 
-如果这个目标还没进入 review，就先从模板和数据准备运行时草稿：
+如果这 4 个目标还没进入 review，就先从模板和数据准备运行时草稿：
 
 ```powershell
+python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
+python build.py rst --config config.us-es.yaml --model JE-1000F --region US --source runtime
+python build.py rst --config config.us-fr.yaml --model JE-1000F --region US --source runtime
 python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
 ```
 
 这个命令会：
 
-- 读取 [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
+- 读取对应语言的模板：
+  - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
+  - [`docs/templates/page_us-es/*.rst`](../docs/templates/page_us-es)
+  - [`docs/templates/page_us-fr/*.rst`](../docs/templates/page_us-fr)
+  - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 - 读取 [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) 和其他 CSV
 - 生成 CSV 驱动页面
 - 输出运行时草稿到：
+  - [`docs/_build/JE-1000F/US/en/rst/`](../docs/_build/JE-1000F/US/en/rst)
+  - [`docs/_build/JE-1000F/US/es/rst/`](../docs/_build/JE-1000F/US/es/rst)
+  - [`docs/_build/JE-1000F/US/fr/rst/`](../docs/_build/JE-1000F/US/fr/rst)
   - [`docs/_build/JE-1000F/JP/rst/`](../docs/_build/JE-1000F/JP/rst)
 
 这里特意使用 `--source runtime`，原因是：
@@ -204,6 +246,9 @@ python build.py rst --config config.ja.yaml --model JE-1000F --region JP --sourc
 草稿准备好后，如果要进入正式评审，就 seed review bundle：
 
 ```powershell
+python build.py review --config config.us-en.yaml --model JE-1000F --region US
+python build.py review --config config.us-es.yaml --model JE-1000F --region US
+python build.py review --config config.us-fr.yaml --model JE-1000F --region US
 python build.py review --config config.ja.yaml --model JE-1000F --region JP
 ```
 
@@ -211,17 +256,23 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP
 
 1. 从模板和数据生成一份新的运行时草稿
 2. 把可评审子集复制到：
+   - `docs/_review/JE-1000F/US/en/`
+   - `docs/_review/JE-1000F/US/es/`
+   - `docs/_review/JE-1000F/US/fr/`
    - [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)
 
 重要行为：
 
-- 如果 [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) 不存在，就创建它
+- 如果对应的 review 根目录不存在，就创建它
 - 如果它已经存在，`review` 默认保留现有 review 内容
 - 这样可以避免误覆盖评审修改
 
 只有在你明确要丢掉当前 review 文本、重新从模板和数据 seed 时，才用 `--refresh-review`：
 
 ```powershell
+python build.py review --config config.us-en.yaml --model JE-1000F --region US --refresh-review
+python build.py review --config config.us-es.yaml --model JE-1000F --region US --refresh-review
+python build.py review --config config.us-fr.yaml --model JE-1000F --region US --refresh-review
 python build.py review --config config.ja.yaml --model JE-1000F --region JP --refresh-review
 ```
 
@@ -231,15 +282,16 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 
 评审开始后，正常编辑面就是：
 
-- [`docs/_review/JE-1000F/JP/index.rst`](../docs/_review/JE-1000F/JP/index.rst)
-- [`docs/_review/JE-1000F/JP/page/*.rst`](../docs/_review/JE-1000F/JP/page)
-- [`docs/_review/JE-1000F/JP/generated/JE-1000F/*.rst`](../docs/_review/JE-1000F/JP/generated/JE-1000F)
+- `docs/_review/JE-1000F/US/en/**`
+- `docs/_review/JE-1000F/US/es/**`
+- `docs/_review/JE-1000F/US/fr/**`
+- [`docs/_review/JE-1000F/JP/**`](../docs/_review/JE-1000F/JP)
 
 这是最关键的工作流切换：
 
-- 不要继续在 [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp) 里做 JE-1000F JP 的日常评审改动
-- 不要继续改 [`docs/_build/JE-1000F/JP/rst/**`](../docs/_build/JE-1000F/JP/rst)
-- 要持续编辑 [`docs/_review/JE-1000F/JP/**`](../docs/_review/JE-1000F/JP)
+- 不要继续在语言模板目录里做目标特有的日常评审改动
+- 不要继续改 [`docs/_build/**`](../docs/_build) 里的运行时产物
+- 要持续编辑对应语言自己的 `_review`
 
 如果后面发现某个变更其实应该被多个产品共享，再单独把逻辑回迁到模板或数据层。
 
@@ -256,6 +308,9 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 运行：
 
 ```powershell
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.us-es.yaml --model JE-1000F --region US
+python build.py check --config config.us-fr.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
 ```
 
@@ -273,47 +328,53 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 ## 9. 阶段 E：从 Review 构建预览产物
 
 评审开始后，构建命令默认用 `source=auto`。
-如果 [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP) 存在，review 内容会先叠加到 runtime bundle 再导出。
+如果对应语言的 `_review` 存在，review 内容会先叠加到 runtime bundle 再导出。
 
-因此这些命令默认都会优先使用 review：
+如果你要一次性构建 4 语言预览产物，直接运行：
 
 ```powershell
-python build.py rst --config config.ja.yaml --model JE-1000F --region JP
-python build.py html --config config.ja.yaml --model JE-1000F --region JP
-python build.py word --config config.ja.yaml --model JE-1000F --region JP
-python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf --source review
 ```
 
 如果你想写得更明确，可以显式指定 review：
 
 ```powershell
-python build.py word --config config.ja.yaml --model JE-1000F --region JP --source review
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats word --source review
 ```
 
 如果你临时想忽略 review，只看模板和数据输出：
 
 ```powershell
-python build.py word --config config.ja.yaml --model JE-1000F --region JP --source runtime
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats word --source runtime
 ```
 
-如果你只想看某一页的独立预览，不改标准 runtime bundle：
+如果你只想看某一页的独立预览，不改标准 runtime bundle，也要按 4 个目标分别执行。例如 `00_preface`：
 
 ```powershell
-python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
+python build.py preview --config config.us-en.yaml --model JE-1000F --region US --page 00_preface
+python build.py preview --config config.us-es.yaml --model JE-1000F --region US --page 00_preface
+python build.py preview --config config.us-fr.yaml --model JE-1000F --region US --page 00_preface
+python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 00_preface
 ```
 
-它会写到：
+它们会写到各自的 preview 目录里，例如：
 
-- [`docs/_build/JE-1000F/JP/preview/03_product_overview_placeholder/rst/`](../docs/_build/JE-1000F/JP/preview/03_product_overview_placeholder/rst)
+- [`docs/_build/JE-1000F/US/en/preview/00_preface/rst/`](../docs/_build/JE-1000F/US/en/preview/00_preface/rst)
+- [`docs/_build/JE-1000F/US/es/preview/00_preface/rst/`](../docs/_build/JE-1000F/US/es/preview/00_preface/rst)
+- [`docs/_build/JE-1000F/US/fr/preview/00_preface/rst/`](../docs/_build/JE-1000F/US/fr/preview/00_preface/rst)
+- [`docs/_build/JE-1000F/JP/preview/00_preface/rst/`](../docs/_build/JE-1000F/JP/preview/00_preface/rst)
 
 如果你只是想要一份新的 runtime draft，方便调模板或占位符：
 
 ```powershell
+python build.py fast --config config.us-en.yaml --model JE-1000F --region US
+python build.py fast --config config.us-es.yaml --model JE-1000F --region US
+python build.py fast --config config.us-fr.yaml --model JE-1000F --region US
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 如果你需要给设计评审看的托管预览，使用专门的 review preview packager。
-当前第一阶段托管示例是 `JE-1000F / US`：
+当前 Vercel 入口仍以 `US/en` config 为主，但生成的 manual 站点会带上这 4 个语言入口：
 
 ```powershell
 python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
@@ -343,26 +404,35 @@ python tools/process_docs/build_review_preview.py --config config.us-en.yaml --m
 ```powershell
 git switch main
 git pull
-git switch -c codex/review-je1000f-jp
+git switch -c codex/review-je1000f-multilang
 ```
 
-之后 JE-1000F JP 的评审都在这个分支上继续推进。
+之后 JE-1000F 这 4 个语言目标的评审都在这个分支上继续推进。
 如果后面还有更多评审轮次，就继续往同一个分支 push，并保持 PR 打开，直到整条线可以合并。
 
 每一轮有意义的评审修改都应该提交。
 
+先判断你这一轮改动属于哪一类：
+
+1. 只改目标特有 review 文本  
+   直接改 `docs/_review/**`，然后只提交 `_review`
+2. 改参数 CSV，或者改“带占位符”的共享模板页  
+   先改共享源，再用 `sync-review` 把变更写进 `_review`，最后一起提交
+3. 改“纯文本”的共享模板页  
+   先改 `docs/templates/**`，再手动把对应改动写进 `docs/_review/**`；只有在你明确接受覆盖当前 review 文本时，才用 `review --refresh-review`
+
 推荐：
 
 ```powershell
-git add docs/_review/JE-1000F/JP
-git commit -m "Update JE-1000F JP manual"
+git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
+git commit -m "Update JE-1000F US/JP manuals"
 ```
 
 如果这一轮还改了共享模板或共享数据：
 
 ```powershell
-git add data/phase1 docs/templates docs/_review/JE-1000F/JP
-git commit -m "Update JE-1000F JP manual"
+git add data/phase1 docs/templates docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
+git commit -m "Update JE-1000F US/JP manuals"
 ```
 
 规则：
@@ -370,18 +440,20 @@ git commit -m "Update JE-1000F JP manual"
 - commit 当前这一轮真实的编辑源
 - 目标特有改动通常只需要 `_review`
 - 共享改动需要模板或数据与 `_review` 一起提交
+- 但前提是：你必须先把共享改动真正同步进 `_review`；只改 `docs/templates/**` 或 `data/phase1/**` 然后直接 `git add`，不会自动让已进入 review 的文档显示出这次变更
+- 如果这一轮实际只动了几张页面，更推荐 `git add` 具体文件，不要无脑 `git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP`
 
 提交后 push 分支并打开或更新 PR：
 
 ```powershell
-git push -u origin codex/review-je1000f-jp
+git push -u origin codex/review-je1000f-multilang
 ```
 
 当前托管 review-preview 的流程是：
 
 1. 先按需从模板和数据生成草稿
 2. 用 `python build.py review --config ...` 初始化 `_review`
-3. 在 [`docs/_review/<model>/<region>/`](../docs/_review) 下编辑 review bundle
+3. 在 `docs/_review/<model>/US/<lang>/` 或 [`docs/_review/<model>/JP/`](../docs/_review) 下编辑 review bundle
 4. commit 并 push 评审分支
 5. 创建或更新 PR
 6. `Review Preview Package` 打包 review HTML、Word handoff、diff-report HTML、diff CSV 和 Excel workbook
@@ -404,13 +476,25 @@ git push -u origin codex/review-je1000f-jp
 应该用：
 
 ```powershell
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US
+python build.py sync-review --config config.us-es.yaml --model JE-1000F --region US
+python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region US
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
+```
+
+如果 Windows 提示 `docs/_build/...` 被浏览器、Word、资源管理器或 PDF 预览占用，先关闭这些窗口；如果你只是想在现有输出上继续同步，可以直接补 `--no-clean`：
+
+```powershell
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US --no-clean
+python build.py sync-review --config config.us-es.yaml --model JE-1000F --region US --no-clean
+python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region US --no-clean
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --no-clean
 ```
 
 默认行为：
 
 - 先从模板和数据重建 runtime draft
-- 再把参数驱动的文件同步进 [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)
+- 再把参数驱动的文件同步进各自语言的 `_review` 根目录
 - 普通人工改过的 review 页面保持不动
 
 默认同步的文件包括：
@@ -421,17 +505,40 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 - 任何源模板里带有占位符的页面，比如 `|PRODUCT_NAME|` 或 `|MAIN_POWER_BUTTON_LABEL|`
 - 由标题或产品身份生成的 cover 页面
 
+重要边界：
+
+- `sync-review` 适合“参数驱动”或“带占位符的模板页”
+- 如果你改的是共享模板里的普通说明文字，而这个 review 页面已经不再由 `sync-review` 自动覆盖，那么变更不会自动体现在 `_review`
+- 这类改动要么手动改对应的 `_review` 页面，要么在你明确接受覆盖当前 review 文本时使用 `review --refresh-review`
+
+例如：
+
+- 改 [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) 里的规格参数 -> 用 `sync-review`
+- 改 [`docs/templates/page_us-en/05_operation_guide_placeholder.rst`](../docs/templates/page_us-en/05_operation_guide_placeholder.rst) 里带 `|PRODUCT_NAME|` 这类占位符的段落 -> 通常可以用 `sync-review`
+- 改 [`docs/templates/page_us-en/01_meaning_of_symbols.rst`](../docs/templates/page_us-en/01_meaning_of_symbols.rst) 这种纯文本模板内容 -> 如果 review 里对应页面没有被 `sync-review` 自动覆盖，就需要手动把改动写进 `docs/_review/...`
+
 如果你只想同步 spec / safety 生成文件：
 
 ```powershell
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US --sync-scope generated
+python build.py sync-review --config config.us-es.yaml --model JE-1000F --region US --sync-scope generated
+python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region US --sync-scope generated
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --sync-scope generated
 ```
+
+同样，如果碰到 Windows 文件锁，也可以补 `--no-clean`。
 
 如果某一张普通 review 页面也要从 runtime 替换回来：
 
 ```powershell
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US --page-file 02_whats_in_the_box.rst
+python build.py sync-review --config config.us-es.yaml --model JE-1000F --region US --page-file 02_whats_in_the_box.rst
+python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region US --page-file 02_whats_in_the_box.rst
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --page-file 02_whats_in_the_box.rst
 ```
+
+这一招只适合“你希望用 runtime 重新覆盖 review 的那一页”。  
+如果你改的是纯文本模板页，而 runtime 并不会自动给你产出新的 review 页面内容，那么还是要手动改 `docs/_review/**`。
 
 只有在你明确要整包重新 seed 时，才使用 `review --refresh-review`。
 
@@ -448,27 +555,71 @@ python build.py sync-review --config config.yaml
 ### 12.1 第一次 baseline
 
 ```powershell
+python build.py review --config config.us-en.yaml --model JE-1000F --region US
+python build.py review --config config.us-es.yaml --model JE-1000F --region US
+python build.py review --config config.us-fr.yaml --model JE-1000F --region US
 python build.py review --config config.ja.yaml --model JE-1000F --region JP
-git add docs/_review/JE-1000F/JP
-git commit -m "Add JE-1000F JP review baseline"
+git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
+git commit -m "Add JE-1000F US/JP review baseline"
 ```
 
 ### 12.2 普通后续轮次
 
 ```powershell
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.us-es.yaml --model JE-1000F --region US
+python build.py check --config config.us-fr.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
-python build.py word --config config.ja.yaml --model JE-1000F --region JP
-git add docs/_review/JE-1000F/JP
-git commit -m "Update JE-1000F JP manual"
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats word --source review
+git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
+git commit -m "Update JE-1000F US/JP manuals"
 ```
 
-如果你改了共享模板或共享数据，并且希望整包 review 草稿从头刷新：
+如果这一轮还改了共享模板或共享数据，正确顺序是：
+
+1. 先改共享源：
+   - `data/phase1/**`
+   - `docs/templates/**`
+2. 再决定怎么把变更写进 `_review`：
+   - 参数或占位符页：优先用 `sync-review`
+   - 纯文本模板页：直接手动修改对应的 `_review` 页面
+   - 只有在明确要整包替换 review 文本时，才用 `review --refresh-review`
+3. 最后一起提交共享源和 `_review`
+
+更贴近日常评审的推荐顺序：
+
+1. 先改共享源或 review 文本
+2. 如果是参数页或占位符页，运行 `sync-review`
+3. 如果是纯文本模板页，直接把同样修改写进对应 `_review` 页面
+4. 跑 `check`
+5. 只 `git add` 这轮实际改动过的文件
+6. commit 并 push
+
+如果你明确要整包 review 草稿从头刷新：
 
 ```powershell
+python build.py review --config config.us-en.yaml --model JE-1000F --region US --refresh-review
+python build.py review --config config.us-es.yaml --model JE-1000F --region US --refresh-review
+python build.py review --config config.us-fr.yaml --model JE-1000F --region US --refresh-review
 python build.py review --config config.ja.yaml --model JE-1000F --region JP --refresh-review
 ```
 
 这个操作只能在你明确知道自己在替换当前 review 文本时使用。
+
+如果你只是修正某一张纯文本 review 页面，更接近真实工作流的做法是：
+
+```powershell
+git add docs/templates/page_us-en/01_meaning_of_symbols.rst
+git add docs/_review/JE-1000F/US/en/page/symbols_en.rst
+git add docs/_review/JE-1000F/US/en/generated/JE-1000F/symbols_en.rst
+git commit -m "Update US symbols wording for JE-1000F review"
+```
+
+上面这个例子就是“模板不是自动同步源”的典型情况：
+
+- 改了 [`docs/templates/page_us-en/01_meaning_of_symbols.rst`](../docs/templates/page_us-en/01_meaning_of_symbols.rst)
+- review 中真正用于 diff-report / preview 的还是 `docs/_review/**/symbols_en.rst`
+- 所以必须把 `_review` 一起改掉，变更才会体现在 review 产物里
 
 ---
 
@@ -479,17 +630,26 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 推荐命令：
 
 ```powershell
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.us-es.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.us-fr.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
 python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD
 ```
 
 如果这是第一次 baseline，而且你不想在 report 里看到整包 Added：
 
 ```powershell
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.us-es.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.us-fr.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
 python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
 ```
 
 主要输出目录：
 
+- [`reports/version_tracking/JE-1000F/US/en/`](../reports/version_tracking/JE-1000F/US/en)
+- [`reports/version_tracking/JE-1000F/US/es/`](../reports/version_tracking/JE-1000F/US/es)
+- [`reports/version_tracking/JE-1000F/US/fr/`](../reports/version_tracking/JE-1000F/US/fr)
 - [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
 
 推荐打开顺序：
@@ -509,9 +669,12 @@ python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 - `HEAD~1`
 - `HEAD`
 
-而且它看的对象是当前目标对应的 tracked root，通常是：
+而且它看的对象是当前目标对应的 tracked root，4 语言示例里通常是：
 
-- [`docs/_review/<model>/<region>/`](../docs/_review)
+- `docs/_review/JE-1000F/US/en/`
+- `docs/_review/JE-1000F/US/es/`
+- `docs/_review/JE-1000F/US/fr/`
+- [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)
 
 如果 tracked root 在这两个提交之间没有 Git 差异，report 就会显示 0。
 
@@ -526,15 +689,18 @@ python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 排查时优先看：
 
 ```powershell
-git status --short docs/_review/JE-1000F/JP
-git diff --stat HEAD~1 HEAD -- docs/_review/JE-1000F/JP
-git diff --stat -- docs/_review/JE-1000F/JP
+git status --short docs/_review/JE-1000F
+git diff --stat HEAD~1 HEAD -- docs/_review/JE-1000F
+git diff --stat -- docs/_review/JE-1000F
 ```
 
 ### 13.3 模板改动怎么进入 reviewer change report
 
 如果你改的是模板，比如：
 
+- [`docs/templates/page_us-en/00_preface.rst`](../docs/templates/page_us-en/00_preface.rst)
+- [`docs/templates/page_us-es/00_preface.rst`](../docs/templates/page_us-es/00_preface.rst)
+- [`docs/templates/page_us-fr/00_preface.rst`](../docs/templates/page_us-fr/00_preface.rst)
 - [`docs/templates/page_jp/00_preface.rst`](../docs/templates/page_jp/00_preface.rst)
 
 那么模板文件本身不会自动出现在 reviewer change report 里。
@@ -550,9 +716,15 @@ git diff --stat -- docs/_review/JE-1000F/JP
 示例：
 
 ```powershell
+python build.py review --config config.us-en.yaml --model JE-1000F --region US --refresh-review --no-clean
+python build.py review --config config.us-es.yaml --model JE-1000F --region US --refresh-review --no-clean
+python build.py review --config config.us-fr.yaml --model JE-1000F --region US --refresh-review --no-clean
 python build.py review --config config.ja.yaml --model JE-1000F --region JP --refresh-review --no-clean
-git add docs/templates/page_jp/00_preface.rst docs/_review/JE-1000F/JP/page/00_preface.rst
-git commit -m "Fix JP preface important styling"
+git add docs/templates/page_us-en/00_preface.rst docs/templates/page_us-es/00_preface.rst docs/templates/page_us-fr/00_preface.rst docs/templates/page_jp/00_preface.rst docs/_review/JE-1000F/US/en/page/00_preface.rst docs/_review/JE-1000F/US/es/page/00_preface.rst docs/_review/JE-1000F/US/fr/page/00_preface.rst docs/_review/JE-1000F/JP/page/00_preface.rst
+git commit -m "Fix JE-1000F preface important styling"
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us-es.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us-fr.yaml --model JE-1000F --region US
 python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 ```
 
@@ -574,8 +746,8 @@ python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 也就是：
 
 ```powershell
-git add docs/_review/JE-1000F/US/en
-git commit -m "Add US/en review baseline"
+git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
+git commit -m "Add JE-1000F US/JP review baseline"
 ```
 
 然后下一轮再提交模板和 `_review` 变化，`HEAD~1 -> HEAD` 才会干净地体现真正的页面修改。
@@ -587,18 +759,24 @@ git commit -m "Add US/en review baseline"
 `publish` 是正式发布命令。
 
 ```powershell
+python build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python build.py publish --config config.us-es.yaml --model JE-1000F --region US
+python build.py publish --config config.us-fr.yaml --model JE-1000F --region US
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 它会：
 
-1. 对 review 内容运行 `check`
-2. 从 [`docs/_review/JE-1000F/JP`](../docs/_review/JE-1000F/JP) 导出 diff report
+1. 对每个目标的 review 内容运行 `check`
+2. 从各自的 `_review` 根目录导出 diff report
 3. 从 review 构建最终 Word
-4. 把 release manifest 写到 [`reports/releases/JE-1000F/JP/`](../reports/releases/JE-1000F/JP)
+4. 把 release manifest 写到各自的 release 目录
 
 `publish` 默认使用的 diff 输出目录：
 
+- [`reports/version_tracking/JE-1000F/US/en/`](../reports/version_tracking/JE-1000F/US/en)
+- [`reports/version_tracking/JE-1000F/US/es/`](../reports/version_tracking/JE-1000F/US/es)
+- [`reports/version_tracking/JE-1000F/US/fr/`](../reports/version_tracking/JE-1000F/US/fr)
 - [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
 
 如果 review bundle 不存在，`publish` 会失败。
@@ -607,6 +785,9 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 如果你只需要 traceability record，而不想重跑整个 `publish`：
 
 ```powershell
+python build.py release-manifest --config config.us-en.yaml --model JE-1000F --region US
+python build.py release-manifest --config config.us-es.yaml --model JE-1000F --region US
+python build.py release-manifest --config config.us-fr.yaml --model JE-1000F --region US
 python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 ```
 
@@ -617,22 +798,28 @@ python build.py release-manifest --config config.ja.yaml --model JE-1000F --regi
 如果你只需要 Word 文件，而不想跑完整发布流程，也可以直接运行：
 
 ```powershell
-python build.py word --config config.ja.yaml --model JE-1000F --region JP
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats word --source review
 ```
 
 它默认会使用最终 review 内容，因为：
 
-- `word` 默认走 `--source auto`
-- `auto` 在 review 存在时优先用 [`docs/_review/JE-1000F/JP/`](../docs/_review/JE-1000F/JP)
+- `build_us_jp_manuals.ps1` 会把 `--source review` 透传给每个语言目标
+- 对应语言存在 `_review` 时，会优先使用最终 review 内容
 
 如果你想写得更明确：
 
 ```powershell
+python build.py word --config config.us-en.yaml --model JE-1000F --region US --source review
+python build.py word --config config.us-es.yaml --model JE-1000F --region US --source review
+python build.py word --config config.us-fr.yaml --model JE-1000F --region US --source review
 python build.py word --config config.ja.yaml --model JE-1000F --region JP --source review
 ```
 
 预期输出：
 
+- [`docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx`](../docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx)
+- [`docs/_build/JE-1000F/US/es/word/manual_je1000f_us_es.docx`](../docs/_build/JE-1000F/US/es/word/manual_je1000f_us_es.docx)
+- [`docs/_build/JE-1000F/US/fr/word/manual_je1000f_us_fr.docx`](../docs/_build/JE-1000F/US/fr/word/manual_je1000f_us_fr.docx)
 - [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
 
 ---
@@ -656,53 +843,140 @@ git push
 
 ---
 
-## 17. `manual_je1000f_jp` 完整示例
+## 17. `JE-1000F` 四语言完整构建示例
 
-### 17.1 首次初始化
+这一节对应固定的 4 个语言目标：
+
+- `US/en`
+- `US/es`
+- `US/fr`
+- `JP/ja`
+
+推荐直接使用批量脚本：
+
+- PowerShell 入口：[`scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1)
+- Python 实现：[`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py)
+
+它会自动分别调用下面这些配置：
+
+- `US/en` -> [`config.us-en.yaml`](../config.us-en.yaml)
+- `US/es` -> [`config.us-es.yaml`](../config.us-es.yaml)
+- `US/fr` -> [`config.us-fr.yaml`](../config.us-fr.yaml)
+- `JP/ja` -> [`config.ja.yaml`](../config.ja.yaml)
+
+### 17.1 一条命令构建 4 语言的 HTML、Word、PDF
 
 ```powershell
-python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
-python build.py review --config config.ja.yaml --model JE-1000F --region JP
-git add docs/_review/JE-1000F/JP
-git commit -m "Add JE-1000F JP review baseline"
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
 ```
 
-### 17.2 普通评审循环
+这条命令会依次构建：
+
+- `US/en`
+- `US/es`
+- `US/fr`
+- `JP/ja`
+
+生成完成后，典型输出路径如下：
+
+- HTML
+  - [`docs/_build/JE-1000F/US/en/html/index.html`](../docs/_build/JE-1000F/US/en/html/index.html)
+  - [`docs/_build/JE-1000F/US/es/html/index.html`](../docs/_build/JE-1000F/US/es/html/index.html)
+  - [`docs/_build/JE-1000F/US/fr/html/index.html`](../docs/_build/JE-1000F/US/fr/html/index.html)
+  - [`docs/_build/JE-1000F/JP/html/index.html`](../docs/_build/JE-1000F/JP/html/index.html)
+- Word
+  - [`docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx`](../docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx)
+  - [`docs/_build/JE-1000F/US/es/word/manual_je1000f_us_es.docx`](../docs/_build/JE-1000F/US/es/word/manual_je1000f_us_es.docx)
+  - [`docs/_build/JE-1000F/US/fr/word/manual_je1000f_us_fr.docx`](../docs/_build/JE-1000F/US/fr/word/manual_je1000f_us_fr.docx)
+  - [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
+- PDF
+  - [`docs/_build/JE-1000F/US/en/pdf/manual_je1000f_us_en.pdf`](../docs/_build/JE-1000F/US/en/pdf/manual_je1000f_us_en.pdf)
+  - [`docs/_build/JE-1000F/US/es/pdf/manual_je1000f_us_es.pdf`](../docs/_build/JE-1000F/US/es/pdf/manual_je1000f_us_es.pdf)
+  - [`docs/_build/JE-1000F/US/fr/pdf/manual_je1000f_us_fr.pdf`](../docs/_build/JE-1000F/US/fr/pdf/manual_je1000f_us_fr.pdf)
+  - [`docs/_build/JE-1000F/JP/pdf/manual_je1000f_jp.pdf`](../docs/_build/JE-1000F/JP/pdf/manual_je1000f_jp.pdf)
+
+### 17.2 常用批量构建变体
+
+只导出 HTML 和 Word：
 
 ```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word
+```
+
+只构建部分语言，例如 `US/en` 和 `JP/ja`：
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --languages en,ja --formats html,word,pdf
+```
+
+先做 `check` 再导出：
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --check-first --formats html,word,pdf
+```
+
+避免清理旧产物，适合本地反复调样式或调试：
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --no-clean --formats html,word
+```
+
+只预览将要执行的命令，不真正构建：
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --dry-run
+```
+
+### 17.3 构建完成后直接打开多语言 HTML
+
+如果你只关心 HTML 预览，可以在构建完成后自动打开 4 个语言的首页：
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
+```
+
+如果只想打开部分语言，可以配合 `--languages` 使用：
+
+```powershell
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --languages en,ja --formats html --open-html
+```
+
+### 17.4 什么时候用批量脚本，什么时候回到单目标流程
+
+推荐用批量脚本的场景：
+
+- 需要一次性导出 `US/en + US/es + US/fr + JP/ja`
+- 需要统一验证 4 个语言的 HTML / Word / PDF 是否都能成功产出
+- 需要快速给评审、运营或本地验收同事准备整套多语言产物
+
+推荐继续使用单目标 `build.py` 流程的场景：
+
+- 你正在编辑某一个目标的 review 内容
+- 你只想对某一个目标执行 `review`、`sync-review`、`publish`
+- 你需要生成该目标的 `diff-report`
+
+例如 4 语言评审工作流里，单目标操作通常按目标分别执行：
+
+```powershell
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.us-es.yaml --model JE-1000F --region US
+python build.py check --config config.us-fr.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
-git add docs/_review/JE-1000F/JP
-git commit -m "Update JE-1000F JP manual"
-python build.py publish --config config.ja.yaml --model JE-1000F --region JP
-git push
-```
-
-### 17.3 评审中参数变化
-
-```powershell
-python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
-git add data/phase1 docs/_review/JE-1000F/JP
-git commit -m "Sync JE-1000F JP parameter updates"
+python build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python build.py publish --config config.us-es.yaml --model JE-1000F --region US
+python build.py publish --config config.us-fr.yaml --model JE-1000F --region US
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 ```
-
-### 17.4 有意从模板和数据重新 seed
-
-```powershell
-python build.py review --config config.ja.yaml --model JE-1000F --region JP --refresh-review
-```
-
-只有在你明确决定用新的共享种子层替换当前 review 文本时，才这样做。
 
 ---
 
 ## 18. 常见错误
 
-- 改 [`docs/_build/JE-1000F/JP/rst/**`](../docs/_build/JE-1000F/JP/rst) 并期待这些改动能保留下来
+- 改 [`docs/_build/JE-1000F/US/en/rst/**`](../docs/_build/JE-1000F/US/en/rst) 或 [`docs/_build/JE-1000F/JP/rst/**`](../docs/_build/JE-1000F/JP/rst) 并期待这些改动能保留下来
 - 运行 `python build.py review` 却误以为它一定会刷新 review 内容
 - 运行 `python build.py review --refresh-review` 却没意识到它会替换当前 review 文本
 - 评审中改了 [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) 却忘了跑 `sync-review`
-- 对目标特有评审意见还继续改 [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
+- 对目标特有评审意见还继续改 [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)、[`docs/templates/page_us-es/*.rst`](../docs/templates/page_us-es)、[`docs/templates/page_us-fr/*.rst`](../docs/templates/page_us-fr) 或 [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 - 从 `_build` 而不是 `_review` 导出 diff report
 - 评审存在后忘了 `word/html/pdf/check` 默认会优先使用 review 内容
 - 在第一次 review baseline 还没入 Git 前就期待 `diff-report` 给出正常 reviewer 变更记录
@@ -711,6 +985,6 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 
 ## 19. 一句话规则
 
-对 `manual_je1000f_jp` 来说，正确流程是：
+对 `JE-1000F` 的 4 语言集合来说，正确流程是：
 
-先从模板和数据 seed 一次 -> `review` 一次 -> 持续编辑 `_review` -> 参数变化时用 `sync-review` -> commit -> `publish` -> `push`
+先从模板和数据给 `US/en + US/es + US/fr + JP/ja` seed 一次 -> 分目标 `review` 一次 -> 持续编辑各自的 `_review` -> 参数变化时对对应目标运行 `sync-review` -> commit -> 按目标 `publish` 或批量导出 -> `push`
