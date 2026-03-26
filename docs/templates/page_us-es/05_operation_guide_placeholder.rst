@@ -50,9 +50,9 @@ Apagado: Presione una vez.
 
 - **|USB_C_HIGH_POWER_PORT_LABEL| es un puerto de salida de alta potencia USB-PD Power Source 3 (PS3).** Si el dispositivo o accesorio conectado no cumple los requisitos de seguridad, puede existir riesgo de incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio conectado tenga protección contra incendios.
 - Conecte |PRODUCT_NAME| únicamente a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otras normas equivalentes).
-- Para obtener la máxima potencia de salida, utilice el cable oficial |USB_C_HIGH_POWER_CABLE_NAME| (20V DC/5A, 100W).
+- Para obtener la máxima potencia de salida, utilice el cable oficial Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
-El producto puede cargar la batería de su automóvil utilizando el |CAR_BATTERY_CHARGING_CABLE_NAME|, que se vende por separado y está disponible en nuestro sitio web.
+El producto puede cargar la batería de su automóvil utilizando el Jackery 12V automobile battery charging cable, que se vende por separado y está disponible en nuestro sitio web.
 
 **PRECAUCIÓN**
 

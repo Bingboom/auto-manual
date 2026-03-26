@@ -69,8 +69,6 @@ HTE153-US,US,TRUE,specifications,SETTINGS,8,tpl_energy_saving_auto_off_duration,
 HTE153-US,US,TRUE,specifications,SETTINGS,8,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,SETTINGS,8,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,OUTPUT PORTS,3,tpl_usb_c_high_power_port_label,USB-C 100W Port,1,,USB-C 100W,,,,,,JE-1000F
-HTE153-US,US,TRUE,specifications,ACCESSORIES,9,tpl_usb_c_high_power_cable_name,USB-C High Power Cable,1,,Jackery USB-C to USB-C 5A cable,,,,,,JE-1000F
-HTE153-US,US,TRUE,specifications,ACCESSORIES,9,tpl_car_battery_charging_cable_name,Car Battery Charging Cable,1,,Jackery 12V automobile battery charging cable,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,OUTPUT PORTS,3,tpl_ups_bypass_output_text,UPS Bypass Output,1,,1500W,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,CONTROLS,7,tpl_main_power_button_label,Main Power Button,1,,メイン電源ボタン,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,CONTROLS,7,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB出力ボタン,,,,,,JE-1000F
@@ -95,8 +93,6 @@ HTE153-JP,JP,TRUE,specifications,SETTINGS,8,tpl_energy_saving_auto_off_duration,
 HTE153-JP,JP,TRUE,specifications,SETTINGS,8,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,SETTINGS,8,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_usb_c_high_power_port_label,USB-C 100W Port,1,,USB-C 100W,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,ACCESSORIES,9,tpl_usb_c_high_power_cable_name,USB-C High Power Cable,1,,Jackery USB-C to USB-C 5A ケーブル,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,ACCESSORIES,9,tpl_car_battery_charging_cable_name,Car Battery Charging Cable,1,,Jackery 12V 自動車用バッテリー充電ケーブル,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_ups_bypass_output_text,UPS Bypass Output,1,,1500W,,,,,,JE-1000F
 HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000,,,,,,JE-1000F
 HTE153-EU,EU,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
@@ -147,7 +143,5 @@ HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_energy_saving_auto_off_duration,
 HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
 HTE153-EU,EU,TRUE,specifications,SETTINGS,8,tpl_energy_saving_dc_threshold,Energy Saving DC Threshold,1,,2W,,,,,,JE-1000F
 HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_usb_c_high_power_port_label,USB-C 100W Port,1,,USB-C 100W,,,,,,JE-1000F
-HTE153-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_usb_c_high_power_cable_name,USB-C High Power Cable,1,,Jackery USB-C to USB-C 5A cable,,,,,,JE-1000F
-HTE153-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_car_battery_charging_cable_name,Car Battery Charging Cable,1,,Jackery 12V automobile battery charging cable,,,,,,JE-1000F
 HTE153-EU,EU,TRUE,specifications,ACCESSORIES,9,tpl_battery_pack_name,Battery Pack Name,1,,Jackery Battery Pack,,,,,,JE-1000F
 HTE153-EU,EU,TRUE,specifications,OUTPUT PORTS,3,tpl_ups_bypass_output_text,UPS Bypass Output,1,,1500W,,,,,,JE-1000F

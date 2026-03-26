@@ -50,9 +50,9 @@ Arrêt : appuyez une fois.
 
 - **|USB_C_HIGH_POWER_PORT_LABEL| est un port de sortie haute puissance USB-PD Power Source 3 (PS3).** Si l'appareil ou l'accessoire connecté ne respecte pas les exigences de sécurité, un risque d'incendie peut exister. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre l'incendie.
 - Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou de toute norme équivalente).
-- Pour obtenir la puissance de sortie maximale, utilisez le câble officiel |USB_C_HIGH_POWER_CABLE_NAME| (20V DC/5A, 100W).
+- Pour obtenir la puissance de sortie maximale, utilisez le câble officiel Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
-Le produit peut charger la batterie de votre voiture à l'aide du |CAR_BATTERY_CHARGING_CABLE_NAME|, vendu séparément et disponible sur notre site web.
+Le produit peut charger la batterie de votre voiture à l'aide du Jackery 12V automobile battery charging cable, vendu séparément et disponible sur notre site web.
 
 **ATTENTION**
 
