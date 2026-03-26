@@ -13,9 +13,55 @@
   line-height: 1.2;
 }
 .hb-spec-section{
-  margin: 8px 0 6px 0;
-  font-size: 1.02rem;
+  display:flex;
+  align-items:center;
+  gap:0.4rem;
+  margin: 14px 0 8px 0;
+  font-size: 0.98rem;
   line-height: 1.2;
+  font-weight:700;
+  color:#454545;
+  text-transform: uppercase;
+}
+.hb-spec-bullet{
+  font-size: 1.1em;
+  line-height: 1;
+}
+.hb-spec-section-text{
+  letter-spacing: 0.01em;
+}
+.hb-spec-table{
+  width:100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0 0 18px 0;
+}
+.hb-spec-table th,
+.hb-spec-table td{
+  border:1px solid #8f8f8f;
+  padding:8px 10px;
+  vertical-align: top;
+}
+.hb-spec-table th{
+  width:33%;
+  text-align:left;
+  font-weight:500;
+  background:#fbfbfb;
+}
+.hb-spec-table td{
+  font-weight:400;
+}
+.hb-spec-note,
+.hb-spec-footnote{
+  margin: 8px 0 0 0;
+  line-height: 1.35;
+}
+.hb-spec-note{
+  font-size: 0.95rem;
+}
+.hb-spec-footnote{
+  font-size: 0.9rem;
+  color:#4f4f4f;
 }
 .hb-warning-box{
   border:1px solid #888; border-radius:10px;

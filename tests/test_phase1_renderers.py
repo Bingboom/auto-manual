@@ -198,6 +198,10 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("GENERAL INFO", out)
         self.assertIn("Product Name", out)
         self.assertIn("Demo footnote", out)
+        self.assertIn('class="hb-spec-bullet"', out)
+        self.assertIn('class="hb-spec-table"', out)
+        self.assertIn('class="hb-spec-note"', out)
+        self.assertIn('class="hb-spec-footnote"', out)
 
     def test_render_spec_page_row_without_delimiter_should_fail(self) -> None:
         blocks = self._spec_blocks()
@@ -326,6 +330,8 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("Charge Mode: 100V-120V\\textasciitilde{}60Hz, 15A Max, 1750W Max", out)
         self.assertIn("Demo note", out)
         self.assertIn("(1)Demo footnote text", out)
+        self.assertIn("<br/>", out)
+        self.assertIn('class="hb-spec-table"', out)
 
         model_pos = out.find("Model No.")
         ac_pos = out.find("1 x AC Input")

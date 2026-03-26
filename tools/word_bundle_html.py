@@ -122,9 +122,14 @@ def render_spec_word_html(data: dict[str, object]) -> str:
     ]
 
     for section in data["sections"]:
-        title = html.escape(rst_escape(str(section["title"])))
-        parts.append(f"<h2>{title}</h2>")
-        parts.append('<table class="manual-table">')
+        title = html.escape(rst_escape(str(section["title"]))).upper()
+        parts.append(
+            '<h2 class="hb-spec-section">'
+            '<span class="hb-spec-bullet" aria-hidden="true">&#9679;</span>'
+            f'<span class="hb-spec-section-text">{title}</span>'
+            "</h2>"
+        )
+        parts.append('<table class="manual-table manual-spec-table">')
         parts.append("<tbody>")
         for left, right in section["rows"]:
             parts.append("<tr>")
@@ -135,9 +140,9 @@ def render_spec_word_html(data: dict[str, object]) -> str:
         parts.append("</table>")
 
     for note in data["notes"]:
-        parts.append(f"<p>{_render_table_cell_html(str(note))}</p>")
+        parts.append(f'<p class="manual-spec-note">{_render_table_cell_html(str(note))}</p>')
     for footnote in data["footnotes"]:
-        parts.append(f"<p>{_render_table_cell_html(str(footnote))}</p>")
+        parts.append(f'<p class="manual-spec-footnote">{_render_table_cell_html(str(footnote))}</p>')
 
     parts.append("</section>")
     return "".join(parts)
@@ -389,6 +394,116 @@ def _normalize_inline_text(text: str) -> str:
     return " ".join((text or "").split()).strip()
 
 
+def _element_text_weight(element: ET.Element) -> int:
+    return max(1, len(_normalize_inline_text("".join(element.itertext()))))
+
+
+def _clone_list_with_items(template: ET.Element, items: list[ET.Element]) -> ET.Element:
+    cloned = ET.Element(template.tag, dict(template.attrib))
+    for item in items:
+        cloned.append(deepcopy(item))
+    return cloned
+
+
+def _split_balanced_elements(
+    elements: list[ET.Element],
+    *,
+    left_fixed_weight: int = 0,
+    right_fixed_weight: int = 0,
+) -> tuple[list[ET.Element], list[ET.Element]]:
+    if len(elements) < 2:
+        return elements, []
+
+    weights = [_element_text_weight(element) for element in elements]
+    prefix_sums = [0]
+    for weight in weights:
+        prefix_sums.append(prefix_sums[-1] + weight)
+
+    best_split = 1
+    best_score: tuple[int, int] | None = None
+    total_weight = prefix_sums[-1]
+    for split_at in range(1, len(elements)):
+        left_weight = left_fixed_weight + prefix_sums[split_at]
+        right_weight = right_fixed_weight + (total_weight - prefix_sums[split_at])
+        score = (abs(left_weight - right_weight), left_weight)
+        if best_score is None or score < best_score:
+            best_score = score
+            best_split = split_at
+    return elements[:best_split], elements[best_split:]
+
+
+def _build_two_col_table(left_children: list[ET.Element], right_children: list[ET.Element]) -> ET.Element:
+    table = ET.Element(
+        "table",
+        {
+            "class": "manual-two-col-table",
+            "style": "width:100%; border-collapse:separate; border-spacing:12px 0; margin:0 0 16px 0;",
+        },
+    )
+    tbody = ET.SubElement(table, "tbody")
+    row = ET.SubElement(tbody, "tr")
+    left_cell = ET.SubElement(
+        row,
+        "td",
+        {
+            "style": "width:50%; border:none; padding:0 8px 0 0; vertical-align:top;",
+        },
+    )
+    right_cell = ET.SubElement(
+        row,
+        "td",
+        {
+            "style": "width:50%; border:none; padding:0 0 0 8px; vertical-align:top;",
+        },
+    )
+    for child in left_children:
+        left_cell.append(deepcopy(child))
+    for child in right_children:
+        right_cell.append(deepcopy(child))
+    return table
+
+
+def _rewrite_safety_two_col_layout(element: ET.Element) -> ET.Element:
+    if _html_tag_name(element) != "div" or "hb-two-col" not in _html_class_names(element):
+        return element
+
+    lead_nodes: list[ET.Element] = []
+    trailing_nodes: list[ET.Element] = []
+    list_node: ET.Element | None = None
+
+    for child in list(element):
+        child_copy = deepcopy(child)
+        if _html_tag_name(child_copy) == "ul" and "hb-list" in _html_class_names(child_copy) and list_node is None:
+            list_node = child_copy
+            continue
+        if list_node is None:
+            lead_nodes.append(child_copy)
+        else:
+            trailing_nodes.append(child_copy)
+
+    if list_node is None:
+        return element
+
+    items = [deepcopy(item) for item in list(list_node) if _html_tag_name(item) == "li"]
+    if len(items) < 2:
+        return element
+
+    left_items, right_items = _split_balanced_elements(
+        items,
+        left_fixed_weight=sum(_element_text_weight(node) for node in lead_nodes),
+        right_fixed_weight=sum(_element_text_weight(node) for node in trailing_nodes),
+    )
+    if not right_items:
+        return element
+
+    left_children: list[ET.Element] = [deepcopy(node) for node in lead_nodes]
+    left_children.append(_clone_list_with_items(list_node, left_items))
+
+    right_children: list[ET.Element] = [_clone_list_with_items(list_node, right_items)]
+    right_children.extend(deepcopy(node) for node in trailing_nodes)
+    return _build_two_col_table(left_children, right_children)
+
+
 def _match_safety_sublist_rule(text: str) -> tuple[str, ...] | None:
     normalized = _normalize_inline_text(text)
     for parent_prefix, child_prefixes in _SAFETY_SUBLIST_RULES:
@@ -580,6 +695,7 @@ def _rewrite_word_friendly_children(children: list[ET.Element]) -> list[ET.Eleme
             )
         rewritten_child = _rewrite_known_safety_sublists(rewritten_child)
         rewritten_child = _rewrite_signal_word_banner_table(rewritten_child)
+        rewritten_child = _rewrite_safety_two_col_layout(rewritten_child)
         normalized_children.append(rewritten_child)
 
     rewritten: list[ET.Element] = []
@@ -708,6 +824,43 @@ def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
     return "\n".join(out)
 
 
+def _extract_raw_html_blocks(rst_text: str) -> str | None:
+    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text)
+    lines = normalized_rst.splitlines()
+    fragments: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.lstrip()
+        indent = len(line) - len(stripped)
+        if stripped != ".. raw:: html":
+            i += 1
+            continue
+
+        i += 1
+        if i < len(lines) and not lines[i].strip():
+            i += 1
+
+        block: list[str] = []
+        while i < len(lines):
+            cur = lines[i]
+            cur_stripped = cur.lstrip()
+            cur_indent = len(cur) - len(cur_stripped)
+            if cur_stripped and cur_indent <= indent:
+                break
+            if not cur_stripped:
+                block.append("")
+            else:
+                block.append(cur[indent + 3 :] if len(cur) > indent + 3 else cur_stripped)
+            i += 1
+        fragment = "\n".join(block).strip()
+        if fragment:
+            fragments.append(fragment)
+
+    joined = "\n".join(fragments).strip()
+    return joined or None
+
+
 def _extract_rst_first_heading(text: str) -> tuple[str | None, str | None]:
     lines = text.splitlines()
     for idx in range(len(lines) - 1):
@@ -777,11 +930,7 @@ def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -
     return _IMG_SRC_RE.sub(replace_src, fragment)
 
 
-def _convert_rst_fragment_to_html(
-    rst_text: str,
-    source_path: Path,
-    bundle_dir: Path,
-) -> str:
+def _publish_rst_fragment_to_html(rst_text: str, source_path: Path) -> str:
     from docutils.core import publish_parts
 
     normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text)
@@ -807,7 +956,117 @@ def _convert_rst_fragment_to_html(
         title_html = html.escape(rst_escape(title))
         html_fragment = f"<h1>{title_html}</h1>{html_fragment}"
 
-    rewritten_fragment = _rewrite_word_friendly_fragment(html_fragment)
+    return html_fragment
+
+
+def _html_fragment_root(fragment: str) -> ET.Element | None:
+    wrapped = f"<root>{fragment}</root>"
+    try:
+        return ET.fromstring(wrapped)
+    except ET.ParseError:
+        return None
+
+
+def _extract_html_cell_text(cell: ET.Element) -> str:
+    lines: list[str] = []
+    for child in list(cell):
+        text = _normalize_inline_text("".join(child.itertext()))
+        if text:
+            lines.append(text)
+    if not lines:
+        lines.append(_normalize_inline_text("".join(cell.itertext())))
+    return "\n".join(line for line in lines if line)
+
+
+def _normalize_spec_section_title(text: str) -> str:
+    title = _normalize_inline_text(text)
+    while title and title[0] in {"●", "•", "◉", "○", "◌"}:
+        title = title[1:].strip()
+    return title
+
+
+def _extract_spec_word_data(fragment: str) -> dict[str, object] | None:
+    root = _html_fragment_root(fragment)
+    if root is None:
+        return None
+
+    title_main = ""
+    sections: list[dict[str, object]] = []
+    notes: list[str] = []
+    footnotes: list[str] = []
+    current_section: dict[str, object] | None = None
+
+    for child in list(root):
+        tag = _html_tag_name(child)
+        text = _normalize_inline_text("".join(child.itertext()))
+        if not text:
+            continue
+
+        if tag == "h1":
+            title_main = text
+            current_section = None
+            continue
+
+        if tag == "h2":
+            current_section = {
+                "title": _normalize_spec_section_title(text),
+                "rows": [],
+            }
+            sections.append(current_section)
+            continue
+
+        if tag == "table" and current_section is not None:
+            rows: list[tuple[str, str]] = []
+            for row in child.findall(".//tr"):
+                cells = [cell for cell in list(row) if _html_tag_name(cell) in {"td", "th"}]
+                if len(cells) < 2:
+                    continue
+                left = _extract_html_cell_text(cells[0])
+                right = _extract_html_cell_text(cells[1])
+                if left or right:
+                    rows.append((left, right))
+            if rows:
+                current_rows = current_section.setdefault("rows", [])
+                if isinstance(current_rows, list):
+                    current_rows.extend(rows)
+            continue
+
+        if tag == "p":
+            if text.startswith("*"):
+                footnotes.append(text)
+            else:
+                notes.append(text)
+
+    if not title_main or not sections:
+        return None
+    return {
+        "title_main": title_main,
+        "sections": sections,
+        "notes": notes,
+        "footnotes": footnotes,
+    }
+
+
+def _convert_rst_fragment_to_html(
+    rst_text: str,
+    source_path: Path,
+    bundle_dir: Path,
+) -> str:
+    source_name = source_path.name.lower()
+    if source_name.startswith("safety_"):
+        raw_html = _extract_raw_html_blocks(rst_text)
+        if raw_html:
+            rewritten_fragment = _rewrite_word_friendly_fragment(raw_html)
+            return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
+
+    published_fragment = _publish_rst_fragment_to_html(rst_text, source_path)
+
+    if source_name.startswith("spec_"):
+        spec_data = _extract_spec_word_data(published_fragment)
+        if spec_data is not None:
+            published_fragment = render_spec_word_html(spec_data)
+
+    rewritten_fragment = _rewrite_word_friendly_fragment(published_fragment)
     return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
 
@@ -863,9 +1122,12 @@ def build_word_bundle_html(
             ".manual-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
             ".manual-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
             ".manual-table td:first-child { width: 34%; }",
+            ".manual-two-col-table { width: 100%; border-collapse: separate; border-spacing: 12px 0; margin: 0 0 16px 0; }",
+            ".manual-two-col-table td { width: 50%; border: none; padding: 0; vertical-align: top; }",
             ".manual-callout-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
             ".manual-callout-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
             ".manual-callout-table td:first-child { width: 16%; }",
+            ".manual-spec-note, .manual-spec-footnote { margin: 8px 0 0 0; }",
             "p, li { font-size: 10.5pt; }",
             "</style>",
             "</head>",

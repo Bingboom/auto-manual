@@ -41,23 +41,24 @@ class TestWordBundleDocx(unittest.TestCase):
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[0]))
             self.assertEqual("", self._paragraph_style(blocks[1]))
 
-            self.assertEqual("Heading1", self._paragraph_style(blocks[2]))
+            self.assertEqual("dingding-heading1", self._paragraph_style(blocks[2]))
             self.assertEqual("Compact", self._paragraph_style(blocks[3]))
             self.assertEqual("Table", self._table_style(blocks[4]))
             self.assertEqual("FirstParagraph", self._paragraph_style(blocks[4].find(".//w:p", _NS)))
+            self.assertEqual("dingding-heading2", self._paragraph_style(blocks[5]))
 
-            self.assertEqual("dingding-heading1", self._paragraph_style(blocks[5]))
-            self.assertEqual("TableGrid", self._table_style(blocks[6]))
-            first_box_cell = blocks[6].find(".//w:p", _NS)
+            self.assertEqual("dingding-heading1", self._paragraph_style(blocks[6]))
+            self.assertEqual("TableGrid", self._table_style(blocks[7]))
+            first_box_cell = blocks[7].find(".//w:p", _NS)
             self.assertIsNotNone(first_box_cell)
             self.assertEqual("", self._paragraph_style(first_box_cell))
-            self.assertEqual("dingding-heading2", self._paragraph_style(blocks[7]))
-            self.assertEqual("", self._paragraph_style(blocks[8]))
+            self.assertEqual("dingding-heading2", self._paragraph_style(blocks[8]))
+            self.assertEqual("", self._paragraph_style(blocks[9]))
 
-            self.assertEqual("Heading1", self._paragraph_style(blocks[9]))
-            self.assertEqual("Table", self._table_style(blocks[10]))
+            self.assertEqual("dingding-heading1", self._paragraph_style(blocks[10]))
+            self.assertEqual("Table", self._table_style(blocks[11]))
 
-            self.assertEqual("dingding-heading1", self._paragraph_style(blocks[11]))
+            self.assertEqual("dingding-heading1", self._paragraph_style(blocks[12]))
 
     def _write_minimal_docx(self, path: Path) -> None:
         styles_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -89,6 +90,7 @@ class TestWordBundleDocx(unittest.TestCase):
         <w:tc><w:p><w:pPr><w:pStyle w:val="BodyText"/></w:pPr><w:r><w:t>Keep dry.</w:t></w:r></w:p></w:tc>
       </w:tr>
     </w:tbl>
+    <w:p><w:pPr><w:pStyle w:val="Heading2"/></w:pPr><w:r><w:t>OPERATING INSTRUCTIONS</w:t></w:r></w:p>
     <w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t>WHAT'S IN THE BOX</w:t></w:r></w:p>
     <w:tbl>
       <w:tblPr><w:tblStyle w:val="Table"/></w:tblPr>

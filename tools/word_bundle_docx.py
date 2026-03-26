@@ -240,6 +240,15 @@ def _preserved_page_block_indexes(blocks: list[_DocBlock], page_metas: tuple[Wor
     return preserved
 
 
+def _preserved_page_start_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> set[int]:
+    starts = _resolve_page_start_indexes(blocks, page_metas)
+    return {
+        start
+        for page_idx, start in enumerate(starts)
+        if start is not None and page_metas[page_idx].source_path.name.lower().startswith(_PRESERVED_SOURCE_PREFIXES)
+    }
+
+
 def _table_dimensions(tbl: ET.Element, ns: dict[str, str]) -> tuple[int, int]:
     rows = tbl.findall("w:tr", ns)
     if not rows:
@@ -289,14 +298,18 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
 
     blocks = _iter_doc_blocks(body, ns)
     preserved_blocks = _preserved_page_block_indexes(blocks, page_metas)
+    preserved_page_starts = _preserved_page_start_indexes(blocks, page_metas)
     changed = False
 
     for block_idx, block in enumerate(blocks):
-        if block_idx in preserved_blocks:
-            continue
-
         if block.kind == "p":
             style_id = _paragraph_style_id(block.element, ns)
+            if (
+                block_idx in preserved_blocks
+                and block_idx not in preserved_page_starts
+                and style_id not in (_PANDOC_SUBHEADING_STYLE_IDS | {_REFERENCE_H2_STYLE_ID})
+            ):
+                continue
             if style_id in _PANDOC_MAJOR_HEADING_STYLE_IDS | {_REFERENCE_H1_STYLE_ID}:
                 if _set_paragraph_style_and_outline(
                     block.element,
@@ -317,6 +330,8 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
                 if _clear_paragraph_style_and_outline(block.element, ns):
                     changed = True
         elif block.kind == "tbl":
+            if block_idx in preserved_blocks:
+                continue
             target_style = _choose_reference_table_style(block.element, ns, available_table_styles)
             if target_style and _table_style_id(block.element, ns) != target_style:
                 if _set_table_style(block.element, ns, target_style):
