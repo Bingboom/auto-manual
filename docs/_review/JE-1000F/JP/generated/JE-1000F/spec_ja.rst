@@ -6,7 +6,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{鍩烘湰鎯呭牨}
+   \specsectiontitle{基本情報}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{製品の名称} & \HBTypeSpecValue{Jackery ポータブル電源 1000 New} \\
@@ -25,7 +25,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{鍏ュ姏銉濄兗銉?}
+   \specsectiontitle{入力ポート}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{1×ACポート} & \HBTypeSpecValue{100V-120V\textasciitilde{}50Hz/60Hz, 最大15A, 1450W±50W\HBSpecMarkerOne{} \newline バススルー\HBSpecMarkerTwo{}: 100V-120V\textasciitilde{}50Hz/60Hz, 最大15A, 最大1500W} \\
@@ -36,7 +36,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{鍑哄姏銉濄兗銉?}
+   \specsectiontitle{出力ポート}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{3×ACポート} & \HBTypeSpecValue{100V\textasciitilde{}50Hz/60Hz, 最大15A, 定格1500W (-10℃\textasciitilde{}45℃) \newline 100V\textasciitilde{}50Hz/60Hz, 最大7A, 定格700W (-20℃\textasciitilde{}-10℃)} \\
@@ -55,7 +55,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{娓╁害绡勫洸}
+   \specsectiontitle{温度範囲}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{充電温度} & \HBTypeSpecValue{-20℃ \textasciitilde{} 45℃} \\
@@ -96,7 +96,7 @@
 
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">鍩烘湰鎯呭牨</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">基本情報</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -128,7 +128,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">鍏ュ姏銉濄兗銉?</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">入力ポート</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -144,7 +144,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">鍑哄姏銉濄兗銉?</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">出力ポート</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -176,7 +176,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">娓╁害绡勫洸</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">温度範囲</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
