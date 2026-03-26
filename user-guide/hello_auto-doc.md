@@ -103,6 +103,7 @@ Rules:
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
 - families without `_review` content are hidden, so the preview only shows available families
+- the packaged `changes/index.html` now opens a family hub first, so reviewers can switch between available families such as `US` and `JP` before jumping into a family-specific change report
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
@@ -560,6 +561,7 @@ Important columns in `*_fields.csv` and `*_fields.html`:
 - `source_section_key`: the matched source section in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - `source_line_order`: the matched source line order for multiline rows
 - `source_csv_line`: the original CSV line number
+- when a field label itself changes, the diff now first tries to pair old/new rows through stable source back-mapping before falling back to rendered label text, so placeholder/spec renames are more likely to show up as one `M` row with both `old_value` and `new_value`
 
 Interpretation rule:
 

@@ -1243,6 +1243,71 @@ def render_changes_html(meta: dict[str, object], family_entry: dict[str, object]
 """
 
 
+def render_changes_home_html(meta: dict[str, object], families_payload: list[dict[str, object]]) -> str:
+    cards: list[str] = []
+    for family_entry in families_payload:
+        family = display_text(family_entry.get("family"))
+        models = family_entry.get("models", [])
+        if not isinstance(models, list):
+            models = []
+        language_labels = family_entry.get("shared_language_labels", [])
+        if not isinstance(language_labels, list):
+            language_labels = []
+        default_manual_url = display_text(family_entry.get("default_manual_url"), "")
+        change_index_url = display_text(family_entry.get("change_index_url"), "")
+        workbook_url = display_text(family_entry.get("change_workbook_url"), "")
+        model_names = ", ".join(display_text(item.get("model")) for item in models if isinstance(item, dict))
+        language_names = ", ".join(str(item) for item in language_labels if str(item).strip())
+        workbook_button = (
+            f'<a class="button download" href="../{escape(workbook_url)}" download="change-report.xlsx">Download workbook</a>'
+            if workbook_url
+            else ""
+        )
+        cards.append(
+            f"""<article class="card">
+        <h2>{escape(family)} family</h2>
+        <p class="muted">Models: {escape(model_names or display_text(meta.get("model")))}</p>
+        <p class="muted">Languages: {escape(language_names or "Not available")}</p>
+        <div class="actions">
+          <a class="button primary" href="../{escape(change_index_url)}">Open {escape(family)} change report</a>
+          <a class="button secondary" href="../{escape(default_manual_url)}">Open default review HTML</a>
+          {workbook_button}
+        </div>
+      </article>"""
+        )
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(display_text(meta.get("model")))} change reports</title>
+  <style>{base_css()}</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="eyebrow">Change Reports</span>
+      <h1>{escape(display_text(meta.get("model")))} review diff workspace</h1>
+      <p class="lede">Choose the family report you want to inspect. Each family keeps its own diff pages, workbook, and CSV exports so region-specific review changes stay easy to trace.</p>
+      <div class="pill-row">
+        <span class="pill">Families {escape(str(len(families_payload)))}</span>
+        <span class="pill">Model {escape(display_text(meta.get("model")))}</span>
+      </div>
+      <div class="actions">
+        <a class="button secondary" href="../index.html">Back to workspace</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      {''.join(cards)}
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+
 def output_root_for_target(model: str, target: WorkspaceTarget) -> Path:
     root = ROOT / "docs" / "_build" / model / target.family
     if target.include_lang_in_output_path:
@@ -1680,7 +1745,7 @@ def main() -> int:
     default_model = display_text(default_family_entry.get("default_model"), args.model)
     default_lang = display_text(default_family_entry.get("default_lang"), "en").lower()
     default_manual_url = display_text(default_family_entry.get("default_manual_url"), "")
-    default_change_url = display_text(default_family_entry.get("change_index_url"), "")
+    default_change_url = "changes/index.html"
 
     commit_sha = git_value("VERCEL_GIT_COMMIT_SHA", ["git", "rev-parse", "HEAD"])
     commit_message = git_value("VERCEL_GIT_COMMIT_MESSAGE", ["git", "log", "-1", "--pretty=%s"])
@@ -1757,12 +1822,7 @@ def main() -> int:
     )
     (changes_root / "index.html").parent.mkdir(parents=True, exist_ok=True)
     (changes_root / "index.html").write_text(
-        render_redirect_html(
-            title=f"{display_text(meta.get('title'))} - Change Report",
-            target=f"./{default_change_url.removeprefix('changes/')}",
-            heading="Open the default family change report",
-            copy="This compatibility entry now redirects to the default family diff page inside the review handoff workspace.",
-        ),
+        render_changes_home_html(meta, families_payload),
         encoding="utf-8",
     )
 

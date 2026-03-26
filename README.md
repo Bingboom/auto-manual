@@ -32,7 +32,7 @@ CI note:
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
 - the published review preview root is now a region-family managed review handoff workspace: families are hidden when `_review` content is missing, models are grouped, and language switching happens inside each model group
 - family-level diff assets stay shared across the languages in that family, while the workspace keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
-- `manual/index.html` and `changes/index.html` remain compatibility entries that redirect to the workspace default manual and family diff pages
+- `manual/index.html` remains a compatibility redirect to the workspace default manual, while `changes/index.html` is now a family hub that makes `US / JP / EU` change packages explicit instead of dropping reviewers into one default family report
 
 ## 2. Primary Entrypoint
 
@@ -64,6 +64,7 @@ HTML output note:
 - generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
 - manual HTML now suppresses most Furo documentation chrome in preview mode, uses a continuous reading layout instead of browser-side fake pagination, regenerates a lightweight left outline from manual headings, and presents generic headings, copy width, figures, ordinary tables, and the multilingual preface notice with a restrained neutral manual-reader style while preserving dedicated layouts such as the `SPECIFICATIONS` table treatment
 - review-preview/Vercel manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
+- diff-report field matching now prefers stable source back-mapping before falling back to rendered labels, so placeholder/spec label rewrites are more likely to surface as one `M` row with clearer `old_value/new_value` instead of separate `A/D` noise
 
 Review-sharing example:
 

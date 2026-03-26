@@ -315,6 +315,38 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertIn('href="../../changes/US/report-pages.html"', change_html)
         self.assertIn('href="../../index.html?family=US&model=JE-1000F&lang=en"', change_html)
 
+    def test_render_changes_home_should_list_available_families(self) -> None:
+        meta = {
+            "title": "JE-1000F Review Preview",
+            "model": "JE-1000F",
+        }
+        families_payload = [
+            {
+                "family": "US",
+                "shared_language_labels": ["English", "Spanish", "French"],
+                "default_manual_url": "manual/US/en/index.html",
+                "change_index_url": "changes/US/index.html",
+                "change_workbook_url": "downloads/US/change-report.xlsx",
+                "models": [{"model": "JE-1000F"}],
+            },
+            {
+                "family": "JP",
+                "shared_language_labels": ["Japanese"],
+                "default_manual_url": "manual/JP/ja/index.html",
+                "change_index_url": "changes/JP/index.html",
+                "change_workbook_url": "downloads/JP/change-report.xlsx",
+                "models": [{"model": "JE-1000F"}],
+            },
+        ]
+
+        html = build_review_preview.render_changes_home_html(meta, families_payload)
+
+        self.assertIn("US family", html)
+        self.assertIn("JP family", html)
+        self.assertIn('href="../changes/US/index.html"', html)
+        self.assertIn('href="../changes/JP/index.html"', html)
+        self.assertIn('href="../downloads/JP/change-report.xlsx"', html)
+
     def test_assert_preview_output_contract_should_require_word_when_enabled(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             output_dir = Path(td)

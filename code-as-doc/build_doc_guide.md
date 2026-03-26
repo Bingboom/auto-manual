@@ -196,12 +196,13 @@ This package contains:
 
 - `index.html`: the workspace root for region-family navigation
 - `manual/`: review-based HTML, grouped by family and model, with language-specific entries inside each model group
-- `changes/`: family-level diff pages plus a compatibility redirect at `changes/index.html`
+- `changes/`: family-level diff pages plus a family hub at `changes/index.html`
 - `downloads/`: family-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files, review pages, and download metadata
 - `generated/workspace.json`: the workspace data contract used by the root page
-- `manual/index.html` and `changes/index.html`: compatibility entries that point to the default manual and default family diff page
+- `manual/index.html`: compatibility redirect to the default manual
+- `changes/index.html`: family selector that links the packaged `US / JP / EU` diff pages instead of dropping reviewers into one default family report
 
 Packaging rule:
 
@@ -210,6 +211,7 @@ Packaging rule:
 - `--skip-word` is for local debugging only and is not used by the CI workflow
 - the workspace hides families with no `_review` content, so the packaged site only shows available families
 - diff, workbook, and CSV outputs stay family-level shared assets, not language-specific artifacts
+- the default change entry in the packaged workspace now opens the family hub first, so reviewers can choose `US` or `JP` explicitly
 
 Vercel note:
 
@@ -338,6 +340,7 @@ Generated report types:
 
 The current report defaults are review-oriented, not `_build`-oriented.
 If `--tracked-root` is omitted, `build.py` resolves `docs/_review/<model>/<region>/` and `reports/version_tracking/<model>/<region>/` automatically from the target.
+Field pairing now prefers stable source back-mapping before falling back to rendered labels, so placeholder/spec label rewrites are more likely to appear as one `M` row with clearer `old_value/new_value` instead of separate `A/D` rows.
 
 ## 7. Common Mistakes
 
