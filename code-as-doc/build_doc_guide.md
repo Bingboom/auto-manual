@@ -239,6 +239,7 @@ Runtime outputs:
 - [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
 
 HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
+In manual preview mode, the HTML view also suppresses most Furo navigation chrome so the page reads more like a manual reader while keeping the language switcher and paged preview canvas.
 
 Review working bundle:
 

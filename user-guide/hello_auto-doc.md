@@ -387,6 +387,7 @@ Source mode meaning:
   - all template pages whose source contains placeholders such as `|PRODUCT_NAME|` or `|MAIN_POWER_BUTTON_LABEL|`
   - cover pages generated from title/product identity
 - generated cover pages still feed PDF/LaTeX output, but HTML now opens directly on the first manual content section instead of a blank cover-style landing screen
+- manual HTML preview also suppresses most default Furo sidebar / TOC chrome so the result feels like a manual reader instead of a documentation site, while still keeping the region/language switcher and paged preview behavior
 
 Equivalent lower-level examples:
 
