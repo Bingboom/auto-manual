@@ -1,26 +1,66 @@
 page_id: 03_product_overview
 template: templates/page_eu/03_product_overview_placeholder.rst
 field_map:
-  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label
-  FRONT_DC12_PORT_LABEL: tpl_front_dc12_port_label
-  FRONT_DC12_PORT_SPEC: tpl_front_dc12_port_spec
-  DC_USB_POWER_BUTTON_LABEL: tpl_dc_usb_power_button_label
-  FRONT_USB_C_LOW_LABEL: tpl_front_usb_c_low_label
-  FRONT_USB_C_LOW_SPEC: tpl_front_usb_c_low_spec
-  FRONT_USB_C_HIGH_LABEL: tpl_front_usb_c_high_label
-  FRONT_USB_C_HIGH_SPEC: tpl_front_usb_c_high_spec
-  AC_POWER_BUTTON_LABEL: tpl_ac_power_button_label
-  FRONT_USB_A_LABEL: tpl_front_usb_a_label
-  FRONT_USB_A_SPEC: tpl_front_usb_a_spec
-  FRONT_AC_OUTPUT_LABEL: tpl_front_ac_output_label
-  FRONT_AC_OUTPUT_SPEC: tpl_front_ac_output_spec
-  FRONT_TOTAL_OUTPUT_LABEL: tpl_front_total_output_label
-  FRONT_TOTAL_OUTPUT_SPEC: tpl_front_total_output_spec
-  SIDE_AC_INPUT_LABEL: tpl_side_ac_input_label
-  SIDE_AC_INPUT_SPEC: tpl_side_ac_input_spec
-  SIDE_DC_INPUT_LABEL: tpl_side_dc_input_label
-  SIDE_DC_INPUT_PV_SPEC: tpl_side_dc_input_pv_spec
-  SIDE_DC_INPUT_CAR_SPEC: tpl_side_dc_input_car_spec
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: tpl_main_power_button_label
+    pages: [Product overview]
+  FRONT_DC12_PORT_LABEL:
+    row_key: tpl_front_dc12_port_label
+    pages: [Product overview]
+  FRONT_DC12_PORT_SPEC:
+    row_key: tpl_front_dc12_port_spec
+    pages: [Product overview]
+  DC_USB_POWER_BUTTON_LABEL:
+    row_key: tpl_dc_usb_power_button_label
+    pages: [Product overview]
+  FRONT_USB_C_LOW_LABEL:
+    row_key: tpl_front_usb_c_low_label
+    pages: [Product overview]
+  FRONT_USB_C_LOW_SPEC:
+    row_key: tpl_front_usb_c_low_spec
+    pages: [Product overview]
+  FRONT_USB_C_HIGH_LABEL:
+    row_key: tpl_front_usb_c_high_label
+    pages: [Product overview]
+  FRONT_USB_C_HIGH_SPEC:
+    row_key: tpl_front_usb_c_high_spec
+    pages: [Product overview]
+  AC_POWER_BUTTON_LABEL:
+    row_key: tpl_ac_power_button_label
+    pages: [Product overview]
+  FRONT_USB_A_LABEL:
+    row_key: tpl_front_usb_a_label
+    pages: [Product overview]
+  FRONT_USB_A_SPEC:
+    row_key: tpl_front_usb_a_spec
+    pages: [Product overview]
+  FRONT_AC_OUTPUT_LABEL:
+    row_key: tpl_front_ac_output_label
+    pages: [Product overview]
+  FRONT_AC_OUTPUT_SPEC:
+    row_key: tpl_front_ac_output_spec
+    pages: [Product overview]
+  FRONT_TOTAL_OUTPUT_LABEL:
+    row_key: tpl_front_total_output_label
+    pages: [Product overview]
+  FRONT_TOTAL_OUTPUT_SPEC:
+    row_key: tpl_front_total_output_spec
+    pages: [Product overview]
+  SIDE_AC_INPUT_LABEL:
+    row_key: tpl_side_ac_input_label
+    pages: [Product overview]
+  SIDE_AC_INPUT_SPEC:
+    row_key: tpl_side_ac_input_spec
+    pages: [Product overview]
+  SIDE_DC_INPUT_LABEL:
+    row_key: tpl_side_dc_input_label
+    pages: [Product overview]
+  SIDE_DC_INPUT_PV_SPEC:
+    row_key: tpl_side_dc_input_pv_spec
+    pages: [Product overview]
+  SIDE_DC_INPUT_CAR_SPEC:
+    row_key: tpl_side_dc_input_car_spec
+    pages: [Product overview]
 required_row_keys:
   - product_name
   - model_no

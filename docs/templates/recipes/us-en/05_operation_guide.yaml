@@ -2,9 +2,15 @@ page_id: 05_operation_guide
 template: templates/page_us-en/05_operation_guide_placeholder.rst
 field_map:
   PRODUCT_NAME: product_name
-  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label
-  AC_POWER_BUTTON_LABEL: tpl_ac_power_button_label
-  DC_USB_POWER_BUTTON_LABEL: tpl_dc_usb_power_button_label
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: tpl_main_power_button_label
+    pages: [Product overview]
+  AC_POWER_BUTTON_LABEL:
+    row_key: tpl_ac_power_button_label
+    pages: [Product overview]
+  DC_USB_POWER_BUTTON_LABEL:
+    row_key: tpl_dc_usb_power_button_label
+    pages: [Product overview]
   DEFAULT_STANDBY_DURATION: tpl_default_standby_duration
   ENERGY_SAVING_AUTO_OFF_DURATION: tpl_energy_saving_auto_off_duration
   ENERGY_SAVING_AC_THRESHOLD: tpl_energy_saving_ac_threshold
