@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.utils.spec_master import page_value_matches
+
 HEADING_UNDERLINE_RE = re.compile(r"^[=\-~^\"`:#*+]{3,}$")
 SPEC_SECTION_RE = re.compile(r"\\specsectiontitle\{(.+?)\}")
 HTML_SPEC_SECTION_RE = re.compile(r'<h2[^>]*>(.+?)</h2>', re.IGNORECASE)
@@ -549,8 +551,8 @@ def build_spec_source_lookup(
             continue
         if not is_truthy(first_non_empty(row, ["Is_Latest", "is_latest"])):
             continue
-        page = first_non_empty(row, ["Page", "page"]).lower()
-        if page and page not in {"spec", "specifications"}:
+        page = first_non_empty(row, ["Page", "page"])
+        if not page_value_matches(page, ("spec", "specifications")):
             continue
         row_model = first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
         row_region = first_non_empty(row, ["Region", "region"])
@@ -654,10 +656,6 @@ def build_placeholder_source_lookup(
             continue
         if not is_truthy(first_non_empty(row, ["Is_Latest", "is_latest"])):
             continue
-        page = first_non_empty(row, ["Page", "page"]).lower()
-        if page and page not in {"spec", "specifications"}:
-            continue
-
         row_model = first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
         row_region = first_non_empty(row, ["Region", "region"])
         if model and row_model and row_model != model:

@@ -338,6 +338,7 @@ def missing_required_row_keys(
             region=region,
             lang=lang,
             row_key=row_key,
+            pages=None,
         )
         if match is None:
             missing.append(row_key)

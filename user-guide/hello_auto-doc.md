@@ -285,6 +285,12 @@ Resolution source:
 - `model_no` comes from `Row_key=model_no`
 - `PRODUCT_SHORT_NAME` is derived from `PRODUCT_NAME`
 
+`Spec_Master.csv` `Page` note:
+
+- `Page` can be a comma-separated list
+- use `Product overview` for Product overview-only placeholder rows such as front/side-view callouts
+- use `Product overview, specifications,` when the same row is intentionally shared by both pages
+
 Any `Row_key` beginning with `tpl_` becomes a placeholder.
 
 Examples:

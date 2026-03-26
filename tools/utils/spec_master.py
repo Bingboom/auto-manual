@@ -449,6 +449,12 @@ def _pick_row_region(row: dict[str, str]) -> str:
     return _first_non_empty(row, ["Region", "region"])
 
 
+def normalize_page_tokens(raw: str | None) -> tuple[str, ...]:
+    if raw is None:
+        return ()
+    return tuple(token for token in (item.strip().lower() for item in str(raw).split(",")) if token)
+
+
 def _normalize_page_filters(pages: str | list[str] | tuple[str, ...] | set[str] | None) -> set[str] | None:
     if pages is None:
         return None
@@ -457,8 +463,25 @@ def _normalize_page_filters(pages: str | list[str] | tuple[str, ...] | set[str] 
     else:
         raw_items = list(pages)
 
-    normalized = {(item or "").strip().lower() for item in raw_items if (item or "").strip()}
+    normalized = {
+        token
+        for item in raw_items
+        for token in normalize_page_tokens(item)
+    }
     return normalized or None
+
+
+def page_value_matches(
+    raw_page: str | None,
+    pages: str | list[str] | tuple[str, ...] | set[str] | None,
+) -> bool:
+    page_filters = _normalize_page_filters(pages)
+    if not page_filters:
+        return True
+    page_tokens = set(normalize_page_tokens(raw_page))
+    if not page_tokens:
+        return True
+    return not page_filters.isdisjoint(page_tokens)
 
 
 def _row_matches_target(
@@ -479,9 +502,7 @@ def _row_matches_target(
     if target_key and _pick_row_key(row) != target_key:
         return False
 
-    page_filters = _normalize_page_filters(pages)
-    page_value = _first_non_empty(row, ["Page", "page"]).lower()
-    if page_filters and page_value and page_value not in page_filters:
+    if not page_value_matches(_first_non_empty(row, ["Page", "page"]), pages):
         return False
 
     target_model = (model or "").strip()
@@ -703,6 +724,7 @@ def resolve_template_substitutions_from_rows(
         region=region,
         lang=lang,
         row_key="product_name",
+        pages=None,
     )
     if product_match:
         substitutions["PRODUCT_NAME"] = product_match.value
@@ -716,6 +738,7 @@ def resolve_template_substitutions_from_rows(
         region=region,
         lang=lang,
         row_key="model_no",
+        pages=None,
     )
     if model_match:
         substitutions["MODEL_NO"] = model_match.value
@@ -725,7 +748,7 @@ def resolve_template_substitutions_from_rows(
         model=model,
         region=region,
         lang=lang,
-        pages=("spec", "specifications"),
+        pages=None,
     ):
         raw_key = _pick_row_key(row)
         if not raw_key.startswith("tpl_"):
@@ -757,6 +780,7 @@ def resolve_product_name_from_rows(
         region=region,
         lang=lang,
         row_key="product_name",
+        pages=None,
     )
     if not match:
         return None

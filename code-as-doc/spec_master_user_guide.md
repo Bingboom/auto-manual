@@ -54,12 +54,19 @@ At minimum, [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) needs enough dat
 
 Important columns commonly used by the current system:
 
+- `Page`
 - `Section`
 - `Row_key`
 - `Line_order`
 - `Model`
 - `Region`
 - language-specific value columns such as `Value_en` / `Value_ja`
+
+Current `Page` rule:
+
+- `Page` may be a comma-separated page list instead of one fixed page name
+- use `Product overview` for Product overview-only placeholder rows
+- use `Product overview, specifications,` when one row is shared by both pages
 
 Important row keys:
 

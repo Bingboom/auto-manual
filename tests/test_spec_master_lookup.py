@@ -6,6 +6,7 @@ from pathlib import Path
 from tools.utils.spec_master import (
     resolve_product_name_from_rows,
     resolve_product_name_from_spec_master,
+    resolve_spec_value_from_rows,
     resolve_template_substitutions_from_rows,
     resolve_template_substitutions_from_spec_master,
 )
@@ -103,6 +104,70 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("Main POWER Button", substitutions["MAIN_POWER_BUTTON_LABEL"])
         self.assertEqual("main POWER button", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
         self.assertEqual("**Jackery Battery Pack 3600**", substitutions["BATTERY_PACK_NAME_BOLD"])
+
+    def test_lookup_should_match_comma_separated_page_values(self) -> None:
+        rows = [
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview, specifications,",
+                "Row_key": "product_name",
+                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Model": "JHP-2000A",
+            }
+        ]
+
+        match = resolve_spec_value_from_rows(
+            rows,
+            model="JHP-2000A",
+            region="US",
+            lang="en",
+            row_key="product_name",
+            pages=("specifications",),
+        )
+
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual("Jackery HomePower 2000 Plus v2", match.value)
+
+    def test_template_substitutions_should_include_tpl_rows_from_product_overview_pages(self) -> None:
+        rows = [
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview, specifications,",
+                "Row_key": "product_name",
+                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview, specifications,",
+                "Row_key": "model_no",
+                "Value_en": "JHP-2000A",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Row_key": "tpl_main_power_button_label",
+                "Value_en": "Main POWER Button",
+                "Model": "JHP-2000A",
+            },
+        ]
+
+        substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JHP-2000A",
+            region="US",
+            lang="en",
+        )
+
+        self.assertEqual("Jackery HomePower 2000 Plus v2", substitutions["PRODUCT_NAME"])
+        self.assertEqual("JHP-2000A", substitutions["MODEL_NO"])
+        self.assertEqual("Main POWER Button", substitutions["MAIN_POWER_BUTTON_LABEL"])
 
     def test_real_spec_master_should_resolve_je1000f_us_product_name_for_western_langs(self) -> None:
         spec_master_csv = Path(__file__).resolve().parents[1] / "data" / "phase1" / "Spec_Master.csv"

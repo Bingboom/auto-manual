@@ -7,6 +7,7 @@ import csv
 from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
+from ..utils.spec_master import page_value_matches
 
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
@@ -198,7 +199,7 @@ def _parse_spec_master_sections(
             continue
 
         page_value = _first_non_empty(row, ["Page", "page"])
-        if page_value and page_value.lower() not in {"spec", "specifications"}:
+        if not page_value_matches(page_value, ("spec", "specifications")):
             continue
 
         row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind"]).lower() or "data"

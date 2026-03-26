@@ -146,6 +146,12 @@ If you update any of these:
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
 
+`Spec_Master.csv` note:
+
+- the `Page` column may now hold a comma-separated page list
+- use `Product overview` for Product overview-only `tpl_*` rows
+- use `Product overview, specifications,` when a row is intentionally shared by both pages
+
 `Spec_Footnotes.csv` supports two spec-bottom row types:
 
 - `row_kind=footnote`: numbered entries such as `①`

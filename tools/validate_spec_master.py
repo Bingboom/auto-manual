@@ -135,8 +135,8 @@ def _collect_target_selectors(
     langs: list[str],
 ) -> tuple[list[SpecSelector], list[SpecMasterValidationIssue]]:
     selectors = [
-        SpecSelector(owner="target identity", row_key="product_name", pages=("spec", "specifications")),
-        SpecSelector(owner="target identity", row_key="model_no", pages=("spec", "specifications")),
+        SpecSelector(owner="target identity", row_key="product_name", pages=None),
+        SpecSelector(owner="target identity", row_key="model_no", pages=None),
     ]
     issues: list[SpecMasterValidationIssue] = []
     docs_dir = resolve_docs_dir(cfg)
@@ -195,7 +195,7 @@ def _collect_target_selectors(
                 SpecSelector(
                     owner=f"recipe '{recipe.page_id}' required_row_keys",
                     row_key=row_key,
-                    pages=("spec", "specifications"),
+                    pages=None,
                 )
             )
         for placeholder, binding in recipe.field_map.items():

@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-24
+Updated: 2026-03-26
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -96,6 +96,7 @@ Use different surfaces for different stages:
 - shared template changes: [`docs/templates/`](docs/templates)
 - structured data changes: [`data/phase1/`](data/phase1)
   `Spec_Footnotes.csv` supports both numbered `footnote` rows and plain `note` rows such as trademark statements. If numbering differs by language, put the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty.
+  `Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages.
 - target-specific review edits after review starts: [`docs/_review/`](docs/_review)
 - generated runtime and export outputs: [`docs/_build/`](docs/_build)
 

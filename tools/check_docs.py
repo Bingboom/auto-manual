@@ -488,6 +488,7 @@ def collect_page_contract_issues(
                     region=target.region,
                     lang=lang,
                     row_key=row_key,
+                    pages=None,
                 )
                 is None
             ]
