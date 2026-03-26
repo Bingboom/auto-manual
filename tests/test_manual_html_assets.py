@@ -32,6 +32,18 @@ class ManualHtmlAssetsTests(unittest.TestCase):
         self.assertIn("#furo-main-content h2:not(.hb-subbar):not(.hb-spec-section)", text)
         self.assertIn("> a.reference.internal.image-reference", text)
         self.assertIn(".table-wrapper.docutils", text)
+        self.assertIn(".hb-preface__block", text)
+        self.assertIn(".hb-manual-toc", text)
+
+    def test_manual_js_should_promote_preface_into_cards(self) -> None:
+        text = (ROOT / "docs" / "_static" / "hb_manual.js").read_text(encoding="utf-8")
+
+        self.assertIn("initPrefaceLayout", text)
+        self.assertIn("initManualSidebar", text)
+        self.assertIn("hb-preface__block", text)
+        self.assertIn("hb-manual-toc__link", text)
+        self.assertIn("FR IMPORTANT", text)
+        self.assertIn("ES IMPORTANTE", text)
 
 
 if __name__ == "__main__":
