@@ -85,11 +85,11 @@ HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_a_label,USB-A 18W 
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_front_usb_a_spec,USB-A 18W Output,1,,5-6V/3A、6-9V/2A、9-12V/1.5A、最大18W,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_front_ac_output_label,AC Output,1,,AC出力,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,tpl_front_ac_output_spec,AC Output,1,,100V~50/60Hz、15A、定格1500W、瞬間最大3000W,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_label,DC Input (2 x DC8020 Ports),1,,DC入力（DC8020ポート×2）,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_pv_spec,PV Input,1,,PV: 16-60V/12A、2ポート合計最大21A/400W,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_car_spec,Car Input,1,,車載充電: 11-16V/8A、2ポート合計最大8A,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,,AC入力,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,,100V-120V~50/60Hz、15A 最大、急速充電 約1450W,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_label,DC Input (2 x DC8020 Ports),1,,DC入力ポート（DC8020）,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_pv_spec,PV Input,1,,PV：16V-60V⎓12A，2ポート最大21A，最大400W,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_dc_input_car_spec,Car Input,1,,ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A, 2ポート最大8A,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,,AC入力ポート,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,,100V-120V~ 50Hz/60Hz，最大15A，最大約1450W,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,SETTINGS,8,tpl_default_standby_duration,Default Standby Duration,1,,2時間,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,SETTINGS,8,tpl_energy_saving_auto_off_duration,Energy Saving Auto Off Duration,1,,12時間,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,SETTINGS,8,tpl_energy_saving_ac_threshold,Energy Saving AC Threshold,1,,25W,,,,,,JE-1000F
