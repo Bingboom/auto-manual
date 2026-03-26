@@ -49,15 +49,6 @@ _MANUAL_SWITCHER_BLOCK_RE = re.compile(
     r"<!-- HB_MANUAL_SWITCHER_START -->.*?<!-- HB_MANUAL_SWITCHER_END -->\s*",
     re.DOTALL,
 )
-_BODY_CLASS_RE = re.compile(r"<body\b([^>]*)class=\"([^\"]*)\"([^>]*)>", re.IGNORECASE)
-_HB_MANUAL_CSS_RE = re.compile(
-    r'\s*<link[^>]+href="_static/hb_manual\.css[^"]*"[^>]*>\s*',
-    re.IGNORECASE,
-)
-_HB_MANUAL_JS_RE = re.compile(
-    r'\s*<script[^>]+src="_static/hb_manual\.js[^"]*"[^>]*></script>\s*',
-    re.IGNORECASE,
-)
 
 
 @dataclass(frozen=True)
@@ -1349,28 +1340,62 @@ def build_diff_command(*, args: argparse.Namespace, family: str, tracked_root: P
     ]
 
 
-def strip_manual_switcher(text: str) -> str:
-    cleaned = _MANUAL_SWITCHER_BLOCK_RE.sub("", text)
-    cleaned = _HB_MANUAL_CSS_RE.sub("\n", cleaned)
+def rewrite_manual_switcher_links(
+    text: str,
+    *,
+    model: str,
+    current_target: WorkspaceTarget,
+    current_relative_path: Path,
+    all_targets: list[WorkspaceTarget],
+) -> str:
+    match = _MANUAL_SWITCHER_BLOCK_RE.search(text)
+    if match is None:
+        return text
 
-    def replace_body(match: re.Match[str]) -> str:
-        classes = [token for token in match.group(2).split() if token != "hb-manual-switcher-body"]
-        before = match.group(1)
-        after = match.group(3)
-        if classes:
-            return f'<body{before}class="{" ".join(classes)}"{after}>'
-        return f"<body{before}{after}>"
+    current_source_html = html_root_for_target(model, current_target) / current_relative_path
+    source_start = current_source_html.parent
+    preview_current = Path("manual") / current_target.family / current_target.language / current_relative_path
+    preview_start = preview_current.parent
+    rewritten = match.group(0)
 
-    return _BODY_CLASS_RE.sub(replace_body, cleaned, count=1)
+    for target in all_targets:
+        if target == current_target:
+            continue
+
+        target_source_root = html_root_for_target(model, target)
+        target_page = current_relative_path if (target_source_root / current_relative_path).exists() else Path("index.html")
+        source_target = target_source_root / target_page
+        preview_target = Path("manual") / target.family / target.language / target_page
+
+        source_href = Path(os.path.relpath(source_target, start=source_start)).as_posix()
+        preview_href = Path(os.path.relpath(preview_target, start=preview_start)).as_posix()
+        rewritten = rewritten.replace(f'href="{escape(source_href)}"', f'href="{escape(preview_href)}"')
+
+    return text[: match.start()] + rewritten + text[match.end() :]
 
 
-def sanitize_manual_tree(manual_dir: Path) -> None:
+def rewrite_manual_tree_for_preview(
+    manual_dir: Path,
+    *,
+    model: str,
+    current_target: WorkspaceTarget,
+    all_targets: list[WorkspaceTarget],
+) -> None:
     for html_file in manual_dir.rglob("*.html"):
         try:
             text = html_file.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
-        html_file.write_text(strip_manual_switcher(text), encoding="utf-8")
+        html_file.write_text(
+            rewrite_manual_switcher_links(
+                text,
+                model=model,
+                current_target=current_target,
+                current_relative_path=html_file.relative_to(manual_dir),
+                all_targets=all_targets,
+            ),
+            encoding="utf-8",
+        )
 
 
 def discover_workspace_families(args: argparse.Namespace) -> list[tuple[str, list[WorkspaceTarget], Path]]:
@@ -1482,6 +1507,8 @@ def main() -> int:
     families_payload: list[dict[str, object]] = []
     changes_by_family: dict[str, object] = {}
 
+    all_workspace_targets = [target for _, targets, _ in family_matrix for target in targets]
+
     for family, targets, tracked_root in family_matrix:
         export_plan: list[tuple[str, WorkspaceTarget]] = []
         if not args.skip_build:
@@ -1552,7 +1579,12 @@ def main() -> int:
 
             manual_dest = manual_root / family / target.language
             copy_tree(html_root, manual_dest)
-            sanitize_manual_tree(manual_dest)
+            rewrite_manual_tree_for_preview(
+                manual_dest,
+                model=args.model,
+                current_target=target,
+                all_targets=all_workspace_targets,
+            )
 
             manual_meta = read_json_if_exists(html_root / "manual_meta.json")
             manual_title = display_text(manual_meta.get("title"), f"{args.model} User Manual")

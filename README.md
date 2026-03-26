@@ -63,7 +63,7 @@ HTML output note:
 
 - generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
 - manual HTML now suppresses most Furo documentation chrome in preview mode, uses a continuous reading layout instead of browser-side fake pagination, regenerates a lightweight left outline from manual headings, and presents generic headings, copy width, figures, ordinary tables, and the multilingual preface notice with a restrained neutral manual-reader style while preserving dedicated layouts such as the `SPECIFICATIONS` table treatment
-- review-preview/Vercel manual pages intentionally keep the default white Furo reading surface, but they now retain the generated heading sidebar so design review links do not lose the left-hand outline
+- review-preview/Vercel manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the top region/language switcher
 
 Review-sharing example:
 

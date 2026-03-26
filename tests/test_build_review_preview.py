@@ -5,12 +5,31 @@ import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest import mock
 
 from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
-    def test_strip_manual_switcher_should_keep_sidebar_script_for_review_preview(self) -> None:
+    def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
+        current = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="en",
+            config="config.us-en.yaml",
+            include_lang_in_output_path=True,
+        )
+        es_target = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="es",
+            config="config.us-es.yaml",
+            include_lang_in_output_path=True,
+        )
+        jp_target = build_review_preview.WorkspaceTarget(
+            family="JP",
+            language="ja",
+            config="config.ja.yaml",
+            include_lang_in_output_path=False,
+        )
         html = """
 <html>
   <head>
@@ -18,18 +37,41 @@ class TestBuildReviewPreview(unittest.TestCase):
     <script src="_static/hb_manual.js"></script>
   </head>
   <body class="furo hb-manual-switcher-body">
-    <!-- HB_MANUAL_SWITCHER_START --><div class="hb-manual-switcher"></div><!-- HB_MANUAL_SWITCHER_END -->
+    <!-- HB_MANUAL_SWITCHER_START -->
+    <div class="hb-manual-switcher">
+      <a class="hb-manual-switcher__lang" href="../../es/html/index.html">Espanol</a>
+      <a class="hb-manual-switcher__lang" href="../../../JP/html/index.html">日本語</a>
+    </div>
+    <!-- HB_MANUAL_SWITCHER_END -->
     <aside class="sidebar-drawer"><div class="sidebar-tree"></div></aside>
     <main id="furo-main-content"><h1>Demo</h1></main>
   </body>
 </html>
 """
-        cleaned = build_review_preview.strip_manual_switcher(html)
+        root = Path("C:/preview-test")
 
-        self.assertNotIn("hb-manual-switcher-body", cleaned)
-        self.assertNotIn("_static/hb_manual.css", cleaned)
-        self.assertNotIn("HB_MANUAL_SWITCHER_START", cleaned)
-        self.assertIn("_static/hb_manual.js", cleaned)
+        def fake_html_root(_: str, target: build_review_preview.WorkspaceTarget) -> Path:
+            mapping = {
+                ("US", "en"): root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html",
+                ("US", "es"): root / "docs" / "_build" / "JE-1000F" / "US" / "es" / "html",
+                ("JP", "ja"): root / "docs" / "_build" / "JE-1000F" / "JP" / "html",
+            }
+            return mapping[(target.family, target.language)]
+
+        with mock.patch.object(build_review_preview, "html_root_for_target", side_effect=fake_html_root):
+            rewritten = build_review_preview.rewrite_manual_switcher_links(
+                html,
+                model="JE-1000F",
+                current_target=current,
+                current_relative_path=Path("index.html"),
+                all_targets=[current, es_target, jp_target],
+            )
+
+        self.assertIn("hb-manual-switcher-body", rewritten)
+        self.assertIn("_static/hb_manual.css", rewritten)
+        self.assertIn("HB_MANUAL_SWITCHER_START", rewritten)
+        self.assertIn('href="../es/index.html"', rewritten)
+        self.assertIn('href="../../JP/ja/index.html"', rewritten)
 
     def test_build_spec_for_target_should_keep_us_en_on_lang_specific_config_in_review_mode(self) -> None:
         args = argparse.Namespace(
