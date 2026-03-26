@@ -21,6 +21,16 @@ def git(repo: Path, *args: str) -> str:
 
 
 class TestDiffReport(unittest.TestCase):
+    def test_parse_args_should_ignore_initial_adds_by_default(self) -> None:
+        args = diff_report.parse_args([])
+
+        self.assertTrue(args.ignore_initial_adds)
+
+    def test_parse_args_should_support_include_initial_adds_override(self) -> None:
+        args = diff_report.parse_args(["--include-initial-adds"])
+
+        self.assertFalse(args.ignore_initial_adds)
+
     def test_detect_initial_baseline_should_return_true_when_tracked_subtree_first_appears(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = Path(td)
@@ -538,7 +548,7 @@ class TestDiffReport(unittest.TestCase):
                 files_csv,
             )
             self.assertIn("Initial baseline detected", files_html)
-            self.assertIn("--ignore-initial-adds is enabled", files_html)
+            self.assertIn("--include-initial-adds", files_html)
             self.assertIn("Initial baseline detected", index_html)
 
 

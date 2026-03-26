@@ -1579,7 +1579,7 @@ def generate_diff_report(
     to_ref: str,
     output_dir: Path,
     config_path: Path | None = None,
-    ignore_initial_adds: bool = False,
+    ignore_initial_adds: bool = True,
 ) -> tuple[Path, Path]:
     raw_file_rows = collect_diff_rows(
         repo_root=repo_root,
@@ -1601,7 +1601,7 @@ def generate_diff_report(
         )
     if is_initial_baseline and ignore_initial_adds:
         notices.append(
-            "Initial Added rows were excluded because --ignore-initial-adds is enabled."
+            "Initial Added rows were excluded by default. Pass --include-initial-adds to keep them."
         )
         file_rows: list[DiffRow] = []
     else:
@@ -1772,10 +1772,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--config", default="config.yaml", help="Config YAML path for resolving source CSV metadata")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref")
+    ap.set_defaults(ignore_initial_adds=True)
     ap.add_argument(
         "--ignore-initial-adds",
+        dest="ignore_initial_adds",
         action="store_true",
-        help="When the tracked subtree is first introduced, ignore the initial all-Added diff rows in generated reports",
+        help="When the tracked subtree is first introduced, ignore the initial all-Added diff rows in generated reports (default)",
+    )
+    ap.add_argument(
+        "--include-initial-adds",
+        dest="ignore_initial_adds",
+        action="store_false",
+        help="When the tracked subtree is first introduced, keep the initial all-Added diff rows in generated reports",
     )
     ap.add_argument(
         "--output-dir",
@@ -1824,7 +1832,7 @@ def main(argv: list[str] | None = None) -> int:
             f"{tracked_root}. All Added rows are expected because the subtree did not exist at {args.from_ref}."
         )
         if args.ignore_initial_adds:
-            print("[diff_report] NOTE: Initial Added rows were excluded because --ignore-initial-adds is enabled.")
+            print("[diff_report] NOTE: Initial Added rows were excluded by default. Pass --include-initial-adds to keep them.")
     print(f"[diff_report] FILES CSV: {output_dir / f'{base_name}_files.csv'}")
     print(f"[diff_report] FILES HTML: {output_dir / f'{base_name}_files.html'}")
     print(f"[diff_report] PAGES CSV: {output_dir / f'{base_name}_pages.csv'}")

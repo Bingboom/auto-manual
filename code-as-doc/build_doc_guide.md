@@ -328,7 +328,7 @@ python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD
 python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP
 python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --from-ref HEAD~1 --to-ref HEAD
-python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --ignore-initial-adds
+python build.py diff-report --config config.ja.yaml --tracked-root docs/_review/JE-1000F/JP --include-initial-adds
 ```
 
 Generated report types:
@@ -340,6 +340,7 @@ Generated report types:
 
 The current report defaults are review-oriented, not `_build`-oriented.
 If `--tracked-root` is omitted, `build.py` resolves `docs/_review/<model>/<region>/` and `reports/version_tracking/<model>/<region>/` automatically from the target.
+Initial baseline Added rows are now hidden by default so the first non-baseline review round is easier to read. Pass `--include-initial-adds` when you need the full initial import noise.
 Field pairing now prefers stable source back-mapping before falling back to rendered labels, so placeholder/spec label rewrites are more likely to appear as one `M` row with clearer `old_value/new_value` instead of separate `A/D` rows.
 
 ## 7. Common Mistakes

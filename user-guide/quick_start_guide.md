@@ -461,6 +461,16 @@ git push -u origin codex/review-je1000f-multilang
 
 如果还没有打开 PR，或者你需要手动重建预览，可以在 push 后去 `Actions -> Review Preview Package` 手动运行。
 
+### 10.1 Review 阶段速查表
+
+| 你改了什么 | 正确操作 | 不该怎么做 |
+| --- | --- | --- |
+| `_review` 里的目标特有文案 | 直接提交 `docs/_review/**` | 不要回头改 `docs/templates/**` 期待它自动进 review |
+| `Spec_Master.csv` / `Spec_Footnotes.csv` / `spec_titles.csv` | 先跑 `sync-review`，再提交共享源和 `_review` | 不要只提交 CSV，不同步 `_review` |
+| 带占位符的共享模板页 | 先跑 `sync-review`，确认对应 review 页已更新，再提交 | 不要假设所有模板页都会自动同步 |
+| 纯文本共享模板页 | 手动把同样修改写进 `docs/_review/**`，再一起提交 | 不要只改模板；这样 preview / diff-report 往往看不到 |
+| 明确要用新的共享种子层整包覆盖评审稿 | 用 `review --refresh-review` | 不要在不确定影响时直接 refresh 整包 |
+
 ---
 
 ## 11. 阶段 G：评审中参数发生变化怎么办
@@ -627,6 +637,25 @@ git commit -m "Update US symbols wording for JE-1000F review"
 
 至少存在两个 review 提交之后，再导出 revision report。
 
+默认情况下，`diff-report` 已经会忽略“初稿 baseline 首次入 Git”带来的整包 Added 噪声。  
+所以日常最短命令就是：
+
+```powershell
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US
+```
+
+如果你反而想把 baseline 首次导入时的 Added 全都看出来，再显式加：
+
+```powershell
+--include-initial-adds
+```
+
+这个开关适合：
+
+- `_review` baseline 刚进 Git，下一轮你只想看真实修改
+- 当前 tracked root 在旧提交里不存在，新提交里是整包 Added
+- 你要回头排查“初稿首次导入时到底带了哪些文件和字段”
+
 推荐命令：
 
 ```powershell
@@ -639,10 +668,10 @@ python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 如果这是第一次 baseline，而且你不想在 report 里看到整包 Added：
 
 ```powershell
-python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
-python build.py diff-report --config config.us-es.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
-python build.py diff-report --config config.us-fr.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
-python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us-es.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us-fr.yaml --model JE-1000F --region US
+python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 主要输出目录：

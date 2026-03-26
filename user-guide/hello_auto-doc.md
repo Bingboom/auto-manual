@@ -476,7 +476,7 @@ Example report export for one model:
 ```powershell
 python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US
 python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD
-python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --include-initial-adds
 ```
 
 Example report export for one region:
@@ -517,13 +517,14 @@ Use `--report-dir` if you want a different output folder.
 
 Useful option:
 
-- `--ignore-initial-adds`
-  Use this when the tracked subtree is being committed for the first time and you do not want the report filled with one-time `Added` rows.
+- `--include-initial-adds`
+  The default report already hides one-time initial baseline Added rows. Use this only when you want to see the full first-import churn.
 
 Automatic behavior:
 
 - if the tracked subtree does not exist at `from-ref` but exists at `to-ref`, the report now shows an explicit note that this is an initial baseline and all Added rows are expected
-- if you also pass `--ignore-initial-adds`, the generated reports keep the note but suppress those initial Added rows
+- by default, the generated reports keep the note but suppress those initial Added rows
+- if you pass `--include-initial-adds`, those initial Added rows are kept in the generated reports
 
 ### 9.5 Which Report to Open First
 

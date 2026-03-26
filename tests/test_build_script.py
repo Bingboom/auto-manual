@@ -136,7 +136,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("HEAD~1", args.from_ref)
         self.assertEqual("HEAD", args.to_ref)
         self.assertIsNone(args.report_dir)
-        self.assertFalse(args.ignore_initial_adds)
+        self.assertTrue(args.ignore_initial_adds)
 
     def test_parse_args_should_support_doctor_action(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml"])
@@ -163,8 +163,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[0])
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[0])
 
-    def test_run_diff_report_should_forward_ignore_initial_adds_flag(self) -> None:
-        args = build_cli.parse_args(["diff-report", "--ignore-initial-adds", "--model", "JE-1000F", "--region", "US"])
+    def test_run_diff_report_should_not_forward_any_initial_adds_override_by_default(self) -> None:
+        args = build_cli.parse_args(["diff-report", "--model", "JE-1000F", "--region", "US"])
         seen: list[list[str]] = []
         original = build_cli.run_checked
         original_targets = build_cli._resolve_diff_report_targets
@@ -177,7 +177,24 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
-        self.assertIn("--ignore-initial-adds", seen[0])
+        self.assertNotIn("--ignore-initial-adds", seen[0])
+        self.assertNotIn("--include-initial-adds", seen[0])
+
+    def test_run_diff_report_should_forward_include_initial_adds_flag(self) -> None:
+        args = build_cli.parse_args(["diff-report", "--include-initial-adds", "--model", "JE-1000F", "--region", "US"])
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        original_targets = build_cli._resolve_diff_report_targets
+        try:
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_diff_report(args)
+        finally:
+            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(1, len(seen))
+        self.assertIn("--include-initial-adds", seen[0])
 
     def test_run_diff_report_should_derive_report_dir_from_explicit_tracked_root(self) -> None:
         args = build_cli.parse_args(
