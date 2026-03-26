@@ -61,10 +61,10 @@ VISTA LATERAL DERECHA
    * - **Asa**
      - **AC Input**
 
-       100V-120V~60Hz, 15A Max, Flash Charge approx. 1650W
+       100V-120V~60 Hz, 15A Max
    * -
-     - **DC Input (2 x DC8020 Ports)**
+     - **DC Input (2×DC8020 Ports)**
 
-       PV: 16-60V/12A Max, combined up to 21A / 400W Max
+       PV: 16-60V⎓12A Max, Double to 21A / 400W Max
 
-       Car: 11-16V/8A Max, combined up to 8A Max
+       Car: 11-16V⎓8A Max, Double to 8A Max
