@@ -1352,7 +1352,6 @@ def build_diff_command(*, args: argparse.Namespace, family: str, tracked_root: P
 def strip_manual_switcher(text: str) -> str:
     cleaned = _MANUAL_SWITCHER_BLOCK_RE.sub("", text)
     cleaned = _HB_MANUAL_CSS_RE.sub("\n", cleaned)
-    cleaned = _HB_MANUAL_JS_RE.sub("\n", cleaned)
 
     def replace_body(match: re.Match[str]) -> str:
         classes = [token for token in match.group(2).split() if token != "hb-manual-switcher-body"]

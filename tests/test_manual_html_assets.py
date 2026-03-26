@@ -40,6 +40,7 @@ class ManualHtmlAssetsTests(unittest.TestCase):
 
         self.assertIn("initPrefaceLayout", text)
         self.assertIn("initManualSidebar", text)
+        self.assertIn('document.body.classList.contains("hb-manual-switcher-body")', text)
         self.assertIn("hb-preface__block", text)
         self.assertIn("hb-manual-toc__link", text)
         self.assertIn("FR IMPORTANT", text)

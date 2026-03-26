@@ -240,6 +240,7 @@ Runtime outputs:
 
 HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
 In manual preview mode, the HTML view also suppresses most Furo navigation chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from manual headings, and applies a restrained neutral manual-reader treatment to generic headings, copy width, figures, ordinary docutils tables, and the multilingual preface notice while preserving dedicated component layouts such as `SPECIFICATIONS`.
+For review-preview / Vercel packaging, the manual pages intentionally keep the default white Furo reading surface, but the generated heading sidebar is preserved so the left navigation is still available during design review.
 
 Review working bundle:
 

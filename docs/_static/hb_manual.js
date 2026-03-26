@@ -132,7 +132,7 @@
     return slug;
   }
 
-  function initManualSidebar() {
+  function initManualSidebar(manualMode) {
     const main = document.querySelector("#furo-main-content");
     const sidebarTree = document.querySelector(".sidebar-tree");
     const sidebarDrawer = document.querySelector(".sidebar-drawer");
@@ -158,13 +158,13 @@
     }
 
     const brand = document.querySelector(".sidebar-brand-text");
-    if (brand) {
+    if (manualMode && brand) {
       brand.textContent = "Contents";
     }
 
     sidebarTree.innerHTML = "";
     const list = document.createElement("ul");
-    list.className = "hb-manual-toc";
+    list.className = manualMode ? "hb-manual-toc" : "current hb-manual-toc";
 
     for (const item of headings) {
       const targetId = ensureHeadingTarget(item.node);
@@ -173,10 +173,11 @@
       }
 
       const li = document.createElement("li");
-      li.className = `hb-manual-toc__item is-level-${item.level}`;
+      const furoLevel = item.level === 1 ? "toctree-l1" : "toctree-l2";
+      li.className = `${manualMode ? "" : `${furoLevel} `}hb-manual-toc__item is-level-${item.level}`.trim();
 
       const link = document.createElement("a");
-      link.className = "hb-manual-toc__link";
+      link.className = `${manualMode ? "" : "reference internal "}hb-manual-toc__link`.trim();
       link.href = `#${targetId}`;
       link.textContent = item.text;
 
@@ -225,8 +226,11 @@
   }
 
   function initAll() {
-    initPrefaceLayout();
-    initManualSidebar();
+    const manualMode = Boolean(document.body && document.body.classList.contains("hb-manual-switcher-body"));
+    if (manualMode) {
+      initPrefaceLayout();
+    }
+    initManualSidebar(manualMode);
     document.querySelectorAll(".hb-manual-switcher").forEach(initSwitcher);
   }
 

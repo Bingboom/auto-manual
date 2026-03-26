@@ -10,6 +10,27 @@ from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    def test_strip_manual_switcher_should_keep_sidebar_script_for_review_preview(self) -> None:
+        html = """
+<html>
+  <head>
+    <link rel="stylesheet" href="_static/hb_manual.css">
+    <script src="_static/hb_manual.js"></script>
+  </head>
+  <body class="furo hb-manual-switcher-body">
+    <!-- HB_MANUAL_SWITCHER_START --><div class="hb-manual-switcher"></div><!-- HB_MANUAL_SWITCHER_END -->
+    <aside class="sidebar-drawer"><div class="sidebar-tree"></div></aside>
+    <main id="furo-main-content"><h1>Demo</h1></main>
+  </body>
+</html>
+"""
+        cleaned = build_review_preview.strip_manual_switcher(html)
+
+        self.assertNotIn("hb-manual-switcher-body", cleaned)
+        self.assertNotIn("_static/hb_manual.css", cleaned)
+        self.assertNotIn("HB_MANUAL_SWITCHER_START", cleaned)
+        self.assertIn("_static/hb_manual.js", cleaned)
+
     def test_build_spec_for_target_should_keep_us_en_on_lang_specific_config_in_review_mode(self) -> None:
         args = argparse.Namespace(
             config="config.us-en.yaml",
