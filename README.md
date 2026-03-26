@@ -41,11 +41,11 @@ The primary entrypoint is [`build.py`](build.py).
 Typical review-first flow:
 
 ```bash
-python3 build.py doctor --config config.yaml --model JE-1000F --region US
-python3 build.py rst --config config.yaml --model JE-1000F --region US --source runtime
-python3 build.py review --config config.yaml --model JE-1000F --region US
-python3 build.py check --config config.yaml --model JE-1000F --region US
-python3 build.py publish --config config.yaml --model JE-1000F --region US
+python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
+python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py check --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
 
 Batch export example:
@@ -55,6 +55,10 @@ Batch export example:
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 ```
 
+Word export note:
+
+- `config.us-en.yaml` now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while keeping the generated `safety` and `spec` pages unchanged
+
 HTML output note:
 
 - generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
@@ -62,7 +66,7 @@ HTML output note:
 Review-sharing example:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
 Vercel note:

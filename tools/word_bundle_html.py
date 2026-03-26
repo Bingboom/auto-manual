@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import dataclass
 import hashlib
 import html
+from html.parser import HTMLParser
 import re
 import shutil
 import struct
@@ -18,6 +20,12 @@ from tools.phase1.renderers import rst_escape
 from tools.word_bundle_common import paths
 
 
+@dataclass(frozen=True)
+class WordBundlePageMeta:
+    source_path: Path
+    anchor_text: str
+
+
 def _render_cover_html(title: str) -> str:
     title_html = html.escape(rst_escape(title))
     return "".join(
@@ -27,6 +35,27 @@ def _render_cover_html(title: str) -> str:
             "</section>",
         ]
     )
+
+
+class _AnchorTextParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self._texts: list[str] = []
+
+    def handle_data(self, data: str) -> None:
+        text = " ".join(data.split()).strip()
+        if text:
+            self._texts.append(text)
+
+    @property
+    def first_text(self) -> str:
+        return self._texts[0] if self._texts else ""
+
+
+def _extract_word_anchor_text(fragment: str) -> str:
+    parser = _AnchorTextParser()
+    parser.feed(fragment)
+    return parser.first_text
 
 
 def _render_page_break_html() -> str:
@@ -789,7 +818,7 @@ def build_word_bundle_html(
     *,
     materialized_bundle: MaterializedBundle | None = None,
     output_dir: Path | None = None,
-) -> tuple[Path, Path | None]:
+) -> tuple[Path, Path | None, tuple[WordBundlePageMeta, ...]]:
     materialized = materialized_bundle or materialize_bundle(cfg, model, region)
     title = materialized.title
     reference_doc = materialized.reference_doc
@@ -799,6 +828,7 @@ def build_word_bundle_html(
     bundle_html = bundle_output_dir / "manual_bundle.html"
 
     body_parts: list[str] = []
+    page_metas: list[WordBundlePageMeta] = []
     previous_was_cover = False
     for idx, rst_path in enumerate(materialized.page_paths):
         if idx > 0 and not previous_was_cover:
@@ -806,6 +836,12 @@ def build_word_bundle_html(
         rst_text = rst_path.read_text(encoding="utf-8")
         html_fragment = _convert_rst_fragment_to_html(rst_text, rst_path, bundle_output_dir)
         body_parts.append(html_fragment or "<div></div>")
+        page_metas.append(
+            WordBundlePageMeta(
+                source_path=rst_path,
+                anchor_text=_extract_word_anchor_text(html_fragment),
+            )
+        )
         previous_was_cover = rst_path.name.startswith("cover")
 
     html_doc = "".join(
@@ -840,4 +876,4 @@ def build_word_bundle_html(
         ]
     )
     bundle_html.write_text(_inject_img_dimensions(html_doc), encoding="utf-8")
-    return bundle_html, reference_doc
+    return bundle_html, reference_doc, tuple(page_metas)

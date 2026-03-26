@@ -21,7 +21,7 @@ python build.py check
 python build.py sync-review
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
-python build.py handoff --config config.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/rst
+python build.py handoff --config config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
@@ -74,6 +74,7 @@ Do not create one config file per model.
 Current shared config families:
 
 - [`config.yaml`](../config.yaml): shared EN / US template family
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.eu.yaml`](../config.eu.yaml): shared EU template family
 
@@ -178,7 +179,7 @@ python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 Use this when design needs the rendered review HTML plus the current family-level diff package:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
 Default packaged output:
@@ -268,15 +269,19 @@ python build.py all --config config.eu.yaml
 Build one explicit target:
 
 ```powershell
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.eu.yaml --model JE-1000F --region EU
 ```
+
+Word styling note:
+
+- `config.us-en.yaml` now post-processes the generated DOCX so non-safety / non-spec pages inherit the `reference_en.docx` heading, table, and default paragraph styling
 
 Single-page preview and fast draft:
 
 ```powershell
-python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
-python build.py fast --config config.yaml --model JE-1000F --region US
+python build.py preview --config config.us-en.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.us-en.yaml --model JE-1000F --region US
 ```
 
 Standalone release traceability:

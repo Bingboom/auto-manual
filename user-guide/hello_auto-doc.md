@@ -304,15 +304,15 @@ Derived behavior:
 Cross-platform entrypoint:
 
 ```powershell
-python build.py doctor --config config.yaml --model JE-1000F --region US
+python build.py doctor --config config.us-en.yaml --model JE-1000F --region US
 python build.py rst
 python build.py review
 python build.py check
 python build.py sync-review
 python build.py publish
 python build.py release-manifest
-python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
-python build.py fast --config config.yaml --model JE-1000F --region US
+python build.py preview --config config.us-en.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.us-en.yaml --model JE-1000F --region US
 python build.py html
 python build.py word
 python build.py pdf
@@ -322,6 +322,7 @@ python build.py all
 Config scope rule:
 
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
 - [`config.eu.yaml`](../config.eu.yaml): shared EU template-family config
 - the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / EU`
@@ -333,13 +334,13 @@ Useful target-scoped examples:
 ```powershell
 python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 python build.py rst --config config.ja.yaml
-python build.py review --config config.yaml --model JE-1000F --region US
-python build.py review --config config.yaml --model JE-1000F --region US --refresh-review
-python build.py sync-review --config config.yaml --model JE-1000F --region US
-python build.py check --config config.yaml --model JE-1000F --region US
-python build.py publish --config config.yaml --model JE-1000F --region US
+python build.py review --config config.us-en.yaml --model JE-1000F --region US
+python build.py review --config config.us-en.yaml --model JE-1000F --region US --refresh-review
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py publish --config config.us-en.yaml --model JE-1000F --region US
 python build.py rst --config config.yaml
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.ja.yaml --model JE-2000F --region JP
 ```
 
@@ -390,9 +391,13 @@ Source mode meaning:
 Equivalent lower-level examples:
 
 ```powershell
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.yaml --model JE-1000F --region US --prepare-only
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.yaml --model JE-1000F --region US --formats word --no-open
+.\.venv\Scripts\python.exe tools\build_docs.py --config config.us-en.yaml --model JE-1000F --region US --prepare-only
+.\.venv\Scripts\python.exe tools\build_docs.py --config config.us-en.yaml --model JE-1000F --region US --formats word --no-open
 ```
+
+Word styling note:
+
+- the US English Word path now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while leaving the generated `safety` and `spec` pages as-is
 
 ---
 
@@ -417,7 +422,7 @@ Use this when a target has never been tracked in Git before.
 Example baseline:
 
 ```powershell
-python build.py review --config config.yaml --model JE-1000F --region US
+python build.py review --config config.us-en.yaml --model JE-1000F --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Add JE-1000F US review baseline"
 ```
@@ -433,8 +438,8 @@ What this means:
 After the baseline exists, the normal update loop is:
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py word --config config.us-en.yaml --model JE-1000F --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Update JE-1000F US manual"
 ```
@@ -465,15 +470,15 @@ Recommended default:
 Example report export for one model:
 
 ```powershell
-python build.py diff-report --config config.yaml --model JE-1000F --region US
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
 ```
 
 Example report export for one region:
 
 ```powershell
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F/US --from-ref HEAD~3 --to-ref HEAD
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F/US --from-ref HEAD~3 --to-ref HEAD
 ```
 
 ### 9.4 How to Compare Two Specific Commits
@@ -481,7 +486,7 @@ python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-
 If you want to compare a baseline commit with the latest manual state:
 
 ```powershell
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F/US --from-ref <old_commit> --to-ref <new_commit>
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F/US --from-ref <old_commit> --to-ref <new_commit>
 ```
 
 Examples:
@@ -563,10 +568,10 @@ Interpretation rule:
 For a normal JE-1000F US review cycle:
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Refresh JE-1000F US manual"
-python build.py publish --config config.yaml --model JE-1000F --region US
+python build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
 
 Then:
