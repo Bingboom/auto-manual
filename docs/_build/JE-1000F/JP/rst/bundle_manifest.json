@@ -5,7 +5,7 @@
   "page_manifest": "docs/manifests/manual_jp.yaml",
   "spec_master": {
     "path": "data/phase1/Spec_Master.csv",
-    "sha256": "18afc66193979929080348d6937930544d02855d2cf5afa4a613d93f6d8455a1"
+    "sha256": "8ffef92131e8f24d4be84ac746add70dfbc8c5073656257d35f3871831283f9e"
   },
   "recipe_ids": [
     "03_product_overview",

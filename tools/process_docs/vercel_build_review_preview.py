@@ -58,7 +58,7 @@ def main() -> int:
             str(python_exe),
             "tools/process_docs/build_review_preview.py",
             "--config",
-            "config.yaml",
+            "config.us-en.yaml",
             "--model",
             "JE-1000F",
             "--region",

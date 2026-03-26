@@ -305,7 +305,7 @@ If you need the design-facing hosted review package, use the dedicated review pr
 For the current first-phase shared preview target, the repo packages `JE-1000F / US` as a static site that can be hosted on Vercel:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
 That package writes to:

@@ -80,7 +80,7 @@ WORKSPACE_TARGETS: tuple[WorkspaceTarget, ...] = (
     WorkspaceTarget(family="EU", language="en", config="config.eu.yaml", include_lang_in_output_path=False),
 )
 FAMILY_DIFF_CONFIGS = {
-    "US": "config.yaml",
+    "US": "config.us-en.yaml",
     "JP": "config.ja.yaml",
     "EU": "config.eu.yaml",
 }
@@ -90,7 +90,7 @@ def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
         description="Build the review handoff workspace package for Vercel or local sharing."
     )
-    ap.add_argument("--config", default="config.yaml", help="Primary family config YAML path.")
+    ap.add_argument("--config", default="config.us-en.yaml", help="Primary family config YAML path.")
     ap.add_argument("--model", required=True, help="Target model, for example JE-1000F.")
     ap.add_argument("--region", required=True, help="Preferred default family, for example US.")
     ap.add_argument(
@@ -1290,12 +1290,7 @@ def build_spec_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> 
     source_label = args.source
 
     if args.source == "review" and target.family == "US":
-        if target.language == "en":
-            config_path = resolve_path("config.yaml")
-            output_root = ROOT / "docs" / "_build" / args.model / target.family
-            source_mode = "review"
-            source_label = "review"
-        else:
+        if target.language != "en":
             source_mode = "runtime"
             source_label = "runtime fallback"
 

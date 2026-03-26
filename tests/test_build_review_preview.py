@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import tempfile
 import unittest
 import zipfile
@@ -9,6 +10,85 @@ from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    def test_build_spec_for_target_should_keep_us_en_on_lang_specific_config_in_review_mode(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="en",
+            config="config.us-en.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(args, target)
+
+        self.assertEqual(build_review_preview.resolve_path("config.us-en.yaml"), spec["config_path"])
+        self.assertEqual("review", spec["source_mode"])
+        self.assertEqual("review", spec["source_label"])
+        self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_build_spec_for_target_should_keep_runtime_fallback_for_us_secondary_languages(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="es",
+            config="config.us-es.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(args, target)
+
+        self.assertEqual(build_review_preview.resolve_path("config.us-es.yaml"), spec["config_path"])
+        self.assertEqual("runtime", spec["source_mode"])
+        self.assertEqual("runtime fallback", spec["source_label"])
+        self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
+        args = argparse.Namespace(
+            config="config.ja.yaml",
+            model="JE-1000F",
+            region="JP",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+        )
+
+        self.assertEqual(
+            build_review_preview.resolve_path("config.us-en.yaml"),
+            build_review_preview.diff_config_for_family(args, "US"),
+        )
+
     def test_copy_report_assets_should_return_stable_relative_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             report_root = Path(td) / "reports"

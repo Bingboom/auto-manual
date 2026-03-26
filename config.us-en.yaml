@@ -15,7 +15,7 @@ build:
   build_word: true
   word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
   word_source: bundle
-  word_reference_doc: docs/templates/word_template/template.docx
+  word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   open_word: false
   build_html: false

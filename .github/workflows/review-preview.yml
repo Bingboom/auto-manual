@@ -63,7 +63,7 @@ jobs:
       - name: Build review preview package (workspace)
         run: >
           python tools/process_docs/build_review_preview.py
-          --config config.yaml
+          --config config.us-en.yaml
           --model JE-1000F
           --region US
           --source review
