@@ -8,6 +8,14 @@
   font-size: 1.58rem;
   line-height: 1.2;
 }
+
+body.hb-manual-switcher-body #furo-main-content .hb-h1-pill:target{
+  color: #111827 !important;
+}
+
+body.hb-manual-switcher-body #furo-main-content :target > .hb-h1-pill:first-child{
+  color: #111827 !important;
+}
 .hb-subbar{
   font-size: 1.08rem;
   line-height: 1.2;
@@ -81,7 +89,7 @@
 
 body.hb-manual-switcher-body{
   padding-top: 20px;
-  background: #f3f4f6;
+  background: #ffffff;
   color-scheme: light;
 }
 
