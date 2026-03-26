@@ -93,6 +93,7 @@ Use different surfaces for different stages:
 
 - shared template changes: [`docs/templates/`](docs/templates)
 - structured data changes: [`data/phase1/`](data/phase1)
+  `Spec_Footnotes.csv` supports both numbered `footnote` rows and plain `note` rows such as trademark statements. If numbering differs by language, put the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty.
 - target-specific review edits after review starts: [`docs/_review/`](docs/_review)
 - generated runtime and export outputs: [`docs/_build/`](docs/_build)
 

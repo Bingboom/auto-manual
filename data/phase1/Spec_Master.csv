@@ -20,28 +20,30 @@ HTE153-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A,1,,"18W Max, 5-
 HTE153-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,1 × DC 12V Port,1,,"12V⎓10A Max",,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,,"-4°F to 113°F / -20°C to 45°C",,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharging_temperature,Discharging Temperature,1,,"-4°F to 113°F / -20°C to 45°C",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery ポータブル電源 1000 New v2,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,weight,Weight,1,,About 10.6 kg,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,Cycle Life,1,,"6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,1,Charge Mode,"100V-120V~50/60Hz, 15A Max",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,AC Input,2,AC Flash Charge,About 1450W±50W @25°C,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,1,,"11V-16V⎓8A Max, Double 8A Max",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,DC8020 Ports,2,,"16V-60V⎓12A, Double 21A Max / 400W Max",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,1,,"100V~50/60Hz, 15A, 1500W Rated (-10°C to 45°C)",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,AC Output,2,,"100V~50/60Hz, 7A, 700W Rated (-20°C to -10°C)",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC Total Output,1,,"1500W Rated, 3000W Surge peak",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC Output in Bypass Mode,1,,15A Max,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,1,,"1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C)",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,2,,USB-C 100W output disabled (-20°C to -10°C),,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,USB-C,3,,"1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,USB-A,1,,"1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,dc12_port,DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,operating_temperature,Operating Temperature,1,,-20°C to 45°C,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,storage_temperature,Storage Temperature,1,,1 year: 0°C to 25°C,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,storage_temperature,Storage Temperature,2,,3 months: 0°C to 45°C,,,,,,JE-1000F
-HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,storage_temperature,Storage Temperature,3,,1 month: -20°C to 45°C,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,製品の名称,1,,Jackery ポータブル電源 1000 New,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,型番,1,,JE-1000F / JE-1000F-SG,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,capacity,定格容量,1,,1024Wh (20Ah/51.2V DC),,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,battery_type,バッテリータイプ,1,,LiFePO₄ (リン酸鉄リチウムイオン電池),,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,cycle_life,サイクル寿命,1,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,size_weight,サイズ&重量,1,,約314 × 201 × 236 mm (約10.6 kg),,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,1×ACポート,1,,"100V-120V~50Hz/60Hz, 最大15A, 1450W±50W①",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,ac_input,1×ACポート,2,バススルー②,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,1,PV,"16V-60V⎓12A, 2ポート 最大21A, 最大400W",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,INPUT PORTS,2,dc8020_ports,2×DC8020ポート,2,シガーソケット,"11V-16V⎓最大8A, 2ポート 最大8A",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,3×ACポート,1,,"100V~50Hz/60Hz, 最大15A, 定格1500W (-10℃~45℃)",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output,3×ACポート,2,,"100V~50Hz/60Hz, 最大7A, 定格700W (-20℃~-10℃)",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_total_output,AC出力合計,1,,"定格1500W, 瞬間最大3000W",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,ac_output_bypass,AC出力(パススルー)②,1,,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,1,,"5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,2,,"5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10℃~45℃)",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_c,2×USB-Cポート,3,,(-20℃~-10℃では出力不可),,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,1×USB-Aポート,1,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,dc12_port,シガーソケット出力,1,,12V⎓最大10A,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,充電温度,1,,-20℃ ~ 45℃,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,operating_temperature,動作温度,1,,-20℃ ~ 45℃,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,1,,1ヶ月 -20℃ ~ 45℃,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,2,,3ヶ月 0℃ ~ 45℃,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保存温度,3,,1年 0℃ ~ 25℃,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,CONTROLS,7,tpl_main_power_button_label,Main Power Button,1,,Main POWER Button,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,CONTROLS,7,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,CONTROLS,7,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-1000F

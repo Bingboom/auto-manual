@@ -246,12 +246,17 @@ def _parse_spec_master_sections(
             lang=lang,
             default_keys=["footnote", "Footnote"],
         )
-        if footnote_mark and footnote_text and row_kind in {"footnote", "data"}:
+        if footnote_text and row_kind in {"footnote", "data"}:
             footnote_order = _to_float(
                 _first_non_empty(row, ["footnote_order", "Footnote_order"]),
                 base_order,
             )
-            footnotes.append((footnote_order, apply_vars(f"{footnote_mark}{footnote_text}", vars_map)))
+            footnotes.append(
+                (
+                    footnote_order,
+                    apply_vars(f"{footnote_mark}{footnote_text}", vars_map),
+                )
+            )
 
         if row_kind in {"note", "footnote", "title"}:
             continue

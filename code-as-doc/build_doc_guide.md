@@ -146,6 +146,12 @@ If you update any of these:
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
 
+`Spec_Footnotes.csv` supports two spec-bottom row types:
+
+- `row_kind=footnote`: numbered entries such as `①`
+- `row_kind=note`: plain note lines such as trademark statements
+- If the numbering symbol differs by language, write it directly in each `footnote_text_*` cell and leave `footnote_mark` empty
+
 run:
 
 ```powershell

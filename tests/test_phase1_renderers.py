@@ -126,11 +126,11 @@ class TestPhase1Renderers(unittest.TestCase):
                 renderers.PH_SPEC_TITLE_MAIN,
                 renderers.PH_SPEC_TITLE_MAIN_HTML,
                 renderers.PH_SPEC_SECTIONS_LATEX,
-                renderers.PH_SPEC_NOTES_LATEX,
                 renderers.PH_SPEC_FOOTNOTES_LATEX,
+                renderers.PH_SPEC_NOTES_LATEX,
                 renderers.PH_SPEC_SECTIONS_HTML,
-                renderers.PH_SPEC_NOTES_HTML,
                 renderers.PH_SPEC_FOOTNOTES_HTML,
+                renderers.PH_SPEC_NOTES_HTML,
             ]
         ) + "\n"
 
@@ -202,6 +202,7 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn('class="hb-spec-table"', out)
         self.assertIn('class="hb-spec-note"', out)
         self.assertIn('class="hb-spec-footnote"', out)
+        self.assertLess(out.index("Demo footnote"), out.index("Demo note line"))
 
     def test_render_spec_page_row_without_delimiter_should_fail(self) -> None:
         blocks = self._spec_blocks()
@@ -306,8 +307,8 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Param_en": "",
                 "Value_en": "",
                 "row_kind": "footnote",
-                "footnote_mark": "(1) ",
-                "footnote_text_en": "Demo footnote text",
+                "footnote_mark": "",
+                "footnote_text_en": "(1) Demo footnote text",
                 "sku_scope": "ALL",
                 "enabled": "1",
             },
@@ -329,7 +330,7 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("Model No.", out)
         self.assertIn("Charge Mode: 100V-120V\\textasciitilde{}60Hz, 15A Max, 1750W Max", out)
         self.assertIn("Demo note", out)
-        self.assertIn("(1)Demo footnote text", out)
+        self.assertIn("(1) Demo footnote text", out)
         self.assertIn("<br/>", out)
         self.assertIn('class="hb-spec-table"', out)
 

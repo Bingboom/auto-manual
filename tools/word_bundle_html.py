@@ -139,10 +139,10 @@ def render_spec_word_html(data: dict[str, object]) -> str:
         parts.append("</tbody>")
         parts.append("</table>")
 
-    for note in data["notes"]:
-        parts.append(f'<p class="manual-spec-note">{_render_table_cell_html(str(note))}</p>')
     for footnote in data["footnotes"]:
         parts.append(f'<p class="manual-spec-footnote">{_render_table_cell_html(str(footnote))}</p>')
+    for note in data["notes"]:
+        parts.append(f'<p class="manual-spec-note">{_render_table_cell_html(str(note))}</p>')
 
     parts.append("</section>")
     return "".join(parts)

@@ -71,6 +71,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, safety/spec content, and placeholder values
+   - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
 
 3. Review working layer
    - [`docs/_review/<model>/<region>/index.rst`](../docs/_review)
