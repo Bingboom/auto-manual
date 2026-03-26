@@ -5,11 +5,11 @@
 HTE153-Explorer1000_V0.1_JP_UserManual
 ======================================
 
-型番: **JE-1000F**
+型番: **JE-1000F / JE-1000F-SG**
 
 写真はイメージです。実際の商品とは異なる場合があります。
 
-Jackery Jackery ポータブル電源 1000 New v2
+Jackery Jackery ポータブル電源 1000 New
 
 **取扱説明書**
 

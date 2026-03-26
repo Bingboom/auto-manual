@@ -226,4 +226,4 @@
    * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Caution icon.
           :width: 40px
-     - **格納式ハンドルを使用してJackery ポータブル電源 1000 New v2を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。**
+     - **格納式ハンドルを使用してJackery ポータブル電源 1000 Newを移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。**

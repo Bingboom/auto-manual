@@ -1,16 +1,16 @@
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{fr}
 
 .. only:: latex
 
    .. raw:: latex
 
-      \section{SPECIFICATIONS}
+      \section{SPÉCIFICATIONS}
 
 .. raw:: latex
 
-   \specsectiontitle{GENERAL INFO}
+   \specsectiontitle{INFORMATIONS GÉNÉRALES}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{Product Name} & \HBTypeSpecValue{Jackery Explorer 1000} \\
@@ -31,7 +31,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{INPUT PORTS}
+   \specsectiontitle{PORTS D’ENTRÉE}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{1 × AC Input} & \HBTypeSpecValue{Charge Mode: 100V-120V\textasciitilde{}60Hz, 15A Max \newline Bypass Mode\HBSpecMarkerOne{}: 100V-120V\textasciitilde{}60Hz, 12A Max} \\
@@ -42,7 +42,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{OUTPUT PORTS}
+   \specsectiontitle{PORTS DE SORTIE}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{3 × AC} & \HBTypeSpecValue{120V\textasciitilde{}60Hz, 18.3A Max, 1500W Rated per port, 1500W in Total, 3000W Surge Peak (14°F to 113°F / -10°C to 45°C) \newline 120V\textasciitilde{}60Hz, 13.3A (-4°F to 14°F / -20°C to -10°C)} \\
@@ -59,7 +59,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
+   \specsectiontitle{TEMPÉRATURE DE FONCTIONNEMENT}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{Charging Temperature} & \HBTypeSpecValue{-4°F to 113°F / -20°C to 45°C} \\
@@ -74,7 +74,7 @@
 
    \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{\HBSpecMarkerOne{} The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.}\par
+   \HBTypeSpecNote{1. Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
    }
 
 
@@ -83,7 +83,7 @@
 
    \vspace*{\csname HBcomp_spec_notes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
+   \HBTypeSpecNote{※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.}\par
    }
 
 
@@ -93,11 +93,11 @@
 
    .. raw:: html
 
-      <h1 class="hb-h1-pill">SPECIFICATIONS</h1>
+      <h1 class="hb-h1-pill">SPÉCIFICATIONS</h1>
 
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">GENERAL INFO</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">INFORMATIONS GÉNÉRALES</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -133,7 +133,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">INPUT PORTS</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">PORTS D’ENTRÉE</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -149,7 +149,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">OUTPUT PORTS</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">PORTS DE SORTIE</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -177,7 +177,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">ENVIRONMENTAL OPERATING TEMPERATURE</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">TEMPÉRATURE DE FONCTIONNEMENT</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
@@ -193,8 +193,8 @@
 
    .. raw:: html
    
-      <p class="hb-spec-footnote">① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</p>
+      <p class="hb-spec-footnote">1. Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>
 
    .. raw:: html
    
-      <p class="hb-spec-note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>
+      <p class="hb-spec-note">※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.</p>
