@@ -62,7 +62,7 @@ Word export note:
 HTML output note:
 
 - generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
-- manual HTML now suppresses most Furo documentation chrome in preview mode so the rendered page reads more like a handbook viewer; the region/language switcher and paged manual canvas stay enabled
+- manual HTML now suppresses most Furo documentation chrome in preview mode, uses a continuous reading layout instead of browser-side fake pagination, and tightens generic headings, copy width, figure cards, and table spacing so the rendered page reads more like a handbook viewer
 
 Review-sharing example:
 

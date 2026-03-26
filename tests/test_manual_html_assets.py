@@ -13,9 +13,9 @@ class ManualHtmlAssetsTests(unittest.TestCase):
 
         self.assertIn("html_theme = \"furo\"", text)
         self.assertIn("hb_manual.css", text)
-        self.assertIn("hb_paged.css", text)
         self.assertIn("hb_manual.js", text)
-        self.assertIn("hb_paged.js", text)
+        self.assertNotIn("hb_paged.css", text)
+        self.assertNotIn("hb_paged.js", text)
 
     def test_manual_css_should_hide_furo_chrome_in_manual_preview_mode(self) -> None:
         text = (ROOT / "docs" / "_static" / "hb_manual.css").read_text(encoding="utf-8")
@@ -24,6 +24,14 @@ class ManualHtmlAssetsTests(unittest.TestCase):
         self.assertIn("body.hb-manual-switcher-body .toc-drawer", text)
         self.assertIn("body.hb-manual-switcher-body .article-container", text)
         self.assertIn("body.hb-manual-switcher-body #furo-main-content", text)
+
+    def test_manual_css_should_define_reading_surface_rules(self) -> None:
+        text = (ROOT / "docs" / "_static" / "hb_manual.css").read_text(encoding="utf-8")
+
+        self.assertIn("#furo-main-content h1:not(.hb-h1-pill)", text)
+        self.assertIn("#furo-main-content h2:not(.hb-subbar):not(.hb-spec-section)", text)
+        self.assertIn("> a.reference.internal.image-reference", text)
+        self.assertIn(".table-wrapper.docutils", text)
 
 
 if __name__ == "__main__":
