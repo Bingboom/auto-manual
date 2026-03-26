@@ -203,6 +203,13 @@ def copy_tree(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
+def rewrite_report_html_for_preview(html_text: str, *, mapping: dict[str, str]) -> str:
+    rewritten = html_text
+    for src_name, dst_name in sorted(mapping.items(), key=lambda item: len(item[0]), reverse=True):
+        rewritten = rewritten.replace(src_name, dst_name)
+    return rewritten
+
+
 def copy_report_set(report_root: Path, prefix: str, changes_dir: Path, *, relative_dir: str) -> dict[str, str]:
     mapping = {
         f"{prefix}_index.html": "report-index.html",
@@ -219,7 +226,9 @@ def copy_report_set(report_root: Path, prefix: str, changes_dir: Path, *, relati
         if not src.exists():
             missing_sources.append(src_name)
             continue
-        shutil.copy2(src, changes_dir / dst_name)
+        html_text = src.read_text(encoding="utf-8")
+        rewritten = rewrite_report_html_for_preview(html_text, mapping=mapping)
+        (changes_dir / dst_name).write_text(rewritten, encoding="utf-8")
         copied[dst_name] = f"{relative_dir}/{dst_name}"
     if missing_sources:
         joined = ", ".join(sorted(missing_sources))

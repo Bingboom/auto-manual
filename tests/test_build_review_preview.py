@@ -158,17 +158,28 @@ class TestBuildReviewPreview(unittest.TestCase):
             changes_dir = Path(td) / "dist" / "changes" / "US"
             downloads_dir = Path(td) / "dist" / "downloads" / "US"
             prefix = "US_HEAD_1_to_HEAD"
-            for file_name in (
-                f"{prefix}_index.html",
-                f"{prefix}.html",
-                f"{prefix}_fields.html",
-                f"{prefix}_pages.html",
-                f"{prefix}_files.html",
+            html_payloads = {
+                f"{prefix}_index.html": (
+                    f'<a href="{prefix}_files.html">Files</a>'
+                    f'<a href="{prefix}_pages.html">Pages</a>'
+                    f'<a href="{prefix}_fields.html">Fields</a>'
+                ),
+                f"{prefix}.html": f'<a href="{prefix}_index.html">Index</a>',
+                f"{prefix}_fields.html": "<p>fields</p>",
+                f"{prefix}_pages.html": "<p>pages</p>",
+                f"{prefix}_files.html": "<p>files</p>",
+            }
+            csv_names = (
                 f"{prefix}.csv",
                 f"{prefix}_pages.csv",
                 f"{prefix}_fields.csv",
                 f"{prefix}_files.csv",
-            ):
+            )
+            for file_name, content in html_payloads.items():
+                target = report_root / file_name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(content, encoding="utf-8")
+            for file_name in csv_names:
                 target = report_root / file_name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("demo", encoding="utf-8")
@@ -205,6 +216,15 @@ class TestBuildReviewPreview(unittest.TestCase):
                 },
                 csv_files,
             )
+            packaged_index = (changes_dir / "report-index.html").read_text(encoding="utf-8")
+            self.assertIn('href="report-files.html"', packaged_index)
+            self.assertIn('href="report-pages.html"', packaged_index)
+            self.assertIn('href="report-fields.html"', packaged_index)
+            self.assertNotIn(f"{prefix}_files.html", packaged_index)
+            self.assertNotIn(f"{prefix}_pages.html", packaged_index)
+            self.assertNotIn(f"{prefix}_fields.html", packaged_index)
+            packaged_summary = (changes_dir / "report-summary.html").read_text(encoding="utf-8")
+            self.assertIn('href="report-index.html"', packaged_summary)
 
     def test_build_change_workbook_should_create_valid_xlsx_with_expected_sheets(self) -> None:
         with tempfile.TemporaryDirectory() as td:
