@@ -5,9 +5,8 @@
 DANGER
 ------
 
-This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).
-
-※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
+- This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).
+- This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
 
 USER MAINTENANCE INSTRUCTIONS
 -----------------------------
