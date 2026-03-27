@@ -39,7 +39,7 @@
     "path": "data/phase1/Spec_Master.csv",
     "sha256": "8ffef92131e8f24d4be84ac746add70dfbc8c5073656257d35f3871831283f9e"
   },
-  "last_synced_at": "2026-03-26T09:00:41.761656+00:00",
+  "last_synced_at": "2026-03-27T06:04:13.761736+00:00",
   "last_sync_scope": "params",
   "last_sync_files": [
     "generated/JE-1000F/safety_en.rst",
@@ -52,6 +52,7 @@
     "page/05_operation_guide_placeholder.rst",
     "page/06_ups_mode.rst",
     "page/08_charging_methods.rst",
+    "page/09_storage_and_maintenance.rst",
     "page/11_warranty.rst",
     "page/12_app_setup_placeholder.rst",
     "page/safety_en.rst",

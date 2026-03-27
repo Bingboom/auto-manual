@@ -23,8 +23,6 @@ required_row_keys:
   - tpl_dc_usb_power_button_label
   - tpl_default_standby_duration
   - tpl_energy_saving_auto_off_duration
-snippet_slots:
-  wireless_reset_buttons: wireless_reset_buttons
-  wireless_toggle_buttons: wireless_toggle_buttons
+snippet_slots: {}
 contracts:
   - 05_operation_guide

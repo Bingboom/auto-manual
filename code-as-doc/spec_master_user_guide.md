@@ -113,18 +113,20 @@ Current display rule:
 
 ### 3.5 Example: Multi-Line Spec Row
 
-If the same visible row label has multiple lines, repeat the same `Row_key` and increment `Line_order`:
+If the same visible row label has multiple lines, repeat the same `Row_key` and increment `Line_order`.
+For page-level placeholders that are not part of the visible spec table, use the real page token instead of `specifications`:
 
 ```csv
-...,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,1 month,-20C to 45C,...,JE-1000F
-...,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,3 months,0C to 45C,...,JE-1000F
-...,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,1 year,0C to 25C,...,JE-1000F
+...,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,1 month,-20C to 45C,...,JE-1000F
+...,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,3 months,0C to 45C,...,JE-1000F
+...,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,1 year,0C to 25C,...,JE-1000F
 ```
 
 Current rule:
 
 - same visible row = same `Row_key`
 - different lines under that row = different `Line_order`
+- if the row is meant for a template page instead of the spec table, use that page's token in `Page`
 
 ### 3.6 Example: Template Placeholder Row
 
@@ -342,6 +344,7 @@ Current behavior:
 - `product_name` is resolved with `pages=None`
 - `model_no` is resolved with `pages=None`
 - `tpl_*` placeholder rows are also collected with `pages=None`
+- `storage_temperature` rows under `Page=09_storage_and_maintenance` are exposed as multiline placeholders
 
 This is important:
 
@@ -355,6 +358,8 @@ Current derived placeholder rules:
 - `_BOLD` variants are generated automatically
 - `_LOWER` variants are generated automatically for keys ending in `_LABEL`
 - for `tpl_*` rows with `Line_order > 1`, the placeholder gains a suffix such as `_2`
+- `storage_temperature` currently generates `STORAGE_TEMPERATURE_LINE_1/2/3` plus matching `..._PARAM_1/2/3` and `..._VALUE_1/2/3`
+- `Param_es` / `Value_es` and `Param_ja` / `Value_ja` can be added as optional language columns when a page placeholder needs real Spanish or Japanese text rather than English fallback
 
 ### 5.6 Current Diff-Report Behavior
 

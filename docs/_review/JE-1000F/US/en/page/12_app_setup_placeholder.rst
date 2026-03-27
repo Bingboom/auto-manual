@@ -26,7 +26,11 @@ Tap the "Icon Flashed" button, and allow the App to connect to nearby devices an
    :alt: App add device step placeholder.
    :width: 320px
 
-{{snippet:app_button_reference}}
+Main POWER Button
+
+AC Power Button
+
+DC/USB Power Button
 
 2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
 
@@ -35,7 +39,7 @@ Tap the "Icon Flashed" button, and allow the App to connect to nearby devices an
 If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
 
 - The device owner will share this device with other users through the App.
-- Press and hold {{snippet:wireless_reset_buttons}} for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+- Press and hold main POWER button + DC/USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
 
 2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.
 
@@ -64,12 +68,12 @@ Click the Settings icon in the upper right corner of the main interface of the d
 **4.1 To turn on Wi-Fi and Bluetooth**
 
 - Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
-- Hold {{snippet:wireless_toggle_buttons}} at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
+- Hold DC/USB power button + AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
 
 **4.2 To turn off Wi-Fi and Bluetooth**
 
-Hold {{snippet:wireless_toggle_buttons}} at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
+Hold DC/USB power button + AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
 
 **4.3 To reset Wi-Fi and Bluetooth**
 
-Hold {{snippet:wireless_reset_buttons}} at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
+Hold main POWER button + DC/USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.

@@ -1,4 +1,4 @@
-﻿项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Row_label_fr,Param_fr,Value_fr,page_title_fr,section_title_fr,Model
+﻿项目代码,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Param_en,Value_en,Row_label_fr,Param_fr,Value_fr,page_title_fr,section_title_fr,Model,Param_es,Value_es,Param_ja,Value_ja
 HTE153-US,US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,,Jackery Explorer 1000,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,,JE-1000F / JE-1000F-SG,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,GENERAL INFO,1,capacity,Capacity,1,,1024 Wh (20Ah/51.2V DC),,,,,,JE-1000F
@@ -20,6 +20,9 @@ HTE153-US,US,TRUE,specifications,OUTPUT PORTS,3,usb_a,1 × USB-A,1,,"18W Max, 5-
 HTE153-US,US,TRUE,specifications,OUTPUT PORTS,3,dc12_port,1 × DC 12V Port,1,,12V⎓10A Max,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-1000F
 HTE153-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharging_temperature,Discharging Temperature,1,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-1000F
+HTE153-US,US,TRUE,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,1 month,"-4°F to 113°F / -20°C to 45°C (0-60%RH)",Température de stockage,1 mois,"-4°F à 113°F / -20°C à 45°C (0-60% HR)",,,JE-1000F,1 mes,"-4°F a 113°F / -20°C a 45°C (0-60% HR)",,
+HTE153-US,US,TRUE,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,3 months,"32°F to 113°F / 0°C to 45°C (0-60%RH)",Température de stockage,3 mois,"32°F à 113°F / 0°C à 45°C (0-60% HR)",,,JE-1000F,3 meses,"32°F a 113°F / 0°C a 45°C (0-60% HR)",,
+HTE153-US,US,TRUE,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,12 months,"32°F to 77°F / 0°C to 25°C (0-60%RH)",Température de stockage,12 mois,"32°F à 77°F / 0°C à 25°C (0-60% HR)",,,JE-1000F,12 meses,"32°F a 77°F / 0°C a 25°C (0-60% HR)",,
 HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,product_name,製品の名称,1,,Jackery ポータブル電源 1000 New,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,model_no,型番,1,,JE-1000F / JE-1000F-SG,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,GENERAL INFO,1,capacity,定格容量,1,,1024Wh (20Ah/51.2V DC),,,,,,JE-1000F
@@ -42,6 +45,9 @@ HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,usb_a,1×USB-Aポート,1,,"5-6V
 HTE153-JP,JP,TRUE,specifications,OUTPUT PORTS,3,dc12_port,シガーソケット出力,1,,12V⎓最大10A,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,充電温度,1,,-20℃ ~ 45℃,,,,,,JE-1000F
 HTE153-JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,discharging_temperature,放電温度,1,,-20℃ ~ 45℃,,,,,,JE-1000F
+HTE153-JP,JP,TRUE,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保管温度,1,1 month,-20°C to 45°C (0-60% RH),,,,,,JE-1000F,,,1か月,-20℃ ～ 45℃（0-60% RH）
+HTE153-JP,JP,TRUE,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保管温度,2,3 months,0°C to 45°C (0-60% RH),,,,,,JE-1000F,,,3か月,0℃ ～ 45℃（0-60% RH）
+HTE153-JP,JP,TRUE,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,保管温度,3,1 year,0°C to 25°C (0-60% RH),,,,,,JE-1000F,,,1年,0℃ ～ 25℃（0-60% RH）
 HTE153-US,US,TRUE,Product overview,CONTROLS,7,tpl_main_power_button_label,Main Power Button,1,,Main POWER Button,,,,,,JE-1000F
 HTE153-US,US,TRUE,Product overview,CONTROLS,7,tpl_dc_usb_power_button_label,DC/USB Power Button,1,,DC/USB Power Button,,,,,,JE-1000F
 HTE153-US,US,TRUE,Product overview,CONTROLS,7,tpl_ac_power_button_label,AC Power Button,1,,AC Power Button,,,,,,JE-1000F

@@ -169,6 +169,76 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("JHP-2000A", substitutions["MODEL_NO"])
         self.assertEqual("Main POWER Button", substitutions["MAIN_POWER_BUTTON_LABEL"])
 
+    def test_template_substitutions_should_include_storage_temperature_multiline_placeholders(self) -> None:
+        rows = [
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "09_storage_and_maintenance",
+                "Row_key": "storage_temperature",
+                "Line_order": "1",
+                "Param_en": "1 month",
+                "Value_en": "-4°F to 113°F / -20°C to 45°C (0-60%RH)",
+                "Param_fr": "1 mois",
+                "Value_fr": "-4°F à 113°F / -20°C à 45°C (0-60% HR)",
+                "Param_es": "1 mes",
+                "Value_es": "-4°F a 113°F / -20°C a 45°C (0-60% HR)",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "JP",
+                "Is_Latest": "TRUE",
+                "Page": "09_storage_and_maintenance",
+                "Row_key": "storage_temperature",
+                "Line_order": "1",
+                "Param_ja": "1か月",
+                "Value_ja": "-20℃ ～ 45℃（0-60% RH）",
+                "Model": "JHP-2000A",
+            },
+        ]
+
+        en_substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JHP-2000A",
+            region="US",
+            lang="en",
+        )
+        fr_substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JHP-2000A",
+            region="US",
+            lang="fr",
+        )
+        es_substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JHP-2000A",
+            region="US",
+            lang="es",
+        )
+        ja_substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JHP-2000A",
+            region="JP",
+            lang="ja",
+        )
+
+        self.assertEqual(
+            "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)",
+            en_substitutions["STORAGE_TEMPERATURE_LINE_1"],
+        )
+        self.assertEqual(
+            "1 mois : -4°F à 113°F / -20°C à 45°C (0-60% HR)",
+            fr_substitutions["STORAGE_TEMPERATURE_LINE_1"],
+        )
+        self.assertEqual(
+            "1 mes: -4°F a 113°F / -20°C a 45°C (0-60% HR)",
+            es_substitutions["STORAGE_TEMPERATURE_LINE_1"],
+        )
+        self.assertEqual(
+            "1か月：-20℃ ～ 45℃（0-60% RH）",
+            ja_substitutions["STORAGE_TEMPERATURE_LINE_1"],
+        )
+
     def test_real_spec_master_should_resolve_je1000f_us_product_name_for_western_langs(self) -> None:
         spec_master_csv = Path(__file__).resolve().parents[1] / "data" / "phase1" / "Spec_Master.csv"
 
@@ -192,6 +262,33 @@ class TestSpecMasterLookup(unittest.TestCase):
         )
         self.assertEqual("Jackery Explorer 1000", substitutions["PRODUCT_NAME"])
         self.assertEqual("Explorer 1000", substitutions["PRODUCT_SHORT_NAME"])
+
+    def test_real_spec_master_should_resolve_storage_temperature_placeholders_for_us_and_jp(self) -> None:
+        spec_master_csv = Path(__file__).resolve().parents[1] / "data" / "phase1" / "Spec_Master.csv"
+
+        expected_us = {
+            "en": "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)",
+            "fr": "1 mois : -4°F à 113°F / -20°C à 45°C (0-60% HR)",
+            "es": "1 mes: -4°F a 113°F / -20°C a 45°C (0-60% HR)",
+        }
+        for lang, expected in expected_us.items():
+            substitutions = resolve_template_substitutions_from_spec_master(
+                spec_master_csv,
+                model="JE-1000F",
+                region="US",
+                lang=lang,
+            )
+            self.assertEqual(expected, substitutions["STORAGE_TEMPERATURE_LINE_1"])
+
+        jp_substitutions = resolve_template_substitutions_from_spec_master(
+            spec_master_csv,
+            model="JE-1000F",
+            region="JP",
+            lang="ja",
+        )
+        self.assertEqual("1か月：-20℃ ～ 45℃（0-60% RH）", jp_substitutions["STORAGE_TEMPERATURE_LINE_1"])
+        self.assertEqual("3か月：0℃ ～ 45℃（0-60% RH）", jp_substitutions["STORAGE_TEMPERATURE_LINE_2"])
+        self.assertEqual("1年：0℃ ～ 25℃（0-60% RH）", jp_substitutions["STORAGE_TEMPERATURE_LINE_3"])
 
 
 if __name__ == "__main__":

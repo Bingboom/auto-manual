@@ -14,9 +14,6 @@ required_row_keys:
   - tpl_main_power_button_label
   - tpl_ac_power_button_label
   - tpl_dc_usb_power_button_label
-snippet_slots:
-  app_button_reference: app_button_reference
-  wireless_reset_buttons: wireless_reset_buttons
-  wireless_toggle_buttons: wireless_toggle_buttons
+snippet_slots: {}
 contracts:
   - 12_app_setup_eu

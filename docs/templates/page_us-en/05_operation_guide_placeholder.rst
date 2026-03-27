@@ -147,9 +147,9 @@ KEY COMBINATION
    * - |MAIN_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL_LOWER|
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - {{snippet:wireless_reset_buttons}}
+   * - |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER|
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
-   * - {{snippet:wireless_toggle_buttons}}
+   * - |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER|
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth

@@ -155,6 +155,9 @@ _SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
         "Separate placeholder/template rows from the main specification table before section-level analysis.",
     ),
 }
+_DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] = {
+    "storage_temperature": ("STORAGE_TEMPERATURE", ("09_storage_and_maintenance",)),
+}
 _KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
     "1×ACポート": "1 × AC Input",
     "1×USB-Aポート": "1 × USB-A",
@@ -695,6 +698,30 @@ def _derive_label_lower(value: str) -> str:
     return " ".join(lowered)
 
 
+def _normalize_line_order_suffix(line_order: str) -> str:
+    text = (line_order or "").strip()
+    if not text:
+        return "1"
+    if text.endswith(".0"):
+        text = text[:-2]
+    return text or "1"
+
+
+def _compose_placeholder_line_value(row: dict[str, str], *, lang: str) -> str:
+    direct_text = _pick_lang_value(row, "line_text", lang)
+    if direct_text:
+        return direct_text
+
+    param = _pick_lang_value(row, "Param", lang)
+    value = _pick_lang_value(row, "Value", lang)
+    if param and value:
+        separator = _first_non_empty(row, ["param_value_sep", "Param_value_sep"])
+        if not separator:
+            separator = " : " if lang == "fr" else "：" if lang == "ja" else ": "
+        return f"{param}{separator}{value}"
+    return value or param
+
+
 def _with_derived_substitutions(substitutions: dict[str, str]) -> dict[str, str]:
     out = dict(substitutions)
     for key, value in list(out.items()):
@@ -761,6 +788,26 @@ def resolve_template_substitutions_from_rows(
         if line_order_value not in {"", "1", "1.0"}:
             placeholder = f"{placeholder}_{line_order_value.replace('.', '_')}"
         substitutions.setdefault(placeholder, value)
+
+    for row_key, (placeholder_base, pages) in _DERIVED_MULTILINE_PLACEHOLDERS.items():
+        for row in _iter_ranked_rows(
+            rows,
+            model=model,
+            region=region,
+            lang=lang,
+            row_key=row_key,
+            pages=pages,
+        ):
+            line_order_value = _normalize_line_order_suffix(_first_non_empty(row, ["Line_order", "line_order"]))
+            param = _pick_lang_value(row, "Param", lang)
+            value = _pick_lang_value(row, "Value", lang)
+            line_value = _compose_placeholder_line_value(row, lang=lang)
+            if line_value:
+                substitutions.setdefault(f"{placeholder_base}_LINE_{line_order_value}", line_value)
+            if param:
+                substitutions.setdefault(f"{placeholder_base}_PARAM_{line_order_value}", param)
+            if value:
+                substitutions.setdefault(f"{placeholder_base}_VALUE_{line_order_value}", value)
 
     return _with_derived_substitutions(substitutions)
 
