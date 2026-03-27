@@ -2,18 +2,21 @@ page_id: 12_app_setup
 template: templates/page_jp/12_app_setup_placeholder.rst
 field_map:
   MAIN_POWER_BUTTON_LABEL:
-    row_key: tpl_main_power_button_label
+    row_key: main_power_button
     pages: [Product overview]
+    usage_type: page_value
+    value_role: label
   AC_POWER_BUTTON_LABEL:
-    row_key: tpl_ac_power_button_label
+    row_key: ac_power_button
     pages: [Product overview]
+    usage_type: page_value
+    value_role: label
   DC_USB_POWER_BUTTON_LABEL:
-    row_key: tpl_dc_usb_power_button_label
+    row_key: dc_usb_power_button
     pages: [Product overview]
-required_row_keys:
-  - tpl_main_power_button_label
-  - tpl_ac_power_button_label
-  - tpl_dc_usb_power_button_label
+    usage_type: page_value
+    value_role: label
+required_row_keys: []
 snippet_slots: {}
 contracts:
   - 12_app_setup

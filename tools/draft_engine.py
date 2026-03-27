@@ -24,6 +24,10 @@ class DraftFieldBinding:
     row_key: str
     pages: tuple[str, ...]
     line_order: str | None
+    usage_type: str | None = None
+    placement_key: str | None = None
+    value_role: str | None = None
+    variant_key: str | None = None
     default: str | None = None
 
 
@@ -83,6 +87,24 @@ def _normalize_csv_or_list(raw: object, *, field_name: str) -> tuple[str, ...]:
     raise RuntimeError(f"{field_name} must be a string or list")
 
 
+def format_field_binding(selector: DraftFieldBinding, *, owner: str | None = None) -> str:
+    qualifiers: list[str] = []
+    if selector.pages:
+        qualifiers.append(f"pages={','.join(selector.pages)}")
+    if selector.usage_type:
+        qualifiers.append(f"usage_type={selector.usage_type}")
+    if selector.placement_key:
+        qualifiers.append(f"placement_key={selector.placement_key}")
+    if selector.value_role:
+        qualifiers.append(f"value_role={selector.value_role}")
+    if selector.variant_key:
+        qualifiers.append(f"variant_key={selector.variant_key}")
+    if selector.line_order:
+        qualifiers.append(f"line_order={selector.line_order}")
+    rendered = selector.row_key if not qualifiers else f"{selector.row_key}[{', '.join(qualifiers)}]"
+    return rendered if owner is None else f"{owner} -> {rendered}"
+
+
 def _normalize_field_binding(raw: object, *, placeholder: str) -> DraftFieldBinding:
     if isinstance(raw, str):
         row_key = raw.strip()
@@ -104,6 +126,18 @@ def _normalize_field_binding(raw: object, *, placeholder: str) -> DraftFieldBind
     pages = _normalize_csv_or_list(raw.get("pages"), field_name=f"field_map.{placeholder}.pages")
     line_order_raw = raw.get("line_order")
     line_order = str(line_order_raw).strip() if line_order_raw is not None and str(line_order_raw).strip() else None
+    usage_type_raw = raw.get("usage_type")
+    usage_type = str(usage_type_raw).strip().lower() if usage_type_raw is not None and str(usage_type_raw).strip() else None
+    placement_key_raw = raw.get("placement_key")
+    placement_key = (
+        str(placement_key_raw).strip().lower()
+        if placement_key_raw is not None and str(placement_key_raw).strip()
+        else None
+    )
+    value_role_raw = raw.get("value_role")
+    value_role = str(value_role_raw).strip().lower() if value_role_raw is not None and str(value_role_raw).strip() else None
+    variant_key_raw = raw.get("variant_key")
+    variant_key = str(variant_key_raw).strip().lower() if variant_key_raw is not None and str(variant_key_raw).strip() else None
     default_raw = raw.get("default")
     default = str(default_raw) if default_raw is not None else None
 
@@ -111,6 +145,10 @@ def _normalize_field_binding(raw: object, *, placeholder: str) -> DraftFieldBind
         row_key=row_key,
         pages=pages or ("spec", "specifications"),
         line_order=line_order,
+        usage_type=usage_type,
+        placement_key=placement_key,
+        value_role=value_role,
+        variant_key=variant_key,
         default=default,
     )
 
@@ -313,6 +351,10 @@ def resolve_recipe_substitutions(
             row_key=binding.row_key,
             pages=binding.pages,
             line_order=binding.line_order,
+            usage_type=binding.usage_type,
+            placement_key=binding.placement_key,
+            value_role=binding.value_role,
+            variant_key=binding.variant_key,
         )
         if match is not None:
             substitutions[placeholder] = match.value
@@ -329,6 +371,7 @@ def missing_required_row_keys(
     model: str | None,
     region: str | None,
     lang: str,
+    include_field_map: bool = True,
 ) -> list[str]:
     missing: list[str] = []
     for row_key in recipe.required_row_keys:
@@ -342,6 +385,26 @@ def missing_required_row_keys(
         )
         if match is None:
             missing.append(row_key)
+    if not include_field_map:
+        return missing
+    for placeholder, binding in recipe.field_map.items():
+        if binding.default is not None:
+            continue
+        match = resolve_spec_value_from_rows(
+            spec_rows,
+            model=model,
+            region=region,
+            lang=lang,
+            row_key=binding.row_key,
+            pages=binding.pages,
+            line_order=binding.line_order,
+            usage_type=binding.usage_type,
+            placement_key=binding.placement_key,
+            value_role=binding.value_role,
+            variant_key=binding.variant_key,
+        )
+        if match is None:
+            missing.append(format_field_binding(binding, owner=f"field_map.{placeholder}"))
     return missing
 
 

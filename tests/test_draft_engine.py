@@ -24,7 +24,11 @@ class TestDraftEngine(unittest.TestCase):
                         "template: templates/page_us-en/demo.rst",
                         "field_map:",
                         "  PRODUCT_NAME: product_name",
-                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "  MAIN_POWER_BUTTON_LABEL:",
+                        "    row_key: main_power_button",
+                        "    pages: [Product overview]",
+                        "    usage_type: page_value",
+                        "    value_role: label",
                         "required_row_keys:",
                         "  - product_name",
                         "snippet_slots:",
@@ -77,10 +81,10 @@ class TestDraftEngine(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 v2",
-                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main Power Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,,Jackery Explorer 1000 v2",
+                        "JE-1000F,US,TRUE,specifications,model_no,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,Main Power Button",
                     ]
                 )
                 + "\n",
@@ -123,10 +127,11 @@ class TestDraftEngine(unittest.TestCase):
                         "template: templates/page_us-en/demo.rst",
                         "field_map:",
                         "  MAIN_POWER_BUTTON_LABEL:",
-                        "    row_key: tpl_main_power_button_label",
+                        "    row_key: main_power_button",
                         "    pages: Product overview",
-                        "required_row_keys:",
-                        "  - tpl_main_power_button_label",
+                        "    usage_type: page_value",
+                        "    value_role: label",
+                        "required_row_keys: []",
                         "snippet_slots: {}",
                         "contracts: []",
                     ]
@@ -148,8 +153,8 @@ class TestDraftEngine(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
-                        "JE-1000F,US,TRUE,Product overview,tpl_main_power_button_label,Main Power Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_en",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,Main Power Button",
                     ]
                 )
                 + "\n",

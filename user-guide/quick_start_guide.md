@@ -321,7 +321,7 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 - 未解析占位符
 - 缺失 include 目标
 - 缺失资源
-- 页面 contract 中的占位符、spec key、`tpl_*` key 和资源
+- 页面 contract 中的占位符、spec key、page-value selector 和资源
 
 ---
 

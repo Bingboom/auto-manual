@@ -21,7 +21,7 @@ It answers the practical question: "I have a piece of manual data. Which file an
 | Product name | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=product_name`, fill `Value_*` | Use the row that belongs to the target `Model` + `Region` |
 | Model number | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=model_no`, fill `Value_*` | Same placement rule as `product_name` |
 | Visible spec rows | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, choose visible `Section`, fill `Row_key`, `Row_label_*`, `Param_*`, `Value_*` | Use this for rows that should appear in the spec table |
-| Product overview labels or per-model UI text | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview`, `Row_key=tpl_*`, usually under `CONTROLS`, `INPUT PORTS`, `OUTPUT PORTS`, `SETTINGS`, or `ACCESSORIES` | Use this for placeholders consumed by templates |
+| Product overview labels or per-model UI text | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview`, `Row_key=<concept_key>`, `Slot_key=<slot>` | Use this for placeholders consumed by templates |
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
 | Spec footnotes | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | footnote CSV rows | Do not stuff footnotes into visible spec rows just to keep all text in one file |
 | Spec page title translation | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title | Only for visible spec page titles |
@@ -36,7 +36,7 @@ The current manual data layer uses these files:
   - visible spec rows
   - `product_name`
   - `model_no`
-  - `tpl_*` placeholders
+- page-value placeholder rows
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
   - spec footnotes
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
@@ -57,13 +57,14 @@ This section is the editor-facing filling guide.
 | Column | What to put here | Current rule |
 | --- | --- | --- |
 | `Page` | visible page ownership | Use `specifications`, `Product overview`, or `Product overview, specifications,` |
-| `Section` | logical group | Use the visible spec section for spec rows; use internal container sections for `tpl_*` rows |
+| `Section` | logical group | Use the visible spec section for spec rows; use internal container sections for page-value rows |
 | `Section_order` | section order | Keep section order consistent with current section conventions |
-| `Row_key` | stable machine key | Same concept should use the same `Row_key` across regions |
+| `Row_key` | stable machine key | Same concept should use the same `Row_key` across regions; do not treat `Row_key` alone as a unique row ID |
 | `Row_label_*` | visible row label | Fill the visible label that should appear in the final output |
 | `Param_*` | left-side or prefix text inside the value cell | Use only when one row has a parameter + value pair |
 | `Value_*` | main value text | Most rows need this |
 | `Line_order` | order of multiple lines under the same row | Use `1`, `2`, `3`, ... when the same `Row_key` spans multiple lines |
+| `Slot_key` | page-value slot marker | Leave blank for visible spec rows. Use values such as `label`, `text`, `value`, `front.label`, `front.low.spec`, `side.pv.spec` for template-fed rows |
 | `Model` | target model | Must match the intended target build |
 | `Region` | target region | Must match the intended target build |
 | `Is_Latest` | active row flag | Keep active rows as `TRUE` |
@@ -73,7 +74,7 @@ This section is the editor-facing filling guide.
 Use this rule of thumb:
 
 - if the text should appear as a visible row in the spec table, add a normal spec row
-- if the text should fill a template placeholder such as a button label, add a `tpl_*` row
+- if the text should fill a template placeholder such as a button label, add a row with a non-empty `Slot_key`
 - if the text is a footnote, use [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - if the text is long safety prose, use [`content_blocks.csv`](../data/phase1/content_blocks.csv)
 
@@ -117,9 +118,9 @@ If the same visible row label has multiple lines, repeat the same `Row_key` and 
 For page-level placeholders that are not part of the visible spec table, use the real page token instead of `specifications`:
 
 ```csv
-...,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,1 month,-20C to 45C,...,JE-1000F
-...,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,3 months,0C to 45C,...,JE-1000F
-...,09_storage_and_maintenance,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,1 year,0C to 25C,...,JE-1000F
+...,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,1,1 month,-20C to 45C,...,JE-1000F
+...,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,2,3 months,0C to 45C,...,JE-1000F
+...,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,storage_temperature,Storage Temperature,3,1 year,0C to 25C,...,JE-1000F
 ```
 
 Current rule:
@@ -133,15 +134,17 @@ Current rule:
 Use this shape for template-driven labels or values:
 
 ```csv
-...,Product overview,CONTROLS,7,tpl_main_power_button_label,Main Power Button,1,,Main POWER Button,...,JE-1000F
-...,Product overview,OUTPUT PORTS,3,tpl_front_ac_output_spec,AC Output,1,,"120V~60Hz, 12.5A, 1500W Rated",...,JE-1000F
+...,Product overview,CONTROLS,7,main_power_button,label,Main Power Button,1,,Main POWER Button,...,JE-1000F
+...,Product overview,OUTPUT PORTS,3,ac_output,front.spec,AC Output,1,,"120V~60Hz, 12.5A, 1500W Rated",...,JE-1000F
 ```
 
 Current rule:
 
-- `Row_key` must start with `tpl_`
-- the rendered placeholder name is derived from that key
-- example: `tpl_main_power_button_label` -> `|MAIN_POWER_BUTTON_LABEL|`
+- `Row_key` must keep only the concept itself
+- leave `Slot_key` blank for visible spec rows
+- fill `Slot_key` for template-fed rows
+- example: `Row_key=main_power_button` + `Slot_key=label` -> `|MAIN_POWER_BUTTON_LABEL|`
+- example: `Row_key=ac_input` + `Slot_key=side.spec` -> `|SIDE_AC_INPUT_SPEC|`
 
 ### 3.7 Advanced Columns Developers May Touch
 
@@ -194,7 +197,7 @@ Current internal or placeholder-heavy sections may still exist in the sheet:
 
 Current rule:
 
-- `CONTROLS`, `SETTINGS`, and `ACCESSORIES` are usually containers for `tpl_*`
+- `CONTROLS`, `SETTINGS`, and `ACCESSORIES` are usually containers for rows with non-empty `Slot_key`
 - `TEMPLATE VARS` is internal and should not be treated as a visible spec section
 - for new visible temperature rows, prefer `ENVIRONMENTAL OPERATING TEMPERATURE`
 
@@ -219,6 +222,119 @@ Current preferred temperature keys:
 - `discharging_temperature`
 - `storage_temperature`
 
+### 4.4 `Row_key` Is Not A Single-Column Primary Key
+
+Current rule:
+
+- `Row_key` is a semantic key, not a row-unique key
+- one `Row_key` may appear in multiple `Region` values
+- one `Row_key` may appear in multiple `Page` values
+- one `Row_key` may appear multiple times with different `Line_order` values
+- this is expected for rows such as `ac_input`, `usb_c`, `ac_output`, and `storage_temperature`
+
+What this means in practice:
+
+- use `Row_key` to answer "what concept is this row about?"
+- do not use `Row_key` alone to answer "is this the same physical row in the sheet?"
+
+Current code behavior:
+
+- duplicate-latest validation groups rows by `Model + Region + Page + Row_key + Line_order`
+- runtime lookup also matches by `Model`, `Region`, `Row_key`, `Page`, and optionally `Line_order`
+
+Recommended maintenance identity:
+
+```text
+Maint_key = Model | Region | normalized(Page) | Row_key | normalized(Slot_key) | normalized(Line_order)
+```
+
+Normalization rule:
+
+- `Model`: trim spaces and keep the build target value, for example `JE-1000F`
+- `Region`: trim spaces and use the canonical region token, for example `US`, `JP`, `EU`
+- `Page`: split by comma, trim each token, lowercase for comparison, sort the tokens, then join with `+`
+- `Row_key`: lowercase snake_case semantic key such as `cell_chemistry` or `ac_output`
+- `Slot_key`: trim spaces, lowercase, keep blank for visible spec rows
+- `Line_order`: if empty, treat it as `1`
+
+Examples:
+
+- `JE-1000F|US|specifications|ac_input||1`
+- `JE-1000F|US|specifications|ac_input||2`
+- `JE-1000F|US|storage|storage_temperature||3`
+- `JE-1000F|US|product overview|ac_output|front.spec|1`
+
+Recommended editing rule:
+
+- keep `Row_key` stable even when the visible label changes
+- if only translation or wording changes, keep the same `Row_key`
+- if only page ownership changes, keep the same `Row_key`
+- if one visible row grows from one line to multiple lines, keep the same `Row_key` and split by `Line_order`
+- create a new `Row_key` only when the underlying concept changes
+
+Anti-patterns to avoid:
+
+- do not encode language into `Row_key`
+- do not encode the current visible label into `Row_key`
+- do not encode units into `Row_key`
+- do not encode section order or line order into `Row_key`
+- do not rename `Row_key` just because one region uses a shorter or more marketing-style label
+
+### 4.5 Keep `Row_key` Deterministic And Keep `Slot_key` Human-Readable
+
+Current recommendation:
+
+- do not derive `Row_key` directly from `Row_label_*`, `Param_*`, or `Value_*`
+- do not pack placement, template usage, or display-role information into `Row_key`
+- `Row_key` should represent the concept only
+- the template-facing shape should be captured by `Slot_key`
+
+Why the current `tpl_*` style is not ideal:
+
+- `tpl_front_ac_output_label` mixes at least four meanings into one field: template usage, placement, concept, and display role
+- once those meanings are packed into `Row_key`, the key is no longer stable when layout or placeholder strategy changes
+- the same concept should keep one canonical key even if it appears on different pages or in different UI slots
+
+Recommended generation rule:
+
+```text
+Row_key = concept only
+Slot_key = blank | role | placement.role | placement.variant.role
+```
+
+Recommended `Slot_key` examples:
+
+- blank -> visible spec row
+- `label` -> concept-level label placeholder
+- `value` -> bare page value whose placeholder is just the concept name
+- `text` -> free-text placeholder such as `UPS_BYPASS_OUTPUT_TEXT`
+- `front.label` -> front-view label
+- `front.spec` -> front-view spec text
+- `front.low.label` -> front-view low-variant label
+- `side.pv.spec` -> side-view PV spec text
+
+Examples:
+
+- `cell_chemistry + blank` -> spec row
+- `storage_temperature + blank` -> spec row
+- `main_power_button + label` -> `|MAIN_POWER_BUTTON_LABEL|`
+- `ac_output + front.spec` -> `|FRONT_AC_OUTPUT_SPEC|`
+- `dc_input + side.pv.spec` -> `|SIDE_DC_INPUT_PV_SPEC|`
+
+Recommended constraints:
+
+- `Row_key` should be lowercase snake_case English
+- `Slot_key` should be lowercase dot-separated text
+- `Slot_key` should be blank for visible spec rows
+- `Line_order` should never be folded into `Row_key`; keep it in `Line_order`
+
+Practical conclusion:
+
+- with this model, `Row_key` becomes truly canonical and reusable
+- the real row identity becomes a composite of `Model`, `Region`, `Page`, `Row_key`, `Slot_key`, and `Line_order`
+- current `tpl_*` rows should be treated as a legacy compatibility format, not the long-term writing rule
+- code may still derive selector fields internally, but the sheet should not require editors to hand-maintain them
+
 Current normalization guidance:
 
 - prefer `cell_chemistry` over region-only variants such as `battery_type`
@@ -226,7 +342,7 @@ Current normalization guidance:
 - prefer `discharging_temperature` over `operating_temperature` when the source is really the discharge range
 - keep a region-specific key only if it represents a genuinely different concept, not just a different label
 
-### 4.4 Language Columns
+### 4.6 Language Columns
 
 Current reality:
 
@@ -319,7 +435,7 @@ The parser treats the input as `Spec_Master`-style data when:
 Current visible-spec filtering rule:
 
 - only rows whose `Page` matches `spec` / `specifications` are used for the spec page
-- rows whose `Row_key` starts with `tpl_` are skipped
+- rows with non-empty `Slot_key` are skipped
 - rows under `Section=TEMPLATE VARS` are skipped
 
 Current row assembly rule:
@@ -343,13 +459,13 @@ Current behavior:
 
 - `product_name` is resolved with `pages=None`
 - `model_no` is resolved with `pages=None`
-- `tpl_*` placeholder rows are also collected with `pages=None`
-- `storage_temperature` rows under `Page=09_storage_and_maintenance` are exposed as multiline placeholders
+- rows with non-empty `Slot_key` are also collected with `pages=None`
+- `storage_temperature` rows under `Page=storage` are exposed as multiline placeholders
 
 This is important:
 
 - `Page` does not currently gate identity resolution
-- `Page` does not currently gate `tpl_*` placeholder collection
+- `Page` does not currently gate page-value placeholder collection
 - `Page` is therefore stronger as page-ownership metadata than as a guaranteed lookup fence
 
 Current derived placeholder rules:
@@ -357,7 +473,7 @@ Current derived placeholder rules:
 - `PRODUCT_SHORT_NAME` is derived by stripping the `Jackery ` prefix
 - `_BOLD` variants are generated automatically
 - `_LOWER` variants are generated automatically for keys ending in `_LABEL`
-- for `tpl_*` rows with `Line_order > 1`, the placeholder gains a suffix such as `_2`
+- for page-value rows with `Line_order > 1`, the placeholder gains a suffix such as `_2`
 - `storage_temperature` currently generates `STORAGE_TEMPERATURE_LINE_1/2/3` plus matching `..._PARAM_1/2/3` and `..._VALUE_1/2/3`
 - `Param_es` / `Value_es` and `Param_ja` / `Value_ja` can be added as optional language columns when a page placeholder needs real Spanish or Japanese text rather than English fallback
 
@@ -368,7 +484,7 @@ Current diff-report field extraction lives mainly in [`tools/diff_report.py`](..
 Current rule:
 
 - diff-report filters spec rows by `Page=spec` / `specifications`
-- it skips `tpl_*` rows
+- it skips rows with non-empty `Slot_key`
 - it skips `Section=TEMPLATE VARS`
 - it uses [`spec_titles.csv`](../data/phase1/spec_titles.csv) to render localized visible section titles
 
@@ -505,9 +621,9 @@ Symptom:
 
 Check:
 
-- matching `tpl_*` row exists
+- matching page-value row exists
 - value is not empty
-- there is not a duplicate `tpl_*` row winning earlier in ranking
+- there is not a duplicate page-value row winning earlier in ranking
 - page contract covers the page if it is placeholder-heavy
 
 ### 10.3 Page-Scope Confusion

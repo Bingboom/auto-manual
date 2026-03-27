@@ -7,7 +7,7 @@ import csv
 from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
-from ..utils.spec_master import page_value_matches
+from ..utils.spec_master import is_page_value_row, page_value_matches
 
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
@@ -266,7 +266,7 @@ def _parse_spec_master_sections(
         row_key = _first_non_empty(row, ["Row_key", "row_key"])
         if not section_key or not row_key:
             continue
-        if row_key.lower().startswith("tpl_") or section_key.strip().lower() == "template vars":
+        if is_page_value_row(row) or section_key.strip().lower() == "template vars":
             continue
 
         section_title = _pick_spec_lang_text(

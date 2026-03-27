@@ -1,7 +1,7 @@
 使い方
 ======
 
-|MAIN_POWER_BUTTON_LABEL| オン/オフ
+メイン電源ボタン オン/オフ
 -----------------
 
 .. image:: templates/word_template/common_assets/operation/main_power.png
@@ -23,7 +23,7 @@
 AC出力のオン/オフ
 -----------------
 
-● 前提：|MAIN_POWER_BUTTON_LABEL|がオンになっていることを確認してください。
+● 前提：メイン電源ボタンがオンになっていることを確認してください。
 
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output operation diagram.
@@ -43,7 +43,7 @@ AC出力のオン/オフ
 
 自動識別：お客様のお住まいの地域に応じて周波数を自動的に識別し、対応する出力に自動調整されます。
 
-手動調整：AC出力がオンの状態で、|AC_POWER_BUTTON_LABEL|を5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
+手動調整：AC出力がオンの状態で、AC出力ボタンを5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
 
 .. image:: templates/word_template/common_assets/operation/frequency_switch.png
    :alt: Frequency switch diagram.
@@ -52,7 +52,7 @@ AC出力のオン/オフ
 USB/カーポート出力オン/オフ
 ---------------------------
 
-● 前提：|MAIN_POWER_BUTTON_LABEL|がオンになっていることを確認してください。
+● 前提：メイン電源ボタンがオンになっていることを確認してください。
 
 .. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: DC and USB output operation diagram.
@@ -69,7 +69,7 @@ USB/カーポート出力オン/オフ
 **ご注意**
 
 - |USB_C_HIGH_POWER_PORT_LABEL|は、USB-PD Power Source 3（PS3）の高出力ポートです。接続されたユーザーデバイスまたはアクセサリーが安全基準を満たしていない場合、火災の危険性があります。これらのポートを使用する前に、接続するデバイスまたはアクセサリーに耐火安全保護が備わっていることを確認してください。
-- |PRODUCT_NAME| は、IEC/EN/UL 62368-1（または同等の規格）の6.3、6.4、6.5条に準拠したデバイスまたはアクセサリーのみに接続してください。
+- Jackery ポータブル電源 1000 New は、IEC/EN/UL 62368-1（または同等の規格）の6.3、6.4、6.5条に準拠したデバイスまたはアクセサリーのみに接続してください。
 - 最大出力を得るためには、公式のJackery USB-C to USB-C 5A ケーブル（20V DC/5A、100W）を使用してください。
 
 本製品は、別売のJackery 12V 自動車用バッテリー充電ケーブルを使用することで、車のバッテリーへの充電が可能です。
@@ -103,7 +103,7 @@ USB/カーポート出力オン/オフ
 
 ※ 交流|ENERGY_SAVING_AC_THRESHOLD|および直流|ENERGY_SAVING_DC_THRESHOLD|以下の低消費電力機器をご使用の場合、出力が途中で自動的にオフにならないように、省エネモードをオフにしてください。省エネモードをオフにすると、画面上の省エネアイコンは表示されなくなります。
 
-|AC_POWER_BUTTON_LABEL|がオンの状態で、|AC_POWER_BUTTON_LABEL|と|MAIN_POWER_BUTTON_LABEL|を同時に長押しし、省エネアイコンの表示（オン）/ 非表示（オフ）が切り替わるまで押し続けてください。
+AC出力ボタンがオンの状態で、AC出力ボタンとメイン電源ボタンを同時に長押しし、省エネアイコンの表示（オン）/ 非表示（オフ）が切り替わるまで押し続けてください。
 
 .. image:: templates/word_template/common_assets/operation/energy_saving.png
    :alt: Energy saving mode diagram.
@@ -144,11 +144,11 @@ LCDスクリーン
           :width: 140px
      - 短くオン
      - オンにする
-     - |MAIN_POWER_BUTTON_LABEL|を押すか、充電入力がある場合。
+     - メイン電源ボタンを押すか、充電入力がある場合。
    * -
      - 短くオン
      - オフにする
-     - |MAIN_POWER_BUTTON_LABEL|を押します。
+     - メイン電源ボタンを押します。
    * -
      - 短くオン
      - 自動オフ
@@ -156,11 +156,11 @@ LCDスクリーン
    * -
      - 常時オン
      - オンにする
-     - デバイスが起動している状態で|MAIN_POWER_BUTTON_LABEL|を2回押します。
+     - デバイスが起動している状態でメイン電源ボタンを2回押します。
    * -
      - 常時オン
      - オフにする
-     - |MAIN_POWER_BUTTON_LABEL|を押します。
+     - メイン電源ボタンを押します。
    * -
      - 常時オン
      - 自動オフ
@@ -178,12 +178,12 @@ Jackeryアプリで画面表示モードを設定することもできます。
    * - ボタン
      - 操作
      - 機能
-   * - |MAIN_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL|
+   * - メイン電源ボタン + AC出力ボタン
      - 両方を3秒間長押し
      - 省エネモードのオン/ オフを切り替えます。
-   * - |MAIN_POWER_BUTTON_LABEL| + |DC_USB_POWER_BUTTON_LABEL|
+   * - メイン電源ボタン + DC/USB出力ボタン
      - 両方を3秒間長押し
      - Wi-Fiのリセット
-   * - |DC_USB_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL|
+   * - DC/USB出力ボタン + AC出力ボタン
      - 両方を1秒間長押し
      - Wi-Fi＆Bluetooth オン/オフ

@@ -154,7 +154,7 @@ If you update any of these:
 `Spec_Master.csv` note:
 
 - the `Page` column may now hold a comma-separated page list
-- use `Product overview` for Product overview-only `tpl_*` rows
+- use `Product overview` for Product overview-only page-value rows
 - use `Product overview, specifications,` when a row is intentionally shared by both pages
 
 `Spec_Footnotes.csv` supports two spec-bottom row types:
@@ -189,7 +189,7 @@ python build.py word --config config.ja.yaml --model JE-1000F --region JP
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-`check` now also catches stale foreign model names and contract-required spec keys, `tpl_*` keys, and assets.
+`check` now also catches stale foreign model names and contract-required spec keys, required page-value selectors, and assets.
 
 ### 3.6 Package a Review Preview for Design
 

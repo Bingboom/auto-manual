@@ -3,13 +3,6 @@ source_files:
   - templates/page_eu/05_operation_guide_placeholder.rst
 required_placeholders:
   default:
-    - PRODUCT_NAME
-    - MAIN_POWER_BUTTON_LABEL
-    - MAIN_POWER_BUTTON_LABEL_LOWER
-    - AC_POWER_BUTTON_LABEL
-    - AC_POWER_BUTTON_LABEL_LOWER
-    - DC_USB_POWER_BUTTON_LABEL
-    - DC_USB_POWER_BUTTON_LABEL_LOWER
     - DEFAULT_STANDBY_DURATION
     - ENERGY_SAVING_AUTO_OFF_DURATION
     - ENERGY_SAVING_AC_THRESHOLD

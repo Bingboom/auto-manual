@@ -18,7 +18,7 @@ The product will automatically shut down after |DEFAULT_STANDBY_DURATION| of ina
 
 *The standby time can be set in the Jackery App.*
 
-When Energy Saving Mode is enabled, the product will automatically shut down after |ENERGY_SAVING_AUTO_OFF_DURATION| if the AC or |DC_USB_POWER_BUTTON_LABEL_LOWER| is ON but the product is neither charging nor discharging.
+When Energy Saving Mode is enabled, the product will automatically shut down after |ENERGY_SAVING_AUTO_OFF_DURATION| if the AC or DC/USB power button is ON but the product is neither charging nor discharging.
 
 AC OUTPUT ON/OFF
 ----------------
@@ -49,7 +49,7 @@ Off: Press once.
 **CAUTION**
 
 - **|USB_C_HIGH_POWER_PORT_LABEL| is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
-- Only connect |PRODUCT_NAME| to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
+- Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
 - To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
 The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
@@ -65,7 +65,7 @@ ENERGY SAVING MODE
 
 To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (|ENERGY_SAVING_AC_THRESHOLD| AC output or |ENERGY_SAVING_DC_THRESHOLD| DC/USB output) for |ENERGY_SAVING_AUTO_OFF_DURATION|, the product automatically turns off the outputs. Please set the Energy Saving Mode duration in the Jackery app.
 
-To disable the energy saving mode, press and hold both the |AC_POWER_BUTTON_LABEL_LOWER| and the |MAIN_POWER_BUTTON_LABEL_LOWER| for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
+To disable the energy saving mode, press and hold both the AC power button and the main POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
 
 When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
@@ -110,11 +110,11 @@ LCD SCREEN
           :width: 140px
      - Shortly On
      - Turn on
-     - Press the |MAIN_POWER_BUTTON_LABEL| or when the product is charging.
+     - Press the Main POWER Button or when the product is charging.
    * -
      - Shortly On
      - Turn off
-     - Press the |MAIN_POWER_BUTTON_LABEL|.
+     - Press the Main POWER Button.
    * -
      - Shortly On
      - Auto-off
@@ -122,11 +122,11 @@ LCD SCREEN
    * -
      - Steady On (in charging or discharging state)
      - Turn on
-     - Press the |MAIN_POWER_BUTTON_LABEL_LOWER| twice when the product is powered on.
+     - Press the main POWER button twice when the product is powered on.
    * -
      - Steady On (in charging or discharging state)
      - Turn off
-     - Press the |MAIN_POWER_BUTTON_LABEL|.
+     - Press the Main POWER Button.
    * -
      - Steady On (in charging or discharging state)
      - Auto-off
@@ -144,12 +144,12 @@ KEY COMBINATION
    * - Buttons
      - Operation
      - Function
-   * - |MAIN_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL_LOWER|
+   * - Main POWER Button + AC power button
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER|
+   * - main POWER button + DC/USB power button
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
-   * - |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER|
+   * - DC/USB power button + AC power button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth

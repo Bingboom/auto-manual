@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.utils.spec_master import page_value_matches
+from tools.utils.spec_master import is_page_value_row, page_value_matches, page_value_role, resolve_legacy_page_value_key
 
 HEADING_UNDERLINE_RE = re.compile(r"^[=\-~^\"`:#*+]{3,}$")
 SPEC_SECTION_RE = re.compile(r"\\specsectiontitle\{(.+?)\}")
@@ -564,7 +564,7 @@ def build_spec_source_lookup(
         section_key = first_non_empty(row, ["Section", "section"])
         if not row_key or not section_key:
             continue
-        if row_key.lower().startswith("tpl_") or section_key.strip().lower() == "template vars":
+        if is_page_value_row(row) or section_key.strip().lower() == "template vars":
             continue
         filtered.append(row)
 
@@ -666,7 +666,7 @@ def build_placeholder_source_lookup(
         row_key = first_non_empty(row, ["Row_key", "row_key"])
         if not row_key:
             continue
-        if row_key.lower() not in {"product_name", "model_no"} and not row_key.lower().startswith("tpl_"):
+        if row_key.lower() not in {"product_name", "model_no"} and not is_page_value_row(row):
             continue
 
         raw_value = pick_lang_value(row, "Value", lang, default_keys=["Value_en", "Spec_Value"])
@@ -674,10 +674,11 @@ def build_placeholder_source_lookup(
             continue
 
         line_order = first_non_empty(row, ["Line_order", "line_order"]) or str(idx + 1)
+        source_row_key = resolve_legacy_page_value_key(row) or row_key
         base_source = PlaceholderValueSource(
             match_value="",
             source_section_key=first_non_empty(row, ["Section", "section"]),
-            source_row_key=row_key,
+            source_row_key=source_row_key,
             source_line_order=line_order,
             source_csv_line=first_non_empty(row, ["__line__"]),
         )
@@ -688,7 +689,7 @@ def build_placeholder_source_lookup(
             short_name = derive_short_product_name(raw_value)
             if short_name and short_name != raw_value:
                 candidate_values.append(short_name)
-        if lowered_row_key.startswith("tpl_") and lowered_row_key.endswith("_label"):
+        if page_value_role(row) == "label":
             lower_value = derive_label_lower(raw_value)
             if lower_value and lower_value != raw_value:
                 candidate_values.append(lower_value)

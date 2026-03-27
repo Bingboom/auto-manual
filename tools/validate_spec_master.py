@@ -30,6 +30,10 @@ class SpecSelector:
     row_key: str
     pages: tuple[str, ...]
     line_order: str | None = None
+    usage_type: str | None = None
+    placement_key: str | None = None
+    value_role: str | None = None
+    variant_key: str | None = None
 
 
 @dataclass(frozen=True)
@@ -205,12 +209,25 @@ def _collect_target_selectors(
                     row_key=binding.row_key,
                     pages=tuple(binding.pages),
                     line_order=binding.line_order,
+                    usage_type=binding.usage_type,
+                    placement_key=binding.placement_key,
+                    value_role=binding.value_role,
+                    variant_key=binding.variant_key,
                 )
             )
 
     deduped = list(
         {
-            (selector.owner, selector.row_key, selector.pages, selector.line_order): selector
+            (
+                selector.owner,
+                selector.row_key,
+                selector.pages,
+                selector.line_order,
+                selector.usage_type,
+                selector.placement_key,
+                selector.value_role,
+                selector.variant_key,
+            ): selector
             for selector in selectors
         }.values()
     )
@@ -272,6 +289,10 @@ def collect_spec_master_validation_issues(
                     row_key=selector.row_key,
                     pages=selector.pages,
                     line_order=selector.line_order,
+                    usage_type=selector.usage_type,
+                    placement_key=selector.placement_key,
+                    value_role=selector.value_role,
+                    variant_key=selector.variant_key,
                 )
                 if not matching_rows:
                     issues.append(
@@ -334,6 +355,10 @@ def collect_spec_master_validation_issues(
                     row_key=selector.row_key,
                     pages=selector.pages,
                     line_order=selector.line_order,
+                    usage_type=selector.usage_type,
+                    placement_key=selector.placement_key,
+                    value_role=selector.value_role,
+                    variant_key=selector.variant_key,
                 )
                 if not value_matches:
                     issues.append(

@@ -2,59 +2,116 @@ page_id: 03_product_overview
 template: templates/page_jp/03_product_overview_placeholder.rst
 field_map:
   MAIN_POWER_BUTTON_LABEL:
-    row_key: tpl_main_power_button_label
+    row_key: main_power_button
     pages: [Product overview]
+    usage_type: page_value
+    value_role: label
   FRONT_DC12_PORT_LABEL:
-    row_key: tpl_front_dc12_port_label
+    row_key: dc12_port
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
   FRONT_DC12_PORT_SPEC:
-    row_key: tpl_front_dc12_port_spec
+    row_key: dc12_port
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
   DC_USB_POWER_BUTTON_LABEL:
-    row_key: tpl_dc_usb_power_button_label
+    row_key: dc_usb_power_button
     pages: [Product overview]
+    usage_type: page_value
+    value_role: label
   FRONT_USB_C_LOW_LABEL:
-    row_key: tpl_front_usb_c_low_label
+    row_key: usb_c
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+    variant_key: low
   FRONT_USB_C_LOW_SPEC:
-    row_key: tpl_front_usb_c_low_spec
+    row_key: usb_c
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+    variant_key: low
   FRONT_USB_C_HIGH_LABEL:
-    row_key: tpl_front_usb_c_high_label
+    row_key: usb_c
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+    variant_key: high
   FRONT_USB_C_HIGH_SPEC:
-    row_key: tpl_front_usb_c_high_spec
+    row_key: usb_c
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+    variant_key: high
   AC_POWER_BUTTON_LABEL:
-    row_key: tpl_ac_power_button_label
+    row_key: ac_power_button
     pages: [Product overview]
+    usage_type: page_value
+    value_role: label
   FRONT_USB_A_LABEL:
-    row_key: tpl_front_usb_a_label
+    row_key: usb_a
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
   FRONT_USB_A_SPEC:
-    row_key: tpl_front_usb_a_spec
+    row_key: usb_a
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
   FRONT_AC_OUTPUT_LABEL:
-    row_key: tpl_front_ac_output_label
+    row_key: ac_output
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
   FRONT_AC_OUTPUT_SPEC:
-    row_key: tpl_front_ac_output_spec
+    row_key: ac_output
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
   SIDE_AC_INPUT_LABEL:
-    row_key: tpl_side_ac_input_label
+    row_key: ac_input
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: label
   SIDE_AC_INPUT_SPEC:
-    row_key: tpl_side_ac_input_spec
+    row_key: ac_input
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: spec
   SIDE_DC_INPUT_LABEL:
-    row_key: tpl_side_dc_input_label
+    row_key: dc_input
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: label
   SIDE_DC_INPUT_PV_SPEC:
-    row_key: tpl_side_dc_input_pv_spec
+    row_key: dc_input
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: spec
+    variant_key: pv
   SIDE_DC_INPUT_CAR_SPEC:
-    row_key: tpl_side_dc_input_car_spec
+    row_key: dc_input
     pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: spec
+    variant_key: car
 required_row_keys:
   - product_name
   - model_no

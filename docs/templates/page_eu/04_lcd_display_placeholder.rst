@@ -72,7 +72,7 @@ LCD DISPLAY
    * - Low Temperature Indicator
      - Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
    * - Energy Saving Mode
-     - When the AC or USB output is turned on by pressing the |AC_POWER_BUTTON_LABEL_LOWER| or |USB_POWER_BUTTON_LABEL_LOWER|:
+- When the AC or USB output is turned on by pressing the |AC_POWER_BUTTON_LABEL_LOWER| or USB power button:
 
        **On:** Energy Saving Mode is enabled.
 

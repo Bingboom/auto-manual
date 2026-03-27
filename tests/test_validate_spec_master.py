@@ -8,7 +8,7 @@ from tools import validate_spec_master
 
 
 class TestValidateSpecMaster(unittest.TestCase):
-    def _write_generated_page_fixture(self, root: Path, *, recipe_field_map: str = "tpl_main_power_button_label") -> Path:
+    def _write_generated_page_fixture(self, root: Path) -> Path:
         docs_dir = root / "docs"
         (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
         (docs_dir / "templates" / "recipes").mkdir(parents=True)
@@ -23,7 +23,11 @@ class TestValidateSpecMaster(unittest.TestCase):
                     "page_id: demo_page",
                     "template: templates/page_us-en/demo.rst",
                     "field_map:",
-                    f"  MAIN_POWER_BUTTON_LABEL: {recipe_field_map}",
+                    "  MAIN_POWER_BUTTON_LABEL:",
+                    "    row_key: main_power_button",
+                    "    pages: [Product overview]",
+                    "    usage_type: page_value",
+                    "    value_role: label",
                     "required_row_keys:",
                     "  - product_name",
                     "  - model_no",
@@ -82,11 +86,11 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Line_order,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,1,Jackery 1000",
-                        "JE-1000F,US,TRUE,specifications,model_no,1,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,1,Main POWER Button",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,1,Main POWER Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
                     ]
                 )
                 + "\n",
@@ -112,11 +116,11 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Line_order,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,1,Jackery 1000",
-                        "JE-1000F,US,TRUE,specifications,model_no,1,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,1,Main POWER Button",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,2,Primary POWER Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,2,Primary POWER Button",
                     ]
                 )
                 + "\n",
@@ -142,10 +146,10 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Line_order,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,1,",
-                        "JE-1000F,US,TRUE,specifications,model_no,1,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,1,Main POWER Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
                     ]
                 )
                 + "\n",

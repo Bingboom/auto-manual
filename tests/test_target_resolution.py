@@ -181,9 +181,9 @@ class TestTargetResolution(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             spec_master_csv = Path(td) / "Spec_Master.csv"
             spec_master_csv.write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en,Value_ja\n"
-                "GENERAL INFO,product_name,1,spec,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2,\n"
-                "GENERAL INFO,product_name,1,spec,JE-2000F,Japan,1,1,,Jackery ポータブル電源 2000 New\n",
+                "Section,Row_key,Slot_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en,Value_ja\n"
+                "GENERAL INFO,product_name,,1,spec,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2,\n"
+                "GENERAL INFO,product_name,,1,spec,JE-2000F,Japan,1,1,,Jackery \u30dd\u30fc\u30bf\u30d6\u30eb\u96fb\u6e90 2000 New\n",
                 encoding="utf-8",
             )
             cfg = {"paths": {"spec_master_csv": str(spec_master_csv)}}
@@ -212,10 +212,10 @@ class TestTargetResolution(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             spec_master_csv = Path(td) / "Spec_Master.csv"
             spec_master_csv.write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
-                "GENERAL INFO,product_name,1,specifications,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2\n"
-                "GENERAL INFO,model_no,1,specifications,JHP-2000A,US,1,1,JHP-2000A\n"
-                "TEMPLATE VARS,tpl_main_power_button_label,1,specifications,JHP-2000A,US,1,1,Main POWER Button\n",
+                "Section,Row_key,Slot_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "GENERAL INFO,product_name,,1,specifications,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2\n"
+                "GENERAL INFO,model_no,,1,specifications,JHP-2000A,US,1,1,JHP-2000A\n"
+                "CONTROLS,main_power_button,label,1,Product overview,JHP-2000A,US,1,1,Main POWER Button\n",
                 encoding="utf-8",
             )
             cfg = {"paths": {"spec_master_csv": str(spec_master_csv)}}
@@ -319,9 +319,13 @@ class TestTargetResolution(unittest.TestCase):
                         "page_id: draft_page",
                         "template: templates/page_us-en/draft.rst",
                         "field_map:",
-                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "  MAIN_POWER_BUTTON_LABEL:",
+                        "    row_key: main_power_button",
+                        "    pages: [Product overview]",
+                        "    usage_type: page_value",
+                        "    value_role: label",
                         "required_row_keys:",
-                        "  - tpl_main_power_button_label",
+                        "  - product_name",
                         "snippet_slots:",
                         "  intro: intro_snippet",
                         "contracts: []",
@@ -367,9 +371,9 @@ class TestTargetResolution(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en",
-                        "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product",
-                        "TEMPLATE VARS,tpl_main_power_button_label,1,specifications,M1,US,1,1,Main Button",
+                        "Section,Row_key,Slot_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en",
+                        "GENERAL INFO,product_name,,1,specifications,M1,US,1,1,Demo Product",
+                        "CONTROLS,main_power_button,label,1,Product overview,M1,US,1,1,Main Button",
                     ]
                 )
                 + "\n",

@@ -153,7 +153,7 @@ Important:
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
-- `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / `tpl_*` keys / assets.
+- `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / page-value selectors / assets.
 - review overrides only overlay `overrides/_assets/**`, `overrides/_static/**`, and `overrides/renderers/**` into the runtime bundle.
 
 ---
@@ -279,7 +279,7 @@ Generated bundle output:
 - [`docs/_build/<model>/<region>/rst/generated/<model>/spec_<lang>.rst`](../docs/_build)
 - materialized page include: [`docs/_build/<model>/<region>/rst/page/spec_<lang>.rst`](../docs/_build)
 
-[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main source of truth for spec sections, rows, and `tpl_*` placeholders.
+[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main source of truth for spec sections, rows, and page-value placeholder records.
 
 ---
 
@@ -302,22 +302,22 @@ Resolution source:
 `Spec_Master.csv` `Page` note:
 
 - `Page` can be a comma-separated list
-- use `Product overview` for Product overview-only placeholder rows such as front/side-view callouts
+- use `Product overview` for Product overview-only page-value rows such as front/side-view callouts
 - use `Product overview, specifications,` when the same row is intentionally shared by both pages
 
-Any `Row_key` beginning with `tpl_` becomes a placeholder.
+For page-value rows, `Row_key` now keeps only the concept itself. Human editing should happen through `Slot_key`.
 
 Examples:
 
-- `tpl_main_power_button_label` -> `|MAIN_POWER_BUTTON_LABEL|`
-- `tpl_side_ac_input_spec` -> `|SIDE_AC_INPUT_SPEC|`
-- `tpl_battery_pack_name` -> `|BATTERY_PACK_NAME|`
+- `Row_key=main_power_button`, `Slot_key=label` -> `|MAIN_POWER_BUTTON_LABEL|`
+- `Row_key=ac_input`, `Slot_key=side.spec` -> `|SIDE_AC_INPUT_SPEC|`
+- `Row_key=battery_pack_name`, `Slot_key=value` -> `|BATTERY_PACK_NAME|`
 
 Derived behavior:
 
 - non-empty placeholders also get `..._BOLD`
 - placeholders ending in `_LABEL` also get `..._LOWER`
-- multi-line `tpl_*` rows produce suffixed placeholders such as `|EXAMPLE_KEY_2|`
+- multi-line page-value rows produce suffixed placeholders such as `|EXAMPLE_KEY_2|`
 
 ---
 
@@ -568,7 +568,7 @@ What each report means:
 - `pages`: page-level rollup with `fields_changed` counts
 - `fields`: structured field/value changes extracted from list-tables and `Label: Value` lines
   For generated `spec_*.rst` pages, the report now also tries to fill `source_row_key`, `source_section_key`, `source_line_order`, and `source_csv_line` from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv).
-  For template-based pages such as `03_product_overview`, `05_operation_guide`, and `12_app_setup`, the report also tries to back-map changed field text to matching `tpl_*` rows by comparing rendered values against resolved placeholders.
+  For template-based pages such as `03_product_overview`, `05_operation_guide`, and `12_app_setup`, the report also tries to back-map changed field text to matching page-value rows by comparing rendered values against resolved placeholders.
   `fields.html` now includes built-in filters for `model`, `region`, `page_key`, `source_row_key`, `change_type`, plus a full-text search box.
 - `index`: homepage that links `files/pages/fields` together and provides target-level jump links with filters pre-applied
 
@@ -631,7 +631,7 @@ The repo now supports page contract checks under:
 Current scope:
 
 - contracts are matched by source template path from `config.pages`
-- `check` validates required placeholders, spec row keys, `tpl_*` row keys, and required assets
+- `check` validates required placeholders, spec row keys, page-value selectors, and required assets
 - current coverage includes `03_product_overview`, `05_operation_guide`, and `12_app_setup`
 - `EN`, `JP`, and `EU` template families can each declare their own required placeholder sets
 - contracts can be scoped by `allowed_languages`, `allowed_regions`, and `allowed_models`
@@ -640,7 +640,7 @@ Current contract keys:
 
 - `required_placeholders`
 - `required_spec_keys`
-- `required_tpl_keys`
+- `required_page_values`
 - `required_assets`
 - `allowed_languages`
 - `allowed_regions`
@@ -648,7 +648,7 @@ Current contract keys:
 
 Why this matters:
 
-- a page can fail early when required `tpl_*` keys are missing
+- a page can fail early when required page-value bindings are missing
 - fallback values in [`conf_base.py`](../docs/conf_base.py) no longer hide missing product-specific spec data
 - new model onboarding becomes easier to validate before Word/PDF export
 
@@ -674,7 +674,7 @@ Use template/data only for shared reusable changes or intentional reseeding.
 
 ### 11.2 `?` appears in output
 
-This is usually caused by dirty `tpl_*` values in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), not by the template structure itself.
+This is usually caused by dirty page-value rows in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), not by the template structure itself.
 
 ### 11.3 Old model names survive in the new manual
 

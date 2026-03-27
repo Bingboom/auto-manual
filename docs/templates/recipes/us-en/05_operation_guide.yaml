@@ -1,28 +1,28 @@
 page_id: 05_operation_guide
 template: templates/page_us-en/05_operation_guide_placeholder.rst
 field_map:
-  PRODUCT_NAME: product_name
-  MAIN_POWER_BUTTON_LABEL:
-    row_key: tpl_main_power_button_label
-    pages: [Product overview]
-  AC_POWER_BUTTON_LABEL:
-    row_key: tpl_ac_power_button_label
-    pages: [Product overview]
-  DC_USB_POWER_BUTTON_LABEL:
-    row_key: tpl_dc_usb_power_button_label
-    pages: [Product overview]
-  DEFAULT_STANDBY_DURATION: tpl_default_standby_duration
-  ENERGY_SAVING_AUTO_OFF_DURATION: tpl_energy_saving_auto_off_duration
-  ENERGY_SAVING_AC_THRESHOLD: tpl_energy_saving_ac_threshold
-  ENERGY_SAVING_DC_THRESHOLD: tpl_energy_saving_dc_threshold
-  USB_C_HIGH_POWER_PORT_LABEL: tpl_usb_c_high_power_port_label
-required_row_keys:
-  - product_name
-  - tpl_main_power_button_label
-  - tpl_ac_power_button_label
-  - tpl_dc_usb_power_button_label
-  - tpl_default_standby_duration
-  - tpl_energy_saving_auto_off_duration
+  DEFAULT_STANDBY_DURATION:
+    row_key: default_standby_duration
+    pages: [specifications]
+    usage_type: page_value
+  ENERGY_SAVING_AUTO_OFF_DURATION:
+    row_key: energy_saving_auto_off_duration
+    pages: [specifications]
+    usage_type: page_value
+  ENERGY_SAVING_AC_THRESHOLD:
+    row_key: energy_saving_ac_threshold
+    pages: [specifications]
+    usage_type: page_value
+  ENERGY_SAVING_DC_THRESHOLD:
+    row_key: energy_saving_dc_threshold
+    pages: [specifications]
+    usage_type: page_value
+  USB_C_HIGH_POWER_PORT_LABEL:
+    row_key: usb_c_high_power_port
+    pages: [specifications]
+    usage_type: page_value
+    value_role: label
+required_row_keys: []
 snippet_slots: {}
 contracts:
   - 05_operation_guide
