@@ -25,6 +25,18 @@ class SpecValueMatch:
 
 
 @dataclass(frozen=True)
+class PageValueBinding:
+    row_key: str
+    section: str
+    section_order: str
+    row_label_en: str
+    placement_key: str = ""
+    value_role: str = ""
+    variant_key: str = ""
+    usage_type: str = "page_value"
+
+
+@dataclass(frozen=True)
 class SpecMasterSectionSummary:
     section: str
     suggested_section: str
@@ -112,36 +124,236 @@ _SECTION_ORDER_BY_SECTION: dict[str, str] = {
     "ACCESSORIES": "9",
     "TEMPLATE VARS": "99",
 }
-_TEMPLATE_ROW_KEY_METADATA: dict[str, tuple[str, str, str]] = {
-    "tpl_main_power_button_label": ("CONTROLS", "7", "Main Power Button"),
-    "tpl_dc_usb_power_button_label": ("CONTROLS", "7", "DC/USB Power Button"),
-    "tpl_ac_power_button_label": ("CONTROLS", "7", "AC Power Button"),
-    "tpl_front_dc12_port_label": ("OUTPUT PORTS", "3", "DC 12V Port"),
-    "tpl_front_dc12_port_spec": ("OUTPUT PORTS", "3", "DC 12V Port"),
-    "tpl_front_usb_c_low_label": ("OUTPUT PORTS", "3", "USB-C 30W Output"),
-    "tpl_front_usb_c_low_spec": ("OUTPUT PORTS", "3", "USB-C 30W Output"),
-    "tpl_front_usb_c_high_label": ("OUTPUT PORTS", "3", "USB-C 100W Output"),
-    "tpl_front_usb_c_high_spec": ("OUTPUT PORTS", "3", "USB-C 100W Output"),
-    "tpl_front_usb_a_label": ("OUTPUT PORTS", "3", "USB-A 18W Output"),
-    "tpl_front_usb_a_spec": ("OUTPUT PORTS", "3", "USB-A 18W Output"),
-    "tpl_front_ac_output_label": ("OUTPUT PORTS", "3", "AC Output"),
-    "tpl_front_ac_output_spec": ("OUTPUT PORTS", "3", "AC Output"),
-    "tpl_front_total_output_label": ("OUTPUT PORTS", "3", "Total Output"),
-    "tpl_front_total_output_spec": ("OUTPUT PORTS", "3", "Total Output"),
-    "tpl_side_dc_input_label": ("INPUT PORTS", "2", "DC Input (2 x DC8020 Ports)"),
-    "tpl_side_dc_input_pv_spec": ("INPUT PORTS", "2", "PV Input"),
-    "tpl_side_dc_input_car_spec": ("INPUT PORTS", "2", "Car Input"),
-    "tpl_side_ac_input_label": ("INPUT PORTS", "2", "AC Input"),
-    "tpl_side_ac_input_spec": ("INPUT PORTS", "2", "AC Input"),
-    "tpl_ups_bypass_output_text": ("OUTPUT PORTS", "3", "UPS Bypass Output"),
-    "tpl_usb_c_high_power_port_label": ("OUTPUT PORTS", "3", "USB-C 100W Port"),
-    "tpl_default_standby_duration": ("SETTINGS", "8", "Default Standby Duration"),
-    "tpl_energy_saving_auto_off_duration": ("SETTINGS", "8", "Energy Saving Auto Off Duration"),
-    "tpl_energy_saving_ac_threshold": ("SETTINGS", "8", "Energy Saving AC Threshold"),
-    "tpl_energy_saving_dc_threshold": ("SETTINGS", "8", "Energy Saving DC Threshold"),
-    "tpl_usb_c_high_power_cable_name": ("ACCESSORIES", "9", "USB-C High Power Cable"),
-    "tpl_car_battery_charging_cable_name": ("ACCESSORIES", "9", "Car Battery Charging Cable"),
-    "tpl_battery_pack_name": ("ACCESSORIES", "9", "Battery Pack Name"),
+_LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
+    "tpl_main_power_button_label": PageValueBinding(
+        row_key="main_power_button",
+        section="CONTROLS",
+        section_order="7",
+        row_label_en="Main Power Button",
+        value_role="label",
+    ),
+    "tpl_dc_usb_power_button_label": PageValueBinding(
+        row_key="dc_usb_power_button",
+        section="CONTROLS",
+        section_order="7",
+        row_label_en="DC/USB Power Button",
+        value_role="label",
+    ),
+    "tpl_ac_power_button_label": PageValueBinding(
+        row_key="ac_power_button",
+        section="CONTROLS",
+        section_order="7",
+        row_label_en="AC Power Button",
+        value_role="label",
+    ),
+    "tpl_front_dc12_port_label": PageValueBinding(
+        row_key="dc12_port",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="DC 12V Port",
+        placement_key="front",
+        value_role="label",
+    ),
+    "tpl_front_dc12_port_spec": PageValueBinding(
+        row_key="dc12_port",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="DC 12V Port",
+        placement_key="front",
+        value_role="spec",
+    ),
+    "tpl_front_usb_c_low_label": PageValueBinding(
+        row_key="usb_c",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-C 30W Output",
+        placement_key="front",
+        value_role="label",
+        variant_key="low",
+    ),
+    "tpl_front_usb_c_low_spec": PageValueBinding(
+        row_key="usb_c",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-C 30W Output",
+        placement_key="front",
+        value_role="spec",
+        variant_key="low",
+    ),
+    "tpl_front_usb_c_high_label": PageValueBinding(
+        row_key="usb_c",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-C 100W Output",
+        placement_key="front",
+        value_role="label",
+        variant_key="high",
+    ),
+    "tpl_front_usb_c_high_spec": PageValueBinding(
+        row_key="usb_c",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-C 100W Output",
+        placement_key="front",
+        value_role="spec",
+        variant_key="high",
+    ),
+    "tpl_front_usb_a_label": PageValueBinding(
+        row_key="usb_a",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-A 18W Output",
+        placement_key="front",
+        value_role="label",
+    ),
+    "tpl_front_usb_a_spec": PageValueBinding(
+        row_key="usb_a",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-A 18W Output",
+        placement_key="front",
+        value_role="spec",
+    ),
+    "tpl_front_ac_output_label": PageValueBinding(
+        row_key="ac_output",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="AC Output",
+        placement_key="front",
+        value_role="label",
+    ),
+    "tpl_front_ac_output_spec": PageValueBinding(
+        row_key="ac_output",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="AC Output",
+        placement_key="front",
+        value_role="spec",
+    ),
+    "tpl_front_total_output_label": PageValueBinding(
+        row_key="total_output",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="Total Output",
+        placement_key="front",
+        value_role="label",
+    ),
+    "tpl_front_total_output_spec": PageValueBinding(
+        row_key="total_output",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="Total Output",
+        placement_key="front",
+        value_role="spec",
+    ),
+    "tpl_side_dc_input_label": PageValueBinding(
+        row_key="dc_input",
+        section="INPUT PORTS",
+        section_order="2",
+        row_label_en="DC Input (2 x DC8020 Ports)",
+        placement_key="side",
+        value_role="label",
+    ),
+    "tpl_side_dc_input_pv_spec": PageValueBinding(
+        row_key="dc_input",
+        section="INPUT PORTS",
+        section_order="2",
+        row_label_en="PV Input",
+        placement_key="side",
+        value_role="spec",
+        variant_key="pv",
+    ),
+    "tpl_side_dc_input_car_spec": PageValueBinding(
+        row_key="dc_input",
+        section="INPUT PORTS",
+        section_order="2",
+        row_label_en="Car Input",
+        placement_key="side",
+        value_role="spec",
+        variant_key="car",
+    ),
+    "tpl_side_ac_input_label": PageValueBinding(
+        row_key="ac_input",
+        section="INPUT PORTS",
+        section_order="2",
+        row_label_en="AC Input",
+        placement_key="side",
+        value_role="label",
+    ),
+    "tpl_side_ac_input_spec": PageValueBinding(
+        row_key="ac_input",
+        section="INPUT PORTS",
+        section_order="2",
+        row_label_en="AC Input",
+        placement_key="side",
+        value_role="spec",
+    ),
+    "tpl_ups_bypass_output_text": PageValueBinding(
+        row_key="ups_bypass_output",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="UPS Bypass Output",
+        value_role="text",
+    ),
+    "tpl_usb_c_high_power_port_label": PageValueBinding(
+        row_key="usb_c_high_power_port",
+        section="OUTPUT PORTS",
+        section_order="3",
+        row_label_en="USB-C 100W Port",
+        value_role="label",
+    ),
+    "tpl_default_standby_duration": PageValueBinding(
+        row_key="default_standby_duration",
+        section="SETTINGS",
+        section_order="8",
+        row_label_en="Default Standby Duration",
+    ),
+    "tpl_energy_saving_auto_off_duration": PageValueBinding(
+        row_key="energy_saving_auto_off_duration",
+        section="SETTINGS",
+        section_order="8",
+        row_label_en="Energy Saving Auto Off Duration",
+    ),
+    "tpl_energy_saving_ac_threshold": PageValueBinding(
+        row_key="energy_saving_ac_threshold",
+        section="SETTINGS",
+        section_order="8",
+        row_label_en="Energy Saving AC Threshold",
+    ),
+    "tpl_energy_saving_dc_threshold": PageValueBinding(
+        row_key="energy_saving_dc_threshold",
+        section="SETTINGS",
+        section_order="8",
+        row_label_en="Energy Saving DC Threshold",
+    ),
+    "tpl_usb_c_high_power_cable_name": PageValueBinding(
+        row_key="usb_c_high_power_cable_name",
+        section="ACCESSORIES",
+        section_order="9",
+        row_label_en="USB-C High Power Cable",
+    ),
+    "tpl_car_battery_charging_cable_name": PageValueBinding(
+        row_key="car_battery_charging_cable_name",
+        section="ACCESSORIES",
+        section_order="9",
+        row_label_en="Car Battery Charging Cable",
+    ),
+    "tpl_battery_pack_name": PageValueBinding(
+        row_key="battery_pack_name",
+        section="ACCESSORIES",
+        section_order="9",
+        row_label_en="Battery Pack Name",
+    ),
+}
+_LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE: dict[tuple[str, str, str, str, str], str] = {
+    (
+        binding.row_key,
+        binding.usage_type,
+        binding.placement_key,
+        binding.value_role,
+        binding.variant_key,
+    ): legacy_key
+    for legacy_key, binding in _LEGACY_PAGE_VALUE_BINDINGS.items()
 }
 _SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
     "ENVIRONMENTAL OPERATING TEMPERATURE": (
@@ -156,8 +368,9 @@ _SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
     ),
 }
 _DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] = {
-    "storage_temperature": ("STORAGE_TEMPERATURE", ("09_storage_and_maintenance",)),
+    "storage_temperature": ("STORAGE_TEMPERATURE", ("storage",)),
 }
+_SLOT_KEY_VALUE_ALIASES = {"", "value", "default", "name"}
 _KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
     "1×ACポート": "1 × AC Input",
     "1×USB-Aポート": "1 × USB-A",
@@ -251,72 +464,72 @@ _KNOWN_VALUE_REPAIRS: dict[tuple[str, str, str, str], str] = {
         "tpl_side_dc_input_car_spec",
         "Value_en",
     ): "Car: 11-16V/8A Max, combined up to 8A Max",
-    ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_en"): "メイン電源ボタン",
-    ("JE-2000F", "JP", "tpl_dc_usb_power_button_label", "Value_en"): "DC/USB出力ボタン",
-    ("JE-2000F", "JP", "tpl_ac_power_button_label", "Value_en"): "AC出力ボタン",
-    ("JE-2000F", "JP", "tpl_front_dc12_port_label", "Value_en"): "12Vシガーソケット出力",
-    ("JE-2000F", "JP", "tpl_front_dc12_port_spec", "Value_en"): "12V/10A 最大",
+    ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_ja"): "メイン電源ボタン",
+    ("JE-2000F", "JP", "tpl_dc_usb_power_button_label", "Value_ja"): "DC/USB出力ボタン",
+    ("JE-2000F", "JP", "tpl_ac_power_button_label", "Value_ja"): "AC出力ボタン",
+    ("JE-2000F", "JP", "tpl_front_dc12_port_label", "Value_ja"): "12Vシガーソケット出力",
+    ("JE-2000F", "JP", "tpl_front_dc12_port_spec", "Value_ja"): "12V/10A 最大",
     ("JE-2000F", "JP", "tpl_front_usb_c_low_label", "Value_en"): "USB-C 30W出力",
     (
         "JE-2000F",
         "JP",
         "tpl_front_usb_c_low_spec",
-        "Value_en",
+        "Value_ja",
     ): "5V/3A、9V/3A、12V/2.5A、15V/2A、20V/1.5A、最大30W",
-    ("JE-2000F", "JP", "tpl_front_usb_c_high_label", "Value_en"): "USB-C 100W出力",
+    ("JE-2000F", "JP", "tpl_front_usb_c_high_label", "Value_ja"): "USB-C 100W出力",
     (
         "JE-2000F",
         "JP",
         "tpl_front_usb_c_high_spec",
-        "Value_en",
+        "Value_ja",
     ): "5V/3A、9V/3A、12V/3A、15V/3A、20V/5A、最大100W",
-    ("JE-2000F", "JP", "tpl_front_usb_a_label", "Value_en"): "USB-A 18W出力",
+    ("JE-2000F", "JP", "tpl_front_usb_a_label", "Value_ja"): "USB-A 18W出力",
     (
         "JE-2000F",
         "JP",
         "tpl_front_usb_a_spec",
-        "Value_en",
+        "Value_ja",
     ): "5-6V/3A、6-9V/2A、9-12V/1.5A、最大18W",
-    ("JE-2000F", "JP", "tpl_front_ac_output_label", "Value_en"): "AC出力",
+    ("JE-2000F", "JP", "tpl_front_ac_output_label", "Value_ja"): "AC出力",
     (
         "JE-2000F",
         "JP",
         "tpl_front_ac_output_spec",
-        "Value_en",
+        "Value_ja",
     ): "100V~ 50Hz/60Hz、20A、定格2000W、3秒2200W、瞬間最大4400W",
-    ("JE-2000F", "JP", "tpl_side_dc_input_label", "Value_en"): "DC入力（DC8020ポート×2）",
+    ("JE-2000F", "JP", "tpl_side_dc_input_label", "Value_ja"): "DC入力（DC8020ポート×2）",
     (
         "JE-2000F",
         "JP",
         "tpl_side_dc_input_pv_spec",
-        "Value_en",
+        "Value_ja",
     ): "PV: 16-60V/12A、2ポート合計最大21A/400W",
     (
         "JE-2000F",
         "JP",
         "tpl_side_dc_input_car_spec",
-        "Value_en",
+        "Value_ja",
     ): "車載充電: 11-16V/8A、2ポート合計最大8A",
-    ("JE-2000F", "JP", "tpl_side_ac_input_label", "Value_en"): "AC入力",
+    ("JE-2000F", "JP", "tpl_side_ac_input_label", "Value_ja"): "AC入力",
     (
         "JE-2000F",
         "JP",
         "tpl_side_ac_input_spec",
-        "Value_en",
+        "Value_ja",
     ): "100V-120V~ 50Hz/60Hz、15A 最大、急速充電 約1500W",
-    ("JE-2000F", "JP", "tpl_default_standby_duration", "Value_en"): "2時間",
-    ("JE-2000F", "JP", "tpl_energy_saving_auto_off_duration", "Value_en"): "12時間",
+    ("JE-2000F", "JP", "tpl_default_standby_duration", "Value_ja"): "2時間",
+    ("JE-2000F", "JP", "tpl_energy_saving_auto_off_duration", "Value_ja"): "12時間",
     (
         "JE-2000F",
         "JP",
         "tpl_usb_c_high_power_cable_name",
-        "Value_en",
+        "Value_ja",
     ): "Jackery USB-C to USB-C 5A ケーブル",
     (
         "JE-2000F",
         "JP",
         "tpl_car_battery_charging_cable_name",
-        "Value_en",
+        "Value_ja",
     ): "Jackery 12V 自動車用バッテリー充電ケーブル",
 }
 
@@ -387,13 +600,16 @@ def _normalize_project_code(project_code: str, region: str) -> str:
 
 
 def _template_row_metadata(row_key: str) -> tuple[str, str, str] | None:
-    return _TEMPLATE_ROW_KEY_METADATA.get((row_key or "").strip().lower())
+    binding = _legacy_page_value_binding(row_key)
+    if binding is None:
+        return None
+    return (binding.section, binding.section_order, binding.row_label_en)
 
 
-def _is_template_row(row_key: str, section: str) -> bool:
-    return (row_key or "").strip().lower().startswith("tpl_") or (
-        (section or "").strip().upper() == "TEMPLATE VARS"
-    )
+def _is_template_row(row_key: str, section: str, row: dict[str, str] | None = None) -> bool:
+    if row is not None and is_page_value_row(row):
+        return True
+    return (row_key or "").strip().lower().startswith("tpl_") or ((section or "").strip().upper() == "TEMPLATE VARS")
 
 
 def _pick_section(row: dict[str, str]) -> str:
@@ -450,6 +666,205 @@ def _pick_row_region(row: dict[str, str]) -> str:
     return _first_non_empty(row, ["Region", "region"])
 
 
+def _normalize_slot_key(raw: str) -> str:
+    tokens = [token.strip().lower() for token in str(raw).replace("/", ".").split(".") if token.strip()]
+    return ".".join(tokens)
+
+
+def _compose_slot_key(
+    *,
+    placement_key: str = "",
+    variant_key: str = "",
+    value_role: str = "",
+) -> str:
+    role_token = (value_role or "").strip().lower() or "value"
+    parts: list[str] = []
+    if placement_key:
+        parts.append((placement_key or "").strip().lower())
+    if variant_key:
+        parts.append((variant_key or "").strip().lower())
+    parts.append(role_token)
+    return ".".join(part for part in parts if part)
+
+
+def _parse_slot_key(raw: str) -> tuple[str, str, str] | None:
+    slot_key = _normalize_slot_key(raw)
+    if not slot_key:
+        return None
+
+    parts = slot_key.split(".")
+    if len(parts) == 1:
+        placement_key = ""
+        variant_key = ""
+        role_token = parts[0]
+    elif len(parts) == 2:
+        placement_key = parts[0]
+        variant_key = ""
+        role_token = parts[1]
+    elif len(parts) == 3:
+        placement_key = parts[0]
+        variant_key = parts[1]
+        role_token = parts[2]
+    else:
+        return None
+
+    value_role = "" if role_token in _SLOT_KEY_VALUE_ALIASES else role_token
+    return placement_key, variant_key, value_role
+
+
+def _pick_slot_key(row: dict[str, str]) -> str:
+    raw = _first_non_empty(row, ["Slot_key", "slot_key"])
+    if raw:
+        return _normalize_slot_key(raw)
+
+    legacy_binding = _legacy_page_value_binding(_pick_row_key(row))
+    if legacy_binding is not None:
+        return _compose_slot_key(
+            placement_key=legacy_binding.placement_key,
+            variant_key=legacy_binding.variant_key,
+            value_role=legacy_binding.value_role,
+        )
+
+    usage_type = _first_non_empty(row, ["Usage_type", "usage_type", "Row_type", "row_type"]).lower()
+    if usage_type != "page_value":
+        return ""
+
+    return _compose_slot_key(
+        placement_key=_first_non_empty(row, ["Placement_key", "placement_key"]).lower(),
+        variant_key=_first_non_empty(row, ["Variant_key", "variant_key"]).lower(),
+        value_role=_first_non_empty(row, ["Value_role", "value_role"]).lower(),
+    )
+
+
+def _pick_usage_type(row: dict[str, str]) -> str:
+    raw = _first_non_empty(row, ["Usage_type", "usage_type", "Row_type", "row_type"]).lower()
+    if raw:
+        return raw
+    if _pick_slot_key(row):
+        return "page_value"
+    return ""
+
+
+def _pick_placement_key(row: dict[str, str]) -> str:
+    raw = _first_non_empty(row, ["Placement_key", "placement_key"]).lower()
+    if raw:
+        return raw
+    parsed = _parse_slot_key(_pick_slot_key(row))
+    return parsed[0] if parsed is not None else ""
+
+
+def _pick_value_role(row: dict[str, str]) -> str:
+    raw = _first_non_empty(row, ["Value_role", "value_role"]).lower()
+    if raw:
+        return raw
+    parsed = _parse_slot_key(_pick_slot_key(row))
+    return parsed[2] if parsed is not None else ""
+
+
+def _pick_variant_key(row: dict[str, str]) -> str:
+    raw = _first_non_empty(row, ["Variant_key", "variant_key"]).lower()
+    if raw:
+        return raw
+    parsed = _parse_slot_key(_pick_slot_key(row))
+    return parsed[1] if parsed is not None else ""
+
+
+def _page_value_signature(
+    *,
+    row_key: str,
+    usage_type: str = "",
+    placement_key: str = "",
+    value_role: str = "",
+    variant_key: str = "",
+) -> tuple[str, str, str, str, str]:
+    return (
+        (row_key or "").strip().lower(),
+        (usage_type or "").strip().lower(),
+        (placement_key or "").strip().lower(),
+        (value_role or "").strip().lower(),
+        (variant_key or "").strip().lower(),
+    )
+
+
+def _legacy_page_value_binding(row_key: str) -> PageValueBinding | None:
+    return _LEGACY_PAGE_VALUE_BINDINGS.get((row_key or "").strip().lower())
+
+
+def _row_page_value_binding(row: dict[str, str]) -> PageValueBinding | None:
+    legacy_binding = _legacy_page_value_binding(_pick_row_key(row))
+    if legacy_binding is not None:
+        return legacy_binding
+
+    if _pick_usage_type(row) != "page_value":
+        return None
+
+    row_key = _pick_row_key(row)
+    if not row_key:
+        return None
+
+    return PageValueBinding(
+        row_key=row_key,
+        section=_pick_section(row),
+        section_order=_pick_section_order(row),
+        row_label_en=_pick_row_label_en(row),
+        placement_key=_pick_placement_key(row),
+        value_role=_pick_value_role(row),
+        variant_key=_pick_variant_key(row),
+        usage_type="page_value",
+    )
+
+
+def is_page_value_row(row: dict[str, str]) -> bool:
+    return _row_page_value_binding(row) is not None
+
+
+def resolve_legacy_page_value_key(row: dict[str, str]) -> str | None:
+    binding = _row_page_value_binding(row)
+    if binding is None:
+        return None
+    return _LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE.get(
+        _page_value_signature(
+            row_key=binding.row_key,
+            usage_type=binding.usage_type,
+            placement_key=binding.placement_key,
+            value_role=binding.value_role,
+            variant_key=binding.variant_key,
+        )
+    )
+
+
+def resolve_page_value_placeholder_name(row: dict[str, str]) -> str | None:
+    binding = _row_page_value_binding(row)
+    if binding is None:
+        return None
+
+    legacy_key = resolve_legacy_page_value_key(row)
+    if legacy_key is not None and legacy_key.startswith("tpl_"):
+        return legacy_key[4:].upper()
+
+    parts: list[str] = []
+    if binding.placement_key:
+        parts.append(binding.placement_key.upper())
+    parts.append(binding.row_key.upper())
+    if binding.variant_key:
+        parts.append(binding.variant_key.upper())
+    if binding.value_role:
+        parts.append(binding.value_role.upper())
+    return "_".join(part for part in parts if part)
+
+
+def page_value_role(row: dict[str, str]) -> str:
+    binding = _row_page_value_binding(row)
+    return binding.value_role if binding is not None else ""
+
+
+def _page_value_metadata_from_row(row: dict[str, str]) -> tuple[str, str, str] | None:
+    binding = _row_page_value_binding(row)
+    if binding is None:
+        return None
+    return (binding.section, binding.section_order, binding.row_label_en)
+
+
 def normalize_page_tokens(raw: str | None) -> tuple[str, ...]:
     if raw is None:
         return ()
@@ -493,6 +908,10 @@ def _row_matches_target(
     row_key: str | None = None,
     pages: str | list[str] | tuple[str, ...] | set[str] | None = None,
     line_order: str | int | None = None,
+    usage_type: str | None = None,
+    placement_key: str | None = None,
+    value_role: str | None = None,
+    variant_key: str | None = None,
 ) -> bool:
     if not _is_truthy(_first_non_empty(row, ["enabled", "Enabled"])):
         return False
@@ -500,7 +919,26 @@ def _row_matches_target(
         return False
 
     target_key = (row_key or "").strip().lower()
-    if target_key and _pick_row_key(row) != target_key:
+    legacy_binding = _legacy_page_value_binding(target_key) if target_key else None
+    if legacy_binding is not None:
+        row_binding = _row_page_value_binding(row)
+        if row_binding is None:
+            return False
+        if _page_value_signature(
+            row_key=row_binding.row_key,
+            usage_type=row_binding.usage_type,
+            placement_key=row_binding.placement_key,
+            value_role=row_binding.value_role,
+            variant_key=row_binding.variant_key,
+        ) != _page_value_signature(
+            row_key=legacy_binding.row_key,
+            usage_type=legacy_binding.usage_type,
+            placement_key=legacy_binding.placement_key,
+            value_role=legacy_binding.value_role,
+            variant_key=legacy_binding.variant_key,
+        ):
+            return False
+    elif target_key and _pick_row_key(row) != target_key:
         return False
 
     if not page_value_matches(_first_non_empty(row, ["Page", "page"]), pages):
@@ -519,6 +957,19 @@ def _row_matches_target(
     if line_order is not None:
         wanted = str(line_order).strip()
         if wanted and _first_non_empty(row, ["Line_order", "line_order"]) != wanted:
+            return False
+
+    if usage_type or placement_key or value_role or variant_key:
+        row_binding = _row_page_value_binding(row)
+        if row_binding is None:
+            return False
+        if usage_type and row_binding.usage_type != (usage_type or "").strip().lower():
+            return False
+        if placement_key and row_binding.placement_key != (placement_key or "").strip().lower():
+            return False
+        if value_role and row_binding.value_role != (value_role or "").strip().lower():
+            return False
+        if variant_key and row_binding.variant_key != (variant_key or "").strip().lower():
             return False
 
     return True
@@ -568,6 +1019,10 @@ def _iter_ranked_rows(
     row_key: str | None = None,
     pages: str | list[str] | tuple[str, ...] | set[str] | None = None,
     line_order: str | int | None = None,
+    usage_type: str | None = None,
+    placement_key: str | None = None,
+    value_role: str | None = None,
+    variant_key: str | None = None,
 ) -> list[dict[str, str]]:
     target_model = (model or "").strip()
     target_region = (region or "").strip()
@@ -580,6 +1035,10 @@ def _iter_ranked_rows(
             row_key=row_key,
             pages=pages,
             line_order=line_order,
+            usage_type=usage_type,
+            placement_key=placement_key,
+            value_role=value_role,
+            variant_key=variant_key,
         ):
             continue
         score = _score_row(row, model=target_model or None, region=target_region or None, lang=lang)
@@ -598,6 +1057,10 @@ def resolve_spec_value_from_rows(
     row_key: str,
     pages: str | list[str] | tuple[str, ...] | set[str] | None = ("spec", "specifications"),
     line_order: str | int | None = None,
+    usage_type: str | None = None,
+    placement_key: str | None = None,
+    value_role: str | None = None,
+    variant_key: str | None = None,
 ) -> SpecValueMatch | None:
     for row in _iter_ranked_rows(
         rows,
@@ -607,6 +1070,10 @@ def resolve_spec_value_from_rows(
         row_key=row_key,
         pages=pages,
         line_order=line_order,
+        usage_type=usage_type,
+        placement_key=placement_key,
+        value_role=value_role,
+        variant_key=variant_key,
     ):
         value = _pick_lang_value(row, "Value", lang)
         if value:
@@ -627,6 +1094,10 @@ def collect_matching_spec_rows(
     row_key: str,
     pages: str | list[str] | tuple[str, ...] | set[str] | None = ("spec", "specifications"),
     line_order: str | int | None = None,
+    usage_type: str | None = None,
+    placement_key: str | None = None,
+    value_role: str | None = None,
+    variant_key: str | None = None,
 ) -> tuple[dict[str, str], ...]:
     return tuple(
         _iter_ranked_rows(
@@ -637,6 +1108,10 @@ def collect_matching_spec_rows(
             row_key=row_key,
             pages=pages,
             line_order=line_order,
+            usage_type=usage_type,
+            placement_key=placement_key,
+            value_role=value_role,
+            variant_key=variant_key,
         )
     )
 
@@ -650,6 +1125,10 @@ def collect_spec_value_matches_from_rows(
     row_key: str,
     pages: str | list[str] | tuple[str, ...] | set[str] | None = ("spec", "specifications"),
     line_order: str | int | None = None,
+    usage_type: str | None = None,
+    placement_key: str | None = None,
+    value_role: str | None = None,
+    variant_key: str | None = None,
 ) -> tuple[SpecValueMatch, ...]:
     matches: list[SpecValueMatch] = []
     for row in collect_matching_spec_rows(
@@ -660,6 +1139,10 @@ def collect_spec_value_matches_from_rows(
         row_key=row_key,
         pages=pages,
         line_order=line_order,
+        usage_type=usage_type,
+        placement_key=placement_key,
+        value_role=value_role,
+        variant_key=variant_key,
     ):
         value = _pick_lang_value(row, "Value", lang)
         if not value:
@@ -775,15 +1258,14 @@ def resolve_template_substitutions_from_rows(
         lang=lang,
         pages=None,
     ):
-        raw_key = _pick_row_key(row)
-        if not raw_key.startswith("tpl_"):
+        placeholder = resolve_page_value_placeholder_name(row)
+        if not placeholder:
             continue
 
         value = _pick_lang_value(row, "Value", lang)
         if not value:
             continue
 
-        placeholder = raw_key[4:].upper()
         line_order_value = _first_non_empty(row, ["Line_order", "line_order"])
         if line_order_value not in {"", "1", "1.0"}:
             placeholder = f"{placeholder}_{line_order_value.replace('.', '_')}"
@@ -970,8 +1452,25 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
                 )
             )
 
+        raw_slot_key = _first_non_empty(row, ["Slot_key", "slot_key"])
+        if raw_slot_key and _parse_slot_key(raw_slot_key) is None:
+            issues.append(
+                SpecMasterAuditIssue(
+                    code="INVALID_SLOT_KEY",
+                    message=(
+                        f"`Slot_key` must use `role`, `placement.role`, or "
+                        f"`placement.variant.role`: {raw_slot_key}"
+                    ),
+                    line=line_number,
+                    model=model,
+                    region=region,
+                    section=section,
+                    row_key=row_key,
+                )
+            )
+
         value_en = _pick_lang_value(row, "Value", "en")
-        if _is_template_row(row_key, section) and "?" in value_en:
+        if _is_template_row(row_key, section, row) and "?" in value_en:
             issues.append(
                 SpecMasterAuditIssue(
                     code="SUSPECT_TEMPLATE_VALUE",
@@ -1047,7 +1546,7 @@ def normalize_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterNormaliz
         normalized_section, category, note = _normalize_section_summary(original_section)
         row_key = _pick_row_key(raw_row)
 
-        if _is_template_row(row_key, original_section):
+        if _is_template_row(row_key, original_section, raw_row):
             category = "template"
             if not note:
                 note = "Template placeholder row should remain distinguishable even when grouped under a mapped section."
@@ -1119,14 +1618,14 @@ def build_template_row_key_mapping_rows(
 
     for raw_row in rows:
         row_key = _pick_row_key(raw_row)
-        if not _is_template_row(row_key, _pick_section(raw_row)):
+        if not _is_template_row(row_key, _pick_section(raw_row), raw_row):
             continue
 
-        metadata = _template_row_metadata(row_key)
+        metadata = _page_value_metadata_from_row(raw_row)
         if metadata is None:
             continue
 
-        usage_row = usage[row_key]
+        usage_row = usage[resolve_legacy_page_value_key(raw_row) or row_key]
         usage_row["count"] = int(usage_row["count"]) + 1
 
         model = (_pick_row_model(raw_row) or "").strip()
@@ -1150,7 +1649,7 @@ def build_template_row_key_mapping_rows(
             cast(set[str], usage_row["row_labels"]).add(row_label)
 
     mapping_rows: list[dict[str, str]] = []
-    for row_key, (section, section_order, row_label_en) in _TEMPLATE_ROW_KEY_METADATA.items():
+    for row_key, binding in _LEGACY_PAGE_VALUE_BINDINGS.items():
         observed = usage.get(row_key)
         models = sorted(cast(set[str], observed["models"])) if observed else []
         regions = sorted(cast(set[str], observed["regions"])) if observed else []
@@ -1162,9 +1661,9 @@ def build_template_row_key_mapping_rows(
         mapping_rows.append(
             {
                 "Row_key": row_key,
-                "Section": section,
-                "Section_order": section_order,
-                "Row_label_en": row_label_en,
+                "Section": binding.section,
+                "Section_order": binding.section_order,
+                "Row_label_en": binding.row_label_en,
                 "Usage_count": usage_count,
                 "Models": ",".join(models),
                 "Regions": ",".join(regions),
@@ -1240,7 +1739,7 @@ def repair_known_spec_master_values(rows: list[dict[str, str]]) -> SpecMasterRep
         region = _pick_row_region(row)
         row_key = _pick_row_key(row)
         project_code_key = _pick_project_code_key(row)
-        template_metadata = _template_row_metadata(row_key)
+        template_metadata = _page_value_metadata_from_row(row)
 
         if project_code_key is not None:
             old_project_code = row.get(project_code_key, "")
@@ -1344,8 +1843,9 @@ def repair_known_spec_master_values(rows: list[dict[str, str]]) -> SpecMasterRep
                 )
             )
 
-        for column in ("Value_en",):
-            repair_key = (model, region, row_key, column)
+        for column in ("Value_en", "Value_ja"):
+            repair_lookup_row_key = resolve_legacy_page_value_key(row) or row_key
+            repair_key = (model, region, repair_lookup_row_key, column)
             new_value = _KNOWN_VALUE_REPAIRS.get(repair_key)
             if new_value is None:
                 continue

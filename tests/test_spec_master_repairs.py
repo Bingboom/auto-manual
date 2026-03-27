@@ -98,7 +98,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
         self.assertEqual("CONTROLS", result.repaired_rows[3]["Section"])
         self.assertEqual("7", result.repaired_rows[3]["Section_order"])
         self.assertEqual("Main Power Button", result.repaired_rows[3]["Row_label_en"])
-        self.assertEqual("メイン電源ボタン", result.repaired_rows[3]["Value_en"])
+        self.assertEqual("メイン電源ボタン", result.repaired_rows[3]["Value_ja"])
 
         self.assertEqual("CONTROLS", result.repaired_rows[4]["Section"])
         self.assertEqual("7", result.repaired_rows[4]["Section_order"])
@@ -218,7 +218,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
         ]
 
         result = repair_known_spec_master_values(rows)
-        self.assertEqual(20, len(result.applied_repairs))
+        self.assertEqual(21, len(result.applied_repairs))
         self.assertEqual("HTE154-US", result.repaired_rows[0]["project_code"])
         self.assertEqual("HTE154-JP", result.repaired_rows[1]["project_code"])
         self.assertEqual("HTE152-JP", result.repaired_rows[2]["project_code"])
@@ -226,6 +226,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
         self.assertEqual("HTE153-JP", result.repaired_rows[4]["project_code"])
         self.assertEqual("CONTROLS", result.repaired_rows[0]["Section"])
         self.assertEqual("Main Power Button", result.repaired_rows[0]["Row_label_en"])
+        self.assertEqual("メイン電源ボタン", result.repaired_rows[1]["Value_ja"])
         self.assertEqual((), result.removed_duplicate_lines)
 
     def test_write_rows_csv_and_repairs_csv_should_persist_outputs(self) -> None:
