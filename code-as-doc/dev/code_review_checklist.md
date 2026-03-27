@@ -27,8 +27,8 @@ Use this checklist when reviewing changes to code, config, data, or review workf
 ## 4. Data Contract
 
 - [ ] If [`Spec_Master.csv`](../../data/phase1/Spec_Master.csv) semantics changed, was [`code-as-doc/spec_master_user_guide.md`](../spec_master_user_guide.md) updated?
-- [ ] If new `tpl_*` placeholders were introduced, are the affected templates and contracts aligned?
-- [ ] If contracts changed, are `required_spec_keys`, `required_tpl_keys`, `required_assets`, and `allowed_*` scopes still correct?
+- [ ] If new page-value bindings were introduced, are the affected templates, recipes, and contracts aligned?
+- [ ] If contracts changed, are `required_spec_keys`, `required_page_values`, `required_assets`, and `allowed_*` scopes still correct?
 - [ ] If safety/spec data behavior changed, are [`Spec_Footnotes.csv`](../../data/phase1/Spec_Footnotes.csv), [`spec_titles.csv`](../../data/phase1/spec_titles.csv), and [`content_blocks.csv`](../../data/phase1/content_blocks.csv) interactions still correct?
 
 ## 5. Review Workflow
