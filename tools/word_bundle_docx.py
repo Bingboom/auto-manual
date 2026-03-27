@@ -521,6 +521,8 @@ def _export_docx_via_pandoc(bundle_html: Path, out_path: Path, reference_doc: Pa
         str(bundle_html),
         "--from=html",
         "--to=docx",
+        "--metadata",
+        "title=",
         "--resource-path",
         resource_path,
         "-o",
