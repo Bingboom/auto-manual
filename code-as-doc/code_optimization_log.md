@@ -136,7 +136,7 @@ Main outcomes:
 - fixed runtime bundle asset classification when canonical paths pass through symlinked or temp-backed roots
 - limited review overrides to `_assets`, `_static`, and `renderers` so review metadata files do not leak into publish bundles
 - added stale identity scanning to `check`
-- extended page contracts with `required_spec_keys`, `required_tpl_keys`, `required_assets`, and `allowed_*` scope fields
+- extended page contracts with `required_spec_keys`, `required_page_values`, `required_assets`, and `allowed_*` scope fields
 - added `build.py release-manifest`
 - added `build.py preview` and `build.py fast`
 - added the GitHub Actions baseline workflow at [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
