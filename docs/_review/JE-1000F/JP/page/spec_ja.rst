@@ -21,9 +21,11 @@
    \hline
    \HBTypeSpecLabel{バッテリータイプ} & \HBTypeSpecValue{LiFePO₄ (リン酸鉄リチウムイオン電池)} \\
    \hline
-   \HBTypeSpecLabel{サイクル寿命} & \HBTypeSpecValue{6000回 (6000回の充放電後も初期容量の70\%以上を維持)} \\
+   \HBTypeSpecLabel{重量} & \HBTypeSpecValue{約10.6 kg} \\
    \hline
-   \HBTypeSpecLabel{サイズ\&重量} & \HBTypeSpecValue{約314 × 201 × 236 mm (約10.6 kg)} \\
+   \HBTypeSpecLabel{サイズ} & \HBTypeSpecValue{約314 × 201 × 236 mm} \\
+   \hline
+   \HBTypeSpecLabel{サイクル寿命} & \HBTypeSpecValue{6000回 (6000回の充放電後も初期容量の70\%以上を維持)} \\
    \end{tabularx}
    \end{spectable}
 
@@ -64,9 +66,7 @@
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{充電温度} & \HBTypeSpecValue{-20℃ \textasciitilde{} 45℃} \\
    \hline
-   \HBTypeSpecLabel{動作温度} & \HBTypeSpecValue{-20℃ \textasciitilde{} 45℃} \\
-   \hline
-   \HBTypeSpecLabel{保存温度} & \HBTypeSpecValue{1ヶ月 -20℃ \textasciitilde{} 45℃ \newline 3ヶ月 0℃ \textasciitilde{} 45℃ \newline 1年 0℃ \textasciitilde{} 25℃} \\
+   \HBTypeSpecLabel{放電温度} & \HBTypeSpecValue{-20℃ \textasciitilde{} 45℃} \\
    \end{tabularx}
    \end{spectable}
 
@@ -120,12 +120,16 @@
             <td class="hb-spec-value">LiFePO₄ (リン酸鉄リチウムイオン電池)</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">サイクル寿命</th>
-            <td class="hb-spec-value">6000回 (6000回の充放電後も初期容量の70%以上を維持)</td>
+            <th scope="row" class="hb-spec-label">重量</th>
+            <td class="hb-spec-value">約10.6 kg</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">サイズ&amp;重量</th>
-            <td class="hb-spec-value">約314 × 201 × 236 mm (約10.6 kg)</td>
+            <th scope="row" class="hb-spec-label">サイズ</th>
+            <td class="hb-spec-value">約314 × 201 × 236 mm</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">サイクル寿命</th>
+            <td class="hb-spec-value">6000回 (6000回の充放電後も初期容量の70%以上を維持)</td>
           </tr>
         </tbody>
       </table>
@@ -188,12 +192,8 @@
             <td class="hb-spec-value">-20℃ ~ 45℃</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">動作温度</th>
+            <th scope="row" class="hb-spec-label">放電温度</th>
             <td class="hb-spec-value">-20℃ ~ 45℃</td>
-          </tr>
-          <tr>
-            <th scope="row" class="hb-spec-label">保存温度</th>
-            <td class="hb-spec-value">1ヶ月 -20℃ ~ 45℃<br/>3ヶ月 0℃ ~ 45℃<br/>1年 0℃ ~ 25℃</td>
           </tr>
         </tbody>
       </table>
