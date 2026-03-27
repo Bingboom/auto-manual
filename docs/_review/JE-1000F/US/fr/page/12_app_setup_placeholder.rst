@@ -18,7 +18,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 2.1 Cliquez sur le bouton d'ajout d'appareil dans l'application.
 
-2.2 Appuyez sur le Main POWER Button de l'appareil pour l'allumer.
+2.2 Appuyez sur le Bouton d’alimentation principal de l'appareil pour l'allumer.
 Lorsque les icônes Wi-Fi et Bluetooth de l'appareil clignotent, cela signifie que l'appareil est entré en mode de configuration réseau.
 Touchez le bouton "Icône clignotante" et autorisez l'application à se connecter aux appareils à proximité ainsi qu'à ouvrir les autorisations Bluetooth.
 
@@ -26,11 +26,11 @@ Touchez le bouton "Icône clignotante" et autorisez l'application à se connecte
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
    :width: 320px
 
-Main POWER Button
+Bouton d’alimentation principal
 
-AC Power Button
+Bouton d’alimentation CA
 
-DC/USB Power Button
+Bouton d’alimentation CC/USB
 
 2.3 Après avoir touché l'icône de l'appareil détecté, l'application connecte automatiquement l'appareil via Bluetooth.
 
@@ -39,7 +39,7 @@ DC/USB Power Button
 Si le message "l'appareil a déjà été associé" s'affiche pendant le processus d'association, les deux méthodes suivantes peuvent être utilisées pour se connecter :
 
 - Le propriétaire de l'appareil partagera cet appareil avec d'autres utilisateurs via l'application.
-- Maintenez main POWER button et DC/USB power button enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil, puis associez de nouveau l'appareil.
+- Maintenez bouton d’alimentation principal et bouton d’alimentation CC/USB enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil, puis associez de nouveau l'appareil.
 
 2.4 Une fois l'appareil correctement connecté, saisissez le mot de passe de votre réseau Wi-Fi et touchez le bouton OK.
 
@@ -68,12 +68,12 @@ Cliquez sur l'icône Paramètres, située en haut à droite de l'interface princ
 **4.1 Pour activer le Wi-Fi et le Bluetooth**
 
 - Le Wi-Fi et le Bluetooth sont automatiquement activés après la mise sous tension de l'appareil, et les icônes Wi-Fi et Bluetooth s'allument sur l'écran.
-- Maintenez DC/USB power button et AC power button enfoncés en même temps jusqu'à ce que les icônes Wi-Fi et Bluetooth s'allument sur l'écran.
+- Maintenez bouton d’alimentation CC/USB et bouton d’alimentation CA enfoncés en même temps jusqu'à ce que les icônes Wi-Fi et Bluetooth s'allument sur l'écran.
 
 **4.2 Pour désactiver le Wi-Fi et le Bluetooth**
 
-Maintenez DC/USB power button et AC power button enfoncés en même temps jusqu'à ce que les icônes Wi-Fi et Bluetooth s'éteignent sur l'écran.
+Maintenez bouton d’alimentation CC/USB et bouton d’alimentation CA enfoncés en même temps jusqu'à ce que les icônes Wi-Fi et Bluetooth s'éteignent sur l'écran.
 
 **4.3 Pour réinitialiser le Wi-Fi et le Bluetooth**
 
-Maintenez main POWER button et DC/USB power button enfoncés en même temps pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth aux paramètres d'usine. Le compte de l'application connectée sera dissocié.
+Maintenez bouton d’alimentation principal et bouton d’alimentation CC/USB enfoncés en même temps pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth aux paramètres d'usine. Le compte de l'application connectée sera dissocié.

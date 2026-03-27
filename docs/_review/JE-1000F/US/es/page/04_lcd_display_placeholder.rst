@@ -123,7 +123,7 @@ PANTALLA LCD
        Active/desactive esta función en la App Jackery. La configuración no se conserva cuando el dispositivo se apaga.
    * - 22
      - Modo de ahorro de energía
-     - Cuando la salida de CA o CC se activa presionando AC power button o DC/USB power button:
+     - Cuando la salida de CA o CC se activa presionando botón de energía CA o botón de energía CC/USB:
 
        **Encendido:** El modo de ahorro de energía está activado.
 

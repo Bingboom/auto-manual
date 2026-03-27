@@ -18,7 +18,7 @@ También puede escanear el siguiente código QR para descargar e instalar la apl
 
 2.1 Haga clic en el botón para añadir dispositivos en la aplicación.
 
-2.2 Pulse el Main POWER Button del dispositivo para encenderlo.
+2.2 Pulse el Botón de encendido principal del dispositivo para encenderlo.
 Cuando los iconos de Wi-Fi y Bluetooth del dispositivo parpadeen, el dispositivo habrá entrado en el modo de configuración de red.
 Pulse el botón "Icono parpadeante" y permita que la aplicación se conecte a dispositivos cercanos y abra los permisos de Bluetooth.
 
@@ -26,11 +26,11 @@ Pulse el botón "Icono parpadeante" y permita que la aplicación se conecte a di
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
    :width: 320px
 
-Main POWER Button
+Botón de encendido principal
 
-AC Power Button
+Botón de energía CA
 
-DC/USB Power Button
+Botón de energía CC/USB
 
 2.3 Después de tocar el icono del dispositivo encontrado, la aplicación conectará automáticamente el dispositivo a través de Bluetooth.
 
@@ -39,7 +39,7 @@ DC/USB Power Button
 Si durante el proceso de vinculación aparece el mensaje "el dispositivo ya ha sido vinculado", pueden utilizarse las dos formas siguientes para realizar la conexión:
 
 - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
-- Mantenga pulsados main POWER button y DC/USB power button durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
+- Mantenga pulsados botón de encendido principal y botón de energía CC/USB durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
 
 2.4 Después de que el dispositivo se haya conectado correctamente, introduzca la contraseña de su red Wi-Fi y toque el botón Aceptar.
 
@@ -68,12 +68,12 @@ Haga clic en el icono Configuración, en la esquina superior derecha de la inter
 **4.1 Para activar Wi-Fi y Bluetooth**
 
 - Wi-Fi y Bluetooth se activan automáticamente después de encender el dispositivo, y los iconos de Wi-Fi y Bluetooth se iluminan en la pantalla.
-- Mantenga pulsados DC/USB power button y AC power button al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth se iluminen en la pantalla.
+- Mantenga pulsados botón de energía CC/USB y botón de energía CA al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth se iluminen en la pantalla.
 
 **4.2 Para desactivar Wi-Fi y Bluetooth**
 
-Mantenga pulsados DC/USB power button y AC power button al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth de la pantalla se apaguen.
+Mantenga pulsados botón de energía CC/USB y botón de energía CA al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth de la pantalla se apaguen.
 
 **4.3 Para restablecer Wi-Fi y Bluetooth**
 
-Mantenga pulsados main POWER button y DC/USB power button al mismo tiempo durante 3 segundos para restablecer Wi-Fi y Bluetooth a la configuración de fábrica. La cuenta de la aplicación conectada se desvinculará.
+Mantenga pulsados botón de encendido principal y botón de energía CC/USB al mismo tiempo durante 3 segundos para restablecer Wi-Fi y Bluetooth a la configuración de fábrica. La cuenta de la aplicación conectada se desvinculará.

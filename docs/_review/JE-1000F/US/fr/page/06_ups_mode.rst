@@ -5,7 +5,7 @@
 ALIMENTATION SANS INTERRUPTION (UPS)
 ====================================
 
-Connectez le produit à une prise murale à l'aide du câble de charge CA, puis appuyez sur AC power button afin d'alimenter vos appareils en même temps.
+Connectez le produit à une prise murale à l'aide du câble de charge CA, puis appuyez sur bouton d’alimentation CA afin d'alimenter vos appareils en même temps.
 
 .. image:: _assets/templates/word_template/common_assets/operation/ups_mode.png
    :alt: Schéma de connexion UPS.

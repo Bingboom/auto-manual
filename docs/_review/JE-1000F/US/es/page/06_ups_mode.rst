@@ -5,7 +5,7 @@
 FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)
 ===========================================
 
-Conecte el producto a una toma de corriente de pared con el cable de carga de CA, después presione AC power button y alimente sus aparatos al mismo tiempo.
+Conecte el producto a una toma de corriente de pared con el cable de carga de CA, después presione botón de energía CA y alimente sus aparatos al mismo tiempo.
 
 .. image:: _assets/templates/word_template/common_assets/operation/ups_mode.png
    :alt: Diagrama de conexión UPS.

@@ -123,7 +123,7 @@ AFFICHAGE LCD
        Activez/désactivez cette fonction dans l'application Jackery. Le réglage n'est pas conservé lorsque l'appareil est mis hors tension.
    * - 22
      - Mode d'économie d'énergie
-     - Lorsque la sortie CA ou CC est activée en appuyant sur AC power button ou DC/USB power button :
+     - Lorsque la sortie CA ou CC est activée en appuyant sur bouton d’alimentation CA ou bouton d’alimentation CC/USB :
 
        **Allumé :** Le mode d'économie d'énergie est activé.
 

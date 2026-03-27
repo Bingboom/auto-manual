@@ -16,36 +16,36 @@ VISTA FRONTAL
    :header-rows: 0
    :widths: 50 50
 
-   * - **Main POWER Button**
+   * - **Botón de encendido principal**
      - **Asa**
-   * - **DC 12V Port**
+   * - **Puerto DC 12V**
 
-       12V/10A Max
+       12 V⎓10 A Máx
      - **LCD**
-   * - **DC/USB Power Button**
+   * - **Botón de energía CC/USB**
      - **Botón de luz LED**
-   * - **USB-C 30W Output**
+   * - **Salida USB-C 30W**
 
-       30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A
+       30W Máx, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A
      - **Luz LED**
-   * - **USB-C 100W Output**
+   * - **Salida USB-C 100W**
 
-       100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A
-     - **AC Power Button**
-   * - **USB-A 18W Output**
+       100 W Máx, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A
+     - **Botón de energía CA**
+   * - **Salida USB-A 18W**
 
-       18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A
-     - **AC Output**
+       18 W Máx, 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A
+     - **Salidas de CA**
 
-       120V~60Hz, 12.5A, 1500W Rated
+       120 V~ 60 Hz, 12,5 A Máx, 1500 W nominales
 
 .. list-table::
    :header-rows: 0
    :widths: 100
 
-   * - **Total Output**
+   * - **Salida total**
 
-       1500W Rated, 3000W Surge Peak
+       1500 W nominales, 3000 W pico de sobretensión
 
 VISTA LATERAL DERECHA
 --------------------
@@ -59,12 +59,12 @@ VISTA LATERAL DERECHA
    :widths: 50 50
 
    * - **Asa**
-     - **AC Input**
+     - **Entrada de CA**
 
-       100V-120V~60 Hz, 15A Max
+       100 V-120 V~ 60 Hz, 15 A Máx
    * -
-     - **DC Input (2×DC8020 Ports)**
+     - **Entrada de CC (2 × Puertos DC8020)**
 
-       PV: 16-60V⎓12A Max, Double to 21A / 400W Max
+       PV: 16-60 V⎓12 A Máx, Doble a 21 A Máx / 400 W Máx
 
-       Car: 11-16V⎓8A Max, Double to 8A Max
+       Auto: 11-16 V⎓8 A Máx, Doble a 8A Máx

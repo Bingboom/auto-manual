@@ -16,13 +16,13 @@ Marche : appuyez une fois.
 
 Arrêt : maintenez enfoncé pendant 3 s.
 
-**Temps de veille par défaut :** 2 hours.
+**Temps de veille par défaut :** 2 heures.
 
-Le produit s'éteint automatiquement après 2 hours d'inactivité, sans charge ni décharge.
+Le produit s'éteint automatiquement après 2 heures d'inactivité, sans charge ni décharge.
 
 *Le temps de veille peut être réglé dans l'application Jackery.*
 
-Lorsque le mode d'économie d'énergie est activé, le produit s'éteint automatiquement après 12 hours si la sortie CA ou DC/USB power button est activée, mais que le produit ne charge ni ne décharge.
+Lorsque le mode d'économie d'énergie est activé, le produit s'éteint automatiquement après 12 heures si la sortie CA ou DC/USB power button est activée, mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
 ----------------------
@@ -67,7 +67,7 @@ Le produit peut charger la batterie de votre voiture à l'aide du Jackery 12V au
 MODE D'ÉCONOMIE D'ÉNERGIE
 -------------------------
 
-Afin d'éviter une consommation inutile de batterie liée à un oubli d'arrêt de la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Si aucun appareil n'est connecté, ou si la consommation de l'appareil connecté est inférieure à un certain seuil (25W en sortie CA ou 2W en sortie CC/USB) pendant 12 hours, le produit coupe automatiquement les sorties. Réglez la durée du mode d'économie d'énergie dans l'application Jackery.
+Afin d'éviter une consommation inutile de batterie liée à un oubli d'arrêt de la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Si aucun appareil n'est connecté, ou si la consommation de l'appareil connecté est inférieure à un certain seuil (25W en sortie CA ou 2W en sortie CC/USB) pendant 12 heures, le produit coupe automatiquement les sorties. Réglez la durée du mode d'économie d'énergie dans l'application Jackery.
 
 Pour désactiver le mode d'économie d'énergie, maintenez AC power button et main POWER button enfoncés pendant plus de 3 secondes. Une fois désactivé, l'icône ne s'affiche plus sur l'écran LCD et le produit ne coupe plus automatiquement la sortie CA ou USB.
 
@@ -134,7 +134,7 @@ Appuyez une troisième fois pour éteindre la lampe.
    * -
      - Allumé en continu (pendant la charge ou la décharge)
      - Arrêt automatique
-     - L'écran LCD s'éteint automatiquement après 2 hours d'inactivité.
+     - L'écran LCD s'éteint automatiquement après 2 heures d'inactivité.
 
 Vous pouvez également définir le mode d'affichage de l'écran dans l'application Jackery.
 
