@@ -26,6 +26,6 @@ Asegúrese de que el cable de carga de CA esté completamente insertado y firmem
 
 **Modo de carga de emergencia**
 
-En este modo, puede cargar rápidamente la estación de energía portátil utilizando la carga de CA. Esta función de carga de emergencia puede activarse o desactivarse mediante la App Jackery. Cuando el modo de carga de emergencia está activado, la luz circular que indica el estado de carga (SOC) parpadeará más rápido.
+En este modo, puede cargar rápidamente la estación de energía portátil utilizando la carga de CA. Esta función de carga de emergencia puede activarse o desactivarse mediante la aplicación Jackery. Cuando el modo de carga de emergencia está activado, la luz circular que indica el estado de carga (SOC) parpadeará más rápido.
 
 *Para maximizar la vida útil de la batería, es mejor cargar a velocidad normal. Utilice el modo de carga de emergencia solo cuando sea necesario. No se recomienda para un uso regular y prolongado.*
