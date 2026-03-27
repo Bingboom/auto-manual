@@ -26,8 +26,8 @@ latex_show_urls = "no"
 # --- HTML output (primary reading version) ---
 html_theme = "furo"  # 推荐：furo（现代、干净）；也可用 sphinx_rtd_theme
 html_static_path = ["_static"]
-html_css_files = ["hb_manual.css",'hb_paged.css']
-html_js_files = ["hb_manual.js",'hb_paged.js']  # 可先留空文件
+html_css_files = ["hb_manual.css"]
+html_js_files = ["hb_manual.js"]
 html_title = "User Manual"
 
 # 把 assets 暴露给 HTML（封面/overview/pdf_insert 用）
@@ -36,23 +36,6 @@ html_extra_path = ["renderers/latex/assets"]
 
 # Shared substitutions for template rst pages.
 rst_epilog = r"""
-.. |PRODUCT_NAME| replace:: Jackery HomePower 2000 Plus v2
-.. |PRODUCT_NAME_BOLD| replace:: **Jackery HomePower 2000 Plus v2**
-.. |PRODUCT_SHORT_NAME| replace:: HomePower 2000 Plus v2
-.. |PRODUCT_SHORT_NAME_BOLD| replace:: **HomePower 2000 Plus v2**
-.. |MODEL_NO| replace:: JHP-2000A
-.. |MAIN_POWER_BUTTON_LABEL| replace:: Main POWER Button
-.. |MAIN_POWER_BUTTON_LABEL_LOWER| replace:: main POWER button
-.. |DC_USB_POWER_BUTTON_LABEL| replace:: DC/USB Power Button
-.. |DC_USB_POWER_BUTTON_LABEL_LOWER| replace:: DC/USB power button
-.. |POWER_BUTTON_LABEL| replace:: POWER Button
-.. |POWER_BUTTON_LABEL_LOWER| replace:: POWER button
-.. |USB_POWER_BUTTON_LABEL| replace:: USB Power Button
-.. |USB_POWER_BUTTON_LABEL_LOWER| replace:: USB power button
-.. |AC_POWER_BUTTON_LABEL| replace:: AC Power Button
-.. |AC_POWER_BUTTON_LABEL_LOWER| replace:: AC power button
-.. |BATTERY_PACK_NAME| replace:: Jackery Battery Pack 3600
-.. |BATTERY_PACK_NAME_BOLD| replace:: **Jackery Battery Pack 3600**
 """
 
 

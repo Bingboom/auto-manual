@@ -5,18 +5,14 @@
   "page_manifest": "docs/manifests/manual_us-en.yaml",
   "spec_master": {
     "path": "data/phase1/Spec_Master.csv",
-    "sha256": "18afc66193979929080348d6937930544d02855d2cf5afa4a613d93f6d8455a1"
+    "sha256": "b8d8e9b06ef313f440a726e205798a2fd7ece1f01197c2afb99960c63026c438"
   },
   "recipe_ids": [
     "03_product_overview",
     "05_operation_guide",
     "12_app_setup"
   ],
-  "snippet_ids": [
-    "wireless_reset_buttons",
-    "wireless_toggle_buttons",
-    "app_button_reference"
-  ],
+  "snippet_ids": [],
   "page_files": [
     "docs/_build/JE-1000F/US/rst/page/cover.rst",
     "docs/_build/JE-1000F/US/rst/page/00_preface.rst",
