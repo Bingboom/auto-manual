@@ -11,7 +11,7 @@
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{製品の名称} & \HBTypeSpecValue{Jackery ポータブル電源 1000 New} \\
    \hline
-   \HBTypeSpecLabel{型番} & \HBTypeSpecValue{JE-1000F / JE-1000F-SG} \\
+   \HBTypeSpecLabel{型番} & \HBTypeSpecValue{JE-1000F} \\
    \hline
    \HBTypeSpecLabel{定格容量} & \HBTypeSpecValue{1024Wh (20Ah/51.2V DC)} \\
    \hline
@@ -105,7 +105,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">型番</th>
-            <td class="hb-spec-value">JE-1000F / JE-1000F-SG</td>
+            <td class="hb-spec-value">JE-1000F</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">定格容量</th>

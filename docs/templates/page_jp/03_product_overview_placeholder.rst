@@ -13,7 +13,7 @@
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **持ち手**
+     - **ハンドル**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
@@ -54,4 +54,3 @@
    * - **|SIDE_AC_INPUT_LABEL|**
 
        |SIDE_AC_INPUT_SPEC|
-
