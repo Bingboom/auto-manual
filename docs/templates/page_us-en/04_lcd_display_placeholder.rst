@@ -40,23 +40,14 @@ LCD DISPLAY
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * -
      - Self-powered Mode
-     - Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs.
-
-       The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.
-
-       Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
-   * -
-     - TOU Mode
-     - **On:** TOU mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, the product prioritizes battery discharge to reduce peak electricity costs. During off-peak periods, the product charges the battery from the grid to achieve peak-shaving and valley-filling.
-
-       **Off:** TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.
+     - Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs.The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * - 6
      - UPS
-     - **On:** The product is in bypass mode, and the switchover time from grid power to the internal battery is 10 ms.
+     - **On:** The product is operating in bypass mode. Loads connected to the AC ports consume power from the grid instead of the power station. If the grid suddenly fails, the product automatically switches to its battery power within 10 ms.
 
-       **Off:** The product is not in bypass mode.
+       **Off:** The product is not in bypass mode. Loads connected to the AC ports are powered by the internal battery of the power station.
    * - 7
      - AC Power Indicator
      - The AC output (pure sine wave) is on.
@@ -80,7 +71,7 @@ LCD DISPLAY
      - The product is charged via the DC Input (DC8020) using solar panel(s).
    * - 4
      - Battery Saving Mode
-     - **On:** Limits the maximum usable battery capacity to extend battery life.
+     - **On:** Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan.
 
        **Off:** Battery Saving Mode is disabled.
 
