@@ -69,9 +69,11 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
    - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
    - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+   - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, safety/spec content, and placeholder values
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
+   - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row
 
 3. Review working layer
    - [`docs/_review/<model>/<region>/index.rst`](../docs/_review)
@@ -215,6 +217,7 @@ Edit these when the change should be shared across products or when creating the
 Edit these when safety/spec parameters change:
 
 - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+- [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
@@ -253,6 +256,17 @@ Generated bundle output:
 
 - [`docs/_build/<model>/<region>/rst/generated/<model>/safety_<lang>.rst`](../docs/_build)
 - materialized page include: [`docs/_build/<model>/<region>/rst/page/safety_<lang>.rst`](../docs/_build)
+
+Symbols content is generated from:
+
+- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
+- [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
+
+`symbols_blocks.csv` notes:
+
+- use one `table_row` per symbols-table entry
+- `image_path` stores the RST image reference path for that icon
+- keep `symbol_key` stable so renderer alt text and layout metadata still resolve correctly
 
 Spec content is generated from:
 

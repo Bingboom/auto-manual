@@ -145,6 +145,11 @@ If you update any of these:
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+- [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
+
+`symbols_blocks.csv` note:
+
+- `image_path` stores the RST image reference path for each symbols-table icon
 
 `Spec_Master.csv` note:
 

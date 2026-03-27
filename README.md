@@ -97,6 +97,7 @@ Use different surfaces for different stages:
 - structured data changes: [`data/phase1/`](data/phase1)
   `Spec_Footnotes.csv` supports both numbered `footnote` rows and plain `note` rows such as trademark statements. If numbering differs by language, put the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty.
   `Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages.
+  `symbols_blocks.csv` stores symbols-page table copy and now includes an `image_path` field for the referenced icon asset.
 - target-specific review edits after review starts: [`docs/_review/`](docs/_review)
 - generated runtime and export outputs: [`docs/_build/`](docs/_build)
 

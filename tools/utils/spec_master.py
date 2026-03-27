@@ -113,8 +113,6 @@ _SECTION_ORDER_BY_SECTION: dict[str, str] = {
     "TEMPLATE VARS": "99",
 }
 _TEMPLATE_ROW_KEY_METADATA: dict[str, tuple[str, str, str]] = {
-    "tpl_power_button_label": ("CONTROLS", "7", "Power Button"),
-    "tpl_usb_power_button_label": ("CONTROLS", "7", "USB Power Button"),
     "tpl_main_power_button_label": ("CONTROLS", "7", "Main Power Button"),
     "tpl_dc_usb_power_button_label": ("CONTROLS", "7", "DC/USB Power Button"),
     "tpl_ac_power_button_label": ("CONTROLS", "7", "AC Power Button"),

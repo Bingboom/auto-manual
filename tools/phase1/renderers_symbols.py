@@ -354,10 +354,13 @@ def _collect_icon_rows(
             )
         if symbol_key not in SYMBOL_ASSETS:
             raise ValueError(f"unknown symbols symbol_key='{symbol_key}'")
+        asset = SYMBOL_ASSETS[symbol_key]
+        image_path = (block.get("image_path") or "").strip() or asset.path
 
         groups[group].append(
             {
                 "symbol_key": symbol_key,
+                "image_path": image_path,
                 "text": rst_escape(text),
                 "order": (block.get("order") or "").strip(),
             }
@@ -401,7 +404,7 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
             _append_image_cell(
                 lines,
                 "   * - ",
-                image_path=left_asset.path,
+                image_path=str(left["image_path"]),
                 alt=left_asset.alt,
                 width=left_asset.width,
             )
@@ -415,7 +418,7 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
             _append_image_cell(
                 lines,
                 "     - ",
-                image_path=right_asset.path,
+                image_path=str(right["image_path"]),
                 alt=right_asset.alt,
                 width=right_asset.width,
             )

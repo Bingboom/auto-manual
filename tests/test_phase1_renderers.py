@@ -367,6 +367,7 @@ class TestPhase1Renderers(unittest.TestCase):
                 "block_type": "table_row",
                 "column_group": "left",
                 "symbol_key": "warning_triangle",
+                "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "order": "10",
                 "sku_scope": "ALL",
                 "enabled": "1",
@@ -378,6 +379,7 @@ class TestPhase1Renderers(unittest.TestCase):
                 "block_type": "table_row",
                 "column_group": "left",
                 "symbol_key": "read_manual",
+                "image_path": "templates/word_template/common_assets/symbols/read_manual_operator.png",
                 "order": "20",
                 "sku_scope": "ALL",
                 "enabled": "1",
@@ -389,6 +391,7 @@ class TestPhase1Renderers(unittest.TestCase):
                 "block_type": "table_row",
                 "column_group": "right",
                 "symbol_key": "do_not_dismantle",
+                "image_path": "templates/word_template/common_assets/symbols/do_not_dismantle.png",
                 "order": "10",
                 "sku_scope": "ALL",
                 "enabled": "1",
@@ -411,6 +414,18 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("warning_bar.png", out)
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_uses_image_path_from_blocks(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["image_path"] = "custom/symbols/warning_triangle.png"
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("custom/symbols/warning_triangle.png", out)
 
     def test_render_symbols_page_uses_language_specific_copy(self) -> None:
         out = renderers.render_symbols_page(
