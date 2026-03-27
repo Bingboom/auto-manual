@@ -51,7 +51,7 @@
     "path": "data/phase1/Spec_Master.csv",
     "sha256": "18afc66193979929080348d6937930544d02855d2cf5afa4a613d93f6d8455a1"
   },
-  "last_synced_at": "2026-03-27T07:24:44.472148+00:00",
+  "last_synced_at": "2026-03-27T12:44:12.397892+00:00",
   "last_sync_scope": "params",
   "last_sync_files": [
     "generated/JE-1000F/draft/03_product_overview_en.rst",
@@ -63,7 +63,6 @@
     "page/00_preface.rst",
     "page/02_whats_in_the_box.rst",
     "page/04_lcd_display_placeholder.rst",
-    "page/05_operation_guide_placeholder.rst",
     "page/06_ups_mode.rst",
     "page/08_charging_methods.rst",
     "page/09_storage_and_maintenance.rst",

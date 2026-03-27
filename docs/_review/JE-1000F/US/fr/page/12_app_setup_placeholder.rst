@@ -20,7 +20,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 2.2 Appuyez sur le Bouton d’alimentation principal de l'appareil pour l'allumer.
 Lorsque les icônes Wi-Fi et Bluetooth de l'appareil clignotent, cela signifie que l'appareil est entré en mode de configuration réseau.
-Touchez le bouton "Icône clignotante" et autorisez l'application à se connecter aux appareils à proximité ainsi qu'à ouvrir les autorisations Bluetooth.
+Touchez le bouton "Icône clignotante" et autorisez l'application à se connecter aux appareils à proximité ainsi qu'à utiliser les autorisations Bluetooth.
 
 .. image:: _assets/templates/word_template/common_assets/app/add_device.png
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
@@ -41,13 +41,13 @@ Si le message "l'appareil a déjà été associé" s'affiche pendant le processu
 - Le propriétaire de l'appareil partagera cet appareil avec d'autres utilisateurs via l'application.
 - Maintenez bouton d’alimentation principal et bouton d’alimentation CC/USB enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil, puis associez de nouveau l'appareil.
 
-2.4 Une fois l'appareil correctement connecté, saisissez le mot de passe de votre réseau Wi-Fi et touchez le bouton OK.
+2.4 Une fois l'appareil correctement connecté, saisissez le mot de passe du réseau Wi-Fi auquel l'appareil se connectera et touchez le bouton **OK**.
 
 **REMARQUE**
 
 - Veuillez sélectionner un réseau Wi-Fi dans la bande 2,4 GHz. L'appareil ne prend pas en charge les réseaux Wi-Fi dans la bande 5 GHz.
 
-Une fois l'appareil ajouté avec succès à l'application, l'icône Wi-Fi de l'appareil reste allumée en permanence.
+2.5 Une fois l'appareil ajouté avec succès à l'application, l'icône Wi-Fi de l'appareil reste allumée en permanence.
 
 .. image:: _assets/templates/word_template/common_assets/app/connect_result.png
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.
@@ -61,7 +61,7 @@ L'application Jackery ne peut se connecter qu'à une seule station d'énergie à
 
 **3. Dissocier l'appareil**
 
-Cliquez sur l'icône Paramètres, située en haut à droite de l'interface principale de l'appareil, pour accéder à la page des paramètres. Cliquez ensuite sur le bouton Dissocier, situé au bas de la page, pour dissocier l'appareil.
+Cliquez sur l'icône **Paramètres**, située en haut à droite de l'interface principale de l'appareil, pour accéder à la page des paramètres. Cliquez ensuite sur le bouton **Dissocier**, situé au bas de la page, pour dissocier l'appareil.
 
 **4. Remarques**
 

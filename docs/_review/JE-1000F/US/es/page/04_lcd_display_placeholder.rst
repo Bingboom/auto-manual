@@ -36,27 +36,27 @@ PANTALLA LCD
 
        **Apagado:** El modo de carga silenciosa está desactivado.
 
-       Active/desactive esta función en la App Jackery. La configuración se conserva cuando el dispositivo se apaga.
+       Active/desactive esta función en la aplicación Jackery. La configuración se conserva cuando el dispositivo se apaga.
    * - 5
      - Plan de carga
      - Personaliza el tiempo de carga de Jackery Explorer 1000.
        Es adecuado para situaciones con precios de electricidad variables, ya que permite definir planes de carga según los periodos punta y valle, reduciendo así el coste eléctrico.
 
-       Active/desactive esta función en la App Jackery. La configuración se conserva cuando el dispositivo se apaga.
+       Active/desactive esta función en la aplicación Jackery. La configuración se conserva cuando el dispositivo se apaga.
    * -
      - Modo autónomo
      - Maximiza el uso de la energía solar y reduce la dependencia de la red eléctrica al priorizar la energía solar almacenada, lo que ayuda a reducir los costes eléctricos.
 
        La estación de energía debe estar conectada simultáneamente a paneles solares y a la red, con la potencia de carga limitada por la potencia de bypass.
 
-       Active/desactive esta función en la App Jackery. La configuración se conserva cuando el dispositivo se apaga.
+       Active/desactive esta función en la aplicación Jackery. La configuración se conserva cuando el dispositivo se apaga.
    * -
      - Modo TOU
      - **Encendido:** El modo TOU está activado (SOC de respaldo predeterminado: 60 %). Durante los periodos punta, cuando la energía almacenada supera el SOC de respaldo, el producto prioriza la descarga de la batería para reducir el coste eléctrico. Durante los periodos valle, el producto carga la batería desde la red para desplazar la carga.
 
        **Apagado:** El modo TOU está desactivado. El producto no sigue la estrategia TOU y funciona según la lógica predeterminada de alimentación y carga.
 
-       Active/desactive esta función en la App Jackery. La configuración se conserva cuando el dispositivo se apaga.
+       Active/desactive esta función en la aplicación Jackery. La configuración se conserva cuando el dispositivo se apaga.
    * - 6
      - UPS
      - **Encendido:** El producto está en modo bypass y el tiempo de conmutación desde la red a la batería interna es de 10 ms.
@@ -89,14 +89,14 @@ PANTALLA LCD
 
        **Apagado:** El modo de ahorro de batería está desactivado.
 
-       Active/desactive esta función en la App Jackery. La configuración se conserva cuando el dispositivo se apaga.
+       Active/desactive esta función en la aplicación Jackery. La configuración se conserva cuando el dispositivo se apaga.
 
        Cuando esta función está activada, el producto realiza ocasionalmente un ciclo completo de carga y descarga para calibrar el SOC.
    * - 14
      - Límite de potencia de carga
-     - **Encendido:** El límite de potencia de carga está activado en la App Jackery.
+     - **Encendido:** El límite de potencia de carga está activado en la aplicación Jackery.
 
-       **Apagado:** El límite de potencia de carga está desactivado en la App Jackery.
+       **Apagado:** El límite de potencia de carga está desactivado en la aplicación Jackery.
 
        La configuración se conserva cuando el dispositivo se apaga.
    * - 16
@@ -120,7 +120,7 @@ PANTALLA LCD
 
        **Apagado:** No se ha configurado ningún temporizador de descarga.
 
-       Active/desactive esta función en la App Jackery. La configuración no se conserva cuando el dispositivo se apaga.
+       Active/desactive esta función en la aplicación Jackery. La configuración no se conserva cuando el dispositivo se apaga.
    * - 22
      - Modo de ahorro de energía
      - Cuando la salida de CA o CC se activa presionando botón de energía CA o botón de energía CC/USB:
