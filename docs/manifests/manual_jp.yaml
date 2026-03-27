@@ -13,9 +13,6 @@ pages:
     file: templates/page_jp/01_meaning_of_symbols.rst
   - type: rst_include
     lang: ja
-    file: templates/page_jp/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: ja
     file: templates/page_jp/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
@@ -40,6 +37,9 @@ pages:
   - type: rst_include
     lang: ja
     file: templates/page_jp/07_expansion_battery_pack.rst
+  - type: rst_include
+    lang: ja
+    file: templates/page_jp/08_charging_methods.rst
   - type: rst_include
     lang: ja
     file: templates/page_jp/10_troubleshooting.rst
