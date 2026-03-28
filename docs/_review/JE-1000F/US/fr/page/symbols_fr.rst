@@ -89,20 +89,26 @@ Au cours du cycle de vie des produits de stockage d'énergie, un certain degré 
           :alt: Battery charging symbol.
           :width: 40px
      - Chargement de la batterie.
-     - .. image:: _assets/templates/word_template/common_assets/symbols/weee.png
-          :alt: WEEE disposal symbol.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/li_ion.png
+          :alt: Li-ion battery symbol.
           :width: 40px
-     - Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères et qu'il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l'environnement. Pour plus d'informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.
+     - Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.
    * - .. image:: _assets/templates/word_template/common_assets/symbols/explosive_material.png
           :alt: Explosive material symbol.
           :width: 40px
      - Matière explosive.
-     -
-     -
+     - .. image:: _assets/templates/word_template/common_assets/symbols/weee.png
+          :alt: WEEE disposal symbol.
+          :width: 40px
+     - Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères et qu'il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l'environnement. Pour plus d'informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.
    * - .. image:: _assets/templates/word_template/common_assets/symbols/heavy_object.png
           :alt: Heavy object symbol.
           :width: 40px
      - Objet lourd.
-     -
-     -
+     - .. image:: _assets/templates/word_template/common_assets/symbols/weee2.png
+          :alt: Battery disposal symbol.
+          :width: 40px
+     - Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.
+       En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.
+       Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.
 

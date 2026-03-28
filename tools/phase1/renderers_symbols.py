@@ -63,6 +63,10 @@ SYMBOL_ASSETS: dict[str, SymbolAsset] = {
         path="templates/word_template/common_assets/symbols/weee.png",
         alt="WEEE disposal symbol.",
     ),
+    "weee2": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/weee2.png",
+        alt="Battery disposal symbol.",
+    ),
 }
 
 

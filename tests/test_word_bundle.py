@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import struct
 import tempfile
@@ -110,7 +110,7 @@ class TestWordBundle(unittest.TestCase):
 
    .. raw:: html
 
-      <h2 class="hb-spec-section">● General Info</h2>
+      <h2 class="hb-spec-section">鈼?General Info</h2>
 
    .. list-table::
       :widths: 33 67
@@ -247,8 +247,8 @@ Congratulations on your new manual.
             '<div class="hb-two-col">'
             '<ul class="hb-list">'
             '<li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product\'s specified operating temperature ranges:</li>'
-            '<li>Charging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
-            '<li>Discharging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
+            '<li>Charging temperature: -4掳F to 113掳F (-20掳C to 45掳C)</li>'
+            '<li>Discharging temperature: -4掳F to 113掳F (-20掳C to 45掳C)</li>'
             '<li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.</li>'
             '<li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li>'
             '<li>Water can cause short circuits or damage to the charger, leading to safety risks.</li>'
@@ -314,3 +314,4 @@ Congratulations on your new manual.
 
 if __name__ == "__main__":
     unittest.main()
+

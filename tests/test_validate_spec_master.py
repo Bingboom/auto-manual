@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -86,7 +86,7 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
@@ -116,7 +116,7 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
@@ -146,7 +146,7 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,,",
                         "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
@@ -167,6 +167,69 @@ class TestValidateSpecMaster(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertIn("EMPTY_REQUIRED_SPEC_VALUE", codes)
 
+    def test_collect_spec_master_validation_issues_should_reject_legacy_value_en_source_header(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_en",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("LEGACY_SOURCE_HEADERS_PRESENT", codes)
+            self.assertIn("MISSING_SOURCE_VALUE", codes)
+            self.assertIn("EMPTY_REQUIRED_SPEC_VALUE", codes)
+
+    def test_collect_spec_master_validation_issues_should_report_missing_source_value_for_jp_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source,Value_ja",
+                        "JE-1000F,JP,TRUE,specifications,product_name,,,,Jackery ポータブル電源 1000 New",
+                        "JE-1000F,JP,TRUE,specifications,model_no,,,,JE-1000F",
+                        "JE-1000F,JP,TRUE,Product overview,main_power_button,label,1,,メイン電源ボタン",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="JP",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertIn("MISSING_SOURCE_VALUE", codes)
+            self.assertIn("EMPTY_REQUIRED_SPEC_VALUE", codes)
+
 
 if __name__ == "__main__":
     unittest.main()
+
+

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import hashlib
 import json
@@ -31,7 +31,7 @@ class TestReleaseManifest(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -88,3 +88,4 @@ class TestReleaseManifest(unittest.TestCase):
                 hashlib.sha256((build_root / "word" / "manual_je1000f_us.docx").read_bytes()).hexdigest(),
                 manifest["word_output"]["sha256"],
             )
+

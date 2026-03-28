@@ -78,13 +78,24 @@ def _pick_spec_lang_text(
     lang: str,
     default_keys: list[str] | None = None,
 ) -> str:
-    keys = [
-        f"{base}_{lang}",
-        f"{base}_{lang.lower()}",
-        f"{base}_{lang.upper()}",
-        f"{base}_en",
-        base,
-    ]
+    region = _first_non_empty(row, ["Region", "region"]).strip().upper()
+    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    normalized_lang = (lang or "").strip().lower()
+    if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+        keys = [
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
+    else:
+        keys = [
+            f"{base}_{lang}",
+            f"{base}_{lang.lower()}",
+            f"{base}_{lang.upper()}",
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
     if default_keys:
         keys.extend(default_keys)
     return _first_non_empty(row, keys)
@@ -170,7 +181,7 @@ def _parse_spec_master_sections(
             line = (row.get("__line__") or str(idx + 2)).strip()
             raise ValueError(
                 f"Spec_Master CSV line {line} has unquoted commas in a field. "
-                "Quote the full cell value (e.g. Value_en=\"A, B, C\")."
+                "Quote the full cell value (e.g. Value_source=\"A, B, C\")."
             )
 
         if not _is_enabled_row(row):
@@ -283,7 +294,7 @@ def _parse_spec_master_sections(
             row,
             base="Row_label",
             lang=lang,
-            default_keys=["Row_label_en", "Row_key"],
+            default_keys=["Row_label_source", "Row_key"],
         )
         line_text = _pick_spec_lang_text(
             row,
@@ -296,13 +307,13 @@ def _parse_spec_master_sections(
                 row,
                 base="Param",
                 lang=lang,
-                default_keys=["Param_en", "Param_name"],
+                default_keys=["Param_source", "Param_name"],
             )
             value = _pick_spec_lang_text(
                 row,
                 base="Value",
                 lang=lang,
-                default_keys=["Value_en", "Spec_Value"],
+                default_keys=["Value_source", "Spec_Value"],
             )
             sep = _pick_spec_lang_text(
                 row,

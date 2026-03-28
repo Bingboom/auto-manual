@@ -156,6 +156,8 @@ If you update any of these:
 - the `Page` column may now hold a comma-separated page list
 - use `Product overview` for Product overview-only page-value rows
 - use `Product overview, specifications,` when a row is intentionally shared by both pages
+- `Row_label_source`, `Param_source`, and `Value_source` are the shared source-text columns; they should hold the source manual language for that region, such as English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
+- `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet
 
 `Spec_Footnotes.csv` supports two spec-bottom row types:
 

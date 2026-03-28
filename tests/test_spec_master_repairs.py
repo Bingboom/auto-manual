@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import csv
 import tempfile
@@ -23,9 +23,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
                 "Section_order": "4",
                 "Row_key": "charging_temperature",
-                "Row_label_en": "Charging Temperature",
+                "Row_label_source": "Charging Temperature",
                 "Line_order": "1",
-                "Value_en": "-20C to 45C",
+                "Value_source": "-20C to 45C",
                 "Model": "JE-2000F",
                 "__line__": "138",
             },
@@ -36,9 +36,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "BATTERY",
                 "Section_order": "5",
                 "Row_key": "field_001",
-                "Row_label_en": "额定容量",
+                "Row_label_source": "棰濆畾瀹归噺",
                 "Line_order": "1",
-                "Value_en": "2048Wh",
+                "Value_source": "2048Wh",
                 "Model": "JHP-2000A",
                 "__line__": "4",
             },
@@ -49,9 +49,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_front_dc12_port_spec",
-                "Row_label_en": "Front DC12 Port Spec",
+                "Row_label_source": "Front DC12 Port Spec",
                 "Line_order": "1",
-                "Value_en": "12V?10A Max",
+                "Value_source": "12V?10A Max",
                 "Model": "JE-2000F",
                 "__line__": "302",
             },
@@ -62,9 +62,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "??????",
+                "Value_source": "??????",
                 "Model": "JE-2000F",
                 "__line__": "326",
             },
@@ -75,9 +75,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "Main POWER Button",
+                "Value_source": "Main POWER Button",
                 "Model": "JE-2000F",
                 "__line__": "298",
             },
@@ -88,22 +88,22 @@ class TestSpecMasterRepairs(unittest.TestCase):
         self.assertEqual((), result.removed_duplicate_lines)
 
         self.assertEqual("ENVIRONMENTAL", result.repaired_rows[0]["Section"])
-        self.assertEqual("Rated Capacity", result.repaired_rows[1]["Row_label_en"])
+        self.assertEqual("Rated Capacity", result.repaired_rows[1]["Row_label_source"])
 
         self.assertEqual("OUTPUT PORTS", result.repaired_rows[2]["Section"])
         self.assertEqual("3", result.repaired_rows[2]["Section_order"])
-        self.assertEqual("DC 12V Port", result.repaired_rows[2]["Row_label_en"])
-        self.assertEqual("12V/10A Max", result.repaired_rows[2]["Value_en"])
+        self.assertEqual("DC 12V Port", result.repaired_rows[2]["Row_label_source"])
+        self.assertEqual("12V/10A Max", result.repaired_rows[2]["Value_source"])
 
         self.assertEqual("CONTROLS", result.repaired_rows[3]["Section"])
         self.assertEqual("7", result.repaired_rows[3]["Section_order"])
-        self.assertEqual("Main Power Button", result.repaired_rows[3]["Row_label_en"])
-        self.assertEqual("メイン電源ボタン", result.repaired_rows[3]["Value_ja"])
+        self.assertEqual("Main Power Button", result.repaired_rows[3]["Row_label_source"])
+        self.assertEqual("メイン電源ボタン", result.repaired_rows[3]["Value_source"])
 
         self.assertEqual("CONTROLS", result.repaired_rows[4]["Section"])
         self.assertEqual("7", result.repaired_rows[4]["Section_order"])
-        self.assertEqual("Main Power Button", result.repaired_rows[4]["Row_label_en"])
-        self.assertEqual("Main POWER Button", result.repaired_rows[4]["Value_en"])
+        self.assertEqual("Main Power Button", result.repaired_rows[4]["Row_label_source"])
+        self.assertEqual("Main POWER Button", result.repaired_rows[4]["Value_source"])
 
     def test_repair_should_normalize_project_code_and_drop_duplicate_rows(self) -> None:
         rows = [
@@ -115,9 +115,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "product_name",
-                "Row_label_en": "Product Name",
+                "Row_label_source": "Product Name",
                 "Line_order": "1",
-                "Value_en": "Jackery Portable Power 2000 Plus",
+                "Value_source": "Jackery Portable Power 2000 Plus",
                 "Model": "JE-2000E",
                 "__line__": "71",
             },
@@ -129,9 +129,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "product_name",
-                "Row_label_en": "Product Name",
+                "Row_label_source": "Product Name",
                 "Line_order": "1",
-                "Value_en": "Jackery Portable Power 2000 Plus",
+                "Value_source": "Jackery Portable Power 2000 Plus",
                 "Model": "JE-2000E",
                 "__line__": "72",
             },
@@ -153,9 +153,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "Main POWER Button",
+                "Value_source": "Main POWER Button",
                 "Model": "JE-2000F",
                 "__line__": "261",
             },
@@ -167,9 +167,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "メイン電源ボタン",
+                "Value_source": "銉°偆銉抽浕婧愩儨銈裤兂",
                 "Model": "JE-2000F",
                 "__line__": "289",
             },
@@ -181,9 +181,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "メイン電源ボタン",
+                "Value_source": "銉°偆銉抽浕婧愩儨銈裤兂",
                 "Model": "JE-2000E",
                 "__line__": "315",
             },
@@ -195,9 +195,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "Main POWER Button",
+                "Value_source": "Main POWER Button",
                 "Model": "JE-1000F",
                 "__line__": "341",
             },
@@ -209,9 +209,9 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "メイン電源ボタン",
+                "Value_source": "銉°偆銉抽浕婧愩儨銈裤兂",
                 "Model": "JE-1000F",
                 "__line__": "369",
             },
@@ -225,8 +225,8 @@ class TestSpecMasterRepairs(unittest.TestCase):
         self.assertEqual("HTE153-US", result.repaired_rows[3]["project_code"])
         self.assertEqual("HTE153-JP", result.repaired_rows[4]["project_code"])
         self.assertEqual("CONTROLS", result.repaired_rows[0]["Section"])
-        self.assertEqual("Main Power Button", result.repaired_rows[0]["Row_label_en"])
-        self.assertEqual("メイン電源ボタン", result.repaired_rows[1]["Value_ja"])
+        self.assertEqual("Main Power Button", result.repaired_rows[0]["Row_label_source"])
+        self.assertEqual("メイン電源ボタン", result.repaired_rows[1]["Value_source"])
         self.assertEqual((), result.removed_duplicate_lines)
 
     def test_write_rows_csv_and_repairs_csv_should_persist_outputs(self) -> None:
@@ -234,7 +234,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
             {
                 "Region": "US",
                 "Row_key": "tpl_front_dc12_port_spec",
-                "Value_en": "12V/10A Max",
+                "Value_source": "12V/10A Max",
             },
         )
 
@@ -253,7 +253,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
             with repairs_path.open("r", encoding="utf-8", newline="") as handle:
                 loaded_repairs = list(csv.DictReader(handle))
 
-        self.assertEqual("12V/10A Max", loaded_rows[0]["Value_en"])
+        self.assertEqual("12V/10A Max", loaded_rows[0]["Value_source"])
         self.assertEqual([], loaded_repairs)
 
     def test_build_template_row_key_mapping_rows_should_capture_usage(self) -> None:
@@ -264,7 +264,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "OUTPUT PORTS",
                 "Section_order": "3",
                 "Row_key": "tpl_front_dc12_port_spec",
-                "Row_label_en": "DC 12V Port",
+                "Row_label_source": "DC 12V Port",
                 "Model": "JE-2000F",
             },
             {
@@ -273,7 +273,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "OUTPUT PORTS",
                 "Section_order": "3",
                 "Row_key": "tpl_front_dc12_port_spec",
-                "Row_label_en": "DC 12V Port",
+                "Row_label_source": "DC 12V Port",
                 "Model": "JE-2000F",
             },
             {
@@ -282,7 +282,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Section": "INPUT PORTS",
                 "Section_order": "2",
                 "Row_key": "tpl_side_ac_input_spec",
-                "Row_label_en": "AC Input",
+                "Row_label_source": "AC Input",
                 "Model": "JE-2000F",
             },
         ]
@@ -293,14 +293,14 @@ class TestSpecMasterRepairs(unittest.TestCase):
 
         self.assertEqual("OUTPUT PORTS", dc12_row["Section"])
         self.assertEqual("3", dc12_row["Section_order"])
-        self.assertEqual("DC 12V Port", dc12_row["Row_label_en"])
+        self.assertEqual("DC 12V Port", dc12_row["Row_label_source"])
         self.assertEqual("2", dc12_row["Usage_count"])
         self.assertEqual("JE-2000F", dc12_row["Models"])
         self.assertEqual("JP,US", dc12_row["Regions"])
         self.assertEqual("OUTPUT PORTS", dc12_row["Observed_sections"])
 
         self.assertEqual("INPUT PORTS", ac_input_row["Section"])
-        self.assertEqual("AC Input", ac_input_row["Row_label_en"])
+        self.assertEqual("AC Input", ac_input_row["Row_label_source"])
         self.assertEqual("1", ac_input_row["Usage_count"])
 
     def test_build_template_row_key_mapping_markdown_should_group_by_section(self) -> None:
@@ -309,25 +309,25 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Row_key": "tpl_side_ac_input_spec",
                 "Section": "INPUT PORTS",
                 "Section_order": "2",
-                "Row_label_en": "AC Input",
+                "Row_label_source": "AC Input",
                 "Usage_count": "5",
                 "Models": "JE-1000F,JE-2000E,JE-2000F",
                 "Regions": "JP,US",
                 "Observed_sections": "INPUT PORTS",
                 "Observed_section_orders": "2",
-                "Observed_row_labels_en": "AC Input",
+                "Observed_row_labels_source": "AC Input",
             },
             {
                 "Row_key": "tpl_main_power_button_label",
                 "Section": "CONTROLS",
                 "Section_order": "7",
-                "Row_label_en": "Main Power Button",
+                "Row_label_source": "Main Power Button",
                 "Usage_count": "5",
                 "Models": "JE-1000F,JE-2000E,JE-2000F",
                 "Regions": "JP,US",
                 "Observed_sections": "CONTROLS",
                 "Observed_section_orders": "7",
-                "Observed_row_labels_en": "Main Power Button",
+                "Observed_row_labels_source": "Main Power Button",
             },
         )
 
@@ -342,3 +342,5 @@ class TestSpecMasterRepairs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+

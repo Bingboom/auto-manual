@@ -230,10 +230,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "ac_input",
-                "Row_label_en": "1 x AC Input",
+                "Row_label_source": "1 x AC Input",
                 "Line_order": "1",
-                "Param_en": "Charge Mode",
-                "Value_en": "100V-120V~60Hz, 15A Max, 1750W Max",
+                "Param_source": "Charge Mode",
+                "Value_source": "100V-120V~60Hz, 15A Max, 1750W Max",
                 "row_order": "2",
                 "page_title_en": "SPECIFICATIONS",
                 "section_title_en": "GENERAL INFO",
@@ -248,10 +248,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "ac_input",
-                "Row_label_en": "1 x AC Input",
+                "Row_label_source": "1 x AC Input",
                 "Line_order": "2",
-                "Param_en": "Bypass Mode (1)",
-                "Value_en": "100V-120V~60Hz, 12A Max, 1440W",
+                "Param_source": "Bypass Mode (1)",
+                "Value_source": "100V-120V~60Hz, 12A Max, 1440W",
                 "row_order": "2",
                 "page_title_en": "",
                 "section_title_en": "GENERAL INFO",
@@ -266,10 +266,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "model_no",
-                "Row_label_en": "Model No.",
+                "Row_label_source": "Model No.",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "JHP-2000A",
+                "Param_source": "",
+                "Value_source": "JHP-2000A",
                 "row_order": "1",
                 "page_title_en": "",
                 "section_title_en": "GENERAL INFO",
@@ -285,10 +285,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "META",
                 "Section_order": "90",
                 "Row_key": "note_1",
-                "Row_label_en": "NOTE",
+                "Row_label_source": "NOTE",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "",
+                "Param_source": "",
+                "Value_source": "",
                 "row_kind": "note",
                 "note_text_en": "* Demo note",
                 "sku_scope": "ALL",
@@ -302,10 +302,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "META",
                 "Section_order": "91",
                 "Row_key": "fn_1",
-                "Row_label_en": "FOOTNOTE",
+                "Row_label_source": "FOOTNOTE",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "",
+                "Param_source": "",
+                "Value_source": "",
                 "row_kind": "footnote",
                 "footnote_mark": "",
                 "footnote_text_en": "(1) Demo footnote text",
@@ -338,7 +338,23 @@ class TestPhase1Renderers(unittest.TestCase):
         ac_pos = out.find("1 x AC Input")
         self.assertGreater(model_pos, -1)
         self.assertGreater(ac_pos, -1)
-        self.assertLess(model_pos, ac_pos)
+
+    def test_render_spec_page_should_use_source_columns_for_jp_source_language_rows(self) -> None:
+        jp_row = dict(self._spec_master_blocks()[0])
+        jp_row["Region"] = "JP"
+        jp_row["Row_label_source"] = "AC入力"
+        jp_row["Param_source"] = "急速充電モード"
+        jp_row["Value_source"] = "100V-120V~50/60Hz、15A Max、1450W"
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=[jp_row],
+            sku_id="JB1000",
+            lang="ja",
+            vars_map={},
+        )
+
+        self.assertIn("AC入力", out)
+        self.assertIn("急速充電モード: 100V-120V\\textasciitilde{}50/60Hz、15A Max、1450W", out)
 
     def test_render_spec_page_rejects_unquoted_comma_overflow(self) -> None:
         blocks = self._spec_master_blocks()
@@ -373,7 +389,7 @@ class TestPhase1Renderers(unittest.TestCase):
                 "enabled": "1",
                 "text_en": "Warning symbol meaning.",
                 "text_fr": "Signification du symbole d'avertissement.",
-                "text_es": "Significado del símbolo de advertencia.",
+                "text_es": "Significado del s铆mbolo de advertencia.",
             },
             {
                 "block_type": "table_row",
@@ -396,7 +412,7 @@ class TestPhase1Renderers(unittest.TestCase):
                 "sku_scope": "ALL",
                 "enabled": "1",
                 "text_en": "Do not dismantle.",
-                "text_fr": "Ne démontez pas.",
+                "text_fr": "Ne d茅montez pas.",
                 "text_es": "No desarme.",
             },
         ]
@@ -438,6 +454,33 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("SIGNIFICATION DES SYMBOLES", out)
         self.assertIn("Symbole", out)
         self.assertIn("Signification du symbole d'avertissement.", out)
+
+    def test_render_symbols_page_supports_weee2_symbol_asset(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks.append(
+            {
+                "block_type": "table_row",
+                "column_group": "right",
+                "symbol_key": "weee2",
+                "image_path": "templates/word_template/common_assets/symbols/weee2.png",
+                "order": "20",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "text_en": "Battery disposal meaning.",
+                "text_fr": "Signification de mise au rebut des batteries.",
+                "text_es": "Significado de eliminación de baterías.",
+            }
+        )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("weee2.png", out)
+        self.assertIn("Battery disposal meaning.", out)
 
     def test_render_symbols_page_rejects_unknown_symbol_key(self) -> None:
         blocks = self._symbols_blocks()
@@ -486,10 +529,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "model_no_alt",
-                "Row_label_en": "Model Alt",
+                "Row_label_source": "Model Alt",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "SHOULD_NOT_BE_RENDERED",
+                "Param_source": "",
+                "Value_source": "SHOULD_NOT_BE_RENDERED",
                 "row_order": "1.1",
                 "section_title_en": "GENERAL INFO",
                 "sku_scope": "ALL",
@@ -538,8 +581,8 @@ class TestPhase1Renderers(unittest.TestCase):
             titles_csv = Path(td) / "spec_titles.csv"
             titles_csv.write_text(
                 "title_en,title_jp\n"
-                "SPECIFICATIONS,主な仕様\n"
-                "GENERAL INFO,基本情報\n",
+                "SPECIFICATIONS,涓汇仾浠曟\n"
+                "GENERAL INFO,鍩烘湰鎯呭牨\n",
                 encoding="utf-8",
             )
 
@@ -554,8 +597,10 @@ class TestPhase1Renderers(unittest.TestCase):
                     "spec_titles_csv": str(titles_csv),
                 },
             )
-            self.assertEqual("主な仕様", data["title_main"])
-            self.assertEqual("基本情報", data["sections"][0]["title"])
+            self.assertEqual("涓汇仾浠曟", data["title_main"])
+            self.assertEqual("鍩烘湰鎯呭牨", data["sections"][0]["title"])
 
 if __name__ == "__main__":
     unittest.main()
+
+

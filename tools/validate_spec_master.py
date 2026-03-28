@@ -102,14 +102,58 @@ def _pick_line_number(row: dict[str, str]) -> int | None:
         return None
 
 
+_SOURCE_LANGUAGE_BY_REGION = {
+    "US": "en",
+    "USA": "en",
+    "EU": "en",
+    "JP": "ja",
+    "JAPAN": "ja",
+    "CN": "zh",
+    "CHINA": "zh",
+    "ZH": "zh",
+}
+_LEGACY_SOURCE_HEADERS = ("Row_label_en", "Param_en", "Value_en")
+
+
+def _source_language_for_region(region: str) -> str:
+    return _SOURCE_LANGUAGE_BY_REGION.get((region or "").strip().upper(), "")
+
+
+def _is_truthy(value: str) -> bool:
+    text = (value or "").strip().lower()
+    if not text:
+        return True
+    return text in {"1", "true", "yes", "y"}
+
+
+def _row_matches_target(row: dict[str, str], *, model: str | None, region: str | None) -> bool:
+    row_model = _first_non_empty(row, ("Model", "model"))
+    row_region = _first_non_empty(row, ("Region", "region"))
+    if model and row_model.strip().lower() != model.strip().lower():
+        return False
+    if region and row_region.strip().lower() != region.strip().lower():
+        return False
+    return _is_truthy(_first_non_empty(row, ("Is_Latest", "is_latest")))
+
+
+def _should_require_value_source(row: dict[str, str]) -> bool:
+    row_kind = _first_non_empty(row, ("row_kind", "Row_kind")).strip().lower()
+    return row_kind not in {"note", "footnote"}
+
+
 def _pick_value(row: dict[str, str], lang: str) -> str:
+    normalized_lang = (lang or "").strip().lower()
+    source_lang = _source_language_for_region(_first_non_empty(row, ("Region", "region")))
+    if normalized_lang == "en" or (source_lang and normalized_lang == source_lang):
+        return _first_non_empty(row, ("Value_source", "value_source", "Value", "Spec_Value"))
     return _first_non_empty(
         row,
         (
             f"Value_{lang}",
             f"Value_{lang.lower()}",
             f"Value_{lang.upper()}",
-            "Value_en",
+            "Value_source",
+            "value_source",
             "Value",
             "Spec_Value",
         ),
@@ -274,7 +318,55 @@ def collect_spec_master_validation_issues(
             )
         ]
 
+    present_legacy_headers = [header for header in _LEGACY_SOURCE_HEADERS if header in rows[0]]
+    if present_legacy_headers:
+        issues.append(
+            SpecMasterValidationIssue(
+                code="LEGACY_SOURCE_HEADERS_PRESENT",
+                message=(
+                    "Spec_Master.csv still uses legacy source headers: "
+                    + ", ".join(present_legacy_headers)
+                    + ". Rename them to *_source and keep source text in *_source only."
+                ),
+                path=spec_master_csv,
+                model=model,
+                region=region,
+            )
+        )
+
     for target in targets:
+        for row in rows:
+            if not _row_matches_target(row, model=target.model, region=target.region):
+                continue
+            row_key = _first_non_empty(row, ("Row_key", "row_key"))
+            if not row_key:
+                continue
+            line_no = _pick_line_number(row)
+            if not _first_non_empty(row, ("Row_label_source", "row_label_source")):
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_SOURCE_ROW_LABEL",
+                        message=f"Latest row_key '{row_key}' must store source text in Row_label_source",
+                        path=spec_master_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                        row_key=row_key,
+                    )
+                )
+            if _should_require_value_source(row) and not _first_non_empty(row, ("Value_source", "value_source")):
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_SOURCE_VALUE",
+                        message=f"Latest row_key '{row_key}' must store source text in Value_source",
+                        path=spec_master_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                        row_key=row_key,
+                    )
+                )
+
         target_langs = [target.lang] if (target.lang or "").strip() else langs
         selectors, selector_issues = _collect_target_selectors(cfg, target=target, langs=target_langs)
         issues.extend(selector_issues)

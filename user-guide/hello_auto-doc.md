@@ -73,6 +73,8 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, safety/spec content, and placeholder values
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
+   - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns for each region; use English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
+   - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row
 
 3. Review working layer
@@ -304,6 +306,8 @@ Resolution source:
 - `Page` can be a comma-separated list
 - use `Product overview` for Product overview-only page-value rows such as front/side-view callouts
 - use `Product overview, specifications,` when the same row is intentionally shared by both pages
+- `Row_label_source`, `Param_source`, and `Value_source` should store the source manual language for the row's region, such as English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
+- source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
 
 For page-value rows, `Row_key` now keeps only the concept itself. Human editing should happen through `Slot_key`.
 
@@ -531,7 +535,7 @@ Default outputs:
 - [`reports/version_tracking/JE-1000F/US/*_fields.csv`](../reports/version_tracking/JE-1000F/US)
 - [`reports/version_tracking/JE-1000F/US/*_fields.html`](../reports/version_tracking/JE-1000F/US)
 - [`reports/version_tracking/JE-1000F/US/*_index.html`](../reports/version_tracking/JE-1000F/US)
-- legacy compatibility aliases remain available as [`reports/version_tracking/JE-1000F/US/*.csv`](../reports/version_tracking/JE-1000F/US) and `*.html`
+- legacy report path aliases remain available as [`reports/version_tracking/JE-1000F/US/*.csv`](../reports/version_tracking/JE-1000F/US) and `*.html`
 
 Use `--report-dir` if you want a different output folder.
 

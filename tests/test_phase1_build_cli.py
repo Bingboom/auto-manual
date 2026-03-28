@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import unittest
 from unittest.mock import patch
@@ -18,3 +18,4 @@ class TestPhase1BuildCli(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

@@ -346,15 +346,18 @@ Current normalization guidance:
 
 Current reality:
 
-- the sheet still uses `Row_label_en`, `Param_en`, and `Value_en` as base fallback columns
-- despite the `_en` suffix, these base columns may contain JP or other localized text in current data
-- do not assume `_en` means the cell is guaranteed to be English-only
+- the sheet now uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-text columns
+- these source columns hold the manual source language for the row's region, such as English for `US/EU`, Japanese for `JP`, or Chinese for `CN`
+- `Row_label_en`, `Param_en`, and `Value_en` are no longer accepted; rename them to `*_source`
 
 Current practical rule:
 
 - if dedicated localized columns already exist for the field, use them
-- if they do not exist yet, the base columns may still be the active source
-- keep the visible text correct first, and do not trust the column suffix more than the actual renderer behavior
+- if they do not exist yet, the `*_source` columns are the active source
+- source-language text must not stay in `*_en`; move it into `*_source`
+- for source-language rows such as `US/EU -> en`, `JP -> ja`, and `CN -> zh`, `*_source` must be populated
+- keep the visible text correct first, and trust the row's region/source workflow more than any legacy header alias
+- current audit expectation: `US/EU -> en source`, `JP -> ja source`, `CN -> zh source`; `ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT` only applies to regions whose expected source language is English
 
 ## 5. Developer Implementation Details
 

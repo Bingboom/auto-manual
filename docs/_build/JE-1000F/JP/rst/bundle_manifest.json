@@ -5,29 +5,25 @@
   "page_manifest": "docs/manifests/manual_jp.yaml",
   "spec_master": {
     "path": "data/phase1/Spec_Master.csv",
-    "sha256": "8ffef92131e8f24d4be84ac746add70dfbc8c5073656257d35f3871831283f9e"
+    "sha256": "67ed4a8c751e48d188f1609d82c155578b87cf46b1578c8fcf898b32f598bd27"
   },
   "recipe_ids": [
     "03_product_overview",
     "05_operation_guide",
     "12_app_setup"
   ],
-  "snippet_ids": [
-    "wireless_reset_buttons",
-    "wireless_toggle_buttons",
-    "app_button_reference"
-  ],
+  "snippet_ids": [],
   "page_files": [
     "docs/_build/JE-1000F/JP/rst/page/cover_jp.rst",
     "docs/_build/JE-1000F/JP/rst/page/safety_ja.rst",
     "docs/_build/JE-1000F/JP/rst/page/01_meaning_of_symbols.rst",
-    "docs/_build/JE-1000F/JP/rst/page/09_storage_and_maintenance.rst",
     "docs/_build/JE-1000F/JP/rst/page/02_whats_in_the_box.rst",
     "docs/_build/JE-1000F/JP/rst/page/03_product_overview_placeholder.rst",
     "docs/_build/JE-1000F/JP/rst/page/04_lcd_display_placeholder.rst",
     "docs/_build/JE-1000F/JP/rst/page/05_operation_guide_placeholder.rst",
     "docs/_build/JE-1000F/JP/rst/page/06_ups_mode.rst",
     "docs/_build/JE-1000F/JP/rst/page/07_expansion_battery_pack.rst",
+    "docs/_build/JE-1000F/JP/rst/page/08_charging_methods.rst",
     "docs/_build/JE-1000F/JP/rst/page/10_troubleshooting.rst",
     "docs/_build/JE-1000F/JP/rst/page/spec_ja.rst",
     "docs/_build/JE-1000F/JP/rst/page/11_warranty.rst",

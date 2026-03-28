@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import unittest
 from pathlib import Path
@@ -20,7 +20,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Row_key": "product_name",
-                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Value_source": "Jackery HomePower 2000 Plus v2",
                 "Value_fr": "Jackery HomePower 2000 Plus v2 FR",
                 "Model": "JHP-2000A",
             },
@@ -29,7 +29,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Row_key": "product_name",
-                "Value_en": "Jackery HomePower 2000 Plus EU",
+                "Value_source": "Jackery HomePower 2000 Plus EU",
                 "Model": "JHP-2000A",
             },
             {
@@ -37,7 +37,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Row_key": "model_no",
-                "Value_en": "JHP-2000A",
+                "Value_source": "JHP-2000A",
                 "Model": "JHP-2000A",
             },
             {
@@ -46,7 +46,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Page": "specifications",
                 "Row_key": "main_power_button",
                 "Slot_key": "label",
-                "Value_en": "Main POWER Button",
+                "Value_source": "Main POWER Button",
                 "Model": "JHP-2000A",
             },
             {
@@ -55,7 +55,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Page": "specifications",
                 "Row_key": "battery_pack_name",
                 "Slot_key": "value",
-                "Value_en": "Jackery Battery Pack 3600",
+                "Value_source": "Jackery Battery Pack 3600",
                 "Model": "JHP-2000A",
             },
         ]
@@ -114,7 +114,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "Product overview, specifications,",
                 "Row_key": "product_name",
-                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Value_source": "Jackery HomePower 2000 Plus v2",
                 "Model": "JHP-2000A",
             }
         ]
@@ -139,7 +139,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "Product overview, specifications,",
                 "Row_key": "product_name",
-                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Value_source": "Jackery HomePower 2000 Plus v2",
                 "Model": "JHP-2000A",
             },
             {
@@ -147,7 +147,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "Product overview, specifications,",
                 "Row_key": "model_no",
-                "Value_en": "JHP-2000A",
+                "Value_source": "JHP-2000A",
                 "Model": "JHP-2000A",
             },
             {
@@ -155,7 +155,7 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Is_Latest": "TRUE",
                 "Page": "Product overview",
                 "Row_key": "tpl_main_power_button_label",
-                "Value_en": "Main POWER Button",
+                "Value_source": "Main POWER Button",
                 "Model": "JHP-2000A",
             },
         ]
@@ -179,8 +179,8 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Page": "storage",
                 "Row_key": "storage_temperature",
                 "Line_order": "1",
-                "Param_en": "1 month",
-                "Value_en": "-4°F to 113°F / -20°C to 45°C (0-60%RH)",
+                "Param_source": "1 month",
+                "Value_source": "-4°F to 113°F / -20°C to 45°C (0-60%RH)",
                 "Param_fr": "1 mois",
                 "Value_fr": "-4°F à 113°F / -20°C à 45°C (0-60% HR)",
                 "Param_es": "1 mes",
@@ -193,8 +193,8 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Page": "storage",
                 "Row_key": "storage_temperature",
                 "Line_order": "1",
-                "Param_ja": "1か月",
-                "Value_ja": "-20℃ ～ 45℃（0-60% RH）",
+                "Param_source": "1か月",
+                "Value_source": "-20℃ ～ 45℃（0-60% RH）",
                 "Model": "JHP-2000A",
             },
         ]
@@ -295,3 +295,4 @@ class TestSpecMasterLookup(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

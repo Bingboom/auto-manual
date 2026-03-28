@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -25,7 +25,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                         "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
@@ -85,7 +85,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                         "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
@@ -138,7 +138,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                         "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
@@ -227,7 +227,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,page_value,label,Main POWER Button",
@@ -303,7 +303,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,page_value,label,Main POWER Button",
@@ -388,7 +388,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -463,7 +463,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -529,7 +529,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                     ]
                 )
@@ -594,7 +594,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -699,7 +699,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                     ]
                 )
@@ -794,7 +794,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,page_value,label,Main POWER Button",
@@ -885,7 +885,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -940,3 +940,4 @@ class TestCheckDocs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

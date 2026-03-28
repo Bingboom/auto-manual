@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import tempfile
@@ -40,7 +40,7 @@ class TestBuildReviewPreview(unittest.TestCase):
     <!-- HB_MANUAL_SWITCHER_START -->
     <div class="hb-manual-switcher">
       <a class="hb-manual-switcher__lang" href="../../es/html/index.html">Espanol</a>
-      <a class="hb-manual-switcher__lang" href="../../../JP/html/index.html">日本語</a>
+      <a class="hb-manual-switcher__lang" href="../../../JP/html/index.html">鏃ユ湰瑾?/a>
     </div>
     <!-- HB_MANUAL_SWITCHER_END -->
     <aside class="sidebar-drawer"><div class="sidebar-tree"></div></aside>
@@ -436,3 +436,4 @@ class TestBuildReviewPreview(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

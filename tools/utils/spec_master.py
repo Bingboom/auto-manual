@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ class PageValueBinding:
     row_key: str
     section: str
     section_order: str
-    row_label_en: str
+    row_label_source: str
     placement_key: str = ""
     value_role: str = ""
     variant_key: str = ""
@@ -102,8 +102,8 @@ _PROJECT_CODE_RE = re.compile(r"-(US|JP|EU)(?:-|$)", re.IGNORECASE)
 _PROJECT_CODE_KEYS = (
     "project_code",
     "Project_Code",
-    "项目代码",
     "椤圭洰浠ｇ爜",
+    "妞ゅ湱娲版禒锝囩垳",
 )
 _PROJECT_CODE_FILL_BY_MODEL_REGION: dict[tuple[str, str], str] = {
     ("JE-2000F", "JP"): "HTE154-JP",
@@ -129,28 +129,28 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="main_power_button",
         section="CONTROLS",
         section_order="7",
-        row_label_en="Main Power Button",
+        row_label_source="Main Power Button",
         value_role="label",
     ),
     "tpl_dc_usb_power_button_label": PageValueBinding(
         row_key="dc_usb_power_button",
         section="CONTROLS",
         section_order="7",
-        row_label_en="DC/USB Power Button",
+        row_label_source="DC/USB Power Button",
         value_role="label",
     ),
     "tpl_ac_power_button_label": PageValueBinding(
         row_key="ac_power_button",
         section="CONTROLS",
         section_order="7",
-        row_label_en="AC Power Button",
+        row_label_source="AC Power Button",
         value_role="label",
     ),
     "tpl_front_dc12_port_label": PageValueBinding(
         row_key="dc12_port",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="DC 12V Port",
+        row_label_source="DC 12V Port",
         placement_key="front",
         value_role="label",
     ),
@@ -158,7 +158,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="dc12_port",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="DC 12V Port",
+        row_label_source="DC 12V Port",
         placement_key="front",
         value_role="spec",
     ),
@@ -166,7 +166,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="usb_c",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-C 30W Output",
+        row_label_source="USB-C 30W Output",
         placement_key="front",
         value_role="label",
         variant_key="low",
@@ -175,7 +175,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="usb_c",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-C 30W Output",
+        row_label_source="USB-C 30W Output",
         placement_key="front",
         value_role="spec",
         variant_key="low",
@@ -184,7 +184,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="usb_c",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-C 100W Output",
+        row_label_source="USB-C 100W Output",
         placement_key="front",
         value_role="label",
         variant_key="high",
@@ -193,7 +193,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="usb_c",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-C 100W Output",
+        row_label_source="USB-C 100W Output",
         placement_key="front",
         value_role="spec",
         variant_key="high",
@@ -202,7 +202,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="usb_a",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-A 18W Output",
+        row_label_source="USB-A 18W Output",
         placement_key="front",
         value_role="label",
     ),
@@ -210,7 +210,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="usb_a",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-A 18W Output",
+        row_label_source="USB-A 18W Output",
         placement_key="front",
         value_role="spec",
     ),
@@ -218,7 +218,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="ac_output",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="AC Output",
+        row_label_source="AC Output",
         placement_key="front",
         value_role="label",
     ),
@@ -226,7 +226,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="ac_output",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="AC Output",
+        row_label_source="AC Output",
         placement_key="front",
         value_role="spec",
     ),
@@ -234,7 +234,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="total_output",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="Total Output",
+        row_label_source="Total Output",
         placement_key="front",
         value_role="label",
     ),
@@ -242,7 +242,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="total_output",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="Total Output",
+        row_label_source="Total Output",
         placement_key="front",
         value_role="spec",
     ),
@@ -250,7 +250,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="dc_input",
         section="INPUT PORTS",
         section_order="2",
-        row_label_en="DC Input (2 x DC8020 Ports)",
+        row_label_source="DC Input (2 x DC8020 Ports)",
         placement_key="side",
         value_role="label",
     ),
@@ -258,7 +258,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="dc_input",
         section="INPUT PORTS",
         section_order="2",
-        row_label_en="PV Input",
+        row_label_source="PV Input",
         placement_key="side",
         value_role="spec",
         variant_key="pv",
@@ -267,7 +267,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="dc_input",
         section="INPUT PORTS",
         section_order="2",
-        row_label_en="Car Input",
+        row_label_source="Car Input",
         placement_key="side",
         value_role="spec",
         variant_key="car",
@@ -276,7 +276,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="ac_input",
         section="INPUT PORTS",
         section_order="2",
-        row_label_en="AC Input",
+        row_label_source="AC Input",
         placement_key="side",
         value_role="label",
     ),
@@ -284,7 +284,7 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="ac_input",
         section="INPUT PORTS",
         section_order="2",
-        row_label_en="AC Input",
+        row_label_source="AC Input",
         placement_key="side",
         value_role="spec",
     ),
@@ -292,57 +292,57 @@ _LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_key="ups_bypass_output",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="UPS Bypass Output",
+        row_label_source="UPS Bypass Output",
         value_role="text",
     ),
     "tpl_usb_c_high_power_port_label": PageValueBinding(
         row_key="usb_c_high_power_port",
         section="OUTPUT PORTS",
         section_order="3",
-        row_label_en="USB-C 100W Port",
+        row_label_source="USB-C 100W Port",
         value_role="label",
     ),
     "tpl_default_standby_duration": PageValueBinding(
         row_key="default_standby_duration",
         section="SETTINGS",
         section_order="8",
-        row_label_en="Default Standby Duration",
+        row_label_source="Default Standby Duration",
     ),
     "tpl_energy_saving_auto_off_duration": PageValueBinding(
         row_key="energy_saving_auto_off_duration",
         section="SETTINGS",
         section_order="8",
-        row_label_en="Energy Saving Auto Off Duration",
+        row_label_source="Energy Saving Auto Off Duration",
     ),
     "tpl_energy_saving_ac_threshold": PageValueBinding(
         row_key="energy_saving_ac_threshold",
         section="SETTINGS",
         section_order="8",
-        row_label_en="Energy Saving AC Threshold",
+        row_label_source="Energy Saving AC Threshold",
     ),
     "tpl_energy_saving_dc_threshold": PageValueBinding(
         row_key="energy_saving_dc_threshold",
         section="SETTINGS",
         section_order="8",
-        row_label_en="Energy Saving DC Threshold",
+        row_label_source="Energy Saving DC Threshold",
     ),
     "tpl_usb_c_high_power_cable_name": PageValueBinding(
         row_key="usb_c_high_power_cable_name",
         section="ACCESSORIES",
         section_order="9",
-        row_label_en="USB-C High Power Cable",
+        row_label_source="USB-C High Power Cable",
     ),
     "tpl_car_battery_charging_cable_name": PageValueBinding(
         row_key="car_battery_charging_cable_name",
         section="ACCESSORIES",
         section_order="9",
-        row_label_en="Car Battery Charging Cable",
+        row_label_source="Car Battery Charging Cable",
     ),
     "tpl_battery_pack_name": PageValueBinding(
         row_key="battery_pack_name",
         section="ACCESSORIES",
         section_order="9",
-        row_label_en="Battery Pack Name",
+        row_label_source="Battery Pack Name",
     ),
 }
 _LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE: dict[tuple[str, str, str, str, str], str] = {
@@ -372,165 +372,28 @@ _DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] =
 }
 _SLOT_KEY_VALUE_ALIASES = {"", "value", "default", "name"}
 _KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
-    "1×ACポート": "1 × AC Input",
-    "1×USB-Aポート": "1 × USB-A",
-    "2×DC8020ポート": "2 × DC8020 Ports",
-    "2×USB-Cポート": "2 × USB-C",
-    "3×ACポート": "3 × AC",
-    "AC充电功率最大": "Maximum AC Charging Power",
-    "AC入力": "AC Input",
-    "AC出力": "AC Output",
-    "AC出力(パススルー)②": "AC Output in Bypass Mode②",
-    "AC出力(パススルー時)": "AC Output in Bypass Mode",
-    "AC出力合計": "AC Total Output",
-    "AC插座数量": "Number of AC Outlets",
-    "AC旁路输出": "AC Output in Bypass Mode",
-    "AC输入规格": "AC Input Specifications",
-    "DC输入功率上限": "Maximum DC Input Power",
-    "USB-A 输出": "USB-A Output",
-    "USB-Aポート": "USB-A",
-    "USB-C PD 输出": "USB-C PD Output",
-    "USB-C 输出": "USB-C Output",
-    "USB-Cポート": "USB-C",
-    "サイクル寿命": "Cycle Life",
-    "サイズ&重量": "Size & Weight",
-    "シガーソケット出力": "Car Port Output",
-    "バッテリータイプ": "Battery Type",
-    "交流输出峰值功率": "Peak AC Output Power",
-    "交流输出电压/频率": "AC Output Voltage / Frequency",
-    "交流输出电流": "AC Output Current",
-    "交流输出额定功率": "Rated AC Output Power",
-    "产品名称": "Product Name",
-    "产品重量": "Weight",
-    "保存温度": "Storage Temperature",
-    "储存环境温度": "Storage Temperature",
-    "充电方式": "Charging Method",
-    "充电温度": "Charging Temperature",
-    "充电输入": "Charging Input",
-    "充電時間": "Charging Time",
-    "充電温度": "Charging Temperature",
-    "動作温度": "Operating Temperature",
-    "動作湿度": "Operating Humidity",
-    "型号": "Model No.",
-    "型番": "Model No.",
-    "外壳材质": "Housing Material",
-    "定格容量": "Rated Capacity",
-    "尺寸-宽": "Dimensions - Width",
-    "尺寸-长": "Dimensions - Length",
-    "尺寸-高": "Dimensions - Height",
-    "工作湿度": "Operating Humidity",
-    "循环寿命": "Cycle Life",
-    "扩容口最大电流": "Maximum Expansion Port Current",
-    "扩容口电压范围": "Expansion Port Voltage Range",
-    "拡張バッテリーポート": "Expansion Battery Port",
-    "放电容量": "Discharge Capacity",
-    "放电温度": "Discharge Temperature",
-    "放電容量": "Discharge Capacity",
-    "汚染度": "Pollution Degree",
-    "污染等级": "Pollution Degree",
-    "电压结构": "Voltage Configuration",
-    "电池化学体系": "Cell Chemistry",
-    "製品の名称": "Product Name",
-    "车充输出": "Car Port Output",
-    "重量": "Weight",
-    "電圧構成": "Voltage Configuration",
-    "额定容量": "Rated Capacity",
+    "??????": "Rated Capacity",
+    "棰濆畾瀹归噺": "Rated Capacity",
 }
 _KNOWN_VALUE_REPAIRS: dict[tuple[str, str, str, str], str] = {
-    ("JE-2000F", "US", "tpl_front_dc12_port_spec", "Value_en"): "12V/10A Max",
-    (
-        "JE-2000F",
-        "US",
-        "tpl_front_usb_c_low_spec",
-        "Value_en",
-    ): "30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A",
-    (
-        "JE-2000F",
-        "US",
-        "tpl_front_usb_c_high_spec",
-        "Value_en",
-    ): "100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A",
-    ("JE-2000F", "US", "tpl_front_usb_a_spec", "Value_en"): "18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A",
-    ("JE-2000F", "US", "tpl_side_dc_input_label", "Value_en"): "DC Input (2 x DC8020 Ports)",
-    (
-        "JE-2000F",
-        "US",
-        "tpl_side_dc_input_pv_spec",
-        "Value_en",
-    ): "PV: 16-60V/12A Max, combined up to 21A / 400W Max",
-    (
-        "JE-2000F",
-        "US",
-        "tpl_side_dc_input_car_spec",
-        "Value_en",
-    ): "Car: 11-16V/8A Max, combined up to 8A Max",
-    ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_ja"): "メイン電源ボタン",
-    ("JE-2000F", "JP", "tpl_dc_usb_power_button_label", "Value_ja"): "DC/USB出力ボタン",
-    ("JE-2000F", "JP", "tpl_ac_power_button_label", "Value_ja"): "AC出力ボタン",
-    ("JE-2000F", "JP", "tpl_front_dc12_port_label", "Value_ja"): "12Vシガーソケット出力",
-    ("JE-2000F", "JP", "tpl_front_dc12_port_spec", "Value_ja"): "12V/10A 最大",
-    ("JE-2000F", "JP", "tpl_front_usb_c_low_label", "Value_en"): "USB-C 30W出力",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_front_usb_c_low_spec",
-        "Value_ja",
-    ): "5V/3A、9V/3A、12V/2.5A、15V/2A、20V/1.5A、最大30W",
-    ("JE-2000F", "JP", "tpl_front_usb_c_high_label", "Value_ja"): "USB-C 100W出力",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_front_usb_c_high_spec",
-        "Value_ja",
-    ): "5V/3A、9V/3A、12V/3A、15V/3A、20V/5A、最大100W",
-    ("JE-2000F", "JP", "tpl_front_usb_a_label", "Value_ja"): "USB-A 18W出力",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_front_usb_a_spec",
-        "Value_ja",
-    ): "5-6V/3A、6-9V/2A、9-12V/1.5A、最大18W",
-    ("JE-2000F", "JP", "tpl_front_ac_output_label", "Value_ja"): "AC出力",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_front_ac_output_spec",
-        "Value_ja",
-    ): "100V~ 50Hz/60Hz、20A、定格2000W、3秒2200W、瞬間最大4400W",
-    ("JE-2000F", "JP", "tpl_side_dc_input_label", "Value_ja"): "DC入力（DC8020ポート×2）",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_side_dc_input_pv_spec",
-        "Value_ja",
-    ): "PV: 16-60V/12A、2ポート合計最大21A/400W",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_side_dc_input_car_spec",
-        "Value_ja",
-    ): "車載充電: 11-16V/8A、2ポート合計最大8A",
-    ("JE-2000F", "JP", "tpl_side_ac_input_label", "Value_ja"): "AC入力",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_side_ac_input_spec",
-        "Value_ja",
-    ): "100V-120V~ 50Hz/60Hz、15A 最大、急速充電 約1500W",
-    ("JE-2000F", "JP", "tpl_default_standby_duration", "Value_ja"): "2時間",
-    ("JE-2000F", "JP", "tpl_energy_saving_auto_off_duration", "Value_ja"): "12時間",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_usb_c_high_power_cable_name",
-        "Value_ja",
-    ): "Jackery USB-C to USB-C 5A ケーブル",
-    (
-        "JE-2000F",
-        "JP",
-        "tpl_car_battery_charging_cable_name",
-        "Value_ja",
-    ): "Jackery 12V 自動車用バッテリー充電ケーブル",
+    ("JE-2000F", "US", "tpl_front_dc12_port_spec", "Value_source"): "12V/10A Max",
+    ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_source"): "メイン電源ボタン",
+}
+_SOURCE_COLUMN_NAMES: dict[str, tuple[str, ...]] = {
+    "Row_label": ("Row_label_source", "row_label_source"),
+    "Param": ("Param_source", "param_source"),
+    "Value": ("Value_source", "value_source"),
+}
+_SOURCE_SHARED_BASES = frozenset(_SOURCE_COLUMN_NAMES)
+_SOURCE_LANGUAGE_BY_REGION = {
+    "US": "en",
+    "USA": "en",
+    "EU": "en",
+    "JP": "ja",
+    "JAPAN": "ja",
+    "CN": "zh",
+    "CHINA": "zh",
+    "ZH": "zh",
 }
 
 
@@ -551,6 +414,39 @@ def _first_non_empty(row: dict[str, str], keys: list[str]) -> str:
         if value:
             return value
     return ""
+
+
+def _first_existing_key(row: dict[str, str], keys: tuple[str, ...]) -> str | None:
+    for key in keys:
+        if key in row:
+            return key
+    return None
+
+
+def _source_column_names(base: str) -> tuple[str, ...]:
+    return _SOURCE_COLUMN_NAMES.get(base, (f"{base}_source", f"{base.lower()}_source"))
+
+
+def _pick_source_value(row: dict[str, str], base: str) -> str:
+    return _first_non_empty(row, list(_source_column_names(base)))
+
+
+def _source_column_name(row: dict[str, str], base: str) -> str:
+    return _first_existing_key(row, _source_column_names(base)) or f"{base}_source"
+
+
+def _set_source_value(row: dict[str, str], base: str, value: str) -> str:
+    column = _source_column_name(row, base)
+    row[column] = value
+    return column
+
+
+def _source_language_for_region(region: str) -> str:
+    return _SOURCE_LANGUAGE_BY_REGION.get((region or "").strip().upper(), "")
+
+
+def _source_language_uses_latin_script(region: str) -> bool:
+    return _source_language_for_region(region) == "en"
 
 
 def _contains_east_asian_text(value: str) -> bool:
@@ -603,7 +499,7 @@ def _template_row_metadata(row_key: str) -> tuple[str, str, str] | None:
     binding = _legacy_page_value_binding(row_key)
     if binding is None:
         return None
-    return (binding.section, binding.section_order, binding.row_label_en)
+    return (binding.section, binding.section_order, binding.row_label_source)
 
 
 def _is_template_row(row_key: str, section: str, row: dict[str, str] | None = None) -> bool:
@@ -620,8 +516,8 @@ def _pick_section_order(row: dict[str, str]) -> str:
     return _first_non_empty(row, ["Section_order", "section_order"])
 
 
-def _pick_row_label_en(row: dict[str, str]) -> str:
-    return _first_non_empty(row, ["Row_label_en", "row_label_en"])
+def _pick_row_label_source(row: dict[str, str]) -> str:
+    return _pick_source_value(row, "Row_label")
 
 
 def _normalize_section_summary(section: str) -> tuple[str, str, str]:
@@ -640,14 +536,23 @@ def _is_truthy(value: str) -> bool:
 
 
 def _pick_lang_value(row: dict[str, str], base: str, lang: str) -> str:
-    keys = [
-        f"{base}_{lang}",
-        f"{base}_{lang.lower()}",
-        f"{base}_{lang.upper()}",
-        f"{base}_en",
-        base,
-        "Spec_Value",
-    ]
+    normalized_lang = (lang or "").strip().lower()
+    source_lang = _source_language_for_region(_pick_row_region(row))
+    keys: list[str] = []
+    if base in _SOURCE_SHARED_BASES and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+        keys.extend(_source_column_names(base))
+    else:
+        keys.extend(
+            [
+                f"{base}_{lang}",
+                f"{base}_{lang.lower()}",
+                f"{base}_{lang.upper()}",
+            ]
+        )
+        if base in _SOURCE_SHARED_BASES:
+            keys.extend(_source_column_names(base))
+    keys.extend([base, "Spec_Value"])
+    keys = list(dict.fromkeys(keys))
     return _first_non_empty(row, keys)
 
 
@@ -806,7 +711,7 @@ def _row_page_value_binding(row: dict[str, str]) -> PageValueBinding | None:
         row_key=row_key,
         section=_pick_section(row),
         section_order=_pick_section_order(row),
-        row_label_en=_pick_row_label_en(row),
+        row_label_source=_pick_row_label_source(row),
         placement_key=_pick_placement_key(row),
         value_role=_pick_value_role(row),
         variant_key=_pick_variant_key(row),
@@ -862,7 +767,7 @@ def _page_value_metadata_from_row(row: dict[str, str]) -> tuple[str, str, str] |
     binding = _row_page_value_binding(row)
     if binding is None:
         return None
-    return (binding.section, binding.section_order, binding.row_label_en)
+    return (binding.section, binding.section_order, binding.row_label_source)
 
 
 def normalize_page_tokens(raw: str | None) -> tuple[str, ...]:
@@ -995,7 +900,7 @@ def _score_row(
     if not target_region and not row_region:
         score += 2
 
-    if _first_non_empty(row, [f"Value_{lang}", f"Value_{lang.lower()}"]):
+    if _pick_lang_value(row, "Value", lang):
         score += 2
     if _first_non_empty(row, ["Is_Latest", "is_latest"]):
         score += 1
@@ -1435,14 +1340,19 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
                     )
                 )
 
-        label_en = _pick_row_label_en(row)
-        if label_en and _contains_east_asian_text(label_en):
+        source_label = _pick_row_label_source(row)
+        if (
+            source_label
+            and _source_language_uses_latin_script(region or "")
+            and _contains_east_asian_text(source_label)
+        ):
             issues.append(
                 SpecMasterAuditIssue(
-                    code="ROW_LABEL_EN_CONTAINS_EAST_ASIAN_TEXT",
+                    code="ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT",
                     message=(
-                        "`Row_label_en` contains East Asian text in an English-labeled "
-                        f"column: {label_en}"
+                        "`Row_label_source` contains East Asian text for region "
+                        f"`{(region or '').strip().upper()}` whose expected source language is "
+                        f"`{_source_language_for_region(region or '') or 'unknown'}`: {source_label}"
                     ),
                     line=line_number,
                     model=model,
@@ -1469,12 +1379,12 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
                 )
             )
 
-        value_en = _pick_lang_value(row, "Value", "en")
-        if _is_template_row(row_key, section, row) and "?" in value_en:
+        source_value = _pick_source_value(row, "Value")
+        if _is_template_row(row_key, section, row) and "?" in source_value:
             issues.append(
                 SpecMasterAuditIssue(
                     code="SUSPECT_TEMPLATE_VALUE",
-                    message=f"Template value contains literal `?`: {value_en}",
+                    message=f"Template value contains literal `?`: {source_value}",
                     line=line_number,
                     model=model,
                     region=region,
@@ -1644,7 +1554,7 @@ def build_template_row_key_mapping_rows(
         if section_order:
             cast(set[str], usage_row["section_orders"]).add(section_order)
 
-        row_label = (raw_row.get("Row_label_en") or "").strip()
+        row_label = _pick_row_label_source(raw_row).strip()
         if row_label:
             cast(set[str], usage_row["row_labels"]).add(row_label)
 
@@ -1663,13 +1573,13 @@ def build_template_row_key_mapping_rows(
                 "Row_key": row_key,
                 "Section": binding.section,
                 "Section_order": binding.section_order,
-                "Row_label_en": binding.row_label_en,
+                "Row_label_source": binding.row_label_source,
                 "Usage_count": usage_count,
                 "Models": ",".join(models),
                 "Regions": ",".join(regions),
                 "Observed_sections": ",".join(sections),
                 "Observed_section_orders": ",".join(section_orders),
-                "Observed_row_labels_en": " | ".join(row_labels),
+                "Observed_row_labels_source": " | ".join(row_labels),
             }
         )
 
@@ -1679,7 +1589,7 @@ def build_template_row_key_mapping_rows(
             key=lambda row: (
                 int(row["Section_order"]),
                 row["Section"],
-                row["Row_label_en"],
+                row["Row_label_source"],
                 row["Row_key"],
             ),
         )
@@ -1703,13 +1613,13 @@ def build_template_row_key_mapping_markdown(
     for section_order, section in sorted(grouped_rows, key=lambda item: (int(item[0]), item[1])):
         rows_in_section = sorted(
             grouped_rows[(section_order, section)],
-            key=lambda row: (row["Row_label_en"], row["Row_key"]),
+            key=lambda row: (row["Row_label_source"], row["Row_key"]),
         )
         lines.extend(
             [
                 f"## {section} (`{section_order}`)",
                 "",
-                "| Row_key | Row_label_en | Usage_count | Models | Regions |",
+                "| Row_key | Row_label_source | Usage_count | Models | Regions |",
                 "| --- | --- | ---: | --- | --- |",
             ]
         )
@@ -1717,7 +1627,7 @@ def build_template_row_key_mapping_markdown(
             lines.append(
                 "| {row_key} | {row_label} | {usage} | {models} | {regions} |".format(
                     row_key=row["Row_key"],
-                    row_label=row["Row_label_en"],
+                    row_label=row["Row_label_source"],
                     usage=row["Usage_count"],
                     models=row["Models"] or "-",
                     regions=row["Regions"] or "-",
@@ -1812,40 +1722,43 @@ def repair_known_spec_master_values(rows: list[dict[str, str]]) -> SpecMasterRep
                     )
                 )
 
-            old_template_label = row.get("Row_label_en", "")
+            source_label_column = _source_column_name(row, "Row_label")
+            old_template_label = _pick_row_label_source(row)
             if old_template_label != mapped_row_label:
-                row["Row_label_en"] = mapped_row_label
+                _set_source_value(row, "Row_label", mapped_row_label)
                 applied_repairs.append(
                     SpecMasterAppliedRepair(
                         line=line_number,
                         model=model or None,
                         region=region or None,
                         row_key=row_key or None,
-                        column="Row_label_en",
+                        column=source_label_column,
                         old_value=old_template_label,
                         new_value=mapped_row_label,
                     )
                 )
 
-        old_label = row.get("Row_label_en", "")
+        source_label_column = _source_column_name(row, "Row_label")
+        old_label = _pick_row_label_source(row)
         new_label = _KNOWN_ROW_LABEL_REPAIRS.get(old_label.strip())
         if new_label is not None and old_label != new_label:
-            row["Row_label_en"] = new_label
+            _set_source_value(row, "Row_label", new_label)
             applied_repairs.append(
                 SpecMasterAppliedRepair(
                     line=line_number,
                     model=model or None,
                     region=region or None,
                     row_key=row_key or None,
-                    column="Row_label_en",
+                    column=source_label_column,
                     old_value=old_label,
                     new_value=new_label,
                 )
             )
 
-        for column in ("Value_en", "Value_ja"):
+        value_columns = ((_source_column_name(row, "Value"), "Value_source"),)
+        for column, repair_column in value_columns:
             repair_lookup_row_key = resolve_legacy_page_value_key(row) or row_key
-            repair_key = (model, region, repair_lookup_row_key, column)
+            repair_key = (model, region, repair_lookup_row_key, repair_column)
             new_value = _KNOWN_VALUE_REPAIRS.get(repair_key)
             if new_value is None:
                 continue

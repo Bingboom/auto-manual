@@ -77,20 +77,26 @@ During the lifecycle of energy storage products, a certain degree of capacity an
           :alt: Battery charging symbol.
           :width: 40px
      - Battery charging.
-     - .. image:: templates/word_template/common_assets/symbols/weee.png
-          :alt: WEEE disposal symbol.
+     - .. image:: templates/word_template/common_assets/symbols/li_ion.png
+          :alt: Li-ion battery symbol.
           :width: 40px
-     - This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.
+     - This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.
    * - .. image:: templates/word_template/common_assets/symbols/explosive_material.png
           :alt: Explosive material symbol.
           :width: 40px
      - Explosive material.
-     -
-     -
+     - .. image:: templates/word_template/common_assets/symbols/weee.png
+          :alt: WEEE disposal symbol.
+          :width: 40px
+     - This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.
    * - .. image:: templates/word_template/common_assets/symbols/heavy_object.png
           :alt: Heavy object symbol.
           :width: 40px
      - Heavy object.
-     -
-     -
+     - .. image:: templates/word_template/common_assets/symbols/weee2.png
+          :alt: Battery disposal symbol.
+          :width: 40px
+     - Batteries and accumulators must not be disposed of with household waste.
+       As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.
+       Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.
 

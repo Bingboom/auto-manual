@@ -289,13 +289,24 @@ def first_non_empty(row: dict[str, str], keys: list[str]) -> str:
 
 
 def pick_lang_value(row: dict[str, str], base: str, lang: str, *, default_keys: list[str] | None = None) -> str:
-    keys = [
-        f"{base}_{lang}",
-        f"{base}_{lang.lower()}",
-        f"{base}_{lang.upper()}",
-        f"{base}_en",
-        base,
-    ]
+    region = first_non_empty(row, ["Region", "region"]).strip().upper()
+    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    normalized_lang = (lang or "").strip().lower()
+    if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+        keys = [
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
+    else:
+        keys = [
+            f"{base}_{lang}",
+            f"{base}_{lang.lower()}",
+            f"{base}_{lang.upper()}",
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
     if default_keys:
         keys.extend(default_keys)
     return first_non_empty(row, keys)
@@ -579,12 +590,12 @@ def build_spec_source_lookup(
             default_keys=[f"Section_{lang}", "Section_en", "Section"],
         ) or section_key
         rendered_section_title = title_map.get(_clean_field_text(section_title), _clean_field_text(section_title))
-        row_label = pick_lang_value(row, "Row_label", lang, default_keys=["Row_label_en", "Row_key"]) or row_key
+        row_label = pick_lang_value(row, "Row_label", lang, default_keys=["Row_label_source", "Row_key"]) or row_key
 
         value = pick_lang_value(row, "line_text", lang)
         if not value:
-            param = pick_lang_value(row, "Param", lang, default_keys=["Param_en", "Param_name"])
-            spec_value = pick_lang_value(row, "Value", lang, default_keys=["Value_en", "Spec_Value"])
+            param = pick_lang_value(row, "Param", lang, default_keys=["Param_source", "Param_name"])
+            spec_value = pick_lang_value(row, "Value", lang, default_keys=["Value_source", "Spec_Value"])
             sep = pick_lang_value(row, "param_value_sep", lang, default_keys=["param_value_sep"]) or ": "
             if sep == ":":
                 sep = ": "
@@ -669,7 +680,7 @@ def build_placeholder_source_lookup(
         if row_key.lower() not in {"product_name", "model_no"} and not is_page_value_row(row):
             continue
 
-        raw_value = pick_lang_value(row, "Value", lang, default_keys=["Value_en", "Spec_Value"])
+        raw_value = pick_lang_value(row, "Value", lang, default_keys=["Value_source", "Spec_Value"])
         if not raw_value:
             continue
 

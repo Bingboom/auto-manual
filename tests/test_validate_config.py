@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -106,3 +106,4 @@ class TestValidateConfig(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

@@ -85,20 +85,26 @@ Durante el ciclo de vida de los productos de almacenamiento de energía, se prod
           :alt: Battery charging symbol.
           :width: 40px
      - Carga de batería.
-     - .. image:: templates/word_template/common_assets/symbols/weee.png
-          :alt: WEEE disposal symbol.
+     - .. image:: templates/word_template/common_assets/symbols/li_ion.png
+          :alt: Li-ion battery symbol.
           :width: 40px
-     - Este símbolo indica que el producto no debe desecharse con los residuos domésticos, sino entregarse en un punto de recogida designado para su reciclaje. La eliminación y el reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su comunidad local, el servicio de gestión de residuos o el distribuidor del producto.
+     - Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.
    * - .. image:: templates/word_template/common_assets/symbols/explosive_material.png
           :alt: Explosive material symbol.
           :width: 40px
      - Material explosivo.
-     -
-     -
+     - .. image:: templates/word_template/common_assets/symbols/weee.png
+          :alt: WEEE disposal symbol.
+          :width: 40px
+     - Este símbolo indica que el producto no debe desecharse con los residuos domésticos, sino entregarse en un punto de recogida designado para su reciclaje. La eliminación y el reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su comunidad local, el servicio de gestión de residuos o el distribuidor del producto.
    * - .. image:: templates/word_template/common_assets/symbols/heavy_object.png
           :alt: Heavy object symbol.
           :width: 40px
      - Objeto pesado.
-     -
-     -
+     - .. image:: templates/word_template/common_assets/symbols/weee2.png
+          :alt: Battery disposal symbol.
+          :width: 40px
+     - Las baterías y acumuladores no deben desecharse junto con los residuos domésticos.
+       Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas.
+       Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.
 

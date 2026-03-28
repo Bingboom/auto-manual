@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from pathlib import Path
 import unittest
@@ -49,3 +49,4 @@ class ManualHtmlAssetsTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

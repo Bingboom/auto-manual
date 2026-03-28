@@ -160,14 +160,23 @@ def _resolve_local_reference(
 
 
 def _pick_spec_value(row: dict[str, str], lang: str) -> str:
-    for key in (
-        f"Value_{lang}",
-        f"Value_{lang.lower()}",
-        f"Value_{lang.upper()}",
-        "Value_en",
-        "Value",
-        "Spec_Value",
-    ):
+    region = (row.get("Region") or row.get("region") or "").strip().upper()
+    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    normalized_lang = (lang or "").strip().lower()
+    keys = (
+        ("Value_source", "value_source", "Value", "Spec_Value")
+        if normalized_lang == "en" or (source_lang and normalized_lang == source_lang)
+        else (
+            f"Value_{lang}",
+            f"Value_{lang.lower()}",
+            f"Value_{lang.upper()}",
+            "Value_source",
+            "value_source",
+            "Value",
+            "Spec_Value",
+        )
+    )
+    for key in keys:
         value = (row.get(key) or "").strip()
         if value:
             return value

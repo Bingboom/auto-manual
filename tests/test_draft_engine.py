@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -81,7 +81,7 @@ class TestDraftEngine(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,,Jackery Explorer 1000 v2",
                         "JE-1000F,US,TRUE,specifications,model_no,,JE-1000F",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,label,Main Power Button",
@@ -153,7 +153,7 @@ class TestDraftEngine(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_source",
                         "JE-1000F,US,TRUE,Product overview,main_power_button,label,Main Power Button",
                     ]
                 )
@@ -181,3 +181,4 @@ class TestDraftEngine(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

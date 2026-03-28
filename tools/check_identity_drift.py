@@ -32,14 +32,21 @@ def _is_truthy(value: str) -> bool:
 
 def _pick_lang_value(row: dict[str, str], lang: str) -> str:
     lang_key = lang.strip()
-    keys = (
-        f"Value_{lang_key}",
-        f"value_{lang_key}",
-        f"Value_{lang_key.lower()}",
-        f"value_{lang_key.lower()}",
-        "Value",
-        "value",
-    )
+    region = _first_non_empty(row, ("Region", "region")).strip().upper()
+    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    if lang_key.lower() == "en" or (source_lang and lang_key.lower() == source_lang):
+        keys = ("Value_source", "value_source", "Value", "value")
+    else:
+        keys = (
+            f"Value_{lang_key}",
+            f"value_{lang_key}",
+            f"Value_{lang_key.lower()}",
+            f"value_{lang_key.lower()}",
+            "Value_source",
+            "value_source",
+            "Value",
+            "value",
+        )
     return _first_non_empty(row, keys)
 
 

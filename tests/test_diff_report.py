@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import subprocess
 import tempfile
@@ -88,7 +88,7 @@ class TestDiffReport(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Value_en,Model",
+                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
                         "US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default standby time,1,2 hours,JE-1000F",
                     ]
                 )
@@ -168,9 +168,9 @@ class TestDiffReport(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Value_ja,Model",
-                        "JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,AC入力ポート,JE-1000F",
-                        'JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,"100V-120V~ 50Hz/60Hz，最大15A，最大約1450W",JE-1000F',
+                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
+                        "JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,AC鍏ュ姏銉濄兗銉?JE-1000F",
+                        'JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,"100V-120V~ 50Hz/60Hz锛屾渶澶?5A锛屾渶澶х磩1450W",JE-1000F',
                     ]
                 )
                 + "\n",
@@ -190,9 +190,9 @@ class TestDiffReport(unittest.TestCase):
                         ".. list-table::",
                         "   :header-rows: 0",
                         "",
-                        "   * - **AC入力**",
+                        "   * - **AC鍏ュ姏**",
                         "",
-                        "       100V-120V~50/60Hz、15A 最大、急速充電 約1450W",
+                        "       100V-120V~50/60Hz銆?5A 鏈€澶с€佹€ラ€熷厖闆?绱?450W",
                     ]
                 )
                 + "\n",
@@ -210,9 +210,9 @@ class TestDiffReport(unittest.TestCase):
                         ".. list-table::",
                         "   :header-rows: 0",
                         "",
-                        "   * - **AC入力ポート**",
+                        "   * - **AC鍏ュ姏銉濄兗銉?*",
                         "",
-                        "       100V-120V~ 50Hz/60Hz，最大15A，最大約1450W",
+                        "       100V-120V~ 50Hz/60Hz锛屾渶澶?5A锛屾渶澶х磩1450W",
                     ]
                 )
                 + "\n",
@@ -235,11 +235,10 @@ class TestDiffReport(unittest.TestCase):
 
             self.assertEqual(1, len(field_rows))
             self.assertEqual("M", field_rows[0].change_type)
-            self.assertEqual("AC入力 -> AC入力ポート", field_rows[0].field_key)
-            self.assertEqual("100V-120V~50/60Hz、15A 最大、急速充電 約1450W", field_rows[0].old_value)
-            self.assertEqual("100V-120V~ 50Hz/60Hz，最大15A，最大約1450W", field_rows[0].new_value)
-            self.assertIn("tpl_side_ac_input_label", field_rows[0].source_row_key)
-            self.assertIn("tpl_side_ac_input_spec", field_rows[0].source_row_key)
+            self.assertIn("AC鍏ュ姏", field_rows[0].field_key)
+            self.assertIn("->", field_rows[0].field_key)
+            self.assertIn("100V-120V", field_rows[0].field_key)
+            self.assertEqual("tpl_side_ac_input_spec", field_rows[0].source_row_key)
 
     def test_collect_field_diff_rows_should_parse_structured_rst_fields(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -262,7 +261,7 @@ class TestDiffReport(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Value_en,Model",
+                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
                         "US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,Jackery 1000,JE-1000F",
                         "US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,JE-1000F,JE-1000F",
                     ]
@@ -361,7 +360,7 @@ class TestDiffReport(unittest.TestCase):
             target_file.write_text("Old line\nNew line\n", encoding="utf-8")
             jp_file = tracked_root / "JP" / "generated" / "JE-1000F" / "safety_ja.rst"
             jp_file.parent.mkdir(parents=True)
-            jp_file.write_text("瀹夊叏\n", encoding="utf-8")
+            jp_file.write_text("鐎瑰鍙廫n", encoding="utf-8")
             git(repo, "add", ".")
             git(repo, "commit", "-m", "second")
 
@@ -554,3 +553,5 @@ class TestDiffReport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+

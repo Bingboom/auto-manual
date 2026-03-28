@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -20,9 +20,9 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "product_name",
-                "Row_label_en": "Product Name",
+                "Row_label_source": "Product Name",
                 "Line_order": "1",
-                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Value_source": "Jackery HomePower 2000 Plus v2",
                 "Model": "JHP-2000A",
                 "__line__": "2",
             },
@@ -34,9 +34,9 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "model_no",
-                "Row_label_en": "Model No.",
+                "Row_label_source": "Model No.",
                 "Line_order": "1",
-                "Value_en": "JHP-2000A",
+                "Value_source": "JHP-2000A",
                 "Model": "JHP-2000A",
                 "__line__": "3",
             },
@@ -48,23 +48,23 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
                 "Section_order": "4",
                 "Row_key": "charging_temperature",
-                "Row_label_en": "Charging Temperature",
+                "Row_label_source": "Charging Temperature",
                 "Line_order": "1",
-                "Value_en": "-20C to 45C",
+                "Value_source": "-20C to 45C",
                 "Model": "JE-2000F",
                 "__line__": "4",
             },
             {
-                "project_code": "HTE154-JP",
-                "Region": "JP",
+                "project_code": "HTE154-US",
+                "Region": "US",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "ENVIRONMENTAL",
                 "Section_order": "4",
                 "Row_key": "humidity",
-                "Row_label_en": "動作湿度",
+                "Row_label_source": "鍕曚綔婀垮害",
                 "Line_order": "1",
-                "Value_en": "0~60% RH",
+                "Value_source": "0~60% RH",
                 "Model": "JE-2000E",
                 "__line__": "5",
             },
@@ -76,9 +76,9 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "Main POWER Button???",
+                "Value_source": "Main POWER Button???",
                 "Model": "JE-2000F",
                 "__line__": "6",
             },
@@ -90,9 +90,9 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "product_name",
-                "Row_label_en": "Product Name",
+                "Row_label_source": "Product Name",
                 "Line_order": "1",
-                "Value_en": "Jackery HomePower 2000 Plus v2",
+                "Value_source": "Jackery HomePower 2000 Plus v2",
                 "Model": "JHP-2000A",
                 "__line__": "7",
             },
@@ -104,7 +104,7 @@ class TestSpecMasterAudit(unittest.TestCase):
         self.assertEqual(4, audit.unique_sections)
         self.assertIn("SECTION_ORDER_COLLISION", issue_codes)
         self.assertIn("PROJECT_REGION_MISMATCH", issue_codes)
-        self.assertIn("ROW_LABEL_EN_CONTAINS_EAST_ASIAN_TEXT", issue_codes)
+        self.assertIn("ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT", issue_codes)
         self.assertIn("SUSPECT_TEMPLATE_VALUE", issue_codes)
         self.assertIn("EXACT_DUPLICATE_ROW", issue_codes)
 
@@ -115,10 +115,10 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_cli_report_helpers_should_write_csv_and_markdown_outputs(self) -> None:
         csv_text = "\n".join(
             [
-                "project_code,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Value_en,Model",
+                "project_code,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
                 "HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,Main POWER Button???,JE-2000F",
                 "HTE154-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,-20C to 45C,JE-2000F",
-                "HTE154-JP,JP,TRUE,specifications,ENVIRONMENTAL,4,humidity,動作湿度,1,0~60% RH,JE-2000E",
+                "HTE154-US,US,TRUE,specifications,ENVIRONMENTAL,4,humidity,鍕曚綔婀垮害,1,0~60% RH,JE-2000E",
             ]
         )
 
@@ -148,19 +148,19 @@ class TestSpecMasterAudit(unittest.TestCase):
             self.assertIn("SECTION_ORDER_COLLISION", report)
             self.assertIn("SUSPECT_TEMPLATE_VALUE", report)
 
-    def test_audit_should_flag_kana_in_english_label_column(self) -> None:
+    def test_audit_should_flag_east_asian_text_in_latin_source_region(self) -> None:
         rows = [
             {
-                "project_code": "HTE154-JP",
-                "Region": "JP",
+                "project_code": "HTE154-US",
+                "Region": "US",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "OUTPUT PORTS",
                 "Section_order": "3",
                 "Row_key": "usb_c",
-                "Row_label_en": "USB-Cポート",
+                "Row_label_source": "USB-Cポート",
                 "Line_order": "1",
-                "Value_en": "100W Max",
+                "Value_source": "100W Max",
                 "Model": "JE-2000E",
                 "__line__": "8",
             },
@@ -168,7 +168,29 @@ class TestSpecMasterAudit(unittest.TestCase):
 
         audit = audit_spec_master_rows(rows)
         self.assertEqual(1, len(audit.issues))
-        self.assertEqual("ROW_LABEL_EN_CONTAINS_EAST_ASIAN_TEXT", audit.issues[0].code)
+        self.assertEqual("ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT", audit.issues[0].code)
+        self.assertIn("expected source language is `en`", audit.issues[0].message)
+
+    def test_audit_should_allow_chinese_source_text_for_cn_region(self) -> None:
+        rows = [
+            {
+                "project_code": "HTE154-CN",
+                "Region": "CN",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "OUTPUT PORTS",
+                "Section_order": "3",
+                "Row_key": "usb_c",
+                "Row_label_source": "USB-C接口",
+                "Line_order": "1",
+                "Value_source": "100W Max",
+                "Model": "JE-2000F",
+                "__line__": "9",
+            },
+        ]
+
+        audit = audit_spec_master_rows(rows)
+        self.assertEqual(0, len(audit.issues))
 
     def test_normalization_should_replace_section_and_collect_anomaly_rows(self) -> None:
         rows = [
@@ -180,9 +202,9 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
                 "Section_order": "4",
                 "Row_key": "charging_temperature",
-                "Row_label_en": "Charging Temperature",
+                "Row_label_source": "Charging Temperature",
                 "Line_order": "1",
-                "Value_en": "-20C to 45C",
+                "Value_source": "-20C to 45C",
                 "Model": "JE-2000F",
                 "__line__": "4",
             },
@@ -194,9 +216,9 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "Section": "TEMPLATE VARS",
                 "Section_order": "99",
                 "Row_key": "tpl_main_power_button_label",
-                "Row_label_en": "Main Power Button Label",
+                "Row_label_source": "Main Power Button Label",
                 "Line_order": "1",
-                "Value_en": "Main POWER Button???",
+                "Value_source": "Main POWER Button???",
                 "Model": "JE-2000F",
                 "__line__": "5",
             },
@@ -246,3 +268,5 @@ class TestSpecMasterAudit(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
