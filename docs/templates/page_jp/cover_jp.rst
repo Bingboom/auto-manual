@@ -11,7 +11,7 @@ HTE153-Explorer 1000_V0.5_JP_UserManual
 
 国内専用/For use only in Japan
 
-カスタマーサポート: ``jackery.jp@jackery.com``
+カスタマーサポート: jackery.jp@jackery.com
 
 **お買い上げありがとうございます。**
 

@@ -15,7 +15,7 @@ Jackery ポータブル電源 1000 New
 
 国内専用/For use only in Japan
 
-カスタマーサポート: ``jackery.jp@jackery.com``
+カスタマーサポート: jackery.jp@jackery.com
 
 **お買い上げありがとうございます。**
 

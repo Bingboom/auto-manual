@@ -23,7 +23,7 @@
 AC出力のオン/オフ
 -----------------
 
-● **前提：**主電源ボタンがオンになっていることを確認してください。
+● **前提：** 主電源ボタンがオンになっていることを確認してください。
 
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output operation diagram.
@@ -52,7 +52,7 @@ AC出力のオン/オフ
 USB/カーポート出力オン/オフ
 ---------------------------
 
-● **前提：**主電源ボタンがオンになっていることを確認してください。
+● **前提：** 主電源ボタンがオンになっていることを確認してください。
 
 .. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: DC and USB output operation diagram.
