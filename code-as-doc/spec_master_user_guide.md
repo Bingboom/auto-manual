@@ -478,7 +478,7 @@ Current derived placeholder rules:
 - `_LOWER` variants are generated automatically for keys ending in `_LABEL`
 - for page-value rows with `Line_order > 1`, the placeholder gains a suffix such as `_2`
 - `storage_temperature` currently generates `STORAGE_TEMPERATURE_LINE_1/2/3` plus matching `..._PARAM_1/2/3` and `..._VALUE_1/2/3`
-- `Param_es` / `Value_es` and `Param_ja` / `Value_ja` can be added as optional language columns when a page placeholder needs real Spanish or Japanese text rather than English fallback
+- language-specific translated columns can be added when a page placeholder needs localized text instead of source-language fallback
 
 ### 5.6 Current Diff-Report Behavior
 

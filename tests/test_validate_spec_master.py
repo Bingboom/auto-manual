@@ -206,10 +206,10 @@ class TestValidateSpecMaster(unittest.TestCase):
             spec_master_csv.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source,Value_ja",
+                        "Model,Region,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
                         "JE-1000F,JP,TRUE,specifications,product_name,,,,Jackery ポータブル電源 1000 New",
                         "JE-1000F,JP,TRUE,specifications,model_no,,,,JE-1000F",
-                        "JE-1000F,JP,TRUE,Product overview,main_power_button,label,1,,メイン電源ボタン",
+                        "JE-1000F,JP,TRUE,Product overview,main_power_button,label,1,",
                     ]
                 )
                 + "\n",
@@ -231,5 +231,4 @@ class TestValidateSpecMaster(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
 
