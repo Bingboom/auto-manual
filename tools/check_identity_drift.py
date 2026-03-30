@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from tools.utils.spec_master import read_spec_master_rows
+from tools.utils.spec_master import read_spec_master_rows, source_language_for_row
 
 
 @dataclass(frozen=True)
@@ -32,8 +32,7 @@ def _is_truthy(value: str) -> bool:
 
 def _pick_lang_value(row: dict[str, str], lang: str) -> str:
     lang_key = lang.strip()
-    region = _first_non_empty(row, ("Region", "region")).strip().upper()
-    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    source_lang = source_language_for_row(row)
     if lang_key.lower() == "en" or (source_lang and lang_key.lower() == source_lang):
         keys = ("Value_source", "value_source", "Value", "value")
     else:

@@ -385,15 +385,30 @@ _SOURCE_COLUMN_NAMES: dict[str, tuple[str, ...]] = {
     "Value": ("Value_source", "value_source"),
 }
 _SOURCE_SHARED_BASES = frozenset(_SOURCE_COLUMN_NAMES)
-_SOURCE_LANGUAGE_BY_REGION = {
-    "US": "en",
-    "USA": "en",
-    "EU": "en",
-    "JP": "ja",
-    "JAPAN": "ja",
-    "CN": "zh",
-    "CHINA": "zh",
-    "ZH": "zh",
+_SOURCE_LANGUAGE_NORMALIZATION = {
+    "en": "en",
+    "english": "en",
+    "英语": "en",
+    "英文": "en",
+    "ja": "ja",
+    "jp": "ja",
+    "japanese": "ja",
+    "日语": "ja",
+    "日文": "ja",
+    "zh": "zh",
+    "cn": "zh",
+    "chinese": "zh",
+    "中文": "zh",
+    "汉语": "zh",
+    "漢語": "zh",
+    "fr": "fr",
+    "french": "fr",
+    "法语": "fr",
+    "法文": "fr",
+    "es": "es",
+    "spanish": "es",
+    "西语": "es",
+    "西班牙语": "es",
 }
 
 
@@ -439,14 +454,19 @@ def _set_source_value(row: dict[str, str], base: str, value: str) -> str:
     column = _source_column_name(row, base)
     row[column] = value
     return column
+def normalize_source_lang(value: str) -> str:
+    token = (value or "").strip()
+    if not token:
+        return ""
+    return _SOURCE_LANGUAGE_NORMALIZATION.get(token.casefold(), "")
 
 
-def _source_language_for_region(region: str) -> str:
-    return _SOURCE_LANGUAGE_BY_REGION.get((region or "").strip().upper(), "")
+def source_language_for_row(row: dict[str, str]) -> str:
+    return normalize_source_lang(_first_non_empty(row, ["Source_lang", "source_lang"]))
 
 
-def _source_language_uses_latin_script(region: str) -> bool:
-    return _source_language_for_region(region) == "en"
+def _source_language_uses_latin_script(source_lang: str) -> bool:
+    return normalize_source_lang(source_lang) == "en"
 
 
 def _contains_east_asian_text(value: str) -> bool:
@@ -537,7 +557,7 @@ def _is_truthy(value: str) -> bool:
 
 def _pick_lang_value(row: dict[str, str], base: str, lang: str) -> str:
     normalized_lang = (lang or "").strip().lower()
-    source_lang = _source_language_for_region(_pick_row_region(row))
+    source_lang = source_language_for_row(row)
     keys: list[str] = []
     if base in _SOURCE_SHARED_BASES and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
         keys.extend(_source_column_names(base))
@@ -1343,16 +1363,16 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
         source_label = _pick_row_label_source(row)
         if (
             source_label
-            and _source_language_uses_latin_script(region or "")
+            and _source_language_uses_latin_script(source_language_for_row(row))
             and _contains_east_asian_text(source_label)
         ):
             issues.append(
                 SpecMasterAuditIssue(
                     code="ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT",
                     message=(
-                        "`Row_label_source` contains East Asian text for region "
-                        f"`{(region or '').strip().upper()}` whose expected source language is "
-                        f"`{_source_language_for_region(region or '') or 'unknown'}`: {source_label}"
+                        "`Row_label_source` contains East Asian text for row "
+                        f"(region `{(region or '').strip().upper()}`) whose declared source language is "
+                        f"`{source_language_for_row(row) or 'unknown'}`: {source_label}"
                     ),
                     line=line_number,
                     model=model,

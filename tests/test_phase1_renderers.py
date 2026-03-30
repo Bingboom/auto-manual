@@ -225,6 +225,7 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
@@ -243,6 +244,7 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
@@ -261,6 +263,7 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
@@ -280,6 +283,7 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "META",
@@ -297,6 +301,7 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "META",
@@ -342,6 +347,25 @@ class TestPhase1Renderers(unittest.TestCase):
     def test_render_spec_page_should_use_source_columns_for_jp_source_language_rows(self) -> None:
         jp_row = dict(self._spec_master_blocks()[0])
         jp_row["Region"] = "JP"
+        jp_row["Source_lang"] = "ja"
+        jp_row["Row_label_source"] = "AC入力"
+        jp_row["Param_source"] = "急速充電モード"
+        jp_row["Value_source"] = "100V-120V~50/60Hz、15A Max、1450W"
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=[jp_row],
+            sku_id="JB1000",
+            lang="ja",
+            vars_map={},
+        )
+
+        self.assertIn("AC入力", out)
+        self.assertIn("急速充電モード: 100V-120V\\textasciitilde{}50/60Hz、15A Max、1450W", out)
+
+    def test_render_spec_page_should_honor_explicit_source_lang_column(self) -> None:
+        jp_row = dict(self._spec_master_blocks()[0])
+        jp_row["Region"] = "US"
+        jp_row["Source_lang"] = "ja"
         jp_row["Row_label_source"] = "AC入力"
         jp_row["Param_source"] = "急速充電モード"
         jp_row["Value_source"] = "100V-120V~50/60Hz、15A Max、1450W"
@@ -385,11 +409,13 @@ class TestPhase1Renderers(unittest.TestCase):
                 "symbol_key": "warning_triangle",
                 "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "order": "10",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Warning symbol meaning.",
                 "text_fr": "Signification du symbole d'avertissement.",
-                "text_es": "Significado del s铆mbolo de advertencia.",
+                "text_es": "Significado del símbolo de advertencia.",
             },
             {
                 "block_type": "table_row",
@@ -397,7 +423,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 "symbol_key": "read_manual",
                 "image_path": "templates/word_template/common_assets/symbols/read_manual_operator.png",
                 "order": "20",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Read the manual.",
                 "text_fr": "Lire le manuel.",
@@ -409,10 +437,12 @@ class TestPhase1Renderers(unittest.TestCase):
                 "symbol_key": "do_not_dismantle",
                 "image_path": "templates/word_template/common_assets/symbols/do_not_dismantle.png",
                 "order": "10",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Do not dismantle.",
-                "text_fr": "Ne d茅montez pas.",
+                "text_fr": "Ne démontez pas.",
                 "text_es": "No desarme.",
             },
         ]
@@ -455,6 +485,24 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("Symbole", out)
         self.assertIn("Signification du symbole d'avertissement.", out)
 
+    def test_render_symbols_page_filters_by_model_and_region(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Region"] = "US"
+        blocks[0]["Model"] = "JE-1000F"
+        blocks[0]["text_en"] = "US JE-1000F warning."
+        blocks[1]["Region"] = "EU"
+        blocks[1]["Model"] = "JE-9999X"
+        blocks[1]["text_en"] = "SHOULD_NOT_RENDER"
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JE-1000F", "region": "US"},
+        )
+        self.assertIn("US JE-1000F warning.", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+
     def test_render_symbols_page_supports_weee2_symbol_asset(self) -> None:
         blocks = self._symbols_blocks()
         blocks.append(
@@ -464,7 +512,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 "symbol_key": "weee2",
                 "image_path": "templates/word_template/common_assets/symbols/weee2.png",
                 "order": "20",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Battery disposal meaning.",
                 "text_fr": "Signification de mise au rebut des batteries.",
@@ -602,5 +652,3 @@ class TestPhase1Renderers(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-

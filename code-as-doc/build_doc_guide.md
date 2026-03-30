@@ -157,13 +157,18 @@ JP safety note:
 `symbols_blocks.csv` note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon
+- `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- leave `Region` / `Model` blank when one symbols row is shared across manuals
+- `sku_scope` is no longer used in [`symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 
 `Spec_Master.csv` note:
 
 - the `Page` column may now hold a comma-separated page list
 - use `Product overview` for Product overview-only page-value rows
 - use `Product overview, specifications,` when a row is intentionally shared by both pages
-- `Row_label_source`, `Param_source`, and `Value_source` are the shared source-text columns; they should hold the source manual language for that region, such as English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
+- `Row_label_source`, `Param_source`, and `Value_source` are the shared source-text columns; they should hold the row's source-manual text
+- `Source_lang` stores that source-language code explicitly; use values such as `en`, `ja`, and `zh`, and do not rely on `Region` to infer it
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet
 
 `Spec_Footnotes.csv` supports two spec-bottom row types:

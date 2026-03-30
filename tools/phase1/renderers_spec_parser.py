@@ -7,7 +7,7 @@ import csv
 from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
-from ..utils.spec_master import is_page_value_row, page_value_matches
+from ..utils.spec_master import is_page_value_row, page_value_matches, source_language_for_row
 
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
@@ -78,8 +78,7 @@ def _pick_spec_lang_text(
     lang: str,
     default_keys: list[str] | None = None,
 ) -> str:
-    region = _first_non_empty(row, ["Region", "region"]).strip().upper()
-    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    source_lang = source_language_for_row(row)
     normalized_lang = (lang or "").strip().lower()
     if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
         keys = [

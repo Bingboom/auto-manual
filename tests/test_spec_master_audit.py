@@ -15,6 +15,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
@@ -29,6 +30,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE152-JP",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
@@ -43,6 +45,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE154-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
@@ -57,6 +60,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE154-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "ENVIRONMENTAL",
@@ -71,6 +75,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE154-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "TEMPLATE VARS",
@@ -85,6 +90,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
@@ -115,10 +121,10 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_cli_report_helpers_should_write_csv_and_markdown_outputs(self) -> None:
         csv_text = "\n".join(
             [
-                "project_code,Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
-                "HTE154-US,US,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,Main POWER Button???,JE-2000F",
-                "HTE154-US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,-20C to 45C,JE-2000F",
-                "HTE154-US,US,TRUE,specifications,ENVIRONMENTAL,4,humidity,鍕曚綔婀垮害,1,0~60% RH,JE-2000E",
+                "project_code,Region,Source_lang,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
+                "HTE154-US,US,en,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,Main POWER Button???,JE-2000F",
+                "HTE154-US,US,en,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,-20C to 45C,JE-2000F",
+                "HTE154-US,US,en,TRUE,specifications,ENVIRONMENTAL,4,humidity,鍕曚綔婀垮害,1,0~60% RH,JE-2000E",
             ]
         )
 
@@ -153,6 +159,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE154-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "OUTPUT PORTS",
@@ -169,13 +176,14 @@ class TestSpecMasterAudit(unittest.TestCase):
         audit = audit_spec_master_rows(rows)
         self.assertEqual(1, len(audit.issues))
         self.assertEqual("ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT", audit.issues[0].code)
-        self.assertIn("expected source language is `en`", audit.issues[0].message)
+        self.assertIn("declared source language is `en`", audit.issues[0].message)
 
     def test_audit_should_allow_chinese_source_text_for_cn_region(self) -> None:
         rows = [
             {
                 "project_code": "HTE154-CN",
                 "Region": "CN",
+                "Source_lang": "zh",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "OUTPUT PORTS",
@@ -197,6 +205,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "HTE154-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
@@ -211,6 +220,7 @@ class TestSpecMasterAudit(unittest.TestCase):
             {
                 "project_code": "",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "TEMPLATE VARS",
@@ -268,5 +278,4 @@ class TestSpecMasterAudit(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
 

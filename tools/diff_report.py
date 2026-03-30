@@ -17,7 +17,13 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.utils.spec_master import is_page_value_row, page_value_matches, page_value_role, resolve_legacy_page_value_key
+from tools.utils.spec_master import (
+    is_page_value_row,
+    page_value_matches,
+    page_value_role,
+    resolve_legacy_page_value_key,
+    source_language_for_row,
+)
 
 HEADING_UNDERLINE_RE = re.compile(r"^[=\-~^\"`:#*+]{3,}$")
 SPEC_SECTION_RE = re.compile(r"\\specsectiontitle\{(.+?)\}")
@@ -289,8 +295,7 @@ def first_non_empty(row: dict[str, str], keys: list[str]) -> str:
 
 
 def pick_lang_value(row: dict[str, str], base: str, lang: str, *, default_keys: list[str] | None = None) -> str:
-    region = first_non_empty(row, ["Region", "region"]).strip().upper()
-    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    source_lang = source_language_for_row(row)
     normalized_lang = (lang or "").strip().lower()
     if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
         keys = [

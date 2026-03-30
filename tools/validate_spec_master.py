@@ -19,7 +19,9 @@ from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     collect_matching_spec_rows,
     collect_spec_value_matches_from_rows,
+    normalize_source_lang,
     read_spec_master_rows,
+    source_language_for_row,
 )
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
 
@@ -102,21 +104,7 @@ def _pick_line_number(row: dict[str, str]) -> int | None:
         return None
 
 
-_SOURCE_LANGUAGE_BY_REGION = {
-    "US": "en",
-    "USA": "en",
-    "EU": "en",
-    "JP": "ja",
-    "JAPAN": "ja",
-    "CN": "zh",
-    "CHINA": "zh",
-    "ZH": "zh",
-}
 _LEGACY_SOURCE_HEADERS = ("Row_label_en", "Param_en", "Value_en")
-
-
-def _source_language_for_region(region: str) -> str:
-    return _SOURCE_LANGUAGE_BY_REGION.get((region or "").strip().upper(), "")
 
 
 def _is_truthy(value: str) -> bool:
@@ -143,7 +131,7 @@ def _should_require_value_source(row: dict[str, str]) -> bool:
 
 def _pick_value(row: dict[str, str], lang: str) -> str:
     normalized_lang = (lang or "").strip().lower()
-    source_lang = _source_language_for_region(_first_non_empty(row, ("Region", "region")))
+    source_lang = source_language_for_row(row)
     if normalized_lang == "en" or (source_lang and normalized_lang == source_lang):
         return _first_non_empty(row, ("Value_source", "value_source", "Value", "Spec_Value"))
     return _first_non_empty(
@@ -342,6 +330,35 @@ def collect_spec_master_validation_issues(
             if not row_key:
                 continue
             line_no = _pick_line_number(row)
+            raw_source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
+            normalized_source_lang = normalize_source_lang(raw_source_lang)
+            if not raw_source_lang:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_SOURCE_LANG",
+                        message=f"Latest row_key '{row_key}' must declare Source_lang",
+                        path=spec_master_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                        row_key=row_key,
+                    )
+                )
+            elif not normalized_source_lang:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="INVALID_SOURCE_LANG",
+                        message=(
+                            f"Latest row_key '{row_key}' has unsupported Source_lang "
+                            f"'{raw_source_lang}'"
+                        ),
+                        path=spec_master_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                        row_key=row_key,
+                    )
+                )
             if not _first_non_empty(row, ("Row_label_source", "row_label_source")):
                 issues.append(
                     SpecMasterValidationIssue(

@@ -67,6 +67,7 @@ This section is the editor-facing filling guide.
 | `Slot_key` | page-value slot marker | Leave blank for visible spec rows. Use values such as `label`, `text`, `value`, `front.label`, `front.low.spec`, `side.pv.spec` for template-fed rows |
 | `Model` | target model | Must match the intended target build |
 | `Region` | target region | Must match the intended target build |
+| `Source_lang` | source-language code | Store the row's source manual language as a normalized code such as `en`, `ja`, or `zh` |
 | `Is_Latest` | active row flag | Keep active rows as `TRUE` |
 
 ### 3.2 How To Decide What Type Of Row You Are Adding
@@ -347,7 +348,8 @@ Current normalization guidance:
 Current reality:
 
 - the sheet now uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-text columns
-- these source columns hold the manual source language for the row's region, such as English for `US/EU`, Japanese for `JP`, or Chinese for `CN`
+- these source columns hold the row's actual source-manual text
+- `Source_lang` stores that source language explicitly as a normalized code such as `en`, `ja`, or `zh`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer accepted; rename them to `*_source`
 
 Current practical rule:
@@ -355,9 +357,11 @@ Current practical rule:
 - if dedicated localized columns already exist for the field, use them
 - if they do not exist yet, the `*_source` columns are the active source
 - source-language text must not stay in `*_en`; move it into `*_source`
-- for source-language rows such as `US/EU -> en`, `JP -> ja`, and `CN -> zh`, `*_source` must be populated
-- keep the visible text correct first, and trust the row's region/source workflow more than any legacy header alias
-- current audit expectation: `US/EU -> en source`, `JP -> ja source`, `CN -> zh source`; `ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT` only applies to regions whose expected source language is English
+- keep `Source_lang` aligned with the real source columns; for example, if `Value_source` holds Japanese source text then `Source_lang` should be `ja`
+- `Source_lang` is now the explicit source-language declaration for the row; code no longer infers source language from `Region`
+- `*_source` must be populated for the language declared by `Source_lang`
+- keep the visible text correct first, and trust the row's explicit `Source_lang` workflow more than any legacy header alias
+- current audit expectation depends on `Source_lang`; `ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT` only applies to rows whose declared source language is English
 
 ## 5. Developer Implementation Details
 

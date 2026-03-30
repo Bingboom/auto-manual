@@ -50,6 +50,7 @@ from tools.utils.spec_master import (  # noqa: E402
     collect_spec_value_matches_from_rows,
     read_spec_master_rows,
     resolve_spec_value_from_rows,
+    source_language_for_row,
     resolve_template_substitutions_from_spec_master,
 )
 from tools.word_bundle_common import load_rst_substitutions, resolve_config_path  # noqa: E402
@@ -160,8 +161,7 @@ def _resolve_local_reference(
 
 
 def _pick_spec_value(row: dict[str, str], lang: str) -> str:
-    region = (row.get("Region") or row.get("region") or "").strip().upper()
-    source_lang = {"US": "en", "USA": "en", "EU": "en", "JP": "ja", "JAPAN": "ja", "CN": "zh", "CHINA": "zh", "ZH": "zh"}.get(region, "")
+    source_lang = source_language_for_row(row)
     normalized_lang = (lang or "").strip().lower()
     keys = (
         ("Value_source", "value_source", "Value", "Spec_Value")

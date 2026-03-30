@@ -74,8 +74,9 @@ The manual system now has four layers, but they are used at different stages.
    - Responsibility: model-specific parameters, safety/spec content, and placeholder values
    - JP safety page prose is maintained in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml); it is only the short safety intro, while detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). `content_blocks.csv` still drives CSV-backed safety pages for the other families
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
-   - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns for each region; use English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
+   - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
+   - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row
 
 3. Review working layer
@@ -281,6 +282,9 @@ Symbols content is generated from:
 `symbols_blocks.csv` notes:
 
 - use one `table_row` per symbols-table entry
+- use `Region` and `Model` to target the same way as `Spec_Master.csv`
+- use `Source_lang` for the row's source-language code, for example `en` or `ja`
+- leave `Region` / `Model` blank when one row should be shared
 - `image_path` stores the RST image reference path for that icon
 - keep `symbol_key` stable so renderer alt text and layout metadata still resolve correctly
 
@@ -320,7 +324,8 @@ Resolution source:
 - `Page` can be a comma-separated list
 - use `Product overview` for Product overview-only page-value rows such as front/side-view callouts
 - use `Product overview, specifications,` when the same row is intentionally shared by both pages
-- `Row_label_source`, `Param_source`, and `Value_source` should store the source manual language for the row's region, such as English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
+- `Row_label_source`, `Param_source`, and `Value_source` should store the row's source-manual text
+- `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
 - source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
 
 For page-value rows, `Row_key` now keeps only the concept itself. Human editing should happen through `Slot_key`.
