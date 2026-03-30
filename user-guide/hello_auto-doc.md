@@ -74,6 +74,7 @@ The manual system now has four layers, but they are used at different stages.
    - Responsibility: model-specific parameters, safety/spec content, and placeholder values
    - JP safety page prose is maintained in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml); it is only the short safety intro, while detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). `content_blocks.csv` still drives CSV-backed safety pages for the other families
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
+   - `Spec_Footnotes.csv` now matches rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
@@ -326,6 +327,7 @@ Resolution source:
 - use `Product overview, specifications,` when the same row is intentionally shared by both pages
 - `Row_label_source`, `Param_source`, and `Value_source` should store the row's source-manual text
 - `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
+- `project_code` / `项目代码` is no longer used in `Spec_Master.csv`; choose rows by `Region` + `Model`
 - source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
 
 For page-value rows, `Row_key` now keeps only the concept itself. Human editing should happen through `Slot_key`.

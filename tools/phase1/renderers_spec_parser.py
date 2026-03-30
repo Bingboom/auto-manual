@@ -165,10 +165,6 @@ def _parse_spec_master_sections(
     title_candidates: list[tuple[float, str]] = []
     section_title_overrides: dict[str, str] = {}
 
-    var_project_code = _first_non_empty(
-        vars_map,
-        ["project_code", "product_code", "项目代码", "product_id"],
-    )
     var_region = _first_non_empty(vars_map, ["region", "Region"])
     var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
     target_sku = _first_non_empty(vars_map, ["sku_id", "sku"]) or rst_escape(sku_id)
@@ -195,9 +191,6 @@ def _parse_spec_master_sections(
             if row_sku and row_sku != target_sku:
                 continue
 
-        row_project = _first_non_empty(row, ["project_code", "项目代码"])
-        if var_project_code and row_project and row_project != var_project_code:
-            continue
         row_region = _first_non_empty(row, ["Region", "region"])
         if var_region and row_region and row_region != var_region:
             continue

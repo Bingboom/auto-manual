@@ -169,6 +169,7 @@ JP safety note:
 - use `Product overview, specifications,` when a row is intentionally shared by both pages
 - `Row_label_source`, `Param_source`, and `Value_source` are the shared source-text columns; they should hold the row's source-manual text
 - `Source_lang` stores that source-language code explicitly; use values such as `en`, `ja`, and `zh`, and do not rely on `Region` to infer it
+- `project_code` / `项目代码` is no longer part of `Spec_Master.csv`; target rows by `Region` + `Model`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet
 
 `Spec_Footnotes.csv` supports two spec-bottom row types:
@@ -176,6 +177,7 @@ JP safety note:
 - `row_kind=footnote`: numbered entries such as `①`
 - `row_kind=note`: plain note lines such as trademark statements
 - If the numbering symbol differs by language, write it directly in each `footnote_text_*` cell and leave `footnote_mark` empty
+- `project_code` / `项目代码` is no longer part of `Spec_Footnotes.csv`; target rows by `Region` + `Model`
 
 run:
 

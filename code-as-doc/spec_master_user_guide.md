@@ -70,6 +70,11 @@ This section is the editor-facing filling guide.
 | `Source_lang` | source-language code | Store the row's source manual language as a normalized code such as `en`, `ja`, or `zh` |
 | `Is_Latest` | active row flag | Keep active rows as `TRUE` |
 
+Current schema note:
+
+- `Spec_Master.csv` no longer has a `project_code` / `项目代码` column
+- target matching is based on `Region` + `Model`
+
 ### 3.2 How To Decide What Type Of Row You Are Adding
 
 Use this rule of thumb:
@@ -538,6 +543,11 @@ Use [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) for:
 - spec notes that are structurally separate from the main table rows
 
 Do not fold footnotes back into the main spec rows just to keep all text in one file.
+
+Current schema note:
+
+- `Spec_Footnotes.csv` no longer has a `project_code` / `项目代码` column
+- target matching is based on `Region` + `Model`
 
 ## 8. [`content_blocks.csv`](../data/phase1/content_blocks.csv) and [`page_registry.csv`](../data/phase1/page_registry.csv)
 

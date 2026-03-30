@@ -98,20 +98,6 @@ class SpecMasterRepairResult:
     removed_duplicate_lines: tuple[int, ...]
 
 
-_PROJECT_CODE_RE = re.compile(r"-(US|JP|EU)(?:-|$)", re.IGNORECASE)
-_PROJECT_CODE_KEYS = (
-    "project_code",
-    "Project_Code",
-    "椤圭洰浠ｇ爜",
-    "妞ゅ湱娲版禒锝囩垳",
-)
-_PROJECT_CODE_FILL_BY_MODEL_REGION: dict[tuple[str, str], str] = {
-    ("JE-2000F", "JP"): "HTE154-JP",
-    ("JE-2000E", "JP"): "HTE152-JP",
-    ("JE-2000F", "US"): "HTE154-US",
-    ("JE-1000F", "JP"): "HTE153-JP",
-    ("JE-1000F", "US"): "HTE153-US",
-}
 _SECTION_ORDER_BY_SECTION: dict[str, str] = {
     "GENERAL INFO": "1",
     "INPUT PORTS": "2",
@@ -494,25 +480,6 @@ def _sort_text_numbers(values: set[str]) -> tuple[str, ...]:
             return (1, text)
 
     return tuple(sorted((value for value in values if (value or "").strip()), key=sort_key))
-
-
-def _pick_project_code(row: dict[str, str]) -> str:
-    return _first_non_empty(row, list(_PROJECT_CODE_KEYS))
-
-
-def _pick_project_code_key(row: dict[str, str]) -> str | None:
-    for key in _PROJECT_CODE_KEYS:
-        if key in row:
-            return key
-    return None
-
-
-def _normalize_project_code(project_code: str, region: str) -> str:
-    code = (project_code or "").strip()
-    normalized_region = (region or "").strip().upper()
-    if len(code) < 6 or not normalized_region:
-        return code
-    return f"{code[:6]}-{normalized_region}"
 
 
 def _template_row_metadata(row_key: str) -> tuple[str, str, str] | None:
@@ -1336,29 +1303,10 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
     seen_rows: dict[tuple[tuple[str, str], ...], int] = {}
     for idx, row in enumerate(rows):
         line_number = _row_line_num(row, idx)
-        project_code = _pick_project_code(row)
         region = _pick_row_region(row) or None
         section = _pick_section(row) or None
         row_key = _pick_row_key(row) or None
         model = _pick_row_model(row) or None
-
-        if project_code and region:
-            match = _PROJECT_CODE_RE.search(project_code)
-            if match and match.group(1).upper() != region.upper():
-                issues.append(
-                    SpecMasterAuditIssue(
-                        code="PROJECT_REGION_MISMATCH",
-                        message=(
-                            f"Project code `{project_code}` suggests region `{match.group(1).upper()}` "
-                            f"but row region is `{region}`"
-                        ),
-                        line=line_number,
-                        model=model,
-                        region=region,
-                        section=section,
-                        row_key=row_key,
-                    )
-                )
 
         source_label = _pick_row_label_source(row)
         if (
@@ -1668,31 +1616,7 @@ def repair_known_spec_master_values(rows: list[dict[str, str]]) -> SpecMasterRep
         model = _pick_row_model(row)
         region = _pick_row_region(row)
         row_key = _pick_row_key(row)
-        project_code_key = _pick_project_code_key(row)
         template_metadata = _page_value_metadata_from_row(row)
-
-        if project_code_key is not None:
-            old_project_code = row.get(project_code_key, "")
-            if (old_project_code or "").strip():
-                new_project_code = _normalize_project_code(old_project_code, region)
-            else:
-                new_project_code = _PROJECT_CODE_FILL_BY_MODEL_REGION.get(
-                    ((model or "").strip(), (region or "").strip().upper()),
-                    old_project_code,
-                )
-            if old_project_code != new_project_code:
-                row[project_code_key] = new_project_code
-                applied_repairs.append(
-                    SpecMasterAppliedRepair(
-                        line=line_number,
-                        model=model or None,
-                        region=region or None,
-                        row_key=row_key or None,
-                        column=project_code_key,
-                        old_value=old_project_code,
-                        new_value=new_project_code,
-                    )
-                )
 
         old_section = row.get("Section", "")
         new_section, _, _ = _normalize_section_summary(old_section)

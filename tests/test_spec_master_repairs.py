@@ -105,15 +105,14 @@ class TestSpecMasterRepairs(unittest.TestCase):
         self.assertEqual("Main Power Button", result.repaired_rows[4]["Row_label_source"])
         self.assertEqual("Main POWER Button", result.repaired_rows[4]["Value_source"])
 
-    def test_repair_should_normalize_project_code_and_drop_duplicate_rows(self) -> None:
+    def test_repair_should_drop_duplicate_rows_after_section_normalization(self) -> None:
         rows = [
             {
-                "project_code": "HTE1522000A-JP-JAK",
                 "Region": "JP",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
-                "Section": "GENERAL INFO",
-                "Section_order": "1",
+                "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+                "Section_order": "4",
                 "Row_key": "product_name",
                 "Row_label_source": "Product Name",
                 "Line_order": "1",
@@ -122,12 +121,11 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "__line__": "71",
             },
             {
-                "project_code": "HTE152-JP",
                 "Region": "JP",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
-                "Section": "GENERAL INFO",
-                "Section_order": "1",
+                "Section": "ENVIRONMENTAL",
+                "Section_order": "4",
                 "Row_key": "product_name",
                 "Row_label_source": "Product Name",
                 "Line_order": "1",
@@ -141,93 +139,7 @@ class TestSpecMasterRepairs(unittest.TestCase):
         self.assertEqual(1, len(result.applied_repairs))
         self.assertEqual(1, len(result.repaired_rows))
         self.assertEqual((72,), result.removed_duplicate_lines)
-        self.assertEqual("HTE152-JP", result.repaired_rows[0]["project_code"])
-
-    def test_repair_should_fill_empty_project_code_from_model_region_mapping(self) -> None:
-        rows = [
-            {
-                "project_code": "",
-                "Region": "US",
-                "Is_Latest": "TRUE",
-                "Page": "specifications",
-                "Section": "TEMPLATE VARS",
-                "Section_order": "99",
-                "Row_key": "tpl_main_power_button_label",
-                "Row_label_source": "Main Power Button Label",
-                "Line_order": "1",
-                "Value_source": "Main POWER Button",
-                "Model": "JE-2000F",
-                "__line__": "261",
-            },
-            {
-                "project_code": "",
-                "Region": "JP",
-                "Is_Latest": "TRUE",
-                "Page": "specifications",
-                "Section": "TEMPLATE VARS",
-                "Section_order": "99",
-                "Row_key": "tpl_main_power_button_label",
-                "Row_label_source": "Main Power Button Label",
-                "Line_order": "1",
-                "Value_source": "銉°偆銉抽浕婧愩儨銈裤兂",
-                "Model": "JE-2000F",
-                "__line__": "289",
-            },
-            {
-                "project_code": "",
-                "Region": "JP",
-                "Is_Latest": "TRUE",
-                "Page": "specifications",
-                "Section": "TEMPLATE VARS",
-                "Section_order": "99",
-                "Row_key": "tpl_main_power_button_label",
-                "Row_label_source": "Main Power Button Label",
-                "Line_order": "1",
-                "Value_source": "銉°偆銉抽浕婧愩儨銈裤兂",
-                "Model": "JE-2000E",
-                "__line__": "315",
-            },
-            {
-                "project_code": "",
-                "Region": "US",
-                "Is_Latest": "TRUE",
-                "Page": "specifications",
-                "Section": "TEMPLATE VARS",
-                "Section_order": "99",
-                "Row_key": "tpl_main_power_button_label",
-                "Row_label_source": "Main Power Button Label",
-                "Line_order": "1",
-                "Value_source": "Main POWER Button",
-                "Model": "JE-1000F",
-                "__line__": "341",
-            },
-            {
-                "project_code": "",
-                "Region": "JP",
-                "Is_Latest": "TRUE",
-                "Page": "specifications",
-                "Section": "TEMPLATE VARS",
-                "Section_order": "99",
-                "Row_key": "tpl_main_power_button_label",
-                "Row_label_source": "Main Power Button Label",
-                "Line_order": "1",
-                "Value_source": "銉°偆銉抽浕婧愩儨銈裤兂",
-                "Model": "JE-1000F",
-                "__line__": "369",
-            },
-        ]
-
-        result = repair_known_spec_master_values(rows)
-        self.assertEqual(21, len(result.applied_repairs))
-        self.assertEqual("HTE154-US", result.repaired_rows[0]["project_code"])
-        self.assertEqual("HTE154-JP", result.repaired_rows[1]["project_code"])
-        self.assertEqual("HTE152-JP", result.repaired_rows[2]["project_code"])
-        self.assertEqual("HTE153-US", result.repaired_rows[3]["project_code"])
-        self.assertEqual("HTE153-JP", result.repaired_rows[4]["project_code"])
-        self.assertEqual("CONTROLS", result.repaired_rows[0]["Section"])
-        self.assertEqual("Main Power Button", result.repaired_rows[0]["Row_label_source"])
-        self.assertEqual("メイン電源ボタン", result.repaired_rows[1]["Value_source"])
-        self.assertEqual((), result.removed_duplicate_lines)
+        self.assertEqual("ENVIRONMENTAL", result.repaired_rows[0]["Section"])
 
     def test_write_rows_csv_and_repairs_csv_should_persist_outputs(self) -> None:
         rows = (
@@ -259,7 +171,6 @@ class TestSpecMasterRepairs(unittest.TestCase):
     def test_build_template_row_key_mapping_rows_should_capture_usage(self) -> None:
         rows = [
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Section": "OUTPUT PORTS",
                 "Section_order": "3",
@@ -268,7 +179,6 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Model": "JE-2000F",
             },
             {
-                "project_code": "HTE154-JP",
                 "Region": "JP",
                 "Section": "OUTPUT PORTS",
                 "Section_order": "3",
@@ -277,7 +187,6 @@ class TestSpecMasterRepairs(unittest.TestCase):
                 "Model": "JE-2000F",
             },
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Section": "INPUT PORTS",
                 "Section_order": "2",
@@ -342,5 +251,4 @@ class TestSpecMasterRepairs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
 

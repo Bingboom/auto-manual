@@ -13,7 +13,6 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_audit_should_detect_section_conflicts_and_row_level_quality_issues(self) -> None:
         rows = [
             {
-                "project_code": "HTE152-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -28,7 +27,6 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "__line__": "2",
             },
             {
-                "project_code": "HTE152-JP",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -43,7 +41,6 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "__line__": "3",
             },
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -58,7 +55,6 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "__line__": "4",
             },
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -73,7 +69,6 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "__line__": "5",
             },
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -88,7 +83,6 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "__line__": "6",
             },
             {
-                "project_code": "HTE152-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -109,7 +103,6 @@ class TestSpecMasterAudit(unittest.TestCase):
 
         self.assertEqual(4, audit.unique_sections)
         self.assertIn("SECTION_ORDER_COLLISION", issue_codes)
-        self.assertIn("PROJECT_REGION_MISMATCH", issue_codes)
         self.assertIn("ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT", issue_codes)
         self.assertIn("SUSPECT_TEMPLATE_VALUE", issue_codes)
         self.assertIn("EXACT_DUPLICATE_ROW", issue_codes)
@@ -121,10 +114,10 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_cli_report_helpers_should_write_csv_and_markdown_outputs(self) -> None:
         csv_text = "\n".join(
             [
-                "project_code,Region,Source_lang,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
-                "HTE154-US,US,en,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,Main POWER Button???,JE-2000F",
-                "HTE154-US,US,en,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,-20C to 45C,JE-2000F",
-                "HTE154-US,US,en,TRUE,specifications,ENVIRONMENTAL,4,humidity,鍕曚綔婀垮害,1,0~60% RH,JE-2000E",
+                "Region,Source_lang,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
+                "US,en,TRUE,specifications,TEMPLATE VARS,99,tpl_main_power_button_label,Main Power Button Label,1,Main POWER Button???,JE-2000F",
+                "US,en,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,charging_temperature,Charging Temperature,1,-20C to 45C,JE-2000F",
+                "US,en,TRUE,specifications,ENVIRONMENTAL,4,humidity,鍕曚綔婀垮害,1,0~60% RH,JE-2000E",
             ]
         )
 
@@ -157,7 +150,6 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_audit_should_flag_east_asian_text_in_latin_source_region(self) -> None:
         rows = [
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -181,7 +173,6 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_audit_should_allow_chinese_source_text_for_cn_region(self) -> None:
         rows = [
             {
-                "project_code": "HTE154-CN",
                 "Region": "CN",
                 "Source_lang": "zh",
                 "Is_Latest": "TRUE",
@@ -203,7 +194,6 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_normalization_should_replace_section_and_collect_anomaly_rows(self) -> None:
         rows = [
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -218,7 +208,6 @@ class TestSpecMasterAudit(unittest.TestCase):
                 "__line__": "4",
             },
             {
-                "project_code": "",
                 "Region": "US",
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
@@ -252,7 +241,6 @@ class TestSpecMasterAudit(unittest.TestCase):
     def test_write_csv_should_emit_normalized_outputs_with_metadata_columns(self) -> None:
         rows = (
             {
-                "project_code": "HTE154-US",
                 "Region": "US",
                 "Section": "ENVIRONMENTAL",
                 "Section_original": "ENVIRONMENTAL OPERATING TEMPERATURE",
@@ -278,4 +266,3 @@ class TestSpecMasterAudit(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
