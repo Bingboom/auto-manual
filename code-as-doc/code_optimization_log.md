@@ -108,7 +108,7 @@ Main outcomes:
 - consolidated to shared family configs:
   - [`config.yaml`](../config.yaml)
   - [`config.ja.yaml`](../config.ja.yaml)
-  - [`config.eu.yaml`](../config.eu.yaml)
+- active family configs are now centered on US / JP shared configs instead of per-model files
 - moved per-target differences to CLI target selection and phase1 data
 
 Why it mattered:

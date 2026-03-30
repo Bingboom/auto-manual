@@ -22,7 +22,6 @@ That means:
 Shared page templates:
 
 - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
-- [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
 - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 
 These files define normal page heading structure and placeholder-bearing page text.
@@ -135,7 +134,7 @@ Change the actual heading text:
 
 Change the document title shown in Word:
 
-- [`config.yaml`](../config.yaml), [`config.ja.yaml`](../config.ja.yaml), or [`config.eu.yaml`](../config.eu.yaml)
+- [`config.yaml`](../config.yaml) or [`config.ja.yaml`](../config.ja.yaml)
 - usually via `build.word_title`
 
 ## 7. Common Mistakes

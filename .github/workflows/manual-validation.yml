@@ -70,17 +70,3 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Run check (JP)
         run: python build.py check --config config.ja.yaml --model JE-1000F --region JP
-
-  check-eu:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-      - name: Run check (EU)
-        run: python build.py check --config config.eu.yaml --model JE-1000F --region EU

@@ -5,7 +5,7 @@
   "page_manifest": "docs/manifests/manual_jp.yaml",
   "spec_master": {
     "path": "data/phase1/Spec_Master.csv",
-    "sha256": "67ed4a8c751e48d188f1609d82c155578b87cf46b1578c8fcf898b32f598bd27"
+    "sha256": "67f218d49563426d24123419299d07c417b669ca13db089bb98690015a731136"
   },
   "recipe_ids": [
     "03_product_overview",
@@ -22,7 +22,7 @@
     "docs/_build/JE-1000F/JP/rst/page/04_lcd_display_placeholder.rst",
     "docs/_build/JE-1000F/JP/rst/page/05_operation_guide_placeholder.rst",
     "docs/_build/JE-1000F/JP/rst/page/06_ups_mode.rst",
-    "docs/_build/JE-1000F/JP/rst/page/07_expansion_battery_pack.rst",
+    "docs/_build/JE-1000F/JP/rst/page/charging.rst",
     "docs/_build/JE-1000F/JP/rst/page/08_charging_methods.rst",
     "docs/_build/JE-1000F/JP/rst/page/10_troubleshooting.rst",
     "docs/_build/JE-1000F/JP/rst/page/spec_ja.rst",
@@ -33,7 +33,6 @@
     "docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/03_product_overview_ja.rst",
     "docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/05_operation_guide_ja.rst",
     "docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/12_app_setup_ja.rst",
-    "docs/_build/JE-1000F/JP/rst/generated/JE-1000F/safety_ja.rst",
     "docs/_build/JE-1000F/JP/rst/generated/JE-1000F/spec_ja.rst"
   ]
 }

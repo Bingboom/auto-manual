@@ -1,4 +1,4 @@
-{
+﻿{
   "generated_at": "2026-03-20T17:31:14.872971+00:00",
   "git_sha": "8deb2b3c579a6ad435e5c18560c9814909e3ac34",
   "model": "JE-1000F",
@@ -14,7 +14,7 @@
     "page/04_lcd_display_placeholder.rst",
     "page/05_operation_guide_placeholder.rst",
     "page/06_ups_mode.rst",
-    "page/07_expansion_battery_pack.rst",
+    "page/charging.rst",
     "page/08_charging_methods.rst",
     "page/09_storage_and_maintenance.rst",
     "page/10_troubleshooting.rst",
@@ -65,3 +65,4 @@
     "page/symbols_en.rst"
   ]
 }
+

@@ -1,4 +1,4 @@
-.. include:: page/cover_jp.rst
+﻿.. include:: page/cover_jp.rst
 
 .. include:: page/safety_ja.rst
 
@@ -16,7 +16,7 @@
 
 .. include:: page/06_ups_mode.rst
 
-.. include:: page/07_expansion_battery_pack.rst
+.. include:: page/charging.rst
 
 .. include:: page/10_troubleshooting.rst
 
@@ -25,4 +25,5 @@
 .. include:: page/11_warranty.rst
 
 .. include:: page/12_app_setup_placeholder.rst
+
 

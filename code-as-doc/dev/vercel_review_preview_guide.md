@@ -158,7 +158,7 @@ Vercel should not be used as a required merge-gating check for this repo.
 
 Current first-phase target:
 
-- `JE-1000F` workspace with `US`, `JP`, and `EU` families when those `_review` roots exist
+- `JE-1000F` workspace with `US` and `JP` families when those `_review` roots exist
 
 Later expansion can add:
 

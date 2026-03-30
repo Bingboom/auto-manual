@@ -452,7 +452,7 @@ class TestCheckDocs(unittest.TestCase):
                         "required_spec_keys:",
                         "  default:",
                         "    - battery_capacity",
-                        "allowed_regions: [EU]",
+                        "allowed_regions: [JP]",
                     ]
                 )
                 + "\n",
@@ -940,4 +940,3 @@ class TestCheckDocs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

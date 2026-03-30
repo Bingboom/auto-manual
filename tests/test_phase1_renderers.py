@@ -490,7 +490,7 @@ class TestPhase1Renderers(unittest.TestCase):
         blocks[0]["Region"] = "US"
         blocks[0]["Model"] = "JE-1000F"
         blocks[0]["text_en"] = "US JE-1000F warning."
-        blocks[1]["Region"] = "EU"
+        blocks[1]["Region"] = "JP"
         blocks[1]["Model"] = "JE-9999X"
         blocks[1]["text_en"] = "SHOULD_NOT_RENDER"
         out = renderers.render_symbols_page(

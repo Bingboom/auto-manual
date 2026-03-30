@@ -38,7 +38,7 @@ REQUIRED_PREVIEW_FILES = (
     "generated/changes.json",
     "generated/workspace.json",
 )
-FAMILY_ORDER = ("US", "JP", "EU")
+FAMILY_ORDER = ("US", "JP")
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Spanish",
@@ -68,12 +68,10 @@ WORKSPACE_TARGETS: tuple[WorkspaceTarget, ...] = (
     WorkspaceTarget(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
     WorkspaceTarget(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
     WorkspaceTarget(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
-    WorkspaceTarget(family="EU", language="en", config="config.eu.yaml", include_lang_in_output_path=False),
 )
 FAMILY_DIFF_CONFIGS = {
     "US": "config.us-en.yaml",
     "JP": "config.ja.yaml",
-    "EU": "config.eu.yaml",
 }
 
 

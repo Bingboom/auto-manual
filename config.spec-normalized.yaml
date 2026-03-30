@@ -70,7 +70,7 @@ pages:
 
 - type: rst_include
   lang: en
-  file: templates/page_us-en/07_expansion_battery_pack.rst
+  file: templates/page_us-en/charging.rst
 
 - type: rst_include
   lang: en

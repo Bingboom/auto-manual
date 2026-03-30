@@ -23,7 +23,7 @@ class TestTargetResolution(unittest.TestCase):
         }
 
     def test_build_docs_should_prefer_explicit_model_and_region(self) -> None:
-        cfg = {"build": {"default_model": "M-OLD", "default_region": "EU"}}
+        cfg = {"build": {"default_model": "M-OLD", "default_region": "JP"}}
         self.assertEqual("M-NEW", build_docs.resolve_build_model(cfg, "M-NEW"))
         self.assertEqual("US", build_docs.resolve_build_region(cfg, "US"))
 
@@ -797,4 +797,3 @@ class TestTargetResolution(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

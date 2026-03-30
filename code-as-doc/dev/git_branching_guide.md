@@ -245,7 +245,6 @@ If you use legacy branch protection, create the equivalent branch protection rul
   - `Manual Validation / doctor-en (pull_request)`
   - `Manual Validation / check-en (pull_request)`
   - `Manual Validation / check-jp (pull_request)`
-  - `Manual Validation / check-eu (pull_request)`
 - Require linear history: `ON`
 - Allow force pushes: `OFF`
 - Allow deletions: `OFF`

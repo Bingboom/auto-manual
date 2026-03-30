@@ -13,15 +13,9 @@ It is not:
 
 Use these docs for those topics:
 
-<<<<<<< HEAD
-- [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
-- [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
-- [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
-=======
 - current workflow and editing surfaces: [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 - current command semantics: [`build_doc_guide.md`](build_doc_guide.md)
 - long-term strategy: [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
->>>>>>> b54eb65626551c58f46d42155d37e0d09e8c775e
 
 ## 2. Primary Module Boundaries
 

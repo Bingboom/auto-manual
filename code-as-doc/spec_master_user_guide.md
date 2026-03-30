@@ -9,7 +9,7 @@ It is meant to serve two audiences at the same time:
 - developers who need the implementation details that keep the current flow maintainable
 
 For the future canonical data model and CMS-direction schema boundary, see [`architecture/Content_Data_Model.md`](architecture/Content_Data_Model.md).
-For current JP / US / EU family differences and what must remain family-specific, see [`manual_family_guide.md`](manual_family_guide.md).
+For current JP / US family differences and what must remain family-specific, see [`manual_family_guide.md`](manual_family_guide.md).
 
 ## 1. Which File To Edit For Which Data
 
@@ -257,7 +257,7 @@ Maint_key = Model | Region | normalized(Page) | Row_key | normalized(Slot_key) |
 Normalization rule:
 
 - `Model`: trim spaces and keep the build target value, for example `JE-1000F`
-- `Region`: trim spaces and use the canonical region token, for example `US`, `JP`, `EU`
+- `Region`: trim spaces and use the canonical region token, for example `US`, `JP`
 - `Page`: split by comma, trim each token, lowercase for comparison, sort the tokens, then join with `+`
 - `Row_key`: lowercase snake_case semantic key such as `cell_chemistry` or `ac_output`
 - `Slot_key`: trim spaces, lowercase, keep blank for visible spec rows
@@ -567,7 +567,6 @@ Use the shared family configs:
 
 - `config.yaml` for US family flow
 - `config.ja.yaml` for JP family flow
-- `config.eu.yaml` for EU family flow
 
 Do not create one config per model just because the model changed.
 
@@ -595,7 +594,6 @@ Logic or data validation:
 python -m unittest
 python build.py check --config config.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
-python build.py check --config config.eu.yaml --model JE-1000F --region EU
 ```
 
 Review sync:

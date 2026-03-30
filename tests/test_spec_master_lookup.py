@@ -25,11 +25,11 @@ class TestSpecMasterLookup(unittest.TestCase):
                 "Model": "JHP-2000A",
             },
             {
-                "Region": "EU",
+                "Region": "JP",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Row_key": "product_name",
-                "Value_source": "Jackery HomePower 2000 Plus EU",
+                "Value_source": "Jackery HomePower 2000 Plus JP",
                 "Model": "JHP-2000A",
             },
             {
@@ -295,4 +295,3 @@ class TestSpecMasterLookup(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
