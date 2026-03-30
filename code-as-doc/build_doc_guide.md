@@ -147,6 +147,12 @@ If you update any of these:
 - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
 - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 
+JP safety note:
+
+- the JP manual now maintains safety prose in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml)
+- edit that template file when the JP safety page needs copy/layout changes
+- keep using [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) for CSV-backed safety pages in the other families
+
 `symbols_blocks.csv` note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon

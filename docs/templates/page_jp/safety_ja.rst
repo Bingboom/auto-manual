@@ -1,7 +1,3 @@
-.. raw:: latex
-
-   \HBApplyLang{ja}
-
 .. only:: latex
 
    .. raw:: latex

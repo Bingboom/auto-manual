@@ -3,11 +3,9 @@ pages:
   - type: rst_include
     lang: ja
     file: templates/page_jp/cover_jp.rst
-  - type: csv_page
-    source: phase1
-    page: safety
-    langs: [ja]
-    include_dir: generated/{model}
+  - type: rst_include
+    lang: ja
+    file: templates/page_jp/safety_ja.rst
   - type: rst_include
     lang: ja
     file: templates/page_jp/01_meaning_of_symbols.rst
