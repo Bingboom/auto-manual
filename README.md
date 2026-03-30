@@ -48,6 +48,13 @@ python3 build.py check --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
 
+Dedicated zh bundle example:
+
+```bash
+python3 build.py check --config config.zh.yaml --model JE-2000E --region CN
+python3 build.py all --config config.zh.yaml --model JE-2000E --region CN
+```
+
 Batch export example:
 
 ```powershell
@@ -133,6 +140,7 @@ Use the document that owns the topic:
 - [`build.py`](build.py): top-level CLI entrypoint
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
+- [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
 - [`data/phase1/`](data/phase1): current operational CSV snapshot inputs
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`docs/_review/`](docs/_review): target-specific review layer

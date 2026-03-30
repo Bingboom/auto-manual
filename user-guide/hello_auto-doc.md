@@ -379,6 +379,7 @@ Config scope rule:
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
+- [`config.zh.yaml`](../config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 - the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US` and `JE-1000F / JP`
 - do not create a new config only because the model changed; pass `--model` and `--region` instead
 - create a new config only when the page stack, template family, or output conventions are genuinely different
@@ -393,6 +394,7 @@ python build.py review --config config.us-en.yaml --model JE-1000F --region US -
 python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US
 python build.py check --config config.us-en.yaml --model JE-1000F --region US
 python build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.zh.yaml --model JE-2000E --region CN
 python build.py rst --config config.yaml
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.ja.yaml --model JE-2000F --region JP

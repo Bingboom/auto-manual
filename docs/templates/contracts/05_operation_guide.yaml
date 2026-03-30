@@ -4,6 +4,7 @@ source_files:
   - templates/page_us-es/05_operation_guide_placeholder.rst
   - templates/page_us-fr/05_operation_guide_placeholder.rst
   - templates/page_jp/05_operation_guide_placeholder.rst
+  - templates/page_zh/05_operation_guide_placeholder.rst
 required_placeholders:
   default:
     - DEFAULT_STANDBY_DURATION

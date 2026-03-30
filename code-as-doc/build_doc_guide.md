@@ -76,6 +76,7 @@ Current shared config families:
 - [`config.yaml`](../config.yaml): shared EN / US template family
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
+- [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 
 Page-stack note:
 
@@ -158,7 +159,7 @@ Parallel-language template note:
 
 - for manually maintained parallel-language prose templates, treat the source-language page as the structure owner
 - when that source-language page changes shared headings, section order, placeholders, includes, or `.. only::` model gates, update the derived-language counterparts in the same change before review/build
-- current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, and `page_us-fr`
+- current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, `page_us-fr`, and `page_zh`
 
 `symbols_blocks.csv` note:
 
@@ -217,6 +218,7 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py html --config config.ja.yaml --model JE-1000F --region JP
 python build.py word --config config.ja.yaml --model JE-1000F --region JP
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+python build.py all --config config.zh.yaml --model JE-2000E --region CN
 ```
 
 `check` now also catches stale foreign model names and contract-required spec keys, required page-value selectors, and assets.
