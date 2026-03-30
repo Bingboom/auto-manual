@@ -176,7 +176,6 @@ def load_word_context(
     build_paths = BuildPaths(
         root=base_paths.root,
         page_registry=base_paths.page_registry,
-        content_blocks=base_paths.content_blocks,
         template_dir=base_paths.template_dir,
         output_dir=phase1_output_dir or base_paths.output_dir,
         spec_master_csv=spec_master_csv,
