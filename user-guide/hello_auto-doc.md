@@ -99,6 +99,8 @@ Rules:
 - Before review starts, use template/data to create the first draft.
 - After review starts, use [`docs/_review/...`](../docs/_review/) as the daily editing surface for that target.
 - Edit templates only when the change should be shared by multiple manuals.
+- For manually maintained parallel-language template pages, keep one source-language template as the structure owner and update the derived-language templates in the same change when shared headings, section order, placeholder sets, includes, or `.. only::` model gates change.
+- Current example: if `charging.rst` changes in the source-language family template, keep the same battery-pack `.. only:: model_je_2000e` block boundary in the corresponding derived-language templates instead of updating only one language.
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
@@ -215,6 +217,12 @@ Edit these when the change should be shared across products or when creating the
 
 - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
 - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
+
+Parallel-language template rule:
+
+- `docs/templates/page_us-en/*.rst` is the current source-language structure owner for manually maintained US prose templates.
+- `docs/templates/page_us-es/*.rst` and `docs/templates/page_us-fr/*.rst` are derived-language counterparts and must be updated in the same round when the source-language page changes shared section structure or `.. only::` gating.
+- JP currently has only `ja`, so there is no second JP derived-language template to mirror today, but any future JP derived-language page should follow the same rule.
 
 Edit these when safety/spec parameters change:
 

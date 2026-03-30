@@ -94,6 +94,10 @@ Operational rule:
 
 - the active source families are JP and US
 - when a family-specific source document changes, update that family's data and templates before treating the output as final
+- within one family, keep the source-language template as the semantic structure owner for manually maintained parallel-language prose pages
+- when that source-language page changes shared headings, section order, placeholders, includes, or `.. only::` model gates, update the derived-language family pages in the same change so the structure stays aligned across languages
+- current example: if the US source `charging.rst` changes its JE-2000E battery-pack `.. only::` block, mirror the same gated block boundary in the ES and FR `charging.rst` pages
+- JP currently has only `ja`, so there is no JP derived-language mirror step today
 
 ## 6. Future Table-Driven Direction
 

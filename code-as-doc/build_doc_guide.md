@@ -153,6 +153,12 @@ Safety page note:
 - the detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
 - the old `content_blocks.csv` safety source has been removed from the active repo flow
 
+Parallel-language template note:
+
+- for manually maintained parallel-language prose templates, treat the source-language page as the structure owner
+- when that source-language page changes shared headings, section order, placeholders, includes, or `.. only::` model gates, update the derived-language counterparts in the same change before review/build
+- current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, and `page_us-fr`
+
 `symbols_blocks.csv` note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon
