@@ -150,7 +150,8 @@ If you update any of these:
 JP safety note:
 
 - the JP manual now maintains safety prose in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml)
-- edit that template file when the JP safety page needs copy/layout changes
+- edit that template file when the JP safety intro page needs copy/layout changes
+- the detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
 - keep using [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) for CSV-backed safety pages in the other families
 
 `symbols_blocks.csv` note:

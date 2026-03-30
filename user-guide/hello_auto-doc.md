@@ -72,7 +72,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, safety/spec content, and placeholder values
-   - JP safety page prose is maintained in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml); `content_blocks.csv` still drives CSV-backed safety pages for the other families
+   - JP safety page prose is maintained in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml); it is only the short safety intro, while detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). `content_blocks.csv` still drives CSV-backed safety pages for the other families
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns for each region; use English for `US/EU`, Japanese for `JP`, and Chinese for `CN`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
@@ -228,6 +228,7 @@ Edit these when safety/spec parameters change:
 JP safety exception:
 
 - edit [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) when the Japanese safety page itself needs copy or layout changes
+- edit [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst) when the detailed Japanese safety warnings need changes
 - keep using [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) for shared CSV-backed safety content in the other families
 
 Edit these during target review and final polish:
@@ -263,7 +264,8 @@ Primary inputs:
 JP manual exception:
 
 - [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml) now includes [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) directly
-- edit that template when JP safety copy/layout must change
+- edit that template when the JP safety intro page must change
+- the detailed JP warning content remains in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
 - keep the CSV-generated safety flow for families that still use `csv_page`
 
 Generated bundle output:
