@@ -1,8 +1,8 @@
 使い方
 ======
 
-|MAIN_POWER_BUTTON_LABEL| オン/オフ
------------------
+主電源ボタン オン/オフ
+----------------------
 
 .. image:: templates/word_template/common_assets/operation/main_power.png
    :alt: Main power operation diagram.
@@ -23,7 +23,7 @@
 AC出力のオン/オフ
 -----------------
 
-● 前提：|MAIN_POWER_BUTTON_LABEL|がオンになっていることを確認してください。
+● **前提：** 主電源ボタンがオンになっていることを確認してください。
 
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output operation diagram.
@@ -43,7 +43,7 @@ AC出力のオン/オフ
 
 自動識別：お客様のお住まいの地域に応じて周波数を自動的に識別し、対応する出力に自動調整されます。
 
-手動調整：AC出力がオンの状態で、|AC_POWER_BUTTON_LABEL|を5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
+手動調整：AC出力がオンの状態で、AC出力ボタンを5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
 
 .. image:: templates/word_template/common_assets/operation/frequency_switch.png
    :alt: Frequency switch diagram.
@@ -52,7 +52,7 @@ AC出力のオン/オフ
 USB/カーポート出力オン/オフ
 ---------------------------
 
-● 前提：|MAIN_POWER_BUTTON_LABEL|がオンになっていることを確認してください。
+● **前提：** 主電源ボタンがオンになっていることを確認してください。
 
 .. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: DC and USB output operation diagram.
@@ -69,12 +69,12 @@ USB/カーポート出力オン/オフ
 **ご注意**
 
 - |USB_C_HIGH_POWER_PORT_LABEL|は、USB-PD Power Source 3（PS3）の高出力ポートです。接続されたユーザーデバイスまたはアクセサリーが安全基準を満たしていない場合、火災の危険性があります。これらのポートを使用する前に、接続するデバイスまたはアクセサリーに耐火安全保護が備わっていることを確認してください。
-- |PRODUCT_NAME| は、IEC/EN/UL 62368-1（または同等の規格）の6.3、6.4、6.5条に準拠したデバイスまたはアクセサリーのみに接続してください。
-- 最大出力を得るためには、公式の|USB_C_HIGH_POWER_CABLE_NAME|（20V DC/5A、100W）を使用してください。
+- Jackery ポータブル電源 1000 Newは、IEC/EN/UL 62368-1（または同等の規格）の6.3、6.4、6.5条に準拠したデバイスまたはアクセサリーのみに接続してください。
+- 最大出力を得るためには、USB-C to USB-C 5Aケーブル（20V DC/5A、100W）を使用してください。
 
-本製品は、別売の|CAR_BATTERY_CHARGING_CABLE_NAME|を使用することで、車のバッテリーへの充電が可能です。
+本製品は、別売のJackery 12V 自動車用バッテリー充電ケーブルを使用することで、車のバッテリーへの充電が可能です。
 
-※ |CAR_BATTERY_CHARGING_CABLE_NAME|は付属しておりません。Jackery公式サイトよりお求めいただけます。
+※ Jackery 12V 自動車用バッテリー充電ケーブルは付属しておりません。Jackery公式サイトよりお求めいただけます。
 
 **ご注意**
 
@@ -85,7 +85,7 @@ USB/カーポート出力オン/オフ
 省エネモード
 ------------
 
-省エネモードは、出力ボタンの消し忘れによる無駄なバッテリー消耗を防ぐための機能で、初期設定ではオンになっています。AC出力が|ENERGY_SAVING_AC_THRESHOLD|以下、またはDC/USB出力が|ENERGY_SAVING_DC_THRESHOLD|以下の状態が|ENERGY_SAVING_AUTO_OFF_DURATION|続くと、自動的に出力がオフになります。ACまたはDC/USB出力がオンの状態では、画面に省エネアイコンが表示されます。アイコンの表示時間は、設定された省エネ時間に応じて変わります。
+省エネモードは、出力ボタンの消し忘れによる無駄なバッテリー消耗を防ぐための機能で、初期設定ではオンになっています。AC出力が|ENERGY_SAVING_AC_THRESHOLD|以下、またはDC/USB出力が|ENERGY_SAVING_DC_THRESHOLD|以下の状態が|ENERGY_SAVING_AUTO_OFF_DURATION|続くと、自動的に出力がオフになります。ACまたはDC/USB出力がオンの状態では、画面に省エネアイコンが表示されます。アイコンの表示時間は、設定された省エネ時間に応じて変わります。省エネ時間は、Jackeryアプリで2H、8H、12H、24Hに設定できます。「オフにしない」に設定すると、省エネモードは無効になります。
 
 .. list-table::
    :header-rows: 1
@@ -103,7 +103,7 @@ USB/カーポート出力オン/オフ
 
 ※ 交流|ENERGY_SAVING_AC_THRESHOLD|および直流|ENERGY_SAVING_DC_THRESHOLD|以下の低消費電力機器をご使用の場合、出力が途中で自動的にオフにならないように、省エネモードをオフにしてください。省エネモードをオフにすると、画面上の省エネアイコンは表示されなくなります。
 
-|AC_POWER_BUTTON_LABEL|がオンの状態で、|AC_POWER_BUTTON_LABEL|と|MAIN_POWER_BUTTON_LABEL|を同時に長押しし、省エネアイコンの表示（オン）/ 非表示（オフ）が切り替わるまで押し続けてください。
+AC出力ボタンがオンの状態で、AC出力ボタンと主電源ボタンを同時に長押しし、省エネアイコンの表示（オン）/ 非表示（オフ）が切り替わるまで押し続けてください。
 
 .. image:: templates/word_template/common_assets/operation/energy_saving.png
    :alt: Energy saving mode diagram.
@@ -144,11 +144,11 @@ LCDスクリーン
           :width: 140px
      - 短くオン
      - オンにする
-     - |MAIN_POWER_BUTTON_LABEL|を押すか、充電入力がある場合。
+     - 主電源ボタンを押すか、充電入力がある場合。
    * -
      - 短くオン
      - オフにする
-     - |MAIN_POWER_BUTTON_LABEL|を押します。
+     - 主電源ボタンを押します。
    * -
      - 短くオン
      - 自動オフ
@@ -156,11 +156,11 @@ LCDスクリーン
    * -
      - 常時オン
      - オンにする
-     - デバイスが起動している状態で|MAIN_POWER_BUTTON_LABEL|を2回押します。
+     - デバイスが起動している状態で主電源ボタンを2回押します。
    * -
      - 常時オン
      - オフにする
-     - |MAIN_POWER_BUTTON_LABEL|を押します。
+     - 主電源ボタンを押します。
    * -
      - 常時オン
      - 自動オフ
@@ -178,12 +178,15 @@ Jackeryアプリで画面表示モードを設定することもできます。
    * - ボタン
      - 操作
      - 機能
-   * - |MAIN_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL|
+   * - 主電源ボタン + AC出力ボタン
      - 両方を3秒間長押し
      - 省エネモードのオン/ オフを切り替えます。
-   * - {{snippet:wireless_reset_buttons}}
+   * - 主電源ボタン + DC/USB出力ボタン
      - 両方を3秒間長押し
      - Wi-Fiのリセット
-   * - {{snippet:wireless_toggle_buttons}}
+   * - AC出力ボタン + USB出力ボタン
      - 両方を1秒間長押し
      - Wi-Fi＆Bluetooth オン/オフ
+   * - 主電源ボタン + ライトボタン
+     - 両方を1秒間長押し
+     - 緊急充電モードのオン/オフを切り替えます。

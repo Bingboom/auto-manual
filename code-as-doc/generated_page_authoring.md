@@ -29,8 +29,9 @@ This repo now supports two authoring paths for manual pages:
 ## Draft recipe rules
 
 - Keep `page_id` aligned with the `generated_page.page` value in the manifest.
-- Put required Spec_Master dependencies in `required_row_keys`.
-- Use `field_map` when the placeholder name and the source row key are not the same concern.
+- Put extra non-`field_map` Spec_Master dependencies in `required_row_keys`.
+- Use structured `field_map` selectors for page values, for example `row_key + pages + usage_type + placement_key + value_role + variant_key`.
+- `field_map` bindings with no `default` are validated directly during render and `check`.
 - Put reusable copy or button combinations into snippet files instead of duplicating them in multiple templates.
 
 ## Snippet rules

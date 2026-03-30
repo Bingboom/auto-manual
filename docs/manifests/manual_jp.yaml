@@ -3,17 +3,12 @@ pages:
   - type: rst_include
     lang: ja
     file: templates/page_jp/cover_jp.rst
-  - type: csv_page
-    source: phase1
-    page: safety
-    langs: [ja]
-    include_dir: generated/{model}
+  - type: rst_include
+    lang: ja
+    file: templates/page_jp/safety_ja.rst
   - type: rst_include
     lang: ja
     file: templates/page_jp/01_meaning_of_symbols.rst
-  - type: rst_include
-    lang: ja
-    file: templates/page_jp/09_storage_and_maintenance.rst
   - type: rst_include
     lang: ja
     file: templates/page_jp/02_whats_in_the_box.rst
@@ -39,7 +34,10 @@ pages:
     file: templates/page_jp/06_ups_mode.rst
   - type: rst_include
     lang: ja
-    file: templates/page_jp/07_expansion_battery_pack.rst
+    file: templates/page_jp/charging.rst
+  - type: rst_include
+    lang: ja
+    file: templates/page_jp/08_charging_methods.rst
   - type: rst_include
     lang: ja
     file: templates/page_jp/10_troubleshooting.rst

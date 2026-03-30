@@ -25,7 +25,7 @@ The preview package combines:
 Use:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
 Default output:
@@ -131,7 +131,7 @@ Current repo-level Vercel config:
 
 Current first-phase Vercel build target:
 
-- `config.yaml`
+- `config.us-en.yaml`
 - `JE-1000F`
 - `US`
 - `source=review`
@@ -158,7 +158,7 @@ Vercel should not be used as a required merge-gating check for this repo.
 
 Current first-phase target:
 
-- `JE-1000F` workspace with `US`, `JP`, and `EU` families when those `_review` roots exist
+- `JE-1000F` workspace with `US` and `JP` families when those `_review` roots exist
 
 Later expansion can add:
 

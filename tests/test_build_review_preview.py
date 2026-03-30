@@ -1,31 +1,185 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
+import argparse
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest import mock
 
 from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
+        current = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="en",
+            config="config.us-en.yaml",
+            include_lang_in_output_path=True,
+        )
+        es_target = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="es",
+            config="config.us-es.yaml",
+            include_lang_in_output_path=True,
+        )
+        jp_target = build_review_preview.WorkspaceTarget(
+            family="JP",
+            language="ja",
+            config="config.ja.yaml",
+            include_lang_in_output_path=False,
+        )
+        html = """
+<html>
+  <head>
+    <link rel="stylesheet" href="_static/hb_manual.css">
+    <script src="_static/hb_manual.js"></script>
+  </head>
+  <body class="furo hb-manual-switcher-body">
+    <!-- HB_MANUAL_SWITCHER_START -->
+    <div class="hb-manual-switcher">
+      <a class="hb-manual-switcher__lang" href="../../es/html/index.html">Espanol</a>
+      <a class="hb-manual-switcher__lang" href="../../../JP/html/index.html">鏃ユ湰瑾?/a>
+    </div>
+    <!-- HB_MANUAL_SWITCHER_END -->
+    <aside class="sidebar-drawer"><div class="sidebar-tree"></div></aside>
+    <main id="furo-main-content"><h1>Demo</h1></main>
+  </body>
+</html>
+"""
+        root = Path("C:/preview-test")
+
+        def fake_html_root(_: str, target: build_review_preview.WorkspaceTarget) -> Path:
+            mapping = {
+                ("US", "en"): root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html",
+                ("US", "es"): root / "docs" / "_build" / "JE-1000F" / "US" / "es" / "html",
+                ("JP", "ja"): root / "docs" / "_build" / "JE-1000F" / "JP" / "html",
+            }
+            return mapping[(target.family, target.language)]
+
+        with mock.patch.object(build_review_preview, "html_root_for_target", side_effect=fake_html_root):
+            rewritten = build_review_preview.rewrite_manual_switcher_links(
+                html,
+                model="JE-1000F",
+                current_target=current,
+                current_relative_path=Path("index.html"),
+                all_targets=[current, es_target, jp_target],
+            )
+
+        self.assertIn("hb-manual-switcher-body", rewritten)
+        self.assertIn("_static/hb_manual.css", rewritten)
+        self.assertIn("HB_MANUAL_SWITCHER_START", rewritten)
+        self.assertIn('href="../es/index.html"', rewritten)
+        self.assertIn('href="../../JP/ja/index.html"', rewritten)
+
+    def test_build_spec_for_target_should_keep_us_en_on_lang_specific_config_in_review_mode(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="en",
+            config="config.us-en.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(args, target)
+
+        self.assertEqual(build_review_preview.resolve_path("config.us-en.yaml"), spec["config_path"])
+        self.assertEqual("review", spec["source_mode"])
+        self.assertEqual("review", spec["source_label"])
+        self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_build_spec_for_target_should_keep_runtime_fallback_for_us_secondary_languages(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            family="US",
+            language="es",
+            config="config.us-es.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(args, target)
+
+        self.assertEqual(build_review_preview.resolve_path("config.us-es.yaml"), spec["config_path"])
+        self.assertEqual("runtime", spec["source_mode"])
+        self.assertEqual("runtime fallback", spec["source_label"])
+        self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
+        args = argparse.Namespace(
+            config="config.ja.yaml",
+            model="JE-1000F",
+            region="JP",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+        )
+
+        self.assertEqual(
+            build_review_preview.resolve_path("config.us-en.yaml"),
+            build_review_preview.diff_config_for_family(args, "US"),
+        )
+
     def test_copy_report_assets_should_return_stable_relative_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             report_root = Path(td) / "reports"
             changes_dir = Path(td) / "dist" / "changes" / "US"
             downloads_dir = Path(td) / "dist" / "downloads" / "US"
             prefix = "US_HEAD_1_to_HEAD"
-            for file_name in (
-                f"{prefix}_index.html",
-                f"{prefix}.html",
-                f"{prefix}_fields.html",
-                f"{prefix}_pages.html",
-                f"{prefix}_files.html",
+            html_payloads = {
+                f"{prefix}_index.html": (
+                    f'<a href="{prefix}_files.html">Files</a>'
+                    f'<a href="{prefix}_pages.html">Pages</a>'
+                    f'<a href="{prefix}_fields.html">Fields</a>'
+                ),
+                f"{prefix}.html": f'<a href="{prefix}_index.html">Index</a>',
+                f"{prefix}_fields.html": "<p>fields</p>",
+                f"{prefix}_pages.html": "<p>pages</p>",
+                f"{prefix}_files.html": "<p>files</p>",
+            }
+            csv_names = (
                 f"{prefix}.csv",
                 f"{prefix}_pages.csv",
                 f"{prefix}_fields.csv",
                 f"{prefix}_files.csv",
-            ):
+            )
+            for file_name, content in html_payloads.items():
+                target = report_root / file_name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(content, encoding="utf-8")
+            for file_name in csv_names:
                 target = report_root / file_name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("demo", encoding="utf-8")
@@ -62,6 +216,15 @@ class TestBuildReviewPreview(unittest.TestCase):
                 },
                 csv_files,
             )
+            packaged_index = (changes_dir / "report-index.html").read_text(encoding="utf-8")
+            self.assertIn('href="report-files.html"', packaged_index)
+            self.assertIn('href="report-pages.html"', packaged_index)
+            self.assertIn('href="report-fields.html"', packaged_index)
+            self.assertNotIn(f"{prefix}_files.html", packaged_index)
+            self.assertNotIn(f"{prefix}_pages.html", packaged_index)
+            self.assertNotIn(f"{prefix}_fields.html", packaged_index)
+            packaged_summary = (changes_dir / "report-summary.html").read_text(encoding="utf-8")
+            self.assertIn('href="report-index.html"', packaged_summary)
 
     def test_build_change_workbook_should_create_valid_xlsx_with_expected_sheets(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -172,6 +335,38 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertIn('href="../../changes/US/report-pages.html"', change_html)
         self.assertIn('href="../../index.html?family=US&model=JE-1000F&lang=en"', change_html)
 
+    def test_render_changes_home_should_list_available_families(self) -> None:
+        meta = {
+            "title": "JE-1000F Review Preview",
+            "model": "JE-1000F",
+        }
+        families_payload = [
+            {
+                "family": "US",
+                "shared_language_labels": ["English", "Spanish", "French"],
+                "default_manual_url": "manual/US/en/index.html",
+                "change_index_url": "changes/US/index.html",
+                "change_workbook_url": "downloads/US/change-report.xlsx",
+                "models": [{"model": "JE-1000F"}],
+            },
+            {
+                "family": "JP",
+                "shared_language_labels": ["Japanese"],
+                "default_manual_url": "manual/JP/ja/index.html",
+                "change_index_url": "changes/JP/index.html",
+                "change_workbook_url": "downloads/JP/change-report.xlsx",
+                "models": [{"model": "JE-1000F"}],
+            },
+        ]
+
+        html = build_review_preview.render_changes_home_html(meta, families_payload)
+
+        self.assertIn("US family", html)
+        self.assertIn("JP family", html)
+        self.assertIn('href="../changes/US/index.html"', html)
+        self.assertIn('href="../changes/JP/index.html"', html)
+        self.assertIn('href="../downloads/JP/change-report.xlsx"', html)
+
     def test_assert_preview_output_contract_should_require_word_when_enabled(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             output_dir = Path(td)
@@ -241,3 +436,4 @@ class TestBuildReviewPreview(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

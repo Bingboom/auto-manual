@@ -283,6 +283,9 @@ def render_csv_pages(
         spec_footnotes_csv = paths_cfg.get("spec_footnotes_csv")
         if isinstance(spec_footnotes_csv, str):
             cmd += ["--spec-footnotes-csv", spec_footnotes_csv.strip()]
+        spec_notes_csv = paths_cfg.get("spec_notes_csv")
+        if isinstance(spec_notes_csv, str):
+            cmd += ["--spec-notes-csv", spec_notes_csv.strip()]
         spec_titles_csv = paths_cfg.get("spec_titles_csv")
         if isinstance(spec_titles_csv, str):
             cmd += ["--spec-titles-csv", spec_titles_csv.strip()]
@@ -459,6 +462,23 @@ def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
     return [sys.executable, "-m", "sphinx", "-b", builder]
 
 
+def _normalize_sphinx_tag_value(value: str | None) -> str | None:
+    text = (value or "").strip().lower()
+    if not text:
+        return None
+    normalized = re.sub(r"[^a-z0-9]+", "_", text).strip("_")
+    return normalized or None
+
+
+def _sphinx_tag_args(*, model: str | None = None, region: str | None = None, lang: str | None = None) -> list[str]:
+    args: list[str] = []
+    for prefix, value in (("model", model), ("region", region), ("lang", lang)):
+        normalized = _normalize_sphinx_tag_value(value)
+        if normalized:
+            args.extend(["-t", f"{prefix}_{normalized}"])
+    return args
+
+
 def _load_configured_html_theme(conf_base_path: Path) -> str | None:
     if not conf_base_path.exists():
         return None
@@ -624,78 +644,7 @@ def build_manual_switcher_markup(
     variants: list[HtmlManualVariant],
     current_html_path: Path,
 ) -> str | None:
-    effective_variants = _effective_variants_for_current(variants, current_variant=current_variant)
-    if len(effective_variants) <= 1:
-        return None
-
-    grouped: dict[str, list[HtmlManualVariant]] = {}
-    for variant in effective_variants:
-        grouped.setdefault(variant.region.upper(), []).append(variant)
-
-    region_buttons: list[str] = []
-    language_groups: list[str] = []
-    current_region = current_variant.region.upper()
-    current_lang = current_variant.lang.lower()
-
-    for region in sorted(grouped):
-        is_region_active = region == current_region
-        button_class = "hb-manual-switcher__region"
-        if is_region_active:
-            button_class += " is-active"
-        region_buttons.append(
-            (
-                f'<button type="button" class="{button_class}" data-hb-region-button="{html.escape(region)}" '
-                f'aria-pressed="{str(is_region_active).lower()}">{html.escape(region)}</button>'
-            )
-        )
-
-        tokens: list[str] = [
-            (
-                f'<div class="hb-manual-switcher__language-group{" is-active" if is_region_active else ""}" '
-                f'data-hb-region-group="{html.escape(region)}">'
-            ),
-            f'<span class="hb-manual-switcher__group-label">{html.escape(region)}</span>',
-        ]
-        for variant in sorted(grouped[region], key=lambda item: (item.lang.lower(), item.html_dir_token)):
-            label = html.escape(_language_label(variant.lang))
-            target_title = html.escape(variant.title or f"{variant.model} {region} {variant.lang.upper()}")
-            is_current = region == current_region and variant.lang.lower() == current_lang
-            if is_current:
-                tokens.append(
-                    f'<span class="hb-manual-switcher__lang is-active" aria-current="page" title="{target_title}">{label}</span>'
-                )
-                continue
-            href = Path(
-                os.path.relpath(
-                    _resolve_variant_target_page(current_html_path, variant),
-                    start=current_html_path.parent,
-                )
-            ).as_posix()
-            tokens.append(
-                f'<a class="hb-manual-switcher__lang" href="{html.escape(href)}" title="{target_title}">{label}</a>'
-            )
-        tokens.append("</div>")
-        language_groups.append("\n".join(tokens))
-
-    return "\n".join(
-        [
-            SWITCHER_BLOCK_START,
-            (
-                f'<div class="hb-manual-switcher" data-current-region="{html.escape(current_region)}" '
-                f'data-current-lang="{html.escape(current_lang)}" data-model="{html.escape(current_variant.model)}">'
-            ),
-            '  <div class="hb-manual-switcher__inner">',
-            '    <div class="hb-manual-switcher__meta">',
-            '      <span class="hb-manual-switcher__eyebrow">Region / Language</span>',
-            f'      <strong class="hb-manual-switcher__model">{html.escape(current_variant.model)}</strong>',
-            "    </div>",
-            f'    <div class="hb-manual-switcher__regions" aria-label="Available regions">\n{"".join(region_buttons)}\n    </div>',
-            f'    <div class="hb-manual-switcher__languages">\n{"".join(language_groups)}\n    </div>',
-            "  </div>",
-            "</div>",
-            SWITCHER_BLOCK_END,
-        ]
-    )
+    return None
 
 
 def inject_manual_switcher_into_html(html_path: Path, markup: str | None) -> bool:
@@ -834,13 +783,17 @@ def sphinx_build(
     src_dir: Path,
     out_dir: Path,
     conf_dir: Path,
+    model: str | None = None,
+    region: str | None = None,
+    lang: str | None = None,
     minimal_theme: bool = False,
     substitutions: dict[str, str] | None = None,
 ) -> None:
     print(f"[build] Sphinx -> {builder.upper()}")
     out_dir.mkdir(parents=True, exist_ok=True)
     actual_minimal_theme = _should_use_minimal_html_theme(conf_dir, minimal_theme) if builder == "html" else False
-    cmd = _resolve_sphinx_build_cmd(builder) + [str(src_dir), str(out_dir), "-c", str(conf_dir)]
+    cmd = _resolve_sphinx_build_cmd(builder) + _sphinx_tag_args(model=model, region=region, lang=lang)
+    cmd += [str(src_dir), str(out_dir), "-c", str(conf_dir)]
     if builder == "html" and actual_minimal_theme:
         cmd += [
             "-D",
@@ -1175,6 +1128,9 @@ def build_target(
             src_dir=bundle.bundle_dir,
             out_dir=html_out_dir,
             conf_dir=bundle.bundle_dir,
+            model=target_model,
+            region=target_region,
+            lang=target_lang or primary_lang,
             minimal_theme=("html" not in requested_formats and word_source == "html"),
         )
         html_built = True
@@ -1197,6 +1153,9 @@ def build_target(
                     src_dir=bundle.bundle_dir,
                     out_dir=html_out_dir,
                     conf_dir=bundle.bundle_dir,
+                    model=target_model,
+                    region=target_region,
+                    lang=target_lang or primary_lang,
                     minimal_theme=True,
                 )
                 html_built = True
@@ -1211,6 +1170,9 @@ def build_target(
                     src_dir=bundle.bundle_dir,
                     out_dir=latex_out_dir,
                     conf_dir=bundle.bundle_dir,
+                    model=target_model,
+                    region=target_region,
+                    lang=target_lang or primary_lang,
                 )
                 patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
                 compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)
@@ -1235,6 +1197,9 @@ def build_target(
                     src_dir=bundle.bundle_dir,
                     out_dir=latex_out_dir,
                     conf_dir=bundle.bundle_dir,
+                    model=target_model,
+                    region=target_region,
+                    lang=target_lang or primary_lang,
                 )
                 patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
                 compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)

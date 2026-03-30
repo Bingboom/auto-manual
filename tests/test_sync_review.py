@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -55,13 +55,13 @@ class TestSyncReview(unittest.TestCase):
             docs_dir = root / "docs"
             runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
             (runtime_dir / "generated" / "JE-1000F").mkdir(parents=True)
-            (runtime_dir / "generated" / "JE-1000F" / "safety_en.rst").write_text("safety\n", encoding="utf-8")
+            (runtime_dir / "generated" / "JE-1000F" / "spec_en.rst").write_text("spec\n", encoding="utf-8")
 
             cfg = {
                 "build": {"languages": ["en"]},
                 "pages": [
                     {"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"},
-                    {"type": "csv_page", "source": "phase1", "page": "safety", "langs": ["en"], "include_dir": "generated/{model}"},
+                    {"type": "csv_page", "source": "phase1", "page": "spec", "langs": ["en"], "include_dir": "generated/{model}"},
                 ],
             }
 
@@ -75,8 +75,8 @@ class TestSyncReview(unittest.TestCase):
                 page_files=(),
             )
 
-            self.assertIn(Path("generated") / "JE-1000F" / "safety_en.rst", relative_paths)
-            self.assertIn(Path("page") / "safety_en.rst", relative_paths)
+            self.assertIn(Path("generated") / "JE-1000F" / "spec_en.rst", relative_paths)
+            self.assertIn(Path("page") / "spec_en.rst", relative_paths)
             self.assertNotIn(Path("page") / "00_preface.rst", relative_paths)
 
 

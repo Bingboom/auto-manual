@@ -1,0 +1,53 @@
+﻿{
+  "generated_at": "2026-03-26T03:12:28.131535+00:00",
+  "git_sha": "0653b6bf14899e5093fe5a9fd6b9c362716a0e6f",
+  "model": "JE-1000F",
+  "region": "US",
+  "lang": "en",
+  "runtime_bundle_dir": "docs/_build/JE-1000F/US/en/rst",
+  "review_dir": "docs/_review/JE-1000F/US/en",
+  "index_path": "docs/_review/JE-1000F/US/en/index.rst",
+  "page_files": [
+    "page/00_preface.rst",
+    "page/02_whats_in_the_box.rst",
+    "page/03_product_overview_placeholder.rst",
+    "page/04_lcd_display_placeholder.rst",
+    "page/05_operation_guide_placeholder.rst",
+    "page/06_ups_mode.rst",
+    "page/charging.rst",
+    "page/08_charging_methods.rst",
+    "page/09_storage_and_maintenance.rst",
+    "page/10_troubleshooting.rst",
+    "page/11_warranty.rst",
+    "page/12_app_setup_placeholder.rst",
+    "page/safety_en.rst",
+    "page/spec_en.rst",
+    "page/symbols_en.rst"
+  ],
+  "generated_files": [
+    "generated/JE-1000F/safety_en.rst",
+    "generated/JE-1000F/spec_en.rst",
+    "generated/JE-1000F/symbols_en.rst"
+  ],
+  "override_files": [
+    "docs/_review/JE-1000F/US/en/overrides/README.md"
+  ],
+  "page_manifest": null,
+  "recipe_ids": [],
+  "snippet_ids": [],
+  "spec_master": {
+    "path": "data/phase1/Spec_Master.csv",
+    "sha256": "8ffef92131e8f24d4be84ac746add70dfbc8c5073656257d35f3871831283f9e"
+  },
+  "last_synced_at": "2026-03-28T08:13:58.485237+00:00",
+  "last_sync_scope": "generated",
+  "last_sync_files": [
+    "generated/JE-1000F/safety_en.rst",
+    "generated/JE-1000F/spec_en.rst",
+    "generated/JE-1000F/symbols_en.rst",
+    "page/safety_en.rst",
+    "page/spec_en.rst",
+    "page/symbols_en.rst"
+  ]
+}
+

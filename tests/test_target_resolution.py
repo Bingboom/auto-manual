@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -16,14 +16,14 @@ class TestTargetResolution(unittest.TestCase):
             "pages": [
                 {
                     "type": "csv_page",
-                    "page": "safety",
+                    "page": "spec",
                     "include_dir": "generated/{model}/{region}",
                 }
             ],
         }
 
     def test_build_docs_should_prefer_explicit_model_and_region(self) -> None:
-        cfg = {"build": {"default_model": "M-OLD", "default_region": "EU"}}
+        cfg = {"build": {"default_model": "M-OLD", "default_region": "JP"}}
         self.assertEqual("M-NEW", build_docs.resolve_build_model(cfg, "M-NEW"))
         self.assertEqual("US", build_docs.resolve_build_region(cfg, "US"))
 
@@ -110,7 +110,7 @@ class TestTargetResolution(unittest.TestCase):
             model="JHP-2000A",
             region="US",
         )
-        self.assertIn(".. include:: page/safety_en.rst", text)
+        self.assertIn(".. include:: page/spec_en.rst", text)
 
     def test_gen_index_should_reject_unsupported_sku_token(self) -> None:
         cfg = self._tokenized_cfg()
@@ -170,20 +170,47 @@ class TestTargetResolution(unittest.TestCase):
                     src_dir=conf_dir,
                     out_dir=out_dir,
                     conf_dir=conf_dir,
+                    model="JE-2000E",
+                    region="US",
+                    lang="en",
                 )
 
         self.assertEqual(1, len(seen))
+        self.assertEqual(["-t", "model_je_2000e", "-t", "region_us", "-t", "lang_en"], seen[0][3:9])
         self.assertIn("html_theme=alabaster", seen[0])
         self.assertNotIn("html_css_files=[]", seen[0])
         self.assertNotIn("html_js_files=[]", seen[0])
+
+    def test_sphinx_build_should_add_tags_for_latex(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            conf_dir = root / "conf"
+            out_dir = root / "out"
+            conf_dir.mkdir()
+            seen: list[list[str]] = []
+
+            with mock.patch.object(build_docs, "_resolve_sphinx_build_cmd", return_value=["sphinx-build", "-b", "latex"]), \
+                mock.patch.object(build_docs, "run", side_effect=lambda cmd, cwd=None: seen.append(cmd)):
+                build_docs.sphinx_build(
+                    "latex",
+                    src_dir=conf_dir,
+                    out_dir=out_dir,
+                    conf_dir=conf_dir,
+                    model="JE-1000F",
+                    region="JP",
+                    lang="ja",
+                )
+
+        self.assertEqual(1, len(seen))
+        self.assertEqual(["-t", "model_je_1000f", "-t", "region_jp", "-t", "lang_ja"], seen[0][3:9])
 
     def test_resolve_product_name_for_build_should_read_from_spec_master(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             spec_master_csv = Path(td) / "Spec_Master.csv"
             spec_master_csv.write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en,Value_ja\n"
-                "GENERAL INFO,product_name,1,spec,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2,\n"
-                "GENERAL INFO,product_name,1,spec,JE-2000F,Japan,1,1,,Jackery ポータブル電源 2000 New\n",
+                "Section,Row_key,Slot_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
+                "GENERAL INFO,product_name,,1,spec,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2,\n"
+                "GENERAL INFO,product_name,,1,spec,JE-2000F,Japan,1,1,Jackery \u30dd\u30fc\u30bf\u30d6\u30eb\u96fb\u6e90 2000 New\n",
                 encoding="utf-8",
             )
             cfg = {"paths": {"spec_master_csv": str(spec_master_csv)}}
@@ -212,10 +239,10 @@ class TestTargetResolution(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             spec_master_csv = Path(td) / "Spec_Master.csv"
             spec_master_csv.write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
-                "GENERAL INFO,product_name,1,specifications,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2\n"
-                "GENERAL INFO,model_no,1,specifications,JHP-2000A,US,1,1,JHP-2000A\n"
-                "TEMPLATE VARS,tpl_main_power_button_label,1,specifications,JHP-2000A,US,1,1,Main POWER Button\n",
+                "Section,Row_key,Slot_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
+                "GENERAL INFO,product_name,,1,specifications,JHP-2000A,US,1,1,Jackery HomePower 2000 Plus v2\n"
+                "GENERAL INFO,model_no,,1,specifications,JHP-2000A,US,1,1,JHP-2000A\n"
+                "CONTROLS,main_power_button,label,1,Product overview,JHP-2000A,US,1,1,Main POWER Button\n",
                 encoding="utf-8",
             )
             cfg = {"paths": {"spec_master_csv": str(spec_master_csv)}}
@@ -254,7 +281,7 @@ class TestTargetResolution(unittest.TestCase):
                 encoding="utf-8",
             )
             (data_dir / "Spec_Master.csv").write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
                 "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
                 encoding="utf-8",
             )
@@ -319,9 +346,13 @@ class TestTargetResolution(unittest.TestCase):
                         "page_id: draft_page",
                         "template: templates/page_us-en/draft.rst",
                         "field_map:",
-                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "  MAIN_POWER_BUTTON_LABEL:",
+                        "    row_key: main_power_button",
+                        "    pages: [Product overview]",
+                        "    usage_type: page_value",
+                        "    value_role: label",
                         "required_row_keys:",
-                        "  - tpl_main_power_button_label",
+                        "  - product_name",
                         "snippet_slots:",
                         "  intro: intro_snippet",
                         "contracts: []",
@@ -367,9 +398,9 @@ class TestTargetResolution(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en",
-                        "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product",
-                        "TEMPLATE VARS,tpl_main_power_button_label,1,specifications,M1,US,1,1,Main Button",
+                        "Section,Row_key,Slot_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source",
+                        "GENERAL INFO,product_name,,1,specifications,M1,US,1,1,Demo Product",
+                        "CONTROLS,main_power_button,label,1,Product overview,M1,US,1,1,Main Button",
                     ]
                 )
                 + "\n",
@@ -422,7 +453,7 @@ class TestTargetResolution(unittest.TestCase):
                 encoding="utf-8",
             )
             (data_dir / "Spec_Master.csv").write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
                 "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
                 encoding="utf-8",
             )
@@ -463,7 +494,7 @@ class TestTargetResolution(unittest.TestCase):
             spec_master = root / "data" / "phase1" / "Spec_Master.csv"
             spec_master.parent.mkdir(parents=True)
             spec_master.write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
                 "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
                 encoding="utf-8",
             )
@@ -474,7 +505,7 @@ class TestTargetResolution(unittest.TestCase):
                 "pages": [
                     {
                         "type": "csv_page",
-                        "page": "safety",
+                        "page": "spec",
                         "source": "phase1",
                         "langs": ["en"],
                         "include_dir": "generated/{model}",
@@ -489,7 +520,7 @@ class TestTargetResolution(unittest.TestCase):
             def write_generated_csv(*args, **kwargs) -> None:
                 generated_dir = fake_builder.paths.output_dir / "M1"
                 generated_dir.mkdir(parents=True, exist_ok=True)
-                (generated_dir / "safety_en.rst").write_text("CSV page body\n", encoding="utf-8")
+                (generated_dir / "spec_en.rst").write_text("CSV page body\n", encoding="utf-8")
 
             with mock.patch("tools.gen_index_bundle.load_word_context", return_value=fake_builder):
                 with mock.patch("tools.gen_index_bundle.ensure_csv_page_rsts", side_effect=write_generated_csv):
@@ -499,9 +530,9 @@ class TestTargetResolution(unittest.TestCase):
                         repo_root=root,
                     )
 
-            page_text = (bundle.page_dir / "safety_en.rst").read_text(encoding="utf-8")
+            page_text = (bundle.page_dir / "spec_en.rst").read_text(encoding="utf-8")
             self.assertIn("CSV page body", page_text)
-            self.assertIn(".. include:: page/safety_en.rst", bundle.index_path.read_text(encoding="utf-8"))
+            self.assertIn(".. include:: page/spec_en.rst", bundle.index_path.read_text(encoding="utf-8"))
 
     def test_materialize_bundle_should_fail_fast_when_contract_asset_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -531,7 +562,7 @@ class TestTargetResolution(unittest.TestCase):
                 encoding="utf-8",
             )
             (data_dir / "Spec_Master.csv").write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
                 "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
                 encoding="utf-8",
             )
@@ -569,7 +600,7 @@ class TestTargetResolution(unittest.TestCase):
             (template_dir / "alpha.rst").write_text("Alpha\n", encoding="utf-8")
             (template_dir / "beta.rst").write_text("Beta\n", encoding="utf-8")
             (data_dir / "Spec_Master.csv").write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
                 "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
                 encoding="utf-8",
             )
@@ -617,7 +648,7 @@ class TestTargetResolution(unittest.TestCase):
             (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
             (template_dir / "demo.rst").write_text("Hello\n", encoding="utf-8")
             (data_dir / "Spec_Master.csv").write_text(
-                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_en\n"
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
                 "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
                 encoding="utf-8",
             )
@@ -680,7 +711,7 @@ class TestTargetResolution(unittest.TestCase):
                 targets,
             )
 
-    def test_refresh_model_html_switchers_should_inject_region_and_language_links(self) -> None:
+    def test_refresh_model_html_switchers_should_keep_manual_mode_without_top_switcher(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_build_dir = Path(td) / "docs" / "_build"
 
@@ -721,17 +752,13 @@ class TestTargetResolution(unittest.TestCase):
             us_search = (us_html / "search.html").read_text(encoding="utf-8")
             jp_index = (jp_html / "index.html").read_text(encoding="utf-8")
 
-            self.assertIn(build_docs.SWITCHER_BLOCK_START, us_en_index)
-            self.assertIn('data-current-region="US"', us_en_index)
-            self.assertIn('data-current-lang="en"', us_en_index)
-            self.assertIn("../es/html/index.html", us_en_index)
-            self.assertIn("../../JP/html/index.html", us_en_index)
-            self.assertEqual(1, us_en_index.count(">English<"))
-            self.assertIn("Espanol", us_en_index)
-            self.assertIn("日本語", us_en_index)
-            self.assertIn(build_docs.SWITCHER_BLOCK_START, us_search)
-            self.assertIn(build_docs.SWITCHER_BLOCK_START, jp_index)
-            self.assertIn("../../US/en/html/index.html", jp_index)
+            self.assertNotIn(build_docs.SWITCHER_BLOCK_START, us_en_index)
+            self.assertIn('class="hb-manual-switcher-body"', us_en_index)
+            self.assertNotIn(build_docs.SWITCHER_BLOCK_START, us_search)
+            self.assertIn('class="hb-manual-switcher-body"', us_search)
+            self.assertNotIn(build_docs.SWITCHER_BLOCK_START, jp_index)
+            self.assertIn('class="hb-manual-switcher-body"', jp_index)
+            return
 
     def test_clean_build_targets_should_only_remove_requested_target_output(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -1,11 +1,11 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from tools.review_support import overlay_review_onto_bundle, sync_review_from_runtime
+from tools.review_support import overlay_review_onto_bundle, review_bundle_exists, sync_review_from_runtime
 
 
 class TestReviewSupport(unittest.TestCase):
@@ -65,6 +65,42 @@ class TestReviewSupport(unittest.TestCase):
                 (bundle_dir / "_static" / "replacement.css").read_text(encoding="utf-8"),
             )
             self.assertFalse((bundle_dir / "README.md").exists())
+
+    def test_overlay_review_onto_bundle_should_fallback_to_family_review_dir_when_lang_dir_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "generated").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
+            (bundle_dir / "page" / "overview.rst").write_text("runtime overview\n", encoding="utf-8")
+
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "page" / "overview.rst").write_text("review overview\n", encoding="utf-8")
+
+            self.assertTrue(
+                review_bundle_exists(
+                    docs_dir=docs_dir,
+                    model="JE-1000F",
+                    region="US",
+                    lang="en",
+                )
+            )
+
+            applied_dir = overlay_review_onto_bundle(
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+            )
+
+            self.assertEqual(review_dir, applied_dir)
+            self.assertEqual("review index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertEqual("review overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
 
     def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -127,3 +163,4 @@ class TestReviewSupport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

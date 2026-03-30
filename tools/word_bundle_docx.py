@@ -8,13 +8,14 @@ import shutil
 import subprocess
 import sys
 import zipfile
+from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import unquote
 from xml.etree import ElementTree as ET
 
 from tools.gen_index_bundle import MaterializedBundle
 from tools.word_bundle_common import paths
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word_bundle_html import WordBundlePageMeta, build_word_bundle_html
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 _W_VAL = f"{{{_W_NS}}}val"
@@ -30,6 +31,22 @@ _IMAGE_CONTENT_TYPES = {
     ".tiff": "image/tiff",
     ".svg": "image/svg+xml",
 }
+_REFERENCE_H1_STYLE_ID = "dingding-heading1"
+_REFERENCE_H2_STYLE_ID = "dingding-heading2"
+_REFERENCE_TABLE_STYLE_ID = "tableHeader"
+_REFERENCE_GRID_TABLE_STYLE_ID = "TableGrid"
+_PANDOC_MAJOR_HEADING_STYLE_IDS = {"Title", "Heading1"}
+_PANDOC_SUBHEADING_STYLE_IDS = {"Heading2"}
+_PANDOC_BODY_STYLE_IDS = {"BodyText", "FirstParagraph", "Compact"}
+_PRESERVED_SOURCE_PREFIXES = ("safety_", "spec_")
+
+
+@dataclass(frozen=True)
+class _DocBlock:
+    index: int
+    kind: str
+    text: str
+    element: ET.Element
 
 
 def _ps_quote(value: str) -> str:
@@ -96,6 +113,245 @@ def _set_paragraph_style_and_outline(
         changed = True
 
     return changed
+
+
+def _clear_paragraph_style_and_outline(para: ET.Element, ns: dict[str, str]) -> bool:
+    ppr = para.find("w:pPr", ns)
+    if ppr is None:
+        return False
+
+    changed = False
+    pstyle = ppr.find("w:pStyle", ns)
+    if pstyle is not None:
+        ppr.remove(pstyle)
+        changed = True
+
+    outline = ppr.find("w:outlineLvl", ns)
+    if outline is not None:
+        ppr.remove(outline)
+        changed = True
+
+    if changed and len(ppr) == 0 and not ppr.attrib:
+        para.remove(ppr)
+    return changed
+
+
+def _normalize_docx_text(text: str) -> str:
+    return " ".join((text or "").split()).strip()
+
+
+def _paragraph_style_id(para: ET.Element, ns: dict[str, str]) -> str:
+    pstyle = para.find("w:pPr/w:pStyle", ns)
+    return pstyle.attrib.get(_W_VAL, "").strip() if pstyle is not None else ""
+
+
+def _table_style_id(tbl: ET.Element, ns: dict[str, str]) -> str:
+    tbl_style = tbl.find("w:tblPr/w:tblStyle", ns)
+    return tbl_style.attrib.get(_W_VAL, "").strip() if tbl_style is not None else ""
+
+
+def _set_table_style(tbl: ET.Element, ns: dict[str, str], style_id: str) -> bool:
+    changed = False
+    tbl_pr = tbl.find("w:tblPr", ns)
+    if tbl_pr is None:
+        tbl_pr = ET.SubElement(tbl, f"{{{_W_NS}}}tblPr")
+        changed = True
+
+    tbl_style = tbl_pr.find("w:tblStyle", ns)
+    if tbl_style is None:
+        tbl_style = ET.SubElement(tbl_pr, f"{{{_W_NS}}}tblStyle")
+        changed = True
+
+    if tbl_style.attrib.get(_W_VAL) != style_id:
+        tbl_style.attrib[_W_VAL] = style_id
+        changed = True
+    return changed
+
+
+def _collect_available_style_ids(styles_xml: bytes, *, style_type: str) -> set[str]:
+    ns = {"w": _W_NS}
+    root = ET.fromstring(styles_xml)
+    return {
+        style.attrib.get(f"{{{_W_NS}}}styleId", "").strip()
+        for style in root.findall(".//w:style", ns)
+        if style.attrib.get(f"{{{_W_NS}}}type") == style_type
+    }
+
+
+def _iter_doc_blocks(body: ET.Element, ns: dict[str, str]) -> list[_DocBlock]:
+    blocks: list[_DocBlock] = []
+    for index, child in enumerate(list(body)):
+        kind = child.tag.rsplit("}", 1)[-1]
+        if kind not in {"p", "tbl"}:
+            continue
+        blocks.append(
+            _DocBlock(
+                index=index,
+                kind=kind,
+                text=_normalize_docx_text("".join(child.itertext())),
+                element=child,
+            )
+        )
+    return blocks
+
+
+def _find_anchor_block_index(blocks: list[_DocBlock], anchor_text: str, start_index: int) -> int | None:
+    anchor = _normalize_docx_text(anchor_text)
+    if not anchor:
+        return None
+    for idx in range(start_index, len(blocks)):
+        if blocks[idx].text.startswith(anchor):
+            return idx
+    return None
+
+
+def _resolve_page_start_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> list[int | None]:
+    starts: list[int | None] = []
+    search_from = 0
+    for idx, meta in enumerate(page_metas):
+        if idx == 0:
+            starts.append(0)
+            found = _find_anchor_block_index(blocks, meta.anchor_text, 0)
+            if found is not None:
+                search_from = found + 1
+            continue
+        found = _find_anchor_block_index(blocks, meta.anchor_text, search_from)
+        starts.append(found)
+        if found is not None:
+            search_from = found + 1
+    return starts
+
+
+def _preserved_page_block_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> set[int]:
+    starts = _resolve_page_start_indexes(blocks, page_metas)
+    preserved: set[int] = set()
+    for page_idx, meta in enumerate(page_metas):
+        if not meta.source_path.name.lower().startswith(_PRESERVED_SOURCE_PREFIXES):
+            continue
+        start = starts[page_idx]
+        if start is None:
+            continue
+        end = len(blocks)
+        for next_start in starts[page_idx + 1 :]:
+            if next_start is not None:
+                end = next_start
+                break
+        preserved.update(range(start, end))
+    return preserved
+
+
+def _preserved_page_start_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> set[int]:
+    starts = _resolve_page_start_indexes(blocks, page_metas)
+    return {
+        start
+        for page_idx, start in enumerate(starts)
+        if start is not None and page_metas[page_idx].source_path.name.lower().startswith(_PRESERVED_SOURCE_PREFIXES)
+    }
+
+
+def _table_dimensions(tbl: ET.Element, ns: dict[str, str]) -> tuple[int, int]:
+    rows = tbl.findall("w:tr", ns)
+    if not rows:
+        rows = tbl.findall(".//w:tr", ns)
+    row_count = len(rows)
+    max_cols = 0
+    for row in rows:
+        col_count = len(row.findall("w:tc", ns))
+        if col_count > max_cols:
+            max_cols = col_count
+    return row_count, max_cols
+
+
+def _choose_reference_table_style(tbl: ET.Element, ns: dict[str, str], available_table_styles: set[str]) -> str | None:
+    rows, max_cols = _table_dimensions(tbl, ns)
+    if rows == 1 and max_cols >= 3 and _REFERENCE_GRID_TABLE_STYLE_ID in available_table_styles:
+        return _REFERENCE_GRID_TABLE_STYLE_ID
+    if _REFERENCE_TABLE_STYLE_ID in available_table_styles:
+        return _REFERENCE_TABLE_STYLE_ID
+    if _REFERENCE_GRID_TABLE_STYLE_ID in available_table_styles:
+        return _REFERENCE_GRID_TABLE_STYLE_ID
+    return None
+
+
+def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePageMeta, ...]) -> None:
+    with zipfile.ZipFile(docx_path, "r") as zin:
+        infos = zin.infolist()
+        blobs = {info.filename: zin.read(info.filename) for info in infos}
+
+    styles_xml = blobs.get("word/styles.xml")
+    doc_xml = blobs.get("word/document.xml")
+    if not styles_xml or not doc_xml or not page_metas:
+        return
+
+    available_paragraph_styles = _collect_available_style_ids(styles_xml, style_type="paragraph")
+    available_table_styles = _collect_available_style_ids(styles_xml, style_type="table")
+    if not {_REFERENCE_H1_STYLE_ID, _REFERENCE_H2_STYLE_ID}.issubset(available_paragraph_styles):
+        return
+    if not ({_REFERENCE_TABLE_STYLE_ID, _REFERENCE_GRID_TABLE_STYLE_ID} & available_table_styles):
+        return
+
+    ns = {"w": _W_NS}
+    root = ET.fromstring(doc_xml)
+    body = root.find("w:body", ns)
+    if body is None:
+        return
+
+    blocks = _iter_doc_blocks(body, ns)
+    preserved_blocks = _preserved_page_block_indexes(blocks, page_metas)
+    preserved_page_starts = _preserved_page_start_indexes(blocks, page_metas)
+    changed = False
+
+    for block_idx, block in enumerate(blocks):
+        if block.kind == "p":
+            style_id = _paragraph_style_id(block.element, ns)
+            if (
+                block_idx in preserved_blocks
+                and block_idx not in preserved_page_starts
+                and style_id not in (_PANDOC_SUBHEADING_STYLE_IDS | {_REFERENCE_H2_STYLE_ID})
+            ):
+                continue
+            if style_id in _PANDOC_MAJOR_HEADING_STYLE_IDS | {_REFERENCE_H1_STYLE_ID}:
+                if _set_paragraph_style_and_outline(
+                    block.element,
+                    ns,
+                    style_id=_REFERENCE_H1_STYLE_ID,
+                    outline_level="0",
+                ):
+                    changed = True
+            elif style_id in _PANDOC_SUBHEADING_STYLE_IDS | {_REFERENCE_H2_STYLE_ID}:
+                if _set_paragraph_style_and_outline(
+                    block.element,
+                    ns,
+                    style_id=_REFERENCE_H2_STYLE_ID,
+                    outline_level="1",
+                ):
+                    changed = True
+            elif style_id in _PANDOC_BODY_STYLE_IDS:
+                if _clear_paragraph_style_and_outline(block.element, ns):
+                    changed = True
+        elif block.kind == "tbl":
+            if block_idx in preserved_blocks:
+                continue
+            target_style = _choose_reference_table_style(block.element, ns, available_table_styles)
+            if target_style and _table_style_id(block.element, ns) != target_style:
+                if _set_table_style(block.element, ns, target_style):
+                    changed = True
+            for para in block.element.findall(".//w:p", ns):
+                if _paragraph_style_id(para, ns) in _PANDOC_BODY_STYLE_IDS:
+                    if _clear_paragraph_style_and_outline(para, ns):
+                        changed = True
+
+    if not changed:
+        return
+
+    ET.register_namespace("w", _W_NS)
+    blobs["word/document.xml"] = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+
+    tmp_path = docx_path.with_suffix(".styles.tmp.docx")
+    with zipfile.ZipFile(tmp_path, "w") as zout:
+        for info in infos:
+            zout.writestr(info, blobs[info.filename])
+    tmp_path.replace(docx_path)
 
 
 def _resolve_external_image_target(target: str) -> Path | None:
@@ -265,6 +521,8 @@ def _export_docx_via_pandoc(bundle_html: Path, out_path: Path, reference_doc: Pa
         str(bundle_html),
         "--from=html",
         "--to=docx",
+        "--metadata",
+        "title=",
         "--resource-path",
         resource_path,
         "-o",
@@ -367,7 +625,7 @@ def export_word_from_bundle(
     output_dir: Path | None = None,
 ) -> Path:
     bundle_output_dir = output_dir
-    bundle_html, reference_doc = build_word_bundle_html(
+    bundle_html, reference_doc, page_metas = build_word_bundle_html(
         cfg,
         model,
         region,
@@ -385,5 +643,6 @@ def export_word_from_bundle(
         print(f"[word_bundle_docx] Word COM produced an invalid DOCX, retrying with pandoc: {out_path}")
         _export_docx_via_pandoc(bundle_html, out_path, reference_doc)
     _embed_external_docx_images(out_path)
+    _remap_reference_doc_styles(out_path, page_metas)
     _enforce_docx_outline_levels(out_path)
     return out_path

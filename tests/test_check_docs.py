@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -25,7 +25,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                         "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
@@ -85,7 +85,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                         "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
@@ -138,7 +138,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                         "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
@@ -227,11 +227,11 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
-                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main POWER Button",
-                        "JE-1000F,US,TRUE,specifications,tpl_ac_power_button_label,AC Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,page_value,label,Main POWER Button",
+                        "JE-1000F,US,TRUE,Product overview,ac_power_button,page_value,label,AC Button",
                     ]
                 )
                 + "\n",
@@ -303,10 +303,10 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
-                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main POWER Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,page_value,label,Main POWER Button",
                     ]
                 )
                 + "\n",
@@ -342,7 +342,7 @@ class TestCheckDocs(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertIn("CONTRACT_MISSING_PLACEHOLDERS", codes)
 
-    def test_collect_check_issues_should_report_contract_v2_missing_spec_tpl_keys_and_assets(self) -> None:
+    def test_collect_check_issues_should_report_contract_v2_missing_spec_page_values_and_assets(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             docs_dir = root / "docs"
@@ -369,9 +369,12 @@ class TestCheckDocs(unittest.TestCase):
                         "required_spec_keys:",
                         "  default:",
                         "    - battery_capacity",
-                        "required_tpl_keys:",
+                        "required_page_values:",
                         "  default:",
-                        "    - tpl_main_power_button_label",
+                        "    - row_key: main_power_button",
+                        "      pages: [Product overview]",
+                        "      usage_type: page_value",
+                        "      value_role: label",
                         "required_assets:",
                         "  default:",
                         "    - templates/word_template/common_assets/overview/front_product.jpg",
@@ -385,7 +388,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -422,7 +425,7 @@ class TestCheckDocs(unittest.TestCase):
 
             codes = {issue.code for issue in issues}
             self.assertIn("CONTRACT_MISSING_SPEC_KEYS", codes)
-            self.assertIn("CONTRACT_MISSING_TPL_KEYS", codes)
+            self.assertIn("CONTRACT_MISSING_PAGE_VALUES", codes)
             self.assertIn("CONTRACT_MISSING_ASSETS", codes)
 
     def test_collect_check_issues_should_skip_contract_when_scope_does_not_apply(self) -> None:
@@ -449,7 +452,7 @@ class TestCheckDocs(unittest.TestCase):
                         "required_spec_keys:",
                         "  default:",
                         "    - battery_capacity",
-                        "allowed_regions: [EU]",
+                        "allowed_regions: [JP]",
                     ]
                 )
                 + "\n",
@@ -460,7 +463,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -526,7 +529,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                     ]
                 )
@@ -591,7 +594,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]
@@ -674,9 +677,13 @@ class TestCheckDocs(unittest.TestCase):
                         "page_id: 03_product_overview",
                         "template: templates/page_us-en/03_product_overview_placeholder.rst",
                         "field_map:",
-                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "  MAIN_POWER_BUTTON_LABEL:",
+                        "    row_key: main_power_button",
+                        "    pages: [Product overview]",
+                        "    usage_type: page_value",
+                        "    value_role: label",
                         "required_row_keys:",
-                        "  - tpl_main_power_button_label",
+                        "  - product_name",
                         "snippet_slots:",
                         "  intro: missing_intro",
                         "contracts:",
@@ -692,7 +699,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                     ]
                 )
@@ -741,7 +748,7 @@ class TestCheckDocs(unittest.TestCase):
             )
 
             codes = {issue.code for issue in issues}
-            self.assertIn("RECIPE_MISSING_ROW_KEYS", codes)
+            self.assertIn("RECIPE_MISSING_FIELD_MAP_ROWS", codes)
             self.assertIn("MISSING_SNIPPET", codes)
 
     def test_collect_check_issues_should_report_unused_field_map_placeholders(self) -> None:
@@ -766,7 +773,11 @@ class TestCheckDocs(unittest.TestCase):
                         "page_id: demo",
                         "template: templates/page_us-en/demo.rst",
                         "field_map:",
-                        "  MAIN_POWER_BUTTON_LABEL: tpl_main_power_button_label",
+                        "  MAIN_POWER_BUTTON_LABEL:",
+                        "    row_key: main_power_button",
+                        "    pages: [Product overview]",
+                        "    usage_type: page_value",
+                        "    value_role: label",
                         "required_row_keys:",
                         "  - product_name",
                         "  - model_no",
@@ -783,10 +794,10 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
-                        "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
-                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
-                        "JE-1000F,US,TRUE,specifications,tpl_main_power_button_label,Main POWER Button",
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F,US,TRUE,Product overview,main_power_button,page_value,label,Main POWER Button",
                     ]
                 )
                 + "\n",
@@ -874,7 +885,7 @@ class TestCheckDocs(unittest.TestCase):
             spec_master.write_text(
                 "\n".join(
                     [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_en",
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
                         "JE-1000F,US,TRUE,specifications,product_name,Jackery 1000",
                         "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
                     ]

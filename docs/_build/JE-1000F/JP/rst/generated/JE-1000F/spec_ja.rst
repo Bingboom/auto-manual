@@ -9,15 +9,19 @@
    \specsectiontitle{基本情報}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Product Name} & \HBTypeSpecValue{Jackery ポータブル電源 1000 New v2} \\
+   \HBTypeSpecLabel{製品の名称} & \HBTypeSpecValue{Jackery ポータブル電源 1000 New} \\
    \hline
-   \HBTypeSpecLabel{Model No.} & \HBTypeSpecValue{JE-1000F} \\
+   \HBTypeSpecLabel{型番} & \HBTypeSpecValue{JE-1000F} \\
    \hline
-   \HBTypeSpecLabel{Capacity} & \HBTypeSpecValue{1024 Wh (20Ah/51.2V DC)} \\
+   \HBTypeSpecLabel{定格容量} & \HBTypeSpecValue{1024Wh (20Ah/51.2V DC)} \\
    \hline
-   \HBTypeSpecLabel{Weight} & \HBTypeSpecValue{About 10.6 kg} \\
+   \HBTypeSpecLabel{バッテリータイプ} & \HBTypeSpecValue{LiFePO₄ (リン酸鉄リチウムイオン電池)} \\
    \hline
-   \HBTypeSpecLabel{Cycle Life} & \HBTypeSpecValue{6000 Cycles (90\%DOD, 0.5C/0.5C, ≥70\%, 25°C)} \\
+   \HBTypeSpecLabel{重量} & \HBTypeSpecValue{約10.6 kg} \\
+   \hline
+   \HBTypeSpecLabel{サイズ} & \HBTypeSpecValue{約314 × 201 × 236 mm} \\
+   \hline
+   \HBTypeSpecLabel{サイクル寿命} & \HBTypeSpecValue{6000回 (6000回の充放電後も初期容量の70\%以上を維持)} \\
    \end{tabularx}
    \end{spectable}
 
@@ -26,9 +30,9 @@
    \specsectiontitle{入力ポート}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{AC Input} & \HBTypeSpecValue{Charge Mode: 100V-120V\textasciitilde{}50/60Hz, 15A Max \newline AC Flash Charge: About 1450W±50W @25°C} \\
+   \HBTypeSpecLabel{1×ACポート} & \HBTypeSpecValue{100V-120V\textasciitilde{}50Hz/60Hz, 最大15A, 1450W±50W\HBSpecMarkerOne{} \newline バススルー\HBSpecMarkerTwo{}: 100V-120V\textasciitilde{}50Hz/60Hz, 最大15A, 最大1500W} \\
    \hline
-   \HBTypeSpecLabel{DC8020 Ports} & \HBTypeSpecValue{11V-16V⎓8A Max, Double 8A Max \newline 16V-60V⎓12A, Double 21A Max / 400W Max} \\
+   \HBTypeSpecLabel{2×DC8020ポート} & \HBTypeSpecValue{PV: 16V-60V⎓12A, 2ポート 最大21A, 最大400W \newline シガーソケット: 11V-16V⎓最大8A, 2ポート 最大8A} \\
    \end{tabularx}
    \end{spectable}
 
@@ -37,17 +41,17 @@
    \specsectiontitle{出力ポート}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{AC Output} & \HBTypeSpecValue{100V\textasciitilde{}50/60Hz, 15A, 1500W Rated (-10°C to 45°C) \newline 100V\textasciitilde{}50/60Hz, 7A, 700W Rated (-20°C to -10°C)} \\
+   \HBTypeSpecLabel{3×ACポート} & \HBTypeSpecValue{100V\textasciitilde{}50Hz/60Hz, 最大15A, 定格1500W (-10℃\textasciitilde{}45℃) \newline 100V\textasciitilde{}50Hz/60Hz, 最大7A, 定格700W (-20℃\textasciitilde{}-10℃)} \\
    \hline
-   \HBTypeSpecLabel{AC Total Output} & \HBTypeSpecValue{1500W Rated, 3000W Surge peak} \\
+   \HBTypeSpecLabel{AC出力合計} & \HBTypeSpecValue{定格1500W, 瞬間最大3000W} \\
    \hline
-   \HBTypeSpecLabel{AC Output in Bypass Mode} & \HBTypeSpecValue{15A Max} \\
+   \HBTypeSpecLabel{AC出力(パススルー)\HBSpecMarkerTwo{}} & \HBTypeSpecValue{100V-120V\textasciitilde{}50Hz/60Hz, 最大15A, 最大1500W} \\
    \hline
-   \HBTypeSpecLabel{USB-C} & \HBTypeSpecValue{1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C) \newline USB-C 100W output disabled (-20°C to -10°C) \newline 1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A} \\
+   \HBTypeSpecLabel{2×USB-Cポート} & \HBTypeSpecValue{5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W \newline 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10℃\textasciitilde{}45℃) \newline (-20℃\textasciitilde{}-10℃では出力不可)} \\
    \hline
-   \HBTypeSpecLabel{USB-A} & \HBTypeSpecValue{1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A} \\
+   \HBTypeSpecLabel{1×USB-Aポート} & \HBTypeSpecValue{5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W} \\
    \hline
-   \HBTypeSpecLabel{DC 12V Port} & \HBTypeSpecValue{12V⎓10A Max} \\
+   \HBTypeSpecLabel{シガーソケット出力} & \HBTypeSpecValue{12V⎓最大10A} \\
    \end{tabularx}
    \end{spectable}
 
@@ -56,15 +60,30 @@
    \specsectiontitle{温度範囲}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Operating Temperature} & \HBTypeSpecValue{-20°C to 45°C} \\
+   \HBTypeSpecLabel{充電温度} & \HBTypeSpecValue{-20℃ \textasciitilde{} 45℃} \\
    \hline
-   \HBTypeSpecLabel{Storage Temperature} & \HBTypeSpecValue{1 year: 0°C to 25°C \newline 3 months: 0°C to 45°C \newline 1 month: -20°C to 45°C} \\
+   \HBTypeSpecLabel{放電温度} & \HBTypeSpecValue{-20℃ \textasciitilde{} 45℃} \\
    \end{tabularx}
    \end{spectable}
 
 
 
+.. raw:: latex
 
+   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
+   {\noindent
+   \HBTypeSpecNote{\HBSpecMarkerOne{} この数値は最大充電電力の参考値です。実際の電力量は、温度、バッテリー残量(SOC)、アプリの設定によって変動する場合があります。}\par
+   \HBTypeSpecNote{\HBSpecMarkerTwo{} 本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。}\par
+   }
+
+
+
+.. raw:: latex
+
+   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
+   {\noindent
+   \HBTypeSpecNote{※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
+   }
 
 
 
@@ -77,70 +96,112 @@
 
    .. raw:: html
    
-      <h2 class="hb-spec-section">● 基本情報</h2>
-   
-   .. list-table::
-      :widths: 33 67
-      :header-rows: 0
-   
-      * - Product Name
-        - Jackery ポータブル電源 1000 New v2
-      * - Model No.
-        - JE-1000F
-      * - Capacity
-        - 1024 Wh (20Ah/51.2V DC)
-      * - Weight
-        - About 10.6 kg
-      * - Cycle Life
-        - 6000 Cycles (90%DOD, 0.5C/0.5C, ≥70%, 25°C)
-   
-   .. raw:: html
-   
-      <h2 class="hb-spec-section">● 入力ポート</h2>
-   
-   .. list-table::
-      :widths: 33 67
-      :header-rows: 0
-   
-      * - AC Input
-        - Charge Mode: 100V-120V~50/60Hz, 15A Max / AC Flash Charge: About 1450W±50W @25°C
-      * - DC8020 Ports
-        - 11V-16V⎓8A Max, Double 8A Max / 16V-60V⎓12A, Double 21A Max / 400W Max
-   
-   .. raw:: html
-   
-      <h2 class="hb-spec-section">● 出力ポート</h2>
-   
-   .. list-table::
-      :widths: 33 67
-      :header-rows: 0
-   
-      * - AC Output
-        - 100V~50/60Hz, 15A, 1500W Rated (-10°C to 45°C) / 100V~50/60Hz, 7A, 700W Rated (-20°C to -10°C)
-      * - AC Total Output
-        - 1500W Rated, 3000W Surge peak
-      * - AC Output in Bypass Mode
-        - 15A Max
-      * - USB-C
-        - 1 × USB-C: 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (-10°C to 45°C) / USB-C 100W output disabled (-20°C to -10°C) / 1 × USB-C: 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A
-      * - USB-A
-        - 1 × USB-A: 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A
-      * - DC 12V Port
-        - 12V⎓10A Max
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">基本情報</span></h2>
+      <table class="hb-spec-table">
+        <tbody>
+          <tr>
+            <th scope="row" class="hb-spec-label">製品の名称</th>
+            <td class="hb-spec-value">Jackery ポータブル電源 1000 New</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">型番</th>
+            <td class="hb-spec-value">JE-1000F</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">定格容量</th>
+            <td class="hb-spec-value">1024Wh (20Ah/51.2V DC)</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">バッテリータイプ</th>
+            <td class="hb-spec-value">LiFePO₄ (リン酸鉄リチウムイオン電池)</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">重量</th>
+            <td class="hb-spec-value">約10.6 kg</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">サイズ</th>
+            <td class="hb-spec-value">約314 × 201 × 236 mm</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">サイクル寿命</th>
+            <td class="hb-spec-value">6000回 (6000回の充放電後も初期容量の70%以上を維持)</td>
+          </tr>
+        </tbody>
+      </table>
    
    .. raw:: html
    
-      <h2 class="hb-spec-section">● 温度範囲</h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">入力ポート</span></h2>
+      <table class="hb-spec-table">
+        <tbody>
+          <tr>
+            <th scope="row" class="hb-spec-label">1×ACポート</th>
+            <td class="hb-spec-value">100V-120V~50Hz/60Hz, 最大15A, 1450W±50W①<br/>バススルー②: 100V-120V~50Hz/60Hz, 最大15A, 最大1500W</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">2×DC8020ポート</th>
+            <td class="hb-spec-value">PV: 16V-60V⎓12A, 2ポート 最大21A, 最大400W<br/>シガーソケット: 11V-16V⎓最大8A, 2ポート 最大8A</td>
+          </tr>
+        </tbody>
+      </table>
    
-   .. list-table::
-      :widths: 33 67
-      :header-rows: 0
+   .. raw:: html
    
-      * - Operating Temperature
-        - -20°C to 45°C
-      * - Storage Temperature
-        - 1 year: 0°C to 25°C / 3 months: 0°C to 45°C / 1 month: -20°C to 45°C
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">出力ポート</span></h2>
+      <table class="hb-spec-table">
+        <tbody>
+          <tr>
+            <th scope="row" class="hb-spec-label">3×ACポート</th>
+            <td class="hb-spec-value">100V~50Hz/60Hz, 最大15A, 定格1500W (-10℃~45℃)<br/>100V~50Hz/60Hz, 最大7A, 定格700W (-20℃~-10℃)</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">AC出力合計</th>
+            <td class="hb-spec-value">定格1500W, 瞬間最大3000W</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">AC出力(パススルー)②</th>
+            <td class="hb-spec-value">100V-120V~50Hz/60Hz, 最大15A, 最大1500W</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">2×USB-Cポート</th>
+            <td class="hb-spec-value">5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W<br/>5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10℃~45℃)<br/>(-20℃~-10℃では出力不可)</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">1×USB-Aポート</th>
+            <td class="hb-spec-value">5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">シガーソケット出力</th>
+            <td class="hb-spec-value">12V⎓最大10A</td>
+          </tr>
+        </tbody>
+      </table>
+   
+   .. raw:: html
+   
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">温度範囲</span></h2>
+      <table class="hb-spec-table">
+        <tbody>
+          <tr>
+            <th scope="row" class="hb-spec-label">充電温度</th>
+            <td class="hb-spec-value">-20℃ ~ 45℃</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">放電温度</th>
+            <td class="hb-spec-value">-20℃ ~ 45℃</td>
+          </tr>
+        </tbody>
+      </table>
 
+   .. raw:: html
+   
+      <p class="hb-spec-footnote">① この数値は最大充電電力の参考値です。実際の電力量は、温度、バッテリー残量(SOC)、アプリの設定によって変動する場合があります。</p>
+   
+   .. raw:: html
+   
+      <p class="hb-spec-footnote">② 本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。</p>
 
-
-
+   .. raw:: html
+   
+      <p class="hb-spec-note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>

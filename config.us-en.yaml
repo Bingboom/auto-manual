@@ -15,7 +15,7 @@ build:
   build_word: true
   word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
   word_source: bundle
-  word_reference_doc: docs/templates/word_template/template.docx
+  word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   open_word: false
   build_html: false
@@ -36,11 +36,9 @@ pages:
   lang: en
   file: templates/page_us-en/00_preface.rst
 
-- type: csv_page
-  source: phase1
-  page: safety
-  langs: [ en ]
-  include_dir: generated/{model}
+- type: rst_include
+  lang: en
+  file: templates/page_us-en/safety_en.rst
 
 - type: csv_page
   source: phase1
@@ -70,7 +68,7 @@ pages:
 
 - type: rst_include
   lang: en
-  file: templates/page_us-en/07_expansion_battery_pack.rst
+  file: templates/page_us-en/charging.rst
 
 - type: rst_include
   lang: en

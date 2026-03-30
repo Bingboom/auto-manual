@@ -38,7 +38,7 @@ REQUIRED_PREVIEW_FILES = (
     "generated/changes.json",
     "generated/workspace.json",
 )
-FAMILY_ORDER = ("US", "JP", "EU")
+FAMILY_ORDER = ("US", "JP")
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Spanish",
@@ -48,15 +48,6 @@ LANGUAGE_LABELS = {
 _MANUAL_SWITCHER_BLOCK_RE = re.compile(
     r"<!-- HB_MANUAL_SWITCHER_START -->.*?<!-- HB_MANUAL_SWITCHER_END -->\s*",
     re.DOTALL,
-)
-_BODY_CLASS_RE = re.compile(r"<body\b([^>]*)class=\"([^\"]*)\"([^>]*)>", re.IGNORECASE)
-_HB_MANUAL_CSS_RE = re.compile(
-    r'\s*<link[^>]+href="_static/hb_manual\.css[^"]*"[^>]*>\s*',
-    re.IGNORECASE,
-)
-_HB_MANUAL_JS_RE = re.compile(
-    r'\s*<script[^>]+src="_static/hb_manual\.js[^"]*"[^>]*></script>\s*',
-    re.IGNORECASE,
 )
 
 
@@ -77,12 +68,10 @@ WORKSPACE_TARGETS: tuple[WorkspaceTarget, ...] = (
     WorkspaceTarget(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
     WorkspaceTarget(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
     WorkspaceTarget(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
-    WorkspaceTarget(family="EU", language="en", config="config.eu.yaml", include_lang_in_output_path=False),
 )
 FAMILY_DIFF_CONFIGS = {
-    "US": "config.yaml",
+    "US": "config.us-en.yaml",
     "JP": "config.ja.yaml",
-    "EU": "config.eu.yaml",
 }
 
 
@@ -90,7 +79,7 @@ def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
         description="Build the review handoff workspace package for Vercel or local sharing."
     )
-    ap.add_argument("--config", default="config.yaml", help="Primary family config YAML path.")
+    ap.add_argument("--config", default="config.us-en.yaml", help="Primary family config YAML path.")
     ap.add_argument("--model", required=True, help="Target model, for example JE-1000F.")
     ap.add_argument("--region", required=True, help="Preferred default family, for example US.")
     ap.add_argument(
@@ -212,6 +201,13 @@ def copy_tree(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
+def rewrite_report_html_for_preview(html_text: str, *, mapping: dict[str, str]) -> str:
+    rewritten = html_text
+    for src_name, dst_name in sorted(mapping.items(), key=lambda item: len(item[0]), reverse=True):
+        rewritten = rewritten.replace(src_name, dst_name)
+    return rewritten
+
+
 def copy_report_set(report_root: Path, prefix: str, changes_dir: Path, *, relative_dir: str) -> dict[str, str]:
     mapping = {
         f"{prefix}_index.html": "report-index.html",
@@ -228,7 +224,9 @@ def copy_report_set(report_root: Path, prefix: str, changes_dir: Path, *, relati
         if not src.exists():
             missing_sources.append(src_name)
             continue
-        shutil.copy2(src, changes_dir / dst_name)
+        html_text = src.read_text(encoding="utf-8")
+        rewritten = rewrite_report_html_for_preview(html_text, mapping=mapping)
+        (changes_dir / dst_name).write_text(rewritten, encoding="utf-8")
         copied[dst_name] = f"{relative_dir}/{dst_name}"
     if missing_sources:
         joined = ", ".join(sorted(missing_sources))
@@ -1252,6 +1250,71 @@ def render_changes_html(meta: dict[str, object], family_entry: dict[str, object]
 """
 
 
+def render_changes_home_html(meta: dict[str, object], families_payload: list[dict[str, object]]) -> str:
+    cards: list[str] = []
+    for family_entry in families_payload:
+        family = display_text(family_entry.get("family"))
+        models = family_entry.get("models", [])
+        if not isinstance(models, list):
+            models = []
+        language_labels = family_entry.get("shared_language_labels", [])
+        if not isinstance(language_labels, list):
+            language_labels = []
+        default_manual_url = display_text(family_entry.get("default_manual_url"), "")
+        change_index_url = display_text(family_entry.get("change_index_url"), "")
+        workbook_url = display_text(family_entry.get("change_workbook_url"), "")
+        model_names = ", ".join(display_text(item.get("model")) for item in models if isinstance(item, dict))
+        language_names = ", ".join(str(item) for item in language_labels if str(item).strip())
+        workbook_button = (
+            f'<a class="button download" href="../{escape(workbook_url)}" download="change-report.xlsx">Download workbook</a>'
+            if workbook_url
+            else ""
+        )
+        cards.append(
+            f"""<article class="card">
+        <h2>{escape(family)} family</h2>
+        <p class="muted">Models: {escape(model_names or display_text(meta.get("model")))}</p>
+        <p class="muted">Languages: {escape(language_names or "Not available")}</p>
+        <div class="actions">
+          <a class="button primary" href="../{escape(change_index_url)}">Open {escape(family)} change report</a>
+          <a class="button secondary" href="../{escape(default_manual_url)}">Open default review HTML</a>
+          {workbook_button}
+        </div>
+      </article>"""
+        )
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(display_text(meta.get("model")))} change reports</title>
+  <style>{base_css()}</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="eyebrow">Change Reports</span>
+      <h1>{escape(display_text(meta.get("model")))} review diff workspace</h1>
+      <p class="lede">Choose the family report you want to inspect. Each family keeps its own diff pages, workbook, and CSV exports so region-specific review changes stay easy to trace.</p>
+      <div class="pill-row">
+        <span class="pill">Families {escape(str(len(families_payload)))}</span>
+        <span class="pill">Model {escape(display_text(meta.get("model")))}</span>
+      </div>
+      <div class="actions">
+        <a class="button secondary" href="../index.html">Back to workspace</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      {''.join(cards)}
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+
 def output_root_for_target(model: str, target: WorkspaceTarget) -> Path:
     root = ROOT / "docs" / "_build" / model / target.family
     if target.include_lang_in_output_path:
@@ -1290,12 +1353,7 @@ def build_spec_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> 
     source_label = args.source
 
     if args.source == "review" and target.family == "US":
-        if target.language == "en":
-            config_path = resolve_path("config.yaml")
-            output_root = ROOT / "docs" / "_build" / args.model / target.family
-            source_mode = "review"
-            source_label = "review"
-        else:
+        if target.language != "en":
             source_mode = "runtime"
             source_label = "runtime fallback"
 
@@ -1354,29 +1412,62 @@ def build_diff_command(*, args: argparse.Namespace, family: str, tracked_root: P
     ]
 
 
-def strip_manual_switcher(text: str) -> str:
-    cleaned = _MANUAL_SWITCHER_BLOCK_RE.sub("", text)
-    cleaned = _HB_MANUAL_CSS_RE.sub("\n", cleaned)
-    cleaned = _HB_MANUAL_JS_RE.sub("\n", cleaned)
+def rewrite_manual_switcher_links(
+    text: str,
+    *,
+    model: str,
+    current_target: WorkspaceTarget,
+    current_relative_path: Path,
+    all_targets: list[WorkspaceTarget],
+) -> str:
+    match = _MANUAL_SWITCHER_BLOCK_RE.search(text)
+    if match is None:
+        return text
 
-    def replace_body(match: re.Match[str]) -> str:
-        classes = [token for token in match.group(2).split() if token != "hb-manual-switcher-body"]
-        before = match.group(1)
-        after = match.group(3)
-        if classes:
-            return f'<body{before}class="{" ".join(classes)}"{after}>'
-        return f"<body{before}{after}>"
+    current_source_html = html_root_for_target(model, current_target) / current_relative_path
+    source_start = current_source_html.parent
+    preview_current = Path("manual") / current_target.family / current_target.language / current_relative_path
+    preview_start = preview_current.parent
+    rewritten = match.group(0)
 
-    return _BODY_CLASS_RE.sub(replace_body, cleaned, count=1)
+    for target in all_targets:
+        if target == current_target:
+            continue
+
+        target_source_root = html_root_for_target(model, target)
+        target_page = current_relative_path if (target_source_root / current_relative_path).exists() else Path("index.html")
+        source_target = target_source_root / target_page
+        preview_target = Path("manual") / target.family / target.language / target_page
+
+        source_href = Path(os.path.relpath(source_target, start=source_start)).as_posix()
+        preview_href = Path(os.path.relpath(preview_target, start=preview_start)).as_posix()
+        rewritten = rewritten.replace(f'href="{escape(source_href)}"', f'href="{escape(preview_href)}"')
+
+    return text[: match.start()] + rewritten + text[match.end() :]
 
 
-def sanitize_manual_tree(manual_dir: Path) -> None:
+def rewrite_manual_tree_for_preview(
+    manual_dir: Path,
+    *,
+    model: str,
+    current_target: WorkspaceTarget,
+    all_targets: list[WorkspaceTarget],
+) -> None:
     for html_file in manual_dir.rglob("*.html"):
         try:
             text = html_file.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
-        html_file.write_text(strip_manual_switcher(text), encoding="utf-8")
+        html_file.write_text(
+            rewrite_manual_switcher_links(
+                text,
+                model=model,
+                current_target=current_target,
+                current_relative_path=html_file.relative_to(manual_dir),
+                all_targets=all_targets,
+            ),
+            encoding="utf-8",
+        )
 
 
 def discover_workspace_families(args: argparse.Namespace) -> list[tuple[str, list[WorkspaceTarget], Path]]:
@@ -1488,6 +1579,8 @@ def main() -> int:
     families_payload: list[dict[str, object]] = []
     changes_by_family: dict[str, object] = {}
 
+    all_workspace_targets = [target for _, targets, _ in family_matrix for target in targets]
+
     for family, targets, tracked_root in family_matrix:
         export_plan: list[tuple[str, WorkspaceTarget]] = []
         if not args.skip_build:
@@ -1558,7 +1651,12 @@ def main() -> int:
 
             manual_dest = manual_root / family / target.language
             copy_tree(html_root, manual_dest)
-            sanitize_manual_tree(manual_dest)
+            rewrite_manual_tree_for_preview(
+                manual_dest,
+                model=args.model,
+                current_target=target,
+                all_targets=all_workspace_targets,
+            )
 
             manual_meta = read_json_if_exists(html_root / "manual_meta.json")
             manual_title = display_text(manual_meta.get("title"), f"{args.model} User Manual")
@@ -1654,7 +1752,7 @@ def main() -> int:
     default_model = display_text(default_family_entry.get("default_model"), args.model)
     default_lang = display_text(default_family_entry.get("default_lang"), "en").lower()
     default_manual_url = display_text(default_family_entry.get("default_manual_url"), "")
-    default_change_url = display_text(default_family_entry.get("change_index_url"), "")
+    default_change_url = "changes/index.html"
 
     commit_sha = git_value("VERCEL_GIT_COMMIT_SHA", ["git", "rev-parse", "HEAD"])
     commit_message = git_value("VERCEL_GIT_COMMIT_MESSAGE", ["git", "log", "-1", "--pretty=%s"])
@@ -1731,12 +1829,7 @@ def main() -> int:
     )
     (changes_root / "index.html").parent.mkdir(parents=True, exist_ok=True)
     (changes_root / "index.html").write_text(
-        render_redirect_html(
-            title=f"{display_text(meta.get('title'))} - Change Report",
-            target=f"./{default_change_url.removeprefix('changes/')}",
-            heading="Open the default family change report",
-            copy="This compatibility entry now redirects to the default family diff page inside the review handoff workspace.",
-        ),
+        render_changes_home_html(meta, families_payload),
         encoding="utf-8",
     )
 

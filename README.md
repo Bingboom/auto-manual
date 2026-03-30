@@ -1,10 +1,10 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-24
+Updated: 2026-03-26
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
-The current maintained smoke-check baseline is centered on `JE-1000F` across the active US, JP, and EU config families.
+The current maintained smoke-check baseline is centered on `JE-1000F` across the active US and JP config families.
 
 For the fixed US + JP release matrix, you can also use:
 
@@ -32,7 +32,7 @@ CI note:
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
 - the published review preview root is now a region-family managed review handoff workspace: families are hidden when `_review` content is missing, models are grouped, and language switching happens inside each model group
 - family-level diff assets stay shared across the languages in that family, while the workspace keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
-- `manual/index.html` and `changes/index.html` remain compatibility entries that redirect to the workspace default manual and family diff pages
+- `manual/index.html` remains a compatibility redirect to the workspace default manual, while `changes/index.html` is now a family hub that makes `US / JP` change packages explicit instead of dropping reviewers into one default family report
 
 ## 2. Primary Entrypoint
 
@@ -41,11 +41,11 @@ The primary entrypoint is [`build.py`](build.py).
 Typical review-first flow:
 
 ```bash
-python3 build.py doctor --config config.yaml --model JE-1000F --region US
-python3 build.py rst --config config.yaml --model JE-1000F --region US --source runtime
-python3 build.py review --config config.yaml --model JE-1000F --region US
-python3 build.py check --config config.yaml --model JE-1000F --region US
-python3 build.py publish --config config.yaml --model JE-1000F --region US
+python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
+python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py check --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
 
 Batch export example:
@@ -55,14 +55,22 @@ Batch export example:
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 ```
 
+Word export note:
+
+- `config.us-en.yaml` now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while keeping the generated `safety` and `spec` pages unchanged
+
 HTML output note:
 
 - generated cover pages remain part of the PDF/LaTeX flow; the HTML entry page starts at the first manual content section instead of rendering a standalone cover screen
+- manual HTML now suppresses most Furo documentation chrome in preview mode, uses a continuous reading layout instead of browser-side fake pagination, regenerates a lightweight left outline from manual headings, and presents generic headings, copy width, figures, ordinary tables, and the multilingual preface notice with a restrained neutral manual-reader style while preserving dedicated layouts such as the `SPECIFICATIONS` table treatment
+- review-preview/Vercel manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
+- `build.py diff-report` now ignores initial baseline Added rows by default; pass `--include-initial-adds` when you need the full first-import churn
+- diff-report field matching now prefers stable source back-mapping before falling back to rendered labels, so placeholder/spec label rewrites are more likely to surface as one `M` row with clearer `old_value/new_value` instead of separate `A/D` noise
 
 Review-sharing example:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
 
 Vercel note:
@@ -87,6 +95,11 @@ Use different surfaces for different stages:
 
 - shared template changes: [`docs/templates/`](docs/templates)
 - structured data changes: [`data/phase1/`](data/phase1)
+  `Spec_Footnotes.csv` is now the footnote-definition table only. Keep one row per reusable `Footnote_id`, target rows by `Region` + `Model`, and let the system derive the visible superscript marker from `Footnote_order`.
+  `Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages. For page-value rows, keep `Row_key` as the concept and use `Slot_key` to describe the placeholder slot. The shared source-text columns are `Row_label_source`, `Param_source`, and `Value_source`; they hold the row's source-manual text. `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, or `zh`, and code no longer infers it from `Region`. `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; source-language text must live in `*_source`. The old `project_code` / `项目代码` column has been removed; row targeting now uses `Region` + `Model`. Spec-cell footnotes are now referenced through `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs`; do not handwrite `①②③` into visible spec text.
+  `Spec_Notes.csv` now stores bottom-of-spec notes that are not tied to a superscript reference, such as trademark statements.
+  `symbols_blocks.csv` stores symbols-page table copy, uses `Region` and `Model` to match target manuals like `Spec_Master.csv`, keeps `Source_lang` aligned with the same source-language code pattern, and includes an `image_path` field for the referenced icon asset. Leave `Region` / `Model` blank when one symbols row should be shared.
+  Safety intro pages are now maintained as fixed RST templates under [`docs/templates/page_*/safety_*.rst`](docs/templates), wired through each family's manifest or page list. JP still keeps its detailed warning content in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow.
 - target-specific review edits after review starts: [`docs/_review/`](docs/_review)
 - generated runtime and export outputs: [`docs/_build/`](docs/_build)
 
@@ -104,7 +117,7 @@ Use the document that owns the topic:
 
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - focused design handoff usage guide: [`code-as-doc/README_design_handoff.md`](code-as-doc/README_design_handoff.md)
-- current JP / US / EU family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
+- current JP / US family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
 - current Vercel review-preview packaging flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md)
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)

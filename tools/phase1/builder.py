@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import csv
-import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -55,87 +54,15 @@ def _csv_set(value: str | None) -> set[str] | None:
     return values or None
 
 
-def _normalize_content_blocks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
-    """
-    Accept both schemas:
-    1) phase1 canonical: block_id,page_id,order,block_type,sku_scope,text_*,meta_json,enabled
-    2) compact safety:   id,part,text_*
-    """
-    if not rows:
-        return rows
-
-    headers = set(rows[0].keys())
-
-    if "page_id" in headers:
-        return rows
-
-    required = {"id", "part"}
-    if not required.issubset(headers):
-        missing = sorted(required - headers)
-        raise ValueError(
-            "Unsupported content_blocks schema: expected either canonical "
-            f"columns with 'page_id' or compact columns {sorted(required)}. Missing: {missing}"
-        )
-
-    part_to_type = {
-        "lead_top": "lead_top",
-        "save_title": "save_title",
-        "title_main": "title_main",
-        "warning_title": "warning_title",
-        "title_operating": "title_operating",
-        "top": "list_item",
-        "bottom": "list_item",
-    }
-
-    out: list[dict[str, str]] = []
-    for row in rows:
-        line = (row.get("__line__") or "?").strip()
-
-        data_cols = [k for k in row.keys() if not k.startswith("__")]
-        is_blank = not any((row.get(k) or "").strip() for k in data_cols)
-        if is_blank:
-            continue
-
-        part = (row.get("part") or "").strip()
-        if not part:
-            raise ValueError(f"content_blocks compact row missing 'part' at line {line}")
-
-        block_type = part_to_type.get(part, "")
-        if not block_type:
-            raise ValueError(f"Unknown content_blocks.part='{part}' at line {line}")
-
-        block: dict[str, str] = {
-            "block_id": (row.get("id") or "").strip() or f"auto_{len(out) + 1}",
-            "page_id": "safety",
-            "order": (row.get("id") or "").strip() or "0",
-            "block_type": block_type,
-            "sku_scope": "ALL",
-            "meta_json": "{}",
-            "enabled": "1",
-            "__line__": line,
-        }
-
-        if part in {"top", "bottom"}:
-            block["meta_json"] = json.dumps({"list_part": part}, ensure_ascii=False)
-
-        for key, value in row.items():
-            if key.startswith("text_"):
-                block[key] = value or ""
-
-        out.append(block)
-
-    return out
-
-
 @dataclass(frozen=True)
 class BuildPaths:
     root: Path
     page_registry: Path
-    content_blocks: Path
     template_dir: Path
     output_dir: Path
     spec_master_csv: Path
     spec_footnotes_csv: Path | None = None
+    spec_notes_csv: Path | None = None
     spec_titles_csv: Path | None = None
 
     @classmethod
@@ -143,11 +70,11 @@ class BuildPaths:
         return cls(
             root=root,
             page_registry=root / "data" / "phase1" / "page_registry.csv",
-            content_blocks=root / "data" / "phase1" / "content_blocks.csv",
             template_dir=root / "docs" / "templates",
             output_dir=root / "docs" / "generated",
             spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
             spec_footnotes_csv=root / "data" / "phase1" / "Spec_Footnotes.csv",
+            spec_notes_csv=root / "data" / "phase1" / "Spec_Notes.csv",
             spec_titles_csv=root / "data" / "phase1" / "spec_titles.csv",
         )
 
@@ -243,6 +170,67 @@ class Phase1Builder:
             return []
         return _read_csv(path)
 
+    @staticmethod
+    def _normalize_spec_footnote_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+        if not rows:
+            return []
+        headers = set(rows[0].keys())
+        if "Footnote_id" not in headers and "footnote_id" not in headers:
+            return rows
+
+        normalized: list[dict[str, str]] = []
+        for row in rows:
+            order = (row.get("Footnote_order") or row.get("footnote_order") or "").strip()
+            normalized.append(
+                {
+                    "__line__": row.get("__line__", ""),
+                    "Region": (row.get("Region") or row.get("region") or "").strip(),
+                    "Model": (row.get("Model") or row.get("model") or "").strip(),
+                    "Source_lang": (row.get("Source_lang") or row.get("source_lang") or "").strip(),
+                    "Is_Latest": (row.get("Is_Latest") or row.get("is_latest") or "TRUE").strip(),
+                    "Page": (row.get("Page") or row.get("page") or "specifications").strip(),
+                    "row_kind": "footnote",
+                    "row_order": order,
+                    "footnote_id": (row.get("Footnote_id") or row.get("footnote_id") or "").strip(),
+                    "footnote_order": order,
+                    "footnote_text_en": row.get("Text_en", "") or row.get("text_en", "") or "",
+                    "footnote_text_fr": row.get("Text_fr", "") or row.get("text_fr", "") or "",
+                    "footnote_text_es": row.get("Text_es", "") or row.get("text_es", "") or "",
+                    "footnote_text_ja": row.get("Text_ja", "") or row.get("text_ja", "") or "",
+                    "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
+                }
+            )
+        return normalized
+
+    @staticmethod
+    def _normalize_spec_note_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+        if not rows:
+            return []
+
+        normalized: list[dict[str, str]] = []
+        for row in rows:
+            order = (row.get("Note_order") or row.get("note_order") or "").strip()
+            normalized.append(
+                {
+                    "__line__": row.get("__line__", ""),
+                    "Region": (row.get("Region") or row.get("region") or "").strip(),
+                    "Model": (row.get("Model") or row.get("model") or "").strip(),
+                    "Source_lang": (row.get("Source_lang") or row.get("source_lang") or "").strip(),
+                    "Is_Latest": (row.get("Is_Latest") or row.get("is_latest") or "TRUE").strip(),
+                    "Page": (row.get("Page") or row.get("page") or "specifications").strip(),
+                    "row_kind": "note",
+                    "row_order": order,
+                    "note_id": (row.get("Note_id") or row.get("note_id") or "").strip(),
+                    "note_order": order,
+                    "note_text_en": row.get("Text_en", "") or row.get("text_en", "") or "",
+                    "note_text_fr": row.get("Text_fr", "") or row.get("text_fr", "") or "",
+                    "note_text_es": row.get("Text_es", "") or row.get("text_es", "") or "",
+                    "note_text_ja": row.get("Text_ja", "") or row.get("text_ja", "") or "",
+                    "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
+                }
+            )
+        return normalized
+
     def _load_pages(self) -> list[PageSpec]:
         rows = _read_csv(self.paths.page_registry)
         pages: list[PageSpec] = []
@@ -320,7 +308,7 @@ class Phase1Builder:
             return self.paths.root / candidate
         return self.paths.template_dir / candidate
 
-    def _load_page_blocks(self, page_id: str, default_blocks: list[dict[str, str]]) -> list[dict[str, str]]:
+    def _load_page_blocks(self, page_id: str) -> list[dict[str, str]]:
         if page_id == "spec":
             spec_master_csv = self.paths.spec_master_csv
             if not spec_master_csv.exists():
@@ -339,14 +327,21 @@ class Phase1Builder:
                     f"(requires Section, Row_key, Line_order): {spec_master_csv}"
                 )
 
-            aux_rows = self._load_optional_csv(self.paths.spec_footnotes_csv)
-            if aux_rows:
-                rows.extend(aux_rows)
+            aux_footnote_rows = self._normalize_spec_footnote_rows(
+                self._load_optional_csv(self.paths.spec_footnotes_csv)
+            )
+            if aux_footnote_rows:
+                rows.extend(aux_footnote_rows)
+            aux_note_rows = self._normalize_spec_note_rows(
+                self._load_optional_csv(self.paths.spec_notes_csv)
+            )
+            if aux_note_rows:
+                rows.extend(aux_note_rows)
             return rows
 
         per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"
         if not per_page_csv.exists():
-            return [b for b in default_blocks if (b.get("page_id") or "").strip() == page_id]
+            return []
 
         rows = _read_csv(per_page_csv)
         if not rows:
@@ -354,16 +349,9 @@ class Phase1Builder:
 
         headers = set(rows[0].keys())
         if "block_type" not in headers:
-            if {"id", "part"}.issubset(headers):
-                if page_id != "safety":
-                    raise ValueError(
-                        f"Compact schema is only supported for safety page, got page_id='{page_id}' in {per_page_csv}"
-                    )
-                rows = _normalize_content_blocks(rows)
-            else:
-                raise ValueError(
-                    f"Unsupported schema in {per_page_csv}: missing required column 'block_type'"
-                )
+            raise ValueError(
+                f"Unsupported schema in {per_page_csv}: missing required column 'block_type'"
+            )
         else:
             # Canonical schema for page-level csv can omit page_id; we set it explicitly.
             for row in rows:
@@ -381,7 +369,6 @@ class Phase1Builder:
     def build(self, selector: BuildSelector, strict_renderer: bool = True) -> BuildResult:
         pages = self._load_pages()
         targets = self._select_targets(selector)
-        default_blocks = _normalize_content_blocks(_read_csv(self.paths.content_blocks))
         selected_model = self._single_selector_value(selector.models)
         selected_region = self._single_selector_value(selector.regions)
 
@@ -409,7 +396,7 @@ class Phase1Builder:
                 raise FileNotFoundError(f"Missing template for page '{page.page_id}': {template_path}")
             template = template_path.read_text(encoding="utf-8")
 
-            page_blocks = self._load_page_blocks(page.page_id, default_blocks)
+            page_blocks = self._load_page_blocks(page.page_id)
             if not page_blocks:
                 raise RuntimeError(f"No content blocks for page_id='{page.page_id}'")
 

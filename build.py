@@ -57,7 +57,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--sync-scope",
         choices=("generated", "params"),
         default="params",
-        help="For sync-review: generated = spec/safety only; params = generated plus placeholder/cover pages",
+        help="For sync-review: generated = generated csv/draft pages only; params = generated plus placeholder/cover pages",
     )
     ap.add_argument(
         "--page-file",
@@ -69,10 +69,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--tracked-root", default=None, help="Tracked subtree for diff-report")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report")
+    ap.set_defaults(ignore_initial_adds=True)
     ap.add_argument(
         "--ignore-initial-adds",
+        dest="ignore_initial_adds",
         action="store_true",
-        help="Ignore initial all-Added rows when the tracked subtree is first introduced",
+        help="Ignore initial all-Added rows when the tracked subtree is first introduced (default for diff-report)",
+    )
+    ap.add_argument(
+        "--include-initial-adds",
+        dest="ignore_initial_adds",
+        action="store_false",
+        help="Include initial all-Added rows when the tracked subtree is first introduced",
     )
     ap.add_argument(
         "--report-dir",
@@ -683,8 +691,8 @@ def run_diff_report_with_paths(
         "--output-dir",
         str(report_dir),
     ]
-    if args.ignore_initial_adds:
-        cmd.append("--ignore-initial-adds")
+    if not args.ignore_initial_adds:
+        cmd.append("--include-initial-adds")
     run_checked(cmd)
 
 

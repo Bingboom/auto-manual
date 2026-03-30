@@ -18,7 +18,7 @@ Le produit s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactiv
 
 *Le temps de veille peut être réglé dans l'application Jackery.*
 
-Lorsque le mode d'économie d'énergie est activé, le produit s'éteint automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si la sortie CA ou |DC_USB_POWER_BUTTON_LABEL_LOWER| est activée, mais que le produit ne charge ni ne décharge.
+Lorsque le mode d'économie d'énergie est activé, le produit s'éteint automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si la sortie CA ou CC/USB est activée, mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
 ----------------------
@@ -48,11 +48,11 @@ Arrêt : appuyez une fois.
 
 **ATTENTION**
 
-- **|USB_C_HIGH_POWER_PORT_LABEL| est un port de sortie haute puissance USB-PD Power Source 3 (PS3).** Si l'appareil ou l'accessoire connecté ne respecte pas les exigences de sécurité, un risque d'incendie peut exister. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre l'incendie.
-- Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou de toute norme équivalente).
-- Pour obtenir la puissance de sortie maximale, utilisez le câble officiel |USB_C_HIGH_POWER_CABLE_NAME| (20V DC/5A, 100W).
+- **|USB_C_HIGH_POWER_PORT_LABEL| est un port de sortie haute puissance USB-PD de type Source d'alimentation 3 (PS3).** Si l'appareil ou l'accessoire connecté ne respecte pas les exigences de sécurité, un risque d'incendie peut exister. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre l'incendie.
+- Ne connectez Jackery Explorer 1000 qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou de toute norme équivalente).
+- Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5 A, 100 W).
 
-Le produit peut charger la batterie de votre voiture à l'aide du |CAR_BATTERY_CHARGING_CABLE_NAME|, vendu séparément et disponible sur notre site web.
+Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12 V, vendu séparément et disponible sur notre site web.
 
 **ATTENTION**
 
@@ -63,9 +63,9 @@ Le produit peut charger la batterie de votre voiture à l'aide du |CAR_BATTERY_C
 MODE D'ÉCONOMIE D'ÉNERGIE
 -------------------------
 
-Afin d'éviter une consommation inutile de batterie liée à un oubli d'arrêt de la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Si aucun appareil n'est connecté, ou si la consommation de l'appareil connecté est inférieure à un certain seuil (|ENERGY_SAVING_AC_THRESHOLD| en sortie CA ou |ENERGY_SAVING_DC_THRESHOLD| en sortie CC/USB) pendant |ENERGY_SAVING_AUTO_OFF_DURATION|, le produit coupe automatiquement les sorties. Réglez la durée du mode d'économie d'énergie dans l'application Jackery.
+Afin d'éviter une consommation inutile de batterie liée à un oubli d'arrêt de la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (|ENERGY_SAVING_AC_THRESHOLD| en sortie CA ou |ENERGY_SAVING_DC_THRESHOLD| en sortie CC/USB), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est |ENERGY_SAVING_AUTO_OFF_DURATION|. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 2 h, 8 h, 12 h ou 24 h. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
 
-Pour désactiver le mode d'économie d'énergie, maintenez |AC_POWER_BUTTON_LABEL_LOWER| et |MAIN_POWER_BUTTON_LABEL_LOWER| enfoncés pendant plus de 3 secondes. Une fois désactivé, l'icône ne s'affiche plus sur l'écran LCD et le produit ne coupe plus automatiquement la sortie CA ou USB.
+Pour désactiver le mode d'économie d'énergie, maintenez le bouton d'alimentation CA et le bouton d'alimentation principal enfoncés pendant plus de 3 secondes. Une fois désactivé, l'icône ne s'affiche plus sur l'écran LCD et le produit ne coupe plus automatiquement la sortie CA ou CC/USB.
 
 Lorsque vous alimentez des appareils de faible puissance (CA <= |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant l'utilisation.
 
@@ -110,11 +110,11 @@ Appuyez une troisième fois pour éteindre la lampe.
           :width: 140px
      - Allumé brièvement
      - Allumer
-     - Appuyez sur |MAIN_POWER_BUTTON_LABEL| ou lorsque le produit est en charge.
+     - Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.
    * -
      - Allumé brièvement
      - Éteindre
-     - Appuyez sur |MAIN_POWER_BUTTON_LABEL|.
+     - Appuyez sur le bouton d'alimentation principal.
    * -
      - Allumé brièvement
      - Arrêt automatique
@@ -122,11 +122,11 @@ Appuyez une troisième fois pour éteindre la lampe.
    * -
      - Allumé en continu (pendant la charge ou la décharge)
      - Allumer
-     - Appuyez deux fois sur |MAIN_POWER_BUTTON_LABEL_LOWER| lorsque le produit est allumé.
+     - Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.
    * -
      - Allumé en continu (pendant la charge ou la décharge)
      - Éteindre
-     - Appuyez sur |MAIN_POWER_BUTTON_LABEL|.
+     - Appuyez sur le bouton d'alimentation principal.
    * -
      - Allumé en continu (pendant la charge ou la décharge)
      - Arrêt automatique
@@ -144,12 +144,15 @@ COMBINAISONS DE TOUCHES
    * - Boutons
      - Utilisation
      - Fonction
-   * - |MAIN_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL_LOWER|
+   * - Bouton d'alimentation principal + bouton d'alimentation CA
      - Maintenez les deux boutons enfoncés pendant 3 s
      - Activer/désactiver le mode d'économie d'énergie
-   * - |MAIN_POWER_BUTTON_LABEL| + |DC_USB_POWER_BUTTON_LABEL_LOWER|
+   * - Bouton d'alimentation principal + bouton d'alimentation CC/USB
      - Maintenez les deux boutons enfoncés pendant 3 s
      - Réinitialiser le Wi-Fi et le Bluetooth
-   * - |DC_USB_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL_LOWER|
+   * - Bouton d'alimentation CC/USB + bouton d'alimentation CA
      - Maintenez les deux boutons enfoncés pendant 1 s
      - Activer/désactiver le Wi-Fi et le Bluetooth
+   * - Bouton d'alimentation principal + bouton d'éclairage LED
+     - Maintenez les deux boutons enfoncés pendant 1 s
+     - Activer/désactiver le mode de charge rapide d'urgence

@@ -16,7 +16,7 @@ También puede escanear el siguiente código QR para descargar e instalar la apl
 
 2.2 Pulse el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
 Cuando los iconos de Wi-Fi y Bluetooth del dispositivo parpadeen, el dispositivo habrá entrado en el modo de configuración de red.
-Pulse el botón "Icono parpadeante" y permita que la aplicación se conecte a dispositivos cercanos y abra los permisos de Bluetooth.
+Pulse el botón "Icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y use los permisos de Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
@@ -37,13 +37,13 @@ Si durante el proceso de vinculación aparece el mensaje "el dispositivo ya ha s
 - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
 - Mantenga pulsados |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
 
-2.4 Después de que el dispositivo se haya conectado correctamente, introduzca la contraseña de su red Wi-Fi y toque el botón Aceptar.
+2.4 Después de que el dispositivo se haya conectado correctamente, introduzca la contraseña de la red Wi-Fi a la que se conectará el dispositivo y toque el botón **Aceptar**.
 
 **NOTA**
 
 - Seleccione una red Wi-Fi de 2,4 GHz. El dispositivo no admite redes Wi-Fi de 5 GHz.
 
-Después de añadir correctamente el dispositivo a la aplicación, el icono de Wi-Fi del dispositivo permanecerá siempre encendido.
+2.5 Después de añadir correctamente el dispositivo a la aplicación, el icono de Wi-Fi del dispositivo permanecerá siempre encendido.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Marcador de posición de la pantalla de resultado de conexión en la aplicación.
@@ -57,7 +57,7 @@ La aplicación Jackery solo puede conectarse a una estación de energía por Blu
 
 **3. Desvincular el dispositivo**
 
-Haga clic en el icono Configuración, en la esquina superior derecha de la interfaz principal del dispositivo, para acceder a la página de configuración. A continuación, haga clic en el botón Desvincular, situado en la parte inferior de la página, para desvincular el dispositivo.
+Haga clic en el icono **Configuración**, en la esquina superior derecha de la interfaz principal del dispositivo, para acceder a la página de configuración. A continuación, haga clic en el botón **Desvincular**, situado en la parte inferior de la página, para desvincular el dispositivo.
 
 **4. Notas**
 

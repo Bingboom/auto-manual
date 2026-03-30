@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import struct
 import tempfile
@@ -6,7 +6,12 @@ import unittest
 from pathlib import Path
 
 from tools.word_bundle import derive_word_title, render_safety_word_html, resolve_reference_doc
-from tools.word_bundle_html import _inject_img_dimensions, _rewrite_word_friendly_fragment
+from tools.word_bundle_html import (
+    _build_word_only_tags,
+    _convert_rst_fragment_to_html,
+    _inject_img_dimensions,
+    _rewrite_word_friendly_fragment,
+)
 
 
 class TestWordBundle(unittest.TestCase):
@@ -59,6 +64,148 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("<h1>IMPORTANT SAFETY INFORMATION</h1>", html)
         self.assertIn("<h2>OPERATING INSTRUCTIONS</h2>", html)
         self.assertIn("<li>Top item</li>", html)
+
+    def test_convert_rst_fragment_to_html_should_convert_safety_two_column_blocks(self) -> None:
+        rst = """
+.. only:: html
+
+   .. raw:: html
+
+      <div class="hb-safety">
+        <h1 class="hb-h1-pill">IMPORTANT SAFETY INFORMATION</h1>
+        <div class="hb-warning-box">
+          <div class="hb-warning-row">
+            <div class="hb-warning-text">Risk of fire.</div>
+          </div>
+        </div>
+        <div class="hb-two-col">
+          <p class="hb-lead">Always follow these basic precautions.</p>
+          <ul class="hb-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+          </ul>
+        </div>
+      </div>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("safety_en.rst"),
+                Path(td),
+            )
+
+        self.assertIn("manual-callout-table", html)
+        self.assertIn("manual-two-col-table", html)
+        self.assertIn("Always follow these basic precautions.", html)
+        self.assertIn("Item 4", html)
+
+    def test_convert_rst_fragment_to_html_should_render_spec_pages_via_word_html(self) -> None:
+        rst = """
+.. only:: html
+
+   .. raw:: html
+
+      <h1 class="hb-h1-pill">SPECIFICATIONS</h1>
+
+   .. raw:: html
+
+      <h2 class="hb-spec-section">鈼?General Info</h2>
+
+   .. list-table::
+      :widths: 33 67
+      :header-rows: 0
+
+      * - Product Name
+        - Jackery Explorer 1000
+      * - Model No.
+        - JE-1000F
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("spec_en.rst"),
+                Path(td),
+            )
+
+        self.assertIn('<section class="manual-section spec-section">', html)
+        self.assertIn("<h1>SPECIFICATIONS</h1>", html)
+        self.assertIn('class="hb-spec-section"', html)
+        self.assertIn('class="hb-spec-bullet"', html)
+        self.assertIn("GENERAL INFO", html)
+        self.assertIn('class="manual-table manual-spec-table"', html)
+        self.assertIn("JE-1000F", html)
+
+    def test_build_word_only_tags_should_normalize_target_context(self) -> None:
+        tags = _build_word_only_tags(model="JE-2000E", region="US", lang="en")
+
+        self.assertIn("html", tags)
+        self.assertIn("model_je_2000e", tags)
+        self.assertIn("region_us", tags)
+        self.assertIn("lang_en", tags)
+
+    def test_convert_rst_fragment_to_html_should_filter_only_blocks_by_tags(self) -> None:
+        rst = """
+.. only:: model_je_2000e and region_us and lang_en
+
+   .. raw:: html
+
+      <p>Keep model/region/lang.</p>
+
+.. only:: model_je_1000f
+
+   .. raw:: html
+
+      <p>Drop model mismatch.</p>
+
+.. only:: model_je_1000f or region_us
+
+   .. raw:: html
+
+      <p>Keep or expression.</p>
+
+.. only:: not model_je_1000f and region_us
+
+   .. raw:: html
+
+      <p>Keep not expression.</p>
+
+.. only:: html
+
+   .. raw:: html
+
+      <p>Keep html block.</p>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("charging.rst"),
+                Path(td),
+                active_tags=_build_word_only_tags(model="JE-2000E", region="US", lang="en"),
+            )
+
+        self.assertIn("Keep model/region/lang.", html)
+        self.assertIn("Keep or expression.", html)
+        self.assertIn("Keep not expression.", html)
+        self.assertIn("Keep html block.", html)
+        self.assertNotIn("Drop model mismatch.", html)
+
+    def test_convert_rst_fragment_to_html_should_keep_preface_important_as_bold_paragraph(self) -> None:
+        rst = """
+**IMPORTANT**
+
+Congratulations on your new manual.
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("00_preface.rst"),
+                Path(td),
+            )
+
+        self.assertIn("<p><strong>IMPORTANT</strong></p>", html)
+        self.assertNotIn("<h1>IMPORTANT</h1>", html)
 
     def test_rewrite_word_friendly_fragment_should_convert_cover_and_warning_box(self) -> None:
         fragment = (
@@ -155,8 +302,8 @@ class TestWordBundle(unittest.TestCase):
             '<div class="hb-two-col">'
             '<ul class="hb-list">'
             '<li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product\'s specified operating temperature ranges:</li>'
-            '<li>Charging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
-            '<li>Discharging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
+            '<li>Charging temperature: -4掳F to 113掳F (-20掳C to 45掳C)</li>'
+            '<li>Discharging temperature: -4掳F to 113掳F (-20掳C to 45掳C)</li>'
             '<li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.</li>'
             '<li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li>'
             '<li>Water can cause short circuits or damage to the charger, leading to safety risks.</li>'
@@ -176,6 +323,27 @@ class TestWordBundle(unittest.TestCase):
             "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.<ul class=\"hb-sublist\">",
             out,
         )
+
+    def test_rewrite_word_friendly_fragment_should_balance_safety_columns_by_content_weight(self) -> None:
+        long_item = " ".join(["Very long safety item."] * 30)
+        fragment = (
+            '<div class="hb-two-col">'
+            '<p class="hb-lead">Always follow these basic precautions.</p>'
+            '<ul class="hb-list">'
+            '<li>Short item 1.</li>'
+            '<li>Short item 2.</li>'
+            '<li>Short item 3.</li>'
+            f'<li>{long_item}</li>'
+            '<li>Short item 4.</li>'
+            '</ul>'
+            '</div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment)
+
+        self.assertIn("manual-two-col-table", out)
+        right_col_start = out.index("</td><td")
+        self.assertGreater(out.index(long_item), right_col_start)
 
     def test_rewrite_word_friendly_fragment_should_replace_signal_word_cells_with_banners(self) -> None:
         fragment = (

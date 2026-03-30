@@ -1,12 +1,12 @@
 # Hello Auto Doc
 
-Updated: 2026-03-24
+Updated: 2026-03-30
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
 It is the current workflow and editing-surface guide.
 It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
-For the current JP / US / EU family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
+For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
 
 ---
 
@@ -59,7 +59,6 @@ The manual system now has four layers, but they are used at different stages.
 
 1. Template seed layer
    - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
-   - [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
    - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
    - [`docs/manifests/*.yaml`](../docs/manifests)
    - Responsibility: reusable page structure, headings, shared prose, and initial draft layout
@@ -67,10 +66,20 @@ The manual system now has four layers, but they are used at different stages.
 2. Data layer
    - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
    - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+   - [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
    - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-   - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+   - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
-   - Responsibility: model-specific parameters, safety/spec content, and placeholder values
+   - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
+   - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
+   - `Spec_Footnotes.csv` now holds only reusable spec footnote definitions; `Footnote_order` controls the rendered superscript marker order and `Footnote_id` is referenced from `Spec_Master.csv`
+   - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
+   - `Spec_Footnotes.csv` and `Spec_Notes.csv` now match rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
+   - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
+   - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
+   - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
+   - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
+   - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row
 
 3. Review working layer
    - [`docs/_review/<model>/<region>/index.rst`](../docs/_review)
@@ -93,6 +102,8 @@ Rules:
 - Before review starts, use template/data to create the first draft.
 - After review starts, use [`docs/_review/...`](../docs/_review/) as the daily editing surface for that target.
 - Edit templates only when the change should be shared by multiple manuals.
+- For manually maintained parallel-language template pages, keep one source-language template as the structure owner and update the derived-language templates in the same change when shared headings, section order, placeholder sets, includes, or `.. only::` model gates change.
+- Current example: if `charging.rst` changes in the source-language family template, keep the same battery-pack `.. only:: model_je_2000e` block boundary in the corresponding derived-language templates instead of updating only one language.
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
@@ -102,6 +113,7 @@ Rules:
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
 - families without `_review` content are hidden, so the preview only shows available families
+- the packaged `changes/index.html` now opens a family hub first, so reviewers can switch between available families such as `US` and `JP` before jumping into a family-specific change report
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
@@ -149,7 +161,7 @@ Important:
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
-- `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / `tpl_*` keys / assets.
+- `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / page-value selectors / assets.
 - review overrides only overlay `overrides/_assets/**`, `overrides/_static/**`, and `overrides/renderers/**` into the runtime bundle.
 
 ---
@@ -207,15 +219,26 @@ For the current maintainer branch model, pull request rules, and GitHub protecti
 Edit these when the change should be shared across products or when creating the first draft:
 
 - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
-- [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
 - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
+
+Parallel-language template rule:
+
+- `docs/templates/page_us-en/*.rst` is the current source-language structure owner for manually maintained US prose templates.
+- `docs/templates/page_us-es/*.rst` and `docs/templates/page_us-fr/*.rst` are derived-language counterparts and must be updated in the same round when the source-language page changes shared section structure or `.. only::` gating.
+- JP currently has only `ja`, so there is no second JP derived-language template to mirror today, but any future JP derived-language page should follow the same rule.
 
 Edit these when safety/spec parameters change:
 
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+- [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+
+Edit these when a safety intro page needs copy/layout changes:
+
+- edit [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst), [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst), or [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst) for US safety intro changes
+- edit [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) when the Japanese safety intro page needs copy or layout changes
+- edit [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst) when the detailed Japanese safety warnings need changes
 
 Edit these during target review and final polish:
 
@@ -239,23 +262,45 @@ You may commit `_review/...` for review history because it is now the target edi
 
 ## 6. How Safety and Spec Pages Work
 
-Safety content is generated by [`tools/phase1_build.py`](../tools/phase1_build.py).
+Safety intro pages are now maintained as fixed RST templates and then materialized into the bundle.
 
 Primary inputs:
 
-- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
-- optional page override CSV such as [`data/phase1/<page_id>_blocks.csv`](../data/phase1)
+- [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst)
+- [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst)
+- [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst)
+- [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst)
+
+JP manual note:
+
+- [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml) includes [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) directly
+- edit that template when the JP safety intro page must change
+- the detailed JP warning content remains in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
+- the old `content_blocks.csv` safety source has been removed from the active repo flow
 
 Generated bundle output:
 
-- [`docs/_build/<model>/<region>/rst/generated/<model>/safety_<lang>.rst`](../docs/_build)
 - materialized page include: [`docs/_build/<model>/<region>/rst/page/safety_<lang>.rst`](../docs/_build)
+
+Symbols content is generated from:
+
+- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
+- [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
+
+`symbols_blocks.csv` notes:
+
+- use one `table_row` per symbols-table entry
+- use `Region` and `Model` to target the same way as `Spec_Master.csv`
+- use `Source_lang` for the row's source-language code, for example `en` or `ja`
+- leave `Region` / `Model` blank when one row should be shared
+- `image_path` stores the RST image reference path for that icon
+- keep `symbol_key` stable so renderer alt text and layout metadata still resolve correctly
 
 Spec content is generated from:
 
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - optional [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- optional [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
 - optional [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 
 Generated bundle output:
@@ -263,7 +308,7 @@ Generated bundle output:
 - [`docs/_build/<model>/<region>/rst/generated/<model>/spec_<lang>.rst`](../docs/_build)
 - materialized page include: [`docs/_build/<model>/<region>/rst/page/spec_<lang>.rst`](../docs/_build)
 
-[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main source of truth for spec sections, rows, and `tpl_*` placeholders.
+[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main source of truth for spec sections, rows, and page-value placeholder records.
 
 ---
 
@@ -283,19 +328,29 @@ Resolution source:
 - `model_no` comes from `Row_key=model_no`
 - `PRODUCT_SHORT_NAME` is derived from `PRODUCT_NAME`
 
-Any `Row_key` beginning with `tpl_` becomes a placeholder.
+`Spec_Master.csv` `Page` note:
+
+- `Page` can be a comma-separated list
+- use `Product overview` for Product overview-only page-value rows such as front/side-view callouts
+- use `Product overview, specifications,` when the same row is intentionally shared by both pages
+- `Row_label_source`, `Param_source`, and `Value_source` should store the row's source-manual text
+- `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
+- `project_code` / `项目代码` is no longer used in `Spec_Master.csv`; choose rows by `Region` + `Model`
+- source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
+
+For page-value rows, `Row_key` now keeps only the concept itself. Human editing should happen through `Slot_key`.
 
 Examples:
 
-- `tpl_main_power_button_label` -> `|MAIN_POWER_BUTTON_LABEL|`
-- `tpl_side_ac_input_spec` -> `|SIDE_AC_INPUT_SPEC|`
-- `tpl_battery_pack_name` -> `|BATTERY_PACK_NAME|`
+- `Row_key=main_power_button`, `Slot_key=label` -> `|MAIN_POWER_BUTTON_LABEL|`
+- `Row_key=ac_input`, `Slot_key=side.spec` -> `|SIDE_AC_INPUT_SPEC|`
+- `Row_key=battery_pack_name`, `Slot_key=value` -> `|BATTERY_PACK_NAME|`
 
 Derived behavior:
 
 - non-empty placeholders also get `..._BOLD`
 - placeholders ending in `_LABEL` also get `..._LOWER`
-- multi-line `tpl_*` rows produce suffixed placeholders such as `|EXAMPLE_KEY_2|`
+- multi-line page-value rows produce suffixed placeholders such as `|EXAMPLE_KEY_2|`
 
 ---
 
@@ -304,15 +359,15 @@ Derived behavior:
 Cross-platform entrypoint:
 
 ```powershell
-python build.py doctor --config config.yaml --model JE-1000F --region US
+python build.py doctor --config config.us-en.yaml --model JE-1000F --region US
 python build.py rst
 python build.py review
 python build.py check
 python build.py sync-review
 python build.py publish
 python build.py release-manifest
-python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
-python build.py fast --config config.yaml --model JE-1000F --region US
+python build.py preview --config config.us-en.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.us-en.yaml --model JE-1000F --region US
 python build.py html
 python build.py word
 python build.py pdf
@@ -322,9 +377,9 @@ python build.py all
 Config scope rule:
 
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
-- [`config.eu.yaml`](../config.eu.yaml): shared EU template-family config
-- the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / EU`
+- the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US` and `JE-1000F / JP`
 - do not create a new config only because the model changed; pass `--model` and `--region` instead
 - create a new config only when the page stack, template family, or output conventions are genuinely different
 
@@ -333,13 +388,13 @@ Useful target-scoped examples:
 ```powershell
 python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 python build.py rst --config config.ja.yaml
-python build.py review --config config.yaml --model JE-1000F --region US
-python build.py review --config config.yaml --model JE-1000F --region US --refresh-review
-python build.py sync-review --config config.yaml --model JE-1000F --region US
-python build.py check --config config.yaml --model JE-1000F --region US
-python build.py publish --config config.yaml --model JE-1000F --region US
+python build.py review --config config.us-en.yaml --model JE-1000F --region US
+python build.py review --config config.us-en.yaml --model JE-1000F --region US --refresh-review
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py publish --config config.us-en.yaml --model JE-1000F --region US
 python build.py rst --config config.yaml
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.ja.yaml --model JE-2000F --region JP
 ```
 
@@ -386,13 +441,19 @@ Source mode meaning:
   - all template pages whose source contains placeholders such as `|PRODUCT_NAME|` or `|MAIN_POWER_BUTTON_LABEL|`
   - cover pages generated from title/product identity
 - generated cover pages still feed PDF/LaTeX output, but HTML now opens directly on the first manual content section instead of a blank cover-style landing screen
+- manual HTML preview also suppresses most default Furo sidebar / TOC chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from the manual headings, and renders generic headings, copy width, figure presentation, ordinary table spacing, and the multilingual preface notice in a restrained neutral manual-reader style while keeping dedicated component layouts such as `SPECIFICATIONS`, so the result feels like a manual reader instead of a documentation site
+- review-preview / Vercel manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
 
 Equivalent lower-level examples:
 
 ```powershell
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.yaml --model JE-1000F --region US --prepare-only
-.\.venv\Scripts\python.exe tools\build_docs.py --config config.yaml --model JE-1000F --region US --formats word --no-open
+.\.venv\Scripts\python.exe tools\build_docs.py --config config.us-en.yaml --model JE-1000F --region US --prepare-only
+.\.venv\Scripts\python.exe tools\build_docs.py --config config.us-en.yaml --model JE-1000F --region US --formats word --no-open
 ```
+
+Word styling note:
+
+- the US English Word path now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while leaving the generated `safety` and `spec` pages as-is
 
 ---
 
@@ -417,7 +478,7 @@ Use this when a target has never been tracked in Git before.
 Example baseline:
 
 ```powershell
-python build.py review --config config.yaml --model JE-1000F --region US
+python build.py review --config config.us-en.yaml --model JE-1000F --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Add JE-1000F US review baseline"
 ```
@@ -433,8 +494,8 @@ What this means:
 After the baseline exists, the normal update loop is:
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py word --config config.us-en.yaml --model JE-1000F --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Update JE-1000F US manual"
 ```
@@ -465,15 +526,15 @@ Recommended default:
 Example report export for one model:
 
 ```powershell
-python build.py diff-report --config config.yaml --model JE-1000F --region US
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --ignore-initial-adds
+python build.py diff-report --config config.us-en.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F --from-ref HEAD~1 --to-ref HEAD --include-initial-adds
 ```
 
 Example report export for one region:
 
 ```powershell
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F/US --from-ref HEAD~3 --to-ref HEAD
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F/US --from-ref HEAD~3 --to-ref HEAD
 ```
 
 ### 9.4 How to Compare Two Specific Commits
@@ -481,7 +542,7 @@ python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-
 If you want to compare a baseline commit with the latest manual state:
 
 ```powershell
-python build.py diff-report --config config.yaml --tracked-root docs/_review/JE-1000F/US --from-ref <old_commit> --to-ref <new_commit>
+python build.py diff-report --config config.us-en.yaml --tracked-root docs/_review/JE-1000F/US --from-ref <old_commit> --to-ref <new_commit>
 ```
 
 Examples:
@@ -502,19 +563,20 @@ Default outputs:
 - [`reports/version_tracking/JE-1000F/US/*_fields.csv`](../reports/version_tracking/JE-1000F/US)
 - [`reports/version_tracking/JE-1000F/US/*_fields.html`](../reports/version_tracking/JE-1000F/US)
 - [`reports/version_tracking/JE-1000F/US/*_index.html`](../reports/version_tracking/JE-1000F/US)
-- legacy compatibility aliases remain available as [`reports/version_tracking/JE-1000F/US/*.csv`](../reports/version_tracking/JE-1000F/US) and `*.html`
+- legacy report path aliases remain available as [`reports/version_tracking/JE-1000F/US/*.csv`](../reports/version_tracking/JE-1000F/US) and `*.html`
 
 Use `--report-dir` if you want a different output folder.
 
 Useful option:
 
-- `--ignore-initial-adds`
-  Use this when the tracked subtree is being committed for the first time and you do not want the report filled with one-time `Added` rows.
+- `--include-initial-adds`
+  The default report already hides one-time initial baseline Added rows. Use this only when you want to see the full first-import churn.
 
 Automatic behavior:
 
 - if the tracked subtree does not exist at `from-ref` but exists at `to-ref`, the report now shows an explicit note that this is an initial baseline and all Added rows are expected
-- if you also pass `--ignore-initial-adds`, the generated reports keep the note but suppress those initial Added rows
+- by default, the generated reports keep the note but suppress those initial Added rows
+- if you pass `--include-initial-adds`, those initial Added rows are kept in the generated reports
 
 ### 9.5 Which Report to Open First
 
@@ -538,7 +600,7 @@ What each report means:
 - `pages`: page-level rollup with `fields_changed` counts
 - `fields`: structured field/value changes extracted from list-tables and `Label: Value` lines
   For generated `spec_*.rst` pages, the report now also tries to fill `source_row_key`, `source_section_key`, `source_line_order`, and `source_csv_line` from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv).
-  For template-based pages such as `03_product_overview`, `05_operation_guide`, and `12_app_setup`, the report also tries to back-map changed field text to matching `tpl_*` rows by comparing rendered values against resolved placeholders.
+  For template-based pages such as `03_product_overview`, `05_operation_guide`, and `12_app_setup`, the report also tries to back-map changed field text to matching page-value rows by comparing rendered values against resolved placeholders.
   `fields.html` now includes built-in filters for `model`, `region`, `page_key`, `source_row_key`, `change_type`, plus a full-text search box.
 - `index`: homepage that links `files/pages/fields` together and provides target-level jump links with filters pre-applied
 
@@ -552,6 +614,7 @@ Important columns in `*_fields.csv` and `*_fields.html`:
 - `source_section_key`: the matched source section in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - `source_line_order`: the matched source line order for multiline rows
 - `source_csv_line`: the original CSV line number
+- when a field label itself changes, the diff now first tries to pair old/new rows through stable source back-mapping before falling back to rendered label text, so placeholder/spec renames are more likely to show up as one `M` row with both `old_value` and `new_value`
 
 Interpretation rule:
 
@@ -563,10 +626,10 @@ Interpretation rule:
 For a normal JE-1000F US review cycle:
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us-en.yaml --model JE-1000F --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Refresh JE-1000F US manual"
-python build.py publish --config config.yaml --model JE-1000F --region US
+python build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
 
 Then:
@@ -593,23 +656,21 @@ The repo now supports page contract checks under:
 
 - [`docs/templates/contracts/03_product_overview.yaml`](../docs/templates/contracts/03_product_overview.yaml)
 - [`docs/templates/contracts/05_operation_guide.yaml`](../docs/templates/contracts/05_operation_guide.yaml)
-- [`docs/templates/contracts/05_operation_guide_eu.yaml`](../docs/templates/contracts/05_operation_guide_eu.yaml)
 - [`docs/templates/contracts/12_app_setup.yaml`](../docs/templates/contracts/12_app_setup.yaml)
-- [`docs/templates/contracts/12_app_setup_eu.yaml`](../docs/templates/contracts/12_app_setup_eu.yaml)
 
 Current scope:
 
 - contracts are matched by source template path from `config.pages`
-- `check` validates required placeholders, spec row keys, `tpl_*` row keys, and required assets
+- `check` validates required placeholders, spec row keys, page-value selectors, and required assets
 - current coverage includes `03_product_overview`, `05_operation_guide`, and `12_app_setup`
-- `EN`, `JP`, and `EU` template families can each declare their own required placeholder sets
+- the active US and JP template families can each declare their own required placeholder sets
 - contracts can be scoped by `allowed_languages`, `allowed_regions`, and `allowed_models`
 
 Current contract keys:
 
 - `required_placeholders`
 - `required_spec_keys`
-- `required_tpl_keys`
+- `required_page_values`
 - `required_assets`
 - `allowed_languages`
 - `allowed_regions`
@@ -617,7 +678,7 @@ Current contract keys:
 
 Why this matters:
 
-- a page can fail early when required `tpl_*` keys are missing
+- a page can fail early when required page-value bindings are missing
 - fallback values in [`conf_base.py`](../docs/conf_base.py) no longer hide missing product-specific spec data
 - new model onboarding becomes easier to validate before Word/PDF export
 
@@ -643,7 +704,7 @@ Use template/data only for shared reusable changes or intentional reseeding.
 
 ### 11.2 `?` appears in output
 
-This is usually caused by dirty `tpl_*` values in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), not by the template structure itself.
+This is usually caused by dirty page-value rows in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), not by the template structure itself.
 
 ### 11.3 Old model names survive in the new manual
 
@@ -677,7 +738,7 @@ After changing templates or CSV values, verify at least the following:
 4. the review bundle appears under [`docs/_review/<model>/<region>/`](../docs/_review)
 5. generated pages contain no unresolved placeholders such as `|PRODUCT_NAME|`
 6. generated pages contain no stale model names from older products
-7. safety and spec still come from CSV-backed generated pages
+7. safety and spec still resolve from the intended source, including the JP template-backed safety page and the remaining CSV-backed generated pages
 8. the expected `.docx`, `.html`, or `.pdf` file is generated when requested
 9. `publish` or `release-manifest` produced a JSON / CSV record under [`reports/releases/<model>/<region>/`](../reports/releases)
 

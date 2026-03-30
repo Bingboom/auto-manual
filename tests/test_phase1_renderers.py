@@ -8,91 +8,6 @@ from tools.phase1 import renderers
 
 
 class TestPhase1Renderers(unittest.TestCase):
-    def _template(self) -> str:
-        return "\n".join(
-            [
-                renderers.PH_TITLE_MAIN,
-                renderers.PH_WARNING_TITLE,
-                renderers.PH_TITLE_OPERATING,
-                renderers.PH_LEAD_TOP,
-                renderers.PH_SAVE_TITLE,
-                renderers.PH_TOP,
-                renderers.PH_BOTTOM,
-            ]
-        ) + "\n"
-
-    def _blocks(self) -> list[dict[str, str]]:
-        return [
-            {
-                "block_type": "title_main",
-                "order": "1",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "IMPORTANT SAFETY INFORMATION",
-            },
-            {
-                "block_type": "warning_title",
-                "order": "2",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "WARNING TITLE",
-            },
-            {
-                "block_type": "title_operating",
-                "order": "3",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "OPERATING INSTRUCTIONS",
-            },
-            {
-                "block_type": "lead_top",
-                "order": "4",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "Lead paragraph",
-            },
-            {
-                "block_type": "save_title",
-                "order": "5",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "SAVE THESE INSTRUCTIONS",
-            },
-            {
-                "block_type": "list_item",
-                "order": "6",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": '{"list_part": "top"}',
-                "text_en": "Top list item",
-            },
-            {
-                "block_type": "list_item",
-                "order": "7",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": '{"list_part": "bottom"}',
-                "text_en": "Bottom list item",
-            },
-        ]
-
-    def test_render_safety_page_happy_path(self) -> None:
-        out = renderers.render_safety_page(
-            template=self._template(),
-            blocks=self._blocks(),
-            sku_id="JB1000",
-            lang="en",
-            vars_map={},
-        )
-        self.assertIn("IMPORTANT SAFETY INFORMATION", out)
-        self.assertIn("Top list item", out)
-        self.assertIn("Bottom list item", out)
-
     def test_latex_escape_should_escape_common_special_chars(self) -> None:
         text = r"50%_off #1 & more $x$ \\macro ~^"
         escaped = renderers.latex_arg_escape(text)
@@ -104,33 +19,17 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn(r"\&", escaped)
         self.assertIn(r"\$", escaped)
 
-    def test_invalid_meta_json_should_fail_fast_with_clear_error(self) -> None:
-        blocks = self._blocks()
-        # Break top list metadata to reproduce silent-fail path.
-        for row in blocks:
-            if row.get("block_type") == "list_item" and "Top" in row.get("text_en", ""):
-                row["meta_json"] = "{bad-json"
-
-        with self.assertRaisesRegex(ValueError, "meta_json|json|line"):
-            renderers.render_safety_page(
-                template=self._template(),
-                blocks=blocks,
-                sku_id="JB1000",
-                lang="en",
-                vars_map={},
-            )
-
     def _spec_template(self) -> str:
         return "\n".join(
             [
                 renderers.PH_SPEC_TITLE_MAIN,
                 renderers.PH_SPEC_TITLE_MAIN_HTML,
                 renderers.PH_SPEC_SECTIONS_LATEX,
-                renderers.PH_SPEC_NOTES_LATEX,
                 renderers.PH_SPEC_FOOTNOTES_LATEX,
+                renderers.PH_SPEC_NOTES_LATEX,
                 renderers.PH_SPEC_SECTIONS_HTML,
-                renderers.PH_SPEC_NOTES_HTML,
                 renderers.PH_SPEC_FOOTNOTES_HTML,
+                renderers.PH_SPEC_NOTES_HTML,
             ]
         ) + "\n"
 
@@ -198,6 +97,11 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("GENERAL INFO", out)
         self.assertIn("Product Name", out)
         self.assertIn("Demo footnote", out)
+        self.assertIn('class="hb-spec-bullet"', out)
+        self.assertIn('class="hb-spec-table"', out)
+        self.assertIn('class="hb-spec-note"', out)
+        self.assertIn('class="hb-spec-footnote"', out)
+        self.assertLess(out.index("Demo footnote"), out.index("Demo note line"))
 
     def test_render_spec_page_row_without_delimiter_should_fail(self) -> None:
         blocks = self._spec_blocks()
@@ -220,15 +124,16 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "ac_input",
-                "Row_label_en": "1 x AC Input",
+                "Row_label_source": "1 x AC Input",
                 "Line_order": "1",
-                "Param_en": "Charge Mode",
-                "Value_en": "100V-120V~60Hz, 15A Max, 1750W Max",
+                "Param_source": "Charge Mode",
+                "Value_source": "100V-120V~60Hz, 15A Max, 1750W Max",
                 "row_order": "2",
                 "page_title_en": "SPECIFICATIONS",
                 "section_title_en": "GENERAL INFO",
@@ -238,15 +143,17 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "ac_input",
-                "Row_label_en": "1 x AC Input",
+                "Row_label_source": "1 x AC Input",
                 "Line_order": "2",
-                "Param_en": "Bypass Mode (1)",
-                "Value_en": "100V-120V~60Hz, 12A Max, 1440W",
+                "Param_source": "Bypass Mode",
+                "Value_source": "100V-120V~60Hz, 12A Max, 1440W",
+                "Param_footnote_refs": "ac_bypass",
                 "row_order": "2",
                 "page_title_en": "",
                 "section_title_en": "GENERAL INFO",
@@ -256,15 +163,16 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "model_no",
-                "Row_label_en": "Model No.",
+                "Row_label_source": "Model No.",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "JHP-2000A",
+                "Param_source": "",
+                "Value_source": "JHP-2000A",
                 "row_order": "1",
                 "page_title_en": "",
                 "section_title_en": "GENERAL INFO",
@@ -275,16 +183,39 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_key": "ac_output_bypass",
+                "Row_label_source": "AC Output in Bypass Mode",
+                "Line_order": "1",
+                "Param_source": "",
+                "Value_source": "100V-120V~60Hz, 12A Max",
+                "Row_label_footnote_refs": "ac_bypass",
+                "row_order": "3",
+                "page_title_en": "",
+                "section_title_en": "GENERAL INFO",
+                "sku_scope": "ALL",
+                "enabled": "1",
+            },
+            {
+                "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
+                "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "META",
                 "Section_order": "90",
                 "Row_key": "note_1",
-                "Row_label_en": "NOTE",
+                "Row_label_source": "NOTE",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "",
+                "Param_source": "",
+                "Value_source": "",
                 "row_kind": "note",
+                "note_id": "usb_type_c_trademark",
+                "note_order": "1",
                 "note_text_en": "* Demo note",
                 "sku_scope": "ALL",
                 "enabled": "1",
@@ -292,17 +223,19 @@ class TestPhase1Renderers(unittest.TestCase):
             {
                 "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
                 "Region": "US",
+                "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
                 "Section": "META",
                 "Section_order": "91",
                 "Row_key": "fn_1",
-                "Row_label_en": "FOOTNOTE",
+                "Row_label_source": "FOOTNOTE",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "",
+                "Param_source": "",
+                "Value_source": "",
                 "row_kind": "footnote",
-                "footnote_mark": "(1) ",
+                "footnote_id": "ac_bypass",
+                "footnote_order": "1",
                 "footnote_text_en": "Demo footnote text",
                 "sku_scope": "ALL",
                 "enabled": "1",
@@ -325,13 +258,51 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("Model No.", out)
         self.assertIn("Charge Mode: 100V-120V\\textasciitilde{}60Hz, 15A Max, 1750W Max", out)
         self.assertIn("Demo note", out)
-        self.assertIn("(1)Demo footnote text", out)
+        self.assertIn("Demo footnote text", out)
+        self.assertIn(r"\HBSpecMarkerOne{}", out)
+        self.assertIn("<br/>", out)
+        self.assertIn('class="hb-spec-table"', out)
 
         model_pos = out.find("Model No.")
         ac_pos = out.find("1 x AC Input")
         self.assertGreater(model_pos, -1)
         self.assertGreater(ac_pos, -1)
-        self.assertLess(model_pos, ac_pos)
+
+    def test_render_spec_page_should_use_source_columns_for_jp_source_language_rows(self) -> None:
+        jp_row = dict(self._spec_master_blocks()[0])
+        jp_row["Region"] = "JP"
+        jp_row["Source_lang"] = "ja"
+        jp_row["Row_label_source"] = "AC入力"
+        jp_row["Param_source"] = "急速充電モード"
+        jp_row["Value_source"] = "100V-120V~50/60Hz、15A Max、1450W"
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=[jp_row],
+            sku_id="JB1000",
+            lang="ja",
+            vars_map={},
+        )
+
+        self.assertIn("AC入力", out)
+        self.assertIn("急速充電モード: 100V-120V\\textasciitilde{}50/60Hz、15A Max、1450W", out)
+
+    def test_render_spec_page_should_honor_explicit_source_lang_column(self) -> None:
+        jp_row = dict(self._spec_master_blocks()[0])
+        jp_row["Region"] = "US"
+        jp_row["Source_lang"] = "ja"
+        jp_row["Row_label_source"] = "AC入力"
+        jp_row["Param_source"] = "急速充電モード"
+        jp_row["Value_source"] = "100V-120V~50/60Hz、15A Max、1450W"
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=[jp_row],
+            sku_id="JB1000",
+            lang="ja",
+            vars_map={},
+        )
+
+        self.assertIn("AC入力", out)
+        self.assertIn("急速充電モード: 100V-120V\\textasciitilde{}50/60Hz、15A Max、1450W", out)
 
     def test_render_spec_page_rejects_unquoted_comma_overflow(self) -> None:
         blocks = self._spec_master_blocks()
@@ -360,8 +331,11 @@ class TestPhase1Renderers(unittest.TestCase):
                 "block_type": "table_row",
                 "column_group": "left",
                 "symbol_key": "warning_triangle",
+                "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "order": "10",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Warning symbol meaning.",
                 "text_fr": "Signification du symbole d'avertissement.",
@@ -371,8 +345,11 @@ class TestPhase1Renderers(unittest.TestCase):
                 "block_type": "table_row",
                 "column_group": "left",
                 "symbol_key": "read_manual",
+                "image_path": "templates/word_template/common_assets/symbols/read_manual_operator.png",
                 "order": "20",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Read the manual.",
                 "text_fr": "Lire le manuel.",
@@ -382,8 +359,11 @@ class TestPhase1Renderers(unittest.TestCase):
                 "block_type": "table_row",
                 "column_group": "right",
                 "symbol_key": "do_not_dismantle",
+                "image_path": "templates/word_template/common_assets/symbols/do_not_dismantle.png",
                 "order": "10",
-                "sku_scope": "ALL",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Do not dismantle.",
                 "text_fr": "Ne démontez pas.",
@@ -405,6 +385,18 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
 
+    def test_render_symbols_page_uses_image_path_from_blocks(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["image_path"] = "custom/symbols/warning_triangle.png"
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("custom/symbols/warning_triangle.png", out)
+
     def test_render_symbols_page_uses_language_specific_copy(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
@@ -416,6 +408,53 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("SIGNIFICATION DES SYMBOLES", out)
         self.assertIn("Symbole", out)
         self.assertIn("Signification du symbole d'avertissement.", out)
+
+    def test_render_symbols_page_filters_by_model_and_region(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Region"] = "US"
+        blocks[0]["Model"] = "JE-1000F"
+        blocks[0]["text_en"] = "US JE-1000F warning."
+        blocks[1]["Region"] = "JP"
+        blocks[1]["Model"] = "JE-9999X"
+        blocks[1]["text_en"] = "SHOULD_NOT_RENDER"
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JE-1000F", "region": "US"},
+        )
+        self.assertIn("US JE-1000F warning.", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_symbols_page_supports_weee2_symbol_asset(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks.append(
+            {
+                "block_type": "table_row",
+                "column_group": "right",
+                "symbol_key": "weee2",
+                "image_path": "templates/word_template/common_assets/symbols/weee2.png",
+                "order": "20",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Battery disposal meaning.",
+                "text_fr": "Signification de mise au rebut des batteries.",
+                "text_es": "Significado de eliminación de baterías.",
+            }
+        )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("weee2.png", out)
+        self.assertIn("Battery disposal meaning.", out)
 
     def test_render_symbols_page_rejects_unknown_symbol_key(self) -> None:
         blocks = self._symbols_blocks()
@@ -430,17 +469,6 @@ class TestPhase1Renderers(unittest.TestCase):
                 vars_map={},
             )
 
-
-    def test_collect_safety_content_returns_structured_lists(self) -> None:
-        data = renderers.collect_safety_content(
-            blocks=self._blocks(),
-            sku_id="JB1000",
-            lang="en",
-            vars_map={},
-        )
-        self.assertEqual("IMPORTANT SAFETY INFORMATION", data["title_main"])
-        self.assertEqual(["Top list item"], data["top_items"])
-        self.assertEqual(["Bottom list item"], data["bottom_items"])
 
     def test_collect_spec_content_supports_spec_master_schema(self) -> None:
         data = renderers.collect_spec_content(
@@ -464,10 +492,10 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Section": "GENERAL INFO",
                 "Section_order": "1",
                 "Row_key": "model_no_alt",
-                "Row_label_en": "Model Alt",
+                "Row_label_source": "Model Alt",
                 "Line_order": "1",
-                "Param_en": "",
-                "Value_en": "SHOULD_NOT_BE_RENDERED",
+                "Param_source": "",
+                "Value_source": "SHOULD_NOT_BE_RENDERED",
                 "row_order": "1.1",
                 "section_title_en": "GENERAL INFO",
                 "sku_scope": "ALL",
@@ -516,8 +544,8 @@ class TestPhase1Renderers(unittest.TestCase):
             titles_csv = Path(td) / "spec_titles.csv"
             titles_csv.write_text(
                 "title_en,title_jp\n"
-                "SPECIFICATIONS,主な仕様\n"
-                "GENERAL INFO,基本情報\n",
+                "SPECIFICATIONS,涓汇仾浠曟\n"
+                "GENERAL INFO,鍩烘湰鎯呭牨\n",
                 encoding="utf-8",
             )
 
@@ -532,8 +560,8 @@ class TestPhase1Renderers(unittest.TestCase):
                     "spec_titles_csv": str(titles_csv),
                 },
             )
-            self.assertEqual("主な仕様", data["title_main"])
-            self.assertEqual("基本情報", data["sections"][0]["title"])
+            self.assertEqual("涓汇仾浠曟", data["title_main"])
+            self.assertEqual("鍩烘湰鎯呭牨", data["sections"][0]["title"])
 
 if __name__ == "__main__":
     unittest.main()

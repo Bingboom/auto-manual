@@ -5,8 +5,11 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
+import re
+from typing import cast
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
+from ..utils.spec_master import is_page_value_row, page_value_matches, source_language_for_row
 
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
@@ -77,13 +80,23 @@ def _pick_spec_lang_text(
     lang: str,
     default_keys: list[str] | None = None,
 ) -> str:
-    keys = [
-        f"{base}_{lang}",
-        f"{base}_{lang.lower()}",
-        f"{base}_{lang.upper()}",
-        f"{base}_en",
-        base,
-    ]
+    source_lang = source_language_for_row(row)
+    normalized_lang = (lang or "").strip().lower()
+    if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+        keys = [
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
+    else:
+        keys = [
+            f"{base}_{lang}",
+            f"{base}_{lang.lower()}",
+            f"{base}_{lang.upper()}",
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
     if default_keys:
         keys.extend(default_keys)
     return _first_non_empty(row, keys)
@@ -111,6 +124,50 @@ def _pick_title_lang(lang: str, vars_map: dict[str, str]) -> str:
     if value.startswith("zh"):
         return "zh"
     return "en"
+
+
+_CIRCLED_NUMBER_MARKERS: dict[int, str] = {
+    1: "\u2460",
+    2: "\u2461",
+    3: "\u2462",
+    4: "\u2463",
+    5: "\u2464",
+    6: "\u2465",
+    7: "\u2466",
+    8: "\u2467",
+    9: "\u2468",
+    10: "\u2469",
+}
+_LEGACY_FOOTNOTE_PREFIX_RE = re.compile(r"^(?:[\u2460-\u2473]|\(\d+\)|\d+\.)\s*")
+
+
+def _footnote_marker_for_order(order: float) -> str:
+    normalized = int(order)
+    if normalized <= 0:
+        return ""
+    return _CIRCLED_NUMBER_MARKERS.get(normalized, f"({normalized})")
+
+
+def _parse_footnote_refs(value: str) -> list[str]:
+    refs: list[str] = []
+    for token in (value or "").split(","):
+        item = token.strip()
+        if item and item not in refs:
+            refs.append(item)
+    return refs
+
+
+def _append_footnote_markers(text: str, refs: list[str], marker_by_id: dict[str, str]) -> str:
+    if not text:
+        return text
+    markers = "".join(marker_by_id.get(ref, "") for ref in refs if marker_by_id.get(ref, ""))
+    if not markers:
+        return text
+    return f"{text}{markers}"
+
+
+def _strip_legacy_footnote_prefix(text: str) -> str:
+    return _LEGACY_FOOTNOTE_PREFIX_RE.sub("", text or "", count=1).strip()
 
 
 def _load_spec_title_map(csv_path: Path, *, title_lang: str) -> dict[str, str]:
@@ -151,13 +208,10 @@ def _parse_spec_master_sections(
     rows: list[dict[str, object]] = []
     notes: list[tuple[float, str]] = []
     footnotes: list[tuple[float, str]] = []
+    footnote_defs: list[tuple[float, str, str]] = []
     title_candidates: list[tuple[float, str]] = []
     section_title_overrides: dict[str, str] = {}
 
-    var_project_code = _first_non_empty(
-        vars_map,
-        ["project_code", "product_code", "项目代码", "product_id"],
-    )
     var_region = _first_non_empty(vars_map, ["region", "Region"])
     var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
     target_sku = _first_non_empty(vars_map, ["sku_id", "sku"]) or rst_escape(sku_id)
@@ -169,7 +223,7 @@ def _parse_spec_master_sections(
             line = (row.get("__line__") or str(idx + 2)).strip()
             raise ValueError(
                 f"Spec_Master CSV line {line} has unquoted commas in a field. "
-                "Quote the full cell value (e.g. Value_en=\"A, B, C\")."
+                "Quote the full cell value (e.g. Value_source=\"A, B, C\")."
             )
 
         if not _is_enabled_row(row):
@@ -184,9 +238,6 @@ def _parse_spec_master_sections(
             if row_sku and row_sku != target_sku:
                 continue
 
-        row_project = _first_non_empty(row, ["project_code", "项目代码"])
-        if var_project_code and row_project and row_project != var_project_code:
-            continue
         row_region = _first_non_empty(row, ["Region", "region"])
         if var_region and row_region and row_region != var_region:
             continue
@@ -198,10 +249,19 @@ def _parse_spec_master_sections(
             continue
 
         page_value = _first_non_empty(row, ["Page", "page"])
-        if page_value and page_value.lower() not in {"spec", "specifications"}:
+        if not page_value_matches(page_value, ("spec", "specifications")):
             continue
 
-        row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind"]).lower() or "data"
+        footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
+        note_id = _first_non_empty(row, ["Note_id", "note_id"])
+        row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind"]).lower()
+        if not row_kind:
+            if footnote_id:
+                row_kind = "footnote"
+            elif note_id:
+                row_kind = "note"
+            else:
+                row_kind = "data"
         base_order = _to_float(_first_non_empty(row, ["row_order", "Row_order"]), idx)
         title_text = _pick_spec_lang_text(
             row,
@@ -246,12 +306,26 @@ def _parse_spec_master_sections(
             lang=lang,
             default_keys=["footnote", "Footnote"],
         )
-        if footnote_mark and footnote_text and row_kind in {"footnote", "data"}:
+        if footnote_text and row_kind in {"footnote", "data"}:
             footnote_order = _to_float(
                 _first_non_empty(row, ["footnote_order", "Footnote_order"]),
                 base_order,
             )
-            footnotes.append((footnote_order, apply_vars(f"{footnote_mark}{footnote_text}", vars_map)))
+            if footnote_id:
+                footnote_defs.append(
+                    (
+                        footnote_order,
+                        footnote_id,
+                        apply_vars(_strip_legacy_footnote_prefix(footnote_text), vars_map),
+                    )
+                )
+            else:
+                footnotes.append(
+                    (
+                        footnote_order,
+                        apply_vars(f"{footnote_mark}{footnote_text}", vars_map),
+                    )
+                )
 
         if row_kind in {"note", "footnote", "title"}:
             continue
@@ -260,7 +334,7 @@ def _parse_spec_master_sections(
         row_key = _first_non_empty(row, ["Row_key", "row_key"])
         if not section_key or not row_key:
             continue
-        if row_key.lower().startswith("tpl_") or section_key.strip().lower() == "template vars":
+        if is_page_value_row(row) or section_key.strip().lower() == "template vars":
             continue
 
         section_title = _pick_spec_lang_text(
@@ -277,42 +351,46 @@ def _parse_spec_master_sections(
             row,
             base="Row_label",
             lang=lang,
-            default_keys=["Row_label_en", "Row_key"],
+            default_keys=["Row_label_source", "Row_key"],
         )
-        line_text = _pick_spec_lang_text(
+        explicit_line_text = _pick_spec_lang_text(
             row,
             base="line_text",
             lang=lang,
             default_keys=[],
         )
-        if not line_text:
-            param = _pick_spec_lang_text(
-                row,
-                base="Param",
-                lang=lang,
-                default_keys=["Param_en", "Param_name"],
-            )
-            value = _pick_spec_lang_text(
-                row,
-                base="Value",
-                lang=lang,
-                default_keys=["Value_en", "Spec_Value"],
-            )
-            sep = _pick_spec_lang_text(
-                row,
-                base="param_value_sep",
-                lang=lang,
-                default_keys=["param_value_sep"],
-            ) or ": "
-            if sep == ":":
-                sep = ": "
-            if param and value:
-                line_text = f"{param}{sep}{value}"
-            else:
-                line_text = value or param
-
-        if not row_label or not line_text:
+        param_text = _pick_spec_lang_text(
+            row,
+            base="Param",
+            lang=lang,
+            default_keys=["Param_source", "Param_name"],
+        )
+        value_text = _pick_spec_lang_text(
+            row,
+            base="Value",
+            lang=lang,
+            default_keys=["Value_source", "Spec_Value"],
+        )
+        if not row_label or (not explicit_line_text and not param_text and not value_text):
             continue
+
+        row_label_refs = _parse_footnote_refs(
+            _first_non_empty(row, ["Row_label_footnote_refs", "row_label_footnote_refs"])
+        )
+        param_refs = _parse_footnote_refs(
+            _first_non_empty(row, ["Param_footnote_refs", "param_footnote_refs"])
+        )
+        value_refs = _parse_footnote_refs(
+            _first_non_empty(row, ["Value_footnote_refs", "value_footnote_refs"])
+        )
+        sep = _pick_spec_lang_text(
+            row,
+            base="param_value_sep",
+            lang=lang,
+            default_keys=["param_value_sep"],
+        ) or ": "
+        if sep == ":":
+            sep = ": "
 
         rows.append(
             {
@@ -323,7 +401,13 @@ def _parse_spec_master_sections(
                 "row_label": apply_vars(row_label, vars_map),
                 "row_order": row_order,
                 "line_order": line_order,
-                "line_text": apply_vars(line_text, vars_map),
+                "line_text": apply_vars(explicit_line_text, vars_map),
+                "param_text": apply_vars(param_text, vars_map),
+                "value_text": apply_vars(value_text, vars_map),
+                "param_value_sep": apply_vars(sep, vars_map),
+                "row_label_refs": row_label_refs,
+                "param_refs": param_refs,
+                "value_refs": value_refs,
                 "source_order": idx,
             }
         )
@@ -333,6 +417,11 @@ def _parse_spec_master_sections(
             key = str(row.get("section_key") or "")
             if key in section_title_overrides:
                 row["section_title"] = section_title_overrides[key]
+
+    footnote_marker_by_id = {
+        footnote_id: _footnote_marker_for_order(order)
+        for order, footnote_id, _text in sorted(footnote_defs, key=lambda item: item[0])
+    }
 
     if not rows:
         model_msg = f" model={var_model}" if var_model else ""
@@ -359,6 +448,7 @@ def _parse_spec_master_sections(
             row_key,
             {
                 "label": row["row_label"],
+                "label_refs": row["row_label_refs"],
                 "order": row["row_order"],
                 "source_order": row["source_order"],
                 "lines": [],
@@ -366,7 +456,18 @@ def _parse_spec_master_sections(
         )
         lines = item["lines"]
         assert isinstance(lines, list)
-        lines.append((float(row["line_order"]), int(row["source_order"]), str(row["line_text"])))
+        lines.append(
+            (
+                float(row["line_order"]),
+                int(row["source_order"]),
+                str(row["line_text"]),
+                str(row["param_text"]),
+                str(row["value_text"]),
+                str(row["param_value_sep"]),
+                cast(list[str], row["param_refs"]),
+                cast(list[str], row["value_refs"]),
+            )
+        )
 
     sections: list[dict[str, object]] = []
     for section in sorted(
@@ -382,12 +483,39 @@ def _parse_spec_master_sections(
         ):
             lines = row["lines"]
             assert isinstance(lines, list)
-            lines_sorted = [x[2] for x in sorted(lines, key=lambda t: (t[0], t[1]))]
-            out_rows.append((str(row["label"]), "\n".join(lines_sorted)))
+            lines_sorted: list[str] = []
+            for _line_order, _source_order, explicit_line_text, param_text, value_text, sep, param_refs, value_refs in sorted(
+                lines,
+                key=lambda t: (t[0], t[1]),
+            ):
+                if explicit_line_text:
+                    combined_refs = list(dict.fromkeys([*param_refs, *value_refs]))
+                    lines_sorted.append(
+                        _append_footnote_markers(explicit_line_text, combined_refs, footnote_marker_by_id)
+                    )
+                    continue
+
+                param_with_markers = _append_footnote_markers(param_text, param_refs, footnote_marker_by_id)
+                value_with_markers = _append_footnote_markers(value_text, value_refs, footnote_marker_by_id)
+                if param_with_markers and value_with_markers:
+                    lines_sorted.append(f"{param_with_markers}{sep}{value_with_markers}")
+                else:
+                    lines_sorted.append(value_with_markers or param_with_markers)
+
+            label_text = _append_footnote_markers(
+                str(row["label"]),
+                cast(list[str], row.get("label_refs") or []),
+                footnote_marker_by_id,
+            )
+            out_rows.append((label_text, "\n".join(lines_sorted)))
         sections.append({"title": str(section["title"]), "rows": out_rows})
 
     notes_text = [x[1] for x in sorted(notes, key=lambda t: t[0])]
-    footnotes_text = [x[1] for x in sorted(footnotes, key=lambda t: t[0])]
+    generated_footnotes = [
+        (order, f"{_footnote_marker_for_order(order)} {text}".strip())
+        for order, _footnote_id, text in sorted(footnote_defs, key=lambda item: item[0])
+    ]
+    footnotes_text = [x[1] for x in sorted([*footnotes, *generated_footnotes], key=lambda t: t[0])]
 
     if title_candidates:
         title_main = sorted(title_candidates, key=lambda t: t[0])[0][1]

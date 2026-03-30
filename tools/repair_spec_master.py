@@ -21,7 +21,7 @@ from tools.utils.spec_master import (  # noqa: E402
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        "repair Spec_Master project codes, section names, labels, and template values"
+        "repair Spec_Master section names, labels, and template values"
     )
     parser.add_argument(
         "--csv",

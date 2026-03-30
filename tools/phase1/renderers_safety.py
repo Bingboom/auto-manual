@@ -163,4 +163,3 @@ def render_safety_page(
         .replace(PH_TOP_HTML, top_html)
         .replace(PH_BOTTOM_HTML, bottom_html)
     )
-

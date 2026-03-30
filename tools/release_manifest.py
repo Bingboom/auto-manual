@@ -121,6 +121,7 @@ def build_release_manifest(
 
     spec_master_csv = _resolve_configured_path(cfg, "spec_master_csv", ROOT / "data" / "phase1" / "Spec_Master.csv")
     spec_footnotes_csv = _resolve_configured_path(cfg, "spec_footnotes_csv", ROOT / "data" / "phase1" / "Spec_Footnotes.csv")
+    spec_notes_csv = _resolve_configured_path(cfg, "spec_notes_csv", ROOT / "data" / "phase1" / "Spec_Notes.csv")
     spec_titles_csv = _resolve_configured_path(cfg, "spec_titles_csv", ROOT / "data" / "phase1" / "spec_titles.csv")
     product_name = resolve_product_name_for_build(cfg, model=model, region=region, lang=primary_lang)
 
@@ -134,6 +135,7 @@ def build_release_manifest(
         "product_name": product_name,
         "spec_master_csv": _repo_relative(spec_master_csv),
         "spec_footnotes_csv": _repo_relative(spec_footnotes_csv),
+        "spec_notes_csv": _repo_relative(spec_notes_csv),
         "spec_titles_csv": _repo_relative(spec_titles_csv),
         "tracked_review_dir": _repo_relative(review_dir),
         "runtime_bundle_dir": _repo_relative(runtime_bundle_dir),
@@ -153,6 +155,7 @@ def build_release_manifest(
         "product_name": product_name or "",
         "spec_master_csv": manifest["spec_master_csv"] or "",
         "spec_footnotes_csv": manifest["spec_footnotes_csv"] or "",
+        "spec_notes_csv": manifest["spec_notes_csv"] or "",
         "spec_titles_csv": manifest["spec_titles_csv"] or "",
         "tracked_review_dir": manifest["tracked_review_dir"] or "",
         "runtime_bundle_dir": manifest["runtime_bundle_dir"] or "",

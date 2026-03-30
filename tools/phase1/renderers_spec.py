@@ -70,17 +70,27 @@ def _render_spec_sections_html(
         rows = sec.get("rows") or []
         lines.append(".. raw:: html")
         lines.append("")
-        lines.append(f"   <h2 class=\"hb-spec-section\">● {html_escape(title)}</h2>")
-        lines.append("")
-        lines.append(".. list-table::")
-        lines.append("   :widths: 33 67")
-        lines.append("   :header-rows: 0")
-        lines.append("")
+        lines.append(
+            "   <h2 class=\"hb-spec-section\">"
+            f"<span class=\"hb-spec-bullet\" aria-hidden=\"true\">&#9679;</span>"
+            f"<span class=\"hb-spec-section-text\">{html_escape(title).upper()}</span>"
+            "</h2>"
+        )
+        lines.append("   <table class=\"hb-spec-table\">")
+        lines.append("     <tbody>")
         for left, right in rows:
-            left_txt = rst_escape(str(left))
-            right_txt = rst_escape(" / ".join(split_spec_lines(str(right))))
-            lines.append(f"   * - {left_txt}")
-            lines.append(f"     - {right_txt}")
+            left_txt = html_escape(rst_escape(str(left)))
+            right_txt = "<br/>".join(
+                html_escape(rst_escape(line))
+                for line in split_spec_lines(str(right))
+                if line
+            )
+            lines.append("       <tr>")
+            lines.append(f"         <th scope=\"row\" class=\"hb-spec-label\">{left_txt}</th>")
+            lines.append(f"         <td class=\"hb-spec-value\">{right_txt}</td>")
+            lines.append("       </tr>")
+        lines.append("     </tbody>")
+        lines.append("   </table>")
         lines.append("")
     return "\n".join(lines).strip() + ("\n" if lines else "")
 
@@ -98,14 +108,21 @@ def _render_text_blocks_latex(rows: list[str], before_vspace_tex: str = "") -> s
     return raw_latex_block(lines)
 
 
-def _render_text_blocks_html(rows: list[str]) -> str:
+def _render_text_blocks_html(rows: list[str], *, class_name: str) -> str:
     if not rows:
         return ""
     lines: list[str] = []
     for row in rows:
-        lines.append(rst_escape(row))
+        text_html = "<br/>".join(
+            html_escape(rst_escape(line))
+            for line in split_spec_lines(row)
+            if line
+        )
+        lines.append(".. raw:: html")
         lines.append("")
-    return "\n".join(lines)
+        lines.append(f"   <p class=\"{class_name}\">{text_html}</p>")
+        lines.append("")
+    return "\n".join(lines).strip() + ("\n" if lines else "")
 
 
 def render_spec_page(
@@ -131,8 +148,8 @@ def render_spec_page(
     )
 
     sections_html = _render_spec_sections_html(sections)
-    notes_html = _render_text_blocks_html(notes)
-    footnotes_html = _render_text_blocks_html(footnotes)
+    notes_html = _render_text_blocks_html(notes, class_name="hb-spec-note")
+    footnotes_html = _render_text_blocks_html(footnotes, class_name="hb-spec-footnote")
 
     return (
         template.replace(PH_SPEC_TITLE_MAIN, title_main_latex)

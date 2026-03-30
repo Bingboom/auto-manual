@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import subprocess
 import tempfile
@@ -21,6 +21,16 @@ def git(repo: Path, *args: str) -> str:
 
 
 class TestDiffReport(unittest.TestCase):
+    def test_parse_args_should_ignore_initial_adds_by_default(self) -> None:
+        args = diff_report.parse_args([])
+
+        self.assertTrue(args.ignore_initial_adds)
+
+    def test_parse_args_should_support_include_initial_adds_override(self) -> None:
+        args = diff_report.parse_args(["--include-initial-adds"])
+
+        self.assertFalse(args.ignore_initial_adds)
+
     def test_detect_initial_baseline_should_return_true_when_tracked_subtree_first_appears(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = Path(td)
@@ -78,7 +88,7 @@ class TestDiffReport(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Value_en,Model",
+                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
                         "US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default standby time,1,2 hours,JE-1000F",
                     ]
                 )
@@ -137,6 +147,99 @@ class TestDiffReport(unittest.TestCase):
             self.assertEqual("tpl_default_standby_duration", field_rows[0].source_row_key)
             self.assertEqual("TEMPLATE VARS", field_rows[0].source_section_key)
 
+    def test_collect_field_diff_rows_should_pair_placeholder_label_renames_as_modified(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = Path(td)
+            tracked_root = repo / "docs" / "_review" / "JE-1000F"
+            target_file = tracked_root / "JP" / "generated" / "JE-1000F" / "draft" / "03_product_overview_ja.rst"
+            target_file.parent.mkdir(parents=True)
+            data_dir = repo / "data" / "phase1"
+            data_dir.mkdir(parents=True)
+            (repo / "config.ja.yaml").write_text(
+                "\n".join(
+                    [
+                        "paths:",
+                        "  spec_master_csv: data/phase1/Spec_Master.csv",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (data_dir / "Spec_Master.csv").write_text(
+                "\n".join(
+                    [
+                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
+                        "JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,AC鍏ュ姏銉濄兗銉?JE-1000F",
+                        'JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,"100V-120V~ 50Hz/60Hz锛屾渶澶?5A锛屾渶澶х磩1450W",JE-1000F',
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            git(repo, "init")
+            git(repo, "config", "user.name", "Codex")
+            git(repo, "config", "user.email", "codex@example.com")
+
+            target_file.write_text(
+                "\n".join(
+                    [
+                        "RIGHT SIDE VIEW",
+                        "===============",
+                        "",
+                        ".. list-table::",
+                        "   :header-rows: 0",
+                        "",
+                        "   * - **AC鍏ュ姏**",
+                        "",
+                        "       100V-120V~50/60Hz銆?5A 鏈€澶с€佹€ラ€熷厖闆?绱?450W",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            git(repo, "add", ".")
+            git(repo, "commit", "-m", "first")
+
+            target_file.write_text(
+                "\n".join(
+                    [
+                        "RIGHT SIDE VIEW",
+                        "===============",
+                        "",
+                        ".. list-table::",
+                        "   :header-rows: 0",
+                        "",
+                        "   * - **AC鍏ュ姏銉濄兗銉?*",
+                        "",
+                        "       100V-120V~ 50Hz/60Hz锛屾渶澶?5A锛屾渶澶х磩1450W",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            git(repo, "add", ".")
+            git(repo, "commit", "-m", "second")
+
+            file_rows = diff_report.collect_diff_rows(
+                repo_root=repo,
+                tracked_root=tracked_root,
+                from_ref="HEAD~1",
+                to_ref="HEAD",
+            )
+            field_rows = diff_report.collect_field_diff_rows(
+                repo_root=repo,
+                file_rows=file_rows,
+                config_path=repo / "config.ja.yaml",
+            )
+
+            self.assertEqual(1, len(field_rows))
+            self.assertEqual("M", field_rows[0].change_type)
+            self.assertIn("AC鍏ュ姏", field_rows[0].field_key)
+            self.assertIn("->", field_rows[0].field_key)
+            self.assertIn("100V-120V", field_rows[0].field_key)
+            self.assertEqual("tpl_side_ac_input_spec", field_rows[0].source_row_key)
+
     def test_collect_field_diff_rows_should_parse_structured_rst_fields(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = Path(td)
@@ -158,7 +261,7 @@ class TestDiffReport(unittest.TestCase):
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
                     [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_en,Line_order,Value_en,Model",
+                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
                         "US,TRUE,specifications,GENERAL INFO,1,product_name,Product Name,1,Jackery 1000,JE-1000F",
                         "US,TRUE,specifications,GENERAL INFO,1,model_no,Model No.,1,JE-1000F,JE-1000F",
                     ]
@@ -257,7 +360,7 @@ class TestDiffReport(unittest.TestCase):
             target_file.write_text("Old line\nNew line\n", encoding="utf-8")
             jp_file = tracked_root / "JP" / "generated" / "JE-1000F" / "safety_ja.rst"
             jp_file.parent.mkdir(parents=True)
-            jp_file.write_text("瀹夊叏\n", encoding="utf-8")
+            jp_file.write_text("鐎瑰鍙廫n", encoding="utf-8")
             git(repo, "add", ".")
             git(repo, "commit", "-m", "second")
 
@@ -444,9 +547,11 @@ class TestDiffReport(unittest.TestCase):
                 files_csv,
             )
             self.assertIn("Initial baseline detected", files_html)
-            self.assertIn("--ignore-initial-adds is enabled", files_html)
+            self.assertIn("--include-initial-adds", files_html)
             self.assertIn("Initial baseline detected", index_html)
 
 
 if __name__ == "__main__":
     unittest.main()
+
+

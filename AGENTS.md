@@ -37,7 +37,7 @@ For current human workflows, read:
 ## 3. Workflow Rules
 
 - Do not create one config per model just because the model changed.
-- Keep the shared family config pattern with [`config.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.yaml), [`config.ja.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.ja.yaml), and [`config.eu.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.eu.yaml).
+- Keep the shared family config pattern with [`config.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.yaml) and [`config.ja.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
 - Review overrides must stay under `overrides/_assets/`, `overrides/_static/`, or `overrides/renderers/`.
 - Avoid hardcoded model defaults such as `JE-1000F` in CLI behavior, report paths, or release paths.

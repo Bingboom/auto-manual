@@ -24,6 +24,7 @@ from tools.build_docs import (  # noqa: E402
 from tools.check_identity_drift import find_identity_drift_matches  # noqa: E402
 from tools.draft_engine import (  # noqa: E402
     collect_registry_snippet_ids,
+    format_field_binding,
     load_draft_recipe,
     load_snippet_registry,
     missing_required_row_keys,
@@ -36,18 +37,20 @@ from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise, resolve_page_manifest_path  # noqa: E402
 from tools.page_contracts import (  # noqa: E402
     contract_applies_to,
+    describe_page_value_selector,
     find_contract_for_source,
     load_page_contracts,
     required_assets_for_lang,
+    required_page_values_for_lang,
     required_placeholders_for_lang,
     required_spec_keys_for_lang,
-    required_tpl_keys_for_lang,
 )
 from tools.utils.spec_master import (  # noqa: E402
     collect_matching_spec_rows,
     collect_spec_value_matches_from_rows,
     read_spec_master_rows,
     resolve_spec_value_from_rows,
+    source_language_for_row,
     resolve_template_substitutions_from_spec_master,
 )
 from tools.word_bundle_common import load_rst_substitutions, resolve_config_path  # noqa: E402
@@ -158,14 +161,22 @@ def _resolve_local_reference(
 
 
 def _pick_spec_value(row: dict[str, str], lang: str) -> str:
-    for key in (
-        f"Value_{lang}",
-        f"Value_{lang.lower()}",
-        f"Value_{lang.upper()}",
-        "Value_en",
-        "Value",
-        "Spec_Value",
-    ):
+    source_lang = source_language_for_row(row)
+    normalized_lang = (lang or "").strip().lower()
+    keys = (
+        ("Value_source", "value_source", "Value", "Spec_Value")
+        if normalized_lang == "en" or (source_lang and normalized_lang == source_lang)
+        else (
+            f"Value_{lang}",
+            f"Value_{lang.lower()}",
+            f"Value_{lang.upper()}",
+            "Value_source",
+            "value_source",
+            "Value",
+            "Spec_Value",
+        )
+    )
+    for key in keys:
         value = (row.get(key) or "").strip()
         if value:
             return value
@@ -488,6 +499,7 @@ def collect_page_contract_issues(
                     region=target.region,
                     lang=lang,
                     row_key=row_key,
+                    pages=None,
                 )
                 is None
             ]
@@ -505,25 +517,31 @@ def collect_page_contract_issues(
                         lang=lang,
                     )
                 )
-            missing_tpl_keys = [
-                row_key
-                for row_key in required_tpl_keys_for_lang(contract, lang)
+            missing_page_values = [
+                describe_page_value_selector(selector)
+                for selector in required_page_values_for_lang(contract, lang)
                 if resolve_spec_value_from_rows(
                     spec_rows,
                     model=target.model,
                     region=target.region,
                     lang=lang,
-                    row_key=row_key,
+                    row_key=selector.row_key,
+                    pages=selector.pages or None,
+                    line_order=selector.line_order,
+                    usage_type=selector.usage_type,
+                    placement_key=selector.placement_key,
+                    value_role=selector.value_role,
+                    variant_key=selector.variant_key,
                 )
                 is None
             ]
-            if missing_tpl_keys:
+            if missing_page_values:
                 issues.append(
                     CheckIssue(
-                        code="CONTRACT_MISSING_TPL_KEYS",
+                        code="CONTRACT_MISSING_PAGE_VALUES",
                         message=(
-                            f"Page contract '{contract.page_id}' is missing required tpl row keys "
-                            f"for lang '{lang}': {', '.join(missing_tpl_keys)}"
+                            f"Page contract '{contract.page_id}' is missing required page-value rows "
+                            f"for lang '{lang}': {', '.join(missing_page_values)}"
                         ),
                         model=target.model,
                         region=target.region,
@@ -690,6 +708,7 @@ def collect_generated_page_issues(
                 model=target.model,
                 region=target.region,
                 lang=lang,
+                include_field_map=False,
             )
             if missing_row_keys:
                 issues.append(
@@ -707,7 +726,7 @@ def collect_generated_page_issues(
                 )
 
             field_binding_misses = [
-                placeholder
+                format_field_binding(binding, owner=f"field_map.{placeholder}")
                 for placeholder, binding in recipe.field_map.items()
                 if resolve_spec_value_from_rows(
                     spec_rows,
@@ -717,6 +736,10 @@ def collect_generated_page_issues(
                     row_key=binding.row_key,
                     pages=binding.pages,
                     line_order=binding.line_order,
+                    usage_type=binding.usage_type,
+                    placement_key=binding.placement_key,
+                    value_role=binding.value_role,
+                    variant_key=binding.variant_key,
                 )
                 is None
                 and binding.default is None
@@ -745,6 +768,10 @@ def collect_generated_page_issues(
                     row_key=binding.row_key,
                     pages=binding.pages,
                     line_order=binding.line_order,
+                    usage_type=binding.usage_type,
+                    placement_key=binding.placement_key,
+                    value_role=binding.value_role,
+                    variant_key=binding.variant_key,
                 )
                 distinct_values = sorted({_pick_spec_value(row, lang) for row in matching_rows if _pick_spec_value(row, lang)})
                 if len(distinct_values) > 1:
@@ -752,7 +779,7 @@ def collect_generated_page_issues(
                         CheckIssue(
                             code="AMBIGUOUS_FIELD_MAP_ROWS",
                             message=(
-                                f"Recipe '{recipe.page_id}' field_map.{placeholder} resolves to multiple values "
+                                f"Recipe '{recipe.page_id}' {format_field_binding(binding, owner=f'field_map.{placeholder}')} resolves to multiple values "
                                 f"for lang '{lang}': {', '.join(distinct_values)}"
                             ),
                             model=target.model,

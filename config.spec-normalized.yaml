@@ -38,15 +38,15 @@ pages:
   lang: en
   file: templates/page_us-en/00_preface.rst
 
-- type: csv_page
-  source: phase1
-  page: safety
-  langs: [ en ]
-  include_dir: generated/{model}
-
 - type: rst_include
   lang: en
-  file: templates/page_us-en/01_meaning_of_symbols.rst
+  file: templates/page_us-en/safety_en.rst
+
+- type: csv_page
+  source: phase1
+  page: symbols
+  langs: [ en ]
+  include_dir: generated/{model}
 
 - type: rst_include
   lang: en
@@ -70,7 +70,7 @@ pages:
 
 - type: rst_include
   lang: en
-  file: templates/page_us-en/07_expansion_battery_pack.rst
+  file: templates/page_us-en/charging.rst
 
 - type: rst_include
   lang: en

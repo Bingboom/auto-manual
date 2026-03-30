@@ -17,6 +17,14 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.utils.spec_master import (
+    is_page_value_row,
+    page_value_matches,
+    page_value_role,
+    resolve_legacy_page_value_key,
+    source_language_for_row,
+)
+
 HEADING_UNDERLINE_RE = re.compile(r"^[=\-~^\"`:#*+]{3,}$")
 SPEC_SECTION_RE = re.compile(r"\\specsectiontitle\{(.+?)\}")
 HTML_SPEC_SECTION_RE = re.compile(r'<h2[^>]*>(.+?)</h2>', re.IGNORECASE)
@@ -114,6 +122,18 @@ class FieldDiffRow:
     source_csv_line: str
     from_ref: str
     to_ref: str
+
+
+@dataclass(frozen=True)
+class ResolvedFieldEntry:
+    section_title: str
+    field_key: str
+    field_value: str
+    source_section_key: str
+    source_row_key: str
+    source_line_order: str
+    source_csv_line: str
+    section_order: int
 
 
 @dataclass(frozen=True)
@@ -275,13 +295,23 @@ def first_non_empty(row: dict[str, str], keys: list[str]) -> str:
 
 
 def pick_lang_value(row: dict[str, str], base: str, lang: str, *, default_keys: list[str] | None = None) -> str:
-    keys = [
-        f"{base}_{lang}",
-        f"{base}_{lang.lower()}",
-        f"{base}_{lang.upper()}",
-        f"{base}_en",
-        base,
-    ]
+    source_lang = source_language_for_row(row)
+    normalized_lang = (lang or "").strip().lower()
+    if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+        keys = [
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
+    else:
+        keys = [
+            f"{base}_{lang}",
+            f"{base}_{lang.lower()}",
+            f"{base}_{lang.upper()}",
+            f"{base}_source",
+            f"{base.lower()}_source",
+            base,
+        ]
     if default_keys:
         keys.extend(default_keys)
     return first_non_empty(row, keys)
@@ -537,8 +567,8 @@ def build_spec_source_lookup(
             continue
         if not is_truthy(first_non_empty(row, ["Is_Latest", "is_latest"])):
             continue
-        page = first_non_empty(row, ["Page", "page"]).lower()
-        if page and page not in {"spec", "specifications"}:
+        page = first_non_empty(row, ["Page", "page"])
+        if not page_value_matches(page, ("spec", "specifications")):
             continue
         row_model = first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
         row_region = first_non_empty(row, ["Region", "region"])
@@ -550,7 +580,7 @@ def build_spec_source_lookup(
         section_key = first_non_empty(row, ["Section", "section"])
         if not row_key or not section_key:
             continue
-        if row_key.lower().startswith("tpl_") or section_key.strip().lower() == "template vars":
+        if is_page_value_row(row) or section_key.strip().lower() == "template vars":
             continue
         filtered.append(row)
 
@@ -565,12 +595,12 @@ def build_spec_source_lookup(
             default_keys=[f"Section_{lang}", "Section_en", "Section"],
         ) or section_key
         rendered_section_title = title_map.get(_clean_field_text(section_title), _clean_field_text(section_title))
-        row_label = pick_lang_value(row, "Row_label", lang, default_keys=["Row_label_en", "Row_key"]) or row_key
+        row_label = pick_lang_value(row, "Row_label", lang, default_keys=["Row_label_source", "Row_key"]) or row_key
 
         value = pick_lang_value(row, "line_text", lang)
         if not value:
-            param = pick_lang_value(row, "Param", lang, default_keys=["Param_en", "Param_name"])
-            spec_value = pick_lang_value(row, "Value", lang, default_keys=["Value_en", "Spec_Value"])
+            param = pick_lang_value(row, "Param", lang, default_keys=["Param_source", "Param_name"])
+            spec_value = pick_lang_value(row, "Value", lang, default_keys=["Value_source", "Spec_Value"])
             sep = pick_lang_value(row, "param_value_sep", lang, default_keys=["param_value_sep"]) or ": "
             if sep == ":":
                 sep = ": "
@@ -642,10 +672,6 @@ def build_placeholder_source_lookup(
             continue
         if not is_truthy(first_non_empty(row, ["Is_Latest", "is_latest"])):
             continue
-        page = first_non_empty(row, ["Page", "page"]).lower()
-        if page and page not in {"spec", "specifications"}:
-            continue
-
         row_model = first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
         row_region = first_non_empty(row, ["Region", "region"])
         if model and row_model and row_model != model:
@@ -656,18 +682,19 @@ def build_placeholder_source_lookup(
         row_key = first_non_empty(row, ["Row_key", "row_key"])
         if not row_key:
             continue
-        if row_key.lower() not in {"product_name", "model_no"} and not row_key.lower().startswith("tpl_"):
+        if row_key.lower() not in {"product_name", "model_no"} and not is_page_value_row(row):
             continue
 
-        raw_value = pick_lang_value(row, "Value", lang, default_keys=["Value_en", "Spec_Value"])
+        raw_value = pick_lang_value(row, "Value", lang, default_keys=["Value_source", "Spec_Value"])
         if not raw_value:
             continue
 
         line_order = first_non_empty(row, ["Line_order", "line_order"]) or str(idx + 1)
+        source_row_key = resolve_legacy_page_value_key(row) or row_key
         base_source = PlaceholderValueSource(
             match_value="",
             source_section_key=first_non_empty(row, ["Section", "section"]),
-            source_row_key=row_key,
+            source_row_key=source_row_key,
             source_line_order=line_order,
             source_csv_line=first_non_empty(row, ["__line__"]),
         )
@@ -678,7 +705,7 @@ def build_placeholder_source_lookup(
             short_name = derive_short_product_name(raw_value)
             if short_name and short_name != raw_value:
                 candidate_values.append(short_name)
-        if lowered_row_key.startswith("tpl_") and lowered_row_key.endswith("_label"):
+        if page_value_role(row) == "label":
             lower_value = derive_label_lower(raw_value)
             if lower_value and lower_value != raw_value:
                 candidate_values.append(lower_value)
@@ -875,6 +902,146 @@ def merge_sources(sources: list[PlaceholderValueSource | SpecFieldSource]) -> tu
     return "; ".join(section_keys), "; ".join(row_keys), "; ".join(line_orders), "; ".join(csv_lines)
 
 
+def _resolve_entry_sources(
+    *,
+    entry: FieldEntry,
+    spec_lookup: dict[tuple[str, str], SpecFieldSource],
+    placeholder_lookup: dict[str, list[PlaceholderValueSource]],
+) -> tuple[str, str, str, str]:
+    source = spec_lookup.get((entry.section_title, entry.field_key))
+    if source is not None:
+        return merge_sources([source])
+    matched_sources = match_placeholder_sources(
+        field_key=entry.field_key,
+        old_value="",
+        new_value=entry.field_value,
+        placeholder_lookup=placeholder_lookup,
+    )
+    return merge_sources(matched_sources)
+
+
+def _annotate_field_entries(
+    entries: list[FieldEntry],
+    *,
+    spec_lookup: dict[tuple[str, str], SpecFieldSource],
+    placeholder_lookup: dict[str, list[PlaceholderValueSource]],
+) -> list[ResolvedFieldEntry]:
+    section_counts: dict[str, int] = {}
+    resolved: list[ResolvedFieldEntry] = []
+    for entry in entries:
+        section_counts[entry.section_title] = section_counts.get(entry.section_title, 0) + 1
+        source_section_key, source_row_key, source_line_order, source_csv_line = _resolve_entry_sources(
+            entry=entry,
+            spec_lookup=spec_lookup,
+            placeholder_lookup=placeholder_lookup,
+        )
+        resolved.append(
+            ResolvedFieldEntry(
+                section_title=entry.section_title,
+                field_key=entry.field_key,
+                field_value=entry.field_value,
+                source_section_key=source_section_key,
+                source_row_key=source_row_key,
+                source_line_order=source_line_order,
+                source_csv_line=source_csv_line,
+                section_order=section_counts[entry.section_title],
+            )
+        )
+    return resolved
+
+
+def _merge_resolved_sources(entries: list[ResolvedFieldEntry]) -> tuple[str, str, str, str]:
+    section_keys: list[str] = []
+    row_keys: list[str] = []
+    line_orders: list[str] = []
+    csv_lines: list[str] = []
+    seen_sections: set[str] = set()
+    seen_rows: set[str] = set()
+    seen_line_orders: set[str] = set()
+    seen_csv_lines: set[str] = set()
+
+    for entry in entries:
+        if entry.source_section_key and entry.source_section_key not in seen_sections:
+            seen_sections.add(entry.source_section_key)
+            section_keys.append(entry.source_section_key)
+        if entry.source_row_key and entry.source_row_key not in seen_rows:
+            seen_rows.add(entry.source_row_key)
+            row_keys.append(entry.source_row_key)
+        if entry.source_line_order and entry.source_line_order not in seen_line_orders:
+            seen_line_orders.add(entry.source_line_order)
+            line_orders.append(entry.source_line_order)
+        if entry.source_csv_line and entry.source_csv_line not in seen_csv_lines:
+            seen_csv_lines.add(entry.source_csv_line)
+            csv_lines.append(entry.source_csv_line)
+
+    return "; ".join(section_keys), "; ".join(row_keys), "; ".join(line_orders), "; ".join(csv_lines)
+
+
+def _format_field_key(old_entry: ResolvedFieldEntry | None, new_entry: ResolvedFieldEntry | None) -> str:
+    if old_entry is not None and new_entry is not None:
+        if old_entry.field_key == new_entry.field_key:
+            return new_entry.field_key
+        if old_entry.field_key and new_entry.field_key:
+            return f"{old_entry.field_key} -> {new_entry.field_key}"
+    if new_entry is not None:
+        return new_entry.field_key
+    if old_entry is not None:
+        return old_entry.field_key
+    return ""
+
+
+def _build_field_diff_row(
+    *,
+    file_row: DiffRow,
+    old_entry: ResolvedFieldEntry | None,
+    new_entry: ResolvedFieldEntry | None,
+) -> FieldDiffRow | None:
+    if old_entry is None and new_entry is None:
+        return None
+
+    if old_entry is not None and new_entry is not None:
+        change_type = "M"
+        if old_entry.field_key == new_entry.field_key and old_entry.field_value == new_entry.field_value:
+            return None
+    elif new_entry is not None:
+        change_type = "A"
+    else:
+        change_type = "D"
+
+    section_title = (
+        new_entry.section_title
+        if new_entry is not None
+        else old_entry.section_title if old_entry is not None else ""
+    )
+    field_key = _format_field_key(old_entry, new_entry)
+    old_value = old_entry.field_value if old_entry is not None else ""
+    new_value = new_entry.field_value if new_entry is not None else ""
+    source_section_key, source_row_key, source_line_order, source_csv_line = _merge_resolved_sources(
+        [entry for entry in (old_entry, new_entry) if entry is not None]
+    )
+    return FieldDiffRow(
+        tracked_root=file_row.tracked_root,
+        model=file_row.model,
+        region=file_row.region,
+        artifact=file_row.artifact,
+        section=file_row.section,
+        page_key=file_row.page_key,
+        file_name=file_row.file_name,
+        relative_path=file_row.relative_path,
+        section_title=section_title,
+        field_key=field_key,
+        change_type=change_type,
+        old_value=old_value,
+        new_value=new_value,
+        source_section_key=source_section_key,
+        source_row_key=source_row_key,
+        source_line_order=source_line_order,
+        source_csv_line=source_csv_line,
+        from_ref=file_row.from_ref,
+        to_ref=file_row.to_ref,
+    )
+
+
 def collect_field_diff_rows(
     *,
     repo_root: Path,
@@ -892,14 +1059,6 @@ def collect_field_diff_rows(
 
         old_text = git_show_text(repo_root, ref=file_row.from_ref, path_text=file_row.old_path or chosen_path)
         new_text = git_show_text(repo_root, ref=file_row.to_ref, path_text=file_row.new_path or chosen_path)
-        old_fields = {
-            (entry.section_title, entry.field_key): entry.field_value for entry in extract_field_entries(old_text)
-        }
-        new_fields = {
-            (entry.section_title, entry.field_key): entry.field_value for entry in extract_field_entries(new_text)
-        }
-
-        all_keys = sorted(set(old_fields) | set(new_fields))
         spec_lookup: dict[tuple[str, str], SpecFieldSource] = {}
         lang = derive_lang_from_page_key(file_row.page_key)
         if file_row.page_key.startswith("spec_") and spec_master_csv.exists():
@@ -926,55 +1085,97 @@ def collect_field_diff_rows(
                     lang=lang,
                 )
                 placeholder_lookup_cache[cache_key] = placeholder_lookup
-        for section_title, field_key in all_keys:
-            old_value = old_fields.get((section_title, field_key), "")
-            new_value = new_fields.get((section_title, field_key), "")
-            if old_value == new_value:
-                continue
-            if not old_value and new_value:
-                change_type = "A"
-            elif old_value and not new_value:
-                change_type = "D"
-            else:
-                change_type = "M"
-            source = spec_lookup.get((section_title, field_key))
-            source_section_key = ""
-            source_row_key = ""
-            source_line_order = ""
-            source_csv_line = ""
-            if source is not None:
-                source_section_key, source_row_key, source_line_order, source_csv_line = merge_sources([source])
-            else:
-                matched_sources = match_placeholder_sources(
-                    field_key=field_key,
-                    old_value=old_value,
-                    new_value=new_value,
-                    placeholder_lookup=placeholder_lookup,
-                )
-                source_section_key, source_row_key, source_line_order, source_csv_line = merge_sources(matched_sources)
-            rows.append(
-                FieldDiffRow(
-                    tracked_root=file_row.tracked_root,
-                    model=file_row.model,
-                    region=file_row.region,
-                    artifact=file_row.artifact,
-                    section=file_row.section,
-                    page_key=file_row.page_key,
-                    file_name=file_row.file_name,
-                    relative_path=file_row.relative_path,
-                    section_title=section_title,
-                    field_key=field_key,
-                    change_type=change_type,
-                    old_value=old_value,
-                    new_value=new_value,
-                    source_section_key=source_section_key,
-                    source_row_key=source_row_key,
-                    source_line_order=source_line_order,
-                    source_csv_line=source_csv_line,
-                    from_ref=file_row.from_ref,
-                    to_ref=file_row.to_ref,
-                )
+        old_entries = _annotate_field_entries(
+            extract_field_entries(old_text),
+            spec_lookup=spec_lookup,
+            placeholder_lookup=placeholder_lookup,
+        )
+        new_entries = _annotate_field_entries(
+            extract_field_entries(new_text),
+            spec_lookup=spec_lookup,
+            placeholder_lookup=placeholder_lookup,
+        )
+
+        matched_old: set[int] = set()
+        matched_new: set[int] = set()
+
+        def append_pair(old_index: int | None, new_index: int | None) -> None:
+            if old_index is not None:
+                matched_old.add(old_index)
+            if new_index is not None:
+                matched_new.add(new_index)
+            row = _build_field_diff_row(
+                file_row=file_row,
+                old_entry=old_entries[old_index] if old_index is not None else None,
+                new_entry=new_entries[new_index] if new_index is not None else None,
             )
+            if row is not None:
+                rows.append(row)
+
+        old_by_key: dict[tuple[str, str], list[int]] = {}
+        new_by_key: dict[tuple[str, str], list[int]] = {}
+        for index, entry in enumerate(old_entries):
+            old_by_key.setdefault((entry.section_title, entry.field_key), []).append(index)
+        for index, entry in enumerate(new_entries):
+            new_by_key.setdefault((entry.section_title, entry.field_key), []).append(index)
+
+        for key in sorted(set(old_by_key) | set(new_by_key)):
+            old_indexes = old_by_key.get(key, [])
+            new_indexes = new_by_key.get(key, [])
+            while old_indexes and new_indexes:
+                append_pair(old_indexes.pop(0), new_indexes.pop(0))
+
+        old_by_source: dict[tuple[str, str], list[int]] = {}
+        new_by_source: dict[tuple[str, str], list[int]] = {}
+        for index, entry in enumerate(old_entries):
+            if index in matched_old or not entry.source_row_key:
+                continue
+            old_by_source.setdefault((entry.section_title, entry.source_row_key), []).append(index)
+        for index, entry in enumerate(new_entries):
+            if index in matched_new or not entry.source_row_key:
+                continue
+            new_by_source.setdefault((entry.section_title, entry.source_row_key), []).append(index)
+
+        for key in sorted(set(old_by_source) & set(new_by_source)):
+            old_indexes = old_by_source.get(key, [])
+            new_indexes = new_by_source.get(key, [])
+            while old_indexes and new_indexes:
+                append_pair(old_indexes.pop(0), new_indexes.pop(0))
+
+        section_names = sorted(
+            {
+                entry.section_title
+                for index, entry in enumerate(old_entries)
+                if index not in matched_old
+            }
+            | {
+                entry.section_title
+                for index, entry in enumerate(new_entries)
+                if index not in matched_new
+            }
+        )
+        for section_title in section_names:
+            old_indexes = [
+                index
+                for index, entry in enumerate(old_entries)
+                if index not in matched_old and entry.section_title == section_title
+            ]
+            new_indexes = [
+                index
+                for index, entry in enumerate(new_entries)
+                if index not in matched_new and entry.section_title == section_title
+            ]
+            if not old_indexes or len(old_indexes) != len(new_indexes):
+                continue
+            for old_index, new_index in zip(old_indexes, new_indexes):
+                append_pair(old_index, new_index)
+
+        for index, _entry in enumerate(old_entries):
+            if index not in matched_old:
+                append_pair(index, None)
+        for index, _entry in enumerate(new_entries):
+            if index not in matched_new:
+                append_pair(None, index)
     return rows
 
 
@@ -1393,7 +1594,7 @@ def generate_diff_report(
     to_ref: str,
     output_dir: Path,
     config_path: Path | None = None,
-    ignore_initial_adds: bool = False,
+    ignore_initial_adds: bool = True,
 ) -> tuple[Path, Path]:
     raw_file_rows = collect_diff_rows(
         repo_root=repo_root,
@@ -1415,7 +1616,7 @@ def generate_diff_report(
         )
     if is_initial_baseline and ignore_initial_adds:
         notices.append(
-            "Initial Added rows were excluded because --ignore-initial-adds is enabled."
+            "Initial Added rows were excluded by default. Pass --include-initial-adds to keep them."
         )
         file_rows: list[DiffRow] = []
     else:
@@ -1586,10 +1787,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--config", default="config.yaml", help="Config YAML path for resolving source CSV metadata")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref")
+    ap.set_defaults(ignore_initial_adds=True)
     ap.add_argument(
         "--ignore-initial-adds",
+        dest="ignore_initial_adds",
         action="store_true",
-        help="When the tracked subtree is first introduced, ignore the initial all-Added diff rows in generated reports",
+        help="When the tracked subtree is first introduced, ignore the initial all-Added diff rows in generated reports (default)",
+    )
+    ap.add_argument(
+        "--include-initial-adds",
+        dest="ignore_initial_adds",
+        action="store_false",
+        help="When the tracked subtree is first introduced, keep the initial all-Added diff rows in generated reports",
     )
     ap.add_argument(
         "--output-dir",
@@ -1638,7 +1847,7 @@ def main(argv: list[str] | None = None) -> int:
             f"{tracked_root}. All Added rows are expected because the subtree did not exist at {args.from_ref}."
         )
         if args.ignore_initial_adds:
-            print("[diff_report] NOTE: Initial Added rows were excluded because --ignore-initial-adds is enabled.")
+            print("[diff_report] NOTE: Initial Added rows were excluded by default. Pass --include-initial-adds to keep them.")
     print(f"[diff_report] FILES CSV: {output_dir / f'{base_name}_files.csv'}")
     print(f"[diff_report] FILES HTML: {output_dir / f'{base_name}_files.html'}")
     print(f"[diff_report] PAGES CSV: {output_dir / f'{base_name}_pages.csv'}")

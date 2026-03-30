@@ -1,19 +1,19 @@
-HTE153-Explorer1000_V0.1_JP_UserManual
-======================================
+HTE153-Explorer 1000_V0.5_JP_UserManual
+=======================================
 
-型番: **|MODEL_NO|**
+型番：**|MODEL_NO|**
 
 写真はイメージです。実際の商品とは異なる場合があります。
 
-Jackery |PRODUCT_NAME|
+|PRODUCT_NAME|
 
 **取扱説明書**
 
-**国内専用/For use only in Japan**
+国内専用/For use only in Japan
 
-カスタマーサポート: **jackery.jp@jackery.com**
+カスタマーサポート: jackery.jp@jackery.com
 
-お買い上げありがとうございます。
+**お買い上げありがとうございます。**
 
 - ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。
 - 特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。

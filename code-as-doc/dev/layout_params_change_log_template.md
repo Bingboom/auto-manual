@@ -15,7 +15,6 @@ Use this template to record each meaningful [`data/layout_params.csv`](../../dat
 - Affected family:
   - [`config.yaml`](../../config.yaml)
   - [`config.ja.yaml`](../../config.ja.yaml)
-  - [`config.eu.yaml`](../../config.eu.yaml)
 - Affected target examples:
   - `JE-1000F / US`
   - `JE-1000F / JP`

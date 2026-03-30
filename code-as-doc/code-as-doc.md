@@ -80,7 +80,7 @@ Examples:
 
 - [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) field semantics
 - new `tpl_*` placeholders
-- [`content_blocks.csv`](../data/phase1/content_blocks.csv) or [`spec_titles.csv`](../data/phase1/spec_titles.csv) usage changes
+- safety template or [`spec_titles.csv`](../data/phase1/spec_titles.csv) usage changes
 - sync-review behavior after CSV edits
 
 Must update:
