@@ -25,7 +25,7 @@ It answers the practical question: "I have a piece of manual data. Which file an
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
 | Spec footnotes | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | footnote CSV rows | Do not stuff footnotes into visible spec rows just to keep all text in one file |
 | Spec page title translation | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title | Only for visible spec page titles |
-| Safety prose or block text | [`content_blocks.csv`](../data/phase1/content_blocks.csv) + [`page_registry.csv`](../data/phase1/page_registry.csv) | content-block flow | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
+| Safety intro prose | [`docs/templates/page_*/safety_*.rst`](../docs/templates) | family safety templates | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
 
 ## 2. Current Phase1 CSV Files
 
@@ -41,10 +41,8 @@ The current manual data layer uses these files:
   - spec footnotes
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
   - localized visible title mapping for the spec page
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
-  - block-based safety and content sections
 - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
-  - page/block registry used by the phase1 content-block flow
+  - page registry used by the remaining phase1 csv-page flow
 
 [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main structured source for product identity, spec rows, and template substitution.
 
@@ -82,7 +80,7 @@ Use this rule of thumb:
 - if the text should appear as a visible row in the spec table, add a normal spec row
 - if the text should fill a template placeholder such as a button label, add a row with a non-empty `Slot_key`
 - if the text is a footnote, use [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-- if the text is long safety prose, use [`content_blocks.csv`](../data/phase1/content_blocks.csv)
+- if the text is long safety prose, edit the family's `docs/templates/page_*/safety_*.rst`
 
 ### 3.3 Example: Product Identity Row
 
@@ -549,13 +547,13 @@ Current schema note:
 - `Spec_Footnotes.csv` no longer has a `project_code` / `项目代码` column
 - target matching is based on `Region` + `Model`
 
-## 8. [`content_blocks.csv`](../data/phase1/content_blocks.csv) and [`page_registry.csv`](../data/phase1/page_registry.csv)
+## 8. Safety Templates and [`page_registry.csv`](../data/phase1/page_registry.csv)
 
-These files support the phase1 content-block system used mainly for safety or block-driven pages.
+Safety intro pages are now maintained as fixed RST templates. [`page_registry.csv`](../data/phase1/page_registry.csv) remains only for the csv-page flow that is still active.
 
 Current rule:
 
-- use [`content_blocks.csv`](../data/phase1/content_blocks.csv) for content blocks
+- use `docs/templates/page_*/safety_*.rst` for safety intro content
 - use [`page_registry.csv`](../data/phase1/page_registry.csv) for block/page structure
 - do not push safety prose into [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) unless it is really a parameterized row
 
@@ -577,8 +575,6 @@ When you change:
 - [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`spec_titles.csv`](../data/phase1/spec_titles.csv)
-- [`content_blocks.csv`](../data/phase1/content_blocks.csv)
-
 follow this order:
 
 1. run `check`

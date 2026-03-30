@@ -8,91 +8,6 @@ from tools.phase1 import renderers
 
 
 class TestPhase1Renderers(unittest.TestCase):
-    def _template(self) -> str:
-        return "\n".join(
-            [
-                renderers.PH_TITLE_MAIN,
-                renderers.PH_WARNING_TITLE,
-                renderers.PH_TITLE_OPERATING,
-                renderers.PH_LEAD_TOP,
-                renderers.PH_SAVE_TITLE,
-                renderers.PH_TOP,
-                renderers.PH_BOTTOM,
-            ]
-        ) + "\n"
-
-    def _blocks(self) -> list[dict[str, str]]:
-        return [
-            {
-                "block_type": "title_main",
-                "order": "1",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "IMPORTANT SAFETY INFORMATION",
-            },
-            {
-                "block_type": "warning_title",
-                "order": "2",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "WARNING TITLE",
-            },
-            {
-                "block_type": "title_operating",
-                "order": "3",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "OPERATING INSTRUCTIONS",
-            },
-            {
-                "block_type": "lead_top",
-                "order": "4",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "Lead paragraph",
-            },
-            {
-                "block_type": "save_title",
-                "order": "5",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": "{}",
-                "text_en": "SAVE THESE INSTRUCTIONS",
-            },
-            {
-                "block_type": "list_item",
-                "order": "6",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": '{"list_part": "top"}',
-                "text_en": "Top list item",
-            },
-            {
-                "block_type": "list_item",
-                "order": "7",
-                "sku_scope": "ALL",
-                "enabled": "1",
-                "meta_json": '{"list_part": "bottom"}',
-                "text_en": "Bottom list item",
-            },
-        ]
-
-    def test_render_safety_page_happy_path(self) -> None:
-        out = renderers.render_safety_page(
-            template=self._template(),
-            blocks=self._blocks(),
-            sku_id="JB1000",
-            lang="en",
-            vars_map={},
-        )
-        self.assertIn("IMPORTANT SAFETY INFORMATION", out)
-        self.assertIn("Top list item", out)
-        self.assertIn("Bottom list item", out)
-
     def test_latex_escape_should_escape_common_special_chars(self) -> None:
         text = r"50%_off #1 & more $x$ \\macro ~^"
         escaped = renderers.latex_arg_escape(text)
@@ -103,22 +18,6 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn(r"\#", escaped)
         self.assertIn(r"\&", escaped)
         self.assertIn(r"\$", escaped)
-
-    def test_invalid_meta_json_should_fail_fast_with_clear_error(self) -> None:
-        blocks = self._blocks()
-        # Break top list metadata to reproduce silent-fail path.
-        for row in blocks:
-            if row.get("block_type") == "list_item" and "Top" in row.get("text_en", ""):
-                row["meta_json"] = "{bad-json"
-
-        with self.assertRaisesRegex(ValueError, "meta_json|json|line"):
-            renderers.render_safety_page(
-                template=self._template(),
-                blocks=blocks,
-                sku_id="JB1000",
-                lang="en",
-                vars_map={},
-            )
 
     def _spec_template(self) -> str:
         return "\n".join(
@@ -545,17 +444,6 @@ class TestPhase1Renderers(unittest.TestCase):
                 vars_map={},
             )
 
-
-    def test_collect_safety_content_returns_structured_lists(self) -> None:
-        data = renderers.collect_safety_content(
-            blocks=self._blocks(),
-            sku_id="JB1000",
-            lang="en",
-            vars_map={},
-        )
-        self.assertEqual("IMPORTANT SAFETY INFORMATION", data["title_main"])
-        self.assertEqual(["Top list item"], data["top_items"])
-        self.assertEqual(["Bottom list item"], data["bottom_items"])
 
     def test_collect_spec_content_supports_spec_master_schema(self) -> None:
         data = renderers.collect_spec_content(

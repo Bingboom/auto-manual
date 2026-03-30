@@ -16,7 +16,7 @@ class TestTargetResolution(unittest.TestCase):
             "pages": [
                 {
                     "type": "csv_page",
-                    "page": "safety",
+                    "page": "spec",
                     "include_dir": "generated/{model}/{region}",
                 }
             ],
@@ -110,7 +110,7 @@ class TestTargetResolution(unittest.TestCase):
             model="JHP-2000A",
             region="US",
         )
-        self.assertIn(".. include:: page/safety_en.rst", text)
+        self.assertIn(".. include:: page/spec_en.rst", text)
 
     def test_gen_index_should_reject_unsupported_sku_token(self) -> None:
         cfg = self._tokenized_cfg()
@@ -478,7 +478,7 @@ class TestTargetResolution(unittest.TestCase):
                 "pages": [
                     {
                         "type": "csv_page",
-                        "page": "safety",
+                        "page": "spec",
                         "source": "phase1",
                         "langs": ["en"],
                         "include_dir": "generated/{model}",
@@ -493,7 +493,7 @@ class TestTargetResolution(unittest.TestCase):
             def write_generated_csv(*args, **kwargs) -> None:
                 generated_dir = fake_builder.paths.output_dir / "M1"
                 generated_dir.mkdir(parents=True, exist_ok=True)
-                (generated_dir / "safety_en.rst").write_text("CSV page body\n", encoding="utf-8")
+                (generated_dir / "spec_en.rst").write_text("CSV page body\n", encoding="utf-8")
 
             with mock.patch("tools.gen_index_bundle.load_word_context", return_value=fake_builder):
                 with mock.patch("tools.gen_index_bundle.ensure_csv_page_rsts", side_effect=write_generated_csv):
@@ -503,9 +503,9 @@ class TestTargetResolution(unittest.TestCase):
                         repo_root=root,
                     )
 
-            page_text = (bundle.page_dir / "safety_en.rst").read_text(encoding="utf-8")
+            page_text = (bundle.page_dir / "spec_en.rst").read_text(encoding="utf-8")
             self.assertIn("CSV page body", page_text)
-            self.assertIn(".. include:: page/safety_en.rst", bundle.index_path.read_text(encoding="utf-8"))
+            self.assertIn(".. include:: page/spec_en.rst", bundle.index_path.read_text(encoding="utf-8"))
 
     def test_materialize_bundle_should_fail_fast_when_contract_asset_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as td:

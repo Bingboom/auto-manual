@@ -85,8 +85,6 @@ python3 -m pip install -r requirements.txt
   - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
   - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
   - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)（legacy safety source）
-
 用途：
 
 - 生成第一版草稿

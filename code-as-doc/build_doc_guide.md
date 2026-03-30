@@ -143,7 +143,6 @@ If you update any of these:
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) (legacy safety source)
 - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 
 Safety page note:
@@ -152,7 +151,7 @@ Safety page note:
 - the JP manual maintains its safety intro in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml)
 - edit those `safety_*.rst` files when a family's safety intro page needs copy/layout changes
 - the detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) is kept only for legacy reference and future cleanup; active family builds no longer use it as the main safety maintenance surface
+- the old `content_blocks.csv` safety source has been removed from the active repo flow
 
 `symbols_blocks.csv` note:
 

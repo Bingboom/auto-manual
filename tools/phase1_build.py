@@ -27,7 +27,6 @@ def parse_args() -> argparse.Namespace:
     )
 
     ap.add_argument("--page-registry", default="data/phase1/page_registry.csv")
-    ap.add_argument("--content-blocks", default="data/phase1/content_blocks.csv")
     ap.add_argument("--template-dir", default="docs/templates")
     ap.add_argument("--out-dir", default="docs/generated")
     ap.add_argument(
@@ -66,7 +65,6 @@ def main() -> None:
     paths = BuildPaths(
         root=ROOT,
         page_registry=as_path(args.page_registry),
-        content_blocks=as_path(args.content_blocks),
         template_dir=as_path(args.template_dir),
         output_dir=as_path(args.out_dir),
         spec_master_csv=as_path(args.spec_master_csv),

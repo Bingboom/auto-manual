@@ -67,11 +67,10 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
    - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
    - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-   - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) (legacy safety source)
    - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
-   - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) is now a legacy reference surface, not the primary maintenance entry
+   - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
    - `Spec_Footnotes.csv` now matches rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
@@ -229,7 +228,6 @@ Edit these when a safety intro page needs copy/layout changes:
 - edit [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst), [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst), or [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst) for US safety intro changes
 - edit [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) when the Japanese safety intro page needs copy or layout changes
 - edit [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst) when the detailed Japanese safety warnings need changes
-- treat [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) as legacy reference only
 
 Edit these during target review and final polish:
 
@@ -267,7 +265,7 @@ JP manual note:
 - [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml) includes [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) directly
 - edit that template when the JP safety intro page must change
 - the detailed JP warning content remains in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) is legacy reference only and is no longer the active safety authoring surface for the current families
+- the old `content_blocks.csv` safety source has been removed from the active repo flow
 
 Generated bundle output:
 

@@ -57,7 +57,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--sync-scope",
         choices=("generated", "params"),
         default="params",
-        help="For sync-review: generated = spec/safety only; params = generated plus placeholder/cover pages",
+        help="For sync-review: generated = generated csv/draft pages only; params = generated plus placeholder/cover pages",
     )
     ap.add_argument(
         "--page-file",

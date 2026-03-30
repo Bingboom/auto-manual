@@ -36,11 +36,9 @@ pages:
   lang: en
   file: templates/page_us-en/00_preface.rst
 
-- type: csv_page
-  source: phase1
-  page: safety
-  langs: [ en ]
-  include_dir: generated/{model}
+- type: rst_include
+  lang: en
+  file: templates/page_us-en/safety_en.rst
 
 - type: csv_page
   source: phase1

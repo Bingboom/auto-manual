@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder, _normalize_content_blocks
+from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 
 
 class TestPhase1BuilderNormalization(unittest.TestCase):
@@ -15,38 +15,6 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase1" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
             self.assertEqual(root / "data" / "phase1" / "spec_titles.csv", paths.spec_titles_csv)
-
-    def test_compact_schema_can_be_normalized(self) -> None:
-        rows = [
-            {
-                "id": "1.0",
-                "part": "title_main",
-                "text_en": "MAIN",
-            },
-            {
-                "id": "2.0",
-                "part": "top",
-                "text_en": "Top item",
-            },
-        ]
-
-        out = _normalize_content_blocks(rows)
-        self.assertEqual(2, len(out))
-        self.assertEqual("safety", out[0]["page_id"])
-        self.assertEqual("title_main", out[0]["block_type"])
-        self.assertEqual("list_item", out[1]["block_type"])
-
-    def test_unknown_part_should_raise_instead_of_silent_drop(self) -> None:
-        rows = [
-            {
-                "id": "9.0",
-                "part": "unknown_part",
-                "text_en": "bad",
-            }
-        ]
-
-        with self.assertRaises(ValueError):
-            _normalize_content_blocks(rows)
 
     def test_spec_master_rows_can_be_detected(self) -> None:
         rows = [
@@ -74,14 +42,13 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
-                content_blocks=root / "dummy_content.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
                 spec_footnotes_csv=spec_master_csv.parent / "Spec_Footnotes.csv",
             )
             builder = Phase1Builder(paths)
-            rows = builder._load_page_blocks("spec", default_blocks=[])
+            rows = builder._load_page_blocks("spec")
             self.assertEqual("draft_row", rows[0]["Row_key"])
 
     def test_load_spec_merges_configured_footnotes_csv(self) -> None:
@@ -105,14 +72,13 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
-                content_blocks=root / "dummy_content.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
                 spec_footnotes_csv=spec_footnotes_csv,
             )
             builder = Phase1Builder(paths)
-            rows = builder._load_page_blocks("spec", default_blocks=[])
+            rows = builder._load_page_blocks("spec")
             marks = [row.get("footnote_mark", "") for row in rows]
             self.assertTrue(any(mark for mark in marks))
 
@@ -137,7 +103,6 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
-                content_blocks=root / "dummy_content.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
@@ -145,7 +110,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 spec_titles_csv=spec_titles_csv,
             )
             builder = Phase1Builder(paths)
-            rows = builder._load_page_blocks("spec", default_blocks=[])
+            rows = builder._load_page_blocks("spec")
             self.assertEqual(1, len(rows))
             self.assertEqual("draft_row", rows[0]["Row_key"])
 
@@ -155,7 +120,6 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
-                content_blocks=root / "dummy_content.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
@@ -176,7 +140,6 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
-                content_blocks=root / "dummy_content.csv",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
@@ -187,4 +150,3 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
