@@ -4,7 +4,7 @@ Updated: 2026-03-26
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
-The current maintained smoke-check baseline is centered on `JE-1000F` across the active US, JP, and EU config families.
+The current maintained smoke-check baseline is centered on `JE-1000F` across the active US and JP config families.
 
 For the fixed US + JP release matrix, you can also use:
 
@@ -32,7 +32,7 @@ CI note:
 - `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing
 - the published review preview root is now a region-family managed review handoff workspace: families are hidden when `_review` content is missing, models are grouped, and language switching happens inside each model group
 - family-level diff assets stay shared across the languages in that family, while the workspace keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
-- `manual/index.html` remains a compatibility redirect to the workspace default manual, while `changes/index.html` is now a family hub that makes `US / JP / EU` change packages explicit instead of dropping reviewers into one default family report
+- `manual/index.html` remains a compatibility redirect to the workspace default manual, while `changes/index.html` is now a family hub that makes `US / JP` change packages explicit instead of dropping reviewers into one default family report
 
 ## 2. Primary Entrypoint
 
@@ -98,7 +98,7 @@ Use different surfaces for different stages:
   `Spec_Footnotes.csv` supports both numbered `footnote` rows and plain `note` rows such as trademark statements. If numbering differs by language, put the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty. Like `Spec_Master.csv`, it now targets rows by `Region` + `Model`; the old `project_code` / `项目代码` column is gone.
   `Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages. For page-value rows, keep `Row_key` as the concept and use `Slot_key` to describe the placeholder slot. The shared source-text columns are `Row_label_source`, `Param_source`, and `Value_source`; they hold the row's source-manual text. `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, or `zh`, and code no longer infers it from `Region`. `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; source-language text must live in `*_source`. The old `project_code` / `项目代码` column has been removed; row targeting now uses `Region` + `Model`.
   `symbols_blocks.csv` stores symbols-page table copy, uses `Region` and `Model` to match target manuals like `Spec_Master.csv`, keeps `Source_lang` aligned with the same source-language code pattern, and includes an `image_path` field for the referenced icon asset. Leave `Region` / `Model` blank when one symbols row should be shared.
-  JP safety prose is maintained in [`docs/templates/page_jp/safety_ja.rst`](docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](docs/manifests/manual_jp.yaml); `content_blocks.csv` continues to drive CSV-backed safety pages for the other families.
+  Safety intro pages are now maintained as fixed RST templates under [`docs/templates/page_*/safety_*.rst`](docs/templates), wired through each family's manifest or page list. JP still keeps its detailed warning content in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](docs/templates/page_jp/01_meaning_of_symbols.rst). [`data/phase1/content_blocks.csv`](data/phase1/content_blocks.csv) is retained only as a legacy safety source and is no longer the primary maintenance entry point.
 - target-specific review edits after review starts: [`docs/_review/`](docs/_review)
 - generated runtime and export outputs: [`docs/_build/`](docs/_build)
 
@@ -116,7 +116,7 @@ Use the document that owns the topic:
 
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - focused design handoff usage guide: [`code-as-doc/README_design_handoff.md`](code-as-doc/README_design_handoff.md)
-- current JP / US / EU family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
+- current JP / US family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
 - current Vercel review-preview packaging flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md)
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)

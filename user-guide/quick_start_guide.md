@@ -85,7 +85,7 @@ python3 -m pip install -r requirements.txt
   - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
   - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
   - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-  - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)（legacy safety source）
 
 用途：
 
@@ -525,15 +525,24 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 
 - 改 [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) 里的规格参数 -> 用 `sync-review`
 - 改 [`docs/templates/page_us-en/05_operation_guide_placeholder.rst`](../docs/templates/page_us-en/05_operation_guide_placeholder.rst) 里带 `|PRODUCT_NAME|` 这类占位符的段落 -> 通常可以用 `sync-review`
-- 改 [`docs/templates/page_us-en/01_meaning_of_symbols.rst`](../docs/templates/page_us-en/01_meaning_of_symbols.rst) 这种纯文本模板内容 -> 如果 review 里对应页面没有被 `sync-review` 自动覆盖，就需要手动把改动写进 `docs/_review/...`
+- 改 [`docs/templates/page_us-en/00_preface.rst`](../docs/templates/page_us-en/00_preface.rst) 这种纯文本模板内容 -> 如果 review 里对应页面没有被 `sync-review` 自动覆盖，就需要手动把改动写进 `docs/_review/...`
 
-如果你只想同步 spec / safety 生成文件：
+如果你只想同步 spec 和 generated 草稿文件：
 
 ```powershell
 python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US --sync-scope generated
 python build.py sync-review --config config.us-es.yaml --model JE-1000F --region US --sync-scope generated
 python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region US --sync-scope generated
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --sync-scope generated
+```
+
+固定 `safety_*.rst` 页面不在这个 `generated` 范围里；如果你改的是 safety 模板，改完后请直接同步对应页，例如：
+
+```powershell
+python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US --page-file safety_en.rst
+python build.py sync-review --config config.us-es.yaml --model JE-1000F --region US --page-file safety_es.rst
+python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region US --page-file safety_fr.rst
+python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --page-file safety_ja.rst
 ```
 
 同样，如果碰到 Windows 文件锁，也可以补 `--no-clean`。
@@ -619,16 +628,15 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 如果你只是修正某一张纯文本 review 页面，更接近真实工作流的做法是：
 
 ```powershell
-git add docs/templates/page_us-en/01_meaning_of_symbols.rst
-git add docs/_review/JE-1000F/US/en/page/symbols_en.rst
-git add docs/_review/JE-1000F/US/en/generated/JE-1000F/symbols_en.rst
-git commit -m "Update US symbols wording for JE-1000F review"
+git add docs/templates/page_us-en/00_preface.rst
+git add docs/_review/JE-1000F/US/en/page/00_preface.rst
+git commit -m "Update US preface wording for JE-1000F review"
 ```
 
 上面这个例子就是“模板不是自动同步源”的典型情况：
 
-- 改了 [`docs/templates/page_us-en/01_meaning_of_symbols.rst`](../docs/templates/page_us-en/01_meaning_of_symbols.rst)
-- review 中真正用于 diff-report / preview 的还是 `docs/_review/**/symbols_en.rst`
+- 改了 [`docs/templates/page_us-en/00_preface.rst`](../docs/templates/page_us-en/00_preface.rst)
+- review 中真正用于 diff-report / preview 的是对应的 `docs/_review/**/page/00_preface.rst`
 - 所以必须把 `_review` 一起改掉，变更才会体现在 review 产物里
 
 ---

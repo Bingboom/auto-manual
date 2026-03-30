@@ -76,7 +76,6 @@ Current shared config families:
 - [`config.yaml`](../config.yaml): shared EN / US template family
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
-- [`config.eu.yaml`](../config.eu.yaml): shared EU template family
 
 Page-stack note:
 
@@ -144,15 +143,16 @@ If you update any of these:
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) (legacy safety source)
 - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 
-JP safety note:
+Safety page note:
 
-- the JP manual now maintains safety prose in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml)
-- edit that template file when the JP safety intro page needs copy/layout changes
+- US safety intro pages are maintained directly in [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst), [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst), and [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst)
+- the JP manual maintains its safety intro in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml)
+- edit those `safety_*.rst` files when a family's safety intro page needs copy/layout changes
 - the detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
-- keep using [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) for CSV-backed safety pages in the other families
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) is kept only for legacy reference and future cleanup; active family builds no longer use it as the main safety maintenance surface
 
 `symbols_blocks.csv` note:
 
@@ -229,7 +229,7 @@ This package contains:
 - `generated/changes.json`: grouped changed files, review pages, and download metadata
 - `generated/workspace.json`: the workspace data contract used by the root page
 - `manual/index.html`: compatibility redirect to the default manual
-- `changes/index.html`: family selector that links the packaged `US / JP / EU` diff pages instead of dropping reviewers into one default family report
+- `changes/index.html`: family selector that links the packaged `US / JP` diff pages instead of dropping reviewers into one default family report
 
 Packaging rule:
 
@@ -300,14 +300,14 @@ Build all targets defined in one config:
 ```powershell
 python build.py rst --config config.yaml
 python build.py word --config config.yaml
-python build.py all --config config.eu.yaml
+python build.py all --config config.ja.yaml
 ```
 
 Build one explicit target:
 
 ```powershell
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
-python build.py pdf --config config.eu.yaml --model JE-1000F --region EU
+python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 Word styling note:

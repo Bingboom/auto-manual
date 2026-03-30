@@ -36,11 +36,9 @@ pages:
   lang: fr
   file: templates/page_us-fr/00_preface.rst
 
-- type: csv_page
-  source: phase1
-  page: safety
-  langs: [ fr ]
-  include_dir: generated/{model}
+- type: rst_include
+  lang: fr
+  file: templates/page_us-fr/safety_fr.rst
 
 - type: csv_page
   source: phase1
@@ -70,7 +68,7 @@ pages:
 
 - type: rst_include
   lang: fr
-  file: templates/page_us-fr/07_expansion_battery_pack.rst
+  file: templates/page_us-fr/charging.rst
 
 - type: rst_include
   lang: fr

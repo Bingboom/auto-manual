@@ -6,7 +6,7 @@ This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
 It is the current workflow and editing-surface guide.
 It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
-For the current JP / US / EU family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
+For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
 
 ---
 
@@ -59,7 +59,6 @@ The manual system now has four layers, but they are used at different stages.
 
 1. Template seed layer
    - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
-   - [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
    - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
    - [`docs/manifests/*.yaml`](../docs/manifests)
    - Responsibility: reusable page structure, headings, shared prose, and initial draft layout
@@ -68,11 +67,11 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
    - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
    - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-   - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
+   - [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) (legacy safety source)
    - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
-   - Responsibility: model-specific parameters, safety/spec content, and placeholder values
-   - JP safety page prose is maintained in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml); it is only the short safety intro, while detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). `content_blocks.csv` still drives CSV-backed safety pages for the other families
+   - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
+   - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) is now a legacy reference surface, not the primary maintenance entry
    - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
    - `Spec_Footnotes.csv` now matches rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
@@ -216,22 +215,21 @@ For the current maintainer branch model, pull request rules, and GitHub protecti
 Edit these when the change should be shared across products or when creating the first draft:
 
 - [`docs/templates/page_us-en/*.rst`](../docs/templates/page_us-en)
-- [`docs/templates/page_eu/*.rst`](../docs/templates/page_eu)
 - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 
 Edit these when safety/spec parameters change:
 
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
 - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 
-JP safety exception:
+Edit these when a safety intro page needs copy/layout changes:
 
-- edit [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) when the Japanese safety page itself needs copy or layout changes
+- edit [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst), [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst), or [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst) for US safety intro changes
+- edit [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) when the Japanese safety intro page needs copy or layout changes
 - edit [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst) when the detailed Japanese safety warnings need changes
-- keep using [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) for shared CSV-backed safety content in the other families
+- treat [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) as legacy reference only
 
 Edit these during target review and final polish:
 
@@ -255,24 +253,24 @@ You may commit `_review/...` for review history because it is now the target edi
 
 ## 6. How Safety and Spec Pages Work
 
-Safety content is usually generated by [`tools/phase1_build.py`](../tools/phase1_build.py).
+Safety intro pages are now maintained as fixed RST templates and then materialized into the bundle.
 
 Primary inputs:
 
-- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
-- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv)
-- optional page override CSV such as [`data/phase1/<page_id>_blocks.csv`](../data/phase1)
+- [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst)
+- [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst)
+- [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst)
+- [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst)
 
-JP manual exception:
+JP manual note:
 
-- [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml) now includes [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) directly
+- [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml) includes [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) directly
 - edit that template when the JP safety intro page must change
 - the detailed JP warning content remains in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
-- keep the CSV-generated safety flow for families that still use `csv_page`
+- [`data/phase1/content_blocks.csv`](../data/phase1/content_blocks.csv) is legacy reference only and is no longer the active safety authoring surface for the current families
 
 Generated bundle output:
 
-- [`docs/_build/<model>/<region>/rst/generated/<model>/safety_<lang>.rst`](../docs/_build)
 - materialized page include: [`docs/_build/<model>/<region>/rst/page/safety_<lang>.rst`](../docs/_build)
 
 Symbols content is generated from:
@@ -371,8 +369,7 @@ Config scope rule:
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
-- [`config.eu.yaml`](../config.eu.yaml): shared EU template-family config
-- the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / EU`
+- the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US` and `JE-1000F / JP`
 - do not create a new config only because the model changed; pass `--model` and `--region` instead
 - create a new config only when the page stack, template family, or output conventions are genuinely different
 
@@ -649,16 +646,14 @@ The repo now supports page contract checks under:
 
 - [`docs/templates/contracts/03_product_overview.yaml`](../docs/templates/contracts/03_product_overview.yaml)
 - [`docs/templates/contracts/05_operation_guide.yaml`](../docs/templates/contracts/05_operation_guide.yaml)
-- [`docs/templates/contracts/05_operation_guide_eu.yaml`](../docs/templates/contracts/05_operation_guide_eu.yaml)
 - [`docs/templates/contracts/12_app_setup.yaml`](../docs/templates/contracts/12_app_setup.yaml)
-- [`docs/templates/contracts/12_app_setup_eu.yaml`](../docs/templates/contracts/12_app_setup_eu.yaml)
 
 Current scope:
 
 - contracts are matched by source template path from `config.pages`
 - `check` validates required placeholders, spec row keys, page-value selectors, and required assets
 - current coverage includes `03_product_overview`, `05_operation_guide`, and `12_app_setup`
-- `EN`, `JP`, and `EU` template families can each declare their own required placeholder sets
+- the active US and JP template families can each declare their own required placeholder sets
 - contracts can be scoped by `allowed_languages`, `allowed_regions`, and `allowed_models`
 
 Current contract keys:
