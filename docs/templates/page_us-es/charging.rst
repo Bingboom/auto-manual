@@ -11,6 +11,20 @@ CARGANDO
 - Utilizar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, o incluso impedir que cargue o descargue.
 - La potencia de carga y la capacidad de la batería del producto pueden variar debido a las fluctuaciones de temperatura.
 
+.. only:: model_je_2000e
+
+   CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS (SE VENDEN POR SEPARADO)
+   ----------------------------------------------------------------
+
+   Este producto puede soportar hasta 5 paquetes de baterías para satisfacer la necesidad de una gran capacidad de energía. Para detalles sobre su uso, consulte el manual de usuario del Jackery Battery Pack 2000.
+
+   **PRECAUCIÓN**
+
+   - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
+   - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
+   - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
+   - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
+
 CARGA MEDIANTE TOMA DE CORRIENTE DE CA
 --------------------------------------
 

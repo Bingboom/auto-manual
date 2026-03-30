@@ -11,6 +11,20 @@ CHARGE
 - L'utilisation du produit en dehors de cette plage de température peut limiter ses capacités de charge et de décharge, voire l'empêcher complètement de charger ou de décharger.
 - La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des fluctuations de température.
 
+.. only:: model_je_2000e
+
+   CONNECTER AU(X) PACK(S) BATTERIE (VENDU SÉPARÉMENT)
+   ---------------------------------------------------
+
+   Ce produit peut prendre en charge jusqu'à 5 packs batterie pour répondre aux besoins d'une grande capacité énergétique. Pour les détails sur son utilisation, veuillez vous référer au manuel d'utilisation du Jackery Battery Pack 2000.
+
+   **ATTENTION**
+
+   - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
+   - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
+   - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
+   - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
+
 CHARGEMENT PAR PRISE MURALE CA
 ------------------------------
 
