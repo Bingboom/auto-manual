@@ -222,6 +222,43 @@ def _sort_key(row: dict[str, str]) -> float:
         return 0.0
 
 
+def _pick_target_model(vars_map: dict[str, str]) -> str:
+    for key in ("model", "product_model", "model_no", "model_number", "Model"):
+        value = (vars_map.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _pick_target_region(vars_map: dict[str, str]) -> str:
+    for key in ("region", "Region"):
+        value = (vars_map.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _matches_symbols_target(
+    block: dict[str, str],
+    *,
+    sku_id: str,
+    vars_map: dict[str, str],
+) -> bool:
+    block_region = (block.get("Region") or block.get("region") or "").strip()
+    block_model = (block.get("Model") or block.get("model") or "").strip()
+
+    if block_region or block_model:
+        target_region = _pick_target_region(vars_map)
+        target_model = _pick_target_model(vars_map)
+        if block_region and (not target_region or block_region.casefold() != target_region.casefold()):
+            return False
+        if block_model and (not target_model or block_model.casefold() != target_model.casefold()):
+            return False
+        return True
+
+    return _scope_allows(block.get("sku_scope", "ALL"), sku_id)
+
+
 def _rst_heading(title: str) -> list[str]:
     title = rst_escape(title)
     return [title, "-" * len(title)]
@@ -330,7 +367,7 @@ def _collect_icon_rows(
     for block in blocks:
         if not _enabled(block.get("enabled", "1")):
             continue
-        if not _scope_allows(block.get("sku_scope", "ALL"), sku_id):
+        if not _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
             continue
 
         block_type = (block.get("block_type") or "").strip()
