@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-24
+Updated: 2026-03-30
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -142,6 +142,7 @@ If you update any of these:
 
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 
@@ -176,13 +177,21 @@ Parallel-language template note:
 - `Source_lang` stores that source-language code explicitly; use values such as `en`, `ja`, and `zh`, and do not rely on `Region` to infer it
 - `project_code` / `项目代码` is no longer part of `Spec_Master.csv`; target rows by `Region` + `Model`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet
+- `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` hold comma-separated `Footnote_id` values; do not handwrite `①②③` into the visible spec text columns
 
-`Spec_Footnotes.csv` supports two spec-bottom row types:
+`Spec_Footnotes.csv` note:
 
-- `row_kind=footnote`: numbered entries such as `①`
-- `row_kind=note`: plain note lines such as trademark statements
-- If the numbering symbol differs by language, write it directly in each `footnote_text_*` cell and leave `footnote_mark` empty
+- keep one row per reusable footnote definition
+- use `Footnote_id` as the stable reference key
+- use `Footnote_order` to control the rendered superscript order
+- keep only plain footnote body text in `Text_*`; the renderer derives the visible superscript marker automatically
 - `project_code` / `项目代码` is no longer part of `Spec_Footnotes.csv`; target rows by `Region` + `Model`
+
+`Spec_Notes.csv` note:
+
+- use this file for bottom-of-spec notes that are not tied to a superscript reference
+- use `Note_id` as the stable note key and `Note_order` as the rendered order
+- keep only plain note text in `Text_*`
 
 run:
 

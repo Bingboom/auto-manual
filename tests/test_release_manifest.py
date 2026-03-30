@@ -40,6 +40,7 @@ class TestReleaseManifest(unittest.TestCase):
                 encoding="utf-8",
             )
             (data_dir / "Spec_Footnotes.csv").write_text("id,note\n", encoding="utf-8")
+            (data_dir / "Spec_Notes.csv").write_text("id,note\n", encoding="utf-8")
             (data_dir / "spec_titles.csv").write_text("page,title_en\n", encoding="utf-8")
 
             config_path = root / "config.yaml"
@@ -54,6 +55,7 @@ class TestReleaseManifest(unittest.TestCase):
                         f"  docs_dir: {docs_dir.as_posix()}",
                         f"  spec_master_csv: {(data_dir / 'Spec_Master.csv').as_posix()}",
                         f"  spec_footnotes_csv: {(data_dir / 'Spec_Footnotes.csv').as_posix()}",
+                        f"  spec_notes_csv: {(data_dir / 'Spec_Notes.csv').as_posix()}",
                         f"  spec_titles_csv: {(data_dir / 'spec_titles.csv').as_posix()}",
                     ]
                 )
@@ -80,6 +82,7 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertEqual("US", manifest["region"])
             self.assertEqual(["en"], manifest["build_languages"])
             self.assertEqual("Jackery Explorer 1000 Pro", manifest["product_name"])
+            self.assertEqual("data/phase1/Spec_Notes.csv", manifest["spec_notes_csv"])
             self.assertEqual("reports/releases/JE-1000F/US/20260315T100000Z.json", json_path.relative_to(root).as_posix())
             self.assertTrue(manifest["word_output"]["exists"])
             self.assertTrue(manifest["html_output"]["exists"])
@@ -88,4 +91,3 @@ class TestReleaseManifest(unittest.TestCase):
                 hashlib.sha256((build_root / "word" / "manual_je1000f_us.docx").read_bytes()).hexdigest(),
                 manifest["word_output"]["sha256"],
             )
-

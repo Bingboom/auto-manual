@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -76,6 +77,16 @@ def resolve_spec_master_csv_path(cfg: dict) -> Path:
     return ROOT / "data" / "phase1" / "Spec_Master.csv"
 
 
+def _resolve_optional_phase1_csv_path(cfg: dict, key: str, fallback_name: str) -> Path:
+    paths_cfg_raw = cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get(key)
+    if isinstance(raw, str) and raw.strip():
+        path = Path(raw.strip())
+        return path if path.is_absolute() else (ROOT / path)
+    return ROOT / "data" / "phase1" / fallback_name
+
+
 def resolve_docs_dir(cfg: dict) -> Path:
     paths_cfg_raw = cfg.get("paths", {})
     paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
@@ -146,6 +157,24 @@ def _pick_value(row: dict[str, str], lang: str) -> str:
             "Spec_Value",
         ),
     )
+
+
+_LEGACY_FOOTNOTE_MARKER_RE = re.compile(r"[\u2460-\u2473]|\(\d+\)|^\d+\.\s+")
+
+
+def _parse_ref_ids(value: str) -> tuple[str, ...]:
+    refs: list[str] = []
+    for token in (value or "").split(","):
+        item = token.strip()
+        if item and item not in refs:
+            refs.append(item)
+    return tuple(refs)
+
+
+def _read_optional_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    return read_spec_master_rows(path)
 
 
 def _effective_targets(
@@ -275,7 +304,11 @@ def collect_spec_master_validation_issues(
 ) -> list[SpecMasterValidationIssue]:
     cfg = load_config(cfg_path)
     spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_footnotes_csv = _resolve_optional_phase1_csv_path(cfg, "spec_footnotes_csv", "Spec_Footnotes.csv")
+    spec_notes_csv = _resolve_optional_phase1_csv_path(cfg, "spec_notes_csv", "Spec_Notes.csv")
     rows = read_spec_master_rows(spec_master_csv)
+    footnote_rows = _read_optional_rows(spec_footnotes_csv)
+    note_rows = _read_optional_rows(spec_notes_csv)
     langs = _build_langs(cfg)
     targets = _effective_targets(
         cfg,
@@ -323,6 +356,14 @@ def collect_spec_master_validation_issues(
         )
 
     for target in targets:
+        target_rows = [row for row in rows if _row_matches_target(row, model=target.model, region=target.region)]
+        target_footnote_rows = [
+            row for row in footnote_rows if _row_matches_target(row, model=target.model, region=target.region)
+        ]
+        target_note_rows = [
+            row for row in note_rows if _row_matches_target(row, model=target.model, region=target.region)
+        ]
+
         for row in rows:
             if not _row_matches_target(row, model=target.model, region=target.region):
                 continue
@@ -381,6 +422,180 @@ def collect_spec_master_validation_issues(
                         model=target.model,
                         region=target.region,
                         row_key=row_key,
+                    )
+                )
+
+        footnote_ids_by_page: dict[str, dict[str, dict[str, str]]] = {}
+        footnote_orders_by_page: dict[str, dict[str, dict[str, str]]] = {}
+        for row in target_footnote_rows:
+            line_no = _pick_line_number(row)
+            footnote_id = _first_non_empty(row, ("Footnote_id", "footnote_id"))
+            page = _first_non_empty(row, ("Page", "page")) or "specifications"
+            order = _first_non_empty(row, ("Footnote_order", "footnote_order"))
+            raw_source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
+            if not footnote_id:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_FOOTNOTE_ID",
+                        message="Spec_Footnotes row must declare Footnote_id",
+                        path=spec_footnotes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+                continue
+            if not order:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_FOOTNOTE_ORDER",
+                        message=f"Spec_Footnotes row '{footnote_id}' must declare Footnote_order",
+                        path=spec_footnotes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+            if not raw_source_lang:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_FOOTNOTE_SOURCE_LANG",
+                        message=f"Spec_Footnotes row '{footnote_id}' must declare Source_lang",
+                        path=spec_footnotes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+            elif not normalize_source_lang(raw_source_lang):
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="INVALID_FOOTNOTE_SOURCE_LANG",
+                        message=f"Spec_Footnotes row '{footnote_id}' has unsupported Source_lang '{raw_source_lang}'",
+                        path=spec_footnotes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+            text_value = _first_non_empty(row, ("Text_en", "Text_fr", "Text_es", "Text_ja", "text_en", "text_fr", "text_es", "text_ja"))
+            if _LEGACY_FOOTNOTE_MARKER_RE.search(text_value):
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="FOOTNOTE_TEXT_CONTAINS_MARKER",
+                        message=f"Spec_Footnotes row '{footnote_id}' should not hardcode footnote markers in text",
+                        path=spec_footnotes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+
+            page_ids = footnote_ids_by_page.setdefault(page, {})
+            if footnote_id in page_ids:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="DUPLICATE_FOOTNOTE_ID",
+                        message=f"Duplicate Spec_Footnotes Footnote_id '{footnote_id}' on page '{page}'",
+                        path=spec_footnotes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+            else:
+                page_ids[footnote_id] = row
+
+            if order:
+                page_orders = footnote_orders_by_page.setdefault(page, {})
+                if order in page_orders:
+                    issues.append(
+                        SpecMasterValidationIssue(
+                            code="DUPLICATE_FOOTNOTE_ORDER",
+                            message=f"Duplicate Spec_Footnotes Footnote_order '{order}' on page '{page}'",
+                            path=spec_footnotes_csv,
+                            line=line_no,
+                            model=target.model,
+                            region=target.region,
+                        )
+                    )
+                else:
+                    page_orders[order] = row
+
+        for row in target_note_rows:
+            line_no = _pick_line_number(row)
+            note_id = _first_non_empty(row, ("Note_id", "note_id"))
+            if not note_id:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="MISSING_NOTE_ID",
+                        message="Spec_Notes row must declare Note_id",
+                        path=spec_notes_csv,
+                        line=line_no,
+                        model=target.model,
+                        region=target.region,
+                    )
+                )
+
+        used_footnote_refs: dict[str, set[str]] = {}
+        for row in target_rows:
+            line_no = _pick_line_number(row)
+            page = _first_non_empty(row, ("Page", "page")) or "specifications"
+            for ref_column in (
+                "Row_label_footnote_refs",
+                "row_label_footnote_refs",
+                "Param_footnote_refs",
+                "param_footnote_refs",
+                "Value_footnote_refs",
+                "value_footnote_refs",
+            ):
+                for footnote_id in _parse_ref_ids(_first_non_empty(row, (ref_column,))):
+                    used_footnote_refs.setdefault(page, set()).add(footnote_id)
+                    if footnote_id not in footnote_ids_by_page.get(page, {}):
+                        issues.append(
+                            SpecMasterValidationIssue(
+                                code="UNKNOWN_FOOTNOTE_REF",
+                                message=(
+                                    f"Spec_Master row_key '{_first_non_empty(row, ('Row_key', 'row_key'))}' "
+                                    f"references missing footnote '{footnote_id}' on page '{page}'"
+                                ),
+                                path=spec_master_csv,
+                                line=line_no,
+                                model=target.model,
+                                region=target.region,
+                                row_key=_first_non_empty(row, ("Row_key", "row_key")),
+                            )
+                        )
+
+            for column in ("Row_label_source", "Param_source", "Value_source"):
+                value = _first_non_empty(row, (column, column.lower()))
+                if _LEGACY_FOOTNOTE_MARKER_RE.search(value):
+                    issues.append(
+                        SpecMasterValidationIssue(
+                            code="LEGACY_INLINE_FOOTNOTE_MARKER",
+                            message=(
+                                f"Spec_Master row_key '{_first_non_empty(row, ('Row_key', 'row_key'))}' "
+                                f"still hardcodes a footnote marker in {column}"
+                            ),
+                            path=spec_master_csv,
+                            line=line_no,
+                            model=target.model,
+                            region=target.region,
+                            row_key=_first_non_empty(row, ("Row_key", "row_key")),
+                        )
+                    )
+
+        for page, page_defs in footnote_ids_by_page.items():
+            unused_ids = sorted(set(page_defs) - used_footnote_refs.get(page, set()))
+            for footnote_id in unused_ids:
+                issues.append(
+                    SpecMasterValidationIssue(
+                        code="UNUSED_FOOTNOTE",
+                        message=f"Spec_Footnotes row '{footnote_id}' on page '{page}' is not referenced by Spec_Master",
+                        path=spec_footnotes_csv,
+                        line=_pick_line_number(page_defs[footnote_id]),
+                        model=target.model,
+                        region=target.region,
                     )
                 )
 

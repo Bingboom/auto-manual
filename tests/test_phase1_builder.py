@@ -14,6 +14,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths.from_root(root)
             self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase1" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
+            self.assertEqual(root / "data" / "phase1" / "Spec_Notes.csv", paths.spec_notes_csv)
             self.assertEqual(root / "data" / "phase1" / "spec_titles.csv", paths.spec_titles_csv)
 
     def test_spec_master_rows_can_be_detected(self) -> None:
@@ -56,6 +57,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             root = Path(td)
             spec_master_csv = root / "data" / "phase1" / "Spec_Master.csv"
             spec_footnotes_csv = root / "data" / "phase1" / "Spec_Footnotes.csv"
+            spec_notes_csv = root / "data" / "phase1" / "Spec_Notes.csv"
             spec_master_csv.parent.mkdir(parents=True, exist_ok=True)
 
             spec_master_csv.write_text(
@@ -64,8 +66,13 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 encoding="utf-8",
             )
             spec_footnotes_csv.write_text(
-                "Page,row_kind,footnote_mark,footnote_text_en\n"
-                "specifications,footnote,鈶?Demo footnote from dedicated csv\n",
+                "Region,Model,Source_lang,Is_Latest,Page,Footnote_id,Footnote_order,Text_en,Enabled\n"
+                "US,DEMO-1000,en,TRUE,specifications,demo_ref,1,Demo footnote from dedicated csv,TRUE\n",
+                encoding="utf-8",
+            )
+            spec_notes_csv.write_text(
+                "Region,Model,Source_lang,Is_Latest,Page,Note_id,Note_order,Text_en,Enabled\n"
+                "US,DEMO-1000,en,TRUE,specifications,demo_note,2,Demo note from dedicated csv,TRUE\n",
                 encoding="utf-8",
             )
 
@@ -76,11 +83,12 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
                 spec_footnotes_csv=spec_footnotes_csv,
+                spec_notes_csv=spec_notes_csv,
             )
             builder = Phase1Builder(paths)
             rows = builder._load_page_blocks("spec")
-            marks = [row.get("footnote_mark", "") for row in rows]
-            self.assertTrue(any(mark for mark in marks))
+            self.assertTrue(any(row.get("footnote_id") == "demo_ref" for row in rows))
+            self.assertTrue(any(row.get("note_id") == "demo_note" for row in rows))
 
     def test_load_spec_keeps_master_rows_when_titles_csv_is_configured(self) -> None:
         with tempfile.TemporaryDirectory() as td:

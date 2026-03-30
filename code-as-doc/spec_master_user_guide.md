@@ -23,7 +23,8 @@ It answers the practical question: "I have a piece of manual data. Which file an
 | Visible spec rows | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, choose visible `Section`, fill `Row_key`, `Row_label_*`, `Param_*`, `Value_*` | Use this for rows that should appear in the spec table |
 | Product overview labels or per-model UI text | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview`, `Row_key=<concept_key>`, `Slot_key=<slot>` | Use this for placeholders consumed by templates |
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
-| Spec footnotes | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | footnote CSV rows | Do not stuff footnotes into visible spec rows just to keep all text in one file |
+| Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
+| Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
 | Spec page title translation | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title | Only for visible spec page titles |
 | Safety intro prose | [`docs/templates/page_*/safety_*.rst`](../docs/templates) | family safety templates | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
 
@@ -38,7 +39,9 @@ The current manual data layer uses these files:
   - `model_no`
 - page-value placeholder rows
 - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-  - spec footnotes
+  - superscript footnote definitions
+- [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
+  - bottom-of-spec notes that are not referenced by superscripts
 - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
   - localized visible title mapping for the spec page
 - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
@@ -61,6 +64,9 @@ This section is the editor-facing filling guide.
 | `Row_label_*` | visible row label | Fill the visible label that should appear in the final output |
 | `Param_*` | left-side or prefix text inside the value cell | Use only when one row has a parameter + value pair |
 | `Value_*` | main value text | Most rows need this |
+| `Row_label_footnote_refs` | footnote refs attached to the row label | Fill comma-separated `Footnote_id` values when the row label needs superscript markers |
+| `Param_footnote_refs` | footnote refs attached to the `Param_*` text | Fill comma-separated `Footnote_id` values when the left-side parameter text needs superscript markers |
+| `Value_footnote_refs` | footnote refs attached to the `Value_*` text | Fill comma-separated `Footnote_id` values when the main value text needs superscript markers |
 | `Line_order` | order of multiple lines under the same row | Use `1`, `2`, `3`, ... when the same `Row_key` spans multiple lines |
 | `Slot_key` | page-value slot marker | Leave blank for visible spec rows. Use values such as `label`, `text`, `value`, `front.label`, `front.low.spec`, `side.pv.spec` for template-fed rows |
 | `Model` | target model | Must match the intended target build |
@@ -116,6 +122,12 @@ Current display rule:
 - if only `Value_*` exists, it is displayed by itself
 - if a full cell contains commas, quote the full CSV value
 
+Current footnote rule:
+
+- do not type `①②③` into `Row_label_*`, `Param_*`, or `Value_*`
+- fill `Row_label_footnote_refs`, `Param_footnote_refs`, or `Value_footnote_refs` with comma-separated `Footnote_id` values instead
+- the renderer derives the visible superscript marker from [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) `Footnote_order`
+
 ### 3.5 Example: Multi-Line Spec Row
 
 If the same visible row label has multiple lines, repeat the same `Row_key` and increment `Line_order`.
@@ -163,7 +175,7 @@ These fields are useful when you need to maintain parser behavior rather than ju
 | `section_title_*` | can override the visible section title before `spec_titles.csv` is applied |
 | `line_text_*` | direct rendered row text; bypasses `Param_* + Value_*` assembly |
 | `param_value_sep` | overrides the default `: ` separator between `Param_*` and `Value_*` |
-| `note_text_*` / `footnote_text_*` | advanced inline note fields; current repo usually prefers `Spec_Footnotes.csv` instead |
+| `note_text_*` / `footnote_text_*` | legacy inline note fields; prefer [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) and [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) instead |
 
 ## 4. Current Editing Conventions
 
@@ -530,22 +542,101 @@ Current fallback rule:
 
 - if a title is missing from [`spec_titles.csv`](../data/phase1/spec_titles.csv), current renderers fall back to the source section title
 
-## 7. [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) Rule
+## 7. Spec Footnotes And Notes
 
-Keep footnotes separate from the main spec rows.
-This makes spec tables and note content easier to maintain independently.
+Keep spec-table content, superscript footnotes, and standalone notes separate.
+This makes the spec page easier to validate and keeps superscript numbering deterministic.
+
+### 7.1 [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
 
 Use [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) for:
 
-- spec footnotes
-- spec notes that are structurally separate from the main table rows
+- footnotes that are referenced by superscripts in the spec table
+- one reusable definition row per `Footnote_id`
 
-Do not fold footnotes back into the main spec rows just to keep all text in one file.
+Current schema:
 
-Current schema note:
+- `Region`
+- `Model`
+- `Source_lang`
+- `Is_Latest`
+- `Page`
+- `Footnote_id`
+- `Footnote_order`
+- `Text_en`
+- `Text_fr`
+- `Text_es`
+- `Text_ja`
+- `Enabled`
 
+Current rule:
+
+- keep only plain body text in `Text_*`
+- do not store `①②③` or `*` in the footnote text cells
+- use `Footnote_order` to control the rendered marker order
+- `Footnote_id` must be stable enough to be referenced from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - `Spec_Footnotes.csv` no longer has a `project_code` / `项目代码` column
 - target matching is based on `Region` + `Model`
+
+### 7.2 [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
+
+Use [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) for:
+
+- bottom-of-spec notes that are not referenced by a superscript
+- standalone statements such as trademark or standards notes
+
+Current schema:
+
+- `Region`
+- `Model`
+- `Source_lang`
+- `Is_Latest`
+- `Page`
+- `Note_id`
+- `Note_order`
+- `Text_en`
+- `Text_fr`
+- `Text_es`
+- `Text_ja`
+- `Enabled`
+
+Current rule:
+
+- keep only plain note text in `Text_*`
+- use `Note_order` to control the rendered note order
+- `Spec_Notes.csv` is not referenced from spec cells and does not generate superscript markers
+
+### 7.3 How [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) References Footnotes
+
+Use these columns in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv):
+
+- `Row_label_footnote_refs`
+- `Param_footnote_refs`
+- `Value_footnote_refs`
+
+Current rule:
+
+- each cell holds zero, one, or more comma-separated `Footnote_id` values
+- do not handwrite `①②③` into `Row_label_*`, `Param_*`, or `Value_*`
+- every referenced `Footnote_id` must exist in [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) for the same target
+
+Example:
+
+```csv
+...,ac_input,1 x AC Input,2,Bypass Mode,"100V-120V~60Hz, 15A Max",ac_bypass,,...
+...,ac_output_bypass,AC Output in Bypass Mode,1,,100V-120V~60Hz,ac_bypass,,...
+```
+
+### 7.4 Current Validation Expectations
+
+Current validation checks now enforce:
+
+- `Region + Model + Page + Footnote_id` must be unique
+- `Region + Model + Page + Footnote_order` must be unique
+- `Region + Model + Page + Note_id` must be unique
+- `Region + Model + Page + Note_order` must be unique
+- `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` must only reference existing `Footnote_id` values
+- hardcoded superscript markers such as `①②③` in visible spec text are treated as legacy input and should be removed
 
 ## 8. Safety Templates and [`page_registry.csv`](../data/phase1/page_registry.csv)
 
@@ -574,6 +665,7 @@ When you change:
 
 - [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
 - [`spec_titles.csv`](../data/phase1/spec_titles.csv)
 follow this order:
 

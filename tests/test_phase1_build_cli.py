@@ -13,9 +13,9 @@ class TestPhase1BuildCli(unittest.TestCase):
 
         self.assertEqual("data/phase1/Spec_Master.csv", args.spec_master_csv)
         self.assertEqual("data/phase1/Spec_Footnotes.csv", args.spec_footnotes_csv)
+        self.assertEqual("data/phase1/Spec_Notes.csv", args.spec_notes_csv)
         self.assertEqual("data/phase1/spec_titles.csv", args.spec_titles_csv)
 
 
 if __name__ == "__main__":
     unittest.main()
-

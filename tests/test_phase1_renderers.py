@@ -151,8 +151,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Row_key": "ac_input",
                 "Row_label_source": "1 x AC Input",
                 "Line_order": "2",
-                "Param_source": "Bypass Mode (1)",
+                "Param_source": "Bypass Mode",
                 "Value_source": "100V-120V~60Hz, 12A Max, 1440W",
+                "Param_footnote_refs": "ac_bypass",
                 "row_order": "2",
                 "page_title_en": "",
                 "section_title_en": "GENERAL INFO",
@@ -185,6 +186,26 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Source_lang": "en",
                 "Is_Latest": "TRUE",
                 "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_key": "ac_output_bypass",
+                "Row_label_source": "AC Output in Bypass Mode",
+                "Line_order": "1",
+                "Param_source": "",
+                "Value_source": "100V-120V~60Hz, 12A Max",
+                "Row_label_footnote_refs": "ac_bypass",
+                "row_order": "3",
+                "page_title_en": "",
+                "section_title_en": "GENERAL INFO",
+                "sku_scope": "ALL",
+                "enabled": "1",
+            },
+            {
+                "\u9879\u76ee\u4ee3\u7801": "HTE152-US",
+                "Region": "US",
+                "Source_lang": "en",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
                 "Section": "META",
                 "Section_order": "90",
                 "Row_key": "note_1",
@@ -193,6 +214,8 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Param_source": "",
                 "Value_source": "",
                 "row_kind": "note",
+                "note_id": "usb_type_c_trademark",
+                "note_order": "1",
                 "note_text_en": "* Demo note",
                 "sku_scope": "ALL",
                 "enabled": "1",
@@ -211,8 +234,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Param_source": "",
                 "Value_source": "",
                 "row_kind": "footnote",
-                "footnote_mark": "",
-                "footnote_text_en": "(1) Demo footnote text",
+                "footnote_id": "ac_bypass",
+                "footnote_order": "1",
+                "footnote_text_en": "Demo footnote text",
                 "sku_scope": "ALL",
                 "enabled": "1",
             },
@@ -234,7 +258,8 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("Model No.", out)
         self.assertIn("Charge Mode: 100V-120V\\textasciitilde{}60Hz, 15A Max, 1750W Max", out)
         self.assertIn("Demo note", out)
-        self.assertIn("(1) Demo footnote text", out)
+        self.assertIn("Demo footnote text", out)
+        self.assertIn(r"\HBSpecMarkerOne{}", out)
         self.assertIn("<br/>", out)
         self.assertIn('class="hb-spec-table"', out)
 

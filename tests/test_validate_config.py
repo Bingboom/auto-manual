@@ -103,7 +103,17 @@ class TestValidateConfig(unittest.TestCase):
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
 
+    def test_validate_should_accept_spec_notes_csv_path(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "paths": {"spec_notes_csv": "data/phase1/Spec_Notes.csv"},
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
+
 
 if __name__ == "__main__":
     unittest.main()
-

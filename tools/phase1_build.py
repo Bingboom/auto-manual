@@ -37,7 +37,12 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument(
         "--spec-footnotes-csv",
         default="data/phase1/Spec_Footnotes.csv",
-        help="optional source for spec notes/footnotes (pass empty to disable)",
+        help="optional source for spec page footnotes (pass empty to disable)",
+    )
+    ap.add_argument(
+        "--spec-notes-csv",
+        default="data/phase1/Spec_Notes.csv",
+        help="optional source for spec page notes (pass empty to disable)",
     )
     ap.add_argument(
         "--spec-titles-csv",
@@ -69,6 +74,7 @@ def main() -> None:
         output_dir=as_path(args.out_dir),
         spec_master_csv=as_path(args.spec_master_csv),
         spec_footnotes_csv=as_optional_path(args.spec_footnotes_csv),
+        spec_notes_csv=as_optional_path(args.spec_notes_csv),
         spec_titles_csv=as_optional_path(args.spec_titles_csv),
     )
 

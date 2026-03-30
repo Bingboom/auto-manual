@@ -62,6 +62,7 @@ class BuildPaths:
     output_dir: Path
     spec_master_csv: Path
     spec_footnotes_csv: Path | None = None
+    spec_notes_csv: Path | None = None
     spec_titles_csv: Path | None = None
 
     @classmethod
@@ -73,6 +74,7 @@ class BuildPaths:
             output_dir=root / "docs" / "generated",
             spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
             spec_footnotes_csv=root / "data" / "phase1" / "Spec_Footnotes.csv",
+            spec_notes_csv=root / "data" / "phase1" / "Spec_Notes.csv",
             spec_titles_csv=root / "data" / "phase1" / "spec_titles.csv",
         )
 
@@ -167,6 +169,67 @@ class Phase1Builder:
         if path is None or not path.exists():
             return []
         return _read_csv(path)
+
+    @staticmethod
+    def _normalize_spec_footnote_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+        if not rows:
+            return []
+        headers = set(rows[0].keys())
+        if "Footnote_id" not in headers and "footnote_id" not in headers:
+            return rows
+
+        normalized: list[dict[str, str]] = []
+        for row in rows:
+            order = (row.get("Footnote_order") or row.get("footnote_order") or "").strip()
+            normalized.append(
+                {
+                    "__line__": row.get("__line__", ""),
+                    "Region": (row.get("Region") or row.get("region") or "").strip(),
+                    "Model": (row.get("Model") or row.get("model") or "").strip(),
+                    "Source_lang": (row.get("Source_lang") or row.get("source_lang") or "").strip(),
+                    "Is_Latest": (row.get("Is_Latest") or row.get("is_latest") or "TRUE").strip(),
+                    "Page": (row.get("Page") or row.get("page") or "specifications").strip(),
+                    "row_kind": "footnote",
+                    "row_order": order,
+                    "footnote_id": (row.get("Footnote_id") or row.get("footnote_id") or "").strip(),
+                    "footnote_order": order,
+                    "footnote_text_en": row.get("Text_en", "") or row.get("text_en", "") or "",
+                    "footnote_text_fr": row.get("Text_fr", "") or row.get("text_fr", "") or "",
+                    "footnote_text_es": row.get("Text_es", "") or row.get("text_es", "") or "",
+                    "footnote_text_ja": row.get("Text_ja", "") or row.get("text_ja", "") or "",
+                    "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
+                }
+            )
+        return normalized
+
+    @staticmethod
+    def _normalize_spec_note_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+        if not rows:
+            return []
+
+        normalized: list[dict[str, str]] = []
+        for row in rows:
+            order = (row.get("Note_order") or row.get("note_order") or "").strip()
+            normalized.append(
+                {
+                    "__line__": row.get("__line__", ""),
+                    "Region": (row.get("Region") or row.get("region") or "").strip(),
+                    "Model": (row.get("Model") or row.get("model") or "").strip(),
+                    "Source_lang": (row.get("Source_lang") or row.get("source_lang") or "").strip(),
+                    "Is_Latest": (row.get("Is_Latest") or row.get("is_latest") or "TRUE").strip(),
+                    "Page": (row.get("Page") or row.get("page") or "specifications").strip(),
+                    "row_kind": "note",
+                    "row_order": order,
+                    "note_id": (row.get("Note_id") or row.get("note_id") or "").strip(),
+                    "note_order": order,
+                    "note_text_en": row.get("Text_en", "") or row.get("text_en", "") or "",
+                    "note_text_fr": row.get("Text_fr", "") or row.get("text_fr", "") or "",
+                    "note_text_es": row.get("Text_es", "") or row.get("text_es", "") or "",
+                    "note_text_ja": row.get("Text_ja", "") or row.get("text_ja", "") or "",
+                    "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
+                }
+            )
+        return normalized
 
     def _load_pages(self) -> list[PageSpec]:
         rows = _read_csv(self.paths.page_registry)
@@ -264,9 +327,16 @@ class Phase1Builder:
                     f"(requires Section, Row_key, Line_order): {spec_master_csv}"
                 )
 
-            aux_rows = self._load_optional_csv(self.paths.spec_footnotes_csv)
-            if aux_rows:
-                rows.extend(aux_rows)
+            aux_footnote_rows = self._normalize_spec_footnote_rows(
+                self._load_optional_csv(self.paths.spec_footnotes_csv)
+            )
+            if aux_footnote_rows:
+                rows.extend(aux_footnote_rows)
+            aux_note_rows = self._normalize_spec_note_rows(
+                self._load_optional_csv(self.paths.spec_notes_csv)
+            )
+            if aux_note_rows:
+                rows.extend(aux_note_rows)
             return rows
 
         per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"

@@ -142,6 +142,14 @@ def spec_latex_escape(text: str) -> str:
     special = {
         "\u2460": r"\HBSpecMarkerOne{}",
         "\u2461": r"\HBSpecMarkerTwo{}",
+        "\u2462": r"\HBSpecMarkerThree{}",
+        "\u2463": r"\HBSpecMarkerFour{}",
+        "\u2464": r"\HBSpecMarkerFive{}",
+        "\u2465": r"\HBSpecMarkerSix{}",
+        "\u2466": r"\HBSpecMarkerSeven{}",
+        "\u2467": r"\HBSpecMarkerEight{}",
+        "\u2468": r"\HBSpecMarkerNine{}",
+        "\u2469": r"\HBSpecMarkerTen{}",
         "*": r"\HBSpecMarkerAsterisk{}",
     }
     base = {

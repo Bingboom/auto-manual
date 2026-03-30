@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-03-24
+Updated: 2026-03-30
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -66,15 +66,18 @@ The manual system now has four layers, but they are used at different stages.
 2. Data layer
    - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
    - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+   - [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
    - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
    - [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
    - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
-   - `Spec_Footnotes.csv` can hold both numbered spec footnotes and plain bottom notes such as trademark lines; if numbering differs by language, write the marker directly in each `footnote_text_*` cell and leave `footnote_mark` empty
-   - `Spec_Footnotes.csv` now matches rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
+   - `Spec_Footnotes.csv` now holds only reusable spec footnote definitions; `Footnote_order` controls the rendered superscript marker order and `Footnote_id` is referenced from `Spec_Master.csv`
+   - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
+   - `Spec_Footnotes.csv` and `Spec_Notes.csv` now match rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
+   - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row
 
@@ -297,6 +300,7 @@ Spec content is generated from:
 
 - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - optional [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- optional [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
 - optional [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 
 Generated bundle output:

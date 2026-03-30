@@ -156,6 +156,7 @@ def load_word_context(
     cfg_paths = cfg_paths_raw if isinstance(cfg_paths_raw, dict) else {}
     spec_master_cfg = cfg_paths.get("spec_master_csv")
     spec_footnotes_cfg = cfg_paths.get("spec_footnotes_csv")
+    spec_notes_cfg = cfg_paths.get("spec_notes_csv")
     spec_titles_cfg = cfg_paths.get("spec_titles_csv")
     spec_master_csv = (
         resolve_config_path(paths.root, spec_master_cfg.strip(), model, region)
@@ -166,6 +167,11 @@ def load_word_context(
         resolve_optional_config_path(paths.root, spec_footnotes_cfg, model, region)
         if isinstance(spec_footnotes_cfg, str)
         else base_paths.spec_footnotes_csv
+    )
+    spec_notes_csv = (
+        resolve_optional_config_path(paths.root, spec_notes_cfg, model, region)
+        if isinstance(spec_notes_cfg, str)
+        else base_paths.spec_notes_csv
     )
     spec_titles_csv = (
         resolve_optional_config_path(paths.root, spec_titles_cfg, model, region)
@@ -180,6 +186,7 @@ def load_word_context(
         output_dir=phase1_output_dir or base_paths.output_dir,
         spec_master_csv=spec_master_csv,
         spec_footnotes_csv=spec_footnotes_csv,
+        spec_notes_csv=spec_notes_csv,
         spec_titles_csv=spec_titles_csv,
     )
     return Phase1Builder(build_paths)

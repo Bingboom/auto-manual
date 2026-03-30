@@ -1,6 +1,4 @@
-﻿Region,Is_Latest,Page,row_kind,row_order,note_order,footnote_order,note_text_en,note_text_fr,note_text_es,note_text_ja,footnote_mark,footnote_text_en,footnote_text_fr,footnote_text_es,footnote_text_ja,enabled,sku_scope,Model
-US,TRUE,specifications,note,901,2,,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.,※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.,,,,,,,TRUE,ALL,JE-1000F
-US,TRUE,specifications,footnote,900,,1,,,,,,① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,1. Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.,1. El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.,,TRUE,ALL,JE-1000F
-JP,TRUE,specifications,note,920,3,,,,,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,,,,,,TRUE,ALL,JE-1000F
-JP,TRUE,specifications,footnote,910,,1,,,,,,,,,① この数値は最大充電電力の参考値です。実際の電力量は、温度、バッテリー残量(SOC)、アプリの設定によって変動する場合があります。,TRUE,ALL,JE-1000F
-JP,TRUE,specifications,footnote,911,,2,,,,,,,,,② 本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。,TRUE,ALL,JE-1000F
+Region,Model,Source_lang,Is_Latest,Page,Footnote_id,Footnote_order,Text_en,Text_fr,Text_es,Text_ja,Enabled
+US,JE-1000F,en,TRUE,specifications,ac_bypass,1,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.,El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.,,TRUE
+JP,JE-1000F,ja,TRUE,specifications,max_charge_power,1,,,,この数値は最大充電電力の参考値です。実際の電力量は、温度、バッテリー残量(SOC)、アプリの設定によって変動する場合があります。,TRUE
+JP,JE-1000F,ja,TRUE,specifications,ac_bypass,2,,,,本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。,TRUE
