@@ -11,6 +11,20 @@ CHARGING
 - Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.
 - The charging power and battery capacity of the product may vary due to temperature fluctuations.
 
+.. only:: model_je_2000e
+
+   CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)
+   --------------------------------------------
+
+   This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the _Jackery Battery Pack 2000 User Manual_.
+
+   **CAUTION**
+
+   - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+   - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (about 200 mm) of space between the vents and any objects to allow for proper heat dissipation.
+   - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
+   - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
+
 CHARGING VIA AC WALL OUTLET
 ---------------------------
 

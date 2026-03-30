@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import ast
 from copy import deepcopy
 from dataclasses import dataclass
 import hashlib
@@ -179,6 +180,73 @@ _SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
         ),
     ),
 )
+
+
+def _normalize_only_tag(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", value.strip().lower()).strip("_")
+
+
+def _build_word_only_tags(*, model: str | None, region: str | None, lang: str | None) -> set[str]:
+    tags = {"html"}
+    if isinstance(model, str) and model.strip():
+        tags.add(f"model_{_normalize_only_tag(model)}")
+    if isinstance(region, str) and region.strip():
+        tags.add(f"region_{_normalize_only_tag(region)}")
+    if isinstance(lang, str) and lang.strip():
+        tags.add(f"lang_{_normalize_only_tag(lang)}")
+    return tags
+
+
+def _evaluate_only_expression(expression: str, active_tags: set[str]) -> bool:
+    normalized = expression.strip()
+    if not normalized:
+        return False
+
+    try:
+        tree = ast.parse(normalized, mode="eval")
+    except SyntaxError as exc:
+        raise RuntimeError(f"Invalid only expression: {expression}") from exc
+
+    tags = {tag.strip().lower() for tag in active_tags if tag.strip()}
+
+    def _eval(node: ast.AST) -> bool:
+        if isinstance(node, ast.Expression):
+            return _eval(node.body)
+        if isinstance(node, ast.Name):
+            ident = node.id.lower()
+            if ident == "true":
+                return True
+            if ident == "false":
+                return False
+            return ident in tags
+        if isinstance(node, ast.Constant):
+            if isinstance(node.value, bool):
+                return node.value
+            raise RuntimeError(f"Invalid only expression value: {expression}")
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+            return not _eval(node.operand)
+        if isinstance(node, ast.BoolOp):
+            values = [_eval(value) for value in node.values]
+            if isinstance(node.op, ast.And):
+                return all(values)
+            if isinstance(node.op, ast.Or):
+                return any(values)
+        raise RuntimeError(f"Unsupported only expression: {expression}")
+
+    return _eval(tree)
+
+
+def _dedent_only_block_lines(block: list[str], indent: int) -> list[str]:
+    base = indent + 3
+    dedented: list[str] = []
+    for line in block:
+        if not line.strip():
+            dedented.append("")
+        elif len(line) > base:
+            dedented.append(line[base:])
+        else:
+            dedented.append(line.lstrip())
+    return dedented
 
 
 def _normalize_css_size(value: str) -> str | None:
@@ -780,12 +848,16 @@ def _rewrite_word_friendly_fragment(fragment: str) -> str:
     return "".join(ET.tostring(node, encoding="unicode", method="html") for node in rewritten)
 
 
-def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
+def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: set[str] | None = None) -> str:
     """
     Convert Sphinx-only blocks for docutils parsing:
-    - keep `.. only:: html` content
-    - drop non-html `.. only:: ...` content (e.g. latex)
+    - keep `.. only:: ...` content whose expression matches the active tags
+    - drop non-matching `.. only:: ...` content
     """
+    tags = {"html"}
+    if active_tags:
+        tags.update(tag.strip().lower() for tag in active_tags if tag.strip())
+
     lines = rst_text.splitlines()
     out: list[str] = []
     i = 0
@@ -795,7 +867,7 @@ def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
         indent = len(line) - len(stripped)
 
         if stripped.startswith(".. only::"):
-            expr = stripped.split("::", 1)[1].strip().lower()
+            expr = stripped.split("::", 1)[1].strip()
             i += 1
             block: list[str] = []
             while i < len(lines):
@@ -807,15 +879,16 @@ def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
                 block.append(cur)
                 i += 1
 
-            if expr == "html":
-                base = indent + 3
-                for b in block:
-                    if not b.strip():
-                        out.append("")
-                    elif len(b) > base:
-                        out.append(b[base:])
-                    else:
-                        out.append(b.lstrip())
+            if _evaluate_only_expression(expr, tags):
+                dedented = _dedent_only_block_lines(block, indent)
+                normalized = _normalize_sphinx_only_blocks_for_docutils(
+                    "\n".join(dedented),
+                    active_tags=tags,
+                )
+                if normalized:
+                    out.extend(normalized.split("\n"))
+                else:
+                    out.append("")
             continue
 
         out.append(line)
@@ -824,8 +897,8 @@ def _normalize_sphinx_only_blocks_for_docutils(rst_text: str) -> str:
     return "\n".join(out)
 
 
-def _extract_raw_html_blocks(rst_text: str) -> str | None:
-    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text)
+def _extract_raw_html_blocks(rst_text: str, *, active_tags: set[str] | None = None) -> str | None:
+    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text, active_tags=active_tags)
     lines = normalized_rst.splitlines()
     fragments: list[str] = []
     i = 0
@@ -930,10 +1003,15 @@ def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -
     return _IMG_SRC_RE.sub(replace_src, fragment)
 
 
-def _publish_rst_fragment_to_html(rst_text: str, source_path: Path) -> str:
+def _publish_rst_fragment_to_html(
+    rst_text: str,
+    source_path: Path,
+    *,
+    active_tags: set[str] | None = None,
+) -> str:
     from docutils.core import publish_parts
 
-    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text)
+    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text, active_tags=active_tags)
     parts = publish_parts(
         source=normalized_rst,
         source_path=str(source_path),
@@ -1051,15 +1129,17 @@ def _convert_rst_fragment_to_html(
     rst_text: str,
     source_path: Path,
     bundle_dir: Path,
+    *,
+    active_tags: set[str] | None = None,
 ) -> str:
     source_name = source_path.name.lower()
     if source_name.startswith("safety_"):
-        raw_html = _extract_raw_html_blocks(rst_text)
+        raw_html = _extract_raw_html_blocks(rst_text, active_tags=active_tags)
         if raw_html:
             rewritten_fragment = _rewrite_word_friendly_fragment(raw_html)
             return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
-    published_fragment = _publish_rst_fragment_to_html(rst_text, source_path)
+    published_fragment = _publish_rst_fragment_to_html(rst_text, source_path, active_tags=active_tags)
 
     if source_name.startswith("spec_"):
         spec_data = _extract_spec_word_data(published_fragment)
@@ -1081,6 +1161,7 @@ def build_word_bundle_html(
     materialized = materialized_bundle or materialize_bundle(cfg, model, region)
     title = materialized.title
     reference_doc = materialized.reference_doc
+    active_tags = _build_word_only_tags(model=materialized.model, region=materialized.region, lang=materialized.lang)
 
     bundle_output_dir = output_dir or (paths.docs_build_dir / "word")
     bundle_output_dir.mkdir(parents=True, exist_ok=True)
@@ -1093,7 +1174,12 @@ def build_word_bundle_html(
         if idx > 0 and not previous_was_cover:
             body_parts.append(_render_page_break_html())
         rst_text = rst_path.read_text(encoding="utf-8")
-        html_fragment = _convert_rst_fragment_to_html(rst_text, rst_path, bundle_output_dir)
+        html_fragment = _convert_rst_fragment_to_html(
+            rst_text,
+            rst_path,
+            bundle_output_dir,
+            active_tags=active_tags,
+        )
         body_parts.append(html_fragment or "<div></div>")
         page_metas.append(
             WordBundlePageMeta(

@@ -459,6 +459,23 @@ def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
     return [sys.executable, "-m", "sphinx", "-b", builder]
 
 
+def _normalize_sphinx_tag_value(value: str | None) -> str | None:
+    text = (value or "").strip().lower()
+    if not text:
+        return None
+    normalized = re.sub(r"[^a-z0-9]+", "_", text).strip("_")
+    return normalized or None
+
+
+def _sphinx_tag_args(*, model: str | None = None, region: str | None = None, lang: str | None = None) -> list[str]:
+    args: list[str] = []
+    for prefix, value in (("model", model), ("region", region), ("lang", lang)):
+        normalized = _normalize_sphinx_tag_value(value)
+        if normalized:
+            args.extend(["-t", f"{prefix}_{normalized}"])
+    return args
+
+
 def _load_configured_html_theme(conf_base_path: Path) -> str | None:
     if not conf_base_path.exists():
         return None
@@ -763,13 +780,17 @@ def sphinx_build(
     src_dir: Path,
     out_dir: Path,
     conf_dir: Path,
+    model: str | None = None,
+    region: str | None = None,
+    lang: str | None = None,
     minimal_theme: bool = False,
     substitutions: dict[str, str] | None = None,
 ) -> None:
     print(f"[build] Sphinx -> {builder.upper()}")
     out_dir.mkdir(parents=True, exist_ok=True)
     actual_minimal_theme = _should_use_minimal_html_theme(conf_dir, minimal_theme) if builder == "html" else False
-    cmd = _resolve_sphinx_build_cmd(builder) + [str(src_dir), str(out_dir), "-c", str(conf_dir)]
+    cmd = _resolve_sphinx_build_cmd(builder) + _sphinx_tag_args(model=model, region=region, lang=lang)
+    cmd += [str(src_dir), str(out_dir), "-c", str(conf_dir)]
     if builder == "html" and actual_minimal_theme:
         cmd += [
             "-D",
@@ -1104,6 +1125,9 @@ def build_target(
             src_dir=bundle.bundle_dir,
             out_dir=html_out_dir,
             conf_dir=bundle.bundle_dir,
+            model=target_model,
+            region=target_region,
+            lang=target_lang or primary_lang,
             minimal_theme=("html" not in requested_formats and word_source == "html"),
         )
         html_built = True
@@ -1126,6 +1150,9 @@ def build_target(
                     src_dir=bundle.bundle_dir,
                     out_dir=html_out_dir,
                     conf_dir=bundle.bundle_dir,
+                    model=target_model,
+                    region=target_region,
+                    lang=target_lang or primary_lang,
                     minimal_theme=True,
                 )
                 html_built = True
@@ -1140,6 +1167,9 @@ def build_target(
                     src_dir=bundle.bundle_dir,
                     out_dir=latex_out_dir,
                     conf_dir=bundle.bundle_dir,
+                    model=target_model,
+                    region=target_region,
+                    lang=target_lang or primary_lang,
                 )
                 patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
                 compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)
@@ -1164,6 +1194,9 @@ def build_target(
                     src_dir=bundle.bundle_dir,
                     out_dir=latex_out_dir,
                     conf_dir=bundle.bundle_dir,
+                    model=target_model,
+                    region=target_region,
+                    lang=target_lang or primary_lang,
                 )
                 patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
                 compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)

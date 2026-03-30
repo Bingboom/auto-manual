@@ -7,6 +7,7 @@ from pathlib import Path
 
 from tools.word_bundle import derive_word_title, render_safety_word_html, resolve_reference_doc
 from tools.word_bundle_html import (
+    _build_word_only_tags,
     _convert_rst_fragment_to_html,
     _inject_img_dimensions,
     _rewrite_word_friendly_fragment,
@@ -135,6 +136,60 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("GENERAL INFO", html)
         self.assertIn('class="manual-table manual-spec-table"', html)
         self.assertIn("JE-1000F", html)
+
+    def test_build_word_only_tags_should_normalize_target_context(self) -> None:
+        tags = _build_word_only_tags(model="JE-2000E", region="US", lang="en")
+
+        self.assertIn("html", tags)
+        self.assertIn("model_je_2000e", tags)
+        self.assertIn("region_us", tags)
+        self.assertIn("lang_en", tags)
+
+    def test_convert_rst_fragment_to_html_should_filter_only_blocks_by_tags(self) -> None:
+        rst = """
+.. only:: model_je_2000e and region_us and lang_en
+
+   .. raw:: html
+
+      <p>Keep model/region/lang.</p>
+
+.. only:: model_je_1000f
+
+   .. raw:: html
+
+      <p>Drop model mismatch.</p>
+
+.. only:: model_je_1000f or region_us
+
+   .. raw:: html
+
+      <p>Keep or expression.</p>
+
+.. only:: not model_je_1000f and region_us
+
+   .. raw:: html
+
+      <p>Keep not expression.</p>
+
+.. only:: html
+
+   .. raw:: html
+
+      <p>Keep html block.</p>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("charging.rst"),
+                Path(td),
+                active_tags=_build_word_only_tags(model="JE-2000E", region="US", lang="en"),
+            )
+
+        self.assertIn("Keep model/region/lang.", html)
+        self.assertIn("Keep or expression.", html)
+        self.assertIn("Keep not expression.", html)
+        self.assertIn("Keep html block.", html)
+        self.assertNotIn("Drop model mismatch.", html)
 
     def test_convert_rst_fragment_to_html_should_keep_preface_important_as_bold_paragraph(self) -> None:
         rst = """
@@ -314,4 +369,3 @@ Congratulations on your new manual.
 
 if __name__ == "__main__":
     unittest.main()
-

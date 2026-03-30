@@ -170,12 +170,39 @@ class TestTargetResolution(unittest.TestCase):
                     src_dir=conf_dir,
                     out_dir=out_dir,
                     conf_dir=conf_dir,
+                    model="JE-2000E",
+                    region="US",
+                    lang="en",
                 )
 
         self.assertEqual(1, len(seen))
+        self.assertEqual(["-t", "model_je_2000e", "-t", "region_us", "-t", "lang_en"], seen[0][3:9])
         self.assertIn("html_theme=alabaster", seen[0])
         self.assertNotIn("html_css_files=[]", seen[0])
         self.assertNotIn("html_js_files=[]", seen[0])
+
+    def test_sphinx_build_should_add_tags_for_latex(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            conf_dir = root / "conf"
+            out_dir = root / "out"
+            conf_dir.mkdir()
+            seen: list[list[str]] = []
+
+            with mock.patch.object(build_docs, "_resolve_sphinx_build_cmd", return_value=["sphinx-build", "-b", "latex"]), \
+                mock.patch.object(build_docs, "run", side_effect=lambda cmd, cwd=None: seen.append(cmd)):
+                build_docs.sphinx_build(
+                    "latex",
+                    src_dir=conf_dir,
+                    out_dir=out_dir,
+                    conf_dir=conf_dir,
+                    model="JE-1000F",
+                    region="JP",
+                    lang="ja",
+                )
+
+        self.assertEqual(1, len(seen))
+        self.assertEqual(["-t", "model_je_1000f", "-t", "region_jp", "-t", "lang_ja"], seen[0][3:9])
 
     def test_resolve_product_name_for_build_should_read_from_spec_master(self) -> None:
         with tempfile.TemporaryDirectory() as td:
