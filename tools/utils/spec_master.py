@@ -1566,94 +1566,51 @@ def build_template_row_key_mapping_rows(
 
 def build_row_label_row_key_mapping_rows(
     rows: list[dict[str, str]],
+    existing_rows: list[dict[str, str]] | None = None,
 ) -> tuple[dict[str, str], ...]:
-    usage: dict[tuple[str, str], dict[str, object]] = defaultdict(
-        lambda: {
-            "count": 0,
-            "source_langs": set(),
-            "models": set(),
-            "regions": set(),
-            "pages": set(),
-            "sections": set(),
-            "section_orders": set(),
-            "slot_keys": set(),
-            "line_orders": set(),
-        }
-    )
+    observed_keys: dict[str, set[str]] = defaultdict(set)
 
     for raw_row in rows:
         if not _is_truthy(_first_non_empty(raw_row, ["Is_Latest", "is_latest"])):
             continue
 
-        row_key = _pick_row_key(raw_row).strip()
         row_label = _pick_row_label_source(raw_row).strip()
-        if not row_key or not row_label:
+        if not row_label:
             continue
 
-        usage_row = usage[(row_label, row_key)]
-        usage_row["count"] = int(usage_row["count"]) + 1
+        row_key = _pick_row_key(raw_row).strip()
+        if row_key:
+            observed_keys[row_label].add(row_key)
 
-        source_lang = source_language_for_row(raw_row).strip()
-        if source_lang:
-            cast(set[str], usage_row["source_langs"]).add(source_lang)
+    existing_by_label: dict[str, dict[str, str]] = {}
+    for raw_row in existing_rows or []:
+        row_label = (raw_row.get("Row_label_source") or "").strip()
+        if not row_label:
+            continue
 
-        model = (_pick_row_model(raw_row) or "").strip()
-        if model:
-            cast(set[str], usage_row["models"]).add(model)
-
-        region = (_pick_row_region(raw_row) or "").strip().upper()
-        if region:
-            cast(set[str], usage_row["regions"]).add(region)
-
-        for page_token in normalize_page_tokens(_first_non_empty(raw_row, ["Page", "page"])):
-            cast(set[str], usage_row["pages"]).add(page_token)
-
-        section = _pick_section(raw_row).strip()
-        if section:
-            cast(set[str], usage_row["sections"]).add(section)
-
-        section_order = _pick_section_order(raw_row).strip()
-        if section_order:
-            cast(set[str], usage_row["section_orders"]).add(section_order)
-
-        slot_key = _pick_slot_key(raw_row).strip()
-        if slot_key:
-            cast(set[str], usage_row["slot_keys"]).add(slot_key)
-
-        line_order = _normalize_line_order_suffix(_first_non_empty(raw_row, ["Line_order", "line_order"]))
-        if line_order:
-            cast(set[str], usage_row["line_orders"]).add(line_order)
+        existing_by_label[row_label] = {
+            "Row_key": (raw_row.get("Row_key") or "").strip(),
+            "Remark": (raw_row.get("Remark") or "").strip(),
+        }
 
     mapping_rows: list[dict[str, str]] = []
-    for (row_label, row_key), observed in usage.items():
+    for row_label in sorted(set(observed_keys) | set(existing_by_label)):
+        existing_row = existing_by_label.get(row_label, {})
+        row_key = existing_row.get("Row_key", "").strip()
+        if not row_key:
+            candidate_row_keys = sorted(observed_keys.get(row_label, set()))
+            if candidate_row_keys:
+                row_key = candidate_row_keys[0]
+
         mapping_rows.append(
             {
                 "Row_label_source": row_label,
                 "Row_key": row_key,
-                "Usage_count": str(int(observed["count"])),
-                "Source_langs": ",".join(sorted(cast(set[str], observed["source_langs"]))),
-                "Models": ",".join(sorted(cast(set[str], observed["models"]))),
-                "Regions": ",".join(sorted(cast(set[str], observed["regions"]))),
-                "Pages": ",".join(sorted(cast(set[str], observed["pages"]))),
-                "Sections": ",".join(sorted(cast(set[str], observed["sections"]))),
-                "Section_orders": ",".join(_sort_text_numbers(cast(set[str], observed["section_orders"]))),
-                "Slot_keys": ",".join(sorted(cast(set[str], observed["slot_keys"]))),
-                "Line_orders": ",".join(_sort_text_numbers(cast(set[str], observed["line_orders"]))),
+                "Remark": existing_row.get("Remark", "").strip(),
             }
         )
 
-    return tuple(
-        sorted(
-            mapping_rows,
-            key=lambda row: (
-                row["Row_label_source"],
-                row["Row_key"],
-                row["Source_langs"],
-                row["Models"],
-                row["Regions"],
-            ),
-        )
-    )
+    return tuple(mapping_rows)
 
 
 def build_row_label_row_key_mapping_markdown(
@@ -1662,23 +1619,18 @@ def build_row_label_row_key_mapping_markdown(
     lines = [
         "# Spec Master Row Label to Row Key Mapping",
         "",
-        "Current latest `Spec_Master.csv` mappings grouped by `Row_label_source` and `Row_key`.",
+        "Manual mapping reference for `Spec_Master.csv` `Row_label_source` to `Row_key` lookup.",
         "",
-        "| Row_label_source | Row_key | Usage_count | Source_langs | Models | Regions | Pages | Sections |",
-        "| --- | --- | ---: | --- | --- | --- | --- | --- |",
+        "| Row_label_source | Row_key | Remark |",
+        "| --- | --- | --- |",
     ]
 
     for row in mapping_rows:
         lines.append(
-            "| {row_label} | {row_key} | {usage} | {source_langs} | {models} | {regions} | {pages} | {sections} |".format(
+            "| {row_label} | {row_key} | {remark} |".format(
                 row_label=row["Row_label_source"],
                 row_key=row["Row_key"],
-                usage=row["Usage_count"],
-                source_langs=row["Source_langs"] or "-",
-                models=row["Models"] or "-",
-                regions=row["Regions"] or "-",
-                pages=row["Pages"] or "-",
-                sections=row["Sections"] or "-",
+                remark=row["Remark"] or "-",
             )
         )
 

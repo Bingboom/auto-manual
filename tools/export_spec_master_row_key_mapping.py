@@ -18,6 +18,8 @@ from tools.utils.spec_master import (  # noqa: E402
     read_spec_master_rows,
 )
 
+ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Row_key", "Remark")
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser("export Spec_Master Row_label_source to Row_key mapping")
@@ -34,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--md-out",
         default="reports/spec_master/row_key_mapping.md",
-        help="path for generated mapping Markdown",
+        help="path for generated mapping Markdown mirror",
     )
     return parser.parse_args()
 
@@ -44,11 +46,28 @@ def resolve_path(raw_path: str) -> Path:
     return path if path.is_absolute() else (ROOT / path)
 
 
+def read_existing_mapping_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        rows: list[dict[str, str]] = []
+        for row in reader:
+            rows.append(
+                {
+                    "Row_label_source": (row.get("Row_label_source") or "").strip(),
+                    "Row_key": (row.get("Row_key") or "").strip(),
+                    "Remark": (row.get("Remark") or "").strip(),
+                }
+            )
+        return rows
+
+
 def write_mapping_csv(path: Path, rows: tuple[dict[str, str], ...]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fieldnames = list(rows[0].keys()) if rows else []
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=list(ROW_KEY_MAPPING_FIELDNAMES))
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
@@ -66,7 +85,8 @@ def main() -> None:
     md_out_path = resolve_path(args.md_out)
 
     rows = read_spec_master_rows(csv_path)
-    mapping_rows = build_row_label_row_key_mapping_rows(rows)
+    existing_mapping_rows = read_existing_mapping_rows(out_path)
+    mapping_rows = build_row_label_row_key_mapping_rows(rows, existing_rows=existing_mapping_rows)
     markdown = build_row_label_row_key_mapping_markdown(mapping_rows)
     write_mapping_csv(out_path, mapping_rows)
     write_markdown(md_out_path, markdown)
