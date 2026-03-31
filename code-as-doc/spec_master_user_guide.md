@@ -695,7 +695,7 @@ python tools/export_spec_master_row_key_mapping.py
 
 Current output:
 
-- [`reports/spec_master/row_key_mapping.csv`](../reports/spec_master/row_key_mapping.csv)
+- [`data/phase1/row_key_mapping.csv`](../data/phase1/row_key_mapping.csv)
 - [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
 - the first column is `Row_label_source`, so the sheet can be imported into external tools for label-first lookup
 

@@ -28,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--out",
-        default="reports/spec_master/row_key_mapping.csv",
+        default="data/phase1/row_key_mapping.csv",
         help="path for generated mapping CSV",
     )
     parser.add_argument(
