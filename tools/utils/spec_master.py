@@ -1564,6 +1564,128 @@ def build_template_row_key_mapping_rows(
     )
 
 
+def build_row_label_row_key_mapping_rows(
+    rows: list[dict[str, str]],
+) -> tuple[dict[str, str], ...]:
+    usage: dict[tuple[str, str], dict[str, object]] = defaultdict(
+        lambda: {
+            "count": 0,
+            "source_langs": set(),
+            "models": set(),
+            "regions": set(),
+            "pages": set(),
+            "sections": set(),
+            "section_orders": set(),
+            "slot_keys": set(),
+            "line_orders": set(),
+        }
+    )
+
+    for raw_row in rows:
+        if not _is_truthy(_first_non_empty(raw_row, ["Is_Latest", "is_latest"])):
+            continue
+
+        row_key = _pick_row_key(raw_row).strip()
+        row_label = _pick_row_label_source(raw_row).strip()
+        if not row_key or not row_label:
+            continue
+
+        usage_row = usage[(row_label, row_key)]
+        usage_row["count"] = int(usage_row["count"]) + 1
+
+        source_lang = source_language_for_row(raw_row).strip()
+        if source_lang:
+            cast(set[str], usage_row["source_langs"]).add(source_lang)
+
+        model = (_pick_row_model(raw_row) or "").strip()
+        if model:
+            cast(set[str], usage_row["models"]).add(model)
+
+        region = (_pick_row_region(raw_row) or "").strip().upper()
+        if region:
+            cast(set[str], usage_row["regions"]).add(region)
+
+        for page_token in normalize_page_tokens(_first_non_empty(raw_row, ["Page", "page"])):
+            cast(set[str], usage_row["pages"]).add(page_token)
+
+        section = _pick_section(raw_row).strip()
+        if section:
+            cast(set[str], usage_row["sections"]).add(section)
+
+        section_order = _pick_section_order(raw_row).strip()
+        if section_order:
+            cast(set[str], usage_row["section_orders"]).add(section_order)
+
+        slot_key = _pick_slot_key(raw_row).strip()
+        if slot_key:
+            cast(set[str], usage_row["slot_keys"]).add(slot_key)
+
+        line_order = _normalize_line_order_suffix(_first_non_empty(raw_row, ["Line_order", "line_order"]))
+        if line_order:
+            cast(set[str], usage_row["line_orders"]).add(line_order)
+
+    mapping_rows: list[dict[str, str]] = []
+    for (row_label, row_key), observed in usage.items():
+        mapping_rows.append(
+            {
+                "Row_label_source": row_label,
+                "Row_key": row_key,
+                "Usage_count": str(int(observed["count"])),
+                "Source_langs": ",".join(sorted(cast(set[str], observed["source_langs"]))),
+                "Models": ",".join(sorted(cast(set[str], observed["models"]))),
+                "Regions": ",".join(sorted(cast(set[str], observed["regions"]))),
+                "Pages": ",".join(sorted(cast(set[str], observed["pages"]))),
+                "Sections": ",".join(sorted(cast(set[str], observed["sections"]))),
+                "Section_orders": ",".join(_sort_text_numbers(cast(set[str], observed["section_orders"]))),
+                "Slot_keys": ",".join(sorted(cast(set[str], observed["slot_keys"]))),
+                "Line_orders": ",".join(_sort_text_numbers(cast(set[str], observed["line_orders"]))),
+            }
+        )
+
+    return tuple(
+        sorted(
+            mapping_rows,
+            key=lambda row: (
+                row["Row_label_source"],
+                row["Row_key"],
+                row["Source_langs"],
+                row["Models"],
+                row["Regions"],
+            ),
+        )
+    )
+
+
+def build_row_label_row_key_mapping_markdown(
+    mapping_rows: tuple[dict[str, str], ...],
+) -> str:
+    lines = [
+        "# Spec Master Row Label to Row Key Mapping",
+        "",
+        "Current latest `Spec_Master.csv` mappings grouped by `Row_label_source` and `Row_key`.",
+        "",
+        "| Row_label_source | Row_key | Usage_count | Source_langs | Models | Regions | Pages | Sections |",
+        "| --- | --- | ---: | --- | --- | --- | --- | --- |",
+    ]
+
+    for row in mapping_rows:
+        lines.append(
+            "| {row_label} | {row_key} | {usage} | {source_langs} | {models} | {regions} | {pages} | {sections} |".format(
+                row_label=row["Row_label_source"],
+                row_key=row["Row_key"],
+                usage=row["Usage_count"],
+                source_langs=row["Source_langs"] or "-",
+                models=row["Models"] or "-",
+                regions=row["Regions"] or "-",
+                pages=row["Pages"] or "-",
+                sections=row["Sections"] or "-",
+            )
+        )
+
+    lines.append("")
+    return "\n".join(lines)
+
+
 def build_template_row_key_mapping_markdown(
     mapping_rows: tuple[dict[str, str], ...],
 ) -> str:

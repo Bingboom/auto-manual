@@ -13,14 +13,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.utils.spec_master import (  # noqa: E402
-    build_template_row_key_mapping_markdown,
-    build_template_row_key_mapping_rows,
+    build_row_label_row_key_mapping_markdown,
+    build_row_label_row_key_mapping_rows,
     read_spec_master_rows,
 )
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser("export Spec_Master row_key to section/label mapping")
+    parser = argparse.ArgumentParser("export Spec_Master Row_label_source to Row_key mapping")
     parser.add_argument(
         "--csv",
         default="data/phase1/Spec_Master.csv",
@@ -66,8 +66,8 @@ def main() -> None:
     md_out_path = resolve_path(args.md_out)
 
     rows = read_spec_master_rows(csv_path)
-    mapping_rows = build_template_row_key_mapping_rows(rows)
-    markdown = build_template_row_key_mapping_markdown(mapping_rows)
+    mapping_rows = build_row_label_row_key_mapping_rows(rows)
+    markdown = build_row_label_row_key_mapping_markdown(mapping_rows)
     write_mapping_csv(out_path, mapping_rows)
     write_markdown(md_out_path, markdown)
 
