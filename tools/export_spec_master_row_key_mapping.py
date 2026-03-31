@@ -18,7 +18,7 @@ from tools.utils.spec_master import (  # noqa: E402
     read_spec_master_rows,
 )
 
-ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Row_key", "Remark")
+ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Line_order", "Row_key", "Remark")
 
 
 def parse_args() -> argparse.Namespace:
@@ -57,6 +57,7 @@ def read_existing_mapping_rows(path: Path) -> list[dict[str, str]]:
             rows.append(
                 {
                     "Row_label_source": (row.get("Row_label_source") or "").strip(),
+                    "Line_order": (row.get("Line_order") or "").strip(),
                     "Row_key": (row.get("Row_key") or "").strip(),
                     "Remark": (row.get("Remark") or "").strip(),
                 }

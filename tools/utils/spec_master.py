@@ -1568,7 +1568,7 @@ def build_row_label_row_key_mapping_rows(
     rows: list[dict[str, str]],
     existing_rows: list[dict[str, str]] | None = None,
 ) -> tuple[dict[str, str], ...]:
-    observed_keys: dict[str, set[str]] = defaultdict(set)
+    observed_keys: dict[tuple[str, str], set[str]] = defaultdict(set)
 
     for raw_row in rows:
         if not _is_truthy(_first_non_empty(raw_row, ["Is_Latest", "is_latest"])):
@@ -1578,35 +1578,66 @@ def build_row_label_row_key_mapping_rows(
         if not row_label:
             continue
 
+        line_order = _normalize_line_order_suffix(_first_non_empty(raw_row, ["Line_order", "line_order"]))
         row_key = _pick_row_key(raw_row).strip()
         if row_key:
-            observed_keys[row_label].add(row_key)
+            observed_keys[(row_label, line_order)].add(row_key)
 
+    existing_by_pair: dict[tuple[str, str], dict[str, str]] = {}
     existing_by_label: dict[str, dict[str, str]] = {}
     for raw_row in existing_rows or []:
         row_label = (raw_row.get("Row_label_source") or "").strip()
         if not row_label:
             continue
 
-        existing_by_label[row_label] = {
+        line_order = (raw_row.get("Line_order") or "").strip()
+        record = {
             "Row_key": (raw_row.get("Row_key") or "").strip(),
             "Remark": (raw_row.get("Remark") or "").strip(),
         }
+        if line_order:
+            existing_by_pair[(row_label, line_order)] = record
+        else:
+            existing_by_label[row_label] = record
 
     mapping_rows: list[dict[str, str]] = []
-    for row_label in sorted(set(observed_keys) | set(existing_by_label)):
-        existing_row = existing_by_label.get(row_label, {})
+    observed_pairs = set(observed_keys)
+    observed_labels = {row_label for row_label, _line_order in observed_pairs}
+    observed_pairs.update(existing_by_pair)
+    observed_pairs.update(
+        (row_label, "")
+        for row_label in existing_by_label
+        if row_label not in observed_labels
+    )
+
+    def _line_order_sort_key(value: str) -> tuple[int, str]:
+        if value.isdigit():
+            return (0, f"{int(value):08d}")
+        if not value:
+            return (1, "")
+        return (2, value)
+
+    for row_label, line_order in sorted(
+        observed_pairs,
+        key=lambda item: (item[0], _line_order_sort_key(item[1])),
+    ):
+        existing_row = existing_by_pair.get((row_label, line_order), {})
+        fallback_row = existing_by_label.get(row_label, {})
         row_key = existing_row.get("Row_key", "").strip()
         if not row_key:
-            candidate_row_keys = sorted(observed_keys.get(row_label, set()))
+            row_key = fallback_row.get("Row_key", "").strip()
+        if not row_key:
+            candidate_row_keys = sorted(observed_keys.get((row_label, line_order), set()))
             if candidate_row_keys:
                 row_key = candidate_row_keys[0]
 
         mapping_rows.append(
             {
                 "Row_label_source": row_label,
+                "Line_order": line_order,
                 "Row_key": row_key,
-                "Remark": existing_row.get("Remark", "").strip(),
+                "Remark": existing_row.get("Remark", "").strip()
+                or fallback_row.get("Remark", "").strip(),
             }
         )
 
@@ -1619,16 +1650,17 @@ def build_row_label_row_key_mapping_markdown(
     lines = [
         "# Spec Master Row Label to Row Key Mapping",
         "",
-        "Manual mapping reference for `Spec_Master.csv` `Row_label_source` to `Row_key` lookup.",
+        "Manual mapping reference for `Spec_Master.csv` `Row_label_source + Line_order` to `Row_key` lookup.",
         "",
-        "| Row_label_source | Row_key | Remark |",
-        "| --- | --- | --- |",
+        "| Row_label_source | Line_order | Row_key | Remark |",
+        "| --- | ---: | --- | --- |",
     ]
 
     for row in mapping_rows:
         lines.append(
-            "| {row_label} | {row_key} | {remark} |".format(
+            "| {row_label} | {line_order} | {row_key} | {remark} |".format(
                 row_label=row["Row_label_source"],
+                line_order=row["Line_order"] or "-",
                 row_key=row["Row_key"],
                 remark=row["Remark"] or "-",
             )

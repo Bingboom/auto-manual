@@ -697,12 +697,13 @@ Current output:
 
 - [`data/phase1/row_key_mapping.csv`](../data/phase1/row_key_mapping.csv)
 - [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
-- `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source -> Row_key`
-- the CSV keeps only `Row_label_source`, `Row_key`, and `Remark`
-- the first column stays `Row_label_source`, so the sheet can be imported into external tools for label-first lookup or bi-directional reference
-- rerunning the export script syncs the latest `Row_label_source` set from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) while preserving any existing manual `Row_key` and `Remark`
+- `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source + Line_order -> Row_key`
+- the CSV keeps `Row_label_source`, `Line_order`, `Row_key`, and `Remark`
+- the first column stays `Row_label_source`, so the sheet can still be imported into external tools for label-first lookup or bi-directional reference
+- `Line_order` is the second lookup key and must stay aligned with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- rerunning the export script syncs the latest `Row_label_source + Line_order` set from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) while preserving any existing manual `Row_key` and `Remark`
 - keep `Row_key` in snake_case canonical form, for example `Product Name -> product_name`
-- when you reconcile [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), align each `Row_key` to the matching `Row_label_source` entry from this mapping table
+- when you reconcile [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), align each `Row_key` to the matching `Row_label_source + Line_order` entry from this mapping table
 
 Review sync:
 
