@@ -60,6 +60,7 @@ This section is the editor-facing filling guide.
 | `Page` | visible page ownership | Use `specifications`, `Product overview`, or `Product overview, specifications,` |
 | `Section` | logical group | Use the visible spec section for spec rows; use internal container sections for page-value rows |
 | `Section_order` | section order | Keep section order consistent with current section conventions |
+| `Row_order` | row order inside a section | Use `1`, `2`, `3`, ... inside the same `document_key + Page + Section`; keep the same value across all lines of one logical row |
 | `Row_key` | stable machine key | Same concept should use the same `Row_key` across regions; do not treat `Row_key` alone as a unique row ID |
 | `Row_label_*` | visible row label | Fill the visible label that should appear in the final output |
 | `Param_*` | left-side or prefix text inside the value cell | Use only when one row has a parameter + value pair |
@@ -170,7 +171,7 @@ These fields are useful when you need to maintain parser behavior rather than ju
 
 | Column | Current implementation use |
 | --- | --- |
-| `row_order` / `Row_order` | explicit row order inside a section; if missing, current parser falls back to CSV source order |
+| `row_order` / `Row_order` | explicit row order inside a section; keep it populated in the sheet, even though the parser still falls back to CSV source order for old data |
 | `row_kind` / `Row_kind` | can mark rows as `data`, `title`, `section_title`, `title_map`, `note`, or `footnote` |
 | `page_title_*` | can override the main spec page title |
 | `section_title_*` | can override the visible section title before `spec_titles.csv` is applied |
