@@ -19,7 +19,7 @@ field_map:
     usage_type: page_value
   USB_C_HIGH_POWER_PORT_LABEL:
     row_key: usb_c_high_power_port
-    pages: [specifications]
+    pages: [operation_guide]
     usage_type: page_value
     value_role: label
 required_row_keys: []
