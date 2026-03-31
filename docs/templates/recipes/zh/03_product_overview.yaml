@@ -1,0 +1,9 @@
+page_id: 03_product_overview
+template: templates/page_zh/03_product_overview_placeholder.rst
+field_map: {}
+required_row_keys:
+  - product_name
+  - model_no
+snippet_slots: {}
+contracts:
+  - 03_product_overview

@@ -15,8 +15,14 @@ from html import escape
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.build_docs import load_config
+from tools.review_support import review_bundle_exists
+
+
 REQUIRED_CHANGE_REPORT_FILES = (
     "report-index.html",
     "report-summary.html",
@@ -38,12 +44,13 @@ REQUIRED_PREVIEW_FILES = (
     "generated/changes.json",
     "generated/workspace.json",
 )
-FAMILY_ORDER = ("US", "JP")
+FAMILY_ORDER = ("US", "JP", "CN")
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Spanish",
     "fr": "French",
     "ja": "Japanese",
+    "zh": "Chinese",
 }
 _MANUAL_SWITCHER_BLOCK_RE = re.compile(
     r"<!-- HB_MANUAL_SWITCHER_START -->.*?<!-- HB_MANUAL_SWITCHER_END -->\s*",
@@ -53,6 +60,7 @@ _MANUAL_SWITCHER_BLOCK_RE = re.compile(
 
 @dataclass(frozen=True)
 class WorkspaceTarget:
+    model: str
     family: str
     language: str
     config: str
@@ -60,18 +68,32 @@ class WorkspaceTarget:
 
     @property
     def label(self) -> str:
-        return f"{self.family}/{self.language}"
+        return f"{self.model}/{self.family}/{self.language}"
+
+    @property
+    def key(self) -> tuple[str, str, str]:
+        return (self.model, self.family, self.language)
 
 
-WORKSPACE_TARGETS: tuple[WorkspaceTarget, ...] = (
-    WorkspaceTarget(family="US", language="en", config="config.us-en.yaml", include_lang_in_output_path=True),
-    WorkspaceTarget(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
-    WorkspaceTarget(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
-    WorkspaceTarget(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
+@dataclass(frozen=True)
+class WorkspaceTargetTemplate:
+    family: str
+    language: str
+    config: str
+    include_lang_in_output_path: bool
+
+
+WORKSPACE_TARGET_TEMPLATES: tuple[WorkspaceTargetTemplate, ...] = (
+    WorkspaceTargetTemplate(family="US", language="en", config="config.us-en.yaml", include_lang_in_output_path=True),
+    WorkspaceTargetTemplate(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
+    WorkspaceTargetTemplate(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
+    WorkspaceTargetTemplate(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
+    WorkspaceTargetTemplate(family="CN", language="zh", config="config.zh.yaml", include_lang_in_output_path=False),
 )
 FAMILY_DIFF_CONFIGS = {
     "US": "config.us-en.yaml",
     "JP": "config.ja.yaml",
+    "CN": "config.zh.yaml",
 }
 
 
@@ -119,6 +141,11 @@ def parse_args() -> argparse.Namespace:
         "--skip-word",
         action="store_true",
         help="Skip the optional Word export step.",
+    )
+    ap.add_argument(
+        "--all-review-models",
+        action="store_true",
+        help="Include every existing docs/_review/<model>/ target in the workspace, plus the requested default target.",
     )
     return ap.parse_args()
 
@@ -1055,7 +1082,15 @@ def render_workspace_html(title: str) -> str:
         "      if (!modelEntry || !languageEntry) {\n"
         "        return;\n"
         "      }\n"
-        "      const selection = normalizeSelection(workspace, { family: familyEntry.family, model: modelEntry.model, lang: languageEntry.lang });\n"
+        "      const selection = normalizeSelection(workspace, { family: familyEntry.family, model: currentSelection.model, lang: currentSelection.lang });\n"
+        "      writeUrl(selection, 'push');\n"
+        "      render(selection, workspace);\n"
+        "    });\n"
+        "  });\n"
+        "  document.querySelectorAll('[data-model-tab]').forEach((button) => {\n"
+        "    button.addEventListener('click', () => {\n"
+        "      const model = normalizeToken(button.getAttribute('data-model-tab'));\n"
+        "      const selection = normalizeSelection(workspace, { family: currentSelection.family, model, lang: currentSelection.lang });\n"
         "      writeUrl(selection, 'push');\n"
         "      render(selection, workspace);\n"
         "    });\n"
@@ -1076,6 +1111,10 @@ def render_workspace_html(title: str) -> str:
         "    const active = familyEntry.family === selection.family;\n"
         "    return `<button type=\"button\" class=\"switch-pill ${active ? 'is-active' : ''}\" data-family-tab=\"${escapeHtml(familyEntry.family)}\">${escapeHtml(familyEntry.family)}</button>`;\n"
         "  }).join('');\n"
+        "  const modelTabs = asArray(selection.familyEntry.models).map((modelEntry) => {\n"
+        "    const active = modelEntry.model === selection.model;\n"
+        "    return `<button type=\"button\" class=\"switch-pill ${active ? 'is-active' : ''}\" data-model-tab=\"${escapeHtml(modelEntry.model)}\">${escapeHtml(modelEntry.model)}</button>`;\n"
+        "  }).join('');\n"
         "  const languageTabs = asArray(selection.modelEntry.languages).map((languageEntry) => {\n"
         "    const active = languageEntry.lang === selection.lang;\n"
         "    const label = valueOr(languageEntry.language_label, languageEntry.lang.toUpperCase());\n"
@@ -1084,10 +1123,10 @@ def render_workspace_html(title: str) -> str:
         "  const actions = [\n"
         "    actionButton('Open Review HTML', selection.languageEntry.manual_url, 'primary', ''),\n"
         "    actionButton('Download Word', selection.languageEntry.word_url, 'download', 'review-manual.docx'),\n"
-        "    actionButton('Download Change Workbook', selection.familyEntry.change_workbook_url, 'download', 'change-report.xlsx'),\n"
+        "    actionButton('Download Change Workbook', selection.modelEntry.change_workbook_url, 'download', 'change-report.xlsx'),\n"
         "  ].join('');\n"
-        "  const changeReportLink = selection.familyEntry.change_index_url ? `<a href=\"${escapeHtml(selection.familyEntry.change_index_url)}\">Open Change Report.</a>` : '';\n"
-        "  app.innerHTML = `<section class=\"workspace-card\"><div class=\"hero-grid\"><section class=\"hero-copy\"><span class=\"eyebrow\">Review Preview</span><h1>${escapeHtml(selection.model)} Review Preview</h1><p class=\"product-line\">Product Name: ${escapeHtml(productName)}</p><p class=\"lede\">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p><div class=\"actions\">${actions}</div><p class=\"detail-link\">${changeReportLink ? `Need the detailed diff? ${changeReportLink}` : ''}</p></section><aside class=\"identity-card\"><span class=\"label\">Document Identity</span><h2>${escapeHtml(productName)}</h2><p class=\"identity-title\">${escapeHtml(manualTitle)}</p><div class=\"pill-row\"><span class=\"pill\">Model ${escapeHtml(selection.model)}</span></div><div class=\"switch-group\"><span class=\"switch-label\">Region</span><div class=\"switch-row\">${familyTabs}</div></div><div class=\"switch-group\"><span class=\"switch-label\">Language</span><div class=\"switch-row\">${languageTabs}</div></div></aside></div></section>`;\n"
+        "  const changeReportLink = selection.modelEntry.change_index_url ? `<a href=\"${escapeHtml(selection.modelEntry.change_index_url)}\">Open Change Report.</a>` : '';\n"
+        "  app.innerHTML = `<section class=\"workspace-card\"><div class=\"hero-grid\"><section class=\"hero-copy\"><span class=\"eyebrow\">Review Preview</span><h1>${escapeHtml(selection.model)} Review Preview</h1><p class=\"product-line\">Product Name: ${escapeHtml(productName)}</p><p class=\"lede\">Open the current review HTML, download the Word handoff, and use the change package to brief design on this round.</p><div class=\"actions\">${actions}</div><p class=\"detail-link\">${changeReportLink ? `Need the detailed diff? ${changeReportLink}` : ''}</p></section><aside class=\"identity-card\"><span class=\"label\">Document Identity</span><h2>${escapeHtml(productName)}</h2><p class=\"identity-title\">${escapeHtml(manualTitle)}</p><div class=\"pill-row\"><span class=\"pill\">Model ${escapeHtml(selection.model)}</span><span class=\"pill\">Family ${escapeHtml(selection.family)}</span></div><div class=\"switch-group\"><span class=\"switch-label\">Region</span><div class=\"switch-row\">${familyTabs}</div></div><div class=\"switch-group\"><span class=\"switch-label\">Model</span><div class=\"switch-row\">${modelTabs}</div></div><div class=\"switch-group\"><span class=\"switch-label\">Language</span><div class=\"switch-row\">${languageTabs}</div></div></aside></div></section>`;\n"
         "  document.title = `${selection.model} / ${selection.family} / ${selection.lang.toUpperCase()} Review Preview`;\n"
         "  bindEvents(workspace, selection);\n"
         "}\n"
@@ -1145,21 +1184,26 @@ def render_redirect_html(*, title: str, target: str, heading: str, copy: str) ->
 """
 
 
-def render_changes_html(meta: dict[str, object], family_entry: dict[str, object], family_changes: dict[str, object]) -> str:
+def render_model_changes_html(
+    meta: dict[str, object],
+    family_entry: dict[str, object],
+    model_entry: dict[str, object],
+    model_changes: dict[str, object],
+) -> str:
     family = display_text(family_entry.get("family"))
-    default_model = display_text(family_entry.get("default_model"), display_text(meta.get("model")))
-    default_lang = display_text(family_entry.get("default_lang"), "en").lower()
-    manual_url = display_text(family_entry.get("default_manual_url"), "")
-    downloads = family_changes.get("downloads", {})
+    model = display_text(model_entry.get("model"), display_text(meta.get("model")))
+    default_lang = display_text(model_entry.get("default_lang"), "en").lower()
+    manual_url = display_text(model_entry.get("default_manual_url"), "")
+    downloads = model_changes.get("downloads", {})
     if not isinstance(downloads, dict):
         downloads = {}
-    report_files = family_changes.get("report_files", {})
+    report_files = model_changes.get("report_files", {})
     if not isinstance(report_files, dict):
         report_files = {}
-    areas = family_changes.get("areas", [])
+    areas = model_changes.get("areas", [])
     if not isinstance(areas, list):
         areas = []
-    review_pages = family_changes.get("review_pages", [])
+    review_pages = model_changes.get("review_pages", [])
     if not isinstance(review_pages, list):
         review_pages = []
 
@@ -1175,8 +1219,8 @@ def render_changes_html(meta: dict[str, object], family_entry: dict[str, object]
         if isinstance(target, str):
             report_links.append((label, f"../../{target}"))
     download_links = build_download_links(downloads, prefix="../../")
-    workspace_back_link = f"../../index.html?family={escape(family)}&model={escape(default_model)}&lang={escape(default_lang)}"
-    shared_languages = family_entry.get("shared_language_labels", [])
+    workspace_back_link = f"../../index.html?family={escape(family)}&model={escape(model)}&lang={escape(default_lang)}"
+    shared_languages = model_entry.get("shared_language_labels", [])
     language_copy = ", ".join(str(item) for item in shared_languages if str(item).strip())
     manual_href = f"../../{manual_url}" if manual_url else "../../manual/index.html"
     workbook_href = downloads.get("change_workbook")
@@ -1190,26 +1234,26 @@ def render_changes_html(meta: dict[str, object], family_entry: dict[str, object]
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(family_change_title(display_text(meta.get("model")), family))}</title>
+  <title>{escape(family_change_title(model, family))}</title>
   <style>{base_css()}</style>
 </head>
 <body>
   <main class="shell">
     <section class="hero">
-      <span class="eyebrow">{escape(family)} Family Diff</span>
-      <h1>{escape(display_text(meta.get("model")))} change report</h1>
-      <p class="lede">Use this page to brief design on the family-level diff package for {escape(family)}. The change report, workbook, and CSV exports are shared across the language variants in this family{escape(': ' + language_copy) if language_copy else ''}.</p>
+      <span class="eyebrow">{escape(family)} / {escape(model)} Diff</span>
+      <h1>{escape(model)} change report</h1>
+      <p class="lede">Use this page to brief design on the packaged diff for {escape(model)} in {escape(family)}. The change report, workbook, and CSV exports are shared across this model's language variants{escape(': ' + language_copy) if language_copy else ''}.</p>
       <div class="pill-row">
-        <span class="pill">Model {escape(default_model)}</span>
+        <span class="pill">Model {escape(model)}</span>
         <span class="pill">Family {escape(family)}</span>
-        <span class="pill">Diff scope Family-level</span>
+        <span class="pill">Diff scope Model-level</span>
       </div>
       <div class="actions">
         <a class="button primary" href="{manual_href}">Open default review HTML</a>
         <a class="button secondary" href="{workspace_back_link}">Back to workspace</a>
         {workbook_button}
       </div>
-      <p class="note">Language switching happens in the workspace entry page. The diff package on this page stays shared across the full {escape(family)} family.</p>
+      <p class="note">Language switching happens in the workspace entry page. The diff package on this page stays shared across the {escape(model)} language set for {escape(family)}.</p>
     </section>
 
     <section class="grid">
@@ -1237,12 +1281,75 @@ def render_changes_html(meta: dict[str, object], family_entry: dict[str, object]
       </article>
       <article class="card">
         <h2>Review Context</h2>
-        <p>Open <strong>Field diff</strong> for text or value deltas and <strong>Page diff</strong> for page-level impact. Use the workbook when design needs one offline handoff file for this family.</p>
+        <p>Open <strong>Field diff</strong> for text or value deltas and <strong>Page diff</strong> for page-level impact. Use the workbook when design needs one offline handoff file for this model.</p>
       </article>
     </section>
 
     <section class="grid">
       {render_areas([item for item in areas if isinstance(item, dict)])}
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+
+def render_family_changes_html(meta: dict[str, object], family_entry: dict[str, object]) -> str:
+    family = display_text(family_entry.get("family"))
+    cards: list[str] = []
+    models = family_entry.get("models", [])
+    if not isinstance(models, list):
+        models = []
+    for model_entry in models:
+        if not isinstance(model_entry, dict):
+            continue
+        model = display_text(model_entry.get("model"))
+        language_labels = model_entry.get("shared_language_labels", [])
+        if not isinstance(language_labels, list):
+            language_labels = []
+        languages = ", ".join(str(item) for item in language_labels if str(item).strip())
+        default_manual_url = display_text(model_entry.get("default_manual_url"), "")
+        change_index_url = display_text(model_entry.get("change_index_url"), "")
+        workbook_url = display_text(model_entry.get("change_workbook_url"), "")
+        workbook_button = (
+            f'<a class="button download" href="../../{escape(workbook_url)}" download="change-report.xlsx">Download workbook</a>'
+            if workbook_url
+            else ""
+        )
+        cards.append(
+            f"""<article class="card">
+        <h2>{escape(model)}</h2>
+        <p class="muted">Languages: {escape(languages or "Not available")}</p>
+        <div class="actions">
+          <a class="button primary" href="../../{escape(change_index_url)}">Open model change report</a>
+          <a class="button secondary" href="../../{escape(default_manual_url)}">Open default review HTML</a>
+          {workbook_button}
+        </div>
+      </article>"""
+        )
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(family)} change reports</title>
+  <style>{base_css()}</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="eyebrow">{escape(family)} Family</span>
+      <h1>{escape(family)} change reports</h1>
+      <p class="lede">Choose the model-specific diff package you want to inspect for {escape(family)}.</p>
+      <div class="actions">
+        <a class="button secondary" href="../index.html">Back to families</a>
+        <a class="button secondary" href="../../index.html">Back to workspace</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      {''.join(cards)}
     </section>
   </main>
 </body>
@@ -1262,14 +1369,8 @@ def render_changes_home_html(meta: dict[str, object], families_payload: list[dic
             language_labels = []
         default_manual_url = display_text(family_entry.get("default_manual_url"), "")
         change_index_url = display_text(family_entry.get("change_index_url"), "")
-        workbook_url = display_text(family_entry.get("change_workbook_url"), "")
         model_names = ", ".join(display_text(item.get("model")) for item in models if isinstance(item, dict))
         language_names = ", ".join(str(item) for item in language_labels if str(item).strip())
-        workbook_button = (
-            f'<a class="button download" href="../{escape(workbook_url)}" download="change-report.xlsx">Download workbook</a>'
-            if workbook_url
-            else ""
-        )
         cards.append(
             f"""<article class="card">
         <h2>{escape(family)} family</h2>
@@ -1278,7 +1379,6 @@ def render_changes_home_html(meta: dict[str, object], families_payload: list[dic
         <div class="actions">
           <a class="button primary" href="../{escape(change_index_url)}">Open {escape(family)} change report</a>
           <a class="button secondary" href="../{escape(default_manual_url)}">Open default review HTML</a>
-          {workbook_button}
         </div>
       </article>"""
         )
@@ -1330,10 +1430,10 @@ def word_root_for_target(model: str, target: WorkspaceTarget) -> Path:
     return output_root_for_target(model, target) / "word"
 
 
-def tracked_root_for_family(args: argparse.Namespace, family: str) -> Path:
-    if args.tracked_root and family == args.region:
+def tracked_root_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> Path:
+    if args.tracked_root and target.family == args.region and target.model == args.model:
         return resolve_path(args.tracked_root)
-    return (ROOT / "docs" / "_review" / args.model / family).resolve()
+    return (ROOT / "docs" / "_review" / target.model / target.family).resolve()
 
 
 def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
@@ -1342,20 +1442,92 @@ def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
     return resolve_path(FAMILY_DIFF_CONFIGS[family])
 
 
-def family_targets(family: str) -> list[WorkspaceTarget]:
-    return [target for target in WORKSPACE_TARGETS if target.family == family]
+def target_templates_for_family(family: str) -> list[WorkspaceTargetTemplate]:
+    return [template for template in WORKSPACE_TARGET_TEMPLATES if template.family == family]
 
 
-def build_spec_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> dict[str, object]:
+def build_workspace_target(model: str, template: WorkspaceTargetTemplate) -> WorkspaceTarget:
+    return WorkspaceTarget(
+        model=model,
+        family=template.family,
+        language=template.language,
+        config=template.config,
+        include_lang_in_output_path=template.include_lang_in_output_path,
+    )
+
+
+def target_sort_key(target: WorkspaceTarget) -> tuple[int, str, str]:
+    family_rank = FAMILY_ORDER.index(target.family) if target.family in FAMILY_ORDER else len(FAMILY_ORDER)
+    return (family_rank, target.model, target.language)
+
+
+def review_models() -> list[str]:
+    review_root = ROOT / "docs" / "_review"
+    if not review_root.exists():
+        return []
+    return sorted(path.name for path in review_root.iterdir() if path.is_dir())
+
+
+def config_template_for_path(config_path: Path) -> WorkspaceTargetTemplate | None:
+    resolved = config_path.resolve()
+    for template in WORKSPACE_TARGET_TEMPLATES:
+        if resolve_path(template.config) == resolved:
+            return template
+    return None
+
+
+def requested_workspace_target(args: argparse.Namespace) -> WorkspaceTarget:
+    config_path = resolve_path(args.config)
+    matched_template = config_template_for_path(config_path)
+    if matched_template is not None:
+        return build_workspace_target(args.model, matched_template)
+
+    cfg = load_config(config_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    languages = build_cfg.get("languages", [])
+    if not isinstance(languages, list) or not languages:
+        raise RuntimeError(f"Review preview could not infer a workspace language from config: {config_path}")
+    language = str(languages[0]).strip().lower()
+    include_lang = bool(build_cfg.get("include_lang_in_output_path", False))
+    return WorkspaceTarget(
+        model=args.model,
+        family=args.region,
+        language=language,
+        config=path_for_display(config_path),
+        include_lang_in_output_path=include_lang,
+    )
+
+
+def workspace_families_for_request(args: argparse.Namespace) -> tuple[str, ...]:
+    preferred_family = (args.region or "").strip().upper()
+    if preferred_family == "CN":
+        return ("CN",)
+    return FAMILY_ORDER
+
+
+def target_has_review_bundle(target: WorkspaceTarget) -> bool:
+    return review_bundle_exists(
+        docs_dir=ROOT / "docs",
+        model=target.model,
+        region=target.family,
+        lang=target.language,
+    )
+
+
+def build_spec_for_target(
+    args: argparse.Namespace,
+    target: WorkspaceTarget,
+    *,
+    requested_target: WorkspaceTarget,
+) -> dict[str, object]:
     config_path = resolve_path(target.config)
-    source_mode = args.source
-    output_root = output_root_for_target(args.model, target)
-    source_label = args.source
-
-    if args.source == "review" and target.family == "US":
-        if target.language != "en":
-            source_mode = "runtime"
-            source_label = "runtime fallback"
+    output_root = output_root_for_target(target.model, target)
+    source_mode = "review" if target_has_review_bundle(target) else "runtime"
+    source_label = source_mode
+    if target.key == requested_target.key:
+        source_mode = args.source
+        source_label = args.source
 
     return {
         "config_path": config_path,
@@ -1368,7 +1540,7 @@ def build_spec_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> 
 def build_export_command(
     *,
     action: str,
-    args: argparse.Namespace,
+    model: str,
     config_path: Path,
     family: str,
     source_mode: str,
@@ -1381,7 +1553,7 @@ def build_export_command(
         "--config",
         str(config_path),
         "--model",
-        args.model,
+        model,
         "--region",
         family,
         "--source",
@@ -1392,17 +1564,17 @@ def build_export_command(
     return cmd
 
 
-def build_diff_command(*, args: argparse.Namespace, family: str, tracked_root: Path) -> list[str]:
+def build_diff_command(*, args: argparse.Namespace, target: WorkspaceTarget, tracked_root: Path) -> list[str]:
     return [
         sys.executable,
         str(ROOT / "build.py"),
         "diff-report",
         "--config",
-        str(diff_config_for_family(args, family)),
+        str(diff_config_for_family(args, target.family)),
         "--model",
-        args.model,
+        target.model,
         "--region",
-        family,
+        target.family,
         "--tracked-root",
         str(tracked_root),
         "--from-ref",
@@ -1424,9 +1596,15 @@ def rewrite_manual_switcher_links(
     if match is None:
         return text
 
-    current_source_html = html_root_for_target(model, current_target) / current_relative_path
+    current_source_html = html_root_for_target(current_target.model, current_target) / current_relative_path
     source_start = current_source_html.parent
-    preview_current = Path("manual") / current_target.family / current_target.language / current_relative_path
+    preview_current = (
+        Path("manual")
+        / current_target.family
+        / current_target.model
+        / current_target.language
+        / current_relative_path
+    )
     preview_start = preview_current.parent
     rewritten = match.group(0)
 
@@ -1434,10 +1612,10 @@ def rewrite_manual_switcher_links(
         if target == current_target:
             continue
 
-        target_source_root = html_root_for_target(model, target)
+        target_source_root = html_root_for_target(target.model, target)
         target_page = current_relative_path if (target_source_root / current_relative_path).exists() else Path("index.html")
         source_target = target_source_root / target_page
-        preview_target = Path("manual") / target.family / target.language / target_page
+        preview_target = Path("manual") / target.family / target.model / target.language / target_page
 
         source_href = Path(os.path.relpath(source_target, start=source_start)).as_posix()
         preview_href = Path(os.path.relpath(preview_target, start=preview_start)).as_posix()
@@ -1449,7 +1627,6 @@ def rewrite_manual_switcher_links(
 def rewrite_manual_tree_for_preview(
     manual_dir: Path,
     *,
-    model: str,
     current_target: WorkspaceTarget,
     all_targets: list[WorkspaceTarget],
 ) -> None:
@@ -1461,7 +1638,7 @@ def rewrite_manual_tree_for_preview(
         html_file.write_text(
             rewrite_manual_switcher_links(
                 text,
-                model=model,
+                model=current_target.model,
                 current_target=current_target,
                 current_relative_path=html_file.relative_to(manual_dir),
                 all_targets=all_targets,
@@ -1470,17 +1647,25 @@ def rewrite_manual_tree_for_preview(
         )
 
 
-def discover_workspace_families(args: argparse.Namespace) -> list[tuple[str, list[WorkspaceTarget], Path]]:
-    discovered: list[tuple[str, list[WorkspaceTarget], Path]] = []
-    for family in FAMILY_ORDER:
-        targets = family_targets(family)
-        if not targets:
-            continue
-        tracked_root = tracked_root_for_family(args, family)
-        if args.source == "review" and not tracked_root.exists():
-            continue
-        discovered.append((family, targets, tracked_root))
-    return discovered
+def discover_workspace_targets(args: argparse.Namespace) -> list[WorkspaceTarget]:
+    requested_target = requested_workspace_target(args)
+    targets_by_key: dict[tuple[str, str, str], WorkspaceTarget] = {requested_target.key: requested_target}
+
+    if args.all_review_models:
+        for model in review_models():
+            for template in WORKSPACE_TARGET_TEMPLATES:
+                target = build_workspace_target(model, template)
+                if target_has_review_bundle(target):
+                    targets_by_key[target.key] = target
+    else:
+        for family in workspace_families_for_request(args):
+            for template in target_templates_for_family(family):
+                target = build_workspace_target(args.model, template)
+                if args.source == "review" and not target_has_review_bundle(target):
+                    continue
+                targets_by_key[target.key] = target
+
+    return sorted(targets_by_key.values(), key=target_sort_key)
 
 
 def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object], *, require_word: bool) -> None:
@@ -1511,24 +1696,9 @@ def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object
             if not family:
                 missing.append("generated/workspace.json#families[].family")
                 continue
-            if not (output_dir / f"changes/{family}/index.html").exists():
+            change_index_url = family_entry.get("change_index_url")
+            if not isinstance(change_index_url, str) or not (output_dir / change_index_url).exists():
                 missing.append(f"changes/{family}/index.html")
-            for relative_path in REQUIRED_CHANGE_REPORT_FILES:
-                if not (output_dir / "changes" / family / relative_path).exists():
-                    missing.append(f"changes/{family}/{relative_path}")
-
-            change_workbook = family_entry.get("change_workbook_url")
-            if not isinstance(change_workbook, str) or not (output_dir / change_workbook).exists():
-                missing.append(f"downloads/{family}/change-report.xlsx")
-
-            csv_urls = family_entry.get("csv_urls")
-            if not isinstance(csv_urls, dict):
-                missing.extend(f"downloads/{family}/{name}" for name in REQUIRED_DOWNLOAD_CSVS)
-            else:
-                for file_name in REQUIRED_DOWNLOAD_CSVS:
-                    target = csv_urls.get(file_name)
-                    if not isinstance(target, str) or not (output_dir / target).exists():
-                        missing.append(f"downloads/{family}/{file_name}")
 
             models = family_entry.get("models", [])
             if not isinstance(models, list) or not models:
@@ -1538,9 +1708,35 @@ def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object
                 if not isinstance(model_entry, dict):
                     missing.append(f"generated/workspace.json#families[{family}]#models[]")
                     continue
+                model_name = display_text(model_entry.get("model"), "")
+                if not model_name:
+                    missing.append(f"generated/workspace.json#families[{family}]#models[].model")
+                    continue
+                change_index_url = model_entry.get("change_index_url")
+                if not isinstance(change_index_url, str) or not (output_dir / change_index_url).exists():
+                    missing.append(f"changes/{family}/{model_name}/index.html")
+                change_workbook = model_entry.get("change_workbook_url")
+                if not isinstance(change_workbook, str) or not (output_dir / change_workbook).exists():
+                    missing.append(f"downloads/{family}/{model_name}/change-report.xlsx")
+                csv_urls = model_entry.get("csv_urls")
+                if not isinstance(csv_urls, dict):
+                    missing.extend(f"downloads/{family}/{model_name}/{name}" for name in REQUIRED_DOWNLOAD_CSVS)
+                else:
+                    for file_name in REQUIRED_DOWNLOAD_CSVS:
+                        target = csv_urls.get(file_name)
+                        if not isinstance(target, str) or not (output_dir / target).exists():
+                            missing.append(f"downloads/{family}/{model_name}/{file_name}")
+                report_files = model_entry.get("report_files")
+                if not isinstance(report_files, dict):
+                    missing.extend(f"changes/{family}/{model_name}/{name}" for name in REQUIRED_CHANGE_REPORT_FILES)
+                else:
+                    for file_name in REQUIRED_CHANGE_REPORT_FILES:
+                        target = report_files.get(file_name)
+                        if not isinstance(target, str) or not (output_dir / target).exists():
+                            missing.append(f"changes/{family}/{model_name}/{file_name}")
                 languages = model_entry.get("languages", [])
                 if not isinstance(languages, list) or not languages:
-                    missing.append(f"generated/workspace.json#families[{family}]#models[{display_text(model_entry.get('model'), '')}]#languages")
+                    missing.append(f"generated/workspace.json#families[{family}]#models[{model_name}]#languages")
                     continue
                 for language_entry in languages:
                     if not isinstance(language_entry, dict):
@@ -1548,10 +1744,14 @@ def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object
                         continue
                     manual_url = language_entry.get("manual_url")
                     if not isinstance(manual_url, str) or not (output_dir / manual_url).exists():
-                        missing.append(f"manual/{family}/{display_text(language_entry.get('lang'), '').lower()}/index.html")
+                        missing.append(
+                            f"manual/{family}/{model_name}/{display_text(language_entry.get('lang'), '').lower()}/index.html"
+                        )
                     word_url = language_entry.get("word_url")
                     if require_word and (not isinstance(word_url, str) or not (output_dir / word_url).exists()):
-                        missing.append(f"downloads/{family}/{display_text(language_entry.get('lang'), '').lower()}/review-manual.docx")
+                        missing.append(
+                            f"downloads/{family}/{model_name}/{display_text(language_entry.get('lang'), '').lower()}/review-manual.docx"
+                        )
 
     if missing:
         raise RuntimeError("Review preview output contract is incomplete: " + ", ".join(sorted(set(missing))))
@@ -1561,11 +1761,14 @@ def main() -> int:
     args = parse_args()
     output_dir = resolve_path(args.output_dir)
     changed_files = collect_changed_files(args.from_ref, args.to_ref)
-    family_matrix = discover_workspace_families(args)
+    requested_target = requested_workspace_target(args)
+    workspace_targets = discover_workspace_targets(args)
 
-    if not family_matrix:
+    if not workspace_targets:
+        if args.source == "review" and args.all_review_models:
+            raise FileNotFoundError("No review preview targets are available under docs/_review/.")
         if args.source == "review":
-            raise FileNotFoundError(f"No review families are available under docs/_review/{args.model}/")
+            raise FileNotFoundError(f"No review preview targets are available under docs/_review/{args.model}/.")
         raise RuntimeError("No workspace families were resolved for the review preview build.")
 
     if output_dir.exists():
@@ -1578,69 +1781,85 @@ def main() -> int:
 
     families_payload: list[dict[str, object]] = []
     changes_by_family: dict[str, object] = {}
+    all_workspace_targets = list(workspace_targets)
+    target_specs = {
+        target.label: build_spec_for_target(args, target, requested_target=requested_target)
+        for target in workspace_targets
+    }
 
-    all_workspace_targets = [target for _, targets, _ in family_matrix for target in targets]
+    export_plan: list[tuple[str, WorkspaceTarget]] = []
+    if not args.skip_build:
+        export_plan.extend(("html", target) for target in workspace_targets)
+    if not args.skip_word:
+        export_plan.extend(("word", target) for target in workspace_targets)
 
-    for family, targets, tracked_root in family_matrix:
-        export_plan: list[tuple[str, WorkspaceTarget]] = []
-        if not args.skip_build:
-            export_plan.extend(("html", target) for target in targets)
-        if not args.skip_word:
-            export_plan.extend(("word", target) for target in targets)
-
-        target_specs = {target.label: build_spec_for_target(args, target) for target in targets}
-        first_export = True
-        for action, target in export_plan:
-            no_clean = (not args.clean_build) or (not first_export)
-            spec = target_specs[target.label]
-            try:
-                run(
-                    build_export_command(
-                        action=action,
-                        args=args,
-                        config_path=spec["config_path"],
-                        family=target.family,
-                        source_mode=str(spec["source_mode"]),
-                        no_clean=no_clean,
-                    )
+    cleaned_output_roots: set[Path] = set()
+    for action, target in export_plan:
+        spec = target_specs[target.label]
+        output_root = Path(spec["output_root"]).resolve()
+        no_clean = (not args.clean_build) or (output_root in cleaned_output_roots)
+        try:
+            run(
+                build_export_command(
+                    action=action,
+                    model=target.model,
+                    config_path=Path(spec["config_path"]),
+                    family=target.family,
+                    source_mode=str(spec["source_mode"]),
+                    no_clean=no_clean,
                 )
-            except subprocess.CalledProcessError as exc:
-                raise RuntimeError(f"Review preview failed to build {action.upper()} for {target.label}.") from exc
-            first_export = False
+            )
+        except subprocess.CalledProcessError as exc:
+            raise RuntimeError(f"Review preview failed to build {action.upper()} for {target.label}.") from exc
+        cleaned_output_roots.add(output_root)
+
+    grouped_targets: dict[tuple[str, str], list[WorkspaceTarget]] = {}
+    for target in workspace_targets:
+        grouped_targets.setdefault((target.family, target.model), []).append(target)
+
+    families_payload_by_name: dict[str, dict[str, object]] = {}
+    for family, model in sorted(grouped_targets, key=lambda item: (FAMILY_ORDER.index(item[0]) if item[0] in FAMILY_ORDER else len(FAMILY_ORDER), item[1])):
+        targets = sorted(grouped_targets[(family, model)], key=target_sort_key)
+        representative = targets[0]
+        tracked_root = tracked_root_for_target(args, representative)
 
         if not args.skip_diff:
             try:
-                run(build_diff_command(args=args, family=family, tracked_root=tracked_root))
+                run(build_diff_command(args=args, target=representative, tracked_root=tracked_root))
             except subprocess.CalledProcessError as exc:
-                raise RuntimeError(f"Review preview failed to build the diff-report set for {family}.") from exc
+                raise RuntimeError(f"Review preview failed to build the diff-report set for {model}/{family}.") from exc
 
-        report_root = ROOT / "reports" / "version_tracking" / args.model / family
+        report_root = ROOT / "reports" / "version_tracking" / model / family
         prefix = latest_report_prefix(report_root)
-        family_changes_dir = changes_root / family
-        family_downloads_dir = downloads_root / family
+        model_changes_dir = changes_root / family / model
+        model_downloads_dir = downloads_root / family / model
 
         report_files = copy_report_set(
             report_root,
             prefix,
-            family_changes_dir,
-            relative_dir=f"changes/{family}",
+            model_changes_dir,
+            relative_dir=f"changes/{family}/{model}",
         )
         csv_files = copy_report_csvs(
             report_root,
             prefix,
-            family_downloads_dir,
-            relative_dir=f"downloads/{family}",
+            model_downloads_dir,
+            relative_dir=f"downloads/{family}/{model}",
         )
         workbook_path = build_change_workbook(
-            family_downloads_dir,
+            model_downloads_dir,
             csv_files,
-            relative_path=f"downloads/{family}/change-report.xlsx",
+            relative_path=f"downloads/{family}/{model}/change-report.xlsx",
         )
         if workbook_path is None:
-            raise RuntimeError(f"Review preview failed to build the required change workbook for {family}.")
+            raise RuntimeError(f"Review preview failed to build the required change workbook for {model}/{family}.")
 
-        models_by_name: dict[str, dict[str, object]] = {}
-        model_order: list[str] = []
+        language_payloads: list[dict[str, object]] = []
+        shared_language_labels: list[str] = []
+        default_manual_url = ""
+        default_lang = ""
+        model_product_name = model
+        model_manual_title = f"{model} User Manual"
 
         for target in targets:
             spec = target_specs[target.label]
@@ -1649,19 +1868,20 @@ def main() -> int:
             if not html_root.exists():
                 raise FileNotFoundError(f"HTML output not found for {target.label}: {html_root}")
 
-            manual_dest = manual_root / family / target.language
+            manual_dest = manual_root / family / model / target.language
             copy_tree(html_root, manual_dest)
             rewrite_manual_tree_for_preview(
                 manual_dest,
-                model=args.model,
                 current_target=target,
                 all_targets=all_workspace_targets,
             )
 
             manual_meta = read_json_if_exists(html_root / "manual_meta.json")
-            manual_title = display_text(manual_meta.get("title"), f"{args.model} User Manual")
+            manual_title = display_text(manual_meta.get("title"), f"{model} User Manual")
             manual_lang = str(manual_meta.get("lang") or target.language).strip().lower() or target.language
-            product_name = derive_product_name(manual_title, args.model)
+            product_name = derive_product_name(manual_title, model)
+            model_product_name = product_name
+            model_manual_title = manual_title
 
             word_path: str | None = None
             if not args.skip_word:
@@ -1670,72 +1890,85 @@ def main() -> int:
                     raise FileNotFoundError(
                         f"Review preview Word export finished but no DOCX was found for {target.label}."
                     )
-                language_download_dir = downloads_root / family / target.language
+                language_download_dir = downloads_root / family / model / target.language
                 language_download_dir.mkdir(parents=True, exist_ok=True)
                 copied_docx = language_download_dir / "review-manual.docx"
                 shutil.copy2(latest_docx, copied_docx)
-                word_path = f"downloads/{family}/{target.language}/review-manual.docx"
+                word_path = f"downloads/{family}/{model}/{target.language}/review-manual.docx"
 
-            model_name = display_text(manual_meta.get("model"), args.model)
-            if model_name not in models_by_name:
-                model_order.append(model_name)
-                models_by_name[model_name] = {
-                    "model": model_name,
-                    "product_name": product_name,
-                    "manual_title": manual_title,
-                    "languages": [],
-                }
+            language_label = preview_language_label(manual_lang)
+            if language_label not in shared_language_labels:
+                shared_language_labels.append(language_label)
 
             language_entry = {
                 "lang": manual_lang,
-                "language_label": preview_language_label(manual_lang),
-                "manual_url": f"manual/{family}/{target.language}/index.html",
+                "language_label": language_label,
+                "manual_url": f"manual/{family}/{model}/{target.language}/index.html",
                 "word_url": word_path,
-                "change_index_url": f"changes/{family}/index.html",
-                "change_workbook_url": workbook_path,
-                "csv_urls": dict(csv_files),
                 "product_name": product_name,
                 "manual_title": manual_title,
                 "region": family,
-                "model": model_name,
+                "model": model,
                 "config": path_for_display(Path(spec["config_path"])),
                 "manual_source": str(spec["source_label"]),
                 "tracked_root": path_for_display(tracked_root),
             }
-            models_by_name[model_name]["languages"].append(language_entry)
+            language_payloads.append(language_entry)
+            if not default_manual_url:
+                default_manual_url = str(language_entry["manual_url"])
+                default_lang = manual_lang
 
-        model_payloads = [models_by_name[name] for name in model_order]
-        shared_language_labels = [
-            str(language_entry.get("language_label"))
-            for model_entry in model_payloads
-            for language_entry in model_entry.get("languages", [])
-            if str(language_entry.get("language_label", "")).strip()
-        ]
-        first_model = model_payloads[0]
-        first_language = first_model["languages"][0]
-
-        family_payload = {
-            "family": family,
+        model_payload = {
+            "model": model,
+            "product_name": model_product_name,
+            "manual_title": model_manual_title,
             "tracked_root": path_for_display(tracked_root),
             "diff_config": path_for_display(diff_config_for_family(args, family)),
-            "change_index_url": f"changes/{family}/index.html",
+            "change_index_url": f"changes/{family}/{model}/index.html",
             "change_workbook_url": workbook_path,
             "csv_urls": dict(csv_files),
+            "report_files": dict(report_files),
             "shared_language_labels": shared_language_labels,
-            "default_model": display_text(first_model.get("model"), args.model),
-            "default_lang": display_text(first_language.get("lang"), "en"),
-            "default_manual_url": display_text(first_language.get("manual_url"), ""),
-            "models": model_payloads,
+            "default_lang": default_lang or "en",
+            "default_manual_url": default_manual_url,
+            "languages": language_payloads,
         }
-        families_payload.append(family_payload)
 
-        changes_by_family[family] = {
+        family_payload = families_payload_by_name.setdefault(
+            family,
+            {
+                "family": family,
+                "change_index_url": f"changes/{family}/index.html",
+                "shared_language_labels": [],
+                "models": [],
+            },
+        )
+        family_payload["models"].append(model_payload)
+        family_shared_labels = family_payload["shared_language_labels"]
+        if isinstance(family_shared_labels, list):
+            for label in shared_language_labels:
+                if label not in family_shared_labels:
+                    family_shared_labels.append(label)
+
+        family_changes = changes_by_family.setdefault(
+            family,
+            {
+                "family": family,
+                "models": {},
+            },
+        )
+        family_changes_models = family_changes.get("models")
+        if not isinstance(family_changes_models, dict):
+            family_changes_models = {}
+            family_changes["models"] = family_changes_models
+        family_changes_models[model] = {
+            "model": model,
             "family": family,
             "from_ref": args.from_ref,
             "to_ref": args.to_ref,
             "changed_files": changed_files,
-            "review_pages": review_pages_for_family(changed_files, args.model, family),
-            "areas": classify_changes(changed_files, args.model, family),
+            "review_pages": review_pages_for_family(changed_files, model, family),
+            "areas": classify_changes(changed_files, model, family),
             "report_prefix": prefix,
             "report_files": report_files,
             "downloads": build_downloads_metadata(
@@ -1745,14 +1978,57 @@ def main() -> int:
             ),
         }
 
+    families_payload = [
+        families_payload_by_name[name]
+        for name in sorted(
+            families_payload_by_name,
+            key=lambda family: FAMILY_ORDER.index(family) if family in FAMILY_ORDER else len(FAMILY_ORDER),
+        )
+    ]
+
+    for family_entry in families_payload:
+        models = family_entry.get("models", [])
+        if not isinstance(models, list) or not models:
+            continue
+        preferred_model = next(
+            (item for item in models if isinstance(item, dict) and display_text(item.get("model")) == args.model),
+            models[0],
+        )
+        if isinstance(preferred_model, dict):
+            family_entry["default_model"] = display_text(preferred_model.get("model"), args.model)
+            family_entry["default_lang"] = display_text(preferred_model.get("default_lang"), requested_target.language)
+            family_entry["default_manual_url"] = display_text(preferred_model.get("default_manual_url"), "")
+
     default_family_entry = next(
         (item for item in families_payload if display_text(item.get("family")) == args.region),
         families_payload[0],
     )
-    default_model = display_text(default_family_entry.get("default_model"), args.model)
-    default_lang = display_text(default_family_entry.get("default_lang"), "en").lower()
-    default_manual_url = display_text(default_family_entry.get("default_manual_url"), "")
-    default_change_url = "changes/index.html"
+    default_models = default_family_entry.get("models", [])
+    if not isinstance(default_models, list) or not default_models:
+        raise RuntimeError("Review preview workspace has no model entries to render.")
+    default_model_entry = next(
+        (item for item in default_models if isinstance(item, dict) and display_text(item.get("model")) == args.model),
+        default_models[0],
+    )
+    if not isinstance(default_model_entry, dict):
+        raise RuntimeError("Review preview workspace default model entry is invalid.")
+    default_languages = default_model_entry.get("languages", [])
+    if not isinstance(default_languages, list) or not default_languages:
+        raise RuntimeError("Review preview workspace default language entry is missing.")
+    default_language_entry = next(
+        (
+            item
+            for item in default_languages
+            if isinstance(item, dict) and display_text(item.get("lang"), "").lower() == requested_target.language
+        ),
+        default_languages[0],
+    )
+    if not isinstance(default_language_entry, dict):
+        raise RuntimeError("Review preview workspace default language entry is invalid.")
+    default_model = display_text(default_model_entry.get("model"), args.model)
+    default_lang = display_text(default_language_entry.get("lang"), requested_target.language).lower()
+    default_manual_url = display_text(default_language_entry.get("manual_url"), "")
+    default_change_url = display_text(default_model_entry.get("change_index_url"), "changes/index.html")
 
     commit_sha = git_value("VERCEL_GIT_COMMIT_SHA", ["git", "rev-parse", "HEAD"])
     commit_message = git_value("VERCEL_GIT_COMMIT_MESSAGE", ["git", "log", "-1", "--pretty=%s"])
@@ -1773,6 +2049,14 @@ def main() -> int:
         "default_change_url": default_change_url,
         "available_families": [display_text(item.get("family")) for item in families_payload],
         "family_count": len(families_payload),
+        "available_models": sorted(
+            {
+                display_text(model_entry.get("model"))
+                for family_entry in families_payload
+                for model_entry in (family_entry.get("models", []) if isinstance(family_entry.get("models", []), list) else [])
+                if isinstance(model_entry, dict)
+            }
+        ),
         "from_ref": args.from_ref,
         "to_ref": args.to_ref,
         "branch": branch,
@@ -1806,12 +2090,31 @@ def main() -> int:
 
     for family_entry in families_payload:
         family_name = display_text(family_entry.get("family"))
-        family_changes_payload = changes_by_family[family_name]
+        family_models = family_entry.get("models", [])
+        if not isinstance(family_models, list):
+            family_models = []
         (changes_root / family_name / "index.html").parent.mkdir(parents=True, exist_ok=True)
         (changes_root / family_name / "index.html").write_text(
-            render_changes_html(meta, family_entry, family_changes_payload),
+            render_family_changes_html(meta, family_entry),
             encoding="utf-8",
         )
+        family_changes = changes_by_family.get(family_name, {})
+        family_changes_models = family_changes.get("models", {}) if isinstance(family_changes, dict) else {}
+        if not isinstance(family_changes_models, dict):
+            family_changes_models = {}
+        for model_entry in family_models:
+            if not isinstance(model_entry, dict):
+                continue
+            model_name = display_text(model_entry.get("model"))
+            model_changes = family_changes_models.get(model_name, {})
+            if not isinstance(model_changes, dict):
+                model_changes = {}
+            model_change_path = changes_root / family_name / model_name / "index.html"
+            model_change_path.parent.mkdir(parents=True, exist_ok=True)
+            model_change_path.write_text(
+                render_model_changes_html(meta, family_entry, model_entry, model_changes),
+                encoding="utf-8",
+            )
 
     write_json(generated_dir / "meta.json", meta)
     write_json(generated_dir / "workspace.json", workspace)

@@ -76,6 +76,7 @@ The manual system now has four layers, but they are used at different stages.
    - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
    - `Spec_Footnotes.csv` and `Spec_Notes.csv` now match rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
+   - `document_key` is a derived helper column and must equal `[Model]_[Region]_[Source_lang]`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
@@ -111,9 +112,9 @@ Rules:
 - when that workspace is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
 - designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
-- the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
+- the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
 - families without `_review` content are hidden, so the preview only shows available families
-- the packaged `changes/index.html` now opens a family hub first, so reviewers can switch between available families such as `US` and `JP` before jumping into a family-specific change report
+- the packaged `changes/index.html` now opens a family hub first, and each family hub fans out to model-specific change pages
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
@@ -335,6 +336,9 @@ Resolution source:
 - use `Product overview, specifications,` when the same row is intentionally shared by both pages
 - `Row_label_source`, `Param_source`, and `Value_source` should store the row's source-manual text
 - `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
+- `document_key` should be `[Model]_[Region]_[Source_lang]`
+- `Row_order` is now the explicit row order inside each `document_key + Page + Section`; `Line_order` only controls the order of multiple lines inside one logical row
+- `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer used in `Spec_Master.csv`; choose rows by `Region` + `Model`
 - source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
 
@@ -379,6 +383,7 @@ Config scope rule:
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
+- [`config.zh.yaml`](../config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 - the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US` and `JE-1000F / JP`
 - do not create a new config only because the model changed; pass `--model` and `--region` instead
 - create a new config only when the page stack, template family, or output conventions are genuinely different
@@ -393,6 +398,7 @@ python build.py review --config config.us-en.yaml --model JE-1000F --region US -
 python build.py sync-review --config config.us-en.yaml --model JE-1000F --region US
 python build.py check --config config.us-en.yaml --model JE-1000F --region US
 python build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.zh.yaml --model JE-2000E --region CN
 python build.py rst --config config.yaml
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.ja.yaml --model JE-2000F --region JP
@@ -410,6 +416,10 @@ Source mode meaning:
 - `auto`: use `_review` if it exists, otherwise use template/data runtime draft
 - `runtime`: ignore `_review` and build from template/data
 - `review`: require `_review` and build from it
+
+PR preview note:
+
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
 
 `publish` behavior:
 

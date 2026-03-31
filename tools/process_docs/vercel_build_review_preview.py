@@ -58,17 +58,18 @@ def main() -> int:
             str(python_exe),
             "tools/process_docs/build_review_preview.py",
             "--config",
-            "config.us-en.yaml",
+            os.environ.get("PREVIEW_CONFIG", "config.us-en.yaml"),
             "--model",
-            "JE-1000F",
+            os.environ.get("PREVIEW_MODEL", "JE-1000F"),
             "--region",
-            "US",
+            os.environ.get("PREVIEW_REGION", "US"),
             "--source",
-            "review",
+            os.environ.get("PREVIEW_SOURCE", "review"),
             "--from-ref",
             os.environ.get("FROM_REF", "HEAD~1"),
             "--to-ref",
             os.environ.get("TO_REF", "HEAD"),
+            "--all-review-models",
         ]
     )
     return 0

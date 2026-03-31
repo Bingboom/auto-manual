@@ -25,7 +25,7 @@ It answers the practical question: "I have a piece of manual data. Which file an
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
 | Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
 | Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
-| Spec page title translation | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title | Only for visible spec page titles |
+| Spec page title and section metadata | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title/section | Use this for visible spec title localization and default section ordering |
 | Safety intro prose | [`docs/templates/page_*/safety_*.rst`](../docs/templates) | family safety templates | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
 
 ## 2. Current Phase1 CSV Files
@@ -59,7 +59,8 @@ This section is the editor-facing filling guide.
 | --- | --- | --- |
 | `Page` | visible page ownership | Use `specifications`, `Product overview`, or `Product overview, specifications,` |
 | `Section` | logical group | Use the visible spec section for spec rows; use internal container sections for page-value rows |
-| `Section_order` | section order | Keep section order consistent with current section conventions |
+| `Section_order` | section order | Optional. If filled in `Spec_Master.csv`, it is the highest-priority section order; if blank, the renderer can fall back to [`spec_titles.csv`](../data/phase1/spec_titles.csv) |
+| `Row_order` | row order inside a section | Use `1`, `2`, `3`, ... inside the same `document_key + Page + Section`; keep the same value across all lines of one logical row |
 | `Row_key` | stable machine key | Same concept should use the same `Row_key` across regions; do not treat `Row_key` alone as a unique row ID |
 | `Row_label_*` | visible row label | Fill the visible label that should appear in the final output |
 | `Param_*` | left-side or prefix text inside the value cell | Use only when one row has a parameter + value pair |
@@ -72,6 +73,7 @@ This section is the editor-facing filling guide.
 | `Model` | target model | Must match the intended target build |
 | `Region` | target region | Must match the intended target build |
 | `Source_lang` | source-language code | Store the row's source manual language as a normalized code such as `en`, `ja`, or `zh` |
+| `document_key` | derived document key | Must equal `[Model]_[Region]_[Source_lang]` |
 | `Is_Latest` | active row flag | Keep active rows as `TRUE` |
 
 Current schema note:
@@ -169,7 +171,7 @@ These fields are useful when you need to maintain parser behavior rather than ju
 
 | Column | Current implementation use |
 | --- | --- |
-| `row_order` / `Row_order` | explicit row order inside a section; if missing, current parser falls back to CSV source order |
+| `row_order` / `Row_order` | explicit row order inside a section; keep it populated in the sheet, even though the parser still falls back to CSV source order for old data |
 | `row_kind` / `Row_kind` | can mark rows as `data`, `title`, `section_title`, `title_map`, `note`, or `footnote` |
 | `page_title_*` | can override the main spec page title |
 | `section_title_*` | can override the visible section title before `spec_titles.csv` is applied |
@@ -365,6 +367,7 @@ Current reality:
 - the sheet now uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-text columns
 - these source columns hold the row's actual source-manual text
 - `Source_lang` stores that source language explicitly as a normalized code such as `en`, `ja`, or `zh`
+- `document_key` must be the derived helper value `[Model]_[Region]_[Source_lang]`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer accepted; rename them to `*_source`
 
 Current practical rule:
@@ -374,6 +377,7 @@ Current practical rule:
 - source-language text must not stay in `*_en`; move it into `*_source`
 - keep `Source_lang` aligned with the real source columns; for example, if `Value_source` holds Japanese source text then `Source_lang` should be `ja`
 - `Source_lang` is now the explicit source-language declaration for the row; code no longer infers source language from `Region`
+- keep `document_key` aligned with the row identity as `[Model]_[Region]_[Source_lang]`
 - `*_source` must be populated for the language declared by `Source_lang`
 - keep the visible text correct first, and trust the row's explicit `Source_lang` workflow more than any legacy header alias
 - current audit expectation depends on `Source_lang`; `ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT` only applies to rows whose declared source language is English
@@ -514,11 +518,12 @@ That means a title-map change can affect diff-report output even when the visibl
 
 ## 6. [`spec_titles.csv`](../data/phase1/spec_titles.csv) Rule
 
-[`spec_titles.csv`](../data/phase1/spec_titles.csv) is only the localized title dictionary for the visible spec page.
+[`spec_titles.csv`](../data/phase1/spec_titles.csv) is the visible spec title and section-metadata table.
 
 Current typical fields:
 
 - `title_en`
+- `section_order`
 - `title_zh`
 - `title_jp`
 - `title_fr`
@@ -531,6 +536,12 @@ Current recommended scope:
 - `INPUT PORTS`
 - `OUTPUT PORTS`
 - `ENVIRONMENTAL OPERATING TEMPERATURE`
+
+Current order rule:
+
+- use `section_order` here as the default order for visible spec sections
+- if a row in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) already has `Section_order`, that explicit value wins
+- if `Section_order` is blank in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), the renderer may fall back to `spec_titles.csv section_order`
 
 Do not use [`spec_titles.csv`](../data/phase1/spec_titles.csv) for:
 
@@ -683,6 +694,24 @@ python -m unittest
 python build.py check --config config.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
 ```
+
+Mapping export:
+
+```powershell
+python tools/export_spec_master_row_key_mapping.py
+```
+
+Current output:
+
+- [`data/phase1/row_key_mapping.csv`](../data/phase1/row_key_mapping.csv)
+- [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
+- `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source + Line_order -> Row_key`
+- the CSV keeps `Row_label_source`, `Line_order`, `Row_key`, and `Remark`
+- the first column stays `Row_label_source`, so the sheet can still be imported into external tools for label-first lookup or bi-directional reference
+- `Line_order` is the second lookup key and must stay aligned with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- rerunning the export script syncs the latest `Row_label_source + Line_order` set from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) while preserving any existing manual `Row_key` and `Remark`
+- keep `Row_key` in snake_case canonical form, for example `Product Name -> product_name`
+- when you reconcile [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), align each `Row_key` to the matching `Row_label_source + Line_order` entry from this mapping table
 
 Review sync:
 

@@ -76,6 +76,7 @@ Current shared config families:
 - [`config.yaml`](../config.yaml): shared EN / US template family
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
+- [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 
 Page-stack note:
 
@@ -158,7 +159,7 @@ Parallel-language template note:
 
 - for manually maintained parallel-language prose templates, treat the source-language page as the structure owner
 - when that source-language page changes shared headings, section order, placeholders, includes, or `.. only::` model gates, update the derived-language counterparts in the same change before review/build
-- current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, and `page_us-fr`
+- current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, `page_us-fr`, and `page_zh`
 
 `symbols_blocks.csv` note:
 
@@ -175,6 +176,9 @@ Parallel-language template note:
 - use `Product overview, specifications,` when a row is intentionally shared by both pages
 - `Row_label_source`, `Param_source`, and `Value_source` are the shared source-text columns; they should hold the row's source-manual text
 - `Source_lang` stores that source-language code explicitly; use values such as `en`, `ja`, and `zh`, and do not rely on `Region` to infer it
+- `document_key` is a derived helper column and must equal `[Model]_[Region]_[Source_lang]`
+- `Row_order` is now the explicit row order inside each `document_key + Page + Section`, while `Line_order` controls the line order inside one logical row
+- `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer part of `Spec_Master.csv`; target rows by `Region` + `Model`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet
 - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` hold comma-separated `Footnote_id` values; do not handwrite `①②③` into the visible spec text columns
@@ -217,16 +221,21 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py html --config config.ja.yaml --model JE-1000F --region JP
 python build.py word --config config.ja.yaml --model JE-1000F --region JP
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+python build.py all --config config.zh.yaml --model JE-2000E --region CN
 ```
 
 `check` now also catches stale foreign model names and contract-required spec keys, required page-value selectors, and assets.
+
+PR review-preview note:
+
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the review-preview workflow switches the default landing target to `config.zh.yaml --model JE-2000E --region CN --source runtime`, but the packaged workspace still includes every existing review model
 
 ### 3.6 Package a Review Preview for Design
 
 Use this when design needs the rendered review HTML plus the current family-level diff package:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --all-review-models
 ```
 
 Default packaged output:
@@ -235,10 +244,10 @@ Default packaged output:
 
 This package contains:
 
-- `index.html`: the workspace root for region-family navigation
-- `manual/`: review-based HTML, grouped by family and model, with language-specific entries inside each model group
-- `changes/`: family-level diff pages plus a family hub at `changes/index.html`
-- `downloads/`: family-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
+- `index.html`: the workspace root for family/model/language navigation
+- `manual/`: review-based HTML, grouped by family, model, and language
+- `changes/`: family hubs plus model-level diff pages at `changes/<family>/<model>/`
+- `downloads/`: model-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files, review pages, and download metadata
 - `generated/workspace.json`: the workspace data contract used by the root page
@@ -251,8 +260,9 @@ Packaging rule:
 - CI treats `review-manual.docx` and `change-report.xlsx` as required artifacts
 - `--skip-word` is for local debugging only and is not used by the CI workflow
 - the workspace hides families with no `_review` content, so the packaged site only shows available families
-- diff, workbook, and CSV outputs stay family-level shared assets, not language-specific artifacts
-- the default change entry in the packaged workspace now opens the family hub first, so reviewers can choose `US` or `JP` explicitly
+- with `--all-review-models`, the packaged site includes every existing review model and keeps the requested target as the default landing entry
+- diff, workbook, and CSV outputs stay shared inside one `family + model` package, not per-language artifacts
+- the default change entry in the packaged workspace now opens the selected model diff page, while `changes/index.html` and `changes/<family>/index.html` stay available as hubs
 
 Vercel note:
 

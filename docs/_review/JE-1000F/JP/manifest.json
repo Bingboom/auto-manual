@@ -1,11 +1,19 @@
-﻿{
-  "generated_at": "2026-03-11T16:56:44.624370+00:00",
-  "git_sha": "9a7a958e4638108cda4a545d2f1986bae54bbd61",
-  "model": "JE-1000F",
-  "region": "JP",
-  "runtime_bundle_dir": "docs/_build/JE-1000F/JP/rst",
-  "review_dir": "docs/_review/JE-1000F/JP",
-  "index_path": "docs/_review/JE-1000F/JP/index.rst",
+{
+  "last_synced_at": "2026-03-31T11:00:53.916100+00:00",
+  "last_sync_scope": "params",
+  "last_sync_files": [
+    "generated/JE-1000F/draft/03_product_overview_ja.rst",
+    "generated/JE-1000F/draft/05_operation_guide_ja.rst",
+    "generated/JE-1000F/draft/12_app_setup_ja.rst",
+    "generated/JE-1000F/spec_ja.rst",
+    "page/01_meaning_of_symbols.rst",
+    "page/04_lcd_display_placeholder.rst",
+    "page/06_ups_mode.rst",
+    "page/08_charging_methods.rst",
+    "page/charging.rst",
+    "page/cover_jp.rst",
+    "page/spec_ja.rst"
+  ],
   "page_files": [
     "page/01_meaning_of_symbols.rst",
     "page/02_whats_in_the_box.rst",
@@ -13,12 +21,12 @@
     "page/04_lcd_display_placeholder.rst",
     "page/05_operation_guide_placeholder.rst",
     "page/06_ups_mode.rst",
-    "page/charging.rst",
     "page/08_charging_methods.rst",
     "page/09_storage_and_maintenance.rst",
     "page/10_troubleshooting.rst",
     "page/11_warranty.rst",
     "page/12_app_setup_placeholder.rst",
+    "page/charging.rst",
     "page/cover_jp.rst",
     "page/safety_ja.rst",
     "page/spec_ja.rst"
@@ -29,25 +37,5 @@
     "generated/JE-1000F/draft/12_app_setup_ja.rst",
     "generated/JE-1000F/safety_ja.rst",
     "generated/JE-1000F/spec_ja.rst"
-  ],
-  "override_files": [
-    "docs/_review/JE-1000F/JP/overrides/README.md"
-  ],
-  "last_synced_at": "2026-03-30T02:20:48.111189+00:00",
-  "last_sync_scope": "params",
-  "last_sync_files": [
-    "generated/JE-1000F/draft/03_product_overview_ja.rst",
-    "generated/JE-1000F/draft/05_operation_guide_ja.rst",
-    "generated/JE-1000F/draft/12_app_setup_ja.rst",
-    "generated/JE-1000F/spec_ja.rst",
-    "page/01_meaning_of_symbols.rst",
-    "page/04_lcd_display_placeholder.rst",
-    "page/06_ups_mode.rst",
-    "page/charging.rst",
-    "page/08_charging_methods.rst",
-    "page/cover_jp.rst",
-    "page/safety_ja.rst",
-    "page/spec_ja.rst"
   ]
 }
-

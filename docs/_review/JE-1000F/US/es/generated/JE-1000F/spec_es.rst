@@ -70,7 +70,7 @@
 
    \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{1. El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.}\par
+   \HBTypeSpecNote{\HBSpecMarkerOne{} El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.}\par
    }
 
 
@@ -189,7 +189,7 @@
 
    .. raw:: html
    
-      <p class="hb-spec-footnote">1. El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.</p>
+      <p class="hb-spec-footnote">① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.</p>
 
    .. raw:: html
    

@@ -170,24 +170,39 @@ def _strip_legacy_footnote_prefix(text: str) -> str:
     return _LEGACY_FOOTNOTE_PREFIX_RE.sub("", text or "", count=1).strip()
 
 
-def _load_spec_title_map(csv_path: Path, *, title_lang: str) -> dict[str, str]:
+def _load_spec_title_metadata(
+    csv_path: Path,
+    *,
+    title_lang: str,
+) -> tuple[dict[str, str], dict[str, float]]:
     if not csv_path.exists():
-        return {}
+        return {}, {}
     with csv_path.open("r", encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
     if not rows:
-        return {}
+        return {}, {}
 
     target_col = f"title_{title_lang}"
     title_map: dict[str, str] = {}
+    section_order_map: dict[str, float] = {}
     for row in rows:
         key = rst_escape(row.get("title_en") or "")
         if not key:
             continue
+
         value = rst_escape(row.get(target_col) or "")
         if not value:
             value = key
         title_map[key.lower()] = value
+
+        raw_section_order = rst_escape(row.get("section_order") or row.get("Section_order") or "")
+        if raw_section_order:
+            section_order_map[key.lower()] = _to_float(raw_section_order)
+    return title_map, section_order_map
+
+
+def _load_spec_title_map(csv_path: Path, *, title_lang: str) -> dict[str, str]:
+    title_map, _section_order_map = _load_spec_title_metadata(csv_path, title_lang=title_lang)
     return title_map
 
 
@@ -215,6 +230,14 @@ def _parse_spec_master_sections(
     var_region = _first_non_empty(vars_map, ["region", "Region"])
     var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
     target_sku = _first_non_empty(vars_map, ["sku_id", "sku"]) or rst_escape(sku_id)
+    title_map: dict[str, str] = {}
+    section_order_map: dict[str, float] = {}
+    spec_titles_cfg = _first_non_empty(vars_map, ["spec_titles_csv"])
+    if spec_titles_cfg:
+        title_map, section_order_map = _load_spec_title_metadata(
+            Path(spec_titles_cfg),
+            title_lang=_pick_title_lang(lang, vars_map),
+        )
 
     for idx, raw in enumerate(blocks):
         row = dict(raw)
@@ -343,7 +366,10 @@ def _parse_spec_master_sections(
             lang=lang,
             default_keys=[f"Section_{lang}", "Section_en", "Section"],
         )
-        section_order = _to_float(_first_non_empty(row, ["Section_order", "section_order"]), 99.0)
+        section_order = _to_float(
+            _first_non_empty(row, ["Section_order", "section_order"]),
+            section_order_map.get(section_key.strip().lower(), 99.0),
+        )
         row_order = _to_float(_first_non_empty(row, ["row_order", "Row_order"]), idx)
         line_order = _to_float(_first_non_empty(row, ["Line_order", "line_order"]), 1.0)
 
@@ -526,16 +552,10 @@ def _parse_spec_master_sections(
     else:
         title_main = "SPECIFICATIONS"
 
-    spec_titles_cfg = _first_non_empty(vars_map, ["spec_titles_csv"])
-    if spec_titles_cfg:
-        title_map = _load_spec_title_map(
-            Path(spec_titles_cfg),
-            title_lang=_pick_title_lang(lang, vars_map),
-        )
-        if title_map:
-            title_main = _apply_spec_title_map(title_main, title_map)
-            for sec in sections:
-                sec["title"] = _apply_spec_title_map(str(sec.get("title") or ""), title_map)
+    if title_map:
+        title_main = _apply_spec_title_map(title_main, title_map)
+        for sec in sections:
+            sec["title"] = _apply_spec_title_map(str(sec.get("title") or ""), title_map)
 
     return title_main, sections, notes_text, footnotes_text
 

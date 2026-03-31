@@ -13,18 +13,21 @@ from tools.process_docs import build_review_preview
 class TestBuildReviewPreview(unittest.TestCase):
     def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
         current = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
             family="US",
             language="en",
             config="config.us-en.yaml",
             include_lang_in_output_path=True,
         )
         es_target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
             family="US",
             language="es",
             config="config.us-es.yaml",
             include_lang_in_output_path=True,
         )
         jp_target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
             family="JP",
             language="ja",
             config="config.ja.yaml",
@@ -71,7 +74,7 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertIn("_static/hb_manual.css", rewritten)
         self.assertIn("HB_MANUAL_SWITCHER_START", rewritten)
         self.assertIn('href="../es/index.html"', rewritten)
-        self.assertIn('href="../../JP/ja/index.html"', rewritten)
+        self.assertIn('href="../../../JP/JE-1000F/ja/index.html"', rewritten)
 
     def test_build_spec_for_target_should_keep_us_en_on_lang_specific_config_in_review_mode(self) -> None:
         args = argparse.Namespace(
@@ -87,22 +90,28 @@ class TestBuildReviewPreview(unittest.TestCase):
             skip_build=False,
             skip_diff=False,
             skip_word=False,
+            all_review_models=False,
         )
         target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
             family="US",
             language="en",
             config="config.us-en.yaml",
             include_lang_in_output_path=True,
         )
 
-        spec = build_review_preview.build_spec_for_target(args, target)
+        spec = build_review_preview.build_spec_for_target(
+            args,
+            target,
+            requested_target=build_review_preview.requested_workspace_target(args),
+        )
 
         self.assertEqual(build_review_preview.resolve_path("config.us-en.yaml"), spec["config_path"])
         self.assertEqual("review", spec["source_mode"])
         self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
 
-    def test_build_spec_for_target_should_keep_runtime_fallback_for_us_secondary_languages(self) -> None:
+    def test_build_spec_for_target_should_use_review_for_existing_secondary_language_bundles(self) -> None:
         args = argparse.Namespace(
             config="config.us-en.yaml",
             model="JE-1000F",
@@ -116,19 +125,25 @@ class TestBuildReviewPreview(unittest.TestCase):
             skip_build=False,
             skip_diff=False,
             skip_word=False,
+            all_review_models=False,
         )
         target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
             family="US",
             language="es",
             config="config.us-es.yaml",
             include_lang_in_output_path=True,
         )
 
-        spec = build_review_preview.build_spec_for_target(args, target)
+        spec = build_review_preview.build_spec_for_target(
+            args,
+            target,
+            requested_target=build_review_preview.requested_workspace_target(args),
+        )
 
         self.assertEqual(build_review_preview.resolve_path("config.us-es.yaml"), spec["config_path"])
-        self.assertEqual("runtime", spec["source_mode"])
-        self.assertEqual("runtime fallback", spec["source_label"])
+        self.assertEqual("review", spec["source_mode"])
+        self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
 
     def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
@@ -303,36 +318,43 @@ class TestBuildReviewPreview(unittest.TestCase):
             "areas": [],
             "review_pages": ["page/index.rst"],
             "downloads": {
-                "word_docx": "downloads/US/en/review-manual.docx",
-                "change_workbook": "downloads/US/change-report.xlsx",
+                "word_docx": "downloads/US/JE-1000F/en/review-manual.docx",
+                "change_workbook": "downloads/US/JE-1000F/change-report.xlsx",
                 "csv_reports": {
-                    "changes-summary.csv": "downloads/US/changes-summary.csv",
-                    "changes-pages.csv": "downloads/US/changes-pages.csv",
-                    "changes-fields.csv": "downloads/US/changes-fields.csv",
-                    "changes-files.csv": "downloads/US/changes-files.csv",
+                    "changes-summary.csv": "downloads/US/JE-1000F/changes-summary.csv",
+                    "changes-pages.csv": "downloads/US/JE-1000F/changes-pages.csv",
+                    "changes-fields.csv": "downloads/US/JE-1000F/changes-fields.csv",
+                    "changes-files.csv": "downloads/US/JE-1000F/changes-files.csv",
                 },
             },
             "report_files": {
-                "report-index.html": "changes/US/report-index.html",
-                "report-summary.html": "changes/US/report-summary.html",
-                "report-fields.html": "changes/US/report-fields.html",
-                "report-pages.html": "changes/US/report-pages.html",
-                "report-files.html": "changes/US/report-files.html",
+                "report-index.html": "changes/US/JE-1000F/report-index.html",
+                "report-summary.html": "changes/US/JE-1000F/report-summary.html",
+                "report-fields.html": "changes/US/JE-1000F/report-fields.html",
+                "report-pages.html": "changes/US/JE-1000F/report-pages.html",
+                "report-files.html": "changes/US/JE-1000F/report-files.html",
             },
         }
 
         workspace_html = build_review_preview.render_workspace_html(meta["title"])
-        change_html = build_review_preview.render_changes_html(meta, family_entry, family_changes)
+        model_entry = {
+            "model": "JE-1000F",
+            "default_lang": "en",
+            "default_manual_url": "manual/US/JE-1000F/en/index.html",
+            "shared_language_labels": ["English", "Spanish", "French"],
+        }
+        change_html = build_review_preview.render_model_changes_html(meta, family_entry, model_entry, family_changes)
 
         self.assertIn("Review Preview", workspace_html)
         self.assertIn("data-family-tab", workspace_html)
+        self.assertIn("data-model-tab", workspace_html)
         self.assertIn("data-lang-tab", workspace_html)
         self.assertIn("Product Name:", workspace_html)
         self.assertNotIn("Current Family", workspace_html)
         self.assertNotIn("renderModelCards", workspace_html)
-        self.assertIn('href="../../manual/US/en/index.html"', change_html)
-        self.assertIn('href="../../downloads/US/change-report.xlsx"', change_html)
-        self.assertIn('href="../../changes/US/report-pages.html"', change_html)
+        self.assertIn('href="../../manual/US/JE-1000F/en/index.html"', change_html)
+        self.assertIn('href="../../downloads/US/JE-1000F/change-report.xlsx"', change_html)
+        self.assertIn('href="../../changes/US/JE-1000F/report-pages.html"', change_html)
         self.assertIn('href="../../index.html?family=US&model=JE-1000F&lang=en"', change_html)
 
     def test_render_changes_home_should_list_available_families(self) -> None:
@@ -365,7 +387,6 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertIn("JP family", html)
         self.assertIn('href="../changes/US/index.html"', html)
         self.assertIn('href="../changes/JP/index.html"', html)
-        self.assertIn('href="../downloads/JP/change-report.xlsx"', html)
 
     def test_assert_preview_output_contract_should_require_word_when_enabled(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -373,22 +394,23 @@ class TestBuildReviewPreview(unittest.TestCase):
             for relative_path in (
                 "index.html",
                 "manual/index.html",
-                "manual/US/en/index.html",
+                "manual/US/JE-1000F/en/index.html",
                 "changes/index.html",
                 "changes/US/index.html",
-                "changes/US/report-index.html",
-                "changes/US/report-summary.html",
-                "changes/US/report-fields.html",
-                "changes/US/report-pages.html",
-                "changes/US/report-files.html",
+                "changes/US/JE-1000F/index.html",
+                "changes/US/JE-1000F/report-index.html",
+                "changes/US/JE-1000F/report-summary.html",
+                "changes/US/JE-1000F/report-fields.html",
+                "changes/US/JE-1000F/report-pages.html",
+                "changes/US/JE-1000F/report-files.html",
                 "generated/meta.json",
                 "generated/changes.json",
                 "generated/workspace.json",
-                "downloads/US/change-report.xlsx",
-                "downloads/US/changes-summary.csv",
-                "downloads/US/changes-pages.csv",
-                "downloads/US/changes-fields.csv",
-                "downloads/US/changes-files.csv",
+                "downloads/US/JE-1000F/change-report.xlsx",
+                "downloads/US/JE-1000F/changes-summary.csv",
+                "downloads/US/JE-1000F/changes-pages.csv",
+                "downloads/US/JE-1000F/changes-fields.csv",
+                "downloads/US/JE-1000F/changes-files.csv",
             ):
                 target = output_dir / relative_path
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -396,27 +418,36 @@ class TestBuildReviewPreview(unittest.TestCase):
 
             workspace = {
                 "defaults": {
-                    "manual_url": "manual/US/en/index.html",
-                    "change_url": "changes/US/index.html",
+                    "manual_url": "manual/US/JE-1000F/en/index.html",
+                    "change_url": "changes/US/JE-1000F/index.html",
                 },
                 "families": [
                     {
                         "family": "US",
-                        "change_workbook_url": "downloads/US/change-report.xlsx",
-                        "csv_urls": {
-                            "changes-summary.csv": "downloads/US/changes-summary.csv",
-                            "changes-pages.csv": "downloads/US/changes-pages.csv",
-                            "changes-fields.csv": "downloads/US/changes-fields.csv",
-                            "changes-files.csv": "downloads/US/changes-files.csv",
-                        },
+                        "change_index_url": "changes/US/index.html",
                         "models": [
                             {
                                 "model": "JE-1000F",
+                                "change_index_url": "changes/US/JE-1000F/index.html",
+                                "change_workbook_url": "downloads/US/JE-1000F/change-report.xlsx",
+                                "csv_urls": {
+                                    "changes-summary.csv": "downloads/US/JE-1000F/changes-summary.csv",
+                                    "changes-pages.csv": "downloads/US/JE-1000F/changes-pages.csv",
+                                    "changes-fields.csv": "downloads/US/JE-1000F/changes-fields.csv",
+                                    "changes-files.csv": "downloads/US/JE-1000F/changes-files.csv",
+                                },
+                                "report_files": {
+                                    "report-index.html": "changes/US/JE-1000F/report-index.html",
+                                    "report-summary.html": "changes/US/JE-1000F/report-summary.html",
+                                    "report-fields.html": "changes/US/JE-1000F/report-fields.html",
+                                    "report-pages.html": "changes/US/JE-1000F/report-pages.html",
+                                    "report-files.html": "changes/US/JE-1000F/report-files.html",
+                                },
                                 "languages": [
                                     {
                                         "lang": "en",
-                                        "manual_url": "manual/US/en/index.html",
-                                        "word_url": "downloads/US/en/review-manual.docx",
+                                        "manual_url": "manual/US/JE-1000F/en/index.html",
+                                        "word_url": "downloads/US/JE-1000F/en/review-manual.docx",
                                     }
                                 ],
                             }
@@ -428,7 +459,7 @@ class TestBuildReviewPreview(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "review-manual.docx"):
                 build_review_preview.assert_preview_output_contract(output_dir, workspace, require_word=True)
 
-            word_path = output_dir / "downloads" / "US" / "en" / "review-manual.docx"
+            word_path = output_dir / "downloads" / "US" / "JE-1000F" / "en" / "review-manual.docx"
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_text("demo", encoding="utf-8")
             build_review_preview.assert_preview_output_contract(output_dir, workspace, require_word=True)
@@ -436,4 +467,3 @@ class TestBuildReviewPreview(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -74,7 +74,7 @@
 
    \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{1. Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
+   \HBTypeSpecNote{\HBSpecMarkerOne{} Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
    }
 
 
@@ -193,7 +193,7 @@
 
    .. raw:: html
    
-      <p class="hb-spec-footnote">1. Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>
+      <p class="hb-spec-footnote">① Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>
 
    .. raw:: html
    

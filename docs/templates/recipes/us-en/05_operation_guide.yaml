@@ -3,23 +3,23 @@ template: templates/page_us-en/05_operation_guide_placeholder.rst
 field_map:
   DEFAULT_STANDBY_DURATION:
     row_key: default_standby_duration
-    pages: [specifications]
+    pages: [operation_guide]
     usage_type: page_value
   ENERGY_SAVING_AUTO_OFF_DURATION:
     row_key: energy_saving_auto_off_duration
-    pages: [specifications]
+    pages: [operation_guide]
     usage_type: page_value
   ENERGY_SAVING_AC_THRESHOLD:
     row_key: energy_saving_ac_threshold
-    pages: [specifications]
+    pages: [operation_guide]
     usage_type: page_value
   ENERGY_SAVING_DC_THRESHOLD:
     row_key: energy_saving_dc_threshold
-    pages: [specifications]
+    pages: [operation_guide]
     usage_type: page_value
   USB_C_HIGH_POWER_PORT_LABEL:
     row_key: usb_c_high_power_port
-    pages: [specifications]
+    pages: [operation_guide]
     usage_type: page_value
     value_role: label
 required_row_keys: []

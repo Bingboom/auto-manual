@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-03-31T10:56:11.490021+00:00",
+  "git_sha": "570bbdaf6e2ac750019c427d078ec13f4c32cd62",
+  "model": "JE-2000E",
+  "region": "CN",
+  "lang": null,
+  "runtime_bundle_dir": "docs/_build/JE-2000E/CN/rst",
+  "review_dir": "docs/_review/JE-2000E/CN",
+  "index_path": "docs/_review/JE-2000E/CN/index.rst",
+  "page_files": [
+    "page/00_preface.rst",
+    "page/01_meaning_of_symbols.rst",
+    "page/02_whats_in_the_box.rst",
+    "page/03_product_overview_placeholder.rst",
+    "page/04_lcd_display_placeholder.rst",
+    "page/05_operation_guide_placeholder.rst",
+    "page/06_ups_mode.rst",
+    "page/08_charging_methods.rst",
+    "page/09_storage_and_maintenance.rst",
+    "page/10_troubleshooting.rst",
+    "page/11_warranty.rst",
+    "page/12_app_setup_placeholder.rst",
+    "page/charging.rst",
+    "page/safety_zh.rst",
+    "page/spec_zh.rst"
+  ],
+  "generated_files": [
+    "generated/JE-2000E/draft/03_product_overview_zh.rst",
+    "generated/JE-2000E/draft/05_operation_guide_zh.rst",
+    "generated/JE-2000E/draft/12_app_setup_zh.rst",
+    "generated/JE-2000E/spec_zh.rst"
+  ],
+  "override_files": [
+    "docs/_review/JE-2000E/CN/overrides/README.md"
+  ],
+  "page_manifest": "docs/manifests/manual_zh.yaml",
+  "recipe_ids": [
+    "03_product_overview",
+    "05_operation_guide",
+    "12_app_setup"
+  ],
+  "snippet_ids": [],
+  "spec_master": {
+    "path": "data/phase1/Spec_Master.csv",
+    "sha256": "3e44eac75ca73942bbb24c47d77da0e61e41f4b75666c3f53c21eb6b2f69c10f"
+  },
+  "last_synced_at": "2026-03-31T10:56:23.808009+00:00",
+  "last_sync_scope": "params",
+  "last_sync_files": [
+    "generated/JE-2000E/draft/03_product_overview_zh.rst",
+    "generated/JE-2000E/draft/05_operation_guide_zh.rst",
+    "generated/JE-2000E/draft/12_app_setup_zh.rst",
+    "generated/JE-2000E/spec_zh.rst",
+    "page/spec_zh.rst"
+  ]
+}

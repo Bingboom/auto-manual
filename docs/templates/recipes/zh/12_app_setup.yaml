@@ -1,0 +1,7 @@
+page_id: 12_app_setup
+template: templates/page_zh/12_app_setup_placeholder.rst
+field_map: {}
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 12_app_setup

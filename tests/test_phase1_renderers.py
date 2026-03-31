@@ -563,5 +563,135 @@ class TestPhase1Renderers(unittest.TestCase):
             self.assertEqual("涓汇仾浠曟", data["title_main"])
             self.assertEqual("鍩烘湰鎯呭牨", data["sections"][0]["title"])
 
+    def test_collect_spec_content_uses_spec_titles_section_order_when_master_order_is_blank(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            titles_csv = Path(td) / "spec_titles.csv"
+            titles_csv.write_text(
+                "title_en,section_order,title_jp\n"
+                "SPECIFICATIONS,,SPECIFICATIONS\n"
+                "GENERAL INFO,1,GENERAL INFO\n"
+                "OUTPUT PORTS,3,OUTPUT PORTS\n",
+                encoding="utf-8",
+            )
+
+            blocks = [
+                {
+                    "Region": "US",
+                    "Model": "JHP-2000A",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Page": "specifications",
+                    "Section": "OUTPUT PORTS",
+                    "Section_order": "",
+                    "Row_order": "1",
+                    "Row_key": "ac_output",
+                    "Row_label_source": "AC Output",
+                    "Line_order": "1",
+                    "Param_source": "",
+                    "Value_source": "1800W",
+                    "page_title_en": "SPECIFICATIONS",
+                    "section_title_en": "OUTPUT PORTS",
+                    "enabled": "1",
+                },
+                {
+                    "Region": "US",
+                    "Model": "JHP-2000A",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Page": "specifications",
+                    "Section": "GENERAL INFO",
+                    "Section_order": "",
+                    "Row_order": "1",
+                    "Row_key": "product_name",
+                    "Row_label_source": "Product Name",
+                    "Line_order": "1",
+                    "Param_source": "",
+                    "Value_source": "Demo Product",
+                    "section_title_en": "GENERAL INFO",
+                    "enabled": "1",
+                },
+            ]
+
+            data = renderers.collect_spec_content(
+                blocks=blocks,
+                sku_id="JB1000",
+                lang="en",
+                vars_map={
+                    "model": "JHP-2000A",
+                    "region": "US",
+                    "spec_titles_csv": str(titles_csv),
+                },
+            )
+
+            self.assertEqual(
+                ["GENERAL INFO", "OUTPUT PORTS"],
+                [section["title"] for section in data["sections"]],
+            )
+
+    def test_collect_spec_content_prefers_master_section_order_over_spec_titles(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            titles_csv = Path(td) / "spec_titles.csv"
+            titles_csv.write_text(
+                "title_en,section_order,title_jp\n"
+                "SPECIFICATIONS,,SPECIFICATIONS\n"
+                "GENERAL INFO,1,GENERAL INFO\n"
+                "OUTPUT PORTS,3,OUTPUT PORTS\n",
+                encoding="utf-8",
+            )
+
+            blocks = [
+                {
+                    "Region": "US",
+                    "Model": "JHP-2000A",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Page": "specifications",
+                    "Section": "OUTPUT PORTS",
+                    "Section_order": "1",
+                    "Row_order": "1",
+                    "Row_key": "ac_output",
+                    "Row_label_source": "AC Output",
+                    "Line_order": "1",
+                    "Param_source": "",
+                    "Value_source": "1800W",
+                    "page_title_en": "SPECIFICATIONS",
+                    "section_title_en": "OUTPUT PORTS",
+                    "enabled": "1",
+                },
+                {
+                    "Region": "US",
+                    "Model": "JHP-2000A",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Page": "specifications",
+                    "Section": "GENERAL INFO",
+                    "Section_order": "9",
+                    "Row_order": "1",
+                    "Row_key": "product_name",
+                    "Row_label_source": "Product Name",
+                    "Line_order": "1",
+                    "Param_source": "",
+                    "Value_source": "Demo Product",
+                    "section_title_en": "GENERAL INFO",
+                    "enabled": "1",
+                },
+            ]
+
+            data = renderers.collect_spec_content(
+                blocks=blocks,
+                sku_id="JB1000",
+                lang="en",
+                vars_map={
+                    "model": "JHP-2000A",
+                    "region": "US",
+                    "spec_titles_csv": str(titles_csv),
+                },
+            )
+
+            self.assertEqual(
+                ["OUTPUT PORTS", "GENERAL INFO"],
+                [section["title"] for section in data["sections"]],
+            )
+
 if __name__ == "__main__":
     unittest.main()

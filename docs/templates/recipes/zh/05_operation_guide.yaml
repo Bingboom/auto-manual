@@ -1,0 +1,7 @@
+page_id: 05_operation_guide
+template: templates/page_zh/05_operation_guide_placeholder.rst
+field_map: {}
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 05_operation_guide
