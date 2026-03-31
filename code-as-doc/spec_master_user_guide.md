@@ -25,7 +25,7 @@ It answers the practical question: "I have a piece of manual data. Which file an
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
 | Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
 | Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
-| Spec page title translation | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title | Only for visible spec page titles |
+| Spec page title and section metadata | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title/section | Use this for visible spec title localization and default section ordering |
 | Safety intro prose | [`docs/templates/page_*/safety_*.rst`](../docs/templates) | family safety templates | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
 
 ## 2. Current Phase1 CSV Files
@@ -59,7 +59,7 @@ This section is the editor-facing filling guide.
 | --- | --- | --- |
 | `Page` | visible page ownership | Use `specifications`, `Product overview`, or `Product overview, specifications,` |
 | `Section` | logical group | Use the visible spec section for spec rows; use internal container sections for page-value rows |
-| `Section_order` | section order | Keep section order consistent with current section conventions |
+| `Section_order` | section order | Optional. If filled in `Spec_Master.csv`, it is the highest-priority section order; if blank, the renderer can fall back to [`spec_titles.csv`](../data/phase1/spec_titles.csv) |
 | `Row_order` | row order inside a section | Use `1`, `2`, `3`, ... inside the same `document_key + Page + Section`; keep the same value across all lines of one logical row |
 | `Row_key` | stable machine key | Same concept should use the same `Row_key` across regions; do not treat `Row_key` alone as a unique row ID |
 | `Row_label_*` | visible row label | Fill the visible label that should appear in the final output |
@@ -518,11 +518,12 @@ That means a title-map change can affect diff-report output even when the visibl
 
 ## 6. [`spec_titles.csv`](../data/phase1/spec_titles.csv) Rule
 
-[`spec_titles.csv`](../data/phase1/spec_titles.csv) is only the localized title dictionary for the visible spec page.
+[`spec_titles.csv`](../data/phase1/spec_titles.csv) is the visible spec title and section-metadata table.
 
 Current typical fields:
 
 - `title_en`
+- `section_order`
 - `title_zh`
 - `title_jp`
 - `title_fr`
@@ -535,6 +536,12 @@ Current recommended scope:
 - `INPUT PORTS`
 - `OUTPUT PORTS`
 - `ENVIRONMENTAL OPERATING TEMPERATURE`
+
+Current order rule:
+
+- use `section_order` here as the default order for visible spec sections
+- if a row in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) already has `Section_order`, that explicit value wins
+- if `Section_order` is blank in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), the renderer may fall back to `spec_titles.csv section_order`
 
 Do not use [`spec_titles.csv`](../data/phase1/spec_titles.csv) for:
 

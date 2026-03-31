@@ -338,6 +338,7 @@ Resolution source:
 - `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
 - `document_key` should be `[Model]_[Region]_[Source_lang]`
 - `Row_order` is now the explicit row order inside each `document_key + Page + Section`; `Line_order` only controls the order of multiple lines inside one logical row
+- `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer used in `Spec_Master.csv`; choose rows by `Region` + `Model`
 - source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
 

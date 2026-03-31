@@ -178,6 +178,7 @@ Parallel-language template note:
 - `Source_lang` stores that source-language code explicitly; use values such as `en`, `ja`, and `zh`, and do not rely on `Region` to infer it
 - `document_key` is a derived helper column and must equal `[Model]_[Region]_[Source_lang]`
 - `Row_order` is now the explicit row order inside each `document_key + Page + Section`, while `Line_order` controls the line order inside one logical row
+- `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer part of `Spec_Master.csv`; target rows by `Region` + `Model`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet
 - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` hold comma-separated `Footnote_id` values; do not handwrite `①②③` into the visible spec text columns
