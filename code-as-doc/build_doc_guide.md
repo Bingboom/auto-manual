@@ -228,14 +228,14 @@ python build.py all --config config.zh.yaml --model JE-2000E --region CN
 
 PR review-preview note:
 
-- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the review-preview workflow switches to `config.zh.yaml --model JE-2000E --region CN --source runtime`
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the review-preview workflow switches the default landing target to `config.zh.yaml --model JE-2000E --region CN --source runtime`, but the packaged workspace still includes every existing review model
 
 ### 3.6 Package a Review Preview for Design
 
 Use this when design needs the rendered review HTML plus the current family-level diff package:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --all-review-models
 ```
 
 Default packaged output:
@@ -244,10 +244,10 @@ Default packaged output:
 
 This package contains:
 
-- `index.html`: the workspace root for region-family navigation
-- `manual/`: review-based HTML, grouped by family and model, with language-specific entries inside each model group
-- `changes/`: family-level diff pages plus a family hub at `changes/index.html`
-- `downloads/`: family-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
+- `index.html`: the workspace root for family/model/language navigation
+- `manual/`: review-based HTML, grouped by family, model, and language
+- `changes/`: family hubs plus model-level diff pages at `changes/<family>/<model>/`
+- `downloads/`: model-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
 - `generated/meta.json`: branch / commit metadata
 - `generated/changes.json`: grouped changed files, review pages, and download metadata
 - `generated/workspace.json`: the workspace data contract used by the root page
@@ -260,8 +260,9 @@ Packaging rule:
 - CI treats `review-manual.docx` and `change-report.xlsx` as required artifacts
 - `--skip-word` is for local debugging only and is not used by the CI workflow
 - the workspace hides families with no `_review` content, so the packaged site only shows available families
-- diff, workbook, and CSV outputs stay family-level shared assets, not language-specific artifacts
-- the default change entry in the packaged workspace now opens the family hub first, so reviewers can choose `US` or `JP` explicitly
+- with `--all-review-models`, the packaged site includes every existing review model and keeps the requested target as the default landing entry
+- diff, workbook, and CSV outputs stay shared inside one `family + model` package, not per-language artifacts
+- the default change entry in the packaged workspace now opens the selected model diff page, while `changes/index.html` and `changes/<family>/index.html` stay available as hubs
 
 Vercel note:
 

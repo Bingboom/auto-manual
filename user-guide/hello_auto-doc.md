@@ -112,9 +112,9 @@ Rules:
 - when that workspace is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
 - designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
-- the packaged preview now also includes `downloads/review-manual.docx`, `downloads/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
+- the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
 - families without `_review` content are hidden, so the preview only shows available families
-- the packaged `changes/index.html` now opens a family hub first, so reviewers can switch between available families such as `US` and `JP` before jumping into a family-specific change report
+- the packaged `changes/index.html` now opens a family hub first, and each family hub fans out to model-specific change pages
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
 - after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
@@ -419,7 +419,7 @@ Source mode meaning:
 
 PR preview note:
 
-- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview builds `config.zh.yaml` for `JE-2000E / CN` automatically
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
 
 `publish` behavior:
 
