@@ -140,6 +140,19 @@ def _should_require_value_source(row: dict[str, str]) -> bool:
     return row_kind not in {"note", "footnote"}
 
 
+def _pick_document_key(row: dict[str, str]) -> str:
+    return _first_non_empty(row, ("document_key", "Document_key"))
+
+
+def _expected_document_key(row: dict[str, str]) -> str:
+    model = _first_non_empty(row, ("Model", "model"))
+    region = _first_non_empty(row, ("Region", "region"))
+    source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
+    if not model or not region or not source_lang:
+        return ""
+    return f"{model}_{region}_{source_lang}"
+
+
 def _pick_value(row: dict[str, str], lang: str) -> str:
     normalized_lang = (lang or "").strip().lower()
     source_lang = source_language_for_row(row)
@@ -355,6 +368,21 @@ def collect_spec_master_validation_issues(
             )
         )
 
+    has_document_key_header = "document_key" in rows[0] or "Document_key" in rows[0]
+    if not has_document_key_header:
+        issues.append(
+            SpecMasterValidationIssue(
+                code="MISSING_DOCUMENT_KEY_HEADER",
+                message=(
+                    "Spec_Master.csv must include a `document_key` column derived as "
+                    "[Model]_[Region]_[Source_lang]."
+                ),
+                path=spec_master_csv,
+                model=model,
+                region=region,
+            )
+        )
+
     for target in targets:
         target_rows = [row for row in rows if _row_matches_target(row, model=target.model, region=target.region)]
         target_footnote_rows = [
@@ -400,6 +428,40 @@ def collect_spec_master_validation_issues(
                         row_key=row_key,
                     )
                 )
+            if has_document_key_header:
+                document_key = _pick_document_key(row)
+                if not document_key:
+                    issues.append(
+                        SpecMasterValidationIssue(
+                            code="MISSING_DOCUMENT_KEY",
+                            message=(
+                                f"Latest row_key '{row_key}' must declare `document_key` as "
+                                "[Model]_[Region]_[Source_lang]"
+                            ),
+                            path=spec_master_csv,
+                            line=line_no,
+                            model=target.model,
+                            region=target.region,
+                            row_key=row_key,
+                        )
+                    )
+                else:
+                    expected_document_key = _expected_document_key(row)
+                    if expected_document_key and document_key != expected_document_key:
+                        issues.append(
+                            SpecMasterValidationIssue(
+                                code="INVALID_DOCUMENT_KEY",
+                                message=(
+                                    f"Latest row_key '{row_key}' has document_key '{document_key}' "
+                                    f"but expected '{expected_document_key}'"
+                                ),
+                                path=spec_master_csv,
+                                line=line_no,
+                                model=target.model,
+                                region=target.region,
+                                row_key=row_key,
+                            )
+                        )
             if not _first_non_empty(row, ("Row_label_source", "row_label_source")):
                 issues.append(
                     SpecMasterValidationIssue(

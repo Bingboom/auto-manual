@@ -76,6 +76,7 @@ The manual system now has four layers, but they are used at different stages.
    - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
    - `Spec_Footnotes.csv` and `Spec_Notes.csv` now match rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
+   - `document_key` is a derived helper column and must equal `[Model]_[Region]_[Source_lang]`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
@@ -335,6 +336,7 @@ Resolution source:
 - use `Product overview, specifications,` when the same row is intentionally shared by both pages
 - `Row_label_source`, `Param_source`, and `Value_source` should store the row's source-manual text
 - `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
+- `document_key` should be `[Model]_[Region]_[Source_lang]`
 - `project_code` / `项目代码` is no longer used in `Spec_Master.csv`; choose rows by `Region` + `Model`
 - source-language rows must keep their actual source text in `Row_label_source`, `Param_source`, and `Value_source`
 

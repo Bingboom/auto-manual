@@ -72,6 +72,7 @@ This section is the editor-facing filling guide.
 | `Model` | target model | Must match the intended target build |
 | `Region` | target region | Must match the intended target build |
 | `Source_lang` | source-language code | Store the row's source manual language as a normalized code such as `en`, `ja`, or `zh` |
+| `document_key` | derived document key | Must equal `[Model]_[Region]_[Source_lang]` |
 | `Is_Latest` | active row flag | Keep active rows as `TRUE` |
 
 Current schema note:
@@ -365,6 +366,7 @@ Current reality:
 - the sheet now uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-text columns
 - these source columns hold the row's actual source-manual text
 - `Source_lang` stores that source language explicitly as a normalized code such as `en`, `ja`, or `zh`
+- `document_key` must be the derived helper value `[Model]_[Region]_[Source_lang]`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer accepted; rename them to `*_source`
 
 Current practical rule:
@@ -374,6 +376,7 @@ Current practical rule:
 - source-language text must not stay in `*_en`; move it into `*_source`
 - keep `Source_lang` aligned with the real source columns; for example, if `Value_source` holds Japanese source text then `Source_lang` should be `ja`
 - `Source_lang` is now the explicit source-language declaration for the row; code no longer infers source language from `Region`
+- keep `document_key` aligned with the row identity as `[Model]_[Region]_[Source_lang]`
 - `*_source` must be populated for the language declared by `Source_lang`
 - keep the visible text correct first, and trust the row's explicit `Source_lang` workflow more than any legacy header alias
 - current audit expectation depends on `Source_lang`; `ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT` only applies to rows whose declared source language is English
