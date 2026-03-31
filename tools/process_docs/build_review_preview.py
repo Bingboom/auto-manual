@@ -38,12 +38,13 @@ REQUIRED_PREVIEW_FILES = (
     "generated/changes.json",
     "generated/workspace.json",
 )
-FAMILY_ORDER = ("US", "JP")
+FAMILY_ORDER = ("US", "JP", "CN")
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Spanish",
     "fr": "French",
     "ja": "Japanese",
+    "zh": "Chinese",
 }
 _MANUAL_SWITCHER_BLOCK_RE = re.compile(
     r"<!-- HB_MANUAL_SWITCHER_START -->.*?<!-- HB_MANUAL_SWITCHER_END -->\s*",
@@ -68,10 +69,12 @@ WORKSPACE_TARGETS: tuple[WorkspaceTarget, ...] = (
     WorkspaceTarget(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
     WorkspaceTarget(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
     WorkspaceTarget(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
+    WorkspaceTarget(family="CN", language="zh", config="config.zh.yaml", include_lang_in_output_path=False),
 )
 FAMILY_DIFF_CONFIGS = {
     "US": "config.us-en.yaml",
     "JP": "config.ja.yaml",
+    "CN": "config.zh.yaml",
 }
 
 
@@ -1346,6 +1349,13 @@ def family_targets(family: str) -> list[WorkspaceTarget]:
     return [target for target in WORKSPACE_TARGETS if target.family == family]
 
 
+def workspace_families_for_request(args: argparse.Namespace) -> tuple[str, ...]:
+    preferred_family = (args.region or "").strip().upper()
+    if preferred_family == "CN":
+        return ("CN",)
+    return FAMILY_ORDER
+
+
 def build_spec_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> dict[str, object]:
     config_path = resolve_path(target.config)
     source_mode = args.source
@@ -1472,7 +1482,7 @@ def rewrite_manual_tree_for_preview(
 
 def discover_workspace_families(args: argparse.Namespace) -> list[tuple[str, list[WorkspaceTarget], Path]]:
     discovered: list[tuple[str, list[WorkspaceTarget], Path]] = []
-    for family in FAMILY_ORDER:
+    for family in workspace_families_for_request(args):
         targets = family_targets(family)
         if not targets:
             continue

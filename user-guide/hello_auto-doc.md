@@ -413,6 +413,10 @@ Source mode meaning:
 - `runtime`: ignore `_review` and build from template/data
 - `review`: require `_review` and build from it
 
+PR preview note:
+
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview builds `config.zh.yaml` for `JE-2000E / CN` automatically
+
 `publish` behavior:
 
 - requires explicit `--model` and `--region`

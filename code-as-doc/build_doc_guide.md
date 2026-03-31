@@ -223,6 +223,10 @@ python build.py all --config config.zh.yaml --model JE-2000E --region CN
 
 `check` now also catches stale foreign model names and contract-required spec keys, required page-value selectors, and assets.
 
+PR review-preview note:
+
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the review-preview workflow switches to `config.zh.yaml --model JE-2000E --region CN --source runtime`
+
 ### 3.6 Package a Review Preview for Design
 
 Use this when design needs the rendered review HTML plus the current family-level diff package:

@@ -9,6 +9,7 @@ on:
     paths:
       - "docs/_review/**"
       - "docs/templates/**"
+      - "docs/manifests/**"
       - "data/phase1/**"
       - "build.py"
       - "tools/**"
@@ -17,6 +18,7 @@ on:
       - "config.us-es.yaml"
       - "config.us-fr.yaml"
       - "config.ja.yaml"
+      - "config.zh.yaml"
       - "README.md"
       - "code-as-doc/**"
       - "user-guide/**"
@@ -59,13 +61,34 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+      - name: Select preview target
+        id: preview-target
+        shell: bash
+        run: |
+          config="config.us-en.yaml"
+          model="JE-1000F"
+          region="US"
+          source="review"
+
+          changed_files="$(git diff --name-only "$FROM_REF" "$TO_REF")"
+          if printf '%s\n' "$changed_files" | grep -Eq '^(config\.zh\.yaml|docs/manifests/manual_zh\.yaml|docs/templates/page_zh/|docs/templates/recipes/zh/)'; then
+            config="config.zh.yaml"
+            model="JE-2000E"
+            region="CN"
+            source="runtime"
+          fi
+
+          echo "config=$config" >> "$GITHUB_OUTPUT"
+          echo "model=$model" >> "$GITHUB_OUTPUT"
+          echo "region=$region" >> "$GITHUB_OUTPUT"
+          echo "source=$source" >> "$GITHUB_OUTPUT"
       - name: Build review preview package (workspace)
         run: >
           python tools/process_docs/build_review_preview.py
-          --config config.us-en.yaml
-          --model JE-1000F
-          --region US
-          --source review
+          --config "${{ steps.preview-target.outputs.config }}"
+          --model "${{ steps.preview-target.outputs.model }}"
+          --region "${{ steps.preview-target.outputs.region }}"
+          --source "${{ steps.preview-target.outputs.source }}"
           --from-ref "$FROM_REF"
           --to-ref "$TO_REF"
       - name: Upload review preview artifact
