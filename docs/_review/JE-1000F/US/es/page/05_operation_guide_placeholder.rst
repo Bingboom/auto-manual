@@ -124,16 +124,16 @@ PANTALLA LCD
      - Apagado automático
      - La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.
    * -
-      - Encendido continuo (durante la carga o descarga)
-      - Encender
+     - Encendido continuo (durante la carga o descarga)
+     - Encender
      - Presione dos veces el botón de encendido principal cuando el producto esté encendido.
    * -
-      - Encendido continuo (durante la carga o descarga)
-      - Apagar
+     - Encendido continuo (durante la carga o descarga)
+     - Apagar
      - Presione el botón de encendido principal.
    * -
-      - Encendido continuo (durante la carga o descarga)
-      - Apagado automático
+     - Encendido continuo (durante la carga o descarga)
+     - Apagado automático
      - La pantalla LCD se apaga automáticamente después de 2 horas de inactividad.
 
 También puede configurar el modo de visualización de la pantalla en la aplicación Jackery.

@@ -16,7 +16,7 @@ CHARGING
    CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)
    --------------------------------------------
 
-   This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the _Jackery Battery Pack 2000 User Manual_.
+   This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the *Jackery Battery Pack 2000 User Manual*.
 
    **CAUTION**
 
