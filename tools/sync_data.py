@@ -39,6 +39,7 @@ TABLE_ORDER = (
     "spec_master",
 )
 SUPPORTED_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
+SUPPORTED_IDENTITIES = {"user", "bot"}
 ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Line_order", "Row_key", "Remark")
 _MARKDOWN_LINK_RE = re.compile(r"^\[(?P<label>[^\]]+)\]\((?P<target>[^)]+)\)$")
 
@@ -231,6 +232,15 @@ def _cli_bin(cfg: dict[str, Any]) -> str:
     return raw or "lark-cli"
 
 
+def _phase2_identity() -> str:
+    raw = str(os.environ.get("FEISHU_PHASE2_IDENTITY", "user")).strip().lower() or "user"
+    if raw not in SUPPORTED_IDENTITIES:
+        raise RuntimeError(
+            "FEISHU_PHASE2_IDENTITY must be one of: " + ", ".join(sorted(SUPPORTED_IDENTITIES))
+        )
+    return raw
+
+
 def _selected_tables(raw_tables: list[str]) -> tuple[str, ...]:
     if not raw_tables:
         return TABLE_ORDER
@@ -402,8 +412,9 @@ def _parse_json_payload(raw: str) -> dict[str, Any]:
 
 
 class LarkCliSource:
-    def __init__(self, *, cli_bin: str):
+    def __init__(self, *, cli_bin: str, identity: str = "user"):
         self.cli_bin = cli_bin
+        self.identity = identity
         self._field_name_cache: dict[tuple[str, str], dict[str, str]] = {}
 
     def _run_base_command(
@@ -445,7 +456,7 @@ class LarkCliSource:
                 args=[
                     "+field-list",
                     "--as",
-                    "user",
+                    self.identity,
                     "--base-token",
                     base_token,
                     "--table-id",
@@ -489,7 +500,7 @@ class LarkCliSource:
         args = [
             "+record-list",
             "--as",
-            "user",
+            self.identity,
             "--base-token",
             base_token,
             "--table-id",
@@ -627,7 +638,7 @@ class LarkCliSource:
                 args=[
                     "+record-upsert",
                     "--as",
-                    "user",
+                    self.identity,
                     "--base-token",
                     base_token,
                     "--table-id",
@@ -941,7 +952,7 @@ def sync_phase2_snapshot(
         raise RuntimeError("sync-data preflight failed:\n- " + "\n- ".join(preflight_errors))
     export_root = resolve_phase2_export_root(cfg, repo_root=ROOT, data_root=data_root)
     manifest_path = resolve_phase2_manifest_path(cfg, repo_root=ROOT, data_root=data_root)
-    resolved_source = source or LarkCliSource(cli_bin=cli_bin)
+    resolved_source = source or LarkCliSource(cli_bin=cli_bin, identity=_phase2_identity())
     run_at = built_at or datetime.now(timezone.utc)
 
     table_results: list[TableSyncResult] = []

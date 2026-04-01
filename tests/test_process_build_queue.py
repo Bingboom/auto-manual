@@ -191,12 +191,14 @@ class TestProcessBuildQueue(unittest.TestCase):
                 file_token, drive_url = process_build_queue.upload_word_to_drive(
                     cli_bin="lark-cli",
                     word_output_path=word_path,
+                    identity="bot",
                 )
 
         self.assertEqual("file_token_123", file_token)
         self.assertEqual("https://test-degwga5x6ex8.feishu.cn/file/file_token_123", drive_url)
         self.assertEqual(2, len(observed_args))
         self.assertEqual(["drive", "+upload"], observed_args[0][:2])
+        self.assertIn("bot", observed_args[0])
         self.assertEqual(["drive", "metas", "batch_query"], observed_args[1][:3])
         self.assertFalse(Path(observed_args[0][5]).is_absolute())
         self.assertEqual("manual_je1000f_us_en.docx", observed_args[0][7])
@@ -267,6 +269,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 process_build_queue,
                 "upload_word_to_drive",
                 return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="bot",
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,

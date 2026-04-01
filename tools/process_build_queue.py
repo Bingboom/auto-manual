@@ -26,6 +26,7 @@ from tools.sync_data import (  # noqa: E402
     _cli_command_exists,
     _cli_command_parts,
     _env_value,
+    _phase2_identity,
     _parse_json_payload,
     _provider_name,
     _resolved_cli_command_parts,
@@ -394,7 +395,7 @@ def _cli_relative_file_arg(path: Path) -> str:
     return "./" + relative.as_posix()
 
 
-def upload_word_to_drive(*, cli_bin: str, word_output_path: Path) -> tuple[str, str]:
+def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
     if not word_output_path.exists():
         raise RuntimeError(f"Word output was not created: {word_output_path}")
 
@@ -404,7 +405,7 @@ def upload_word_to_drive(*, cli_bin: str, word_output_path: Path) -> tuple[str, 
             "drive",
             "+upload",
             "--as",
-            "user",
+            identity,
             "--file",
             _cli_relative_file_arg(word_output_path),
             "--name",
@@ -425,7 +426,7 @@ def upload_word_to_drive(*, cli_bin: str, word_output_path: Path) -> tuple[str, 
             "metas",
             "batch_query",
             "--as",
-            "user",
+            identity,
             "--data",
             json.dumps(
                 {
@@ -554,7 +555,8 @@ def process_build_queue(
 
     binding = resolve_document_link_binding(cfg)
     cli_bin = _cli_bin(cfg)
-    source = LarkCliSource(cli_bin=cli_bin)
+    identity = _phase2_identity()
+    source = LarkCliSource(cli_bin=cli_bin, identity=identity)
     raw_records = source.fetch_records_with_ids(
         base_token=binding.base_token,
         table_id=binding.table_id,
@@ -619,6 +621,7 @@ def process_build_queue(
             _, drive_url = upload_word_to_drive(
                 cli_bin=cli_bin,
                 word_output_path=word_output_path,
+                identity=identity,
             )
             built_at = datetime.now().astimezone()
             source.upsert_record(

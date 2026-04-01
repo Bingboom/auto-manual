@@ -553,6 +553,33 @@ class TestSyncData(unittest.TestCase):
         self.assertIn("--json", seen_commands[0])
         self.assertEqual('{"构建结果":"SUCCESS"}', seen_payload_text[0])
 
+    def test_lark_cli_source_should_use_configured_identity(self) -> None:
+        source = sync_data.LarkCliSource(cli_bin="lark-cli", identity="bot")
+        seen_commands: list[list[str]] = []
+
+        def fake_run(cmd: list[str], **_: object) -> mock.Mock:
+            seen_commands.append(cmd)
+            return mock.Mock(
+                stdout=json.dumps(
+                    {
+                        "data": {
+                            "items": [{"field_id": "fld_document_key", "field_name": "Document_Key"}],
+                            "total": 1,
+                        },
+                        "ok": True,
+                    }
+                )
+            )
+
+        with mock.patch(
+            "tools.sync_data.shutil.which",
+            return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
+        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+            source._field_name_map(base_token="app_token", table_id="tbl_document_link")
+
+        self.assertIn("--as", seen_commands[0])
+        self.assertIn("bot", seen_commands[0])
+
 
 if __name__ == "__main__":
     unittest.main()
