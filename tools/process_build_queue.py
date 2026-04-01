@@ -209,12 +209,15 @@ def _is_immediate_trigger_enabled(value: Any) -> bool:
     return text in {"1", "true", "y", "yes", "checked"}
 
 
+def _is_trigger_requested(value: Any) -> bool:
+    return _scalar_text(value).strip().lower() in TRIGGER_VALUES
+
+
 def pending_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
     return [
         record
         for record in parse_queue_records(raw_records)
-        if record.trigger_value.strip().lower() in TRIGGER_VALUES
-        or _is_immediate_trigger_enabled(record.immediate_trigger_value)
+        if _is_trigger_requested(record.trigger_value)
     ]
 
 

@@ -138,7 +138,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             fields[process_build_queue.BUILD_STARTED_AT_FIELD],
         )
 
-    def test_pending_queue_records_should_accept_immediate_checkbox(self) -> None:
+    def test_pending_queue_records_should_not_accept_immediate_checkbox_without_trigger(self) -> None:
         records = process_build_queue.pending_queue_records(
             [
                 {
@@ -149,6 +149,25 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
                         process_build_queue.TRIGGER_FIELD: ["已构建"],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                }
+            ]
+        )
+
+        self.assertEqual([], records)
+
+    def test_pending_queue_records_should_accept_triggered_row_with_immediate_checkbox(self) -> None:
+        records = process_build_queue.pending_queue_records(
+            [
+                {
+                    "record_id": "rec_immediate",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                        process_build_queue.DOCUMENT_KEY_FIELD: [{"id": "recvfw0zG4PzxS"}],
+                        process_build_queue.VERSION_FIELD: ["1.0"],
+                        process_build_queue.LANG_FIELD: ["en"],
+                        process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
                     },
                 }

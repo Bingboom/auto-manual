@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      trigger_source:
+        description: Optional source label for this queue run
+        required: false
+        type: string
+      queue_record_id:
+        description: Optional Document_link record_id that triggered this run
+        required: false
+        type: string
 
 concurrency:
   group: feishu-build-queue
@@ -63,6 +72,13 @@ jobs:
             printf ' - %s\n' "${missing[@]}" >&2
             exit 1
           fi
+
+      - name: Print trigger context
+        shell: bash
+        run: |
+          echo "event_name=${GITHUB_EVENT_NAME}"
+          echo "trigger_source=${{ inputs.trigger_source || '' }}"
+          echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
 
       - uses: actions/setup-python@v5
         with:
