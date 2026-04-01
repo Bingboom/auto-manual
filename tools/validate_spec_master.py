@@ -133,13 +133,16 @@ def _pick_document_key(row: dict[str, str]) -> str:
     return _first_non_empty(row, ("document_key", "Document_key"))
 
 
-def _expected_document_key(row: dict[str, str]) -> str:
+def _accepted_document_keys(row: dict[str, str]) -> tuple[str, ...]:
     model = _first_non_empty(row, ("Model", "model"))
     region = _first_non_empty(row, ("Region", "region"))
     source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
-    if not model or not region or not source_lang:
-        return ""
-    return f"{model}_{region}_{source_lang}"
+    if not model or not region:
+        return ()
+    accepted = [f"{model}_{region}"]
+    if source_lang:
+        accepted.append(f"{model}_{region}_{source_lang}")
+    return tuple(dict.fromkeys(accepted))
 
 
 def _pick_value(row: dict[str, str], lang: str) -> str:
@@ -372,7 +375,7 @@ def collect_spec_master_validation_issues(
                 code="MISSING_DOCUMENT_KEY_HEADER",
                 message=(
                     "Spec_Master.csv must include a `document_key` column derived as "
-                    "[Model]_[Region]_[Source_lang]."
+                    "[Model]_[Region] or [Model]_[Region]_[Source_lang]."
                 ),
                 path=spec_master_csv,
                 model=model,
@@ -433,7 +436,7 @@ def collect_spec_master_validation_issues(
                             code="MISSING_DOCUMENT_KEY",
                             message=(
                                 f"Latest row_key '{row_key}' must declare `document_key` as "
-                                "[Model]_[Region]_[Source_lang]"
+                                "[Model]_[Region] or [Model]_[Region]_[Source_lang]"
                             ),
                             path=spec_master_csv,
                             line=line_no,
@@ -443,14 +446,15 @@ def collect_spec_master_validation_issues(
                         )
                     )
                 else:
-                    expected_document_key = _expected_document_key(row)
-                    if expected_document_key and document_key != expected_document_key:
+                    accepted_document_keys = _accepted_document_keys(row)
+                    if accepted_document_keys and document_key not in accepted_document_keys:
+                        expected_display = " or ".join(f"'{item}'" for item in accepted_document_keys)
                         issues.append(
                             SpecMasterValidationIssue(
                                 code="INVALID_DOCUMENT_KEY",
                                 message=(
                                     f"Latest row_key '{row_key}' has document_key '{document_key}' "
-                                    f"but expected '{expected_document_key}'"
+                                    f"but expected {expected_display}"
                                 ),
                                 path=spec_master_csv,
                                 line=line_no,
