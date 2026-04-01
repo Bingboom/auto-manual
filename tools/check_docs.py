@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.config_pages import GeneratedPage, RstIncludePage  # noqa: E402
+from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.build_docs import (  # noqa: E402
     BuildTarget,
     load_config,
@@ -103,14 +104,12 @@ def _checks_cfg(cfg: dict) -> dict:
     return checks_cfg_raw if isinstance(checks_cfg_raw, dict) else {}
 
 
-def resolve_spec_master_csv_path(cfg: dict) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("spec_master_csv")
-    if isinstance(raw, str) and raw.strip():
-        path = Path(raw.strip())
-        return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "data" / "phase1" / "Spec_Master.csv"
+def resolve_spec_master_csv_path(cfg: dict, *, data_root: str | None = None) -> Path:
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+    ).spec_master_csv
 
 
 def resolve_contracts_dir(*, docs_dir: Path) -> Path:
@@ -289,15 +288,22 @@ def collect_reference_issues(
     return issues
 
 
-def collect_target_identity_issues(cfg: dict, *, target: BuildTarget, langs: list[str]) -> list[CheckIssue]:
+def collect_target_identity_issues(
+    cfg: dict,
+    *,
+    target: BuildTarget,
+    langs: list[str],
+    data_root: str | None = None,
+) -> list[CheckIssue]:
     issues: list[CheckIssue] = []
-    spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     for lang in langs:
         product_name = resolve_product_name_for_build(
             cfg,
             model=target.model,
             region=target.region,
             lang=lang,
+            data_root=data_root,
         )
         substitutions = resolve_template_substitutions_from_spec_master(
             spec_master_csv,
@@ -386,8 +392,9 @@ def collect_identity_drift_issues(
     bundle_dir: Path,
     target: BuildTarget,
     langs: list[str],
+    data_root: str | None = None,
 ) -> list[CheckIssue]:
-    spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     checks_cfg = _checks_cfg(cfg)
     allowlist_raw = checks_cfg.get("allowed_foreign_identity_literals", [])
     allowlist = tuple(str(item).strip() for item in allowlist_raw if str(item).strip()) if isinstance(allowlist_raw, list) else ()
@@ -424,6 +431,7 @@ def collect_page_contract_issues(
     docs_dir: Path,
     target: BuildTarget,
     langs: list[str],
+    data_root: str | None = None,
 ) -> list[CheckIssue]:
     contracts = load_page_contracts(resolve_contracts_dir(docs_dir=docs_dir))
     if not contracts:
@@ -437,7 +445,7 @@ def collect_page_contract_issues(
         region=target.region,
         error_prefix="config.pages",
     ).pages
-    spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}
     issues: list[CheckIssue] = []
@@ -583,6 +591,7 @@ def collect_generated_page_issues(
     docs_dir: Path,
     target: BuildTarget,
     langs: list[str],
+    data_root: str | None = None,
 ) -> list[CheckIssue]:
     manifest_path = resolve_page_manifest_path(cfg, root=ROOT, model=target.model, region=target.region)
     if manifest_path is None:
@@ -602,7 +611,7 @@ def collect_generated_page_issues(
     if not generated_pages:
         return []
 
-    spec_master_csv = resolve_spec_master_csv_path(cfg)
+    spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
     registry_path = resolve_snippet_registry_path(docs_dir)
     registry_entries: list = []
@@ -1023,6 +1032,7 @@ def collect_check_issues(
     model: str | None,
     region: str | None,
     all_targets: bool,
+    data_root: str | None = None,
 ) -> list[CheckIssue]:
     cfg = load_config(cfg_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -1054,13 +1064,21 @@ def collect_check_issues(
             region=target.region,
             lang=target.lang,
         )
-        issues.extend(collect_target_identity_issues(cfg, target=target, langs=target_langs))
+        issues.extend(
+            collect_target_identity_issues(
+                cfg,
+                target=target,
+                langs=target_langs,
+                data_root=data_root,
+            )
+        )
         issues.extend(
             collect_page_contract_issues(
                 cfg,
                 docs_dir=docs_dir,
                 target=target,
                 langs=target_langs,
+                data_root=data_root,
             )
         )
         issues.extend(
@@ -1069,6 +1087,7 @@ def collect_check_issues(
                 docs_dir=docs_dir,
                 target=target,
                 langs=target_langs,
+                data_root=data_root,
             )
         )
         issues.extend(
@@ -1085,6 +1104,7 @@ def collect_check_issues(
                 bundle_dir=bundle_dir,
                 target=target,
                 langs=langs,
+                data_root=data_root,
             )
         )
     return issues
@@ -1093,6 +1113,7 @@ def collect_check_issues(
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Run lightweight quality checks against prepared manual bundles.")
     ap.add_argument("--config", required=True, help="Config YAML path")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
     ap.add_argument("--all-targets", action="store_true", help="Use build.targets from config")
@@ -1111,6 +1132,7 @@ def main(argv: list[str] | None = None) -> int:
             model=args.model,
             region=args.region,
             all_targets=args.all_targets,
+            data_root=args.data_root,
         )
     except RuntimeError as exc:
         print(f"[check] ERROR: {exc}", file=sys.stderr)

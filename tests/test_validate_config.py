@@ -114,6 +114,55 @@ class TestValidateConfig(unittest.TestCase):
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
 
+    def test_validate_should_accept_phase2_snapshot_config(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "paths": {
+                "structured_data_dir": "data/phase1",
+                "page_registry_csv": "data/phase1/page_registry.csv",
+                "page_blocks_dir": "data/phase1",
+            },
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "export_root": "data/phase2",
+                    "manifest_path": "data/phase2/snapshot_manifest.json",
+                    "base_token_env": "FEISHU_BASE_TOKEN",
+                    "tables": {
+                        "spec_master": {
+                            "table_id_env": "FEISHU_SPEC_MASTER_TABLE_ID",
+                            "view_id_env": "FEISHU_SPEC_MASTER_VIEW_ID",
+                        },
+                    },
+                },
+            },
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
+
+    def test_validate_should_reject_invalid_phase2_sync_table_key(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "sync": {
+                "phase2": {
+                    "tables": {
+                        "unknown_table": {
+                            "table_id_env": "FEISHU_UNKNOWN_TABLE_ID",
+                        },
+                    },
+                },
+            },
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertTrue(any("sync.phase2.tables contains unsupported table key" in msg for msg in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

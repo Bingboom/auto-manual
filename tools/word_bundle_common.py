@@ -7,6 +7,7 @@ import glob
 from pathlib import Path
 
 from tools.config_pages import CsvPage
+from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 from tools.phase1.renderers import apply_vars
@@ -150,44 +151,27 @@ def load_word_context(
     region: str | None,
     *,
     phase1_output_dir: Path | None = None,
+    data_root: str | None = None,
 ) -> Phase1Builder:
     base_paths = BuildPaths.from_root(paths.root)
-    cfg_paths_raw = cfg.get("paths", {})
-    cfg_paths = cfg_paths_raw if isinstance(cfg_paths_raw, dict) else {}
-    spec_master_cfg = cfg_paths.get("spec_master_csv")
-    spec_footnotes_cfg = cfg_paths.get("spec_footnotes_csv")
-    spec_notes_cfg = cfg_paths.get("spec_notes_csv")
-    spec_titles_cfg = cfg_paths.get("spec_titles_csv")
-    spec_master_csv = (
-        resolve_config_path(paths.root, spec_master_cfg.strip(), model, region)
-        if isinstance(spec_master_cfg, str) and spec_master_cfg.strip()
-        else base_paths.spec_master_csv
-    )
-    spec_footnotes_csv = (
-        resolve_optional_config_path(paths.root, spec_footnotes_cfg, model, region)
-        if isinstance(spec_footnotes_cfg, str)
-        else base_paths.spec_footnotes_csv
-    )
-    spec_notes_csv = (
-        resolve_optional_config_path(paths.root, spec_notes_cfg, model, region)
-        if isinstance(spec_notes_cfg, str)
-        else base_paths.spec_notes_csv
-    )
-    spec_titles_csv = (
-        resolve_optional_config_path(paths.root, spec_titles_cfg, model, region)
-        if isinstance(spec_titles_cfg, str)
-        else base_paths.spec_titles_csv
+    snapshot_paths = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=paths.root,
+        data_root=data_root,
+        model=model,
+        region=region,
     )
 
     build_paths = BuildPaths(
         root=base_paths.root,
-        page_registry=base_paths.page_registry,
+        page_registry=snapshot_paths.page_registry_csv,
+        page_blocks_dir=snapshot_paths.page_blocks_dir,
         template_dir=base_paths.template_dir,
         output_dir=phase1_output_dir or base_paths.output_dir,
-        spec_master_csv=spec_master_csv,
-        spec_footnotes_csv=spec_footnotes_csv,
-        spec_notes_csv=spec_notes_csv,
-        spec_titles_csv=spec_titles_csv,
+        spec_master_csv=snapshot_paths.spec_master_csv,
+        spec_footnotes_csv=snapshot_paths.spec_footnotes_csv,
+        spec_notes_csv=snapshot_paths.spec_notes_csv,
+        spec_titles_csv=snapshot_paths.spec_titles_csv,
     )
     return Phase1Builder(build_paths)
 

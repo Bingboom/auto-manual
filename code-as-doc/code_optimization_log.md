@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-03-15
+Updated: 2026-03-31
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -148,3 +148,19 @@ Why it mattered:
 - missing CSV keys, missing assets, and stale model names are caught earlier in `check`
 - release outputs now have a JSON / CSV traceability record with file hashes
 - maintainers have a fast page-scoped preview path and a lightweight runtime draft path
+
+## 9. 2026-03-31: Phase2 Snapshot Sync and Shared Data-Root Resolution
+
+Main outcomes:
+
+- added [`build.py sync-data`](../build.py) as the explicit local sync step for Feishu/Lark content snapshots
+- introduced [`tools/data_snapshot.py`](../tools/data_snapshot.py) to centralize structured-data path resolution
+- added `--data-root` support across build, check, diff-report, and release-manifest entrypoints
+- added [`data/phase2/`](../data/phase2) as the preferred frozen snapshot root while keeping [`data/phase1/`](../data/phase1) as the legacy baseline
+- kept [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv) and [`data/layout_params.csv`](../data/layout_params.csv) as repo-maintained inputs outside the Feishu sync flow
+
+Why it mattered:
+
+- online content governance is now separated cleanly from the offline build contract
+- build-time consumers no longer need their own ad hoc CSV path rules
+- maintainers can switch between phase1 and phase2 snapshots without changing manifests or renderer logic

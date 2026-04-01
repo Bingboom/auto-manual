@@ -1,0 +1,55 @@
+$ErrorActionPreference = "Stop"
+
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$repoRoot = Split-Path -Parent $scriptDir
+$pythonExe = Join-Path $repoRoot ".venv\Scripts\python.exe"
+if (-not (Test-Path $pythonExe)) {
+    $pythonExe = "python"
+}
+
+$nodePaths = @(
+    "C:\Program Files\nodejs",
+    (Join-Path $env:APPDATA "npm")
+)
+foreach ($pathEntry in $nodePaths) {
+    if ((Test-Path $pathEntry) -and (-not (($env:Path -split ";") -contains $pathEntry))) {
+        $env:Path = "$pathEntry;$env:Path"
+    }
+}
+
+$requiredEnvNames = @(
+    "FEISHU_PHASE2_BASE_TOKEN",
+    "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+    "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID"
+)
+foreach ($envName in $requiredEnvNames) {
+    if (-not (Get-Item -Path ("Env:" + $envName) -ErrorAction SilentlyContinue)) {
+        $userValue = [Environment]::GetEnvironmentVariable($envName, "User")
+        if ($userValue) {
+            Set-Item -Path ("Env:" + $envName) -Value $userValue
+        }
+    }
+}
+
+$logDir = Join-Path $repoRoot ".tmp\build-queue-listener"
+New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+$latestLogPath = Join-Path $logDir "latest.log"
+$dailyLogPath = Join-Path $logDir ("build-queue-listener-" + (Get-Date -Format "yyyyMMdd") + ".log")
+
+$command = @(
+    (Join-Path $repoRoot "build.py"),
+    "listen-build-queue",
+    "--config",
+    "config.yaml",
+    "--data-root",
+    "data/phase2"
+)
+$commandLine = ($command | ForEach-Object {
+    if ($_ -match "\s") { '"' + $_ + '"' } else { $_ }
+}) -join " "
+
+$header = "[{0}] {1} {2}" -f (Get-Date -Format "yyyy-MM-dd HH:mm:ss"), $pythonExe, $commandLine
+$header | Tee-Object -FilePath $latestLogPath | Tee-Object -FilePath $dailyLogPath -Append | Out-Null
+
+& $pythonExe @command 2>&1 | Tee-Object -FilePath $latestLogPath -Append | Tee-Object -FilePath $dailyLogPath -Append
+exit $LASTEXITCODE

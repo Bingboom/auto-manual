@@ -11,6 +11,13 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.data_snapshot import (
+    PAGE_REGISTRY_FILE,
+    SPEC_FOOTNOTES_FILE,
+    SPEC_MASTER_FILE,
+    SPEC_NOTES_FILE,
+    SPEC_TITLES_FILE,
+)
 from tools.phase1 import BuildPaths, BuildSelector, Phase1Builder  # noqa: E402
 
 
@@ -26,30 +33,48 @@ def parse_args() -> argparse.Namespace:
         help="skip page ids without registered renderers",
     )
 
-    ap.add_argument("--page-registry", default="data/phase1/page_registry.csv")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
+    ap.add_argument("--page-registry", default=None)
+    ap.add_argument("--page-blocks-dir", default=None)
     ap.add_argument("--template-dir", default="docs/templates")
     ap.add_argument("--out-dir", default="docs/generated")
     ap.add_argument(
         "--spec-master-csv",
-        default="data/phase1/Spec_Master.csv",
+        default=None,
         help="single source for spec page master rows",
     )
     ap.add_argument(
         "--spec-footnotes-csv",
-        default="data/phase1/Spec_Footnotes.csv",
+        default=None,
         help="optional source for spec page footnotes (pass empty to disable)",
     )
     ap.add_argument(
         "--spec-notes-csv",
-        default="data/phase1/Spec_Notes.csv",
+        default=None,
         help="optional source for spec page notes (pass empty to disable)",
     )
     ap.add_argument(
         "--spec-titles-csv",
-        default="data/phase1/spec_titles.csv",
+        default=None,
         help="optional source for spec page/section multilingual title overrides (pass empty to disable)",
     )
-    return ap.parse_args()
+    args = ap.parse_args()
+    data_root = ((args.data_root or "").strip() if isinstance(args.data_root, str) else "")
+    default_data_root = Path(data_root) if data_root else (Path("data") / "phase1")
+
+    if args.page_registry is None:
+        args.page_registry = str(Path("data") / "phase1" / PAGE_REGISTRY_FILE)
+    if args.page_blocks_dir is None:
+        args.page_blocks_dir = str(default_data_root)
+    if args.spec_master_csv is None:
+        args.spec_master_csv = str(default_data_root / SPEC_MASTER_FILE)
+    if args.spec_footnotes_csv is None:
+        args.spec_footnotes_csv = str(default_data_root / SPEC_FOOTNOTES_FILE)
+    if args.spec_notes_csv is None:
+        args.spec_notes_csv = str(default_data_root / SPEC_NOTES_FILE)
+    if args.spec_titles_csv is None:
+        args.spec_titles_csv = str(default_data_root / SPEC_TITLES_FILE)
+    return args
 
 
 def as_path(path_str: str) -> Path:
@@ -70,6 +95,7 @@ def main() -> None:
     paths = BuildPaths(
         root=ROOT,
         page_registry=as_path(args.page_registry),
+        page_blocks_dir=as_path(args.page_blocks_dir),
         template_dir=as_path(args.template_dir),
         output_dir=as_path(args.out_dir),
         spec_master_csv=as_path(args.spec_master_csv),

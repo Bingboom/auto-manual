@@ -257,6 +257,66 @@ class TestValidateSpecMaster(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertIn("MISSING_SOURCE_LANG", codes)
 
+    def test_collect_spec_master_validation_issues_should_accept_family_scoped_document_key(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "document_key,Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
+                        "JE-2000E_CN,JE-2000E,CN,zh,TRUE,specifications,product_name,,,Jackery 2000E",
+                        "JE-2000E_CN,JE-2000E,CN,zh,TRUE,specifications,model_no,,,JE-2000E",
+                        "JE-2000E_CN,JE-2000E,CN,zh,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-2000E",
+                region="CN",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertNotIn("INVALID_DOCUMENT_KEY", codes)
+            self.assertNotIn("MISSING_DOCUMENT_KEY", codes)
+
+    def test_collect_spec_master_validation_issues_should_accept_language_scoped_document_key(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "document_key,Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
+                        "JE-1000F_US_en,JE-1000F,US,en,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F_US_en,JE-1000F,US,en,TRUE,specifications,model_no,,,JE-1000F",
+                        "JE-1000F_US_en,JE-1000F,US,en,TRUE,Product overview,main_power_button,label,1,Main POWER Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertNotIn("INVALID_DOCUMENT_KEY", codes)
+            self.assertNotIn("MISSING_DOCUMENT_KEY", codes)
+
 
 if __name__ == "__main__":
     unittest.main()

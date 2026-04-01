@@ -4,8 +4,8 @@
   "lang": null,
   "page_manifest": "docs/manifests/manual_us-en.yaml",
   "spec_master": {
-    "path": "data/phase1/Spec_Master.csv",
-    "sha256": "67f218d49563426d24123419299d07c417b669ca13db089bb98690015a731136"
+    "path": "data/phase2/Spec_Master.csv",
+    "sha256": "ef0274e46835d96c32f6bd0ce8a21c280a6a40865847fd48508476d5a42a8823"
   },
   "recipe_ids": [
     "03_product_overview",

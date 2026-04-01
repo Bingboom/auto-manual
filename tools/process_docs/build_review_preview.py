@@ -189,7 +189,7 @@ def classify_changes(changed_files: list[str], model: str, region: str) -> list[
     groups = [
         ("Review Bundle", lambda p: p.startswith(review_prefix)),
         ("Shared Templates", lambda p: p.startswith("docs/templates/")),
-        ("Structured Data", lambda p: p.startswith("data/phase1/")),
+        ("Structured Data", lambda p: p.startswith("data/phase1/") or p.startswith("data/phase2/")),
         ("Automation And Build", lambda p: p == "build.py" or p.startswith("tools/") or p.startswith(".github/workflows/")),
         ("Maintainer Docs", lambda p: p == "README.md" or p.startswith("code-as-doc/") or p.startswith("user-guide/")),
     ]

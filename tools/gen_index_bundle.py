@@ -26,6 +26,7 @@ from tools.config_pages import (
     PdfInsertPage,
     RstIncludePage,
 )
+from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
     GeneratedPageRender,
     render_generated_page,
@@ -263,15 +264,17 @@ def _resolve_spec_master_csv_path(
     cfg: dict,
     *,
     repo_root: Path,
+    data_root: str | None,
     model: str | None,
     region: str | None,
 ) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("spec_master_csv")
-    if isinstance(raw, str) and raw.strip():
-        return resolve_config_path(repo_root, raw.strip(), model, region)
-    return repo_root / "data" / "phase1" / "Spec_Master.csv"
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+        model=model,
+        region=region,
+    ).spec_master_csv
 
 
 def _resolve_csv_rst_path(
@@ -1026,6 +1029,7 @@ def materialize_bundle(
     model: str | None = None,
     region: str | None = None,
     *,
+    data_root: str | None = None,
     docs_dir: Path | None = None,
     repo_root: Path | None = None,
     ensure_csv_pages: bool = True,
@@ -1066,6 +1070,7 @@ def materialize_bundle(
     spec_master_csv = _resolve_spec_master_csv_path(
         cfg,
         repo_root=actual_root,
+        data_root=data_root,
         model=target_model,
         region=target_region,
     )
@@ -1120,6 +1125,7 @@ def materialize_bundle(
             target_model,
             target_region,
             phase1_output_dir=generated_dir,
+            data_root=data_root,
         )
         ensure_csv_page_rsts(cfg, builder, target_model, target_region)
     page_dir.mkdir(parents=True, exist_ok=True)
@@ -1209,6 +1215,7 @@ def materialize_bundle(
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Optional product model for include/file paths")
     ap.add_argument("--region", default=None, help="Optional region for include/file paths")
     args = ap.parse_args()
@@ -1227,6 +1234,7 @@ def main() -> None:
         cfg,
         model=args.model,
         region=args.region,
+        data_root=args.data_root,
     )
     print(f"[gen_index_bundle] Wrote bundle index: {bundle.index_path}")
     print(f"[gen_index_bundle] Wrote wrapper index: {bundle.wrapper_index_path}")

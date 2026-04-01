@@ -16,6 +16,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             self.assertEqual(root / "data" / "phase1" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
             self.assertEqual(root / "data" / "phase1" / "Spec_Notes.csv", paths.spec_notes_csv)
             self.assertEqual(root / "data" / "phase1" / "spec_titles.csv", paths.spec_titles_csv)
+            self.assertEqual(root / "data" / "phase1", paths.page_blocks_dir)
 
     def test_spec_master_rows_can_be_detected(self) -> None:
         rows = [
@@ -43,6 +44,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=root / "data" / "phase1",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
@@ -79,6 +81,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=root / "data" / "phase1",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
@@ -111,6 +114,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=root / "data" / "phase1",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=spec_master_csv,
@@ -128,6 +132,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=root / "data" / "phase1",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
@@ -148,6 +153,7 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             paths = BuildPaths(
                 root=root,
                 page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=root / "data" / "phase1",
                 template_dir=root / "docs" / "templates",
                 output_dir=root / "docs" / "generated",
                 spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",

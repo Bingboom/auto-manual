@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.utils.spec_master import (
     is_page_value_row,
     page_value_matches,
@@ -264,12 +265,20 @@ def resolve_data_path(repo_root: Path, raw_path: object, fallback: Path) -> Path
     return fallback
 
 
-def resolve_spec_paths(repo_root: Path, *, config_path: Path | None) -> tuple[Path, Path | None]:
+def resolve_spec_paths(
+    repo_root: Path,
+    *,
+    config_path: Path | None,
+    data_root: str | None = None,
+) -> tuple[Path, Path | None]:
     cfg = load_config(config_path) if config_path is not None else {}
-    paths_cfg = cfg.get("paths", {}) if isinstance(cfg.get("paths", {}), dict) else {}
-    spec_master = resolve_data_path(repo_root, paths_cfg.get("spec_master_csv"), repo_root / "data" / "phase1" / "Spec_Master.csv")
-    spec_titles_raw = paths_cfg.get("spec_titles_csv")
-    spec_titles = resolve_data_path(repo_root, spec_titles_raw, repo_root / "data" / "phase1" / "spec_titles.csv")
+    snapshot_paths = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+    )
+    spec_master = snapshot_paths.spec_master_csv
+    spec_titles = snapshot_paths.spec_titles_csv
     if not spec_titles.exists():
         spec_titles = None
     return spec_master, spec_titles
@@ -1047,9 +1056,14 @@ def collect_field_diff_rows(
     repo_root: Path,
     file_rows: list[DiffRow],
     config_path: Path | None = None,
+    data_root: str | None = None,
 ) -> list[FieldDiffRow]:
     rows: list[FieldDiffRow] = []
-    spec_master_csv, spec_titles_csv = resolve_spec_paths(repo_root, config_path=config_path)
+    spec_master_csv, spec_titles_csv = resolve_spec_paths(
+        repo_root,
+        config_path=config_path,
+        data_root=data_root,
+    )
     spec_lookup_cache: dict[tuple[str, str, str], dict[tuple[str, str], SpecFieldSource]] = {}
     placeholder_lookup_cache: dict[tuple[str, str, str], dict[str, list[PlaceholderValueSource]]] = {}
     for file_row in file_rows:
@@ -1594,6 +1608,7 @@ def generate_diff_report(
     to_ref: str,
     output_dir: Path,
     config_path: Path | None = None,
+    data_root: str | None = None,
     ignore_initial_adds: bool = True,
 ) -> tuple[Path, Path]:
     raw_file_rows = collect_diff_rows(
@@ -1622,7 +1637,12 @@ def generate_diff_report(
     else:
         file_rows = raw_file_rows
 
-    field_rows = collect_field_diff_rows(repo_root=repo_root, file_rows=file_rows, config_path=config_path)
+    field_rows = collect_field_diff_rows(
+        repo_root=repo_root,
+        file_rows=file_rows,
+        config_path=config_path,
+        data_root=data_root,
+    )
     page_rows = collect_page_diff_rows(file_rows, field_rows)
 
     base_name = build_report_base_name(tracked_root, from_ref, to_ref)
@@ -1785,6 +1805,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Export git diff under a tracked docs subtree to CSV/HTML.")
     ap.add_argument("--tracked-root", default="docs/_review/JE-1000F", help="Tracked subtree root")
     ap.add_argument("--config", default="config.yaml", help="Config YAML path for resolving source CSV metadata")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref")
     ap.set_defaults(ignore_initial_adds=True)
@@ -1834,6 +1855,7 @@ def main(argv: list[str] | None = None) -> int:
             to_ref=args.to_ref,
             output_dir=output_dir,
             config_path=config_path,
+            data_root=args.data_root,
             ignore_initial_adds=args.ignore_initial_adds,
         )
     except subprocess.CalledProcessError as exc:

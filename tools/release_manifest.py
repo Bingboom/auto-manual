@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.build_docs import build_root_for_target, load_config, render_build_template, resolve_output_path, resolve_product_name_for_build  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
@@ -47,16 +48,6 @@ def _read_git_sha() -> str | None:
     return value or None
 
 
-def _resolve_configured_path(cfg: dict, key: str, fallback: Path) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get(key)
-    if isinstance(raw, str) and raw.strip():
-        path = Path(raw.strip())
-        return path if path.is_absolute() else (ROOT / path)
-    return fallback
-
-
 def _build_langs(cfg: dict) -> list[str]:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
@@ -81,6 +72,7 @@ def build_release_manifest(
     config_path: Path,
     model: str,
     region: str,
+    data_root: str | None = None,
     built_at: datetime | None = None,
 ) -> tuple[Path, Path]:
     cfg = load_config(config_path)
@@ -119,11 +111,21 @@ def build_release_manifest(
     json_path = manifest_dir / f"{timestamp}.json"
     csv_path = manifest_dir / f"{timestamp}.csv"
 
-    spec_master_csv = _resolve_configured_path(cfg, "spec_master_csv", ROOT / "data" / "phase1" / "Spec_Master.csv")
-    spec_footnotes_csv = _resolve_configured_path(cfg, "spec_footnotes_csv", ROOT / "data" / "phase1" / "Spec_Footnotes.csv")
-    spec_notes_csv = _resolve_configured_path(cfg, "spec_notes_csv", ROOT / "data" / "phase1" / "Spec_Notes.csv")
-    spec_titles_csv = _resolve_configured_path(cfg, "spec_titles_csv", ROOT / "data" / "phase1" / "spec_titles.csv")
-    product_name = resolve_product_name_for_build(cfg, model=model, region=region, lang=primary_lang)
+    snapshot_paths = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+        model=model,
+        region=region,
+    )
+    product_name = resolve_product_name_for_build(
+        cfg,
+        model=model,
+        region=region,
+        lang=primary_lang,
+        data_root=data_root,
+        repo_root=ROOT,
+    )
 
     manifest = {
         "git_sha": _read_git_sha(),
@@ -133,10 +135,10 @@ def build_release_manifest(
         "region": region,
         "build_languages": langs,
         "product_name": product_name,
-        "spec_master_csv": _repo_relative(spec_master_csv),
-        "spec_footnotes_csv": _repo_relative(spec_footnotes_csv),
-        "spec_notes_csv": _repo_relative(spec_notes_csv),
-        "spec_titles_csv": _repo_relative(spec_titles_csv),
+        "spec_master_csv": _repo_relative(snapshot_paths.spec_master_csv),
+        "spec_footnotes_csv": _repo_relative(snapshot_paths.spec_footnotes_csv),
+        "spec_notes_csv": _repo_relative(snapshot_paths.spec_notes_csv),
+        "spec_titles_csv": _repo_relative(snapshot_paths.spec_titles_csv),
         "tracked_review_dir": _repo_relative(review_dir),
         "runtime_bundle_dir": _repo_relative(runtime_bundle_dir),
         "word_output": _file_info(word_output),
@@ -180,6 +182,7 @@ def build_release_manifest(
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Write a release manifest for one explicit target.")
     ap.add_argument("--config", required=True, help="Config YAML path")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", required=True, help="Explicit release target model")
     ap.add_argument("--region", required=True, help="Explicit release target region")
     return ap.parse_args(argv)
@@ -196,6 +199,7 @@ def main(argv: list[str] | None = None) -> int:
             config_path=config_path,
             model=args.model,
             region=args.region,
+            data_root=args.data_root,
         )
     except RuntimeError as exc:
         print(f"[release-manifest] ERROR: {exc}", file=sys.stderr)

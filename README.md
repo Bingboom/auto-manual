@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-26
+Updated: 2026-04-01
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -15,7 +15,7 @@ For the fixed US + JP release matrix, you can also use:
 
 This repository is responsible for:
 
-- generating target-specific runtime bundles from templates and phase1 CSV data
+- generating target-specific runtime bundles from templates and frozen CSV snapshots, with `data/phase2/` as the preferred synced snapshot root
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
@@ -41,11 +41,39 @@ The primary entrypoint is [`build.py`](build.py).
 Typical review-first flow:
 
 ```bash
+python3 build.py sync-data --config config.yaml --data-root data/phase2
 python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
+python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
 python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py check --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py check --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
+python3 build.py process-build-queue --config config.yaml --data-root data/phase2
+python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
+```
+
+Phase2 snapshot note:
+
+- `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2), using the CLI's `base` record listing flow under the hood
+- `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain tokens such as `front.label` when the source table stores markdown-link wrappers like `[front.label](front.label)`
+- `sync-data` now resolves full field names through Base field metadata before writing CSVs, so long columns such as `Row_label_footnote_refs` are not lost when `lark-cli` abbreviates display headers in `base +record-list`
+- when `spec_master` is part of the sync, `sync-data` also regenerates [`data/phase2/row_key_mapping.csv`](data/phase2/row_key_mapping.csv) from the synced snapshot while preserving any existing manual `Row_key` / `Remark` entries
+- `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the fastest preflight on a new machine; it now reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API call
+- on Windows, the default `sync.phase2.cli_bin: lark-cli` now resolves to the installed `lark-cli` shim automatically, so no config override is required just to run `sync-data`
+- `python build.py process-build-queue --config config.yaml --data-root data/phase2` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, builds pending `Document_Key + Lang` rows where `是否触发文档构建 = Y`, uploads the generated Word file to Feishu Drive, writes the local Word path back to `Document directory`, writes the uploaded Drive URL to `Document link`, writes a timestamped status string to `构建结果`, and flips the trigger back to `已构建` on success
+- [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1) is the Windows-friendly queue wrapper for automation: it restores the local Node/npm path plus `FEISHU_PHASE2_*` user env vars, runs `build.py process-build-queue`, and writes logs into [`.tmp/process-build-queue/`](.tmp/process-build-queue)
+- `python build.py listen-build-queue --config config.yaml --data-root data/phase2` starts the push-based queue listener: it auto-subscribes the current `Document_link` base to docs events with the current user identity, waits on the Feishu long connection with the same user identity, and triggers `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
+- [`scripts/listen_build_queue.ps1`](scripts/listen_build_queue.ps1) is the Windows-friendly listener wrapper; on this machine it is launched from the Windows Startup folder so the listener starts after login and writes logs into [`.tmp/build-queue-listener/`](.tmp/build-queue-listener)
+- [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the remote GitHub Actions worker: after merge to the default branch and after repo secrets are configured, it runs every 5 minutes plus `workflow_dispatch`, uses `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, then consumes the `Document_link` queue without relying on any local machine
+- for remote immediate builds after merge to `main`, create a Feishu workflow with the combined condition `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml`; the queue still only processes rows whose trigger field is `Y`, and the checkbox acts as an accelerator instead of a standalone build request
+- the Document_link worker reuses `FEISHU_PHASE2_BASE_TOKEN` and also expects `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`
+- the remote bot flow also needs the Feishu app behind `FEISHU_APP_ID/FEISHU_APP_SECRET` to have read access to the phase2 source tables and write access to the `Document_link` table; otherwise the poller can read pending rows but cannot write back `开始构建时间` / `构建结果`
+- the push listener requires the Feishu self-built app to have the `drive.file.bitable_record_changed_v1` event added and published in the Open Platform console; without that event, the long connection stays idle even though the local listener is running
+- `page_registry.csv` and [`data/layout_params.csv`](data/layout_params.csv) stay repo-maintained and are not overridden by `--data-root`
+
+Dedicated zh bundle example:
+
+```bash
+python3 build.py check --config config.zh.yaml --model JE-2000E --region CN
+python3 build.py all --config config.zh.yaml --model JE-2000E --region CN
 ```
 
 Dedicated zh bundle example:
@@ -102,9 +130,9 @@ The command semantics and output layout are maintained in [`code-as-doc/build_do
 Use different surfaces for different stages:
 
 - shared template changes: [`docs/templates/`](docs/templates)
-- structured data changes: [`data/phase1/`](data/phase1)
+- structured data changes: preferred snapshot root [`data/phase2/`](data/phase2), with [`data/phase1/`](data/phase1) kept as the legacy baseline
   `Spec_Footnotes.csv` is now the footnote-definition table only. Keep one row per reusable `Footnote_id`, target rows by `Region` + `Model`, and let the system derive the visible superscript marker from `Footnote_order`.
-  `Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages. For page-value rows, keep `Row_key` as the concept and use `Slot_key` to describe the placeholder slot. The shared source-text columns are `Row_label_source`, `Param_source`, and `Value_source`; they hold the row's source-manual text. `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, or `zh`, and code no longer infers it from `Region`. `document_key` is a derived helper column and must equal `[Model]_[Region]_[Source_lang]`. `Row_order` is now a formal column and controls the row display order inside each `document_key + Page + Section`, while `Line_order` controls the order of multiple lines inside one logical row. Visible section defaults can live in `spec_titles.csv section_order`, but if `Spec_Master.csv Section_order` is filled, that explicit value has the highest priority. `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; source-language text must live in `*_source`. The old `project_code` / `项目代码` column has been removed; row targeting now uses `Region` + `Model`. Spec-cell footnotes are now referenced through `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs`; do not handwrite `①②③` into visible spec text.
+`Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages. For page-value rows, keep `Row_key` as the concept and use `Slot_key` to describe the placeholder slot. The shared source-text columns are `Row_label_source`, `Param_source`, and `Value_source`; they hold the row's source-manual text. `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, or `zh`, and code no longer infers it from `Region`. `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`. `Row_order` is now a formal column and controls the row display order inside each `document_key + Page + Section`, while `Line_order` controls the order of multiple lines inside one logical row. Visible section defaults can live in `spec_titles.csv section_order`, but if `Spec_Master.csv Section_order` is filled, that explicit value has the highest priority. `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; source-language text must live in `*_source`. The old `project_code` / `项目代码` column has been removed; row targeting now uses `Region` + `Model`. Spec-cell footnotes are now referenced through `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs`; do not handwrite `①②③` into visible spec text.
   `Spec_Notes.csv` now stores bottom-of-spec notes that are not tied to a superscript reference, such as trademark statements.
   `symbols_blocks.csv` stores symbols-page table copy, uses `Region` and `Model` to match target manuals like `Spec_Master.csv`, keeps `Source_lang` aligned with the same source-language code pattern, and includes an `image_path` field for the referenced icon asset. Leave `Region` / `Model` blank when one symbols row should be shared.
   Safety intro pages are now maintained as fixed RST templates under [`docs/templates/page_*/safety_*.rst`](docs/templates), wired through each family's manifest or page list. JP still keeps its detailed warning content in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow.
@@ -142,7 +170,8 @@ Use the document that owns the topic:
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
-- [`data/phase1/`](data/phase1): current operational CSV snapshot inputs
+- [`data/phase2/`](data/phase2): preferred Feishu-synced CSV snapshot inputs
+- [`data/phase1/`](data/phase1): legacy baseline snapshot inputs
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`docs/_review/`](docs/_review): target-specific review layer
 - [`docs/_build/`](docs/_build): runtime bundles and export outputs

@@ -704,6 +704,7 @@ python tools/export_spec_master_row_key_mapping.py
 Current output:
 
 - [`data/phase1/row_key_mapping.csv`](../data/phase1/row_key_mapping.csv)
+- [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) after `python build.py sync-data --config config.yaml --data-root data/phase2`
 - [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
 - `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source + Line_order -> Row_key`
 - the CSV keeps `Row_label_source`, `Line_order`, `Row_key`, and `Remark`

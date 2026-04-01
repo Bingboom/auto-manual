@@ -23,6 +23,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.config_pages import CsvPage
+from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.gen_index_bundle import (
     MaterializedBundle,
     bundle_dir_for_target,
@@ -236,6 +237,8 @@ def render_csv_pages(
     cfg: dict,
     model: str | None,
     region: str | None,
+    *,
+    data_root: str | None = None,
 ) -> None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
@@ -248,8 +251,13 @@ def render_csv_pages(
         error_prefix="config.pages",
     ).pages
     build_langs = cfg.get("build", {}).get("languages", [])
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    snapshot_paths = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=paths.root,
+        data_root=data_root,
+        model=model,
+        region=region,
+    )
 
     phase1_pages: set[str] = set()
     phase1_langs: set[str] = set()
@@ -277,18 +285,14 @@ def render_csv_pages(
             cmd += ["--model", model]
         if region:
             cmd += ["--region", region]
-        spec_master_csv = paths_cfg.get("spec_master_csv")
-        if isinstance(spec_master_csv, str) and spec_master_csv.strip():
-            cmd += ["--spec-master-csv", spec_master_csv.strip()]
-        spec_footnotes_csv = paths_cfg.get("spec_footnotes_csv")
-        if isinstance(spec_footnotes_csv, str):
-            cmd += ["--spec-footnotes-csv", spec_footnotes_csv.strip()]
-        spec_notes_csv = paths_cfg.get("spec_notes_csv")
-        if isinstance(spec_notes_csv, str):
-            cmd += ["--spec-notes-csv", spec_notes_csv.strip()]
-        spec_titles_csv = paths_cfg.get("spec_titles_csv")
-        if isinstance(spec_titles_csv, str):
-            cmd += ["--spec-titles-csv", spec_titles_csv.strip()]
+        if isinstance(data_root, str) and data_root.strip():
+            cmd += ["--data-root", data_root.strip()]
+        cmd += ["--page-registry", str(snapshot_paths.page_registry_csv)]
+        cmd += ["--page-blocks-dir", str(snapshot_paths.page_blocks_dir)]
+        cmd += ["--spec-master-csv", str(snapshot_paths.spec_master_csv)]
+        cmd += ["--spec-footnotes-csv", str(snapshot_paths.spec_footnotes_csv)]
+        cmd += ["--spec-notes-csv", str(snapshot_paths.spec_notes_csv)]
+        cmd += ["--spec-titles-csv", str(snapshot_paths.spec_titles_csv)]
         run(cmd, cwd=paths.root)
 
 
@@ -370,14 +374,17 @@ def resolve_build_targets(
     ]
 
 
-def _resolve_spec_master_csv_path(cfg: dict) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("spec_master_csv")
-    if isinstance(raw, str) and raw.strip():
-        p = Path(raw.strip())
-        return p if p.is_absolute() else (paths.root / p)
-    return paths.root / "data" / "phase1" / "Spec_Master.csv"
+def _resolve_spec_master_csv_path(
+    cfg: dict,
+    *,
+    data_root: str | None = None,
+    repo_root: Path | None = None,
+) -> Path:
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=repo_root or paths.root,
+        data_root=data_root,
+    ).spec_master_csv
 
 
 def resolve_product_name_for_build(
@@ -386,10 +393,16 @@ def resolve_product_name_for_build(
     model: str | None,
     region: str | None,
     lang: str,
+    data_root: str | None = None,
+    repo_root: Path | None = None,
 ) -> str | None:
     if not (model or "").strip():
         return None
-    spec_master_csv = _resolve_spec_master_csv_path(cfg)
+    spec_master_csv = _resolve_spec_master_csv_path(
+        cfg,
+        data_root=data_root,
+        repo_root=repo_root,
+    )
     match = resolve_product_name_from_spec_master(
         spec_master_csv,
         model=model,
@@ -407,11 +420,17 @@ def resolve_rst_substitutions_for_build(
     model: str | None,
     region: str | None,
     lang: str,
+    data_root: str | None = None,
+    repo_root: Path | None = None,
 ) -> dict[str, str]:
     base_substitutions = load_rst_substitutions(paths.docs_dir / "conf_base.py")
     if not (model or "").strip():
         return base_substitutions
-    spec_master_csv = _resolve_spec_master_csv_path(cfg)
+    spec_master_csv = _resolve_spec_master_csv_path(
+        cfg,
+        data_root=data_root,
+        repo_root=repo_root,
+    )
     return {
         **base_substitutions,
         **resolve_template_substitutions_from_spec_master(
@@ -928,6 +947,8 @@ def ensure_target_identity(
     model: str | None,
     region: str | None,
     lang: str,
+    data_root: str | None = None,
+    repo_root: Path | None = None,
 ) -> None:
     if not model:
         return
@@ -936,10 +957,16 @@ def ensure_target_identity(
         model=model,
         region=region,
         lang=lang,
+        data_root=data_root,
+        repo_root=repo_root,
     )
     if product_name:
         return
-    spec_master_csv = _resolve_spec_master_csv_path(cfg)
+    spec_master_csv = _resolve_spec_master_csv_path(
+        cfg,
+        data_root=data_root,
+        repo_root=repo_root,
+    )
     raise RuntimeError(
         "Failed to resolve Product Name from Spec_Master.csv for "
         f"model='{model}', region='{region or ''}', lang='{lang}'. "
@@ -953,6 +980,7 @@ def prepare_manual_bundle(
     model: str | None,
     region: str | None,
     lang: str | None = None,
+    data_root: str | None = None,
     source_mode: str = "auto",
     page_selector: str | None = None,
     output_root: Path | None = None,
@@ -968,6 +996,7 @@ def prepare_manual_bundle(
         cfg,
         model=model,
         region=region,
+        data_root=data_root,
         ensure_csv_pages=True,
         page_selector=page_selector,
         bundle_dir_override=(output_root / "rst") if output_root else None,
@@ -1060,6 +1089,7 @@ def build_target(
     tools_cfg: dict,
     no_open: bool,
     source_mode: str,
+    data_root: str | None,
     page_selector: str | None = None,
     output_root: Path | None = None,
     write_wrapper_index: bool = True,
@@ -1071,6 +1101,7 @@ def build_target(
         model=target_model,
         region=target_region,
         lang=primary_lang,
+        data_root=data_root,
     )
 
     bundle = prepare_manual_bundle(
@@ -1078,6 +1109,7 @@ def build_target(
         model=target_model,
         region=target_region,
         lang=target_lang,
+        data_root=data_root,
         source_mode=source_mode,
         page_selector=page_selector,
         output_root=output_root,
@@ -1256,6 +1288,7 @@ def build_target(
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Target product model for spec filtering")
     ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
     ap.add_argument("--all-targets", action="store_true", help="Build all targets declared in build.targets")
@@ -1331,6 +1364,7 @@ def main() -> None:
             tools_cfg=tools_cfg,
             no_open=args.no_open,
             source_mode=args.source,
+            data_root=args.data_root,
             page_selector=args.page_selector,
             output_root=output_root,
             write_wrapper_index=not args.skip_root_index,

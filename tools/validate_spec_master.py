@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import BuildTarget, load_config, resolve_build_targets  # noqa: E402
 from tools.config_pages import GeneratedPage  # noqa: E402
+from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
@@ -67,24 +68,12 @@ def _build_langs(cfg: dict) -> list[str]:
     return [str(item).strip() for item in langs if str(item).strip()] or ["en"]
 
 
-def resolve_spec_master_csv_path(cfg: dict) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("spec_master_csv")
-    if isinstance(raw, str) and raw.strip():
-        path = Path(raw.strip())
-        return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "data" / "phase1" / "Spec_Master.csv"
-
-
-def _resolve_optional_phase1_csv_path(cfg: dict, key: str, fallback_name: str) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get(key)
-    if isinstance(raw, str) and raw.strip():
-        path = Path(raw.strip())
-        return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "data" / "phase1" / fallback_name
+def resolve_spec_master_csv_path(cfg: dict, *, data_root: str | None = None) -> Path:
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+    ).spec_master_csv
 
 
 def resolve_docs_dir(cfg: dict) -> Path:
@@ -144,13 +133,16 @@ def _pick_document_key(row: dict[str, str]) -> str:
     return _first_non_empty(row, ("document_key", "Document_key"))
 
 
-def _expected_document_key(row: dict[str, str]) -> str:
+def _accepted_document_keys(row: dict[str, str]) -> tuple[str, ...]:
     model = _first_non_empty(row, ("Model", "model"))
     region = _first_non_empty(row, ("Region", "region"))
     source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
-    if not model or not region or not source_lang:
-        return ""
-    return f"{model}_{region}_{source_lang}"
+    if not model or not region:
+        return ()
+    accepted = [f"{model}_{region}"]
+    if source_lang:
+        accepted.append(f"{model}_{region}_{source_lang}")
+    return tuple(dict.fromkeys(accepted))
 
 
 def _pick_value(row: dict[str, str], lang: str) -> str:
@@ -314,11 +306,19 @@ def collect_spec_master_validation_issues(
     model: str | None,
     region: str | None,
     all_targets: bool,
+    data_root: str | None = None,
 ) -> list[SpecMasterValidationIssue]:
     cfg = load_config(cfg_path)
-    spec_master_csv = resolve_spec_master_csv_path(cfg)
-    spec_footnotes_csv = _resolve_optional_phase1_csv_path(cfg, "spec_footnotes_csv", "Spec_Footnotes.csv")
-    spec_notes_csv = _resolve_optional_phase1_csv_path(cfg, "spec_notes_csv", "Spec_Notes.csv")
+    snapshot_paths = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+        model=model,
+        region=region,
+    )
+    spec_master_csv = snapshot_paths.spec_master_csv
+    spec_footnotes_csv = snapshot_paths.spec_footnotes_csv
+    spec_notes_csv = snapshot_paths.spec_notes_csv
     rows = read_spec_master_rows(spec_master_csv)
     footnote_rows = _read_optional_rows(spec_footnotes_csv)
     note_rows = _read_optional_rows(spec_notes_csv)
@@ -375,7 +375,7 @@ def collect_spec_master_validation_issues(
                 code="MISSING_DOCUMENT_KEY_HEADER",
                 message=(
                     "Spec_Master.csv must include a `document_key` column derived as "
-                    "[Model]_[Region]_[Source_lang]."
+                    "[Model]_[Region] or [Model]_[Region]_[Source_lang]."
                 ),
                 path=spec_master_csv,
                 model=model,
@@ -436,7 +436,7 @@ def collect_spec_master_validation_issues(
                             code="MISSING_DOCUMENT_KEY",
                             message=(
                                 f"Latest row_key '{row_key}' must declare `document_key` as "
-                                "[Model]_[Region]_[Source_lang]"
+                                "[Model]_[Region] or [Model]_[Region]_[Source_lang]"
                             ),
                             path=spec_master_csv,
                             line=line_no,
@@ -446,14 +446,15 @@ def collect_spec_master_validation_issues(
                         )
                     )
                 else:
-                    expected_document_key = _expected_document_key(row)
-                    if expected_document_key and document_key != expected_document_key:
+                    accepted_document_keys = _accepted_document_keys(row)
+                    if accepted_document_keys and document_key not in accepted_document_keys:
+                        expected_display = " or ".join(f"'{item}'" for item in accepted_document_keys)
                         issues.append(
                             SpecMasterValidationIssue(
                                 code="INVALID_DOCUMENT_KEY",
                                 message=(
                                     f"Latest row_key '{row_key}' has document_key '{document_key}' "
-                                    f"but expected '{expected_document_key}'"
+                                    f"but expected {expected_display}"
                                 ),
                                 path=spec_master_csv,
                                 line=line_no,
@@ -815,6 +816,7 @@ def collect_spec_master_validation_issues(
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Validate target-bound Spec_Master selectors used by the manual pipeline.")
     ap.add_argument("--config", required=True, help="Config YAML path")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
     ap.add_argument("--all-targets", action="store_true", help="Validate all build targets from the config")
@@ -833,6 +835,7 @@ def main(argv: list[str] | None = None) -> int:
             model=args.model,
             region=args.region,
             all_targets=args.all_targets,
+            data_root=args.data_root,
         )
     except RuntimeError as exc:
         print(f"[validate_spec_master] ERROR: {exc}", file=sys.stderr)
