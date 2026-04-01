@@ -58,6 +58,7 @@ def _csv_set(value: str | None) -> set[str] | None:
 class BuildPaths:
     root: Path
     page_registry: Path
+    page_blocks_dir: Path
     template_dir: Path
     output_dir: Path
     spec_master_csv: Path
@@ -70,6 +71,7 @@ class BuildPaths:
         return cls(
             root=root,
             page_registry=root / "data" / "phase1" / "page_registry.csv",
+            page_blocks_dir=root / "data" / "phase1",
             template_dir=root / "docs" / "templates",
             output_dir=root / "docs" / "generated",
             spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
@@ -339,7 +341,7 @@ class Phase1Builder:
                 rows.extend(aux_note_rows)
             return rows
 
-        per_page_csv = self.paths.root / "data" / "phase1" / f"{page_id}_blocks.csv"
+        per_page_csv = self.paths.page_blocks_dir / f"{page_id}_blocks.csv"
         if not per_page_csv.exists():
             return []
 

@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-30
+Updated: 2026-03-31
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -15,6 +15,7 @@ For user-facing review workflow details, read:
 
 ```powershell
 python build.py validate
+python build.py sync-data --config config.yaml --data-root data/phase2
 python build.py rst
 python build.py review
 python build.py check
@@ -37,6 +38,7 @@ python build.py clean
 Meaning:
 
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
+- `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2)
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
@@ -90,6 +92,12 @@ Pass target differences through:
 - `build.targets`
 - [`data/phase1/*.csv`](../data/phase1)
 
+Phase2 snapshot rule:
+
+- keep the shared config families, but prefer syncing content into [`../data/phase2/`](../data/phase2) with `python build.py sync-data --config config.yaml --data-root data/phase2`
+- pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, and `publish` when you want the build to consume the phase2 snapshot explicitly
+- [`../data/phase1/page_registry.csv`](../data/phase1/page_registry.csv) and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
+
 Only create a new config when one of these really changes:
 
 - page stack
@@ -113,10 +121,22 @@ python tools\validate_config.py --config config.yaml
 python tools\validate_layout_params.py --csv data\layout_params.csv
 ```
 
+If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before runtime build:
+
+```powershell
+python build.py sync-data --config config.yaml --data-root data/phase2
+```
+
+That command requires:
+
+- a working `lark-cli` binary on `PATH`
+- a valid local `lark-cli` login session
+- the `FEISHU_PHASE2_*` environment variables referenced by [`../config.yaml`](../config.yaml) or [`../config.ja.yaml`](../config.ja.yaml)
+
 ### 3.2 Create a Runtime Draft
 
 ```powershell
-python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
+python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime --data-root data/phase2
 ```
 
 This creates:
@@ -141,11 +161,11 @@ After review starts, daily editing should happen in `_review`, not in `_build`.
 
 If you update any of these:
 
-- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-- [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-- [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
-- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- [`data/phase1/symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
+- [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
+- [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
 
 Safety page note:
 
@@ -217,7 +237,7 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 Once `_review` exists, these commands use review content by default because `--source auto` overlays review on top of the runtime bundle:
 
 ```powershell
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config config.ja.yaml --model JE-1000F --region JP --data-root data/phase2
 python build.py html --config config.ja.yaml --model JE-1000F --region JP
 python build.py word --config config.ja.yaml --model JE-1000F --region JP
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP

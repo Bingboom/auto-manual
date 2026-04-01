@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-03-26
+Updated: 2026-03-31
 
 本文档描述当前仓库里一条真实可用的四语言手册工作流。
 主示例使用 `JE-1000F` 的固定 4 语言集合：
@@ -82,14 +82,19 @@ python3 -m pip install -r requirements.txt
   - [`docs/templates/page_us-fr/*.rst`](../docs/templates/page_us-fr)
   - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
 - 结构化数据：
-  - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-  - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-  - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+  - 首选快照根 [`data/phase2/`](../data/phase2)
+  - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+  - [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
+  - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
+  - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+  - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
+  - 兼容旧基线 [`data/phase1/`](../data/phase1)
 用途：
 
 - 生成第一版草稿
 - 维护可复用的共享结构
 - 承载多个产品共用的模板逻辑
+- 如果内容来自飞书多维表格，先运行 `python build.py sync-data --config config.yaml --data-root data/phase2`，再显式用 `--data-root data/phase2` 构建
 
 ### 2.2 评审工作层
 
@@ -208,13 +213,19 @@ python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 - 需要的 Python 模块
 - 需要的系统工具，比如 Word COM、`pandoc`、`xelatex`
 
-如果这 4 个目标还没进入 review，就先从模板和数据准备运行时草稿：
+如果你使用飞书多维表格作为内容治理层，先同步冻结快照：
 
 ```powershell
-python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
-python build.py rst --config config.us-es.yaml --model JE-1000F --region US --source runtime
-python build.py rst --config config.us-fr.yaml --model JE-1000F --region US --source runtime
-python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
+python build.py sync-data --config config.yaml --data-root data/phase2
+```
+
+然后再从模板和数据准备运行时草稿：
+
+```powershell
+python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
+python build.py rst --config config.us-es.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
+python build.py rst --config config.us-fr.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
+python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime --data-root data/phase2
 ```
 
 这个命令会：
@@ -224,7 +235,7 @@ python build.py rst --config config.ja.yaml --model JE-1000F --region JP --sourc
   - [`docs/templates/page_us-es/*.rst`](../docs/templates/page_us-es)
   - [`docs/templates/page_us-fr/*.rst`](../docs/templates/page_us-fr)
   - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
-- 读取 [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) 和其他 CSV
+- 读取当前选定快照根里的 [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) 和其他 CSV
 - 生成 CSV 驱动页面
 - 输出运行时草稿到：
   - [`docs/_build/JE-1000F/US/en/rst/`](../docs/_build/JE-1000F/US/en/rst)
@@ -306,10 +317,10 @@ python build.py review --config config.ja.yaml --model JE-1000F --region JP --re
 运行：
 
 ```powershell
-python build.py check --config config.us-en.yaml --model JE-1000F --region US
-python build.py check --config config.us-es.yaml --model JE-1000F --region US
-python build.py check --config config.us-fr.yaml --model JE-1000F --region US
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
+python build.py check --config config.us-es.yaml --model JE-1000F --region US --data-root data/phase2
+python build.py check --config config.us-fr.yaml --model JE-1000F --region US --data-root data/phase2
+python build.py check --config config.ja.yaml --model JE-1000F --region JP --data-root data/phase2
 ```
 
 它会检查：
@@ -429,7 +440,7 @@ git commit -m "Update JE-1000F US/JP manuals"
 如果这一轮还改了共享模板或共享数据：
 
 ```powershell
-git add data/phase1 docs/templates docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
+git add data/phase2 docs/templates docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
 git commit -m "Update JE-1000F US/JP manuals"
 ```
 
@@ -438,7 +449,7 @@ git commit -m "Update JE-1000F US/JP manuals"
 - commit 当前这一轮真实的编辑源
 - 目标特有改动通常只需要 `_review`
 - 共享改动需要模板或数据与 `_review` 一起提交
-- 但前提是：你必须先把共享改动真正同步进 `_review`；只改 `docs/templates/**` 或 `data/phase1/**` 然后直接 `git add`，不会自动让已进入 review 的文档显示出这次变更
+- 但前提是：你必须先把共享改动真正同步进 `_review`；只改 `docs/templates/**` 或 `data/phase2/**` 然后直接 `git add`，不会自动让已进入 review 的文档显示出这次变更
 - 如果这一轮实际只动了几张页面，更推荐 `git add` 具体文件，不要无脑 `git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP`
 
 提交后 push 分支并打开或更新 PR：
@@ -464,7 +475,7 @@ git push -u origin codex/review-je1000f-multilang
 | 你改了什么 | 正确操作 | 不该怎么做 |
 | --- | --- | --- |
 | `_review` 里的目标特有文案 | 直接提交 `docs/_review/**` | 不要回头改 `docs/templates/**` 期待它自动进 review |
-| `Spec_Master.csv` / `Spec_Footnotes.csv` / `spec_titles.csv` | 先跑 `sync-review`，再提交共享源和 `_review` | 不要只提交 CSV，不同步 `_review` |
+| `Spec_Master.csv` / `Spec_Footnotes.csv` / `spec_titles.csv` | 先跑 `sync-review`，再提交共享源和 `_review` | 不要只提交 phase2 CSV，不同步 `_review` |
 | 带占位符的共享模板页 | 先跑 `sync-review`，确认对应 review 页已更新，再提交 | 不要假设所有模板页都会自动同步 |
 | 纯文本共享模板页 | 手动把同样修改写进 `docs/_review/**`，再一起提交 | 不要只改模板；这样 preview / diff-report 往往看不到 |
 | 明确要用新的共享种子层整包覆盖评审稿 | 用 `review --refresh-review` | 不要在不确定影响时直接 refresh 整包 |
@@ -475,9 +486,9 @@ git push -u origin codex/review-je1000f-multilang
 
 如果评审已经开始，而你又修改了：
 
-- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-- [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 
 默认不要用 `--refresh-review`。
 
@@ -583,10 +594,10 @@ git commit -m "Add JE-1000F US/JP review baseline"
 ### 12.2 普通后续轮次
 
 ```powershell
-python build.py check --config config.us-en.yaml --model JE-1000F --region US
-python build.py check --config config.us-es.yaml --model JE-1000F --region US
-python build.py check --config config.us-fr.yaml --model JE-1000F --region US
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
+python build.py check --config config.us-es.yaml --model JE-1000F --region US --data-root data/phase2
+python build.py check --config config.us-fr.yaml --model JE-1000F --region US --data-root data/phase2
+python build.py check --config config.ja.yaml --model JE-1000F --region JP --data-root data/phase2
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats word --source review
 git add docs/_review/JE-1000F/US docs/_review/JE-1000F/JP
 git commit -m "Update JE-1000F US/JP manuals"
@@ -595,7 +606,7 @@ git commit -m "Update JE-1000F US/JP manuals"
 如果这一轮还改了共享模板或共享数据，正确顺序是：
 
 1. 先改共享源：
-   - `data/phase1/**`
+   - `data/phase2/**`
    - `docs/templates/**`
 2. 再决定怎么把变更写进 `_review`：
    - 参数或占位符页：优先用 `sync-review`

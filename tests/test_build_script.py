@@ -97,6 +97,14 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("runtime", cmd)
         self.assertNotIn("--clean", cmd)
 
+    def test_build_docs_command_should_forward_data_root(self) -> None:
+        args = build_cli.parse_args(["rst", "--data-root", "data/phase2"])
+
+        cmd = build_cli.build_docs_command(args)
+
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
+
     def test_clean_targets_for_config_should_honor_custom_docs_dir(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -196,6 +204,23 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(1, len(seen))
         self.assertIn("--include-initial-adds", seen[0])
 
+    def test_run_diff_report_should_forward_data_root(self) -> None:
+        args = build_cli.parse_args(["diff-report", "--data-root", "data/phase2", "--model", "JE-1000F", "--region", "US"])
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        original_targets = build_cli._resolve_diff_report_targets
+        try:
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_diff_report(args)
+        finally:
+            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(1, len(seen))
+        self.assertIn("--data-root", seen[0])
+        self.assertIn("data/phase2", seen[0])
+
     def test_run_diff_report_should_derive_report_dir_from_explicit_tracked_root(self) -> None:
         args = build_cli.parse_args(
             [
@@ -243,6 +268,7 @@ class TestBuildScript(unittest.TestCase):
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
+        sync_data_args = build_cli.parse_args(["sync-data", "--table", "spec_master", "--dry-run"])
 
         self.assertEqual("review", review_args.action)
         self.assertEqual("check", check_args.action)
@@ -254,6 +280,9 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("sync-review", sync_args.action)
         self.assertEqual("generated", sync_args.sync_scope)
         self.assertEqual(["03_product_overview_placeholder.rst"], sync_args.page_file)
+        self.assertEqual("sync-data", sync_data_args.action)
+        self.assertEqual(["spec_master"], sync_data_args.table)
+        self.assertTrue(sync_data_args.dry_run)
 
     def test_review_and_check_commands_should_forward_targets_like_build_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
@@ -291,6 +320,20 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
 
+    def test_run_validate_should_forward_data_root_to_spec_master_validation(self) -> None:
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        try:
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_validate(build_cli.ROOT / "config.yaml", data_root="data/phase2")
+        finally:
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(3, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertIn("--data-root", seen[2])
+        self.assertIn("data/phase2", seen[2])
+
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(
             [
@@ -313,6 +356,35 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("generated", cmd)
         self.assertIn("--page-file", cmd)
         self.assertIn("03_product_overview_placeholder.rst", cmd)
+
+    def test_sync_data_command_should_forward_tables_and_dry_run(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "sync-data",
+                "--config",
+                "config.yaml",
+                "--data-root",
+                "data/phase2",
+                "--table",
+                "spec_master",
+                "--dry-run",
+            ]
+        )
+
+        cmd = build_cli.sync_data_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_data.py"), cmd[1])
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
+        self.assertIn("--table", cmd)
+        self.assertIn("spec_master", cmd)
+        self.assertIn("--dry-run", cmd)
+
+    def test_sync_data_command_should_reject_target_scoped_flags(self) -> None:
+        args = build_cli.parse_args(["sync-data", "--model", "JE-1000F"])
+
+        with self.assertRaisesRegex(RuntimeError, "sync-data does not accept --model or --region"):
+            build_cli.sync_data_command(args)
 
     def test_publish_should_require_explicit_model_and_region(self) -> None:
         args = build_cli.parse_args(["publish"])
@@ -362,6 +434,14 @@ class TestBuildScript(unittest.TestCase):
 
         with self.assertRaisesRegex(RuntimeError, "release-manifest requires --model and --region"):
             build_cli.release_manifest_command(args)
+
+    def test_release_manifest_command_should_forward_data_root(self) -> None:
+        args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP", "--data-root", "data/phase2"])
+
+        cmd = build_cli.release_manifest_command(args)
+
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
 
     def test_publish_should_scope_review_and_report_dirs_by_lang_when_enabled(self) -> None:
         args = build_cli.parse_args(["publish", "--config", "config.us-es.yaml", "--model", "JE-1000F", "--region", "US"])

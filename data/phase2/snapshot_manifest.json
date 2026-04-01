@@ -1,0 +1,63 @@
+{
+  "provider": "bootstrap_from_phase1",
+  "cli_bin": null,
+  "generated_at": "2026-03-31T00:00:00+08:00",
+  "export_root": "data/phase2",
+  "manifest_path": "data/phase2/snapshot_manifest.json",
+  "dry_run": false,
+  "requested_tables": [
+    "spec_titles",
+    "spec_footnotes",
+    "spec_notes",
+    "symbols_blocks",
+    "spec_master"
+  ],
+  "skipped_tables": [],
+  "tables": [
+    {
+      "logical_name": "spec_titles",
+      "file_name": "spec_titles.csv",
+      "path": "data/phase2/spec_titles.csv",
+      "row_count": 5,
+      "sha256": "64d1e4d54facd79681b753fae5c4275a7ed42b7836639681af1a444f078da81b",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "spec_footnotes",
+      "file_name": "Spec_Footnotes.csv",
+      "path": "data/phase2/Spec_Footnotes.csv",
+      "row_count": 3,
+      "sha256": "03cd3a5ae01fc844bea33d0dd8c49b10261ee1efe69b1a1ca662378fafcbe9dc",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "spec_notes",
+      "file_name": "Spec_Notes.csv",
+      "path": "data/phase2/Spec_Notes.csv",
+      "row_count": 2,
+      "sha256": "1d143dc21c80bc3f5b4cbfc6748a49f9e4488b1d9cc529bf0490b6a60c829922",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "symbols_blocks",
+      "file_name": "symbols_blocks.csv",
+      "path": "data/phase2/symbols_blocks.csv",
+      "row_count": 18,
+      "sha256": "c17f68aa2301db1d868827fdfc0ef3ee37644e609a29f7fdc5c364bc9ea3c04d",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "spec_master",
+      "file_name": "Spec_Master.csv",
+      "path": "data/phase2/Spec_Master.csv",
+      "row_count": 153,
+      "sha256": "3e44eac75ca73942bbb24c47d77da0e61e41f4b75666c3f53c21eb6b2f69c10f",
+      "previous_sha256": null,
+      "changed": true
+    }
+  ]
+}

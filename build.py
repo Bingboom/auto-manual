@@ -33,7 +33,21 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "action",
-        choices=("validate", "doctor", *BUILD_ACTIONS, "review", "check", "sync-review", "publish", "clean", "diff-report", "release-manifest", "preview", "fast"),
+        choices=(
+            "validate",
+            "doctor",
+            *BUILD_ACTIONS,
+            "review",
+            "check",
+            "sync-review",
+            "sync-data",
+            "publish",
+            "clean",
+            "diff-report",
+            "release-manifest",
+            "preview",
+            "fast",
+        ),
         help="Action to run",
     )
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
@@ -45,6 +59,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default="auto",
         help="Content source for build actions: auto, runtime, or review",
     )
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
     ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")
     ap.add_argument("--no-clean", action="store_true", help="Skip cleaning current target outputs before build")
@@ -87,6 +102,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="Output directory for diff-report CSV/HTML",
     )
+    ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
+    ap.add_argument("--dry-run", action="store_true", help="For sync-data: validate and report without writing files")
     return ap.parse_args(argv)
 
 
@@ -208,6 +225,12 @@ def _append_target_args(cmd: list[str], args: argparse.Namespace) -> list[str]:
     return cmd
 
 
+def _append_data_root_arg(cmd: list[str], args: argparse.Namespace) -> list[str]:
+    if isinstance(args.data_root, str) and args.data_root.strip():
+        cmd += ["--data-root", args.data_root.strip()]
+    return cmd
+
+
 def build_docs_command(
     args: argparse.Namespace,
     *,
@@ -226,6 +249,7 @@ def build_docs_command(
         str(config_path),
     ]
     _append_target_args(cmd, args)
+    _append_data_root_arg(cmd, args)
     effective_source = source_override or args.source
     if action == "fast":
         effective_source = "runtime"
@@ -278,7 +302,8 @@ def check_docs_command(args: argparse.Namespace) -> list[str]:
         "--config",
         str(config_path),
     ]
-    return _append_target_args(cmd, args)
+    _append_target_args(cmd, args)
+    return _append_data_root_arg(cmd, args)
 
 
 def sync_review_command(args: argparse.Namespace) -> list[str]:
@@ -297,10 +322,28 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
     return cmd
 
 
+def sync_data_command(args: argparse.Namespace) -> list[str]:
+    if (args.model or "").strip() or (args.region or "").strip():
+        raise RuntimeError("sync-data does not accept --model or --region; it always exports full snapshot tables")
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "sync_data.py"),
+        "--config",
+        str(config_path),
+    ]
+    _append_data_root_arg(cmd, args)
+    for table in args.table:
+        cmd += ["--table", table]
+    if args.dry_run:
+        cmd.append("--dry-run")
+    return cmd
+
+
 def release_manifest_command(args: argparse.Namespace) -> list[str]:
     model, region = _require_explicit_target(args, action_name="release-manifest")
     config_path = resolve_path_from_root(args.config)
-    return [
+    cmd = [
         sys.executable,
         str(ROOT / "tools" / "release_manifest.py"),
         "--config",
@@ -310,9 +353,10 @@ def release_manifest_command(args: argparse.Namespace) -> list[str]:
         "--region",
         region,
     ]
+    return _append_data_root_arg(cmd, args)
 
 
-def run_validate(config_path: Path) -> None:
+def run_validate(config_path: Path, *, data_root: str | None = None) -> None:
     run_checked(
         [
             sys.executable,
@@ -335,6 +379,11 @@ def run_validate(config_path: Path) -> None:
             str(ROOT / "tools" / "validate_spec_master.py"),
             "--config",
             str(config_path),
+            *(
+                ["--data-root", data_root.strip()]
+                if isinstance(data_root, str) and data_root.strip()
+                else []
+            ),
         ]
     )
 
@@ -690,6 +739,11 @@ def run_diff_report_with_paths(
         args.to_ref,
         "--output-dir",
         str(report_dir),
+        *(
+            ["--data-root", args.data_root.strip()]
+            if isinstance(args.data_root, str) and args.data_root.strip()
+            else []
+        ),
     ]
     if not args.ignore_initial_adds:
         cmd.append("--include-initial-adds")
@@ -698,7 +752,10 @@ def run_diff_report_with_paths(
 
 def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> None:
     config_path = resolve_path_from_root(args.config)
-    run_validate(config_path)
+    if isinstance(args.data_root, str) and args.data_root.strip():
+        run_validate(config_path, data_root=args.data_root)
+    else:
+        run_validate(config_path)
     run_checked(build_docs_command(args, action_override="rst", source_override=source_override))
     run_checked(check_docs_command(args))
 
@@ -807,7 +864,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.action == "validate":
-            run_validate(config_path)
+            run_validate(config_path, data_root=args.data_root)
         elif args.action == "doctor":
             run_doctor(args)
         elif args.action == "review":
@@ -818,6 +875,8 @@ def main(argv: list[str] | None = None) -> int:
         elif args.action == "sync-review":
             run_checked(build_docs_command(args, action_override="rst", source_override="runtime"))
             run_checked(sync_review_command(args))
+        elif args.action == "sync-data":
+            run_checked(sync_data_command(args))
         elif args.action == "publish":
             run_publish(args)
         elif args.action == "diff-report":

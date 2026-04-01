@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-03-17
+Updated: 2026-03-31
 
 ## 1. Role
 
@@ -53,12 +53,14 @@ As of 2026-03-17, the repo has working baselines for:
 - [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) as the primary cross-platform entrypoint
 - target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
 - review bundles under [`docs/_review/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_review)
+- `sync-data`
 - `check`
 - page contracts
 - diff-report file/page/field reporting
 - `release-manifest`
 - `preview`
 - `fast`
+- explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
 - CI baseline for `unit`, `doctor`, and `check`
 
 ## 4. Recently Completed
@@ -73,6 +75,12 @@ Use this section for short milestone-style updates.
 - added `preview` and `fast`
 - added CI baseline workflow
 - clarified deferred direction for table-driven multi-target content
+
+### 2026-03-31
+
+- added phase2 snapshot path resolution through `--data-root`
+- added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
+- aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
 
 ## 5. Open Gaps
 

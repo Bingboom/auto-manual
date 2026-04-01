@@ -31,6 +31,24 @@ class TestDiffReport(unittest.TestCase):
 
         self.assertFalse(args.ignore_initial_adds)
 
+    def test_resolve_spec_paths_should_honor_data_root_override(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = Path(td)
+            (repo / "data" / "phase1").mkdir(parents=True)
+            phase2_dir = repo / "data" / "phase2"
+            phase2_dir.mkdir(parents=True)
+            (phase2_dir / "Spec_Master.csv").write_text("header\n", encoding="utf-8")
+            (phase2_dir / "spec_titles.csv").write_text("header\n", encoding="utf-8")
+
+            spec_master, spec_titles = diff_report.resolve_spec_paths(
+                repo,
+                config_path=None,
+                data_root="data/phase2",
+            )
+
+            self.assertEqual(phase2_dir / "Spec_Master.csv", spec_master)
+            self.assertEqual(phase2_dir / "spec_titles.csv", spec_titles)
+
     def test_detect_initial_baseline_should_return_true_when_tracked_subtree_first_appears(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = Path(td)
@@ -553,5 +571,4 @@ class TestDiffReport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
 

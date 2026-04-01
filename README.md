@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-03-26
+Updated: 2026-03-31
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -15,7 +15,7 @@ For the fixed US + JP release matrix, you can also use:
 
 This repository is responsible for:
 
-- generating target-specific runtime bundles from templates and phase1 CSV data
+- generating target-specific runtime bundles from templates and frozen CSV snapshots, with `data/phase2/` as the preferred synced snapshot root
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
@@ -41,12 +41,18 @@ The primary entrypoint is [`build.py`](build.py).
 Typical review-first flow:
 
 ```bash
+python3 build.py sync-data --config config.yaml --data-root data/phase2
 python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
+python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
 python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py check --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python3 build.py check --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
+python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
 ```
+
+Phase2 snapshot note:
+
+- `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2)
+- `page_registry.csv` and [`data/layout_params.csv`](data/layout_params.csv) stay repo-maintained and are not overridden by `--data-root`
 
 Dedicated zh bundle example:
 
@@ -102,7 +108,7 @@ The command semantics and output layout are maintained in [`code-as-doc/build_do
 Use different surfaces for different stages:
 
 - shared template changes: [`docs/templates/`](docs/templates)
-- structured data changes: [`data/phase1/`](data/phase1)
+- structured data changes: preferred snapshot root [`data/phase2/`](data/phase2), with [`data/phase1/`](data/phase1) kept as the legacy baseline
   `Spec_Footnotes.csv` is now the footnote-definition table only. Keep one row per reusable `Footnote_id`, target rows by `Region` + `Model`, and let the system derive the visible superscript marker from `Footnote_order`.
   `Spec_Master.csv` `Page` may now be a comma-separated page list. Use `Product overview` for Product overview-only placeholder rows, and use `Product overview, specifications,` when the same row is shared by both pages. For page-value rows, keep `Row_key` as the concept and use `Slot_key` to describe the placeholder slot. The shared source-text columns are `Row_label_source`, `Param_source`, and `Value_source`; they hold the row's source-manual text. `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, or `zh`, and code no longer infers it from `Region`. `document_key` is a derived helper column and must equal `[Model]_[Region]_[Source_lang]`. `Row_order` is now a formal column and controls the row display order inside each `document_key + Page + Section`, while `Line_order` controls the order of multiple lines inside one logical row. Visible section defaults can live in `spec_titles.csv section_order`, but if `Spec_Master.csv Section_order` is filled, that explicit value has the highest priority. `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; source-language text must live in `*_source`. The old `project_code` / `项目代码` column has been removed; row targeting now uses `Region` + `Model`. Spec-cell footnotes are now referenced through `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs`; do not handwrite `①②③` into visible spec text.
   `Spec_Notes.csv` now stores bottom-of-spec notes that are not tied to a superscript reference, such as trademark statements.
@@ -142,7 +148,8 @@ Use the document that owns the topic:
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
-- [`data/phase1/`](data/phase1): current operational CSV snapshot inputs
+- [`data/phase2/`](data/phase2): preferred Feishu-synced CSV snapshot inputs
+- [`data/phase1/`](data/phase1): legacy baseline snapshot inputs
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`docs/_review/`](docs/_review): target-specific review layer
 - [`docs/_build/`](docs/_build): runtime bundles and export outputs

@@ -1,0 +1,3 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_en,Text_fr,Text_es,Text_ja,Enabled
+usb_type_c_trademark,US,JE-1000F,en,TRUE,specifications,2,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.,※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.,,TRUE
+usb_type_c_trademark,JP,JE-1000F,ja,TRUE,specifications,3,,,,※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.,TRUE

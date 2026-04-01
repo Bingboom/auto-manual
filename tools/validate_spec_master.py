@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import BuildTarget, load_config, resolve_build_targets  # noqa: E402
 from tools.config_pages import GeneratedPage  # noqa: E402
+from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
@@ -67,24 +68,12 @@ def _build_langs(cfg: dict) -> list[str]:
     return [str(item).strip() for item in langs if str(item).strip()] or ["en"]
 
 
-def resolve_spec_master_csv_path(cfg: dict) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("spec_master_csv")
-    if isinstance(raw, str) and raw.strip():
-        path = Path(raw.strip())
-        return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "data" / "phase1" / "Spec_Master.csv"
-
-
-def _resolve_optional_phase1_csv_path(cfg: dict, key: str, fallback_name: str) -> Path:
-    paths_cfg_raw = cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get(key)
-    if isinstance(raw, str) and raw.strip():
-        path = Path(raw.strip())
-        return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "data" / "phase1" / fallback_name
+def resolve_spec_master_csv_path(cfg: dict, *, data_root: str | None = None) -> Path:
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+    ).spec_master_csv
 
 
 def resolve_docs_dir(cfg: dict) -> Path:
@@ -314,11 +303,19 @@ def collect_spec_master_validation_issues(
     model: str | None,
     region: str | None,
     all_targets: bool,
+    data_root: str | None = None,
 ) -> list[SpecMasterValidationIssue]:
     cfg = load_config(cfg_path)
-    spec_master_csv = resolve_spec_master_csv_path(cfg)
-    spec_footnotes_csv = _resolve_optional_phase1_csv_path(cfg, "spec_footnotes_csv", "Spec_Footnotes.csv")
-    spec_notes_csv = _resolve_optional_phase1_csv_path(cfg, "spec_notes_csv", "Spec_Notes.csv")
+    snapshot_paths = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+        model=model,
+        region=region,
+    )
+    spec_master_csv = snapshot_paths.spec_master_csv
+    spec_footnotes_csv = snapshot_paths.spec_footnotes_csv
+    spec_notes_csv = snapshot_paths.spec_notes_csv
     rows = read_spec_master_rows(spec_master_csv)
     footnote_rows = _read_optional_rows(spec_footnotes_csv)
     note_rows = _read_optional_rows(spec_notes_csv)
@@ -815,6 +812,7 @@ def collect_spec_master_validation_issues(
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Validate target-bound Spec_Master selectors used by the manual pipeline.")
     ap.add_argument("--config", required=True, help="Config YAML path")
+    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
     ap.add_argument("--all-targets", action="store_true", help="Validate all build targets from the config")
@@ -833,6 +831,7 @@ def main(argv: list[str] | None = None) -> int:
             model=args.model,
             region=args.region,
             all_targets=args.all_targets,
+            data_root=args.data_root,
         )
     except RuntimeError as exc:
         print(f"[validate_spec_master] ERROR: {exc}", file=sys.stderr)

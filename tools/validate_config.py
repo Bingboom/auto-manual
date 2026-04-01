@@ -35,6 +35,15 @@ from tools.config_pages import (
 )
 from tools.page_manifest import resolve_config_pages, resolve_page_manifest_path
 
+SYNC_PHASE2_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
+SYNC_PHASE2_TABLES = {
+    "spec_master",
+    "spec_footnotes",
+    "spec_notes",
+    "spec_titles",
+    "symbols_blocks",
+}
+
 
 @dataclass
 class Issue:
@@ -94,6 +103,31 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     issues: list[Issue] = []
     docs_dir_value = ROOT / "docs"
 
+    def _validate_optional_path(
+        value: Any,
+        *,
+        key: str,
+        require_non_empty: bool = False,
+        expect_dir: bool = False,
+    ) -> None:
+        if value is None:
+            return
+        if not isinstance(value, str):
+            issues.append(Issue("ERROR", f"{key} must be a string when provided"))
+            return
+        text = value.strip()
+        if require_non_empty and not text:
+            issues.append(Issue("ERROR", f"{key} must be a non-empty string when provided"))
+            return
+        if not text or not strict_files or has_tokenized_value(text):
+            return
+        candidate = as_path(text)
+        if not candidate.exists():
+            issues.append(Issue("ERROR", f"{key} path not found: {text}"))
+            return
+        if expect_dir and not candidate.is_dir():
+            issues.append(Issue("ERROR", f"{key} must point to a directory: {text}"))
+
     # ---- build ----
     build = cfg.get("build", {})
     if not isinstance(build, dict):
@@ -150,6 +184,10 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
         if isinstance(docs_dir_raw, str) and docs_dir_raw.strip():
             docs_dir_value = as_path(docs_dir_raw.strip())
 
+    _validate_optional_path(paths.get("structured_data_dir"), key="paths.structured_data_dir", require_non_empty=True, expect_dir=True)
+    _validate_optional_path(paths.get("page_registry_csv"), key="paths.page_registry_csv", require_non_empty=True)
+    _validate_optional_path(paths.get("page_blocks_dir"), key="paths.page_blocks_dir", require_non_empty=True, expect_dir=True)
+
     spec_master_csv = paths.get("spec_master_csv")
     if spec_master_csv is not None:
         if not isinstance(spec_master_csv, str) or not spec_master_csv.strip():
@@ -203,6 +241,73 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must be a list of strings"))
         elif any(not item.strip() for item in allowed_foreign_identity_literals):
             issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must not contain empty strings"))
+
+    # ---- sync ----
+    sync = cfg.get("sync", {})
+    if sync is not None and not isinstance(sync, dict):
+        issues.append(Issue("ERROR", "sync must be a mapping"))
+        sync = {}
+
+    phase2_raw = sync.get("phase2", {}) if isinstance(sync, dict) else {}
+    if phase2_raw is not None and not isinstance(phase2_raw, dict):
+        issues.append(Issue("ERROR", "sync.phase2 must be a mapping when provided"))
+        phase2_raw = {}
+    phase2 = phase2_raw if isinstance(phase2_raw, dict) else {}
+
+    provider = phase2.get("provider")
+    if provider is not None:
+        if not isinstance(provider, str) or not provider.strip():
+            issues.append(Issue("ERROR", "sync.phase2.provider must be a non-empty string when provided"))
+        elif provider.strip().lower() not in SYNC_PHASE2_PROVIDERS:
+            issues.append(
+                Issue(
+                    "ERROR",
+                    "sync.phase2.provider must be one of: cli, lark-cli, lark_cli",
+                )
+            )
+
+    for key in ("cli_bin", "base_token_env"):
+        value = phase2.get(key)
+        if value is not None and (not isinstance(value, str) or not value.strip()):
+            issues.append(Issue("ERROR", f"sync.phase2.{key} must be a non-empty string when provided"))
+
+    for key in ("export_root", "manifest_path"):
+        value = phase2.get(key)
+        if value is not None and (not isinstance(value, str) or not value.strip()):
+            issues.append(Issue("ERROR", f"sync.phase2.{key} must be a non-empty string when provided"))
+
+    tables_raw = phase2.get("tables", {})
+    if tables_raw is not None and not isinstance(tables_raw, dict):
+        issues.append(Issue("ERROR", "sync.phase2.tables must be a mapping when provided"))
+        tables_raw = {}
+    tables = tables_raw if isinstance(tables_raw, dict) else {}
+    for table_name, table_cfg in tables.items():
+        if table_name not in SYNC_PHASE2_TABLES:
+            issues.append(
+                Issue(
+                    "ERROR",
+                    "sync.phase2.tables contains unsupported table key: "
+                    f"{table_name}",
+                )
+            )
+            continue
+        if not isinstance(table_cfg, dict):
+            issues.append(
+                Issue(
+                    "ERROR",
+                    f"sync.phase2.tables.{table_name} must be a mapping",
+                )
+            )
+            continue
+        for key in ("base_token_env", "table_id_env", "view_id_env"):
+            value = table_cfg.get(key)
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                issues.append(
+                    Issue(
+                        "ERROR",
+                        f"sync.phase2.tables.{table_name}.{key} must be a non-empty string when provided",
+                    )
+                )
 
     # ---- pages ----
     try:

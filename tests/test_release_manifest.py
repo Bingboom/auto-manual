@@ -91,3 +91,63 @@ class TestReleaseManifest(unittest.TestCase):
                 hashlib.sha256((build_root / "word" / "manual_je1000f_us.docx").read_bytes()).hexdigest(),
                 manifest["word_output"]["sha256"],
             )
+
+    def test_build_release_manifest_should_honor_data_root_override(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            build_root = docs_dir / "_build" / "JE-1000F" / "US"
+            (build_root / "rst").mkdir(parents=True)
+            (build_root / "html").mkdir(parents=True)
+            (build_root / "word").mkdir(parents=True)
+            (build_root / "pdf").mkdir(parents=True)
+            (docs_dir / "_review" / "JE-1000F" / "US").mkdir(parents=True)
+            (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
+
+            phase1_dir = root / "data" / "phase1"
+            phase2_dir = root / "data" / "phase2"
+            phase1_dir.mkdir(parents=True)
+            phase2_dir.mkdir(parents=True)
+            (phase1_dir / "Spec_Master.csv").write_text("Model,Region,Is_Latest,Page,Row_key,Value_source\n", encoding="utf-8")
+            for data_dir, title in ((phase1_dir, "phase1"), (phase2_dir, "phase2")):
+                (data_dir / "Spec_Footnotes.csv").write_text("id,note\n", encoding="utf-8")
+                (data_dir / "Spec_Notes.csv").write_text("id,note\n", encoding="utf-8")
+                (data_dir / "spec_titles.csv").write_text(f"title_en\n{title}\n", encoding="utf-8")
+            (phase2_dir / "Spec_Master.csv").write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
+                        "JE-1000F,US,TRUE,specifications,product_name,Phase2 Product",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {(phase1_dir / 'Spec_Master.csv').as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(release_manifest, "ROOT", root), \
+                mock.patch.object(release_manifest, "_read_git_sha", return_value="abc123"):
+                json_path, _csv_path = release_manifest.build_release_manifest(
+                    config_path=config_path,
+                    model="JE-1000F",
+                    region="US",
+                    data_root="data/phase2",
+                )
+
+            manifest = json.loads(json_path.read_text(encoding="utf-8"))
+            self.assertEqual("data/phase2/Spec_Master.csv", manifest["spec_master_csv"])
+            self.assertEqual("Phase2 Product", manifest["product_name"])
