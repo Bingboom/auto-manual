@@ -76,6 +76,13 @@ python3 build.py check --config config.zh.yaml --model JE-2000E --region CN
 python3 build.py all --config config.zh.yaml --model JE-2000E --region CN
 ```
 
+Dedicated zh bundle example:
+
+```bash
+python3 build.py check --config config.zh.yaml --model JE-2000E --region CN
+python3 build.py all --config config.zh.yaml --model JE-2000E --region CN
+```
+
 Batch export example:
 
 ```powershell
