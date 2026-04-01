@@ -10,22 +10,26 @@ import io
 import json
 import os
 import shlex
+import shutil
 import subprocess
 import sys
 import tempfile
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, Mapping, Protocol
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.data_snapshot import (  # noqa: E402
+    resolve_data_snapshot_paths,
     resolve_phase2_export_root,
     resolve_phase2_manifest_path,
 )
+from tools.utils.spec_master import build_row_label_row_key_mapping_rows  # noqa: E402
 
 TABLE_ORDER = (
     "spec_titles",
@@ -35,6 +39,8 @@ TABLE_ORDER = (
     "spec_master",
 )
 SUPPORTED_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
+ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Line_order", "Row_key", "Remark")
+_MARKDOWN_LINK_RE = re.compile(r"^\[(?P<label>[^\]]+)\]\((?P<target>[^)]+)\)$")
 
 
 class RecordSource(Protocol):
@@ -88,6 +94,7 @@ class SyncRunResult:
     requested_tables: tuple[str, ...]
     skipped_tables: tuple[str, ...]
     synced_tables: tuple[TableSyncResult, ...]
+    derived_files: tuple[TableSyncResult, ...]
     manifest: dict[str, Any]
 
 
@@ -249,19 +256,113 @@ def _env_value(env_name: str) -> str:
     return value
 
 
-def resolve_table_binding(cfg: dict[str, Any], logical_name: str) -> TableBinding:
-    if logical_name not in TABLE_SCHEMAS:
-        raise RuntimeError(f"Unknown sync table: {logical_name}")
-    phase2_cfg = _sync_phase2_cfg(cfg)
+def _table_cfg(cfg: dict[str, Any], logical_name: str) -> dict[str, Any]:
     tables_cfg = _phase2_tables_cfg(cfg)
     table_cfg_raw = tables_cfg.get(logical_name, {})
-    table_cfg = table_cfg_raw if isinstance(table_cfg_raw, dict) else {}
+    return table_cfg_raw if isinstance(table_cfg_raw, dict) else {}
 
+
+def _table_env_names(cfg: dict[str, Any], logical_name: str) -> tuple[str, str, str | None]:
+    phase2_cfg = _sync_phase2_cfg(cfg)
+    table_cfg = _table_cfg(cfg, logical_name)
     base_token_env = str(
         table_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or ""
     ).strip()
     table_id_env = str(table_cfg.get("table_id_env") or "").strip()
     view_id_env = str(table_cfg.get("view_id_env") or "").strip() or None
+    return base_token_env, table_id_env, view_id_env
+
+
+def _cli_command_parts(cli_bin: str) -> list[str]:
+    parts = shlex.split(cli_bin)
+    if not parts:
+        raise RuntimeError("sync.phase2.cli_bin must not be empty")
+    return parts
+
+
+def _resolved_cli_command_parts(cli_bin: str) -> list[str]:
+    parts = _cli_command_parts(cli_bin)
+    command = parts[0]
+    command_path = Path(command)
+    if command_path.is_absolute():
+        resolved_command = command
+    else:
+        # On Windows, subprocess cannot launch a bare command name like
+        # "lark-cli" even when shutil.which() resolves it to a .cmd shim.
+        # Resolve the executable up front so the same config works cross-platform.
+        resolved_command = shutil.which(command) or command
+    return [resolved_command, *parts[1:]]
+
+
+def _cli_command_exists(cli_bin: str) -> bool:
+    command = _cli_command_parts(cli_bin)[0]
+    command_path = Path(command)
+    if command_path.is_absolute():
+        return command_path.exists()
+    return shutil.which(command) is not None
+
+
+def collect_sync_preflight_errors(
+    cfg: dict[str, Any],
+    *,
+    table_names: list[str] | tuple[str, ...] | None = None,
+    environ: Mapping[str, str] | None = None,
+    require_cli: bool = True,
+) -> list[str]:
+    selected_tables = _selected_tables(list(table_names or []))
+    env_map = environ if environ is not None else os.environ
+    errors: list[str] = []
+
+    if require_cli:
+        cli_bin = _cli_bin(cfg)
+        try:
+            command = _cli_command_parts(cli_bin)[0]
+        except RuntimeError as exc:
+            errors.append(str(exc))
+        else:
+            if not _cli_command_exists(cli_bin):
+                errors.append(
+                    f"sync.phase2.cli_bin executable is not available: {command}"
+                )
+
+    required_env_names: list[str] = []
+    seen_env_names: set[str] = set()
+    for logical_name in selected_tables:
+        base_token_env, table_id_env, view_id_env = _table_env_names(cfg, logical_name)
+        if not base_token_env:
+            errors.append(
+                f"sync.phase2.tables.{logical_name}.base_token_env is required, "
+                "or provide sync.phase2.base_token_env"
+            )
+        elif base_token_env not in seen_env_names:
+            seen_env_names.add(base_token_env)
+            required_env_names.append(base_token_env)
+        if not table_id_env:
+            errors.append(f"sync.phase2.tables.{logical_name}.table_id_env is required")
+        elif table_id_env not in seen_env_names:
+            seen_env_names.add(table_id_env)
+            required_env_names.append(table_id_env)
+        if view_id_env and view_id_env not in seen_env_names:
+            seen_env_names.add(view_id_env)
+            required_env_names.append(view_id_env)
+
+    missing_env_names = [
+        env_name
+        for env_name in required_env_names
+        if not str(env_map.get(env_name, "")).strip()
+    ]
+    if missing_env_names:
+        errors.append(
+            "Required environment variables are not set: "
+            + ", ".join(missing_env_names)
+        )
+    return errors
+
+
+def resolve_table_binding(cfg: dict[str, Any], logical_name: str) -> TableBinding:
+    if logical_name not in TABLE_SCHEMAS:
+        raise RuntimeError(f"Unknown sync table: {logical_name}")
+    base_token_env, table_id_env, view_id_env = _table_env_names(cfg, logical_name)
 
     if not base_token_env:
         raise RuntimeError(
@@ -303,18 +404,18 @@ def _parse_json_payload(raw: str) -> dict[str, Any]:
 class LarkCliSource:
     def __init__(self, *, cli_bin: str):
         self.cli_bin = cli_bin
+        self._field_name_cache: dict[tuple[str, str], dict[str, str]] = {}
 
-    def _run_api(self, *, path: str, params: dict[str, Any]) -> dict[str, Any]:
+    def _run_base_command(
+        self,
+        *,
+        args: list[str],
+    ) -> dict[str, Any]:
         cmd = [
-            *shlex.split(self.cli_bin),
-            "api",
-            "GET",
-            path,
-            "--format",
-            "json",
+            *_resolved_cli_command_parts(self.cli_bin),
+            "base",
+            *args,
         ]
-        if params:
-            cmd += ["--params", json.dumps(params, ensure_ascii=False, separators=(",", ":"))]
         proc = subprocess.run(
             cmd,
             cwd=str(ROOT),
@@ -330,6 +431,78 @@ class LarkCliSource:
             raise RuntimeError(f"Lark CLI API request failed: {message}")
         return payload
 
+    def _field_name_map(self, *, base_token: str, table_id: str) -> dict[str, str]:
+        cache_key = (base_token, table_id)
+        cached = self._field_name_cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        offset = 0
+        limit = 500
+        field_name_map: dict[str, str] = {}
+        while True:
+            payload = self._run_base_command(
+                args=[
+                    "+field-list",
+                    "--as",
+                    "user",
+                    "--base-token",
+                    base_token,
+                    "--table-id",
+                    table_id,
+                    "--limit",
+                    str(limit),
+                    "--offset",
+                    str(offset),
+                ]
+            )
+            data = payload.get("data")
+            if not isinstance(data, dict):
+                raise RuntimeError("Lark CLI field list response is missing data payload")
+            items = data.get("items", [])
+            if not isinstance(items, list):
+                raise RuntimeError("Lark CLI field list response has invalid items payload")
+            for item in items:
+                if not isinstance(item, dict):
+                    raise RuntimeError("Lark CLI field list response contains a non-object field")
+                field_id = str(item.get("field_id") or "").strip()
+                field_name = str(item.get("field_name") or "").strip()
+                if field_id and field_name:
+                    field_name_map[field_id] = field_name
+            total = int(data.get("total") or len(field_name_map))
+            offset += len(items)
+            if not items or offset >= total:
+                break
+
+        self._field_name_cache[cache_key] = field_name_map
+        return field_name_map
+
+    def _run_record_list(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        view_id: str | None,
+        offset: int,
+        limit: int,
+    ) -> dict[str, Any]:
+        args = [
+            "+record-list",
+            "--as",
+            "user",
+            "--base-token",
+            base_token,
+            "--table-id",
+            table_id,
+            "--limit",
+            str(limit),
+        ]
+        if view_id:
+            args += ["--view-id", view_id]
+        if offset:
+            args += ["--offset", str(offset)]
+        return self._run_base_command(args=args)
+
     def fetch_records(
         self,
         *,
@@ -337,34 +510,136 @@ class LarkCliSource:
         table_id: str,
         view_id: str | None,
     ) -> list[dict[str, Any]]:
-        path = f"/open-apis/bitable/v1/apps/{base_token}/tables/{table_id}/records"
+        return self._fetch_records(
+            base_token=base_token,
+            table_id=table_id,
+            view_id=view_id,
+            include_record_ids=False,
+        )
+
+    def fetch_records_with_ids(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        view_id: str | None,
+    ) -> list[dict[str, Any]]:
+        return self._fetch_records(
+            base_token=base_token,
+            table_id=table_id,
+            view_id=view_id,
+            include_record_ids=True,
+        )
+
+    def _fetch_records(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        view_id: str | None,
+        include_record_ids: bool,
+    ) -> list[dict[str, Any]]:
         records: list[dict[str, Any]] = []
-        page_token: str | None = None
+        offset = 0
+        limit = 500
+        field_name_map = self._field_name_map(base_token=base_token, table_id=table_id)
         while True:
-            params: dict[str, Any] = {"page_size": 500}
-            if view_id:
-                params["view_id"] = view_id
-            if page_token:
-                params["page_token"] = page_token
-            payload = self._run_api(path=path, params=params)
+            payload = self._run_record_list(
+                base_token=base_token,
+                table_id=table_id,
+                view_id=view_id,
+                offset=offset,
+                limit=limit,
+            )
             data = payload.get("data")
             if not isinstance(data, dict):
                 raise RuntimeError("Lark CLI API response is missing data payload")
-            items = data.get("items", [])
-            if not isinstance(items, list):
+            field_ids = data.get("field_id_list", [])
+            if not isinstance(field_ids, list) or not all(isinstance(field_id, str) for field_id in field_ids):
+                raise RuntimeError("Lark CLI record list response has invalid field id list")
+            display_field_names = data.get("fields", [])
+            if not isinstance(display_field_names, list) or not all(
+                isinstance(name, str) for name in display_field_names
+            ):
+                raise RuntimeError("Lark CLI record list response has invalid field list")
+            if len(field_ids) != len(display_field_names):
+                raise RuntimeError("Lark CLI record list response field metadata is misaligned")
+            field_names = [
+                field_name_map.get(field_id, display_name)
+                for field_id, display_name in zip(field_ids, display_field_names)
+            ]
+            rows = data.get("data", [])
+            if not isinstance(rows, list):
                 raise RuntimeError("Lark CLI API response has invalid record list")
-            for item in items:
-                if not isinstance(item, dict):
-                    raise RuntimeError("Lark CLI API response contains a non-object record")
-                records.append(item)
+            record_ids = data.get("record_id_list", [])
+            if record_ids not in (None, []):
+                if not isinstance(record_ids, list) or not all(isinstance(record_id, str) for record_id in record_ids):
+                    raise RuntimeError("Lark CLI record list response has invalid record id list")
+                if len(record_ids) != len(rows):
+                    raise RuntimeError("Lark CLI record list response record ids are misaligned")
+            for row in rows:
+                if not isinstance(row, list):
+                    raise RuntimeError("Lark CLI record list response contains a non-list row")
+                row_index = len(records) - offset
+                fields = {
+                    field_name: row[index] if index < len(row) else None
+                    for index, field_name in enumerate(field_names)
+                }
+                record: dict[str, Any] = {"fields": fields}
+                if include_record_ids:
+                    if not isinstance(record_ids, list) or row_index >= len(record_ids):
+                        raise RuntimeError("Lark CLI record list response is missing record ids")
+                    record["record_id"] = record_ids[row_index]
+                records.append(record)
             has_more = bool(data.get("has_more"))
             if not has_more:
                 break
-            next_page_token = str(data.get("page_token") or "").strip()
-            if not next_page_token:
-                raise RuntimeError("Lark CLI API response signaled pagination without page_token")
-            page_token = next_page_token
+            if not rows:
+                raise RuntimeError("Lark CLI record list response signaled pagination without rows")
+            offset += len(rows)
         return records
+
+    def upsert_record(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        record_id: str,
+        record: dict[str, Any],
+    ) -> dict[str, Any]:
+        if not record_id.strip():
+            raise RuntimeError("Lark CLI record upsert requires a non-empty record id")
+        payload_dir = ROOT / ".tmp"
+        payload_dir.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            delete=False,
+            dir=str(payload_dir),
+            prefix="lark-upsert-",
+            suffix=".json",
+        ) as handle:
+            payload_path = Path(handle.name)
+            handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")))
+
+        try:
+            return self._run_base_command(
+                args=[
+                    "+record-upsert",
+                    "--as",
+                    "user",
+                    "--base-token",
+                    base_token,
+                    "--table-id",
+                    table_id,
+                    "--record-id",
+                    record_id.strip(),
+                    "--json",
+                    "@" + payload_path.relative_to(ROOT).as_posix(),
+                ]
+            )
+        finally:
+            payload_path.unlink(missing_ok=True)
 
 
 def _coerce_scalar(value: Any) -> str:
@@ -407,10 +682,24 @@ def _normalize_boolish(value: str, *, style: str) -> str:
     return raw
 
 
+def _normalize_slot_key(value: str) -> str:
+    raw = (value or "").strip()
+    if not raw:
+        return ""
+    match = _MARKDOWN_LINK_RE.match(raw)
+    if not match:
+        return raw
+    target = (match.group("target") or "").strip()
+    label = (match.group("label") or "").strip()
+    return target or label
+
+
 def _normalized_cell(schema: TableSchema, column: str, raw_value: Any) -> str:
     value = _coerce_scalar(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "spec_master" and column == "Is_Latest":
         return _normalize_boolish(value, style="upper_bool")
+    if schema.logical_name == "spec_master" and column == "Slot_key":
+        return _normalize_slot_key(value)
     if schema.logical_name in {"spec_footnotes", "spec_notes"} and column in {"Is_Latest", "Enabled"}:
         return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "symbols_blocks" and column == "enabled":
@@ -512,6 +801,55 @@ def _csv_text(schema: TableSchema, rows: list[dict[str, str]]) -> str:
     return handle.getvalue()
 
 
+def _dict_rows_csv_text(fieldnames: tuple[str, ...], rows: list[dict[str, str]] | tuple[dict[str, str], ...]) -> str:
+    handle = io.StringIO(newline="")
+    writer = csv.DictWriter(handle, fieldnames=list(fieldnames), lineterminator="\n")
+    writer.writeheader()
+    for row in rows:
+        writer.writerow({column: row.get(column, "") for column in fieldnames})
+    return handle.getvalue()
+
+
+def _read_existing_mapping_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        rows: list[dict[str, str]] = []
+        for row in reader:
+            rows.append(
+                {
+                    "Row_label_source": (row.get("Row_label_source") or "").strip(),
+                    "Line_order": (row.get("Line_order") or "").strip(),
+                    "Row_key": (row.get("Row_key") or "").strip(),
+                    "Remark": (row.get("Remark") or "").strip(),
+                }
+            )
+    return rows
+
+
+def _resolve_existing_row_key_mapping_path(
+    cfg: dict[str, Any],
+    *,
+    data_root: str | None,
+    target_path: Path,
+) -> Path:
+    if target_path.exists():
+        return target_path
+
+    default_path = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=None,
+    ).row_key_mapping_csv
+    if default_path == target_path:
+        return target_path
+    if default_path.exists():
+        return default_path
+    return target_path
+
+
 def _sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
@@ -539,6 +877,7 @@ def _manifest_payload(
     requested_tables: tuple[str, ...],
     skipped_tables: tuple[str, ...],
     synced_tables: tuple[TableSyncResult, ...],
+    derived_files: tuple[TableSyncResult, ...],
     built_at: datetime,
     dry_run: bool,
 ) -> dict[str, Any]:
@@ -563,6 +902,18 @@ def _manifest_payload(
             }
             for result in synced_tables
         ],
+        "derived_files": [
+            {
+                "logical_name": result.logical_name,
+                "file_name": result.file_name,
+                "path": result.target_path.relative_to(ROOT).as_posix() if result.target_path.is_relative_to(ROOT) else result.target_path.as_posix(),
+                "row_count": result.row_count,
+                "sha256": result.sha256,
+                "previous_sha256": result.previous_sha256,
+                "changed": result.changed,
+            }
+            for result in derived_files
+        ],
     }
 
 
@@ -581,13 +932,22 @@ def sync_phase2_snapshot(
         raise RuntimeError(f"Unsupported sync provider implementation: {provider}")
     cli_bin = _cli_bin(cfg)
     selected_tables = _selected_tables(table_names or [])
+    preflight_errors = collect_sync_preflight_errors(
+        cfg,
+        table_names=selected_tables,
+        require_cli=source is None,
+    )
+    if preflight_errors:
+        raise RuntimeError("sync-data preflight failed:\n- " + "\n- ".join(preflight_errors))
     export_root = resolve_phase2_export_root(cfg, repo_root=ROOT, data_root=data_root)
     manifest_path = resolve_phase2_manifest_path(cfg, repo_root=ROOT, data_root=data_root)
     resolved_source = source or LarkCliSource(cli_bin=cli_bin)
     run_at = built_at or datetime.now(timezone.utc)
 
     table_results: list[TableSyncResult] = []
+    derived_results: list[TableSyncResult] = []
     written_files: list[tuple[Path, str]] = []
+    normalized_rows_by_table: dict[str, list[dict[str, str]]] = {}
 
     for logical_name in selected_tables:
         binding = resolve_table_binding(cfg, logical_name)
@@ -597,6 +957,7 @@ def sync_phase2_snapshot(
             view_id=binding.view_id,
         )
         normalized_rows = normalize_records(binding.schema, raw_records)
+        normalized_rows_by_table[logical_name] = normalized_rows
         csv_text = _csv_text(binding.schema, normalized_rows)
         sha256 = _sha256_text(csv_text)
         target_path = export_root / binding.schema.file_name
@@ -614,6 +975,39 @@ def sync_phase2_snapshot(
         )
         written_files.append((target_path, csv_text))
 
+    if "spec_master" in normalized_rows_by_table:
+        snapshot_paths = resolve_data_snapshot_paths(
+            cfg,
+            repo_root=ROOT,
+            data_root=data_root,
+        )
+        row_key_mapping_path = snapshot_paths.row_key_mapping_csv
+        existing_mapping_path = _resolve_existing_row_key_mapping_path(
+            cfg,
+            data_root=data_root,
+            target_path=row_key_mapping_path,
+        )
+        existing_mapping_rows = _read_existing_mapping_rows(existing_mapping_path)
+        mapping_rows = build_row_label_row_key_mapping_rows(
+            normalized_rows_by_table["spec_master"],
+            existing_rows=existing_mapping_rows,
+        )
+        mapping_csv_text = _dict_rows_csv_text(ROW_KEY_MAPPING_FIELDNAMES, mapping_rows)
+        mapping_sha256 = _sha256_text(mapping_csv_text)
+        previous_mapping_sha256 = _sha256_file(row_key_mapping_path)
+        derived_results.append(
+            TableSyncResult(
+                logical_name="row_key_mapping",
+                file_name=row_key_mapping_path.name,
+                target_path=row_key_mapping_path,
+                row_count=len(mapping_rows),
+                sha256=mapping_sha256,
+                previous_sha256=previous_mapping_sha256,
+                changed=mapping_sha256 != previous_mapping_sha256,
+            )
+        )
+        written_files.append((row_key_mapping_path, mapping_csv_text))
+
     skipped_tables = tuple(name for name in TABLE_ORDER if name not in selected_tables)
     manifest = _manifest_payload(
         export_root=export_root,
@@ -623,6 +1017,7 @@ def sync_phase2_snapshot(
         requested_tables=selected_tables,
         skipped_tables=skipped_tables,
         synced_tables=tuple(table_results),
+        derived_files=tuple(derived_results),
         built_at=run_at,
         dry_run=dry_run,
     )
@@ -641,6 +1036,7 @@ def sync_phase2_snapshot(
         requested_tables=selected_tables,
         skipped_tables=skipped_tables,
         synced_tables=tuple(table_results),
+        derived_files=tuple(derived_results),
         manifest=manifest,
     )
 
@@ -687,6 +1083,13 @@ def main(argv: list[str] | None = None) -> int:
             "[sync-data] "
             f"{table.logical_name}: rows={table.row_count} changed={'yes' if table.changed else 'no'} "
             f"old_sha={old_sha} new_sha={table.sha256} path={table.target_path}"
+        )
+    for derived in result.derived_files:
+        old_sha = derived.previous_sha256 or "-"
+        print(
+            "[sync-data] "
+            f"{derived.logical_name}: rows={derived.row_count} changed={'yes' if derived.changed else 'no'} "
+            f"old_sha={old_sha} new_sha={derived.sha256} path={derived.target_path}"
         )
     print(f"[sync-data] manifest={result.manifest_path}")
     if result.skipped_tables:

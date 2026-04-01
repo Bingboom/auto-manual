@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-03-31
+Updated: 2026-04-01
 
 本文档描述当前仓库里一条真实可用的四语言手册工作流。
 主示例使用 `JE-1000F` 的固定 4 语言集合：
@@ -216,8 +216,21 @@ python build.py doctor --config config.ja.yaml --model JE-1000F --region JP
 如果你使用飞书多维表格作为内容治理层，先同步冻结快照：
 
 ```powershell
+python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run
 python build.py sync-data --config config.yaml --data-root data/phase2
 ```
+
+如果你同时用飞书 `Document_link` 表做本机构建任务队列，也可以在同步后直接消费 `是否触发文档构建 = Y` 的任务并把生成的 Word 路径回写到 `Document directory`：
+
+```powershell
+python build.py process-build-queue --config config.yaml --data-root data/phase2
+```
+
+这一步会先把 `开始构建时间` 写回到任务行，再构建本地 Word、上传到飞书 Drive、把本机路径写回 `Document directory`，并把 Drive URL 写回 `Document link`；成功后会把 `是否触发文档构建` 回写为 `已构建`。
+如果你想让这张表自动轮询 `Y` 任务，Windows 侧直接调 [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) 会比直接调 Python 命令更稳，因为它会补齐 `.venv`、Node/npm 和保存到用户环境变量里的 `FEISHU_PHASE2_*`。
+如果你想改成“勾选后立即构建”而不是轮询，给 `Document_link` 表增加 checkbox 字段 `是否立即构建`，在飞书开放平台里为当前自建应用添加并发布 `drive.file.bitable_record_changed_v1` 事件，然后启动 [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1)；监听器会用当前登录用户身份订阅这张表的云文档事件，并在对应记录被勾选时立刻触发本地构建。
+
+这一步需要额外配置 `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` 和 `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`，并复用同一个 `FEISHU_PHASE2_BASE_TOKEN`。
 
 然后再从模板和数据准备运行时草稿：
 

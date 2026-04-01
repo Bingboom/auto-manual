@@ -96,6 +96,7 @@ python3 build.py sync-data --config config.yaml --data-root data/phase2
    - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
    - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
    - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
+   - [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv)
    - [`data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json)
 
 Failure triage:
@@ -184,7 +185,54 @@ When the parity run is complete:
 git worktree remove ../auto-manual-parity
 ```
 
-## 6. Decision Rule
+## 6. 2026-04-01 Execution Result
+
+Status on this machine:
+
+1. Part A completed: local `Node.js`, `npm`, and `lark-cli` are installed, configured, and authenticated.
+2. Part B completed: `FEISHU_PHASE2_*` is wired, `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` succeeds, and the real sync refreshed [`../data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json).
+3. Part C completed in the disposable worktree `C:/Users/tangxb/Documents/GitHub/auto-manual-parity`.
+
+Captured parity artifacts for the real synced snapshot are kept under:
+
+- `C:/Users/tangxb/Documents/GitHub/auto-manual-parity/.tmp/parity_real_sync_20260401T110943/`
+
+Observed result for target `config.yaml + JE-1000F + US`:
+
+- `phase1` and `phase2` both passed `rst`
+- `phase1` and `phase2` both passed `check`
+- `release-manifest` raw differences are limited to `built_at` plus snapshot path fields pointing to `data/phase1/...` vs `data/phase2/...`
+- normalized `release-manifest` payloads are equal after ignoring `built_at` and phase-root path strings
+
+RST comparison summary:
+
+- expected traceability difference: [`bundle_manifest.json`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/bundle_manifest.json) points to `data/phase2/Spec_Master.csv` with the synced snapshot SHA instead of `data/phase1/Spec_Master.csv`
+- one real content delta remains in [`spec_en.rst`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/generated/JE-1000F/spec_en.rst) and [`spec_en.rst`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/page/spec_en.rst)
+- concrete difference: `AC Output in Bypass Mode` with the footnote marker in phase1 became plain `AC Output in Bypass Mode` in phase2
+- initial observed source difference: [`../data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv) keeps `Row_label_footnote_refs=ac_bypass` on the `JE-1000F_US_en + ac_output_bypass` row, while the first synced [`../data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) copy left that field empty
+
+Interpretation:
+
+- the real phase2 snapshot is operational and build-valid on this machine
+- release-manifest parity is effectively clean
+- the first parity run still had one content delta, pending root-cause confirmation
+
+Initial next action that was investigated:
+
+1. restore `Row_label_footnote_refs=ac_bypass` for the `JE-1000F_US_en / ac_output_bypass` row in the Feishu source table
+2. rerun `python build.py sync-data --config config.yaml --data-root data/phase2`
+3. rerun this disposable parity check and confirm the remaining `spec_en.rst` delta disappears
+
+Follow-up on 2026-04-01:
+
+- Feishu source data was already correct; the real cause was the sync implementation
+- `lark-cli base +record-list` abbreviated long headers such as `Row_label_footnote_refs` to `Row_label_footnote_r...`
+- the previous sync path matched returned columns by display name only, so that field was dropped during CSV normalization
+- after fixing [`../tools/sync_data.py`](../tools/sync_data.py) to resolve full field names via `base +field-list`, rerunning `sync-data` restored `Row_label_footnote_refs=ac_bypass` in [`../data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- a second disposable parity run under `C:/Users/tangxb/Documents/GitHub/auto-manual-parity/.tmp/parity_real_sync_20260401T112147/` removed the remaining `spec_en.rst` delta
+- current parity status is now clean except for the expected traceability-only `bundle_manifest.json` path/SHA difference and the expected `release-manifest built_at + phase path` differences
+
+## 7. Decision Rule
 
 Do not switch any default config from `phase1` to `phase2` yet.
 Only make that change after:

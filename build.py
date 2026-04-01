@@ -41,6 +41,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "check",
             "sync-review",
             "sync-data",
+            "process-build-queue",
+            "listen-build-queue",
             "publish",
             "clean",
             "diff-report",
@@ -103,7 +105,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Output directory for diff-report CSV/HTML",
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
-    ap.add_argument("--dry-run", action="store_true", help="For sync-data: validate and report without writing files")
+    ap.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="For sync-data or process-build-queue: validate/report without writing files",
+    )
     return ap.parse_args(argv)
 
 
@@ -354,6 +360,40 @@ def release_manifest_command(args: argparse.Namespace) -> list[str]:
         region,
     ]
     return _append_data_root_arg(cmd, args)
+
+
+def process_build_queue_command(args: argparse.Namespace) -> list[str]:
+    if (args.model or "").strip() or (args.region or "").strip():
+        raise RuntimeError(
+            "process-build-queue does not accept --model or --region; targets come from Document_link rows"
+        )
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "process_build_queue.py"),
+        "--config",
+        str(config_path),
+    ]
+    _append_data_root_arg(cmd, args)
+    if args.dry_run:
+        cmd.append("--dry-run")
+    return cmd
+
+
+def listen_build_queue_command(args: argparse.Namespace) -> list[str]:
+    if (args.model or "").strip() or (args.region or "").strip():
+        raise RuntimeError(
+            "listen-build-queue does not accept --model or --region; targets come from Document_link events"
+        )
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "listen_build_queue.py"),
+        "--config",
+        str(config_path),
+    ]
+    _append_data_root_arg(cmd, args)
+    return cmd
 
 
 def run_validate(config_path: Path, *, data_root: str | None = None) -> None:
@@ -877,6 +917,10 @@ def main(argv: list[str] | None = None) -> int:
             run_checked(sync_review_command(args))
         elif args.action == "sync-data":
             run_checked(sync_data_command(args))
+        elif args.action == "process-build-queue":
+            run_checked(process_build_queue_command(args))
+        elif args.action == "listen-build-queue":
+            run_checked(listen_build_queue_command(args))
         elif args.action == "publish":
             run_publish(args)
         elif args.action == "diff-report":

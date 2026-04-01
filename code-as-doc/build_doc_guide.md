@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-03-31
+Updated: 2026-04-01
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -22,6 +22,7 @@ python build.py check
 python build.py sync-review
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py process-build-queue --config config.yaml --data-root data/phase2
 python build.py handoff --config config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
@@ -38,11 +39,17 @@ python build.py clean
 Meaning:
 
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
-- `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2)
+- `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood
+- `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
+- `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
 - `sync-review`: refresh review files affected by CSV data changes
+- `process-build-queue`: consume `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Document_Key + Lang`, run `check + word`, upload the generated DOCX to Feishu Drive, write the local DOCX path into `Document directory`, write the uploaded Drive URL into `Document link`, write a timestamped build status into `构建结果`, and flip the trigger back to `已构建` on success
+- [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
+- `listen-build-queue`: start the push-based Feishu long-connection listener, auto-subscribe the current `Document_link` base to docs events with the current user identity, keep the long connection on the same user identity, and trigger `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
+- [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1): Windows listener wrapper for `listen-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars and writes run logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
 - `publish`: run `check -> diff-report -> word -> release-manifest` for one explicit target
 - `release-manifest`: write JSON / CSV release traceability for one explicit target
 - `handoff`: create a minimal explicit target design handoff package with rule-based diff outputs and traceability metadata
@@ -95,7 +102,7 @@ Pass target differences through:
 Phase2 snapshot rule:
 
 - keep the shared config families, but prefer syncing content into [`../data/phase2/`](../data/phase2) with `python build.py sync-data --config config.yaml --data-root data/phase2`
-- pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, and `publish` when you want the build to consume the phase2 snapshot explicitly
+- pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, `publish`, and `process-build-queue` when you want the build to consume the phase2 snapshot explicitly
 - [`../data/phase1/page_registry.csv`](../data/phase1/page_registry.csv) and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
 
 Only create a new config when one of these really changes:
@@ -124,7 +131,9 @@ python tools\validate_layout_params.py --csv data\layout_params.csv
 If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before runtime build:
 
 ```powershell
+python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run
 python build.py sync-data --config config.yaml --data-root data/phase2
+python build.py process-build-queue --config config.yaml --data-root data/phase2
 ```
 
 That command requires:
@@ -132,6 +141,12 @@ That command requires:
 - a working `lark-cli` binary on `PATH`
 - a valid local `lark-cli` login session
 - the `FEISHU_PHASE2_*` environment variables referenced by [`../config.yaml`](../config.yaml) or [`../config.ja.yaml`](../config.ja.yaml)
+- `--dry-run` is the recommended machine-readiness check first; it now aggregates missing CLI and missing `FEISHU_PHASE2_*` bindings into one preflight error before any fetch
+- on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically during fetch, so you do not need a Windows-only config override
+- when `spec_master` is included, the sync also refreshes [`../data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) as the phase2 mirror of the row-label mapping table
+- if you also use the Feishu `Document_link` build queue, set `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` and `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`; `process-build-queue` reuses the same `FEISHU_PHASE2_BASE_TOKEN`
+- for local polling automation on Windows, schedule [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) instead of calling `python build.py process-build-queue ...` directly, so the scheduled run inherits the repo `.venv`, the local `lark-cli` shim path, and the saved `FEISHU_PHASE2_*` user env vars consistently
+- for push-based immediate builds, add the `drive.file.bitable_record_changed_v1` event to the Feishu self-built app in Open Platform, publish the app change, then start [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) at login or from the Windows Startup folder; the listener will auto-subscribe the current base token on startup
 
 ### 3.2 Create a Runtime Draft
 

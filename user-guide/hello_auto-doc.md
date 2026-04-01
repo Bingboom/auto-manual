@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-03-31
+Updated: 2026-04-01
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -73,7 +73,17 @@ The manual system now has four layers, but they are used at different stages.
    - legacy baseline [`data/phase1/`](../data/phase1)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
-   - `python build.py sync-data --config config.yaml --data-root data/phase2` refreshes the preferred frozen snapshot from Feishu/Lark using the local `lark-cli` login
+   - `python build.py sync-data --config config.yaml --data-root data/phase2` refreshes the preferred frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
+   - during that refresh, `Spec_Master.csv Slot_key` is normalized back to plain tokens like `front.label` when the source table stores markdown-link wrappers
+   - the sync also resolves full field names through Base field metadata, so long columns like `Row_label_footnote_refs` do not disappear when the CLI view output abbreviates them
+   - `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
+   - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically, so the normal shared config still works
+   - when `spec_master` is part of that refresh, the command also regenerates [`../data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) while preserving existing manual `Row_key` and `Remark` entries when possible
+   - `python build.py process-build-queue --config config.yaml --data-root data/phase2` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Document_Key + Lang`, builds the local Word file, uploads it to Feishu Drive, writes the local path into `Document directory`, writes the uploaded Drive URL into `Document link`, writes a timestamped status into `构建结果`, and flips the trigger back to `已构建` on success
+   - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
+   - `python build.py listen-build-queue --config config.yaml --data-root data/phase2` is the push-based immediate-build listener: after the Feishu app has the `drive.file.bitable_record_changed_v1` event enabled, it subscribes the table and keeps the long connection on the same current user identity, then triggers `process-build-queue` immediately when `Document_link` rows are checked in `是否立即构建`
+   - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) is the Windows wrapper for that listener; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
+   - that queue worker reuses `FEISHU_PHASE2_BASE_TOKEN` and additionally needs `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`
    - `page_registry.csv` and [`data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not overridden by `--data-root`
    - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
    - `Spec_Footnotes.csv` now holds only reusable spec footnote definitions; `Footnote_order` controls the rendered superscript marker order and `Footnote_id` is referenced from `Spec_Master.csv`
@@ -133,7 +143,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py sync-data|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
 4. `product_name` is resolved from the active snapshot root, defaulting to [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv) and switching to [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) when `--data-root data/phase2` is passed
@@ -156,6 +166,8 @@ Important:
 
 - `python build.py rst` only materializes the RST bundle.
 - `python build.py sync-data --config config.yaml --data-root data/phase2` is the explicit local pull step for Feishu/Lark content; build commands never fetch online data implicitly.
+- `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the safest readiness probe for a new machine because it checks the local CLI/env prerequisites before attempting the real sync.
+- `python build.py process-build-queue --config config.yaml --data-root data/phase2` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
 - build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.

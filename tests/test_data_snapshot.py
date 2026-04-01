@@ -27,6 +27,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
 
             self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase2" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
+            self.assertEqual(root / "data" / "phase2" / "row_key_mapping.csv", paths.row_key_mapping_csv)
             self.assertEqual(root / "data" / "phase2", paths.page_blocks_dir)
             self.assertEqual(root / "custom" / "page_registry.csv", paths.page_registry_csv)
 
@@ -43,6 +44,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
             paths = resolve_data_snapshot_paths(cfg, repo_root=root)
 
             self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
+            self.assertEqual(root / "data" / "phase2" / "row_key_mapping.csv", paths.row_key_mapping_csv)
             self.assertEqual(root / "data" / "page-blocks", paths.page_blocks_dir)
             self.assertEqual(root / "data" / "phase1" / "page_registry.csv", paths.page_registry_csv)
 

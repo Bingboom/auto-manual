@@ -265,6 +265,8 @@ class TestBuildScript(unittest.TestCase):
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
+        queue_args = build_cli.parse_args(["process-build-queue", "--dry-run"])
+        listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
@@ -273,6 +275,9 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("review", review_args.action)
         self.assertEqual("check", check_args.action)
         self.assertEqual("config.ja.yaml", check_args.config)
+        self.assertEqual("process-build-queue", queue_args.action)
+        self.assertTrue(queue_args.dry_run)
+        self.assertEqual("listen-build-queue", listener_args.action)
         self.assertEqual("publish", publish_args.action)
         self.assertEqual("JE-1000F", publish_args.model)
         self.assertEqual("JP", publish_args.region)
@@ -385,6 +390,54 @@ class TestBuildScript(unittest.TestCase):
 
         with self.assertRaisesRegex(RuntimeError, "sync-data does not accept --model or --region"):
             build_cli.sync_data_command(args)
+
+    def test_process_build_queue_command_should_forward_data_root_and_dry_run(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "process-build-queue",
+                "--config",
+                "config.yaml",
+                "--data-root",
+                "data/phase2",
+                "--dry-run",
+            ]
+        )
+
+        cmd = build_cli.process_build_queue_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "process_build_queue.py"), cmd[1])
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
+        self.assertIn("--dry-run", cmd)
+
+    def test_process_build_queue_command_should_reject_target_scoped_flags(self) -> None:
+        args = build_cli.parse_args(["process-build-queue", "--model", "JE-1000F"])
+
+        with self.assertRaisesRegex(RuntimeError, "process-build-queue does not accept --model or --region"):
+            build_cli.process_build_queue_command(args)
+
+    def test_listen_build_queue_command_should_forward_data_root(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "listen-build-queue",
+                "--config",
+                "config.yaml",
+                "--data-root",
+                "data/phase2",
+            ]
+        )
+
+        cmd = build_cli.listen_build_queue_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "listen_build_queue.py"), cmd[1])
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
+
+    def test_listen_build_queue_command_should_reject_target_scoped_flags(self) -> None:
+        args = build_cli.parse_args(["listen-build-queue", "--region", "US"])
+
+        with self.assertRaisesRegex(RuntimeError, "listen-build-queue does not accept --model or --region"):
+            build_cli.listen_build_queue_command(args)
 
     def test_publish_should_require_explicit_model_and_region(self) -> None:
         args = build_cli.parse_args(["publish"])

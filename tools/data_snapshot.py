@@ -17,6 +17,7 @@ SPEC_MASTER_FILE = "Spec_Master.csv"
 SPEC_FOOTNOTES_FILE = "Spec_Footnotes.csv"
 SPEC_NOTES_FILE = "Spec_Notes.csv"
 SPEC_TITLES_FILE = "spec_titles.csv"
+ROW_KEY_MAPPING_FILE = "row_key_mapping.csv"
 PAGE_REGISTRY_FILE = "page_registry.csv"
 
 
@@ -29,6 +30,7 @@ class DataSnapshotPaths:
     spec_footnotes_csv: Path
     spec_notes_csv: Path
     spec_titles_csv: Path
+    row_key_mapping_csv: Path
 
 
 def _paths_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
@@ -259,6 +261,15 @@ def resolve_data_snapshot_paths(
             data_root=data_root,
             config_key="spec_titles_csv",
             default_file_name=SPEC_TITLES_FILE,
+            model=model,
+            region=region,
+        ),
+        row_key_mapping_csv=_resolve_structured_file_path(
+            cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            config_key="row_key_mapping_csv",
+            default_file_name=ROW_KEY_MAPPING_FILE,
             model=model,
             region=region,
         ),

@@ -1,4 +1,4 @@
-﻿page_id,image_path,symbol_key,text_en,text_fr,text_es,enabled,block_type,column_group,order,Region,Model,Source_lang
+page_id,image_path,symbol_key,text_en,text_fr,text_es,enabled,block_type,column_group,order,Region,Model,Source_lang
 symbols,templates/word_template/common_assets/symbols/warning_triangle.png,warning_triangle,Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.,Mise en garde. Le non-respect des messages d'avertissement peut entraîner des blessures.,Precaución. El incumplimiento de los mensajes de advertencia puede provocar lesiones.,1,table_row,left,10,US,JE-1000F,en
 symbols,templates/word_template/common_assets/symbols/read_manual_operator.png,read_manual,Read the user manual before operation.,Lisez le manuel d'utilisation avant toute opération.,Lea el manual del usuario antes de operar el producto.,1,table_row,left,20,US,JE-1000F,en
 symbols,templates/word_template/common_assets/symbols/electric_shock.png,electric_shock,Risk of electric shock.,Risque de choc électrique.,Riesgo de descarga eléctrica.,1,table_row,left,30,US,JE-1000F,en

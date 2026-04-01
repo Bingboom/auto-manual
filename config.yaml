@@ -59,6 +59,9 @@ sync:
       symbols_blocks:
         table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
         view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
+    document_link:
+      table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
+      view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
