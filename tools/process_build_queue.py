@@ -8,10 +8,12 @@ import json
 import os
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -58,9 +60,11 @@ class DocumentLinkBinding:
     base_token_env: str
     table_id_env: str
     view_id_env: str | None
+    wiki_parent_token_env: str | None
     base_token: str
     table_id: str
     view_id: str | None
+    wiki_parent_token: str | None
 
 
 @dataclass(frozen=True)
@@ -78,6 +82,12 @@ class QueueRecord:
         return self.document_id or f"{self.document_key}_{self.lang}"
 
 
+@dataclass(frozen=True)
+class WikiDestination:
+    space_id: str
+    parent_wiki_token: str
+
+
 def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     phase2_cfg = _sync_phase2_cfg(cfg)
     raw = phase2_cfg.get("document_link", {})
@@ -91,6 +101,12 @@ def _document_link_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]
     table_id_env = str(document_link_cfg.get("table_id_env") or "").strip()
     view_id_env = str(document_link_cfg.get("view_id_env") or "").strip() or None
     return base_token_env, table_id_env, view_id_env
+
+
+def _document_link_wiki_parent_token_env(cfg: dict[str, Any]) -> str | None:
+    document_link_cfg = _document_link_cfg(cfg)
+    value = str(document_link_cfg.get("wiki_parent_token_env") or "").strip()
+    return value or None
 
 
 def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
@@ -123,6 +139,7 @@ def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
 
 def resolve_document_link_binding(cfg: dict[str, Any]) -> DocumentLinkBinding:
     base_token_env, table_id_env, view_id_env = _document_link_env_names(cfg)
+    wiki_parent_token_env = _document_link_wiki_parent_token_env(cfg)
     if not base_token_env:
         raise RuntimeError("sync.phase2.document_link.base_token_env is required, or provide sync.phase2.base_token_env")
     if not table_id_env:
@@ -131,9 +148,11 @@ def resolve_document_link_binding(cfg: dict[str, Any]) -> DocumentLinkBinding:
         base_token_env=base_token_env,
         table_id_env=table_id_env,
         view_id_env=view_id_env,
+        wiki_parent_token_env=wiki_parent_token_env,
         base_token=_env_value(base_token_env),
         table_id=_env_value(table_id_env),
         view_id=_env_value(view_id_env) if view_id_env else None,
+        wiki_parent_token=_env_value(wiki_parent_token_env) if wiki_parent_token_env and str(os.environ.get(wiki_parent_token_env, "")).strip() else None,
     )
 
 
@@ -453,6 +472,181 @@ def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str)
     return file_token, drive_url
 
 
+def _wiki_node_from_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        raise RuntimeError("Wiki node response is missing data payload")
+    node = data.get("node")
+    if not isinstance(node, dict):
+        raise RuntimeError("Wiki node response is missing node payload")
+    return node
+
+
+def get_wiki_node(
+    *,
+    cli_bin: str,
+    identity: str,
+    token: str,
+    obj_type: str | None = None,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {"token": token}
+    if obj_type:
+        params["obj_type"] = obj_type
+    payload = _run_lark_cli_json(
+        cli_bin=cli_bin,
+        args=[
+            "wiki",
+            "spaces",
+            "get_node",
+            "--as",
+            identity,
+            "--params",
+            json.dumps(params, ensure_ascii=False, separators=(",", ":")),
+        ],
+    )
+    return _wiki_node_from_payload(payload)
+
+
+def resolve_wiki_destination(
+    *,
+    cli_bin: str,
+    identity: str,
+    binding: DocumentLinkBinding,
+) -> WikiDestination:
+    if binding.wiki_parent_token:
+        node = get_wiki_node(
+            cli_bin=cli_bin,
+            identity=identity,
+            token=binding.wiki_parent_token,
+        )
+        space_id = str(node.get("space_id") or "").strip()
+        parent_wiki_token = binding.wiki_parent_token
+    else:
+        node = get_wiki_node(
+            cli_bin=cli_bin,
+            identity=identity,
+            token=binding.base_token,
+            obj_type="bitable",
+        )
+        space_id = str(node.get("space_id") or "").strip()
+        parent_wiki_token = str(node.get("parent_node_token") or node.get("node_token") or "").strip()
+    if not space_id:
+        raise RuntimeError("Wiki destination lookup did not return a space_id")
+    if not parent_wiki_token:
+        raise RuntimeError("Wiki destination lookup did not return a usable parent_wiki_token")
+    return WikiDestination(space_id=space_id, parent_wiki_token=parent_wiki_token)
+
+
+def _host_root_from_url(url: str) -> str:
+    parsed = urlparse(url.strip())
+    if not parsed.scheme or not parsed.netloc:
+        raise RuntimeError(f"Could not determine tenant host from URL: {url}")
+    return f"{parsed.scheme}://{parsed.netloc}"
+
+
+def _wiki_url_from_host_root(host_root: str, wiki_token: str) -> str:
+    return f"{host_root.rstrip('/')}/wiki/{wiki_token}"
+
+
+def _move_result_entry_from_task_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        raise RuntimeError("Wiki task response is missing data payload")
+    task = data.get("task")
+    if not isinstance(task, dict):
+        raise RuntimeError("Wiki task response is missing task payload")
+    move_result = task.get("move_result")
+    if not isinstance(move_result, list) or not move_result or not isinstance(move_result[0], dict):
+        raise RuntimeError("Wiki task response is missing move_result payload")
+    return move_result[0]
+
+
+def wait_for_wiki_move_task(
+    *,
+    cli_bin: str,
+    identity: str,
+    task_id: str,
+    host_root: str,
+) -> str:
+    for _ in range(20):
+        payload = _run_lark_cli_json(
+            cli_bin=cli_bin,
+            args=[
+                "api",
+                "GET",
+                f"/open-apis/wiki/v2/tasks/{task_id}",
+                "--params",
+                json.dumps({"task_type": "move"}, ensure_ascii=False, separators=(",", ":")),
+                "--as",
+                identity,
+            ],
+        )
+        entry = _move_result_entry_from_task_payload(payload)
+        status = entry.get("status")
+        status_msg = str(entry.get("status_msg") or "").strip()
+        if status == 1 or status_msg == "processing":
+            time.sleep(3.0)
+            continue
+        if status == 0:
+            node = entry.get("node")
+            if not isinstance(node, dict):
+                raise RuntimeError("Wiki task completed without node payload")
+            wiki_token = str(node.get("node_token") or "").strip()
+            if not wiki_token:
+                raise RuntimeError("Wiki task completed without node_token")
+            return _wiki_url_from_host_root(host_root, wiki_token)
+        raise RuntimeError(f"Wiki move task failed: {status_msg or status}")
+    raise RuntimeError(f"Wiki move task timed out: {task_id}")
+
+
+def move_drive_file_to_wiki(
+    *,
+    cli_bin: str,
+    identity: str,
+    file_token: str,
+    drive_url: str,
+    destination: WikiDestination,
+) -> str:
+    host_root = _host_root_from_url(drive_url)
+    payload = _run_lark_cli_json(
+        cli_bin=cli_bin,
+        args=[
+            "api",
+            "POST",
+            f"/open-apis/wiki/v2/spaces/{destination.space_id}/nodes/move_docs_to_wiki",
+            "--as",
+            identity,
+            "--data",
+            json.dumps(
+                {
+                    "parent_wiki_token": destination.parent_wiki_token,
+                    "obj_type": "file",
+                    "obj_token": file_token,
+                },
+                ensure_ascii=False,
+                separators=(",", ":"),
+            ),
+        ],
+    )
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        raise RuntimeError("Wiki move response is missing data payload")
+    wiki_token = str(data.get("wiki_token") or "").strip()
+    if wiki_token:
+        return _wiki_url_from_host_root(host_root, wiki_token)
+    task_id = str(data.get("task_id") or "").strip()
+    if task_id:
+        return wait_for_wiki_move_task(
+            cli_bin=cli_bin,
+            identity=identity,
+            task_id=task_id,
+            host_root=host_root,
+        )
+    if data.get("applied") is True:
+        raise RuntimeError("Wiki move requires a permission approval flow before the file can be attached to the knowledge base")
+    raise RuntimeError("Wiki move response did not include wiki_token or task_id")
+
+
 def build_document_for_task(
     *,
     config_path: Path,
@@ -505,7 +699,7 @@ def build_success_fields(
     *,
     version: str,
     word_output_path: Path,
-    drive_url: str,
+    document_link_url: str,
     built_at: datetime,
 ) -> dict[str, Any]:
     return {
@@ -519,7 +713,7 @@ def build_success_fields(
             if part
         ),
         DOCUMENT_DIRECTORY_FIELD: word_output_path.resolve(strict=False).as_posix(),
-        DOCUMENT_LINK_FIELD: drive_url.strip(),
+        DOCUMENT_LINK_FIELD: document_link_url.strip(),
         TRIGGER_FIELD: [DONE_TRIGGER_VALUE],
         IMMEDIATE_TRIGGER_FIELD: False,
     }
@@ -594,6 +788,22 @@ def process_build_queue(
             )
         return 0
 
+    wiki_destination = resolve_wiki_destination(
+        cli_bin=cli_bin,
+        identity=identity,
+        binding=binding,
+    )
+    print(
+        "[build-queue] Wiki destination "
+        + json.dumps(
+            {
+                "space_id": wiki_destination.space_id,
+                "parent_wiki_token": wiki_destination.parent_wiki_token,
+            },
+            ensure_ascii=False,
+        )
+    )
+
     failures: list[str] = []
     processed = 0
     for record in pending:
@@ -621,10 +831,17 @@ def process_build_queue(
                 region=region,
                 data_root=data_root,
             )
-            _, drive_url = upload_word_to_drive(
+            file_token, drive_url = upload_word_to_drive(
                 cli_bin=cli_bin,
                 word_output_path=word_output_path,
                 identity=identity,
+            )
+            document_link_url = move_drive_file_to_wiki(
+                cli_bin=cli_bin,
+                identity=identity,
+                file_token=file_token,
+                drive_url=drive_url,
+                destination=wiki_destination,
             )
             built_at = datetime.now().astimezone()
             source.upsert_record(
@@ -634,12 +851,12 @@ def process_build_queue(
                 record=build_success_fields(
                     version=record.version,
                     word_output_path=word_output_path,
-                    drive_url=drive_url,
+                    document_link_url=document_link_url,
                     built_at=built_at,
                 ),
             )
             processed += 1
-            print(f"[build-queue] Updated {record.label}: {word_output_path} -> {drive_url}")
+            print(f"[build-queue] Updated {record.label}: {word_output_path} -> {document_link_url}")
         except Exception as exc:
             message = str(exc).strip()
             failures.append(f"{record.label}: {message}")

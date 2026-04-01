@@ -114,7 +114,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             fields = process_build_queue.build_success_fields(
                 version="1.0",
                 word_output_path=word_path,
-                drive_url=drive_url,
+                document_link_url=drive_url,
                 built_at=built_at,
             )
 
@@ -222,6 +222,87 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertFalse(Path(observed_args[0][5]).is_absolute())
         self.assertEqual("manual_je1000f_us_en.docx", observed_args[0][7])
 
+    def test_resolve_wiki_destination_should_default_to_parent_of_document_link_bitable(self) -> None:
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+
+        with mock.patch.object(
+            process_build_queue,
+            "get_wiki_node",
+            return_value={
+                "space_id": "space_123",
+                "node_token": "wiki_current",
+                "parent_node_token": "wiki_parent",
+            },
+        ) as get_node_mock:
+            destination = process_build_queue.resolve_wiki_destination(
+                cli_bin="lark-cli",
+                identity="bot",
+                binding=binding,
+            )
+
+        self.assertEqual("space_123", destination.space_id)
+        self.assertEqual("wiki_parent", destination.parent_wiki_token)
+        get_node_mock.assert_called_once_with(
+            cli_bin="lark-cli",
+            identity="bot",
+            token="app_token",
+            obj_type="bitable",
+        )
+
+    def test_move_drive_file_to_wiki_should_return_wiki_url_from_async_task(self) -> None:
+        observed_args: list[list[str]] = []
+
+        def fake_run(*, cli_bin: str, args: list[str]) -> dict[str, object]:
+            self.assertEqual("lark-cli", cli_bin)
+            observed_args.append(args)
+            if args[:3] == ["api", "POST", "/open-apis/wiki/v2/spaces/space_123/nodes/move_docs_to_wiki"]:
+                return {"code": 0, "data": {"task_id": "task_123"}}
+            return {
+                "code": 0,
+                "data": {
+                    "task": {
+                        "task_id": "task_123",
+                        "move_result": [
+                            {
+                                "status": 0,
+                                "status_msg": "success",
+                                "node": {"node_token": "wiki_token_123"},
+                            }
+                        ],
+                    }
+                },
+            }
+
+        with mock.patch.object(process_build_queue, "_run_lark_cli_json", side_effect=fake_run), mock.patch.object(
+            process_build_queue.time,
+            "sleep",
+        ):
+            wiki_url = process_build_queue.move_drive_file_to_wiki(
+                cli_bin="lark-cli",
+                identity="bot",
+                file_token="file_token_123",
+                drive_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+                destination=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            )
+
+        self.assertEqual("https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123", wiki_url)
+        self.assertEqual(["api", "POST", "/open-apis/wiki/v2/spaces/space_123/nodes/move_docs_to_wiki"], observed_args[0][:3])
+        self.assertEqual(["api", "GET", "/open-apis/wiki/v2/tasks/task_123"], observed_args[1][:3])
+        self.assertEqual("--params", observed_args[1][3])
+        self.assertIn("move", observed_args[1][4])
+
     def test_process_build_queue_should_build_and_write_back_success(self) -> None:
         cfg = {
             "sync": {
@@ -240,9 +321,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             base_token_env="BASE_TOKEN",
             table_id_env="DOCUMENT_LINK_TABLE",
             view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
             base_token="app_token",
             table_id="tbl_document_link",
             view_id="vew_document_link",
+            wiki_parent_token=None,
         )
         raw_records = [
             {
@@ -290,6 +373,17 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
             ), mock.patch.object(
                 process_build_queue,
+                "resolve_wiki_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "move_drive_file_to_wiki",
+                return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+            ), mock.patch.object(
+                process_build_queue,
                 "_phase2_identity",
                 return_value="bot",
             ):
@@ -315,7 +409,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             record_payload[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
         )
         self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
             record_payload[process_build_queue.DOCUMENT_LINK_FIELD],
         )
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
