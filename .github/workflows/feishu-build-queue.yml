@@ -11,7 +11,6 @@ concurrency:
 
 jobs:
   process-queue:
-    if: ${{ secrets.FEISHU_APP_ID != '' && secrets.FEISHU_APP_SECRET != '' && secrets.FEISHU_PHASE2_BASE_TOKEN != '' && secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID != '' }}
     runs-on: ubuntu-latest
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
@@ -32,6 +31,38 @@ jobs:
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        shell: bash
+        run: |
+          required=(
+            FEISHU_APP_ID
+            FEISHU_APP_SECRET
+            FEISHU_PHASE2_BASE_TOKEN
+            FEISHU_PHASE2_SPEC_MASTER_TABLE_ID
+            FEISHU_PHASE2_SPEC_MASTER_VIEW_ID
+            FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID
+            FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID
+            FEISHU_PHASE2_SPEC_NOTES_TABLE_ID
+            FEISHU_PHASE2_SPEC_NOTES_VIEW_ID
+            FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
+            FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
+            FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
+            FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
+            FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
+            FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
+          )
+          missing=()
+          for name in "${required[@]}"; do
+            if [ -z "${!name:-}" ]; then
+              missing+=("$name")
+            fi
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            printf 'Missing required secrets/env vars:\n' >&2
+            printf ' - %s\n' "${missing[@]}" >&2
+            exit 1
+          fi
 
       - uses: actions/setup-python@v5
         with:
