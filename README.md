@@ -70,6 +70,16 @@ Phase2 snapshot note:
 - the push listener requires the Feishu self-built app to have the `drive.file.bitable_record_changed_v1` event added and published in the Open Platform console; without that event, the long connection stays idle even though the local listener is running
 - `page_registry.csv` and [`data/layout_params.csv`](data/layout_params.csv) stay repo-maintained and are not overridden by `--data-root`
 
+Draft / Publish queue split:
+
+- `process-build-queue` now refreshes `data/phase2` with `sync-data` before it starts building queued rows
+- `process-build-queue --doc-phase draft` consumes only `Doc_phase=Draft`
+- `process-build-queue --doc-phase publish` consumes only `Doc_phase=Publish`
+- `process-build-queue --record-id <record_id>` lets one workflow rebuild exactly one `Document_link` row
+- [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
+- [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the PR-owned Draft queue worker
+- when you dispatch the Draft worker, the GitHub `ref` must be the PR head branch, otherwise the generated Draft document will still come from `main`
+
 Dedicated zh bundle example:
 
 ```bash
