@@ -60,9 +60,7 @@ authority to operate the device.
           :width: 120px
 
        **Documents**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon.png
-          :alt: User manual image placeholder.
-          :width: 120px
+
 
 .. list-table::
    :header-rows: 0
