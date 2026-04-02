@@ -59,8 +59,7 @@ authority to operate the device.
           :alt: User manual image placeholder.
           :width: 120px
 
-       **User Manual**
-     - **Warranty Card**
+       **Documents**
 
 .. list-table::
    :header-rows: 0
