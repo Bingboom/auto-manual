@@ -72,7 +72,7 @@ class TestReviewSupport(unittest.TestCase):
             )
             self.assertFalse((bundle_dir / "README.md").exists())
 
-    def test_overlay_review_onto_bundle_should_fallback_to_family_review_dir_when_lang_dir_is_missing(self) -> None:
+    def test_overlay_review_onto_bundle_should_require_lang_scoped_review_dir_when_lang_is_requested(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
@@ -87,14 +87,7 @@ class TestReviewSupport(unittest.TestCase):
             (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
             (review_dir / "page" / "overview.rst").write_text("review overview\n", encoding="utf-8")
 
-            self.assertTrue(
-                review_bundle_exists(
-                    docs_dir=docs_dir,
-                    model="JE-1000F",
-                    region="US",
-                    lang="en",
-                )
-            )
+            self.assertFalse(review_bundle_exists(docs_dir=docs_dir, model="JE-1000F", region="US", lang="en"))
 
             applied_dir = overlay_review_onto_bundle(
                 bundle_dir=bundle_dir,
@@ -104,9 +97,9 @@ class TestReviewSupport(unittest.TestCase):
                 lang="en",
             )
 
-            self.assertEqual(review_dir, applied_dir)
-            self.assertEqual("review index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
-            self.assertEqual("review overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
+            self.assertIsNone(applied_dir)
+            self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertEqual("runtime overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
 
     def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:

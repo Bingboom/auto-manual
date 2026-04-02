@@ -256,6 +256,7 @@ By default this updates data-driven files in the review bundle without resetting
 
 That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
 Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
+For US English, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout.
 
 Useful variants:
 

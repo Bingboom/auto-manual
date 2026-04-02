@@ -43,7 +43,7 @@ authority to operate the device.
 
 .. list-table::
    :header-rows: 0
-   :widths: 25 25 25 25
+   :widths: 33 33 34
 
    * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit.png
           :alt: Power station image placeholder.
@@ -60,7 +60,9 @@ authority to operate the device.
           :width: 120px
 
        **Documents**
-
+     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon.png
+          :alt: User manual image placeholder.
+          :width: 120px
 
 .. list-table::
    :header-rows: 0

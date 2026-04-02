@@ -55,6 +55,7 @@ Review sync note:
 - once a review bundle exists, `check`, `html`, `word`, `pdf`, and `publish` automatically prepare the runtime bundle and run the same parameter sync before export
 - that auto sync now refreshes parameter-driven lines in review-backed RST pages without overwriting the rest of the manual review prose
 - use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
+- US English review content is now strictly lang-scoped under `docs/_review/<model>/US/en/`; the old unscoped `docs/_review/<model>/US/page/**` convention is retired
 
 Phase2 snapshot note:
 

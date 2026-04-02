@@ -34,22 +34,8 @@ def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | No
     return target_root
 
 
-def _resolve_review_dir_for_read(
-    *,
-    docs_dir: Path,
-    model: str | None,
-    region: str | None,
-    lang: str | None = None,
-) -> Path:
-    if (lang or "").strip():
-        lang_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
-        if lang_dir.exists():
-            return lang_dir
-    return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
-
-
 def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> bool:
-    review_dir = _resolve_review_dir_for_read(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     return (review_dir / "index.rst").exists() and (review_dir / "page").is_dir()
 
 
@@ -78,7 +64,7 @@ def overlay_review_onto_bundle(
     region: str | None,
     lang: str | None = None,
 ) -> Path | None:
-    review_dir = _resolve_review_dir_for_read(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     index_src = review_dir / "index.rst"
     page_src = review_dir / "page"
     generated_src = review_dir / "generated"
