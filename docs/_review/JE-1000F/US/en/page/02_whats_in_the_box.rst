@@ -67,5 +67,5 @@ authority to operate the device.
    :widths: 10 90
 
    * - **TIPS**
-     - The car charging cable is not included but is available for purchase separately on our website.
+     - The11 car charging cable is not included but is available for purchase separately on our website.
        For assistance, please contact Jackery customer service.
