@@ -1,8 +1,6 @@
-name: Feishu Build Queue
+name: Feishu Draft Build Queue
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       trigger_source:
@@ -15,12 +13,14 @@ on:
         type: string
 
 concurrency:
-  group: feishu-build-queue
+  group: feishu-draft-build-queue-${{ github.ref }}
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
-  process-queue:
-    if: ${{ vars.FEISHU_BUILD_QUEUE_PAUSED != 'true' }}
+  process-draft-queue:
     runs-on: ubuntu-latest
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
@@ -79,6 +79,7 @@ jobs:
         shell: bash
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}"
+          echo "ref=${GITHUB_REF}"
           echo "trigger_source=${{ inputs.trigger_source || '' }}"
           echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
 
@@ -108,10 +109,10 @@ jobs:
         run: |
           printf '%s' "$FEISHU_APP_SECRET" | lark-cli config init --app-id "$FEISHU_APP_ID" --app-secret-stdin --brand feishu
 
-      - name: Process Feishu build queue
+      - name: Process Feishu draft queue
         shell: bash
         run: |
-          cmd=(python build.py process-build-queue --config config.yaml --data-root data/phase2 --doc-phase publish)
+          cmd=(python build.py process-build-queue --config config.yaml --data-root data/phase2 --doc-phase draft)
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi
@@ -121,9 +122,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: feishu-build-queue-output
+          name: feishu-draft-build-queue-output
           path: |
             docs/_build
+            docs/_review
             data/phase2/snapshot_manifest.json
             data/phase2/row_key_mapping.csv
           if-no-files-found: ignore

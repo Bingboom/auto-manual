@@ -108,6 +108,17 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
     ap.add_argument(
+        "--doc-phase",
+        choices=("draft", "publish"),
+        default=None,
+        help="For process-build-queue: only consume one Document_link Doc_phase",
+    )
+    ap.add_argument(
+        "--record-id",
+        default=None,
+        help="For process-build-queue: only consume one Document_link record_id",
+    )
+    ap.add_argument(
         "--dry-run",
         action="store_true",
         help="For sync-data or process-build-queue: validate/report without writing files",
@@ -223,6 +234,10 @@ def run_checked(cmd: list[str]) -> None:
     subprocess.run(cmd, cwd=str(ROOT), check=True)
 
 
+def _effective_source(args: argparse.Namespace, *, source_override: str = "auto") -> str:
+    return args.source if source_override == "auto" else source_override
+
+
 def _append_target_args(cmd: list[str], args: argparse.Namespace) -> list[str]:
     if args.model:
         cmd += ["--model", args.model]
@@ -330,6 +345,53 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
     return cmd
 
 
+def _review_sync_target_args(args: argparse.Namespace) -> list[argparse.Namespace]:
+    from tools.build_docs import resolve_build_targets
+    from tools.review_support import review_bundle_exists
+
+    config_path = resolve_path_from_root(args.config)
+    cfg = load_config(config_path)
+    docs_dir = resolve_docs_dir(config_path)
+    targets = resolve_build_targets(
+        cfg,
+        arg_model=args.model,
+        arg_region=args.region,
+        all_targets=not (args.model or args.region),
+    )
+
+    seen: set[tuple[str, str]] = set()
+    sync_args_list: list[argparse.Namespace] = []
+    for target in targets:
+        if not review_bundle_exists(
+            docs_dir=docs_dir,
+            model=target.model,
+            region=target.region,
+            lang=target.lang,
+        ):
+            continue
+        key = (str(target.model or ""), str(target.region or ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        cloned = argparse.Namespace(**vars(args))
+        cloned.config = str(config_path)
+        cloned.model = target.model
+        cloned.region = target.region
+        cloned.sync_scope = "params"
+        cloned.page_file = []
+        sync_args_list.append(cloned)
+    return sync_args_list
+
+
+def maybe_sync_review_before_build(args: argparse.Namespace, *, source_override: str = "auto") -> None:
+    effective_source = _effective_source(args, source_override=source_override)
+    if effective_source not in {"auto", "review"}:
+        return
+    for sync_args in _review_sync_target_args(args):
+        run_checked(build_docs_command(sync_args, action_override="rst", source_override="runtime"))
+        run_checked(sync_review_command(sync_args))
+
+
 def sync_data_command(args: argparse.Namespace) -> list[str]:
     if (args.model or "").strip() or (args.region or "").strip():
         raise RuntimeError("sync-data does not accept --model or --region; it always exports full snapshot tables")
@@ -413,6 +475,10 @@ def process_build_queue_command(args: argparse.Namespace) -> list[str]:
         str(config_path),
     ]
     _append_data_root_arg(cmd, args)
+    if isinstance(args.doc_phase, str) and args.doc_phase.strip():
+        cmd += ["--doc-phase", args.doc_phase.strip()]
+    if isinstance(args.record_id, str) and args.record_id.strip():
+        cmd += ["--record-id", args.record_id.strip()]
     if args.dry_run:
         cmd.append("--dry-run")
     return cmd
@@ -834,7 +900,9 @@ def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> Non
         run_validate(config_path, data_root=args.data_root)
     else:
         run_validate(config_path)
-    run_checked(build_docs_command(args, action_override="rst", source_override=source_override))
+    effective_source = _effective_source(args, source_override=source_override)
+    maybe_sync_review_before_build(args, source_override=effective_source)
+    run_checked(build_docs_command(args, action_override="rst", source_override=effective_source))
     run_checked(check_docs_command(args))
 
 
@@ -972,6 +1040,7 @@ def main(argv: list[str] | None = None) -> int:
         elif args.action == "clean":
             clean_build_artifacts(config_path)
         else:
+            maybe_sync_review_before_build(args)
             run_checked(build_docs_command(args))
     except subprocess.CalledProcessError as exc:
         return exc.returncode or 1

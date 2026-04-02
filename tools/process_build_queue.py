@@ -44,6 +44,7 @@ DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
+DOC_PHASE_FIELD = "Doc_phase"
 BUILD_STARTED_AT_FIELD = "开始构建时间"
 DOCUMENT_DIRECTORY_FIELD = "Document directory"
 DOCUMENT_LINK_FIELD = "Document link"
@@ -74,6 +75,7 @@ class QueueRecord:
     document_key: str
     version: str
     lang: str
+    doc_phase: str
     trigger_value: str
     immediate_trigger_value: Any
 
@@ -212,6 +214,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
                 document_key=_scalar_text(fields.get(DOCUMENT_KEY_FIELD)),
                 version=_scalar_text(fields.get(VERSION_FIELD)),
                 lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
+                doc_phase=_scalar_text(fields.get(DOC_PHASE_FIELD)),
                 trigger_value=_scalar_text(_field_value(fields, TRIGGER_FIELD, *LEGACY_TRIGGER_FIELDS)),
                 immediate_trigger_value=fields.get(IMMEDIATE_TRIGGER_FIELD),
             )
@@ -232,12 +235,46 @@ def _is_trigger_requested(value: Any) -> bool:
     return _scalar_text(value).strip().lower() in TRIGGER_VALUES
 
 
+def normalize_doc_phase(value: Any) -> str | None:
+    text = _scalar_text(value).strip().lower()
+    if not text:
+        return None
+    if text in {"draft", "review", "preview"}:
+        return "draft"
+    if text in {"publish", "published"}:
+        return "publish"
+    raise RuntimeError("Doc_phase must be Draft or Publish")
+
+
 def pending_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
-    return [
-        record
-        for record in parse_queue_records(raw_records)
-        if _is_trigger_requested(record.trigger_value)
-    ]
+    return select_pending_queue_records(raw_records)
+
+
+def pending_immediate_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
+    return select_pending_queue_records(raw_records, immediate_only=True)
+
+
+def select_pending_queue_records(
+    raw_records: list[dict[str, Any]],
+    *,
+    immediate_only: bool = False,
+    doc_phase: str | None = None,
+    record_id: str | None = None,
+) -> list[QueueRecord]:
+    normalized_filter_doc_phase = normalize_doc_phase(doc_phase)
+    selected: list[QueueRecord] = []
+    for record in parse_queue_records(raw_records):
+        if not _is_trigger_requested(record.trigger_value):
+            continue
+        if immediate_only and not _is_immediate_trigger_enabled(record.immediate_trigger_value):
+            continue
+        if record_id and record.record_id != record_id:
+            continue
+        if normalized_filter_doc_phase is not None:
+            if normalize_doc_phase(record.doc_phase) != normalized_filter_doc_phase:
+                continue
+        selected.append(record)
+    return selected
 
 
 def parse_document_key(document_key: str) -> tuple[str, str]:
@@ -361,6 +398,38 @@ def _format_command(cmd: list[str]) -> str:
 
 def _command_failure_message(cmd: list[str], stdout: str, stderr: str, returncode: int) -> str:
     for stream in (stderr, stdout):
+        raw = stream.strip()
+        if raw:
+            try:
+                payload = json.loads(raw)
+            except json.JSONDecodeError:
+                payload = None
+            if isinstance(payload, dict):
+                error = payload.get("error")
+                if isinstance(error, dict):
+                    parts: list[str] = []
+                    error_type = str(error.get("type") or "").strip()
+                    error_code = str(error.get("code") or "").strip()
+                    error_message = str(error.get("message") or "").strip()
+                    if error_type:
+                        parts.append(error_type)
+                    if error_message:
+                        parts.append(error_message)
+                    if error_code and error_code not in error_message:
+                        parts.append(f"code={error_code}")
+                    detail = error.get("detail")
+                    if isinstance(detail, dict):
+                        violations = detail.get("permission_violations")
+                        if isinstance(violations, list):
+                            subjects = [
+                                str(item.get("subject") or "").strip()
+                                for item in violations
+                                if isinstance(item, dict) and str(item.get("subject") or "").strip()
+                            ]
+                            if subjects:
+                                parts.append("subjects=" + ",".join(subjects))
+                    if parts:
+                        return f"{' | '.join(parts)} (exit={returncode}, cmd={_format_command(cmd)})"
         lines = [line.strip() for line in stream.splitlines() if line.strip()]
         if lines:
             return f"{lines[-1]} (exit={returncode}, cmd={_format_command(cmd)})"
@@ -647,43 +716,120 @@ def move_drive_file_to_wiki(
     raise RuntimeError("Wiki move response did not include wiki_token or task_id")
 
 
+def _build_py_target_command(
+    *,
+    action: str,
+    config_path: Path,
+    model: str,
+    region: str,
+    data_root: str | None,
+    source: str | None = None,
+    no_clean: bool = False,
+) -> list[str]:
+    cmd = [
+        sys.executable,
+        str(ROOT / "build.py"),
+        action,
+        "--config",
+        str(config_path),
+        "--model",
+        model,
+        "--region",
+        region,
+    ]
+    if source:
+        cmd += ["--source", source]
+    if no_clean:
+        cmd.append("--no-clean")
+    if data_root:
+        cmd += ["--data-root", data_root]
+    return cmd
+
+
+def _build_py_sync_data_command(*, config_path: Path, data_root: str | None) -> list[str]:
+    cmd = [
+        sys.executable,
+        str(ROOT / "build.py"),
+        "sync-data",
+        "--config",
+        str(config_path),
+    ]
+    if data_root:
+        cmd += ["--data-root", data_root]
+    return cmd
+
+
+def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | None) -> None:
+    _run_command(
+        _build_py_sync_data_command(
+            config_path=config_path,
+            data_root=data_root,
+        )
+    )
+
+
 def build_document_for_task(
     *,
     config_path: Path,
     model: str,
     region: str,
     data_root: str | None,
+    doc_phase: str | None,
 ) -> Path:
-    base_cmd = [
-        sys.executable,
-        str(ROOT / "build.py"),
-        "check",
-        "--config",
-        str(config_path),
-        "--model",
-        model,
-        "--region",
-        region,
-    ]
-    if data_root:
-        base_cmd += ["--data-root", data_root]
-    _run_command(base_cmd)
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
 
-    word_cmd = [
-        sys.executable,
-        str(ROOT / "build.py"),
-        "word",
-        "--config",
-        str(config_path),
-        "--model",
-        model,
-        "--region",
-        region,
-        "--no-clean",
-    ]
-    if data_root:
-        word_cmd += ["--data-root", data_root]
-    _run_command(word_cmd)
+    if normalized_doc_phase == "draft":
+        _run_command(
+            _build_py_target_command(
+                action="check",
+                config_path=config_path,
+                model=model,
+                region=region,
+                data_root=data_root,
+                source="review",
+            )
+        )
+        _run_command(
+            _build_py_target_command(
+                action="word",
+                config_path=config_path,
+                model=model,
+                region=region,
+                data_root=data_root,
+                source="review",
+                no_clean=True,
+            )
+        )
+    elif normalized_doc_phase == "publish":
+        _run_command(
+            _build_py_target_command(
+                action="publish",
+                config_path=config_path,
+                model=model,
+                region=region,
+                data_root=data_root,
+            )
+        )
+    else:
+        _run_command(
+            _build_py_target_command(
+                action="check",
+                config_path=config_path,
+                model=model,
+                region=region,
+                data_root=data_root,
+            )
+        )
+        _run_command(
+            _build_py_target_command(
+                action="word",
+                config_path=config_path,
+                model=model,
+                region=region,
+                data_root=data_root,
+                no_clean=True,
+            )
+        )
 
     word_output_path = resolve_word_output_path_for_target(
         config_path=config_path,
@@ -701,13 +847,16 @@ def build_success_fields(
     word_output_path: Path,
     document_link_url: str,
     built_at: datetime,
+    doc_phase: str | None = None,
 ) -> dict[str, Any]:
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
     return {
         RESULT_FIELD: " | ".join(
             part
             for part in (
                 SUCCESS_PREFIX,
                 f"version={version}" if version else "",
+                f"doc_phase={normalized_doc_phase}" if normalized_doc_phase else "",
                 f"built_at={built_at.isoformat(timespec='seconds')}",
             )
             if part
@@ -725,18 +874,40 @@ def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
     }
 
 
-def build_failure_fields(*, version: str, message: str) -> dict[str, Any]:
+def build_failure_fields(*, version: str, message: str, doc_phase: str | None = None) -> dict[str, Any]:
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
     return {
         RESULT_FIELD: " | ".join(
             part
             for part in (
                 FAILED_PREFIX,
                 f"version={version}" if version else "",
+                f"doc_phase={normalized_doc_phase}" if normalized_doc_phase else "",
                 message.strip(),
             )
             if part
         )
     }
+
+
+def build_failure_writeback_fields(
+    *,
+    version: str,
+    message: str,
+    doc_phase: str | None = None,
+    word_output_path: Path | None = None,
+    document_link_url: str | None = None,
+) -> dict[str, Any]:
+    fields = build_failure_fields(version=version, message=message, doc_phase=doc_phase)
+    if word_output_path is not None:
+        fields[DOCUMENT_DIRECTORY_FIELD] = word_output_path.resolve(strict=False).as_posix()
+    if document_link_url:
+        fields[DOCUMENT_LINK_FIELD] = document_link_url
+        fields[RESULT_FIELD] += " | latest_drive_link_preserved"
+    # Clear the immediate checkbox on failure so local startup catch-up does not loop
+    # forever; users can re-check it after fixing the root cause.
+    fields[IMMEDIATE_TRIGGER_FIELD] = False
+    return fields
 
 
 def process_build_queue(
@@ -745,6 +916,9 @@ def process_build_queue(
     config_path: Path,
     data_root: str | None,
     dry_run: bool,
+    immediate_only: bool = False,
+    doc_phase: str | None = None,
+    record_id: str | None = None,
 ) -> int:
     errors = collect_queue_preflight_errors(cfg)
     if errors:
@@ -759,9 +933,17 @@ def process_build_queue(
         table_id=binding.table_id,
         view_id=binding.view_id,
     )
-    pending = pending_queue_records(raw_records)
+    pending = select_pending_queue_records(
+        raw_records,
+        immediate_only=immediate_only,
+        doc_phase=doc_phase,
+        record_id=record_id,
+    )
     if not pending:
-        print("[build-queue] No pending build tasks found.")
+        if immediate_only:
+            print("[build-queue] No pending immediate build tasks found.")
+        else:
+            print("[build-queue] No pending build tasks found.")
         return 0
     available_fields = _available_field_names(raw_records)
     can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
@@ -780,6 +962,7 @@ def process_build_queue(
                         "region": region,
                         "lang": record.lang,
                         "version": record.version,
+                        "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
                         "config": str(resolved_config_path),
                         "data_root": data_root,
                     },
@@ -787,6 +970,28 @@ def process_build_queue(
                 )
             )
         return 0
+
+    print("[build-queue] Syncing latest phase2 snapshot before building queued documents.")
+    sync_phase2_snapshot_before_queue(
+        config_path=config_path,
+        data_root=data_root,
+    )
+    raw_records = source.fetch_records_with_ids(
+        base_token=binding.base_token,
+        table_id=binding.table_id,
+        view_id=binding.view_id,
+    )
+    pending = select_pending_queue_records(
+        raw_records,
+        immediate_only=immediate_only,
+        doc_phase=doc_phase,
+        record_id=record_id,
+    )
+    if not pending:
+        print("[build-queue] Queue changed during sync; no pending build tasks remain.")
+        return 0
+    available_fields = _available_field_names(raw_records)
+    can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
 
     wiki_destination = resolve_wiki_destination(
         cli_bin=cli_bin,
@@ -807,6 +1012,8 @@ def process_build_queue(
     failures: list[str] = []
     processed = 0
     for record in pending:
+        word_output_path: Path | None = None
+        drive_url: str | None = None
         try:
             started_at = datetime.now().astimezone()
             if can_write_started_at:
@@ -825,11 +1032,13 @@ def process_build_queue(
                     )
             model, region = resolve_target_for_record(record)
             resolved_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+            effective_doc_phase = normalize_doc_phase(record.doc_phase)
             word_output_path = build_document_for_task(
                 config_path=resolved_config_path,
                 model=model,
                 region=region,
                 data_root=data_root,
+                doc_phase=effective_doc_phase,
             )
             file_token, drive_url = upload_word_to_drive(
                 cli_bin=cli_bin,
@@ -853,6 +1062,7 @@ def process_build_queue(
                     word_output_path=word_output_path,
                     document_link_url=document_link_url,
                     built_at=built_at,
+                    doc_phase=effective_doc_phase,
                 ),
             )
             processed += 1
@@ -861,11 +1071,22 @@ def process_build_queue(
             message = str(exc).strip()
             failures.append(f"{record.label}: {message}")
             try:
+                if drive_url:
+                    print(
+                        f"[build-queue] WARNING wiki attach failed for {record.label}; preserving latest Drive link {drive_url}",
+                        file=sys.stderr,
+                    )
                 source.upsert_record(
                     base_token=binding.base_token,
                     table_id=binding.table_id,
                     record_id=record.record_id,
-                    record=build_failure_fields(version=record.version, message=message),
+                    record=build_failure_writeback_fields(
+                        version=record.version,
+                        message=message,
+                        doc_phase=record.doc_phase,
+                        word_output_path=word_output_path,
+                        document_link_url=drive_url,
+                    ),
                 )
             except Exception as writeback_exc:
                 failures[-1] += f" | writeback_failed={writeback_exc}"
@@ -882,6 +1103,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--dry-run", action="store_true", help="List pending tasks without building or writing back")
+    ap.add_argument("--doc-phase", choices=("draft", "publish"), default=None, help="Only consume queue rows for one Doc_phase")
+    ap.add_argument("--record-id", default=None, help="Only consume one Document_link record_id")
     return ap.parse_args(argv)
 
 
@@ -904,6 +1127,8 @@ def main(argv: list[str] | None = None) -> int:
             config_path=config_path,
             data_root=resolved_data_root,
             dry_run=bool(args.dry_run),
+            doc_phase=args.doc_phase,
+            record_id=(args.record_id or "").strip() or None,
         )
     except RuntimeError as exc:
         print(f"[build-queue] ERROR: {exc}", file=sys.stderr)
