@@ -570,6 +570,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
             )
             build_document_mock = mock.Mock(return_value=generated_path)
+            sync_mock = mock.Mock()
 
             class FakeSource:
                 def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
@@ -584,6 +585,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 "resolve_document_link_binding",
                 return_value=binding,
             ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "sync_phase2_snapshot_before_queue",
+                sync_mock,
+            ), mock.patch.object(
                 process_build_queue,
                 "resolve_config_path_for_task",
                 return_value=Path("config.us-en.yaml"),
@@ -645,6 +650,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             data_root="data/phase2",
             doc_phase="draft",
         )
+        sync_mock.assert_called_once_with(
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+        )
 
     def test_process_build_queue_should_preserve_drive_link_when_wiki_move_fails(self) -> None:
         cfg = {
@@ -689,6 +698,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             generated_path = Path(td) / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
             build_document_mock = mock.Mock(return_value=generated_path)
+            sync_mock = mock.Mock()
 
             class FakeSource:
                 def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
@@ -703,6 +713,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 "resolve_document_link_binding",
                 return_value=binding,
             ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "sync_phase2_snapshot_before_queue",
+                sync_mock,
+            ), mock.patch.object(
                 process_build_queue,
                 "resolve_config_path_for_task",
                 return_value=Path("config.ja.yaml"),
@@ -753,6 +767,10 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("FAILED", failure_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("latest_drive_link_preserved", failure_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("Permission denied [99991679]", failure_payload[process_build_queue.RESULT_FIELD])
+        sync_mock.assert_called_once_with(
+            config_path=Path("config.ja.yaml"),
+            data_root="data/phase2",
+        )
 
     def test_process_build_queue_should_sync_phase2_snapshot_before_building(self) -> None:
         cfg = {
