@@ -789,3 +789,10 @@ git status --short -- docs/_review/JE-1000F/US
 Templates and CSV create the first draft.
 [`docs/_review/**`](../docs/_review) becomes the target editing source after review starts.
 [`docs/_build/**/**/rst/**`](../docs/_build) remains the runtime publish bundle behind the final outputs.
+## Draft / Publish Queue Split
+
+- `process-build-queue` now runs one fresh `sync-data` pull before it builds queued rows.
+- `Doc_phase=Draft` means the queue builds from the current review tree.
+- `Doc_phase=Publish` means the queue runs the publish path.
+- `feishu-draft-build-queue.yml` is the Draft-stage worker and must be dispatched with the PR head branch as GitHub `ref`.
+- `feishu-build-queue.yml` is the Publish-stage worker and should stay owned by `main`.

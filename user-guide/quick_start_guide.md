@@ -1052,3 +1052,10 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 对 `JE-1000F` 的 4 语言集合来说，正确流程是：
 
 先从模板和数据给 `US/en + US/es + US/fr + JP/ja` seed 一次 -> 分目标 `review` 一次 -> 持续编辑各自的 `_review` -> 参数变化时对对应目标运行 `sync-review` -> commit -> 按目标 `publish` 或批量导出 -> `push`
+## Draft / Publish Queue Split
+
+- `process-build-queue` now refreshes `data/phase2` before the build starts.
+- `Doc_phase=Draft` is intended for PR-driven review documents.
+- `Doc_phase=Publish` is intended for `main`-driven publish documents.
+- `feishu-draft-build-queue.yml` should be dispatched with the PR head branch as GitHub `ref`.
+- `feishu-build-queue.yml` should consume only Publish rows from `main`.

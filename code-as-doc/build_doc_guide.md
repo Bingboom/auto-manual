@@ -66,6 +66,16 @@ Meaning:
 - `build_us_jp_manuals.ps1`: build the fixed `US/en + US/es + US/fr + JP/ja` target set from one command, with selectable format combinations such as `html,word` or `word,pdf`
 - `--open-html`: after the batch finishes, open the generated HTML entry pages for the selected language set
 
+Draft / Publish queue split:
+
+- the queue worker now refreshes `data/phase2` itself before it builds, so local and remote queue execution stay aligned on the same latest-snapshot rule
+- use `process-build-queue --doc-phase draft` when a Draft row should be built from the current review tree
+- use `process-build-queue --doc-phase publish` when a Publish row should be built through `build.py publish`
+- `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
+- `feishu-build-queue.yml` is the Publish-stage worker for `main`
+- `feishu-draft-build-queue.yml` is the Draft-stage worker for PR branches
+- if Feishu triggers the Draft worker, its GitHub dispatch request must use the PR head branch as `ref`
+
 Windows cleanup note:
 
 - build actions except `fast` run with clean enabled unless you pass `--no-clean`

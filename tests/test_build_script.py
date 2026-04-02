@@ -265,7 +265,7 @@ class TestBuildScript(unittest.TestCase):
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
-        queue_args = build_cli.parse_args(["process-build-queue", "--dry-run"])
+        queue_args = build_cli.parse_args(["process-build-queue", "--dry-run", "--doc-phase", "draft", "--record-id", "rec_123"])
         listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
@@ -277,6 +277,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("config.ja.yaml", check_args.config)
         self.assertEqual("process-build-queue", queue_args.action)
         self.assertTrue(queue_args.dry_run)
+        self.assertEqual("draft", queue_args.doc_phase)
+        self.assertEqual("rec_123", queue_args.record_id)
         self.assertEqual("listen-build-queue", listener_args.action)
         self.assertEqual("publish", publish_args.action)
         self.assertEqual("JE-1000F", publish_args.model)
@@ -303,6 +305,48 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("JE-2000F", check_cmd)
         self.assertIn("--region", check_cmd)
         self.assertIn("JP", check_cmd)
+
+    def test_run_check_should_forward_explicit_review_source_to_rst_build(self) -> None:
+        args = build_cli.parse_args(["check", "--config", "config.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
+        seen: list[list[str]] = []
+        original_validate = build_cli.run_validate
+        original_run_checked = build_cli.run_checked
+        original_review_sync_targets = build_cli._review_sync_target_args
+        try:
+            build_cli.run_validate = lambda *argv, **kwargs: None  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
+            build_cli.run_check(args)
+        finally:
+            build_cli.run_validate = original_validate  # type: ignore[assignment]
+            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
+
+        self.assertEqual(4, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
+        self.assertIn("--source", seen[0])
+        self.assertIn("runtime", seen[0])
+        self.assertIn("--prepare-only", seen[0])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_review.py"), seen[1][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[2][1])
+        self.assertIn("--source", seen[2])
+        self.assertIn("review", seen[2])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[3][1])
+
+    def test_maybe_sync_review_before_build_should_skip_when_no_review_bundle_exists(self) -> None:
+        args = build_cli.parse_args(["word", "--config", "config.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
+        seen: list[list[str]] = []
+        original_run_checked = build_cli.run_checked
+        original_review_sync_targets = build_cli._review_sync_target_args
+        try:
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli._review_sync_target_args = lambda parsed_args: []  # type: ignore[assignment]
+            build_cli.maybe_sync_review_before_build(args)
+        finally:
+            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
+
+        self.assertEqual([], seen)
 
     def test_review_bundle_command_should_forward_refresh_existing_flag(self) -> None:
         args = build_cli.parse_args(["review", "--refresh-review"])
@@ -399,6 +443,10 @@ class TestBuildScript(unittest.TestCase):
                 "config.yaml",
                 "--data-root",
                 "data/phase2",
+                "--doc-phase",
+                "publish",
+                "--record-id",
+                "rec_456",
                 "--dry-run",
             ]
         )
@@ -408,6 +456,10 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(str(build_cli.ROOT / "tools" / "process_build_queue.py"), cmd[1])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
+        self.assertIn("--doc-phase", cmd)
+        self.assertIn("publish", cmd)
+        self.assertIn("--record-id", cmd)
+        self.assertIn("rec_456", cmd)
         self.assertIn("--dry-run", cmd)
 
     def test_process_build_queue_command_should_reject_target_scoped_flags(self) -> None:
@@ -450,37 +502,46 @@ class TestBuildScript(unittest.TestCase):
         seen: list[list[str]] = []
         original_validate = build_cli.run_validate
         original_run_checked = build_cli.run_checked
+        original_review_sync_targets = build_cli._review_sync_target_args
         try:
             build_cli.run_validate = lambda config_path: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
             build_cli.run_publish(args)
         finally:
             build_cli.run_validate = original_validate  # type: ignore[assignment]
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
 
-        self.assertEqual(5, len(seen))
+        self.assertEqual(7, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
         self.assertIn("--source", seen[0])
-        self.assertIn("review", seen[0])
+        self.assertIn("runtime", seen[0])
         self.assertIn("--prepare-only", seen[0])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_review.py"), seen[1][1])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[1][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[2][1])
+        self.assertIn("--source", seen[2])
+        self.assertIn("review", seen[2])
+        self.assertIn("--prepare-only", seen[2])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[2][1])
-        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[2])
-        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[2])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[3][1])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[3][1])
-        self.assertIn("--formats", seen[3])
-        self.assertIn("word", seen[3])
-        self.assertIn("--source", seen[3])
-        self.assertIn("review", seen[3])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[4][1])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[4])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[4])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[4][1])
-        self.assertIn("--model", seen[4])
-        self.assertIn("JE-1000F", seen[4])
-        self.assertIn("--region", seen[4])
-        self.assertIn("JP", seen[4])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[5][1])
+        self.assertIn("--formats", seen[5])
+        self.assertIn("word", seen[5])
+        self.assertIn("--source", seen[5])
+        self.assertIn("review", seen[5])
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[6][1])
+        self.assertIn("--model", seen[6])
+        self.assertIn("JE-1000F", seen[6])
+        self.assertIn("--region", seen[6])
+        self.assertIn("JP", seen[6])
 
     def test_release_manifest_command_should_require_explicit_target(self) -> None:
         args = build_cli.parse_args(["release-manifest"])
@@ -502,9 +563,11 @@ class TestBuildScript(unittest.TestCase):
         original_validate = build_cli.run_validate
         original_run_checked = build_cli.run_checked
         original_load_config = build_cli.load_config
+        original_review_sync_targets = build_cli._review_sync_target_args
         try:
             build_cli.run_validate = lambda config_path: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
             build_cli.load_config = lambda config_path: {  # type: ignore[assignment]
                 "build": {
                     "languages": ["es"],
@@ -516,12 +579,13 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_validate = original_validate  # type: ignore[assignment]
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
             build_cli.load_config = original_load_config  # type: ignore[assignment]
+            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
 
-        self.assertEqual(5, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[2][1])
-        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[2])
-        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[2])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[4][1])
+        self.assertEqual(7, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[4][1])
+        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[4])
+        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[4])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[6][1])
 
     def test_collect_doctor_findings_should_require_word_com_for_windows_bundle(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
