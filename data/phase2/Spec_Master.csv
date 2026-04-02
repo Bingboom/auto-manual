@@ -24,7 +24,7 @@ JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/U
 JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC出力ボタン,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,1,product_name,,製品の名称,,1,,,Jackery ポータブル電源 1000 New,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,FALSE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F,,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F-测试同步逻辑,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F-测试同步逻辑123,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,3,capacity,,定格容量,,1,,,1024Wh (20Ah/51.2V DC),,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,バッテリータイプ,,1,,,LiFePO₄ (リン酸鉄リチウムイオン電池),,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,5,weight,,重量,,1,,,約10.6 kg,,,,,,JE-1000F,,,ja
