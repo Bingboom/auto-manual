@@ -23,6 +23,16 @@ foreach ($pathEntry in $nodePaths) {
 
 $requiredEnvNames = @(
     "FEISHU_PHASE2_BASE_TOKEN",
+    "FEISHU_PHASE2_SPEC_MASTER_TABLE_ID",
+    "FEISHU_PHASE2_SPEC_MASTER_VIEW_ID",
+    "FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID",
+    "FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID",
+    "FEISHU_PHASE2_SPEC_NOTES_TABLE_ID",
+    "FEISHU_PHASE2_SPEC_NOTES_VIEW_ID",
+    "FEISHU_PHASE2_SPEC_TITLES_TABLE_ID",
+    "FEISHU_PHASE2_SPEC_TITLES_VIEW_ID",
+    "FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID",
+    "FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID",
     "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
     "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID"
 )
@@ -35,14 +45,14 @@ foreach ($envName in $requiredEnvNames) {
     }
 }
 
-$logDir = Join-Path $repoRoot ".tmp\build-queue-listener"
+$logDir = Join-Path $repoRoot ".tmp\phase2-event-listener"
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 $latestLogPath = Join-Path $logDir "latest.log"
-$dailyLogPath = Join-Path $logDir ("build-queue-listener-" + (Get-Date -Format "yyyyMMdd") + ".log")
+$dailyLogPath = Join-Path $logDir ("phase2-event-listener-" + (Get-Date -Format "yyyyMMdd") + ".log")
 
 $command = @(
     (Join-Path $repoRoot "build.py"),
-    "listen-build-queue",
+    "listen-phase2-events",
     "--config",
     "config.yaml",
     "--data-root",

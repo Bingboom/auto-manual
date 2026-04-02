@@ -33,7 +33,8 @@ from tools.sync_data import (  # noqa: E402
 EVENT_TYPE = "drive.file.bitable_record_changed_v1"
 FILE_TYPE = "bitable"
 MAX_SEEN_EVENT_IDS = 256
-EVENT_SUBSCRIPTION_IDENTITY = "user"
+EVENT_SUBSCRIPTION_IDENTITY = "bot"
+FILE_SUBSCRIPTION_IDENTITY = "user"
 
 
 def _format_command(cmd: list[str]) -> str:
@@ -86,7 +87,7 @@ def ensure_drive_event_subscription(*, cli_bin: str, base_token: str) -> None:
             "--params",
             json.dumps({"file_type": FILE_TYPE}, ensure_ascii=False, separators=(",", ":")),
             "--as",
-            "user",
+            FILE_SUBSCRIPTION_IDENTITY,
         ],
     )
 

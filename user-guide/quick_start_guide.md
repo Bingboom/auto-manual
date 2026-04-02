@@ -220,6 +220,19 @@ python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run
 python build.py sync-data --config config.yaml --data-root data/phase2
 ```
 
+如果你希望这些 Feishu 源表后续一有变更就自动同步回这台电脑，直接启动本地监听器：
+```powershell
+python build.py listen-sync-data --config config.yaml --data-root data/phase2
+```
+
+Windows 下更推荐用 [`../scripts/listen_sync_data.ps1`](../scripts/listen_sync_data.ps1) 常驻运行；它会补齐 `.venv`、Node/npm 路径和保存到用户环境变量里的 `FEISHU_PHASE2_*`。这条链依赖飞书应用已开通并发布 `drive.file.bitable_record_changed_v1` 事件；它不是让飞书云端直接调用你的本机，而是你本机先用本地 `lark-cli` 登录态把表注册进 docs 事件，再用当前飞书应用的 bot 身份保持长连接订阅这些表的变更。
+
+如果你这台机器同时还要监听 `Document_link` 的“是否立即构建”，就不要再单独跑两个 listener 了，直接改用：
+```powershell
+python build.py listen-phase2-events --config config.yaml --data-root data/phase2
+```
+或者 Windows 下直接跑 [`../scripts/listen_phase2_events.ps1`](../scripts/listen_phase2_events.ps1)。这是因为当前 `lark-cli event +subscribe` 每个 app 只允许一个活跃订阅实例。
+
 如果你同时用飞书 `Document_link` 表做本机构建任务队列，也可以在同步后直接消费 `是否触发文档构建 = Y` 的任务并把生成的 Word 路径回写到 `Document directory`：
 
 ```powershell
@@ -228,7 +241,7 @@ python build.py process-build-queue --config config.yaml --data-root data/phase2
 
 这一步会先把 `开始构建时间` 写回到任务行，再构建本地 Word、上传到飞书 Drive、把上传后的文件自动 move 到当前知识库容器、把本机路径写回 `Document directory`，并把知识库里的链接写回 `Document link`；成功后会把 `是否触发文档构建` 回写为 `已构建`。
 如果你想让这张表自动轮询 `Y` 任务，Windows 侧直接调 [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) 会比直接调 Python 命令更稳，因为它会补齐 `.venv`、Node/npm 和保存到用户环境变量里的 `FEISHU_PHASE2_*`。
-如果你想改成“勾选后立即构建”而不是轮询，给 `Document_link` 表增加 checkbox 字段 `是否立即构建`，在飞书开放平台里为当前自建应用添加并发布 `drive.file.bitable_record_changed_v1` 事件，然后启动 [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1)；监听器会用当前登录用户身份订阅这张表的云文档事件，并在对应记录被勾选时立刻触发本地构建。
+如果你想改成“勾选后立即构建”而不是轮询，给 `Document_link` 表增加 checkbox 字段 `是否立即构建`，在飞书开放平台里为当前自建应用添加并发布 `drive.file.bitable_record_changed_v1` 事件，然后启动 [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1)；监听器会先用本地 `lark-cli` 登录态把这张表注册进 docs 事件，再用当前飞书应用的 bot 身份接收事件，并在对应记录被勾选时立刻触发本地构建。
 如果你想完全脱离本机，可以改用远端仓库里的 [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml)；它会在默认分支上每 5 分钟轮询一次 Feishu 队列，也支持 `workflow_dispatch`。
 如果你想让远端仓库“立即构建”，就在飞书里新建一个工作流，条件设成 `是否触发文档构建 = Y` 且 `是否立即构建 = 选中`，动作改成调用 GitHub 的 `workflow_dispatch` API 去触发 `feishu-build-queue.yml`。队列处理器本身仍然只把 `是否触发文档构建 = Y` 的行视为待构建任务，`是否立即构建` 只是决定要不要立刻唤起 GitHub Actions。
 这条远端链路要额外准备 GitHub Secrets：`FEISHU_APP_ID`、`FEISHU_APP_SECRET`、所有 `FEISHU_PHASE2_*` 表/视图 ID；同时还要确保这个 Feishu app/bot 对 phase2 源表有读取权限、对 `Document_link` 表有写回权限。
@@ -406,6 +419,9 @@ python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 ```powershell
 python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
 ```
+If you need PR-stage validation Word files built from the latest Feishu `phase2` snapshot, use [`../.github/workflows/phase2-word-preview.yml`](../.github/workflows/phase2-word-preview.yml). It syncs `data/phase2`, runs `check + word` for the explicit validation target matrix on the pull request branch, and uploads the generated `.docx` files as workflow artifacts without consuming the `Document_link` queue.
+
+To pause the merged `main`-branch remote queue without deleting the workflow, set the GitHub repository variable `FEISHU_BUILD_QUEUE_PAUSED=true`; remove it or set it back to `false` when you want the queue to resume.
 
 输出目录：
 

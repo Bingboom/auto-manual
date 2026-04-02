@@ -266,6 +266,8 @@ class TestBuildScript(unittest.TestCase):
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
         queue_args = build_cli.parse_args(["process-build-queue", "--dry-run"])
+        sync_listener_args = build_cli.parse_args(["listen-sync-data", "--config", "config.yaml"])
+        phase2_listener_args = build_cli.parse_args(["listen-phase2-events", "--config", "config.yaml"])
         listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
@@ -277,6 +279,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("config.ja.yaml", check_args.config)
         self.assertEqual("process-build-queue", queue_args.action)
         self.assertTrue(queue_args.dry_run)
+        self.assertEqual("listen-sync-data", sync_listener_args.action)
+        self.assertEqual("listen-phase2-events", phase2_listener_args.action)
         self.assertEqual("listen-build-queue", listener_args.action)
         self.assertEqual("publish", publish_args.action)
         self.assertEqual("JE-1000F", publish_args.model)
@@ -432,6 +436,63 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(str(build_cli.ROOT / "tools" / "listen_build_queue.py"), cmd[1])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
+
+    def test_listen_sync_data_command_should_forward_data_root_and_tables(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "listen-sync-data",
+                "--config",
+                "config.yaml",
+                "--data-root",
+                "data/phase2",
+                "--table",
+                "spec_master",
+                "--table",
+                "spec_titles",
+            ]
+        )
+
+        cmd = build_cli.listen_sync_data_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "listen_sync_data.py"), cmd[1])
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
+        self.assertEqual(2, cmd.count("--table"))
+        self.assertIn("spec_master", cmd)
+        self.assertIn("spec_titles", cmd)
+
+    def test_listen_sync_data_command_should_reject_target_scoped_flags(self) -> None:
+        args = build_cli.parse_args(["listen-sync-data", "--region", "US"])
+
+        with self.assertRaisesRegex(RuntimeError, "listen-sync-data does not accept --model or --region"):
+            build_cli.listen_sync_data_command(args)
+
+    def test_listen_phase2_events_command_should_forward_data_root_and_tables(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "listen-phase2-events",
+                "--config",
+                "config.yaml",
+                "--data-root",
+                "data/phase2",
+                "--table",
+                "spec_master",
+            ]
+        )
+
+        cmd = build_cli.listen_phase2_events_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "listen_phase2_events.py"), cmd[1])
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)
+        self.assertIn("--table", cmd)
+        self.assertIn("spec_master", cmd)
+
+    def test_listen_phase2_events_command_should_reject_target_scoped_flags(self) -> None:
+        args = build_cli.parse_args(["listen-phase2-events", "--model", "JE-1000F"])
+
+        with self.assertRaisesRegex(RuntimeError, "listen-phase2-events does not accept --model or --region"):
+            build_cli.listen_phase2_events_command(args)
 
     def test_listen_build_queue_command_should_reject_target_scoped_flags(self) -> None:
         args = build_cli.parse_args(["listen-build-queue", "--region", "US"])

@@ -6,7 +6,7 @@ from tools import listen_build_queue
 
 
 class TestListenBuildQueue(unittest.TestCase):
-    def test_build_event_subscribe_command_should_use_user_identity(self) -> None:
+    def test_build_event_subscribe_command_should_use_bot_identity(self) -> None:
         with unittest.mock.patch.object(
             listen_build_queue,
             "_resolved_cli_command_parts",
@@ -16,8 +16,30 @@ class TestListenBuildQueue(unittest.TestCase):
 
         self.assertEqual(["lark-cli", "event", "+subscribe"], cmd[:3])
         self.assertIn("--as", cmd)
-        self.assertIn("user", cmd)
+        self.assertIn("bot", cmd)
         self.assertIn(listen_build_queue.EVENT_TYPE, cmd)
+
+    def test_ensure_drive_event_subscription_should_use_user_identity(self) -> None:
+        seen: list[list[str]] = []
+
+        def fake_run(*, cli_bin: str, args: list[str]) -> dict[str, object]:
+            self.assertEqual("lark-cli", cli_bin)
+            seen.append(args)
+            return {"code": 0, "data": {}, "msg": "Success"}
+
+        with unittest.mock.patch.object(
+            listen_build_queue,
+            "_run_lark_cli_json",
+            side_effect=fake_run,
+        ):
+            listen_build_queue.ensure_drive_event_subscription(
+                cli_bin="lark-cli",
+                base_token="app_token",
+            )
+
+        self.assertEqual(1, len(seen))
+        self.assertIn("--as", seen[0])
+        self.assertIn("user", seen[0])
 
     def test_event_field_value_truthy_should_accept_checkbox_shapes(self) -> None:
         self.assertTrue(listen_build_queue._event_field_value_truthy(True))

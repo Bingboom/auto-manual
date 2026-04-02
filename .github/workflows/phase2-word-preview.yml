@@ -1,0 +1,193 @@
+name: Phase2 Word Preview
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "build.py"
+      - "tools/**"
+      - "docs/templates/**"
+      - "docs/manifests/**"
+      - "data/phase1/**"
+      - "config.yaml"
+      - "config.us-en.yaml"
+      - "config.us-es.yaml"
+      - "config.us-fr.yaml"
+      - "config.ja.yaml"
+      - "config.zh.yaml"
+      - "README.md"
+      - "code-as-doc/**"
+      - "user-guide/**"
+  workflow_dispatch:
+
+concurrency:
+  group: phase2-word-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  sync-phase2:
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_IDENTITY: bot
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_SPEC_MASTER_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_MASTER_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_MASTER_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_MASTER_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_TITLES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_TITLES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_TITLES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_TITLES_VIEW_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        shell: bash
+        run: |
+          required=(
+            FEISHU_APP_ID
+            FEISHU_APP_SECRET
+            FEISHU_PHASE2_BASE_TOKEN
+            FEISHU_PHASE2_SPEC_MASTER_TABLE_ID
+            FEISHU_PHASE2_SPEC_MASTER_VIEW_ID
+            FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID
+            FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID
+            FEISHU_PHASE2_SPEC_NOTES_TABLE_ID
+            FEISHU_PHASE2_SPEC_NOTES_VIEW_ID
+            FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
+            FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
+            FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
+            FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
+          )
+          missing=()
+          for name in "${required[@]}"; do
+            if [ -z "${!name:-}" ]; then
+              missing+=("$name")
+            fi
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            printf 'Missing required secrets/env vars:\n' >&2
+            printf ' - %s\n' "${missing[@]}" >&2
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install lark-cli
+        run: npm install --global @larksuite/cli
+
+      - name: Configure lark-cli app credentials
+        shell: bash
+        run: |
+          printf '%s' "$FEISHU_APP_SECRET" | lark-cli config init --app-id "$FEISHU_APP_ID" --app-secret-stdin --brand feishu
+
+      - name: Sync phase2 snapshot from Feishu
+        run: python build.py sync-data --config config.yaml --data-root data/phase2
+
+      - name: Upload phase2 snapshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-snapshot
+          path: |
+            data/phase2/*.csv
+            data/phase2/snapshot_manifest.json
+            data/phase2/row_key_mapping.csv
+          if-no-files-found: error
+
+  build-word-preview:
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    needs: sync-phase2
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - artifact_name: us-en
+            config: config.us-en.yaml
+            model: JE-1000F
+            region: US
+          - artifact_name: us-es
+            config: config.us-es.yaml
+            model: JE-1000F
+            region: US
+          - artifact_name: us-fr
+            config: config.us-fr.yaml
+            model: JE-1000F
+            region: US
+          - artifact_name: jp-ja
+            config: config.ja.yaml
+            model: JE-1000F
+            region: JP
+          - artifact_name: cn-zh
+            config: config.zh.yaml
+            model: JE-2000E
+            region: CN
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Download phase2 snapshot artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: phase2-snapshot
+          path: data/phase2
+
+      - name: Validate target with phase2 snapshot
+        run: >
+          python build.py check
+          --config "${{ matrix.config }}"
+          --model "${{ matrix.model }}"
+          --region "${{ matrix.region }}"
+          --data-root data/phase2
+
+      - name: Build phase2 Word preview
+        run: >
+          python build.py word
+          --config "${{ matrix.config }}"
+          --model "${{ matrix.model }}"
+          --region "${{ matrix.region }}"
+          --data-root data/phase2
+
+      - name: Summarize built Word files
+        shell: bash
+        run: |
+          find "docs/_build/${{ matrix.model }}/${{ matrix.region }}" -path '*/word/*.docx' -print | sort
+
+      - name: Upload Word artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-word-preview-${{ matrix.artifact_name }}
+          path: docs/_build/${{ matrix.model }}/${{ matrix.region }}/**/word/*.docx
+          if-no-files-found: error

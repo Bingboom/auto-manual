@@ -41,6 +41,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "check",
             "sync-review",
             "sync-data",
+            "listen-sync-data",
+            "listen-phase2-events",
             "process-build-queue",
             "listen-build-queue",
             "publish",
@@ -343,6 +345,42 @@ def sync_data_command(args: argparse.Namespace) -> list[str]:
         cmd += ["--table", table]
     if args.dry_run:
         cmd.append("--dry-run")
+    return cmd
+
+
+def listen_sync_data_command(args: argparse.Namespace) -> list[str]:
+    if (args.model or "").strip() or (args.region or "").strip():
+        raise RuntimeError(
+            "listen-sync-data does not accept --model or --region; watched tables come from sync.phase2 source bindings"
+        )
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "listen_sync_data.py"),
+        "--config",
+        str(config_path),
+    ]
+    _append_data_root_arg(cmd, args)
+    for table in args.table:
+        cmd += ["--table", table]
+    return cmd
+
+
+def listen_phase2_events_command(args: argparse.Namespace) -> list[str]:
+    if (args.model or "").strip() or (args.region or "").strip():
+        raise RuntimeError(
+            "listen-phase2-events does not accept --model or --region; watched tables and queue targets come from phase2 bindings"
+        )
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(ROOT / "tools" / "listen_phase2_events.py"),
+        "--config",
+        str(config_path),
+    ]
+    _append_data_root_arg(cmd, args)
+    for table in args.table:
+        cmd += ["--table", table]
     return cmd
 
 
@@ -917,6 +955,10 @@ def main(argv: list[str] | None = None) -> int:
             run_checked(sync_review_command(args))
         elif args.action == "sync-data":
             run_checked(sync_data_command(args))
+        elif args.action == "listen-sync-data":
+            run_checked(listen_sync_data_command(args))
+        elif args.action == "listen-phase2-events":
+            run_checked(listen_phase2_events_command(args))
         elif args.action == "process-build-queue":
             run_checked(process_build_queue_command(args))
         elif args.action == "listen-build-queue":
