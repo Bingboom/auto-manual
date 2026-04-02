@@ -50,6 +50,12 @@ python3 build.py process-build-queue --config config.yaml --data-root data/phase
 python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
 ```
 
+Review sync note:
+
+- once a review bundle exists, `check`, `html`, `word`, `pdf`, and `publish` automatically prepare the runtime bundle and run the same parameter sync before export
+- that auto sync now refreshes parameter-driven lines in review-backed RST pages without overwriting the rest of the manual review prose
+- use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
+
 Phase2 snapshot note:
 
 - `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2), using the CLI's `base` record listing flow under the hood

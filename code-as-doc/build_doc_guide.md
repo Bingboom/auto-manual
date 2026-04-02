@@ -254,6 +254,9 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 
 By default this updates data-driven files in the review bundle without resetting the entire review text.
 
+That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
+Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
+
 Useful variants:
 
 ```powershell

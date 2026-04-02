@@ -5,7 +5,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.review_support import overlay_review_onto_bundle, review_bundle_exists, sync_review_from_runtime
+from tools.review_support import (
+    SyncPlanEntry,
+    overlay_review_onto_bundle,
+    review_bundle_exists,
+    sync_review_from_runtime,
+    sync_review_paths,
+)
 
 
 class TestReviewSupport(unittest.TestCase):
@@ -160,7 +166,55 @@ class TestReviewSupport(unittest.TestCase):
             self.assertEqual("params", manifest["last_sync_scope"])
             self.assertIn("page/03_product_overview_placeholder.rst", manifest["last_sync_files"])
 
+    def test_sync_review_paths_should_merge_parameter_lines_without_overwriting_review_text(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US" / "en"
+            template_path = docs_dir / "templates" / "page_us-en" / "02_whats_in_the_box.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            template_path.write_text(
+                "Heading\n|PRODUCT_NAME_BOLD|\n**User Manual**\n**Warranty Card**\n",
+                encoding="utf-8",
+            )
+            (runtime_dir / "page" / "02_whats_in_the_box.rst").write_text(
+                "Heading\n**Jackery Explorer 1000**\n**User Manual**\n**Warranty Card**\n",
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "02_whats_in_the_box.rst").write_text(
+                "Heading\n**Old Product Name**\n**Documents**\n\n",
+                encoding="utf-8",
+            )
+
+            copied = sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+                plan=(
+                    SyncPlanEntry(
+                        relative_path=Path("page") / "02_whats_in_the_box.rst",
+                        mode="merge_params",
+                        template_path=template_path,
+                    ),
+                ),
+            )
+
+            self.assertEqual(1, len(copied))
+            self.assertEqual(
+                "Heading\n**Jackery Explorer 1000**\n**Documents**\n\n",
+                (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8"),
+            )
+            manifest = json.loads((review_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual("params", manifest["last_sync_scope"])
+            self.assertIn("page/02_whats_in_the_box.rst", manifest["last_sync_files"])
+
 
 if __name__ == "__main__":
     unittest.main()
-
