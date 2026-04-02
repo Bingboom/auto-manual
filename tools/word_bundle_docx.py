@@ -20,6 +20,7 @@ from tools.word_bundle_html import WordBundlePageMeta, build_word_bundle_html
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 _W_VAL = f"{{{_W_NS}}}val"
 _REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
+_DOC_REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 _CT_NS = "http://schemas.openxmlformats.org/package/2006/content-types"
 _IMAGE_CONTENT_TYPES = {
     ".png": "image/png",
@@ -379,6 +380,7 @@ def _embed_external_docx_images(docx_path: Path) -> None:
     existing_media_names = {Path(name).name for name in existing_members if name.startswith("word/media/")}
     added_members: dict[str, bytes] = {}
     needed_extensions: set[str] = set()
+    converted_rel_ids: set[str] = set()
     changed = False
     seq = 1
 
@@ -410,10 +412,35 @@ def _embed_external_docx_images(docx_path: Path) -> None:
 
         rel.attrib["Target"] = f"media/{candidate_name}"
         rel.attrib.pop("TargetMode", None)
+        rel_id = rel.attrib.get("Id", "").strip()
+        if rel_id:
+            converted_rel_ids.add(rel_id)
         changed = True
 
     if not changed:
         return
+
+    doc_rel_link = f"{{{_DOC_REL_NS}}}link"
+    doc_rel_embed = f"{{{_DOC_REL_NS}}}embed"
+    for member_name, payload in tuple(blobs.items()):
+        if not member_name.startswith("word/") or not member_name.endswith(".xml"):
+            continue
+        try:
+            xml_root = ET.fromstring(payload)
+        except ET.ParseError:
+            continue
+
+        xml_changed = False
+        for element in xml_root.iter():
+            rel_id = element.attrib.get(doc_rel_link, "").strip()
+            if not rel_id or rel_id not in converted_rel_ids:
+                continue
+            element.attrib[doc_rel_embed] = rel_id
+            element.attrib.pop(doc_rel_link, None)
+            xml_changed = True
+
+        if xml_changed:
+            blobs[member_name] = ET.tostring(xml_root, encoding="utf-8", xml_declaration=True)
 
     ET.register_namespace("", _REL_NS)
     blobs["word/_rels/document.xml.rels"] = ET.tostring(rel_root, encoding="utf-8", xml_declaration=True)

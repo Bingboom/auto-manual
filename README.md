@@ -104,6 +104,7 @@ Batch export example:
 Word export note:
 
 - `config.us-en.yaml` now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while keeping the generated `safety` and `spec` pages unchanged
+- generated DOCX images are now normalized to embedded relationships before post-processing so third-party viewers such as Feishu are less likely to drop image-backed table cells during preview
 
 HTML output note:
 
