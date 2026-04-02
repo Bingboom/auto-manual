@@ -1,154 +1,156 @@
 document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Model,Param_es,Value_es,Source_lang
-JE-1000F_JP_ja,JP,TRUE,operation_guide,OUTPUT PORTS,3,1,usb_c_high_power_port,label,USB-C 100W Port,,1,,,USB-C 100W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,operation_guide,SETTINGS,8,1,default_standby_duration,value,Default Standby Duration,,1,,,2時間,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,operation_guide,SETTINGS,8,2,energy_saving_auto_off_duration,value,Energy Saving Auto Off Duration,,1,,,12時間,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,operation_guide,SETTINGS,8,3,energy_saving_ac_threshold,value,Energy Saving AC Threshold,,1,,,25W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,operation_guide,SETTINGS,8,4,energy_saving_dc_threshold,value,Energy Saving DC Threshold,,1,,,2W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.car.spec,Car Input,,1,,,"ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A, 2ポート最大8A",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.label,DC Input (2 x DC8020 Ports),,1,,,DC入力ポート（DC8020）,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.pv.spec,PV Input,,1,,,PV：16V-60V⎓12A，2ポート最大21A，最大400W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.label,AC Input,,1,,,AC入力ポート,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.spec,AC Input,,1,,,100V-120V~ 50Hz/60Hz，最大15A，最大約1450W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.label,DC 12V Port,,1,,,シガーソケット出力ポート,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.spec,DC 12V Port,,1,,,12V⎓最大10A,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.label,USB-C 100W Output,,1,,,USB-C 100W出力ポート,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.spec,USB-C 100W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，最大100W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.label,USB-C 30W Output,,1,,,USB-C 30W出力ポート,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.spec,USB-C 30W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.label,USB-A 18W Output,,1,,,USB-A 18W出力ポート,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.spec,USB-A 18W Output,,1,,,5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.label,AC Output,,1,,,AC出力ポート,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.spec,AC Output,,1,,,100V~ 50Hz/60Hz，最大15A，定格1500W，瞬間最大3000W,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main Power Button,,1,,,主電源ボタン,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB出力ボタン,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC出力ボタン,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,1,product_name,,製品の名称,,1,,,Jackery ポータブル電源 1000 New,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,3,capacity,,定格容量,,1,,,1024Wh (20Ah/51.2V DC),,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,バッテリータイプ,,1,,,LiFePO₄ (リン酸鉄リチウムイオン電池),,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,5,weight,,重量,,1,,,約10.6 kg,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,6,dimensions,,サイズ,,1,,,約314 × 201 × 236 mm,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,サイクル寿命,,1,,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1×ACポート,,1,,,"100V-120V~50Hz/60Hz, 最大15A, 1450W±50W",max_charge_power,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1×ACポート,,2,バススルー,ac_bypass,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2×DC8020ポート,,1,PV,,"16V-60V⎓12A, 2ポート 最大21A, 最大400W",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2×DC8020ポート,,2,シガーソケット,,"11V-16V⎓最大8A, 2ポート 最大8A",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3×ACポート,,1,,,"100V~50Hz/60Hz, 最大15A, 定格1500W (-10℃~45℃)",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3×ACポート,,2,,,"100V~50Hz/60Hz, 最大7A, 定格700W (-20℃~-10℃)",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,2,ac_total_output,,AC出力合計,,1,,,"定格1500W, 瞬間最大3000W",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,3,ac_output_bypass,,AC出力(パススルー),ac_bypass,1,,,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,1,,,"5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,2,,,"5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10℃~45℃)",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,3,,,(-20℃~-10℃では出力不可),,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,5,usb_a,,1×USB-Aポート,,1,,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,OUTPUT PORTS,3,6,dc12_port,,シガーソケット出力,,1,,,12V⎓最大10A,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,充電温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,放電温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,1,1か月,,-20℃ ～ 45℃（0-60% RH）,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,2,3か月,,0℃ ～ 45℃（0-60% RH）,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,3,1年,,0℃ ～ 25℃（0-60% RH）,,,,,,JE-1000F,,,ja
-JE-1000F_JP_ja,JP,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,1500W,,,,,,JE-1000F,,,ja
-JE-1000F_US_en,US,TRUE,operation_guide,OUTPUT PORTS,3,1,usb_c_high_power_port,label,USB-C 100W Port,,1,,,USB-C 100W,,,,USB-C 100W,,JE-1000F,,USB-C 100W,en
-JE-1000F_US_en,US,TRUE,operation_guide,SETTINGS,8,1,default_standby_duration,value,Default Standby Duration,,1,,,2 hours,,,,2 heures,,JE-1000F,,2 horas,en
-JE-1000F_US_en,US,TRUE,operation_guide,SETTINGS,8,2,energy_saving_auto_off_duration,value,Energy Saving Auto Off Duration,,1,,,12 hours,,,,12 heures,,JE-1000F,,12 horas,en
-JE-1000F_US_en,US,TRUE,operation_guide,SETTINGS,8,3,energy_saving_ac_threshold,value,Energy Saving AC Threshold,,1,,,25W,,,,25W,,JE-1000F,,25W,en
-JE-1000F_US_en,US,TRUE,operation_guide,SETTINGS,8,4,energy_saving_dc_threshold,value,Energy Saving DC Threshold,,1,,,2W,,,,2W,,JE-1000F,,2W,en
-JE-1000F_US_en,US,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.car.spec,Car Input,,1,,,"Car: 11-16V⎓8A Max, Double to 8A Max",,,,"Voiture: 11-16 V⎓8 A max.,double à 8 A max.",,JE-1000F,,"Auto: 11-16 V⎓8 A Máx,Doble a 8A Máx",en
-JE-1000F_US_en,US,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.label,DC Input (2×DC8020 Ports),,1,,,DC Input (2×DC8020 Ports),,,,Entrée CC (2×Ports DC8020),,JE-1000F,,Entrada de CC (2 × Puertos DC8020),en
-JE-1000F_US_en,US,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.pv.spec,PV Input,,1,,,"PV: 16-60V⎓12A Max, Double to 21A / 400W Max",,,,"PV: 16-60 V⎓12 A max.,double à 21 A max. / 400 W max.",,JE-1000F,,"PV: 16-60 V⎓12 A Máx,Doble a 21 A Máx / 400 W Máx",en
-JE-1000F_US_en,US,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.label,AC Input,,1,,,AC Input,,,,Entrée CA,,JE-1000F,,Entrada de CA,en
-JE-1000F_US_en,US,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.spec,AC Input,,1,,,"100V-120V~60 Hz, 15A Max",,,,"100 V-120 V~ 60 Hz,15 A max.",,JE-1000F,,"100 V-120 V~ 60 Hz,15 A Máx",en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.label,DC 12V Port,,1,,,DC 12V Port,,,,Port CC 12 V,,JE-1000F,,Puerto DC 12V,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.spec,DC 12V Port,,1,,,12V/10A Max,,,,12 V⎓10 A max.,,JE-1000F,,12 V⎓10 A Máx,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.label,USB-C 100W Output,,1,,,USB-C 100W Output,,,,Sortie USB-C 100W,,JE-1000F,,Salida USB-C 100W,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.spec,USB-C 100W Output,,1,,,"100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A",,,,"100 W max.,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A",,JE-1000F,,"100 W Máx,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A",en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.label,USB-C 30W Output,,1,,,USB-C 30W Output,,,,Sortie USB-C 30W,,JE-1000F,,Salida USB-C 30W,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.spec,USB-C 30W Output,,1,,,"30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A",,,,"30W max.,5 V⎓3 A,9 V⎓3 A,12 V⎓2,5 A,15 V⎓2 A,20 V⎓1,5 A",,JE-1000F,,"30W Máx,5 V⎓3 A,9 V⎓3 A,12 V⎓2,5 A,15 V⎓2 A,20 V⎓1,5 A",en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.label,USB-A 18W Output,,1,,,USB-A 18W Output,,,,Sortie USB-A 18W,,JE-1000F,,Salida USB-A 18W,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.spec,USB-A 18W Output,,1,,,"18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A",,,,"18 W max.,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1,5 A",,JE-1000F,,"18 W Máx,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1,5 A",en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.label,AC Output,,1,,,AC Output,,,,Sortie CA,,JE-1000F,,Salidas de CA,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.spec,AC Output,,1,,,"120V~60Hz, 12.5A, 1500W Rated",,,,"120 V~ 60 Hz,12,5 A max.,1500 W nominal",,JE-1000F,,"120 V~ 60 Hz,12,5 A Máx,1500 W nominales",en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.label,Total Output,,1,,,Total Output,,,,Sortie totale,,JE-1000F,,Salida total,en
-JE-1000F_US_en,US,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.spec,Total Output,,1,,,"1500W Rated, 3000W Surge Peak",,,,"1500 W nominal,3000 W crête",,JE-1000F,,"1500 W nominales,3000 W pico de sobretensión",en
-JE-1000F_US_en,US,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main Power Button,,1,,,Main POWER Button,,,,Bouton d’alimentation principal,,JE-1000F,,Botón de encendido principal,en
-JE-1000F_US_en,US,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB Power Button,,,,Bouton d’alimentation CC/USB,,JE-1000F,,Botón de energía CC/USB,en
-JE-1000F_US_en,US,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC Power Button,,,,Bouton d’alimentation CA,,JE-1000F,,Botón de energía CA,en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,1,product_name,,Product Name,,1,,,Jackery Explorer 1000,,Nom du produit,,Jackery Explorer 1000,Nombre del producto,JE-1000F,,Jackery Explorer 1000,en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,2,model_no,,Model No.,,1,,,JE-1000F / JE-1000F-SG,,N° modèle,,JE-1000F / JE-1000F-SG,N° de modelo,JE-1000F,,JE-1000F / JE-1000F-SG,en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,3,capacity,,Capacity,,1,,,1024 Wh (20Ah/51.2V DC),,Capacité,,1024 Wh (20Ah/51.2V DC),Capacidad,JE-1000F,,1024 Wh (20Ah/51.2V DC),en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,Cell Chemistry,,1,,,LiFePO₄,,Cellule Chimique,,LiFePO₄,Química Celular,JE-1000F,,LiFePO₄,en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,5,weight,,Weight,,1,,,About 23.4 lbs/10.6 kg,,Poids,,"Environ 23,4 lb / 10,6 kg",Peso,JE-1000F,,"Aproximadamente 23,4 libras / 10,6 kg",en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,6,dimensions,,Dimensions,,1,,,12.4 x 7.9 x 9.3 in / 31.4 x 20.1 x 23.6 cm,,Dimensions,,12.4 x 7.9 x 9.3 po / 31.4 x 20.1 x 23.6 cm,Dimensiones,JE-1000F,,12.4 x 7.9 x 9.3 pulgadas / 31.4 x 20.1 x 23.6 cm,en
-JE-1000F_US_en,US,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,Cycle Life,,1,,,6000 cycles to 70%+ capacity,,Durée de vie,,6000 cycles jusqu'à 70 % ou plus de capacité,Ciclo de vida,JE-1000F,,6000 ciclos hasta 70 % o más de capacidad,en
-JE-1000F_US_en,US,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1 × AC Input,,1,Charge Mode,,"100V-120V~60Hz, 15A Max",,1 × Entrée CA,Mode de charge,"100V-120V~60Hz,15A max.",1 × Entrada CA,JE-1000F,Modo de carga,"100V-120V~60Hz,15A máx.",en
-JE-1000F_US_en,US,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1 × AC Input,,2,Bypass Mode,ac_bypass,"100V-120V~60Hz, 12A Max",,1 × Entrée CA,Mode de dérivation,"100V-120V~60Hz,12A max.",1 × Entrada CA,JE-1000F,Modo de derivación,"100V-120V~60Hz,12A máx.",en
-JE-1000F_US_en,US,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC8020 Ports,,1,,,"11V-16V⎓8A Max, Double to 8A Max",,2 × Ports DC8020,,"11V-16V⎓8A max.,double à 8A max.",2 × Puertos DC8020,JE-1000F,,"11V-16V⎓8A máx.,doble a 8A máx.",en
-JE-1000F_US_en,US,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC8020 Ports,,2,,,"16V-60V⎓12A, Double to 21A / 400W Max",,2 × Ports DC8020,,"16V-60V⎓12A,double à 21A / 400W max.",2 × Puertos DC8020,JE-1000F,,"16V-60V⎓12A,doble a 21A / 400W máx.",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,1,,,"120V~60Hz, 18.3A Max, 1500W Rated per port, 1500W in Total, 3000W Surge Peak (14°F to 113°F / -10°C to 45°C)",,3 × Sortie CA,,"120V~60Hz,18,3A max.,1500W nominal par port,1500W au total,crête de surtension de 3000W (14°F à 113°F / -10°C à 45°C)",3 × Salidas CA,JE-1000F,,"120V~60Hz,18,3A máx.,1500W nominales por puerto,1500W en total,pico de sobretensión de 3000W (14°F a 113°F / -10°C a 45°C)",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,2,,,"120V~60Hz, 13.3A (-4°F to 14°F / -20°C to -10°C)",,3 × Sortie CA,,"120V~60Hz,13,3A (-4°F à 14°F / -20°C à -10°C)",3 × Salidas CA,JE-1000F,,"120V~60Hz,13,3A (-4°F a 14°F / -20°C a -10°C)",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,2,ac_output_bypass,,AC Output in Bypass Mode,ac_bypass,1,,,"100V-120V~60Hz, 12A Max",,Sortie CA en mode dérivation,,"100V-120V~60Hz,12A max.",Salida de CA en modo derivación,JE-1000F,,"100V-120V~60Hz,12A máx.",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,3,usb_c,,2 × USB-C,,1,,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,2 × Sortie USB-C,,"30W max.,5V⎓3A,9V⎓3A,12V⎓2.5A,15V⎓2A,20V⎓1.5A",2 × Salidas USB-C,JE-1000F,,"30W máx.,5V⎓3A,9V⎓3A,12V⎓2.5A,15V⎓2A,20V⎓1.5A",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,3,usb_c,,2 × USB-C,,2,,,"100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (14°F to 113°F / -10°C to 45°C)",,2 × Sortie USB-C,,"100W max.,5V⎓3A,9V⎓3A,12V⎓3A,15V⎓3A,20V⎓5A (14°F à 113°F / -10°C à 45°C)",2 × Salidas USB-C,JE-1000F,,"100W máx.,5V⎓3A,9V⎓3A,12V⎓3A,15V⎓3A,20V⎓5A (14°F a 113°F / -10°C a 45°C)",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,3,usb_c,,2 × USB-C,,3,,,USB-C 100W output disabled (-4°F to 14°F / -20°C to -10°C),,2 × Sortie USB-C,,Sortie USB-C 100W désactivée (-4°F à 14°F / -20°C à -10°C),2 × Salidas USB-C,JE-1000F,,Salida USB-C 100W desactivada (-4°F a 14°F / -20°C a -10°C),en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,4,usb_a,,1 × USB-A,,1,,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,1 × Sortie USB-A,,"18W max.,5-6V⎓3A,6-9V⎓2A,9-12V⎓1.5A",1 × Salida USB-A,JE-1000F,,"18W máx.,5-6V⎓3A,6-9V⎓2A,9-12V⎓1.5A",en
-JE-1000F_US_en,US,TRUE,specifications,OUTPUT PORTS,3,5,dc12_port,,1 × DC 12V Port,,1,,,12V⎓10A Max,,1 × Port CC 12V,,12V⎓10A max.,1 × Puerto DC 12V,JE-1000F,,12V⎓10A máx.,en
-JE-1000F_US_en,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,Charging Temperature,,1,,,-4°F to 113°F / -20°C to 45°C,,Température de charge,,-4°F à 113°F / -20°C à 45°C,Temperatura de carga,JE-1000F,,-4°F a 113°F / -20°C a 45°C,en
-JE-1000F_US_en,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,Discharging Temperature,,1,,,-4°F to 113°F / -20°C to 45°C,,Température de décharge,,-4°F à 113°F / -20°C à 45°C,Temperatura de descarga,JE-1000F,,-4°F a 113°F / -20°C a 45°C,en
-JE-1000F_US_en,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,Storage Temperature,,1,1 month,,-4°F to 113°F / -20°C to 45°C (0-60%RH),,Température de stockage,1 mois,-4°F à 113°F / -20°C à 45°C (0-60% HR),,JE-1000F,1 mes,-4°F a 113°F / -20°C a 45°C (0-60% HR),en
-JE-1000F_US_en,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,Storage Temperature,,2,3 months,,32°F to 113°F / 0°C to 45°C (0-60%RH),,Température de stockage,3 mois,32°F à 113°F / 0°C à 45°C (0-60% HR),,JE-1000F,3 meses,32°F a 113°F / 0°C a 45°C (0-60% HR),en
-JE-1000F_US_en,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,Storage Temperature,,3,12 months,,32°F to 77°F / 0°C to 25°C (0-60%RH),,Température de stockage,12 mois,32°F à 77°F / 0°C à 25°C (0-60% HR),,JE-1000F,12 meses,32°F a 77°F / 0°C a 25°C (0-60% HR),en
-JE-1000F_US_en,US,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,1500W,,,,1500W,,JE-1000F,,1500W,en
-JE-2000E_CN_zh,CN,TRUE,operation_guide,OUTPUT PORTS,3,1,usb_c_high_power_port,label,USB-C 140W Port,,1,,,USB-C 140W输出端口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,operation_guide,SETTINGS,8,1,default_standby_duration,value,Default Standby Duration,,1,,,2小时,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,operation_guide,SETTINGS,8,2,energy_saving_auto_off_duration,value,Energy Saving Auto Off Duration,,1,,,12小时,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,operation_guide,SETTINGS,8,3,energy_saving_ac_threshold,value,Energy Saving AC Threshold,,1,,,25W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,operation_guide,SETTINGS,8,4,energy_saving_dc_threshold,value,Energy Saving DC Threshold,,1,,,2W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.car.spec,Car Input,,1,,,车充：11V-16V⎓最大8A，双路最大8A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.label,DC Input (2 x DC8020 Ports),,1,,,DC输入端口（2×DC8020口）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.pv.spec,PV Input,,1,,,光伏：16V-60V⎓12A，双路最大21A/最大800W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.label,AC Input,,1,,,AC输入端口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.spec,AC Input,,1,,,220V-240V~50Hz，最大10A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.label,DC 12V Port,,1,,,DC 12V点烟口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.spec,DC 12V Port,,1,,,12V⎓最大10A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.label,USB-C 140W Output,,1,,,USB-C 140W输出端口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.spec,USB-C 140W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，28V⎓5A，最大140W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.label,USB-C 30W Output,,1,,,USB-C 30W输出端口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.spec,USB-C 30W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.label,USB-A 18W Output,,1,,,USB-A 18W输出端口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.spec,USB-A 18W Output,,1,,,5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.label,AC Output,,1,,,AC输出端口,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.spec,AC Output,,1,,,220V~50Hz，10.9A，额定2400W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.label,Total Output,,1,,,AC总输出,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.spec,Total Output,,1,,,3口合计2400W，瞬时最大4800W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main Power Button,,1,,,总电源开关键,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB输出按键,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC输出按键,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,1,product_name,,产品名称,,1,,,户外电源2000 Pro Max,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,2,model_no,,型号,,1,,,JE-2000E,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,3,cell_chemistry,,电芯类型,,1,,,磷酸铁锂电芯,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,4,capacity,,电池组能量,,1,,,40Ah/51.2V DC（2048 Wh）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,5,weight,,重量,,1,,,约18.4 kg,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,6,dimensions,,尺寸,,1,,,约366×255×272 mm,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,循环寿命,,1,,,6000 次循环，≥70%SOH,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1 x AC,,1,,,220V-240V ~ 50Hz，最大10A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC（DC8020）,,1,光伏,,16V-60V⎓12A，双路最大21A/最大800W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC（DC8020）,,2,车充,,11V-16V⎓最大8A，双路最大8A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,INPUT PORTS,2,3,battery_pack_connection_port,,加电包连接端口,,1,,,36.8V-57.6V，最大75A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,1,,,220V~50Hz，10.9A，额定2400W（-10℃~45℃）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,2,,,220V~50Hz，7.2A，额定1600W（-20℃~-10℃）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,2,ac_total_output,,AC总输出,,1,,,额定2400W，瞬时最大4800W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,3,ac_output_bypass,,AC旁路输出,,1,,,220V-240V~50Hz，最大10A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,USB-C输出端口,,1,,,1 × USB-C 140W：5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，28V⎓5A，最大140W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,USB-C输出端口,,2,,,1 × USB-C 30W：5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,5,usb_a,,1 × USB-A 18W,,1,,,5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,6,dc12_port,,1 × DC 12V点烟口,,1,,,12V⎓最大10A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,7,parallel_port,,并机端口,,1,,,220V~50Hz，额定3500W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,8,ac_parallel_output,,AC并机输出,,1,,,220V~50Hz，32A，最大7000W，瞬时最大14000W,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,OUTPUT PORTS,3,9,battery_pack_connection_port,,加电包连接端口,,1,,,36.8V-57.6V，最大55A,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,充电温度,,1,,,-20℃~45℃,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,放电温度,,1,,,-20℃~45℃,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,specifications,ACCESSORIES,9,1,battery_pack_name,value,Battery Pack Name,,1,,,电小二加电包2000,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,1,1个月,,-20℃~45℃（0~60%RH）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,2,3个月,,0℃~45℃（0~60%RH）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,3,12个月,,0℃~25℃（0~60%RH）,,,,,,JE-2000E,,,zh
-JE-2000E_CN_zh,CN,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,220V-240V~50Hz，最大10A,,,,,,JE-2000E,,,zh
+JE-1000F_JP,JP,TRUE,operation_guide,OUTPUT PORTS,3,1,usb_c_high_power_port,label,USB-C 100W Port,,1,,,USB-C 100W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,operation_guide,SETTINGS,8,1,default_standby_duration,value,Default Standby Duration,,1,,,2時間,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,operation_guide,SETTINGS,8,2,energy_saving_auto_off_duration,value,Energy Saving Auto Off Duration,,1,,,12時間,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,operation_guide,SETTINGS,8,3,energy_saving_ac_threshold,value,Energy Saving AC Threshold,,1,,,25W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,operation_guide,SETTINGS,8,4,energy_saving_dc_threshold,value,Energy Saving DC Threshold,,1,,,2W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.car.spec,Car Input,,1,,,"ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A, 2ポート最大8A",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.label,DC Input (2 x DC8020 Ports),,1,,,DC入力ポート（DC8020）,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.pv.spec,PV Input,,1,,,PV：16V-60V⎓12A，2ポート最大21A，最大400W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.label,AC Input,,1,,,AC入力ポート,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.spec,AC Input,,1,,,100V-120V~ 50Hz/60Hz，最大15A，最大約1450W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.label,DC 12V Port,,1,,,シガーソケット出力ポート,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.spec,DC 12V Port,,1,,,12V⎓最大10A,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.label,USB-C 100W Output,,1,,,USB-C 100W出力ポート,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.spec,USB-C 100W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，最大100W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.label,USB-C 30W Output,,1,,,USB-C 30W出力ポート,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.spec,USB-C 30W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.label,USB-A 18W Output,,1,,,USB-A 18W出力ポート,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.spec,USB-A 18W Output,,1,,,5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.label,AC Output,,1,,,AC出力ポート,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.spec,AC Output,,1,,,100V~ 50Hz/60Hz，最大15A，定格1500W，瞬間最大3000W,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main Power Button,,1,,,主電源ボタン,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB出力ボタン,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC出力ボタン,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,1,product_name,,製品の名称,,1,,,Jackery ポータブル電源 1000 New,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,FALSE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F-测试同步逻辑,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,3,capacity,,定格容量,,1,,,1024Wh (20Ah/51.2V DC),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,バッテリータイプ,,1,,,LiFePO₄ (リン酸鉄リチウムイオン電池),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,5,weight,,重量,,1,,,約10.6 kg,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,6,dimensions,,サイズ,,1,,,約314 × 201 × 236 mm,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,サイクル寿命,,1,,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1×ACポート,,1,,,"100V-120V~50Hz/60Hz, 最大15A, 1450W±50W",max_charge_power,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1×ACポート,,2,バススルー,ac_bypass,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2×DC8020ポート,,1,PV,,"16V-60V⎓12A, 2ポート 最大21A, 最大400W",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2×DC8020ポート,,2,シガーソケット,,"11V-16V⎓最大8A, 2ポート 最大8A",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3×ACポート,,1,,,"100V~50Hz/60Hz, 最大15A, 定格1500W (-10℃~45℃)",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3×ACポート,,2,,,"100V~50Hz/60Hz, 最大7A, 定格700W (-20℃~-10℃)",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,2,ac_total_output,,AC出力合計,,1,,,"定格1500W, 瞬間最大3000W",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,3,ac_output_bypass,,AC出力(パススルー),ac_bypass,1,,,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,1,,,"5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A, 最大30W",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,2,,,"5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W (-10℃~45℃)",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,3,,,(-20℃~-10℃では出力不可),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,5,usb_a,,1×USB-Aポート,,1,,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,6,dc12_port,,シガーソケット出力,,1,,,12V⎓最大10A,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,充電温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,放電温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,1,1か月,,-20℃ ～ 45℃（0-60% RH）,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,2,3か月,,0℃ ～ 45℃（0-60% RH）,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,3,1年,,0℃ ～ 25℃（0-60% RH）,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,1500W,,,,,,JE-1000F,,,ja
+JE-1000F_US,US,TRUE,operation_guide,OUTPUT PORTS,3,1,usb_c_high_power_port,label,USB-C 100W Port,,1,,,USB-C 100W,,,,USB-C 100W,,JE-1000F,,USB-C 100W,en
+JE-1000F_US,US,TRUE,operation_guide,SETTINGS,8,1,default_standby_duration,value,Default Standby Duration,,1,,,2 hours,,,,2 heures,,JE-1000F,,2 horas,en
+JE-1000F_US,US,TRUE,operation_guide,SETTINGS,8,2,energy_saving_auto_off_duration,value,Energy Saving Auto Off Duration,,1,,,12 hours,,,,12 heures,,JE-1000F,,12 horas,en
+JE-1000F_US,US,TRUE,operation_guide,SETTINGS,8,3,energy_saving_ac_threshold,value,Energy Saving AC Threshold,,1,,,25W,,,,25W,,JE-1000F,,25W,en
+JE-1000F_US,US,TRUE,operation_guide,SETTINGS,8,4,energy_saving_dc_threshold,value,Energy Saving DC Threshold,,1,,,2W,,,,2W,,JE-1000F,,2W,en
+JE-1000F_US,US,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.car.spec,Car Input,,1,,,"Car: 11-16V⎓8A Max, Double to 8A Max",,,,"Voiture: 11-16 V⎓8 A max.,double à 8 A max.",,JE-1000F,,"Auto: 11-16 V⎓8 A Máx,Doble a 8A Máx",en
+JE-1000F_US,US,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.label,DC Input (2×DC8020 Ports),,1,,,DC Input (2×DC8020 Ports),,,,Entrée CC (2×Ports DC8020),,JE-1000F,,Entrada de CC (2 × Puertos DC8020),en
+JE-1000F_US,US,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.pv.spec,PV Input,,1,,,"PV: 16-60V⎓12A Max, Double to 21A / 400W Max",,,,"PV: 16-60 V⎓12 A max.,double à 21 A max. / 400 W max.",,JE-1000F,,"PV: 16-60 V⎓12 A Máx,Doble a 21 A Máx / 400 W Máx",en
+JE-1000F_US,US,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.label,AC Input,,1,,,AC Input,,,,Entrée CA,,JE-1000F,,Entrada de CA,en
+JE-1000F_US,US,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.spec,AC Input,,1,,,"100V-120V~60 Hz, 15A Max",,,,"100 V-120 V~ 60 Hz,15 A max.",,JE-1000F,,"100 V-120 V~ 60 Hz,15 A Máx",en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.label,DC 12V Port,,1,,,DC 12V Port,,,,Port CC 12 V,,JE-1000F,,Puerto DC 12V,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.spec,DC 12V Port,,1,,,12V/10A Max,,,,12 V⎓10 A max.,,JE-1000F,,12 V⎓10 A Máx,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.label,USB-C 100W Output,,1,,,USB-C 100W Output,,,,Sortie USB-C 100W,,JE-1000F,,Salida USB-C 100W,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.spec,USB-C 100W Output,,1,,,"100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A",,,,"100 W max.,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A",,JE-1000F,,"100 W Máx,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A",en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.label,USB-C 30W Output,,1,,,USB-C 30W Output,,,,Sortie USB-C 30W,,JE-1000F,,Salida USB-C 30W,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.spec,USB-C 30W Output,,1,,,"30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A",,,,"30W max.,5 V⎓3 A,9 V⎓3 A,12 V⎓2,5 A,15 V⎓2 A,20 V⎓1,5 A",,JE-1000F,,"30W Máx,5 V⎓3 A,9 V⎓3 A,12 V⎓2,5 A,15 V⎓2 A,20 V⎓1,5 A",en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.label,USB-A 18W Output,,1,,,USB-A 18W Output,,,,Sortie USB-A 18W,,JE-1000F,,Salida USB-A 18W,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.spec,USB-A 18W Output,,1,,,"18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A",,,,"18 W max.,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1,5 A",,JE-1000F,,"18 W Máx,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1,5 A",en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.label,AC Output,,1,,,AC Output,,,,Sortie CA,,JE-1000F,,Salidas de CA,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.spec,AC Output,,1,,,"120V~60Hz, 12.5A, 1500W Rated",,,,"120 V~ 60 Hz,12,5 A max.,1500 W nominal",,JE-1000F,,"120 V~ 60 Hz,12,5 A Máx,1500 W nominales",en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.label,Total Output,,1,,,Total Output,,,,Sortie totale,,JE-1000F,,Salida total,en
+JE-1000F_US,US,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.spec,Total Output,,1,,,"1500W Rated, 3000W Surge Peak",,,,"1500 W nominal,3000 W crête",,JE-1000F,,"1500 W nominales,3000 W pico de sobretensión",en
+JE-1000F_US,US,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main Power Button,,1,,,Main POWER Button,,,,Bouton d’alimentation principal,,JE-1000F,,Botón de encendido principal,en
+JE-1000F_US,US,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB Power Button,,,,Bouton d’alimentation CC/USB,,JE-1000F,,Botón de energía CC/USB,en
+JE-1000F_US,US,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC Power Button,,,,Bouton d’alimentation CA,,JE-1000F,,Botón de energía CA,en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,1,product_name,,Product Name,,1,,,Jackery Explorer 1000,,Nom du produit,,Jackery Explorer 1000,Nombre del producto,JE-1000F,,Jackery Explorer 1000,en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,2,model_no,,Model No.,,1,,,JE-1000F / JE-1000F-SG,,N° modèle,,JE-1000F / JE-1000F-SG,N° de modelo,JE-1000F,,JE-1000F / JE-1000F-SG,en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,3,capacity,,Capacity,,1,,,1024 Wh (20Ah/51.2V DC),,Capacité,,1024 Wh (20Ah/51.2V DC),Capacidad,JE-1000F,,1024 Wh (20Ah/51.2V DC),en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,Cell Chemistry,,1,,,LiFePO₄,,Cellule Chimique,,LiFePO₄,Química Celular,JE-1000F,,LiFePO₄,en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,5,weight,,Weight,,1,,,About 23.4 lbs/10.6 kg,,Poids,,"Environ 23,4 lb / 10,6 kg",Peso,JE-1000F,,"Aproximadamente 23,4 libras / 10,6 kg",en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,6,dimensions,,Dimensions,,1,,,12.4 x 7.9 x 9.3 in / 31.4 x 20.1 x 23.6 cm,,Dimensions,,12.4 x 7.9 x 9.3 po / 31.4 x 20.1 x 23.6 cm,Dimensiones,JE-1000F,,12.4 x 7.9 x 9.3 pulgadas / 31.4 x 20.1 x 23.6 cm,en
+JE-1000F_US,US,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,Cycle Life,,1,,,6000 cycles to 70%+ capacity,,Durée de vie,,6000 cycles jusqu'à 70 % ou plus de capacité,Ciclo de vida,JE-1000F,,6000 ciclos hasta 70 % o más de capacidad,en
+JE-1000F_US,US,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1 × AC Input,,1,Charge Mode,,"100V-120V~60Hz, 15A Max",,1 × Entrée CA,Mode de charge,"100V-120V~60Hz,15A max.",1 × Entrada CA,JE-1000F,Modo de carga,"100V-120V~60Hz,15A máx.",en
+JE-1000F_US,US,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1 × AC Input,,2,Bypass Mode,ac_bypass,"100V-120V~60Hz, 12A Max",,1 × Entrée CA,Mode de dérivation,"100V-120V~60Hz,12A max.",1 × Entrada CA,JE-1000F,Modo de derivación,"100V-120V~60Hz,12A máx.",en
+JE-1000F_US,US,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC8020 Ports,,1,,,"11V-16V⎓8A Max, Double to 8A Max",,2 × Ports DC8020,,"11V-16V⎓8A max.,double à 8A max.",2 × Puertos DC8020,JE-1000F,,"11V-16V⎓8A máx.,doble a 8A máx.",en
+JE-1000F_US,US,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC8020 Ports,,2,,,"16V-60V⎓12A, Double to 21A / 400W Max",,2 × Ports DC8020,,"16V-60V⎓12A,double à 21A / 400W max.",2 × Puertos DC8020,JE-1000F,,"16V-60V⎓12A,doble a 21A / 400W máx.",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,1,,,"120V~60Hz, 18.3A Max, 1500W Rated per port, 1500W in Total, 3000W Surge Peak (14°F to 113°F / -10°C to 45°C)",,3 × Sortie CA,,"120V~60Hz,18,3A max.,1500W nominal par port,1500W au total,crête de surtension de 3000W (14°F à 113°F / -10°C à 45°C)",3 × Salidas CA,JE-1000F,,"120V~60Hz,18,3A máx.,1500W nominales por puerto,1500W en total,pico de sobretensión de 3000W (14°F a 113°F / -10°C a 45°C)",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,2,,,"120V~60Hz, 13.3A (-4°F to 14°F / -20°C to -10°C)",,3 × Sortie CA,,"120V~60Hz,13,3A (-4°F à 14°F / -20°C à -10°C)",3 × Salidas CA,JE-1000F,,"120V~60Hz,13,3A (-4°F a 14°F / -20°C a -10°C)",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,2,ac_output_bypass,,AC Output in Bypass Mode,ac_bypass,1,,,"100V-120V~60Hz, 12A Max",,Sortie CA en mode dérivation,,"100V-120V~60Hz,12A max.",Salida de CA en modo derivación,JE-1000F,,"100V-120V~60Hz,12A máx.",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,3,usb_c,,2 × USB-C,,1,,,"30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",,2 × Sortie USB-C,,"30W max.,5V⎓3A,9V⎓3A,12V⎓2.5A,15V⎓2A,20V⎓1.5A",2 × Salidas USB-C,JE-1000F,,"30W máx.,5V⎓3A,9V⎓3A,12V⎓2.5A,15V⎓2A,20V⎓1.5A",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,3,usb_c,,2 × USB-C,,2,,,"100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A (14°F to 113°F / -10°C to 45°C)",,2 × Sortie USB-C,,"100W max.,5V⎓3A,9V⎓3A,12V⎓3A,15V⎓3A,20V⎓5A (14°F à 113°F / -10°C à 45°C)",2 × Salidas USB-C,JE-1000F,,"100W máx.,5V⎓3A,9V⎓3A,12V⎓3A,15V⎓3A,20V⎓5A (14°F a 113°F / -10°C a 45°C)",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,3,usb_c,,2 × USB-C,,3,,,USB-C 100W output disabled (-4°F to 14°F / -20°C to -10°C),,2 × Sortie USB-C,,Sortie USB-C 100W désactivée (-4°F à 14°F / -20°C à -10°C),2 × Salidas USB-C,JE-1000F,,Salida USB-C 100W desactivada (-4°F a 14°F / -20°C a -10°C),en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,4,usb_a,,1 × USB-A,,1,,,"18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",,1 × Sortie USB-A,,"18W max.,5-6V⎓3A,6-9V⎓2A,9-12V⎓1.5A",1 × Salida USB-A,JE-1000F,,"18W máx.,5-6V⎓3A,6-9V⎓2A,9-12V⎓1.5A",en
+JE-1000F_US,US,TRUE,specifications,OUTPUT PORTS,3,5,dc12_port,,1 × DC 12V Port,,1,,,12V⎓10A Max,,1 × Port CC 12V,,12V⎓10A max.,1 × Puerto DC 12V,JE-1000F,,12V⎓10A máx.,en
+JE-1000F_US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,Charging Temperature,,1,,,-4°F to 113°F / -20°C to 45°C,,Température de charge,,-4°F à 113°F / -20°C à 45°C,Temperatura de carga,JE-1000F,,-4°F a 113°F / -20°C a 45°C,en
+JE-1000F_US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,Discharging Temperature,,1,,,-4°F to 113°F / -20°C to 45°C,,Température de décharge,,-4°F à 113°F / -20°C à 45°C,Temperatura de descarga,JE-1000F,,-4°F a 113°F / -20°C a 45°C,en
+JE-1000F_US,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,Storage Temperature,,1,1 month,,-4°F to 113°F / -20°C to 45°C (0-60%RH),,Température de stockage,1 mois,-4°F à 113°F / -20°C à 45°C (0-60% HR),,JE-1000F,1 mes,-4°F a 113°F / -20°C a 45°C (0-60% HR),en
+JE-1000F_US,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,Storage Temperature,,2,3 months,,32°F to 113°F / 0°C to 45°C (0-60%RH),,Température de stockage,3 mois,32°F à 113°F / 0°C à 45°C (0-60% HR),,JE-1000F,3 meses,32°F a 113°F / 0°C a 45°C (0-60% HR),en
+JE-1000F_US,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,Storage Temperature,,3,12 months,,32°F to 77°F / 0°C to 25°C (0-60%RH),,Température de stockage,12 mois,32°F à 77°F / 0°C à 25°C (0-60% HR),,JE-1000F,12 meses,32°F a 77°F / 0°C a 25°C (0-60% HR),en
+JE-1000F_US,US,FALSE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,1500W,,,,1500W,,JE-1000F,,1500W,en
+JE-1000F_US,US,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,12A (1440W),,,,12A (1440W),,JE-1000F,,12A (1440W),en
+JE-2000E_CN,CN,TRUE,operation_guide,OUTPUT PORTS,3,1,usb_c_high_power_port,label,USB-C 140W Port,,1,,,USB-C 140W输出端口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,operation_guide,SETTINGS,8,1,default_standby_duration,value,Default Standby Duration,,1,,,2小时,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,operation_guide,SETTINGS,8,2,energy_saving_auto_off_duration,value,Energy Saving Auto Off Duration,,1,,,12小时,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,operation_guide,SETTINGS,8,3,energy_saving_ac_threshold,value,Energy Saving AC Threshold,,1,,,25W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,operation_guide,SETTINGS,8,4,energy_saving_dc_threshold,value,Energy Saving DC Threshold,,1,,,2W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.car.spec,Car Input,,1,,,车充：11V-16V⎓最大8A，双路最大8A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.label,DC Input (2 x DC8020 Ports),,1,,,DC输入端口（2×DC8020口）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,INPUT PORTS,2,1,dc_input,side.pv.spec,PV Input,,1,,,光伏：16V-60V⎓12A，双路最大21A/最大800W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.label,AC Input,,1,,,AC输入端口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,INPUT PORTS,2,2,ac_input,side.spec,AC Input,,1,,,220V-240V~50Hz，最大10A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.label,DC 12V Port,,1,,,DC 12V点烟口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,1,dc12_port,front.spec,DC 12V Port,,1,,,12V⎓最大10A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.label,USB-C 140W Output,,1,,,USB-C 140W输出端口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.high.spec,USB-C 140W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，28V⎓5A，最大140W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.label,USB-C 30W Output,,1,,,USB-C 30W输出端口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,2,usb_c,front.low.spec,USB-C 30W Output,,1,,,5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.label,USB-A 18W Output,,1,,,USB-A 18W输出端口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,3,usb_a,front.spec,USB-A 18W Output,,1,,,5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.label,AC Output,,1,,,AC输出端口,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,4,ac_output,front.spec,AC Output,,1,,,220V~50Hz，10.9A，额定2400W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.label,Total Output,,1,,,AC总输出,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,OUTPUT PORTS,3,5,total_output,front.spec,Total Output,,1,,,3口合计2400W，瞬时最大4800W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main Power Button,,1,,,总电源开关键,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB输出按键,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC输出按键,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,1,product_name,,产品名称,,1,,,户外电源2000 Pro Max,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,2,model_no,,型号,,1,,,JE-2000E,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,3,cell_chemistry,,电芯类型,,1,,,磷酸铁锂电芯,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,4,capacity,,电池组能量,,1,,,40Ah/51.2V DC（2048 Wh）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,5,weight,,重量,,1,,,约18.4 kg,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,6,dimensions,,尺寸,,1,,,约366×255×272 mm,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,循环寿命,,1,,,6000 次循环，≥70%SOH,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1 x AC,,1,,,220V-240V ~ 50Hz，最大10A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC（DC8020）,,1,光伏,,16V-60V⎓12A，双路最大21A/最大800W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2 × DC（DC8020）,,2,车充,,11V-16V⎓最大8A，双路最大8A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,INPUT PORTS,2,3,battery_pack_connection_port,,加电包连接端口,,1,,,36.8V-57.6V，最大75A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,1,,,220V~50Hz，10.9A，额定2400W（-10℃~45℃）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,1,ac_output,,3 × AC,,2,,,220V~50Hz，7.2A，额定1600W（-20℃~-10℃）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,2,ac_total_output,,AC总输出,,1,,,额定2400W，瞬时最大4800W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,3,ac_output_bypass,,AC旁路输出,,1,,,220V-240V~50Hz，最大10A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,USB-C输出端口,,1,,,1 × USB-C 140W：5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A，28V⎓5A，最大140W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,USB-C输出端口,,2,,,1 × USB-C 30W：5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A，最大30W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,5,usb_a,,1 × USB-A 18W,,1,,,5-6V⎓3A，6-9V⎓2A，9-12V⎓1.5A，最大18W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,6,dc12_port,,1 × DC 12V点烟口,,1,,,12V⎓最大10A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,7,parallel_port,,并机端口,,1,,,220V~50Hz，额定3500W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,8,ac_parallel_output,,AC并机输出,,1,,,220V~50Hz，32A，最大7000W，瞬时最大14000W,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,OUTPUT PORTS,3,9,battery_pack_connection_port,,加电包连接端口,,1,,,36.8V-57.6V，最大55A,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,充电温度,,1,,,-20℃~45℃,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,放电温度,,1,,,-20℃~45℃,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,specifications,ACCESSORIES,9,1,battery_pack_name,value,Battery Pack Name,,1,,,电小二加电包2000,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,1,1个月,,-20℃~45℃（0~60%RH）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,2,3个月,,0℃~45℃（0~60%RH）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,3,12个月,,0℃~25℃（0~60%RH）,,,,,,JE-2000E,,,zh
+JE-2000E_CN,CN,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass Output,,1,,,220V-240V~50Hz，最大10A,,,,,,JE-2000E,,,zh
