@@ -40,15 +40,21 @@ Updated: 2026-04-03
 - `是否进入Review`
 - `Git_ref`
 - `PR_url`
+- `Initial_result`
+- `Remarks`
 
-这张表触发后，系统会：
+这张表触发后，系统会按 `Document_Key` 对应的 `Model + Region` 启动 review：
 
-1. 创建或复用 review 分支
-2. seed `docs/_review`
-3. 创建或复用 PR
-4. 回写 `Git_ref`
-5. 回写 `PR_url`
-6. 把 `Review_status` 改成 `InReview`
+1. 先检查 `main` 是否已经提交过 `docs/_review/<model>/<region>/`
+2. 如果已经有旧 review 内容，就拒绝重复创建，并回写：
+   - `Initial_result = 不允许重复创建`
+   - `Remarks = 如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
+3. 如果没有旧 review 内容，才创建或复用 review 分支
+4. seed `docs/_review`
+5. 创建或复用 PR
+6. 回写 `Git_ref`
+7. 回写 `PR_url`
+8. 把 `Review_status` 改成 `InReview`
 
 ### 1.3 Document_link 表
 
@@ -124,11 +130,15 @@ Publish 不看你的 Draft 分支。
 它会：
 
 1. 同步最新 phase2 快照
-2. 创建或复用 review 分支
-3. 生成这个目标的 [`docs/_review/...`](../docs/_review)
-4. push 分支
-5. 创建或复用 PR
-6. 回写：
+2. 检查 `main` 是否已经存在这个 `Document_Key` 对应目标的旧 review 根目录
+3. 如果旧 review 已提交，则拒绝重复创建，并回写：
+   - `Initial_result = 不允许重复创建`
+   - `Remarks = 如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
+4. 如果旧 review 不存在，才创建或复用 review 分支
+5. 生成这个目标的 [`docs/_review/...`](../docs/_review)
+6. push 分支
+7. 创建或复用 PR
+8. 回写：
    - `Git_ref`
    - `PR_url`
    - `Review_status = InReview`
@@ -140,6 +150,7 @@ Publish 不看你的 Draft 分支。
 - 多维表里出现 `PR_url`
 - 仓库里已经有 PR
 - 对应分支里已经有 review 内容
+- 如果 `main` 已经提交过这个目标的 `docs/_review/<model>/<region>/`，多维表会回写 `Initial_result = 不允许重复创建`
 
 如果这一步没做，后面的 Draft 只是“构建一条记录”，不算完整的 review 流程。
 

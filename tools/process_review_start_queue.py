@@ -46,9 +46,13 @@ DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
+INITIAL_RESULT_FIELD = "Initial_result"
+REMARKS_FIELD = "Remarks"
 
 REVIEW_STATUS_NOT_STARTED = "NotStarted"
 REVIEW_STATUS_IN_REVIEW = "InReview"
+INITIAL_RESULT_DUPLICATE = "不允许重复创建"
+DUPLICATE_REMARKS = "如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md."
 
 
 @dataclass(frozen=True)
@@ -252,6 +256,14 @@ def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str,
     }
 
 
+def build_review_start_duplicate_fields() -> dict[str, Any]:
+    return {
+        REVIEW_TRIGGER_FIELD: False,
+        INITIAL_RESULT_FIELD: INITIAL_RESULT_DUPLICATE,
+        REMARKS_FIELD: DUPLICATE_REMARKS,
+    }
+
+
 def _format_command(cmd: list[str]) -> str:
     return subprocess.list2cmdline([str(part) for part in cmd])
 
@@ -332,6 +344,12 @@ def _review_dir_for_target(config_path: Path, *, model: str, region: str) -> Pat
     return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
 
 
+def _review_root_for_target(config_path: Path, *, model: str, region: str) -> Path:
+    cfg = load_config(config_path)
+    docs_dir = resolve_docs_dir(cfg)
+    return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+
+
 def _git_ref_exists(ref_name: str) -> bool:
     proc = subprocess.run(
         ["git", "show-ref", "--verify", "--quiet", ref_name],
@@ -343,6 +361,24 @@ def _git_ref_exists(ref_name: str) -> bool:
 
 def _remote_branch_exists(branch_name: str) -> bool:
     return _git_ref_exists(f"refs/remotes/origin/{branch_name}")
+
+
+def _git_object_exists(*, ref_name: str, repo_relative_path: str) -> bool:
+    proc = subprocess.run(
+        ["git", "cat-file", "-e", f"{ref_name}:{repo_relative_path}"],
+        cwd=str(ROOT),
+        check=False,
+    )
+    return proc.returncode == 0
+
+
+def base_ref_contains_target_review_root(*, config_path: Path, model: str, region: str, base_ref: str) -> bool:
+    review_root = _review_root_for_target(config_path, model=model, region=region)
+    try:
+        review_root_rel = review_root.relative_to(ROOT).as_posix()
+    except ValueError:
+        review_root_rel = review_root.as_posix()
+    return _git_object_exists(ref_name=f"origin/{base_ref}", repo_relative_path=review_root_rel)
 
 
 def _worktree_dir_for_branch(branch_name: str) -> Path:
@@ -635,11 +671,33 @@ def process_review_start_queue(
     repository = str(os.environ.get("GITHUB_REPOSITORY", "")).strip()
     token = str(os.environ.get("GITHUB_TOKEN", "")).strip()
     base_ref = str(os.environ.get("REVIEW_START_BASE_REF", "main")).strip() or "main"
+    _run_git(["fetch", "origin", "--prune"])
 
     failures: list[str] = []
     processed = 0
+    blocked = 0
     for record in pending:
         try:
+            model, region = resolve_target_for_review_start(record)
+            build_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+            if base_ref_contains_target_review_root(
+                config_path=build_config_path,
+                model=model,
+                region=region,
+                base_ref=base_ref,
+            ):
+                source.upsert_record(
+                    base_token=binding.base_token,
+                    table_id=binding.table_id,
+                    record_id=record.record_id,
+                    record=build_review_start_duplicate_fields(),
+                )
+                blocked += 1
+                print(
+                    "[review-start] BLOCKED "
+                    f"{record.label}: review root already exists in origin/{base_ref} for {model}/{region}"
+                )
+                continue
             branch_name, pr_url = start_review_for_record(
                 record=record,
                 sync_config_path=config_path,
@@ -660,7 +718,7 @@ def process_review_start_queue(
             failures.append(f"{record.label}: {exc}")
             print(f"[review-start] FAILURE {record.label}: {exc}", file=sys.stderr)
 
-    print(f"[review-start] Summary: processed={processed} failed={len(failures)}")
+    print(f"[review-start] Summary: processed={processed} blocked={blocked} failed={len(failures)}")
     return 1 if failures else 0
 
 
