@@ -9,6 +9,16 @@ from tools import process_review_start_queue
 
 
 class TestProcessReviewStartQueue(unittest.TestCase):
+    def test_resolve_docs_dir_for_config_should_follow_worktree_relative_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            worktree = Path(td) / "review-start-worktree"
+            config_path = worktree / "config.us-en.yaml"
+            cfg = {"paths": {"docs_dir": "docs"}}
+
+            docs_dir = process_review_start_queue._resolve_docs_dir_for_config(config_path, cfg)
+
+        self.assertEqual(worktree / "docs", docs_dir)
+
     def test_select_pending_review_start_records_should_require_checkbox_and_notstarted_status(self) -> None:
         records = process_review_start_queue.select_pending_review_start_records(
             [

@@ -377,6 +377,18 @@ def sync_phase2_snapshot_before_review_start(*, config_path: Path, data_root: st
     )
 
 
+def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
+    resolved_config_path = config_path if config_path.is_absolute() else (ROOT / config_path)
+    loaded_cfg = cfg if cfg is not None else load_config(resolved_config_path)
+    paths_cfg_raw = loaded_cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get("docs_dir")
+    if isinstance(raw, str) and raw.strip():
+        candidate = Path(raw.strip())
+        return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
+    return resolved_config_path.parent / "docs"
+
+
 def _review_dir_for_target(config_path: Path, *, model: str, region: str) -> Path:
     cfg = load_config(config_path)
     docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
@@ -389,7 +401,7 @@ def _review_dir_for_target(config_path: Path, *, model: str, region: str) -> Pat
 
 def _review_root_for_target(config_path: Path, *, model: str, region: str) -> Path:
     cfg = load_config(config_path)
-    docs_dir = resolve_docs_dir(cfg)
+    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
     return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
 
 
