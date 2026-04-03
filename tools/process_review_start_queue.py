@@ -84,12 +84,31 @@ def _review_init_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     return raw if isinstance(raw, dict) else {}
 
 
+def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
+    phase2_cfg = _sync_phase2_cfg(cfg)
+    raw = phase2_cfg.get("document_link", {})
+    return raw if isinstance(raw, dict) else {}
+
+
 def _review_init_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
     phase2_cfg = _sync_phase2_cfg(cfg)
     review_init_cfg = _review_init_cfg(cfg)
+    document_link_cfg = _document_link_cfg(cfg)
     base_token_env = str(review_init_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or "").strip()
-    table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
-    view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
+    review_table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
+    review_view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
+    document_link_table_id_env = str(document_link_cfg.get("table_id_env") or "").strip()
+    document_link_view_id_env = str(document_link_cfg.get("view_id_env") or "").strip() or None
+    table_id_env = review_table_id_env
+    if review_table_id_env and not str(os.environ.get(review_table_id_env, "")).strip() and document_link_table_id_env:
+        table_id_env = document_link_table_id_env
+    elif not review_table_id_env:
+        table_id_env = document_link_table_id_env
+    view_id_env = review_view_id_env
+    if review_view_id_env and not str(os.environ.get(review_view_id_env, "")).strip() and document_link_view_id_env:
+        view_id_env = document_link_view_id_env
+    elif not review_view_id_env:
+        view_id_env = document_link_view_id_env
     return base_token_env, table_id_env, view_id_env
 
 

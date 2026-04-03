@@ -50,6 +50,8 @@ Updated: 2026-04-03
 5. 回写 `PR_url`
 6. 把 `Review_status` 改成 `InReview`
 
+如果这张 `Review Init` 表和 `Document_link` 其实复用同一个表 / 视图绑定，也可以继续用同一组 GitHub secrets；`feishu-start-review.yml` 会优先读 `FEISHU_PHASE2_REVIEW_INIT_*`，缺失时回退到 `FEISHU_PHASE2_DOCUMENT_LINK_*`。
+
 ### 1.3 Document_link 表
 
 这张表只做“反复构建文档”。

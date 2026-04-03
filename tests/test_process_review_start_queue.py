@@ -57,6 +57,39 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertTrue(branch_name.startswith("codex/review-"))
         self.assertIn("je-1000f-jp-ja-0-1", branch_name)
 
+    @mock.patch.dict(
+        "os.environ",
+        {
+            "FEISHU_PHASE2_BASE_TOKEN": "app_xxx",
+            "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID": "tbl_document_link",
+            "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID": "vew_document_link",
+        },
+        clear=False,
+    )
+    def test_review_init_env_names_should_fallback_to_document_link_binding(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
+                    },
+                    "review_init": {
+                        "table_id_env": "FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                    },
+                }
+            }
+        }
+
+        base_token_env, table_id_env, view_id_env = process_review_start_queue._review_init_env_names(cfg)
+
+        self.assertEqual("FEISHU_PHASE2_BASE_TOKEN", base_token_env)
+        self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", table_id_env)
+        self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID", view_id_env)
+
     def test_process_review_start_queue_should_write_back_git_ref_and_pr_url(self) -> None:
         cfg = {
             "sync": {
