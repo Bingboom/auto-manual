@@ -51,6 +51,13 @@ python3 build.py process-build-queue --config config.yaml --data-root data/phase
 python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
 ```
 
+Review sync note:
+
+- once a review bundle exists, `check`, `html`, `word`, `pdf`, and `publish` automatically prepare the runtime bundle and run the same parameter sync before export
+- that auto sync now refreshes parameter-driven lines in review-backed RST pages without overwriting the rest of the manual review prose
+- use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
+- US English review content is now strictly lang-scoped under `docs/_review/<model>/US/en/`; the old unscoped `docs/_review/<model>/US/page/**` convention is retired
+
 Phase2 snapshot note:
 
 - `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2), using the CLI's `base` record listing flow under the hood
@@ -107,6 +114,7 @@ Batch export example:
 Word export note:
 
 - `config.us-en.yaml` now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while keeping the generated `safety` and `spec` pages unchanged
+- generated DOCX images are now normalized to embedded relationships before post-processing so third-party viewers such as Feishu are less likely to drop image-backed table cells during preview
 
 HTML output note:
 

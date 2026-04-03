@@ -16,12 +16,12 @@ class TestReleaseManifest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             docs_dir = root / "docs"
-            build_root = docs_dir / "_build" / "JE-1000F" / "US"
+            build_root = docs_dir / "_build" / "JE-1000F" / "US" / "en"
             (build_root / "rst").mkdir(parents=True)
             (build_root / "html").mkdir(parents=True)
             (build_root / "word").mkdir(parents=True)
             (build_root / "pdf").mkdir(parents=True)
-            (docs_dir / "_review" / "JE-1000F" / "US").mkdir(parents=True)
+            (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
             (build_root / "word" / "manual_je1000f_us.docx").write_text("docx\n", encoding="utf-8")
             (build_root / "pdf" / "manual_je1000f_us.pdf").write_text("pdf\n", encoding="utf-8")
@@ -49,6 +49,7 @@ class TestReleaseManifest(unittest.TestCase):
                     [
                         "build:",
                         "  languages: [en]",
+                        "  include_lang_in_output_path: true",
                         "  word_output: manual_{model_slug}_{region_slug}.docx",
                         "  output_pdf: manual_{model_slug}_{region_slug}.pdf",
                         "paths:",
@@ -81,6 +82,8 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertEqual("JE-1000F", manifest["model"])
             self.assertEqual("US", manifest["region"])
             self.assertEqual(["en"], manifest["build_languages"])
+            self.assertEqual("docs/_review/JE-1000F/US/en", manifest["tracked_review_dir"])
+            self.assertEqual("docs/_build/JE-1000F/US/en/rst", manifest["runtime_bundle_dir"])
             self.assertEqual("Jackery Explorer 1000 Pro", manifest["product_name"])
             self.assertEqual("data/phase1/Spec_Notes.csv", manifest["spec_notes_csv"])
             self.assertEqual("reports/releases/JE-1000F/US/20260315T100000Z.json", json_path.relative_to(root).as_posix())
@@ -96,12 +99,12 @@ class TestReleaseManifest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             docs_dir = root / "docs"
-            build_root = docs_dir / "_build" / "JE-1000F" / "US"
+            build_root = docs_dir / "_build" / "JE-1000F" / "US" / "en"
             (build_root / "rst").mkdir(parents=True)
             (build_root / "html").mkdir(parents=True)
             (build_root / "word").mkdir(parents=True)
             (build_root / "pdf").mkdir(parents=True)
-            (docs_dir / "_review" / "JE-1000F" / "US").mkdir(parents=True)
+            (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
 
             phase1_dir = root / "data" / "phase1"
@@ -130,6 +133,7 @@ class TestReleaseManifest(unittest.TestCase):
                     [
                         "build:",
                         "  languages: [en]",
+                        "  include_lang_in_output_path: true",
                         "paths:",
                         f"  docs_dir: {docs_dir.as_posix()}",
                         f"  spec_master_csv: {(phase1_dir / 'Spec_Master.csv').as_posix()}",
@@ -151,3 +155,4 @@ class TestReleaseManifest(unittest.TestCase):
             manifest = json.loads(json_path.read_text(encoding="utf-8"))
             self.assertEqual("data/phase2/Spec_Master.csv", manifest["spec_master_csv"])
             self.assertEqual("Phase2 Product", manifest["product_name"])
+            self.assertEqual("docs/_review/JE-1000F/US/en", manifest["tracked_review_dir"])
