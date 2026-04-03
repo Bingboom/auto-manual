@@ -239,6 +239,10 @@ def _slug_branch_token(value: str) -> str:
     return text or "review"
 
 
+def _looks_like_explicit_document_key(value: str) -> bool:
+    return bool(re.fullmatch(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+", value.strip()))
+
+
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
     if record.git_ref.strip():
         return record.git_ref.strip()
@@ -247,11 +251,40 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
     return f"codex/review-{slug}"
 
 
+def _document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
+    candidate = document_id.strip()
+    version_text = version.strip()
+    lang_text = lang.strip().lower()
+    if version_text and candidate.endswith("_" + version_text):
+        candidate = candidate[: -(len(version_text) + 1)]
+    if lang_text and candidate.lower().endswith("_" + lang_text):
+        candidate = candidate[: -(len(lang_text) + 1)]
+    return candidate.strip()
+
+
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
-    document_key = record.document_key.strip()
-    if not document_key:
-        raise RuntimeError(f"Document_Key is required for review start: {record.label}")
-    return parse_document_key(document_key)
+    candidates: list[str] = []
+    if _looks_like_explicit_document_key(record.document_key):
+        candidates.append(record.document_key.strip())
+    fallback_key = _document_key_from_document_id(
+        document_id=record.document_id,
+        lang=record.lang,
+        version=record.version,
+    )
+    if fallback_key and fallback_key not in candidates:
+        candidates.append(fallback_key)
+
+    errors: list[str] = []
+    for candidate in candidates:
+        try:
+            return parse_document_key(candidate)
+        except RuntimeError as exc:
+            errors.append(str(exc))
+
+    detail = f"Document_ID={record.document_id!r}, Document_Key={record.document_key!r}, Lang={record.lang!r}"
+    if errors:
+        raise RuntimeError("Unable to resolve review-start target. " + detail + " | " + " | ".join(errors))
+    raise RuntimeError("Unable to resolve review-start target. " + detail)
 
 
 def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str, Any]:

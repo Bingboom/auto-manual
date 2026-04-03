@@ -57,6 +57,24 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertTrue(branch_name.startswith("codex/review-"))
         self.assertIn("je-1000f-jp-ja-0-1", branch_name)
 
+    def test_resolve_target_for_review_start_should_fallback_to_document_id(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_JP_ja_0.1",
+            document_key="{'id': 'recv_bad_link'}",
+            version="0.1",
+            lang="ja",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+
+        model, region = process_review_start_queue.resolve_target_for_review_start(record)
+
+        self.assertEqual("JE-1000F", model)
+        self.assertEqual("JP", region)
+
     @mock.patch.dict(
         "os.environ",
         {
