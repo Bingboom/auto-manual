@@ -23,7 +23,6 @@ if str(ROOT) not in sys.path:
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.process_build_queue import parse_document_key, resolve_config_path_for_task  # noqa: E402
-from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import review_bundle_exists, review_dir_for_target  # noqa: E402
 from tools.sync_data import (  # noqa: E402
     LarkCliSource,
@@ -368,12 +367,24 @@ def sync_phase2_snapshot_before_review_start(*, config_path: Path, data_root: st
 
 def _review_dir_for_target(config_path: Path, *, model: str, region: str) -> Path:
     cfg = load_config(config_path)
-    docs_dir = resolve_docs_dir(cfg)
+    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
     output_lang = resolve_output_lang(cfg)
     candidate = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
     if candidate.exists():
         return candidate
     return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+
+
+def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any]) -> Path:
+    paths_cfg_raw = cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get("docs_dir")
+    if isinstance(raw, str) and raw.strip():
+        candidate = Path(raw.strip())
+        if candidate.is_absolute():
+            return candidate
+        return (config_path.parent / candidate).resolve()
+    return (config_path.parent / "docs").resolve()
 
 
 def _git_ref_exists(ref_name: str) -> bool:
@@ -448,7 +459,7 @@ def ensure_review_bundle_on_branch(
 ) -> Path:
     worktree_config_path = worktree / build_config_path.name
     cfg = load_config(worktree_config_path)
-    docs_dir = resolve_docs_dir(cfg)
+    docs_dir = _resolve_docs_dir_for_config(worktree_config_path, cfg)
     output_lang = resolve_output_lang(cfg)
     if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=output_lang):
         return _review_dir_for_target(worktree_config_path, model=model, region=region)

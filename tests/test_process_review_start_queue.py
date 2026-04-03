@@ -75,6 +75,17 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual("JE-1000F", model)
         self.assertEqual("JP", region)
 
+    def test_resolve_docs_dir_for_config_should_follow_worktree_relative_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            worktree = Path(td)
+            config_path = worktree / "config.yaml"
+            docs_dir = process_review_start_queue._resolve_docs_dir_for_config(
+                config_path,
+                {"paths": {"docs_dir": "docs"}},
+            )
+
+        self.assertEqual((worktree / "docs").resolve(), docs_dir)
+
     @mock.patch.dict(
         "os.environ",
         {
