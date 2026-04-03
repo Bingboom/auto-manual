@@ -208,6 +208,111 @@ class TestReviewSupport(unittest.TestCase):
             self.assertEqual("params", manifest["last_sync_scope"])
             self.assertIn("page/02_whats_in_the_box.rst", manifest["last_sync_files"])
 
+    def test_sync_review_paths_should_merge_placeholder_values_from_shifted_runtime_lines(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US" / "en"
+            template_path = docs_dir / "templates" / "page_us-en" / "06_ups_mode.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            template_path.write_text(
+                "Heading\nUPS |UPS_BYPASS_OUTPUT_TEXT|\nTail\n",
+                encoding="utf-8",
+            )
+            (runtime_dir / "page" / "06_ups_mode.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{en}\n\nHeading\nUPS 20 ms bypass transfer\nTail\n",
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "06_ups_mode.rst").write_text(
+                "Heading\nUPS 10 ms bypass transfer\nTail\n",
+                encoding="utf-8",
+            )
+
+            copied = sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+                plan=(
+                    SyncPlanEntry(
+                        relative_path=Path("page") / "06_ups_mode.rst",
+                        mode="merge_params",
+                        template_path=template_path,
+                    ),
+                ),
+            )
+
+            self.assertEqual(1, len(copied))
+            self.assertEqual(
+                "Heading\nUPS 20 ms bypass transfer\nTail\n",
+                (review_dir / "page" / "06_ups_mode.rst").read_text(encoding="utf-8"),
+            )
+
+    def test_sync_review_paths_should_not_overwrite_adjacent_non_placeholder_lines(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US" / "en"
+            template_path = docs_dir / "templates" / "page_us-en" / "02_whats_in_the_box.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            template_path.write_text(
+                "Heading\n"
+                ".. image:: templates/word_template/common_assets/in_the_box/main_unit1.png\n"
+                "|PRODUCT_NAME_BOLD|\n"
+                ".. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png\n",
+                encoding="utf-8",
+            )
+            (runtime_dir / "page" / "02_whats_in_the_box.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{en}\n\n"
+                "Heading\n"
+                ".. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png\n"
+                "**Jackery Explorer 1000**\n"
+                ".. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png\n",
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "02_whats_in_the_box.rst").write_text(
+                "Heading\n"
+                ".. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit.png\n"
+                "**Old Product Name**\n"
+                ".. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging.png\n",
+                encoding="utf-8",
+            )
+
+            copied = sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+                plan=(
+                    SyncPlanEntry(
+                        relative_path=Path("page") / "02_whats_in_the_box.rst",
+                        mode="merge_params",
+                        template_path=template_path,
+                    ),
+                ),
+            )
+
+            self.assertEqual(1, len(copied))
+            self.assertEqual(
+                "Heading\n"
+                ".. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit.png\n"
+                "**Jackery Explorer 1000**\n"
+                ".. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging.png\n",
+                (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8"),
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
