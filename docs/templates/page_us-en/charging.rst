@@ -42,4 +42,4 @@ Make sure the AC charging cable is fully and securely plugged into the AC input 
 
 Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
 
-*To maximize battery life, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.*
+* To maximize batteryspan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.*
