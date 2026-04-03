@@ -64,6 +64,9 @@ sync:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
       wiki_parent_token_env: FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN
+    review_init:
+      table_id_env: FEISHU_PHASE2_REVIEW_INIT_TABLE_ID
+      view_id_env: FEISHU_PHASE2_REVIEW_INIT_VIEW_ID
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
