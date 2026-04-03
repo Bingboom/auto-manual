@@ -6,15 +6,52 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from tools.word_bundle_docx import _remap_reference_doc_styles
+from tools.word_bundle_docx import _embed_external_docx_images, _remap_reference_doc_styles
 from tools.word_bundle_html import WordBundlePageMeta
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 _W = "{%s}" % _W_NS
 _NS = {"w": _W_NS}
+_REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
+_DOC_REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+_DRAWING_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
 
 
 class TestWordBundleDocx(unittest.TestCase):
+    def test_embed_external_docx_images_should_promote_internalized_links_to_embeds(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            image_path = root / "sample.png"
+            image_path.write_bytes(
+                bytes.fromhex(
+                    "89504E470D0A1A0A"
+                    "0000000D49484452000000010000000108060000001F15C489"
+                    "0000000D49444154789C6360000002000154A24F5D00000000"
+                    "49454E44AE426082"
+                )
+            )
+
+            docx_path = root / "linked.docx"
+            self._write_linked_image_docx(docx_path, image_path)
+
+            _embed_external_docx_images(docx_path)
+
+            with zipfile.ZipFile(docx_path) as bundle:
+                rels_xml = ET.fromstring(bundle.read("word/_rels/document.xml.rels"))
+                document_xml = ET.fromstring(bundle.read("word/document.xml"))
+                media_names = set(bundle.namelist())
+
+            rel = rels_xml.find(f"{{{_REL_NS}}}Relationship")
+            self.assertIsNotNone(rel)
+            self.assertEqual("media/image1.png", rel.attrib.get("Target"))
+            self.assertNotIn("TargetMode", rel.attrib)
+
+            blip = document_xml.find(f".//{{{_DRAWING_NS}}}blip")
+            self.assertIsNotNone(blip)
+            self.assertEqual("rId1", blip.attrib.get(f"{{{_DOC_REL_NS}}}embed"))
+            self.assertNotIn(f"{{{_DOC_REL_NS}}}link", blip.attrib)
+            self.assertIn("word/media/image1.png", media_names)
+
     def test_remap_reference_doc_styles_should_update_non_preserved_pages_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -118,6 +155,47 @@ class TestWordBundleDocx(unittest.TestCase):
             bundle.writestr("word/styles.xml", styles_xml)
             bundle.writestr("word/document.xml", document_xml)
 
+    def _write_linked_image_docx(self, path: Path, image_path: Path) -> None:
+        image_target = image_path.resolve(strict=False).as_uri()
+        content_types_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>
+"""
+        rels_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="{_REL_NS}">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="{image_target}" TargetMode="External"/>
+</Relationships>
+"""
+        document_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="{_W_NS}" xmlns:a="{_DRAWING_NS}" xmlns:r="{_DOC_REL_NS}">
+  <w:body>
+    <w:p>
+      <w:r>
+        <w:drawing>
+          <a:graphic>
+            <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                <pic:blipFill>
+                  <a:blip r:link="rId1"/>
+                </pic:blipFill>
+              </pic:pic>
+            </a:graphicData>
+          </a:graphic>
+        </w:drawing>
+      </w:r>
+    </w:p>
+    <w:sectPr />
+  </w:body>
+</w:document>
+"""
+        with zipfile.ZipFile(path, "w") as bundle:
+            bundle.writestr("[Content_Types].xml", content_types_xml)
+            bundle.writestr("word/document.xml", document_xml)
+            bundle.writestr("word/_rels/document.xml.rels", rels_xml)
+
     def _paragraph_style(self, para: ET.Element) -> str:
         style = para.find("w:pPr/w:pStyle", _NS)
         return style.attrib.get(f"{_W}val", "") if style is not None else ""
@@ -129,4 +207,3 @@ class TestWordBundleDocx(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

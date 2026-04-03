@@ -563,6 +563,10 @@ python build.py sync-review --config config.us-fr.yaml --model JE-1000F --region
 python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --sync-scope generated
 ```
 
+进入 review 之后，`check`、`html`、`word`、`pdf`、`publish` 在真正构建前也会自动执行同样的参数同步。
+这一步现在只刷新参数驱动的行，不会把整张 review 页面整页覆盖掉。
+US 英文 review 现在只认 `docs/_review/<model>/US/en/`，旧的 `docs/_review/<model>/US/page/**` 已经退休，不再被构建读取。
+
 固定 `safety_*.rst` 页面不在这个 `generated` 范围里；如果你改的是 safety 模板，改完后请直接同步对应页，例如：
 
 ```powershell

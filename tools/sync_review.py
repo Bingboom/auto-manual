@@ -16,7 +16,7 @@ from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludeP
 from tools.build_docs import load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target, plan_materialized_pages  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
-from tools.review_support import review_dir_for_target, sync_review_paths  # noqa: E402
+from tools.review_support import SyncPlanEntry, review_dir_for_target, sync_review_paths  # noqa: E402
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
@@ -32,7 +32,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--sync-scope",
         choices=("generated", "params"),
         default="params",
-        help="generated = generated csv/draft pages only; params = generated plus placeholder and cover pages",
+        help="generated = generated csv/draft pages only; params = generated plus parameter-driven page refresh without resetting manual review prose",
     )
     ap.add_argument(
         "--page-file",
@@ -59,38 +59,69 @@ def resolve_sync_relative_paths(
     scope: str,
     page_files: tuple[str, ...],
 ) -> tuple[Path, ...]:
+    sync_plan = resolve_sync_plan(
+        cfg=cfg,
+        docs_dir=docs_dir,
+        runtime_bundle_dir=runtime_bundle_dir,
+        model=model,
+        region=region,
+        scope=scope,
+        page_files=page_files,
+    )
+    return tuple(entry.relative_path for entry in sync_plan)
+
+
+def resolve_sync_plan(
+    *,
+    cfg: dict,
+    docs_dir: Path,
+    runtime_bundle_dir: Path,
+    model: str | None,
+    region: str | None,
+    scope: str,
+    page_files: tuple[str, ...],
+) -> tuple[SyncPlanEntry, ...]:
     if scope not in {"generated", "params"}:
         raise RuntimeError(f"Unsupported sync scope: {scope}")
 
-    relative_paths: set[Path] = set()
+    sync_plan: dict[Path, SyncPlanEntry] = {}
     planned_pages = plan_materialized_pages(cfg, model=model, region=region)
     generated_dir = runtime_bundle_dir / "generated"
     if generated_dir.exists():
-        relative_paths.update(path.relative_to(runtime_bundle_dir) for path in generated_dir.rglob("*.rst") if path.is_file())
+        for path in generated_dir.rglob("*.rst"):
+            if not path.is_file():
+                continue
+            relative_path = path.relative_to(runtime_bundle_dir)
+            sync_plan[relative_path] = SyncPlanEntry(relative_path=relative_path)
 
     for planned in planned_pages:
         page = planned.page
         page_relative = Path("page") / planned.file_name
         if isinstance(page, CsvPage):
-            relative_paths.add(page_relative)
+            sync_plan[page_relative] = SyncPlanEntry(relative_path=page_relative)
             continue
         if scope == "generated":
             continue
         if isinstance(page, CoverPdfPage):
-            relative_paths.add(page_relative)
+            sync_plan[page_relative] = SyncPlanEntry(relative_path=page_relative)
             continue
         if isinstance(page, PdfInsertPage):
             continue
         if isinstance(page, RstIncludePage):
             source_path = resolve_config_path(docs_dir, page.file, model, region)
             if _template_has_placeholders(source_path):
-                relative_paths.add(page_relative)
+                sync_plan[page_relative] = SyncPlanEntry(
+                    relative_path=page_relative,
+                    mode="merge_params",
+                    template_path=source_path,
+                )
             continue
 
     for file_name in page_files:
-        relative_paths.add(Path("page") / file_name)
+        relative_path = Path("page") / file_name
+        sync_plan[relative_path] = SyncPlanEntry(relative_path=relative_path)
 
-    return tuple(sorted(relative_paths))
+    return tuple(sync_plan[path] for path in sorted(sync_plan))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -121,7 +152,7 @@ def main(argv: list[str] | None = None) -> int:
                 region=target.region,
                 lang=target.lang,
             )
-            relative_paths = resolve_sync_relative_paths(
+            sync_plan = resolve_sync_plan(
                 cfg=cfg,
                 docs_dir=docs_dir,
                 runtime_bundle_dir=runtime_bundle_dir,
@@ -134,7 +165,7 @@ def main(argv: list[str] | None = None) -> int:
                 runtime_bundle_dir=runtime_bundle_dir,
                 review_dir=review_dir,
                 scope=args.sync_scope,
-                relative_paths=relative_paths,
+                plan=sync_plan,
             )
             print(
                 "[sync-review] bundle: "

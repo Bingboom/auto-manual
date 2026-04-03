@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-04-01T03:21:13.521349+00:00",
+  "generated_at": "2026-04-02T10:20:16.046318+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -29,8 +29,8 @@
       "path": "data/phase2/Spec_Footnotes.csv",
       "row_count": 10,
       "sha256": "96d81e9c1f605e7ae8a4f8789fab7724da0a191b14eb651b352f03c8cc1f04a9",
-      "previous_sha256": "96d81e9c1f605e7ae8a4f8789fab7724da0a191b14eb651b352f03c8cc1f04a9",
-      "changed": false
+      "previous_sha256": "0491ab1934002294286a2ee226437823aa40f81b2852e259866a2243edb20928",
+      "changed": true
     },
     {
       "logical_name": "spec_notes",
@@ -38,25 +38,25 @@
       "path": "data/phase2/Spec_Notes.csv",
       "row_count": 10,
       "sha256": "7ccdff9b7788bf8ce50fb8df1d1d2ef0638d2aa2902287ce51c5e6388dccec8c",
-      "previous_sha256": "7ccdff9b7788bf8ce50fb8df1d1d2ef0638d2aa2902287ce51c5e6388dccec8c",
-      "changed": false
+      "previous_sha256": "b0dc40efeac3188c3d7cd20085ba68bb8c079b1bb2817349c517160665d429c5",
+      "changed": true
     },
     {
       "logical_name": "symbols_blocks",
       "file_name": "symbols_blocks.csv",
       "path": "data/phase2/symbols_blocks.csv",
       "row_count": 12,
-      "sha256": "f9f628932ae570dd80e2702288803859016df72a7e4075080781c7941636eee7",
-      "previous_sha256": "f9f628932ae570dd80e2702288803859016df72a7e4075080781c7941636eee7",
-      "changed": false
+      "sha256": "6bb77039d3c6ce8c6687280f463f97b2060a7b9951dd22dc87b788e205826e7e",
+      "previous_sha256": "acc875eb7b758de73c825650354b8f576f82893152e4ea5637150f073525f68e",
+      "changed": true
     },
     {
       "logical_name": "spec_master",
       "file_name": "Spec_Master.csv",
       "path": "data/phase2/Spec_Master.csv",
-      "row_count": 153,
-      "sha256": "5b79385068c620174d580e1c6a2386554a57a1e8ef7e5279294dc06d5033799c",
-      "previous_sha256": "ef0274e46835d96c32f6bd0ce8a21c280a6a40865847fd48508476d5a42a8823",
+      "row_count": 155,
+      "sha256": "081abf88b9821971ab7bc2c8f3fc919d88d25dfc6d65cbc9bb0804b4f71ba5ad",
+      "previous_sha256": "e7381311a764b870dd321dcf3a3cacfe23c66970e7a86d7ab004cd51deafc7a0",
       "changed": true
     }
   ],

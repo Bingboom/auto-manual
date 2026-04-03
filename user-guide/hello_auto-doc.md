@@ -178,6 +178,9 @@ Important:
 - `python build.py review` prepares a runtime draft from template/data, then seeds review only if review does not already exist.
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
+- review builds now auto-run the same parameter sync before `check`, `html`, `word`, `pdf`, and `publish`, so parameter lines stay current without overwriting the rest of the review prose.
+- if you intentionally want one review page replaced from runtime, keep using `sync-review --page-file <file>`; if you need the whole review bundle replaced, use `review --refresh-review`.
+- US English review targets now use `docs/_review/<model>/US/en/` as the only supported review root; the old unscoped `docs/_review/<model>/US/page/**` layout is no longer read by the build.
 - for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first, then pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, or `publish`.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
@@ -486,6 +489,7 @@ Equivalent lower-level examples:
 Word styling note:
 
 - the US English Word path now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while leaving the generated `safety` and `spec` pages as-is
+- Word output now also normalizes image relationships to embedded media before the final DOCX post-processing step, which improves Feishu and other third-party preview compatibility for image-backed tables
 
 ---
 

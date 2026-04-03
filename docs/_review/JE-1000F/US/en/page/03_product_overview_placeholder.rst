@@ -16,7 +16,7 @@ FRONT VIEW
    :header-rows: 0
    :widths: 50 50
 
-   * - **Main POWER Button**
+   * - **POWER Button**
      - **Handle**
    * - **DC 12V Port**
 

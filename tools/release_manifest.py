@@ -21,6 +21,7 @@ from tools.build_docs import build_root_for_target, load_config, render_build_te
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import review_dir_for_target  # noqa: E402
+from tools.utils.targets import resolve_output_lang  # noqa: E402
 
 
 def _repo_relative(path: Path | None) -> str | None:
@@ -77,10 +78,11 @@ def build_release_manifest(
 ) -> tuple[Path, Path]:
     cfg = load_config(config_path)
     docs_dir = resolve_docs_dir(cfg)
+    output_lang = resolve_output_lang(cfg)
     docs_build_dir = docs_dir / "_build"
-    build_root = build_root_for_target(model, region, docs_build_dir=docs_build_dir)
-    runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region)
-    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    build_root = build_root_for_target(model, region, output_lang, docs_build_dir=docs_build_dir)
+    runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
 
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
