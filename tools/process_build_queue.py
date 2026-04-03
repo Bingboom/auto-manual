@@ -6,6 +6,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
+import shutil
 import subprocess
 import sys
 import time
@@ -21,7 +23,6 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
-from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.sync_data import (  # noqa: E402
     LarkCliSource,
     _cli_bin,
@@ -45,6 +46,7 @@ DOCUMENT_KEY_FIELD = "Document_Key"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
 DOC_PHASE_FIELD = "Doc_phase"
+GIT_REF_FIELD = "Git_ref"
 BUILD_STARTED_AT_FIELD = "开始构建时间"
 DOCUMENT_DIRECTORY_FIELD = "Document directory"
 DOCUMENT_LINK_FIELD = "Document link"
@@ -76,6 +78,7 @@ class QueueRecord:
     version: str
     lang: str
     doc_phase: str
+    git_ref: str
     trigger_value: str
     immediate_trigger_value: Any
 
@@ -215,6 +218,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
                 version=_scalar_text(fields.get(VERSION_FIELD)),
                 lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
                 doc_phase=_scalar_text(fields.get(DOC_PHASE_FIELD)),
+                git_ref=_scalar_text(fields.get(GIT_REF_FIELD)),
                 trigger_value=_scalar_text(_field_value(fields, TRIGGER_FIELD, *LEGACY_TRIGGER_FIELDS)),
                 immediate_trigger_value=fields.get(IMMEDIATE_TRIGGER_FIELD),
             )
@@ -370,11 +374,23 @@ def resolve_config_path_for_task(*, region: str, lang: str) -> Path:
     return candidates[0][1]
 
 
+def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
+    resolved_config_path = config_path if config_path.is_absolute() else (ROOT / config_path)
+    loaded_cfg = cfg if cfg is not None else load_config(resolved_config_path)
+    paths_cfg_raw = loaded_cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get("docs_dir")
+    if isinstance(raw, str) and raw.strip():
+        candidate = Path(raw.strip())
+        return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
+    return resolved_config_path.parent / "docs"
+
+
 def resolve_word_output_path_for_target(*, config_path: Path, model: str, region: str) -> Path:
     cfg = load_config(config_path)
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    docs_dir = resolve_docs_dir(cfg)
+    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
     primary_lang = _build_languages(cfg)[0]
     output_lang = resolve_output_lang(cfg)
     build_root = build_root_for_target(
@@ -390,6 +406,35 @@ def resolve_word_output_path_for_target(*, config_path: Path, model: str, region
         lang=primary_lang,
     )
     return resolve_output_path(build_root / "word", word_output_name)
+
+
+def _normalize_version_for_filename(version: str) -> str:
+    token = re.sub(r"[^A-Za-z0-9._-]+", "-", (version or "").strip())
+    return token.strip("-")
+
+
+def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    version_token = _normalize_version_for_filename(version)
+    suffix_parts: list[str] = []
+    if normalized_doc_phase == "publish":
+        suffix_parts.append("publish")
+    if version_token:
+        suffix_parts.append(version_token)
+    if not suffix_parts:
+        return word_output_path
+    return word_output_path.with_name(
+        f"{word_output_path.stem}_{'_'.join(suffix_parts)}{word_output_path.suffix}"
+    )
+
+
+def _config_path_in_repo_root(config_path: Path, *, repo_root: Path) -> Path:
+    return repo_root / config_path.name
+
+
+def _slug_ref_token(value: str) -> str:
+    text = re.sub(r"[^a-z0-9]+", "-", value.strip().lower()).strip("-")
+    return text or "queue"
 
 
 def _format_command(cmd: list[str]) -> str:
@@ -436,11 +481,11 @@ def _command_failure_message(cmd: list[str], stdout: str, stderr: str, returncod
     return f"command failed with exit={returncode}: {_format_command(cmd)}"
 
 
-def _run_command(cmd: list[str]) -> None:
+def _run_command(cmd: list[str], *, cwd: Path = ROOT) -> None:
     print(f"[build-queue] {_format_command(cmd)}")
     proc = subprocess.run(
         cmd,
-        cwd=str(ROOT),
+        cwd=str(cwd),
         check=False,
         capture_output=True,
         text=True,
@@ -452,6 +497,43 @@ def _run_command(cmd: list[str]) -> None:
         print(proc.stderr, end="", file=sys.stderr)
     if proc.returncode:
         raise RuntimeError(_command_failure_message(cmd, proc.stdout or "", proc.stderr or "", proc.returncode))
+
+
+def _run_git(args: list[str], *, cwd: Path = ROOT) -> None:
+    _run_command(["git", *args], cwd=cwd)
+
+
+def _worktree_dir_for_git_ref(git_ref: str) -> Path:
+    return ROOT / ".tmp" / "process-build-queue-worktrees" / _slug_ref_token(git_ref)
+
+
+def _remove_worktree(path: Path) -> None:
+    if not path.exists():
+        return
+    proc = subprocess.run(
+        ["git", "worktree", "remove", "--force", str(path)],
+        cwd=str(ROOT),
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if proc.returncode != 0 and path.exists():
+        shutil.rmtree(path, ignore_errors=True)
+
+
+def _prepare_git_ref_worktree(git_ref: str) -> Path:
+    branch_name = git_ref.strip()
+    if not branch_name:
+        raise RuntimeError("Git_ref is required when preparing a queue build worktree")
+    _run_git(["fetch", "origin", "--prune"])
+    _run_git(["fetch", "origin", f"refs/heads/{branch_name}:refs/remotes/origin/{branch_name}"])
+    source_ref = f"origin/{branch_name}"
+    worktree = _worktree_dir_for_git_ref(branch_name)
+    _remove_worktree(worktree)
+    worktree.parent.mkdir(parents=True, exist_ok=True)
+    _run_git(["worktree", "add", "--force", "--detach", str(worktree), source_ref])
+    return worktree
 
 
 def _run_lark_cli_json(*, cli_bin: str, args: list[str]) -> dict[str, Any]:
@@ -718,6 +800,7 @@ def move_drive_file_to_wiki(
 
 def _build_py_target_command(
     *,
+    repo_root: Path = ROOT,
     action: str,
     config_path: Path,
     model: str,
@@ -728,7 +811,7 @@ def _build_py_target_command(
 ) -> list[str]:
     cmd = [
         sys.executable,
-        str(ROOT / "build.py"),
+        str(repo_root / "build.py"),
         action,
         "--config",
         str(config_path),
@@ -746,10 +829,10 @@ def _build_py_target_command(
     return cmd
 
 
-def _build_py_sync_data_command(*, config_path: Path, data_root: str | None) -> list[str]:
+def _build_py_sync_data_command(*, repo_root: Path = ROOT, config_path: Path, data_root: str | None) -> list[str]:
     cmd = [
         sys.executable,
-        str(ROOT / "build.py"),
+        str(repo_root / "build.py"),
         "sync-data",
         "--config",
         str(config_path),
@@ -762,10 +845,35 @@ def _build_py_sync_data_command(*, config_path: Path, data_root: str | None) -> 
 def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | None) -> None:
     _run_command(
         _build_py_sync_data_command(
+            repo_root=ROOT,
             config_path=config_path,
             data_root=data_root,
         )
     )
+
+
+def _stage_word_output_to_host_repo(
+    *,
+    built_word_output_path: Path,
+    host_config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    doc_phase: str | None,
+) -> Path:
+    host_output_path = resolve_word_output_path_for_target(
+        config_path=host_config_path,
+        model=model,
+        region=region,
+    )
+    staged_output_path = _versioned_word_output_path(
+        host_output_path,
+        version=version,
+        doc_phase=doc_phase,
+    )
+    staged_output_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(built_word_output_path, staged_output_path)
+    return staged_output_path
 
 
 def build_document_for_task(
@@ -775,70 +883,111 @@ def build_document_for_task(
     region: str,
     data_root: str | None,
     doc_phase: str | None,
+    version: str = "",
+    git_ref: str = "",
 ) -> Path:
     normalized_doc_phase = normalize_doc_phase(doc_phase)
+    repo_root = ROOT
+    effective_config_path = config_path
+    worktree: Path | None = None
+    if git_ref.strip():
+        worktree = _prepare_git_ref_worktree(git_ref.strip())
+        repo_root = worktree
+        effective_config_path = _config_path_in_repo_root(config_path, repo_root=worktree)
 
-    if normalized_doc_phase == "draft":
-        _run_command(
-            _build_py_target_command(
-                action="check",
-                config_path=config_path,
-                model=model,
-                region=region,
-                data_root=data_root,
-                source="review",
+    try:
+        if normalized_doc_phase == "draft":
+            _run_command(
+                _build_py_target_command(
+                    repo_root=repo_root,
+                    action="check",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=data_root,
+                    source="review",
+                ),
+                cwd=repo_root,
             )
-        )
-        _run_command(
-            _build_py_target_command(
-                action="word",
-                config_path=config_path,
-                model=model,
-                region=region,
-                data_root=data_root,
-                source="review",
-                no_clean=True,
+            _run_command(
+                _build_py_target_command(
+                    repo_root=repo_root,
+                    action="word",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=data_root,
+                    source="review",
+                    no_clean=True,
+                ),
+                cwd=repo_root,
             )
-        )
-    elif normalized_doc_phase == "publish":
-        _run_command(
-            _build_py_target_command(
-                action="publish",
-                config_path=config_path,
-                model=model,
-                region=region,
-                data_root=data_root,
+        elif normalized_doc_phase == "publish":
+            _run_command(
+                _build_py_target_command(
+                    repo_root=repo_root,
+                    action="publish",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=data_root,
+                ),
+                cwd=repo_root,
             )
-        )
-    else:
-        _run_command(
-            _build_py_target_command(
-                action="check",
-                config_path=config_path,
-                model=model,
-                region=region,
-                data_root=data_root,
+        else:
+            _run_command(
+                _build_py_target_command(
+                    repo_root=repo_root,
+                    action="check",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=data_root,
+                ),
+                cwd=repo_root,
             )
-        )
-        _run_command(
-            _build_py_target_command(
-                action="word",
-                config_path=config_path,
-                model=model,
-                region=region,
-                data_root=data_root,
-                no_clean=True,
+            _run_command(
+                _build_py_target_command(
+                    repo_root=repo_root,
+                    action="word",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=data_root,
+                    no_clean=True,
+                ),
+                cwd=repo_root,
             )
-        )
 
-    word_output_path = resolve_word_output_path_for_target(
-        config_path=config_path,
-        model=model,
-        region=region,
-    )
-    if not word_output_path.exists():
-        raise RuntimeError(f"Word output was not created: {word_output_path}")
-    return word_output_path
+        word_output_path = resolve_word_output_path_for_target(
+            config_path=effective_config_path,
+            model=model,
+            region=region,
+        )
+        if not word_output_path.exists():
+            raise RuntimeError(f"Word output was not created: {word_output_path}")
+        versioned_path = _versioned_word_output_path(
+            word_output_path,
+            version=version,
+            doc_phase=normalized_doc_phase,
+        )
+        if versioned_path != word_output_path:
+            versioned_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(word_output_path, versioned_path)
+            word_output_path = versioned_path
+        if repo_root != ROOT:
+            return _stage_word_output_to_host_repo(
+                built_word_output_path=word_output_path,
+                host_config_path=_config_path_in_repo_root(config_path, repo_root=ROOT),
+                model=model,
+                region=region,
+                version=version,
+                doc_phase=normalized_doc_phase,
+            )
+        return word_output_path
+    finally:
+        if worktree is not None:
+            _remove_worktree(worktree)
 
 
 def build_success_fields(
@@ -963,6 +1112,7 @@ def process_build_queue(
                         "lang": record.lang,
                         "version": record.version,
                         "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
+                        "git_ref": record.git_ref,
                         "config": str(resolved_config_path),
                         "data_root": data_root,
                     },
@@ -1039,6 +1189,8 @@ def process_build_queue(
                 region=region,
                 data_root=data_root,
                 doc_phase=effective_doc_phase,
+                version=record.version,
+                git_ref=record.git_ref,
             )
             file_token, drive_url = upload_word_to_drive(
                 cli_bin=cli_bin,

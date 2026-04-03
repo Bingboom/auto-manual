@@ -227,6 +227,7 @@ python build.py process-build-queue --config config.yaml --data-root data/phase2
 ```
 
 这一步会先把 `开始构建时间` 写回到任务行，再构建本地 Word、上传到飞书 Drive、把上传后的文件自动 move 到当前知识库容器、把本机路径写回 `Document directory`，并把知识库里的链接写回 `Document link`；成功后会把 `是否触发文档构建` 回写为 `已构建`。
+如果任务行还带了 `Git_ref`，队列会先 fetch 这个分支并在临时 worktree 里构建，再把产物回拷到当前仓库的 `docs/_build` 后上传；这样 Draft / Publish 都能沿用同一条 review / PR 分支，而不会悄悄退回 `main`。
 如果你想让这张表自动轮询 `Y` 任务，Windows 侧直接调 [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) 会比直接调 Python 命令更稳，因为它会补齐 `.venv`、Node/npm 和保存到用户环境变量里的 `FEISHU_PHASE2_*`。
 如果你想改成“勾选后立即构建”而不是轮询，给 `Document_link` 表增加 checkbox 字段 `是否立即构建`，在飞书开放平台里为当前自建应用添加并发布 `drive.file.bitable_record_changed_v1` 事件，然后启动 [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1)；监听器会用当前登录用户身份订阅这张表的云文档事件，并在对应记录被勾选时立刻触发本地构建。
 如果你想完全脱离本机，可以改用远端仓库里的 [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml)；它会在默认分支上每 5 分钟轮询一次 Feishu 队列，也支持 `workflow_dispatch`。
@@ -839,6 +840,8 @@ python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 2. 从各自的 `_review` 根目录导出 diff report
 3. 从 review 构建最终 Word
 4. 把 release manifest 写到各自的 release 目录
+
+如果你是通过 `Document_link` 的 Publish 任务触发远端正式构建，记得让 `Git_ref` 保持指向当前 review / PR 分支；队列现在会按这条分支构建最终 Word，而不是回到 `main` 重新出一份不一致的成品。
 
 `publish` 默认使用的 diff 输出目录：
 
