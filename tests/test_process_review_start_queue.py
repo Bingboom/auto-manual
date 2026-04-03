@@ -187,3 +187,47 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             kwargs["record"][process_review_start_queue.PR_URL_FIELD],
         )
         self.assertFalse(kwargs["record"][process_review_start_queue.REVIEW_TRIGGER_FIELD])
+
+    def test_ensure_pull_request_for_branch_should_retry_with_empty_commit_when_no_commits(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_JP_ja_0.1",
+            document_key="JE-1000F_JP",
+            version="0.1",
+            lang="ja",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+        worktree = Path(tempfile.mkdtemp())
+        try:
+            with mock.patch.object(
+                process_review_start_queue,
+                "_github_api_request",
+                side_effect=[
+                    [],
+                    RuntimeError(
+                        'GitHub API POST /repos/Bingboom/auto-manual/pulls failed: '
+                        '{"message":"Validation Failed","errors":[{"resource":"PullRequest","code":"custom","message":"No commits between main and codex/review-je-1000f-jp-ja-0-1"}]}'
+                    ),
+                    {"html_url": "https://github.com/Bingboom/auto-manual/pull/1234"},
+                ],
+            ) as mock_api, mock.patch.object(
+                process_review_start_queue, "_create_empty_review_start_commit"
+            ) as mock_empty, mock.patch.object(process_review_start_queue, "_push_branch") as mock_push:
+                pr_url = process_review_start_queue.ensure_pull_request_for_branch(
+                    repository="Bingboom/auto-manual",
+                    branch_name="codex/review-je-1000f-jp-ja-0-1",
+                    base_ref="main",
+                    token="ghs_test",
+                    record=record,
+                    worktree=worktree,
+                )
+        finally:
+            worktree.rmdir()
+
+        self.assertEqual("https://github.com/Bingboom/auto-manual/pull/1234", pr_url)
+        mock_empty.assert_called_once_with(worktree=worktree, record=record)
+        mock_push.assert_called_once_with(worktree=worktree, branch_name="codex/review-je-1000f-jp-ja-0-1")
+        self.assertEqual(3, mock_api.call_count)

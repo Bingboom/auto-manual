@@ -519,6 +519,18 @@ def _push_branch(*, worktree: Path, branch_name: str) -> None:
     _run_git(["push", "-u", "origin", branch_name], cwd=worktree)
 
 
+def _create_empty_review_start_commit(*, worktree: Path, record: ReviewStartRecord) -> None:
+    _run_git(
+        [
+            "commit",
+            "--allow-empty",
+            "-m",
+            f"start review for {record.document_id or record.document_key}",
+        ],
+        cwd=worktree,
+    )
+
+
 def _github_api_request(*, method: str, path: str, token: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
     body = None
     headers = {
@@ -551,6 +563,7 @@ def ensure_pull_request_for_branch(
     base_ref: str,
     token: str,
     record: ReviewStartRecord,
+    worktree: Path | None = None,
 ) -> str:
     owner = repository.split("/", 1)[0]
     query = urllib_parse.urlencode(
@@ -587,12 +600,24 @@ def ensure_pull_request_for_branch(
             ]
         ),
     }
-    created = _github_api_request(
-        method="POST",
-        path=f"/repos/{repository}/pulls",
-        token=token,
-        payload=payload,
-    )
+    try:
+        created = _github_api_request(
+            method="POST",
+            path=f"/repos/{repository}/pulls",
+            token=token,
+            payload=payload,
+        )
+    except RuntimeError as exc:
+        if worktree is None or "No commits between" not in str(exc):
+            raise
+        _create_empty_review_start_commit(worktree=worktree, record=record)
+        _push_branch(worktree=worktree, branch_name=branch_name)
+        created = _github_api_request(
+            method="POST",
+            path=f"/repos/{repository}/pulls",
+            token=token,
+            payload=payload,
+        )
     url = str(created.get("html_url") or "").strip()
     if not url:
         raise RuntimeError("GitHub pull request creation did not return html_url")
@@ -630,6 +655,7 @@ def start_review_for_record(
             base_ref=base_ref,
             token=token,
             record=record,
+            worktree=worktree,
         )
         return branch_name, pr_url
     finally:
