@@ -1,0 +1,134 @@
+name: Feishu Start Review
+
+on:
+  workflow_dispatch:
+    inputs:
+      trigger_source:
+        description: Optional source label for this review-start run
+        required: false
+        type: string
+      queue_record_id:
+        description: Optional review-init record_id that triggered this run
+        required: false
+        type: string
+
+concurrency:
+  group: feishu-start-review
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  process-review-start:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      REVIEW_START_BASE_REF: main
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_IDENTITY: bot
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_SPEC_MASTER_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_MASTER_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_MASTER_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_MASTER_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_TITLES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_TITLES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_TITLES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_TITLES_VIEW_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID }}
+      FEISHU_PHASE2_REVIEW_INIT_TABLE_ID: ${{ secrets.FEISHU_PHASE2_REVIEW_INIT_TABLE_ID }}
+      FEISHU_PHASE2_REVIEW_INIT_VIEW_ID: ${{ secrets.FEISHU_PHASE2_REVIEW_INIT_VIEW_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate required secrets
+        shell: bash
+        run: |
+          required=(
+            FEISHU_APP_ID
+            FEISHU_APP_SECRET
+            FEISHU_PHASE2_BASE_TOKEN
+            FEISHU_PHASE2_SPEC_MASTER_TABLE_ID
+            FEISHU_PHASE2_SPEC_MASTER_VIEW_ID
+            FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID
+            FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID
+            FEISHU_PHASE2_SPEC_NOTES_TABLE_ID
+            FEISHU_PHASE2_SPEC_NOTES_VIEW_ID
+            FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
+            FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
+            FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
+            FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
+            FEISHU_PHASE2_REVIEW_INIT_TABLE_ID
+            FEISHU_PHASE2_REVIEW_INIT_VIEW_ID
+          )
+          missing=()
+          for name in "${required[@]}"; do
+            if [ -z "${!name:-}" ]; then
+              missing+=("$name")
+            fi
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            printf 'Missing required secrets/env vars:\n' >&2
+            printf ' - %s\n' "${missing[@]}" >&2
+            exit 1
+          fi
+
+      - name: Print trigger context
+        shell: bash
+        run: |
+          echo "event_name=${GITHUB_EVENT_NAME}"
+          echo "ref=${GITHUB_REF}"
+          echo "trigger_source=${{ inputs.trigger_source || '' }}"
+          echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install lark-cli
+        run: npm install --global @larksuite/cli
+
+      - name: Configure lark-cli app credentials
+        shell: bash
+        run: |
+          printf '%s' "$FEISHU_APP_SECRET" | lark-cli config init --app-id "$FEISHU_APP_ID" --app-secret-stdin --brand feishu
+
+      - name: Process review-start queue
+        shell: bash
+        run: |
+          cmd=(python build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2)
+          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
+            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          fi
+          "${cmd[@]}"
+
+      - name: Upload seeded review artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feishu-start-review-output
+          path: |
+            docs/_review
+            .tmp/review-start/phase2/snapshot_manifest.json
+            .tmp/review-start/phase2/row_key_mapping.csv
+          if-no-files-found: ignore
