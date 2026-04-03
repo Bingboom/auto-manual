@@ -134,8 +134,8 @@ LCD SCREEN
 
 You can also set the screen display mode in the Jackery App.
 
-KEY COMBINATION
----------------
+KEY COMBINATIONS
+-----------------
 
 .. list-table::
    :header-rows: 1
