@@ -4,9 +4,22 @@
 from __future__ import annotations
 
 import shutil
+from dataclasses import dataclass
 from datetime import datetime, timezone
+from difflib import SequenceMatcher
 import json
 from pathlib import Path
+import re
+
+
+PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
+
+
+@dataclass(frozen=True)
+class SyncPlanEntry:
+    relative_path: Path
+    mode: str = "copy"
+    template_path: Path | None = None
 
 
 def _target_component(value: str | None, fallback: str) -> str:
@@ -21,22 +34,8 @@ def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | No
     return target_root
 
 
-def _resolve_review_dir_for_read(
-    *,
-    docs_dir: Path,
-    model: str | None,
-    region: str | None,
-    lang: str | None = None,
-) -> Path:
-    if (lang or "").strip():
-        lang_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
-        if lang_dir.exists():
-            return lang_dir
-    return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
-
-
 def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> bool:
-    review_dir = _resolve_review_dir_for_read(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     return (review_dir / "index.rst").exists() and (review_dir / "page").is_dir()
 
 
@@ -65,7 +64,7 @@ def overlay_review_onto_bundle(
     region: str | None,
     lang: str | None = None,
 ) -> Path | None:
-    review_dir = _resolve_review_dir_for_read(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     index_src = review_dir / "index.rst"
     page_src = review_dir / "page"
     generated_src = review_dir / "generated"
@@ -100,6 +99,77 @@ def _copy_relative_file(src_root: Path, dst_root: Path, relative_path: Path) -> 
         raise RuntimeError(f"Sync source file not found: {src_path}")
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src_path, dst_path)
+    return dst_path
+
+
+def _map_template_to_review_lines(template_lines: list[str], review_lines: list[str]) -> dict[int, int | None]:
+    mapping: dict[int, int | None] = {}
+    matcher = SequenceMatcher(a=template_lines, b=review_lines, autojunk=False)
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == "equal":
+            for offset in range(i2 - i1):
+                mapping[i1 + offset] = j1 + offset
+            continue
+        if tag == "delete":
+            for idx in range(i1, i2):
+                mapping[idx] = None
+            continue
+        if tag == "insert":
+            continue
+
+        source_len = i2 - i1
+        target_len = j2 - j1
+        if target_len <= 0:
+            for idx in range(i1, i2):
+                mapping[idx] = None
+            continue
+        if source_len == target_len:
+            for offset in range(source_len):
+                mapping[i1 + offset] = j1 + offset
+            continue
+        if source_len == 1:
+            mapping[i1] = j1
+            continue
+        for offset in range(source_len):
+            fraction = offset / max(source_len - 1, 1)
+            target_offset = round(fraction * max(target_len - 1, 0))
+            mapping[i1 + offset] = j1 + target_offset
+    return mapping
+
+
+def _merge_parameter_lines(
+    *,
+    template_path: Path,
+    src_path: Path,
+    dst_path: Path,
+) -> Path:
+    if not template_path.exists():
+        raise RuntimeError(f"Sync template file not found: {template_path}")
+    if not src_path.exists():
+        raise RuntimeError(f"Sync source file not found: {src_path}")
+
+    if not dst_path.exists():
+        dst_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src_path, dst_path)
+        return dst_path
+
+    template_lines = template_path.read_text(encoding="utf-8").splitlines(keepends=True)
+    runtime_lines = src_path.read_text(encoding="utf-8").splitlines(keepends=True)
+    review_lines = dst_path.read_text(encoding="utf-8").splitlines(keepends=True)
+
+    merged_lines = list(review_lines)
+    line_mapping = _map_template_to_review_lines(template_lines, review_lines)
+    for template_idx, template_line in enumerate(template_lines):
+        if not PLACEHOLDER_RE.search(template_line):
+            continue
+        if template_idx >= len(runtime_lines):
+            continue
+        review_idx = line_mapping.get(template_idx)
+        if review_idx is None or review_idx >= len(merged_lines):
+            continue
+        merged_lines[review_idx] = runtime_lines[template_idx]
+
+    dst_path.write_text("".join(merged_lines), encoding="utf-8")
     return dst_path
 
 
@@ -165,16 +235,31 @@ def sync_review_paths(
     runtime_bundle_dir: Path,
     review_dir: Path,
     scope: str,
-    relative_paths: tuple[Path, ...],
+    relative_paths: tuple[Path, ...] = (),
+    plan: tuple[SyncPlanEntry, ...] = (),
 ) -> tuple[Path, ...]:
     if not review_dir.exists():
         raise RuntimeError(f"Review bundle not found: {review_dir}")
     if not (review_dir / "index.rst").exists() or not (review_dir / "page").is_dir():
         raise RuntimeError(f"Review bundle is incomplete: {review_dir}")
+    if relative_paths and plan:
+        raise RuntimeError("sync_review_paths accepts either relative_paths or plan, not both")
+
+    sync_plan = plan or tuple(SyncPlanEntry(relative_path=relative_path) for relative_path in relative_paths)
 
     copied: list[Path] = []
-    for relative_path in relative_paths:
-        copied.append(_copy_relative_file(runtime_bundle_dir, review_dir, relative_path))
+    for entry in sync_plan:
+        src_path = runtime_bundle_dir / entry.relative_path
+        dst_path = review_dir / entry.relative_path
+        if entry.mode == "copy":
+            copied.append(_copy_relative_file(runtime_bundle_dir, review_dir, entry.relative_path))
+            continue
+        if entry.mode == "merge_params":
+            if entry.template_path is None:
+                raise RuntimeError(f"Missing template path for merge_params sync: {entry.relative_path}")
+            copied.append(_merge_parameter_lines(template_path=entry.template_path, src_path=src_path, dst_path=dst_path))
+            continue
+        raise RuntimeError(f"Unsupported sync mode: {entry.mode}")
 
     manifest_path = review_dir / "manifest.json"
     manifest: dict[str, object] = {}

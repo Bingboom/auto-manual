@@ -12,7 +12,7 @@ class TestReviewBundle(unittest.TestCase):
     def test_materialize_review_bundle_should_copy_reviewable_rst_files_and_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"
-            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
             (runtime_dir / "page").mkdir(parents=True)
             (runtime_dir / "generated" / "JE-1000F").mkdir(parents=True)
 
@@ -39,6 +39,7 @@ class TestReviewBundle(unittest.TestCase):
                 docs_dir=docs_dir,
                 model="JE-1000F",
                 region="US",
+                lang="en",
             )
 
             self.assertTrue(bundle.index_path.exists())
@@ -49,8 +50,9 @@ class TestReviewBundle(unittest.TestCase):
             manifest = json.loads(bundle.manifest_path.read_text(encoding="utf-8"))
             self.assertEqual("JE-1000F", manifest["model"])
             self.assertEqual("US", manifest["region"])
-            self.assertIn("docs/_build/JE-1000F/US/rst", manifest["runtime_bundle_dir"])
-            self.assertIn("docs/_review/JE-1000F/US", manifest["review_dir"])
+            self.assertEqual("en", manifest["lang"])
+            self.assertIn("docs/_build/JE-1000F/US/en/rst", manifest["runtime_bundle_dir"])
+            self.assertIn("docs/_review/JE-1000F/US/en", manifest["review_dir"])
             self.assertEqual("docs/manifests/manual_us-en.yaml", manifest["page_manifest"])
             self.assertEqual(["03_product_overview"], manifest["recipe_ids"])
             self.assertEqual(["wireless_reset_buttons"], manifest["snippet_ids"])
@@ -100,4 +102,3 @@ class TestReviewBundle(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -492,6 +492,7 @@ Equivalent lower-level examples:
 Word styling note:
 
 - the US English Word path now reapplies the `reference_en.docx` heading, table, and default paragraph styling after DOCX generation, while leaving the generated `safety` and `spec` pages as-is
+- Word output now also normalizes image relationships to embedded media before the final DOCX post-processing step, which improves Feishu and other third-party preview compatibility for image-backed tables
 
 ---
 

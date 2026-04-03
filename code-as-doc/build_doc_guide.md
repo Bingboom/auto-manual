@@ -68,6 +68,7 @@ Meaning:
 - `clean`: remove [`docs/_build/`](../docs/_build), [`docs/_review/`](../docs/_review), old legacy output directories, and generated [`params.tex`](../docs/renderers/latex/params.tex)
 - `build_us_jp_manuals.ps1`: build the fixed `US/en + US/es + US/fr + JP/ja` target set from one command, with selectable format combinations such as `html,word` or `word,pdf`
 - `--open-html`: after the batch finishes, open the generated HTML entry pages for the selected language set
+- DOCX export normalizes image relationships to embedded media before the final style pass so Feishu / other third-party viewers are less likely to hide image-backed table rows in preview
 
 Draft / Publish queue split:
 
@@ -259,6 +260,10 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 ```
 
 By default this updates data-driven files in the review bundle without resetting the entire review text.
+
+That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
+Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
+For US English, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout.
 
 Useful variants:
 
