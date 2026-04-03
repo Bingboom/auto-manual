@@ -23,7 +23,6 @@ if str(ROOT) not in sys.path:
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.process_build_queue import parse_document_key, resolve_config_path_for_task  # noqa: E402
-from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import review_bundle_exists, review_dir_for_target  # noqa: E402
 from tools.sync_data import (  # noqa: E402
     LarkCliSource,
@@ -84,12 +83,23 @@ def _review_init_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     return raw if isinstance(raw, dict) else {}
 
 
+def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
+    phase2_cfg = _sync_phase2_cfg(cfg)
+    raw = phase2_cfg.get("document_link", {})
+    return raw if isinstance(raw, dict) else {}
+
+
 def _review_init_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
     phase2_cfg = _sync_phase2_cfg(cfg)
     review_init_cfg = _review_init_cfg(cfg)
+    document_link_cfg = _document_link_cfg(cfg)
     base_token_env = str(review_init_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or "").strip()
-    table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
-    view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
+    document_link_table_id_env = str(document_link_cfg.get("table_id_env") or "").strip()
+    document_link_view_id_env = str(document_link_cfg.get("view_id_env") or "").strip() or None
+    review_table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
+    review_view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
+    table_id_env = document_link_table_id_env or review_table_id_env
+    view_id_env = document_link_view_id_env or review_view_id_env
     return base_token_env, table_id_env, view_id_env
 
 
@@ -113,9 +123,9 @@ def collect_review_start_preflight_errors(cfg: dict[str, Any], *, require_github
         if env_name and not str(os.environ.get(env_name, "")).strip()
     ]
     if not base_token_env:
-        errors.append("sync.phase2.review_init.base_token_env is required, or provide sync.phase2.base_token_env")
+        errors.append("sync.phase2.base_token_env is required")
     if not table_id_env:
-        errors.append("sync.phase2.review_init.table_id_env is required")
+        errors.append("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
     if missing_env_names:
         errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
 
@@ -129,9 +139,9 @@ def collect_review_start_preflight_errors(cfg: dict[str, Any], *, require_github
 def resolve_review_init_binding(cfg: dict[str, Any]) -> ReviewInitBinding:
     base_token_env, table_id_env, view_id_env = _review_init_env_names(cfg)
     if not base_token_env:
-        raise RuntimeError("sync.phase2.review_init.base_token_env is required, or provide sync.phase2.base_token_env")
+        raise RuntimeError("sync.phase2.base_token_env is required")
     if not table_id_env:
-        raise RuntimeError("sync.phase2.review_init.table_id_env is required")
+        raise RuntimeError("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
     return ReviewInitBinding(
         base_token_env=base_token_env,
         table_id_env=table_id_env,
@@ -228,6 +238,10 @@ def _slug_branch_token(value: str) -> str:
     return text or "review"
 
 
+def _looks_like_explicit_document_key(value: str) -> bool:
+    return bool(re.fullmatch(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+", value.strip()))
+
+
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
     if record.git_ref.strip():
         return record.git_ref.strip()
@@ -236,11 +250,40 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
     return f"codex/review-{slug}"
 
 
+def _document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
+    candidate = document_id.strip()
+    version_text = version.strip()
+    lang_text = lang.strip().lower()
+    if version_text and candidate.endswith("_" + version_text):
+        candidate = candidate[: -(len(version_text) + 1)]
+    if lang_text and candidate.lower().endswith("_" + lang_text):
+        candidate = candidate[: -(len(lang_text) + 1)]
+    return candidate.strip()
+
+
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
-    document_key = record.document_key.strip()
-    if not document_key:
-        raise RuntimeError(f"Document_Key is required for review start: {record.label}")
-    return parse_document_key(document_key)
+    candidates: list[str] = []
+    if _looks_like_explicit_document_key(record.document_key):
+        candidates.append(record.document_key.strip())
+    fallback_key = _document_key_from_document_id(
+        document_id=record.document_id,
+        lang=record.lang,
+        version=record.version,
+    )
+    if fallback_key and fallback_key not in candidates:
+        candidates.append(fallback_key)
+
+    errors: list[str] = []
+    for candidate in candidates:
+        try:
+            return parse_document_key(candidate)
+        except RuntimeError as exc:
+            errors.append(str(exc))
+
+    detail = f"Document_ID={record.document_id!r}, Document_Key={record.document_key!r}, Lang={record.lang!r}"
+    if errors:
+        raise RuntimeError("Unable to resolve review-start target. " + detail + " | " + " | ".join(errors))
+    raise RuntimeError("Unable to resolve review-start target. " + detail)
 
 
 def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str, Any]:
@@ -324,12 +367,24 @@ def sync_phase2_snapshot_before_review_start(*, config_path: Path, data_root: st
 
 def _review_dir_for_target(config_path: Path, *, model: str, region: str) -> Path:
     cfg = load_config(config_path)
-    docs_dir = resolve_docs_dir(cfg)
+    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
     output_lang = resolve_output_lang(cfg)
     candidate = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
     if candidate.exists():
         return candidate
     return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+
+
+def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any]) -> Path:
+    paths_cfg_raw = cfg.get("paths", {})
+    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
+    raw = paths_cfg.get("docs_dir")
+    if isinstance(raw, str) and raw.strip():
+        candidate = Path(raw.strip())
+        if candidate.is_absolute():
+            return candidate
+        return (config_path.parent / candidate).resolve()
+    return (config_path.parent / "docs").resolve()
 
 
 def _git_ref_exists(ref_name: str) -> bool:
@@ -404,7 +459,7 @@ def ensure_review_bundle_on_branch(
 ) -> Path:
     worktree_config_path = worktree / build_config_path.name
     cfg = load_config(worktree_config_path)
-    docs_dir = resolve_docs_dir(cfg)
+    docs_dir = _resolve_docs_dir_for_config(worktree_config_path, cfg)
     output_lang = resolve_output_lang(cfg)
     if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=output_lang):
         return _review_dir_for_target(worktree_config_path, model=model, region=region)
@@ -464,6 +519,18 @@ def _push_branch(*, worktree: Path, branch_name: str) -> None:
     _run_git(["push", "-u", "origin", branch_name], cwd=worktree)
 
 
+def _create_empty_review_start_commit(*, worktree: Path, record: ReviewStartRecord) -> None:
+    _run_git(
+        [
+            "commit",
+            "--allow-empty",
+            "-m",
+            f"start review for {record.document_id or record.document_key}",
+        ],
+        cwd=worktree,
+    )
+
+
 def _github_api_request(*, method: str, path: str, token: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
     body = None
     headers = {
@@ -496,6 +563,7 @@ def ensure_pull_request_for_branch(
     base_ref: str,
     token: str,
     record: ReviewStartRecord,
+    worktree: Path | None = None,
 ) -> str:
     owner = repository.split("/", 1)[0]
     query = urllib_parse.urlencode(
@@ -532,12 +600,24 @@ def ensure_pull_request_for_branch(
             ]
         ),
     }
-    created = _github_api_request(
-        method="POST",
-        path=f"/repos/{repository}/pulls",
-        token=token,
-        payload=payload,
-    )
+    try:
+        created = _github_api_request(
+            method="POST",
+            path=f"/repos/{repository}/pulls",
+            token=token,
+            payload=payload,
+        )
+    except RuntimeError as exc:
+        if worktree is None or "No commits between" not in str(exc):
+            raise
+        _create_empty_review_start_commit(worktree=worktree, record=record)
+        _push_branch(worktree=worktree, branch_name=branch_name)
+        created = _github_api_request(
+            method="POST",
+            path=f"/repos/{repository}/pulls",
+            token=token,
+            payload=payload,
+        )
     url = str(created.get("html_url") or "").strip()
     if not url:
         raise RuntimeError("GitHub pull request creation did not return html_url")
@@ -575,6 +655,7 @@ def start_review_for_record(
             base_ref=base_ref,
             token=token,
             record=record,
+            worktree=worktree,
         )
         return branch_name, pr_url
     finally:
