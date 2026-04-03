@@ -57,6 +57,64 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertTrue(branch_name.startswith("codex/review-"))
         self.assertIn("je-1000f-jp-ja-0-1", branch_name)
 
+    def test_resolve_target_for_review_start_should_fallback_to_document_id(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_JP_ja_0.1",
+            document_key="{'id': 'recv_bad_link'}",
+            version="0.1",
+            lang="ja",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+
+        model, region = process_review_start_queue.resolve_target_for_review_start(record)
+
+        self.assertEqual("JE-1000F", model)
+        self.assertEqual("JP", region)
+
+    def test_resolve_docs_dir_for_config_should_follow_worktree_relative_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            worktree = Path(td)
+            config_path = worktree / "config.yaml"
+            docs_dir = process_review_start_queue._resolve_docs_dir_for_config(
+                config_path,
+                {"paths": {"docs_dir": "docs"}},
+            )
+
+        self.assertEqual((worktree / "docs").resolve(), docs_dir)
+
+    @mock.patch.dict(
+        "os.environ",
+        {
+            "FEISHU_PHASE2_BASE_TOKEN": "app_xxx",
+            "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID": "tbl_document_link",
+            "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID": "vew_document_link",
+        },
+        clear=False,
+    )
+    def test_review_init_env_names_should_default_to_document_link_binding(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
+                    },
+                }
+            }
+        }
+
+        base_token_env, table_id_env, view_id_env = process_review_start_queue._review_init_env_names(cfg)
+
+        self.assertEqual("FEISHU_PHASE2_BASE_TOKEN", base_token_env)
+        self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", table_id_env)
+        self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID", view_id_env)
+
     def test_process_review_start_queue_should_write_back_git_ref_and_pr_url(self) -> None:
         cfg = {
             "sync": {
@@ -64,9 +122,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     "provider": "lark_cli",
                     "cli_bin": "lark-cli",
                     "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
-                    "review_init": {
-                        "table_id_env": "FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
-                        "view_id_env": "FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                    "document_link": {
+                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
                     },
                 }
             }
@@ -106,8 +164,8 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             ):
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
-                table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
-                view_id_env="FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                view_id_env="FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
                 base_token="app_xxx",
                 table_id="tbl_init",
                 view_id="vew_init",

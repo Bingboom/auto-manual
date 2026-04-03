@@ -56,6 +56,8 @@ Updated: 2026-04-03
 7. 回写 `PR_url`
 8. 把 `Review_status` 改成 `InReview`
 
+`Review Init` 这条链默认直接复用 `Document_link` 的表 / 视图绑定，所以 GitHub 侧继续用 `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` 和 `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID` 即可，不需要单独再配一组 `REVIEW_INIT_*` secrets。
+
 ### 1.3 Document_link 表
 
 这张表只做“反复构建文档”。
