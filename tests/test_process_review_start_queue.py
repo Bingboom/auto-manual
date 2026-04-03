@@ -66,7 +66,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         },
         clear=False,
     )
-    def test_review_init_env_names_should_fallback_to_document_link_binding(self) -> None:
+    def test_review_init_env_names_should_default_to_document_link_binding(self) -> None:
         cfg = {
             "sync": {
                 "phase2": {
@@ -75,10 +75,6 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     "document_link": {
                         "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
                         "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
-                    },
-                    "review_init": {
-                        "table_id_env": "FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
-                        "view_id_env": "FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
                     },
                 }
             }
@@ -97,9 +93,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     "provider": "lark_cli",
                     "cli_bin": "lark-cli",
                     "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
-                    "review_init": {
-                        "table_id_env": "FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
-                        "view_id_env": "FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                    "document_link": {
+                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
                     },
                 }
             }
@@ -137,8 +133,8 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             ):
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
-                table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
-                view_id_env="FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                view_id_env="FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
                 base_token="app_xxx",
                 table_id="tbl_init",
                 view_id="vew_init",

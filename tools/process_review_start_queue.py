@@ -95,20 +95,12 @@ def _review_init_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
     review_init_cfg = _review_init_cfg(cfg)
     document_link_cfg = _document_link_cfg(cfg)
     base_token_env = str(review_init_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or "").strip()
-    review_table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
-    review_view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
     document_link_table_id_env = str(document_link_cfg.get("table_id_env") or "").strip()
     document_link_view_id_env = str(document_link_cfg.get("view_id_env") or "").strip() or None
-    table_id_env = review_table_id_env
-    if review_table_id_env and not str(os.environ.get(review_table_id_env, "")).strip() and document_link_table_id_env:
-        table_id_env = document_link_table_id_env
-    elif not review_table_id_env:
-        table_id_env = document_link_table_id_env
-    view_id_env = review_view_id_env
-    if review_view_id_env and not str(os.environ.get(review_view_id_env, "")).strip() and document_link_view_id_env:
-        view_id_env = document_link_view_id_env
-    elif not review_view_id_env:
-        view_id_env = document_link_view_id_env
+    review_table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
+    review_view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
+    table_id_env = document_link_table_id_env or review_table_id_env
+    view_id_env = document_link_view_id_env or review_view_id_env
     return base_token_env, table_id_env, view_id_env
 
 
@@ -132,9 +124,9 @@ def collect_review_start_preflight_errors(cfg: dict[str, Any], *, require_github
         if env_name and not str(os.environ.get(env_name, "")).strip()
     ]
     if not base_token_env:
-        errors.append("sync.phase2.review_init.base_token_env is required, or provide sync.phase2.base_token_env")
+        errors.append("sync.phase2.base_token_env is required")
     if not table_id_env:
-        errors.append("sync.phase2.review_init.table_id_env is required")
+        errors.append("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
     if missing_env_names:
         errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
 
@@ -148,9 +140,9 @@ def collect_review_start_preflight_errors(cfg: dict[str, Any], *, require_github
 def resolve_review_init_binding(cfg: dict[str, Any]) -> ReviewInitBinding:
     base_token_env, table_id_env, view_id_env = _review_init_env_names(cfg)
     if not base_token_env:
-        raise RuntimeError("sync.phase2.review_init.base_token_env is required, or provide sync.phase2.base_token_env")
+        raise RuntimeError("sync.phase2.base_token_env is required")
     if not table_id_env:
-        raise RuntimeError("sync.phase2.review_init.table_id_env is required")
+        raise RuntimeError("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
     return ReviewInitBinding(
         base_token_env=base_token_env,
         table_id_env=table_id_env,
