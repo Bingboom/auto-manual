@@ -65,7 +65,7 @@ ENERGY SAVING MODE
 
 To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (|ENERGY_SAVING_AC_THRESHOLD| AC output or |ENERGY_SAVING_DC_THRESHOLD| DC/USB output), the corresponding output will automatically turn off after the set time. The default setting is |ENERGY_SAVING_AUTO_OFF_DURATION|. The Energy Saving Mode duration can be set in the Jackery App to 2H, 8H, 12H, or 24H. If it is set to Never Off, Energy Saving Mode will be disabled.
 
-To disable the energy saving mode, press and hold both the AC power button and the main POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
+To disable the energy saving mode, press and hold both the AC power button and the POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
 
 When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
@@ -110,11 +110,11 @@ LCD SCREEN
           :width: 140px
      - Shortly On
      - Turn on
-     - Press the Main POWER Button or when the product is charging.
+     - Press the POWER Button or when the product is charging.
    * -
      - Shortly On
      - Turn off
-     - Press the Main POWER Button.
+     - Press the POWER Button.
    * -
      - Shortly On
      - Auto-off
@@ -122,11 +122,11 @@ LCD SCREEN
    * -
      - Steady On (in charging or discharging state)
      - Turn on
-     - Press the main POWER button twice when the product is powered on.
+     - Press the POWER button twice when the product is powered on.
    * -
      - Steady On (in charging or discharging state)
      - Turn off
-     - Press the Main POWER Button.
+     - Press the POWER Button.
    * -
      - Steady On (in charging or discharging state)
      - Auto-off
@@ -144,15 +144,15 @@ KEY COMBINATION
    * - Buttons
      - Operation
      - Function
-   * - Main POWER Button + AC power button
+   * - POWER Button + AC power button
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - Main POWER button + DC/USB power button
+   * - POWER button + DC/USB power button
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
    * - DC/USB power button + AC power button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth
-   * - Main POWER button + LED Light button
+   * - POWER button + LED Light button
      - Press and hold both for 1s
      - Turn on/off Emergency Fast Charging Mode
