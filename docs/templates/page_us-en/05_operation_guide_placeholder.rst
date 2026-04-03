@@ -144,15 +144,15 @@ KEY COMBINATIONS
    * - Buttons
      - Operation
      - Function
-   * - POWER Button + AC power button
+   * - POWER Button + AC Power Button
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - POWER button + DC/USB power button
+   * - POWER Button + DC/USB Power Button
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
-   * - DC/USB power button + AC power button
+   * - DC/USB Power Button + AC Power Button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth
    * - POWER button + LED Light button
      - Press and hold both for 1s
-     - Turn on/off Emergency Fast Charging Mode
+     - Turn on/off Emergency Charging Mode
