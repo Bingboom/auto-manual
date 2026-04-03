@@ -43,23 +43,24 @@ authority to operate the device.
 
 .. list-table::
    :header-rows: 0
-   :widths: 33 33 34
+   :widths: 25 25 25 25
 
-   * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit.png
+   * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Power station image placeholder.
           :width: 120px
 
        **Jackery Explorer 1000**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging.png
+     - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
           :alt: AC charging cable image placeholder.
           :width: 120px
 
        **AC Charging Cable**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon.png
+     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
           :alt: User manual image placeholder.
           :width: 120px
 
        **Documents**
+     -
 
 
 .. list-table::
@@ -67,5 +68,5 @@ authority to operate the device.
    :widths: 10 90
 
    * - **TIPS**
-     - The11 car charging cable is not included but is available for purchase separately on our website.
+     - The car charging cable is not included but is available for purchase separately on our website.
        For assistance, please contact Jackery customer service.
