@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage  # noqa: E402
-from tools.build_docs import load_config, resolve_build_targets  # noqa: E402
+from tools.build_docs import build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target, plan_materialized_pages  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import SyncPlanEntry, review_dir_for_target, sync_review_paths  # noqa: E402
@@ -40,6 +40,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=[],
         help="Additional review page file name to sync from runtime/page, e.g. 02_whats_in_the_box.rst",
     )
+    ap.add_argument("--docs-build-dir", default=None, help="Override prepared docs/_build root")
     return ap.parse_args(argv)
 
 
@@ -133,6 +134,11 @@ def main(argv: list[str] | None = None) -> int:
     try:
         cfg = load_config(cfg_path)
         docs_dir = resolve_docs_dir(cfg)
+        docs_build_dir = None
+        if isinstance(args.docs_build_dir, str) and args.docs_build_dir.strip():
+            docs_build_dir = Path(args.docs_build_dir.strip())
+            if not docs_build_dir.is_absolute():
+                docs_build_dir = ROOT / docs_build_dir
         targets = resolve_build_targets(
             cfg,
             arg_model=args.model,
@@ -140,12 +146,20 @@ def main(argv: list[str] | None = None) -> int:
             all_targets=args.all_targets,
         )
         for target in targets:
-            runtime_bundle_dir = bundle_dir_for_target(
-                docs_dir=docs_dir,
-                model=target.model,
-                region=target.region,
-                lang=target.lang,
-            )
+            if docs_build_dir is None:
+                runtime_bundle_dir = bundle_dir_for_target(
+                    docs_dir=docs_dir,
+                    model=target.model,
+                    region=target.region,
+                    lang=target.lang,
+                )
+            else:
+                runtime_bundle_dir = build_root_for_target(
+                    target.model,
+                    target.region,
+                    target.lang,
+                    docs_build_dir=docs_build_dir,
+                ) / "rst"
             review_dir = review_dir_for_target(
                 docs_dir=docs_dir,
                 model=target.model,

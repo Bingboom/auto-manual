@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-03-31
+Updated: 2026-04-04
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -165,3 +165,18 @@ Why it mattered:
 - build-time consumers no longer need their own ad hoc CSV path rules
 - maintainers can switch between phase1 and phase2 snapshots without changing manifests or renderer logic
 
+## 10. 2026-04-04: Queue Action Normalization and Staged Verification Outputs
+
+Main outcomes:
+
+- made `Workflow_action` the primary queue-action field for `Document_link` while keeping `Doc_phase` as a compatibility fallback
+- updated local/GitHub queue entrypoints to prefer `--workflow-action build-draft-package|publish`
+- added `--staging-root` and `AUTO_MANUAL_STAGING_ROOT` so `docs/_build`, `reports/version_tracking`, and `reports/releases` can be redirected under an isolated root during verification
+- extended `check`, `sync-review`, `review_bundle`, `release-manifest`, and publish-path helpers to read/write against staged output roots
+- updated maintainer docs to keep `page_registry`, page selection/applicability, and `layout_params` explicitly repo-owned while queue data stays phase2-driven
+
+Why it mattered:
+
+- queue semantics are now less ambiguous for operators and Feishu automation authors
+- local parity checks and smoke runs no longer need to pollute tracked output directories
+- release-path consumers can rely on one normalized action vocabulary and one isolated-output mechanism

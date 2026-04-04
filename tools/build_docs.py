@@ -1112,10 +1112,18 @@ def build_target(
     data_root: str | None,
     page_selector: str | None = None,
     output_root: Path | None = None,
+    output_base_root: Path | None = None,
     write_wrapper_index: bool = True,
 ) -> None:
     build_langs = resolve_cfg_languages({"build": build_cfg})
     primary_lang = str(target_lang or (build_langs[0] if build_langs else "en"))
+    docs_build_root = output_base_root or paths.docs_build_dir
+    build_root = output_root or build_root_for_target(
+        target_model,
+        target_region,
+        target_lang,
+        docs_build_dir=docs_build_root,
+    )
     ensure_target_identity(
         cfg,
         model=target_model,
@@ -1132,7 +1140,7 @@ def build_target(
         data_root=data_root,
         source_mode=source_mode,
         page_selector=page_selector,
-        output_root=output_root,
+        output_root=build_root,
         write_wrapper_index=write_wrapper_index,
     )
 
@@ -1162,9 +1170,6 @@ def build_target(
     open_word = bool(build_cfg.get("open_word", False)) and (not no_open)
     open_pdf = bool(build_cfg.get("open_pdf", False)) and (not no_open)
 
-    build_root = build_root_for_target(target_model, target_region, target_lang)
-    if output_root is not None:
-        build_root = output_root
     html_out_dir = build_root / "html"
     word_out_dir = build_root / "word"
     pdf_out_dir = build_root / "pdf"
@@ -1289,14 +1294,14 @@ def build_target(
         strip_html_cover_section(html_out_dir / "index.html")
         write_html_manual_meta(
             html_out_dir,
-            docs_build_dir=paths.docs_build_dir,
+            docs_build_dir=docs_build_root,
             model=target_model,
             region=target_region,
             lang=primary_lang,
             title=bundle.title,
             lang_in_output_path=bool((target_lang or "").strip()),
         )
-        refresh_model_html_switchers(model=target_model, docs_build_dir=paths.docs_build_dir)
+        refresh_model_html_switchers(model=target_model, docs_build_dir=docs_build_root)
 
     if "html" in requested_formats:
         html_index = html_out_dir / "index.html"
@@ -1319,6 +1324,7 @@ def main() -> None:
     ap.add_argument("--no-open", action="store_true", help="Do not open outputs after build (override config)")
     ap.add_argument("--page-selector", default=None, help="Only materialize one exact page selector")
     ap.add_argument("--output-root", default=None, help="Override target output root for this build")
+    ap.add_argument("--output-base-root", default=None, help="Override docs/_build base root for this build")
     ap.add_argument("--skip-root-index", action="store_true", help="Do not rewrite docs/index.rst")
     ap.add_argument(
         "--source",
@@ -1342,6 +1348,13 @@ def main() -> None:
         output_root = Path(args.output_root.strip())
         if not output_root.is_absolute():
             output_root = paths.root / output_root
+    output_base_root = None
+    if isinstance(args.output_base_root, str) and args.output_base_root.strip():
+        output_base_root = Path(args.output_base_root.strip())
+        if not output_base_root.is_absolute():
+            output_base_root = paths.root / output_base_root
+    if output_root is not None and output_base_root is not None:
+        raise RuntimeError("Use either --output-root or --output-base-root, not both")
 
     print("[build] validating config...")
     validate_loaded_config(cfg)
@@ -1364,7 +1377,10 @@ def main() -> None:
         raise RuntimeError("config uses '{region}' but no --region was provided and build.default_region is empty")
 
     if args.clean:
-        clean_build_targets(targets, preview_name=args.page_selector if output_root else None)
+        if output_base_root is not None:
+            clean_build_targets(targets, docs_dir=output_base_root.parent)
+        else:
+            clean_build_targets(targets, preview_name=args.page_selector if output_root else None)
 
     requested_formats = resolve_requested_formats(cfg, args.formats)
     pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
@@ -1387,6 +1403,7 @@ def main() -> None:
             data_root=args.data_root,
             page_selector=args.page_selector,
             output_root=output_root,
+            output_base_root=output_base_root,
             write_wrapper_index=not args.skip_root_index,
         )
 
@@ -1396,4 +1413,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

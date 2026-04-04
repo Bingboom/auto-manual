@@ -199,16 +199,13 @@ def _bundle_component(value: str | None, fallback: str) -> str:
 def bundle_dir_for_target(
     *,
     docs_dir: Path,
+    docs_build_dir: Path | None = None,
     model: str | None,
     region: str | None,
     lang: str | None = None,
 ) -> Path:
-    target_root = (
-        docs_dir
-        / "_build"
-        / _bundle_component(model, "_shared")
-        / _bundle_component(region, "_default")
-    )
+    actual_docs_build_dir = docs_build_dir or (docs_dir / "_build")
+    target_root = actual_docs_build_dir / _bundle_component(model, "_shared") / _bundle_component(region, "_default")
     if (lang or "").strip():
         target_root = target_root / _bundle_component(lang, "_default")
     return target_root / "rst"
@@ -1242,4 +1239,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

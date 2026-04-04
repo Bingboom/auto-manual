@@ -105,6 +105,17 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
 
+    def test_build_docs_command_should_redirect_outputs_into_staging_root(self) -> None:
+        args = build_cli.parse_args(
+            ["word", "--model", "JE-1000F", "--region", "US", "--staging-root", ".tmp/staging"]
+        )
+
+        cmd = build_cli.build_docs_command(args)
+
+        self.assertIn("--output-base-root", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
+        self.assertIn("--skip-root-index", cmd)
+
     def test_clean_targets_for_config_should_honor_custom_docs_dir(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -221,6 +232,24 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--data-root", seen[0])
         self.assertIn("data/phase2", seen[0])
 
+    def test_run_diff_report_should_redirect_default_report_dir_into_staging_root(self) -> None:
+        args = build_cli.parse_args(
+            ["diff-report", "--model", "JE-1000F", "--region", "US", "--staging-root", ".tmp/staging"]
+        )
+        seen: list[list[str]] = []
+        original = build_cli.run_checked
+        original_targets = build_cli._resolve_diff_report_targets
+        try:
+            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli.run_diff_report(args)
+        finally:
+            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
+            build_cli.run_checked = original  # type: ignore[assignment]
+
+        self.assertEqual(1, len(seen))
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "version_tracking" / "JE-1000F" / "US"), seen[0])
+
     def test_run_diff_report_should_derive_report_dir_from_explicit_tracked_root(self) -> None:
         args = build_cli.parse_args(
             [
@@ -284,10 +313,20 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("rec_init_1", cmd)
         self.assertIn("--dry-run", cmd)
 
+    def test_process_build_queue_command_should_reject_conflicting_workflow_action_and_doc_phase(self) -> None:
+        args = build_cli.parse_args(
+            ["process-build-queue", "--workflow-action", "publish", "--doc-phase", "draft"]
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "--workflow-action and --doc-phase"):
+            build_cli.process_build_queue_command(args)
+
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
-        queue_args = build_cli.parse_args(["process-build-queue", "--dry-run", "--doc-phase", "draft", "--record-id", "rec_123"])
+        queue_args = build_cli.parse_args(
+            ["process-build-queue", "--dry-run", "--workflow-action", "build-draft-package", "--record-id", "rec_123"]
+        )
         listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.us.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
@@ -299,7 +338,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("config.ja.yaml", check_args.config)
         self.assertEqual("process-build-queue", queue_args.action)
         self.assertTrue(queue_args.dry_run)
-        self.assertEqual("draft", queue_args.doc_phase)
+        self.assertEqual("build-draft-package", queue_args.workflow_action)
         self.assertEqual("rec_123", queue_args.record_id)
         self.assertEqual("listen-build-queue", listener_args.action)
         self.assertEqual("publish", publish_args.action)
@@ -327,6 +366,16 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("JE-2000F", check_cmd)
         self.assertIn("--region", check_cmd)
         self.assertIn("JP", check_cmd)
+
+    def test_sync_review_command_should_forward_staged_docs_build_dir(self) -> None:
+        args = build_cli.parse_args(
+            ["sync-review", "--model", "JE-1000F", "--region", "JP", "--staging-root", ".tmp/staging"]
+        )
+
+        cmd = build_cli.sync_review_command(args)
+
+        self.assertIn("--docs-build-dir", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
 
     def test_run_check_should_forward_explicit_review_source_to_rst_build(self) -> None:
         args = build_cli.parse_args(["check", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
@@ -465,7 +514,7 @@ class TestBuildScript(unittest.TestCase):
                 "config.us.yaml",
                 "--data-root",
                 "data/phase2",
-                "--doc-phase",
+                "--workflow-action",
                 "publish",
                 "--record-id",
                 "rec_456",
@@ -478,11 +527,20 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(str(build_cli.ROOT / "tools" / "process_build_queue.py"), cmd[1])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
-        self.assertIn("--doc-phase", cmd)
+        self.assertIn("--workflow-action", cmd)
         self.assertIn("publish", cmd)
         self.assertIn("--record-id", cmd)
         self.assertIn("rec_456", cmd)
         self.assertIn("--dry-run", cmd)
+
+    def test_process_build_queue_command_should_translate_legacy_doc_phase_filter(self) -> None:
+        args = build_cli.parse_args(["process-build-queue", "--doc-phase", "draft"])
+
+        cmd = build_cli.process_build_queue_command(args)
+
+        self.assertIn("--workflow-action", cmd)
+        self.assertIn("build-draft-package", cmd)
+        self.assertNotIn("--doc-phase", cmd)
 
     def test_process_build_queue_command_should_reject_target_scoped_flags(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--model", "JE-1000F"])
@@ -579,6 +637,38 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
 
+    def test_release_manifest_command_should_forward_staging_roots(self) -> None:
+        args = build_cli.parse_args(
+            ["release-manifest", "--model", "JE-1000F", "--region", "JP", "--staging-root", ".tmp/staging"]
+        )
+
+        cmd = build_cli.release_manifest_command(args)
+
+        self.assertIn("--docs-build-dir", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
+        self.assertIn("--releases-root", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "releases"), cmd)
+
+    def test_release_manifest_command_should_redirect_outputs_into_staging_root(self) -> None:
+        args = build_cli.parse_args(
+            ["release-manifest", "--model", "JE-1000F", "--region", "JP", "--staging-root", ".tmp/staging"]
+        )
+
+        cmd = build_cli.release_manifest_command(args)
+
+        self.assertIn("--docs-build-dir", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
+        self.assertIn("--releases-root", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "releases"), cmd)
+
+    def test_check_docs_command_should_redirect_bundle_root_into_staging_root(self) -> None:
+        args = build_cli.parse_args(["check", "--model", "JE-1000F", "--region", "US", "--staging-root", ".tmp/staging"])
+
+        cmd = build_cli.check_docs_command(args)
+
+        self.assertIn("--docs-build-dir", cmd)
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
+
     def test_publish_should_scope_review_and_report_dirs_by_lang_when_enabled(self) -> None:
         args = build_cli.parse_args(["publish", "--config", "config.us-es.yaml", "--model", "JE-1000F", "--region", "US"])
         seen: list[list[str]] = []
@@ -608,6 +698,30 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[4])
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[4])
         self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[6][1])
+
+    def test_publish_should_redirect_generated_outputs_into_staging_root(self) -> None:
+        args = build_cli.parse_args(
+            ["publish", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP", "--staging-root", ".tmp/staging"]
+        )
+        seen: list[list[str]] = []
+        original_validate = build_cli.run_validate
+        original_run_checked = build_cli.run_checked
+        original_review_sync_targets = build_cli._review_sync_target_args
+        try:
+            build_cli.run_validate = lambda *argv, **kwargs: None  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
+            build_cli.run_publish(args)
+        finally:
+            build_cli.run_validate = original_validate  # type: ignore[assignment]
+            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
+
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[0])
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[2])
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[4])
+        self.assertIn("--docs-build-dir", seen[6])
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "releases"), seen[6])
 
     def test_collect_doctor_findings_should_require_word_com_for_windows_bundle(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
@@ -687,4 +801,3 @@ class TestBuildScript(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

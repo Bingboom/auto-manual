@@ -76,13 +76,21 @@ def build_release_manifest(
     region: str,
     data_root: str | None = None,
     built_at: datetime | None = None,
+    docs_build_dir: Path | None = None,
+    releases_root: Path | None = None,
 ) -> tuple[Path, Path]:
     cfg = load_config(config_path)
     docs_dir = resolve_docs_dir(cfg)
     output_lang = resolve_output_lang(cfg)
-    docs_build_dir = docs_dir / "_build"
-    build_root = build_root_for_target(model, region, output_lang, docs_build_dir=docs_build_dir)
-    runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
+    actual_docs_build_dir = docs_build_dir or (docs_dir / "_build")
+    build_root = build_root_for_target(model, region, output_lang, docs_build_dir=actual_docs_build_dir)
+    runtime_bundle_dir = bundle_dir_for_target(
+        docs_dir=docs_dir,
+        docs_build_dir=actual_docs_build_dir,
+        model=model,
+        region=region,
+        lang=output_lang,
+    )
     review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
 
     build_cfg_raw = cfg.get("build", {})
@@ -115,6 +123,7 @@ def build_release_manifest(
         model=model,
         region=region,
         cfg=cfg,
+        releases_root=releases_root,
     )
     manifest_dir.mkdir(parents=True, exist_ok=True)
     json_path = manifest_dir / f"{timestamp}.json"
@@ -192,6 +201,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Write a release manifest for one explicit target.")
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
+    ap.add_argument("--docs-build-dir", default=None, help="Override docs/_build root used to locate outputs")
+    ap.add_argument("--releases-root", default=None, help="Override reports/releases root used to write manifests")
     ap.add_argument("--model", required=True, help="Explicit release target model")
     ap.add_argument("--region", required=True, help="Explicit release target region")
     return ap.parse_args(argv)
@@ -203,12 +214,26 @@ def main(argv: list[str] | None = None) -> int:
     if not config_path.is_absolute():
         config_path = ROOT / config_path
 
+    docs_build_dir = None
+    if isinstance(args.docs_build_dir, str) and args.docs_build_dir.strip():
+        docs_build_dir = Path(args.docs_build_dir.strip())
+        if not docs_build_dir.is_absolute():
+            docs_build_dir = ROOT / docs_build_dir
+
+    releases_root = None
+    if isinstance(args.releases_root, str) and args.releases_root.strip():
+        releases_root = Path(args.releases_root.strip())
+        if not releases_root.is_absolute():
+            releases_root = ROOT / releases_root
+
     try:
         json_path, csv_path = build_release_manifest(
             config_path=config_path,
             model=args.model,
             region=args.region,
             data_root=args.data_root,
+            docs_build_dir=docs_build_dir,
+            releases_root=releases_root,
         )
     except RuntimeError as exc:
         print(f"[release-manifest] ERROR: {exc}", file=sys.stderr)

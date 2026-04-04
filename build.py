@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import glob
 import importlib
+import os
 import re
 import shutil
 import subprocess
@@ -18,6 +19,7 @@ DEFAULT_CONFIG = "config.us.yaml"
 BUILD_ACTIONS = ("rst", "word", "html", "pdf", "all")
 ALL_OUTPUT_FORMATS = "html,word,pdf"
 VALID_PDF_MODES = {"latex", "word"}
+STAGING_ROOT_ENV = "AUTO_MANUAL_STAGING_ROOT"
 
 
 @dataclass
@@ -56,6 +58,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
     ap.add_argument("--model", default=None, help="Build a single model instead of build.targets")
     ap.add_argument("--region", default=None, help="Build a single region instead of build.targets")
+    ap.add_argument(
+        "--staging-root",
+        default=None,
+        help=f"Isolate generated verification/build outputs under this root (or set {STAGING_ROOT_ENV})",
+    )
     ap.add_argument(
         "--source",
         choices=("auto", "runtime", "review"),
@@ -112,10 +119,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
     ap.add_argument(
+        "--workflow-action",
+        choices=("build-draft-package", "publish"),
+        default=None,
+        help="For process-build-queue: only consume one normalized Workflow_action (Build Draft Package or Publish)",
+    )
+    ap.add_argument(
         "--doc-phase",
         choices=("draft", "publish"),
         default=None,
-        help="For process-build-queue: only consume one normalized Doc_phase (Build Draft Package or Publish)",
+        help="Deprecated compatibility alias for --workflow-action",
     )
     ap.add_argument(
         "--record-id",
@@ -133,6 +146,38 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def resolve_path_from_root(raw_path: str) -> Path:
     path = Path(raw_path)
     return path if path.is_absolute() else (ROOT / path)
+
+
+def resolve_staging_root(args: argparse.Namespace) -> Path | None:
+    raw = ""
+    if isinstance(getattr(args, "staging_root", None), str) and args.staging_root.strip():
+        raw = args.staging_root.strip()
+    elif str(os.environ.get("AUTO_MANUAL_STAGING_ROOT", "")).strip():
+        raw = str(os.environ.get("AUTO_MANUAL_STAGING_ROOT", "")).strip()
+    if not raw:
+        return None
+    return resolve_path_from_root(raw)
+
+
+def staging_docs_build_dir(args: argparse.Namespace) -> Path | None:
+    staging_root = resolve_staging_root(args)
+    if staging_root is None:
+        return None
+    return staging_root / "docs" / "_build"
+
+
+def staging_version_tracking_root(args: argparse.Namespace) -> Path | None:
+    staging_root = resolve_staging_root(args)
+    if staging_root is None:
+        return None
+    return staging_root / "reports" / "version_tracking"
+
+
+def staging_releases_root(args: argparse.Namespace) -> Path | None:
+    staging_root = resolve_staging_root(args)
+    if staging_root is None:
+        return None
+    return staging_root / "reports" / "releases"
 
 
 def load_config(config_path: Path) -> dict:
@@ -189,8 +234,9 @@ def review_root_for_config(config_path: Path) -> Path:
     return docs_dir / "_review"
 
 
-def version_tracking_root() -> Path:
-    return ROOT / "reports" / "version_tracking"
+def version_tracking_root(*, base_root: Path | None = None) -> Path:
+    actual_base_root = base_root or ROOT
+    return actual_base_root / "reports" / "version_tracking"
 
 
 def _path_component(value: str) -> str:
@@ -198,9 +244,16 @@ def _path_component(value: str) -> str:
     return text.replace("/", "_").replace("\\", "_").replace(":", "_")
 
 
-def _preview_output_root(config_path: Path, *, model: str, region: str, page: str) -> Path:
-    docs_dir = resolve_docs_dir(config_path)
-    return docs_dir / "_build" / _path_component(model) / _path_component(region) / "preview" / _path_component(page)
+def _preview_output_root(
+    config_path: Path,
+    *,
+    model: str,
+    region: str,
+    page: str,
+    docs_build_dir: Path | None = None,
+) -> Path:
+    actual_docs_build_dir = docs_build_dir or (resolve_docs_dir(config_path) / "_build")
+    return actual_docs_build_dir / _path_component(model) / _path_component(region) / "preview" / _path_component(page)
 
 
 def is_legacy_bundle_dir(path: Path) -> bool:
@@ -236,6 +289,27 @@ def format_command(cmd: list[str]) -> str:
 def run_checked(cmd: list[str]) -> None:
     print(f"[build.py] {format_command(cmd)}")
     subprocess.run(cmd, cwd=str(ROOT), check=True)
+
+
+def ensure_supported_staging_action(args: argparse.Namespace) -> None:
+    if resolve_staging_root(args) is None:
+        return
+    if args.action == "review":
+        raise RuntimeError("review does not support --staging-root because it seeds docs/_review from the repo runtime bundle")
+
+
+def normalize_cli_build_queue_action(workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:
+    explicit = (workflow_action or "").strip().lower()
+    legacy = (doc_phase or "").strip().lower()
+    normalized_explicit = None
+    if explicit:
+        normalized_explicit = "draft" if explicit == "build-draft-package" else "publish"
+    normalized_legacy = None
+    if legacy:
+        normalized_legacy = legacy
+    if normalized_explicit and normalized_legacy and normalized_explicit != normalized_legacy:
+        raise RuntimeError("--workflow-action and --doc-phase must resolve to the same build-queue action")
+    return normalized_explicit or normalized_legacy
 
 
 def _effective_source(args: argparse.Namespace, *, source_override: str = "auto") -> str:
@@ -278,6 +352,7 @@ def build_docs_command(
     _append_target_args(cmd, args)
     _append_data_root_arg(cmd, args)
     effective_source = source_override or args.source
+    staged_docs_build_dir = staging_docs_build_dir(args)
     if action == "fast":
         effective_source = "runtime"
     cmd += ["--source", effective_source]
@@ -295,8 +370,21 @@ def build_docs_command(
         if not page:
             raise RuntimeError("preview requires --page so the bundle scope is explicit")
         cmd += ["--page-selector", page]
-        cmd += ["--output-root", str(_preview_output_root(config_path, model=model, region=region, page=page))]
+        cmd += [
+            "--output-root",
+            str(
+                _preview_output_root(
+                    config_path,
+                    model=model,
+                    region=region,
+                    page=page,
+                    docs_build_dir=staged_docs_build_dir,
+                )
+            ),
+        ]
         cmd.append("--skip-root-index")
+    elif staged_docs_build_dir is not None:
+        cmd += ["--output-base-root", str(staged_docs_build_dir), "--skip-root-index"]
     elif args.skip_root_index:
         cmd.append("--skip-root-index")
 
@@ -318,6 +406,9 @@ def review_bundle_command(args: argparse.Namespace) -> list[str]:
         str(config_path),
     ]
     _append_target_args(cmd, args)
+    staged_docs_build_dir = staging_docs_build_dir(args)
+    if staged_docs_build_dir is not None:
+        cmd += ["--docs-build-dir", str(staged_docs_build_dir)]
     if args.refresh_review:
         cmd.append("--refresh-existing")
     return cmd
@@ -332,7 +423,11 @@ def check_docs_command(args: argparse.Namespace) -> list[str]:
         str(config_path),
     ]
     _append_target_args(cmd, args)
-    return _append_data_root_arg(cmd, args)
+    _append_data_root_arg(cmd, args)
+    staged_docs_build_dir = staging_docs_build_dir(args)
+    if staged_docs_build_dir is not None:
+        cmd += ["--docs-build-dir", str(staged_docs_build_dir)]
+    return cmd
 
 
 def sync_review_command(args: argparse.Namespace) -> list[str]:
@@ -346,6 +441,9 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
         args.sync_scope,
     ]
     _append_target_args(cmd, args)
+    staged_docs_build_dir = staging_docs_build_dir(args)
+    if staged_docs_build_dir is not None:
+        cmd += ["--docs-build-dir", str(staged_docs_build_dir)]
     for page_file in args.page_file:
         cmd += ["--page-file", page_file]
     return cmd
@@ -429,7 +527,14 @@ def release_manifest_command(args: argparse.Namespace) -> list[str]:
         "--region",
         region,
     ]
-    return _append_data_root_arg(cmd, args)
+    _append_data_root_arg(cmd, args)
+    staged_docs_build_dir = staging_docs_build_dir(args)
+    staged_releases_root = staging_releases_root(args)
+    if staged_docs_build_dir is not None:
+        cmd += ["--docs-build-dir", str(staged_docs_build_dir)]
+    if staged_releases_root is not None:
+        cmd += ["--releases-root", str(staged_releases_root)]
+    return cmd
 
 
 def process_build_queue_command(args: argparse.Namespace) -> list[str]:
@@ -445,8 +550,11 @@ def process_build_queue_command(args: argparse.Namespace) -> list[str]:
         str(config_path),
     ]
     _append_data_root_arg(cmd, args)
-    if isinstance(args.doc_phase, str) and args.doc_phase.strip():
-        cmd += ["--doc-phase", args.doc_phase.strip()]
+    normalized_action = normalize_cli_build_queue_action(args.workflow_action, args.doc_phase)
+    if normalized_action == "draft":
+        cmd += ["--workflow-action", "build-draft-package"]
+    elif normalized_action == "publish":
+        cmd += ["--workflow-action", "publish"]
     if isinstance(args.record_id, str) and args.record_id.strip():
         cmd += ["--record-id", args.record_id.strip()]
     if args.dry_run:
@@ -825,13 +933,14 @@ def run_diff_report(args: argparse.Namespace) -> None:
     config_path = resolve_path_from_root(args.config)
     tracked_root_explicit = args.tracked_root is not None
     report_dir_explicit = args.report_dir is not None
+    staging_root = resolve_staging_root(args)
 
     if tracked_root_explicit:
         tracked_root = resolve_path_from_root(args.tracked_root)
         if report_dir_explicit:
             report_dir = resolve_path_from_root(args.report_dir)
         else:
-            report_dir = _default_report_dir_for_tracked_root(config_path, tracked_root)
+            report_dir = _default_report_dir_for_tracked_root(config_path, tracked_root, base_root=staging_root)
         run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
         return
 
@@ -849,7 +958,7 @@ def run_diff_report(args: argparse.Namespace) -> None:
         report_dir = (
             resolve_path_from_root(args.report_dir)
             if report_dir_explicit
-            else _report_dir_for_target(model, region, lang=lang)
+            else _report_dir_for_target(model, region, lang=lang, base_root=staging_root)
         )
         run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
 
@@ -923,7 +1032,7 @@ def _publish_report_dir(args: argparse.Namespace) -> Path:
     model, region, lang = _publish_target_components(args)
     if args.report_dir is not None:
         return resolve_path_from_root(args.report_dir)
-    return _report_dir_for_target(model, region, lang=lang)
+    return _report_dir_for_target(model, region, lang=lang, base_root=resolve_staging_root(args))
 
 
 def _tracked_root_for_target(
@@ -939,20 +1048,26 @@ def _tracked_root_for_target(
     return base
 
 
-def _report_dir_for_target(model: str | None, region: str | None, *, lang: str | None = None) -> Path:
-    base = version_tracking_root() / (model or "_shared") / (region or "_default")
+def _report_dir_for_target(
+    model: str | None,
+    region: str | None,
+    *,
+    lang: str | None = None,
+    base_root: Path | None = None,
+) -> Path:
+    base = version_tracking_root(base_root=base_root) / (model or "_shared") / (region or "_default")
     if (lang or "").strip():
         return base / lang
     return base
 
 
-def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path) -> Path:
+def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path, *, base_root: Path | None = None) -> Path:
     review_root = review_root_for_config(config_path)
     try:
         rel = tracked_root.resolve(strict=False).relative_to(review_root.resolve(strict=False))
     except ValueError:
-        return version_tracking_root() / tracked_root.name
-    return version_tracking_root() / rel
+        return version_tracking_root(base_root=base_root) / tracked_root.name
+    return version_tracking_root(base_root=base_root) / rel
 
 
 def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | None, str | None, str | None]]:
@@ -999,6 +1114,7 @@ def main(argv: list[str] | None = None) -> int:
     config_path = resolve_path_from_root(args.config)
 
     try:
+        ensure_supported_staging_action(args)
         if args.action == "validate":
             run_validate(config_path, data_root=args.data_root)
         elif args.action == "doctor":
