@@ -43,7 +43,7 @@ authority to operate the device.
 
 .. list-table::
    :header-rows: 0
-   :widths: 25 25 25 25
+   :widths: 33 33 34
 
    * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Power station image placeholder.
@@ -68,5 +68,5 @@ authority to operate the device.
    :widths: 10 90
 
    * - **TIPS**
-     - The car charging cable is not included but is available for purchase separately on our website.
+     - The11 car charging cable is not included but is available for purchase separately on our website.
        For assistance, please contact Jackery customer service.

@@ -21,6 +21,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                        process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en-1-0"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: False,
                     },
@@ -46,6 +47,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("1.0", records[0].version)
         self.assertEqual("en", records[0].lang)
         self.assertEqual("Draft", records[0].doc_phase)
+        self.assertEqual("codex/review-je-1000f-us-en-1-0", records[0].git_ref)
 
     def test_parse_document_key_should_split_model_and_region(self) -> None:
         model, region = process_build_queue.parse_document_key("JE-1000F_US")
@@ -61,6 +63,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             version="1.0",
             lang="en",
             doc_phase="",
+            git_ref="",
             trigger_value="Y",
             immediate_trigger_value=False,
         )
@@ -325,7 +328,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
 
-            with mock.patch.object(process_build_queue, "_run_command", side_effect=lambda cmd: commands.append(cmd)), mock.patch.object(
+            with mock.patch.object(
+                process_build_queue,
+                "_run_command",
+                side_effect=lambda cmd, **kwargs: commands.append(cmd),
+            ), mock.patch.object(
                 process_build_queue,
                 "resolve_word_output_path_for_target",
                 return_value=word_path,
@@ -336,9 +343,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                     region="US",
                     data_root="data/phase2",
                     doc_phase="Draft",
+                    version="0.2",
                 )
+                self.assertTrue(resolved_path.exists())
 
-        self.assertEqual(word_path, resolved_path)
+        self.assertEqual(word_path.with_name("manual_je1000f_us_en_0.2.docx"), resolved_path)
         self.assertEqual(2, len(commands))
         self.assertEqual("check", commands[0][2])
         self.assertIn("--source", commands[0])
@@ -348,6 +357,55 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("review", commands[1])
         self.assertIn("--no-clean", commands[1])
 
+    def test_build_document_for_task_should_build_from_git_ref_and_stage_output_under_host_repo(self) -> None:
+        commands: list[tuple[list[str], Path]] = []
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            worktree = root / ".tmp" / "process-build-queue-worktrees" / "codex-review-us-en"
+            host_config_path = root / "config.us-en.yaml"
+            worktree_config_path = worktree / "config.us-en.yaml"
+            host_word_path = root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            worktree_word_path = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            host_config_path.write_text("build: {}\n", encoding="utf-8")
+            worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
+            worktree_config_path.write_text("build: {}\n", encoding="utf-8")
+            worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
+            worktree_word_path.write_bytes(b"docx")
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "_prepare_git_ref_worktree",
+                return_value=worktree,
+            ) as prepare_mock, mock.patch.object(
+                process_build_queue,
+                "_remove_worktree",
+            ) as remove_mock, mock.patch.object(
+                process_build_queue,
+                "_run_command",
+                side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd"))),
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_word_output_path_for_target",
+                side_effect=[worktree_word_path, host_word_path],
+            ):
+                resolved_path = process_build_queue.build_document_for_task(
+                    config_path=host_config_path,
+                    model="JE-1000F",
+                    region="US",
+                    data_root="data/phase2",
+                    doc_phase="Publish",
+                    version="0.2",
+                    git_ref="codex/review-us-en",
+                )
+                self.assertTrue(resolved_path.exists())
+
+        self.assertEqual(host_word_path.with_name("manual_je1000f_us_en_publish_0.2.docx"), resolved_path)
+        self.assertEqual(1, len(commands))
+        self.assertEqual("publish", commands[0][0][2])
+        self.assertEqual(worktree, commands[0][1])
+        prepare_mock.assert_called_once_with("codex/review-us-en")
+        remove_mock.assert_called_once_with(worktree)
+
     def test_build_document_for_task_should_use_publish_action_for_publish_phase(self) -> None:
         commands: list[list[str]] = []
         with tempfile.TemporaryDirectory() as td:
@@ -355,7 +413,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
 
-            with mock.patch.object(process_build_queue, "_run_command", side_effect=lambda cmd: commands.append(cmd)), mock.patch.object(
+            with mock.patch.object(
+                process_build_queue,
+                "_run_command",
+                side_effect=lambda cmd, **kwargs: commands.append(cmd),
+            ), mock.patch.object(
                 process_build_queue,
                 "resolve_word_output_path_for_target",
                 return_value=word_path,
@@ -366,12 +428,45 @@ class TestProcessBuildQueue(unittest.TestCase):
                     region="JP",
                     data_root="data/phase2",
                     doc_phase="Publish",
+                    version="1.0",
                 )
+                self.assertTrue(resolved_path.exists())
 
-        self.assertEqual(word_path, resolved_path)
+        self.assertEqual(word_path.with_name("manual_je1000f_jp_publish_1.0.docx"), resolved_path)
         self.assertEqual(1, len(commands))
         self.assertEqual("publish", commands[0][2])
         self.assertIn("--data-root", commands[0])
+
+    def test_versioned_word_output_path_should_preserve_original_when_version_missing(self) -> None:
+        path = Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx")
+
+        resolved = process_build_queue._versioned_word_output_path(path, version="")
+
+        self.assertEqual(path, resolved)
+
+    def test_versioned_word_output_path_should_append_sanitized_version(self) -> None:
+        path = Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx")
+
+        resolved = process_build_queue._versioned_word_output_path(path, version="V 0.2 / RC1")
+
+        self.assertEqual(
+            Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en_V-0.2-RC1.docx"),
+            resolved,
+        )
+
+    def test_versioned_word_output_path_should_insert_publish_before_version(self) -> None:
+        path = Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx")
+
+        resolved = process_build_queue._versioned_word_output_path(
+            path,
+            version="0.2",
+            doc_phase="publish",
+        )
+
+        self.assertEqual(
+            Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en_publish_0.2.docx"),
+            resolved,
+        )
 
     def test_sync_phase2_snapshot_before_queue_should_call_build_py_sync_data(self) -> None:
         commands: list[list[str]] = []
@@ -649,6 +744,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             region="US",
             data_root="data/phase2",
             doc_phase="draft",
+            version="1.0",
+            git_ref="",
         )
         sync_mock.assert_called_once_with(
             config_path=Path("config.yaml"),
@@ -873,6 +970,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual(2, len(fetch_calls))
         build_document_mock.assert_called_once()
+        self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
+        self.assertEqual("", build_document_mock.call_args.kwargs["git_ref"])
 
 
 if __name__ == "__main__":

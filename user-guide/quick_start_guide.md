@@ -7,7 +7,7 @@ Updated: 2026-04-03
 
 - 结构化数据看 Feishu phase2 源表
 - Draft 看 PR 分支里的 [`docs/_review/`](../docs/_review)
-- Publish 看 `main`
+- Publish 默认看 `Document_link.Git_ref` 指向的 review / PR 分支；只有 `Git_ref` 为空时，才会退回当前 queue worker 所在分支（远端通常是 `main`）
 
 ## 1. 先分清三张表各自负责什么
 
@@ -45,7 +45,7 @@ Updated: 2026-04-03
 
 这张表触发后，系统会按 `Document_Key` 对应的 `Model + Region` 启动 review：
 
-1. 先检查 `main` 是否已经提交过 `docs/_review/<model>/<region>/`
+1. 先检查 `main` 是否已经提交过这个目标对应的 review 根目录
 2. 如果已经有旧 review 内容，就拒绝重复创建，并回写：
    - `Initial_result = 不允许重复创建`
    - `Remarks = 如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
@@ -67,12 +67,14 @@ Updated: 2026-04-03
 - `Document_Key`
 - `Lang`
 - `Version`
+- `Git_ref`
 - `Doc_phase`
 - `是否触发文档构建`
 - `是否立即构建`
 - `Document directory`
 - `Document link`
 - `构建结果`
+
 
 它负责：
 
@@ -97,16 +99,16 @@ Draft 的原料是：
 
 如果你在 PR 里直接改 [`data/phase2/*.csv`](../data/phase2)，Draft 队列不会把它当最终真源。
 因为构建前会先自动 `sync-data`，把这份目录刷新成 Feishu 当前快照。
+如果这条记录已经由 `Review Init` 回写过 `Git_ref`，后续 Draft / Publish 都应继续沿用这条分支，不要手动清空。
 
 ### Publish
 
 Publish 的原料是：
-
 - Feishu phase2 最新数据
-- `main` 上的代码
-- `main` 的发布路径
+- `Document_link.Git_ref` 指向分支上的代码
+- 该分支里的 review 内容
 
-Publish 不看你的 Draft 分支。
+如果 `Git_ref` 为空，才会退回当前 queue worker 所在分支；远端 worker 通常是 `main`。
 
 ## 3. 场景一：第一次把文档拉进 Review
 
@@ -132,7 +134,7 @@ Publish 不看你的 Draft 分支。
 它会：
 
 1. 同步最新 phase2 快照
-2. 检查 `main` 是否已经存在这个 `Document_Key` 对应目标的旧 review 根目录
+2. 先检查 `main` 是否已经提交过这个目标对应的 review 根目录
 3. 如果旧 review 已提交，则拒绝重复创建，并回写：
    - `Initial_result = 不允许重复创建`
    - `Remarks = 如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
@@ -152,7 +154,7 @@ Publish 不看你的 Draft 分支。
 - 多维表里出现 `PR_url`
 - 仓库里已经有 PR
 - 对应分支里已经有 review 内容
-- 如果 `main` 已经提交过这个目标的 `docs/_review/<model>/<region>/`，多维表会回写 `Initial_result = 不允许重复创建`
+- 如果 `main` 已经提交过这个目标对应的 review 根目录，多维表会回写 `Initial_result = 不允许重复创建`
 
 如果这一步没做，后面的 Draft 只是“构建一条记录”，不算完整的 review 流程。
 
@@ -217,17 +219,17 @@ Publish 不看你的 Draft 分支。
 
 它会：
 
-1. checkout `main`
+1. workflow 可以由默认分支承载
 2. 执行 `process-build-queue --doc-phase publish`
 3. 队列内部先自动 `sync-data`
-4. 再执行 `build.py publish`
-5. 回写：
+4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish`
+4. 回写：
    - `开始构建时间`
    - `构建结果`
    - `Document directory`
    - `Document link`
 
-Publish 是正式态，不依赖 Draft 分支。
+Publish 不直接复用旧 Draft 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`。
 
 ## 6. 你平时到底该改哪里
 
@@ -291,7 +293,8 @@ Publish 是正式态，不依赖 Draft 分支。
 动作：
 
 - 调 GitHub `feishu-build-queue.yml`
-- `ref = main`
+- workflow 可以由默认分支承载，但真正的构建源以 `Document_link.Git_ref` 为准
+- 要保证正式 Publish 和当前 review 一致，就让 `Git_ref` 保持指向当前 review / PR 分支
 
 ## 8. 最短操作清单
 
@@ -312,8 +315,9 @@ Publish 是正式态，不依赖 Draft 分支。
 
 ### 如果你要正式 Publish
 
-1. 确认 `main` 已准备好
-2. 在 `Document_link` 里设：
+1. 确认当前 review / PR 分支内容已准备好
+2. 确认 `Document_link.Git_ref` 仍指向这条 review / PR 分支
+3. 在 `Document_link` 里设：
    - `Doc_phase = Publish`
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
@@ -323,4 +327,4 @@ Publish 是正式态，不依赖 Draft 分支。
 - 改数据：去改 Feishu
 - 进 Review：走 `Review Init`
 - 出 Draft：走 PR 分支 + `_review`
-- 做 Publish：走 `main`
+- 做 Publish：走 `Document_link` + `Git_ref` 指向的 review / PR 分支
