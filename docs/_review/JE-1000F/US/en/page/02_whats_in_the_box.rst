@@ -45,21 +45,22 @@ authority to operate the device.
    :header-rows: 0
    :widths: 33 33 34
 
-   * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit.png
+   * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Power station image placeholder.
           :width: 120px
 
        **Jackery Explorer 1000**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging.png
+     - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
           :alt: AC charging cable image placeholder.
           :width: 120px
 
        **AC Charging Cable**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon.png
+     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
           :alt: User manual image placeholder.
           :width: 120px
 
        **Documents**
+     -
 
 
 .. list-table::

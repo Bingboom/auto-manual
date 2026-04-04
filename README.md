@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-01
+Updated: 2026-04-03
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -46,6 +46,7 @@ python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
 python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py check --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
+python3 build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2
 python3 build.py process-build-queue --config config.yaml --data-root data/phase2
 python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
 ```
@@ -60,11 +61,15 @@ Review sync note:
 Phase2 snapshot note:
 
 - `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2), using the CLI's `base` record listing flow under the hood
+- for queue-driven Draft / Publish builds, Feishu phase2 tables are the structured-data source of truth; committed `data/phase2/*.csv` files are treated as build-time snapshots and will be refreshed by `sync-data` before the queue builds
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain tokens such as `front.label` when the source table stores markdown-link wrappers like `[front.label](front.label)`
 - `sync-data` now resolves full field names through Base field metadata before writing CSVs, so long columns such as `Row_label_footnote_refs` are not lost when `lark-cli` abbreviates display headers in `base +record-list`
 - when `spec_master` is part of the sync, `sync-data` also regenerates [`data/phase2/row_key_mapping.csv`](data/phase2/row_key_mapping.csv) from the synced snapshot while preserving any existing manual `Row_key` / `Remark` entries
 - `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the fastest preflight on a new machine; it now reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API call
 - on Windows, the default `sync.phase2.cli_bin: lark-cli` now resolves to the installed `lark-cli` shim automatically, so no config override is required just to run `sync-data`
+- `python build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2` consumes the `sync.phase2.review_init` table, finds rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, syncs a fresh phase2 snapshot, creates or reuses a review branch, seeds `docs/_review`, pushes the branch, opens or reuses a PR, then writes back `Git_ref`, `PR_url`, sets `Review_status=InReview`, and clears `是否进入Review`
+- review-init duplicate guard: review start is now treated as one-time per `Document_Key` target. If `origin/main` already contains committed content under `docs/_review/<model>/<region>/`, the worker refuses duplicate seeding and writes back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
+- [`.github/workflows/feishu-start-review.yml`](.github/workflows/feishu-start-review.yml) is the GitHub-hosted review-init worker; it needs `FEISHU_PHASE2_REVIEW_INIT_TABLE_ID` and `FEISHU_PHASE2_REVIEW_INIT_VIEW_ID`, and it is the recommended way to let a Feishu table create the review branch + PR automatically
 - `python build.py process-build-queue --config config.yaml --data-root data/phase2` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, builds pending `Document_Key + Lang` rows where `是否触发文档构建 = Y`, uploads the generated Word file to Feishu Drive, then moves that uploaded file into the current wiki knowledge-base container before writing the local Word path back to `Document directory`, the wiki URL back to `Document link`, a timestamped status string to `构建结果`, and the trigger back to `已构建`
 - when the queue row includes `Version`, Draft queue DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
 - when the queue row includes `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
@@ -83,13 +88,20 @@ Phase2 snapshot note:
 Draft / Publish queue split:
 
 - `process-build-queue` now refreshes `data/phase2` with `sync-data` before it starts building queued rows
+- `process-build-queue --doc-phase draft` uses Feishu-refreshed `data/phase2` plus the PR branch's current [`docs/_review/`](docs/_review) content; Draft is for documents that have already entered review
 - `process-build-queue --doc-phase draft` consumes only `Doc_phase=Draft`
+- `process-build-queue --doc-phase publish` uses Feishu-refreshed `data/phase2` plus the `main` release path and `build.py publish`
 - `process-build-queue --doc-phase publish` consumes only `Doc_phase=Publish`
 - `process-build-queue --record-id <record_id>` lets one workflow rebuild exactly one `Document_link` row
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
 - [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the PR-owned Draft queue worker
 - when you dispatch the Draft worker, the GitHub `ref` must be the PR head branch, otherwise the generated Draft document will still come from `main`
 - when a Publish row carries `Git_ref`, the `main`-owned Publish queue worker now builds that review branch instead of rebuilding from `main`
+
+- recommended stage split:
+  - use the review-init table to move one document into review and create its branch / PR once
+  - use the `Document_link` queue with `Doc_phase=Draft` to rebuild Draft from that PR branch repeatedly
+  - use the `Document_link` queue with `Doc_phase=Publish` plus `Git_ref` to publish from that same review branch
 
 Dedicated zh bundle example:
 

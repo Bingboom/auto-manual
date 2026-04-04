@@ -102,9 +102,9 @@ def _copy_relative_file(src_root: Path, dst_root: Path, relative_path: Path) -> 
     return dst_path
 
 
-def _map_template_to_review_lines(template_lines: list[str], review_lines: list[str]) -> dict[int, int | None]:
+def _map_source_to_target_lines(source_lines: list[str], target_lines: list[str]) -> dict[int, int | None]:
     mapping: dict[int, int | None] = {}
-    matcher = SequenceMatcher(a=template_lines, b=review_lines, autojunk=False)
+    matcher = SequenceMatcher(a=source_lines, b=target_lines, autojunk=False)
     for tag, i1, i2, j1, j2 in matcher.get_opcodes():
         if tag == "equal":
             for offset in range(i2 - i1):
@@ -137,6 +137,41 @@ def _map_template_to_review_lines(template_lines: list[str], review_lines: list[
     return mapping
 
 
+def _extract_placeholder_values(template_line: str, rendered_line: str) -> tuple[str, ...] | None:
+    matches = tuple(PLACEHOLDER_RE.finditer(template_line))
+    if not matches:
+        return ()
+
+    pattern_parts: list[str] = [r"\A"]
+    last = 0
+    for idx, match in enumerate(matches):
+        pattern_parts.append(re.escape(template_line[last:match.start()]))
+        pattern_parts.append(f"(?P<slot_{idx}>.*?)")
+        last = match.end()
+    pattern_parts.append(re.escape(template_line[last:]))
+    pattern_parts.append(r"\Z")
+
+    rendered_match = re.match("".join(pattern_parts), rendered_line, flags=re.DOTALL)
+    if rendered_match is None:
+        return None
+    return tuple(rendered_match.group(f"slot_{idx}") for idx in range(len(matches)))
+
+
+def _render_placeholder_values(template_line: str, values: tuple[str, ...]) -> str:
+    matches = tuple(PLACEHOLDER_RE.finditer(template_line))
+    if len(matches) != len(values):
+        raise RuntimeError("Placeholder value count does not match template placeholder count")
+
+    rendered_parts: list[str] = []
+    last = 0
+    for value, match in zip(values, matches):
+        rendered_parts.append(template_line[last:match.start()])
+        rendered_parts.append(value)
+        last = match.end()
+    rendered_parts.append(template_line[last:])
+    return "".join(rendered_parts)
+
+
 def _merge_parameter_lines(
     *,
     template_path: Path,
@@ -158,16 +193,21 @@ def _merge_parameter_lines(
     review_lines = dst_path.read_text(encoding="utf-8").splitlines(keepends=True)
 
     merged_lines = list(review_lines)
-    line_mapping = _map_template_to_review_lines(template_lines, review_lines)
+    review_line_mapping = _map_source_to_target_lines(template_lines, review_lines)
+    runtime_line_mapping = _map_source_to_target_lines(template_lines, runtime_lines)
     for template_idx, template_line in enumerate(template_lines):
         if not PLACEHOLDER_RE.search(template_line):
             continue
-        if template_idx >= len(runtime_lines):
+        runtime_idx = runtime_line_mapping.get(template_idx)
+        if runtime_idx is None or runtime_idx >= len(runtime_lines):
             continue
-        review_idx = line_mapping.get(template_idx)
+        runtime_values = _extract_placeholder_values(template_line, runtime_lines[runtime_idx])
+        if runtime_values is None:
+            continue
+        review_idx = review_line_mapping.get(template_idx)
         if review_idx is None or review_idx >= len(merged_lines):
             continue
-        merged_lines[review_idx] = runtime_lines[template_idx]
+        merged_lines[review_idx] = _render_placeholder_values(template_line, runtime_values)
 
     dst_path.write_text("".join(merged_lines), encoding="utf-8")
     return dst_path

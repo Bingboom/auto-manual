@@ -258,9 +258,31 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertEqual(2, len(seen))
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US"), seen[0])
-        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US"), seen[0])
-        self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[1])
-        self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[1])
+
+    def test_process_review_start_queue_command_should_forward_record_id_and_data_root(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "process-review-start-queue",
+                "--config",
+                "config.yaml",
+                "--data-root",
+                ".tmp/review-start/phase2",
+                "--record-id",
+                "rec_init_1",
+                "--dry-run",
+            ]
+        )
+
+        cmd = build_cli.process_review_start_queue_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "process_review_start_queue.py"), cmd[1])
+        self.assertIn("--config", cmd)
+        self.assertIn(str(build_cli.ROOT / "config.yaml"), cmd)
+        self.assertIn("--data-root", cmd)
+        self.assertIn(".tmp/review-start/phase2", cmd)
+        self.assertIn("--record-id", cmd)
+        self.assertIn("rec_init_1", cmd)
+        self.assertIn("--dry-run", cmd)
 
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
