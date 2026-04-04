@@ -18,6 +18,9 @@ concurrency:
   group: feishu-build-queue
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   process-queue:
     runs-on: ubuntu-latest
@@ -39,6 +42,9 @@ jobs:
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -118,6 +124,35 @@ jobs:
           fi
           "${cmd[@]}"
 
+      - name: Build latest publish HTML site
+        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' }}
+        run: python tools/process_docs/build_publish_latest_site.py
+
+      - name: Install Vercel CLI
+        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel production settings
+        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Build Vercel production output
+        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Deploy latest publish HTML to Vercel
+        id: deploy
+        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
+        shell: bash
+        run: |
+          publish_url="$(vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}")"
+          echo "publish_url=${publish_url}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish Vercel summary
+        if: ${{ steps.deploy.outputs.publish_url != '' }}
+        run: |
+          echo "Latest publish HTML: ${{ steps.deploy.outputs.publish_url }}" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload built docs artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -125,6 +160,8 @@ jobs:
           name: feishu-build-queue-output
           path: |
             docs/_build
+            reports/releases
+            site/publish-latest/dist
             data/phase2/snapshot_manifest.json
             data/phase2/row_key_mapping.csv
           if-no-files-found: ignore
