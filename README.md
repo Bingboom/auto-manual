@@ -41,13 +41,13 @@ The primary entrypoint is [`build.py`](build.py).
 Typical review-first flow:
 
 ```bash
-python3 build.py sync-data --config config.yaml --data-root data/phase2
+python3 build.py sync-data --config config.us.yaml --data-root data/phase2
 python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
 python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py check --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
-python3 build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2
-python3 build.py process-build-queue --config config.yaml --data-root data/phase2
+python3 build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2
+python3 build.py process-build-queue --config config.us.yaml --data-root data/phase2
 python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US --data-root data/phase2
 ```
 
@@ -56,7 +56,7 @@ Review sync note:
 - once a review bundle exists, `check`, `html`, `word`, `pdf`, and `publish` automatically prepare the runtime bundle and run the same parameter sync before export
 - that auto sync now refreshes parameter-driven lines in review-backed RST pages without overwriting the rest of the manual review prose
 - use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
-- US English review content is now strictly lang-scoped under `docs/_review/<model>/US/en/`; the old unscoped `docs/_review/<model>/US/page/**` convention is retired
+- single-language US review bundles from `config.us-en.yaml` still live under `docs/_review/<model>/US/en/`; the merged US queue/review flow driven by `config.us.yaml` now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`
 
 Phase2 snapshot note:
 
@@ -65,18 +65,19 @@ Phase2 snapshot note:
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain tokens such as `front.label` when the source table stores markdown-link wrappers like `[front.label](front.label)`
 - `sync-data` now resolves full field names through Base field metadata before writing CSVs, so long columns such as `Row_label_footnote_refs` are not lost when `lark-cli` abbreviates display headers in `base +record-list`
 - when `spec_master` is part of the sync, `sync-data` also regenerates [`data/phase2/row_key_mapping.csv`](data/phase2/row_key_mapping.csv) from the synced snapshot while preserving any existing manual `Row_key` / `Remark` entries
-- `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the fastest preflight on a new machine; it now reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API call
+- `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the fastest preflight on a new machine; it now reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API call
 - on Windows, the default `sync.phase2.cli_bin: lark-cli` now resolves to the installed `lark-cli` shim automatically, so no config override is required just to run `sync-data`
-- `python build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2` consumes the `sync.phase2.review_init` table, finds rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, syncs a fresh phase2 snapshot, creates or reuses a review branch, seeds `docs/_review`, pushes the branch, opens or reuses a PR, then writes back `Git_ref`, `PR_url`, sets `Review_status=InReview`, and clears `是否进入Review`
+- `python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2` consumes the `sync.phase2.review_init` table, finds rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, groups matching rows by `Document_Key`, syncs a fresh phase2 snapshot, creates or reuses one review branch, seeds `docs/_review`, pushes the branch, opens or reuses a PR, then writes back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that `Document_Key` group
 - review-init duplicate guard: review start is now treated as one-time per `Document_Key` target. If `origin/main` already contains committed content under `docs/_review/<model>/<region>/`, the worker refuses duplicate seeding and writes back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
 - [`.github/workflows/feishu-start-review.yml`](.github/workflows/feishu-start-review.yml) is the GitHub-hosted review-init worker; it needs `FEISHU_PHASE2_REVIEW_INIT_TABLE_ID` and `FEISHU_PHASE2_REVIEW_INIT_VIEW_ID`, and it is the recommended way to let a Feishu table create the review branch + PR automatically
-- `python build.py process-build-queue --config config.yaml --data-root data/phase2` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, builds pending `Document_Key + Lang` rows where `是否触发文档构建 = Y`, uploads the generated Word file to Feishu Drive, then moves that uploaded file into the current wiki knowledge-base container before writing the local Word path back to `Document directory`, the wiki URL back to `Document link`, a timestamped status string to `构建结果`, and the trigger back to `已构建`
+- `python build.py process-build-queue --config config.us.yaml --data-root data/phase2` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, resolves the build config from `Document_Key` first when that config enables `build.queue_by_document_key`, builds the generated Word file, uploads it to Feishu Drive, then moves that uploaded file into the current wiki knowledge-base container before writing the local Word path back to `Document directory`, the wiki URL back to `Document link`, a timestamped status string to `构建结果`, and the trigger back to `已构建`
+- the merged US `config.us.yaml` bundle now exports one `JE-1000F / US` Word that contains `en`, `fr`, and `es` sections together; `Spec_Master.Source_lang` / `*_source` content is required, and CSV-driven non-source language fields may be blank because lookup falls back to source-language text automatically
 - when the queue row includes `Version`, Draft queue DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
 - when the queue row includes `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
 - Draft queue outputs stay staged under the current repo [`docs/_build/`](docs/_build) tree before upload/writeback
 - Publish queue outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting
 - [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1) is the Windows-friendly queue wrapper for automation: it restores the local Node/npm path plus `FEISHU_PHASE2_*` user env vars, runs `build.py process-build-queue`, and writes logs into [`.tmp/process-build-queue/`](.tmp/process-build-queue)
-- `python build.py listen-build-queue --config config.yaml --data-root data/phase2` starts the push-based queue listener: it auto-subscribes the current `Document_link` base to docs events with the current user identity, waits on the Feishu long connection with the same user identity, and triggers `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
+- `python build.py listen-build-queue --config config.us.yaml --data-root data/phase2` starts the push-based queue listener: it auto-subscribes the current `Document_link` base to docs events with the current user identity, waits on the Feishu long connection with the same user identity, and triggers `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
 - [`scripts/listen_build_queue.ps1`](scripts/listen_build_queue.ps1) is the Windows-friendly listener wrapper; on this machine it is launched from the Windows Startup folder so the listener starts after login and writes logs into [`.tmp/build-queue-listener/`](.tmp/build-queue-listener)
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the remote GitHub Actions worker: after merge to the default branch and after repo secrets are configured, it runs every 5 minutes plus `workflow_dispatch`, uses `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, then consumes the `Document_link` queue without relying on any local machine
 - for remote immediate builds after merge to `main`, create a Feishu workflow with the combined condition `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml`; the queue still only processes rows whose trigger field is `Y`, and the checkbox acts as an accelerator instead of a standalone build request
@@ -221,3 +222,4 @@ When command behavior, workflow ownership, or architecture boundaries change:
 - update the owning document in the same change
 - avoid restating the same rules in multiple docs
 - keep history in [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md), not in the current guides
+

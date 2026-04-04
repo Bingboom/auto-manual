@@ -665,7 +665,7 @@ Current rule:
 
 Use the shared family configs:
 
-- `config.yaml` for US family flow
+- `config.us.yaml` for US family flow
 - `config.ja.yaml` for JP family flow
 
 Do not create one config per model just because the model changed.
@@ -691,7 +691,7 @@ Logic or data validation:
 
 ```powershell
 python -m unittest
-python build.py check --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
 ```
 
@@ -704,7 +704,7 @@ python tools/export_spec_master_row_key_mapping.py
 Current output:
 
 - [`data/phase1/row_key_mapping.csv`](../data/phase1/row_key_mapping.csv)
-- [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) after `python build.py sync-data --config config.yaml --data-root data/phase2`
+- [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) after `python build.py sync-data --config config.us.yaml --data-root data/phase2`
 - [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
 - `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source + Line_order -> Row_key`
 - the CSV keeps `Row_label_source`, `Line_order`, `Row_key`, and `Remark`
@@ -725,7 +725,7 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 Diff report:
 
 ```powershell
-python build.py diff-report --config config.yaml --model JE-1000F --region US
+python build.py diff-report --config config.us.yaml --model JE-1000F --region US
 ```
 
 Use `review --refresh-review` only if you intentionally want to reseed the whole review bundle.
@@ -826,3 +826,4 @@ This is the current maintainable path:
 - sync review
 - publish from review
 - keep the release manifest with the exported outputs
+
