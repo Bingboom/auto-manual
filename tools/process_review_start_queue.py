@@ -48,6 +48,7 @@ VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
 INITIAL_RESULT_FIELD = "Initial_result"
 REMARKS_FIELD = "Remarks"
+REVIEW_START_ACTION_LABEL = "Start Review/Seed Draft"
 
 REVIEW_STATUS_NOT_STARTED = "NotStarted"
 REVIEW_STATUS_IN_REVIEW = "InReview"
@@ -844,7 +845,7 @@ def process_review_start_queue(
                 build_family=group_build_family,
             )
             print(
-                "[review-start] DRY-RUN "
+                f"[review-start] {REVIEW_START_ACTION_LABEL} DRY-RUN "
                 + json.dumps(
                     {
                         "record_ids": [item.record_id for item in group],
@@ -858,6 +859,7 @@ def process_review_start_queue(
                         "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
                         "git_ref": generate_review_branch_name(record),
+                        "workflow_action": REVIEW_START_ACTION_LABEL,
                         "config": str(build_config_path),
                         "data_root": snapshot_data_root,
                     },
@@ -866,7 +868,7 @@ def process_review_start_queue(
             )
         return 0
 
-    print("[review-start] Syncing latest phase2 snapshot before starting review branches.")
+    print(f"[review-start] Syncing latest phase2 snapshot before {REVIEW_START_ACTION_LABEL.lower()}.")
     sync_phase2_snapshot_before_review_start(config_path=config_path, data_root=snapshot_data_root)
 
     repository = str(os.environ.get("GITHUB_REPOSITORY", "")).strip()
@@ -905,7 +907,7 @@ def process_review_start_queue(
                     )
                 blocked += 1
                 print(
-                    "[review-start] BLOCKED "
+                    f"[review-start] {REVIEW_START_ACTION_LABEL} BLOCKED "
                     f"{review_start_record_key(record)}: review root already exists in origin/{base_ref} "
                     f"for {model}/{region} family={group_build_family or 'legacy'}; updated {len(group)} row(s)"
                 )
@@ -928,23 +930,26 @@ def process_review_start_queue(
                 )
             processed += 1
             print(
-                f"[review-start] Updated {review_start_record_key(record)}: "
+                f"[review-start] {REVIEW_START_ACTION_LABEL} updated {review_start_record_key(record)}: "
                 f"family={group_build_family or 'legacy'} git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
             )
         except Exception as exc:
             failures.append(f"{review_start_record_key(record)}: {exc}")
             print(
-                f"[review-start] FAILURE {review_start_record_key(record)} "
+                f"[review-start] {REVIEW_START_ACTION_LABEL} FAILURE {review_start_record_key(record)} "
                 f"family={review_start_group_build_family(group) or 'legacy'}: {exc}",
                 file=sys.stderr,
             )
 
-    print(f"[review-start] Summary: processed={processed} blocked={blocked} failed={len(failures)}")
+    print(
+        f"[review-start] {REVIEW_START_ACTION_LABEL} summary: "
+        f"processed={processed} blocked={blocked} failed={len(failures)}"
+    )
     return 1 if failures else 0
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Review-init rows and seed review branches/PRs.")
+    ap = argparse.ArgumentParser(description="Consume Review-init rows and start review / seed draft branches and PRs.")
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override phase2 snapshot root for review seeding")
     ap.add_argument("--dry-run", action="store_true", help="List pending rows without creating branches or PRs")

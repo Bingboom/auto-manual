@@ -19,6 +19,7 @@ SPEC_NOTES_FILE = "Spec_Notes.csv"
 SPEC_TITLES_FILE = "spec_titles.csv"
 ROW_KEY_MAPPING_FILE = "row_key_mapping.csv"
 PAGE_REGISTRY_FILE = "page_registry.csv"
+SYMBOLS_BLOCKS_FILE = "symbols_blocks.csv"
 
 
 @dataclass(frozen=True)
@@ -92,7 +93,101 @@ def _resolve_cli_data_root(
     return path if path.is_absolute() else (repo_root / path)
 
 
-def resolve_structured_data_dir(
+def _phase2_candidate_export_root(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+) -> Path:
+    sync_cfg = _sync_phase2_cfg(cfg)
+    configured_export_root = resolve_optional_repo_path(
+        repo_root,
+        sync_cfg.get("export_root"),
+        model=model,
+        region=region,
+    )
+    if configured_export_root is not None:
+        return configured_export_root
+    return repo_root / PHASE2_DEFAULT_EXPORT_DIR
+
+
+def _phase2_candidate_manifest_path(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+) -> Path:
+    sync_cfg = _sync_phase2_cfg(cfg)
+    configured = resolve_optional_repo_path(
+        repo_root,
+        sync_cfg.get("manifest_path"),
+        model=model,
+        region=region,
+    )
+    if configured is not None:
+        return configured
+    return _phase2_candidate_export_root(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    ) / SNAPSHOT_MANIFEST_FILE
+
+
+def _phase2_snapshot_required_files(export_root: Path) -> tuple[Path, ...]:
+    return (
+        export_root / SPEC_MASTER_FILE,
+        export_root / SPEC_FOOTNOTES_FILE,
+        export_root / SPEC_NOTES_FILE,
+        export_root / SPEC_TITLES_FILE,
+        export_root / ROW_KEY_MAPPING_FILE,
+        export_root / SYMBOLS_BLOCKS_FILE,
+    )
+
+
+def _repo_phase1_root(repo_root: Path) -> Path:
+    return (repo_root / STRUCTURED_DATA_DEFAULT_DIR).resolve(strict=False)
+
+
+def _should_prefer_phase2_root(*, configured: Path | None, repo_root: Path) -> bool:
+    if configured is None:
+        return True
+    return configured.resolve(strict=False) == _repo_phase1_root(repo_root)
+
+
+def _should_prefer_phase2_file(*, configured: Path | None, repo_root: Path, default_file_name: str) -> bool:
+    if configured is None:
+        return True
+    return configured.resolve(strict=False) == (_repo_phase1_root(repo_root) / default_file_name).resolve(strict=False)
+
+
+def phase2_snapshot_is_valid(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+) -> bool:
+    export_root = _phase2_candidate_export_root(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    )
+    manifest_path = _phase2_candidate_manifest_path(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    )
+    if not manifest_path.exists():
+        return False
+    return all(path.exists() for path in _phase2_snapshot_required_files(export_root))
+
+
+def resolve_active_data_root(
     cfg: dict[str, Any],
     *,
     repo_root: Path,
@@ -111,9 +206,39 @@ def resolve_structured_data_dir(
         model=model,
         region=region,
     )
+
+    if phase2_snapshot_is_valid(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    ) and _should_prefer_phase2_root(configured=configured, repo_root=repo_root):
+        return _phase2_candidate_export_root(
+            cfg,
+            repo_root=repo_root,
+            model=model,
+            region=region,
+        )
     if configured is not None:
         return configured
     return repo_root / STRUCTURED_DATA_DEFAULT_DIR
+
+
+def resolve_structured_data_dir(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    data_root: str | Path | None = None,
+    model: str | None = None,
+    region: str | None = None,
+) -> Path:
+    return resolve_active_data_root(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+        model=model,
+        region=region,
+    )
 
 
 def resolve_page_registry_csv(
@@ -154,9 +279,23 @@ def resolve_page_blocks_dir(
         model=model,
         region=region,
     )
+
+    if phase2_snapshot_is_valid(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    ) and _should_prefer_phase2_root(configured=configured, repo_root=repo_root):
+        return resolve_active_data_root(
+            cfg,
+            repo_root=repo_root,
+            data_root=None,
+            model=model,
+            region=region,
+        )
     if configured is not None:
         return configured
-    return resolve_structured_data_dir(
+    return resolve_active_data_root(
         cfg,
         repo_root=repo_root,
         data_root=None,
@@ -186,10 +325,29 @@ def _resolve_structured_file_path(
         model=model,
         region=region,
     )
+
+    if phase2_snapshot_is_valid(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    ) and _should_prefer_phase2_file(
+        configured=configured,
+        repo_root=repo_root,
+        default_file_name=default_file_name,
+    ):
+        structured_dir = resolve_active_data_root(
+            cfg,
+            repo_root=repo_root,
+            data_root=None,
+            model=model,
+            region=region,
+        )
+        return structured_dir / default_file_name
     if configured is not None:
         return configured
 
-    structured_dir = resolve_structured_data_dir(
+    structured_dir = resolve_active_data_root(
         cfg,
         repo_root=repo_root,
         data_root=None,
@@ -287,26 +445,12 @@ def resolve_phase2_export_root(
     cli_root = _resolve_cli_data_root(repo_root, data_root=data_root)
     if cli_root is not None:
         return cli_root
-
-    sync_cfg = _sync_phase2_cfg(cfg)
-    configured_export_root = resolve_optional_repo_path(
-        repo_root,
-        sync_cfg.get("export_root"),
+    return _phase2_candidate_export_root(
+        cfg,
+        repo_root=repo_root,
         model=model,
         region=region,
     )
-    if configured_export_root is not None:
-        return configured_export_root
-
-    structured_dir = resolve_optional_repo_path(
-        repo_root,
-        _paths_cfg(cfg).get("structured_data_dir"),
-        model=model,
-        region=region,
-    )
-    if structured_dir is not None:
-        return structured_dir
-    return repo_root / PHASE2_DEFAULT_EXPORT_DIR
 
 
 def resolve_phase2_manifest_path(
@@ -317,19 +461,12 @@ def resolve_phase2_manifest_path(
     model: str | None = None,
     region: str | None = None,
 ) -> Path:
-    sync_cfg = _sync_phase2_cfg(cfg)
-    configured = resolve_optional_repo_path(
-        repo_root,
-        sync_cfg.get("manifest_path"),
+    cli_root = _resolve_cli_data_root(repo_root, data_root=data_root)
+    if cli_root is not None:
+        return cli_root / SNAPSHOT_MANIFEST_FILE
+    return _phase2_candidate_manifest_path(
+        cfg,
+        repo_root=repo_root,
         model=model,
         region=region,
     )
-    if configured is not None:
-        return configured
-    return resolve_phase2_export_root(
-        cfg,
-        repo_root=repo_root,
-        data_root=data_root,
-        model=model,
-        region=region,
-    ) / SNAPSHOT_MANIFEST_FILE

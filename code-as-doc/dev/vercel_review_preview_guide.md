@@ -44,7 +44,7 @@ Current Publish worker:
 
 After a successful queue-driven Publish row, it now:
 
-1. runs `python build.py process-build-queue --config config.us.yaml --data-root data/phase2 --doc-phase publish`
+1. runs `python build.py process-build-queue --config config.us.yaml --doc-phase publish`
 2. stages the DOCX and latest HTML snapshot under `reports/releases/...`
 3. builds `site/publish-latest/dist/`
 4. runs `vercel pull`
@@ -106,4 +106,3 @@ When you reason about hosted output, keep this split:
 Do not point Vercel back at `site/review-preview/dist`.
 Do not treat Vercel as the source of truth for packaging.
 Let GitHub Actions prepare the static publish site first, then let Vercel host it.
-

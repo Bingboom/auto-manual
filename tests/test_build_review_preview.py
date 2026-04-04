@@ -139,12 +139,63 @@ class TestBuildReviewPreview(unittest.TestCase):
             args,
             target,
             requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability={("JE-1000F", "US", "es")},
         )
 
         self.assertEqual(build_review_preview.resolve_path("config.us-es.yaml"), spec["config_path"])
         self.assertEqual("review", spec["source_mode"])
         self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_build_spec_for_target_should_fallback_to_runtime_for_secondary_language_without_review_baseline(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
+            family="US",
+            language="fr",
+            config="config.us-fr.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(
+            args,
+            target,
+            requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability=set(),
+        )
+
+        self.assertEqual("runtime", spec["source_mode"])
+        self.assertEqual("runtime", spec["source_label"])
+
+    def test_target_has_review_bundle_should_accept_family_shared_review_content_from_availability_map(self) -> None:
+        target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
+            family="US",
+            language="fr",
+            config="config.us-fr.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        self.assertTrue(
+            build_review_preview.target_has_review_bundle(
+                target,
+                review_availability={("JE-1000F", "US", None)},
+            )
+        )
 
     def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
         args = argparse.Namespace(

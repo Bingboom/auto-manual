@@ -86,7 +86,10 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertEqual("docs/_build/JE-1000F/US/en/rst", manifest["runtime_bundle_dir"])
             self.assertEqual("Jackery Explorer 1000 Pro", manifest["product_name"])
             self.assertEqual("data/phase1/Spec_Notes.csv", manifest["spec_notes_csv"])
-            self.assertEqual("reports/releases/JE-1000F/US/20260315T100000Z.json", json_path.relative_to(root).as_posix())
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/manifests/20260315T100000Z.json",
+                json_path.relative_to(root).as_posix(),
+            )
             self.assertTrue(manifest["word_output"]["exists"])
             self.assertTrue(manifest["html_output"]["exists"])
             self.assertTrue(manifest["pdf_output"]["exists"])

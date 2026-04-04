@@ -23,6 +23,13 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.release_contract import (  # noqa: E402
+    normalize_release_token,
+    release_lang_for_config,
+    release_latest_dir_for_target,
+    release_root_for_target,
+    release_version_dir_for_target,
+)
 from tools.sync_data import (  # noqa: E402
     LarkCliSource,
     _cli_bin,
@@ -57,6 +64,8 @@ SUCCESS_PREFIX = "SUCCESS"
 FAILED_PREFIX = "FAILED"
 TRIGGER_VALUES = {"1", "true", "y", "yes"}
 DONE_TRIGGER_VALUE = "已构建"
+DRAFT_PACKAGE_ACTION_LABEL = "Build Draft Package"
+PUBLISH_ACTION_LABEL = "Publish"
 
 
 @dataclass(frozen=True)
@@ -243,14 +252,23 @@ def _is_trigger_requested(value: Any) -> bool:
 
 
 def normalize_doc_phase(value: Any) -> str | None:
-    text = _scalar_text(value).strip().lower()
+    text = re.sub(r"[^a-z0-9]+", " ", _scalar_text(value).strip().lower()).strip()
     if not text:
         return None
-    if text in {"draft", "review", "preview"}:
+    if text in {"draft", "review", "preview", "draft package", "build draft package"}:
         return "draft"
     if text in {"publish", "published"}:
         return "publish"
-    raise RuntimeError("Doc_phase must be Draft or Publish")
+    raise RuntimeError("Doc_phase must map to Build Draft Package or Publish")
+
+
+def workflow_action_label(doc_phase: str | None) -> str | None:
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    if normalized_doc_phase == "draft":
+        return DRAFT_PACKAGE_ACTION_LABEL
+    if normalized_doc_phase == "publish":
+        return PUBLISH_ACTION_LABEL
+    return None
 
 
 def pending_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
@@ -604,8 +622,7 @@ def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region:
 
 
 def _normalize_version_for_filename(version: str) -> str:
-    token = re.sub(r"[^A-Za-z0-9._-]+", "-", (version or "").strip())
-    return token.strip("-")
+    return normalize_release_token(version)
 
 
 def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
@@ -634,25 +651,38 @@ def _repo_relative(path: Path) -> str:
         return path.resolve(strict=False).as_posix()
 
 
-def _release_lang_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> str:
-    loaded_cfg = cfg if cfg is not None else load_config(config_path)
-    languages = _build_languages(loaded_cfg)
-    return languages[0] if languages else "default"
-
-
 def _publish_release_root_for_target(*, config_path: Path, model: str, region: str) -> Path:
     cfg = load_config(config_path)
-    lang = _release_lang_for_config(config_path, cfg)
-    return ROOT / "reports" / "releases" / model / region / lang
+    return release_root_for_target(
+        repo_root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        cfg=cfg,
+    )
 
 
 def _publish_release_version_dir_for_target(*, config_path: Path, model: str, region: str, version: str) -> Path:
-    version_token = _normalize_version_for_filename(version) or "unversioned"
-    return _publish_release_root_for_target(config_path=config_path, model=model, region=region) / "versions" / version_token
+    cfg = load_config(config_path)
+    return release_version_dir_for_target(
+        repo_root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        version=version,
+        cfg=cfg,
+    )
 
 
 def _publish_release_latest_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
-    return _publish_release_root_for_target(config_path=config_path, model=model, region=region) / "latest"
+    cfg = load_config(config_path)
+    return release_latest_dir_for_target(
+        repo_root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        cfg=cfg,
+    )
 
 
 def _slug_ref_token(value: str) -> str:
@@ -1160,7 +1190,7 @@ def write_publish_release_metadata(
     payload = {
         "model": model,
         "region": region,
-        "lang": _release_lang_for_config(config_path),
+        "lang": release_lang_for_config(config_path),
         "version": version,
         "git_ref": git_ref.strip(),
         "doc_phase": "publish",
@@ -1334,6 +1364,7 @@ def build_success_fields(
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
     normalized_doc_phase = normalize_doc_phase(doc_phase)
+    action_label = workflow_action_label(doc_phase)
     return {
         RESULT_FIELD: " | ".join(
             part
@@ -1341,6 +1372,7 @@ def build_success_fields(
                 SUCCESS_PREFIX,
                 f"version={version}" if version else "",
                 f"doc_phase={normalized_doc_phase}" if normalized_doc_phase else "",
+                f"workflow_action={action_label}" if action_label else "",
                 f"built_at={built_at.isoformat(timespec='seconds')}",
             )
             if part
@@ -1360,6 +1392,7 @@ def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
 
 def build_failure_fields(*, version: str, message: str, doc_phase: str | None = None) -> dict[str, Any]:
     normalized_doc_phase = normalize_doc_phase(doc_phase)
+    action_label = workflow_action_label(doc_phase)
     return {
         RESULT_FIELD: " | ".join(
             part
@@ -1367,6 +1400,7 @@ def build_failure_fields(*, version: str, message: str, doc_phase: str | None = 
                 FAILED_PREFIX,
                 f"version={version}" if version else "",
                 f"doc_phase={normalized_doc_phase}" if normalized_doc_phase else "",
+                f"workflow_action={action_label}" if action_label else "",
                 message.strip(),
             )
             if part
@@ -1460,6 +1494,7 @@ def process_build_queue(
                         "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
                         "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
+                        "workflow_action": workflow_action_label(record.doc_phase) or "Legacy/Unspecified",
                         "git_ref": record.git_ref,
                         "config": str(resolved_config_path),
                         "data_root": data_root,
@@ -1600,12 +1635,15 @@ def process_build_queue(
                 )
             processed += len(group)
             print(
-                "[build-queue] Updated "
+                f"[build-queue] {workflow_action_label(effective_doc_phase) or 'Updated'} "
                 f"{queue_record_key(record)} ({len(group)} row(s)): {word_output_path} -> {document_link_url}"
             )
         except Exception as exc:
             message = str(exc).strip()
-            failures.append(f"{queue_record_key(record)} ({len(group)} row(s)): {message}")
+            failures.append(
+                f"{workflow_action_label(record.doc_phase) or 'Queue task'} "
+                f"{queue_record_key(record)} ({len(group)} row(s)): {message}"
+            )
             try:
                 if drive_url:
                     print(
@@ -1640,11 +1678,16 @@ def process_build_queue(
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Document_link build tasks and write results back to Feishu.")
+    ap = argparse.ArgumentParser(description="Consume Document_link build tasks and write draft-package or publish results back to Feishu.")
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--dry-run", action="store_true", help="List pending tasks without building or writing back")
-    ap.add_argument("--doc-phase", choices=("draft", "publish"), default=None, help="Only consume queue rows for one Doc_phase")
+    ap.add_argument(
+        "--doc-phase",
+        choices=("draft", "publish"),
+        default=None,
+        help="Only consume queue rows for one normalized Doc_phase (Build Draft Package or Publish)",
+    )
     ap.add_argument("--record-id", default=None, help="Only consume one Document_link record_id")
     return ap.parse_args(argv)
 
@@ -1678,4 +1721,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
