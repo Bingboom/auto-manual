@@ -86,7 +86,8 @@ The manual system now has four layers, but they are used at different stages.
   - `python build.py process-build-queue --config config.yaml --data-root data/phase2` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Document_Key + Lang`, builds the local Word file, uploads it to Feishu Drive, moves the uploaded file into the current wiki knowledge-base container, writes the local path into `Document directory`, writes the moved wiki URL into `Document link`, writes a timestamped status into `构建结果`, and flips the trigger back to `已构建` on success
    - if that `Document_link` row has a `Version`, Draft queue DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`; for example `manual_je1000f_us_en_publish_0.2.docx`
    - if that `Document_link` row also has `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-   - after a branch build completes, the staged DOCX is copied back under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback so the local output path and the uploaded file stay aligned
+   - Draft queue outputs stay staged under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback
+   - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
    - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
    - `python build.py listen-build-queue --config config.yaml --data-root data/phase2` is the push-based immediate-build listener: after the Feishu app has the `drive.file.bitable_record_changed_v1` event enabled, it subscribes the table and keeps the long connection on the same current user identity, then triggers `process-build-queue` immediately when `Document_link` rows are checked in `是否立即构建`
    - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) is the Windows wrapper for that listener; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
@@ -135,14 +136,15 @@ Rules:
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
-- when that workspace is published through Vercel, let GitHub Actions build the package first and let Vercel host the generated static output only
+- when that workspace is packaged for review sharing, let GitHub Actions build the package first and keep it as an artifact; Vercel is reserved for the latest publish HTML only
+- Read the Docs is now reserved for one minimal public runtime HTML target, `JE-1000F / US / en`, built from [`.readthedocs.yaml`](../.readthedocs.yaml); it does not replace review-preview packaging or the Vercel latest-publish flow
 - designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
 - families without `_review` content are hidden, so the preview only shows available families
 - the packaged `changes/index.html` now opens a family hub first, and each family hub fans out to model-specific change pages
 - if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
-- after that workflow finishes, Vercel will show the refreshed review preview for that round; you do not need to rebuild the site manually in Vercel
+- after that workflow finishes, download the uploaded artifact when you need the packaged review workspace; it is no longer pushed to Vercel automatically
 - if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
 
 ---
@@ -193,7 +195,7 @@ Important:
 - for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first, then pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, or `publish`.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
-- when `Document_link.Doc_phase = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish DOCX is built from that same branch instead of drifting back to `main`.
+- when `Document_link.Doc_phase = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish DOCX and the latest publish HTML are both built from that same branch instead of drifting back to `main`.
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
@@ -416,7 +418,7 @@ python build.py all
 Config scope rule:
 
 - [`config.yaml`](../config.yaml): shared EN / US template-family config
-- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 - the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US` and `JE-1000F / JP`
@@ -462,6 +464,7 @@ PR preview note:
 - requires an existing `_review/<model>/<region>/`
 - exports revision reports to [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking) by default
 - writes a release manifest to [`reports/releases/<model>/<region>/`](../reports/releases)
+- queue-driven `Doc_phase=Publish` additionally stages the formal DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) and mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel
 
 `preview` behavior:
 
@@ -469,6 +472,12 @@ PR preview note:
 - `--page` must match one exact page selector
 - writes to [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build)
 - does not rewrite root [`docs/index.rst`](../docs/index.rst)
+
+Minimal RTD behavior:
+
+- RTD builds the default public runtime HTML target from `config.us-en.yaml --model JE-1000F --region US --source runtime`
+- the RTD config first materializes [`docs/_build/JE-1000F/US/en/rst/`](../docs/_build) without rewriting the repo-root [`docs/index.rst`](../docs/index.rst), then renders that generated bundle with Sphinx
+- RTD is not the release authority for formal Publish outputs; queue-driven Publish and Vercel latest-publish remain the release-facing path
 
 `fast` behavior:
 
@@ -487,7 +496,7 @@ PR preview note:
   - cover pages generated from title/product identity
 - generated cover pages still feed PDF/LaTeX output, but HTML now opens directly on the first manual content section instead of a blank cover-style landing screen
 - manual HTML preview also suppresses most default Furo sidebar / TOC chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from the manual headings, and renders generic headings, copy width, figure presentation, ordinary table spacing, and the multilingual preface notice in a restrained neutral manual-reader style while keeping dedicated component layouts such as `SPECIFICATIONS`, so the result feels like a manual reader instead of a documentation site
-- review-preview / Vercel manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
+- review-preview workspace manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
 
 Equivalent lower-level examples:
 
