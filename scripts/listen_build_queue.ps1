@@ -40,7 +40,7 @@ $command = @(
     (Join-Path $repoRoot "build.py"),
     "listen-build-queue",
     "--config",
-    "config.yaml",
+    "config.us.yaml",
     "--data-root",
     "data/phase2"
 )
@@ -53,3 +53,4 @@ $header | Tee-Object -FilePath $latestLogPath | Tee-Object -FilePath $dailyLogPa
 
 & $pythonExe @command 2>&1 | Tee-Object -FilePath $latestLogPath -Append | Tee-Object -FilePath $dailyLogPath -Append
 exit $LASTEXITCODE
+

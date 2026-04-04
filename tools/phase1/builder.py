@@ -317,7 +317,7 @@ class Phase1Builder:
                 raise FileNotFoundError(
                     "Spec master source not found. "
                     f"Expected at: {spec_master_csv}. "
-                    "Configure paths.spec_master_csv in config.yaml."
+                    "Configure paths.spec_master_csv in config.us.yaml."
                 )
 
             rows = _read_csv(spec_master_csv)
@@ -448,3 +448,4 @@ def _main() -> None:
 
 if __name__ == "__main__":
     _main()
+

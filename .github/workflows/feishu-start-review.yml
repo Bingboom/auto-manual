@@ -116,7 +116,7 @@ jobs:
       - name: Process review-start queue
         shell: bash
         run: |
-          cmd=(python build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2)
+          cmd=(python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2)
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi
@@ -132,3 +132,4 @@ jobs:
             .tmp/review-start/phase2/snapshot_manifest.json
             .tmp/review-start/phase2/row_key_mapping.csv
           if-no-files-found: ignore
+

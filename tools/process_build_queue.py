@@ -334,24 +334,39 @@ def _build_languages(cfg: dict[str, Any]) -> list[str]:
     return [str(item).strip().lower() for item in langs if str(item).strip()] or ["en"]
 
 
+def _queue_by_document_key(cfg: dict[str, Any]) -> bool:
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    return bool(build_cfg.get("queue_by_document_key"))
+
+
 def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str) -> int | None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     default_region = str(build_cfg.get("default_region") or "").strip().upper()
     languages = _build_languages(cfg)
     primary_lang = languages[0] if languages else ""
-    if default_region != region.upper() or primary_lang != lang.lower():
+    normalized_lang = lang.lower()
+    if default_region != region.upper():
         return None
+    queue_by_document_key = _queue_by_document_key(cfg)
+    if queue_by_document_key:
+        if normalized_lang not in languages:
+            return None
+        score = 100
+    else:
+        if primary_lang != normalized_lang:
+            return None
+        score = 50
 
-    score = 0
     file_name = config_path.name.lower()
     if region.lower() in file_name:
         score += 4
-    if lang.lower() in file_name:
+    if normalized_lang in file_name:
         score += 4
     if bool(build_cfg.get("include_lang_in_output_path")):
         score += 2
-    if file_name != "config.yaml":
+    if file_name != "config.us.yaml":
         score += 1
     return score
 
@@ -1459,3 +1474,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

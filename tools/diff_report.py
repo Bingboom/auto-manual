@@ -1804,7 +1804,7 @@ def generate_diff_report(
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Export git diff under a tracked docs subtree to CSV/HTML.")
     ap.add_argument("--tracked-root", default="docs/_review/JE-1000F", help="Tracked subtree root")
-    ap.add_argument("--config", default="config.yaml", help="Config YAML path for resolving source CSV metadata")
+    ap.add_argument("--config", default="config.us.yaml", help="Config YAML path for resolving source CSV metadata")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref")
@@ -1884,3 +1884,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

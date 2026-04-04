@@ -36,17 +36,17 @@ Cualquier cambio o modificación no aprobado expresamente por el cesionario de e
    :header-rows: 0
    :widths: 25 25 25 25
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit.png
+   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Imagen de la estación de energía.
           :width: 120px
 
        |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging.png
+     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
           :alt: Imagen del cable de carga de CA.
           :width: 120px
 
        **Cable de carga de CA**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon.png
+     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
           :alt: Imagen del manual del usuario.
           :width: 120px
 

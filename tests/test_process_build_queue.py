@@ -112,6 +112,46 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(root / "config.us-en.yaml", config_path)
 
+    def test_resolve_config_path_for_task_should_prefer_document_key_config_when_enabled(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            for name in ("config.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
+                (root / name).write_text("build: {}\n", encoding="utf-8")
+
+            configs = {
+                "config.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["en", "fr", "es"],
+                        "include_lang_in_output_path": True,
+                        "queue_by_document_key": True,
+                    }
+                },
+                "config.us-en.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+                "config.us-fr.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["fr"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="fr")
+
+        self.assertEqual(root / "config.yaml", config_path)
+
     def test_build_success_fields_should_write_local_path_and_drive_url_and_clear_trigger(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             word_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"

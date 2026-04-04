@@ -40,7 +40,7 @@ $command = @(
     (Join-Path $repoRoot "build.py"),
     "process-build-queue",
     "--config",
-    "config.yaml",
+    "config.us.yaml",
     "--data-root",
     "data/phase2"
 )
@@ -57,3 +57,4 @@ if ($output) {
     $output | Tee-Object -FilePath $latestLogPath -Append | Tee-Object -FilePath $dailyLogPath -Append
 }
 exit $exitCode
+

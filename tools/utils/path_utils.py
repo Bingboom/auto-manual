@@ -17,7 +17,7 @@ class Paths:
 
     @property
     def config_yaml(self) -> Path:
-        return self.root / "config.yaml"
+        return self.root / "config.us.yaml"
 
     @property
     def docs_dir(self) -> Path:
@@ -64,3 +64,4 @@ class Paths:
 
 def get_paths() -> Paths:
     return Paths(root=repo_root())
+
