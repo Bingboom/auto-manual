@@ -39,6 +39,18 @@ def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | Non
     return (review_dir / "index.rst").exists() and (review_dir / "page").is_dir()
 
 
+def review_content_exists(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> bool:
+    if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=lang):
+        return True
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    return (
+        (review_dir / "index.rst").exists()
+        or (review_dir / "page").is_dir()
+        or (review_dir / "generated").is_dir()
+        or (review_dir / "overrides").is_dir()
+    )
+
+
 def _overlay_file_tree(src_dir: Path, dst_dir: Path, pattern: str = "*") -> None:
     if not src_dir.exists():
         return
@@ -90,6 +102,47 @@ def overlay_review_onto_bundle(
         _overlay_override_assets(overrides_src, bundle_dir)
 
     return review_dir
+
+
+def overlay_review_content_onto_bundle(
+    *,
+    bundle_dir: Path,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None = None,
+) -> Path | None:
+    review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    if not review_content_exists(docs_dir=docs_dir, model=model, region=region, lang=lang):
+        return None
+
+    index_src = review_dir / "index.rst"
+    page_src = review_dir / "page"
+    generated_src = review_dir / "generated"
+    overrides_src = review_dir / "overrides"
+    applied = False
+
+    if index_src.exists():
+        shutil.copy2(index_src, bundle_dir / "index.rst")
+        applied = True
+
+    page_dst = bundle_dir / "page"
+    if page_src.is_dir():
+        page_dst.mkdir(parents=True, exist_ok=True)
+        _overlay_file_tree(page_src, page_dst, "*.rst")
+        applied = True
+
+    generated_dst = bundle_dir / "generated"
+    if generated_src.is_dir():
+        generated_dst.mkdir(parents=True, exist_ok=True)
+        _overlay_file_tree(generated_src, generated_dst, "*.rst")
+        applied = True
+
+    if overrides_src.is_dir():
+        _overlay_override_assets(overrides_src, bundle_dir)
+        applied = True
+
+    return review_dir if applied else None
 
 
 def _copy_relative_file(src_root: Path, dst_root: Path, relative_path: Path) -> Path:

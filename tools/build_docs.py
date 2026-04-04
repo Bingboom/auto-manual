@@ -31,7 +31,12 @@ from tools.gen_index_bundle import (
     materialize_bundle,
 )
 from tools.page_manifest import resolve_config_pages_or_raise
-from tools.review_support import overlay_review_onto_bundle, review_bundle_exists
+from tools.review_support import (
+    overlay_review_content_onto_bundle,
+    overlay_review_onto_bundle,
+    review_bundle_exists,
+    review_content_exists,
+)
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.process_utils import find_exe, open_file, run  # noqa: E402
 from tools.utils.spec_master import (
@@ -1004,16 +1009,31 @@ def prepare_manual_bundle(
     )
     review_applied = False
     if source_mode in {"auto", "review"}:
-        if review_bundle_exists(docs_dir=paths.docs_dir, model=model, region=region, lang=lang):
-            overlay_review_onto_bundle(
-                bundle_dir=bundle.bundle_dir,
-                docs_dir=paths.docs_dir,
-                model=model,
-                region=region,
-                lang=lang,
-            )
-            review_applied = True
-        elif source_mode == "review":
+        review_lang_candidates = [lang]
+        if (lang or "").strip():
+            review_lang_candidates.append(None)
+        for review_lang in review_lang_candidates:
+            if review_bundle_exists(docs_dir=paths.docs_dir, model=model, region=region, lang=review_lang):
+                overlay_review_onto_bundle(
+                    bundle_dir=bundle.bundle_dir,
+                    docs_dir=paths.docs_dir,
+                    model=model,
+                    region=region,
+                    lang=review_lang,
+                )
+                review_applied = True
+                break
+            if review_content_exists(docs_dir=paths.docs_dir, model=model, region=region, lang=review_lang):
+                overlay_review_content_onto_bundle(
+                    bundle_dir=bundle.bundle_dir,
+                    docs_dir=paths.docs_dir,
+                    model=model,
+                    region=region,
+                    lang=review_lang,
+                )
+                review_applied = True
+                break
+        if source_mode == "review" and not review_applied:
             raise RuntimeError(
                 "Review bundle not found for "
                 f"model='{model or ''}', region='{region or ''}'. "
