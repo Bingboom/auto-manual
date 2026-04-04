@@ -107,6 +107,12 @@ GitHub validation note:
 - feature branches no longer run a duplicate `push` validation pass in GitHub
 - `Review Preview Package` is a separate artifact workflow for design sharing and does not gate merge
 
+Git branch safety note:
+
+- start a new branch with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` so the branch is created from the latest `origin/main`
+- enable the repo-managed pre-push guard with `git config core.hooksPath .githooks`
+- that guard blocks pushes from branches that do not contain the latest `origin/main`; use `git push --no-verify` only when the older base is intentional
+
 ## 2. Config Rule
 
 Do not create one config file per model.
