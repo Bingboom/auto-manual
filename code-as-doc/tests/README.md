@@ -31,8 +31,8 @@ Current test coverage includes:
 ### 2.1 EN / US family
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us.yaml --model JE-1000F --region US
+python build.py word --config config.us.yaml --model JE-1000F --region US
 ```
 
 ### 2.2 JP family
@@ -66,8 +66,8 @@ python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
 Preview one page and prepare a fast runtime draft:
 
 ```powershell
-python build.py preview --config config.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
-python build.py fast --config config.yaml --model JE-1000F --region US
+python build.py preview --config config.us.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config config.us.yaml --model JE-1000F --region US
 ```
 
 ## 4. Expected Output Examples
@@ -90,3 +90,4 @@ python build.py fast --config config.yaml --model JE-1000F --region US
 - Historical test reports under [`code-as-doc/tests/`](../tests) are archive material, not the current source of truth.
 - Prefer [`build.py`](../../build.py) for smoke checks instead of calling old low-level scripts directly.
 - CI baseline lives in [`.github/workflows/manual-validation.yml`](../../.github/workflows/manual-validation.yml) and currently runs `unit`, `doctor-en`, `check-en`, and `check-jp`.
+
