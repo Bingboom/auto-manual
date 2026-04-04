@@ -378,13 +378,23 @@ def validate_review_start_group(records: list[ReviewStartRecord]) -> None:
     if len(records) == 1:
         return
 
+    group_key = review_start_record_key(records[0])
+    versions = {record.version.strip() for record in records}
+    git_refs = {record.git_ref.strip() for record in records}
     build_families = {review_start_group_build_family([record]) for record in records}
     build_families.discard("")
+    conflicts: list[str] = []
+    if len(versions) > 1:
+        conflicts.append("Version")
+    if len(git_refs) > 1:
+        conflicts.append("Git_ref")
     if len(build_families) > 1:
-        group_key = review_start_record_key(records[0])
+        conflicts.append("Build_family")
+    if conflicts:
         raise RuntimeError(
-            f"Conflicting Build_family values for review-start group {group_key}: "
-            + ", ".join(sorted(build_families))
+            "Review-start rows merged by Document_Key must agree on "
+            + ", ".join(conflicts)
+            + f": {group_key}"
         )
 
 
