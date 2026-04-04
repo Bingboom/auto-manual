@@ -52,7 +52,8 @@ Meaning:
 - `process-build-queue`: consume `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Document_Key + Lang`, run `check + word`, upload the generated DOCX to Feishu Drive, move that uploaded file into the current wiki knowledge-base container, write the local DOCX path into `Document directory`, write the moved wiki URL into `Document link`, write a timestamped build status into `构建结果`, and flip the trigger back to `已构建` on success
 - when the queue row carries `Version`, Draft queue DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue DOCX names become `manual_je1000f_us_en_publish_0.2.docx` before upload/writeback
 - when the queue row carries `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-- after a branch build completes, the staged DOCX is copied back under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback so the queue still exposes one stable local output path
+- Draft queue outputs stay staged under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback
+- Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - `listen-build-queue`: start the push-based Feishu long-connection listener, auto-subscribe the current `Document_link` base to docs events with the current user identity, keep the long connection on the same user identity, and trigger `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
 - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1): Windows listener wrapper for `listen-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars and writes run logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
@@ -80,7 +81,7 @@ Draft / Publish queue split:
 - the queue worker now refreshes `data/phase2` itself before it builds, so local and remote queue execution stay aligned on the same latest-snapshot rule
 - queue-driven Draft / Publish builds treat Feishu phase2 tables as the structured-data source of truth; repo `data/phase2/*.csv` files are materialized snapshots, not the authoring source
 - use `process-build-queue --doc-phase draft` when a Draft row should be built from the current review tree
-- use `process-build-queue --doc-phase publish` when a Publish row should be built through `build.py publish`
+- use `process-build-queue --doc-phase publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
 - `feishu-draft-build-queue.yml` is the Draft-stage worker for PR branches
@@ -109,7 +110,7 @@ Do not create one config file per model.
 Current shared config families:
 
 - [`config.yaml`](../config.yaml): shared EN / US template family
-- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / Vercel entrypoint
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 
@@ -332,11 +333,10 @@ Packaging rule:
 
 Vercel note:
 
-- GitHub Actions installs `pandoc`, builds the review preview package, uploads it as an artifact, then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
-- Vercel should host the prebuilt package only; do not rely on Git-triggered Vercel Python builds for this flow
+- `Review Preview Package` now uploads the review-preview workspace as a GitHub artifact only
+- [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is now the Vercel deployment path: after a successful queue-driven Publish row, it stages [`../site/publish-latest/dist/`](../site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
+- Vercel should host the latest publish HTML only; do not rely on Git-triggered Vercel Python builds for this flow
 - configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
-- in normal use, open a pull request first; then each push to that PR branch will refresh the review preview automatically when the change hits the configured workflow paths
-- if you are still iterating before opening a PR, use `Actions -> Review Preview Package -> Run workflow`
 
 ### 3.7 Publish a Final Word Release
 
@@ -349,9 +349,9 @@ It requires an explicit `--model` and `--region`.
 
 Outputs:
 
-- review diff report: [`reports/version_tracking/JE-1000F/JP/`](../reports/version_tracking/JE-1000F/JP)
-- final Word: [`docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx`](../docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx)
-- release manifest: [`reports/releases/JE-1000F/JP/`](../reports/releases/JE-1000F/JP)
+- direct `build.py publish`: review diff report plus final build outputs under [`../docs/_build/`](../docs/_build)
+- queue-driven `Doc_phase=Publish`: staged DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases)
+- release manifest: [`reports/releases/<model>/<region>/`](../reports/releases)
 
 ## 4. Output Layout
 
@@ -365,7 +365,7 @@ Runtime outputs:
 
 HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
 In manual preview mode, the HTML view also suppresses most Furo navigation chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from manual headings, and applies a restrained neutral manual-reader treatment to generic headings, copy width, figures, ordinary docutils tables, and the multilingual preface notice while preserving dedicated component layouts such as `SPECIFICATIONS`.
-For review-preview / Vercel packaging, the manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout.
+For review-preview workspace packaging, the manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout.
 
 Review working bundle:
 
@@ -374,6 +374,10 @@ Review working bundle:
 Review handoff workspace:
 
 - [`../site/review-preview/dist/`](../site/review-preview/dist)
+
+Latest publish HTML site:
+
+- [`../site/publish-latest/dist/`](../site/publish-latest/dist)
 
 Revision reports:
 

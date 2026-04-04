@@ -1,169 +1,108 @@
-# Vercel Review Preview Guide
+# Vercel Latest Publish HTML Guide
 
-Updated: 2026-03-31
+Updated: 2026-04-04
 
-This guide defines the current review-preview publishing flow for design collaboration.
-It is for the review stage, not the final release stage.
+This guide defines the current Vercel publishing flow.
+Vercel no longer hosts the PR review-preview workspace.
+It now hosts the latest queue-driven Publish HTML only.
 
 ## 1. Goal
 
 Use this flow when:
 
-- the manual is already being edited under [`docs/_review/<model>/<region>/`](../../docs/_review)
-- design needs to see the rendered HTML result, not raw `.rst`
-- design also needs to know what changed in the current review round
-
-The preview package combines:
-
-- review-based HTML from [`docs/_build/<model>/<region>/html/`](../../docs/_build)
-- review-based Word from [`docs/_build/<model>/<region>/word/`](../../docs/_build)
-- diff-report HTML / CSV from [`reports/version_tracking/<model>/<region>/`](../../reports/version_tracking)
-- a workspace root that links families, models, and languages together
-
-## 2. Current Entry Point
-
-Use:
-
-```powershell
-python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --all-review-models
-```
-
-Default output:
-
-- [`site/review-preview/dist/`](../../site/review-preview/dist)
-
-Generated structure:
-
-- `index.html`: workspace root for design
-- `manual/`: rendered review HTML, grouped by family, model, and language
-- `changes/`: family hubs plus model-level diff pages under `changes/<family>/<model>/`
-- `manual/index.html` and `changes/index.html`: compatibility redirects to the default workspace entries
-- `downloads/`: model-scoped `review-manual.docx`, `change-report.xlsx`, `changes-summary.csv`, `changes-pages.csv`, `changes-fields.csv`, `changes-files.csv`
-- `generated/meta.json`: branch / commit / author metadata plus download metadata
-- `generated/changes.json`: changed files, review pages, grouped change areas, and download metadata
-- `generated/workspace.json`: workspace data for family tabs, model groups, and language switching
-
-The workspace is intentionally designer-facing:
-
-- it tells design what to open first
-- it separates rendered manual review from family-level change tracing
-- it offers direct Word / Excel handoff downloads for offline review meetings
-- it explains whether the current round contains page-level review edits or mostly workflow / docs changes
-- it hides families that do not have `_review` content for the current round
-- with `--all-review-models`, it includes every existing review model in one workspace and still keeps the requested `--config/--model/--region` target as the default landing entry
-
-## 3. Why This Uses Review Content
-
-After review starts, the durable editing surface is:
-
-- [`docs/_review/<model>/<region>/`](../../docs/_review)
-
-For that reason, the preview package intentionally uses:
-
-- `python build.py html --source review`
-
-This keeps the preview aligned with the text that is actually being edited and versioned for review.
-
-## 4. Why This Uses diff-report
-
-The repo already has a useful change-report pipeline:
-
-- `python build.py diff-report`
-
-For review collaboration, the most useful outputs are:
-
-- `*_index.html`
-- `*_fields.html`
-- `*_pages.html`
-- `*_files.html`
-
-The preview package copies the latest report set into stable paths under `changes/<family>/<model>/` so design can open:
-
-- `changes/<family>/<model>/index.html`
-- `changes/<family>/<model>/report-fields.html`
-- `changes/<family>/<model>/report-pages.html`
-- `changes/<family>/<model>/report-files.html`
-
-It also copies the diff CSV set under `downloads/<family>/<model>/` and builds one Excel workbook from the same inputs:
-
-- `downloads/<family>/<model>/changes-summary.csv`
-- `downloads/<family>/<model>/changes-pages.csv`
-- `downloads/<family>/<model>/changes-fields.csv`
-- `downloads/<family>/<model>/changes-files.csv`
-- `downloads/<family>/<model>/change-report.xlsx`
-
-The Excel workbook is only a packaging layer over the existing diff CSV outputs.
-It does not introduce a second change model.
-These diff, workbook, and CSV files stay shared across the language variants of one `family + model` package.
-
-## 5. GitHub Actions Role
-
-Current workflow:
-
-- [`../../.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
-
-It does not gate merge.
-It installs `pandoc`, packages the same review preview bundle in CI, uploads it as an artifact, and deploys the static output to Vercel through `vercel pull -> vercel build -> vercel deploy --prebuilt`.
+- a `Document_link` row reaches `Doc_phase = Publish`
+- the final Publish DOCX should be uploaded to Feishu / wiki
+- Vercel should expose only the newest published HTML
 
 This keeps the responsibilities separate:
 
-- `Manual Validation`: machine validation and merge gating
-- `Review Preview Package`: render-and-share packaging for collaboration
+- Feishu / wiki: final DOCX distribution and document link writeback
+- `reports/releases/`: staged release artifacts and latest publish HTML snapshot
+- Vercel: static hosting for the newest publish HTML
+- `Review Preview Package`: design-sharing artifact only
 
-Practical maintainer rule:
+## 2. Source Layout
 
-- keep a pull request open for the working review branch
-- after that, each matching push to the PR branch reruns `Review Preview Package`
-- once the workflow succeeds, the Vercel preview reflects the latest review round automatically
-- if there is no PR yet, use `workflow_dispatch` to run it manually
-- make sure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` are configured in repository secrets before expecting the deploy step to run
+Queue-driven Publish now stages release artifacts under:
 
-## 6. Vercel Role
+- `reports/releases/<model>/<region>/<lang>/versions/<version>/`
+- `reports/releases/<model>/<region>/<lang>/latest/html/`
 
-Vercel should publish the generated static package only.
+Example:
 
-Recommended published directory:
+- `reports/releases/JE-1000F/US/en/versions/0.2/manual_je1000f_us_en_publish_0.2.docx`
+- `reports/releases/JE-1000F/US/en/latest/html/index.html`
+- `reports/releases/JE-1000F/US/en/latest/publish_meta.json`
 
-- `site/review-preview/dist`
+`publish_meta.json` is the handoff contract between the Publish queue and the Vercel site builder.
+
+## 3. GitHub Actions Role
+
+Current Publish worker:
+
+- [`.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml)
+
+After a successful queue-driven Publish row, it now:
+
+1. runs `python build.py process-build-queue --config config.yaml --data-root data/phase2 --doc-phase publish`
+2. stages the DOCX and latest HTML snapshot under `reports/releases/...`
+3. builds `site/publish-latest/dist/`
+4. runs `vercel pull`
+5. runs `vercel build`
+6. runs `vercel deploy --prebuilt`
+
+Required repository secrets:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+## 4. Vercel Build Entrypoints
 
 Current repo-level Vercel config:
 
 - [`../../vercel.json`](../../vercel.json)
 
-Current Vercel build default:
+It points to:
 
-- requested default target: `config.us-en.yaml / JE-1000F / US / source=review`
-- packaged scope: every existing review model when `--all-review-models` is enabled
-- PR zh-template changes still switch the requested default target to `config.zh.yaml / JE-2000E / CN / source=runtime`, but the workspace keeps the existing review models alongside it
+- build command: [`../../tools/process_docs/vercel_build_publish_latest.py`](../../tools/process_docs/vercel_build_publish_latest.py)
+- output directory: `site/publish-latest/dist`
 
-Vercel build note:
+Static site assembly is handled by:
 
-- GitHub Actions builds the review preview package first and treats the package contract as required
-- `review-manual.docx` and `change-report.xlsx` are required artifacts in CI; a missing download blocks preview deployment
-- GitHub Actions then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
-- Vercel should not be the source of truth for packaging; disable or stop relying on Git-triggered Vercel builds for this flow
+- [`../../tools/process_docs/build_publish_latest_site.py`](../../tools/process_docs/build_publish_latest_site.py)
 
-Do not ask Vercel to render raw `.rst`.
-Let the repo generate review HTML first, then let Vercel host the resulting static package.
+That builder:
 
-Vercel should be used for:
+- scans `reports/releases/*/*/*/latest/publish_meta.json`
+- picks the newest publish snapshot by `built_at`
+- copies that HTML tree into `site/publish-latest/dist`
+- copies `publish_meta.json` into `site/publish-latest/dist/generated/`
 
-- preview URL distribution
-- lightweight design review sharing
-- showing branch / commit / author metadata on the workspace root
+## 5. Review Preview Role
 
-Vercel should not be used as a required merge-gating check for this repo.
+Current review-sharing worker:
 
-## 7. First-Phase Scope
+- [`.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
 
-Current workspace scope:
+It still packages:
 
-- `JE-1000F / US / en, es, fr`
-- `JE-1000F / JP / ja`
-- `JE-2000E / CN / zh`
+- review HTML
+- review Word
+- diff-report HTML / CSV / XLSX
 
-Later expansion can add:
+But it now uploads that package as a GitHub artifact only.
+It no longer deploys review-preview content to Vercel.
 
-- richer workspace filters and deep links
+## 6. Maintainer Rule
 
-Do not expand the scope until the workspace flow is stable.
+When you reason about hosted output, keep this split:
+
+- Draft: working output under `docs/_build/`
+- Review preview: artifact under `site/review-preview/dist/`
+- Publish DOCX: staged under `reports/releases/.../versions/.../`
+- Latest publish HTML: staged under `reports/releases/.../latest/html/` and hosted by Vercel
+
+Do not point Vercel back at `site/review-preview/dist`.
+Do not treat Vercel as the source of truth for packaging.
+Let GitHub Actions prepare the static publish site first, then let Vercel host it.

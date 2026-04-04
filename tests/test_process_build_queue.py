@@ -364,13 +364,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             worktree = root / ".tmp" / "process-build-queue-worktrees" / "codex-review-us-en"
             host_config_path = root / "config.us-en.yaml"
             worktree_config_path = worktree / "config.us-en.yaml"
-            host_word_path = root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
             worktree_word_path = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            worktree_html_dir = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
             worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
             worktree_config_path.write_text("build: {}\n", encoding="utf-8")
             worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
             worktree_word_path.write_bytes(b"docx")
+            worktree_html_dir.mkdir(parents=True, exist_ok=True)
+            (worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
 
             with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
                 process_build_queue,
@@ -386,7 +388,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_word_output_path_for_target",
-                side_effect=[worktree_word_path, host_word_path],
+                return_value=worktree_word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_html_output_dir_for_target",
+                return_value=worktree_html_dir,
             ):
                 resolved_path = process_build_queue.build_document_for_task(
                     config_path=host_config_path,
@@ -399,21 +405,32 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
                 self.assertTrue(resolved_path.exists())
 
-        self.assertEqual(host_word_path.with_name("manual_je1000f_us_en_publish_0.2.docx"), resolved_path)
-        self.assertEqual(1, len(commands))
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx",
+            resolved_path,
+        )
+        self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][0][2])
         self.assertEqual(worktree, commands[0][1])
+        self.assertEqual("html", commands[1][0][2])
+        self.assertEqual(worktree, commands[1][1])
         prepare_mock.assert_called_once_with("codex/review-us-en")
         remove_mock.assert_called_once_with(worktree)
 
     def test_build_document_for_task_should_use_publish_action_for_publish_phase(self) -> None:
         commands: list[list[str]] = []
         with tempfile.TemporaryDirectory() as td:
-            word_path = Path(td) / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
+            root = Path(td)
+            config_path = root / "config.ja.yaml"
+            word_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
+            html_dir = root / "docs" / "_build" / "JE-1000F" / "JP" / "html"
+            config_path.write_text("build:\n  languages: [ja]\n", encoding="utf-8")
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
+            html_dir.mkdir(parents=True, exist_ok=True)
+            (html_dir / "index.html").write_text("<html>publish</html>\n", encoding="utf-8")
 
-            with mock.patch.object(
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
                 process_build_queue,
                 "_run_command",
                 side_effect=lambda cmd, **kwargs: commands.append(cmd),
@@ -421,9 +438,13 @@ class TestProcessBuildQueue(unittest.TestCase):
                 process_build_queue,
                 "resolve_word_output_path_for_target",
                 return_value=word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_html_output_dir_for_target",
+                return_value=html_dir,
             ):
                 resolved_path = process_build_queue.build_document_for_task(
-                    config_path=Path("config.ja.yaml"),
+                    config_path=config_path,
                     model="JE-1000F",
                     region="JP",
                     data_root="data/phase2",
@@ -432,10 +453,54 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
                 self.assertTrue(resolved_path.exists())
 
-        self.assertEqual(word_path.with_name("manual_je1000f_jp_publish_1.0.docx"), resolved_path)
-        self.assertEqual(1, len(commands))
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.docx",
+            resolved_path,
+        )
+        self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][2])
+        self.assertEqual("html", commands[1][2])
         self.assertIn("--data-root", commands[0])
+
+    def test_write_publish_release_metadata_should_write_latest_and_version_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            config_path = root / "config.us-en.yaml"
+            config_path.write_text("build:\n  languages: [en]\n  include_lang_in_output_path: true\n", encoding="utf-8")
+            word_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx"
+            html_dir = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "latest" / "html"
+            word_output_path.parent.mkdir(parents=True, exist_ok=True)
+            html_dir.mkdir(parents=True, exist_ok=True)
+            word_output_path.write_bytes(b"docx")
+            (html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
+
+            with mock.patch.object(process_build_queue, "ROOT", root):
+                latest_meta = process_build_queue.write_publish_release_metadata(
+                    config_path=config_path,
+                    model="JE-1000F",
+                    region="US",
+                    version="0.2",
+                    git_ref="codex/review-us-en",
+                    built_at=datetime(2026, 4, 4, 12, 0, 0),
+                    word_output_path=word_output_path,
+                    html_dir=html_dir,
+                    document_link_url="https://example.feishu.cn/wiki/token_123",
+                )
+
+            self.assertEqual(
+                root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json",
+                latest_meta,
+            )
+            payload = process_build_queue.json.loads(latest_meta.read_text(encoding="utf-8"))
+            self.assertEqual("JE-1000F", payload["model"])
+            self.assertEqual("US", payload["region"])
+            self.assertEqual("en", payload["lang"])
+            self.assertEqual("0.2", payload["version"])
+            self.assertEqual("https://example.feishu.cn/wiki/token_123", payload["document_link_url"])
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/latest/html/index.html",
+                payload["html_index"],
+            )
 
     def test_versioned_word_output_path_should_preserve_original_when_version_missing(self) -> None:
         path = Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx")

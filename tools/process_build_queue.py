@@ -408,6 +408,19 @@ def resolve_word_output_path_for_target(*, config_path: Path, model: str, region
     return resolve_output_path(build_root / "word", word_output_name)
 
 
+def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
+    cfg = load_config(config_path)
+    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
+    output_lang = resolve_output_lang(cfg)
+    build_root = build_root_for_target(
+        model,
+        region,
+        lang=output_lang,
+        docs_build_dir=docs_dir / "_build",
+    )
+    return build_root / "html"
+
+
 def _normalize_version_for_filename(version: str) -> str:
     token = re.sub(r"[^A-Za-z0-9._-]+", "-", (version or "").strip())
     return token.strip("-")
@@ -430,6 +443,34 @@ def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_pha
 
 def _config_path_in_repo_root(config_path: Path, *, repo_root: Path) -> Path:
     return repo_root / config_path.name
+
+
+def _repo_relative(path: Path) -> str:
+    try:
+        return path.resolve(strict=False).relative_to(ROOT.resolve(strict=False)).as_posix()
+    except ValueError:
+        return path.resolve(strict=False).as_posix()
+
+
+def _release_lang_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> str:
+    loaded_cfg = cfg if cfg is not None else load_config(config_path)
+    languages = _build_languages(loaded_cfg)
+    return languages[0] if languages else "default"
+
+
+def _publish_release_root_for_target(*, config_path: Path, model: str, region: str) -> Path:
+    cfg = load_config(config_path)
+    lang = _release_lang_for_config(config_path, cfg)
+    return ROOT / "reports" / "releases" / model / region / lang
+
+
+def _publish_release_version_dir_for_target(*, config_path: Path, model: str, region: str, version: str) -> Path:
+    version_token = _normalize_version_for_filename(version) or "unversioned"
+    return _publish_release_root_for_target(config_path=config_path, model=model, region=region) / "versions" / version_token
+
+
+def _publish_release_latest_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
+    return _publish_release_root_for_target(config_path=config_path, model=model, region=region) / "latest"
 
 
 def _slug_ref_token(value: str) -> str:
@@ -852,7 +893,13 @@ def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | Non
     )
 
 
-def _stage_word_output_to_host_repo(
+def _copy_tree(src: Path, dst: Path) -> None:
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+
+
+def _stage_draft_word_output_to_host_repo(
     *,
     built_word_output_path: Path,
     host_config_path: Path,
@@ -874,6 +921,81 @@ def _stage_word_output_to_host_repo(
     staged_output_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(built_word_output_path, staged_output_path)
     return staged_output_path
+
+
+def _stage_publish_assets_to_host_repo(
+    *,
+    built_word_output_path: Path,
+    built_html_dir: Path,
+    host_config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+) -> tuple[Path, Path]:
+    version_dir = _publish_release_version_dir_for_target(
+        config_path=host_config_path,
+        model=model,
+        region=region,
+        version=version,
+    )
+    latest_dir = _publish_release_latest_dir_for_target(
+        config_path=host_config_path,
+        model=model,
+        region=region,
+    )
+    version_dir.mkdir(parents=True, exist_ok=True)
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    staged_word_output_path = version_dir / built_word_output_path.name
+    shutil.copy2(built_word_output_path, staged_word_output_path)
+    latest_html_dir = latest_dir / "html"
+    _copy_tree(built_html_dir, latest_html_dir)
+    return staged_word_output_path, latest_html_dir
+
+
+def write_publish_release_metadata(
+    *,
+    config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    git_ref: str,
+    built_at: datetime,
+    word_output_path: Path,
+    html_dir: Path,
+    document_link_url: str,
+) -> Path:
+    version_dir = _publish_release_version_dir_for_target(
+        config_path=config_path,
+        model=model,
+        region=region,
+        version=version,
+    )
+    latest_dir = _publish_release_latest_dir_for_target(
+        config_path=config_path,
+        model=model,
+        region=region,
+    )
+    payload = {
+        "model": model,
+        "region": region,
+        "lang": _release_lang_for_config(config_path),
+        "version": version,
+        "git_ref": git_ref.strip(),
+        "doc_phase": "publish",
+        "built_at": built_at.isoformat(timespec="seconds"),
+        "word_output_path": _repo_relative(word_output_path),
+        "html_dir": _repo_relative(html_dir),
+        "html_index": _repo_relative(html_dir / "index.html"),
+        "document_link_url": document_link_url.strip(),
+    }
+    version_dir.mkdir(parents=True, exist_ok=True)
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    version_meta_path = version_dir / "publish_meta.json"
+    latest_meta_path = latest_dir / "publish_meta.json"
+    text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+    version_meta_path.write_text(text, encoding="utf-8")
+    latest_meta_path.write_text(text, encoding="utf-8")
+    return latest_meta_path
 
 
 def build_document_for_task(
@@ -934,6 +1056,19 @@ def build_document_for_task(
                 ),
                 cwd=repo_root,
             )
+            _run_command(
+                _build_py_target_command(
+                    repo_root=repo_root,
+                    action="html",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=data_root,
+                    source="review",
+                    no_clean=True,
+                ),
+                cwd=repo_root,
+            )
         else:
             _run_command(
                 _build_py_target_command(
@@ -975,8 +1110,26 @@ def build_document_for_task(
             versioned_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(word_output_path, versioned_path)
             word_output_path = versioned_path
+        if normalized_doc_phase == "publish":
+            html_output_dir = resolve_html_output_dir_for_target(
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+            )
+            if not html_output_dir.exists():
+                raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
+            host_config_path = _config_path_in_repo_root(config_path, repo_root=ROOT)
+            staged_word_output_path, _latest_html_dir = _stage_publish_assets_to_host_repo(
+                built_word_output_path=word_output_path,
+                built_html_dir=html_output_dir,
+                host_config_path=host_config_path,
+                model=model,
+                region=region,
+                version=version,
+            )
+            return staged_word_output_path
         if repo_root != ROOT:
-            return _stage_word_output_to_host_repo(
+            return _stage_draft_word_output_to_host_repo(
                 built_word_output_path=word_output_path,
                 host_config_path=_config_path_in_repo_root(config_path, repo_root=ROOT),
                 model=model,
@@ -1164,6 +1317,7 @@ def process_build_queue(
     for record in pending:
         word_output_path: Path | None = None
         drive_url: str | None = None
+        effective_doc_phase = normalize_doc_phase(record.doc_phase)
         try:
             started_at = datetime.now().astimezone()
             if can_write_started_at:
@@ -1182,7 +1336,6 @@ def process_build_queue(
                     )
             model, region = resolve_target_for_record(record)
             resolved_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
-            effective_doc_phase = normalize_doc_phase(record.doc_phase)
             word_output_path = build_document_for_task(
                 config_path=resolved_config_path,
                 model=model,
@@ -1217,6 +1370,23 @@ def process_build_queue(
                     doc_phase=effective_doc_phase,
                 ),
             )
+            if effective_doc_phase == "publish":
+                latest_html_dir = _publish_release_latest_dir_for_target(
+                    config_path=resolved_config_path,
+                    model=model,
+                    region=region,
+                ) / "html"
+                write_publish_release_metadata(
+                    config_path=resolved_config_path,
+                    model=model,
+                    region=region,
+                    version=record.version,
+                    git_ref=record.git_ref,
+                    built_at=built_at,
+                    word_output_path=word_output_path,
+                    html_dir=latest_html_dir,
+                    document_link_url=document_link_url,
+                )
             processed += 1
             print(f"[build-queue] Updated {record.label}: {word_output_path} -> {document_link_url}")
         except Exception as exc:
