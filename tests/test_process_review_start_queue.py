@@ -207,7 +207,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual("JE-1000F", model)
         self.assertEqual("JP", region)
 
-    def test_resolve_docs_dir_for_config_should_follow_worktree_relative_path(self) -> None:
+    def test_resolve_docs_dir_for_config_should_follow_repo_relative_path(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             worktree = Path(td)
             config_path = worktree / "config.yaml"

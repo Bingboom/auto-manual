@@ -395,6 +395,13 @@ def validate_review_start_group(records: list[ReviewStartRecord]) -> None:
             "Review-start rows merged by Document_Key must agree on "
             + ", ".join(conflicts)
             + f": {group_key}"
+    build_families = {review_start_group_build_family([record]) for record in records}
+    build_families.discard("")
+    if len(build_families) > 1:
+        group_key = review_start_record_key(records[0])
+        raise RuntimeError(
+            f"Conflicting Build_family values for review-start group {group_key}: "
+            + ", ".join(sorted(build_families))
         )
 
 
