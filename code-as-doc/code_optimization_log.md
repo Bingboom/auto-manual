@@ -194,3 +194,16 @@ Why it mattered:
 
 - continuing work in the same shell after a PR merge or close is less likely to accidentally reuse an outdated base
 - the same freshness guard can now be applied from Windows and mac without depending on a bash-only hook path
+
+## 12. 2026-04-04: Staging-First Local Validation
+
+Main outcomes:
+
+- added [`scripts/local_build.py`](../scripts/local_build.py) plus [`scripts/local_build.ps1`](../scripts/local_build.ps1) and [`scripts/local_build.sh`](../scripts/local_build.sh) as the local verification wrappers that default staging-safe build actions into `.tmp/staging`
+- updated [`scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) and [`scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) so local queue runs also default to `.tmp/staging`
+- updated the maintainer and user workflow docs so local `check`, `diff-report`, `release-manifest`, and `publish` examples stop requiring a hand-written `--staging-root`
+
+Why it mattered:
+
+- routine local verification no longer needs to pollute repo `docs/_build`, `reports/version_tracking`, or `reports/releases`
+- Windows and mac operators now have the same default isolated-output workflow for local validation

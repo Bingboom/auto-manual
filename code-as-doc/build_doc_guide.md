@@ -18,11 +18,11 @@ python build.py validate
 python build.py sync-data --config config.us.yaml --data-root data/phase2
 python build.py rst
 python build.py review
-python build.py check
+python scripts\local_build.py check
 python build.py sync-review
 python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2
-python build.py publish --config config.ja.yaml --model JE-1000F --region JP
-python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python scripts\local_build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python scripts\local_build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 python build.py process-build-queue --config config.us.yaml
 python build.py handoff --config config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
@@ -56,11 +56,13 @@ Meaning:
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row carries `Version`, Build Draft Package DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue DOCX names become `manual_je1000f_us_en_publish_0.2.docx` before upload/writeback
 - when the queue row carries `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-- Build Draft Package outputs go to the current repo [`../docs/_build/`](../docs/_build) tree by default; use `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` to redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under that isolated root during local verification
+- direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
+- for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
+- explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
 - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
-- [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
+- [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - `listen-build-queue`: start the push-based Feishu long-connection listener, auto-subscribe the current `Document_link` base to docs events with the current user identity, keep the long connection on the same user identity, and trigger `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
-- [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1): Windows listener wrapper for `listen-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars and writes run logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
+- [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1): Windows listener wrapper for `listen-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, and writes run logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
 - [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml): GitHub-hosted queue worker for the remote repo; it runs on a 5-minute schedule plus `workflow_dispatch`, bootstraps `lark-cli` with `FEISHU_APP_ID/FEISHU_APP_SECRET`, sets `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, and then consumes the `Document_link` queue
 - [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml): GitHub-hosted review-init worker for the remote repo; it consumes the review-init table, creates or reuses the review branch, seeds `docs/_review`, pushes the branch, and writes back `Git_ref` plus `PR_url`
 - the review-init worker now refuses duplicate initial-draft seeding when the base branch already has committed `docs/_review/<model>/<region>/` content
@@ -143,7 +145,8 @@ Phase2 snapshot rule:
 - explicit `--data-root` still overrides the default, so you can point `rst`, `check`, `diff-report`, `release-manifest`, `publish`, and `process-build-queue` at a different root when needed
 - `python build.py sync-data --config config.us.yaml --data-root data/phase2` is still the explicit refresh step for the phase2 snapshot
 - for the review-init worker, use an isolated snapshot root such as `.tmp/review-start/phase2`; the worker syncs fresh data there before it seeds `docs/_review`
-- `python build.py check|diff-report|release-manifest|publish --staging-root .tmp/staging ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases`; `review` still writes the real repo `docs/_review` tree and does not accept `--staging-root`
+- `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`
+- `review` still writes the real repo `docs/_review` tree and does not accept `--staging-root`, so it is intentionally excluded from `local_build.py`
 - [`../data/phase1/page_registry.csv`](../data/phase1/page_registry.csv), page selection/applicability, and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
 
 Only create a new config when one of these really changes:

@@ -45,10 +45,10 @@ python3 build.py sync-data --config config.us.yaml --data-root data/phase2
 python3 build.py doctor --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime
 python3 build.py review --config config.us-en.yaml --model JE-1000F --region US
-python3 build.py check --config config.us-en.yaml --model JE-1000F --region US
+python3 scripts/local_build.py check --config config.us-en.yaml --model JE-1000F --region US
 python3 build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2
 python3 build.py process-build-queue --config config.us.yaml
-python3 build.py publish --config config.us-en.yaml --model JE-1000F --region US
+python3 scripts/local_build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
 
 Review sync note:
@@ -78,11 +78,12 @@ Phase2 snapshot note:
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row includes `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
 - when the queue row includes `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-- Build Draft Package outputs go to the repo [`docs/_build/`](docs/_build) tree by default; pass `--staging-root <dir>` or set `AUTO_MANUAL_STAGING_ROOT=<dir>` to isolate generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under that root instead
+- direct `build.py` actions still write Build Draft Package outputs to the repo [`docs/_build/`](docs/_build) tree by default; for local verification use [`scripts/local_build.py`](scripts/local_build.py), [`scripts/local_build.ps1`](scripts/local_build.ps1), or [`scripts/local_build.sh`](scripts/local_build.sh) so `check`, `diff-report`, `release-manifest`, and `publish` default to `.tmp/staging`
+- explicit `--staging-root <dir>` and `AUTO_MANUAL_STAGING_ROOT=<dir>` still override that default when you need another isolated root
 - `release-manifest` writes traceability files to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](reports/releases) by default, or to `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled; Publish queue outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting
-- [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1) is the Windows-friendly queue wrapper for automation: it restores the local Node/npm path plus `FEISHU_PHASE2_*` user env vars, runs `build.py process-build-queue`, and writes logs into [`.tmp/process-build-queue/`](.tmp/process-build-queue)
+- [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1) is the Windows-friendly queue wrapper for automation: it restores the local Node/npm path plus `FEISHU_PHASE2_*` user env vars, runs `build.py process-build-queue --staging-root .tmp/staging`, and writes logs into [`.tmp/process-build-queue/`](.tmp/process-build-queue)
 - `python build.py listen-build-queue --config config.us.yaml` starts the push-based queue listener: it auto-subscribes the current `Document_link` base to docs events with the current user identity, waits on the Feishu long connection with the same user identity, and triggers `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
-- [`scripts/listen_build_queue.ps1`](scripts/listen_build_queue.ps1) is the Windows-friendly listener wrapper; on this machine it is launched from the Windows Startup folder so the listener starts after login and writes logs into [`.tmp/build-queue-listener/`](.tmp/build-queue-listener)
+- [`scripts/listen_build_queue.ps1`](scripts/listen_build_queue.ps1) is the Windows-friendly listener wrapper; on this machine it is launched from the Windows Startup folder so the listener starts after login, runs `listen-build-queue --staging-root .tmp/staging`, and writes logs into [`.tmp/build-queue-listener/`](.tmp/build-queue-listener)
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the remote GitHub Actions worker: after merge to the default branch and after repo secrets are configured, it runs every 5 minutes plus `workflow_dispatch`, uses `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, then consumes the `Document_link` queue without relying on any local machine
 - for remote immediate builds after merge to `main`, create a Feishu workflow with the combined condition `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml`; the queue still only processes rows whose trigger field is `Y`, and the checkbox acts as an accelerator instead of a standalone build request
 - the Document_link worker reuses `FEISHU_PHASE2_BASE_TOKEN`, expects `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`, and can optionally honor `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` when you want to override the default knowledge-base destination

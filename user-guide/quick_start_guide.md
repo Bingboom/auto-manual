@@ -269,7 +269,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 
 本地跑 `check`、`diff-report`、`release-manifest`、`publish` 或手动消费 queue 时，优先加：
 
-- `--staging-root .tmp/staging`
+- `python scripts/local_build.py check|diff-report|release-manifest|publish ...`
 
 这样生成的 `docs/_build`、`reports/version_tracking`、`reports/releases` 会落到 `.tmp/staging/` 下，不会污染源码工作区。
 `review` 不支持这个参数，因为它本来就要 seed 仓库里的 [`docs/_review/`](../docs/_review)。

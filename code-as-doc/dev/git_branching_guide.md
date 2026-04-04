@@ -159,10 +159,10 @@ Machine validation means the GitHub `Manual Validation` workflow that must pass 
 Use the local validation set that matches the change.
 
 - logic changes: `python -m unittest`
-- build or quality-gate changes: `python build.py check --config config.us.yaml --model JE-1000F --region US`
-- JP review or publish changes: `python build.py publish --config config.ja.yaml --model JE-1000F --region JP`
-- diff-report changes: `python build.py diff-report --config config.us.yaml --model JE-1000F --region US`
-- release traceability changes: `python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
+- build or quality-gate changes: `python scripts/local_build.py check --config config.us.yaml --model JE-1000F --region US`
+- JP review or publish changes: `python scripts/local_build.py publish --config config.ja.yaml --model JE-1000F --region JP`
+- diff-report changes: `python scripts/local_build.py diff-report --config config.us.yaml --model JE-1000F --region US`
+- release traceability changes: `python scripts/local_build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
 - docs-only changes: self-review links, paths, examples, and command accuracy
 
 Do not open a pull request with unreviewed generated `html`, `word`, or `pdf` outputs.

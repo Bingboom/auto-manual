@@ -197,7 +197,8 @@ Important:
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
 - build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.
-- `python build.py check|diff-report|release-manifest|publish --staging-root .tmp/staging ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases`; `review` does not accept `--staging-root` because it seeds the real repo `docs/_review`.
+- `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`.
+- `review` does not accept `--staging-root` because it seeds the real repo `docs/_review`, so it is intentionally excluded from `scripts/local_build.py`.
 - `python build.py review` prepares a runtime draft from template/data, then seeds review only if review does not already exist.
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
