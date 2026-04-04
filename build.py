@@ -67,6 +67,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")
     ap.add_argument("--no-clean", action="store_true", help="Skip cleaning current target outputs before build")
     ap.add_argument(
+        "--skip-root-index",
+        action="store_true",
+        help="Do not rewrite docs/index.rst when materializing the target bundle",
+    )
+    ap.add_argument(
         "--refresh-review",
         action="store_true",
         help="Refresh an existing review bundle from the runtime template/data output",
@@ -291,6 +296,8 @@ def build_docs_command(
             raise RuntimeError("preview requires --page so the bundle scope is explicit")
         cmd += ["--page-selector", page]
         cmd += ["--output-root", str(_preview_output_root(config_path, model=model, region=region, page=page))]
+        cmd.append("--skip-root-index")
+    elif args.skip_root_index:
         cmd.append("--skip-root-index")
 
     if args.pdf_mode:

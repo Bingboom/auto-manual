@@ -338,6 +338,13 @@ Vercel note:
 - Vercel should host the latest publish HTML only; do not rely on Git-triggered Vercel Python builds for this flow
 - configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
 
+Read the Docs note:
+
+- [`.readthedocs.yaml`](../.readthedocs.yaml) is the minimal RTD path for one stable public runtime HTML target: `config.us-en.yaml --model JE-1000F --region US --source runtime`
+- RTD uses `python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then renders the generated bundle at [`../docs/_build/JE-1000F/US/en/rst/`](../docs/_build) with `python -m sphinx -b html`
+- do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; the root `index.rst` is a wrapper include, while RTD should render the generated bundle directory directly
+- RTD does not publish `_review`, queue-driven Publish HTML, or Word / PDF artifacts; keep Vercel and release outputs as the formal publish path
+
 ### 3.7 Publish a Final Word Release
 
 ```powershell
@@ -378,6 +385,10 @@ Review handoff workspace:
 Latest publish HTML site:
 
 - [`../site/publish-latest/dist/`](../site/publish-latest/dist)
+
+Read the Docs bundle source for the current minimal public build:
+
+- [`../docs/_build/JE-1000F/US/en/rst/`](../docs/_build)
 
 Revision reports:
 

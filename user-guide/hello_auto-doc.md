@@ -137,6 +137,7 @@ Rules:
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
 - when that workspace is packaged for review sharing, let GitHub Actions build the package first and keep it as an artifact; Vercel is reserved for the latest publish HTML only
+- Read the Docs is now reserved for one minimal public runtime HTML target, `JE-1000F / US / en`, built from [`.readthedocs.yaml`](../.readthedocs.yaml); it does not replace review-preview packaging or the Vercel latest-publish flow
 - designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
@@ -471,6 +472,12 @@ PR preview note:
 - `--page` must match one exact page selector
 - writes to [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build)
 - does not rewrite root [`docs/index.rst`](../docs/index.rst)
+
+Minimal RTD behavior:
+
+- RTD builds the default public runtime HTML target from `config.us-en.yaml --model JE-1000F --region US --source runtime`
+- the RTD config first materializes [`docs/_build/JE-1000F/US/en/rst/`](../docs/_build) without rewriting the repo-root [`docs/index.rst`](../docs/index.rst), then renders that generated bundle with Sphinx
+- RTD is not the release authority for formal Publish outputs; queue-driven Publish and Vercel latest-publish remain the release-facing path
 
 `fast` behavior:
 

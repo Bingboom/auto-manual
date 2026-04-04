@@ -145,6 +145,12 @@ Vercel note:
 - the Vercel bridge entrypoint is [`tools/process_docs/vercel_build_publish_latest.py`](tools/process_docs/vercel_build_publish_latest.py), which reuses an already staged latest publish site when it exists
 - `Review Preview Package` no longer deploys to Vercel; it uploads the review-sharing package as an artifact only
 
+Read the Docs note:
+
+- [`.readthedocs.yaml`](.readthedocs.yaml) now provides a minimal RTD entrypoint for the default runtime HTML manual only: `config.us-en.yaml + JE-1000F + US + en`
+- the RTD job runs `python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then points Sphinx at [`docs/_build/JE-1000F/US/en/rst/`](docs/_build) instead of the repo-root [`docs/`](docs)
+- RTD is for a stable public reading target only; it does not replace review-preview packaging, queue-driven Publish releases, Vercel latest-publish hosting, or Word / PDF export
+
 Windows note:
 
 - build actions except `fast` clean the current target output first
@@ -196,6 +202,7 @@ Use the document that owns the topic:
 ## 5. Key Directories
 
 - [`build.py`](build.py): top-level CLI entrypoint
+- [`.readthedocs.yaml`](.readthedocs.yaml): minimal Read the Docs build config for the default US English runtime HTML target
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
