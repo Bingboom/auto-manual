@@ -207,7 +207,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual("JE-1000F", model)
         self.assertEqual("JP", region)
 
-    def test_resolve_docs_dir_for_config_should_follow_worktree_relative_path(self) -> None:
+    def test_resolve_docs_dir_for_config_should_follow_repo_relative_path(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             worktree = Path(td)
             config_path = worktree / "config.yaml"
@@ -492,6 +492,89 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 process_review_start_queue,
                 "resolve_config_path_for_task",
                 side_effect=lambda *, region, lang, build_family=None: Path(td) / "config.us.yaml",
+            ), \
+            mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}), \
+            mock.patch.object(process_review_start_queue, "start_review_for_record") as mock_start_review:
+            mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
+                base_token_env="FEISHU_PHASE2_BASE_TOKEN",
+                table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
+                view_id_env="FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                base_token="app_xxx",
+                table_id="tbl_init",
+                view_id="vew_init",
+            )
+            exit_code = process_review_start_queue.process_review_start_queue(
+                cfg=cfg,
+                config_path=Path(td) / "config.yaml",
+                data_root=str(Path(td) / ".tmp" / "review-start" / "phase2"),
+                dry_run=False,
+                record_id=None,
+            )
+
+        self.assertEqual(1, exit_code)
+        mock_start_review.assert_not_called()
+        source.upsert_record.assert_not_called()
+
+    def test_process_review_start_queue_should_fail_on_conflicting_version_and_git_ref_in_same_merged_group(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
+                    "review_init": {
+                        "table_id_env": "FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_REVIEW_INIT_VIEW_ID",
+                    },
+                }
+            }
+        }
+        raw_records = [
+            {
+                "record_id": "rec_old_pending",
+                "fields": {
+                    process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_0.1",
+                    process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_review_start_queue.BUILD_FAMILY_FIELD: ["us-merged"],
+                    process_review_start_queue.LANG_FIELD: [""],
+                    process_review_start_queue.VERSION_FIELD: ["0.1"],
+                    process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_NOT_STARTED],
+                    process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    process_review_start_queue.GIT_REF_FIELD: "codex/review-id-recvfw0zg4pzxs",
+                    process_review_start_queue.PR_URL_FIELD: "https://github.com/Bingboom/auto-manual/pull/43",
+                },
+            },
+            {
+                "record_id": "rec_new_pending",
+                "fields": {
+                    process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_0.2",
+                    process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_review_start_queue.BUILD_FAMILY_FIELD: ["us-merged"],
+                    process_review_start_queue.LANG_FIELD: [""],
+                    process_review_start_queue.VERSION_FIELD: ["0.2"],
+                    process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_NOT_STARTED],
+                    process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    process_review_start_queue.GIT_REF_FIELD: "",
+                    process_review_start_queue.PR_URL_FIELD: "",
+                },
+            },
+        ]
+
+        source = mock.Mock()
+        source.fetch_records_with_ids.return_value = raw_records
+
+        with tempfile.TemporaryDirectory() as td, \
+            mock.patch.object(process_review_start_queue, "collect_review_start_preflight_errors", return_value=[]), \
+            mock.patch.object(process_review_start_queue, "resolve_review_init_binding") as mock_binding, \
+            mock.patch.object(process_review_start_queue, "_cli_bin", return_value="lark-cli"), \
+            mock.patch.object(process_review_start_queue, "_phase2_identity", return_value="bot"), \
+            mock.patch.object(process_review_start_queue, "LarkCliSource", return_value=source), \
+            mock.patch.object(process_review_start_queue, "sync_phase2_snapshot_before_review_start"), \
+            mock.patch.object(process_review_start_queue, "_run_git"), \
+            mock.patch.object(
+                process_review_start_queue,
+                "resolve_config_path_for_task",
+                return_value=Path(td) / "config.us.yaml",
             ), \
             mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}), \
             mock.patch.object(process_review_start_queue, "start_review_for_record") as mock_start_review:
