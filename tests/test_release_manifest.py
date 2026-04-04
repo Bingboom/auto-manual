@@ -159,3 +159,60 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertEqual("data/phase2/Spec_Master.csv", manifest["spec_master_csv"])
             self.assertEqual("Phase2 Product", manifest["product_name"])
             self.assertEqual("docs/_review/JE-1000F/US/en", manifest["tracked_review_dir"])
+
+    def test_build_release_manifest_should_support_staging_build_and_release_roots(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            staging_docs_build_dir = root / ".tmp" / "staging" / "docs" / "_build"
+            build_root = staging_docs_build_dir / "JE-1000F" / "US" / "en"
+            (build_root / "rst").mkdir(parents=True)
+            (build_root / "html").mkdir(parents=True)
+            (build_root / "word").mkdir(parents=True)
+            (build_root / "pdf").mkdir(parents=True)
+            (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
+            (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
+
+            data_dir = root / "data" / "phase1"
+            data_dir.mkdir(parents=True)
+            (data_dir / "Spec_Master.csv").write_text(
+                "Model,Region,Is_Latest,Page,Row_key,Value_source\nJE-1000F,US,TRUE,specifications,product_name,Stage Product\n",
+                encoding="utf-8",
+            )
+            (data_dir / "Spec_Footnotes.csv").write_text("id,note\n", encoding="utf-8")
+            (data_dir / "Spec_Notes.csv").write_text("id,note\n", encoding="utf-8")
+            (data_dir / "spec_titles.csv").write_text("page,title_en\n", encoding="utf-8")
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "  include_lang_in_output_path: true",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {(data_dir / 'Spec_Master.csv').as_posix()}",
+                        f"  spec_footnotes_csv: {(data_dir / 'Spec_Footnotes.csv').as_posix()}",
+                        f"  spec_notes_csv: {(data_dir / 'Spec_Notes.csv').as_posix()}",
+                        f"  spec_titles_csv: {(data_dir / 'spec_titles.csv').as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            releases_root = root / ".tmp" / "staging" / "reports" / "releases"
+            with mock.patch.object(release_manifest, "ROOT", root), \
+                mock.patch.object(release_manifest, "_read_git_sha", return_value="abc123"):
+                json_path, _csv_path = release_manifest.build_release_manifest(
+                    config_path=config_path,
+                    model="JE-1000F",
+                    region="US",
+                    docs_build_dir=staging_docs_build_dir,
+                    releases_root=releases_root,
+                )
+
+            manifest = json.loads(json_path.read_text(encoding="utf-8"))
+            self.assertEqual((releases_root / "JE-1000F" / "US" / "en" / "manifests").resolve(), json_path.parent.resolve())
+            self.assertEqual(".tmp/staging/docs/_build/JE-1000F/US/en/rst", manifest["runtime_bundle_dir"])

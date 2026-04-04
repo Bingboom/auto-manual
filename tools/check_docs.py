@@ -1033,6 +1033,7 @@ def collect_check_issues(
     region: str | None,
     all_targets: bool,
     data_root: str | None = None,
+    docs_build_dir: Path | None = None,
 ) -> list[CheckIssue]:
     cfg = load_config(cfg_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -1060,6 +1061,7 @@ def collect_check_issues(
         target_langs = [target.lang] if (target.lang or "").strip() else langs
         bundle_dir = bundle_dir_for_target(
             docs_dir=docs_dir,
+            docs_build_dir=docs_build_dir,
             model=target.model,
             region=target.region,
             lang=target.lang,
@@ -1114,6 +1116,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Run lightweight quality checks against prepared manual bundles.")
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
+    ap.add_argument("--docs-build-dir", default=None, help="Override prepared docs/_build root")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
     ap.add_argument("--all-targets", action="store_true", help="Use build.targets from config")
@@ -1126,6 +1129,12 @@ def main(argv: list[str] | None = None) -> int:
     if not cfg_path.is_absolute():
         cfg_path = ROOT / cfg_path
 
+    docs_build_dir = None
+    if isinstance(args.docs_build_dir, str) and args.docs_build_dir.strip():
+        docs_build_dir = Path(args.docs_build_dir.strip())
+        if not docs_build_dir.is_absolute():
+            docs_build_dir = ROOT / docs_build_dir
+
     try:
         issues = collect_check_issues(
             cfg_path=cfg_path,
@@ -1133,6 +1142,7 @@ def main(argv: list[str] | None = None) -> int:
             region=args.region,
             all_targets=args.all_targets,
             data_root=args.data_root,
+            docs_build_dir=docs_build_dir,
         )
     except RuntimeError as exc:
         print(f"[check] ERROR: {exc}", file=sys.stderr)

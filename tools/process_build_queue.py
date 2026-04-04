@@ -53,6 +53,7 @@ DOCUMENT_KEY_FIELD = "Document_Key"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
 BUILD_FAMILY_FIELD = "Build_family"
+WORKFLOW_ACTION_FIELD = "Workflow_action"
 DOC_PHASE_FIELD = "Doc_phase"
 GIT_REF_FIELD = "Git_ref"
 BUILD_STARTED_AT_FIELD = "开始构建时间"
@@ -87,10 +88,11 @@ class QueueRecord:
     document_key: str
     version: str
     lang: str
-    doc_phase: str
-    git_ref: str
-    trigger_value: str
-    immediate_trigger_value: Any
+    workflow_action: str = ""
+    doc_phase: str = ""
+    git_ref: str = ""
+    trigger_value: str = ""
+    immediate_trigger_value: Any = None
     build_family: str = ""
 
     @property
@@ -229,6 +231,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
                 version=_scalar_text(fields.get(VERSION_FIELD)),
                 lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
                 build_family=_scalar_text(fields.get(BUILD_FAMILY_FIELD)).lower(),
+                workflow_action=_scalar_text(fields.get(WORKFLOW_ACTION_FIELD)),
                 doc_phase=_scalar_text(fields.get(DOC_PHASE_FIELD)),
                 git_ref=_scalar_text(fields.get(GIT_REF_FIELD)),
                 trigger_value=_scalar_text(_field_value(fields, TRIGGER_FIELD, *LEGACY_TRIGGER_FIELDS)),
@@ -251,19 +254,45 @@ def _is_trigger_requested(value: Any) -> bool:
     return _scalar_text(value).strip().lower() in TRIGGER_VALUES
 
 
-def normalize_doc_phase(value: Any) -> str | None:
+def normalize_workflow_action(value: Any) -> str | None:
     text = re.sub(r"[^a-z0-9]+", " ", _scalar_text(value).strip().lower()).strip()
     if not text:
         return None
-    if text in {"draft", "review", "preview", "draft package", "build draft package"}:
+    if text in {
+        "build draft package",
+        "build draft",
+        "build_draft_package",
+        "draft",
+        "review",
+        "preview",
+        "draft package",
+    }:
         return "draft"
     if text in {"publish", "published"}:
         return "publish"
-    raise RuntimeError("Doc_phase must map to Build Draft Package or Publish")
+    raise RuntimeError("Workflow_action must map to Build Draft Package or Publish")
 
 
-def workflow_action_label(doc_phase: str | None) -> str | None:
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
+def normalize_doc_phase(value: Any) -> str | None:
+    try:
+        return normalize_workflow_action(value)
+    except RuntimeError as exc:
+        raise RuntimeError("Doc_phase must map to Build Draft Package or Publish") from exc
+
+
+def resolve_queue_workflow_action(record: QueueRecord) -> str | None:
+    normalized_workflow_action = normalize_workflow_action(record.workflow_action)
+    normalized_doc_phase = normalize_doc_phase(record.doc_phase)
+    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
+        raise RuntimeError(
+            "Workflow_action conflicts with Doc_phase for queue record "
+            f"{record.record_id}: {record.workflow_action!r} vs {record.doc_phase!r}"
+        )
+    return normalized_workflow_action or normalized_doc_phase
+
+
+def workflow_action_label(value: str | None) -> str | None:
+    normalized_doc_phase = normalize_workflow_action(value)
     if normalized_doc_phase == "draft":
         return DRAFT_PACKAGE_ACTION_LABEL
     if normalized_doc_phase == "publish":
@@ -286,7 +315,7 @@ def select_pending_queue_records(
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> list[QueueRecord]:
-    normalized_filter_doc_phase = normalize_doc_phase(doc_phase)
+    normalized_filter_doc_phase = normalize_workflow_action(doc_phase)
     selected: list[QueueRecord] = []
     for record in parse_queue_records(raw_records):
         if not _is_trigger_requested(record.trigger_value):
@@ -296,7 +325,7 @@ def select_pending_queue_records(
         if record_id and record.record_id != record_id:
             continue
         if normalized_filter_doc_phase is not None:
-            if normalize_doc_phase(record.doc_phase) != normalized_filter_doc_phase:
+            if resolve_queue_workflow_action(record) != normalized_filter_doc_phase:
                 continue
         selected.append(record)
     return selected
@@ -549,17 +578,17 @@ def validate_queue_record_group(records: list[QueueRecord]) -> None:
     if not records:
         return
     if len(records) == 1:
-        normalize_doc_phase(records[0].doc_phase)
+        resolve_queue_workflow_action(records[0])
         return
 
     group_key = queue_record_key(records[0])
-    doc_phases = {normalize_doc_phase(record.doc_phase) or "" for record in records}
+    doc_phases = {resolve_queue_workflow_action(record) or "" for record in records}
     versions = {record.version.strip() for record in records}
     git_refs = {record.git_ref.strip() for record in records}
     build_families = {record.build_family.strip().lower() for record in records if record.build_family.strip()}
     conflicts: list[str] = []
     if len(doc_phases) > 1:
-        conflicts.append("Doc_phase")
+        conflicts.append("Workflow_action/Doc_phase")
     if len(versions) > 1:
         conflicts.append("Version")
     if len(git_refs) > 1:
@@ -626,7 +655,7 @@ def _normalize_version_for_filename(version: str) -> str:
 
 
 def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    normalized_doc_phase = normalize_workflow_action(doc_phase)
     version_token = _normalize_version_for_filename(version)
     suffix_parts: list[str] = []
     if normalized_doc_phase == "publish":
@@ -1220,7 +1249,7 @@ def build_document_for_task(
     version: str = "",
     git_ref: str = "",
 ) -> Path:
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    normalized_doc_phase = normalize_workflow_action(doc_phase)
     repo_root = ROOT
     effective_config_path = config_path
     worktree: Path | None = None
@@ -1363,7 +1392,7 @@ def build_success_fields(
     built_at: datetime,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    normalized_doc_phase = normalize_workflow_action(doc_phase)
     action_label = workflow_action_label(doc_phase)
     return {
         RESULT_FIELD: " | ".join(
@@ -1391,7 +1420,7 @@ def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
 
 
 def build_failure_fields(*, version: str, message: str, doc_phase: str | None = None) -> dict[str, Any]:
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    normalized_doc_phase = normalize_workflow_action(doc_phase)
     action_label = workflow_action_label(doc_phase)
     return {
         RESULT_FIELD: " | ".join(
@@ -1428,6 +1457,17 @@ def build_failure_writeback_fields(
     return fields
 
 
+def normalize_cli_queue_action(*, workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:
+    normalized_workflow_action = normalize_workflow_action(workflow_action)
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
+        raise RuntimeError(
+            "--workflow-action conflicts with --doc-phase: "
+            f"{workflow_action!r} vs {doc_phase!r}"
+        )
+    return normalized_workflow_action or normalized_doc_phase
+
+
 def process_build_queue(
     *,
     cfg: dict[str, Any],
@@ -1435,6 +1475,7 @@ def process_build_queue(
     data_root: str | None,
     dry_run: bool,
     immediate_only: bool = False,
+    workflow_action: str | None = None,
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> int:
@@ -1451,10 +1492,11 @@ def process_build_queue(
         table_id=binding.table_id,
         view_id=binding.view_id,
     )
+    normalized_cli_action = normalize_cli_queue_action(workflow_action=workflow_action, doc_phase=doc_phase)
     pending = select_pending_queue_records(
         raw_records,
         immediate_only=immediate_only,
-        doc_phase=doc_phase,
+        doc_phase=normalized_cli_action,
         record_id=record_id,
     )
     if not pending:
@@ -1494,7 +1536,7 @@ def process_build_queue(
                         "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
                         "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
-                        "workflow_action": workflow_action_label(record.doc_phase) or "Legacy/Unspecified",
+                        "workflow_action": workflow_action_label(record.workflow_action or record.doc_phase) or "Legacy/Unspecified",
                         "git_ref": record.git_ref,
                         "config": str(resolved_config_path),
                         "data_root": data_root,
@@ -1517,7 +1559,7 @@ def process_build_queue(
     pending = select_pending_queue_records(
         raw_records,
         immediate_only=immediate_only,
-        doc_phase=doc_phase,
+        doc_phase=normalized_cli_action,
         record_id=record_id,
     )
     if not pending:
@@ -1559,7 +1601,7 @@ def process_build_queue(
                 lang=group_lang,
                 build_family=group_build_family,
             )
-            effective_doc_phase = normalize_doc_phase(record.doc_phase)
+            effective_doc_phase = resolve_queue_workflow_action(record)
             started_at = datetime.now().astimezone()
             if can_write_started_at:
                 start_fields = build_started_fields(started_at=started_at)
@@ -1641,7 +1683,7 @@ def process_build_queue(
         except Exception as exc:
             message = str(exc).strip()
             failures.append(
-                f"{workflow_action_label(record.doc_phase) or 'Queue task'} "
+                f"{workflow_action_label(record.workflow_action or record.doc_phase) or 'Queue task'} "
                 f"{queue_record_key(record)} ({len(group)} row(s)): {message}"
             )
             try:
@@ -1653,7 +1695,7 @@ def process_build_queue(
                 failure_fields = build_failure_writeback_fields(
                     version=record.version,
                     message=message,
-                    doc_phase=record.doc_phase,
+                    doc_phase=record.workflow_action or record.doc_phase,
                     word_output_path=word_output_path,
                     document_link_url=drive_url,
                 )
@@ -1683,10 +1725,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--dry-run", action="store_true", help="List pending tasks without building or writing back")
     ap.add_argument(
+        "--workflow-action",
+        choices=("build-draft-package", "draft", "publish"),
+        default=None,
+        help="Only consume queue rows for one normalized Workflow_action (Build Draft Package or Publish)",
+    )
+    ap.add_argument(
         "--doc-phase",
         choices=("draft", "publish"),
         default=None,
-        help="Only consume queue rows for one normalized Doc_phase (Build Draft Package or Publish)",
+        help="Compatibility filter for legacy Doc_phase rows (Build Draft Package or Publish)",
     )
     ap.add_argument("--record-id", default=None, help="Only consume one Document_link record_id")
     return ap.parse_args(argv)
@@ -1711,6 +1759,7 @@ def main(argv: list[str] | None = None) -> int:
             config_path=config_path,
             data_root=resolved_data_root,
             dry_run=bool(args.dry_run),
+            workflow_action=args.workflow_action,
             doc_phase=args.doc_phase,
             record_id=(args.record_id or "").strip() or None,
         )
