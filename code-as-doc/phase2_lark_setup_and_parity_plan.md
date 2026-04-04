@@ -143,10 +143,10 @@ python3 build.py release-manifest --config config.us.yaml --model JE-1000F --reg
 5. Capture the `phase2` build:
 
 ```bash
-python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
+python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime
 cp -R docs/_build/JE-1000F/US .tmp/parity/phase2_build
-python3 build.py check --config config.us.yaml --model JE-1000F --region US --data-root data/phase2
-python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US --data-root data/phase2
+python3 build.py check --config config.us.yaml --model JE-1000F --region US
+python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US
 ```
 
 6. Compare the outputs:
@@ -240,4 +240,3 @@ Only make that change after:
 1. `sync-data` is reproducible on the new machine
 2. one target parity run is clean
 3. any remaining release-manifest or diff-report path-only deltas are understood
-

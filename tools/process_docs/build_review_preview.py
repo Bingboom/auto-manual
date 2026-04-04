@@ -95,6 +95,7 @@ FAMILY_DIFF_CONFIGS = {
     "JP": "config.ja.yaml",
     "CN": "config.zh.yaml",
 }
+ReviewAvailability = set[tuple[str, str, str | None]]
 
 
 def parse_args() -> argparse.Namespace:
@@ -1506,19 +1507,61 @@ def workspace_families_for_request(args: argparse.Namespace) -> tuple[str, ...]:
     return FAMILY_ORDER
 
 
-def target_has_review_bundle(target: WorkspaceTarget) -> bool:
-    review_lang_candidates = [target.language]
+def _review_availability_keys_for_target(target: WorkspaceTarget) -> tuple[tuple[str, str, str | None], ...]:
+    keys: list[tuple[str, str, str | None]] = [(target.model, target.family, target.language)]
     if (target.language or "").strip():
-        review_lang_candidates.append(None)
-    return any(
-        review_content_exists(
-            docs_dir=ROOT / "docs",
-            model=target.model,
-            region=target.family,
-            lang=review_lang,
-        )
-        for review_lang in review_lang_candidates
-    )
+        keys.append((target.model, target.family, None))
+    return tuple(keys)
+
+
+def collect_review_availability(*, docs_dir: Path, targets: list[WorkspaceTarget]) -> ReviewAvailability:
+    availability: ReviewAvailability = set()
+    candidates: set[tuple[str, str, str | None]] = set()
+    for target in targets:
+        candidates.update(_review_availability_keys_for_target(target))
+    for model, family, lang in sorted(candidates, key=lambda item: (item[0], item[1], item[2] or "")):
+        if review_content_exists(
+            docs_dir=docs_dir,
+            model=model,
+            region=family,
+            lang=lang,
+        ):
+            availability.add((model, family, lang))
+    return availability
+
+
+def target_has_review_bundle(
+    target: WorkspaceTarget,
+    *,
+    review_availability: ReviewAvailability | None = None,
+    docs_dir: Path | None = None,
+) -> bool:
+    if review_availability is None:
+        actual_docs_dir = docs_dir or (ROOT / "docs")
+        review_availability = collect_review_availability(docs_dir=actual_docs_dir, targets=[target])
+    return any(key in review_availability for key in _review_availability_keys_for_target(target))
+
+
+def collect_workspace_target_candidates(
+    args: argparse.Namespace,
+    *,
+    requested_target: WorkspaceTarget | None = None,
+) -> list[WorkspaceTarget]:
+    actual_requested_target = requested_target or requested_workspace_target(args)
+    targets_by_key: dict[tuple[str, str, str], WorkspaceTarget] = {actual_requested_target.key: actual_requested_target}
+
+    if args.all_review_models:
+        for model in review_models():
+            for template in WORKSPACE_TARGET_TEMPLATES:
+                target = build_workspace_target(model, template)
+                targets_by_key[target.key] = target
+    else:
+        for family in workspace_families_for_request(args):
+            for template in target_templates_for_family(family):
+                target = build_workspace_target(args.model, template)
+                targets_by_key[target.key] = target
+
+    return sorted(targets_by_key.values(), key=target_sort_key)
 
 
 def build_spec_for_target(
@@ -1526,10 +1569,16 @@ def build_spec_for_target(
     target: WorkspaceTarget,
     *,
     requested_target: WorkspaceTarget,
+    review_availability: ReviewAvailability | None = None,
+    docs_dir: Path | None = None,
 ) -> dict[str, object]:
     config_path = resolve_path(target.config)
     output_root = output_root_for_target(target.model, target)
-    source_mode = "review" if target_has_review_bundle(target) else "runtime"
+    source_mode = (
+        "review"
+        if target_has_review_bundle(target, review_availability=review_availability, docs_dir=docs_dir)
+        else "runtime"
+    )
     source_label = source_mode
     if target.key == requested_target.key:
         source_mode = args.source
@@ -1653,25 +1702,30 @@ def rewrite_manual_tree_for_preview(
         )
 
 
-def discover_workspace_targets(args: argparse.Namespace) -> list[WorkspaceTarget]:
-    requested_target = requested_workspace_target(args)
-    targets_by_key: dict[tuple[str, str, str], WorkspaceTarget] = {requested_target.key: requested_target}
+def discover_workspace_targets(
+    args: argparse.Namespace,
+    *,
+    requested_target: WorkspaceTarget | None = None,
+    review_availability: ReviewAvailability | None = None,
+    docs_dir: Path | None = None,
+) -> list[WorkspaceTarget]:
+    actual_requested_target = requested_target or requested_workspace_target(args)
+    target_candidates = collect_workspace_target_candidates(args, requested_target=actual_requested_target)
+    actual_docs_dir = docs_dir or (ROOT / "docs")
+    actual_review_availability = review_availability
+    if actual_review_availability is None:
+        actual_review_availability = collect_review_availability(
+            docs_dir=actual_docs_dir,
+            targets=target_candidates,
+        )
 
-    if args.all_review_models:
-        for model in review_models():
-            for template in WORKSPACE_TARGET_TEMPLATES:
-                target = build_workspace_target(model, template)
-                if target_has_review_bundle(target):
-                    targets_by_key[target.key] = target
-    else:
-        for family in workspace_families_for_request(args):
-            for template in target_templates_for_family(family):
-                target = build_workspace_target(args.model, template)
-                if args.source == "review" and not target_has_review_bundle(target):
-                    continue
-                targets_by_key[target.key] = target
-
-    return sorted(targets_by_key.values(), key=target_sort_key)
+    selected: list[WorkspaceTarget] = []
+    for target in target_candidates:
+        if target.key != actual_requested_target.key and args.source == "review":
+            if not target_has_review_bundle(target, review_availability=actual_review_availability):
+                continue
+        selected.append(target)
+    return selected
 
 
 def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object], *, require_word: bool) -> None:
@@ -1768,7 +1822,17 @@ def main() -> int:
     output_dir = resolve_path(args.output_dir)
     changed_files = collect_changed_files(args.from_ref, args.to_ref)
     requested_target = requested_workspace_target(args)
-    workspace_targets = discover_workspace_targets(args)
+    workspace_target_candidates = collect_workspace_target_candidates(args, requested_target=requested_target)
+    review_availability = collect_review_availability(
+        docs_dir=ROOT / "docs",
+        targets=workspace_target_candidates,
+    )
+    workspace_targets = discover_workspace_targets(
+        args,
+        requested_target=requested_target,
+        review_availability=review_availability,
+        docs_dir=ROOT / "docs",
+    )
 
     if not workspace_targets:
         if args.source == "review" and args.all_review_models:
@@ -1789,7 +1853,13 @@ def main() -> int:
     changes_by_family: dict[str, object] = {}
     all_workspace_targets = list(workspace_targets)
     target_specs = {
-        target.label: build_spec_for_target(args, target, requested_target=requested_target)
+        target.label: build_spec_for_target(
+            args,
+            target,
+            requested_target=requested_target,
+            review_availability=review_availability,
+            docs_dir=ROOT / "docs",
+        )
         for target in workspace_targets
     }
 

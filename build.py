@@ -115,7 +115,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--doc-phase",
         choices=("draft", "publish"),
         default=None,
-        help="For process-build-queue: only consume one Document_link Doc_phase",
+        help="For process-build-queue: only consume one normalized Doc_phase (Build Draft Package or Publish)",
     )
     ap.add_argument(
         "--record-id",
@@ -435,7 +435,7 @@ def release_manifest_command(args: argparse.Namespace) -> list[str]:
 def process_build_queue_command(args: argparse.Namespace) -> list[str]:
     if (args.model or "").strip() or (args.region or "").strip():
         raise RuntimeError(
-            "process-build-queue does not accept --model or --region; targets come from Document_link rows"
+            "process-build-queue does not accept --model or --region; Build Draft Package / Publish targets come from Document_link rows"
         )
     config_path = resolve_path_from_root(args.config)
     cmd = [
@@ -457,7 +457,7 @@ def process_build_queue_command(args: argparse.Namespace) -> list[str]:
 def process_review_start_queue_command(args: argparse.Namespace) -> list[str]:
     if (args.model or "").strip() or (args.region or "").strip():
         raise RuntimeError(
-            "process-review-start-queue does not accept --model or --region; targets come from Review-init rows"
+            "process-review-start-queue does not accept --model or --region; Start Review/Seed Draft targets come from Review-init rows"
         )
     config_path = resolve_path_from_root(args.config)
     cmd = [
@@ -1041,4 +1041,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

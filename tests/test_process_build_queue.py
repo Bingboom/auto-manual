@@ -518,6 +518,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("SUCCESS", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("doc_phase=draft", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("workflow_action=Build Draft Package", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("version=1.0", fields[process_build_queue.RESULT_FIELD])
 
     def test_build_started_fields_should_write_datetime_millis(self) -> None:
@@ -552,6 +553,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("FAILED", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("doc_phase=publish", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("workflow_action=Publish", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("latest_drive_link_preserved", fields[process_build_queue.RESULT_FIELD])
 
     def test_pending_queue_records_should_not_accept_immediate_checkbox_without_trigger(self) -> None:
@@ -697,11 +699,13 @@ class TestProcessBuildQueue(unittest.TestCase):
     def test_normalize_doc_phase_should_accept_draft_and_publish_aliases(self) -> None:
         self.assertEqual("draft", process_build_queue.normalize_doc_phase("Draft"))
         self.assertEqual("draft", process_build_queue.normalize_doc_phase("review"))
+        self.assertEqual("draft", process_build_queue.normalize_doc_phase("Draft Package"))
+        self.assertEqual("draft", process_build_queue.normalize_doc_phase("Build Draft Package"))
         self.assertEqual("publish", process_build_queue.normalize_doc_phase("Publish"))
         self.assertIsNone(process_build_queue.normalize_doc_phase(""))
 
     def test_normalize_doc_phase_should_reject_unknown_value(self) -> None:
-        with self.assertRaisesRegex(RuntimeError, "Doc_phase must be Draft or Publish"):
+        with self.assertRaisesRegex(RuntimeError, "Doc_phase must map to Build Draft Package or Publish"):
             process_build_queue.normalize_doc_phase("staging")
 
     def test_build_document_for_task_should_use_review_source_for_draft_phase(self) -> None:
@@ -1186,6 +1190,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("doc_phase=draft", record_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("workflow_action=Build Draft Package", record_payload[process_build_queue.RESULT_FIELD])
         build_document_mock.assert_called_once_with(
             config_path=Path("config.us-en.yaml"),
             model="JE-1000F",

@@ -19,6 +19,7 @@ if str(ROOT) not in sys.path:
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.build_docs import build_root_for_target, load_config, render_build_template, resolve_output_path, resolve_product_name_for_build  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
+from tools.release_contract import release_manifests_dir_for_target  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import review_dir_for_target  # noqa: E402
 from tools.utils.targets import resolve_output_lang  # noqa: E402
@@ -108,7 +109,13 @@ def build_release_manifest(
 
     built_at_value = built_at or datetime.now(timezone.utc)
     timestamp = built_at_value.strftime("%Y%m%dT%H%M%SZ")
-    manifest_dir = ROOT / "reports" / "releases" / model / region
+    manifest_dir = release_manifests_dir_for_target(
+        repo_root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        cfg=cfg,
+    )
     manifest_dir.mkdir(parents=True, exist_ok=True)
     json_path = manifest_dir / f"{timestamp}.json"
     csv_path = manifest_dir / f"{timestamp}.csv"

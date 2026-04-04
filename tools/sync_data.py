@@ -990,7 +990,7 @@ def sync_phase2_snapshot(
         snapshot_paths = resolve_data_snapshot_paths(
             cfg,
             repo_root=ROOT,
-            data_root=data_root,
+            data_root=str(export_root),
         )
         row_key_mapping_path = snapshot_paths.row_key_mapping_csv
         existing_mapping_path = _resolve_existing_row_key_mapping_path(
@@ -1110,4 +1110,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
