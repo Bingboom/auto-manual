@@ -43,6 +43,7 @@ GIT_REF_FIELD = "Git_ref"
 PR_URL_FIELD = "PR_url"
 DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
+BUILD_FAMILY_FIELD = "Build_family"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
 INITIAL_RESULT_FIELD = "Initial_result"
@@ -69,6 +70,7 @@ class ReviewStartRecord:
     record_id: str
     document_id: str
     document_key: str
+    build_family: str
     version: str
     lang: str
     review_status: str
@@ -176,6 +178,10 @@ def _scalar_text(value: Any) -> str:
     return str(value).strip()
 
 
+def _normalized_build_family(value: Any) -> str:
+    return _scalar_text(value).strip().lower()
+
+
 def _is_checkbox_enabled(value: Any) -> bool:
     if isinstance(value, bool):
         return value
@@ -209,6 +215,7 @@ def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[Review
                 record_id=record_id,
                 document_id=_scalar_text(fields.get(DOCUMENT_ID_FIELD)),
                 document_key=_scalar_text(fields.get(DOCUMENT_KEY_FIELD)),
+                build_family=_normalized_build_family(fields.get(BUILD_FAMILY_FIELD)),
                 version=_scalar_text(fields.get(VERSION_FIELD)),
                 lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
                 review_status=_scalar_text(fields.get(REVIEW_STATUS_FIELD)),
@@ -265,6 +272,21 @@ def _document_key_from_document_id(*, document_id: str, lang: str, version: str)
     return candidate.strip()
 
 
+def _resolve_review_start_config_path(*, region: str, lang: str | None, build_family: str | None) -> Path:
+    try:
+        return resolve_config_path_for_task(region=region, lang=lang, build_family=build_family)
+    except TypeError as exc:
+        if "build_family" not in str(exc):
+            raise
+        return resolve_config_path_for_task(region=region, lang=lang)
+
+
+def _queue_by_document_key(cfg: dict[str, Any]) -> bool:
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    return _is_checkbox_enabled(build_cfg.get("queue_by_document_key"))
+
+
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
     candidates: list[str] = []
     if _looks_like_explicit_document_key(record.document_key):
@@ -284,7 +306,12 @@ def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str
         except RuntimeError as exc:
             errors.append(str(exc))
 
-    detail = f"Document_ID={record.document_id!r}, Document_Key={record.document_key!r}, Lang={record.lang!r}"
+    detail = (
+        f"Document_ID={record.document_id!r}, "
+        f"Document_Key={record.document_key!r}, "
+        f"Build_family={record.build_family!r}, "
+        f"Lang={record.lang!r}"
+    )
     if errors:
         raise RuntimeError("Unable to resolve review-start target. " + detail + " | " + " | ".join(errors))
     raise RuntimeError("Unable to resolve review-start target. " + detail)
@@ -303,11 +330,24 @@ def review_start_record_key(record: ReviewStartRecord) -> str:
     return record.record_id
 
 
+def _review_start_group_key(record: ReviewStartRecord, *, cfg: dict[str, Any]) -> str:
+    if _queue_by_document_key(cfg):
+        return review_start_record_key(record)
+    return record.record_id
+
+
 def group_review_start_records(records: list[ReviewStartRecord]) -> list[list[ReviewStartRecord]]:
     grouped: list[list[ReviewStartRecord]] = []
     index_by_key: dict[str, int] = {}
     for record in records:
-        key = review_start_record_key(record)
+        _model, region = resolve_target_for_review_start(record)
+        config_path = _resolve_review_start_config_path(
+            region=region,
+            lang=record.lang,
+            build_family=record.build_family,
+        )
+        cfg = load_config(config_path)
+        key = _review_start_group_key(record, cfg=cfg)
         existing_index = index_by_key.get(key)
         if existing_index is None:
             index_by_key[key] = len(grouped)
@@ -317,11 +357,35 @@ def group_review_start_records(records: list[ReviewStartRecord]) -> list[list[Re
     return grouped
 
 
+def review_start_group_build_family(records: list[ReviewStartRecord]) -> str:
+    for record in records:
+        build_family = _normalized_build_family(record.build_family)
+        if build_family:
+            return build_family
+    return ""
+
+
 def review_start_group_lang(records: list[ReviewStartRecord]) -> str:
     for record in records:
         if record.lang.strip():
             return record.lang.strip().lower()
     return ""
+
+
+def validate_review_start_group(records: list[ReviewStartRecord]) -> None:
+    if not records:
+        return
+    if len(records) == 1:
+        return
+
+    build_families = {review_start_group_build_family([record]) for record in records}
+    build_families.discard("")
+    if len(build_families) > 1:
+        group_key = review_start_record_key(records[0])
+        raise RuntimeError(
+            f"Conflicting Build_family values for review-start group {group_key}: "
+            + ", ".join(sorted(build_families))
+        )
 
 
 def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str, Any]:
@@ -760,9 +824,15 @@ def process_review_start_queue(
     if dry_run:
         for group in pending_groups:
             record = group[0]
+            validate_review_start_group(group)
             model, region = resolve_target_for_review_start(record)
             group_lang = review_start_group_lang(group)
-            build_config_path = resolve_config_path_for_task(region=region, lang=group_lang)
+            group_build_family = review_start_group_build_family(group)
+            build_config_path = _resolve_review_start_config_path(
+                region=region,
+                lang=group_lang,
+                build_family=group_build_family,
+            )
             print(
                 "[review-start] DRY-RUN "
                 + json.dumps(
@@ -773,6 +843,7 @@ def process_review_start_queue(
                         "document_key": review_start_record_key(record),
                         "model": model,
                         "region": region,
+                        "build_family": group_build_family,
                         "lang": group_lang,
                         "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
@@ -799,8 +870,15 @@ def process_review_start_queue(
     for group in pending_groups:
         record = group[0]
         try:
+            validate_review_start_group(group)
             model, region = resolve_target_for_review_start(record)
-            build_config_path = resolve_config_path_for_task(region=region, lang=review_start_group_lang(group))
+            group_lang = review_start_group_lang(group)
+            group_build_family = review_start_group_build_family(group)
+            build_config_path = _resolve_review_start_config_path(
+                region=region,
+                lang=group_lang,
+                build_family=group_build_family,
+            )
             if base_ref_contains_target_review_root(
                 config_path=build_config_path,
                 model=model,
@@ -819,7 +897,7 @@ def process_review_start_queue(
                 print(
                     "[review-start] BLOCKED "
                     f"{review_start_record_key(record)}: review root already exists in origin/{base_ref} "
-                    f"for {model}/{region}; updated {len(group)} row(s)"
+                    f"for {model}/{region} family={group_build_family or 'legacy'}; updated {len(group)} row(s)"
                 )
                 continue
             branch_name, pr_url = start_review_for_record(
@@ -841,11 +919,15 @@ def process_review_start_queue(
             processed += 1
             print(
                 f"[review-start] Updated {review_start_record_key(record)}: "
-                f"git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
+                f"family={group_build_family or 'legacy'} git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
             )
         except Exception as exc:
             failures.append(f"{review_start_record_key(record)}: {exc}")
-            print(f"[review-start] FAILURE {review_start_record_key(record)}: {exc}", file=sys.stderr)
+            print(
+                f"[review-start] FAILURE {review_start_record_key(record)} "
+                f"family={review_start_group_build_family(group) or 'legacy'}: {exc}",
+                file=sys.stderr,
+            )
 
     print(f"[review-start] Summary: processed={processed} blocked={blocked} failed={len(failures)}")
     return 1 if failures else 0

@@ -1,6 +1,7 @@
 doc_type: manual_bundle
 
 build:
+  family_id: us-merged
   languages: [ en, fr, es ]
   include_lang_in_output_path: false
   queue_by_document_key: true

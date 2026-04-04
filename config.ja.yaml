@@ -1,6 +1,7 @@
 ﻿doc_type: manual_bundle
 
 build:
+  family_id: jp-ja
   languages: [ja]
   default_model: JE-1000F
   default_region: JP

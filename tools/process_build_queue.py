@@ -45,6 +45,7 @@ DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
+BUILD_FAMILY_FIELD = "Build_family"
 DOC_PHASE_FIELD = "Doc_phase"
 GIT_REF_FIELD = "Git_ref"
 BUILD_STARTED_AT_FIELD = "开始构建时间"
@@ -81,6 +82,7 @@ class QueueRecord:
     git_ref: str
     trigger_value: str
     immediate_trigger_value: Any
+    build_family: str = ""
 
     @property
     def label(self) -> str:
@@ -217,6 +219,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
                 document_key=_scalar_text(fields.get(DOCUMENT_KEY_FIELD)),
                 version=_scalar_text(fields.get(VERSION_FIELD)),
                 lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
+                build_family=_scalar_text(fields.get(BUILD_FAMILY_FIELD)).lower(),
                 doc_phase=_scalar_text(fields.get(DOC_PHASE_FIELD)),
                 git_ref=_scalar_text(fields.get(GIT_REF_FIELD)),
                 trigger_value=_scalar_text(_field_value(fields, TRIGGER_FIELD, *LEGACY_TRIGGER_FIELDS)),
@@ -321,7 +324,10 @@ def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
         except RuntimeError as exc:
             errors.append(str(exc))
 
-    detail = f"Document_ID={record.document_id!r}, Document_Key={record.document_key!r}, Lang={record.lang!r}"
+    detail = (
+        f"Document_ID={record.document_id!r}, Document_Key={record.document_key!r}, "
+        f"Lang={record.lang!r}, Build_family={record.build_family!r}"
+    )
     if errors:
         raise RuntimeError("Unable to resolve build target for queue record. " + detail + " | " + " | ".join(errors))
     raise RuntimeError("Unable to resolve build target for queue record. " + detail)
@@ -347,22 +353,82 @@ def queue_group_lang(records: list[QueueRecord]) -> str:
     return ""
 
 
-def _build_languages(cfg: dict[str, Any]) -> list[str]:
+def queue_group_build_family(records: list[QueueRecord]) -> str:
+    for record in records:
+        if record.build_family.strip():
+            return record.build_family.strip().lower()
+    return ""
+
+
+def _build_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    return build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+
+
+def _normalize_build_family(value: Any) -> str:
+    return _scalar_text(value).strip().lower()
+
+
+def _build_languages(cfg: dict[str, Any]) -> list[str]:
+    build_cfg = _build_cfg(cfg)
     langs = build_cfg.get("languages", ["en"])
     return [str(item).strip().lower() for item in langs if str(item).strip()] or ["en"]
 
 
 def _queue_by_document_key(cfg: dict[str, Any]) -> bool:
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    build_cfg = _build_cfg(cfg)
     return bool(build_cfg.get("queue_by_document_key"))
 
 
+def _config_family_id(cfg: dict[str, Any]) -> str:
+    return _normalize_build_family(_build_cfg(cfg).get("family_id"))
+
+
+def _config_default_region(cfg: dict[str, Any]) -> str:
+    return str(_build_cfg(cfg).get("default_region") or "").strip().upper()
+
+
+def _validate_family_config_request(
+    *,
+    config_path: Path,
+    cfg: dict[str, Any],
+    build_family: str,
+    region: str,
+    lang: str | None,
+) -> None:
+    family_id = _config_family_id(cfg)
+    normalized_region = str(region or "").strip().upper()
+    normalized_lang = str(lang or "").strip().lower()
+    if family_id != build_family:
+        raise RuntimeError(
+            f"Config {config_path.name} does not match Build_family={build_family!r}; family_id={family_id!r}"
+        )
+
+    default_region = _config_default_region(cfg)
+    if default_region and default_region != normalized_region:
+        raise RuntimeError(
+            f"Build_family {build_family!r} routes to region {default_region!r}, not {normalized_region!r}"
+        )
+
+    if not normalized_lang:
+        return
+
+    languages = _build_languages(cfg)
+    primary_lang = languages[0] if languages else ""
+    if _queue_by_document_key(cfg):
+        if normalized_lang not in languages:
+            raise RuntimeError(
+                f"Build_family {build_family!r} does not include Lang={normalized_lang!r}; supported={languages}"
+            )
+        return
+    if primary_lang != normalized_lang:
+        raise RuntimeError(
+            f"Build_family {build_family!r} conflicts with Lang={normalized_lang!r}; expected {primary_lang!r}"
+        )
+
+
 def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    build_cfg = _build_cfg(cfg)
     default_region = str(build_cfg.get("default_region") or "").strip().upper()
     languages = _build_languages(cfg)
     primary_lang = languages[0] if languages else ""
@@ -371,13 +437,16 @@ def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, 
         return None
     queue_by_document_key = _queue_by_document_key(cfg)
     if queue_by_document_key:
-        if normalized_lang and normalized_lang not in languages:
-            return None
-        score = 100
+        if normalized_lang:
+            if normalized_lang not in languages:
+                return None
+            score = 50
+        else:
+            score = 100
     else:
         if not normalized_lang or primary_lang != normalized_lang:
             return None
-        score = 50
+        score = 100
 
     file_name = config_path.name.lower()
     if region.lower() in file_name:
@@ -391,7 +460,36 @@ def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, 
     return score
 
 
-def resolve_config_path_for_task(*, region: str, lang: str | None) -> Path:
+def resolve_config_path_for_task(*, region: str, lang: str | None, build_family: str | None = None) -> Path:
+    normalized_build_family = _normalize_build_family(build_family)
+    if normalized_build_family:
+        family_candidates: list[tuple[Path, dict[str, Any]]] = []
+        for config_path in sorted(ROOT.glob("config*.yaml")):
+            try:
+                cfg = load_config(config_path)
+            except RuntimeError:
+                continue
+            if _config_family_id(cfg) != normalized_build_family:
+                continue
+            family_candidates.append((config_path, cfg))
+
+        if not family_candidates:
+            raise RuntimeError(f"No config family matches Build_family={normalized_build_family!r}")
+        if len(family_candidates) > 1:
+            names = ", ".join(path.name for path, _ in family_candidates)
+            raise RuntimeError(
+                f"Build_family {normalized_build_family!r} matches multiple config files: {names}"
+            )
+        config_path, cfg = family_candidates[0]
+        _validate_family_config_request(
+            config_path=config_path,
+            cfg=cfg,
+            build_family=normalized_build_family,
+            region=region,
+            lang=lang,
+        )
+        return config_path
+
     candidates: list[tuple[int, Path]] = []
     for config_path in sorted(ROOT.glob("config*.yaml")):
         try:
@@ -414,7 +512,7 @@ def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRe
     index_by_key: dict[str, int] = {}
     for record in records:
         model, region = resolve_target_for_record(record)
-        config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+        config_path = resolve_config_path_for_task(region=region, lang=record.lang, build_family=record.build_family)
         cfg = load_config(config_path)
         if _queue_by_document_key(cfg):
             key = queue_record_key(record)
@@ -440,6 +538,7 @@ def validate_queue_record_group(records: list[QueueRecord]) -> None:
     doc_phases = {normalize_doc_phase(record.doc_phase) or "" for record in records}
     versions = {record.version.strip() for record in records}
     git_refs = {record.git_ref.strip() for record in records}
+    build_families = {record.build_family.strip().lower() for record in records if record.build_family.strip()}
     conflicts: list[str] = []
     if len(doc_phases) > 1:
         conflicts.append("Doc_phase")
@@ -447,6 +546,8 @@ def validate_queue_record_group(records: list[QueueRecord]) -> None:
         conflicts.append("Version")
     if len(git_refs) > 1:
         conflicts.append("Git_ref")
+    if len(build_families) > 1:
+        conflicts.append("Build_family")
     if conflicts:
         raise RuntimeError(
             "Queue rows merged by Document_Key must agree on "
@@ -1337,8 +1438,13 @@ def process_build_queue(
             record = group[0]
             model, region = resolve_target_for_record(record)
             group_lang = queue_group_lang(group)
-            resolved_config_path = resolve_config_path_for_task(region=region, lang=group_lang)
+            group_build_family = queue_group_build_family(group)
             validate_queue_record_group(group)
+            resolved_config_path = resolve_config_path_for_task(
+                region=region,
+                lang=group_lang,
+                build_family=group_build_family,
+            )
             print(
                 "[build-queue] DRY-RUN "
                 + json.dumps(
@@ -1350,6 +1456,7 @@ def process_build_queue(
                         "model": model,
                         "region": region,
                         "lang": group_lang,
+                        "build_family": group_build_family,
                         "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
                         "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
@@ -1411,7 +1518,12 @@ def process_build_queue(
             validate_queue_record_group(group)
             model, region = resolve_target_for_record(record)
             group_lang = queue_group_lang(group)
-            resolved_config_path = resolve_config_path_for_task(region=region, lang=group_lang)
+            group_build_family = queue_group_build_family(group)
+            resolved_config_path = resolve_config_path_for_task(
+                region=region,
+                lang=group_lang,
+                build_family=group_build_family,
+            )
             effective_doc_phase = normalize_doc_phase(record.doc_phase)
             started_at = datetime.now().astimezone()
             if can_write_started_at:
