@@ -180,3 +180,16 @@ Why it mattered:
 - queue semantics are now less ambiguous for operators and Feishu automation authors
 - local parity checks and smoke runs no longer need to pollute tracked output directories
 - release-path consumers can rely on one normalized action vocabulary and one isolated-output mechanism
+
+## 11. 2026-04-04: Branch Start Guardrails
+
+Main outcomes:
+
+- added [`scripts/start_branch.ps1`](../scripts/start_branch.ps1) as the supported branch-creation entrypoint from fresh `origin/main`
+- added a repo-managed [`.githooks/pre-push`](../.githooks/pre-push) guard that blocks pushes from branches that do not contain the latest `origin/main`
+- documented the local `git config core.hooksPath .githooks` setup and the intentional bypass path `git push --no-verify`
+
+Why it mattered:
+
+- continuing work in the same shell after a PR merge or close is less likely to accidentally reuse an outdated base
+- operators get a fast local failure before opening another conflict-heavy PR

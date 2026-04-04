@@ -51,6 +51,12 @@ GitHub note:
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
 - that workflow expects `pandoc` for the review Word export path and blocks preview deployment if the required Word / Excel downloads are missing
 
+Git branch hygiene note:
+
+- after one PR is merged or closed, start the next change with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` so the new branch comes from the latest `origin/main`
+- enable the repo-managed pre-push guard with `git config core.hooksPath .githooks`
+- that guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only when intentional with `git push --no-verify`
+
 ---
 
 ## 2. Source of Truth

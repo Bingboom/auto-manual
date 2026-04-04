@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+remote_name="${1:-origin}"
+base_branch="${AUTO_MANUAL_BASE_BRANCH:-main}"
+
+current_branch="$(git symbolic-ref --quiet --short HEAD || true)"
+if [[ -z "${current_branch}" ]]; then
+  exit 0
+fi
+
+case "${current_branch}" in
+  main|master)
+    exit 0
+    ;;
+esac
+
+if [[ "${AUTO_MANUAL_SKIP_BRANCH_BASE_CHECK:-0}" == "1" ]]; then
+  exit 0
+fi
+
+if ! git fetch --quiet "${remote_name}" "${base_branch}"; then
+  echo "[pre-push] Unable to fetch ${remote_name}/${base_branch} to verify the branch base." >&2
+  echo "[pre-push] Push blocked. Retry after network/auth is fixed, or bypass intentionally with --no-verify." >&2
+  exit 1
+fi
+
+remote_base_ref="${remote_name}/${base_branch}"
+if ! git rev-parse --verify --quiet "${remote_base_ref}" >/dev/null; then
+  echo "[pre-push] Missing ${remote_base_ref}; cannot verify that this branch starts from the latest base." >&2
+  echo "[pre-push] Push blocked. Check the remote/base-branch setting first." >&2
+  exit 1
+fi
+
+merge_base="$(git merge-base HEAD "${remote_base_ref}")"
+remote_base_sha="$(git rev-parse "${remote_base_ref}")"
+
+if [[ "${merge_base}" != "${remote_base_sha}" ]]; then
+  echo "[pre-push] Current branch does not contain the latest ${remote_base_ref}." >&2
+  echo "[pre-push] Start new work with: powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>" >&2
+  echo "[pre-push] Or update this branch before pushing:" >&2
+  echo "[pre-push]   git fetch ${remote_name}" >&2
+  echo "[pre-push]   git rebase ${remote_base_ref}" >&2
+  echo "[pre-push] Intentional bypass: git push --no-verify" >&2
+  exit 1
+fi
+
+exit 0

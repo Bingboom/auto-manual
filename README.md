@@ -162,6 +162,12 @@ Windows note:
 - if File Explorer, a browser, Word, or a PDF viewer is open under [`docs/_build/`](docs/_build), close it before rerunning
 - if you only need an in-place rebuild, add `--no-clean`
 
+Git workflow note:
+
+- start new work with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` instead of branching manually from a possibly stale local `main`
+- the repo can use a managed pre-push guard from [`.githooks/pre-push`](.githooks/pre-push); enable it locally with `git config core.hooksPath .githooks`
+- that guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only intentionally with `git push --no-verify`
+
 Do not treat this file as the full command reference.
 The command semantics and output layout are maintained in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).
 

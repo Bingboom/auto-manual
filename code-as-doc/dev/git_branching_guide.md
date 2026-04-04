@@ -96,10 +96,24 @@ Use `release/*` only when an explicit release freeze or post-release hotfix need
 ### 4.1 Start From Updated Main
 
 ```powershell
-git switch main
-git pull --ff-only origin main
-git switch -c feat/draft-engine-manifest
+powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/draft-engine-manifest
 ```
+
+What that wrapper does:
+
+- fetches `origin/main`
+- fast-forwards local `main` with `pull --ff-only`
+- creates the new branch from that updated base
+- refuses to branch when the worktree has non-generated dirty changes
+
+One-time local setup:
+
+```powershell
+git config core.hooksPath .githooks
+```
+
+After that, [`.githooks/pre-push`](../../.githooks/pre-push) blocks pushes from branches that do not contain the latest `origin/main`.
+Use `git push --no-verify` only when the older base is intentional.
 
 ### 4.2 Keep The Scope Small
 
@@ -316,4 +330,3 @@ When cleaning up the current branch landscape:
 ## 10. One-Sentence Summary
 
 Use `main` as the only normal long-lived branch, do all daily work on short-lived topic branches, merge through reviewed squash PRs, and protect `main` with required checks plus no-force-push rules.
-
