@@ -42,7 +42,7 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_us_pilot_config_should_resolve_generated_pages_without_issues(self) -> None:
         self._assert_pilot_config_ready(
-            config_name="config.yaml",
+            config_name="config.us.yaml",
             model="JE-1000F",
             region="US",
         )
@@ -57,4 +57,5 @@ class TestPilotConfigs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 

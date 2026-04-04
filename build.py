@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_CONFIG = "config.yaml"
+DEFAULT_CONFIG = "config.us.yaml"
 BUILD_ACTIONS = ("rst", "word", "html", "pdf", "all")
 ALL_OUTPUT_FORMATS = "html,word,pdf"
 VALID_PDF_MODES = {"latex", "word"}
@@ -1041,3 +1041,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

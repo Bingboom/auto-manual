@@ -1214,7 +1214,7 @@ def materialize_bundle(
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
+    ap.add_argument("--config", default="config.us.yaml", help="Path to config yaml")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Optional product model for include/file paths")
     ap.add_argument("--region", default=None, help="Optional region for include/file paths")
@@ -1242,3 +1242,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

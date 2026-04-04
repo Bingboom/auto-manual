@@ -1307,7 +1307,7 @@ def build_target(
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.yaml", help="Path to config yaml")
+    ap.add_argument("--config", default="config.us.yaml", help="Path to config yaml")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Target product model for spec filtering")
     ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
@@ -1396,3 +1396,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

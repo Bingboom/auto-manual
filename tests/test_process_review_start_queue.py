@@ -65,7 +65,38 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         branch_name = process_review_start_queue.generate_review_branch_name(record)
 
         self.assertTrue(branch_name.startswith("codex/review-"))
-        self.assertIn("je-1000f-jp-ja-0-1", branch_name)
+        self.assertIn("je-1000f-jp", branch_name)
+
+    def test_group_review_start_records_should_collapse_same_document_key(self) -> None:
+        grouped = process_review_start_queue.group_review_start_records(
+            [
+                process_review_start_queue.ReviewStartRecord(
+                    record_id="rec_en",
+                    document_id="JE-1000F_US_en_0.1",
+                    document_key="JE-1000F_US",
+                    version="0.1",
+                    lang="en",
+                    review_status="NotStarted",
+                    review_trigger_value=True,
+                    git_ref="",
+                    pr_url="",
+                ),
+                process_review_start_queue.ReviewStartRecord(
+                    record_id="rec_fr",
+                    document_id="JE-1000F_US_fr_0.1",
+                    document_key="JE-1000F_US",
+                    version="0.1",
+                    lang="fr",
+                    review_status="NotStarted",
+                    review_trigger_value=True,
+                    git_ref="",
+                    pr_url="",
+                ),
+            ]
+        )
+
+        self.assertEqual(1, len(grouped))
+        self.assertEqual(["rec_en", "rec_fr"], [record.record_id for record in grouped[0]])
 
     def test_resolve_target_for_review_start_should_fallback_to_document_id(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
@@ -152,7 +183,20 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     process_review_start_queue.GIT_REF_FIELD: "",
                     process_review_start_queue.PR_URL_FIELD: "",
                 },
-            }
+            },
+            {
+                "record_id": "rec_init_2",
+                "fields": {
+                    process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_en_0.1",
+                    process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                    process_review_start_queue.LANG_FIELD: ["en"],
+                    process_review_start_queue.VERSION_FIELD: ["0.1"],
+                    process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_NOT_STARTED],
+                    process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    process_review_start_queue.GIT_REF_FIELD: "",
+                    process_review_start_queue.PR_URL_FIELD: "",
+                },
+            },
         ]
 
         source = mock.Mock()
@@ -166,6 +210,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             mock.patch.object(process_review_start_queue, "LarkCliSource", return_value=source), \
             mock.patch.object(process_review_start_queue, "sync_phase2_snapshot_before_review_start"), \
             mock.patch.object(process_review_start_queue, "_run_git"), \
+            mock.patch.object(process_review_start_queue, "resolve_config_path_for_task", return_value=Path(td) / "config.ja.yaml"), \
             mock.patch.object(process_review_start_queue, "base_ref_contains_target_review_root", return_value=False), \
             mock.patch.object(
                 process_review_start_queue,
@@ -185,20 +230,25 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 config_path=Path(td) / "config.yaml",
                 data_root=str(Path(td) / ".tmp" / "review-start" / "phase2"),
                 dry_run=False,
-                record_id="rec_init_1",
+                record_id=None,
             )
 
         self.assertEqual(0, exit_code)
-        source.upsert_record.assert_called_once()
-        kwargs = source.upsert_record.call_args.kwargs
-        self.assertEqual("rec_init_1", kwargs["record_id"])
-        self.assertEqual(["InReview"], kwargs["record"][process_review_start_queue.REVIEW_STATUS_FIELD])
-        self.assertEqual("codex/review-je-1000f-jp-ja-0-1", kwargs["record"][process_review_start_queue.GIT_REF_FIELD])
-        self.assertEqual(
-            "https://github.com/Bingboom/auto-manual/pull/999",
-            kwargs["record"][process_review_start_queue.PR_URL_FIELD],
-        )
-        self.assertFalse(kwargs["record"][process_review_start_queue.REVIEW_TRIGGER_FIELD])
+        self.assertEqual(2, source.upsert_record.call_count)
+        observed_record_ids = [call.kwargs["record_id"] for call in source.upsert_record.call_args_list]
+        self.assertEqual(["rec_init_1", "rec_init_2"], observed_record_ids)
+        for call in source.upsert_record.call_args_list:
+            record_payload = call.kwargs["record"]
+            self.assertEqual(["InReview"], record_payload[process_review_start_queue.REVIEW_STATUS_FIELD])
+            self.assertEqual(
+                "codex/review-je-1000f-jp-ja-0-1",
+                record_payload[process_review_start_queue.GIT_REF_FIELD],
+            )
+            self.assertEqual(
+                "https://github.com/Bingboom/auto-manual/pull/999",
+                record_payload[process_review_start_queue.PR_URL_FIELD],
+            )
+            self.assertFalse(record_payload[process_review_start_queue.REVIEW_TRIGGER_FIELD])
 
     def test_process_review_start_queue_should_block_duplicate_review_root_and_write_initial_result(self) -> None:
         cfg = {

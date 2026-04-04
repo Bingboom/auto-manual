@@ -20,7 +20,7 @@ class TestBuildScript(unittest.TestCase):
                 sys.executable,
                 str(build_cli.ROOT / "tools" / "build_docs.py"),
                 "--config",
-                str(build_cli.ROOT / "config.yaml"),
+                str(build_cli.ROOT / "config.us.yaml"),
                 "--all-targets",
                 "--source",
                 "auto",
@@ -70,7 +70,7 @@ class TestBuildScript(unittest.TestCase):
 
     def test_build_docs_command_should_build_preview_into_isolated_root(self) -> None:
         args = build_cli.parse_args(
-            ["preview", "--config", "config.yaml", "--model", "JE-1000F", "--region", "US", "--page", "05_operation_guide"]
+            ["preview", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--page", "05_operation_guide"]
         )
 
         cmd = build_cli.build_docs_command(args)
@@ -226,7 +226,7 @@ class TestBuildScript(unittest.TestCase):
             [
                 "diff-report",
                 "--config",
-                "config.yaml",
+                "config.us.yaml",
                 "--tracked-root",
                 "docs/_review/JE-1000F/JP",
             ]
@@ -244,7 +244,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[0])
 
     def test_run_diff_report_should_run_per_target_when_defaults_are_inferred(self) -> None:
-        args = build_cli.parse_args(["diff-report", "--config", "config.yaml"])
+        args = build_cli.parse_args(["diff-report", "--config", "config.us.yaml"])
         seen: list[list[str]] = []
         original = build_cli.run_checked
         original_targets = build_cli._resolve_diff_report_targets
@@ -264,7 +264,7 @@ class TestBuildScript(unittest.TestCase):
             [
                 "process-review-start-queue",
                 "--config",
-                "config.yaml",
+                "config.us.yaml",
                 "--data-root",
                 ".tmp/review-start/phase2",
                 "--record-id",
@@ -277,7 +277,7 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertEqual(str(build_cli.ROOT / "tools" / "process_review_start_queue.py"), cmd[1])
         self.assertIn("--config", cmd)
-        self.assertIn(str(build_cli.ROOT / "config.yaml"), cmd)
+        self.assertIn(str(build_cli.ROOT / "config.us.yaml"), cmd)
         self.assertIn("--data-root", cmd)
         self.assertIn(".tmp/review-start/phase2", cmd)
         self.assertIn("--record-id", cmd)
@@ -288,7 +288,7 @@ class TestBuildScript(unittest.TestCase):
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
         queue_args = build_cli.parse_args(["process-build-queue", "--dry-run", "--doc-phase", "draft", "--record-id", "rec_123"])
-        listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.yaml"])
+        listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.us.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
@@ -329,7 +329,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("JP", check_cmd)
 
     def test_run_check_should_forward_explicit_review_source_to_rst_build(self) -> None:
-        args = build_cli.parse_args(["check", "--config", "config.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
+        args = build_cli.parse_args(["check", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
         seen: list[list[str]] = []
         original_validate = build_cli.run_validate
         original_run_checked = build_cli.run_checked
@@ -356,7 +356,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[3][1])
 
     def test_maybe_sync_review_before_build_should_skip_when_no_review_bundle_exists(self) -> None:
-        args = build_cli.parse_args(["word", "--config", "config.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
+        args = build_cli.parse_args(["word", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
         seen: list[list[str]] = []
         original_run_checked = build_cli.run_checked
         original_review_sync_targets = build_cli._review_sync_target_args
@@ -382,7 +382,7 @@ class TestBuildScript(unittest.TestCase):
         original = build_cli.run_checked
         try:
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
-            build_cli.run_validate(build_cli.ROOT / "config.yaml")
+            build_cli.run_validate(build_cli.ROOT / "config.us.yaml")
         finally:
             build_cli.run_checked = original  # type: ignore[assignment]
 
@@ -396,7 +396,7 @@ class TestBuildScript(unittest.TestCase):
         original = build_cli.run_checked
         try:
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
-            build_cli.run_validate(build_cli.ROOT / "config.yaml", data_root="data/phase2")
+            build_cli.run_validate(build_cli.ROOT / "config.us.yaml", data_root="data/phase2")
         finally:
             build_cli.run_checked = original  # type: ignore[assignment]
 
@@ -433,7 +433,7 @@ class TestBuildScript(unittest.TestCase):
             [
                 "sync-data",
                 "--config",
-                "config.yaml",
+                "config.us.yaml",
                 "--data-root",
                 "data/phase2",
                 "--table",
@@ -462,7 +462,7 @@ class TestBuildScript(unittest.TestCase):
             [
                 "process-build-queue",
                 "--config",
-                "config.yaml",
+                "config.us.yaml",
                 "--data-root",
                 "data/phase2",
                 "--doc-phase",
@@ -495,7 +495,7 @@ class TestBuildScript(unittest.TestCase):
             [
                 "listen-build-queue",
                 "--config",
-                "config.yaml",
+                "config.us.yaml",
                 "--data-root",
                 "data/phase2",
             ]
@@ -641,7 +641,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn(("word.runtime", "ERROR", "Word COM unavailable"), areas)
 
     def test_collect_doctor_findings_should_flag_missing_params_tex_for_latex_pdf(self) -> None:
-        args = build_cli.parse_args(["doctor", "--config", "config.yaml"])
+        args = build_cli.parse_args(["doctor", "--config", "config.us.yaml"])
         cfg = {
             "build": {
                 "languages": ["en"],
@@ -687,3 +687,4 @@ class TestBuildScript(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

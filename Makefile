@@ -1,5 +1,5 @@
 PY ?= python
-CONFIG ?= config.yaml
+CONFIG ?= config.us.yaml
 OPEN_FLAG :=
 NO_CLEAN_FLAG :=
 
@@ -33,3 +33,4 @@ all:
 
 clean:
 	$(PY) build.py clean --config $(CONFIG)
+

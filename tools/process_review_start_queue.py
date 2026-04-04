@@ -249,7 +249,7 @@ def _looks_like_explicit_document_key(value: str) -> bool:
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
     if record.git_ref.strip():
         return record.git_ref.strip()
-    source = record.document_id or f"{record.document_key}_{record.lang}_{record.version}"
+    source = record.document_key or record.document_id or f"{record.lang}_{record.version}"
     slug = _slug_branch_token(source)[:72]
     return f"codex/review-{slug}"
 
@@ -288,6 +288,33 @@ def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str
     if errors:
         raise RuntimeError("Unable to resolve review-start target. " + detail + " | " + " | ".join(errors))
     raise RuntimeError("Unable to resolve review-start target. " + detail)
+
+
+def review_start_record_key(record: ReviewStartRecord) -> str:
+    if record.document_key.strip():
+        return record.document_key.strip().upper()
+    fallback_key = _document_key_from_document_id(
+        document_id=record.document_id,
+        lang=record.lang,
+        version=record.version,
+    )
+    if fallback_key:
+        return fallback_key.upper()
+    return record.record_id
+
+
+def group_review_start_records(records: list[ReviewStartRecord]) -> list[list[ReviewStartRecord]]:
+    grouped: list[list[ReviewStartRecord]] = []
+    index_by_key: dict[str, int] = {}
+    for record in records:
+        key = review_start_record_key(record)
+        existing_index = index_by_key.get(key)
+        if existing_index is None:
+            index_by_key[key] = len(grouped)
+            grouped.append([record])
+            continue
+        grouped[existing_index].append(record)
+    return grouped
 
 
 def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str, Any]:
@@ -717,22 +744,26 @@ def process_review_start_queue(
         table_id=binding.table_id,
         view_id=binding.view_id,
     )
-    pending = select_pending_review_start_records(raw_records, record_id=record_id)
-    if not pending:
+    pending_records = select_pending_review_start_records(raw_records, record_id=record_id)
+    if not pending_records:
         print("[review-start] No pending review-start tasks found.")
         return 0
+    pending_groups = group_review_start_records(pending_records)
 
     snapshot_data_root = data_root or str((ROOT / ".tmp" / "review-start" / "phase2").resolve())
     if dry_run:
-        for record in pending:
+        for group in pending_groups:
+            record = group[0]
             model, region = resolve_target_for_review_start(record)
             build_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
             print(
                 "[review-start] DRY-RUN "
                 + json.dumps(
                     {
+                        "record_ids": [item.record_id for item in group],
                         "record_id": record.record_id,
                         "label": record.label,
+                        "document_key": review_start_record_key(record),
                         "model": model,
                         "region": region,
                         "lang": record.lang,
@@ -757,7 +788,8 @@ def process_review_start_queue(
     failures: list[str] = []
     processed = 0
     blocked = 0
-    for record in pending:
+    for group in pending_groups:
+        record = group[0]
         try:
             model, region = resolve_target_for_review_start(record)
             build_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
@@ -767,16 +799,19 @@ def process_review_start_queue(
                 region=region,
                 base_ref=base_ref,
             ):
-                source.upsert_record(
-                    base_token=binding.base_token,
-                    table_id=binding.table_id,
-                    record_id=record.record_id,
-                    record=build_review_start_duplicate_fields(),
-                )
+                duplicate_fields = build_review_start_duplicate_fields()
+                for group_record in group:
+                    source.upsert_record(
+                        base_token=binding.base_token,
+                        table_id=binding.table_id,
+                        record_id=group_record.record_id,
+                        record=duplicate_fields,
+                    )
                 blocked += 1
                 print(
                     "[review-start] BLOCKED "
-                    f"{record.label}: review root already exists in origin/{base_ref} for {model}/{region}"
+                    f"{review_start_record_key(record)}: review root already exists in origin/{base_ref} "
+                    f"for {model}/{region}; updated {len(group)} row(s)"
                 )
                 continue
             branch_name, pr_url = start_review_for_record(
@@ -787,17 +822,22 @@ def process_review_start_queue(
                 repository=repository,
                 token=token,
             )
-            source.upsert_record(
-                base_token=binding.base_token,
-                table_id=binding.table_id,
-                record_id=record.record_id,
-                record=build_review_start_success_fields(git_ref=branch_name, pr_url=pr_url),
-            )
+            success_fields = build_review_start_success_fields(git_ref=branch_name, pr_url=pr_url)
+            for group_record in group:
+                source.upsert_record(
+                    base_token=binding.base_token,
+                    table_id=binding.table_id,
+                    record_id=group_record.record_id,
+                    record=success_fields,
+                )
             processed += 1
-            print(f"[review-start] Updated {record.label}: git_ref={branch_name} pr_url={pr_url}")
+            print(
+                f"[review-start] Updated {review_start_record_key(record)}: "
+                f"git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
+            )
         except Exception as exc:
-            failures.append(f"{record.label}: {exc}")
-            print(f"[review-start] FAILURE {record.label}: {exc}", file=sys.stderr)
+            failures.append(f"{review_start_record_key(record)}: {exc}")
+            print(f"[review-start] FAILURE {review_start_record_key(record)}: {exc}", file=sys.stderr)
 
     print(f"[review-start] Summary: processed={processed} blocked={blocked} failed={len(failures)}")
     return 1 if failures else 0

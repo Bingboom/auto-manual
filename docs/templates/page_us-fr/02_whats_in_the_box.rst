@@ -36,17 +36,17 @@ Tout changement ou toute modification non expressément approuvé(e) par le titu
    :header-rows: 0
    :widths: 25 25 25 25
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit.png
+   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Image de la station d'énergie.
           :width: 120px
 
        |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging.png
+     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
           :alt: Image du câble de charge CA.
           :width: 120px
 
        **Câble de charge CA**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon.png
+     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
           :alt: Image du manuel d'utilisation.
           :width: 120px
 
