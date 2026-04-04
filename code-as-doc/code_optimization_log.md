@@ -106,7 +106,7 @@ Main outcomes:
 
 - stopped normalizing around one config per model
 - consolidated to shared family configs:
-  - [`config.yaml`](../config.yaml)
+  - [`config.us.yaml`](../config.us.yaml)
   - [`config.ja.yaml`](../config.ja.yaml)
 - active family configs are now centered on US / JP shared configs instead of per-model files
 - moved per-target differences to CLI target selection and phase1 data
@@ -164,3 +164,4 @@ Why it mattered:
 - online content governance is now separated cleanly from the offline build contract
 - build-time consumers no longer need their own ad hoc CSV path rules
 - maintainers can switch between phase1 and phase2 snapshots without changing manifests or renderer logic
+

@@ -158,14 +158,14 @@ Run the smallest check set that matches the change.
 Recommended baseline:
 
 ```powershell
-python build.py validate --config config.yaml
+python build.py validate --config config.us.yaml
 python -m unittest
 ```
 
 If build flow changed:
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us.yaml --model JE-1000F --region US
 ```
 
 If JP review flow changed:
@@ -195,3 +195,4 @@ Before merging, check:
 - Did we document new data assumptions?
 - Did we preserve history while keeping normative docs current?
 - Can another maintainer follow the updated commands without reading the code first?
+

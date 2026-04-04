@@ -15,15 +15,15 @@ For user-facing review workflow details, read:
 
 ```powershell
 python build.py validate
-python build.py sync-data --config config.yaml --data-root data/phase2
+python build.py sync-data --config config.us.yaml --data-root data/phase2
 python build.py rst
 python build.py review
 python build.py check
 python build.py sync-review
-python build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2
+python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2
 python build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
-python build.py process-build-queue --config config.yaml --data-root data/phase2
+python build.py process-build-queue --config config.us.yaml --data-root data/phase2
 python build.py handoff --config config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
@@ -47,9 +47,11 @@ Meaning:
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
 - `sync-review`: refresh review files affected by CSV data changes
-- `process-review-start-queue`: consume `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, sync the latest phase2 snapshot, create or reuse the review branch, seed `docs/_review`, push the branch, create or reuse the PR, then write back `Git_ref`, `PR_url`, set `Review_status=InReview`, and clear `是否进入Review`
+- `process-review-start-queue`: consume `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, group pending rows by `Document_Key`, sync the latest phase2 snapshot, create or reuse one review branch per `Document_Key`, seed `docs/_review`, push the branch, create or reuse the PR, then write back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - `process-review-start-queue` duplicate guard: review start is now treated as one-time per `Document_Key` target. If `origin/main` already contains committed `docs/_review/<model>/<region>/` content, block duplicate seeding and write back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
-- `process-build-queue`: consume `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Document_Key + Lang`, run `check + word`, upload the generated DOCX to Feishu Drive, move that uploaded file into the current wiki knowledge-base container, write the local DOCX path into `Document directory`, write the moved wiki URL into `Document link`, write a timestamped build status into `构建结果`, and flip the trigger back to `已构建` on success
+- `process-build-queue`: consume `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Document_Key` first when that config enables `build.queue_by_document_key`, run `check + word`, upload the generated DOCX to Feishu Drive, move that uploaded file into the current wiki knowledge-base container, write the local DOCX path into `Document directory`, write the moved wiki URL into `Document link`, write a timestamped build status into `构建结果`, and flip the trigger back to `已构建` on success
+- the merged US `config.us.yaml` flow now emits one `docs/_build/<model>/US/word/manual_<model>_us.docx` bundle that contains `en`, `fr`, and `es` together; CSV-driven `Source_lang` / `*_source` text is required, while non-source language values may be blank because runtime lookup falls back to source-language text
+- merged US review-init and build-queue rows are keyed by `Document_Key`; if a merged queue row leaves `Lang` blank, the worker still resolves `config.us.yaml`, runs one shared review/build cycle for that `Document_Key`, and writes the same branch/build result back to every row in that group
 - when the queue row carries `Version`, Draft queue DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue DOCX names become `manual_je1000f_us_en_publish_0.2.docx` before upload/writeback
 - when the queue row carries `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
 - Draft queue outputs stay staged under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback
@@ -109,7 +111,7 @@ Do not create one config file per model.
 
 Current shared config families:
 
-- [`config.yaml`](../config.yaml): shared EN / US template family
+- [`config.us.yaml`](../config.us.yaml): shared EN / US template family
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
@@ -128,7 +130,7 @@ Pass target differences through:
 
 Phase2 snapshot rule:
 
-- keep the shared config families, but prefer syncing content into [`../data/phase2/`](../data/phase2) with `python build.py sync-data --config config.yaml --data-root data/phase2`
+- keep the shared config families, but prefer syncing content into [`../data/phase2/`](../data/phase2) with `python build.py sync-data --config config.us.yaml --data-root data/phase2`
 - pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, `publish`, and `process-build-queue` when you want the build to consume the phase2 snapshot explicitly
 - for the review-init worker, use an isolated snapshot root such as `.tmp/review-start/phase2`; the worker syncs fresh data there before it seeds `docs/_review`
 - [`../data/phase1/page_registry.csv`](../data/phase1/page_registry.csv) and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
@@ -146,29 +148,29 @@ Only create a new config when one of these really changes:
 ### 3.1 Validate Environment and Config
 
 ```powershell
-python build.py validate --config config.yaml
+python build.py validate --config config.us.yaml
 ```
 
 Equivalent low-level checks:
 
 ```powershell
-python tools\validate_config.py --config config.yaml
+python tools\validate_config.py --config config.us.yaml
 python tools\validate_layout_params.py --csv data\layout_params.csv
 ```
 
 If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before runtime build:
 
 ```powershell
-python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run
-python build.py sync-data --config config.yaml --data-root data/phase2
-python build.py process-build-queue --config config.yaml --data-root data/phase2
+python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run
+python build.py sync-data --config config.us.yaml --data-root data/phase2
+python build.py process-build-queue --config config.us.yaml --data-root data/phase2
 ```
 
 That command requires:
 
 - a working `lark-cli` binary on `PATH`
 - a valid local `lark-cli` login session
-- the `FEISHU_PHASE2_*` environment variables referenced by [`../config.yaml`](../config.yaml) or [`../config.ja.yaml`](../config.ja.yaml)
+- the `FEISHU_PHASE2_*` environment variables referenced by [`../config.us.yaml`](../config.us.yaml) or [`../config.ja.yaml`](../config.ja.yaml)
 - `--dry-run` is the recommended machine-readiness check first; it now aggregates missing CLI and missing `FEISHU_PHASE2_*` bindings into one preflight error before any fetch
 - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically during fetch, so you do not need a Windows-only config override
 - when `spec_master` is included, the sync also refreshes [`../data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) as the phase2 mirror of the row-label mapping table
@@ -270,7 +272,7 @@ By default this updates data-driven files in the review bundle without resetting
 
 That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
 Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
-For US English, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout.
+For the single-language US English config, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout. For the merged US `config.us.yaml` queue/review flow, the canonical review root is now `docs/_review/<model>/US/`.
 
 Useful variants:
 
@@ -403,8 +405,8 @@ Release manifests:
 Build all targets defined in one config:
 
 ```powershell
-python build.py rst --config config.yaml
-python build.py word --config config.yaml
+python build.py rst --config config.us.yaml
+python build.py word --config config.us.yaml
 python build.py all --config config.ja.yaml
 ```
 
@@ -435,20 +437,20 @@ python build.py release-manifest --config config.ja.yaml --model JE-1000F --regi
 Keep existing build artifacts:
 
 ```powershell
-python build.py html --config config.yaml --no-clean
+python build.py html --config config.us.yaml --no-clean
 ```
 
 Open generated artifacts if the backend supports it:
 
 ```powershell
-python build.py pdf --config config.yaml --open
+python build.py pdf --config config.us.yaml --open
 ```
 
 Override PDF backend:
 
 ```powershell
-python build.py pdf --config config.yaml --pdf-mode latex
-python build.py pdf --config config.yaml --pdf-mode word
+python build.py pdf --config config.us.yaml --pdf-mode latex
+python build.py pdf --config config.us.yaml --pdf-mode word
 ```
 
 ## 6. Diff Report
@@ -508,3 +510,4 @@ Need to release from reviewed text only
 
 - fix the template or review text if the model mention is stale
 - if the foreign literal is intentional, add it to `checks.allowed_foreign_identity_literals`
+

@@ -317,6 +317,13 @@ def group_review_start_records(records: list[ReviewStartRecord]) -> list[list[Re
     return grouped
 
 
+def review_start_group_lang(records: list[ReviewStartRecord]) -> str:
+    for record in records:
+        if record.lang.strip():
+            return record.lang.strip().lower()
+    return ""
+
+
 def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str, Any]:
     return {
         REVIEW_STATUS_FIELD: [REVIEW_STATUS_IN_REVIEW],
@@ -690,14 +697,13 @@ def ensure_pull_request_for_branch(
 def start_review_for_record(
     *,
     record: ReviewStartRecord,
-    sync_config_path: Path,
+    build_config_path: Path,
     snapshot_data_root: str | None,
     base_ref: str,
     repository: str,
     token: str,
 ) -> tuple[str, str]:
     model, region = resolve_target_for_review_start(record)
-    build_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
     branch_name = generate_review_branch_name(record)
     worktree = _prepare_branch_worktree(branch_name=branch_name, base_ref=base_ref)
     try:
@@ -755,7 +761,8 @@ def process_review_start_queue(
         for group in pending_groups:
             record = group[0]
             model, region = resolve_target_for_review_start(record)
-            build_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+            group_lang = review_start_group_lang(group)
+            build_config_path = resolve_config_path_for_task(region=region, lang=group_lang)
             print(
                 "[review-start] DRY-RUN "
                 + json.dumps(
@@ -766,7 +773,8 @@ def process_review_start_queue(
                         "document_key": review_start_record_key(record),
                         "model": model,
                         "region": region,
-                        "lang": record.lang,
+                        "lang": group_lang,
+                        "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
                         "git_ref": generate_review_branch_name(record),
                         "config": str(build_config_path),
@@ -792,7 +800,7 @@ def process_review_start_queue(
         record = group[0]
         try:
             model, region = resolve_target_for_review_start(record)
-            build_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+            build_config_path = resolve_config_path_for_task(region=region, lang=review_start_group_lang(group))
             if base_ref_contains_target_review_root(
                 config_path=build_config_path,
                 model=model,
@@ -816,7 +824,7 @@ def process_review_start_queue(
                 continue
             branch_name, pr_url = start_review_for_record(
                 record=record,
-                sync_config_path=config_path,
+                build_config_path=build_config_path,
                 snapshot_data_root=snapshot_data_root,
                 base_ref=base_ref,
                 repository=repository,

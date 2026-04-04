@@ -152,6 +152,90 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(root / "config.yaml", config_path)
 
+    def test_resolve_config_path_for_task_should_allow_blank_lang_for_document_key_config(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
+                (root / name).write_text("build: {}\n", encoding="utf-8")
+
+            configs = {
+                "config.us.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["en", "fr", "es"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                },
+                "config.us-en.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+                "config.us-fr.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["fr"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="")
+
+        self.assertEqual(root / "config.us.yaml", config_path)
+
+    def test_group_pending_queue_records_should_merge_document_key_rows_when_config_requests_it(self) -> None:
+        records = [
+            process_build_queue.QueueRecord(
+                record_id="rec_us_blank",
+                document_id="JE-1000F_US_1.0",
+                document_key="JE-1000F_US",
+                version="1.0",
+                lang="",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1000f-us",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+            ),
+            process_build_queue.QueueRecord(
+                record_id="rec_us_fr",
+                document_id="JE-1000F_US_fr_1.0",
+                document_key="JE-1000F_US",
+                version="1.0",
+                lang="fr",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1000f-us",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+            ),
+            process_build_queue.QueueRecord(
+                record_id="rec_jp",
+                document_id="JE-1000F_JP_ja_1.0",
+                document_key="JE-1000F_JP",
+                version="1.0",
+                lang="ja",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1000f-jp",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+            ),
+        ]
+
+        grouped = process_build_queue.group_pending_queue_records(records)
+
+        self.assertEqual(
+            [["rec_us_blank", "rec_us_fr"], ["rec_jp"]],
+            [[record.record_id for record in group] for group in grouped],
+        )
+
     def test_build_success_fields_should_write_local_path_and_drive_url_and_clear_trigger(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             word_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
@@ -1077,6 +1161,140 @@ class TestProcessBuildQueue(unittest.TestCase):
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
         self.assertEqual("", build_document_mock.call_args.kwargs["git_ref"])
+
+    def test_process_build_queue_should_build_once_per_document_key_group_and_write_back_all_rows(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_group_1",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: [""],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                },
+            },
+            {
+                "record_id": "rec_group_2",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_fr_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["fr"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                },
+            },
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        with tempfile.TemporaryDirectory() as td:
+            generated_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "word" / "manual_je1000f_us.docx"
+            build_document_mock = mock.Mock(return_value=generated_path)
+
+            class FakeSource:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
+                def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                    captured_upserts.append(kwargs)
+                    return {"ok": True}
+
+            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+                process_build_queue,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "sync_phase2_snapshot_before_queue",
+            ), mock.patch.object(
+                process_build_queue,
+                "build_document_for_task",
+                build_document_mock,
+            ), mock.patch.object(
+                process_build_queue,
+                "upload_word_to_drive",
+                return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_wiki_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "move_drive_file_to_wiki",
+                return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="bot",
+            ):
+                exit_code = process_build_queue.process_build_queue(
+                    cfg=cfg,
+                    config_path=Path("config.us.yaml"),
+                    data_root="data/phase2",
+                    dry_run=False,
+                )
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(4, len(captured_upserts))
+        self.assertEqual(
+            ["rec_group_1", "rec_group_2", "rec_group_1", "rec_group_2"],
+            [entry["record_id"] for entry in captured_upserts],
+        )
+        build_document_mock.assert_called_once_with(
+            config_path=(process_build_queue.ROOT / "config.us.yaml"),
+            model="JE-1000F",
+            region="US",
+            data_root="data/phase2",
+            doc_phase="draft",
+            version="1.0",
+            git_ref="codex/review-je-1000f-us",
+        )
+        success_payload_1 = captured_upserts[2]["record"]
+        success_payload_2 = captured_upserts[3]["record"]
+        self.assertIsInstance(success_payload_1, dict)
+        self.assertIsInstance(success_payload_2, dict)
+        self.assertEqual(
+            generated_path.resolve(strict=False).as_posix(),
+            success_payload_1[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
+        )
+        self.assertEqual(
+            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+            success_payload_1[process_build_queue.DOCUMENT_LINK_FIELD],
+        )
+        self.assertEqual(success_payload_1, success_payload_2)
 
 
 if __name__ == "__main__":

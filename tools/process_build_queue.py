@@ -327,6 +327,26 @@ def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
     raise RuntimeError("Unable to resolve build target for queue record. " + detail)
 
 
+def queue_record_key(record: QueueRecord) -> str:
+    if record.document_key.strip():
+        return record.document_key.strip().upper()
+    fallback_key = _document_key_from_document_id(
+        document_id=record.document_id,
+        lang=record.lang,
+        version=record.version,
+    )
+    if fallback_key:
+        return fallback_key.upper()
+    return record.record_id
+
+
+def queue_group_lang(records: list[QueueRecord]) -> str:
+    for record in records:
+        if record.lang.strip():
+            return record.lang.strip().lower()
+    return ""
+
+
 def _build_languages(cfg: dict[str, Any]) -> list[str]:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
@@ -340,22 +360,22 @@ def _queue_by_document_key(cfg: dict[str, Any]) -> bool:
     return bool(build_cfg.get("queue_by_document_key"))
 
 
-def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str) -> int | None:
+def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     default_region = str(build_cfg.get("default_region") or "").strip().upper()
     languages = _build_languages(cfg)
     primary_lang = languages[0] if languages else ""
-    normalized_lang = lang.lower()
+    normalized_lang = str(lang or "").strip().lower()
     if default_region != region.upper():
         return None
     queue_by_document_key = _queue_by_document_key(cfg)
     if queue_by_document_key:
-        if normalized_lang not in languages:
+        if normalized_lang and normalized_lang not in languages:
             return None
         score = 100
     else:
-        if primary_lang != normalized_lang:
+        if not normalized_lang or primary_lang != normalized_lang:
             return None
         score = 50
 
@@ -371,7 +391,7 @@ def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, 
     return score
 
 
-def resolve_config_path_for_task(*, region: str, lang: str) -> Path:
+def resolve_config_path_for_task(*, region: str, lang: str | None) -> Path:
     candidates: list[tuple[int, Path]] = []
     for config_path in sorted(ROOT.glob("config*.yaml")):
         try:
@@ -387,6 +407,52 @@ def resolve_config_path_for_task(*, region: str, lang: str) -> Path:
         raise RuntimeError(f"No config family matches region='{region}' and lang='{lang}'")
     candidates.sort(key=lambda item: (-item[0], item[1].name))
     return candidates[0][1]
+
+
+def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRecord]]:
+    grouped: list[list[QueueRecord]] = []
+    index_by_key: dict[str, int] = {}
+    for record in records:
+        model, region = resolve_target_for_record(record)
+        config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+        cfg = load_config(config_path)
+        if _queue_by_document_key(cfg):
+            key = queue_record_key(record)
+        else:
+            key = record.record_id
+        existing_index = index_by_key.get(key)
+        if existing_index is None:
+            index_by_key[key] = len(grouped)
+            grouped.append([record])
+            continue
+        grouped[existing_index].append(record)
+    return grouped
+
+
+def validate_queue_record_group(records: list[QueueRecord]) -> None:
+    if not records:
+        return
+    if len(records) == 1:
+        normalize_doc_phase(records[0].doc_phase)
+        return
+
+    group_key = queue_record_key(records[0])
+    doc_phases = {normalize_doc_phase(record.doc_phase) or "" for record in records}
+    versions = {record.version.strip() for record in records}
+    git_refs = {record.git_ref.strip() for record in records}
+    conflicts: list[str] = []
+    if len(doc_phases) > 1:
+        conflicts.append("Doc_phase")
+    if len(versions) > 1:
+        conflicts.append("Version")
+    if len(git_refs) > 1:
+        conflicts.append("Git_ref")
+    if conflicts:
+        raise RuntimeError(
+            "Queue rows merged by Document_Key must agree on "
+            + ", ".join(conflicts)
+            + f": {group_key}"
+        )
 
 
 def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
@@ -1262,22 +1328,29 @@ def process_build_queue(
         else:
             print("[build-queue] No pending build tasks found.")
         return 0
+    pending_groups = group_pending_queue_records(pending)
     available_fields = _available_field_names(raw_records)
     can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
 
     if dry_run:
-        for record in pending:
+        for group in pending_groups:
+            record = group[0]
             model, region = resolve_target_for_record(record)
-            resolved_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+            group_lang = queue_group_lang(group)
+            resolved_config_path = resolve_config_path_for_task(region=region, lang=group_lang)
+            validate_queue_record_group(group)
             print(
                 "[build-queue] DRY-RUN "
                 + json.dumps(
                     {
+                        "record_ids": [item.record_id for item in group],
                         "record_id": record.record_id,
                         "label": record.label,
+                        "document_key": queue_record_key(record),
                         "model": model,
                         "region": region,
-                        "lang": record.lang,
+                        "lang": group_lang,
+                        "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
                         "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
                         "git_ref": record.git_ref,
@@ -1308,6 +1381,7 @@ def process_build_queue(
     if not pending:
         print("[build-queue] Queue changed during sync; no pending build tasks remain.")
         return 0
+    pending_groups = group_pending_queue_records(pending)
     available_fields = _available_field_names(raw_records)
     can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
 
@@ -1329,28 +1403,36 @@ def process_build_queue(
 
     failures: list[str] = []
     processed = 0
-    for record in pending:
+    for group in pending_groups:
+        record = group[0]
         word_output_path: Path | None = None
         drive_url: str | None = None
-        effective_doc_phase = normalize_doc_phase(record.doc_phase)
         try:
+            validate_queue_record_group(group)
+            model, region = resolve_target_for_record(record)
+            group_lang = queue_group_lang(group)
+            resolved_config_path = resolve_config_path_for_task(region=region, lang=group_lang)
+            effective_doc_phase = normalize_doc_phase(record.doc_phase)
             started_at = datetime.now().astimezone()
             if can_write_started_at:
-                try:
-                    source.upsert_record(
-                        base_token=binding.base_token,
-                        table_id=binding.table_id,
-                        record_id=record.record_id,
-                        record=build_started_fields(started_at=started_at),
-                    )
-                    print(f"[build-queue] Marked start time for {record.label}: {started_at.isoformat(timespec='seconds')}")
-                except Exception as exc:
-                    print(
-                        f"[build-queue] WARNING start-time writeback failed for {record.label}: {exc}",
-                        file=sys.stderr,
-                    )
-            model, region = resolve_target_for_record(record)
-            resolved_config_path = resolve_config_path_for_task(region=region, lang=record.lang)
+                start_fields = build_started_fields(started_at=started_at)
+                for group_record in group:
+                    try:
+                        source.upsert_record(
+                            base_token=binding.base_token,
+                            table_id=binding.table_id,
+                            record_id=group_record.record_id,
+                            record=start_fields,
+                        )
+                    except Exception as exc:
+                        print(
+                            f"[build-queue] WARNING start-time writeback failed for {group_record.label}: {exc}",
+                            file=sys.stderr,
+                        )
+                print(
+                    "[build-queue] Marked start time for "
+                    f"{queue_record_key(record)} ({len(group)} row(s)): {started_at.isoformat(timespec='seconds')}"
+                )
             word_output_path = build_document_for_task(
                 config_path=resolved_config_path,
                 model=model,
@@ -1373,18 +1455,20 @@ def process_build_queue(
                 destination=wiki_destination,
             )
             built_at = datetime.now().astimezone()
-            source.upsert_record(
-                base_token=binding.base_token,
-                table_id=binding.table_id,
-                record_id=record.record_id,
-                record=build_success_fields(
-                    version=record.version,
-                    word_output_path=word_output_path,
-                    document_link_url=document_link_url,
-                    built_at=built_at,
-                    doc_phase=effective_doc_phase,
-                ),
+            success_fields = build_success_fields(
+                version=record.version,
+                word_output_path=word_output_path,
+                document_link_url=document_link_url,
+                built_at=built_at,
+                doc_phase=effective_doc_phase,
             )
+            for group_record in group:
+                source.upsert_record(
+                    base_token=binding.base_token,
+                    table_id=binding.table_id,
+                    record_id=group_record.record_id,
+                    record=success_fields,
+                )
             if effective_doc_phase == "publish":
                 latest_html_dir = _publish_release_latest_dir_for_target(
                     config_path=resolved_config_path,
@@ -1402,32 +1486,40 @@ def process_build_queue(
                     html_dir=latest_html_dir,
                     document_link_url=document_link_url,
                 )
-            processed += 1
-            print(f"[build-queue] Updated {record.label}: {word_output_path} -> {document_link_url}")
+            processed += len(group)
+            print(
+                "[build-queue] Updated "
+                f"{queue_record_key(record)} ({len(group)} row(s)): {word_output_path} -> {document_link_url}"
+            )
         except Exception as exc:
             message = str(exc).strip()
-            failures.append(f"{record.label}: {message}")
+            failures.append(f"{queue_record_key(record)} ({len(group)} row(s)): {message}")
             try:
                 if drive_url:
                     print(
-                        f"[build-queue] WARNING wiki attach failed for {record.label}; preserving latest Drive link {drive_url}",
+                        f"[build-queue] WARNING wiki attach failed for {queue_record_key(record)}; preserving latest Drive link {drive_url}",
                         file=sys.stderr,
                     )
-                source.upsert_record(
-                    base_token=binding.base_token,
-                    table_id=binding.table_id,
-                    record_id=record.record_id,
-                    record=build_failure_writeback_fields(
-                        version=record.version,
-                        message=message,
-                        doc_phase=record.doc_phase,
-                        word_output_path=word_output_path,
-                        document_link_url=drive_url,
-                    ),
+                failure_fields = build_failure_writeback_fields(
+                    version=record.version,
+                    message=message,
+                    doc_phase=record.doc_phase,
+                    word_output_path=word_output_path,
+                    document_link_url=drive_url,
                 )
+                for group_record in group:
+                    source.upsert_record(
+                        base_token=binding.base_token,
+                        table_id=binding.table_id,
+                        record_id=group_record.record_id,
+                        record=failure_fields,
+                    )
             except Exception as writeback_exc:
                 failures[-1] += f" | writeback_failed={writeback_exc}"
-                print(f"[build-queue] ERROR writeback failed for {record.label}: {writeback_exc}", file=sys.stderr)
+                print(
+                    f"[build-queue] ERROR writeback failed for {queue_record_key(record)}: {writeback_exc}",
+                    file=sys.stderr,
+                )
 
     print(f"[build-queue] Summary: processed={processed} failed={len(failures)}")
     for failure in failures:

@@ -71,13 +71,13 @@ python tools\validate_layout_params.py --csv data\layout_params.csv
 or:
 
 ```powershell
-python build.py validate --config config.yaml
+python build.py validate --config config.us.yaml
 ```
 
 ### 4.3 Regenerate and Build PDF
 
 ```powershell
-python build.py pdf --config config.yaml --model JE-1000F --region US
+python build.py pdf --config config.us.yaml --model JE-1000F --region US
 ```
 
 If JP is the affected family:
@@ -151,3 +151,4 @@ That record should capture:
 - target pages
 - verification command
 - rollback note
+
