@@ -164,9 +164,11 @@ Windows note:
 
 Git workflow note:
 
-- start new work with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` instead of branching manually from a possibly stale local `main`
+- start new work with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` on Windows or `./scripts/start_branch.sh codex/<topic>` on mac/Linux instead of branching manually from a possibly stale local `main`
 - the repo can use a managed pre-push guard from [`.githooks/pre-push`](.githooks/pre-push); enable it locally with `git config core.hooksPath .githooks`
-- that guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only intentionally with `git push --no-verify`
+- that guard now runs through the shared [`scripts/git_branch_guard.py`](scripts/git_branch_guard.py) core instead of a bash-only hook, and the repo also ships [`.githooks/pre-push.cmd`](.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](.githooks/pre-push.ps1) as Windows-native companion launchers
+- the guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only intentionally with `git push --no-verify`
+- if a Windows GUI client still does not honor repo-managed hooks, keep the hook optional there and treat the start-branch wrapper as the required freshness guard
 
 Do not treat this file as the full command reference.
 The command semantics and output layout are maintained in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).

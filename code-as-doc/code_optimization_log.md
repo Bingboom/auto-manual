@@ -186,10 +186,11 @@ Why it mattered:
 Main outcomes:
 
 - added [`scripts/start_branch.ps1`](../scripts/start_branch.ps1) as the supported branch-creation entrypoint from fresh `origin/main`
-- added a repo-managed [`.githooks/pre-push`](../.githooks/pre-push) guard that blocks pushes from branches that do not contain the latest `origin/main`
-- documented the local `git config core.hooksPath .githooks` setup and the intentional bypass path `git push --no-verify`
+- added [`scripts/start_branch.sh`](../scripts/start_branch.sh) so the same branch-start flow is available on mac/Linux
+- moved the repo-managed [`.githooks/pre-push`](../.githooks/pre-push) guard off the earlier bash-only path and shipped companion Windows launchers [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1)
+- documented the local `git config core.hooksPath .githooks` setup, the Windows/mac entrypoints, and the intentional bypass path `git push --no-verify`
 
 Why it mattered:
 
 - continuing work in the same shell after a PR merge or close is less likely to accidentally reuse an outdated base
-- operators get a fast local failure before opening another conflict-heavy PR
+- the same freshness guard can now be applied from Windows and mac without depending on a bash-only hook path
