@@ -7,8 +7,10 @@ from pathlib import Path
 
 from tools.review_support import (
     SyncPlanEntry,
+    overlay_review_content_onto_bundle,
     overlay_review_onto_bundle,
     review_bundle_exists,
+    review_content_exists,
     sync_review_from_runtime,
     sync_review_paths,
 )
@@ -100,6 +102,41 @@ class TestReviewSupport(unittest.TestCase):
             self.assertIsNone(applied_dir)
             self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
             self.assertEqual("runtime overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
+
+    def test_review_content_exists_should_detect_legacy_partial_review_dirs(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            legacy_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (legacy_review_dir / "page").mkdir(parents=True)
+            (legacy_review_dir / "page" / "overview.rst").write_text("review overview\n", encoding="utf-8")
+
+            self.assertFalse(review_bundle_exists(docs_dir=docs_dir, model="JE-1000F", region="US", lang=None))
+            self.assertTrue(review_content_exists(docs_dir=docs_dir, model="JE-1000F", region="US", lang=None))
+
+    def test_overlay_review_content_onto_bundle_should_preserve_runtime_index_when_legacy_review_dir_has_no_index(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "generated").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
+            (bundle_dir / "page" / "overview.rst").write_text("runtime overview\n", encoding="utf-8")
+
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "page" / "overview.rst").write_text("review overview\n", encoding="utf-8")
+
+            applied_dir = overlay_review_content_onto_bundle(
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+            )
+
+            self.assertEqual(review_dir, applied_dir)
+            self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertEqual("review overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
 
     def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:

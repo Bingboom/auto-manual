@@ -20,7 +20,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.build_docs import load_config
-from tools.review_support import review_bundle_exists
+from tools.review_support import review_content_exists
 
 
 REQUIRED_CHANGE_REPORT_FILES = (
@@ -1507,11 +1507,17 @@ def workspace_families_for_request(args: argparse.Namespace) -> tuple[str, ...]:
 
 
 def target_has_review_bundle(target: WorkspaceTarget) -> bool:
-    return review_bundle_exists(
-        docs_dir=ROOT / "docs",
-        model=target.model,
-        region=target.family,
-        lang=target.language,
+    review_lang_candidates = [target.language]
+    if (target.language or "").strip():
+        review_lang_candidates.append(None)
+    return any(
+        review_content_exists(
+            docs_dir=ROOT / "docs",
+            model=target.model,
+            region=target.family,
+            lang=review_lang,
+        )
+        for review_lang in review_lang_candidates
     )
 
 

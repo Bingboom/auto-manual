@@ -21,6 +21,10 @@ from tools.data_snapshot import (
 from tools.phase1 import BuildPaths, BuildSelector, Phase1Builder  # noqa: E402
 
 
+def _display_path(path: Path) -> str:
+    return path.as_posix()
+
+
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser("phase1 builder")
     ap.add_argument("--model", default=None, help="comma-separated product models")
@@ -63,17 +67,17 @@ def parse_args() -> argparse.Namespace:
     default_data_root = Path(data_root) if data_root else (Path("data") / "phase1")
 
     if args.page_registry is None:
-        args.page_registry = str(Path("data") / "phase1" / PAGE_REGISTRY_FILE)
+        args.page_registry = _display_path(Path("data") / "phase1" / PAGE_REGISTRY_FILE)
     if args.page_blocks_dir is None:
-        args.page_blocks_dir = str(default_data_root)
+        args.page_blocks_dir = _display_path(default_data_root)
     if args.spec_master_csv is None:
-        args.spec_master_csv = str(default_data_root / SPEC_MASTER_FILE)
+        args.spec_master_csv = _display_path(default_data_root / SPEC_MASTER_FILE)
     if args.spec_footnotes_csv is None:
-        args.spec_footnotes_csv = str(default_data_root / SPEC_FOOTNOTES_FILE)
+        args.spec_footnotes_csv = _display_path(default_data_root / SPEC_FOOTNOTES_FILE)
     if args.spec_notes_csv is None:
-        args.spec_notes_csv = str(default_data_root / SPEC_NOTES_FILE)
+        args.spec_notes_csv = _display_path(default_data_root / SPEC_NOTES_FILE)
     if args.spec_titles_csv is None:
-        args.spec_titles_csv = str(default_data_root / SPEC_TITLES_FILE)
+        args.spec_titles_csv = _display_path(default_data_root / SPEC_TITLES_FILE)
     return args
 
 
