@@ -3,7 +3,7 @@
 """
 tools/validate_config.py
 
-P0 validator for config.yaml.
+P0 validator for config.us.yaml.
 
 Checks:
 - YAML readable
@@ -381,7 +381,7 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.yaml")
+    ap.add_argument("--config", default="config.us.yaml")
     ap.add_argument("--strict-files", action="store_true")
     args = ap.parse_args()
 
@@ -408,3 +408,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

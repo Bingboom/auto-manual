@@ -58,7 +58,7 @@ Current Word title comes from config:
 
 Current examples:
 
-- [`config.yaml`](../config.yaml): `|PRODUCT_NAME| User Manual`
+- [`config.us.yaml`](../config.us.yaml): `|PRODUCT_NAME| User Manual`
 - [`config.ja.yaml`](../config.ja.yaml): `|PRODUCT_NAME| 取扱説明書`
 
 This title is resolved by placeholder substitution before Word export.
@@ -109,8 +109,8 @@ If you changed title behavior, verify at least one target from the affected fami
 Examples:
 
 ```powershell
-python build.py check --config config.yaml --model JE-1000F --region US
-python build.py word --config config.yaml --model JE-1000F --region US
+python build.py check --config config.us.yaml --model JE-1000F --region US
+python build.py word --config config.us.yaml --model JE-1000F --region US
 python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py word --config config.ja.yaml --model JE-1000F --region JP
 ```
@@ -134,7 +134,7 @@ Change the actual heading text:
 
 Change the document title shown in Word:
 
-- [`config.yaml`](../config.yaml) or [`config.ja.yaml`](../config.ja.yaml)
+- [`config.us.yaml`](../config.us.yaml) or [`config.ja.yaml`](../config.ja.yaml)
 - usually via `build.word_title`
 
 ## 7. Common Mistakes
@@ -143,3 +143,4 @@ Change the document title shown in Word:
 - changing only Word appearance while leaving HTML and PDF inconsistent
 - hard-coding title-level decisions in exporter code based on literal text
 - editing [`params.tex`](../docs/renderers/latex/params.tex) instead of [`data/layout_params.csv`](../data/layout_params.csv)
+

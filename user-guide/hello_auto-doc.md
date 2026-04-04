@@ -74,22 +74,24 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
    - For queue-driven Draft / Publish builds, Feishu phase2 tables are the source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
-   - `python build.py sync-data --config config.yaml --data-root data/phase2` refreshes the preferred frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
+   - `python build.py sync-data --config config.us.yaml --data-root data/phase2` refreshes the preferred frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
    - during that refresh, `Spec_Master.csv Slot_key` is normalized back to plain tokens like `front.label` when the source table stores markdown-link wrappers
    - the sync also resolves full field names through Base field metadata, so long columns like `Row_label_footnote_refs` do not disappear when the CLI view output abbreviates them
-   - `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
+   - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
    - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically, so the normal shared config still works
    - when `spec_master` is part of that refresh, the command also regenerates [`../data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) while preserving existing manual `Row_key` and `Remark` entries when possible
-  - `python build.py process-review-start-queue --config config.yaml --data-root .tmp/review-start/phase2` is the review-init bridge: it reads `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, syncs a fresh phase2 snapshot, creates or reuses the review branch, seeds `docs/_review`, pushes the branch, creates or reuses the PR, then writes back `Git_ref`, `PR_url`, sets `Review_status=InReview`, and clears `是否进入Review`
+- `python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2` is the review-init bridge: it reads `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, resolves each row from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs a fresh phase2 snapshot, creates or reuses one review branch, seeds `docs/_review`, pushes the branch, creates or reuses the PR, then writes the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state back to every row in that routed group
   - the review-init bridge now treats review start as one-time per `Document_Key` target. If `origin/main` already contains committed `docs/_review/<model>/<region>/` content, it blocks duplicate seeding and writes back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
   - [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml) is the remote review-init worker that performs the same review-start flow from GitHub Actions after a Feishu workflow dispatch
-  - `python build.py process-build-queue --config config.yaml --data-root data/phase2` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Document_Key + Lang`, builds the local Word file, uploads it to Feishu Drive, moves the uploaded file into the current wiki knowledge-base container, writes the local path into `Document directory`, writes the moved wiki URL into `Document link`, writes a timestamped status into `构建结果`, and flips the trigger back to `已构建` on success
+- `python build.py process-build-queue --config config.us.yaml --data-root data/phase2` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, builds the local Word file, uploads it to Feishu Drive, moves the uploaded file into the current wiki knowledge-base container, writes the local path into `Document directory`, writes the moved wiki URL into `Document link`, writes a timestamped status into `构建结果`, and flips the trigger back to `已构建` on success
    - if that `Document_link` row has a `Version`, Draft queue DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`; for example `manual_je1000f_us_en_publish_0.2.docx`
    - if that `Document_link` row also has `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
    - Draft queue outputs stay staged under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback
+- queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is now an optional compatibility field
+- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
    - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
    - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
-   - `python build.py listen-build-queue --config config.yaml --data-root data/phase2` is the push-based immediate-build listener: after the Feishu app has the `drive.file.bitable_record_changed_v1` event enabled, it subscribes the table and keeps the long connection on the same current user identity, then triggers `process-build-queue` immediately when `Document_link` rows are checked in `是否立即构建`
+   - `python build.py listen-build-queue --config config.us.yaml --data-root data/phase2` is the push-based immediate-build listener: after the Feishu app has the `drive.file.bitable_record_changed_v1` event enabled, it subscribes the table and keeps the long connection on the same current user identity, then triggers `process-build-queue` immediately when `Document_link` rows are checked in `是否立即构建`
    - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) is the Windows wrapper for that listener; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
   - [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is the remote-repo alternative: once it is merged into the default branch and the required GitHub Secrets are configured, GitHub Actions can poll the Feishu queue every 5 minutes with `FEISHU_PHASE2_IDENTITY=bot`, without depending on a local always-on machine
    - if you want remote immediate builds instead of waiting for the next poll, create a Feishu workflow whose combined condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml`; the queue still only builds rows whose trigger field is `Y`
@@ -179,9 +181,9 @@ Current flow:
 Important:
 
 - `python build.py rst` only materializes the RST bundle.
-- `python build.py sync-data --config config.yaml --data-root data/phase2` is the explicit local pull step for Feishu/Lark content; build commands never fetch online data implicitly.
-- `python build.py sync-data --config config.yaml --data-root data/phase2 --dry-run` is the safest readiness probe for a new machine because it checks the local CLI/env prerequisites before attempting the real sync.
-- `python build.py process-build-queue --config config.yaml --data-root data/phase2` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
+- `python build.py sync-data --config config.us.yaml --data-root data/phase2` is the explicit local pull step for Feishu/Lark content; build commands never fetch online data implicitly.
+- `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the safest readiness probe for a new machine because it checks the local CLI/env prerequisites before attempting the real sync.
+- `python build.py process-build-queue --config config.us.yaml --data-root data/phase2` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
 - when the queue row carries `Git_ref`, that queue step fetches the named review branch and builds from that branch even if the queue worker itself is running from `main`.
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
@@ -191,7 +193,8 @@ Important:
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
 - review builds now auto-run the same parameter sync before `check`, `html`, `word`, `pdf`, and `publish`, so parameter lines stay current without overwriting the rest of the review prose.
 - if you intentionally want one review page replaced from runtime, keep using `sync-review --page-file <file>`; if you need the whole review bundle replaced, use `review --refresh-review`.
-- US English review targets now use `docs/_review/<model>/US/en/` as the only supported review root; the old unscoped `docs/_review/<model>/US/page/**` layout is no longer read by the build.
+- single-language US English review targets still use `docs/_review/<model>/US/en/`, but the merged US `config.us.yaml` queue/review flow now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`.
+- for that merged US flow, `Spec_Master.Source_lang` / `*_source` values are required, while CSV-driven non-source language columns may be blank because runtime lookup falls back to the source-language text automatically.
 - for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first, then pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, or `publish`.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
@@ -417,7 +420,7 @@ python build.py all
 
 Config scope rule:
 
-- [`config.yaml`](../config.yaml): shared EN / US template-family config
+- [`config.us.yaml`](../config.us.yaml): shared EN / US template-family config
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
@@ -436,7 +439,7 @@ python build.py sync-review --config config.us-en.yaml --model JE-1000F --region
 python build.py check --config config.us-en.yaml --model JE-1000F --region US
 python build.py publish --config config.us-en.yaml --model JE-1000F --region US
 python build.py check --config config.zh.yaml --model JE-2000E --region CN
-python build.py rst --config config.yaml
+python build.py rst --config config.us.yaml
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.ja.yaml --model JE-2000F --region JP
 ```
@@ -819,3 +822,4 @@ Templates and CSV create the first draft.
 - `Doc_phase=Publish` means the queue runs the publish path.
 - `feishu-draft-build-queue.yml` is the Draft-stage worker and must be dispatched with the PR head branch as GitHub `ref`.
 - `feishu-build-queue.yml` is the Publish-stage worker and should stay owned by `main`.
+

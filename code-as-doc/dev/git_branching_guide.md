@@ -133,9 +133,9 @@ Machine validation means the GitHub `Manual Validation` workflow that must pass 
 Use the local validation set that matches the change.
 
 - logic changes: `python -m unittest`
-- build or quality-gate changes: `python build.py check --config config.yaml --model JE-1000F --region US`
+- build or quality-gate changes: `python build.py check --config config.us.yaml --model JE-1000F --region US`
 - JP review or publish changes: `python build.py publish --config config.ja.yaml --model JE-1000F --region JP`
-- diff-report changes: `python build.py diff-report --config config.yaml --model JE-1000F --region US`
+- diff-report changes: `python build.py diff-report --config config.us.yaml --model JE-1000F --region US`
 - release traceability changes: `python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
 - docs-only changes: self-review links, paths, examples, and command accuracy
 
@@ -292,7 +292,7 @@ If your team later adopts `CODEOWNERS`, turn on `Require review from Code Owners
 
 ### 8.4 Status Check Troubleshooting
 
-If a pull request shows successful GitHub Actions runs but the merge box still says `Expected — Waiting for status to be reported`:
+If a pull request shows successful GitHub Actions runs but the merge box still says `Expected - Waiting for status to be reported`:
 
 - first confirm there is no legacy rule under `Settings -> Branches`
 - then open the active `Protect main` ruleset under `Settings -> Rules`
@@ -316,3 +316,4 @@ When cleaning up the current branch landscape:
 ## 10. One-Sentence Summary
 
 Use `main` as the only normal long-lived branch, do all daily work on short-lived topic branches, merge through reviewed squash PRs, and protect `main` with required checks plus no-force-push rules.
+

@@ -1,8 +1,10 @@
 doc_type: manual_bundle
 
 build:
-  languages: [ en ]
-  include_lang_in_output_path: true
+  family_id: us-merged
+  languages: [ en, fr, es ]
+  include_lang_in_output_path: false
+  queue_by_document_key: true
   default_model: JE-1000F
   default_region: US
   targets:
@@ -35,7 +37,7 @@ paths:
   spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
   spec_notes_csv: data/phase1/Spec_Notes.csv
   spec_titles_csv: data/phase1/spec_titles.csv
-  page_manifest: docs/manifests/manual_us-en.yaml
+  page_manifest: docs/manifests/manual_us.yaml
 
 sync:
   phase2:

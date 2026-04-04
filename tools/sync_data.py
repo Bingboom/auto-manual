@@ -1054,7 +1054,7 @@ def sync_phase2_snapshot(
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Sync structured content snapshot CSVs from Feishu/Lark base tables.")
-    ap.add_argument("--config", default="config.yaml", help="Config YAML path")
+    ap.add_argument("--config", default="config.us.yaml", help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override phase2 export root")
     ap.add_argument(
         "--table",
@@ -1110,3 +1110,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

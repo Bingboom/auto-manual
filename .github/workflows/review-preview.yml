@@ -13,7 +13,7 @@ on:
       - "data/phase1/**"
       - "build.py"
       - "tools/**"
-      - "config.yaml"
+      - "config.us.yaml"
       - "config.us-en.yaml"
       - "config.us-es.yaml"
       - "config.us-fr.yaml"
@@ -97,3 +97,4 @@ jobs:
         with:
           name: review-preview-workspace
           path: site/review-preview/dist
+
