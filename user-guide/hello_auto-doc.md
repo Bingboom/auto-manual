@@ -87,7 +87,8 @@ The manual system now has four layers, but they are used at different stages.
    - `python build.py process-build-queue --config config.us.yaml` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, builds the local Word file, uploads it to Feishu Drive, moves the uploaded file into the current wiki knowledge-base container, writes the local path into `Document directory`, writes the moved wiki URL into `Document link`, writes a timestamped status into `构建结果`, and flips the trigger back to `已构建` on success
    - if that `Document_link` row has a `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`; for example `manual_je1000f_us_en_publish_0.2.docx`
    - if that `Document_link` row also has `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-   - Build Draft Package outputs stay staged under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback
+   - queue rows should now prefer `Workflow_action = Build Draft Package` or `Workflow_action = Publish`; legacy `Doc_phase` values remain supported as a compatibility fallback
+   - Build Draft Package outputs stay under the current repo [`../docs/_build/`](../docs/_build) tree by default; pass `--staging-root <dir>` or set `AUTO_MANUAL_STAGING_ROOT=<dir>` to isolate generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under that root instead
 - queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is now an optional compatibility field
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
    - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
@@ -189,6 +190,7 @@ Important:
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
 - build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.
+- `python build.py check|diff-report|release-manifest|publish --staging-root .tmp/staging ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases`; `review` does not accept `--staging-root` because it seeds the real repo `docs/_review`.
 - `python build.py review` prepares a runtime draft from template/data, then seeds review only if review does not already exist.
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
@@ -199,7 +201,7 @@ Important:
 - for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first; once a valid snapshot exists, `rst`, `check`, `diff-report`, `release-manifest`, and `publish` default to it, while explicit `--data-root` still overrides the source root.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
-- when `Document_link.Doc_phase = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish DOCX and the latest publish HTML are both built from that same branch instead of drifting back to `main`.
+- when `Document_link.Workflow_action = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish DOCX and the latest publish HTML are both built from that same branch instead of drifting back to `main`; legacy `Doc_phase = Publish` still maps to the same queue path.
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
@@ -468,7 +470,7 @@ PR preview note:
 - requires an existing `_review/<model>/<region>/`
 - exports revision reports to [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking) by default
 - writes a release manifest to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases)
-- queue-driven `Doc_phase=Publish` additionally stages the formal DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) and mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel
+- queue-driven `Workflow_action=Publish` additionally stages the formal DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) and mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel; legacy `Doc_phase=Publish` remains supported
 
 `preview` behavior:
 
@@ -819,7 +821,7 @@ Templates and CSV create the first draft.
 ## Start Review / Seed Draft, Build Draft Package, Publish
 
 - `process-build-queue` now runs one fresh `sync-data` pull before it builds queued rows.
-- `Doc_phase=Draft`, `Doc_phase=Review`, and `Doc_phase=Preview` all mean Build Draft Package.
-- `Doc_phase=Publish` means the queue runs the publish path.
+- `Workflow_action=Build Draft Package` and `Workflow_action=Publish` are now the primary queue actions.
+- `Doc_phase=Draft`, `Doc_phase=Review`, and `Doc_phase=Preview` still map to Build Draft Package; `Doc_phase=Publish` still maps to Publish.
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker and must be dispatched with the PR head branch as GitHub `ref`.
 - `feishu-build-queue.yml` is the Publish-stage worker and should stay owned by `main`.

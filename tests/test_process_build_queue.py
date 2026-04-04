@@ -21,6 +21,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
                         process_build_queue.BUILD_FAMILY_FIELD: ["us-en"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en-1-0"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
@@ -48,6 +49,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("1.0", records[0].version)
         self.assertEqual("en", records[0].lang)
         self.assertEqual("us-en", records[0].build_family)
+        self.assertEqual("Build Draft Package", records[0].workflow_action)
         self.assertEqual("Draft", records[0].doc_phase)
         self.assertEqual("codex/review-je-1000f-us-en-1-0", records[0].git_ref)
 
@@ -704,9 +706,39 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("publish", process_build_queue.normalize_doc_phase("Publish"))
         self.assertIsNone(process_build_queue.normalize_doc_phase(""))
 
+    def test_normalize_workflow_action_should_accept_canonical_labels(self) -> None:
+        self.assertEqual("draft", process_build_queue.normalize_workflow_action("Build Draft Package"))
+        self.assertEqual("draft", process_build_queue.normalize_workflow_action("build-draft-package"))
+        self.assertEqual("publish", process_build_queue.normalize_workflow_action("Publish"))
+        self.assertIsNone(process_build_queue.normalize_workflow_action(""))
+
     def test_normalize_doc_phase_should_reject_unknown_value(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "Doc_phase must map to Build Draft Package or Publish"):
             process_build_queue.normalize_doc_phase("staging")
+
+    def test_resolve_queue_workflow_action_should_prefer_workflow_action_and_detect_conflict(self) -> None:
+        record = process_build_queue.QueueRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_US_en_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="en",
+            workflow_action="Build Draft Package",
+            doc_phase="Draft",
+        )
+        self.assertEqual("draft", process_build_queue.resolve_queue_workflow_action(record))
+
+        conflict_record = process_build_queue.QueueRecord(
+            record_id="rec_2",
+            document_id="JE-1000F_US_en_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="en",
+            workflow_action="Publish",
+            doc_phase="Draft",
+        )
+        with self.assertRaisesRegex(RuntimeError, "Workflow_action conflicts with Doc_phase"):
+            process_build_queue.resolve_queue_workflow_action(conflict_record)
 
     def test_build_document_for_task_should_use_review_source_for_draft_phase(self) -> None:
         commands: list[list[str]] = []

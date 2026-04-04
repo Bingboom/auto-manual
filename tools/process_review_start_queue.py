@@ -46,6 +46,7 @@ DOCUMENT_KEY_FIELD = "Document_Key"
 BUILD_FAMILY_FIELD = "Build_family"
 VERSION_FIELD = "Version"
 LANG_FIELD = "Lang"
+WORKFLOW_ACTION_FIELD = "Workflow_action"
 INITIAL_RESULT_FIELD = "Initial_result"
 REMARKS_FIELD = "Remarks"
 REVIEW_START_ACTION_LABEL = "Start Review/Seed Draft"
@@ -74,10 +75,11 @@ class ReviewStartRecord:
     build_family: str
     version: str
     lang: str
-    review_status: str
-    review_trigger_value: Any
-    git_ref: str
-    pr_url: str
+    workflow_action: str = ""
+    review_status: str = ""
+    review_trigger_value: Any = None
+    git_ref: str = ""
+    pr_url: str = ""
 
     @property
     def label(self) -> str:
@@ -203,6 +205,15 @@ def normalize_review_status(value: Any) -> str | None:
     return text
 
 
+def normalize_review_start_action(value: Any) -> str | None:
+    text = re.sub(r"[^a-z0-9]+", " ", _scalar_text(value).strip().lower()).strip()
+    if not text:
+        return None
+    if text in {"start review", "seed draft", "start review seed draft", "start_review", "seed_draft"}:
+        return "start_review"
+    raise RuntimeError("Workflow_action must map to Start Review/Seed Draft for review-init rows")
+
+
 def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[ReviewStartRecord]:
     records: list[ReviewStartRecord] = []
     for record in raw_records:
@@ -219,6 +230,7 @@ def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[Review
                 build_family=_normalized_build_family(fields.get(BUILD_FAMILY_FIELD)),
                 version=_scalar_text(fields.get(VERSION_FIELD)),
                 lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
+                workflow_action=_scalar_text(fields.get(WORKFLOW_ACTION_FIELD)),
                 review_status=_scalar_text(fields.get(REVIEW_STATUS_FIELD)),
                 review_trigger_value=fields.get(REVIEW_TRIGGER_FIELD),
                 git_ref=_scalar_text(fields.get(GIT_REF_FIELD)),
@@ -237,6 +249,7 @@ def select_pending_review_start_records(
     for record in parse_review_start_records(raw_records):
         if record_id and record.record_id != record_id:
             continue
+        normalize_review_start_action(record.workflow_action)
         if not _is_checkbox_enabled(record.review_trigger_value):
             continue
         if normalize_review_status(record.review_status) not in {None, "notstarted"}:

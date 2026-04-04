@@ -70,6 +70,7 @@ Updated: 2026-04-04
 - `Lang`
 - `Version`
 - `Git_ref`
+- `Workflow_action`
 - `Doc_phase`
 - `是否触发文档构建`
 - `是否立即构建`
@@ -79,9 +80,10 @@ Updated: 2026-04-04
 
 它负责：
 
+- `Workflow_action` 是主语义字段，推荐只填 `Build Draft Package` 或 `Publish`
 - `Doc_phase` 只是兼容字段
-- `Doc_phase = Draft`、`Review`、`Preview` 时都表示 Build Draft Package
-- `Doc_phase = Publish` 时表示 Publish
+- `Doc_phase = Draft`、`Review`、`Preview` 时都映射到 Build Draft Package
+- `Doc_phase = Publish` 时映射到 Publish
 - 把结果链接回写到表里
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
@@ -173,7 +175,8 @@ Publish 的原料是：
 - `Build_family`
 - `Lang`
 - `Version`
-- `Doc_phase = Draft / Review / Preview`
+- `Workflow_action = Build Draft Package`
+- `Doc_phase = Draft / Review / Preview` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -186,7 +189,7 @@ Publish 的原料是：
 它会：
 
 1. checkout 你指定的 PR 分支
-2. 执行 `process-build-queue --doc-phase draft`
+2. 执行 `process-build-queue --workflow-action build-draft-package`
 3. 队列内部先自动 `sync-data`
 4. 再自动 `sync-review`
 5. 然后基于当前分支的 `_review` 构建 Build Draft Package Word
@@ -211,7 +214,8 @@ Publish 的原料是：
 
 在 `Document_link` 表对应那一行填：
 
-- `Doc_phase = Publish`
+- `Workflow_action = Publish`
+- `Doc_phase = Publish` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -224,7 +228,7 @@ Publish 的原料是：
 它会：
 
 1. workflow 可以由默认分支承载
-2. 执行 `process-build-queue --doc-phase publish`
+2. 执行 `process-build-queue --workflow-action publish`
 3. 队列内部先自动 `sync-data`
 4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish` 和 `build.py html --source review`
 5. 回写：
@@ -261,6 +265,15 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 它现在只是构建前自动刷新的物化快照。
 不是 Build Draft Package / Publish 的人工主编辑面。
 
+### 本地自测先隔离生成物
+
+本地跑 `check`、`diff-report`、`release-manifest`、`publish` 或手动消费 queue 时，优先加：
+
+- `--staging-root .tmp/staging`
+
+这样生成的 `docs/_build`、`reports/version_tracking`、`reports/releases` 会落到 `.tmp/staging/` 下，不会污染源码工作区。
+`review` 不支持这个参数，因为它本来就要 seed 仓库里的 [`docs/_review/`](../docs/_review)。
+
 ## 7. 飞书自动化应该分成三条
 
 ### 自动化 1：进入 Review
@@ -278,7 +291,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 
 条件建议：
 
-- `Doc_phase = Draft / Review / Preview`
+- `Workflow_action = Build Draft Package`
+- `Doc_phase = Draft / Review / Preview` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -291,7 +305,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 
 条件建议：
 
-- `Doc_phase = Publish`
+- `Workflow_action = Publish`
+- `Doc_phase = Publish` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -314,7 +329,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 1. 在 Feishu 改 phase2 数据
 2. 在 PR 分支改 `_review`
 3. 在 `Document_link` 里设：
-   - `Doc_phase = Draft / Review / Preview`
+   - `Workflow_action = Build Draft Package`
+   - `Doc_phase = Draft / Review / Preview` 仅作兼容回退
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
 
@@ -323,7 +339,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 1. 确认当前 review / PR 分支内容已准备好
 2. 确认 `Document_link.Git_ref` 仍指向这条 review / PR 分支
 3. 在 `Document_link` 里设：
-   - `Doc_phase = Publish`
+   - `Workflow_action = Publish`
+   - `Doc_phase = Publish` 仅作兼容回退
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
 4. 等队列回写 `Document directory`、`Document link`，并确认 Vercel 最新页面已刷新

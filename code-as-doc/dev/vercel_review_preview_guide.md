@@ -10,7 +10,7 @@ It now hosts the latest queue-driven Publish HTML only.
 
 Use this flow when:
 
-- a `Document_link` row reaches `Doc_phase = Publish`
+- a `Document_link` row reaches `Workflow_action = Publish` or legacy `Doc_phase = Publish`
 - the final Publish DOCX should be uploaded to Feishu / wiki
 - Vercel should expose only the newest published HTML
 
@@ -44,7 +44,7 @@ Current Publish worker:
 
 After a successful queue-driven Publish row, it now:
 
-1. runs `python build.py process-build-queue --config config.us.yaml --doc-phase publish`
+1. runs `python build.py process-build-queue --config config.us.yaml --workflow-action publish`
 2. stages the DOCX and latest HTML snapshot under `reports/releases/...`
 3. builds `site/publish-latest/dist/`
 4. runs `vercel pull`
@@ -98,7 +98,7 @@ It no longer deploys review-preview content to Vercel.
 
 When you reason about hosted output, keep this split:
 
-- Draft: working output under `docs/_build/`
+- Draft: working output under `docs/_build/` by default, or under `<staging-root>/docs/_build/` during isolated local verification
 - Review preview: artifact under `site/review-preview/dist/`
 - Publish DOCX: staged under `reports/releases/.../versions/.../`
 - Latest publish HTML: staged under `reports/releases/.../latest/html/` and hosted by Vercel

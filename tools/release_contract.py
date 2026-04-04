@@ -35,9 +35,11 @@ def release_root_for_target(
     model: str,
     region: str,
     cfg: dict[str, Any] | None = None,
+    releases_root: Path | None = None,
 ) -> Path:
     lang = release_lang_for_config(config_path, cfg)
-    return repo_root / "reports" / "releases" / model / region / lang
+    base_root = releases_root or (repo_root / "reports" / "releases")
+    return base_root / model / region / lang
 
 
 def release_latest_dir_for_target(
@@ -47,6 +49,7 @@ def release_latest_dir_for_target(
     model: str,
     region: str,
     cfg: dict[str, Any] | None = None,
+    releases_root: Path | None = None,
 ) -> Path:
     return release_root_for_target(
         repo_root=repo_root,
@@ -54,6 +57,7 @@ def release_latest_dir_for_target(
         model=model,
         region=region,
         cfg=cfg,
+        releases_root=releases_root,
     ) / "latest"
 
 
@@ -65,6 +69,7 @@ def release_version_dir_for_target(
     region: str,
     version: str,
     cfg: dict[str, Any] | None = None,
+    releases_root: Path | None = None,
 ) -> Path:
     version_token = normalize_release_token(version) or "unversioned"
     return release_root_for_target(
@@ -73,6 +78,7 @@ def release_version_dir_for_target(
         model=model,
         region=region,
         cfg=cfg,
+        releases_root=releases_root,
     ) / "versions" / version_token
 
 
@@ -83,6 +89,7 @@ def release_manifests_dir_for_target(
     model: str,
     region: str,
     cfg: dict[str, Any] | None = None,
+    releases_root: Path | None = None,
 ) -> Path:
     return release_root_for_target(
         repo_root=repo_root,
@@ -90,4 +97,5 @@ def release_manifests_dir_for_target(
         model=model,
         region=region,
         cfg=cfg,
+        releases_root=releases_root,
     ) / "manifests"

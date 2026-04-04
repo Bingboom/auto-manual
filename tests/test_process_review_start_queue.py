@@ -71,6 +71,22 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual(["rec_pending"], [record.record_id for record in records])
 
+    def test_select_pending_review_start_records_should_validate_workflow_action_when_present(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "Workflow_action must map to Start Review/Seed Draft"):
+            process_review_start_queue.select_pending_review_start_records(
+                [
+                    {
+                        "record_id": "rec_bad_action",
+                        "fields": {
+                            process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_0.1",
+                            process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                            process_review_start_queue.WORKFLOW_ACTION_FIELD: "Publish",
+                            process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                        },
+                    }
+                ]
+            )
+
     def test_generate_review_branch_name_should_default_to_codex_prefix(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
             record_id="rec_1",

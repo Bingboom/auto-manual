@@ -74,11 +74,12 @@ Phase2 snapshot note:
 - `python build.py process-build-queue --config config.us.yaml` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, resolves the build config from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, builds the generated Word file, uploads it to Feishu Drive, then moves that uploaded file into the current wiki knowledge-base container before writing the local Word path back to `Document directory`, the wiki URL back to `Document link`, a timestamped status string to `构建结果`, and the trigger back to `已构建`
 - the merged US `config.us.yaml` bundle now exports one `JE-1000F / US` Word that contains `en`, `fr`, and `es` sections together; `Spec_Master.Source_lang` / `*_source` content is required, and CSV-driven non-source language fields may be blank because lookup falls back to source-language text automatically
 - queue routing is now `Build_family`-first: use `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, or `cn-zh`; `Lang` remains a compatibility field and no longer decides the target when `Build_family` is filled
+- queue rows should now use `Workflow_action = Build Draft Package` or `Workflow_action = Publish`; legacy `Doc_phase` values remain supported as a compatibility fallback
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row includes `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
 - when the queue row includes `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-- Build Draft Package outputs stay staged under the current repo [`docs/_build/`](docs/_build) tree before upload/writeback
-- `release-manifest` writes traceability files to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](reports/releases); Publish queue outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting
+- Build Draft Package outputs go to the repo [`docs/_build/`](docs/_build) tree by default; pass `--staging-root <dir>` or set `AUTO_MANUAL_STAGING_ROOT=<dir>` to isolate generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under that root instead
+- `release-manifest` writes traceability files to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](reports/releases) by default, or to `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled; Publish queue outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting
 - [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1) is the Windows-friendly queue wrapper for automation: it restores the local Node/npm path plus `FEISHU_PHASE2_*` user env vars, runs `build.py process-build-queue`, and writes logs into [`.tmp/process-build-queue/`](.tmp/process-build-queue)
 - `python build.py listen-build-queue --config config.us.yaml` starts the push-based queue listener: it auto-subscribes the current `Document_link` base to docs events with the current user identity, waits on the Feishu long connection with the same user identity, and triggers `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
 - [`scripts/listen_build_queue.ps1`](scripts/listen_build_queue.ps1) is the Windows-friendly listener wrapper; on this machine it is launched from the Windows Startup folder so the listener starts after login and writes logs into [`.tmp/build-queue-listener/`](.tmp/build-queue-listener)
@@ -93,10 +94,10 @@ Phase2 snapshot note:
 Start Review / Seed Draft, Build Draft Package, Publish:
 
 - `process-build-queue` now refreshes `data/phase2` with `sync-data` before it starts building queued rows
-- `process-build-queue --doc-phase draft` uses Feishu-refreshed `data/phase2` plus the PR branch's current [`docs/_review/`](docs/_review) content; Build Draft Package is for documents that have already entered review
-- `process-build-queue --doc-phase draft` consumes `Doc_phase` compatibility values `Draft`, `Review`, and `Preview` as Build Draft Package
-- `process-build-queue --doc-phase publish` uses Feishu-refreshed `data/phase2` plus `Document_link.Git_ref` when present, runs `build.py publish` and `build.py html --source review`, then stages the formal release bundle under `reports/releases`
-- `process-build-queue --doc-phase publish` consumes only `Doc_phase=Publish`
+- `process-build-queue --workflow-action build-draft-package` uses Feishu-refreshed `data/phase2` plus the PR branch's current [`docs/_review/`](docs/_review) content; Build Draft Package is for documents that have already entered review
+- legacy `Doc_phase` compatibility values `Draft`, `Review`, and `Preview` still map to Build Draft Package
+- `process-build-queue --workflow-action publish` uses Feishu-refreshed `data/phase2` plus `Document_link.Git_ref` when present, runs `build.py publish` and `build.py html --source review`, then stages the formal release bundle under `reports/releases`
+- legacy `Doc_phase=Publish` still maps to Publish
 - `process-build-queue --record-id <record_id>` lets one workflow rebuild exactly one `Document_link` row
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
 - [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the PR-owned Build Draft Package worker
@@ -105,8 +106,8 @@ Start Review / Seed Draft, Build Draft Package, Publish:
 
 - recommended stage split:
   - use the review-init table to move one document into review and create its branch / PR once
-  - use the `Document_link` queue with `Doc_phase=Draft`, `Review`, or `Preview` to rebuild a Build Draft Package from that PR branch repeatedly
-  - use the `Document_link` queue with `Doc_phase=Publish` plus `Git_ref` to publish from that same review branch
+  - use the `Document_link` queue with `Workflow_action=Build Draft Package` to rebuild a Build Draft Package from that PR branch repeatedly
+  - use the `Document_link` queue with `Workflow_action=Publish` plus `Git_ref` to publish from that same review branch
 
 Dedicated zh bundle example:
 
