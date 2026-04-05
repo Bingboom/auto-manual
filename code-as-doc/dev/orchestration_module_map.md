@@ -50,6 +50,7 @@ Do not move new low-level implementation back into these files unless the behavi
 [`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:
 
 - [`tools/queue_contract.py`](../../tools/queue_contract.py)
+  - canonical queue contract constants
   - shared queue dataclasses
   - binding / record / wiki destination type definitions
 - [`tools/document_link_actions.py`](../../tools/document_link_actions.py)
@@ -102,6 +103,7 @@ When adding or moving logic in this area:
    - [`optimization_project.md`](../../optimization_project.md)
 4. Keep wrapper names stable in entry files when tests or external scripts patch them directly.
 5. If a wrapper stops being needed, remove it only after tests and call sites are updated together.
+6. When encoded field names are normalized, prefer unicode-escaped canonical constants in helper modules before deleting old literals from entry files.
 
 ## 5. Known Next Decomposition Candidates
 

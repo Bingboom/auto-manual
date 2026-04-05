@@ -19,6 +19,25 @@ if str(ROOT) not in sys.path:
 from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.queue_contract import (  # noqa: E402
+    BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
+    BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
+    DOCUMENT_DIRECTORY_FIELD as _QC_DOCUMENT_DIRECTORY_FIELD,
+    DOCUMENT_ID_FIELD as _QC_DOCUMENT_ID_FIELD,
+    DOCUMENT_KEY_FIELD as _QC_DOCUMENT_KEY_FIELD,
+    DOCUMENT_LINK_FIELD as _QC_DOCUMENT_LINK_FIELD,
+    DOC_PHASE_FIELD as _QC_DOC_PHASE_FIELD,
+    DONE_TRIGGER_VALUE as _QC_DONE_TRIGGER_VALUE,
+    FAILED_PREFIX as _QC_FAILED_PREFIX,
+    GIT_REF_FIELD as _QC_GIT_REF_FIELD,
+    IMMEDIATE_TRIGGER_FIELD as _QC_IMMEDIATE_TRIGGER_FIELD,
+    LANG_FIELD as _QC_LANG_FIELD,
+    LEGACY_TRIGGER_FIELDS as _QC_LEGACY_TRIGGER_FIELDS,
+    RESULT_FIELD as _QC_RESULT_FIELD,
+    SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
+    TRIGGER_FIELD as _QC_TRIGGER_FIELD,
+    TRIGGER_VALUES as _QC_TRIGGER_VALUES,
+    VERSION_FIELD as _QC_VERSION_FIELD,
+    WORKFLOW_ACTION_FIELD as _QC_WORKFLOW_ACTION_FIELD,
     DocumentLinkBinding,
     QueueRecord,
     WikiDestination,
@@ -167,6 +186,27 @@ TRIGGER_VALUES = {"1", "true", "y", "yes"}
 DONE_TRIGGER_VALUE = "已构建"
 
 
+TRIGGER_FIELD = _QC_TRIGGER_FIELD
+LEGACY_TRIGGER_FIELDS = _QC_LEGACY_TRIGGER_FIELDS
+RESULT_FIELD = _QC_RESULT_FIELD
+DOCUMENT_ID_FIELD = _QC_DOCUMENT_ID_FIELD
+DOCUMENT_KEY_FIELD = _QC_DOCUMENT_KEY_FIELD
+VERSION_FIELD = _QC_VERSION_FIELD
+LANG_FIELD = _QC_LANG_FIELD
+BUILD_FAMILY_FIELD = _QC_BUILD_FAMILY_FIELD
+WORKFLOW_ACTION_FIELD = _QC_WORKFLOW_ACTION_FIELD
+DOC_PHASE_FIELD = _QC_DOC_PHASE_FIELD
+GIT_REF_FIELD = _QC_GIT_REF_FIELD
+BUILD_STARTED_AT_FIELD = _QC_BUILD_STARTED_AT_FIELD
+DOCUMENT_DIRECTORY_FIELD = _QC_DOCUMENT_DIRECTORY_FIELD
+DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
+IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
+SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
+FAILED_PREFIX = _QC_FAILED_PREFIX
+TRIGGER_VALUES = _QC_TRIGGER_VALUES
+DONE_TRIGGER_VALUE = _QC_DONE_TRIGGER_VALUE
+
+
 def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     return _document_link_cfg_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
 
@@ -201,16 +241,9 @@ def resolve_document_link_binding(cfg: dict[str, Any]) -> DocumentLinkBinding:
     )
 
 
-def _scalar_text(value: Any) -> str:
-    return _scalar_text_impl(value)
-
-
-def _field_value(fields: dict[str, Any], *field_names: str) -> Any:
-    return _field_value_impl(fields, *field_names)
-
-
-def _available_field_names(raw_records: list[dict[str, Any]]) -> set[str]:
-    return _available_field_names_impl(raw_records)
+_scalar_text = _scalar_text_impl
+_field_value = _field_value_impl
+_available_field_names = _available_field_names_impl
 
 
 def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
@@ -231,20 +264,15 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
     )
 
 
-def _is_immediate_trigger_enabled(value: Any) -> bool:
-    return _is_immediate_trigger_enabled_impl(value)
+_is_immediate_trigger_enabled = _is_immediate_trigger_enabled_impl
 
 
 def _is_trigger_requested(value: Any) -> bool:
     return _is_trigger_requested_impl(value, trigger_values=TRIGGER_VALUES)
 
 
-def normalize_workflow_action(value: Any) -> str | None:
-    return _normalize_workflow_action(value)
-
-
-def normalize_doc_phase(value: Any) -> str | None:
-    return _normalize_doc_phase(value)
+normalize_workflow_action = _normalize_workflow_action
+normalize_doc_phase = _normalize_doc_phase
 
 
 def queue_record_uses_legacy_doc_phase(record: QueueRecord) -> bool:
@@ -276,8 +304,7 @@ def resolve_queue_workflow_action(record: QueueRecord) -> str | None:
     )
 
 
-def workflow_action_label(value: str | None) -> str | None:
-    return _workflow_action_label(value)
+workflow_action_label = _workflow_action_label
 
 
 def pending_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
@@ -310,8 +337,7 @@ def select_pending_queue_records(
     )
 
 
-def parse_document_key(document_key: str) -> tuple[str, str]:
-    return _parse_document_key_impl(document_key)
+parse_document_key = _parse_document_key_impl
 
 
 def _document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
@@ -329,16 +355,9 @@ def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
     return _resolve_target_for_record_impl(record, parse_document_key=parse_document_key)
 
 
-def queue_record_key(record: QueueRecord) -> str:
-    return _queue_record_key_impl(record)
-
-
-def queue_group_lang(records: list[QueueRecord]) -> str:
-    return _queue_group_lang_impl(records)
-
-
-def queue_group_build_family(records: list[QueueRecord]) -> str:
-    return _queue_group_build_family_impl(records)
+queue_record_key = _queue_record_key_impl
+queue_group_lang = _queue_group_lang_impl
+queue_group_build_family = _queue_group_build_family_impl
 
 
 def resolve_config_path_for_task(*, region: str, lang: str | None, build_family: str | None = None) -> Path:
@@ -415,8 +434,7 @@ def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region:
     )
 
 
-def _normalize_version_for_filename(version: str) -> str:
-    return normalize_release_token(version)
+_normalize_version_for_filename = normalize_release_token
 
 
 def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
@@ -429,8 +447,7 @@ def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_pha
     )
 
 
-def _config_path_in_repo_root(config_path: Path, *, repo_root: Path) -> Path:
-    return _config_path_in_repo_root_impl(config_path, repo_root=repo_root)
+_config_path_in_repo_root = _config_path_in_repo_root_impl
 
 
 def _repo_relative(path: Path) -> str:
@@ -471,16 +488,9 @@ def _publish_release_latest_dir_for_target(*, config_path: Path, model: str, reg
     )
 
 
-def _slug_ref_token(value: str) -> str:
-    return _slug_ref_token_impl(value)
-
-
-def _format_command(cmd: list[str]) -> str:
-    return _format_command_impl(cmd)
-
-
-def _command_failure_message(cmd: list[str], stdout: str, stderr: str, returncode: int) -> str:
-    return _command_failure_message_impl(cmd, stdout, stderr, returncode)
+_slug_ref_token = _slug_ref_token_impl
+_format_command = _format_command_impl
+_command_failure_message = _command_failure_message_impl
 
 
 def _run_command(cmd: list[str], *, cwd: Path = ROOT) -> None:
@@ -541,8 +551,7 @@ def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str)
     )
 
 
-def _wiki_node_from_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    return _wiki_node_from_payload_impl(payload)
+_wiki_node_from_payload = _wiki_node_from_payload_impl
 
 
 def get_wiki_node(
@@ -576,16 +585,9 @@ def resolve_wiki_destination(
     )
 
 
-def _host_root_from_url(url: str) -> str:
-    return _host_root_from_url_impl(url)
-
-
-def _wiki_url_from_host_root(host_root: str, wiki_token: str) -> str:
-    return _wiki_url_from_host_root_impl(host_root, wiki_token)
-
-
-def _move_result_entry_from_task_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    return _move_result_entry_from_task_payload_impl(payload)
+_host_root_from_url = _host_root_from_url_impl
+_wiki_url_from_host_root = _wiki_url_from_host_root_impl
+_move_result_entry_from_task_payload = _move_result_entry_from_task_payload_impl
 
 
 def wait_for_wiki_move_task(
@@ -665,8 +667,7 @@ def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | Non
     )
 
 
-def _copy_tree(src: Path, dst: Path) -> None:
-    _copy_tree_impl(src, dst)
+_copy_tree = _copy_tree_impl
 
 
 def _stage_draft_word_output_to_host_repo(

@@ -3,6 +3,28 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+TRIGGER_FIELD = "\u662f\u5426\u89e6\u53d1\u6587\u6863\u6784\u5efa"
+LEGACY_TRIGGER_FIELDS = ("\u662f\u5426\u6784\u5efa\u6587\u6863\uff1f",)
+RESULT_FIELD = "\u6784\u5efa\u7ed3\u679c"
+DOCUMENT_ID_FIELD = "Document_ID"
+DOCUMENT_KEY_FIELD = "Document_Key"
+VERSION_FIELD = "Version"
+LANG_FIELD = "Lang"
+BUILD_FAMILY_FIELD = "Build_family"
+WORKFLOW_ACTION_FIELD = "Workflow_action"
+DOC_PHASE_FIELD = "Doc_phase"
+GIT_REF_FIELD = "Git_ref"
+BUILD_STARTED_AT_FIELD = "\u5f00\u59cb\u6784\u5efa\u65f6\u95f4"
+DOCUMENT_DIRECTORY_FIELD = "Document directory"
+DOCUMENT_LINK_FIELD = "Document link"
+IMMEDIATE_TRIGGER_FIELD = "\u662f\u5426\u7acb\u5373\u6784\u5efa"
+
+SUCCESS_PREFIX = "SUCCESS"
+FAILED_PREFIX = "FAILED"
+TRIGGER_VALUES = {"1", "true", "y", "yes"}
+DONE_TRIGGER_VALUE = "\u5df2\u6784\u5efa"
+
+
 @dataclass(frozen=True)
 class DocumentLinkBinding:
     base_token_env: str
