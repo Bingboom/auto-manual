@@ -64,6 +64,22 @@ from tools.phase2_support import (  # noqa: E402
     phase2_identity as _phase2_identity,
 )
 from tools.process_build_queue_bootstrap import configure_queue_bound_providers  # noqa: E402
+from tools.process_build_queue_services import (  # noqa: E402
+    best_effort_queue_workflow_action as _best_effort_queue_workflow_action_service,
+    build_document_for_task as _build_document_for_task_service,
+    build_failure_fields as _build_failure_fields_service,
+    build_failure_writeback_fields as _build_failure_writeback_fields_service,
+    build_py_sync_data_command as _build_py_sync_data_command_service,
+    build_py_target_command as _build_py_target_command_service,
+    build_started_fields as _build_started_fields_service,
+    build_success_fields as _build_success_fields_service,
+    move_drive_file_to_wiki as _move_drive_file_to_wiki_service,
+    process_build_queue as _process_build_queue_service,
+    resolve_wiki_destination as _resolve_wiki_destination_service,
+    sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_service,
+    upload_word_to_drive as _upload_word_to_drive_service,
+    wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
+)
 from tools.queue_bound_outputs import (  # noqa: E402
     publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
     publish_release_root_for_target as _publish_release_root_for_target,
@@ -198,13 +214,11 @@ _config_path_in_repo_root = _config_path_in_repo_root_impl
 
 
 def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
-    return _upload_word_to_drive_impl(
+    return _upload_word_to_drive_service(
+        sys.modules[__name__],
         cli_bin=cli_bin,
         word_output_path=word_output_path,
         identity=identity,
-        repo_root=ROOT,
-        run_lark_cli_json=_run_lark_cli_json,
-        cli_relative_file_arg=lambda *, repo_root, path: _cli_relative_file_arg(path),
     )
 
 
@@ -217,12 +231,11 @@ def resolve_wiki_destination(
     identity: str,
     binding: DocumentLinkBinding,
 ) -> WikiDestination:
-    return _resolve_wiki_destination_impl(
+    return _resolve_wiki_destination_service(
+        sys.modules[__name__],
         cli_bin=cli_bin,
         identity=identity,
         binding=binding,
-        get_wiki_node=get_wiki_node,
-        wiki_destination_factory=WikiDestination,
     )
 
 
@@ -238,15 +251,12 @@ def wait_for_wiki_move_task(
     task_id: str,
     host_root: str,
 ) -> str:
-    return _wait_for_wiki_move_task_impl(
+    return _wait_for_wiki_move_task_service(
+        sys.modules[__name__],
         cli_bin=cli_bin,
         identity=identity,
         task_id=task_id,
         host_root=host_root,
-        run_lark_cli_json=_run_lark_cli_json,
-        move_result_entry_from_task_payload=_move_result_entry_from_task_payload,
-        wiki_url_from_host_root=_wiki_url_from_host_root,
-        sleep=time.sleep,
     )
 
 
@@ -258,16 +268,13 @@ def move_drive_file_to_wiki(
     drive_url: str,
     destination: WikiDestination,
 ) -> str:
-    return _move_drive_file_to_wiki_impl(
+    return _move_drive_file_to_wiki_service(
+        sys.modules[__name__],
         cli_bin=cli_bin,
         identity=identity,
         file_token=file_token,
         drive_url=drive_url,
         destination=destination,
-        run_lark_cli_json=_run_lark_cli_json,
-        host_root_from_url=_host_root_from_url,
-        wiki_url_from_host_root=_wiki_url_from_host_root,
-        wait_for_wiki_move_task=wait_for_wiki_move_task,
     )
 
 
@@ -282,7 +289,8 @@ def _build_py_target_command(
     source: str | None = None,
     no_clean: bool = False,
 ) -> list[str]:
-    return _bound_build_py_target_command(
+    return _build_py_target_command_service(
+        sys.modules[__name__],
         repo_root=repo_root,
         action=action,
         config_path=config_path,
@@ -295,16 +303,19 @@ def _build_py_target_command(
 
 
 def _build_py_sync_data_command(*, repo_root: Path = ROOT, config_path: Path, data_root: str | None) -> list[str]:
-    return _bound_build_py_sync_data_command(repo_root=repo_root, config_path=config_path, data_root=data_root)
+    return _build_py_sync_data_command_service(
+        sys.modules[__name__],
+        repo_root=repo_root,
+        config_path=config_path,
+        data_root=data_root,
+    )
 
 
 def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | None) -> None:
-    _sync_phase2_snapshot_before_queue_impl(
-        repo_root=ROOT,
+    _sync_phase2_snapshot_before_queue_service(
+        sys.modules[__name__],
         config_path=config_path,
         data_root=data_root,
-        run_command=_run_command,
-        build_py_sync_data_command=_build_py_sync_data_command,
     )
 
 
@@ -318,8 +329,8 @@ def build_document_for_task(
     version: str = "",
     git_ref: str = "",
 ) -> Path:
-    return _build_document_for_task_impl(
-        repo_root=ROOT,
+    return _build_document_for_task_service(
+        sys.modules[__name__],
         config_path=config_path,
         model=model,
         region=region,
@@ -327,17 +338,6 @@ def build_document_for_task(
         doc_phase=doc_phase,
         version=version,
         git_ref=git_ref,
-        normalize_workflow_action=normalize_workflow_action,
-        prepare_git_ref_worktree=_prepare_git_ref_worktree,
-        remove_worktree=_remove_worktree,
-        config_path_in_repo_root=_config_path_in_repo_root,
-        run_command=_run_command,
-        build_py_target_command=_build_py_target_command,
-        resolve_word_output_path_for_target=resolve_word_output_path_for_target,
-        versioned_word_output_path=_versioned_word_output_path,
-        resolve_html_output_dir_for_target=resolve_html_output_dir_for_target,
-        stage_publish_assets_to_host_repo=_stage_publish_assets_to_host_repo,
-        stage_draft_word_output_to_host_repo=_stage_draft_word_output_to_host_repo,
     )
 
 
@@ -350,28 +350,19 @@ def build_success_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    return _build_success_fields(
+    return _build_success_fields_service(
+        sys.modules[__name__],
         version=version,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
-        normalize_workflow_action=normalize_workflow_action,
-        normalize_doc_phase=normalize_doc_phase,
-        workflow_action_label=workflow_action_label,
-        result_field=RESULT_FIELD,
-        document_directory_field=DOCUMENT_DIRECTORY_FIELD,
-        document_link_field=DOCUMENT_LINK_FIELD,
-        trigger_field=TRIGGER_FIELD,
-        done_trigger_value=DONE_TRIGGER_VALUE,
-        immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
-        success_prefix=SUCCESS_PREFIX,
     )
 
 
 def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
-    return _build_started_fields(started_at=started_at, build_started_at_field=BUILD_STARTED_AT_FIELD)
+    return _build_started_fields_service(sys.modules[__name__], started_at=started_at)
 
 
 def build_failure_fields(
@@ -381,16 +372,12 @@ def build_failure_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    return _build_failure_fields(
+    return _build_failure_fields_service(
+        sys.modules[__name__],
         version=version,
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
-        normalize_workflow_action=normalize_workflow_action,
-        normalize_doc_phase=normalize_doc_phase,
-        workflow_action_label=workflow_action_label,
-        result_field=RESULT_FIELD,
-        failed_prefix=FAILED_PREFIX,
     )
 
 
@@ -403,18 +390,14 @@ def build_failure_writeback_fields(
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
 ) -> dict[str, Any]:
-    return _build_failure_writeback_fields(
+    return _build_failure_writeback_fields_service(
+        sys.modules[__name__],
         version=version,
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
-        build_failure_fields=build_failure_fields,
-        result_field=RESULT_FIELD,
-        document_directory_field=DOCUMENT_DIRECTORY_FIELD,
-        document_link_field=DOCUMENT_LINK_FIELD,
-        immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
     )
 
 
@@ -435,11 +418,7 @@ def warn_legacy_record_doc_phase(record: QueueRecord) -> None:
 
 
 def best_effort_queue_workflow_action(record: QueueRecord) -> str | None:
-    return _best_effort_queue_workflow_action(
-        workflow_action=record.workflow_action,
-        doc_phase=record.doc_phase,
-        record_id=record.record_id,
-    )
+    return _best_effort_queue_workflow_action_service(sys.modules[__name__], record)
 
 
 def process_build_queue(
@@ -453,7 +432,8 @@ def process_build_queue(
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> int:
-    return _process_build_queue_impl(
+    return _process_build_queue_service(
+        sys.modules[__name__],
         cfg=cfg,
         config_path=config_path,
         data_root=data_root,
@@ -462,48 +442,6 @@ def process_build_queue(
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         record_id=record_id,
-        bootstrap_queue_session=lambda **kwargs: _bootstrap_queue_session_impl(
-            **kwargs,
-            collect_queue_preflight_errors=collect_queue_preflight_errors,
-            resolve_document_link_binding=resolve_document_link_binding,
-            cli_bin=_cli_bin,
-            phase2_identity=_phase2_identity,
-            source_factory=LarkCliSource,
-            normalize_cli_queue_action=normalize_cli_queue_action,
-            warn_legacy_cli_doc_phase=warn_legacy_cli_doc_phase,
-        ),
-        load_pending_queue_state=_load_pending_queue_state_impl,
-        print_no_pending_message=_print_no_pending_message_impl,
-        print_dry_run_groups=_print_dry_run_groups_impl,
-        sync_phase2_snapshot_before_queue=sync_phase2_snapshot_before_queue,
-        resolve_and_report_wiki_destination=_resolve_and_report_wiki_destination_impl,
-        process_queue_record_group=_process_queue_record_group_impl,
-        build_started_at_field=BUILD_STARTED_AT_FIELD,
-        available_field_names=_available_field_names,
-        select_pending_queue_records=select_pending_queue_records,
-        group_pending_queue_records=group_pending_queue_records,
-        warn_legacy_record_doc_phase=warn_legacy_record_doc_phase,
-        resolve_target_for_record=resolve_target_for_record,
-        queue_group_lang=queue_group_lang,
-        queue_group_build_family=queue_group_build_family,
-        validate_queue_record_group=validate_queue_record_group,
-        resolve_config_path_for_task=resolve_config_path_for_task,
-        queue_record_key=queue_record_key,
-        workflow_action_label=workflow_action_label,
-        queue_record_action_source=queue_record_action_source,
-        queue_record_legacy_doc_phase=queue_record_legacy_doc_phase,
-        resolve_wiki_destination=resolve_wiki_destination,
-        build_started_fields=build_started_fields,
-        build_document_for_task=build_document_for_task,
-        upload_word_to_drive=upload_word_to_drive,
-        move_drive_file_to_wiki=move_drive_file_to_wiki,
-        build_success_fields=build_success_fields,
-        publish_release_latest_dir_for_target=_publish_release_latest_dir_for_target,
-        write_publish_release_metadata=write_publish_release_metadata,
-        build_failure_writeback_fields=build_failure_writeback_fields,
-        best_effort_queue_workflow_action=best_effort_queue_workflow_action,
-        resolve_queue_workflow_action=resolve_queue_workflow_action,
-        stderr=sys.stderr,
     )
 
 
