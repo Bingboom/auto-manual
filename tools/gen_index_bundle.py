@@ -898,6 +898,18 @@ def _copy_bundle_support_assets(
     if latex_src.exists():
         _copytree_replace(latex_src, bundle_dir / "renderers" / "latex")
 
+    # Review overlays can copy page/generated RST that already reference
+    # _assets/templates/word_template/common_assets/... paths. Stage the
+    # shared template asset tree up front so those references remain valid
+    # even when the current target bundle would not otherwise materialize
+    # every referenced template asset during runtime generation.
+    common_assets_src = docs_dir / "templates" / "word_template" / "common_assets"
+    if common_assets_src.exists():
+        _copytree_replace(
+            common_assets_src,
+            bundle_dir / "_assets" / "templates" / "word_template" / "common_assets",
+        )
+
 
 def _materialize_planned_page(
     planned: PlannedPage,
