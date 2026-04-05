@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-04-04
+Updated: 2026-04-05
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -218,5 +218,42 @@ Main outcomes:
 
 Why it mattered:
 
-- new `Document_link` rows no longer have mixed semantics between `Workflow_action` and `Doc_phase`
-- old rows still run, but operators can now see exactly when they are relying on legacy compatibility
+- queue-action migration now has one clear primary field and one explicitly deprecated fallback
+- legacy queue rows can still run without hiding which compatibility path was taken
+
+## 14. 2026-04-05: Modular Decomposition of Build and Queue Orchestration
+
+Main outcomes:
+
+- extracted build path/staging/config helpers into [`tools/build_paths.py`](../tools/build_paths.py)
+- extracted diff-report and publish-path command helpers into [`tools/build_reports.py`](../tools/build_reports.py)
+- extracted CLI command assembly helpers into [`tools/build_entry_commands.py`](../tools/build_entry_commands.py)
+- extracted doctor environment/preflight helpers into [`tools/build_doctor.py`](../tools/build_doctor.py)
+- extracted queue action normalization into [`tools/document_link_actions.py`](../tools/document_link_actions.py)
+- extracted queue record parsing/binding/filtering into [`tools/document_link_queue.py`](../tools/document_link_queue.py)
+- extracted queue config-family routing into [`tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
+- extracted queue runtime/worktree helpers into [`tools/queue_runtime.py`](../tools/queue_runtime.py)
+- extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/queue_build_execution.py)
+- extracted Lark drive/wiki transport helpers into [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py)
+- extracted queue output staging and publish metadata helpers into [`tools/queue_outputs.py`](../tools/queue_outputs.py)
+- extracted queue writeback/result formatting into [`tools/queue_writeback.py`](../tools/queue_writeback.py)
+- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) from the earlier 1600+ line range down to a smaller orchestration-focused core
+
+Why it mattered:
+
+- future changes to queue transport, writeback, output staging, or action semantics no longer need to touch one giant file
+- wrapper-compatible extraction kept the public entrypoints stable while shrinking the regression surface
+- maintainers now have explicit module boundaries to extend instead of continuing to accrete logic into `build.py` and `process_build_queue.py`
+
+## 15. 2026-04-05: Module Boundary Map For Ongoing Maintenance
+
+Main outcomes:
+
+- added [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) as the living map for build and queue module ownership
+- recorded the current rule that [`build.py`](../build.py) and [`tools/process_build_queue.py`](../tools/process_build_queue.py) should stay orchestration-first while helper modules absorb low-level logic
+- linked ongoing decomposition maintenance to both the roadmap and the optimization log
+
+Why it mattered:
+
+- decomposition work is now discoverable after the commit lands, not only recoverable from Git history
+- maintainers have a stable place to document future module moves as the next large files are split

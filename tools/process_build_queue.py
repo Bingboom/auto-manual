@@ -5,9 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
-import shutil
-import subprocess
+import os
 import sys
 import time
 from dataclasses import dataclass
@@ -75,6 +73,12 @@ from tools.queue_outputs import (  # noqa: E402
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo_impl,
     versioned_word_output_path as _versioned_word_output_path_impl,
     write_publish_release_metadata as _write_publish_release_metadata_impl,
+)
+from tools.queue_build_execution import (  # noqa: E402
+    build_document_for_task as _build_document_for_task_impl,
+    build_py_sync_data_command as _build_py_sync_data_command_impl,
+    build_py_target_command as _build_py_target_command_impl,
+    sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
 )
 from tools.queue_lark_ops import (  # noqa: E402
     cli_relative_file_arg as _cli_relative_file_arg_impl,
@@ -658,46 +662,29 @@ def _build_py_target_command(
     source: str | None = None,
     no_clean: bool = False,
 ) -> list[str]:
-    cmd = [
-        sys.executable,
-        str(repo_root / "build.py"),
-        action,
-        "--config",
-        str(config_path),
-        "--model",
-        model,
-        "--region",
-        region,
-    ]
-    if source:
-        cmd += ["--source", source]
-    if no_clean:
-        cmd.append("--no-clean")
-    if data_root:
-        cmd += ["--data-root", data_root]
-    return cmd
+    return _build_py_target_command_impl(
+        repo_root=repo_root,
+        action=action,
+        config_path=config_path,
+        model=model,
+        region=region,
+        data_root=data_root,
+        source=source,
+        no_clean=no_clean,
+    )
 
 
 def _build_py_sync_data_command(*, repo_root: Path = ROOT, config_path: Path, data_root: str | None) -> list[str]:
-    cmd = [
-        sys.executable,
-        str(repo_root / "build.py"),
-        "sync-data",
-        "--config",
-        str(config_path),
-    ]
-    if data_root:
-        cmd += ["--data-root", data_root]
-    return cmd
+    return _build_py_sync_data_command_impl(repo_root=repo_root, config_path=config_path, data_root=data_root)
 
 
 def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | None) -> None:
-    _run_command(
-        _build_py_sync_data_command(
-            repo_root=ROOT,
-            config_path=config_path,
-            data_root=data_root,
-        )
+    _sync_phase2_snapshot_before_queue_impl(
+        repo_root=ROOT,
+        config_path=config_path,
+        data_root=data_root,
+        run_command=_run_command,
+        build_py_sync_data_command=_build_py_sync_data_command,
     )
 
 
@@ -787,139 +774,27 @@ def build_document_for_task(
     version: str = "",
     git_ref: str = "",
 ) -> Path:
-    normalized_doc_phase = normalize_workflow_action(doc_phase)
-    repo_root = ROOT
-    effective_config_path = config_path
-    worktree: Path | None = None
-    if git_ref.strip():
-        worktree = _prepare_git_ref_worktree(git_ref.strip())
-        repo_root = worktree
-        effective_config_path = _config_path_in_repo_root(config_path, repo_root=worktree)
-
-    try:
-        if normalized_doc_phase == "draft":
-            _run_command(
-                _build_py_target_command(
-                    repo_root=repo_root,
-                    action="check",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    data_root=data_root,
-                    source="review",
-                ),
-                cwd=repo_root,
-            )
-            _run_command(
-                _build_py_target_command(
-                    repo_root=repo_root,
-                    action="word",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    data_root=data_root,
-                    source="review",
-                    no_clean=True,
-                ),
-                cwd=repo_root,
-            )
-        elif normalized_doc_phase == "publish":
-            _run_command(
-                _build_py_target_command(
-                    repo_root=repo_root,
-                    action="publish",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    data_root=data_root,
-                ),
-                cwd=repo_root,
-            )
-            _run_command(
-                _build_py_target_command(
-                    repo_root=repo_root,
-                    action="html",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    data_root=data_root,
-                    source="review",
-                    no_clean=True,
-                ),
-                cwd=repo_root,
-            )
-        else:
-            _run_command(
-                _build_py_target_command(
-                    repo_root=repo_root,
-                    action="check",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    data_root=data_root,
-                ),
-                cwd=repo_root,
-            )
-            _run_command(
-                _build_py_target_command(
-                    repo_root=repo_root,
-                    action="word",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    data_root=data_root,
-                    no_clean=True,
-                ),
-                cwd=repo_root,
-            )
-
-        word_output_path = resolve_word_output_path_for_target(
-            config_path=effective_config_path,
-            model=model,
-            region=region,
-        )
-        if not word_output_path.exists():
-            raise RuntimeError(f"Word output was not created: {word_output_path}")
-        versioned_path = _versioned_word_output_path(
-            word_output_path,
-            version=version,
-            doc_phase=normalized_doc_phase,
-        )
-        if versioned_path != word_output_path:
-            versioned_path.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(word_output_path, versioned_path)
-            word_output_path = versioned_path
-        if normalized_doc_phase == "publish":
-            html_output_dir = resolve_html_output_dir_for_target(
-                config_path=effective_config_path,
-                model=model,
-                region=region,
-            )
-            if not html_output_dir.exists():
-                raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
-            host_config_path = _config_path_in_repo_root(config_path, repo_root=ROOT)
-            staged_word_output_path, _latest_html_dir = _stage_publish_assets_to_host_repo(
-                built_word_output_path=word_output_path,
-                built_html_dir=html_output_dir,
-                host_config_path=host_config_path,
-                model=model,
-                region=region,
-                version=version,
-            )
-            return staged_word_output_path
-        if repo_root != ROOT:
-            return _stage_draft_word_output_to_host_repo(
-                built_word_output_path=word_output_path,
-                host_config_path=_config_path_in_repo_root(config_path, repo_root=ROOT),
-                model=model,
-                region=region,
-                version=version,
-                doc_phase=normalized_doc_phase,
-            )
-        return word_output_path
-    finally:
-        if worktree is not None:
-            _remove_worktree(worktree)
+    return _build_document_for_task_impl(
+        repo_root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        data_root=data_root,
+        doc_phase=doc_phase,
+        version=version,
+        git_ref=git_ref,
+        normalize_workflow_action=normalize_workflow_action,
+        prepare_git_ref_worktree=_prepare_git_ref_worktree,
+        remove_worktree=_remove_worktree,
+        config_path_in_repo_root=_config_path_in_repo_root,
+        run_command=_run_command,
+        build_py_target_command=_build_py_target_command,
+        resolve_word_output_path_for_target=resolve_word_output_path_for_target,
+        versioned_word_output_path=_versioned_word_output_path,
+        resolve_html_output_dir_for_target=resolve_html_output_dir_for_target,
+        stage_publish_assets_to_host_repo=_stage_publish_assets_to_host_repo,
+        stage_draft_word_output_to_host_repo=_stage_draft_word_output_to_host_repo,
+    )
 
 
 def build_success_fields(
