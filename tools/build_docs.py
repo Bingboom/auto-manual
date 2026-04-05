@@ -81,6 +81,12 @@ from tools.build_docs_resolve import (
     resolve_spec_master_csv_path as _resolve_spec_master_csv_path_impl,
     slug_token as _slug_token_impl,
 )
+from tools.build_docs_sphinx import (
+    build_rst_epilog as _build_rst_epilog_impl,
+    resolve_sphinx_build_cmd as _resolve_sphinx_build_cmd_impl,
+    with_product_name_epilog as _with_product_name_epilog_impl,
+    with_rst_epilog as _with_rst_epilog_impl,
+)
 from tools.build_docs_validation import (
     validate_layout_csv as _validate_layout_csv_impl,
     validate_loaded_config as _validate_loaded_config_impl,
@@ -384,42 +390,31 @@ def resolve_rst_substitutions_for_build(
 
 
 def _build_rst_epilog(substitutions: dict[str, str]) -> str:
-    lines: list[str] = []
-    for key, value in substitutions.items():
-        text = (value or "").strip()
-        if not text:
-            continue
-        lines.append(f".. |{key}| replace:: {text}")
-    return "\n".join(lines)
+    return _build_rst_epilog_impl(substitutions)
 
 
 def _with_rst_epilog(cmd: list[str], substitutions: dict[str, str] | None) -> list[str]:
-    if not substitutions:
-        return cmd
-    epilog = _build_rst_epilog(substitutions)
-    if not epilog:
-        return cmd
-    return [*cmd, "-D", f"rst_epilog={epilog}"]
+    return _with_rst_epilog_impl(
+        cmd,
+        substitutions,
+        build_rst_epilog=_build_rst_epilog,
+    )
 
 
 def _with_product_name_epilog(cmd: list[str], product_name: str | None) -> list[str]:
-    if not (product_name or "").strip():
-        return cmd
-    name = product_name.strip()
-    return _with_rst_epilog(
+    return _with_product_name_epilog_impl(
         cmd,
-        {
-            "PRODUCT_NAME": name,
-            "PRODUCT_NAME_BOLD": f"**{name}**",
-        },
+        product_name,
+        with_rst_epilog=_with_rst_epilog,
     )
 
 
 def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
-    sphinx_build = find_exe(["sphinx-build"])
-    if sphinx_build:
-        return [sphinx_build, "-b", builder]
-    return [sys.executable, "-m", "sphinx", "-b", builder]
+    return _resolve_sphinx_build_cmd_impl(
+        builder,
+        find_exe=find_exe,
+        python_executable=sys.executable,
+    )
 
 
 def _normalize_sphinx_tag_value(value: str | None) -> str | None:
