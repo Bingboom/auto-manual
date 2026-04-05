@@ -21,6 +21,17 @@ if str(ROOT) not in sys.path:
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.document_link_queue import parse_document_key  # noqa: E402
+from tools.phase2_support import (  # noqa: E402
+    LarkCliSource,
+    cli_bin as _cli_bin,
+    cli_command_exists as _cli_command_exists,
+    cli_command_parts as _cli_command_parts,
+    env_value as _env_value,
+    load_config,
+    phase2_identity as _phase2_identity,
+    provider_name as _provider_name,
+    sync_phase2_cfg as _sync_phase2_cfg,
+)
 from tools.process_review_start_queue_binding import (  # noqa: E402
     ReviewInitBinding,
     collect_review_start_preflight_errors as _collect_review_start_preflight_errors_impl,
@@ -28,18 +39,6 @@ from tools.process_review_start_queue_binding import (  # noqa: E402
     review_init_env_names as _review_init_env_names_impl,
 )
 from tools.process_review_start_queue_records import (  # noqa: E402
-    BUILD_FAMILY_FIELD,
-    DOCUMENT_ID_FIELD,
-    DOCUMENT_KEY_FIELD,
-    GIT_REF_FIELD,
-    LANG_FIELD,
-    PR_URL_FIELD,
-    REVIEW_STATUS_FIELD,
-    REVIEW_STATUS_IN_REVIEW,
-    REVIEW_STATUS_NOT_STARTED,
-    REVIEW_TRIGGER_FIELD,
-    VERSION_FIELD,
-    WORKFLOW_ACTION_FIELD,
     ReviewStartRecord,
     generate_review_branch_name as _generate_review_branch_name_impl,
     group_review_start_records as _group_review_start_records_impl,
@@ -55,17 +54,6 @@ from tools.process_review_start_queue_records import (  # noqa: E402
 )
 from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
 from tools.review_support import review_bundle_exists, review_dir_for_target  # noqa: E402
-from tools.sync_data import (  # noqa: E402
-    LarkCliSource,
-    _cli_bin,
-    _cli_command_exists,
-    _cli_command_parts,
-    _env_value,
-    _phase2_identity,
-    _provider_name,
-    _sync_phase2_cfg,
-    load_config,
-)
 from tools.utils.targets import resolve_output_lang  # noqa: E402
 
 REVIEW_TRIGGER_FIELD = "\u662f\u5426\u8fdb\u5165Review"

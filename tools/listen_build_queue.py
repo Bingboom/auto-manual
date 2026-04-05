@@ -35,11 +35,11 @@ from tools.process_build_queue import (  # noqa: E402
     process_build_queue,
     resolve_document_link_binding,
 )
-from tools.sync_data import (  # noqa: E402
-    _cli_bin,
-    _parse_json_payload,
-    _resolved_cli_command_parts,
+from tools.phase2_support import (  # noqa: E402
+    cli_bin as _cli_bin,
     load_config,
+    parse_json_payload as _parse_json_payload,
+    resolved_cli_command_parts as _resolved_cli_command_parts,
 )
 
 EVENT_TYPE = "drive.file.bitable_record_changed_v1"

@@ -57,6 +57,13 @@ from tools.document_link_actions import (  # noqa: E402
     warn_legacy_record_doc_phase as _warn_legacy_record_doc_phase,
     workflow_action_label as _workflow_action_label,
 )
+from tools.phase2_support import (  # noqa: E402
+    LarkCliSource,
+    cli_bin as _cli_bin,
+    load_config,
+    phase2_identity as _phase2_identity,
+)
+from tools.process_build_queue_bootstrap import configure_queue_bound_providers  # noqa: E402
 from tools.queue_bound_outputs import (  # noqa: E402
     publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
     publish_release_root_for_target as _publish_release_root_for_target,
@@ -65,7 +72,6 @@ from tools.queue_bound_outputs import (  # noqa: E402
     resolve_docs_dir_for_config as _resolve_docs_dir_for_config,
     resolve_html_output_dir_for_target,
     resolve_word_output_path_for_target,
-    set_repo_root_provider as _set_queue_output_repo_root_provider,
     stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo,
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo,
     versioned_word_output_path as _versioned_word_output_path,
@@ -75,7 +81,6 @@ from tools.queue_bound_lark_ops import (  # noqa: E402
     cli_relative_file_arg as _cli_relative_file_arg,
     get_wiki_node,
     run_lark_cli_json as _run_lark_cli_json,
-    set_repo_root_provider as _set_queue_lark_repo_root_provider,
 )
 from tools.queue_bound_binding import (  # noqa: E402
     collect_queue_preflight_errors,
@@ -91,7 +96,6 @@ from tools.queue_bound_runtime import (  # noqa: E402
     remove_worktree as _remove_worktree,
     run_command as _run_command,
     run_git as _run_git,
-    set_repo_root_provider as _set_queue_runtime_repo_root_provider,
     worktree_dir_for_git_ref as _worktree_dir_for_git_ref,
 )
 from tools.queue_bound_records import (  # noqa: E402
@@ -111,9 +115,6 @@ from tools.queue_bound_records import (  # noqa: E402
     resolve_queue_workflow_action,
     resolve_target_for_record,
     select_pending_queue_records,
-    set_config_loader_provider as _set_queue_record_config_loader_provider,
-    set_repo_root_provider as _set_queue_record_repo_root_provider,
-    set_resolve_config_path_provider as _set_queue_record_resolve_config_path_provider,
     validate_queue_record_group,
 )
 from tools.queue_outputs import config_path_in_repo_root as _config_path_in_repo_root_impl  # noqa: E402
@@ -150,19 +151,12 @@ from tools.queue_writeback import (  # noqa: E402
     build_success_fields as _build_success_fields,
 )
 from tools.queue_runtime import command_failure_message as _command_failure_message  # noqa: E402
-from tools.sync_data import (  # noqa: E402
-    LarkCliSource,
-    _cli_bin,
-    _phase2_identity,
-    load_config,
-)
 
-_set_queue_output_repo_root_provider(lambda: ROOT)
-_set_queue_runtime_repo_root_provider(lambda: ROOT)
-_set_queue_lark_repo_root_provider(lambda: ROOT)
-_set_queue_record_repo_root_provider(lambda: ROOT)
-_set_queue_record_config_loader_provider(lambda: load_config)
-_set_queue_record_resolve_config_path_provider(lambda: sys.modules[__name__].resolve_config_path_for_task)
+configure_queue_bound_providers(
+    repo_root_provider=lambda: ROOT,
+    config_loader_provider=lambda: load_config,
+    resolve_config_path_provider=lambda: sys.modules[__name__].resolve_config_path_for_task,
+)
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
 LEGACY_TRIGGER_FIELDS = _QC_LEGACY_TRIGGER_FIELDS
