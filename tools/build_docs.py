@@ -6,12 +6,10 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import os
-import re
 import shutil
 import subprocess
 import sys
 import time
-from dataclasses import dataclass
 from pathlib import Path
 
 try:
@@ -90,6 +88,22 @@ from tools.build_docs_sphinx import (
     with_product_name_epilog as _with_product_name_epilog_impl,
     with_rst_epilog as _with_rst_epilog_impl,
 )
+from tools.build_docs_shared import (
+    BODY_SWITCHER_CLASS,
+    MANUAL_META_FILE_NAME,
+    SWITCHER_BLOCK_END,
+    SWITCHER_BLOCK_START,
+    VALID_FORMATS,
+    VALID_PDF_MODES,
+    VALID_SOURCE_MODES,
+    BuildTarget,
+    HtmlManualVariant,
+    _BODY_TAG_RE,
+    _MANUAL_COVER_SECTION_RE,
+    _REMOVE_TREE_RETRY_DELAYS,
+    _SWITCHER_BLOCK_RE,
+    _TEMPLATE_TOKEN_RE,
+)
 from tools.build_docs_validation import (
     validate_layout_csv as _validate_layout_csv_impl,
     validate_loaded_config as _validate_loaded_config_impl,
@@ -130,24 +144,6 @@ from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
 
 paths = get_paths()
-VALID_FORMATS = {"html", "word", "pdf"}
-VALID_PDF_MODES = {"latex", "word"}
-VALID_SOURCE_MODES = {"auto", "runtime", "review"}
-_TEMPLATE_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
-MANUAL_META_FILE_NAME = "manual_meta.json"
-SWITCHER_BLOCK_START = "<!-- HB_MANUAL_SWITCHER_START -->"
-SWITCHER_BLOCK_END = "<!-- HB_MANUAL_SWITCHER_END -->"
-BODY_SWITCHER_CLASS = "hb-manual-switcher-body"
-_REMOVE_TREE_RETRY_DELAYS = (0.2, 0.5, 1.0)
-_SWITCHER_BLOCK_RE = re.compile(
-    rf"{re.escape(SWITCHER_BLOCK_START)}.*?{re.escape(SWITCHER_BLOCK_END)}",
-    re.DOTALL,
-)
-_BODY_TAG_RE = re.compile(r"<body\b([^>]*)>", re.IGNORECASE)
-_MANUAL_COVER_SECTION_RE = re.compile(
-    r"<section class=\"manual-cover\">.*?</section>",
-    re.IGNORECASE | re.DOTALL,
-)
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Espanol",
@@ -156,26 +152,7 @@ LANGUAGE_LABELS = {
 }
 
 
-@dataclass(frozen=True)
-class BuildTarget:
-    model: str | None
-    region: str | None
-    lang: str | None = None
-
-
-@dataclass(frozen=True)
-class HtmlManualVariant:
-    model: str
-    region: str
-    lang: str
-    title: str
-    html_dir: Path
-    html_dir_token: str
-    lang_in_output_path: bool
-
-
-def load_config(cfg_path: Path) -> dict:
-    return load_config_mapping(cfg_path)
+load_config = load_config_mapping
 
 
 def discover_existing_bundle_targets(*, docs_dir: Path | None = None) -> list[BuildTarget]:
@@ -385,8 +362,7 @@ def resolve_rst_substitutions_for_build(
     )
 
 
-def _build_rst_epilog(substitutions: dict[str, str]) -> str:
-    return _build_rst_epilog_impl(substitutions)
+_build_rst_epilog = _build_rst_epilog_impl
 
 
 def _with_rst_epilog(cmd: list[str], substitutions: dict[str, str] | None) -> list[str]:
@@ -413,8 +389,7 @@ def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
     )
 
 
-def _normalize_sphinx_tag_value(value: str | None) -> str | None:
-    return _normalize_sphinx_tag_value_impl(value)
+_normalize_sphinx_tag_value = _normalize_sphinx_tag_value_impl
 
 
 def _sphinx_tag_args(*, model: str | None = None, region: str | None = None, lang: str | None = None) -> list[str]:
@@ -439,24 +414,20 @@ def _should_use_minimal_html_theme(conf_dir: Path, requested_minimal: bool) -> b
     )
 
 
-def _target_component(value: str | None, fallback: str) -> str:
-    return _target_component_impl(value, fallback)
+_target_component = _target_component_impl
 
 
-def _body_tag_with_class(body_tag: str, class_name: str) -> str:
-    return _body_tag_with_class_impl(body_tag, class_name)
+_body_tag_with_class = _body_tag_with_class_impl
 
 
 def _language_label(lang: str) -> str:
     return _language_label_impl(lang, labels=LANGUAGE_LABELS)
 
 
-def _variant_key(variant: HtmlManualVariant) -> tuple[str, str]:
-    return _variant_key_impl(variant)
+_variant_key = _variant_key_impl
 
 
-def _variant_priority(variant: HtmlManualVariant) -> tuple[int, str]:
-    return _variant_priority_impl(variant)
+_variant_priority = _variant_priority_impl
 
 
 def _effective_variants_for_current(
@@ -573,8 +544,7 @@ def refresh_model_html_switchers(
     )
 
 
-def _parse_csv_values(raw: str) -> list[str]:
-    return _parse_csv_values_impl(raw)
+_parse_csv_values = _parse_csv_values_impl
 
 
 def resolve_requested_formats(cfg: dict, cli_formats: str | None) -> list[str]:
@@ -594,12 +564,10 @@ def resolve_pdf_mode(cfg: dict, cli_pdf_mode: str | None) -> str:
     )
 
 
-def resolve_output_path(base_dir: Path, configured_name: str) -> Path:
-    return _resolve_output_path_impl(base_dir, configured_name)
+resolve_output_path = _resolve_output_path_impl
 
 
-def _slug_token(value: str | None) -> str:
-    return _slug_token_impl(value)
+_slug_token = _slug_token_impl
 
 
 def render_build_template(
@@ -819,8 +787,7 @@ def build_target(
     )
 
 
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    return _parse_args_impl(argv)
+parse_args = _parse_args_impl
 
 
 def main(argv: list[str] | None = None) -> None:
