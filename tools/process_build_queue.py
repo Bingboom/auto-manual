@@ -8,7 +8,6 @@ import json
 import os
 import sys
 import time
-from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -19,6 +18,11 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.queue_contract import (  # noqa: E402
+    DocumentLinkBinding,
+    QueueRecord,
+    WikiDestination,
+)
 from tools.document_link_queue import (  # noqa: E402
     available_field_names as _available_field_names_impl,
     collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
@@ -83,6 +87,12 @@ from tools.queue_build_execution import (  # noqa: E402
 from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_impl  # noqa: E402
 from tools.queue_group_processing import (  # noqa: E402
     process_queue_record_group as _process_queue_record_group_impl,
+)
+from tools.queue_session import (  # noqa: E402
+    bootstrap_queue_session as _bootstrap_queue_session_impl,
+    load_pending_queue_state as _load_pending_queue_state_impl,
+    print_no_pending_message as _print_no_pending_message_impl,
+    resolve_and_report_wiki_destination as _resolve_and_report_wiki_destination_impl,
 )
 from tools.queue_lark_ops import (  # noqa: E402
     cli_relative_file_arg as _cli_relative_file_arg_impl,
@@ -155,43 +165,6 @@ SUCCESS_PREFIX = "SUCCESS"
 FAILED_PREFIX = "FAILED"
 TRIGGER_VALUES = {"1", "true", "y", "yes"}
 DONE_TRIGGER_VALUE = "已构建"
-
-
-@dataclass(frozen=True)
-class DocumentLinkBinding:
-    base_token_env: str
-    table_id_env: str
-    view_id_env: str | None
-    wiki_parent_token_env: str | None
-    base_token: str
-    table_id: str
-    view_id: str | None
-    wiki_parent_token: str | None
-
-
-@dataclass(frozen=True)
-class QueueRecord:
-    record_id: str
-    document_id: str
-    document_key: str
-    version: str
-    lang: str
-    workflow_action: str = ""
-    doc_phase: str = ""
-    git_ref: str = ""
-    trigger_value: str = ""
-    immediate_trigger_value: Any = None
-    build_family: str = ""
-
-    @property
-    def label(self) -> str:
-        return self.document_id or f"{self.document_key}_{self.lang}"
-
-
-@dataclass(frozen=True)
-class WikiDestination:
-    space_id: str
-    parent_wiki_token: str
 
 
 def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
@@ -913,40 +886,36 @@ def process_build_queue(
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> int:
-    errors = collect_queue_preflight_errors(cfg)
-    if errors:
-        raise RuntimeError("process-build-queue preflight failed:\n- " + "\n- ".join(errors))
-
-    binding = resolve_document_link_binding(cfg)
-    cli_bin = _cli_bin(cfg)
-    identity = _phase2_identity()
-    source = LarkCliSource(cli_bin=cli_bin, identity=identity)
-    raw_records = source.fetch_records_with_ids(
-        base_token=binding.base_token,
-        table_id=binding.table_id,
-        view_id=binding.view_id,
+    session = _bootstrap_queue_session_impl(
+        cfg=cfg,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+        collect_queue_preflight_errors=collect_queue_preflight_errors,
+        resolve_document_link_binding=resolve_document_link_binding,
+        cli_bin=_cli_bin,
+        phase2_identity=_phase2_identity,
+        source_factory=LarkCliSource,
+        normalize_cli_queue_action=normalize_cli_queue_action,
+        warn_legacy_cli_doc_phase=warn_legacy_cli_doc_phase,
     )
-    normalized_cli_action = normalize_cli_queue_action(workflow_action=workflow_action, doc_phase=doc_phase)
-    warn_legacy_cli_doc_phase(doc_phase, workflow_action)
-    pending = select_pending_queue_records(
-        raw_records,
+    pending_state = _load_pending_queue_state_impl(
+        source=session.source,
+        binding=session.binding,
         immediate_only=immediate_only,
-        workflow_action=normalized_cli_action,
+        workflow_action=session.normalized_cli_action,
         record_id=record_id,
+        select_pending_queue_records=select_pending_queue_records,
+        group_pending_queue_records=group_pending_queue_records,
+        available_field_names=_available_field_names,
+        build_started_at_field=BUILD_STARTED_AT_FIELD,
     )
-    if not pending:
-        if immediate_only:
-            print("[build-queue] No pending immediate build tasks found.")
-        else:
-            print("[build-queue] No pending build tasks found.")
+    if pending_state is None:
+        _print_no_pending_message_impl(immediate_only=immediate_only)
         return 0
-    pending_groups = group_pending_queue_records(pending)
-    available_fields = _available_field_names(raw_records)
-    can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
 
     if dry_run:
         _print_dry_run_groups_impl(
-            groups=pending_groups,
+            groups=pending_state.pending_groups,
             data_root=data_root,
             warn_legacy_record_doc_phase=warn_legacy_record_doc_phase,
             resolve_target_for_record=resolve_target_for_record,
@@ -966,51 +935,39 @@ def process_build_queue(
         config_path=config_path,
         data_root=data_root,
     )
-    raw_records = source.fetch_records_with_ids(
-        base_token=binding.base_token,
-        table_id=binding.table_id,
-        view_id=binding.view_id,
-    )
-    pending = select_pending_queue_records(
-        raw_records,
+    pending_state = _load_pending_queue_state_impl(
+        source=session.source,
+        binding=session.binding,
         immediate_only=immediate_only,
-        workflow_action=normalized_cli_action,
+        workflow_action=session.normalized_cli_action,
         record_id=record_id,
+        select_pending_queue_records=select_pending_queue_records,
+        group_pending_queue_records=group_pending_queue_records,
+        available_field_names=_available_field_names,
+        build_started_at_field=BUILD_STARTED_AT_FIELD,
     )
-    if not pending:
+    if pending_state is None:
         print("[build-queue] Queue changed during sync; no pending build tasks remain.")
         return 0
-    pending_groups = group_pending_queue_records(pending)
-    available_fields = _available_field_names(raw_records)
-    can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
 
-    wiki_destination = resolve_wiki_destination(
-        cli_bin=cli_bin,
-        identity=identity,
-        binding=binding,
-    )
-    print(
-        "[build-queue] Wiki destination "
-        + json.dumps(
-            {
-                "space_id": wiki_destination.space_id,
-                "parent_wiki_token": wiki_destination.parent_wiki_token,
-            },
-            ensure_ascii=False,
-        )
+    wiki_destination = _resolve_and_report_wiki_destination_impl(
+        cli_bin=session.cli_bin,
+        identity=session.identity,
+        binding=session.binding,
+        resolve_wiki_destination=resolve_wiki_destination,
     )
 
     failures: list[str] = []
     processed = 0
-    for group in pending_groups:
+    for group in pending_state.pending_groups:
         result = _process_queue_record_group_impl(
             group=group,
-            source=source,
-            binding=binding,
+            source=session.source,
+            binding=session.binding,
             data_root=data_root,
-            can_write_started_at=can_write_started_at,
-            cli_bin=cli_bin,
-            identity=identity,
+            can_write_started_at=pending_state.can_write_started_at,
+            cli_bin=session.cli_bin,
+            identity=session.identity,
             wiki_destination=wiki_destination,
             warn_legacy_record_doc_phase=warn_legacy_record_doc_phase,
             validate_queue_record_group=validate_queue_record_group,

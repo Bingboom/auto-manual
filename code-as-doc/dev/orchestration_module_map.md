@@ -49,6 +49,9 @@ Do not move new low-level implementation back into these files unless the behavi
 
 [`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:
 
+- [`tools/queue_contract.py`](../../tools/queue_contract.py)
+  - shared queue dataclasses
+  - binding / record / wiki destination type definitions
 - [`tools/document_link_actions.py`](../../tools/document_link_actions.py)
   - normalized queue action vocabulary
   - legacy `Doc_phase` compatibility mapping
@@ -74,6 +77,10 @@ Do not move new low-level implementation back into these files unless the behavi
 - [`tools/queue_dry_run.py`](../../tools/queue_dry_run.py)
   - dry-run preview payload assembly
   - grouped queue preview output formatting
+- [`tools/queue_session.py`](../../tools/queue_session.py)
+  - queue-session bootstrap and preflight
+  - pending-record fetch/select/group state
+  - wiki destination reporting for a processing session
 - [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
   - Lark/Drive/Wiki transport and remote I/O helpers
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)

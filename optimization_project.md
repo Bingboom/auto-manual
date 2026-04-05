@@ -86,7 +86,7 @@ Use this section for short milestone-style updates.
 
 - normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
 - added staging-first local validation wrappers and cross-platform branch freshness guardrails
-- started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, Lark transport, output staging, and writeback
+- started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
 - added [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
 
 ## 5. Open Gaps
