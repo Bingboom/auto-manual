@@ -78,6 +78,9 @@ Do not move new low-level implementation back into these files unless the behavi
 - [`tools/queue_dry_run.py`](../../tools/queue_dry_run.py)
   - dry-run preview payload assembly
   - grouped queue preview output formatting
+- [`tools/queue_grouping.py`](../../tools/queue_grouping.py)
+  - grouped record bucketing rules
+  - document-key vs record-id grouping strategy
 - [`tools/queue_session.py`](../../tools/queue_session.py)
   - queue-session bootstrap and preflight
   - pending-record fetch/select/group state

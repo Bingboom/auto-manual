@@ -237,6 +237,7 @@ Main outcomes:
 - extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/queue_build_execution.py)
 - extracted per-group queue processing and writeback orchestration into [`tools/queue_group_processing.py`](../tools/queue_group_processing.py)
 - extracted grouped dry-run preview formatting into [`tools/queue_dry_run.py`](../tools/queue_dry_run.py)
+- extracted grouped queue bucketing rules into [`tools/queue_grouping.py`](../tools/queue_grouping.py)
 - extracted queue-session bootstrap and pending-state loading into [`tools/queue_session.py`](../tools/queue_session.py)
 - extracted Lark drive/wiki transport helpers into [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py)
 - extracted queue output staging and publish metadata helpers into [`tools/queue_outputs.py`](../tools/queue_outputs.py)

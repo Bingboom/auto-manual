@@ -107,6 +107,7 @@ from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_im
 from tools.queue_group_processing import (  # noqa: E402
     process_queue_record_group as _process_queue_record_group_impl,
 )
+from tools.queue_grouping import group_pending_queue_records as _group_pending_queue_records_impl  # noqa: E402
 from tools.queue_session import (  # noqa: E402
     bootstrap_queue_session as _bootstrap_queue_session_impl,
     load_pending_queue_state as _load_pending_queue_state_impl,
@@ -164,26 +165,6 @@ from tools.sync_data import (  # noqa: E402
 )
 from tools.utils.targets import resolve_output_lang  # noqa: E402
 
-TRIGGER_FIELD = "是否触发文档构建"
-LEGACY_TRIGGER_FIELDS = ("是否构建文档？",)
-RESULT_FIELD = "构建结果"
-DOCUMENT_ID_FIELD = "Document_ID"
-DOCUMENT_KEY_FIELD = "Document_Key"
-VERSION_FIELD = "Version"
-LANG_FIELD = "Lang"
-BUILD_FAMILY_FIELD = "Build_family"
-WORKFLOW_ACTION_FIELD = "Workflow_action"
-DOC_PHASE_FIELD = "Doc_phase"
-GIT_REF_FIELD = "Git_ref"
-BUILD_STARTED_AT_FIELD = "开始构建时间"
-DOCUMENT_DIRECTORY_FIELD = "Document directory"
-DOCUMENT_LINK_FIELD = "Document link"
-IMMEDIATE_TRIGGER_FIELD = "是否立即构建"
-
-SUCCESS_PREFIX = "SUCCESS"
-FAILED_PREFIX = "FAILED"
-TRIGGER_VALUES = {"1", "true", "y", "yes"}
-DONE_TRIGGER_VALUE = "已构建"
 
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
@@ -371,23 +352,14 @@ def resolve_config_path_for_task(*, region: str, lang: str | None, build_family:
 
 
 def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRecord]]:
-    grouped: list[list[QueueRecord]] = []
-    index_by_key: dict[str, int] = {}
-    for record in records:
-        model, region = resolve_target_for_record(record)
-        config_path = resolve_config_path_for_task(region=region, lang=record.lang, build_family=record.build_family)
-        cfg = load_config(config_path)
-        if _queue_by_document_key(cfg):
-            key = queue_record_key(record)
-        else:
-            key = record.record_id
-        existing_index = index_by_key.get(key)
-        if existing_index is None:
-            index_by_key[key] = len(grouped)
-            grouped.append([record])
-            continue
-        grouped[existing_index].append(record)
-    return grouped
+    return _group_pending_queue_records_impl(
+        records,
+        resolve_target_for_record=resolve_target_for_record,
+        resolve_config_path_for_task=resolve_config_path_for_task,
+        config_loader=load_config,
+        queue_by_document_key=_queue_by_document_key,
+        queue_record_key=queue_record_key,
+    )
 
 
 def validate_queue_record_group(records: list[QueueRecord]) -> None:
