@@ -106,7 +106,7 @@ Milestone status: `in_progress`
     - target resolution, bundle preparation, and export backends are separated
     - `tools/build_docs.py` becomes a thin orchestration shell
   - Completed:
-  - Note: extracted CLI parsing, top-level entry orchestration, target resolution helpers, bundle preparation, and export flow into dedicated helper modules; `tools/build_docs.py` dropped from 1409 to 1132 lines while preserving current test-facing wrappers
+  - Note: extracted CLI parsing, top-level entry orchestration, target resolution helpers, validation, csv-page generation, root-index writing, HTML metadata/switcher helpers, bundle preparation, output-resolution helpers, and export/I/O flow into dedicated helper modules; `tools/build_docs.py` dropped from 1409 to 876 lines while preserving current test-facing wrappers
 
 - [ ] PR 4: Split bundle materialization and check logic
   - Status: `pending`
