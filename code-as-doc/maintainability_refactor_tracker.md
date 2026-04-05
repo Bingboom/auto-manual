@@ -106,10 +106,10 @@ Milestone status: `in_progress`
     - target resolution, bundle preparation, and export backends are separated
     - `tools/build_docs.py` becomes a thin orchestration shell
   - Completed:
-  - Note: extracted CLI parsing, top-level entry orchestration, target resolution helpers, validation, csv-page generation, root-index writing, HTML metadata/switcher helpers, bundle preparation, output-resolution helpers, and export/I/O flow into dedicated helper modules; `tools/build_docs.py` dropped from 1409 to 876 lines while preserving current test-facing wrappers
+  - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, and additional misc support modules; `tools/build_docs.py` dropped from 1409 to 719 lines while preserving current test-facing wrappers
 
 - [ ] PR 4: Split bundle materialization and check logic
-  - Status: `pending`
+  - Status: `in_progress`
   - Target files:
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
     - [`../tools/check_docs.py`](../tools/check_docs.py)
@@ -122,7 +122,7 @@ Milestone status: `in_progress`
     - bundle planning/materialization and validation are separated cleanly
     - page-contract behavior is preserved
   - Completed:
-  - Note:
+  - Note: started by extracting CLI parsing, top-level entry execution, and page planning/index helpers from `tools/gen_index_bundle.py` into dedicated support modules while keeping bundle materialization behavior unchanged
 
 - [ ] PR 5: Reduce config-family duplication
   - Status: `pending`

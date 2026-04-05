@@ -36,6 +36,15 @@ from tools.draft_engine import (
     render_generated_page,
     resolve_snippet_registry_path,
 )
+from tools.gen_index_bundle_cli import parse_args as _parse_args_impl
+from tools.gen_index_bundle_entry import run_bundle_entry as _run_bundle_entry_impl
+from tools.gen_index_bundle_plan import (
+    base_file_name_for_plan as _base_file_name_for_plan_impl,
+    build_index_from_pages as _build_index_from_pages_impl,
+    build_wrapper_index_text as _build_wrapper_index_text_impl,
+    ensure_unique_name as _ensure_unique_name_impl,
+    plan_materialized_pages as _plan_materialized_pages_impl,
+)
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.page_contracts import contract_applies_to, find_contract_for_source, load_page_contracts, required_assets_for_lang  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
@@ -354,46 +363,22 @@ def _base_file_name_for_plan(
     model: str | None,
     region: str | None,
 ) -> str:
-    if isinstance(page, CoverPdfPage):
-        return "cover.rst"
-    if isinstance(page, CsvPage):
-        assert lang is not None
-        return f"{page.page}_{lang}.rst"
-    if isinstance(page, GeneratedPage):
-        rst_path = _format_tokenized(page.template, model, region)
-        name = Path(rst_path).name
-        return name if name.lower().endswith(".rst") else f"{name}.rst"
-    if isinstance(page, PdfInsertPage):
-        assert lang is not None
-        pdf_path = _format_tokenized(page.file_map[lang], model, region)
-        stem = Path(pdf_path).stem or "pdf_insert"
-        return f"{stem}_{lang}.rst"
-    if isinstance(page, RstIncludePage):
-        rst_path = _format_tokenized(page.file, model, region)
-        name = Path(rst_path).name
-        return name if name.lower().endswith(".rst") else f"{name}.rst"
-    raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
+    return _base_file_name_for_plan_impl(
+        page,
+        lang=lang,
+        model=model,
+        region=region,
+        csv_page_cls=CsvPage,
+        generated_page_cls=GeneratedPage,
+        pdf_insert_page_cls=PdfInsertPage,
+        rst_include_page_cls=RstIncludePage,
+        cover_pdf_page_cls=CoverPdfPage,
+        format_tokenized=_format_tokenized,
+    )
 
 
 def _ensure_unique_name(file_name: str, seen: set[str], ordinal: int) -> str:
-    if file_name not in seen:
-        seen.add(file_name)
-        return file_name
-
-    prefixed = f"p{ordinal:02d}_{file_name}"
-    if prefixed not in seen:
-        seen.add(prefixed)
-        return prefixed
-
-    seq = 2
-    stem = Path(file_name).stem
-    suffix = Path(file_name).suffix
-    while True:
-        candidate = f"p{ordinal:02d}_{stem}_{seq}{suffix}"
-        if candidate not in seen:
-            seen.add(candidate)
-            return candidate
-        seq += 1
+    return _ensure_unique_name_impl(file_name, seen, ordinal)
 
 
 def plan_materialized_pages(
@@ -403,92 +388,23 @@ def plan_materialized_pages(
     *,
     root: Path | None = None,
 ) -> list[PlannedPage]:
-    langs = _build_langs(cfg)
-    pages = resolve_config_pages_or_raise(
+    return _plan_materialized_pages_impl(
         cfg,
-        default_languages=langs,
-        root=root or paths.root,
         model=model,
         region=region,
-        error_prefix="config.pages",
-    ).pages
-
-    planned: list[PlannedPage] = []
-    seen_names: set[str] = set()
-
-    for ordinal, page in enumerate(pages, start=1):
-        if isinstance(page, CoverPdfPage):
-            base_name = _base_file_name_for_plan(page, lang=None, model=model, region=region)
-            planned.append(
-                PlannedPage(
-                    page=page,
-                    lang=None,
-                    file_name=_ensure_unique_name(base_name, seen_names, ordinal),
-                )
-            )
-            continue
-
-        if isinstance(page, PdfInsertPage):
-            page_langs = list(page.langs) or langs
-            for lang in page_langs:
-                if lang not in page.file_map:
-                    raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
-                base_name = _base_file_name_for_plan(page, lang=lang, model=model, region=region)
-                planned.append(
-                    PlannedPage(
-                        page=page,
-                        lang=lang,
-                        file_name=_ensure_unique_name(base_name, seen_names, ordinal),
-                    )
-                )
-            continue
-
-        if isinstance(page, CsvPage):
-            page_langs = list(page.langs) or langs
-            if page.include_dir:
-                _format_tokenized(page.include_dir, model, region)
-            for lang in page_langs:
-                base_name = _base_file_name_for_plan(page, lang=lang, model=model, region=region)
-                planned.append(
-                    PlannedPage(
-                        page=page,
-                        lang=lang,
-                        file_name=_ensure_unique_name(base_name, seen_names, ordinal),
-                    )
-                )
-            continue
-
-        if isinstance(page, GeneratedPage):
-            page_langs = list(page.langs) or langs
-            _format_tokenized(page.recipe, model, region)
-            _format_tokenized(page.template, model, region)
-            if page.include_dir:
-                _format_tokenized(page.include_dir, model, region)
-            for lang in page_langs:
-                base_name = _base_file_name_for_plan(page, lang=lang, model=model, region=region)
-                planned.append(
-                    PlannedPage(
-                        page=page,
-                        lang=lang,
-                        file_name=_ensure_unique_name(base_name, seen_names, ordinal),
-                    )
-                )
-            continue
-
-        if isinstance(page, RstIncludePage):
-            base_name = _base_file_name_for_plan(page, lang=page.lang, model=model, region=region)
-            planned.append(
-                PlannedPage(
-                    page=page,
-                    lang=page.lang,
-                    file_name=_ensure_unique_name(base_name, seen_names, ordinal),
-                )
-            )
-            continue
-
-        raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
-
-    return planned
+        root=root or paths.root,
+        build_langs=_build_langs,
+        resolve_config_pages_or_raise=resolve_config_pages_or_raise,
+        planned_page_cls=PlannedPage,
+        csv_page_cls=CsvPage,
+        generated_page_cls=GeneratedPage,
+        pdf_insert_page_cls=PdfInsertPage,
+        rst_include_page_cls=RstIncludePage,
+        cover_pdf_page_cls=CoverPdfPage,
+        format_tokenized=_format_tokenized,
+        base_file_name_for_plan=_base_file_name_for_plan,
+        ensure_unique_name=_ensure_unique_name,
+    )
 
 
 def build_index_from_pages(
@@ -498,10 +414,13 @@ def build_index_from_pages(
     *,
     root: Path | None = None,
 ) -> str:
-    lines: list[str] = []
-    for planned in plan_materialized_pages(cfg, model=model, region=region, root=root):
-        lines.extend([f".. include:: page/{planned.file_name}", ""])
-    return "\n".join(lines) + "\n"
+    return _build_index_from_pages_impl(
+        cfg,
+        model=model,
+        region=region,
+        root=root or paths.root,
+        plan_materialized_pages=plan_materialized_pages,
+    )
 
 
 def build_wrapper_index_text(
@@ -509,14 +428,9 @@ def build_wrapper_index_text(
     docs_dir: Path,
     bundle_dir: Path,
 ) -> str:
-    bundle_rel = bundle_dir.relative_to(docs_dir).as_posix()
-    return "\n".join(
-        [
-            ".. Auto-generated by tools/gen_index_bundle.py. Do not edit directly.",
-            "",
-            f".. include:: {bundle_rel}/index",
-            "",
-        ]
+    return _build_wrapper_index_text_impl(
+        docs_dir=docs_dir,
+        bundle_dir=bundle_dir,
     )
 
 
@@ -1219,32 +1133,18 @@ def materialize_bundle(
     )
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.us.yaml", help="Path to config yaml")
-    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
-    ap.add_argument("--model", default=None, help="Optional product model for include/file paths")
-    ap.add_argument("--region", default=None, help="Optional region for include/file paths")
-    args = ap.parse_args()
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    return _parse_args_impl(argv)
 
-    cfg_path = Path(args.config)
-    if not cfg_path.is_absolute():
-        cfg_path = paths.root / cfg_path
 
-    cfg = load_config(cfg_path)
-
-    doc_type = cfg.get("doc_type", "manual_bundle")
-    if doc_type != "manual_bundle":
-        raise RuntimeError(f"gen_index_bundle supports doc_type=manual_bundle only, got: {doc_type}")
-
-    bundle = materialize_bundle(
-        cfg,
-        model=args.model,
-        region=args.region,
-        data_root=args.data_root,
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    return _run_bundle_entry_impl(
+        args,
+        repo_root=paths.root,
+        load_config=load_config,
+        materialize_bundle=materialize_bundle,
     )
-    print(f"[gen_index_bundle] Wrote bundle index: {bundle.index_path}")
-    print(f"[gen_index_bundle] Wrote wrapper index: {bundle.wrapper_index_path}")
 
 
 if __name__ == "__main__":
