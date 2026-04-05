@@ -1,0 +1,131 @@
+from __future__ import annotations
+
+import json
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+from typing import Callable
+
+
+def slug_ref_token(value: str) -> str:
+    text = re.sub(r"[^a-z0-9]+", "-", value.strip().lower()).strip("-")
+    return text or "queue"
+
+
+def format_command(cmd: list[str]) -> str:
+    return subprocess.list2cmdline([str(part) for part in cmd])
+
+
+def command_failure_message(cmd: list[str], stdout: str, stderr: str, returncode: int) -> str:
+    for stream in (stderr, stdout):
+        raw = stream.strip()
+        if raw:
+            try:
+                payload = json.loads(raw)
+            except json.JSONDecodeError:
+                payload = None
+            if isinstance(payload, dict):
+                error = payload.get("error")
+                if isinstance(error, dict):
+                    parts: list[str] = []
+                    error_type = str(error.get("type") or "").strip()
+                    error_code = str(error.get("code") or "").strip()
+                    error_message = str(error.get("message") or "").strip()
+                    if error_type:
+                        parts.append(error_type)
+                    if error_message:
+                        parts.append(error_message)
+                    if error_code and error_code not in error_message:
+                        parts.append(f"code={error_code}")
+                    detail = error.get("detail")
+                    if isinstance(detail, dict):
+                        violations = detail.get("permission_violations")
+                        if isinstance(violations, list):
+                            subjects = [
+                                str(item.get("subject") or "").strip()
+                                for item in violations
+                                if isinstance(item, dict) and str(item.get("subject") or "").strip()
+                            ]
+                            if subjects:
+                                parts.append("subjects=" + ",".join(subjects))
+                    if parts:
+                        return f"{' | '.join(parts)} (exit={returncode}, cmd={format_command(cmd)})"
+        lines = [line.strip() for line in stream.splitlines() if line.strip()]
+        if lines:
+            return f"{lines[-1]} (exit={returncode}, cmd={format_command(cmd)})"
+    return f"command failed with exit={returncode}: {format_command(cmd)}"
+
+
+def run_command(
+    cmd: list[str],
+    *,
+    cwd: Path,
+    prefix: str,
+    command_failure_message: Callable[[list[str], str, str, int], str] = command_failure_message,
+) -> None:
+    print(f"{prefix} {format_command(cmd)}")
+    proc = subprocess.run(
+        cmd,
+        cwd=str(cwd),
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if proc.stdout:
+        print(proc.stdout, end="")
+    if proc.stderr:
+        print(proc.stderr, end="", file=sys.stderr)
+    if proc.returncode:
+        raise RuntimeError(command_failure_message(cmd, proc.stdout or "", proc.stderr or "", proc.returncode))
+
+
+def run_git(
+    args: list[str],
+    *,
+    repo_root: Path,
+    run_command: Callable[..., None],
+) -> None:
+    run_command(["git", *args], cwd=repo_root)
+
+
+def worktree_dir_for_git_ref(*, repo_root: Path, git_ref: str) -> Path:
+    return repo_root / ".tmp" / "process-build-queue-worktrees" / slug_ref_token(git_ref)
+
+
+def remove_worktree(*, repo_root: Path, path: Path) -> None:
+    if not path.exists():
+        return
+    proc = subprocess.run(
+        ["git", "worktree", "remove", "--force", str(path)],
+        cwd=str(repo_root),
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if proc.returncode != 0 and path.exists():
+        shutil.rmtree(path, ignore_errors=True)
+
+
+def prepare_git_ref_worktree(
+    *,
+    repo_root: Path,
+    git_ref: str,
+    run_git: Callable[..., None],
+    worktree_dir_for_git_ref: Callable[..., Path],
+    remove_worktree: Callable[..., None],
+) -> Path:
+    branch_name = git_ref.strip()
+    if not branch_name:
+        raise RuntimeError("Git_ref is required when preparing a queue build worktree")
+    run_git(["fetch", "origin", "--prune"])
+    run_git(["fetch", "origin", f"refs/heads/{branch_name}:refs/remotes/origin/{branch_name}"])
+    source_ref = f"origin/{branch_name}"
+    worktree = worktree_dir_for_git_ref(repo_root=repo_root, git_ref=branch_name)
+    remove_worktree(repo_root=repo_root, path=worktree)
+    worktree.parent.mkdir(parents=True, exist_ok=True)
+    run_git(["worktree", "add", "--force", "--detach", str(worktree), source_ref])
+    return worktree

@@ -508,6 +508,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 word_output_path=word_path,
                 document_link_url=drive_url,
                 built_at=built_at,
+                workflow_action="Build Draft Package",
                 doc_phase="Draft",
             )
 
@@ -519,8 +520,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(["已构建"], fields[process_build_queue.TRIGGER_FIELD])
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("SUCCESS", fields[process_build_queue.RESULT_FIELD])
-        self.assertIn("doc_phase=draft", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("legacy_doc_phase=draft", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("version=1.0", fields[process_build_queue.RESULT_FIELD])
 
     def test_build_started_fields_should_write_datetime_millis(self) -> None:
@@ -539,6 +540,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             fields = process_build_queue.build_failure_writeback_fields(
                 version="1.0",
                 message="permission | Permission denied [99991679]",
+                workflow_action="Publish",
                 doc_phase="Publish",
                 word_output_path=word_path,
                 document_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
@@ -554,8 +556,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("FAILED", fields[process_build_queue.RESULT_FIELD])
-        self.assertIn("doc_phase=publish", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Publish", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("legacy_doc_phase=publish", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("latest_drive_link_preserved", fields[process_build_queue.RESULT_FIELD])
 
     def test_pending_queue_records_should_not_accept_immediate_checkbox_without_trigger(self) -> None:
@@ -632,7 +634,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(["rec_immediate"], [record.record_id for record in records])
 
-    def test_select_pending_queue_records_should_filter_by_doc_phase(self) -> None:
+    def test_select_pending_queue_records_should_filter_by_workflow_action(self) -> None:
         records = process_build_queue.select_pending_queue_records(
             [
                 {
@@ -660,7 +662,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     },
                 },
             ],
-            doc_phase="draft",
+            workflow_action="draft",
         )
 
         self.assertEqual(["rec_draft"], [record.record_id for record in records])
@@ -739,6 +741,29 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         with self.assertRaisesRegex(RuntimeError, "Workflow_action conflicts with Doc_phase"):
             process_build_queue.resolve_queue_workflow_action(conflict_record)
+
+    def test_queue_record_uses_legacy_doc_phase_should_only_flag_rows_without_workflow_action(self) -> None:
+        legacy_record = process_build_queue.QueueRecord(
+            record_id="rec_legacy",
+            document_id="JE-1000F_US_en_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="en",
+            workflow_action="",
+            doc_phase="Draft",
+        )
+        canonical_record = process_build_queue.QueueRecord(
+            record_id="rec_new",
+            document_id="JE-1000F_US_en_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="en",
+            workflow_action="Build Draft Package",
+            doc_phase="Draft",
+        )
+
+        self.assertTrue(process_build_queue.queue_record_uses_legacy_doc_phase(legacy_record))
+        self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(canonical_record))
 
     def test_build_document_for_task_should_use_review_source_for_draft_phase(self) -> None:
         commands: list[list[str]] = []
@@ -1221,8 +1246,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             record_payload[process_build_queue.DOCUMENT_LINK_FIELD],
         )
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
-        self.assertIn("doc_phase=draft", record_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", record_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("legacy_doc_phase=draft", record_payload[process_build_queue.RESULT_FIELD])
         build_document_mock.assert_called_once_with(
             config_path=Path("config.us-en.yaml"),
             model="JE-1000F",

@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-03-31
+Updated: 2026-04-05
 
 ## 1. Role
 
@@ -82,12 +82,22 @@ Use this section for short milestone-style updates.
 - added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
 - aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
 
+### 2026-04-05
+
+- normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
+- added staging-first local validation wrappers and cross-platform branch freshness guardrails
+- started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
+- added [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_lark_ops.py)
+- continued the same queue workstream with [`tools/queue_bound_binding.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+
 ## 5. Open Gaps
 
 Keep this section short and current.
 
 1. High-level CLI behavior and low-level script defaults can still drift.
-2. Several core files are large enough to slow safe refactoring.
+2. Several core files are still large enough to slow safe refactoring, even after the first decomposition wave.
 3. Diff-report extraction still contains heuristic parts.
 4. CI does not yet validate every important workflow surface.
 5. Multi-target conditional content is still deferred.
@@ -129,11 +139,12 @@ Exit criteria:
 
 ### Workstream B: Core File Decomposition
 
-Status: next
+Status: active
 
 Why now:
 
-- several core files are already large enough to make safe changes expensive
+- `build.py`, `tools/build_docs.py`, and review/queue orchestration still have high coupling hot spots
+- the first queue/build decomposition wave proved that behavior-preserving modularization can reduce risk without changing the command surface
 
 Scope:
 
@@ -143,10 +154,15 @@ Scope:
   - [`tools/gen_index_bundle.py`](/Users/pika/Documents/GitHub/auto-manual/tools/gen_index_bundle.py)
   - [`tools/diff_report.py`](/Users/pika/Documents/GitHub/auto-manual/tools/diff_report.py)
 - improve ownership boundaries for routing, bundle assembly, reporting, and export flow
+- keep public wrappers stable while moving implementation into dedicated modules
+- record each completed decomposition milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- keep [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) aligned with the extracted module boundaries
 
 Exit criteria:
 
 - large orchestration files are broken into smaller units with lower regression risk
+- core entry files act primarily as orchestration layers rather than carrying most low-level implementation themselves
+- module ownership stays documented after each decomposition step instead of drifting back into tribal knowledge
 
 ### Workstream C: Quality Gate Hardening
 
@@ -235,8 +251,8 @@ Promotion rule:
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Entrypoint and tooling parity
-2. Core file decomposition
+1. Core file decomposition
+2. Entrypoint and tooling parity
 3. Quality gate hardening
 4. Diff and traceability hardening
 5. CI expansion

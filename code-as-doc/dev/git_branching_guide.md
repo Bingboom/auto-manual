@@ -99,7 +99,11 @@ Use `release/*` only when an explicit release freeze or post-release hotfix need
 powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/draft-engine-manifest
 ```
 
-What that wrapper does:
+```bash
+./scripts/start_branch.sh codex/draft-engine-manifest
+```
+
+What those wrappers do:
 
 - fetches `origin/main`
 - fast-forwards local `main` with `pull --ff-only`
@@ -113,7 +117,15 @@ git config core.hooksPath .githooks
 ```
 
 After that, [`.githooks/pre-push`](../../.githooks/pre-push) blocks pushes from branches that do not contain the latest `origin/main`.
+The managed hook now runs through the shared [`../../scripts/git_branch_guard.py`](../../scripts/git_branch_guard.py) core instead of a bash-only entrypoint, and the repo also ships [`.githooks/pre-push.cmd`](../../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../../.githooks/pre-push.ps1) as Windows-native companion launchers.
 Use `git push --no-verify` only when the older base is intentional.
+
+Current platform note:
+
+- Windows: use [`scripts/start_branch.ps1`](../../scripts/start_branch.ps1) as the default entrypoint
+- mac/Linux: use [`scripts/start_branch.sh`](../../scripts/start_branch.sh) as the default entrypoint
+- mac/Linux and Git Bash can enable the repo-managed hook directly with `git config core.hooksPath .githooks`
+- Windows GUI clients should no longer need a bash/WSL bridge just to evaluate the repo hook, but if a specific GUI still ignores repo-managed hooks, keep the hook optional there and rely on the start-branch wrapper as the required freshness check
 
 ### 4.2 Keep The Scope Small
 
@@ -147,10 +159,10 @@ Machine validation means the GitHub `Manual Validation` workflow that must pass 
 Use the local validation set that matches the change.
 
 - logic changes: `python -m unittest`
-- build or quality-gate changes: `python build.py check --config config.us.yaml --model JE-1000F --region US`
-- JP review or publish changes: `python build.py publish --config config.ja.yaml --model JE-1000F --region JP`
-- diff-report changes: `python build.py diff-report --config config.us.yaml --model JE-1000F --region US`
-- release traceability changes: `python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
+- build or quality-gate changes: `python scripts/local_build.py check --config config.us.yaml --model JE-1000F --region US`
+- JP review or publish changes: `python scripts/local_build.py publish --config config.ja.yaml --model JE-1000F --region JP`
+- diff-report changes: `python scripts/local_build.py diff-report --config config.us.yaml --model JE-1000F --region US`
+- release traceability changes: `python scripts/local_build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
 - docs-only changes: self-review links, paths, examples, and command accuracy
 
 Do not open a pull request with unreviewed generated `html`, `word`, or `pdf` outputs.

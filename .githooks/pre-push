@@ -1,48 +1,27 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
-remote_name="${1:-origin}"
-base_branch="${AUTO_MANUAL_BASE_BRANCH:-main}"
+script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+repo_root="$(CDPATH= cd -- "${script_dir}/.." && pwd)"
+cd "${repo_root}"
 
-current_branch="$(git symbolic-ref --quiet --short HEAD || true)"
-if [[ -z "${current_branch}" ]]; then
-  exit 0
-fi
-
-case "${current_branch}" in
-  main|master)
-    exit 0
-    ;;
-esac
-
-if [[ "${AUTO_MANUAL_SKIP_BRANCH_BASE_CHECK:-0}" == "1" ]]; then
-  exit 0
-fi
-
-if ! git fetch --quiet "${remote_name}" "${base_branch}"; then
-  echo "[pre-push] Unable to fetch ${remote_name}/${base_branch} to verify the branch base." >&2
-  echo "[pre-push] Push blocked. Retry after network/auth is fixed, or bypass intentionally with --no-verify." >&2
+if [ -n "${PYTHON:-}" ]; then
+  python_cmd="${PYTHON}"
+elif [ -x "${repo_root}/.venv/bin/python" ]; then
+  python_cmd="${repo_root}/.venv/bin/python"
+elif [ -x "${repo_root}/.venv/Scripts/python.exe" ]; then
+  python_cmd="${repo_root}/.venv/Scripts/python.exe"
+elif command -v python3 >/dev/null 2>&1; then
+  python_cmd="python3"
+elif command -v python >/dev/null 2>&1; then
+  python_cmd="python"
+else
+  echo "[pre-push] Python 3 is required to run scripts/git_branch_guard.py." >&2
   exit 1
 fi
 
-remote_base_ref="${remote_name}/${base_branch}"
-if ! git rev-parse --verify --quiet "${remote_base_ref}" >/dev/null; then
-  echo "[pre-push] Missing ${remote_base_ref}; cannot verify that this branch starts from the latest base." >&2
-  echo "[pre-push] Push blocked. Check the remote/base-branch setting first." >&2
-  exit 1
-fi
-
-merge_base="$(git merge-base HEAD "${remote_base_ref}")"
-remote_base_sha="$(git rev-parse "${remote_base_ref}")"
-
-if [[ "${merge_base}" != "${remote_base_sha}" ]]; then
-  echo "[pre-push] Current branch does not contain the latest ${remote_base_ref}." >&2
-  echo "[pre-push] Start new work with: powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>" >&2
-  echo "[pre-push] Or update this branch before pushing:" >&2
-  echo "[pre-push]   git fetch ${remote_name}" >&2
-  echo "[pre-push]   git rebase ${remote_base_ref}" >&2
-  echo "[pre-push] Intentional bypass: git push --no-verify" >&2
-  exit 1
-fi
-
-exit 0
+exec "${python_cmd}" "${repo_root}/scripts/git_branch_guard.py" \
+  pre-push \
+  --repo-root "${repo_root}" \
+  --remote "${1:-origin}" \
+  --base-branch "${AUTO_MANUAL_BASE_BRANCH:-main}"

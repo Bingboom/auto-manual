@@ -3,6 +3,7 @@
 import sys
 import tempfile
 import unittest
+import warnings
 from pathlib import Path
 from unittest import mock
 
@@ -536,11 +537,14 @@ class TestBuildScript(unittest.TestCase):
     def test_process_build_queue_command_should_translate_legacy_doc_phase_filter(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--doc-phase", "draft"])
 
-        cmd = build_cli.process_build_queue_command(args)
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            cmd = build_cli.process_build_queue_command(args)
 
         self.assertIn("--workflow-action", cmd)
         self.assertIn("build-draft-package", cmd)
         self.assertNotIn("--doc-phase", cmd)
+        self.assertTrue(any("--doc-phase is deprecated" in str(item.message) for item in caught))
 
     def test_process_build_queue_command_should_reject_target_scoped_flags(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--model", "JE-1000F"])
