@@ -122,7 +122,7 @@ Milestone status: `in_progress`
     - bundle planning/materialization and validation are separated cleanly
     - page-contract behavior is preserved
   - Completed:
-  - Note: started by extracting CLI parsing, top-level entry execution, and page planning/index helpers from `tools/gen_index_bundle.py` into dedicated support modules while keeping bundle materialization behavior unchanged
+  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, and RST asset rewrite helpers from `tools/gen_index_bundle.py` into dedicated support modules; `tools/gen_index_bundle.py` dropped from 1008 to 805 lines while keeping bundle behavior unchanged
 
 - [ ] PR 5: Reduce config-family duplication
   - Status: `pending`

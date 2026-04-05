@@ -36,8 +36,24 @@ from tools.draft_engine import (
     render_generated_page,
     resolve_snippet_registry_path,
 )
+from tools.gen_index_bundle_assets import (
+    bundle_asset_target_path as _bundle_asset_target_path_impl,
+    is_external_path as _is_external_path_impl,
+    resolve_rst_asset_path as _resolve_rst_asset_path_impl,
+    rewrite_rst_asset_paths as _rewrite_rst_asset_paths_impl,
+    rewrite_single_asset_path as _rewrite_single_asset_path_impl,
+    stage_bundle_asset as _stage_bundle_asset_impl,
+)
 from tools.gen_index_bundle_cli import parse_args as _parse_args_impl
 from tools.gen_index_bundle_entry import run_bundle_entry as _run_bundle_entry_impl
+from tools.gen_index_bundle_materialize import (
+    build_bundle_manifest as _build_bundle_manifest_impl,
+    copy_bundle_support_assets as _copy_bundle_support_assets_impl,
+    preflight_contract_assets as _preflight_contract_assets_impl,
+    render_contract_asset_path as _render_contract_asset_path_impl,
+    resolve_contract_asset_path as _resolve_contract_asset_path_impl,
+    write_bundle_conf_files as _write_bundle_conf_files_impl,
+)
 from tools.gen_index_bundle_plan import (
     base_file_name_for_plan as _base_file_name_for_plan_impl,
     build_index_from_pages as _build_index_from_pages_impl,
@@ -46,7 +62,6 @@ from tools.gen_index_bundle_plan import (
     plan_materialized_pages as _plan_materialized_pages_impl,
 )
 from tools.page_manifest import resolve_config_pages_or_raise
-from tools.page_contracts import contract_applies_to, find_contract_for_source, load_page_contracts, required_assets_for_lang  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
     format_tokenized,
@@ -70,13 +85,7 @@ from tools.word_bundle_common import (  # noqa: E402
 
 paths = get_paths()
 
-_RST_ASSET_DIRECTIVE_RE = re.compile(
-    r"^(\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:image|figure)::\s+)(\S+)(\s*)$",
-    re.MULTILINE,
-)
-_HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
-_CONTRACT_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 
 
 @dataclass(frozen=True)
@@ -444,155 +453,22 @@ def read_included_page_paths(index_path: Path) -> list[Path]:
     return out
 
 
-def _is_external_path(value: str) -> bool:
-    token = value.strip()
-    if not token:
-        return True
-    lowered = token.lower()
-    return lowered.startswith(("http://", "https://", "data:", "file://", "mailto:", "#")) or Path(token).is_absolute()
+_is_external_path = _is_external_path_impl
 
 
-def _resolve_rst_asset_path(
-    raw_value: str,
-    *,
-    source_path: Path,
-    docs_dir: Path,
-    repo_root: Path,
-) -> Path | None:
-    token = raw_value.strip()
-    if not token or _is_external_path(token):
-        return None
-
-    raw_path = Path(token)
-    probe_paths = [
-        source_path.parent / raw_path,
-        docs_dir / raw_path,
-        repo_root / raw_path,
-    ]
-
-    for probe in probe_paths:
-        if probe.exists() and probe.is_file():
-            return probe.resolve()
-    return None
+_resolve_rst_asset_path = _resolve_rst_asset_path_impl
 
 
-def _bundle_asset_target_path(
-    resolved: Path,
-    *,
-    bundle_dir: Path,
-    docs_dir: Path,
-    repo_root: Path,
-) -> Path:
-    resolved_path = resolved.resolve(strict=False)
-    docs_static_dir = (docs_dir / "_static").resolve(strict=False)
-    docs_root = docs_dir.resolve(strict=False)
-    repo_root_resolved = repo_root.resolve(strict=False)
-
-    try:
-        rel = resolved_path.relative_to(docs_static_dir)
-        return bundle_dir / "_static" / rel
-    except ValueError:
-        pass
-
-    try:
-        rel = resolved_path.relative_to(docs_root)
-        return bundle_dir / "_assets" / rel
-    except ValueError:
-        pass
-
-    try:
-        rel = resolved_path.relative_to(repo_root_resolved)
-        return bundle_dir / "_repo_assets" / rel
-    except ValueError:
-        pass
-
-    return bundle_dir / "_external_assets" / resolved_path.name
+_bundle_asset_target_path = _bundle_asset_target_path_impl
 
 
-def _stage_bundle_asset(
-    resolved: Path,
-    *,
-    bundle_dir: Path,
-    docs_dir: Path,
-    repo_root: Path,
-) -> Path:
-    target = _bundle_asset_target_path(
-        resolved,
-        bundle_dir=bundle_dir,
-        docs_dir=docs_dir,
-        repo_root=repo_root,
-    )
-    target.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(resolved, target)
-    return target
+_stage_bundle_asset = _stage_bundle_asset_impl
 
 
-def _rewrite_single_asset_path(
-    raw_value: str,
-    *,
-    source_path: Path,
-    target_path: Path,
-    bundle_dir: Path,
-    docs_dir: Path,
-    repo_root: Path,
-) -> str:
-    token = raw_value.strip()
-    if not token or _is_external_path(token):
-        return raw_value
-
-    resolved = _resolve_rst_asset_path(
-        raw_value,
-        source_path=source_path,
-        docs_dir=docs_dir,
-        repo_root=repo_root,
-    )
-    if resolved is None:
-        return raw_value
-
-    staged = _stage_bundle_asset(
-        resolved,
-        bundle_dir=bundle_dir,
-        docs_dir=docs_dir,
-        repo_root=repo_root,
-    )
-    return Path(os.path.relpath(staged, start=bundle_dir)).as_posix()
+_rewrite_single_asset_path = _rewrite_single_asset_path_impl
 
 
-def rewrite_rst_asset_paths(
-    text: str,
-    *,
-    source_path: Path,
-    target_path: Path,
-    bundle_dir: Path,
-    docs_dir: Path,
-    repo_root: Path,
-) -> str:
-    def replace_directive(match: re.Match[str]) -> str:
-        prefix, raw_value, suffix = match.groups()
-        rewritten = _rewrite_single_asset_path(
-            raw_value,
-            source_path=source_path,
-            target_path=target_path,
-            bundle_dir=bundle_dir,
-            docs_dir=docs_dir,
-            repo_root=repo_root,
-        )
-        return f"{prefix}{rewritten}{suffix}"
-
-    def replace_html_src(match: re.Match[str]) -> str:
-        prefix, raw_value, suffix = match.groups()
-        rewritten = _rewrite_single_asset_path(
-            raw_value,
-            source_path=source_path,
-            target_path=target_path,
-            bundle_dir=bundle_dir,
-            docs_dir=docs_dir,
-            repo_root=repo_root,
-        )
-        return f"{prefix}{rewritten}{suffix}"
-
-    out = _RST_ASSET_DIRECTIVE_RE.sub(replace_directive, text)
-    return _HTML_SRC_RE.sub(replace_html_src, out)
+rewrite_rst_asset_paths = _rewrite_rst_asset_paths_impl
 
 
 def _prepend_latex_lang(text: str, lang: str | None) -> str:
@@ -650,19 +526,12 @@ def _render_contract_asset_path(
     region: str | None,
     lang: str | None,
 ) -> str:
-    values = {
-        "model": (model or "").strip(),
-        "region": (region or "").strip(),
-        "lang": (lang or "").strip(),
-    }
-    tokens = {match.group(1) for match in _CONTRACT_TOKEN_RE.finditer(raw_value)}
-    unknown = sorted(token for token in tokens if token not in values)
-    if unknown:
-        raise RuntimeError(f"Unsupported contract asset token(s): {', '.join(unknown)}")
-    missing = sorted(token for token in tokens if not values[token])
-    if missing:
-        raise RuntimeError(f"Contract asset path requires value(s) for: {', '.join(missing)}")
-    return raw_value.format(**values)
+    return _render_contract_asset_path_impl(
+        raw_value,
+        model=model,
+        region=region,
+        lang=lang,
+    )
 
 
 def _resolve_contract_asset_path(
@@ -674,20 +543,15 @@ def _resolve_contract_asset_path(
     region: str | None,
     lang: str | None,
 ) -> Path:
-    rendered = _render_contract_asset_path(
+    return _resolve_contract_asset_path_impl(
         raw_value,
+        docs_dir=docs_dir,
+        repo_root=repo_root,
         model=model,
         region=region,
         lang=lang,
+        render_contract_asset_path=_render_contract_asset_path,
     )
-    candidate = Path(rendered)
-    if candidate.is_absolute():
-        return candidate
-
-    docs_candidate = docs_dir / candidate
-    if docs_candidate.exists():
-        return docs_candidate
-    return repo_root / candidate
 
 
 def _preflight_contract_assets(
@@ -700,53 +564,17 @@ def _preflight_contract_assets(
     langs: list[str],
     planned_pages: list[PlannedPage],
 ) -> None:
-    contracts = load_page_contracts(docs_dir / "templates" / "contracts")
-    if not contracts:
-        return
-
-    seen_sources: set[tuple[str, str | None]] = set()
-    for planned in planned_pages:
-        page = planned.page
-        source_path = _source_path_for_contract(
-            page,
-            docs_dir=docs_dir,
-            bundle_dir=bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region),
-            model=model,
-            region=region,
-            lang=planned.lang or getattr(page, "lang", None),
-        )
-        if source_path is None:
-            continue
-        source_key = (source_path.as_posix(), planned.lang or getattr(page, "lang", None))
-        if source_key in seen_sources:
-            continue
-        seen_sources.add(source_key)
-        try:
-            source_rel = source_path.relative_to(docs_dir).as_posix()
-        except ValueError:
-            source_rel = source_path.as_posix()
-        contract = find_contract_for_source(source_rel, contracts)
-        if contract is None:
-            continue
-        page_langs = [planned.lang or getattr(page, "lang", None)] if (planned.lang or getattr(page, "lang", None)) else langs
-        for lang in page_langs:
-            if not contract_applies_to(contract, lang=lang, model=model, region=region):
-                continue
-            for asset_path in required_assets_for_lang(contract, lang):
-                resolved = _resolve_contract_asset_path(
-                    asset_path,
-                    docs_dir=docs_dir,
-                    repo_root=repo_root,
-                    model=model,
-                    region=region,
-                    lang=lang,
-                )
-                if resolved.exists():
-                    continue
-                raise RuntimeError(
-                    f"Page contract '{contract.page_id}' is missing required asset "
-                    f"for lang '{lang}': {asset_path}"
-                )
+    return _preflight_contract_assets_impl(
+        docs_dir=docs_dir,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+        langs=langs,
+        planned_pages=planned_pages,
+        bundle_dir=bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region),
+        source_path_for_contract=_source_path_for_contract,
+        resolve_contract_asset_path=_resolve_contract_asset_path,
+    )
 
 
 def _write_bundle_conf_files(
@@ -755,43 +583,12 @@ def _write_bundle_conf_files(
     docs_dir: Path,
     bundle_dir: Path,
 ) -> tuple[Path, Path]:
-    conf_base_src = docs_dir / "conf_base.py"
-    if not conf_base_src.exists():
-        raise RuntimeError(f"Missing conf_base.py: {conf_base_src}")
-
-    conf_base_dst = bundle_dir / "conf_base.py"
-    shutil.copy2(conf_base_src, conf_base_dst)
-
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    main_tex = str(build_cfg.get("main_tex", "manual_demo.tex"))
-
-    conf_text = "\n".join(
-        [
-            "# Auto-generated by tools/gen_index_bundle.py",
-            "# -*- coding: utf-8 -*-",
-            "",
-            "import sys",
-            "from pathlib import Path",
-            "",
-            "THIS_DIR = Path(__file__).resolve().parent",
-            "if str(THIS_DIR) not in sys.path:",
-            "    sys.path.insert(0, str(THIS_DIR))",
-            "",
-            "from conf_base import *  # noqa: F403",
-            "",
-            "master_doc = 'index'",
-            "exclude_patterns = ['_build', 'page/*', 'generated/*', 'generated/**/*']",
-            "html_static_path = ['_static']",
-            "html_extra_path = ['renderers/latex/assets']",
-            f"latex_documents = [('index', '{main_tex}', '', '', 'howto')]",
-            "latex_domain_indices = False",
-            "",
-        ]
+    return _write_bundle_conf_files_impl(
+        cfg=cfg,
+        docs_dir=docs_dir,
+        bundle_dir=bundle_dir,
+        copy_file=shutil.copy2,
     )
-    conf_dst = bundle_dir / "conf.py"
-    conf_dst.write_text(conf_text, encoding="utf-8")
-    return conf_dst, conf_base_dst
 
 
 def _copy_bundle_support_assets(
@@ -799,25 +596,11 @@ def _copy_bundle_support_assets(
     docs_dir: Path,
     bundle_dir: Path,
 ) -> None:
-    static_src = docs_dir / "_static"
-    if static_src.exists():
-        _copytree_replace(static_src, bundle_dir / "_static")
-
-    latex_src = docs_dir / "renderers" / "latex"
-    if latex_src.exists():
-        _copytree_replace(latex_src, bundle_dir / "renderers" / "latex")
-
-    # Review overlays can copy page/generated RST that already reference
-    # _assets/templates/word_template/common_assets/... paths. Stage the
-    # shared template asset tree up front so those references remain valid
-    # even when the current target bundle would not otherwise materialize
-    # every referenced template asset during runtime generation.
-    common_assets_src = docs_dir / "templates" / "word_template" / "common_assets"
-    if common_assets_src.exists():
-        _copytree_replace(
-            common_assets_src,
-            bundle_dir / "_assets" / "templates" / "word_template" / "common_assets",
-        )
+    return _copy_bundle_support_assets_impl(
+        docs_dir=docs_dir,
+        bundle_dir=bundle_dir,
+        copytree_replace=_copytree_replace,
+    )
 
 
 def _materialize_planned_page(
@@ -1094,23 +877,20 @@ def materialize_bundle(
             encoding="utf-8",
         )
 
-    bundle_manifest = {
-        "model": target_model,
-        "region": target_region,
-        "lang": output_lang,
-        "page_manifest": _repo_relative(page_manifest_path, repo_root=actual_root),
-        "spec_master": {
-            "path": _repo_relative(spec_master_csv, repo_root=actual_root),
-            "sha256": _file_sha256(spec_master_csv),
-        },
-        "recipe_ids": list(dict.fromkeys(recipe_ids)),
-        "snippet_ids": list(dict.fromkeys(snippet_ids)),
-        "page_files": [_repo_relative(path, repo_root=actual_root) for path in page_paths],
-        "generated_files": [
-            _repo_relative(path, repo_root=actual_root)
-            for path in sorted(path for path in generated_dir.rglob("*.rst") if path.is_file())
-        ],
-    }
+    bundle_manifest = _build_bundle_manifest_impl(
+        model=target_model,
+        region=target_region,
+        lang=output_lang,
+        page_manifest_path=page_manifest_path,
+        spec_master_csv=spec_master_csv,
+        page_paths=page_paths,
+        generated_dir=generated_dir,
+        recipe_ids=recipe_ids,
+        snippet_ids=snippet_ids,
+        repo_root=actual_root,
+        repo_relative=lambda path: _repo_relative(path, repo_root=actual_root),
+        file_sha256=_file_sha256,
+    )
     bundle_manifest_path.write_text(json.dumps(bundle_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     return MaterializedBundle(
