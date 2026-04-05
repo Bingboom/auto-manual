@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import html
 import json
 import os
 import re
@@ -53,6 +52,12 @@ from tools.gen_index_bundle_materialize import (
     render_contract_asset_path as _render_contract_asset_path_impl,
     resolve_contract_asset_path as _resolve_contract_asset_path_impl,
     write_bundle_conf_files as _write_bundle_conf_files_impl,
+)
+from tools.gen_index_bundle_page_render import (
+    materialize_planned_page as _materialize_planned_page_impl,
+    prepend_latex_lang as _prepend_latex_lang_impl,
+    render_cover_page_rst as _render_cover_page_rst_impl,
+    render_pdf_insert_page_rst as _render_pdf_insert_page_rst_impl,
 )
 from tools.gen_index_bundle_plan import (
     base_file_name_for_plan as _base_file_name_for_plan_impl,
@@ -472,44 +477,27 @@ rewrite_rst_asset_paths = _rewrite_rst_asset_paths_impl
 
 
 def _prepend_latex_lang(text: str, lang: str | None) -> str:
-    body = text if text.endswith("\n") else f"{text}\n"
-    if not (lang or "").strip():
-        return body
-    return "\n".join(latex_apply_lang(lang)) + "\n" + body
+    return _prepend_latex_lang_impl(
+        text,
+        lang,
+        latex_apply_lang=latex_apply_lang,
+    )
 
 
 def _render_cover_page_rst(title: str, file_name: str) -> str:
-    title_html = html.escape(title)
-    return "\n".join(
-        [
-            ".. only:: html",
-            "",
-            "   .. raw:: html",
-            "",
-            f"      <section class=\"manual-cover\"><div class=\"cover-title\">{title_html}</div></section>",
-            "",
-            ".. only:: latex",
-            "",
-            *("   " + line if line else "" for line in latex_cover_block(file_name)),
-            "",
-        ]
+    return _render_cover_page_rst_impl(
+        title,
+        file_name,
+        latex_cover_block=latex_cover_block,
     )
 
 
 def _render_pdf_insert_page_rst(file_name: str, lang: str) -> str:
-    return "\n".join(
-        [
-            ".. only:: html",
-            "",
-            "   .. raw:: html",
-            "",
-            "      <div class=\"manual-pdf-insert\"></div>",
-            "",
-            ".. only:: latex",
-            "",
-            *("   " + line if line else "" for line in (latex_apply_lang(lang) + latex_overview_block(file_name))),
-            "",
-        ]
+    return _render_pdf_insert_page_rst_impl(
+        file_name,
+        lang,
+        latex_apply_lang=latex_apply_lang,
+        latex_overview_block=latex_overview_block,
     )
 
 
@@ -619,113 +607,40 @@ def _materialize_planned_page(
     model: str | None,
     region: str | None,
 ) -> tuple[str, GeneratedPageRender | None]:
-    page = planned.page
-
-    if isinstance(page, CoverPdfPage):
-        return _render_cover_page_rst(title, _format_tokenized(page.file, model, region)), None
-
-    if isinstance(page, PdfInsertPage):
-        if planned.lang is None:
-            raise RuntimeError("pdf_insert planned page is missing lang")
-        return (
-            _render_pdf_insert_page_rst(
-                _format_tokenized(page.file_map[planned.lang], model, region),
-                planned.lang,
-            ),
-            None,
-        )
-
-    page_lang = planned.lang or primary_lang
-    page_vars = fill_product_name_from_spec_master(
-        base_vars_map,
-        spec_master_csv=spec_master_csv,
-        model=model,
-        region=region,
-        lang=page_lang,
-    )
-    page_substitutions = {
-        **base_substitutions,
-        **resolve_spec_master_substitutions(
-            spec_master_csv=spec_master_csv,
-            model=model,
-            region=region,
-            lang=page_lang,
-        ),
-    }
-
-    if isinstance(page, CsvPage):
-        if planned.lang is None:
-            raise RuntimeError("csv_page planned page is missing lang")
-        source_path = _resolve_csv_rst_path(
-            source_root=bundle_dir,
-            page=page,
-            lang=planned.lang,
-            model=model,
-            region=region,
-        )
-        generated_render: GeneratedPageRender | None = None
-    elif isinstance(page, GeneratedPage):
-        if planned.lang is None:
-            raise RuntimeError("generated_page planned page is missing lang")
-        recipe_path = _resolve_generated_recipe_path(
-            docs_dir=docs_dir,
-            page=page,
-            model=model,
-            region=region,
-        )
-        template_path = _resolve_generated_template_path(
-            docs_dir=docs_dir,
-            page=page,
-            model=model,
-            region=region,
-        )
-        generated_source_path = _resolve_generated_source_path(
-            bundle_dir=bundle_dir,
-            page=page,
-            lang=planned.lang,
-            model=model,
-            region=region,
-        )
-        generated_render = render_generated_page(
-            docs_dir=docs_dir,
-            recipe_path=recipe_path,
-            template_path=template_path,
-            spec_master_csv=spec_master_csv,
-            registry_path=resolve_snippet_registry_path(docs_dir),
-            vars_map=page_vars,
-            base_substitutions=page_substitutions,
-            model=model,
-            region=region,
-            lang=planned.lang,
-            rendered_source_path=generated_source_path,
-        )
-        source_path = generated_render.template_path
-        rst_text = generated_render.text
-    elif isinstance(page, RstIncludePage):
-        source_path = resolve_config_path(docs_dir, page.file, model, region)
-        generated_render = None
-    else:
-        raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
-
-    if not source_path.exists():
-        raise RuntimeError(f"Missing source RST for bundle materialization: {source_path}")
-
-    if not isinstance(page, GeneratedPage):
-        rst_text = source_path.read_text(encoding="utf-8")
-        rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
-    rst_text = rewrite_rst_asset_paths(
-        rst_text,
-        source_path=source_path,
+    return _materialize_planned_page_impl(
+        planned,
         target_path=target_path,
         bundle_dir=bundle_dir,
         docs_dir=docs_dir,
         repo_root=repo_root,
+        spec_master_csv=spec_master_csv,
+        base_substitutions=base_substitutions,
+        base_vars_map=base_vars_map,
+        primary_lang=primary_lang,
+        title=title,
+        model=model,
+        region=region,
+        cover_pdf_page_cls=CoverPdfPage,
+        pdf_insert_page_cls=PdfInsertPage,
+        csv_page_cls=CsvPage,
+        generated_page_cls=GeneratedPage,
+        rst_include_page_cls=RstIncludePage,
+        format_tokenized=_format_tokenized,
+        render_cover_page_rst=_render_cover_page_rst,
+        render_pdf_insert_page_rst=_render_pdf_insert_page_rst,
+        fill_product_name_from_spec_master=fill_product_name_from_spec_master,
+        resolve_spec_master_substitutions=resolve_spec_master_substitutions,
+        resolve_csv_rst_path=_resolve_csv_rst_path,
+        resolve_generated_recipe_path=_resolve_generated_recipe_path,
+        resolve_generated_template_path=_resolve_generated_template_path,
+        resolve_generated_source_path=_resolve_generated_source_path,
+        render_generated_page=render_generated_page,
+        resolve_snippet_registry_path=resolve_snippet_registry_path,
+        resolve_config_path=resolve_config_path,
+        apply_rst_substitutions=apply_rst_substitutions,
+        rewrite_rst_asset_paths=rewrite_rst_asset_paths,
+        prepend_latex_lang=_prepend_latex_lang,
     )
-    final_text = _prepend_latex_lang(rst_text, planned.lang)
-    if generated_render is not None and generated_render.rendered_source_path is not None:
-        generated_render.rendered_source_path.parent.mkdir(parents=True, exist_ok=True)
-        generated_render.rendered_source_path.write_text(final_text, encoding="utf-8")
-    return final_text, generated_render
 
 
 def materialize_bundle(
