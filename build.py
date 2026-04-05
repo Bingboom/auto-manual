@@ -27,6 +27,15 @@ from tools.build_paths import (
     staging_version_tracking_root as _staging_version_tracking_root,
     version_tracking_root as _version_tracking_root,
 )
+from tools.build_reports import (
+    default_report_dir_for_tracked_root as _default_report_dir_for_tracked_root_impl,
+    diff_report_command as _diff_report_command,
+    publish_target_components as _publish_target_components_impl,
+    report_dir_for_target as _report_dir_for_target_impl,
+    require_explicit_target as _require_explicit_target_impl,
+    resolve_diff_report_targets as _resolve_diff_report_targets_impl,
+    tracked_root_for_target as _tracked_root_for_target_impl,
+)
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = "config.us.yaml"
@@ -937,27 +946,16 @@ def run_diff_report_with_paths(
     tracked_root: Path,
     report_dir: Path,
 ) -> None:
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "diff_report.py"),
-        "--tracked-root",
-        str(tracked_root),
-        "--config",
-        str(resolve_path_from_root(args.config)),
-        "--from-ref",
-        args.from_ref,
-        "--to-ref",
-        args.to_ref,
-        "--output-dir",
-        str(report_dir),
-        *(
-            ["--data-root", args.data_root.strip()]
-            if isinstance(args.data_root, str) and args.data_root.strip()
-            else []
-        ),
-    ]
-    if not args.ignore_initial_adds:
-        cmd.append("--include-initial-adds")
+    cmd = _diff_report_command(
+        repo_root=ROOT,
+        config_path=resolve_path_from_root(args.config),
+        tracked_root=tracked_root,
+        report_dir=report_dir,
+        from_ref=args.from_ref,
+        to_ref=args.to_ref,
+        data_root=args.data_root,
+        ignore_initial_adds=args.ignore_initial_adds,
+    )
     run_checked(cmd)
 
 
@@ -974,19 +972,20 @@ def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> Non
 
 
 def _publish_target_components(args: argparse.Namespace) -> tuple[str, str, str | None]:
-    model, region = _require_explicit_target(args, action_name="publish")
     from tools.utils.targets import resolve_output_lang
 
-    cfg = load_config(resolve_path_from_root(args.config))
-    return model, region, resolve_output_lang(cfg)
+    return _publish_target_components_impl(
+        config_path=resolve_path_from_root(args.config),
+        model=args.model,
+        region=args.region,
+        action_name="publish",
+        config_loader=load_config,
+        resolve_output_lang=resolve_output_lang,
+    )
 
 
 def _require_explicit_target(args: argparse.Namespace, *, action_name: str) -> tuple[str, str]:
-    model = (args.model or "").strip()
-    region = (args.region or "").strip()
-    if not model or not region:
-        raise RuntimeError(f"{action_name} requires --model and --region so the release target is explicit")
-    return model, region
+    return _require_explicit_target_impl(model=args.model, region=args.region, action_name=action_name)
 
 
 def _publish_tracked_root(args: argparse.Namespace) -> Path:
@@ -1010,10 +1009,13 @@ def _tracked_root_for_target(
     region: str | None,
     lang: str | None = None,
 ) -> Path:
-    base = review_root_for_config(config_path) / (model or "_shared") / (region or "_default")
-    if (lang or "").strip():
-        return base / lang
-    return base
+    return _tracked_root_for_target_impl(
+        config_path=config_path,
+        model=model,
+        region=region,
+        lang=lang,
+        review_root_for_config=review_root_for_config,
+    )
 
 
 def _report_dir_for_target(
@@ -1023,33 +1025,35 @@ def _report_dir_for_target(
     lang: str | None = None,
     base_root: Path | None = None,
 ) -> Path:
-    base = version_tracking_root(base_root=base_root) / (model or "_shared") / (region or "_default")
-    if (lang or "").strip():
-        return base / lang
-    return base
+    return _report_dir_for_target_impl(
+        model=model,
+        region=region,
+        lang=lang,
+        version_tracking_root=version_tracking_root,
+        base_root=base_root,
+    )
 
 
 def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path, *, base_root: Path | None = None) -> Path:
-    review_root = review_root_for_config(config_path)
-    try:
-        rel = tracked_root.resolve(strict=False).relative_to(review_root.resolve(strict=False))
-    except ValueError:
-        return version_tracking_root(base_root=base_root) / tracked_root.name
-    return version_tracking_root(base_root=base_root) / rel
+    return _default_report_dir_for_tracked_root_impl(
+        config_path=config_path,
+        tracked_root=tracked_root,
+        review_root_for_config=review_root_for_config,
+        version_tracking_root=version_tracking_root,
+        base_root=base_root,
+    )
 
 
 def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | None, str | None, str | None]]:
     from tools.build_docs import resolve_build_targets
 
-    config_path = resolve_path_from_root(args.config)
-    cfg = load_config(config_path)
-    targets = resolve_build_targets(
-        cfg,
-        arg_model=args.model,
-        arg_region=args.region,
-        all_targets=not (args.model or args.region),
+    return _resolve_diff_report_targets_impl(
+        config_path=resolve_path_from_root(args.config),
+        config_loader=load_config,
+        resolve_build_targets=resolve_build_targets,
+        model=args.model,
+        region=args.region,
     )
-    return [(target.model, target.region, target.lang) for target in targets]
 
 
 def run_publish(args: argparse.Namespace) -> None:

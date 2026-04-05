@@ -43,6 +43,27 @@ from tools.queue_config_resolution import (  # noqa: E402
     queue_by_document_key as _queue_by_document_key,
     resolve_config_path_for_task as _resolve_config_path_for_task,
 )
+from tools.queue_outputs import (  # noqa: E402
+    config_path_in_repo_root as _config_path_in_repo_root_impl,
+    copy_tree as _copy_tree_impl,
+    publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target_impl,
+    publish_release_root_for_target as _publish_release_root_for_target_impl,
+    publish_release_version_dir_for_target as _publish_release_version_dir_for_target_impl,
+    repo_relative as _repo_relative_impl,
+    resolve_docs_dir_for_config as _resolve_docs_dir_for_config_impl,
+    resolve_html_output_dir_for_target as _resolve_html_output_dir_for_target_impl,
+    resolve_word_output_path_for_target as _resolve_word_output_path_for_target_impl,
+    stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo_impl,
+    stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo_impl,
+    versioned_word_output_path as _versioned_word_output_path_impl,
+    write_publish_release_metadata as _write_publish_release_metadata_impl,
+)
+from tools.queue_writeback import (  # noqa: E402
+    build_failure_fields as _build_failure_fields,
+    build_failure_writeback_fields as _build_failure_writeback_fields,
+    build_started_fields as _build_started_fields,
+    build_success_fields as _build_success_fields,
+)
 from tools.release_contract import (  # noqa: E402
     normalize_release_token,
     release_lang_for_config,
@@ -484,50 +505,39 @@ def validate_queue_record_group(records: list[QueueRecord]) -> None:
 
 
 def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
-    resolved_config_path = config_path if config_path.is_absolute() else (ROOT / config_path)
-    loaded_cfg = cfg if cfg is not None else load_config(resolved_config_path)
-    paths_cfg_raw = loaded_cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("docs_dir")
-    if isinstance(raw, str) and raw.strip():
-        candidate = Path(raw.strip())
-        return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
-    return resolved_config_path.parent / "docs"
+    return _resolve_docs_dir_for_config_impl(
+        config_path=config_path,
+        repo_root=ROOT,
+        cfg=cfg,
+        config_loader=load_config,
+    )
 
 
 def resolve_word_output_path_for_target(*, config_path: Path, model: str, region: str) -> Path:
-    cfg = load_config(config_path)
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
-    primary_lang = _build_languages(cfg)[0]
-    output_lang = resolve_output_lang(cfg)
-    build_root = build_root_for_target(
-        model,
-        region,
-        lang=output_lang,
-        docs_build_dir=docs_dir / "_build",
-    )
-    word_output_name = render_build_template(
-        str(build_cfg.get("word_output", "manual_demo.docx")),
+    return _resolve_word_output_path_for_target_impl(
+        config_path=config_path,
         model=model,
         region=region,
-        lang=primary_lang,
+        repo_root=ROOT,
+        config_loader=load_config,
+        build_languages=_build_languages,
+        resolve_output_lang=resolve_output_lang,
+        build_root_for_target=build_root_for_target,
+        render_build_template=render_build_template,
+        resolve_output_path=resolve_output_path,
     )
-    return resolve_output_path(build_root / "word", word_output_name)
 
 
 def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
-    cfg = load_config(config_path)
-    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
-    output_lang = resolve_output_lang(cfg)
-    build_root = build_root_for_target(
-        model,
-        region,
-        lang=output_lang,
-        docs_build_dir=docs_dir / "_build",
+    return _resolve_html_output_dir_for_target_impl(
+        config_path=config_path,
+        model=model,
+        region=region,
+        repo_root=ROOT,
+        config_loader=load_config,
+        resolve_output_lang=resolve_output_lang,
+        build_root_for_target=build_root_for_target,
     )
-    return build_root / "html"
 
 
 def _normalize_version_for_filename(version: str) -> str:
@@ -535,62 +545,54 @@ def _normalize_version_for_filename(version: str) -> str:
 
 
 def _versioned_word_output_path(word_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
-    normalized_doc_phase = normalize_workflow_action(doc_phase)
-    version_token = _normalize_version_for_filename(version)
-    suffix_parts: list[str] = []
-    if normalized_doc_phase == "publish":
-        suffix_parts.append("publish")
-    if version_token:
-        suffix_parts.append(version_token)
-    if not suffix_parts:
-        return word_output_path
-    return word_output_path.with_name(
-        f"{word_output_path.stem}_{'_'.join(suffix_parts)}{word_output_path.suffix}"
+    return _versioned_word_output_path_impl(
+        word_output_path,
+        version=version,
+        doc_phase=doc_phase,
+        normalize_release_token=_normalize_version_for_filename,
+        normalize_workflow_action=normalize_workflow_action,
     )
 
 
 def _config_path_in_repo_root(config_path: Path, *, repo_root: Path) -> Path:
-    return repo_root / config_path.name
+    return _config_path_in_repo_root_impl(config_path, repo_root=repo_root)
 
 
 def _repo_relative(path: Path) -> str:
-    try:
-        return path.resolve(strict=False).relative_to(ROOT.resolve(strict=False)).as_posix()
-    except ValueError:
-        return path.resolve(strict=False).as_posix()
+    return _repo_relative_impl(path, repo_root=ROOT)
 
 
 def _publish_release_root_for_target(*, config_path: Path, model: str, region: str) -> Path:
-    cfg = load_config(config_path)
-    return release_root_for_target(
+    return _publish_release_root_for_target_impl(
         repo_root=ROOT,
         config_path=config_path,
         model=model,
         region=region,
-        cfg=cfg,
+        config_loader=load_config,
+        release_root_for_target=release_root_for_target,
     )
 
 
 def _publish_release_version_dir_for_target(*, config_path: Path, model: str, region: str, version: str) -> Path:
-    cfg = load_config(config_path)
-    return release_version_dir_for_target(
+    return _publish_release_version_dir_for_target_impl(
         repo_root=ROOT,
         config_path=config_path,
         model=model,
         region=region,
         version=version,
-        cfg=cfg,
+        config_loader=load_config,
+        release_version_dir_for_target=release_version_dir_for_target,
     )
 
 
 def _publish_release_latest_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
-    cfg = load_config(config_path)
-    return release_latest_dir_for_target(
+    return _publish_release_latest_dir_for_target_impl(
         repo_root=ROOT,
         config_path=config_path,
         model=model,
         region=region,
-        cfg=cfg,
+        config_loader=load_config,
+        release_latest_dir_for_target=release_latest_dir_for_target,
     )
 
 
@@ -1015,9 +1017,7 @@ def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | Non
 
 
 def _copy_tree(src: Path, dst: Path) -> None:
-    if dst.exists():
-        shutil.rmtree(dst)
-    shutil.copytree(src, dst)
+    _copy_tree_impl(src, dst)
 
 
 def _stage_draft_word_output_to_host_repo(
@@ -1029,19 +1029,16 @@ def _stage_draft_word_output_to_host_repo(
     version: str,
     doc_phase: str | None,
 ) -> Path:
-    host_output_path = resolve_word_output_path_for_target(
-        config_path=host_config_path,
+    return _stage_draft_word_output_to_host_repo_impl(
+        built_word_output_path=built_word_output_path,
+        host_config_path=host_config_path,
         model=model,
         region=region,
-    )
-    staged_output_path = _versioned_word_output_path(
-        host_output_path,
         version=version,
         doc_phase=doc_phase,
+        resolve_word_output_path_for_target=resolve_word_output_path_for_target,
+        versioned_word_output_path=_versioned_word_output_path,
     )
-    staged_output_path.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(built_word_output_path, staged_output_path)
-    return staged_output_path
 
 
 def _stage_publish_assets_to_host_repo(
@@ -1053,24 +1050,17 @@ def _stage_publish_assets_to_host_repo(
     region: str,
     version: str,
 ) -> tuple[Path, Path]:
-    version_dir = _publish_release_version_dir_for_target(
-        config_path=host_config_path,
+    return _stage_publish_assets_to_host_repo_impl(
+        built_word_output_path=built_word_output_path,
+        built_html_dir=built_html_dir,
+        host_config_path=host_config_path,
         model=model,
         region=region,
         version=version,
+        publish_release_version_dir_for_target=_publish_release_version_dir_for_target,
+        publish_release_latest_dir_for_target=_publish_release_latest_dir_for_target,
+        copy_tree=_copy_tree,
     )
-    latest_dir = _publish_release_latest_dir_for_target(
-        config_path=host_config_path,
-        model=model,
-        region=region,
-    )
-    version_dir.mkdir(parents=True, exist_ok=True)
-    latest_dir.mkdir(parents=True, exist_ok=True)
-    staged_word_output_path = version_dir / built_word_output_path.name
-    shutil.copy2(built_word_output_path, staged_word_output_path)
-    latest_html_dir = latest_dir / "html"
-    _copy_tree(built_html_dir, latest_html_dir)
-    return staged_word_output_path, latest_html_dir
 
 
 def write_publish_release_metadata(
@@ -1085,38 +1075,21 @@ def write_publish_release_metadata(
     html_dir: Path,
     document_link_url: str,
 ) -> Path:
-    version_dir = _publish_release_version_dir_for_target(
+    return _write_publish_release_metadata_impl(
         config_path=config_path,
         model=model,
         region=region,
         version=version,
+        git_ref=git_ref,
+        built_at=built_at,
+        word_output_path=word_output_path,
+        html_dir=html_dir,
+        document_link_url=document_link_url,
+        publish_release_version_dir_for_target=_publish_release_version_dir_for_target,
+        publish_release_latest_dir_for_target=_publish_release_latest_dir_for_target,
+        release_lang_for_config=release_lang_for_config,
+        repo_relative=_repo_relative,
     )
-    latest_dir = _publish_release_latest_dir_for_target(
-        config_path=config_path,
-        model=model,
-        region=region,
-    )
-    payload = {
-        "model": model,
-        "region": region,
-        "lang": release_lang_for_config(config_path),
-        "version": version,
-        "git_ref": git_ref.strip(),
-        "doc_phase": "publish",
-        "built_at": built_at.isoformat(timespec="seconds"),
-        "word_output_path": _repo_relative(word_output_path),
-        "html_dir": _repo_relative(html_dir),
-        "html_index": _repo_relative(html_dir / "index.html"),
-        "document_link_url": document_link_url.strip(),
-    }
-    version_dir.mkdir(parents=True, exist_ok=True)
-    latest_dir.mkdir(parents=True, exist_ok=True)
-    version_meta_path = version_dir / "publish_meta.json"
-    latest_meta_path = latest_dir / "publish_meta.json"
-    text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
-    version_meta_path.write_text(text, encoding="utf-8")
-    latest_meta_path.write_text(text, encoding="utf-8")
-    return latest_meta_path
 
 
 def build_document_for_task(
@@ -1273,36 +1246,28 @@ def build_success_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    normalized_workflow_action = normalize_workflow_action(workflow_action or doc_phase)
-    action_label = workflow_action_label(workflow_action or doc_phase)
-    normalized_doc_phase = normalize_doc_phase(doc_phase) if _scalar_text(doc_phase) else None
-    return {
-        RESULT_FIELD: " | ".join(
-            part
-            for part in (
-                SUCCESS_PREFIX,
-                f"version={version}" if version else "",
-                f"workflow_action={action_label}" if action_label else "",
-                (
-                    f"legacy_doc_phase={normalized_doc_phase}"
-                    if normalized_doc_phase and normalized_workflow_action == normalized_doc_phase and _scalar_text(doc_phase)
-                    else ""
-                ),
-                f"built_at={built_at.isoformat(timespec='seconds')}",
-            )
-            if part
-        ),
-        DOCUMENT_DIRECTORY_FIELD: word_output_path.resolve(strict=False).as_posix(),
-        DOCUMENT_LINK_FIELD: document_link_url.strip(),
-        TRIGGER_FIELD: [DONE_TRIGGER_VALUE],
-        IMMEDIATE_TRIGGER_FIELD: False,
-    }
+    return _build_success_fields(
+        version=version,
+        word_output_path=word_output_path,
+        document_link_url=document_link_url,
+        built_at=built_at,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+        normalize_workflow_action=normalize_workflow_action,
+        normalize_doc_phase=normalize_doc_phase,
+        workflow_action_label=workflow_action_label,
+        result_field=RESULT_FIELD,
+        document_directory_field=DOCUMENT_DIRECTORY_FIELD,
+        document_link_field=DOCUMENT_LINK_FIELD,
+        trigger_field=TRIGGER_FIELD,
+        done_trigger_value=DONE_TRIGGER_VALUE,
+        immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
+        success_prefix=SUCCESS_PREFIX,
+    )
 
 
 def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
-    return {
-        BUILD_STARTED_AT_FIELD: int(started_at.timestamp() * 1000),
-    }
+    return _build_started_fields(started_at=started_at, build_started_at_field=BUILD_STARTED_AT_FIELD)
 
 
 def build_failure_fields(
@@ -1312,26 +1277,17 @@ def build_failure_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    normalized_workflow_action = normalize_workflow_action(workflow_action or doc_phase)
-    action_label = workflow_action_label(workflow_action or doc_phase)
-    normalized_doc_phase = normalize_doc_phase(doc_phase) if _scalar_text(doc_phase) else None
-    return {
-        RESULT_FIELD: " | ".join(
-            part
-            for part in (
-                FAILED_PREFIX,
-                f"version={version}" if version else "",
-                f"workflow_action={action_label}" if action_label else "",
-                (
-                    f"legacy_doc_phase={normalized_doc_phase}"
-                    if normalized_doc_phase and normalized_workflow_action == normalized_doc_phase and _scalar_text(doc_phase)
-                    else ""
-                ),
-                message.strip(),
-            )
-            if part
-        )
-    }
+    return _build_failure_fields(
+        version=version,
+        message=message,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+        normalize_workflow_action=normalize_workflow_action,
+        normalize_doc_phase=normalize_doc_phase,
+        workflow_action_label=workflow_action_label,
+        result_field=RESULT_FIELD,
+        failed_prefix=FAILED_PREFIX,
+    )
 
 
 def build_failure_writeback_fields(
@@ -1343,21 +1299,19 @@ def build_failure_writeback_fields(
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
 ) -> dict[str, Any]:
-    fields = build_failure_fields(
+    return _build_failure_writeback_fields(
         version=version,
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        word_output_path=word_output_path,
+        document_link_url=document_link_url,
+        build_failure_fields=build_failure_fields,
+        result_field=RESULT_FIELD,
+        document_directory_field=DOCUMENT_DIRECTORY_FIELD,
+        document_link_field=DOCUMENT_LINK_FIELD,
+        immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
     )
-    if word_output_path is not None:
-        fields[DOCUMENT_DIRECTORY_FIELD] = word_output_path.resolve(strict=False).as_posix()
-    if document_link_url:
-        fields[DOCUMENT_LINK_FIELD] = document_link_url
-        fields[RESULT_FIELD] += " | latest_drive_link_preserved"
-    # Clear the immediate checkbox on failure so local startup catch-up does not loop
-    # forever; users can re-check it after fixing the root cause.
-    fields[IMMEDIATE_TRIGGER_FIELD] = False
-    return fields
 
 
 def normalize_cli_queue_action(*, workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:
