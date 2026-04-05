@@ -1,0 +1,28 @@
+doc_type: manual_bundle
+
+build:
+  default_model: JE-1000F
+  default_region: US
+  targets:
+    - model: JE-1000F
+      region: US
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}_{lang_slug}.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
+  word_source: bundle
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  layout_params_csv: data/layout_params.csv
+  spec_master_csv: data/phase1/Spec_Master.csv
+  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
+  spec_titles_csv: data/phase1/spec_titles.csv
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py

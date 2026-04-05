@@ -1,0 +1,51 @@
+manifest_id: manual_us_single_es
+pages:
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/00_preface.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/safety_es.rst
+  - type: csv_page
+    source: phase1
+    page: symbols
+    langs: [es]
+    include_dir: generated/{model}
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/02_whats_in_the_box.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/03_product_overview_placeholder.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/04_lcd_display_placeholder.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/05_operation_guide_placeholder.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/06_ups_mode.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/charging.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/08_charging_methods.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/09_storage_and_maintenance.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/10_troubleshooting.rst
+  - type: csv_page
+    source: phase1
+    page: spec
+    langs: [es]
+    include_dir: generated/{model}
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/11_warranty.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/12_app_setup_placeholder.rst

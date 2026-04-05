@@ -125,7 +125,7 @@ Milestone status: `in_progress`
   - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check_docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check_docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
 
 - [ ] PR 5: Reduce config-family duplication
-  - Status: `pending`
+  - Status: `done`
   - Target files:
     - [`../config.us.yaml`](../config.us.yaml)
     - [`../config.us-en.yaml`](../config.us-en.yaml)
@@ -138,8 +138,8 @@ Milestone status: `in_progress`
   - Done when:
     - family-level behavior stays stable
     - language-specific config duplication is reduced without changing command semantics
-  - Completed:
-  - Note:
+  - Completed: `2026-04-05`
+  - Note: added config `extends` support in [`../tools/config_loader.py`](../tools/config_loader.py), moved shared US single-language defaults into [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml), converted `config.us-en/es/fr.yaml` into thin overrides, and shifted their page stacks into dedicated `docs/manifests/manual_us-single-*.yaml` files while preserving existing config filenames and command semantics
 
 ## 5. Milestone 3: Reporting, Queue Flow, And Domain Split
 
