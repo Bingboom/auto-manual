@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
 import os
 import re
 import shutil
@@ -58,6 +57,13 @@ from tools.gen_index_bundle_page_render import (
     prepend_latex_lang as _prepend_latex_lang_impl,
     render_cover_page_rst as _render_cover_page_rst_impl,
     render_pdf_insert_page_rst as _render_pdf_insert_page_rst_impl,
+)
+from tools.gen_index_bundle_runtime import (
+    build_materialized_bundle_result as _build_materialized_bundle_result_impl,
+    materialize_bundle_pages as _materialize_bundle_pages_impl,
+    prepare_bundle_workspace as _prepare_bundle_workspace_impl,
+    resolve_bundle_materialization_context as _resolve_bundle_materialization_context_impl,
+    write_bundle_outputs as _write_bundle_outputs_impl,
 )
 from tools.gen_index_bundle_plan import (
     base_file_name_for_plan as _base_file_name_for_plan_impl,
@@ -656,175 +662,76 @@ def materialize_bundle(
     bundle_dir_override: Path | None = None,
     write_wrapper_index: bool = True,
 ) -> MaterializedBundle:
-    actual_docs_dir = docs_dir or paths.docs_dir
-    actual_root = repo_root or paths.root
-    target_model = resolve_build_model(cfg, model)
-    target_region = resolve_build_region(cfg, region)
-    build_langs = _build_langs(cfg)
-    primary_lang = str(build_langs[0]) if build_langs else "en"
-    output_lang = resolve_output_lang(cfg)
-    resolved_page_source = resolve_config_pages_or_raise(
+    context = _resolve_bundle_materialization_context_impl(
         cfg,
-        default_languages=build_langs,
-        root=actual_root,
-        model=target_model,
-        region=target_region,
-        error_prefix="config.pages",
-    )
-    page_manifest_path = resolved_page_source.manifest_path
-    planned_pages = _select_planned_pages(
-        plan_materialized_pages(cfg, model=target_model, region=target_region, root=actual_root),
-        page_selector,
-    )
-    _preflight_contract_assets(
-        cfg=cfg,
-        docs_dir=actual_docs_dir,
-        repo_root=actual_root,
-        model=target_model,
-        region=target_region,
-        langs=build_langs,
-        planned_pages=planned_pages,
-    )
-
-    spec_master_csv = _resolve_spec_master_csv_path(
-        cfg,
-        repo_root=actual_root,
+        model=model,
+        region=region,
         data_root=data_root,
-        model=target_model,
-        region=target_region,
+        docs_dir=docs_dir or paths.docs_dir,
+        repo_root=repo_root or paths.root,
+        page_selector=page_selector,
+        bundle_dir_override=bundle_dir_override,
+        resolve_build_model=resolve_build_model,
+        resolve_build_region=resolve_build_region,
+        build_langs=_build_langs,
+        resolve_output_lang=resolve_output_lang,
+        resolve_config_pages_or_raise=resolve_config_pages_or_raise,
+        select_planned_pages=_select_planned_pages,
+        plan_materialized_pages=plan_materialized_pages,
+        preflight_contract_assets=_preflight_contract_assets,
+        resolve_spec_master_csv_path=_resolve_spec_master_csv_path,
+        pick_vars_map=pick_vars_map,
+        fill_product_name_from_spec_master=fill_product_name_from_spec_master,
+        load_rst_substitutions=load_rst_substitutions,
+        resolve_spec_master_substitutions=resolve_spec_master_substitutions,
+        resolve_reference_doc=resolve_reference_doc,
+        derive_word_title=derive_word_title,
+        bundle_dir_for_target=bundle_dir_for_target,
     )
-    base_vars_map = pick_vars_map(target_model, target_region)
-    title_vars = fill_product_name_from_spec_master(
-        base_vars_map,
-        spec_master_csv=spec_master_csv,
-        model=target_model,
-        region=target_region,
-        lang=primary_lang,
-    )
-    base_substitutions = load_rst_substitutions(actual_docs_dir / "conf_base.py")
-    title_substitutions = {
-        **base_substitutions,
-        **resolve_spec_master_substitutions(
-            spec_master_csv=spec_master_csv,
-            model=target_model,
-            region=target_region,
-            lang=primary_lang,
-        ),
-    }
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=actual_root)
-    title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
 
-    bundle_dir = bundle_dir_override or bundle_dir_for_target(
-        docs_dir=actual_docs_dir,
-        model=target_model,
-        region=target_region,
-        lang=output_lang,
-    )
-    generated_dir = bundle_dir / "generated"
-    page_dir = bundle_dir / "page"
-    index_path = bundle_dir / "index.rst"
-    wrapper_index_path = actual_docs_dir / "index.rst"
-    bundle_manifest_path = bundle_dir / "bundle_manifest.json"
-
-    if bundle_dir_override is None:
-        cleanup_legacy_rst_artifacts(
-            docs_dir=actual_docs_dir,
-            model=target_model,
-            region=target_region,
-        )
-
-    if bundle_dir.exists():
-        shutil.rmtree(bundle_dir)
-
-    if ensure_csv_pages and any(isinstance(item.page, CsvPage) for item in planned_pages):
-        builder = load_word_context(
-            cfg,
-            target_model,
-            target_region,
-            phase1_output_dir=generated_dir,
-            data_root=data_root,
-        )
-        ensure_csv_page_rsts(cfg, builder, target_model, target_region)
-    page_dir.mkdir(parents=True, exist_ok=True)
-    _copy_bundle_support_assets(docs_dir=actual_docs_dir, bundle_dir=bundle_dir)
-    conf_path, conf_base_path = _write_bundle_conf_files(
+    conf_path, conf_base_path = _prepare_bundle_workspace_impl(
+        context,
         cfg=cfg,
-        docs_dir=actual_docs_dir,
-        bundle_dir=bundle_dir,
+        data_root=data_root,
+        ensure_csv_pages=ensure_csv_pages,
+        bundle_dir_override=bundle_dir_override,
+        csv_page_cls=CsvPage,
+        cleanup_legacy_rst_artifacts=cleanup_legacy_rst_artifacts,
+        remove_tree=shutil.rmtree,
+        load_word_context=load_word_context,
+        ensure_csv_page_rsts=ensure_csv_page_rsts,
+        copy_bundle_support_assets=_copy_bundle_support_assets,
+        write_bundle_conf_files=_write_bundle_conf_files,
     )
 
-    page_paths: list[Path] = []
-    recipe_ids: list[str] = []
-    snippet_ids: list[str] = []
-    for planned in planned_pages:
-        target_path = page_dir / planned.file_name
-        rendered, generated_render = _materialize_planned_page(
-            planned,
-            cfg=cfg,
-            target_path=target_path,
-            bundle_dir=bundle_dir,
-            docs_dir=actual_docs_dir,
-            repo_root=actual_root,
-            spec_master_csv=spec_master_csv,
-            base_substitutions=base_substitutions,
-            base_vars_map=base_vars_map,
-            primary_lang=primary_lang,
-            title=title,
-            model=target_model,
-            region=target_region,
-        )
-        target_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")
-        page_paths.append(target_path)
-        if generated_render is not None:
-            recipe_ids.append(generated_render.recipe_path.stem)
-            snippet_ids.extend(generated_render.used_snippet_ids)
+    page_paths, recipe_ids, snippet_ids = _materialize_bundle_pages_impl(
+        context,
+        cfg=cfg,
+        materialize_planned_page=_materialize_planned_page,
+    )
 
-    index_text = build_index_from_pages(cfg, model=target_model, region=target_region, root=actual_root)
-    index_path.write_text(index_text, encoding="utf-8")
-    if write_wrapper_index:
-        wrapper_index_path.write_text(
-            build_wrapper_index_text(
-                docs_dir=actual_docs_dir,
-                bundle_dir=bundle_dir,
-            ),
-            encoding="utf-8",
-        )
-
-    bundle_manifest = _build_bundle_manifest_impl(
-        model=target_model,
-        region=target_region,
-        lang=output_lang,
-        page_manifest_path=page_manifest_path,
-        spec_master_csv=spec_master_csv,
+    _write_bundle_outputs_impl(
+        context,
+        cfg=cfg,
+        write_wrapper_index=write_wrapper_index,
         page_paths=page_paths,
-        generated_dir=generated_dir,
         recipe_ids=recipe_ids,
         snippet_ids=snippet_ids,
-        repo_root=actual_root,
-        repo_relative=lambda path: _repo_relative(path, repo_root=actual_root),
+        build_index_from_pages=build_index_from_pages,
+        build_wrapper_index_text=build_wrapper_index_text,
+        build_bundle_manifest=_build_bundle_manifest_impl,
+        repo_relative=lambda path: _repo_relative(path, repo_root=context.repo_root),
         file_sha256=_file_sha256,
     )
-    bundle_manifest_path.write_text(json.dumps(bundle_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    return MaterializedBundle(
-        bundle_dir=bundle_dir,
-        page_dir=page_dir,
-        index_path=index_path,
+    return _build_materialized_bundle_result_impl(
+        context,
         conf_path=conf_path,
         conf_base_path=conf_base_path,
-        wrapper_index_path=wrapper_index_path,
-        page_paths=tuple(page_paths),
-        title=title,
-        reference_doc=reference_doc,
-        model=target_model,
-        region=target_region,
-        lang=output_lang,
-        manifest_path=bundle_manifest_path,
-        page_manifest_path=page_manifest_path,
-        recipe_ids=tuple(dict.fromkeys(recipe_ids)),
-        snippet_ids=tuple(dict.fromkeys(snippet_ids)),
+        page_paths=page_paths,
+        recipe_ids=recipe_ids,
+        snippet_ids=snippet_ids,
+        materialized_bundle_cls=MaterializedBundle,
     )
 
 
