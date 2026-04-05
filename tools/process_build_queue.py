@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 import time
 from datetime import datetime
@@ -43,38 +42,20 @@ from tools.queue_contract import (  # noqa: E402
 )
 from tools.document_link_queue import (  # noqa: E402
     available_field_names as _available_field_names_impl,
-    collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
-    document_link_cfg as _document_link_cfg_impl,
-    document_link_env_names as _document_link_env_names_impl,
-    document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env_impl,
     field_value as _field_value_impl,
-    is_immediate_trigger_enabled as _is_immediate_trigger_enabled_impl,
-    is_trigger_requested as _is_trigger_requested_impl,
     parse_document_key as _parse_document_key_impl,
-    parse_queue_records as _parse_queue_records_impl,
-    queue_group_build_family as _queue_group_build_family_impl,
-    queue_group_lang as _queue_group_lang_impl,
-    queue_record_key as _queue_record_key_impl,
-    resolve_document_link_binding as _resolve_document_link_binding_impl,
-    resolve_target_for_record as _resolve_target_for_record_impl,
     scalar_text as _scalar_text_impl,
-    select_pending_queue_records as _select_pending_queue_records_impl,
-    validate_queue_record_group as _validate_queue_record_group_impl,
 )
 from tools.document_link_actions import (  # noqa: E402
     DRAFT_PACKAGE_ACTION_LABEL,
     PUBLISH_ACTION_LABEL,
     best_effort_queue_workflow_action as _best_effort_queue_workflow_action,
-    legacy_doc_phase_value as _legacy_doc_phase_value,
     normalize_cli_queue_action as _normalize_cli_queue_action,
     normalize_doc_phase as _normalize_doc_phase,
     normalize_workflow_action as _normalize_workflow_action,
-    resolve_workflow_action as _resolve_workflow_action,
     warn_legacy_cli_doc_phase as _warn_legacy_cli_doc_phase,
     warn_legacy_record_doc_phase as _warn_legacy_record_doc_phase,
     workflow_action_label as _workflow_action_label,
-    workflow_action_source as _workflow_action_source,
-    workflow_action_uses_legacy_doc_phase as _workflow_action_uses_legacy_doc_phase,
 )
 from tools.queue_bound_outputs import (  # noqa: E402
     publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
@@ -96,6 +77,13 @@ from tools.queue_bound_lark_ops import (  # noqa: E402
     run_lark_cli_json as _run_lark_cli_json,
     set_repo_root_provider as _set_queue_lark_repo_root_provider,
 )
+from tools.queue_bound_binding import (  # noqa: E402
+    collect_queue_preflight_errors,
+    document_link_cfg as _document_link_cfg,
+    document_link_env_names as _document_link_env_names,
+    document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env,
+    resolve_document_link_binding,
+)
 from tools.queue_bound_runtime import (  # noqa: E402
     build_py_sync_data_command as _bound_build_py_sync_data_command,
     build_py_target_command as _bound_build_py_target_command,
@@ -106,11 +94,29 @@ from tools.queue_bound_runtime import (  # noqa: E402
     set_repo_root_provider as _set_queue_runtime_repo_root_provider,
     worktree_dir_for_git_ref as _worktree_dir_for_git_ref,
 )
-from tools.queue_outputs import config_path_in_repo_root as _config_path_in_repo_root_impl  # noqa: E402
-from tools.queue_config_resolution import (  # noqa: E402
-    queue_by_document_key as _queue_by_document_key,
-    resolve_config_path_for_task as _resolve_config_path_for_task,
+from tools.queue_bound_records import (  # noqa: E402
+    group_pending_queue_records,
+    is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
+    is_trigger_requested as _is_trigger_requested,
+    parse_queue_records,
+    pending_immediate_queue_records,
+    pending_queue_records,
+    queue_group_build_family,
+    queue_group_lang,
+    queue_record_action_source,
+    queue_record_key,
+    queue_record_legacy_doc_phase,
+    queue_record_uses_legacy_doc_phase,
+    resolve_config_path_for_task,
+    resolve_queue_workflow_action,
+    resolve_target_for_record,
+    select_pending_queue_records,
+    set_config_loader_provider as _set_queue_record_config_loader_provider,
+    set_repo_root_provider as _set_queue_record_repo_root_provider,
+    set_resolve_config_path_provider as _set_queue_record_resolve_config_path_provider,
+    validate_queue_record_group,
 )
+from tools.queue_outputs import config_path_in_repo_root as _config_path_in_repo_root_impl  # noqa: E402
 from tools.queue_build_execution import (  # noqa: E402
     build_document_for_task as _build_document_for_task_impl,
     sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
@@ -147,18 +153,16 @@ from tools.queue_runtime import command_failure_message as _command_failure_mess
 from tools.sync_data import (  # noqa: E402
     LarkCliSource,
     _cli_bin,
-    _cli_command_exists,
-    _cli_command_parts,
-    _env_value,
     _phase2_identity,
-    _provider_name,
-    _sync_phase2_cfg,
     load_config,
 )
 
 _set_queue_output_repo_root_provider(lambda: ROOT)
 _set_queue_runtime_repo_root_provider(lambda: ROOT)
 _set_queue_lark_repo_root_provider(lambda: ROOT)
+_set_queue_record_repo_root_provider(lambda: ROOT)
+_set_queue_record_config_loader_provider(lambda: load_config)
+_set_queue_record_resolve_config_path_provider(lambda: sys.modules[__name__].resolve_config_path_for_task)
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
 LEGACY_TRIGGER_FIELDS = _QC_LEGACY_TRIGGER_FIELDS
@@ -181,186 +185,19 @@ TRIGGER_VALUES = _QC_TRIGGER_VALUES
 DONE_TRIGGER_VALUE = _QC_DONE_TRIGGER_VALUE
 
 
-def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    return _document_link_cfg_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
-
-
-def _document_link_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
-    return _document_link_env_names_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
-
-
-def _document_link_wiki_parent_token_env(cfg: dict[str, Any]) -> str | None:
-    return _document_link_wiki_parent_token_env_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
-
-
-def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
-    return _collect_queue_preflight_errors_impl(
-        cfg,
-        provider_name=_provider_name,
-        cli_bin=_cli_bin,
-        cli_command_parts=_cli_command_parts,
-        cli_command_exists=_cli_command_exists,
-        sync_phase2_cfg=_sync_phase2_cfg,
-        environ=os.environ,
-    )
-
-
-def resolve_document_link_binding(cfg: dict[str, Any]) -> DocumentLinkBinding:
-    return _resolve_document_link_binding_impl(
-        cfg,
-        sync_phase2_cfg=_sync_phase2_cfg,
-        binding_factory=DocumentLinkBinding,
-        env_value=_env_value,
-        environ=os.environ,
-    )
-
-
 _scalar_text = _scalar_text_impl
 _field_value = _field_value_impl
 _available_field_names = _available_field_names_impl
-
-
-def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
-    return _parse_queue_records_impl(
-        raw_records,
-        queue_record_factory=QueueRecord,
-        document_id_field=DOCUMENT_ID_FIELD,
-        document_key_field=DOCUMENT_KEY_FIELD,
-        version_field=VERSION_FIELD,
-        lang_field=LANG_FIELD,
-        build_family_field=BUILD_FAMILY_FIELD,
-        workflow_action_field=WORKFLOW_ACTION_FIELD,
-        doc_phase_field=DOC_PHASE_FIELD,
-        git_ref_field=GIT_REF_FIELD,
-        trigger_field=TRIGGER_FIELD,
-        legacy_trigger_fields=LEGACY_TRIGGER_FIELDS,
-        immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
-    )
-
-
-_is_immediate_trigger_enabled = _is_immediate_trigger_enabled_impl
-
-
-def _is_trigger_requested(value: Any) -> bool:
-    return _is_trigger_requested_impl(value, trigger_values=TRIGGER_VALUES)
 
 
 normalize_workflow_action = _normalize_workflow_action
 normalize_doc_phase = _normalize_doc_phase
 
 
-def queue_record_uses_legacy_doc_phase(record: QueueRecord) -> bool:
-    return _workflow_action_uses_legacy_doc_phase(
-        workflow_action=record.workflow_action,
-        doc_phase=record.doc_phase,
-    )
-
-
-def queue_record_action_source(record: QueueRecord) -> str:
-    return _workflow_action_source(
-        workflow_action=record.workflow_action,
-        doc_phase=record.doc_phase,
-    )
-
-
-def queue_record_legacy_doc_phase(record: QueueRecord) -> str | None:
-    return _legacy_doc_phase_value(
-        workflow_action=record.workflow_action,
-        doc_phase=record.doc_phase,
-    )
-
-
-def resolve_queue_workflow_action(record: QueueRecord) -> str | None:
-    return _resolve_workflow_action(
-        workflow_action=record.workflow_action,
-        doc_phase=record.doc_phase,
-        record_id=record.record_id,
-    )
-
-
 workflow_action_label = _workflow_action_label
 
 
-def pending_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
-    return select_pending_queue_records(raw_records)
-
-
-def pending_immediate_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
-    return select_pending_queue_records(raw_records, immediate_only=True)
-
-
-def select_pending_queue_records(
-    raw_records: list[dict[str, Any]],
-    *,
-    immediate_only: bool = False,
-    workflow_action: str | None = None,
-    doc_phase: str | None = None,
-    record_id: str | None = None,
-) -> list[QueueRecord]:
-    return _select_pending_queue_records_impl(
-        raw_records,
-        immediate_only=immediate_only,
-        workflow_action=workflow_action,
-        doc_phase=doc_phase,
-        record_id=record_id,
-        parse_queue_records=parse_queue_records,
-        normalize_cli_queue_action=normalize_cli_queue_action,
-        resolve_queue_workflow_action=resolve_queue_workflow_action,
-        is_trigger_requested=_is_trigger_requested,
-        is_immediate_trigger_enabled=_is_immediate_trigger_enabled,
-    )
-
-
 parse_document_key = _parse_document_key_impl
-
-
-def _document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
-    candidate = document_id.strip()
-    version_text = version.strip()
-    lang_text = lang.strip().lower()
-    if version_text and candidate.endswith("_" + version_text):
-        candidate = candidate[: -(len(version_text) + 1)]
-    if lang_text and candidate.lower().endswith("_" + lang_text):
-        candidate = candidate[: -(len(lang_text) + 1)]
-    return candidate.strip()
-
-
-def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
-    return _resolve_target_for_record_impl(record, parse_document_key=parse_document_key)
-
-
-queue_record_key = _queue_record_key_impl
-queue_group_lang = _queue_group_lang_impl
-queue_group_build_family = _queue_group_build_family_impl
-
-
-def resolve_config_path_for_task(*, region: str, lang: str | None, build_family: str | None = None) -> Path:
-    return _resolve_config_path_for_task(
-        repo_root=ROOT,
-        region=region,
-        lang=lang,
-        build_family=build_family,
-        config_loader=load_config,
-    )
-
-
-def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRecord]]:
-    return _group_pending_queue_records_impl(
-        records,
-        resolve_target_for_record=resolve_target_for_record,
-        resolve_config_path_for_task=resolve_config_path_for_task,
-        config_loader=load_config,
-        queue_by_document_key=_queue_by_document_key,
-        queue_record_key=queue_record_key,
-    )
-
-
-def validate_queue_record_group(records: list[QueueRecord]) -> None:
-    _validate_queue_record_group_impl(
-        records,
-        queue_record_key=queue_record_key,
-        resolve_queue_workflow_action=resolve_queue_workflow_action,
-    )
 
 
 _config_path_in_repo_root = _config_path_in_repo_root_impl

@@ -290,3 +290,17 @@ Why it mattered:
 
 - queue-specific runtime and transport binding no longer need to live inline with queue record/action orchestration
 - the remaining hot spots in `process_build_queue.py` are now narrower and easier to isolate in later passes
+
+## 18. 2026-04-05: Queue Binding And Record Adapter Split
+
+Main outcomes:
+
+- extracted [`tools/queue_bound_binding.py`](../tools/queue_bound_binding.py) for `Document_link` preflight and binding resolution helpers
+- extracted [`tools/queue_bound_records.py`](../tools/queue_bound_records.py) for queue record parsing, workflow-action facade logic, config routing, and grouping helpers
+- preserved `ROOT` and `load_config` patchability by wiring repo-root and config-loader providers from [`tools/process_build_queue.py`](../tools/process_build_queue.py)
+- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) further into a smaller compatibility-and-entrypoint layer
+
+Why it mattered:
+
+- queue record/config routing is now isolated from runtime, transport, output staging, and top-level orchestration
+- future changes to record semantics or config-family routing can land in smaller modules without reopening the full queue entry file

@@ -61,6 +61,12 @@ Do not move new low-level implementation back into these files unless the behavi
   - row filtering
   - record binding
   - queue preflight helpers
+- [`tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+  - queue preflight and Document_link binding adapters
+  - repo entrypoint-facing access to environment-backed binding resolution
+- [`tools/queue_bound_records.py`](../../tools/queue_bound_records.py)
+  - queue record/action facade adapters
+  - repo-root-aware config resolution and grouping helpers used by the queue entrypoint
 - [`tools/queue_config_resolution.py`](../../tools/queue_config_resolution.py)
   - config-family routing
   - target/config resolution for queue rows
