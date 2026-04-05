@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import glob
 import importlib
-import os
 import re
 import shutil
 import subprocess
@@ -14,6 +13,20 @@ import sys
 import warnings
 from dataclasses import dataclass
 from pathlib import Path
+
+from tools.build_paths import (
+    clean_targets_for_config as _clean_targets_for_config,
+    load_config as _load_config,
+    resolve_docs_dir as _resolve_docs_dir,
+    resolve_layout_params_csv as _resolve_layout_params_csv,
+    resolve_path_from_root as _resolve_path_from_root,
+    resolve_staging_root as _resolve_staging_root,
+    review_root_for_config as _review_root_for_config,
+    staging_docs_build_dir as _staging_docs_build_dir,
+    staging_releases_root as _staging_releases_root,
+    staging_version_tracking_root as _staging_version_tracking_root,
+    version_tracking_root as _version_tracking_root,
+)
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = "config.us.yaml"
@@ -145,99 +158,47 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 
 def resolve_path_from_root(raw_path: str) -> Path:
-    path = Path(raw_path)
-    return path if path.is_absolute() else (ROOT / path)
+    return _resolve_path_from_root(ROOT, raw_path)
 
 
 def resolve_staging_root(args: argparse.Namespace) -> Path | None:
-    raw = ""
-    if isinstance(getattr(args, "staging_root", None), str) and args.staging_root.strip():
-        raw = args.staging_root.strip()
-    elif str(os.environ.get("AUTO_MANUAL_STAGING_ROOT", "")).strip():
-        raw = str(os.environ.get("AUTO_MANUAL_STAGING_ROOT", "")).strip()
-    if not raw:
-        return None
-    return resolve_path_from_root(raw)
+    return _resolve_staging_root(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
 
 
 def staging_docs_build_dir(args: argparse.Namespace) -> Path | None:
-    staging_root = resolve_staging_root(args)
-    if staging_root is None:
-        return None
-    return staging_root / "docs" / "_build"
+    return _staging_docs_build_dir(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
 
 
 def staging_version_tracking_root(args: argparse.Namespace) -> Path | None:
-    staging_root = resolve_staging_root(args)
-    if staging_root is None:
-        return None
-    return staging_root / "reports" / "version_tracking"
+    return _staging_version_tracking_root(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
 
 
 def staging_releases_root(args: argparse.Namespace) -> Path | None:
-    staging_root = resolve_staging_root(args)
-    if staging_root is None:
-        return None
-    return staging_root / "reports" / "releases"
+    return _staging_releases_root(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
 
 
 def load_config(config_path: Path) -> dict:
-    try:
-        import yaml  # type: ignore
-    except ImportError as exc:
-        raise RuntimeError("PyYAML not installed. Please run: pip install pyyaml") from exc
-
-    if not config_path.exists():
-        raise RuntimeError(f"Config not found: {config_path}")
-
-    try:
-        with config_path.open("r", encoding="utf-8") as handle:
-            data = yaml.safe_load(handle) or {}
-    except Exception as exc:
-        raise RuntimeError(f"Failed to load config: {config_path}") from exc
-
-    if not isinstance(data, dict):
-        raise RuntimeError(f"Config root must be a mapping: {config_path}")
-    return data
+    return _load_config(config_path)
 
 
 def resolve_layout_params_csv(config_path: Path) -> Path:
-    cfg = load_config(config_path)
-    paths_cfg = cfg.get("paths", {})
-    if isinstance(paths_cfg, dict):
-        raw = paths_cfg.get("layout_params_csv")
-        if isinstance(raw, str) and raw.strip():
-            return resolve_path_from_root(raw.strip())
-    return ROOT / "data" / "layout_params.csv"
+    return _resolve_layout_params_csv(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def resolve_docs_dir(config_path: Path) -> Path:
-    try:
-        cfg = load_config(config_path)
-    except RuntimeError:
-        return ROOT / "docs"
-
-    paths_cfg = cfg.get("paths", {})
-    if isinstance(paths_cfg, dict):
-        raw = paths_cfg.get("docs_dir")
-        if isinstance(raw, str) and raw.strip():
-            return resolve_path_from_root(raw.strip())
-    return ROOT / "docs"
+    return _resolve_docs_dir(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def clean_targets_for_config(config_path: Path) -> tuple[Path, Path]:
-    docs_dir = resolve_docs_dir(config_path)
-    return docs_dir / "_build", docs_dir / "renderers" / "latex" / "params.tex"
+    return _clean_targets_for_config(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def review_root_for_config(config_path: Path) -> Path:
-    docs_dir = resolve_docs_dir(config_path)
-    return docs_dir / "_review"
+    return _review_root_for_config(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def version_tracking_root(*, base_root: Path | None = None) -> Path:
-    actual_base_root = base_root or ROOT
-    return actual_base_root / "reports" / "version_tracking"
+    return _version_tracking_root(repo_root=ROOT, base_root=base_root)
 
 
 def _path_component(value: str) -> str:

@@ -23,6 +23,26 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.document_link_actions import (  # noqa: E402
+    DRAFT_PACKAGE_ACTION_LABEL,
+    PUBLISH_ACTION_LABEL,
+    best_effort_queue_workflow_action as _best_effort_queue_workflow_action,
+    legacy_doc_phase_value as _legacy_doc_phase_value,
+    normalize_cli_queue_action as _normalize_cli_queue_action,
+    normalize_doc_phase as _normalize_doc_phase,
+    normalize_workflow_action as _normalize_workflow_action,
+    resolve_workflow_action as _resolve_workflow_action,
+    warn_legacy_cli_doc_phase as _warn_legacy_cli_doc_phase,
+    warn_legacy_record_doc_phase as _warn_legacy_record_doc_phase,
+    workflow_action_label as _workflow_action_label,
+    workflow_action_source as _workflow_action_source,
+    workflow_action_uses_legacy_doc_phase as _workflow_action_uses_legacy_doc_phase,
+)
+from tools.queue_config_resolution import (  # noqa: E402
+    build_languages as _build_languages,
+    queue_by_document_key as _queue_by_document_key,
+    resolve_config_path_for_task as _resolve_config_path_for_task,
+)
 from tools.release_contract import (  # noqa: E402
     normalize_release_token,
     release_lang_for_config,
@@ -65,8 +85,6 @@ SUCCESS_PREFIX = "SUCCESS"
 FAILED_PREFIX = "FAILED"
 TRIGGER_VALUES = {"1", "true", "y", "yes"}
 DONE_TRIGGER_VALUE = "已构建"
-DRAFT_PACKAGE_ACTION_LABEL = "Build Draft Package"
-PUBLISH_ACTION_LABEL = "Publish"
 
 
 @dataclass(frozen=True)
@@ -255,68 +273,44 @@ def _is_trigger_requested(value: Any) -> bool:
 
 
 def normalize_workflow_action(value: Any) -> str | None:
-    text = re.sub(r"[^a-z0-9]+", " ", _scalar_text(value).strip().lower()).strip()
-    if not text:
-        return None
-    if text in {
-        "build draft package",
-        "build draft",
-        "build_draft_package",
-        "draft",
-        "review",
-        "preview",
-        "draft package",
-    }:
-        return "draft"
-    if text in {"publish", "published"}:
-        return "publish"
-    raise RuntimeError("Workflow_action must map to Build Draft Package or Publish")
+    return _normalize_workflow_action(value)
 
 
 def normalize_doc_phase(value: Any) -> str | None:
-    try:
-        return normalize_workflow_action(value)
-    except RuntimeError as exc:
-        raise RuntimeError("Doc_phase must map to Build Draft Package or Publish") from exc
+    return _normalize_doc_phase(value)
 
 
 def queue_record_uses_legacy_doc_phase(record: QueueRecord) -> bool:
-    return not _scalar_text(record.workflow_action) and bool(_scalar_text(record.doc_phase))
+    return _workflow_action_uses_legacy_doc_phase(
+        workflow_action=record.workflow_action,
+        doc_phase=record.doc_phase,
+    )
 
 
 def queue_record_action_source(record: QueueRecord) -> str:
-    if _scalar_text(record.workflow_action):
-        return "Workflow_action"
-    if queue_record_uses_legacy_doc_phase(record):
-        return "Doc_phase (legacy)"
-    return "Unspecified"
+    return _workflow_action_source(
+        workflow_action=record.workflow_action,
+        doc_phase=record.doc_phase,
+    )
 
 
 def queue_record_legacy_doc_phase(record: QueueRecord) -> str | None:
-    if not queue_record_uses_legacy_doc_phase(record):
-        return None
-    text = _scalar_text(record.doc_phase)
-    return text or None
+    return _legacy_doc_phase_value(
+        workflow_action=record.workflow_action,
+        doc_phase=record.doc_phase,
+    )
 
 
 def resolve_queue_workflow_action(record: QueueRecord) -> str | None:
-    normalized_workflow_action = normalize_workflow_action(record.workflow_action)
-    normalized_doc_phase = normalize_doc_phase(record.doc_phase)
-    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
-        raise RuntimeError(
-            "Workflow_action conflicts with Doc_phase for queue record "
-            f"{record.record_id}: {record.workflow_action!r} vs {record.doc_phase!r}"
-        )
-    return normalized_workflow_action or normalized_doc_phase
+    return _resolve_workflow_action(
+        workflow_action=record.workflow_action,
+        doc_phase=record.doc_phase,
+        record_id=record.record_id,
+    )
 
 
 def workflow_action_label(value: str | None) -> str | None:
-    normalized_doc_phase = normalize_workflow_action(value)
-    if normalized_doc_phase == "draft":
-        return DRAFT_PACKAGE_ACTION_LABEL
-    if normalized_doc_phase == "publish":
-        return PUBLISH_ACTION_LABEL
-    return None
+    return _workflow_action_label(value)
 
 
 def pending_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
@@ -335,11 +329,10 @@ def select_pending_queue_records(
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> list[QueueRecord]:
-    normalized_workflow_action = normalize_workflow_action(workflow_action)
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
-    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
-        raise RuntimeError("--workflow-action filter conflicts with --doc-phase filter")
-    normalized_filter_doc_phase = normalized_workflow_action or normalized_doc_phase
+    normalized_filter_doc_phase = normalize_cli_queue_action(
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+    )
     selected: list[QueueRecord] = []
     for record in parse_queue_records(raw_records):
         if not _is_trigger_requested(record.trigger_value):
@@ -431,151 +424,14 @@ def queue_group_build_family(records: list[QueueRecord]) -> str:
     return ""
 
 
-def _build_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    build_cfg_raw = cfg.get("build", {})
-    return build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-
-
-def _normalize_build_family(value: Any) -> str:
-    return _scalar_text(value).strip().lower()
-
-
-def _build_languages(cfg: dict[str, Any]) -> list[str]:
-    build_cfg = _build_cfg(cfg)
-    langs = build_cfg.get("languages", ["en"])
-    return [str(item).strip().lower() for item in langs if str(item).strip()] or ["en"]
-
-
-def _queue_by_document_key(cfg: dict[str, Any]) -> bool:
-    build_cfg = _build_cfg(cfg)
-    return bool(build_cfg.get("queue_by_document_key"))
-
-
-def _config_family_id(cfg: dict[str, Any]) -> str:
-    return _normalize_build_family(_build_cfg(cfg).get("family_id"))
-
-
-def _config_default_region(cfg: dict[str, Any]) -> str:
-    return str(_build_cfg(cfg).get("default_region") or "").strip().upper()
-
-
-def _validate_family_config_request(
-    *,
-    config_path: Path,
-    cfg: dict[str, Any],
-    build_family: str,
-    region: str,
-    lang: str | None,
-) -> None:
-    family_id = _config_family_id(cfg)
-    normalized_region = str(region or "").strip().upper()
-    normalized_lang = str(lang or "").strip().lower()
-    if family_id != build_family:
-        raise RuntimeError(
-            f"Config {config_path.name} does not match Build_family={build_family!r}; family_id={family_id!r}"
-        )
-
-    default_region = _config_default_region(cfg)
-    if default_region and default_region != normalized_region:
-        raise RuntimeError(
-            f"Build_family {build_family!r} routes to region {default_region!r}, not {normalized_region!r}"
-        )
-
-    if not normalized_lang:
-        return
-
-    languages = _build_languages(cfg)
-    primary_lang = languages[0] if languages else ""
-    if _queue_by_document_key(cfg):
-        if normalized_lang not in languages:
-            raise RuntimeError(
-                f"Build_family {build_family!r} does not include Lang={normalized_lang!r}; supported={languages}"
-            )
-        return
-    if primary_lang != normalized_lang:
-        raise RuntimeError(
-            f"Build_family {build_family!r} conflicts with Lang={normalized_lang!r}; expected {primary_lang!r}"
-        )
-
-
-def _config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
-    build_cfg = _build_cfg(cfg)
-    default_region = str(build_cfg.get("default_region") or "").strip().upper()
-    languages = _build_languages(cfg)
-    primary_lang = languages[0] if languages else ""
-    normalized_lang = str(lang or "").strip().lower()
-    if default_region != region.upper():
-        return None
-    queue_by_document_key = _queue_by_document_key(cfg)
-    if queue_by_document_key:
-        if normalized_lang:
-            if normalized_lang not in languages:
-                return None
-            score = 50
-        else:
-            score = 100
-    else:
-        if not normalized_lang or primary_lang != normalized_lang:
-            return None
-        score = 100
-
-    file_name = config_path.name.lower()
-    if region.lower() in file_name:
-        score += 4
-    if normalized_lang in file_name:
-        score += 4
-    if bool(build_cfg.get("include_lang_in_output_path")):
-        score += 2
-    if file_name != "config.us.yaml":
-        score += 1
-    return score
-
-
 def resolve_config_path_for_task(*, region: str, lang: str | None, build_family: str | None = None) -> Path:
-    normalized_build_family = _normalize_build_family(build_family)
-    if normalized_build_family:
-        family_candidates: list[tuple[Path, dict[str, Any]]] = []
-        for config_path in sorted(ROOT.glob("config*.yaml")):
-            try:
-                cfg = load_config(config_path)
-            except RuntimeError:
-                continue
-            if _config_family_id(cfg) != normalized_build_family:
-                continue
-            family_candidates.append((config_path, cfg))
-
-        if not family_candidates:
-            raise RuntimeError(f"No config family matches Build_family={normalized_build_family!r}")
-        if len(family_candidates) > 1:
-            names = ", ".join(path.name for path, _ in family_candidates)
-            raise RuntimeError(
-                f"Build_family {normalized_build_family!r} matches multiple config files: {names}"
-            )
-        config_path, cfg = family_candidates[0]
-        _validate_family_config_request(
-            config_path=config_path,
-            cfg=cfg,
-            build_family=normalized_build_family,
-            region=region,
-            lang=lang,
-        )
-        return config_path
-
-    candidates: list[tuple[int, Path]] = []
-    for config_path in sorted(ROOT.glob("config*.yaml")):
-        try:
-            cfg = load_config(config_path)
-        except RuntimeError:
-            continue
-        score = _config_match_score(config_path=config_path, cfg=cfg, region=region, lang=lang)
-        if score is None:
-            continue
-        candidates.append((score, config_path))
-
-    if not candidates:
-        raise RuntimeError(f"No config family matches region='{region}' and lang='{lang}'")
-    candidates.sort(key=lambda item: (-item[0], item[1].name))
-    return candidates[0][1]
+    return _resolve_config_path_for_task(
+        repo_root=ROOT,
+        region=region,
+        lang=lang,
+        build_family=build_family,
+        config_loader=load_config,
+    )
 
 
 def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRecord]]:
@@ -1505,50 +1361,27 @@ def build_failure_writeback_fields(
 
 
 def normalize_cli_queue_action(*, workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:
-    normalized_workflow_action = normalize_workflow_action(workflow_action)
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
-    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
-        raise RuntimeError(
-            "--workflow-action conflicts with --doc-phase: "
-            f"{workflow_action!r} vs {doc_phase!r}"
-        )
-    return normalized_workflow_action or normalized_doc_phase
+    return _normalize_cli_queue_action(workflow_action=workflow_action, doc_phase=doc_phase)
 
 
 def warn_legacy_cli_doc_phase(doc_phase: str | None, workflow_action: str | None) -> None:
-    if (doc_phase or "").strip() and not (workflow_action or "").strip():
-        print(
-            "[build-queue] WARNING --doc-phase is deprecated; use --workflow-action instead.",
-            file=sys.stderr,
-        )
+    _warn_legacy_cli_doc_phase(doc_phase, workflow_action)
 
 
 def warn_legacy_record_doc_phase(record: QueueRecord) -> None:
-    legacy_doc_phase = queue_record_legacy_doc_phase(record)
-    if not legacy_doc_phase:
-        return
-    print(
-        "[build-queue] WARNING "
-        f"record {record.record_id} is still using legacy Doc_phase={legacy_doc_phase!r}; "
-        "set Workflow_action instead.",
-        file=sys.stderr,
+    _warn_legacy_record_doc_phase(
+        record_id=record.record_id,
+        workflow_action=record.workflow_action,
+        doc_phase=record.doc_phase,
     )
 
 
 def best_effort_queue_workflow_action(record: QueueRecord) -> str | None:
-    try:
-        return resolve_queue_workflow_action(record)
-    except RuntimeError:
-        try:
-            normalized_workflow_action = normalize_workflow_action(record.workflow_action)
-        except RuntimeError:
-            normalized_workflow_action = None
-        if normalized_workflow_action:
-            return normalized_workflow_action
-        try:
-            return normalize_doc_phase(record.doc_phase)
-        except RuntimeError:
-            return None
+    return _best_effort_queue_workflow_action(
+        workflow_action=record.workflow_action,
+        doc_phase=record.doc_phase,
+        record_id=record.record_id,
+    )
 
 
 def process_build_queue(
