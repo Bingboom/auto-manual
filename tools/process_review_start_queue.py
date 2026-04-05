@@ -6,11 +6,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib import error as urllib_error
@@ -22,7 +20,40 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
-from tools.process_build_queue import parse_document_key, resolve_config_path_for_task  # noqa: E402
+from tools.document_link_queue import parse_document_key  # noqa: E402
+from tools.process_review_start_queue_binding import (  # noqa: E402
+    ReviewInitBinding,
+    collect_review_start_preflight_errors as _collect_review_start_preflight_errors_impl,
+    resolve_review_init_binding as _resolve_review_init_binding_impl,
+    review_init_env_names as _review_init_env_names_impl,
+)
+from tools.process_review_start_queue_records import (  # noqa: E402
+    BUILD_FAMILY_FIELD,
+    DOCUMENT_ID_FIELD,
+    DOCUMENT_KEY_FIELD,
+    GIT_REF_FIELD,
+    LANG_FIELD,
+    PR_URL_FIELD,
+    REVIEW_STATUS_FIELD,
+    REVIEW_STATUS_IN_REVIEW,
+    REVIEW_STATUS_NOT_STARTED,
+    REVIEW_TRIGGER_FIELD,
+    VERSION_FIELD,
+    WORKFLOW_ACTION_FIELD,
+    ReviewStartRecord,
+    generate_review_branch_name as _generate_review_branch_name_impl,
+    group_review_start_records as _group_review_start_records_impl,
+    normalize_review_start_action as _normalize_review_start_action_impl,
+    normalize_review_status as _normalize_review_status_impl,
+    parse_review_start_records as _parse_review_start_records_impl,
+    review_start_group_build_family as _review_start_group_build_family_impl,
+    review_start_group_lang as _review_start_group_lang_impl,
+    review_start_record_key as _review_start_record_key_impl,
+    resolve_target_for_review_start as _resolve_target_for_review_start_impl,
+    select_pending_review_start_records as _select_pending_review_start_records_impl,
+    validate_review_start_group as _validate_review_start_group_impl,
+)
+from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
 from tools.review_support import review_bundle_exists, review_dir_for_target  # noqa: E402
 from tools.sync_data import (  # noqa: E402
     LarkCliSource,
@@ -56,188 +87,41 @@ REVIEW_STATUS_IN_REVIEW = "InReview"
 INITIAL_RESULT_DUPLICATE = "不允许重复创建"
 DUPLICATE_REMARKS = "如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md."
 
-
-@dataclass(frozen=True)
-class ReviewInitBinding:
-    base_token_env: str
-    table_id_env: str
-    view_id_env: str | None
-    base_token: str
-    table_id: str
-    view_id: str | None
-
-
-@dataclass(frozen=True)
-class ReviewStartRecord:
-    record_id: str
-    document_id: str
-    document_key: str
-    build_family: str
-    version: str
-    lang: str
-    workflow_action: str = ""
-    review_status: str = ""
-    review_trigger_value: Any = None
-    git_ref: str = ""
-    pr_url: str = ""
-
-    @property
-    def label(self) -> str:
-        return self.document_id or f"{self.document_key}_{self.lang}"
-
-
-def _review_init_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    raw = phase2_cfg.get("review_init", {})
-    return raw if isinstance(raw, dict) else {}
-
-
-def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    raw = phase2_cfg.get("document_link", {})
-    return raw if isinstance(raw, dict) else {}
-
-
 def _review_init_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    review_init_cfg = _review_init_cfg(cfg)
-    document_link_cfg = _document_link_cfg(cfg)
-    base_token_env = str(review_init_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or "").strip()
-    document_link_table_id_env = str(document_link_cfg.get("table_id_env") or "").strip()
-    document_link_view_id_env = str(document_link_cfg.get("view_id_env") or "").strip() or None
-    review_table_id_env = str(review_init_cfg.get("table_id_env") or "").strip()
-    review_view_id_env = str(review_init_cfg.get("view_id_env") or "").strip() or None
-    table_id_env = document_link_table_id_env or review_table_id_env
-    view_id_env = document_link_view_id_env or review_view_id_env
-    return base_token_env, table_id_env, view_id_env
+    return _review_init_env_names_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
 
 
 def collect_review_start_preflight_errors(cfg: dict[str, Any], *, require_github: bool = True) -> list[str]:
-    errors: list[str] = []
-    _provider_name(cfg)
-
-    cli_bin = _cli_bin(cfg)
-    try:
-        command = _cli_command_parts(cli_bin)[0]
-    except RuntimeError as exc:
-        errors.append(str(exc))
-        command = None
-    if command and not _cli_command_exists(cli_bin):
-        errors.append(f"sync.phase2.cli_bin executable is not available: {command}")
-
-    base_token_env, table_id_env, view_id_env = _review_init_env_names(cfg)
-    missing_env_names = [
-        env_name
-        for env_name in (base_token_env, table_id_env, view_id_env or "")
-        if env_name and not str(os.environ.get(env_name, "")).strip()
-    ]
-    if not base_token_env:
-        errors.append("sync.phase2.base_token_env is required")
-    if not table_id_env:
-        errors.append("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
-    if missing_env_names:
-        errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
-
-    if require_github:
-        for env_name in ("GITHUB_REPOSITORY", "GITHUB_TOKEN"):
-            if not str(os.environ.get(env_name, "")).strip():
-                errors.append(f"Required environment variable is not set: {env_name}")
-    return errors
-
-
-def resolve_review_init_binding(cfg: dict[str, Any]) -> ReviewInitBinding:
-    base_token_env, table_id_env, view_id_env = _review_init_env_names(cfg)
-    if not base_token_env:
-        raise RuntimeError("sync.phase2.base_token_env is required")
-    if not table_id_env:
-        raise RuntimeError("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
-    return ReviewInitBinding(
-        base_token_env=base_token_env,
-        table_id_env=table_id_env,
-        view_id_env=view_id_env,
-        base_token=_env_value(base_token_env),
-        table_id=_env_value(table_id_env),
-        view_id=_env_value(view_id_env) if view_id_env else None,
+    return _collect_review_start_preflight_errors_impl(
+        cfg,
+        require_github=require_github,
+        provider_name=_provider_name,
+        cli_bin=_cli_bin,
+        cli_command_parts=_cli_command_parts,
+        cli_command_exists=_cli_command_exists,
+        review_init_env_names=_review_init_env_names,
+        environ=os.environ,
     )
 
 
-def _scalar_text(value: Any) -> str:
-    if value is None:
-        return ""
-    if isinstance(value, list):
-        for item in value:
-            text = _scalar_text(item)
-            if text:
-                return text
-        return ""
-    if isinstance(value, bool):
-        return "TRUE" if value else "FALSE"
-    if isinstance(value, int):
-        return str(value)
-    if isinstance(value, float):
-        if value.is_integer():
-            return str(int(value))
-        return format(value, "g")
-    return str(value).strip()
-
-
-def _normalized_build_family(value: Any) -> str:
-    return _scalar_text(value).strip().lower()
-
-
-def _is_checkbox_enabled(value: Any) -> bool:
-    if isinstance(value, bool):
-        return value
-    text = _scalar_text(value).strip().lower()
-    return text in {"1", "true", "y", "yes", "checked"}
+def resolve_review_init_binding(cfg: dict[str, Any]) -> ReviewInitBinding:
+    return _resolve_review_init_binding_impl(
+        cfg,
+        review_init_env_names=_review_init_env_names,
+        env_value=_env_value,
+    )
 
 
 def normalize_review_status(value: Any) -> str | None:
-    text = _scalar_text(value).strip().lower()
-    if not text:
-        return None
-    if text in {"notstarted", "not_started", "not started"}:
-        return "notstarted"
-    if text in {"inreview", "in_review", "in review"}:
-        return "inreview"
-    if text in {"readyforpublish", "ready_for_publish", "ready for publish"}:
-        return "readyforpublish"
-    return text
+    return _normalize_review_status_impl(value)
 
 
 def normalize_review_start_action(value: Any) -> str | None:
-    text = re.sub(r"[^a-z0-9]+", " ", _scalar_text(value).strip().lower()).strip()
-    if not text:
-        return None
-    if text in {"start review", "seed draft", "start review seed draft", "start_review", "seed_draft"}:
-        return "start_review"
-    raise RuntimeError("Workflow_action must map to Start Review/Seed Draft for review-init rows")
+    return _normalize_review_start_action_impl(value)
 
 
 def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[ReviewStartRecord]:
-    records: list[ReviewStartRecord] = []
-    for record in raw_records:
-        record_id = str(record.get("record_id") or "").strip()
-        if not record_id:
-            raise RuntimeError("Review-init record list is missing record_id")
-        fields_raw = record.get("fields", {})
-        fields = fields_raw if isinstance(fields_raw, dict) else {}
-        records.append(
-            ReviewStartRecord(
-                record_id=record_id,
-                document_id=_scalar_text(fields.get(DOCUMENT_ID_FIELD)),
-                document_key=_scalar_text(fields.get(DOCUMENT_KEY_FIELD)),
-                build_family=_normalized_build_family(fields.get(BUILD_FAMILY_FIELD)),
-                version=_scalar_text(fields.get(VERSION_FIELD)),
-                lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
-                workflow_action=_scalar_text(fields.get(WORKFLOW_ACTION_FIELD)),
-                review_status=_scalar_text(fields.get(REVIEW_STATUS_FIELD)),
-                review_trigger_value=fields.get(REVIEW_TRIGGER_FIELD),
-                git_ref=_scalar_text(fields.get(GIT_REF_FIELD)),
-                pr_url=_scalar_text(fields.get(PR_URL_FIELD)),
-            )
-        )
-    return records
+    return _parse_review_start_records_impl(raw_records)
 
 
 def select_pending_review_start_records(
@@ -245,17 +129,7 @@ def select_pending_review_start_records(
     *,
     record_id: str | None = None,
 ) -> list[ReviewStartRecord]:
-    selected: list[ReviewStartRecord] = []
-    for record in parse_review_start_records(raw_records):
-        if record_id and record.record_id != record_id:
-            continue
-        normalize_review_start_action(record.workflow_action)
-        if not _is_checkbox_enabled(record.review_trigger_value):
-            continue
-        if normalize_review_status(record.review_status) not in {None, "notstarted"}:
-            continue
-        selected.append(record)
-    return selected
+    return _select_pending_review_start_records_impl(raw_records, record_id=record_id)
 
 
 def _slug_branch_token(value: str) -> str:
@@ -263,27 +137,8 @@ def _slug_branch_token(value: str) -> str:
     return text or "review"
 
 
-def _looks_like_explicit_document_key(value: str) -> bool:
-    return bool(re.fullmatch(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+", value.strip()))
-
-
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
-    if record.git_ref.strip():
-        return record.git_ref.strip()
-    source = record.document_key or record.document_id or f"{record.lang}_{record.version}"
-    slug = _slug_branch_token(source)[:72]
-    return f"codex/review-{slug}"
-
-
-def _document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
-    candidate = document_id.strip()
-    version_text = version.strip()
-    lang_text = lang.strip().lower()
-    if version_text and candidate.endswith("_" + version_text):
-        candidate = candidate[: -(len(version_text) + 1)]
-    if lang_text and candidate.lower().endswith("_" + lang_text):
-        candidate = candidate[: -(len(lang_text) + 1)]
-    return candidate.strip()
+    return _generate_review_branch_name_impl(record)
 
 
 def _resolve_review_start_config_path(*, region: str, lang: str | None, build_family: str | None) -> Path:
@@ -295,121 +150,33 @@ def _resolve_review_start_config_path(*, region: str, lang: str | None, build_fa
         return resolve_config_path_for_task(region=region, lang=lang)
 
 
-def _queue_by_document_key(cfg: dict[str, Any]) -> bool:
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    return _is_checkbox_enabled(build_cfg.get("queue_by_document_key"))
-
-
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
-    candidates: list[str] = []
-    if _looks_like_explicit_document_key(record.document_key):
-        candidates.append(record.document_key.strip())
-    fallback_key = _document_key_from_document_id(
-        document_id=record.document_id,
-        lang=record.lang,
-        version=record.version,
-    )
-    if fallback_key and fallback_key not in candidates:
-        candidates.append(fallback_key)
-
-    errors: list[str] = []
-    for candidate in candidates:
-        try:
-            return parse_document_key(candidate)
-        except RuntimeError as exc:
-            errors.append(str(exc))
-
-    detail = (
-        f"Document_ID={record.document_id!r}, "
-        f"Document_Key={record.document_key!r}, "
-        f"Build_family={record.build_family!r}, "
-        f"Lang={record.lang!r}"
-    )
-    if errors:
-        raise RuntimeError("Unable to resolve review-start target. " + detail + " | " + " | ".join(errors))
-    raise RuntimeError("Unable to resolve review-start target. " + detail)
+    return _resolve_target_for_review_start_impl(record, parse_document_key=parse_document_key)
 
 
 def review_start_record_key(record: ReviewStartRecord) -> str:
-    if record.document_key.strip():
-        return record.document_key.strip().upper()
-    fallback_key = _document_key_from_document_id(
-        document_id=record.document_id,
-        lang=record.lang,
-        version=record.version,
-    )
-    if fallback_key:
-        return fallback_key.upper()
-    return record.record_id
-
-
-def _review_start_group_key(record: ReviewStartRecord, *, cfg: dict[str, Any]) -> str:
-    if _queue_by_document_key(cfg):
-        return review_start_record_key(record)
-    return record.record_id
+    return _review_start_record_key_impl(record)
 
 
 def group_review_start_records(records: list[ReviewStartRecord]) -> list[list[ReviewStartRecord]]:
-    grouped: list[list[ReviewStartRecord]] = []
-    index_by_key: dict[str, int] = {}
-    for record in records:
-        _model, region = resolve_target_for_review_start(record)
-        config_path = _resolve_review_start_config_path(
-            region=region,
-            lang=record.lang,
-            build_family=record.build_family,
-        )
-        cfg = load_config(config_path)
-        key = _review_start_group_key(record, cfg=cfg)
-        existing_index = index_by_key.get(key)
-        if existing_index is None:
-            index_by_key[key] = len(grouped)
-            grouped.append([record])
-            continue
-        grouped[existing_index].append(record)
-    return grouped
+    return _group_review_start_records_impl(
+        records,
+        resolve_target_for_review_start=resolve_target_for_review_start,
+        resolve_config_path_for_task=_resolve_review_start_config_path,
+        load_config=load_config,
+    )
 
 
 def review_start_group_build_family(records: list[ReviewStartRecord]) -> str:
-    for record in records:
-        build_family = _normalized_build_family(record.build_family)
-        if build_family:
-            return build_family
-    return ""
+    return _review_start_group_build_family_impl(records)
 
 
 def review_start_group_lang(records: list[ReviewStartRecord]) -> str:
-    for record in records:
-        if record.lang.strip():
-            return record.lang.strip().lower()
-    return ""
+    return _review_start_group_lang_impl(records)
 
 
 def validate_review_start_group(records: list[ReviewStartRecord]) -> None:
-    if not records:
-        return
-    if len(records) == 1:
-        return
-
-    group_key = review_start_record_key(records[0])
-    versions = {record.version.strip() for record in records}
-    git_refs = {record.git_ref.strip() for record in records}
-    build_families = {review_start_group_build_family([record]) for record in records}
-    build_families.discard("")
-    conflicts: list[str] = []
-    if len(versions) > 1:
-        conflicts.append("Version")
-    if len(git_refs) > 1:
-        conflicts.append("Git_ref")
-    if len(build_families) > 1:
-        conflicts.append("Build_family")
-    if conflicts:
-        raise RuntimeError(
-            "Review-start rows merged by Document_Key must agree on "
-            + ", ".join(conflicts)
-            + f": {group_key}"
-        )
+    _validate_review_start_group_impl(records)
 
 
 def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str, Any]:

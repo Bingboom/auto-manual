@@ -143,7 +143,7 @@ Milestone status: `in_progress`
 
 ## 5. Milestone 3: Reporting, Queue Flow, And Domain Split
 
-Milestone status: `pending`
+Milestone status: `in_progress`
 
 - [ ] PR 6: Split diff-report and release-manifest services
   - Status: `done`
@@ -161,7 +161,7 @@ Milestone status: `pending`
   - Note: split diff-report into dedicated git/path, field/source extraction, HTML/CSV rendering, and top-level report-generation helpers while keeping the public facade in [`../tools/diff_report.py`](../tools/diff_report.py), and moved release-manifest runtime assembly into [`../tools/release_manifest_service.py`](../tools/release_manifest_service.py) while keeping CLI behavior and patchable entry hooks stable; `tools/diff_report.py` dropped from 1696 to 126 lines and `tools/release_manifest.py` dropped from 216 to 90 lines
 
 - [ ] PR 7: Split queue flow and external integrations
-  - Status: `pending`
+  - Status: `in_progress`
   - Target files:
     - [`../tools/process_build_queue.py`](../tools/process_build_queue.py)
     - [`../tools/process_review_start_queue.py`](../tools/process_review_start_queue.py)
@@ -176,7 +176,7 @@ Milestone status: `pending`
     - queue parsing, routing, build execution, and writeback are separated
     - external system adapters stop importing private helpers across modules
   - Completed:
-  - Note:
+  - Note: started with a low-risk listener slice by extracting event filtering, worker/runtime loop, and Lark CLI subscription/field lookup helpers out of [`../tools/listen_build_queue.py`](../tools/listen_build_queue.py), then decoupled [`../tools/process_review_start_queue.py`](../tools/process_review_start_queue.py) from [`../tools/process_build_queue.py`](../tools/process_build_queue.py) and moved review-start binding/preflight plus record parsing/grouping helpers into dedicated support modules while preserving the existing facade entry points for tests and CLI routing
 
 - [ ] PR 8: Split `spec_master` domain logic
   - Status: `pending`
