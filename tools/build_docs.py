@@ -45,6 +45,11 @@ from tools.build_docs_io import (
     sphinx_build as _sphinx_build_impl,
 )
 from tools.build_docs_pages import render_csv_pages as _render_csv_pages_impl
+from tools.build_docs_paths import (
+    build_root_for_target as _build_root_for_target_impl,
+    discover_existing_bundle_targets as _discover_existing_bundle_targets_impl,
+    target_component as _target_component_impl,
+)
 from tools.build_docs_targets import (
     config_uses_model_token as _config_uses_model_token_impl,
     config_uses_region_token as _config_uses_region_token_impl,
@@ -52,6 +57,17 @@ from tools.build_docs_targets import (
     resolve_build_model as _resolve_build_model_impl,
     resolve_build_region as _resolve_build_region_impl,
     resolve_build_targets as _resolve_build_targets_impl,
+)
+from tools.build_docs_theme import (
+    body_tag_with_class as _body_tag_with_class_impl,
+    effective_variants_for_current as _effective_variants_for_current_impl,
+    language_label as _language_label_impl,
+    load_configured_html_theme as _load_configured_html_theme_impl,
+    normalize_sphinx_tag_value as _normalize_sphinx_tag_value_impl,
+    should_use_minimal_html_theme as _should_use_minimal_html_theme_impl,
+    sphinx_tag_args as _sphinx_tag_args_impl,
+    variant_key as _variant_key_impl,
+    variant_priority as _variant_priority_impl,
 )
 from tools.build_docs_resolve import (
     ensure_target_identity as _ensure_target_identity_impl,
@@ -154,20 +170,10 @@ def load_config(cfg_path: Path) -> dict:
 
 
 def discover_existing_bundle_targets(*, docs_dir: Path | None = None) -> list[BuildTarget]:
-    actual_docs_dir = docs_dir or paths.docs_dir
-    build_root = actual_docs_dir / "_build"
-    if not build_root.exists():
-        return []
-
-    targets: list[BuildTarget] = []
-    for model_dir in sorted(path for path in build_root.iterdir() if path.is_dir()):
-        for region_dir in sorted(path for path in model_dir.iterdir() if path.is_dir()):
-            if (region_dir / "rst" / "index.rst").exists():
-                targets.append(BuildTarget(model=model_dir.name, region=region_dir.name))
-            for lang_dir in sorted(path for path in region_dir.iterdir() if path.is_dir()):
-                if (lang_dir / "rst" / "index.rst").exists():
-                    targets.append(BuildTarget(model=model_dir.name, region=region_dir.name, lang=lang_dir.name))
-    return targets
+    return _discover_existing_bundle_targets_impl(
+        docs_dir=docs_dir or paths.docs_dir,
+        build_target_cls=BuildTarget,
+    )
 
 
 def build_root_for_target(
@@ -178,13 +184,14 @@ def build_root_for_target(
     docs_build_dir: Path | None = None,
     preview_name: str | None = None,
 ) -> Path:
-    actual_docs_build_dir = docs_build_dir or paths.docs_build_dir
-    target_root = actual_docs_build_dir / _target_component(model, "_shared") / _target_component(region, "_default")
-    if preview_name:
-        return target_root / "preview" / _target_component(preview_name, "_preview")
-    if (lang or "").strip():
-        return target_root / _target_component(lang, "_default")
-    return target_root
+    return _build_root_for_target_impl(
+        model,
+        region,
+        lang,
+        docs_build_dir=docs_build_dir or paths.docs_build_dir,
+        preview_name=preview_name,
+        target_component=_target_component,
+    )
 
 
 def clean_build_targets(
@@ -416,75 +423,49 @@ def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
 
 
 def _normalize_sphinx_tag_value(value: str | None) -> str | None:
-    text = (value or "").strip().lower()
-    if not text:
-        return None
-    normalized = re.sub(r"[^a-z0-9]+", "_", text).strip("_")
-    return normalized or None
+    return _normalize_sphinx_tag_value_impl(value)
 
 
 def _sphinx_tag_args(*, model: str | None = None, region: str | None = None, lang: str | None = None) -> list[str]:
-    args: list[str] = []
-    for prefix, value in (("model", model), ("region", region), ("lang", lang)):
-        normalized = _normalize_sphinx_tag_value(value)
-        if normalized:
-            args.extend(["-t", f"{prefix}_{normalized}"])
-    return args
+    return _sphinx_tag_args_impl(
+        model=model,
+        region=region,
+        lang=lang,
+        normalize_sphinx_tag_value=_normalize_sphinx_tag_value,
+    )
 
 
 def _load_configured_html_theme(conf_base_path: Path) -> str | None:
-    if not conf_base_path.exists():
-        return None
-    for line in conf_base_path.read_text(encoding="utf-8").splitlines():
-        stripped = line.strip()
-        if not stripped.startswith("html_theme"):
-            continue
-        _, _, raw = stripped.partition("=")
-        value = raw.split("#", 1)[0].strip().strip("\"'")
-        return value or None
-    return None
+    return _load_configured_html_theme_impl(conf_base_path)
 
 
 def _should_use_minimal_html_theme(conf_dir: Path, requested_minimal: bool) -> bool:
-    if requested_minimal:
-        return True
-    theme_name = _load_configured_html_theme(conf_dir / "conf_base.py")
-    if not theme_name or theme_name in {"alabaster", "classic", "basic"}:
-        return False
-    if importlib.util.find_spec(theme_name) is not None:
-        return False
-    print(f"[build] HTML theme '{theme_name}' not available, fallback to alabaster")
-    return True
+    return _should_use_minimal_html_theme_impl(
+        conf_dir,
+        requested_minimal,
+        load_configured_html_theme=_load_configured_html_theme,
+        find_spec=importlib.util.find_spec,
+    )
 
 
 def _target_component(value: str | None, fallback: str) -> str:
-    text = (value or "").strip() or fallback
-    return text.replace("/", "_").replace("\\", "_").replace(":", "_")
+    return _target_component_impl(value, fallback)
 
 
 def _body_tag_with_class(body_tag: str, class_name: str) -> str:
-    class_match = re.search(r'\bclass=(["\'])(.*?)\1', body_tag, re.IGNORECASE | re.DOTALL)
-    if class_match:
-        quote = class_match.group(1)
-        classes = class_match.group(2).split()
-        if class_name in classes:
-            return body_tag
-        new_classes = " ".join([*classes, class_name]).strip()
-        return body_tag[: class_match.start()] + f'class={quote}{new_classes}{quote}' + body_tag[class_match.end() :]
-    return body_tag[:-1] + f' class="{class_name}">'
+    return _body_tag_with_class_impl(body_tag, class_name)
 
 
 def _language_label(lang: str) -> str:
-    key = (lang or "").strip().lower()
-    return LANGUAGE_LABELS.get(key, key.upper() or "Unknown")
+    return _language_label_impl(lang, labels=LANGUAGE_LABELS)
 
 
 def _variant_key(variant: HtmlManualVariant) -> tuple[str, str]:
-    return (variant.region.upper(), variant.lang.lower())
+    return _variant_key_impl(variant)
 
 
 def _variant_priority(variant: HtmlManualVariant) -> tuple[int, str]:
-    return (1 if variant.lang_in_output_path else 0, variant.html_dir_token)
+    return _variant_priority_impl(variant)
 
 
 def _effective_variants_for_current(
@@ -492,14 +473,12 @@ def _effective_variants_for_current(
     *,
     current_variant: HtmlManualVariant,
 ) -> list[HtmlManualVariant]:
-    selected: dict[tuple[str, str], HtmlManualVariant] = {}
-    for variant in sorted(variants, key=lambda item: (item.region.upper(), item.lang.lower(), item.html_dir_token)):
-        key = _variant_key(variant)
-        existing = selected.get(key)
-        if existing is None or _variant_priority(variant) > _variant_priority(existing):
-            selected[key] = variant
-    selected[_variant_key(current_variant)] = current_variant
-    return sorted(selected.values(), key=lambda item: (item.region.upper(), item.lang.lower(), item.html_dir_token))
+    return _effective_variants_for_current_impl(
+        variants,
+        current_variant=current_variant,
+        variant_key=_variant_key,
+        variant_priority=_variant_priority,
+    )
 
 
 def write_html_manual_meta(
