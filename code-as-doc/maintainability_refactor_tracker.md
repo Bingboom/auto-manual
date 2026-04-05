@@ -109,7 +109,7 @@ Milestone status: `in_progress`
   - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, shared types/constants, and additional misc support modules; `tools/build_docs.py` dropped from 1409 to 678 lines while preserving current test-facing wrappers
 
 - [ ] PR 4: Split bundle materialization and check logic
-  - Status: `in_progress`
+  - Status: `done`
   - Target files:
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
     - [`../tools/check_docs.py`](../tools/check_docs.py)
@@ -121,8 +121,8 @@ Milestone status: `in_progress`
   - Done when:
     - bundle planning/materialization and validation are separated cleanly
     - page-contract behavior is preserved
-  - Completed:
-  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py` into dedicated support modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines while keeping bundle behavior unchanged
+  - Completed: `2026-04-05`
+  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check_docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check_docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
 
 - [ ] PR 5: Reduce config-family duplication
   - Status: `pending`
