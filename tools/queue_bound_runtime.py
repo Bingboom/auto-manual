@@ -56,7 +56,7 @@ def prepare_git_ref_worktree(git_ref: str) -> Path:
         repo_root=_repo_root(),
         git_ref=git_ref,
         run_git=run_git,
-        worktree_dir_for_git_ref=worktree_dir_for_git_ref,
+        worktree_dir_for_git_ref=lambda *, repo_root, git_ref: worktree_dir_for_git_ref(git_ref),
         remove_worktree=lambda *, repo_root, path: remove_worktree(path),
     )
 
