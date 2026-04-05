@@ -401,8 +401,7 @@ def _sphinx_tag_args(*, model: str | None = None, region: str | None = None, lan
     )
 
 
-def _load_configured_html_theme(conf_base_path: Path) -> str | None:
-    return _load_configured_html_theme_impl(conf_base_path)
+_load_configured_html_theme = _load_configured_html_theme_impl
 
 
 def _should_use_minimal_html_theme(conf_dir: Path, requested_minimal: bool) -> bool:
@@ -491,21 +490,10 @@ def collect_model_html_variants(
     )
 
 
-def _resolve_variant_target_page(current_html_path: Path, target_variant: HtmlManualVariant) -> Path:
-    return _resolve_variant_target_page_impl(current_html_path, target_variant)
+_resolve_variant_target_page = _resolve_variant_target_page_impl
 
 
-def build_manual_switcher_markup(
-    *,
-    current_variant: HtmlManualVariant,
-    variants: list[HtmlManualVariant],
-    current_html_path: Path,
-) -> str | None:
-    return _build_manual_switcher_markup_impl(
-        current_variant=current_variant,
-        variants=variants,
-        current_html_path=current_html_path,
-    )
+build_manual_switcher_markup = _build_manual_switcher_markup_impl
 
 
 def inject_manual_switcher_into_html(html_path: Path, markup: str | None) -> bool:
