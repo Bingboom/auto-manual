@@ -234,6 +234,8 @@ Main outcomes:
 - extracted queue config-family routing into [`tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
 - extracted queue runtime/worktree helpers into [`tools/queue_runtime.py`](../tools/queue_runtime.py)
 - extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/queue_build_execution.py)
+- extracted per-group queue processing and writeback orchestration into [`tools/queue_group_processing.py`](../tools/queue_group_processing.py)
+- extracted grouped dry-run preview formatting into [`tools/queue_dry_run.py`](../tools/queue_dry_run.py)
 - extracted Lark drive/wiki transport helpers into [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py)
 - extracted queue output staging and publish metadata helpers into [`tools/queue_outputs.py`](../tools/queue_outputs.py)
 - extracted queue writeback/result formatting into [`tools/queue_writeback.py`](../tools/queue_writeback.py)

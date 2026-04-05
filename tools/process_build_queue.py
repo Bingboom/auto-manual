@@ -80,6 +80,10 @@ from tools.queue_build_execution import (  # noqa: E402
     build_py_target_command as _build_py_target_command_impl,
     sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
 )
+from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_impl  # noqa: E402
+from tools.queue_group_processing import (  # noqa: E402
+    process_queue_record_group as _process_queue_record_group_impl,
+)
 from tools.queue_lark_ops import (  # noqa: E402
     cli_relative_file_arg as _cli_relative_file_arg_impl,
     get_wiki_node as _get_wiki_node_impl,
@@ -941,42 +945,20 @@ def process_build_queue(
     can_write_started_at = BUILD_STARTED_AT_FIELD in available_fields
 
     if dry_run:
-        for group in pending_groups:
-            record = group[0]
-            warn_legacy_record_doc_phase(record)
-            model, region = resolve_target_for_record(record)
-            group_lang = queue_group_lang(group)
-            group_build_family = queue_group_build_family(group)
-            validate_queue_record_group(group)
-            resolved_config_path = resolve_config_path_for_task(
-                region=region,
-                lang=group_lang,
-                build_family=group_build_family,
-            )
-            print(
-                "[build-queue] DRY-RUN "
-                + json.dumps(
-                    {
-                        "record_ids": [item.record_id for item in group],
-                        "record_id": record.record_id,
-                        "label": record.label,
-                        "document_key": queue_record_key(record),
-                        "model": model,
-                        "region": region,
-                        "lang": group_lang,
-                        "build_family": group_build_family,
-                        "langs": [item.lang for item in group if item.lang.strip()],
-                        "version": record.version,
-                        "workflow_action": workflow_action_label(record.workflow_action or record.doc_phase) or "Legacy/Unspecified",
-                        "workflow_action_source": queue_record_action_source(record),
-                        "legacy_doc_phase": queue_record_legacy_doc_phase(record),
-                        "git_ref": record.git_ref,
-                        "config": str(resolved_config_path),
-                        "data_root": data_root,
-                    },
-                    ensure_ascii=False,
-                )
-            )
+        _print_dry_run_groups_impl(
+            groups=pending_groups,
+            data_root=data_root,
+            warn_legacy_record_doc_phase=warn_legacy_record_doc_phase,
+            resolve_target_for_record=resolve_target_for_record,
+            queue_group_lang=queue_group_lang,
+            queue_group_build_family=queue_group_build_family,
+            validate_queue_record_group=validate_queue_record_group,
+            resolve_config_path_for_task=resolve_config_path_for_task,
+            queue_record_key=queue_record_key,
+            workflow_action_label=workflow_action_label,
+            queue_record_action_source=queue_record_action_source,
+            queue_record_legacy_doc_phase=queue_record_legacy_doc_phase,
+        )
         return 0
 
     print("[build-queue] Syncing latest phase2 snapshot before building queued documents.")
@@ -1021,133 +1003,39 @@ def process_build_queue(
     failures: list[str] = []
     processed = 0
     for group in pending_groups:
-        record = group[0]
-        word_output_path: Path | None = None
-        drive_url: str | None = None
-        try:
-            warn_legacy_record_doc_phase(record)
-            validate_queue_record_group(group)
-            model, region = resolve_target_for_record(record)
-            group_lang = queue_group_lang(group)
-            group_build_family = queue_group_build_family(group)
-            resolved_config_path = resolve_config_path_for_task(
-                region=region,
-                lang=group_lang,
-                build_family=group_build_family,
-            )
-            effective_doc_phase = resolve_queue_workflow_action(record)
-            started_at = datetime.now().astimezone()
-            if can_write_started_at:
-                start_fields = build_started_fields(started_at=started_at)
-                for group_record in group:
-                    try:
-                        source.upsert_record(
-                            base_token=binding.base_token,
-                            table_id=binding.table_id,
-                            record_id=group_record.record_id,
-                            record=start_fields,
-                        )
-                    except Exception as exc:
-                        print(
-                            f"[build-queue] WARNING start-time writeback failed for {group_record.label}: {exc}",
-                            file=sys.stderr,
-                        )
-                print(
-                    "[build-queue] Marked start time for "
-                    f"{queue_record_key(record)} ({len(group)} row(s)): {started_at.isoformat(timespec='seconds')}"
-                )
-            word_output_path = build_document_for_task(
-                config_path=resolved_config_path,
-                model=model,
-                region=region,
-                data_root=data_root,
-                doc_phase=effective_doc_phase,
-                version=record.version,
-                git_ref=record.git_ref,
-            )
-            file_token, drive_url = upload_word_to_drive(
-                cli_bin=cli_bin,
-                word_output_path=word_output_path,
-                identity=identity,
-            )
-            document_link_url = move_drive_file_to_wiki(
-                cli_bin=cli_bin,
-                identity=identity,
-                file_token=file_token,
-                drive_url=drive_url,
-                destination=wiki_destination,
-            )
-            built_at = datetime.now().astimezone()
-            success_fields = build_success_fields(
-                version=record.version,
-                word_output_path=word_output_path,
-                document_link_url=document_link_url,
-                built_at=built_at,
-                workflow_action=effective_doc_phase,
-                doc_phase=queue_record_legacy_doc_phase(record),
-            )
-            for group_record in group:
-                source.upsert_record(
-                    base_token=binding.base_token,
-                    table_id=binding.table_id,
-                    record_id=group_record.record_id,
-                    record=success_fields,
-                )
-            if effective_doc_phase == "publish":
-                latest_html_dir = _publish_release_latest_dir_for_target(
-                    config_path=resolved_config_path,
-                    model=model,
-                    region=region,
-                ) / "html"
-                write_publish_release_metadata(
-                    config_path=resolved_config_path,
-                    model=model,
-                    region=region,
-                    version=record.version,
-                    git_ref=record.git_ref,
-                    built_at=built_at,
-                    word_output_path=word_output_path,
-                    html_dir=latest_html_dir,
-                    document_link_url=document_link_url,
-                )
-            processed += len(group)
-            print(
-                f"[build-queue] {workflow_action_label(effective_doc_phase) or 'Updated'} "
-                f"{queue_record_key(record)} ({len(group)} row(s)): {word_output_path} -> {document_link_url}"
-            )
-        except Exception as exc:
-            message = str(exc).strip()
-            failures.append(
-                f"{workflow_action_label(record.workflow_action or record.doc_phase) or 'Queue task'} "
-                f"{queue_record_key(record)} ({len(group)} row(s)): {message}"
-            )
-            try:
-                if drive_url:
-                    print(
-                        f"[build-queue] WARNING wiki attach failed for {queue_record_key(record)}; preserving latest Drive link {drive_url}",
-                        file=sys.stderr,
-                    )
-                failure_fields = build_failure_writeback_fields(
-                    version=record.version,
-                    message=message,
-                    workflow_action=best_effort_queue_workflow_action(record),
-                    doc_phase=queue_record_legacy_doc_phase(record),
-                    word_output_path=word_output_path,
-                    document_link_url=drive_url,
-                )
-                for group_record in group:
-                    source.upsert_record(
-                        base_token=binding.base_token,
-                        table_id=binding.table_id,
-                        record_id=group_record.record_id,
-                        record=failure_fields,
-                    )
-            except Exception as writeback_exc:
-                failures[-1] += f" | writeback_failed={writeback_exc}"
-                print(
-                    f"[build-queue] ERROR writeback failed for {queue_record_key(record)}: {writeback_exc}",
-                    file=sys.stderr,
-                )
+        result = _process_queue_record_group_impl(
+            group=group,
+            source=source,
+            binding=binding,
+            data_root=data_root,
+            can_write_started_at=can_write_started_at,
+            cli_bin=cli_bin,
+            identity=identity,
+            wiki_destination=wiki_destination,
+            warn_legacy_record_doc_phase=warn_legacy_record_doc_phase,
+            validate_queue_record_group=validate_queue_record_group,
+            resolve_target_for_record=resolve_target_for_record,
+            queue_group_lang=queue_group_lang,
+            queue_group_build_family=queue_group_build_family,
+            resolve_config_path_for_task=resolve_config_path_for_task,
+            resolve_queue_workflow_action=resolve_queue_workflow_action,
+            build_started_fields=build_started_fields,
+            build_document_for_task=build_document_for_task,
+            upload_word_to_drive=upload_word_to_drive,
+            move_drive_file_to_wiki=move_drive_file_to_wiki,
+            build_success_fields=build_success_fields,
+            queue_record_legacy_doc_phase=queue_record_legacy_doc_phase,
+            publish_release_latest_dir_for_target=_publish_release_latest_dir_for_target,
+            write_publish_release_metadata=write_publish_release_metadata,
+            workflow_action_label=workflow_action_label,
+            queue_record_key=queue_record_key,
+            build_failure_writeback_fields=build_failure_writeback_fields,
+            best_effort_queue_workflow_action=best_effort_queue_workflow_action,
+            stderr=sys.stderr,
+        )
+        processed += result.processed_rows
+        if result.failure_message:
+            failures.append(result.failure_message)
 
     print(f"[build-queue] Summary: processed={processed} failed={len(failures)}")
     for failure in failures:

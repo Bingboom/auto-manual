@@ -67,6 +67,13 @@ Do not move new low-level implementation back into these files unless the behavi
   - queue-triggered `build.py` command assembly
   - phase2 sync-before-build execution
   - worktree-scoped draft/publish build orchestration
+- [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+  - per-group queue processing
+  - started/success/failure writeback orchestration
+  - drive upload and wiki attach flow for one grouped build task
+- [`tools/queue_dry_run.py`](../../tools/queue_dry_run.py)
+  - dry-run preview payload assembly
+  - grouped queue preview output formatting
 - [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
   - Lark/Drive/Wiki transport and remote I/O helpers
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
