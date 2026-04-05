@@ -71,7 +71,7 @@ Updated: 2026-04-04
 - `Version`
 - `Git_ref`
 - `Workflow_action`
-- `Doc_phase`
+- `Doc_phase（仅旧记录兼容，不建议新填）`
 - `是否触发文档构建`
 - `是否立即构建`
 - `Document directory`
@@ -81,9 +81,7 @@ Updated: 2026-04-04
 它负责：
 
 - `Workflow_action` 是主语义字段，推荐只填 `Build Draft Package` 或 `Publish`
-- `Doc_phase` 只是兼容字段
-- `Doc_phase = Draft`、`Review`、`Preview` 时都映射到 Build Draft Package
-- `Doc_phase = Publish` 时映射到 Publish
+- `Doc_phase` 只是旧记录兼容字段；新行不要再填，队列在读到它时会给出 warning
 - 把结果链接回写到表里
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
@@ -176,7 +174,6 @@ Publish 的原料是：
 - `Lang`
 - `Version`
 - `Workflow_action = Build Draft Package`
-- `Doc_phase = Draft / Review / Preview` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -215,7 +212,6 @@ Publish 的原料是：
 在 `Document_link` 表对应那一行填：
 
 - `Workflow_action = Publish`
-- `Doc_phase = Publish` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -292,7 +288,6 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 条件建议：
 
 - `Workflow_action = Build Draft Package`
-- `Doc_phase = Draft / Review / Preview` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -306,7 +301,6 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 条件建议：
 
 - `Workflow_action = Publish`
-- `Doc_phase = Publish` 仅作兼容回退
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 
@@ -330,7 +324,6 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 2. 在 PR 分支改 `_review`
 3. 在 `Document_link` 里设：
    - `Workflow_action = Build Draft Package`
-   - `Doc_phase = Draft / Review / Preview` 仅作兼容回退
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
 
@@ -340,7 +333,6 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 2. 确认 `Document_link.Git_ref` 仍指向这条 review / PR 分支
 3. 在 `Document_link` 里设：
    - `Workflow_action = Publish`
-   - `Doc_phase = Publish` 仅作兼容回退
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
 4. 等队列回写 `Document directory`、`Document link`，并确认 Vercel 最新页面已刷新

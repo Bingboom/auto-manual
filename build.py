@@ -11,6 +11,7 @@ import re
 import shutil
 import subprocess
 import sys
+import warnings
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -551,6 +552,12 @@ def process_build_queue_command(args: argparse.Namespace) -> list[str]:
     ]
     _append_data_root_arg(cmd, args)
     normalized_action = normalize_cli_build_queue_action(args.workflow_action, args.doc_phase)
+    if (args.doc_phase or "").strip() and not (args.workflow_action or "").strip():
+        warnings.warn(
+            "--doc-phase is deprecated; use --workflow-action instead.",
+            UserWarning,
+            stacklevel=2,
+        )
     if normalized_action == "draft":
         cmd += ["--workflow-action", "build-draft-package"]
     elif normalized_action == "publish":

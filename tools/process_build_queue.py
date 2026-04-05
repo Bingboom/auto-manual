@@ -280,6 +280,25 @@ def normalize_doc_phase(value: Any) -> str | None:
         raise RuntimeError("Doc_phase must map to Build Draft Package or Publish") from exc
 
 
+def queue_record_uses_legacy_doc_phase(record: QueueRecord) -> bool:
+    return not _scalar_text(record.workflow_action) and bool(_scalar_text(record.doc_phase))
+
+
+def queue_record_action_source(record: QueueRecord) -> str:
+    if _scalar_text(record.workflow_action):
+        return "Workflow_action"
+    if queue_record_uses_legacy_doc_phase(record):
+        return "Doc_phase (legacy)"
+    return "Unspecified"
+
+
+def queue_record_legacy_doc_phase(record: QueueRecord) -> str | None:
+    if not queue_record_uses_legacy_doc_phase(record):
+        return None
+    text = _scalar_text(record.doc_phase)
+    return text or None
+
+
 def resolve_queue_workflow_action(record: QueueRecord) -> str | None:
     normalized_workflow_action = normalize_workflow_action(record.workflow_action)
     normalized_doc_phase = normalize_doc_phase(record.doc_phase)
@@ -312,10 +331,15 @@ def select_pending_queue_records(
     raw_records: list[dict[str, Any]],
     *,
     immediate_only: bool = False,
+    workflow_action: str | None = None,
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> list[QueueRecord]:
-    normalized_filter_doc_phase = normalize_workflow_action(doc_phase)
+    normalized_workflow_action = normalize_workflow_action(workflow_action)
+    normalized_doc_phase = normalize_doc_phase(doc_phase)
+    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
+        raise RuntimeError("--workflow-action filter conflicts with --doc-phase filter")
+    normalized_filter_doc_phase = normalized_workflow_action or normalized_doc_phase
     selected: list[QueueRecord] = []
     for record in parse_queue_records(raw_records):
         if not _is_trigger_requested(record.trigger_value):
@@ -1390,18 +1414,24 @@ def build_success_fields(
     word_output_path: Path,
     document_link_url: str,
     built_at: datetime,
+    workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    normalized_doc_phase = normalize_workflow_action(doc_phase)
-    action_label = workflow_action_label(doc_phase)
+    normalized_workflow_action = normalize_workflow_action(workflow_action or doc_phase)
+    action_label = workflow_action_label(workflow_action or doc_phase)
+    normalized_doc_phase = normalize_doc_phase(doc_phase) if _scalar_text(doc_phase) else None
     return {
         RESULT_FIELD: " | ".join(
             part
             for part in (
                 SUCCESS_PREFIX,
                 f"version={version}" if version else "",
-                f"doc_phase={normalized_doc_phase}" if normalized_doc_phase else "",
                 f"workflow_action={action_label}" if action_label else "",
+                (
+                    f"legacy_doc_phase={normalized_doc_phase}"
+                    if normalized_doc_phase and normalized_workflow_action == normalized_doc_phase and _scalar_text(doc_phase)
+                    else ""
+                ),
                 f"built_at={built_at.isoformat(timespec='seconds')}",
             )
             if part
@@ -1419,17 +1449,28 @@ def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
     }
 
 
-def build_failure_fields(*, version: str, message: str, doc_phase: str | None = None) -> dict[str, Any]:
-    normalized_doc_phase = normalize_workflow_action(doc_phase)
-    action_label = workflow_action_label(doc_phase)
+def build_failure_fields(
+    *,
+    version: str,
+    message: str,
+    workflow_action: str | None = None,
+    doc_phase: str | None = None,
+) -> dict[str, Any]:
+    normalized_workflow_action = normalize_workflow_action(workflow_action or doc_phase)
+    action_label = workflow_action_label(workflow_action or doc_phase)
+    normalized_doc_phase = normalize_doc_phase(doc_phase) if _scalar_text(doc_phase) else None
     return {
         RESULT_FIELD: " | ".join(
             part
             for part in (
                 FAILED_PREFIX,
                 f"version={version}" if version else "",
-                f"doc_phase={normalized_doc_phase}" if normalized_doc_phase else "",
                 f"workflow_action={action_label}" if action_label else "",
+                (
+                    f"legacy_doc_phase={normalized_doc_phase}"
+                    if normalized_doc_phase and normalized_workflow_action == normalized_doc_phase and _scalar_text(doc_phase)
+                    else ""
+                ),
                 message.strip(),
             )
             if part
@@ -1441,11 +1482,17 @@ def build_failure_writeback_fields(
     *,
     version: str,
     message: str,
+    workflow_action: str | None = None,
     doc_phase: str | None = None,
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
 ) -> dict[str, Any]:
-    fields = build_failure_fields(version=version, message=message, doc_phase=doc_phase)
+    fields = build_failure_fields(
+        version=version,
+        message=message,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+    )
     if word_output_path is not None:
         fields[DOCUMENT_DIRECTORY_FIELD] = word_output_path.resolve(strict=False).as_posix()
     if document_link_url:
@@ -1466,6 +1513,42 @@ def normalize_cli_queue_action(*, workflow_action: str | None = None, doc_phase:
             f"{workflow_action!r} vs {doc_phase!r}"
         )
     return normalized_workflow_action or normalized_doc_phase
+
+
+def warn_legacy_cli_doc_phase(doc_phase: str | None, workflow_action: str | None) -> None:
+    if (doc_phase or "").strip() and not (workflow_action or "").strip():
+        print(
+            "[build-queue] WARNING --doc-phase is deprecated; use --workflow-action instead.",
+            file=sys.stderr,
+        )
+
+
+def warn_legacy_record_doc_phase(record: QueueRecord) -> None:
+    legacy_doc_phase = queue_record_legacy_doc_phase(record)
+    if not legacy_doc_phase:
+        return
+    print(
+        "[build-queue] WARNING "
+        f"record {record.record_id} is still using legacy Doc_phase={legacy_doc_phase!r}; "
+        "set Workflow_action instead.",
+        file=sys.stderr,
+    )
+
+
+def best_effort_queue_workflow_action(record: QueueRecord) -> str | None:
+    try:
+        return resolve_queue_workflow_action(record)
+    except RuntimeError:
+        try:
+            normalized_workflow_action = normalize_workflow_action(record.workflow_action)
+        except RuntimeError:
+            normalized_workflow_action = None
+        if normalized_workflow_action:
+            return normalized_workflow_action
+        try:
+            return normalize_doc_phase(record.doc_phase)
+        except RuntimeError:
+            return None
 
 
 def process_build_queue(
@@ -1493,10 +1576,11 @@ def process_build_queue(
         view_id=binding.view_id,
     )
     normalized_cli_action = normalize_cli_queue_action(workflow_action=workflow_action, doc_phase=doc_phase)
+    warn_legacy_cli_doc_phase(doc_phase, workflow_action)
     pending = select_pending_queue_records(
         raw_records,
         immediate_only=immediate_only,
-        doc_phase=normalized_cli_action,
+        workflow_action=normalized_cli_action,
         record_id=record_id,
     )
     if not pending:
@@ -1512,6 +1596,7 @@ def process_build_queue(
     if dry_run:
         for group in pending_groups:
             record = group[0]
+            warn_legacy_record_doc_phase(record)
             model, region = resolve_target_for_record(record)
             group_lang = queue_group_lang(group)
             group_build_family = queue_group_build_family(group)
@@ -1535,8 +1620,9 @@ def process_build_queue(
                         "build_family": group_build_family,
                         "langs": [item.lang for item in group if item.lang.strip()],
                         "version": record.version,
-                        "doc_phase": normalize_doc_phase(record.doc_phase) or "legacy",
                         "workflow_action": workflow_action_label(record.workflow_action or record.doc_phase) or "Legacy/Unspecified",
+                        "workflow_action_source": queue_record_action_source(record),
+                        "legacy_doc_phase": queue_record_legacy_doc_phase(record),
                         "git_ref": record.git_ref,
                         "config": str(resolved_config_path),
                         "data_root": data_root,
@@ -1559,7 +1645,7 @@ def process_build_queue(
     pending = select_pending_queue_records(
         raw_records,
         immediate_only=immediate_only,
-        doc_phase=normalized_cli_action,
+        workflow_action=normalized_cli_action,
         record_id=record_id,
     )
     if not pending:
@@ -1592,6 +1678,7 @@ def process_build_queue(
         word_output_path: Path | None = None
         drive_url: str | None = None
         try:
+            warn_legacy_record_doc_phase(record)
             validate_queue_record_group(group)
             model, region = resolve_target_for_record(record)
             group_lang = queue_group_lang(group)
@@ -1649,7 +1736,8 @@ def process_build_queue(
                 word_output_path=word_output_path,
                 document_link_url=document_link_url,
                 built_at=built_at,
-                doc_phase=effective_doc_phase,
+                workflow_action=effective_doc_phase,
+                doc_phase=queue_record_legacy_doc_phase(record),
             )
             for group_record in group:
                 source.upsert_record(
@@ -1695,7 +1783,8 @@ def process_build_queue(
                 failure_fields = build_failure_writeback_fields(
                     version=record.version,
                     message=message,
-                    doc_phase=record.workflow_action or record.doc_phase,
+                    workflow_action=best_effort_queue_workflow_action(record),
+                    doc_phase=queue_record_legacy_doc_phase(record),
                     word_output_path=word_output_path,
                     document_link_url=drive_url,
                 )
@@ -1734,7 +1823,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--doc-phase",
         choices=("draft", "publish"),
         default=None,
-        help="Compatibility filter for legacy Doc_phase rows (Build Draft Package or Publish)",
+        help="Deprecated compatibility filter for legacy Doc_phase rows; prefer --workflow-action",
     )
     ap.add_argument("--record-id", default=None, help="Only consume one Document_link record_id")
     return ap.parse_args(argv)

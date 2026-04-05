@@ -207,3 +207,16 @@ Why it mattered:
 
 - routine local verification no longer needs to pollute repo `docs/_build`, `reports/version_tracking`, or `reports/releases`
 - Windows and mac operators now have the same default isolated-output workflow for local validation
+
+## 13. 2026-04-05: Workflow_action Deprecation Cutover
+
+Main outcomes:
+
+- kept `Workflow_action` as the only recommended queue-action field in docs and CLI examples
+- retained `Doc_phase` only as a compatibility fallback, with explicit warnings in build-queue logs and CLI translation paths
+- updated queue writeback/result diagnostics so `workflow_action` stays primary and legacy `Doc_phase` only appears as `legacy_doc_phase` when that fallback path was used
+
+Why it mattered:
+
+- new `Document_link` rows no longer have mixed semantics between `Workflow_action` and `Doc_phase`
+- old rows still run, but operators can now see exactly when they are relying on legacy compatibility
