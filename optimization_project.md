@@ -15,6 +15,10 @@ Use it to track:
 - deferred work
 - next execution order
 
+The active execution tracker for the current maintainability refactor campaign lives in:
+
+- [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md)
+
 Do not use this file as the long-term architecture document.
 
 For long-term direction and stable architecture boundaries, use:
@@ -91,6 +95,8 @@ Use this section for short milestone-style updates.
 - continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_outputs.py)
 - continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_lark_ops.py)
 - continued the same queue workstream with [`tools/queue_bound_binding.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+- completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
+- started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
 
 ## 5. Open Gaps
 

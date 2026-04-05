@@ -13,10 +13,14 @@ from dataclasses import asdict, dataclass
 from pathlib import Path, PurePosixPath
 from urllib.parse import urlencode
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
 
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.config_loader import try_load_config_mapping
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.utils.spec_master import (
     is_page_value_row,
@@ -245,17 +249,7 @@ def parse_numstat(output: str) -> dict[str, tuple[str, str]]:
 
 
 def load_config(config_path: Path) -> dict:
-    if not config_path.exists():
-        return {}
-    try:
-        import yaml  # type: ignore
-    except ImportError:
-        return {}
-    try:
-        data = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
-    except Exception:
-        return {}
-    return data if isinstance(data, dict) else {}
+    return try_load_config_mapping(config_path)
 
 
 def resolve_data_path(repo_root: Path, raw_path: object, fallback: Path) -> Path:
@@ -1884,4 +1878,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

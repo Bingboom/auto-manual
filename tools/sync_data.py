@@ -20,10 +20,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping, Protocol
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
 
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.config_loader import load_config_mapping
 from tools.data_snapshot import (  # noqa: E402
     resolve_data_snapshot_paths,
     resolve_phase2_export_root,
@@ -194,17 +198,7 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
 
 
 def load_config(config_path: Path) -> dict[str, Any]:
-    if not config_path.exists():
-        raise RuntimeError(f"Config not found: {config_path}")
-    try:
-        import yaml  # type: ignore
-    except ImportError as exc:  # pragma: no cover - matches existing repo behavior
-        raise RuntimeError("PyYAML not installed. Please run: pip install pyyaml") from exc
-    with config_path.open("r", encoding="utf-8") as handle:
-        data = yaml.safe_load(handle) or {}
-    if not isinstance(data, dict):
-        raise RuntimeError(f"Config root must be a mapping: {config_path}")
-    return data
+    return load_config_mapping(config_path)
 
 
 def _sync_phase2_cfg(cfg: dict[str, Any]) -> dict[str, Any]:

@@ -5,6 +5,10 @@ Updated: 2026-04-05
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
 
+For the active in-progress refactor checklist, use:
+
+- [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
+
 For current rules, see:
 
 - [`code-as-doc/README.md`](README.md)
@@ -304,3 +308,21 @@ Why it mattered:
 
 - queue record/config routing is now isolated from runtime, transport, output staging, and top-level orchestration
 - future changes to record semantics or config-family routing can land in smaller modules without reopening the full queue entry file
+
+## 19. 2026-04-05: Maintainability Milestone 1, Foundation And Entrypoint
+
+Main outcomes:
+
+- added shared config/bootstrap helpers in [`tools/config_loader.py`](../tools/config_loader.py) and [`tools/script_bootstrap.py`](../tools/script_bootstrap.py)
+- switched build/report/sync entry scripts to the shared config-loading and repo-root bootstrap foundation
+- extracted `build.py` runtime helpers into [`tools/build_runtime.py`](../tools/build_runtime.py)
+- extracted `build.py` publish and diff-report orchestration into [`tools/build_publish.py`](../tools/build_publish.py)
+- extracted `build.py` CLI parsing into [`tools/build_cli.py`](../tools/build_cli.py)
+- extracted `build.py` top-level action routing into [`tools/build_dispatch.py`](../tools/build_dispatch.py)
+- extended [`tools/build_doctor.py`](../tools/build_doctor.py) so the doctor runner no longer lives inline in [`build.py`](../build.py)
+
+Why it mattered:
+
+- the repo now has one shared config/bootstrap foundation instead of repeating path setup and config loading across entry scripts
+- `build.py` is closer to an orchestration shell, with parser and action dispatch logic separated from runtime and publish implementation
+- later decomposition work can keep compatibility wrappers stable while moving real logic into smaller modules

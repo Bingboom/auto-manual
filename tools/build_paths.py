@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.config_loader import load_config_mapping
+
 
 def resolve_path_from_root(repo_root: Path, raw_path: str) -> Path:
     path = Path(raw_path)
@@ -63,23 +65,7 @@ def staging_releases_root(
 
 
 def load_config(config_path: Path) -> dict[str, Any]:
-    try:
-        import yaml  # type: ignore
-    except ImportError as exc:
-        raise RuntimeError("PyYAML not installed. Please run: pip install pyyaml") from exc
-
-    if not config_path.exists():
-        raise RuntimeError(f"Config not found: {config_path}")
-
-    try:
-        with config_path.open("r", encoding="utf-8") as handle:
-            data = yaml.safe_load(handle) or {}
-    except Exception as exc:
-        raise RuntimeError(f"Failed to load config: {config_path}") from exc
-
-    if not isinstance(data, dict):
-        raise RuntimeError(f"Config root must be a mapping: {config_path}")
-    return data
+    return load_config_mapping(config_path)
 
 
 def resolve_layout_params_csv(

@@ -14,9 +14,12 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
+
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.config_pages import (
     ConfigPage,
@@ -26,6 +29,7 @@ from tools.config_pages import (
     PdfInsertPage,
     RstIncludePage,
 )
+from tools.config_loader import load_config_mapping
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
     GeneratedPageRender,
@@ -131,13 +135,7 @@ def _select_planned_pages(planned_pages: list[PlannedPage], page_selector: str |
 
 
 def load_config(cfg_path: Path) -> dict:
-    if not cfg_path.exists():
-        raise RuntimeError(f"Config not found: {cfg_path}")
-
-    import yaml  # requires PyYAML
-
-    with cfg_path.open("r", encoding="utf-8") as f:
-        return yaml.safe_load(f) or {}
+    return load_config_mapping(cfg_path)
 
 
 def latex_cover_block(file_name: str) -> list[str]:

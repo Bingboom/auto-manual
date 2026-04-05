@@ -311,3 +311,21 @@ def collect_doctor_findings(
             doctor_add(findings, "OK" if ok else "ERROR", "pdf.runtime", detail)
 
     return findings
+
+
+def run_doctor(
+    args: argparse.Namespace,
+    *,
+    collect_doctor_findings: Callable[[argparse.Namespace], list[Any]],
+    render_finding: Callable[[Any], str],
+    printer: Callable[[str], None] = print,
+) -> None:
+    findings = collect_doctor_findings(args)
+    for finding in findings:
+        printer(render_finding(finding))
+
+    errors = sum(1 for finding in findings if finding.level == "ERROR")
+    warnings = sum(1 for finding in findings if finding.level == "WARN")
+    printer(f"[doctor] SUMMARY errors={errors} warnings={warnings}")
+    if errors:
+        raise RuntimeError(f"doctor found {errors} blocking issue(s)")
