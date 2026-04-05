@@ -71,6 +71,10 @@ Do not move new low-level implementation back into these files unless the behavi
   - queue-triggered `build.py` command assembly
   - phase2 sync-before-build execution
   - worktree-scoped draft/publish build orchestration
+- [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+  - top-level queue session flow
+  - dry-run vs real-run branch control
+  - post-sync pending-state reload
 - [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
   - per-group queue processing
   - started/success/failure writeback orchestration
@@ -87,10 +91,19 @@ Do not move new low-level implementation back into these files unless the behavi
   - wiki destination reporting for a processing session
 - [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
   - Lark/Drive/Wiki transport and remote I/O helpers
+- [`tools/queue_bound_lark_ops.py`](../../tools/queue_bound_lark_ops.py)
+  - repo-root-aware Lark transport adapters used by queue entrypoints
+  - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
-  - publish asset staging
-  - release/output path helpers
-  - publish metadata assembly
+  - generic publish asset staging
+  - generic release/output path helpers
+  - generic publish metadata assembly
+- [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
+  - repo-root-aware queue output adapters
+  - bound output/release helpers that keep `process_build_queue.ROOT` patchable
+- [`tools/queue_bound_runtime.py`](../../tools/queue_bound_runtime.py)
+  - repo-root-aware command/worktree adapters for queue entrypoints
+  - bound `build.py` command builders and worktree helpers that keep entrypoint compatibility names stable
 - [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
   - queue result formatting
   - row writeback payload assembly

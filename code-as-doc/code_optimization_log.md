@@ -262,3 +262,31 @@ Why it mattered:
 
 - decomposition work is now discoverable after the commit lands, not only recoverable from Git history
 - maintainers have a stable place to document future module moves as the next large files are split
+
+## 16. 2026-04-05: Queue Entry Boundary Tightening
+
+Main outcomes:
+
+- extracted [`tools/queue_orchestration.py`](../tools/queue_orchestration.py) so [`tools/process_build_queue.py`](../tools/process_build_queue.py) now delegates its top-level session loop instead of carrying the full pending-state / dry-run / real-run branch logic
+- extracted [`tools/queue_bound_outputs.py`](../tools/queue_bound_outputs.py) so repo-root-aware output and release adapters live outside the entry file
+- preserved test-time `ROOT` patching by wiring the bound-output module through a dynamic repo-root provider instead of hardcoding repo state inside the helper
+- refreshed [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) to record the new queue ownership split
+
+Why it mattered:
+
+- queue entry behavior is now cleaner to reason about because session orchestration and repo-root output adaptation are explicit modules
+- the remaining `process_build_queue.py` surface is closer to compatibility wrappers plus dependency wiring instead of mixed implementation
+
+## 17. 2026-04-05: Queue Runtime And Transport Adapter Split
+
+Main outcomes:
+
+- extracted [`tools/queue_bound_runtime.py`](../tools/queue_bound_runtime.py) for repo-root-aware command/worktree helpers and bound `build.py` command assembly
+- extracted [`tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) for repo-root-aware Lark CLI adapters used by the queue entrypoint
+- kept compatibility names such as `_run_command`, `_run_lark_cli_json`, `get_wiki_node`, and `_command_failure_message` on [`tools/process_build_queue.py`](../tools/process_build_queue.py) so existing tests and callers still patch the same surface
+- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) further into a smaller orchestration-and-compatibility layer
+
+Why it mattered:
+
+- queue-specific runtime and transport binding no longer need to live inline with queue record/action orchestration
+- the remaining hot spots in `process_build_queue.py` are now narrower and easier to isolate in later passes

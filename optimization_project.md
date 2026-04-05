@@ -88,6 +88,8 @@ Use this section for short milestone-style updates.
 - added staging-first local validation wrappers and cross-platform branch freshness guardrails
 - started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
 - added [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_lark_ops.py)
 
 ## 5. Open Gaps
 
