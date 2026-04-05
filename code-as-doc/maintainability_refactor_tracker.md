@@ -146,7 +146,7 @@ Milestone status: `in_progress`
 Milestone status: `pending`
 
 - [ ] PR 6: Split diff-report and release-manifest services
-  - Status: `pending`
+  - Status: `done`
   - Target files:
     - [`../tools/diff_report.py`](../tools/diff_report.py)
     - [`../tools/release_manifest.py`](../tools/release_manifest.py)
@@ -157,8 +157,8 @@ Milestone status: `pending`
   - Done when:
     - report extraction, diff logic, and output rendering are separated
     - release-manifest path semantics remain unchanged
-  - Completed:
-  - Note:
+  - Completed: `2026-04-05`
+  - Note: split diff-report into dedicated git/path, field/source extraction, HTML/CSV rendering, and top-level report-generation helpers while keeping the public facade in [`../tools/diff_report.py`](../tools/diff_report.py), and moved release-manifest runtime assembly into [`../tools/release_manifest_service.py`](../tools/release_manifest_service.py) while keeping CLI behavior and patchable entry hooks stable; `tools/diff_report.py` dropped from 1696 to 126 lines and `tools/release_manifest.py` dropped from 216 to 90 lines
 
 - [ ] PR 7: Split queue flow and external integrations
   - Status: `pending`
