@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import shutil
 import subprocess
@@ -15,7 +14,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -23,6 +21,26 @@ if str(ROOT) not in sys.path:
 
 from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.document_link_queue import (  # noqa: E402
+    available_field_names as _available_field_names_impl,
+    collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
+    document_link_cfg as _document_link_cfg_impl,
+    document_link_env_names as _document_link_env_names_impl,
+    document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env_impl,
+    field_value as _field_value_impl,
+    is_immediate_trigger_enabled as _is_immediate_trigger_enabled_impl,
+    is_trigger_requested as _is_trigger_requested_impl,
+    parse_document_key as _parse_document_key_impl,
+    parse_queue_records as _parse_queue_records_impl,
+    queue_group_build_family as _queue_group_build_family_impl,
+    queue_group_lang as _queue_group_lang_impl,
+    queue_record_key as _queue_record_key_impl,
+    resolve_document_link_binding as _resolve_document_link_binding_impl,
+    resolve_target_for_record as _resolve_target_for_record_impl,
+    scalar_text as _scalar_text_impl,
+    select_pending_queue_records as _select_pending_queue_records_impl,
+    validate_queue_record_group as _validate_queue_record_group_impl,
+)
 from tools.document_link_actions import (  # noqa: E402
     DRAFT_PACKAGE_ACTION_LABEL,
     PUBLISH_ACTION_LABEL,
@@ -57,6 +75,29 @@ from tools.queue_outputs import (  # noqa: E402
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo_impl,
     versioned_word_output_path as _versioned_word_output_path_impl,
     write_publish_release_metadata as _write_publish_release_metadata_impl,
+)
+from tools.queue_lark_ops import (  # noqa: E402
+    cli_relative_file_arg as _cli_relative_file_arg_impl,
+    get_wiki_node as _get_wiki_node_impl,
+    host_root_from_url as _host_root_from_url_impl,
+    move_drive_file_to_wiki as _move_drive_file_to_wiki_impl,
+    move_result_entry_from_task_payload as _move_result_entry_from_task_payload_impl,
+    resolve_wiki_destination as _resolve_wiki_destination_impl,
+    run_lark_cli_json as _run_lark_cli_json_impl,
+    upload_word_to_drive as _upload_word_to_drive_impl,
+    wait_for_wiki_move_task as _wait_for_wiki_move_task_impl,
+    wiki_node_from_payload as _wiki_node_from_payload_impl,
+    wiki_url_from_host_root as _wiki_url_from_host_root_impl,
+)
+from tools.queue_runtime import (  # noqa: E402
+    command_failure_message as _command_failure_message_impl,
+    format_command as _format_command_impl,
+    prepare_git_ref_worktree as _prepare_git_ref_worktree_impl,
+    remove_worktree as _remove_worktree_impl,
+    run_command as _run_command_impl,
+    run_git as _run_git_impl,
+    slug_ref_token as _slug_ref_token_impl,
+    worktree_dir_for_git_ref as _worktree_dir_for_git_ref_impl,
 )
 from tools.queue_writeback import (  # noqa: E402
     build_failure_fields as _build_failure_fields,
@@ -146,151 +187,75 @@ class WikiDestination:
 
 
 def _document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    raw = phase2_cfg.get("document_link", {})
-    return raw if isinstance(raw, dict) else {}
+    return _document_link_cfg_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
 
 
 def _document_link_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    document_link_cfg = _document_link_cfg(cfg)
-    base_token_env = str(document_link_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or "").strip()
-    table_id_env = str(document_link_cfg.get("table_id_env") or "").strip()
-    view_id_env = str(document_link_cfg.get("view_id_env") or "").strip() or None
-    return base_token_env, table_id_env, view_id_env
+    return _document_link_env_names_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
 
 
 def _document_link_wiki_parent_token_env(cfg: dict[str, Any]) -> str | None:
-    document_link_cfg = _document_link_cfg(cfg)
-    value = str(document_link_cfg.get("wiki_parent_token_env") or "").strip()
-    return value or None
+    return _document_link_wiki_parent_token_env_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
 
 
 def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
-    _provider_name(cfg)
-
-    cli_bin = _cli_bin(cfg)
-    try:
-        command = _cli_command_parts(cli_bin)[0]
-    except RuntimeError as exc:
-        errors.append(str(exc))
-        command = None
-    if command and not _cli_command_exists(cli_bin):
-        errors.append(f"sync.phase2.cli_bin executable is not available: {command}")
-
-    base_token_env, table_id_env, view_id_env = _document_link_env_names(cfg)
-    missing_env_names = [
-        env_name
-        for env_name in (base_token_env, table_id_env, view_id_env or "")
-        if env_name and not str(os.environ.get(env_name, "")).strip()
-    ]
-    if not base_token_env:
-        errors.append("sync.phase2.document_link.base_token_env is required, or provide sync.phase2.base_token_env")
-    if not table_id_env:
-        errors.append("sync.phase2.document_link.table_id_env is required")
-    if missing_env_names:
-        errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
-    return errors
+    return _collect_queue_preflight_errors_impl(
+        cfg,
+        provider_name=_provider_name,
+        cli_bin=_cli_bin,
+        cli_command_parts=_cli_command_parts,
+        cli_command_exists=_cli_command_exists,
+        sync_phase2_cfg=_sync_phase2_cfg,
+        environ=os.environ,
+    )
 
 
 def resolve_document_link_binding(cfg: dict[str, Any]) -> DocumentLinkBinding:
-    base_token_env, table_id_env, view_id_env = _document_link_env_names(cfg)
-    wiki_parent_token_env = _document_link_wiki_parent_token_env(cfg)
-    if not base_token_env:
-        raise RuntimeError("sync.phase2.document_link.base_token_env is required, or provide sync.phase2.base_token_env")
-    if not table_id_env:
-        raise RuntimeError("sync.phase2.document_link.table_id_env is required")
-    return DocumentLinkBinding(
-        base_token_env=base_token_env,
-        table_id_env=table_id_env,
-        view_id_env=view_id_env,
-        wiki_parent_token_env=wiki_parent_token_env,
-        base_token=_env_value(base_token_env),
-        table_id=_env_value(table_id_env),
-        view_id=_env_value(view_id_env) if view_id_env else None,
-        wiki_parent_token=_env_value(wiki_parent_token_env) if wiki_parent_token_env and str(os.environ.get(wiki_parent_token_env, "")).strip() else None,
+    return _resolve_document_link_binding_impl(
+        cfg,
+        sync_phase2_cfg=_sync_phase2_cfg,
+        binding_factory=DocumentLinkBinding,
+        env_value=_env_value,
+        environ=os.environ,
     )
 
 
 def _scalar_text(value: Any) -> str:
-    if value is None:
-        return ""
-    if isinstance(value, list):
-        for item in value:
-            text = _scalar_text(item)
-            if text:
-                return text
-        return ""
-    if isinstance(value, bool):
-        return "TRUE" if value else "FALSE"
-    if isinstance(value, int):
-        return str(value)
-    if isinstance(value, float):
-        if value.is_integer():
-            return str(int(value))
-        return format(value, "g")
-    if isinstance(value, dict):
-        return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-    return str(value).strip()
+    return _scalar_text_impl(value)
 
 
 def _field_value(fields: dict[str, Any], *field_names: str) -> Any:
-    for field_name in field_names:
-        if field_name in fields:
-            return fields.get(field_name)
-    return None
+    return _field_value_impl(fields, *field_names)
 
 
 def _available_field_names(raw_records: list[dict[str, Any]]) -> set[str]:
-    names: set[str] = set()
-    for record in raw_records:
-        fields_raw = record.get("fields", {})
-        if not isinstance(fields_raw, dict):
-            continue
-        for key in fields_raw:
-            if isinstance(key, str):
-                names.add(key)
-    return names
+    return _available_field_names_impl(raw_records)
 
 
 def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
-    records: list[QueueRecord] = []
-    for record in raw_records:
-        record_id = str(record.get("record_id") or "").strip()
-        if not record_id:
-            raise RuntimeError("Document_link record list is missing record_id")
-        fields_raw = record.get("fields", {})
-        fields = fields_raw if isinstance(fields_raw, dict) else {}
-        records.append(
-            QueueRecord(
-                record_id=record_id,
-                document_id=_scalar_text(fields.get(DOCUMENT_ID_FIELD)),
-                document_key=_scalar_text(fields.get(DOCUMENT_KEY_FIELD)),
-                version=_scalar_text(fields.get(VERSION_FIELD)),
-                lang=_scalar_text(fields.get(LANG_FIELD)).lower(),
-                build_family=_scalar_text(fields.get(BUILD_FAMILY_FIELD)).lower(),
-                workflow_action=_scalar_text(fields.get(WORKFLOW_ACTION_FIELD)),
-                doc_phase=_scalar_text(fields.get(DOC_PHASE_FIELD)),
-                git_ref=_scalar_text(fields.get(GIT_REF_FIELD)),
-                trigger_value=_scalar_text(_field_value(fields, TRIGGER_FIELD, *LEGACY_TRIGGER_FIELDS)),
-                immediate_trigger_value=fields.get(IMMEDIATE_TRIGGER_FIELD),
-            )
-        )
-    return records
+    return _parse_queue_records_impl(
+        raw_records,
+        queue_record_factory=QueueRecord,
+        document_id_field=DOCUMENT_ID_FIELD,
+        document_key_field=DOCUMENT_KEY_FIELD,
+        version_field=VERSION_FIELD,
+        lang_field=LANG_FIELD,
+        build_family_field=BUILD_FAMILY_FIELD,
+        workflow_action_field=WORKFLOW_ACTION_FIELD,
+        doc_phase_field=DOC_PHASE_FIELD,
+        git_ref_field=GIT_REF_FIELD,
+        trigger_field=TRIGGER_FIELD,
+        legacy_trigger_fields=LEGACY_TRIGGER_FIELDS,
+        immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
+    )
 
 
 def _is_immediate_trigger_enabled(value: Any) -> bool:
-    if isinstance(value, bool):
-        return value
-    if isinstance(value, (int, float)):
-        return bool(value)
-    text = _scalar_text(value).strip().lower()
-    return text in {"1", "true", "y", "yes", "checked"}
+    return _is_immediate_trigger_enabled_impl(value)
 
 
 def _is_trigger_requested(value: Any) -> bool:
-    return _scalar_text(value).strip().lower() in TRIGGER_VALUES
+    return _is_trigger_requested_impl(value, trigger_values=TRIGGER_VALUES)
 
 
 def normalize_workflow_action(value: Any) -> str | None:
@@ -350,33 +315,22 @@ def select_pending_queue_records(
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> list[QueueRecord]:
-    normalized_filter_doc_phase = normalize_cli_queue_action(
+    return _select_pending_queue_records_impl(
+        raw_records,
+        immediate_only=immediate_only,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        record_id=record_id,
+        parse_queue_records=parse_queue_records,
+        normalize_cli_queue_action=normalize_cli_queue_action,
+        resolve_queue_workflow_action=resolve_queue_workflow_action,
+        is_trigger_requested=_is_trigger_requested,
+        is_immediate_trigger_enabled=_is_immediate_trigger_enabled,
     )
-    selected: list[QueueRecord] = []
-    for record in parse_queue_records(raw_records):
-        if not _is_trigger_requested(record.trigger_value):
-            continue
-        if immediate_only and not _is_immediate_trigger_enabled(record.immediate_trigger_value):
-            continue
-        if record_id and record.record_id != record_id:
-            continue
-        if normalized_filter_doc_phase is not None:
-            if resolve_queue_workflow_action(record) != normalized_filter_doc_phase:
-                continue
-        selected.append(record)
-    return selected
 
 
 def parse_document_key(document_key: str) -> tuple[str, str]:
-    model, separator, region = document_key.strip().rpartition("_")
-    if not separator or not model.strip() or not region.strip():
-        raise RuntimeError(
-            "Document_Key must use '<MODEL>_<REGION>' so the build target is unambiguous: "
-            + document_key
-        )
-    return model.strip(), region.strip().upper()
+    return _parse_document_key_impl(document_key)
 
 
 def _document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
@@ -391,58 +345,19 @@ def _document_key_from_document_id(*, document_id: str, lang: str, version: str)
 
 
 def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
-    candidates: list[str] = []
-    if record.document_key.strip():
-        candidates.append(record.document_key.strip())
-    fallback_key = _document_key_from_document_id(
-        document_id=record.document_id,
-        lang=record.lang,
-        version=record.version,
-    )
-    if fallback_key and fallback_key not in candidates:
-        candidates.append(fallback_key)
-
-    errors: list[str] = []
-    for candidate in candidates:
-        try:
-            return parse_document_key(candidate)
-        except RuntimeError as exc:
-            errors.append(str(exc))
-
-    detail = (
-        f"Document_ID={record.document_id!r}, Document_Key={record.document_key!r}, "
-        f"Lang={record.lang!r}, Build_family={record.build_family!r}"
-    )
-    if errors:
-        raise RuntimeError("Unable to resolve build target for queue record. " + detail + " | " + " | ".join(errors))
-    raise RuntimeError("Unable to resolve build target for queue record. " + detail)
+    return _resolve_target_for_record_impl(record, parse_document_key=parse_document_key)
 
 
 def queue_record_key(record: QueueRecord) -> str:
-    if record.document_key.strip():
-        return record.document_key.strip().upper()
-    fallback_key = _document_key_from_document_id(
-        document_id=record.document_id,
-        lang=record.lang,
-        version=record.version,
-    )
-    if fallback_key:
-        return fallback_key.upper()
-    return record.record_id
+    return _queue_record_key_impl(record)
 
 
 def queue_group_lang(records: list[QueueRecord]) -> str:
-    for record in records:
-        if record.lang.strip():
-            return record.lang.strip().lower()
-    return ""
+    return _queue_group_lang_impl(records)
 
 
 def queue_group_build_family(records: list[QueueRecord]) -> str:
-    for record in records:
-        if record.build_family.strip():
-            return record.build_family.strip().lower()
-    return ""
+    return _queue_group_build_family_impl(records)
 
 
 def resolve_config_path_for_task(*, region: str, lang: str | None, build_family: str | None = None) -> Path:
@@ -476,32 +391,11 @@ def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRe
 
 
 def validate_queue_record_group(records: list[QueueRecord]) -> None:
-    if not records:
-        return
-    if len(records) == 1:
-        resolve_queue_workflow_action(records[0])
-        return
-
-    group_key = queue_record_key(records[0])
-    doc_phases = {resolve_queue_workflow_action(record) or "" for record in records}
-    versions = {record.version.strip() for record in records}
-    git_refs = {record.git_ref.strip() for record in records}
-    build_families = {record.build_family.strip().lower() for record in records if record.build_family.strip()}
-    conflicts: list[str] = []
-    if len(doc_phases) > 1:
-        conflicts.append("Workflow_action/Doc_phase")
-    if len(versions) > 1:
-        conflicts.append("Version")
-    if len(git_refs) > 1:
-        conflicts.append("Git_ref")
-    if len(build_families) > 1:
-        conflicts.append("Build_family")
-    if conflicts:
-        raise RuntimeError(
-            "Queue rows merged by Document_Key must agree on "
-            + ", ".join(conflicts)
-            + f": {group_key}"
-        )
+    _validate_queue_record_group_impl(
+        records,
+        queue_record_key=queue_record_key,
+        resolve_queue_workflow_action=resolve_queue_workflow_action,
+    )
 
 
 def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
@@ -597,204 +491,77 @@ def _publish_release_latest_dir_for_target(*, config_path: Path, model: str, reg
 
 
 def _slug_ref_token(value: str) -> str:
-    text = re.sub(r"[^a-z0-9]+", "-", value.strip().lower()).strip("-")
-    return text or "queue"
+    return _slug_ref_token_impl(value)
 
 
 def _format_command(cmd: list[str]) -> str:
-    return subprocess.list2cmdline([str(part) for part in cmd])
+    return _format_command_impl(cmd)
 
 
 def _command_failure_message(cmd: list[str], stdout: str, stderr: str, returncode: int) -> str:
-    for stream in (stderr, stdout):
-        raw = stream.strip()
-        if raw:
-            try:
-                payload = json.loads(raw)
-            except json.JSONDecodeError:
-                payload = None
-            if isinstance(payload, dict):
-                error = payload.get("error")
-                if isinstance(error, dict):
-                    parts: list[str] = []
-                    error_type = str(error.get("type") or "").strip()
-                    error_code = str(error.get("code") or "").strip()
-                    error_message = str(error.get("message") or "").strip()
-                    if error_type:
-                        parts.append(error_type)
-                    if error_message:
-                        parts.append(error_message)
-                    if error_code and error_code not in error_message:
-                        parts.append(f"code={error_code}")
-                    detail = error.get("detail")
-                    if isinstance(detail, dict):
-                        violations = detail.get("permission_violations")
-                        if isinstance(violations, list):
-                            subjects = [
-                                str(item.get("subject") or "").strip()
-                                for item in violations
-                                if isinstance(item, dict) and str(item.get("subject") or "").strip()
-                            ]
-                            if subjects:
-                                parts.append("subjects=" + ",".join(subjects))
-                    if parts:
-                        return f"{' | '.join(parts)} (exit={returncode}, cmd={_format_command(cmd)})"
-        lines = [line.strip() for line in stream.splitlines() if line.strip()]
-        if lines:
-            return f"{lines[-1]} (exit={returncode}, cmd={_format_command(cmd)})"
-    return f"command failed with exit={returncode}: {_format_command(cmd)}"
+    return _command_failure_message_impl(cmd, stdout, stderr, returncode)
 
 
 def _run_command(cmd: list[str], *, cwd: Path = ROOT) -> None:
-    print(f"[build-queue] {_format_command(cmd)}")
-    proc = subprocess.run(
+    _run_command_impl(
         cmd,
-        cwd=str(cwd),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
+        cwd=cwd,
+        prefix="[build-queue]",
+        command_failure_message=_command_failure_message,
     )
-    if proc.stdout:
-        print(proc.stdout, end="")
-    if proc.stderr:
-        print(proc.stderr, end="", file=sys.stderr)
-    if proc.returncode:
-        raise RuntimeError(_command_failure_message(cmd, proc.stdout or "", proc.stderr or "", proc.returncode))
 
 
 def _run_git(args: list[str], *, cwd: Path = ROOT) -> None:
-    _run_command(["git", *args], cwd=cwd)
+    _run_git_impl(args, repo_root=cwd, run_command=_run_command)
 
 
 def _worktree_dir_for_git_ref(git_ref: str) -> Path:
-    return ROOT / ".tmp" / "process-build-queue-worktrees" / _slug_ref_token(git_ref)
+    return _worktree_dir_for_git_ref_impl(repo_root=ROOT, git_ref=git_ref)
 
 
 def _remove_worktree(path: Path) -> None:
-    if not path.exists():
-        return
-    proc = subprocess.run(
-        ["git", "worktree", "remove", "--force", str(path)],
-        cwd=str(ROOT),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    )
-    if proc.returncode != 0 and path.exists():
-        shutil.rmtree(path, ignore_errors=True)
+    _remove_worktree_impl(repo_root=ROOT, path=path)
 
 
 def _prepare_git_ref_worktree(git_ref: str) -> Path:
-    branch_name = git_ref.strip()
-    if not branch_name:
-        raise RuntimeError("Git_ref is required when preparing a queue build worktree")
-    _run_git(["fetch", "origin", "--prune"])
-    _run_git(["fetch", "origin", f"refs/heads/{branch_name}:refs/remotes/origin/{branch_name}"])
-    source_ref = f"origin/{branch_name}"
-    worktree = _worktree_dir_for_git_ref(branch_name)
-    _remove_worktree(worktree)
-    worktree.parent.mkdir(parents=True, exist_ok=True)
-    _run_git(["worktree", "add", "--force", "--detach", str(worktree), source_ref])
-    return worktree
+    return _prepare_git_ref_worktree_impl(
+        repo_root=ROOT,
+        git_ref=git_ref,
+        run_git=_run_git,
+        worktree_dir_for_git_ref=_worktree_dir_for_git_ref,
+        remove_worktree=lambda *, repo_root, path: _remove_worktree(path),
+    )
 
 
 def _run_lark_cli_json(*, cli_bin: str, args: list[str]) -> dict[str, Any]:
-    cmd = [*_resolved_cli_command_parts(cli_bin), *args]
-    print(f"[build-queue] {_format_command(cmd)}")
-    proc = subprocess.run(
-        cmd,
-        cwd=str(ROOT),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
+    return _run_lark_cli_json_impl(
+        cli_bin=cli_bin,
+        args=args,
+        repo_root=ROOT,
+        resolved_cli_command_parts=_resolved_cli_command_parts,
+        parse_json_payload=_parse_json_payload,
+        format_command=_format_command,
+        command_failure_message=_command_failure_message,
     )
-    if proc.returncode:
-        raise RuntimeError(_command_failure_message(cmd, proc.stdout or "", proc.stderr or "", proc.returncode))
-    payload = _parse_json_payload(proc.stdout or proc.stderr or "")
-    code = payload.get("code")
-    if code not in (None, 0):
-        message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
-        raise RuntimeError(f"Lark CLI API request failed: {message}")
-    return payload
 
 
 def _cli_relative_file_arg(path: Path) -> str:
-    resolved = path.resolve(strict=False)
-    try:
-        relative = resolved.relative_to(ROOT)
-    except ValueError as exc:
-        raise RuntimeError(f"Word output must stay under repo root for lark-cli upload: {resolved}") from exc
-    if os.name == "nt":
-        return ".\\" + str(relative).replace("/", "\\")
-    return "./" + relative.as_posix()
+    return _cli_relative_file_arg_impl(repo_root=ROOT, path=path)
 
 
 def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
-    if not word_output_path.exists():
-        raise RuntimeError(f"Word output was not created: {word_output_path}")
-
-    upload_payload = _run_lark_cli_json(
+    return _upload_word_to_drive_impl(
         cli_bin=cli_bin,
-        args=[
-            "drive",
-            "+upload",
-            "--as",
-            identity,
-            "--file",
-            _cli_relative_file_arg(word_output_path),
-            "--name",
-            word_output_path.name,
-        ],
+        word_output_path=word_output_path,
+        identity=identity,
+        repo_root=ROOT,
+        run_lark_cli_json=_run_lark_cli_json,
+        cli_relative_file_arg=lambda *, repo_root, path: _cli_relative_file_arg(path),
     )
-    upload_data = upload_payload.get("data")
-    if not isinstance(upload_data, dict):
-        raise RuntimeError("Drive upload response is missing data payload")
-    file_token = str(upload_data.get("file_token") or "").strip()
-    if not file_token:
-        raise RuntimeError("Drive upload response is missing file_token")
-
-    meta_payload = _run_lark_cli_json(
-        cli_bin=cli_bin,
-        args=[
-            "drive",
-            "metas",
-            "batch_query",
-            "--as",
-            identity,
-            "--data",
-            json.dumps(
-                {
-                    "with_url": True,
-                    "request_docs": [{"doc_token": file_token, "doc_type": "file"}],
-                },
-                ensure_ascii=False,
-                separators=(",", ":"),
-            ),
-        ],
-    )
-    meta_data = meta_payload.get("data")
-    if not isinstance(meta_data, dict):
-        raise RuntimeError("Drive metadata response is missing data payload")
-    metas = meta_data.get("metas")
-    if not isinstance(metas, list) or not metas or not isinstance(metas[0], dict):
-        raise RuntimeError(f"Drive metadata response is missing file url for file_token={file_token}")
-    drive_url = str(metas[0].get("url") or "").strip()
-    if not drive_url:
-        raise RuntimeError(f"Drive metadata response is missing file url for file_token={file_token}")
-    return file_token, drive_url
 
 
 def _wiki_node_from_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    data = payload.get("data")
-    if not isinstance(data, dict):
-        raise RuntimeError("Wiki node response is missing data payload")
-    node = data.get("node")
-    if not isinstance(node, dict):
-        raise RuntimeError("Wiki node response is missing node payload")
-    return node
+    return _wiki_node_from_payload_impl(payload)
 
 
 def get_wiki_node(
@@ -804,22 +571,13 @@ def get_wiki_node(
     token: str,
     obj_type: str | None = None,
 ) -> dict[str, Any]:
-    params: dict[str, Any] = {"token": token}
-    if obj_type:
-        params["obj_type"] = obj_type
-    payload = _run_lark_cli_json(
+    return _get_wiki_node_impl(
         cli_bin=cli_bin,
-        args=[
-            "wiki",
-            "spaces",
-            "get_node",
-            "--as",
-            identity,
-            "--params",
-            json.dumps(params, ensure_ascii=False, separators=(",", ":")),
-        ],
+        identity=identity,
+        token=token,
+        obj_type=obj_type,
+        run_lark_cli_json=_run_lark_cli_json,
     )
-    return _wiki_node_from_payload(payload)
 
 
 def resolve_wiki_destination(
@@ -828,52 +586,25 @@ def resolve_wiki_destination(
     identity: str,
     binding: DocumentLinkBinding,
 ) -> WikiDestination:
-    if binding.wiki_parent_token:
-        node = get_wiki_node(
-            cli_bin=cli_bin,
-            identity=identity,
-            token=binding.wiki_parent_token,
-        )
-        space_id = str(node.get("space_id") or "").strip()
-        parent_wiki_token = binding.wiki_parent_token
-    else:
-        node = get_wiki_node(
-            cli_bin=cli_bin,
-            identity=identity,
-            token=binding.base_token,
-            obj_type="bitable",
-        )
-        space_id = str(node.get("space_id") or "").strip()
-        parent_wiki_token = str(node.get("parent_node_token") or node.get("node_token") or "").strip()
-    if not space_id:
-        raise RuntimeError("Wiki destination lookup did not return a space_id")
-    if not parent_wiki_token:
-        raise RuntimeError("Wiki destination lookup did not return a usable parent_wiki_token")
-    return WikiDestination(space_id=space_id, parent_wiki_token=parent_wiki_token)
+    return _resolve_wiki_destination_impl(
+        cli_bin=cli_bin,
+        identity=identity,
+        binding=binding,
+        get_wiki_node=get_wiki_node,
+        wiki_destination_factory=WikiDestination,
+    )
 
 
 def _host_root_from_url(url: str) -> str:
-    parsed = urlparse(url.strip())
-    if not parsed.scheme or not parsed.netloc:
-        raise RuntimeError(f"Could not determine tenant host from URL: {url}")
-    return f"{parsed.scheme}://{parsed.netloc}"
+    return _host_root_from_url_impl(url)
 
 
 def _wiki_url_from_host_root(host_root: str, wiki_token: str) -> str:
-    return f"{host_root.rstrip('/')}/wiki/{wiki_token}"
+    return _wiki_url_from_host_root_impl(host_root, wiki_token)
 
 
 def _move_result_entry_from_task_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    data = payload.get("data")
-    if not isinstance(data, dict):
-        raise RuntimeError("Wiki task response is missing data payload")
-    task = data.get("task")
-    if not isinstance(task, dict):
-        raise RuntimeError("Wiki task response is missing task payload")
-    move_result = task.get("move_result")
-    if not isinstance(move_result, list) or not move_result or not isinstance(move_result[0], dict):
-        raise RuntimeError("Wiki task response is missing move_result payload")
-    return move_result[0]
+    return _move_result_entry_from_task_payload_impl(payload)
 
 
 def wait_for_wiki_move_task(
@@ -883,35 +614,16 @@ def wait_for_wiki_move_task(
     task_id: str,
     host_root: str,
 ) -> str:
-    for _ in range(20):
-        payload = _run_lark_cli_json(
-            cli_bin=cli_bin,
-            args=[
-                "api",
-                "GET",
-                f"/open-apis/wiki/v2/tasks/{task_id}",
-                "--params",
-                json.dumps({"task_type": "move"}, ensure_ascii=False, separators=(",", ":")),
-                "--as",
-                identity,
-            ],
-        )
-        entry = _move_result_entry_from_task_payload(payload)
-        status = entry.get("status")
-        status_msg = str(entry.get("status_msg") or "").strip()
-        if status == 1 or status_msg == "processing":
-            time.sleep(3.0)
-            continue
-        if status == 0:
-            node = entry.get("node")
-            if not isinstance(node, dict):
-                raise RuntimeError("Wiki task completed without node payload")
-            wiki_token = str(node.get("node_token") or "").strip()
-            if not wiki_token:
-                raise RuntimeError("Wiki task completed without node_token")
-            return _wiki_url_from_host_root(host_root, wiki_token)
-        raise RuntimeError(f"Wiki move task failed: {status_msg or status}")
-    raise RuntimeError(f"Wiki move task timed out: {task_id}")
+    return _wait_for_wiki_move_task_impl(
+        cli_bin=cli_bin,
+        identity=identity,
+        task_id=task_id,
+        host_root=host_root,
+        run_lark_cli_json=_run_lark_cli_json,
+        move_result_entry_from_task_payload=_move_result_entry_from_task_payload,
+        wiki_url_from_host_root=_wiki_url_from_host_root,
+        sleep=time.sleep,
+    )
 
 
 def move_drive_file_to_wiki(
@@ -922,44 +634,17 @@ def move_drive_file_to_wiki(
     drive_url: str,
     destination: WikiDestination,
 ) -> str:
-    host_root = _host_root_from_url(drive_url)
-    payload = _run_lark_cli_json(
+    return _move_drive_file_to_wiki_impl(
         cli_bin=cli_bin,
-        args=[
-            "api",
-            "POST",
-            f"/open-apis/wiki/v2/spaces/{destination.space_id}/nodes/move_docs_to_wiki",
-            "--as",
-            identity,
-            "--data",
-            json.dumps(
-                {
-                    "parent_wiki_token": destination.parent_wiki_token,
-                    "obj_type": "file",
-                    "obj_token": file_token,
-                },
-                ensure_ascii=False,
-                separators=(",", ":"),
-            ),
-        ],
+        identity=identity,
+        file_token=file_token,
+        drive_url=drive_url,
+        destination=destination,
+        run_lark_cli_json=_run_lark_cli_json,
+        host_root_from_url=_host_root_from_url,
+        wiki_url_from_host_root=_wiki_url_from_host_root,
+        wait_for_wiki_move_task=wait_for_wiki_move_task,
     )
-    data = payload.get("data")
-    if not isinstance(data, dict):
-        raise RuntimeError("Wiki move response is missing data payload")
-    wiki_token = str(data.get("wiki_token") or "").strip()
-    if wiki_token:
-        return _wiki_url_from_host_root(host_root, wiki_token)
-    task_id = str(data.get("task_id") or "").strip()
-    if task_id:
-        return wait_for_wiki_move_task(
-            cli_bin=cli_bin,
-            identity=identity,
-            task_id=task_id,
-            host_root=host_root,
-        )
-    if data.get("applied") is True:
-        raise RuntimeError("Wiki move requires a permission approval flow before the file can be attached to the knowledge base")
-    raise RuntimeError("Wiki move response did not include wiki_token or task_id")
 
 
 def _build_py_target_command(
