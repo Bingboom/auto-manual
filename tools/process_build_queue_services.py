@@ -1,12 +1,42 @@
 from __future__ import annotations
 
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from tools.queue_build_execution import (
+    build_document_for_task as _build_document_for_task_impl,
+    sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
+)
+from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_impl
+from tools.queue_group_processing import process_queue_record_group as _process_queue_record_group_impl
+from tools.queue_lark_ops import (
+    host_root_from_url as _host_root_from_url_impl,
+    move_drive_file_to_wiki as _move_drive_file_to_wiki_impl,
+    move_result_entry_from_task_payload as _move_result_entry_from_task_payload_impl,
+    resolve_wiki_destination as _resolve_wiki_destination_impl,
+    upload_word_to_drive as _upload_word_to_drive_impl,
+    wait_for_wiki_move_task as _wait_for_wiki_move_task_impl,
+    wiki_url_from_host_root as _wiki_url_from_host_root_impl,
+)
+from tools.queue_orchestration import process_build_queue as _process_build_queue_impl
+from tools.queue_session import (
+    bootstrap_queue_session as _bootstrap_queue_session_impl,
+    load_pending_queue_state as _load_pending_queue_state_impl,
+    print_no_pending_message as _print_no_pending_message_impl,
+    resolve_and_report_wiki_destination as _resolve_and_report_wiki_destination_impl,
+)
+from tools.queue_writeback import (
+    build_failure_fields as _build_failure_fields_impl,
+    build_failure_writeback_fields as _build_failure_writeback_fields_impl,
+    build_started_fields as _build_started_fields_impl,
+    build_success_fields as _build_success_fields_impl,
+)
+
 
 def upload_word_to_drive(module: Any, *, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
-    return module._upload_word_to_drive_impl(
+    return _upload_word_to_drive_impl(
         cli_bin=cli_bin,
         word_output_path=word_output_path,
         identity=identity,
@@ -23,7 +53,7 @@ def resolve_wiki_destination(
     identity: str,
     binding: Any,
 ) -> Any:
-    return module._resolve_wiki_destination_impl(
+    return _resolve_wiki_destination_impl(
         cli_bin=cli_bin,
         identity=identity,
         binding=binding,
@@ -40,15 +70,15 @@ def wait_for_wiki_move_task(
     task_id: str,
     host_root: str,
 ) -> str:
-    return module._wait_for_wiki_move_task_impl(
+    return _wait_for_wiki_move_task_impl(
         cli_bin=cli_bin,
         identity=identity,
         task_id=task_id,
         host_root=host_root,
         run_lark_cli_json=module._run_lark_cli_json,
-        move_result_entry_from_task_payload=module._move_result_entry_from_task_payload,
-        wiki_url_from_host_root=module._wiki_url_from_host_root,
-        sleep=module.time.sleep,
+        move_result_entry_from_task_payload=_move_result_entry_from_task_payload_impl,
+        wiki_url_from_host_root=_wiki_url_from_host_root_impl,
+        sleep=time.sleep,
     )
 
 
@@ -61,15 +91,15 @@ def move_drive_file_to_wiki(
     drive_url: str,
     destination: Any,
 ) -> str:
-    return module._move_drive_file_to_wiki_impl(
+    return _move_drive_file_to_wiki_impl(
         cli_bin=cli_bin,
         identity=identity,
         file_token=file_token,
         drive_url=drive_url,
         destination=destination,
         run_lark_cli_json=module._run_lark_cli_json,
-        host_root_from_url=module._host_root_from_url,
-        wiki_url_from_host_root=module._wiki_url_from_host_root,
+        host_root_from_url=_host_root_from_url_impl,
+        wiki_url_from_host_root=_wiki_url_from_host_root_impl,
         wait_for_wiki_move_task=module.wait_for_wiki_move_task,
     )
 
@@ -109,7 +139,7 @@ def build_py_sync_data_command(
 
 
 def sync_phase2_snapshot_before_queue(module: Any, *, config_path: Path, data_root: str | None) -> None:
-    module._sync_phase2_snapshot_before_queue_impl(
+    _sync_phase2_snapshot_before_queue_impl(
         repo_root=module.ROOT,
         config_path=config_path,
         data_root=data_root,
@@ -129,7 +159,7 @@ def build_document_for_task(
     version: str = "",
     git_ref: str = "",
 ) -> Path:
-    return module._build_document_for_task_impl(
+    return _build_document_for_task_impl(
         repo_root=module.ROOT,
         config_path=config_path,
         model=model,
@@ -162,7 +192,7 @@ def build_success_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    return module._build_success_fields(
+    return _build_success_fields_impl(
         version=version,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
@@ -183,7 +213,7 @@ def build_success_fields(
 
 
 def build_started_fields(module: Any, *, started_at: datetime) -> dict[str, Any]:
-    return module._build_started_fields(started_at=started_at, build_started_at_field=module.BUILD_STARTED_AT_FIELD)
+    return _build_started_fields_impl(started_at=started_at, build_started_at_field=module.BUILD_STARTED_AT_FIELD)
 
 
 def build_failure_fields(
@@ -194,7 +224,7 @@ def build_failure_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
-    return module._build_failure_fields(
+    return _build_failure_fields_impl(
         version=version,
         message=message,
         workflow_action=workflow_action,
@@ -217,7 +247,7 @@ def build_failure_writeback_fields(
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
 ) -> dict[str, Any]:
-    return module._build_failure_writeback_fields(
+    return _build_failure_writeback_fields_impl(
         version=version,
         message=message,
         workflow_action=workflow_action,
@@ -240,6 +270,19 @@ def best_effort_queue_workflow_action(module: Any, record: Any) -> str | None:
     )
 
 
+def _bootstrap_queue_session(module: Any, **kwargs: Any) -> Any:
+    return _bootstrap_queue_session_impl(
+        **kwargs,
+        collect_queue_preflight_errors=module.collect_queue_preflight_errors,
+        resolve_document_link_binding=module.resolve_document_link_binding,
+        cli_bin=module._cli_bin,
+        phase2_identity=module._phase2_identity,
+        source_factory=module.LarkCliSource,
+        normalize_cli_queue_action=module.normalize_cli_queue_action,
+        warn_legacy_cli_doc_phase=module.warn_legacy_cli_doc_phase,
+    )
+
+
 def process_build_queue(
     module: Any,
     *,
@@ -252,7 +295,7 @@ def process_build_queue(
     doc_phase: str | None = None,
     record_id: str | None = None,
 ) -> int:
-    return module._process_build_queue_impl(
+    return _process_build_queue_impl(
         cfg=cfg,
         config_path=config_path,
         data_root=data_root,
@@ -261,22 +304,13 @@ def process_build_queue(
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         record_id=record_id,
-        bootstrap_queue_session=lambda **kwargs: module._bootstrap_queue_session_impl(
-            **kwargs,
-            collect_queue_preflight_errors=module.collect_queue_preflight_errors,
-            resolve_document_link_binding=module.resolve_document_link_binding,
-            cli_bin=module._cli_bin,
-            phase2_identity=module._phase2_identity,
-            source_factory=module.LarkCliSource,
-            normalize_cli_queue_action=module.normalize_cli_queue_action,
-            warn_legacy_cli_doc_phase=module.warn_legacy_cli_doc_phase,
-        ),
-        load_pending_queue_state=module._load_pending_queue_state_impl,
-        print_no_pending_message=module._print_no_pending_message_impl,
-        print_dry_run_groups=module._print_dry_run_groups_impl,
+        bootstrap_queue_session=lambda **kwargs: _bootstrap_queue_session(module, **kwargs),
+        load_pending_queue_state=_load_pending_queue_state_impl,
+        print_no_pending_message=_print_no_pending_message_impl,
+        print_dry_run_groups=_print_dry_run_groups_impl,
         sync_phase2_snapshot_before_queue=module.sync_phase2_snapshot_before_queue,
-        resolve_and_report_wiki_destination=module._resolve_and_report_wiki_destination_impl,
-        process_queue_record_group=module._process_queue_record_group_impl,
+        resolve_and_report_wiki_destination=_resolve_and_report_wiki_destination_impl,
+        process_queue_record_group=_process_queue_record_group_impl,
         build_started_at_field=module.BUILD_STARTED_AT_FIELD,
         available_field_names=module._available_field_names,
         select_pending_queue_records=module.select_pending_queue_records,

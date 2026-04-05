@@ -134,38 +134,6 @@ from tools.queue_bound_records import (  # noqa: E402
     validate_queue_record_group,
 )
 from tools.queue_outputs import config_path_in_repo_root as _config_path_in_repo_root_impl  # noqa: E402
-from tools.queue_build_execution import (  # noqa: E402
-    build_document_for_task as _build_document_for_task_impl,
-    sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
-)
-from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_impl  # noqa: E402
-from tools.queue_group_processing import (  # noqa: E402
-    process_queue_record_group as _process_queue_record_group_impl,
-)
-from tools.queue_grouping import group_pending_queue_records as _group_pending_queue_records_impl  # noqa: E402
-from tools.queue_orchestration import process_build_queue as _process_build_queue_impl  # noqa: E402
-from tools.queue_session import (  # noqa: E402
-    bootstrap_queue_session as _bootstrap_queue_session_impl,
-    load_pending_queue_state as _load_pending_queue_state_impl,
-    print_no_pending_message as _print_no_pending_message_impl,
-    resolve_and_report_wiki_destination as _resolve_and_report_wiki_destination_impl,
-)
-from tools.queue_lark_ops import (  # noqa: E402
-    host_root_from_url as _host_root_from_url_impl,
-    move_drive_file_to_wiki as _move_drive_file_to_wiki_impl,
-    move_result_entry_from_task_payload as _move_result_entry_from_task_payload_impl,
-    resolve_wiki_destination as _resolve_wiki_destination_impl,
-    upload_word_to_drive as _upload_word_to_drive_impl,
-    wait_for_wiki_move_task as _wait_for_wiki_move_task_impl,
-    wiki_node_from_payload as _wiki_node_from_payload_impl,
-    wiki_url_from_host_root as _wiki_url_from_host_root_impl,
-)
-from tools.queue_writeback import (  # noqa: E402
-    build_failure_fields as _build_failure_fields,
-    build_failure_writeback_fields as _build_failure_writeback_fields,
-    build_started_fields as _build_started_fields,
-    build_success_fields as _build_success_fields,
-)
 from tools.queue_runtime import command_failure_message as _command_failure_message  # noqa: E402
 
 configure_queue_bound_providers(
@@ -222,9 +190,6 @@ def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str)
     )
 
 
-_wiki_node_from_payload = _wiki_node_from_payload_impl
-
-
 def resolve_wiki_destination(
     *,
     cli_bin: str,
@@ -237,11 +202,6 @@ def resolve_wiki_destination(
         identity=identity,
         binding=binding,
     )
-
-
-_host_root_from_url = _host_root_from_url_impl
-_wiki_url_from_host_root = _wiki_url_from_host_root_impl
-_move_result_entry_from_task_payload = _move_result_entry_from_task_payload_impl
 
 
 def wait_for_wiki_move_task(
