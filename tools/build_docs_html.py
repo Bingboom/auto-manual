@@ -95,6 +95,22 @@ def collect_model_html_variants(
     return variants
 
 
+def resolve_variant_target_page(current_html_path: Path, target_variant: Any) -> Path:
+    target_page = target_variant.html_dir / current_html_path.name
+    if target_page.exists():
+        return target_page
+    return target_variant.html_dir / "index.html"
+
+
+def build_manual_switcher_markup(
+    *,
+    current_variant: Any,
+    variants: list[Any],
+    current_html_path: Path,
+) -> str | None:
+    return None
+
+
 def inject_manual_switcher_into_html(
     html_path: Path,
     markup: str | None,

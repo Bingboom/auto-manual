@@ -27,10 +27,12 @@ from tools.build_docs_cli import parse_args as _parse_args_impl
 from tools.build_docs_entry import run_build as _run_build_impl
 from tools.build_docs_export import build_target as _build_target_impl
 from tools.build_docs_html import (
+    build_manual_switcher_markup as _build_manual_switcher_markup_impl,
     collect_model_html_variants as _collect_model_html_variants_impl,
     inject_manual_switcher_into_html as _inject_manual_switcher_into_html_impl,
     load_html_manual_variant as _load_html_manual_variant_impl,
     refresh_model_html_switchers as _refresh_model_html_switchers_impl,
+    resolve_variant_target_page as _resolve_variant_target_page_impl,
     strip_html_cover_section as _strip_html_cover_section_impl,
     write_html_manual_meta as _write_html_manual_meta_impl,
 )
@@ -40,6 +42,7 @@ from tools.build_docs_io import (
     export_pdf_from_docx_via_word as _export_pdf_from_docx_via_word_impl,
     export_word_from_html as _export_word_from_html_impl,
     export_word_from_latex as _export_word_from_latex_impl,
+    is_retryable_cleanup_error as _is_retryable_cleanup_error_impl,
     patch_fonts as _patch_fonts_impl,
     remove_tree_with_retries as _remove_tree_with_retries_impl,
     sphinx_build as _sphinx_build_impl,
@@ -217,14 +220,7 @@ def clean_build_targets(
 
 
 def _is_retryable_cleanup_error(exc: OSError) -> bool:
-    if getattr(exc, "winerror", None) == 32:
-        return True
-    if isinstance(exc, PermissionError):
-        if os.name == "nt":
-            return True
-        message = str(exc).lower()
-        return "file in use" in message or "resource busy" in message
-    return False
+    return _is_retryable_cleanup_error_impl(exc, os_name=os.name)
 
 
 def remove_tree_with_retries(path: Path) -> None:
@@ -525,10 +521,7 @@ def collect_model_html_variants(
 
 
 def _resolve_variant_target_page(current_html_path: Path, target_variant: HtmlManualVariant) -> Path:
-    target_page = target_variant.html_dir / current_html_path.name
-    if target_page.exists():
-        return target_page
-    return target_variant.html_dir / "index.html"
+    return _resolve_variant_target_page_impl(current_html_path, target_variant)
 
 
 def build_manual_switcher_markup(
@@ -537,7 +530,11 @@ def build_manual_switcher_markup(
     variants: list[HtmlManualVariant],
     current_html_path: Path,
 ) -> str | None:
-    return None
+    return _build_manual_switcher_markup_impl(
+        current_variant=current_variant,
+        variants=variants,
+        current_html_path=current_html_path,
+    )
 
 
 def inject_manual_switcher_into_html(html_path: Path, markup: str | None) -> bool:

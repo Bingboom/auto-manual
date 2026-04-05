@@ -4,6 +4,17 @@ from pathlib import Path
 from typing import Any, Callable
 
 
+def is_retryable_cleanup_error(exc: OSError, *, os_name: str) -> bool:
+    if getattr(exc, "winerror", None) == 32:
+        return True
+    if isinstance(exc, PermissionError):
+        if os_name == "nt":
+            return True
+        message = str(exc).lower()
+        return "file in use" in message or "resource busy" in message
+    return False
+
+
 def remove_tree_with_retries(
     path: Path,
     *,
