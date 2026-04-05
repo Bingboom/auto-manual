@@ -326,3 +326,19 @@ Why it mattered:
 - the repo now has one shared config/bootstrap foundation instead of repeating path setup and config loading across entry scripts
 - `build.py` is closer to an orchestration shell, with parser and action dispatch logic separated from runtime and publish implementation
 - later decomposition work can keep compatibility wrappers stable while moving real logic into smaller modules
+
+## 20. 2026-04-05: Maintainability Milestone 2, Build Pipeline Decomposition
+
+Main outcomes:
+
+- split [`tools/build_docs.py`](../tools/build_docs.py) into dedicated CLI, entry, target-resolution, bundle, validation, I/O, export, theme, path, sphinx, HTML, page/index, and shared-support modules
+- reduced [`tools/build_docs.py`](../tools/build_docs.py) from the earlier 1400+ line range down to a thinner orchestration facade
+- split [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) into planning, materialization, asset, page-render, and runtime helper modules
+- split [`tools/check_docs.py`](../tools/check_docs.py) into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules
+- added config `extends` support and moved shared US single-language defaults into [`config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml) so `config.us-en/es/fr.yaml` became thin overrides with manifest-owned page stacks
+
+Why it mattered:
+
+- build-pipeline changes now land in smaller, more explicit modules instead of reopening one large mixed-responsibility file
+- bundle generation, checking, and export flow now have clearer ownership boundaries and lower regression risk
+- single-language config maintenance no longer depends on copying whole-family YAML files for small language-specific differences
