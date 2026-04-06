@@ -214,9 +214,33 @@ class TestBuildReviewPreview(unittest.TestCase):
         )
 
         self.assertEqual(
-            build_review_preview.resolve_path("config.us-en.yaml"),
+            build_review_preview.resolve_path("config.us.yaml"),
             build_review_preview.diff_config_for_family(args, "US"),
         )
+
+    def test_requested_workspace_target_should_infer_shared_family_config_when_config_missing(self) -> None:
+        args = argparse.Namespace(
+            config=None,
+            model="JE-1000F",
+            region="JP",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+
+        target = build_review_preview.requested_workspace_target(args)
+
+        self.assertEqual("JP", target.family)
+        self.assertEqual("ja", target.language)
+        self.assertEqual("config.ja.yaml", target.config)
+        self.assertFalse(target.include_lang_in_output_path)
 
     def test_copy_report_assets_should_return_stable_relative_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:

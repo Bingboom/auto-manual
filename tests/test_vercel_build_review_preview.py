@@ -39,7 +39,7 @@ class TestVercelBuildReviewPreview(unittest.TestCase):
         self.assertEqual(("JE-1000F", "US"), target)
 
     def test_default_preview_config_should_map_family_defaults(self) -> None:
-        self.assertEqual("config.us-en.yaml", vercel_build_review_preview.default_preview_config("US"))
+        self.assertEqual("config.us.yaml", vercel_build_review_preview.default_preview_config("US"))
         self.assertEqual("config.ja.yaml", vercel_build_review_preview.default_preview_config("jp"))
 
     def test_build_preview_command_should_derive_target_without_hardcoded_model(self) -> None:
@@ -59,4 +59,4 @@ class TestVercelBuildReviewPreview(unittest.TestCase):
         self.assertIn("--region", cmd)
         self.assertIn("US", cmd)
         self.assertIn("--config", cmd)
-        self.assertIn("config.us-en.yaml", cmd)
+        self.assertIn("config.us.yaml", cmd)
