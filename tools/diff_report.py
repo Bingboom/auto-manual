@@ -15,6 +15,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+from tools.build_paths import review_root_for_config as _review_root_for_config, version_tracking_root as _version_tracking_root  # noqa: E402
 from tools.diff_report_fields import (  # noqa: E402
     collect_field_diff_rows,
     collect_page_diff_rows,
@@ -55,9 +56,23 @@ def resolve_path_from_root(raw_path: str) -> Path:
     return path if path.is_absolute() else (ROOT / path)
 
 
+def default_output_dir_for_tracked_root(
+    *,
+    config_path: Path,
+    tracked_root: Path,
+    repo_root: Path = ROOT,
+) -> Path:
+    review_root = _review_root_for_config(config_path, repo_root=repo_root)
+    try:
+        rel = tracked_root.resolve(strict=False).relative_to(review_root.resolve(strict=False))
+    except ValueError:
+        return _version_tracking_root(repo_root=repo_root) / tracked_root.name
+    return _version_tracking_root(repo_root=repo_root) / rel
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Export git diff under a tracked docs subtree to CSV/HTML.")
-    ap.add_argument("--tracked-root", default="docs/_review/JE-1000F", help="Tracked subtree root")
+    ap.add_argument("--tracked-root", default="docs/_review", help="Tracked subtree root")
     ap.add_argument("--config", default="config.us.yaml", help="Config YAML path for resolving source CSV metadata")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref")
@@ -77,8 +92,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     ap.add_argument(
         "--output-dir",
-        default="reports/version_tracking/JE-1000F",
-        help="Output directory for CSV/HTML reports",
+        default=None,
+        help="Output directory for CSV/HTML reports; defaults to reports/version_tracking relative to --tracked-root",
     )
     return ap.parse_args(argv)
 
@@ -87,7 +102,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     tracked_root = resolve_path_from_root(args.tracked_root)
     config_path = resolve_path_from_root(args.config)
-    output_dir = resolve_path_from_root(args.output_dir)
+    output_dir = (
+        resolve_path_from_root(args.output_dir)
+        if isinstance(args.output_dir, str) and args.output_dir.strip()
+        else default_output_dir_for_tracked_root(
+            config_path=config_path,
+            tracked_root=tracked_root,
+        )
+    )
     try:
         raw_file_rows = collect_diff_rows(
             repo_root=ROOT,

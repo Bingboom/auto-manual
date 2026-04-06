@@ -26,10 +26,42 @@ class TestDiffReport(unittest.TestCase):
 
         self.assertTrue(args.ignore_initial_adds)
 
+    def test_parse_args_should_not_hardcode_model_specific_paths(self) -> None:
+        args = diff_report.parse_args([])
+
+        self.assertEqual("docs/_review", args.tracked_root)
+        self.assertIsNone(args.output_dir)
+
     def test_parse_args_should_support_include_initial_adds_override(self) -> None:
         args = diff_report.parse_args(["--include-initial-adds"])
 
         self.assertFalse(args.ignore_initial_adds)
+
+    def test_default_output_dir_for_tracked_root_should_follow_review_relative_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = Path(td)
+            docs_dir = repo / "docs"
+            config_path = repo / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            tracked_root = docs_dir / "_review" / "JE-1000F" / "JP"
+
+            output_dir = diff_report.default_output_dir_for_tracked_root(
+                config_path=config_path,
+                tracked_root=tracked_root,
+                repo_root=repo,
+            )
+
+            self.assertEqual(repo / "reports" / "version_tracking" / "JE-1000F" / "JP", output_dir)
 
     def test_resolve_spec_paths_should_honor_data_root_override(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -571,4 +603,3 @@ class TestDiffReport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

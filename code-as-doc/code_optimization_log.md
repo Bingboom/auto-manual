@@ -342,3 +342,18 @@ Why it mattered:
 - build-pipeline changes now land in smaller, more explicit modules instead of reopening one large mixed-responsibility file
 - bundle generation, checking, and export flow now have clearer ownership boundaries and lower regression risk
 - single-language config maintenance no longer depends on copying whole-family YAML files for small language-specific differences
+
+## 21. 2026-04-06: Workstream A Closure, Entrypoint And Tooling Parity
+
+Main outcomes:
+
+- removed hardcoded `JE-1000F` diff-report defaults from [`tools/diff_report.py`](../tools/diff_report.py) so tracked-root and output-root behavior now aligns with [`build.py`](../build.py)
+- added shared target/config defaults in [`tools/target_defaults.py`](../tools/target_defaults.py) and rewired [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) plus [`scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) to derive matrix targets from shared metadata instead of duplicating literals
+- updated [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) and [`tools/process_docs/vercel_build_review_preview.py`](../tools/process_docs/vercel_build_review_preview.py) so family-default preview config resolution matches the supported `US` / `JP` / `CN` workflow
+- refreshed [`README.md`](../README.md), [`build_doc_guide.md`](build_doc_guide.md), and [`hello_auto-doc.md`](../user-guide/hello_auto-doc.md) so script examples and preview guidance match the current supported baseline
+
+Why it mattered:
+
+- `build.py`, low-level tools, and matrix wrappers no longer disagree on review roots, report roots, or default target config resolution
+- maintainers can change shared family defaults in one place instead of editing multiple wrappers and preview scripts independently
+- user-facing script examples now describe the same entrypoint behavior that the code actually implements

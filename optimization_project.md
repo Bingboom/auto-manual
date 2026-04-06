@@ -86,6 +86,11 @@ Use this section for short milestone-style updates.
 - added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
 - aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
 
+### 2026-04-06
+
+- completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
+- updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
+
 ### 2026-04-05
 
 - normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
@@ -102,11 +107,10 @@ Use this section for short milestone-style updates.
 
 Keep this section short and current.
 
-1. High-level CLI behavior and low-level script defaults can still drift.
-2. Several core files are still large enough to slow safe refactoring, even after the first decomposition wave.
-3. Diff-report extraction still contains heuristic parts.
-4. CI does not yet validate every important workflow surface.
-5. Multi-target conditional content is still deferred.
+1. Several core files are still large enough to slow safe refactoring, even after the first decomposition wave.
+2. Diff-report extraction still contains heuristic parts.
+3. CI does not yet validate every important workflow surface.
+4. Multi-target conditional content is still deferred.
 
 ## 6. Active Workstreams
 
@@ -126,7 +130,7 @@ Exit criteria:
 
 ### Workstream A: Entrypoint And Tooling Parity
 
-Status: active
+Status: done
 
 Why now:
 
@@ -258,11 +262,10 @@ Promotion rule:
 Re-evaluate this order whenever a workstream closes.
 
 1. Core file decomposition
-2. Entrypoint and tooling parity
-3. Quality gate hardening
-4. Diff and traceability hardening
-5. CI expansion
-6. Multi-target content pilot
+2. Quality gate hardening
+3. Diff and traceability hardening
+4. CI expansion
+5. Multi-target content pilot
 
 ## 9. Success Criteria
 

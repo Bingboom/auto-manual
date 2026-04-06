@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-04
+Updated: 2026-04-06
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -164,7 +164,7 @@ Rules:
 
 The cross-platform entrypoint is [`build.py`](../build.py).
 It wraps [`tools/build_docs.py`](../tools/build_docs.py), which still drives the actual build logic.
-If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) as a thin wrapper over `build.py`.
+If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) as a thin wrapper over [`../scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py). For the US-only subset, use [`../scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) as the compatibility wrapper.
 
 Current flow:
 
@@ -212,7 +212,9 @@ Important:
 - when `Document_link.Workflow_action = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish DOCX and the latest publish HTML are both built from that same branch instead of drifting back to `main`; old rows that still rely on `Doc_phase = Publish` are still accepted but logged as legacy.
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
+- `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --build-action validate --languages en,fr` runs one explicit `build.py` action across the selected matrix targets instead of deriving actions from `--formats`.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
+- `.\scripts\build_us_manuals.ps1 -Action check -Model <MODEL> -Languages en,es -DryRun` is the US-only compatibility wrapper over the same matrix runner and now requires an explicit `-Model`.
 - `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / page-value selectors / assets.
 - review overrides only overlay `overrides/_assets/**`, `overrides/_static/**`, and `overrides/renderers/**` into the runtime bundle.
 
@@ -432,7 +434,7 @@ python build.py all
 Config scope rule:
 
 - [`config.us.yaml`](../config.us.yaml): shared EN / US template-family config
-- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 - [`config.us-en.yaml`](../config.us-en.yaml), [`config.us-es.yaml`](../config.us-es.yaml), and [`config.us-fr.yaml`](../config.us-fr.yaml) now inherit their shared single-language US defaults from [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml); keep common single-language build defaults there and keep language-specific page order in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), and [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml)
@@ -472,6 +474,7 @@ Source mode meaning:
 PR preview note:
 
 - when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
+- when `--region` is `US`, `JP`, or `CN`, `python tools/process_docs/build_review_preview.py` can omit `--config` and fall back to the shared family default; keep `--config config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
 
 `publish` behavior:
 

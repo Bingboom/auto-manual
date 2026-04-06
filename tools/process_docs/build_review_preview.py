@@ -15,12 +15,17 @@ from html import escape
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from script_bootstrap import bootstrap_repo_root
+
+ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.build_docs import load_config
 from tools.review_support import review_content_exists
+from tools.target_defaults import FAMILY_DEFAULT_CONFIGS, REVIEW_WORKSPACE_TARGET_CONFIGS
 
 
 REQUIRED_CHANGE_REPORT_FILES = (
@@ -83,26 +88,47 @@ class WorkspaceTargetTemplate:
     include_lang_in_output_path: bool
 
 
-WORKSPACE_TARGET_TEMPLATES: tuple[WorkspaceTargetTemplate, ...] = (
-    WorkspaceTargetTemplate(family="US", language="en", config="config.us-en.yaml", include_lang_in_output_path=True),
-    WorkspaceTargetTemplate(family="US", language="es", config="config.us-es.yaml", include_lang_in_output_path=True),
-    WorkspaceTargetTemplate(family="US", language="fr", config="config.us-fr.yaml", include_lang_in_output_path=True),
-    WorkspaceTargetTemplate(family="JP", language="ja", config="config.ja.yaml", include_lang_in_output_path=False),
-    WorkspaceTargetTemplate(family="CN", language="zh", config="config.zh.yaml", include_lang_in_output_path=False),
-)
-FAMILY_DIFF_CONFIGS = {
-    "US": "config.us-en.yaml",
-    "JP": "config.ja.yaml",
-    "CN": "config.zh.yaml",
-}
+WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = REVIEW_WORKSPACE_TARGET_CONFIGS
 ReviewAvailability = set[tuple[str, str, str | None]]
+
+
+def _load_workspace_target_template(config_name: str) -> WorkspaceTargetTemplate:
+    config_path = (ROOT / config_name).resolve()
+    cfg = load_config(config_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    family = str(build_cfg.get("default_region") or "").strip().upper()
+    if not family:
+        raise RuntimeError(f"Review preview target config is missing build.default_region: {config_name}")
+    raw_languages = build_cfg.get("languages")
+    if not isinstance(raw_languages, list) or len(raw_languages) != 1:
+        raise RuntimeError(
+            f"Review preview target config must declare exactly one build language: {config_name}"
+        )
+    return WorkspaceTargetTemplate(
+        family=family,
+        language=str(raw_languages[0]).strip().lower(),
+        config=config_name,
+        include_lang_in_output_path=bool(build_cfg.get("include_lang_in_output_path", False)),
+    )
+
+
+def _load_workspace_target_templates() -> tuple[WorkspaceTargetTemplate, ...]:
+    return tuple(_load_workspace_target_template(config_name) for config_name in WORKSPACE_TARGET_CONFIGS)
+
+
+WORKSPACE_TARGET_TEMPLATES: tuple[WorkspaceTargetTemplate, ...] = _load_workspace_target_templates()
 
 
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
         description="Build the review handoff workspace package for Vercel or local sharing."
     )
-    ap.add_argument("--config", default="config.us-en.yaml", help="Primary family config YAML path.")
+    ap.add_argument(
+        "--config",
+        default=None,
+        help="Primary family config YAML path. Defaults to the shared family config for --region.",
+    )
     ap.add_argument("--model", required=True, help="Target model, for example JE-1000F.")
     ap.add_argument("--region", required=True, help="Preferred default family, for example US.")
     ap.add_argument(
@@ -156,6 +182,22 @@ def resolve_path(value: str) -> Path:
     if not path.is_absolute():
         path = ROOT / path
     return path.resolve()
+
+
+def default_family_config_for_region(region: str) -> str:
+    config_name = FAMILY_DEFAULT_CONFIGS.get((region or "").strip().upper())
+    if config_name is None:
+        raise RuntimeError(
+            "Review preview requires --config when --region is outside the supported family defaults (US, JP, CN)."
+        )
+    return config_name
+
+
+def resolved_primary_config_path(args: argparse.Namespace) -> Path:
+    raw_config = getattr(args, "config", None)
+    if isinstance(raw_config, str) and raw_config.strip():
+        return resolve_path(raw_config)
+    return resolve_path(default_family_config_for_region(str(getattr(args, "region", ""))))
 
 
 def run(cmd: list[str]) -> None:
@@ -1439,8 +1481,8 @@ def tracked_root_for_target(args: argparse.Namespace, target: WorkspaceTarget) -
 
 def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
     if family == args.region:
-        return resolve_path(args.config)
-    return resolve_path(FAMILY_DIFF_CONFIGS[family])
+        return resolved_primary_config_path(args)
+    return resolve_path(default_family_config_for_region(family))
 
 
 def target_templates_for_family(family: str) -> list[WorkspaceTargetTemplate]:
@@ -1478,7 +1520,7 @@ def config_template_for_path(config_path: Path) -> WorkspaceTargetTemplate | Non
 
 
 def requested_workspace_target(args: argparse.Namespace) -> WorkspaceTarget:
-    config_path = resolve_path(args.config)
+    config_path = resolved_primary_config_path(args)
     matched_template = config_template_for_path(config_path)
     if matched_template is not None:
         return build_workspace_target(args.model, matched_template)

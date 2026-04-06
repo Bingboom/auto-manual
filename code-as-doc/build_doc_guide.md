@@ -1,10 +1,10 @@
 # Windows Build Guide
 
-Updated: 2026-04-04
+Updated: 2026-04-06
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
-For the fixed four-language release pack, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) or [`../scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py).
+For the fixed four-language release pack, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) or [`../scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py). For the US-only subset, use [`../scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) as the compatibility wrapper.
 
 For user-facing review workflow details, read:
 
@@ -34,7 +34,9 @@ python build.py all
 python build.py diff-report
 python build.py clean
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --build-action validate --languages en,fr
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
+.\scripts\build_us_manuals.ps1 -Action check -Model JE-1000F -Languages en,es -DryRun
 ```
 
 Meaning:
@@ -78,7 +80,8 @@ Meaning:
 - `all`: export `html + word + pdf`
 - `diff-report`: export Git-based revision tables, defaulting to the resolved target review root
 - `clean`: remove [`docs/_build/`](../docs/_build), [`docs/_review/`](../docs/_review), old legacy output directories, and generated [`params.tex`](../docs/renderers/latex/params.tex)
-- `build_us_jp_manuals.ps1`: build the fixed `US/en + US/es + US/fr + JP/ja` target set from one command, with selectable format combinations such as `html,word` or `word,pdf`
+- `build_us_jp_manuals.ps1`: PowerShell wrapper over the shared Python matrix runner for the fixed `US/en + US/es + US/fr + JP/ja` target set; supports either `--formats` or one explicit `--build-action`
+- `build_us_manuals.ps1`: US-only compatibility wrapper over the same matrix runner; use PowerShell-style `-Action`, `-Model`, `-Languages`, and `-DryRun`, and pass `-Model` explicitly
 - `--open-html`: after the batch finishes, open the generated HTML entry pages for the selected language set
 - DOCX export normalizes image relationships to embedded media before the final style pass so Feishu / other third-party viewers are less likely to hide image-backed table rows in preview
 
@@ -123,7 +126,7 @@ Do not create one config file per model.
 Current shared config families:
 
 - [`config.us.yaml`](../config.us.yaml): shared EN / US template family
-- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 - [`config.us-en.yaml`](../config.us-en.yaml), [`config.us-es.yaml`](../config.us-es.yaml), and [`config.us-fr.yaml`](../config.us-fr.yaml) now inherit shared single-language US defaults from [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml); keep shared defaults there and keep language-specific page stacks in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), and [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml)
@@ -321,6 +324,11 @@ Use this when design needs the rendered review HTML plus the current family-leve
 ```powershell
 python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --all-review-models
 ```
+
+Config note:
+
+- omit `--config` when `--region` is `US`, `JP`, or `CN` and you want the shared family default config
+- keep `--config config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
 
 Default packaged output:
 
