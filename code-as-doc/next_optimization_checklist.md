@@ -91,8 +91,8 @@ Milestone status: `pending`
   - Completed: `2026-04-07`
   - Note: replaced eager config-backed template loading with a lazy cached proxy while keeping the public `WORKSPACE_TARGET_TEMPLATES` iterable surface intact and adding an import-time regression test
 
-- [ ] PR 2: Split Spec_Master validation into explicit rule units
-  - Status: `pending`
+- [x] PR 2: Split Spec_Master validation into explicit rule units
+  - Status: `done`
   - Target files:
     - [`../tools/validate_spec_master_runtime.py`](../tools/validate_spec_master_runtime.py)
     - [`../tools/validate_spec_master_shared.py`](../tools/validate_spec_master_shared.py)
@@ -103,6 +103,8 @@ Milestone status: `pending`
     - rule collection is split into smaller helpers or a rule registry
     - adding one validation rule no longer requires editing one giant function
     - CLI output and error codes remain stable
+  - Completed: `2026-04-07`
+  - Note: split the runtime validator into focused row/header/footnote/note/selector issue collectors so future rule additions can land in isolated helpers while preserving existing validation output
 
 - [ ] PR 3: Split generated-page checks by responsibility
   - Status: `pending`
