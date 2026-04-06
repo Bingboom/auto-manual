@@ -3,10 +3,16 @@
 
 from __future__ import annotations
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
+
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
 from tools.validate_spec_master_cli import main, parse_args
 from tools.validate_spec_master_runtime import collect_spec_master_validation_issues
 from tools.validate_spec_master_shared import (
-    ROOT,
     _accepted_document_keys,
     _build_langs,
     _collect_target_selectors,

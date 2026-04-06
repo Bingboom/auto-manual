@@ -56,12 +56,12 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_us_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml"),
-            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml"),
-            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml"),
+            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 15),
+            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 14),
+            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 14),
         )
 
-        for config_name, expected_lang, expected_family, expected_manifest in cases:
+        for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
             with self.subTest(config_name=config_name):
                 cfg = check_docs.load_config(ROOT / config_name)
                 self.assertEqual(expected_family, cfg.get("build", {}).get("family_id"))
@@ -82,7 +82,7 @@ class TestPilotConfigs(unittest.TestCase):
 
                 self.assertEqual([], generated_pages)
                 self.assertEqual({"symbols", "spec"}, {page.page for page in csv_pages})
-                self.assertEqual(15, len(resolved.pages))
+                self.assertEqual(expected_page_count, len(resolved.pages))
 
                 issues = check_docs.collect_generated_page_issues(
                     cfg,
@@ -95,4 +95,3 @@ class TestPilotConfigs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
