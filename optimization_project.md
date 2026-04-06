@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-05
+Updated: 2026-04-06
 
 ## 1. Role
 
@@ -98,6 +98,12 @@ Use this section for short milestone-style updates.
 - completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
 - started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
 
+### 2026-04-06
+
+- completed the core maintainability refactor campaign across build entrypoints, build pipeline helpers, reporting, queue orchestration, and `spec_master`
+- reduced [`tools/utils/spec_master.py`](/Users/pika/Documents/GitHub/auto-manual/tools/utils/spec_master.py) from 1190 to 691 lines by splitting shared dataclasses/rule tables, lookup, auditing, mapping, and repair logic into dedicated helper modules
+- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+
 ## 5. Open Gaps
 
 Keep this section short and current.
@@ -145,7 +151,7 @@ Exit criteria:
 
 ### Workstream B: Core File Decomposition
 
-Status: active
+Status: done
 
 Why now:
 
@@ -257,12 +263,11 @@ Promotion rule:
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Core file decomposition
-2. Entrypoint and tooling parity
-3. Quality gate hardening
-4. Diff and traceability hardening
-5. CI expansion
-6. Multi-target content pilot
+1. Entrypoint and tooling parity
+2. Quality gate hardening
+3. Diff and traceability hardening
+4. CI expansion
+5. Multi-target content pilot
 
 ## 9. Success Criteria
 

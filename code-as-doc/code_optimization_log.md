@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-04-05
+Updated: 2026-04-06
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -342,3 +342,19 @@ Why it mattered:
 - build-pipeline changes now land in smaller, more explicit modules instead of reopening one large mixed-responsibility file
 - bundle generation, checking, and export flow now have clearer ownership boundaries and lower regression risk
 - single-language config maintenance no longer depends on copying whole-family YAML files for small language-specific differences
+
+## 21. 2026-04-05 to 2026-04-06: Maintainability Milestone 3, Reporting, Queue, and Domain Split
+
+Main outcomes:
+
+- split [`tools/diff_report.py`](../tools/diff_report.py) into dedicated git/path, field extraction, rendering, report-generation, and model helper modules while keeping the public facade stable
+- moved release-manifest runtime assembly behind [`tools/release_manifest_service.py`](../tools/release_manifest_service.py) without changing CLI or path semantics
+- completed the queue decomposition wave across listener, review-start, build-session wiring, phase2 support, and queue-bound adapter modules while preserving patchable entry surfaces
+- split [`tools/utils/spec_master.py`](../tools/utils/spec_master.py) into dedicated shared, lookup, auditing, mapping, and repair modules while keeping the original public exports stable
+- completed the execution tracker in [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
+
+Why it mattered:
+
+- reporting, queue integration, and spec-master domain logic now have clear ownership boundaries instead of living in the same large facade files
+- maintainers can change lookup, validation, mapping, repair, reporting, or queue-adapter behavior with a much smaller regression surface
+- the maintainability campaign now has a closed loop across code, tracker state, and milestone history

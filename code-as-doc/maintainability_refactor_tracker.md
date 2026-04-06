@@ -1,6 +1,6 @@
 # Maintainability Refactor Tracker
 
-Updated: 2026-04-05
+Updated: 2026-04-06
 
 This file tracks the active maintainability refactor campaign for this repository.
 Use it as the in-progress execution record.
@@ -143,7 +143,7 @@ Milestone status: `done`
 
 ## 5. Milestone 3: Reporting, Queue Flow, And Domain Split
 
-Milestone status: `in_progress`
+Milestone status: `done`
 
 - [x] PR 6: Split diff-report and release-manifest services
   - Status: `done`
@@ -178,8 +178,8 @@ Milestone status: `in_progress`
   - Completed: `2026-04-05`
   - Note: extracted listener event/runtime/Lark helpers, decoupled review-start flow from `process_build_queue.py`, introduced shared `phase2` facade/bootstrap helpers, moved queue-session/runtime plus build/writeback implementation wiring into helper modules, and removed the last direct queue-adapter import of `sync_data.py` private helpers by routing [`../tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) through [`../tools/phase2_support.py`](../tools/phase2_support.py); [`../tools/process_build_queue.py`](../tools/process_build_queue.py) is now down to 402 lines while preserving the existing patchable/test-facing entry points and CLI routing
 
-- [ ] PR 8: Split `spec_master` domain logic
-  - Status: `pending`
+- [x] PR 8: Split `spec_master` domain logic
+  - Status: `done`
   - Target files:
     - [`../tools/utils/spec_master.py`](../tools/utils/spec_master.py)
   - Guard tests:
@@ -191,8 +191,8 @@ Milestone status: `in_progress`
   - Done when:
     - lookup, normalize, audit, repair, and legacy bindings are separated
     - downstream build/report behavior is unchanged
-  - Completed:
-  - Note:
+  - Completed: `2026-04-06`
+  - Note: extracted shared `spec_master` dataclasses and rule tables into [`../tools/utils/spec_master_shared.py`](../tools/utils/spec_master_shared.py), moved lookup/template-substitution flows into [`../tools/utils/spec_master_lookup.py`](../tools/utils/spec_master_lookup.py), moved audit/normalize into [`../tools/utils/spec_master_auditing.py`](../tools/utils/spec_master_auditing.py), moved mapping exports into [`../tools/utils/spec_master_mapping.py`](../tools/utils/spec_master_mapping.py), and moved repair flows into [`../tools/utils/spec_master_repairs.py`](../tools/utils/spec_master_repairs.py) while keeping [`../tools/utils/spec_master.py`](../tools/utils/spec_master.py) as the compatibility facade; the facade file dropped from 1190 to 691 lines with full spec-master and full-repo unit tests still passing
 
 ## 6. Completion Rule
 
