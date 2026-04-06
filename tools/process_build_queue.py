@@ -18,6 +18,10 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+
+def _service_module() -> Any:
+    return sys.modules[__name__]
+
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.queue_contract import (  # noqa: E402
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
@@ -142,7 +146,7 @@ from tools.queue_runtime import command_failure_message as _command_failure_mess
 configure_queue_bound_providers(
     repo_root_provider=lambda: ROOT,
     config_loader_provider=lambda: load_config,
-    resolve_config_path_provider=lambda: sys.modules[__name__].resolve_config_path_for_task,
+    resolve_config_path_provider=lambda: _service_module().resolve_config_path_for_task,
 )
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
@@ -186,7 +190,7 @@ _config_path_in_repo_root = _config_path_in_repo_root_impl
 
 def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
     return _upload_word_to_drive_service(
-        sys.modules[__name__],
+        _service_module(),
         cli_bin=cli_bin,
         word_output_path=word_output_path,
         identity=identity,
@@ -200,7 +204,7 @@ def resolve_wiki_destination(
     binding: DocumentLinkBinding,
 ) -> WikiDestination:
     return _resolve_wiki_destination_service(
-        sys.modules[__name__],
+        _service_module(),
         cli_bin=cli_bin,
         identity=identity,
         binding=binding,
@@ -215,7 +219,7 @@ def wait_for_wiki_move_task(
     host_root: str,
 ) -> str:
     return _wait_for_wiki_move_task_service(
-        sys.modules[__name__],
+        _service_module(),
         cli_bin=cli_bin,
         identity=identity,
         task_id=task_id,
@@ -232,7 +236,7 @@ def move_drive_file_to_wiki(
     destination: WikiDestination,
 ) -> str:
     return _move_drive_file_to_wiki_service(
-        sys.modules[__name__],
+        _service_module(),
         cli_bin=cli_bin,
         identity=identity,
         file_token=file_token,
@@ -253,7 +257,7 @@ def _build_py_target_command(
     no_clean: bool = False,
 ) -> list[str]:
     return _build_py_target_command_service(
-        sys.modules[__name__],
+        _service_module(),
         repo_root=repo_root,
         action=action,
         config_path=config_path,
@@ -267,7 +271,7 @@ def _build_py_target_command(
 
 def _build_py_sync_data_command(*, repo_root: Path = ROOT, config_path: Path, data_root: str | None) -> list[str]:
     return _build_py_sync_data_command_service(
-        sys.modules[__name__],
+        _service_module(),
         repo_root=repo_root,
         config_path=config_path,
         data_root=data_root,
@@ -276,7 +280,7 @@ def _build_py_sync_data_command(*, repo_root: Path = ROOT, config_path: Path, da
 
 def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | None) -> None:
     _sync_phase2_snapshot_before_queue_service(
-        sys.modules[__name__],
+        _service_module(),
         config_path=config_path,
         data_root=data_root,
     )
@@ -293,7 +297,7 @@ def build_document_for_task(
     git_ref: str = "",
 ) -> Path:
     return _build_document_for_task_service(
-        sys.modules[__name__],
+        _service_module(),
         config_path=config_path,
         model=model,
         region=region,
@@ -314,7 +318,7 @@ def build_success_fields(
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
     return _build_success_fields_service(
-        sys.modules[__name__],
+        _service_module(),
         version=version,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
@@ -325,7 +329,7 @@ def build_success_fields(
 
 
 def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
-    return _build_started_fields_service(sys.modules[__name__], started_at=started_at)
+    return _build_started_fields_service(_service_module(), started_at=started_at)
 
 
 def build_failure_fields(
@@ -336,7 +340,7 @@ def build_failure_fields(
     doc_phase: str | None = None,
 ) -> dict[str, Any]:
     return _build_failure_fields_service(
-        sys.modules[__name__],
+        _service_module(),
         version=version,
         message=message,
         workflow_action=workflow_action,
@@ -354,7 +358,7 @@ def build_failure_writeback_fields(
     document_link_url: str | None = None,
 ) -> dict[str, Any]:
     return _build_failure_writeback_fields_service(
-        sys.modules[__name__],
+        _service_module(),
         version=version,
         message=message,
         workflow_action=workflow_action,
@@ -381,7 +385,7 @@ def warn_legacy_record_doc_phase(record: QueueRecord) -> None:
 
 
 def best_effort_queue_workflow_action(record: QueueRecord) -> str | None:
-    return _best_effort_queue_workflow_action_service(sys.modules[__name__], record)
+    return _best_effort_queue_workflow_action_service(_service_module(), record)
 
 
 def process_build_queue(
@@ -396,7 +400,7 @@ def process_build_queue(
     record_id: str | None = None,
 ) -> int:
     return _process_build_queue_service(
-        sys.modules[__name__],
+        _service_module(),
         cfg=cfg,
         config_path=config_path,
         data_root=data_root,

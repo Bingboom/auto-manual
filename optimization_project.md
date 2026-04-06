@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-05
+Updated: 2026-04-06
 
 ## 1. Role
 
@@ -91,6 +91,14 @@ Use this section for short milestone-style updates.
 - completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
 - updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
 
+### 2026-04-06
+
+- completed the core file decomposition wave by splitting `build_review_preview.py` into target, data, render, page, postprocess, and workspace helpers
+- reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
+- split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
+- split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
+- finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
+
 ### 2026-04-05
 
 - normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
@@ -107,7 +115,7 @@ Use this section for short milestone-style updates.
 
 Keep this section short and current.
 
-1. Several core files are still large enough to slow safe refactoring, even after the first decomposition wave.
+1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
 2. Diff-report extraction still contains heuristic parts.
 3. CI does not yet validate every important workflow surface.
 4. Multi-target conditional content is still deferred.
@@ -149,12 +157,12 @@ Exit criteria:
 
 ### Workstream B: Core File Decomposition
 
-Status: active
+Status: done
 
 Why now:
 
-- `build.py`, `tools/build_docs.py`, and review/queue orchestration still have high coupling hot spots
-- the first queue/build decomposition wave proved that behavior-preserving modularization can reduce risk without changing the command surface
+- the main hotspot files needed to be split before quality-gate and traceability hardening could proceed safely
+- the earlier queue/build decomposition wave proved that behavior-preserving modularization could reduce risk without changing the command surface
 
 Scope:
 
@@ -176,7 +184,7 @@ Exit criteria:
 
 ### Workstream C: Quality Gate Hardening
 
-Status: next
+Status: active
 
 Why now:
 
@@ -261,11 +269,10 @@ Promotion rule:
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Core file decomposition
-2. Quality gate hardening
-3. Diff and traceability hardening
-4. CI expansion
-5. Multi-target content pilot
+1. Quality gate hardening
+2. Diff and traceability hardening
+3. CI expansion
+4. Multi-target content pilot
 
 ## 9. Success Criteria
 

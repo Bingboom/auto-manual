@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-04-05
+Updated: 2026-04-06
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -357,3 +357,19 @@ Why it mattered:
 - `build.py`, low-level tools, and matrix wrappers no longer disagree on review roots, report roots, or default target config resolution
 - maintainers can change shared family defaults in one place instead of editing multiple wrappers and preview scripts independently
 - user-facing script examples now describe the same entrypoint behavior that the code actually implements
+
+## 22. 2026-04-06: Maintainability Milestone 3, Preview, Domain, Export, and Sync Decomposition
+
+Main outcomes:
+
+- split [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) into dedicated target, data, render, page, postprocess, and workspace helper modules while preserving the public facade
+- reduced [`tools/utils/spec_master.py`](../tools/utils/spec_master.py) to a thin facade over dedicated shared, row-helper, lookup, auditing, mapping, and repairs modules
+- split [`tools/word_bundle_html.py`](../tools/word_bundle_html.py) into models, HTML-only, render, images, and rewrite helper modules
+- split [`tools/sync_data.py`](../tools/sync_data.py) into config, records, runtime, and CLI-output helpers while keeping `LarkCliSource`, `ROOT`, and existing patch surfaces stable
+- finished the remaining shared-bootstrap rollout across entry scripts and reduced queue-side phase2 helper coupling through [`tools/phase2_support.py`](../tools/phase2_support.py)
+
+Why it mattered:
+
+- the remaining large maintenance hot spots were reduced to orchestration-oriented facades instead of mixed implementation files
+- tests and queue/review callers kept the same patchable public surface while real implementation moved into smaller modules
+- preview, export, sync, and domain-rule changes can now land with lower regression risk because ownership boundaries are explicit

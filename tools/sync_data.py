@@ -40,6 +40,7 @@ from tools.sync_data_config import (  # noqa: E402
     table_cfg as _table_cfg_impl,
     table_env_names as _table_env_names_impl,
 )
+from tools.sync_data_cli import build_sync_run_output_lines  # noqa: E402
 from tools.data_snapshot import (  # noqa: E402
     resolve_data_snapshot_paths,
     resolve_phase2_export_root,
@@ -702,25 +703,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"[sync-data] ERROR: {exc}", file=sys.stderr)
         return 1
 
-    mode = "DRY-RUN" if result.dry_run else "SYNCED"
-    print(f"[sync-data] {mode} provider={result.provider} export_root={result.export_root}")
-    for table in result.synced_tables:
-        old_sha = table.previous_sha256 or "-"
-        print(
-            "[sync-data] "
-            f"{table.logical_name}: rows={table.row_count} changed={'yes' if table.changed else 'no'} "
-            f"old_sha={old_sha} new_sha={table.sha256} path={table.target_path}"
-        )
-    for derived in result.derived_files:
-        old_sha = derived.previous_sha256 or "-"
-        print(
-            "[sync-data] "
-            f"{derived.logical_name}: rows={derived.row_count} changed={'yes' if derived.changed else 'no'} "
-            f"old_sha={old_sha} new_sha={derived.sha256} path={derived.target_path}"
-        )
-    print(f"[sync-data] manifest={result.manifest_path}")
-    if result.skipped_tables:
-        print(f"[sync-data] skipped_tables={','.join(result.skipped_tables)}")
+    for line in build_sync_run_output_lines(result):
+        print(line)
     return 0
 
 
