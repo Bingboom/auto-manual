@@ -55,6 +55,12 @@ from tools.sync_data_records import (  # noqa: E402
     _write_atomic_text,
     normalize_records,
 )
+from tools.sync_data_runtime import (  # noqa: E402
+    SyncRuntimeDeps,
+    manifest_payload as _manifest_payload_impl,
+    resolve_existing_row_key_mapping_path as _resolve_existing_row_key_mapping_path_impl,
+    sync_phase2_snapshot as _sync_phase2_snapshot_impl,
+)
 from tools.utils.spec_master import build_row_label_row_key_mapping_rows  # noqa: E402
 
 TABLE_ORDER = (
@@ -579,19 +585,13 @@ def _resolve_existing_row_key_mapping_path(
     data_root: str | None,
     target_path: Path,
 ) -> Path:
-    if target_path.exists():
-        return target_path
-
-    default_path = resolve_data_snapshot_paths(
+    return _resolve_existing_row_key_mapping_path_impl(
         cfg,
+        data_root=data_root,
+        target_path=target_path,
         repo_root=ROOT,
-        data_root=None,
-    ).row_key_mapping_csv
-    if default_path == target_path:
-        return target_path
-    if default_path.exists():
-        return default_path
-    return target_path
+        resolve_data_snapshot_paths_fn=resolve_data_snapshot_paths,
+    )
 
 
 def _manifest_payload(
@@ -607,40 +607,19 @@ def _manifest_payload(
     built_at: datetime,
     dry_run: bool,
 ) -> dict[str, Any]:
-    return {
-        "provider": provider,
-        "cli_bin": cli_bin,
-        "generated_at": built_at.isoformat(),
-        "export_root": export_root.relative_to(ROOT).as_posix() if export_root.is_relative_to(ROOT) else export_root.as_posix(),
-        "manifest_path": manifest_path.relative_to(ROOT).as_posix() if manifest_path.is_relative_to(ROOT) else manifest_path.as_posix(),
-        "dry_run": dry_run,
-        "requested_tables": list(requested_tables),
-        "skipped_tables": list(skipped_tables),
-        "tables": [
-            {
-                "logical_name": result.logical_name,
-                "file_name": result.file_name,
-                "path": result.target_path.relative_to(ROOT).as_posix() if result.target_path.is_relative_to(ROOT) else result.target_path.as_posix(),
-                "row_count": result.row_count,
-                "sha256": result.sha256,
-                "previous_sha256": result.previous_sha256,
-                "changed": result.changed,
-            }
-            for result in synced_tables
-        ],
-        "derived_files": [
-            {
-                "logical_name": result.logical_name,
-                "file_name": result.file_name,
-                "path": result.target_path.relative_to(ROOT).as_posix() if result.target_path.is_relative_to(ROOT) else result.target_path.as_posix(),
-                "row_count": result.row_count,
-                "sha256": result.sha256,
-                "previous_sha256": result.previous_sha256,
-                "changed": result.changed,
-            }
-            for result in derived_files
-        ],
-    }
+    return _manifest_payload_impl(
+        export_root=export_root,
+        manifest_path=manifest_path,
+        provider=provider,
+        cli_bin=cli_bin,
+        requested_tables=requested_tables,
+        skipped_tables=skipped_tables,
+        synced_tables=synced_tables,
+        derived_files=derived_files,
+        built_at=built_at,
+        dry_run=dry_run,
+        repo_root=ROOT,
+    )
 
 
 def sync_phase2_snapshot(
@@ -653,117 +632,39 @@ def sync_phase2_snapshot(
     source: RecordSource | None = None,
     built_at: datetime | None = None,
 ) -> SyncRunResult:
-    provider = _provider_name(cfg)
-    if provider != "lark_cli":
-        raise RuntimeError(f"Unsupported sync provider implementation: {provider}")
-    cli_bin = _cli_bin(cfg)
-    selected_tables = _selected_tables(table_names or [])
-    preflight_errors = collect_sync_preflight_errors(
-        cfg,
-        table_names=selected_tables,
-        require_cli=source is None,
-    )
-    if preflight_errors:
-        raise RuntimeError("sync-data preflight failed:\n- " + "\n- ".join(preflight_errors))
-    export_root = resolve_phase2_export_root(cfg, repo_root=ROOT, data_root=data_root)
-    manifest_path = resolve_phase2_manifest_path(cfg, repo_root=ROOT, data_root=data_root)
-    resolved_source = source or LarkCliSource(cli_bin=cli_bin, identity=_phase2_identity())
-    run_at = built_at or datetime.now(timezone.utc)
-
-    table_results: list[TableSyncResult] = []
-    derived_results: list[TableSyncResult] = []
-    written_files: list[tuple[Path, str]] = []
-    normalized_rows_by_table: dict[str, list[dict[str, str]]] = {}
-
-    for logical_name in selected_tables:
-        binding = resolve_table_binding(cfg, logical_name)
-        raw_records = resolved_source.fetch_records(
-            base_token=binding.base_token,
-            table_id=binding.table_id,
-            view_id=binding.view_id,
-        )
-        normalized_rows = normalize_records(binding.schema, raw_records)
-        normalized_rows_by_table[logical_name] = normalized_rows
-        csv_text = _csv_text(binding.schema, normalized_rows)
-        sha256 = _sha256_text(csv_text)
-        target_path = export_root / binding.schema.file_name
-        previous_sha256 = _sha256_file(target_path)
-        table_results.append(
-            TableSyncResult(
-                logical_name=logical_name,
-                file_name=binding.schema.file_name,
-                target_path=target_path,
-                row_count=len(normalized_rows),
-                sha256=sha256,
-                previous_sha256=previous_sha256,
-                changed=sha256 != previous_sha256,
-            )
-        )
-        written_files.append((target_path, csv_text))
-
-    if "spec_master" in normalized_rows_by_table:
-        snapshot_paths = resolve_data_snapshot_paths(
-            cfg,
+    return _sync_phase2_snapshot_impl(
+        cfg=cfg,
+        config_path=config_path,
+        data_root=data_root,
+        table_names=table_names,
+        dry_run=dry_run,
+        source=source,
+        built_at=built_at,
+        deps=SyncRuntimeDeps(
             repo_root=ROOT,
-            data_root=str(export_root),
-        )
-        row_key_mapping_path = snapshot_paths.row_key_mapping_csv
-        existing_mapping_path = _resolve_existing_row_key_mapping_path(
-            cfg,
-            data_root=data_root,
-            target_path=row_key_mapping_path,
-        )
-        existing_mapping_rows = _read_existing_mapping_rows(existing_mapping_path)
-        mapping_rows = build_row_label_row_key_mapping_rows(
-            normalized_rows_by_table["spec_master"],
-            existing_rows=existing_mapping_rows,
-        )
-        mapping_csv_text = _dict_rows_csv_text(ROW_KEY_MAPPING_FIELDNAMES, mapping_rows)
-        mapping_sha256 = _sha256_text(mapping_csv_text)
-        previous_mapping_sha256 = _sha256_file(row_key_mapping_path)
-        derived_results.append(
-            TableSyncResult(
-                logical_name="row_key_mapping",
-                file_name=row_key_mapping_path.name,
-                target_path=row_key_mapping_path,
-                row_count=len(mapping_rows),
-                sha256=mapping_sha256,
-                previous_sha256=previous_mapping_sha256,
-                changed=mapping_sha256 != previous_mapping_sha256,
-            )
-        )
-        written_files.append((row_key_mapping_path, mapping_csv_text))
-
-    skipped_tables = tuple(name for name in TABLE_ORDER if name not in selected_tables)
-    manifest = _manifest_payload(
-        export_root=export_root,
-        manifest_path=manifest_path,
-        provider=provider,
-        cli_bin=cli_bin,
-        requested_tables=selected_tables,
-        skipped_tables=skipped_tables,
-        synced_tables=tuple(table_results),
-        derived_files=tuple(derived_results),
-        built_at=run_at,
-        dry_run=dry_run,
-    )
-
-    if not dry_run:
-        for target_path, csv_text in written_files:
-            _write_atomic_text(target_path, csv_text)
-        _write_atomic_text(manifest_path, json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-
-    return SyncRunResult(
-        export_root=export_root,
-        manifest_path=manifest_path,
-        dry_run=dry_run,
-        provider=provider,
-        cli_bin=cli_bin,
-        requested_tables=selected_tables,
-        skipped_tables=skipped_tables,
-        synced_tables=tuple(table_results),
-        derived_files=tuple(derived_results),
-        manifest=manifest,
+            table_order=TABLE_ORDER,
+            row_key_mapping_fieldnames=ROW_KEY_MAPPING_FIELDNAMES,
+            provider_name=_provider_name,
+            cli_bin=_cli_bin,
+            selected_tables=_selected_tables,
+            collect_sync_preflight_errors=collect_sync_preflight_errors,
+            resolve_phase2_export_root=resolve_phase2_export_root,
+            resolve_phase2_manifest_path=resolve_phase2_manifest_path,
+            phase2_identity=_phase2_identity,
+            source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
+            resolve_table_binding=resolve_table_binding,
+            normalize_records=normalize_records,
+            csv_text=_csv_text,
+            sha256_text=_sha256_text,
+            sha256_file=_sha256_file,
+            resolve_data_snapshot_paths=resolve_data_snapshot_paths,
+            read_existing_mapping_rows=_read_existing_mapping_rows,
+            build_row_label_row_key_mapping_rows=build_row_label_row_key_mapping_rows,
+            dict_rows_csv_text=_dict_rows_csv_text,
+            write_atomic_text=_write_atomic_text,
+            table_sync_result_cls=TableSyncResult,
+            sync_run_result_cls=SyncRunResult,
+        ),
     )
 
 
