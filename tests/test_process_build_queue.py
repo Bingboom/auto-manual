@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import process_build_queue
+from tests.test_helpers import temp_test_root, write_text
 
 
 class TestProcessBuildQueue(unittest.TestCase):
@@ -105,10 +106,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("US", region)
 
     def test_resolve_config_path_for_task_should_prefer_lang_specific_config(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.yaml": {
@@ -144,10 +144,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.us-en.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_use_document_key_config_as_lang_fallback(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.yaml": {
@@ -177,10 +176,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_allow_blank_lang_for_document_key_config(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -217,10 +215,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.us.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_prefer_build_family_when_present(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {

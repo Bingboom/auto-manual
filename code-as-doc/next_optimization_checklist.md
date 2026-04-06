@@ -58,8 +58,9 @@ Status vocabulary:
 This checklist assumes the 2026-04-07 baseline below:
 
 - repo evaluation focus: maintainability and stability
-- local repo test baseline: `.\.venv\Scripts\python.exe -m unittest` -> `360 tests OK`
+- local repo test baseline: `.\.venv\Scripts\python.exe -m unittest` -> `361 tests OK`
 - local quality-gate baseline:
+  - `.\.venv\Scripts\ruff.exe check build.py tools tests scripts`
   - `.\.venv\Scripts\python.exe build.py check --config config.us-en.yaml --model JE-1000F --region US`
   - `.\.venv\Scripts\python.exe build.py check --config config.ja.yaml --model JE-1000F --region JP`
 - highest-leverage hotspots identified in:
@@ -74,7 +75,9 @@ This checklist assumes the 2026-04-07 baseline below:
 
 ## 3. Milestone A: 2 Weeks
 
-Milestone status: `pending`
+Milestone status: `done`
+Milestone completed: `2026-04-07`
+Milestone note: completed the first quality-gate hardening wave across preview target loading, Spec_Master/runtime/generated-page rule splits, a low-noise Ruff CI gate, and shared orchestration-test helpers while keeping the end-to-end suite green.
 
 - [x] PR 1: Remove import-time config loading from review-preview target resolution
   - Status: `done`
@@ -121,7 +124,7 @@ Milestone status: `pending`
   - Completed: `2026-04-07`
   - Note: reworked the generated-page checker into focused loader, recipe, binding, snippet, placeholder, contract, and orphan-snippet helpers while preserving the existing facade signature and issue ordering
 
-- [ ] PR 4: Add a minimal static quality gate
+- [x] PR 4: Add a minimal static quality gate
   - Status: `done`
   - Target files:
     - [`../pyproject.toml`](../pyproject.toml)
@@ -136,9 +139,10 @@ Milestone status: `pending`
   - Completed: `2026-04-07`
   - Note: added a repo-level Ruff config with the intentionally small `E722/F821/F841` rule set, wired it into `Manual Validation`, documented the local command, and cleared the two existing low-noise violations
 
-- [ ] PR 5: Extract reusable test helpers for orchestration-heavy suites
-  - Status: `pending`
+- [x] PR 5: Extract reusable test helpers for orchestration-heavy suites
+  - Status: `done`
   - Target files:
+    - [`../tests/test_helpers.py`](../tests/test_helpers.py)
     - [`../tests/test_build_script.py`](../tests/test_build_script.py)
     - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
     - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
@@ -150,6 +154,8 @@ Milestone status: `pending`
     - repeated temp-dir and patch scaffolding is moved into shared helpers
     - hot-path tests remain easy to read
     - refactor support gets better without changing test intent
+  - Completed: `2026-04-07`
+  - Note: added shared `temp_test_root`, `write_text`, `write_lines`, and `patch_module_attrs` helpers, migrated representative build/check/queue/target-resolution tests onto the shared scaffolding, documented the helper usage in `tests/README.md`, and kept the full `361`-test suite green
 
 ## 4. Milestone B: 1 Month
 

@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-04-06
+Updated: 2026-04-07
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -390,3 +390,18 @@ Why it mattered:
 - tests and queue/review callers kept the same patchable public surface while real implementation moved into smaller modules
 - preview, export, sync, and domain-rule changes can now land with lower regression risk because ownership boundaries are explicit
 
+## 24. 2026-04-07: Next Optimization Milestone A, Quality-Gate Hardening
+
+Main outcomes:
+
+- removed import-time config loading from [`tools/process_docs/build_review_preview_targets.py`](../tools/process_docs/build_review_preview_targets.py) while keeping the existing preview-template iterable surface stable
+- split [`tools/validate_spec_master_runtime.py`](../tools/validate_spec_master_runtime.py) into focused rule collectors for row, header, footnote, note, and selector validation
+- split [`tools/check_docs_generated.py`](../tools/check_docs_generated.py) into loader, recipe, binding, snippet, placeholder, contract, and orphan-snippet helpers
+- added a minimal Ruff gate through [`pyproject.toml`](../pyproject.toml) and [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
+- added shared orchestration-test helpers in [`../tests/test_helpers.py`](../tests/test_helpers.py) and migrated representative build/check/queue/target-resolution tests onto the shared scaffolding
+
+Why it mattered:
+
+- quality-gate hotspots are now easier to change without reopening giant mixed-responsibility functions
+- CI can catch a small set of high-signal static issues before the heavier unit/build jobs run
+- orchestration-heavy tests now have less duplicated temp-dir, fixture-writing, and patch boilerplate, so follow-up refactors have a lower maintenance tax

@@ -7,6 +7,7 @@ from unittest import mock
 
 from tools import build_docs
 from tools import gen_index_bundle
+from tests.test_helpers import temp_test_root, write_text
 
 
 class TestTargetResolution(unittest.TestCase):
@@ -153,13 +154,12 @@ class TestTargetResolution(unittest.TestCase):
             )
 
     def test_sphinx_build_should_keep_custom_assets_when_falling_back_to_alabaster(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             conf_dir = root / "conf"
             out_dir = root / "out"
             conf_dir.mkdir()
             conf_base = conf_dir / "conf_base.py"
-            conf_base.write_text("html_theme = 'furo'\n", encoding="utf-8")
+            write_text(conf_base, "html_theme = 'furo'\n")
             seen: list[list[str]] = []
 
             with mock.patch.object(build_docs, "_resolve_sphinx_build_cmd", return_value=["sphinx-build", "-b", "html"]), \
@@ -182,8 +182,7 @@ class TestTargetResolution(unittest.TestCase):
         self.assertNotIn("html_js_files=[]", seen[0])
 
     def test_sphinx_build_should_add_tags_for_latex(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             conf_dir = root / "conf"
             out_dir = root / "out"
             conf_dir.mkdir()
