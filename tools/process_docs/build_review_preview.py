@@ -1,19 +1,14 @@
 from __future__ import annotations
 
 import argparse
-import csv
-import json
 import os
 import re
 import shutil
 import subprocess
 import sys
-import zipfile
-from dataclasses import dataclass
 from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
-from xml.sax.saxutils import escape as xml_escape
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -23,9 +18,41 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
-from tools.build_docs import load_config
-from tools.review_support import review_content_exists
-from tools.target_defaults import FAMILY_DEFAULT_CONFIGS, REVIEW_WORKSPACE_TARGET_CONFIGS
+from tools.process_docs.build_review_preview_data import (
+    build_change_workbook,
+    build_downloads_metadata,
+    copy_report_csvs,
+    copy_report_set,
+    copy_tree,
+    latest_report_prefix,
+    locate_latest_docx,
+    read_json_if_exists,
+    write_json,
+)
+from tools.process_docs.build_review_preview_targets import (
+    FAMILY_ORDER,
+    WORKSPACE_TARGET_TEMPLATES,
+    ReviewAvailability,
+    WorkspaceTarget,
+    WorkspaceTargetTemplate,
+    build_diff_command,
+    build_export_command,
+    build_spec_for_target,
+    collect_review_availability,
+    collect_workspace_target_candidates,
+    default_family_config_for_region,
+    diff_config_for_family,
+    discover_workspace_targets,
+    html_root_for_target,
+    output_root_for_target,
+    path_for_display,
+    requested_workspace_target,
+    resolve_path,
+    resolved_primary_config_path,
+    target_has_review_bundle,
+    target_sort_key,
+    tracked_root_for_target,
+)
 
 
 REQUIRED_CHANGE_REPORT_FILES = (
@@ -49,7 +76,6 @@ REQUIRED_PREVIEW_FILES = (
     "generated/changes.json",
     "generated/workspace.json",
 )
-FAMILY_ORDER = ("US", "JP", "CN")
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Spanish",
@@ -61,63 +87,6 @@ _MANUAL_SWITCHER_BLOCK_RE = re.compile(
     r"<!-- HB_MANUAL_SWITCHER_START -->.*?<!-- HB_MANUAL_SWITCHER_END -->\s*",
     re.DOTALL,
 )
-
-
-@dataclass(frozen=True)
-class WorkspaceTarget:
-    model: str
-    family: str
-    language: str
-    config: str
-    include_lang_in_output_path: bool
-
-    @property
-    def label(self) -> str:
-        return f"{self.model}/{self.family}/{self.language}"
-
-    @property
-    def key(self) -> tuple[str, str, str]:
-        return (self.model, self.family, self.language)
-
-
-@dataclass(frozen=True)
-class WorkspaceTargetTemplate:
-    family: str
-    language: str
-    config: str
-    include_lang_in_output_path: bool
-
-
-WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = REVIEW_WORKSPACE_TARGET_CONFIGS
-ReviewAvailability = set[tuple[str, str, str | None]]
-
-
-def _load_workspace_target_template(config_name: str) -> WorkspaceTargetTemplate:
-    config_path = (ROOT / config_name).resolve()
-    cfg = load_config(config_path)
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    family = str(build_cfg.get("default_region") or "").strip().upper()
-    if not family:
-        raise RuntimeError(f"Review preview target config is missing build.default_region: {config_name}")
-    raw_languages = build_cfg.get("languages")
-    if not isinstance(raw_languages, list) or len(raw_languages) != 1:
-        raise RuntimeError(
-            f"Review preview target config must declare exactly one build language: {config_name}"
-        )
-    return WorkspaceTargetTemplate(
-        family=family,
-        language=str(raw_languages[0]).strip().lower(),
-        config=config_name,
-        include_lang_in_output_path=bool(build_cfg.get("include_lang_in_output_path", False)),
-    )
-
-
-def _load_workspace_target_templates() -> tuple[WorkspaceTargetTemplate, ...]:
-    return tuple(_load_workspace_target_template(config_name) for config_name in WORKSPACE_TARGET_CONFIGS)
-
-
-WORKSPACE_TARGET_TEMPLATES: tuple[WorkspaceTargetTemplate, ...] = _load_workspace_target_templates()
 
 
 def parse_args() -> argparse.Namespace:
@@ -175,29 +144,6 @@ def parse_args() -> argparse.Namespace:
         help="Include every existing docs/_review/<model>/ target in the workspace, plus the requested default target.",
     )
     return ap.parse_args()
-
-
-def resolve_path(value: str) -> Path:
-    path = Path(value)
-    if not path.is_absolute():
-        path = ROOT / path
-    return path.resolve()
-
-
-def default_family_config_for_region(region: str) -> str:
-    config_name = FAMILY_DEFAULT_CONFIGS.get((region or "").strip().upper())
-    if config_name is None:
-        raise RuntimeError(
-            "Review preview requires --config when --region is outside the supported family defaults (US, JP, CN)."
-        )
-    return config_name
-
-
-def resolved_primary_config_path(args: argparse.Namespace) -> Path:
-    raw_config = getattr(args, "config", None)
-    if isinstance(raw_config, str) and raw_config.strip():
-        return resolve_path(raw_config)
-    return resolve_path(default_family_config_for_region(str(getattr(args, "region", ""))))
 
 
 def run(cmd: list[str]) -> None:
@@ -258,275 +204,6 @@ def review_pages_for_family(changed_files: list[str], model: str, family: str) -
     ]
 
 
-def latest_report_prefix(report_root: Path) -> str:
-    candidates = sorted(report_root.glob("*_index.html"), key=lambda p: p.stat().st_mtime, reverse=True)
-    if not candidates:
-        raise FileNotFoundError(f"No diff-report index html found under {report_root}")
-    return candidates[0].name[: -len("_index.html")]
-
-
-def copy_tree(src: Path, dst: Path) -> None:
-    if dst.exists():
-        shutil.rmtree(dst)
-    shutil.copytree(src, dst)
-
-
-def rewrite_report_html_for_preview(html_text: str, *, mapping: dict[str, str]) -> str:
-    rewritten = html_text
-    for src_name, dst_name in sorted(mapping.items(), key=lambda item: len(item[0]), reverse=True):
-        rewritten = rewritten.replace(src_name, dst_name)
-    return rewritten
-
-
-def copy_report_set(report_root: Path, prefix: str, changes_dir: Path, *, relative_dir: str) -> dict[str, str]:
-    mapping = {
-        f"{prefix}_index.html": "report-index.html",
-        f"{prefix}.html": "report-summary.html",
-        f"{prefix}_fields.html": "report-fields.html",
-        f"{prefix}_pages.html": "report-pages.html",
-        f"{prefix}_files.html": "report-files.html",
-    }
-    copied: dict[str, str] = {}
-    changes_dir.mkdir(parents=True, exist_ok=True)
-    missing_sources: list[str] = []
-    for src_name, dst_name in mapping.items():
-        src = report_root / src_name
-        if not src.exists():
-            missing_sources.append(src_name)
-            continue
-        html_text = src.read_text(encoding="utf-8")
-        rewritten = rewrite_report_html_for_preview(html_text, mapping=mapping)
-        (changes_dir / dst_name).write_text(rewritten, encoding="utf-8")
-        copied[dst_name] = f"{relative_dir}/{dst_name}"
-    if missing_sources:
-        joined = ", ".join(sorted(missing_sources))
-        raise FileNotFoundError(f"Review preview requires diff-report HTML outputs under {report_root}: {joined}")
-    return copied
-
-
-def copy_report_csvs(report_root: Path, prefix: str, downloads_dir: Path, *, relative_dir: str) -> dict[str, str]:
-    mapping = {
-        f"{prefix}.csv": "changes-summary.csv",
-        f"{prefix}_pages.csv": "changes-pages.csv",
-        f"{prefix}_fields.csv": "changes-fields.csv",
-        f"{prefix}_files.csv": "changes-files.csv",
-    }
-    copied: dict[str, str] = {}
-    downloads_dir.mkdir(parents=True, exist_ok=True)
-    missing_sources: list[str] = []
-    for src_name, dst_name in mapping.items():
-        src = report_root / src_name
-        if not src.exists():
-            missing_sources.append(src_name)
-            continue
-        shutil.copy2(src, downloads_dir / dst_name)
-        copied[dst_name] = f"{relative_dir}/{dst_name}"
-    if missing_sources:
-        joined = ", ".join(sorted(missing_sources))
-        raise FileNotFoundError(f"Review preview requires diff-report CSV outputs under {report_root}: {joined}")
-    return copied
-
-
-def locate_latest_docx(word_root: Path) -> Path | None:
-    if not word_root.exists():
-        return None
-    docx_files = [path for path in word_root.rglob("*.docx") if path.is_file()]
-    if not docx_files:
-        return None
-    return max(docx_files, key=lambda path: path.stat().st_mtime)
-
-
-def read_csv_rows(path: Path) -> list[list[str]]:
-    with path.open("r", encoding="utf-8-sig", newline="") as handle:
-        return [row for row in csv.reader(handle)]
-
-
-def xlsx_column_name(index: int) -> str:
-    result = ""
-    value = index
-    while value > 0:
-        value, remainder = divmod(value - 1, 26)
-        result = chr(65 + remainder) + result
-    return result
-
-
-def make_cell(ref: str, value: str) -> str:
-    safe = xml_escape(value)
-    if value.startswith(" ") or value.endswith(" ") or "\n" in value:
-        return f'<c r="{ref}" t="inlineStr"><is><t xml:space="preserve">{safe}</t></is></c>'
-    return f'<c r="{ref}" t="inlineStr"><is><t>{safe}</t></is></c>'
-
-
-def build_sheet_xml(rows: list[list[str]]) -> str:
-    xml_rows: list[str] = []
-    for row_index, row in enumerate(rows, start=1):
-        cells = []
-        for column_index, value in enumerate(row, start=1):
-            ref = f"{xlsx_column_name(column_index)}{row_index}"
-            cells.append(make_cell(ref, value))
-        xml_rows.append(f'<row r="{row_index}">{"".join(cells)}</row>')
-    return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
-        "<sheetData>"
-        + "".join(xml_rows)
-        + "</sheetData></worksheet>"
-    )
-
-
-def build_workbook_xlsx(path: Path, sheets: list[tuple[str, list[list[str]]]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    workbook_sheets = []
-    workbook_rels = []
-    content_type_overrides = []
-    app_sheet_names = []
-
-    for index, (sheet_name, _rows) in enumerate(sheets, start=1):
-        worksheet_path = f"xl/worksheets/sheet{index}.xml"
-        workbook_sheets.append(
-            f'<sheet name="{xml_escape(sheet_name)}" sheetId="{index}" r:id="rId{index}"/>'
-        )
-        workbook_rels.append(
-            f'<Relationship Id="rId{index}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet{index}.xml"/>'
-        )
-        content_type_overrides.append(
-            f'<Override PartName="/{worksheet_path}" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
-        )
-        app_sheet_names.append(f"<vt:lpstr>{xml_escape(sheet_name)}</vt:lpstr>")
-
-    workbook_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
-        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
-        "<sheets>"
-        + "".join(workbook_sheets)
-        + "</sheets></workbook>"
-    )
-    workbook_rels_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
-        + "".join(workbook_rels)
-        + '<Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>'
-        + "</Relationships>"
-    )
-    root_rels_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
-        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'
-        '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>'
-        '<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>'
-        "</Relationships>"
-    )
-    content_types_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
-        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
-        '<Default Extension="xml" ContentType="application/xml"/>'
-        '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
-        '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'
-        '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>'
-        '<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>'
-        + "".join(content_type_overrides)
-        + "</Types>"
-    )
-    styles_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
-        '<fonts count="1"><font><sz val="11"/><name val="Calibri"/></font></fonts>'
-        '<fills count="1"><fill><patternFill patternType="none"/></fill></fills>'
-        '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>'
-        '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
-        '<cellXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs>'
-        '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>'
-        "</styleSheet>"
-    )
-    created = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    core_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" '
-        'xmlns:dc="http://purl.org/dc/elements/1.1/" '
-        'xmlns:dcterms="http://purl.org/dc/terms/" '
-        'xmlns:dcmitype="http://purl.org/dc/dcmitype/" '
-        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
-        "<dc:title>Review Preview Change Report</dc:title>"
-        "<dc:creator>auto-manual</dc:creator>"
-        "<cp:lastModifiedBy>auto-manual</cp:lastModifiedBy>"
-        f'<dcterms:created xsi:type="dcterms:W3CDTF">{created}</dcterms:created>'
-        f'<dcterms:modified xsi:type="dcterms:W3CDTF">{created}</dcterms:modified>'
-        "</cp:coreProperties>"
-    )
-    app_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" '
-        'xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">'
-        "<Application>auto-manual</Application>"
-        f"<TitlesOfParts><vt:vector size=\"{len(sheets)}\" baseType=\"lpstr\">{''.join(app_sheet_names)}</vt:vector></TitlesOfParts>"
-        f"<HeadingPairs><vt:vector size=\"2\" baseType=\"variant\"><vt:variant><vt:lpstr>Worksheets</vt:lpstr></vt:variant><vt:variant><vt:i4>{len(sheets)}</vt:i4></vt:variant></vt:vector></HeadingPairs>"
-        "</Properties>"
-    )
-
-    with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
-        bundle.writestr("[Content_Types].xml", content_types_xml)
-        bundle.writestr("_rels/.rels", root_rels_xml)
-        bundle.writestr("docProps/core.xml", core_xml)
-        bundle.writestr("docProps/app.xml", app_xml)
-        bundle.writestr("xl/workbook.xml", workbook_xml)
-        bundle.writestr("xl/_rels/workbook.xml.rels", workbook_rels_xml)
-        bundle.writestr("xl/styles.xml", styles_xml)
-        for index, (_name, rows) in enumerate(sheets, start=1):
-            bundle.writestr(f"xl/worksheets/sheet{index}.xml", build_sheet_xml(rows))
-
-
-def build_change_workbook(downloads_dir: Path, csv_files: dict[str, str], *, relative_path: str) -> str | None:
-    sheet_mapping = [
-        ("changes-summary.csv", "Summary"),
-        ("changes-pages.csv", "Pages"),
-        ("changes-fields.csv", "Fields"),
-        ("changes-files.csv", "Files"),
-    ]
-    sheets: list[tuple[str, list[list[str]]]] = []
-    for file_name, sheet_name in sheet_mapping:
-        if file_name not in csv_files:
-            continue
-        csv_path = downloads_dir / file_name
-        if csv_path.exists():
-            sheets.append((sheet_name, read_csv_rows(csv_path)))
-    if not sheets:
-        return None
-
-    workbook_path = downloads_dir / "change-report.xlsx"
-    build_workbook_xlsx(workbook_path, sheets)
-    return relative_path
-
-
-def build_downloads_metadata(
-    *,
-    word_path: str | None,
-    workbook_path: str | None,
-    csv_files: dict[str, str],
-) -> dict[str, object]:
-    return {
-        "word_docx": word_path,
-        "change_workbook": workbook_path,
-        "csv_reports": dict(csv_files),
-    }
-
-
-def write_json(path: Path, payload: dict[str, object]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
-
-
-def read_json_if_exists(path: Path) -> dict[str, object]:
-    if not path.exists():
-        return {}
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return {}
-    return data if isinstance(data, dict) else {}
-
-
 def display_text(value: object, fallback: str = "Not available") -> str:
     text = str(value or "").strip()
     return text or fallback
@@ -567,14 +244,6 @@ def derive_product_name(manual_title: str, fallback: str) -> str:
             if candidate:
                 return candidate
     return text
-
-
-def path_for_display(path: Path) -> str:
-    resolved = path.resolve()
-    try:
-        return resolved.relative_to(ROOT).as_posix()
-    except ValueError:
-        return resolved.as_posix()
 
 
 def workspace_title(model: str) -> str:
@@ -1458,229 +1127,6 @@ def render_changes_home_html(meta: dict[str, object], families_payload: list[dic
 """
 
 
-def output_root_for_target(model: str, target: WorkspaceTarget) -> Path:
-    root = ROOT / "docs" / "_build" / model / target.family
-    if target.include_lang_in_output_path:
-        root = root / target.language
-    return root
-
-
-def html_root_for_target(model: str, target: WorkspaceTarget) -> Path:
-    return output_root_for_target(model, target) / "html"
-
-
-def word_root_for_target(model: str, target: WorkspaceTarget) -> Path:
-    return output_root_for_target(model, target) / "word"
-
-
-def tracked_root_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> Path:
-    if args.tracked_root and target.family == args.region and target.model == args.model:
-        return resolve_path(args.tracked_root)
-    return (ROOT / "docs" / "_review" / target.model / target.family).resolve()
-
-
-def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
-    if family == args.region:
-        return resolved_primary_config_path(args)
-    return resolve_path(default_family_config_for_region(family))
-
-
-def target_templates_for_family(family: str) -> list[WorkspaceTargetTemplate]:
-    return [template for template in WORKSPACE_TARGET_TEMPLATES if template.family == family]
-
-
-def build_workspace_target(model: str, template: WorkspaceTargetTemplate) -> WorkspaceTarget:
-    return WorkspaceTarget(
-        model=model,
-        family=template.family,
-        language=template.language,
-        config=template.config,
-        include_lang_in_output_path=template.include_lang_in_output_path,
-    )
-
-
-def target_sort_key(target: WorkspaceTarget) -> tuple[int, str, str]:
-    family_rank = FAMILY_ORDER.index(target.family) if target.family in FAMILY_ORDER else len(FAMILY_ORDER)
-    return (family_rank, target.model, target.language)
-
-
-def review_models() -> list[str]:
-    review_root = ROOT / "docs" / "_review"
-    if not review_root.exists():
-        return []
-    return sorted(path.name for path in review_root.iterdir() if path.is_dir())
-
-
-def config_template_for_path(config_path: Path) -> WorkspaceTargetTemplate | None:
-    resolved = config_path.resolve()
-    for template in WORKSPACE_TARGET_TEMPLATES:
-        if resolve_path(template.config) == resolved:
-            return template
-    return None
-
-
-def requested_workspace_target(args: argparse.Namespace) -> WorkspaceTarget:
-    config_path = resolved_primary_config_path(args)
-    matched_template = config_template_for_path(config_path)
-    if matched_template is not None:
-        return build_workspace_target(args.model, matched_template)
-
-    cfg = load_config(config_path)
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    languages = build_cfg.get("languages", [])
-    if not isinstance(languages, list) or not languages:
-        raise RuntimeError(f"Review preview could not infer a workspace language from config: {config_path}")
-    language = str(languages[0]).strip().lower()
-    include_lang = bool(build_cfg.get("include_lang_in_output_path", False))
-    return WorkspaceTarget(
-        model=args.model,
-        family=args.region,
-        language=language,
-        config=path_for_display(config_path),
-        include_lang_in_output_path=include_lang,
-    )
-
-
-def workspace_families_for_request(args: argparse.Namespace) -> tuple[str, ...]:
-    preferred_family = (args.region or "").strip().upper()
-    if preferred_family == "CN":
-        return ("CN",)
-    return FAMILY_ORDER
-
-
-def _review_availability_keys_for_target(target: WorkspaceTarget) -> tuple[tuple[str, str, str | None], ...]:
-    keys: list[tuple[str, str, str | None]] = [(target.model, target.family, target.language)]
-    if (target.language or "").strip():
-        keys.append((target.model, target.family, None))
-    return tuple(keys)
-
-
-def collect_review_availability(*, docs_dir: Path, targets: list[WorkspaceTarget]) -> ReviewAvailability:
-    availability: ReviewAvailability = set()
-    candidates: set[tuple[str, str, str | None]] = set()
-    for target in targets:
-        candidates.update(_review_availability_keys_for_target(target))
-    for model, family, lang in sorted(candidates, key=lambda item: (item[0], item[1], item[2] or "")):
-        if review_content_exists(
-            docs_dir=docs_dir,
-            model=model,
-            region=family,
-            lang=lang,
-        ):
-            availability.add((model, family, lang))
-    return availability
-
-
-def target_has_review_bundle(
-    target: WorkspaceTarget,
-    *,
-    review_availability: ReviewAvailability | None = None,
-    docs_dir: Path | None = None,
-) -> bool:
-    if review_availability is None:
-        actual_docs_dir = docs_dir or (ROOT / "docs")
-        review_availability = collect_review_availability(docs_dir=actual_docs_dir, targets=[target])
-    return any(key in review_availability for key in _review_availability_keys_for_target(target))
-
-
-def collect_workspace_target_candidates(
-    args: argparse.Namespace,
-    *,
-    requested_target: WorkspaceTarget | None = None,
-) -> list[WorkspaceTarget]:
-    actual_requested_target = requested_target or requested_workspace_target(args)
-    targets_by_key: dict[tuple[str, str, str], WorkspaceTarget] = {actual_requested_target.key: actual_requested_target}
-
-    if args.all_review_models:
-        for model in review_models():
-            for template in WORKSPACE_TARGET_TEMPLATES:
-                target = build_workspace_target(model, template)
-                targets_by_key[target.key] = target
-    else:
-        for family in workspace_families_for_request(args):
-            for template in target_templates_for_family(family):
-                target = build_workspace_target(args.model, template)
-                targets_by_key[target.key] = target
-
-    return sorted(targets_by_key.values(), key=target_sort_key)
-
-
-def build_spec_for_target(
-    args: argparse.Namespace,
-    target: WorkspaceTarget,
-    *,
-    requested_target: WorkspaceTarget,
-    review_availability: ReviewAvailability | None = None,
-    docs_dir: Path | None = None,
-) -> dict[str, object]:
-    config_path = resolve_path(target.config)
-    output_root = output_root_for_target(target.model, target)
-    source_mode = (
-        "review"
-        if target_has_review_bundle(target, review_availability=review_availability, docs_dir=docs_dir)
-        else "runtime"
-    )
-    source_label = source_mode
-    if target.key == requested_target.key:
-        source_mode = args.source
-        source_label = args.source
-
-    return {
-        "config_path": config_path,
-        "source_mode": source_mode,
-        "source_label": source_label,
-        "output_root": output_root,
-    }
-
-
-def build_export_command(
-    *,
-    action: str,
-    model: str,
-    config_path: Path,
-    family: str,
-    source_mode: str,
-    no_clean: bool,
-) -> list[str]:
-    cmd = [
-        sys.executable,
-        str(ROOT / "build.py"),
-        action,
-        "--config",
-        str(config_path),
-        "--model",
-        model,
-        "--region",
-        family,
-        "--source",
-        source_mode,
-    ]
-    if no_clean:
-        cmd.append("--no-clean")
-    return cmd
-
-
-def build_diff_command(*, args: argparse.Namespace, target: WorkspaceTarget, tracked_root: Path) -> list[str]:
-    return [
-        sys.executable,
-        str(ROOT / "build.py"),
-        "diff-report",
-        "--config",
-        str(diff_config_for_family(args, target.family)),
-        "--model",
-        target.model,
-        "--region",
-        target.family,
-        "--tracked-root",
-        str(tracked_root),
-        "--from-ref",
-        args.from_ref,
-        "--to-ref",
-        args.to_ref,
-    ]
-
-
 def rewrite_manual_switcher_links(
     text: str,
     *,
@@ -1742,32 +1188,6 @@ def rewrite_manual_tree_for_preview(
             ),
             encoding="utf-8",
         )
-
-
-def discover_workspace_targets(
-    args: argparse.Namespace,
-    *,
-    requested_target: WorkspaceTarget | None = None,
-    review_availability: ReviewAvailability | None = None,
-    docs_dir: Path | None = None,
-) -> list[WorkspaceTarget]:
-    actual_requested_target = requested_target or requested_workspace_target(args)
-    target_candidates = collect_workspace_target_candidates(args, requested_target=actual_requested_target)
-    actual_docs_dir = docs_dir or (ROOT / "docs")
-    actual_review_availability = review_availability
-    if actual_review_availability is None:
-        actual_review_availability = collect_review_availability(
-            docs_dir=actual_docs_dir,
-            targets=target_candidates,
-        )
-
-    selected: list[WorkspaceTarget] = []
-    for target in target_candidates:
-        if target.key != actual_requested_target.key and args.source == "review":
-            if not target_has_review_bundle(target, review_availability=actual_review_availability):
-                continue
-        selected.append(target)
-    return selected
 
 
 def assert_preview_output_contract(output_dir: Path, workspace: dict[str, object], *, require_word: bool) -> None:
