@@ -13,21 +13,21 @@ VUE DE FACE
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **Poignée**
+     - **LCD**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
-     - **LCD**
+     - **Bouton lumière LED**
    * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **Bouton d'éclairage LED**
+     - **Lumière LED**
    * - **|FRONT_USB_C_LOW_LABEL|**
 
        |FRONT_USB_C_LOW_SPEC|
-     - **Lumière LED**
+     - **|AC_POWER_BUTTON_LABEL|**
    * - **|FRONT_USB_C_HIGH_LABEL|**
 
        |FRONT_USB_C_HIGH_SPEC|
-     - **|AC_POWER_BUTTON_LABEL|**
+     -
    * - **|FRONT_USB_A_LABEL|**
 
        |FRONT_USB_A_SPEC|
@@ -55,10 +55,10 @@ VUE LATÉRALE DROITE
    :widths: 50 50
 
    * - **Poignée**
-     - **|SIDE_AC_INPUT_LABEL|**
+     -
+   * - **|SIDE_AC_INPUT_LABEL|**
 
        |SIDE_AC_INPUT_SPEC|
-   * -
      - **|SIDE_DC_INPUT_LABEL|**
 
        |SIDE_DC_INPUT_PV_SPEC|
