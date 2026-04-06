@@ -4,10 +4,13 @@ import subprocess
 import sys
 from pathlib import Path
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.process_docs.build_publish_latest_site import build_site
 

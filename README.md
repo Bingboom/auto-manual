@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-04
+Updated: 2026-04-06
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -8,8 +8,9 @@ The current maintained smoke-check baseline is centered on `JE-1000F` across the
 
 For the fixed US + JP release matrix, you can also use:
 
-- [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1): PowerShell wrapper for one-command `US/en + US/es + US/fr + JP/ja`
-- [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py): same workflow with `--languages`, `--formats`, `--check-first`, `--open-html`, and `--dry-run`
+- [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py): shared matrix runner for `US/en + US/es + US/fr + JP/ja`, with `--languages`, `--formats`, `--build-action`, `--check-first`, `--open-html`, and `--dry-run`
+- [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1): PowerShell wrapper for the shared US + JP matrix runner
+- [`scripts/build_us_manuals.ps1`](scripts/build_us_manuals.ps1): US-only compatibility wrapper over the same Python matrix runner; requires explicit `-Model`
 
 ## 1. Current Role
 
@@ -122,7 +123,9 @@ Batch export example:
 
 ```powershell
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --build-action validate --languages en,fr
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
+.\scripts\build_us_manuals.ps1 -Action check -Model JE-1000F -Languages en,es -DryRun
 ```
 
 Word export note:
@@ -144,6 +147,11 @@ Review-sharing example:
 ```powershell
 python tools/process_docs/build_review_preview.py --config config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --all-review-models
 ```
+
+Review-sharing config note:
+
+- omit `--config` when `--region` is `US`, `JP`, or `CN` and you want the shared family default config
+- keep `--config config.us-en.yaml` when you want the review-preview workspace to land on the explicit US English single-language target by default
 
 Vercel note:
 

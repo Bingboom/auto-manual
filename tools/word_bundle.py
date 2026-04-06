@@ -7,9 +7,12 @@ import argparse
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
+
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.word_bundle_common import derive_word_title, paths, resolve_bundle_targets, resolve_reference_doc
 from tools.word_bundle_docx import export_word_from_bundle
@@ -44,4 +47,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
