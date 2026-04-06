@@ -1,6 +1,8 @@
 ﻿from __future__ import annotations
 
 import argparse
+import importlib
+import sys
 import tempfile
 import unittest
 import zipfile
@@ -11,6 +13,15 @@ from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    def test_importing_target_module_should_not_load_config_immediately(self) -> None:
+        module_name = "tools.process_docs.build_review_preview_targets"
+        sys.modules.pop(module_name, None)
+
+        with mock.patch("tools.build_docs.load_config", side_effect=AssertionError("config load should be lazy")):
+            module = importlib.import_module(module_name)
+
+        self.assertEqual(0, module.workspace_target_templates.cache_info().currsize)
+
     def test_workspace_target_templates_should_derive_family_metadata_from_config(self) -> None:
         templates = {template.config: template for template in build_review_preview.WORKSPACE_TARGET_TEMPLATES}
 
