@@ -53,6 +53,33 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("Draft", records[0].doc_phase)
         self.assertEqual("codex/review-je-1000f-us-en-1-0", records[0].git_ref)
 
+    def test_pending_queue_records_should_accept_object_style_feishu_values(self) -> None:
+        records = process_build_queue.pending_queue_records(
+            [
+                {
+                    "record_id": "rec_object_enabled",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_US_en_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_US"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "en"}],
+                        process_build_queue.BUILD_FAMILY_FIELD: [{"text": "us-merged"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Build Draft Package"}],
+                        process_build_queue.DOC_PHASE_FIELD: [{"text": "Draft"}],
+                        process_build_queue.GIT_REF_FIELD: [{"text": "codex/review-id-recvfw0zg4pzxs"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                }
+            ]
+        )
+
+        self.assertEqual(1, len(records))
+        self.assertEqual("rec_object_enabled", records[0].record_id)
+        self.assertEqual("Build Draft Package", records[0].workflow_action)
+        self.assertEqual("Y", records[0].trigger_value)
+        self.assertTrue(records[0].immediate_trigger_value)
+
     def test_parse_document_key_should_split_model_and_region(self) -> None:
         model, region = process_build_queue.parse_document_key("JE-1000F_US")
 
@@ -666,6 +693,72 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
 
         self.assertEqual(["rec_draft"], [record.record_id for record in records])
+
+    def test_select_pending_queue_records_should_match_object_style_workflow_action(self) -> None:
+        records = process_build_queue.select_pending_queue_records(
+            [
+                {
+                    "record_id": "rec_draft_object",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_US_en_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_US"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "en"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Build Draft Package"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+                {
+                    "record_id": "rec_publish_object",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_JP_ja_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_JP"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "ja"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Publish"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+            ],
+            workflow_action="draft",
+        )
+
+        self.assertEqual(["rec_draft_object"], [record.record_id for record in records])
+
+    def test_select_pending_queue_records_should_match_object_style_publish_action(self) -> None:
+        records = process_build_queue.select_pending_queue_records(
+            [
+                {
+                    "record_id": "rec_draft_object",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_US_en_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_US"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "en"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Build Draft Package"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+                {
+                    "record_id": "rec_publish_object",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_JP_ja_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_JP"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "ja"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Publish"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+            ],
+            workflow_action="publish",
+        )
+
+        self.assertEqual(["rec_publish_object"], [record.record_id for record in records])
 
     def test_select_pending_queue_records_should_filter_by_record_id(self) -> None:
         records = process_build_queue.select_pending_queue_records(

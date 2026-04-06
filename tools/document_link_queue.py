@@ -23,6 +23,10 @@ def scalar_text(value: Any) -> str:
             return str(int(value))
         return format(value, "g")
     if isinstance(value, dict):
+        for key in ("text", "name", "label", "title", "value"):
+            text = scalar_text(value.get(key))
+            if text:
+                return text
         return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return str(value).strip()
 
