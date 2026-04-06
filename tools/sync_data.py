@@ -24,6 +24,22 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.config_loader import load_config_mapping
+from tools.sync_data_config import (  # noqa: E402
+    cli_bin as _cli_bin_impl,
+    cli_command_exists as _cli_command_exists_impl,
+    cli_command_parts as _cli_command_parts_impl,
+    collect_sync_preflight_errors as _collect_sync_preflight_errors_impl,
+    env_value as _env_value_impl,
+    phase2_identity as _phase2_identity_impl,
+    phase2_tables_cfg as _phase2_tables_cfg_impl,
+    provider_name as _provider_name_impl,
+    resolved_cli_command_parts as _resolved_cli_command_parts_impl,
+    resolve_table_binding_kwargs as _resolve_table_binding_kwargs_impl,
+    selected_tables as _selected_tables_impl,
+    sync_phase2_cfg as _sync_phase2_cfg_impl,
+    table_cfg as _table_cfg_impl,
+    table_env_names as _table_env_names_impl,
+)
 from tools.data_snapshot import (  # noqa: E402
     resolve_data_snapshot_paths,
     resolve_phase2_export_root,
@@ -207,108 +223,61 @@ def load_config(config_path: Path) -> dict[str, Any]:
 
 
 def _sync_phase2_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    sync_cfg_raw = cfg.get("sync", {})
-    sync_cfg = sync_cfg_raw if isinstance(sync_cfg_raw, dict) else {}
-    phase2_raw = sync_cfg.get("phase2", {})
-    return phase2_raw if isinstance(phase2_raw, dict) else {}
+    return _sync_phase2_cfg_impl(cfg)
 
 
 def _phase2_tables_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    tables_raw = phase2_cfg.get("tables", {})
-    return tables_raw if isinstance(tables_raw, dict) else {}
+    return _phase2_tables_cfg_impl(cfg)
 
 
 def _provider_name(cfg: dict[str, Any]) -> str:
-    raw = str(_sync_phase2_cfg(cfg).get("provider", "lark_cli")).strip().lower() or "lark_cli"
-    if raw not in SUPPORTED_PROVIDERS:
-        raise RuntimeError(f"Unsupported sync.phase2.provider: {raw}")
-    return "lark_cli"
+    return _provider_name_impl(cfg, supported_providers=SUPPORTED_PROVIDERS)
 
 
 def _cli_bin(cfg: dict[str, Any]) -> str:
-    raw = str(_sync_phase2_cfg(cfg).get("cli_bin", "lark-cli")).strip()
-    return raw or "lark-cli"
+    return _cli_bin_impl(cfg)
 
 
 def _phase2_identity() -> str:
-    raw = str(os.environ.get("FEISHU_PHASE2_IDENTITY", "user")).strip().lower() or "user"
-    if raw not in SUPPORTED_IDENTITIES:
-        raise RuntimeError(
-            "FEISHU_PHASE2_IDENTITY must be one of: " + ", ".join(sorted(SUPPORTED_IDENTITIES))
-        )
-    return raw
+    return _phase2_identity_impl(os.environ, supported_identities=SUPPORTED_IDENTITIES)
 
 
 def _selected_tables(raw_tables: list[str]) -> tuple[str, ...]:
-    if not raw_tables:
-        return TABLE_ORDER
-    selected: list[str] = []
-    for raw in raw_tables:
-        name = str(raw).strip().lower()
-        if name not in TABLE_SCHEMAS:
-            raise RuntimeError(
-                "Unsupported --table value: "
-                + name
-                + ". Expected one of: "
-                + ", ".join(TABLE_ORDER)
-            )
-        if name not in selected:
-            selected.append(name)
-    return tuple(name for name in TABLE_ORDER if name in selected)
+    return _selected_tables_impl(raw_tables, table_order=TABLE_ORDER, table_schemas=TABLE_SCHEMAS)
 
 
 def _env_value(env_name: str) -> str:
-    value = os.environ.get(env_name, "").strip()
-    if not value:
-        raise RuntimeError(f"Required environment variable is not set: {env_name}")
-    return value
+    return _env_value_impl(env_name, os.environ)
 
 
 def _table_cfg(cfg: dict[str, Any], logical_name: str) -> dict[str, Any]:
-    tables_cfg = _phase2_tables_cfg(cfg)
-    table_cfg_raw = tables_cfg.get(logical_name, {})
-    return table_cfg_raw if isinstance(table_cfg_raw, dict) else {}
+    return _table_cfg_impl(cfg, logical_name)
 
 
 def _table_env_names(cfg: dict[str, Any], logical_name: str) -> tuple[str, str, str | None]:
-    phase2_cfg = _sync_phase2_cfg(cfg)
-    table_cfg = _table_cfg(cfg, logical_name)
-    base_token_env = str(
-        table_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or ""
-    ).strip()
-    table_id_env = str(table_cfg.get("table_id_env") or "").strip()
-    view_id_env = str(table_cfg.get("view_id_env") or "").strip() or None
-    return base_token_env, table_id_env, view_id_env
+    return _table_env_names_impl(cfg, logical_name)
 
 
 def _cli_command_parts(cli_bin: str) -> list[str]:
-    parts = shlex.split(cli_bin)
-    if not parts:
-        raise RuntimeError("sync.phase2.cli_bin must not be empty")
-    return parts
+    return _cli_command_parts_impl(cli_bin, split_command=shlex.split)
 
 
 def _resolved_cli_command_parts(cli_bin: str) -> list[str]:
-    parts = _cli_command_parts(cli_bin)
-    command = parts[0]
-    command_path = Path(command)
-    if command_path.is_absolute():
-        resolved_command = command
-    else:
-        # On Windows, subprocess cannot launch a bare command name like
-        # "lark-cli" even when shutil.which() resolves it to a .cmd shim.
-        # Resolve the executable up front so the same config works cross-platform.
-        resolved_command = shutil.which(command) or command
-    return [resolved_command, *parts[1:]]
+    return _resolved_cli_command_parts_impl(
+        cli_bin,
+        split_command=shlex.split,
+        which=shutil.which,
+        path_type=Path,
+    )
 
 
 def _cli_command_exists(cli_bin: str) -> bool:
-    command = _cli_command_parts(cli_bin)[0]
-    command_path = Path(command)
-    if command_path.is_absolute():
-        return command_path.exists()
-    return shutil.which(command) is not None
+    return _cli_command_exists_impl(
+        cli_bin,
+        split_command=shlex.split,
+        which=shutil.which,
+        path_type=Path,
+    )
 
 
 def collect_sync_preflight_errors(
@@ -318,78 +287,30 @@ def collect_sync_preflight_errors(
     environ: Mapping[str, str] | None = None,
     require_cli: bool = True,
 ) -> list[str]:
-    selected_tables = _selected_tables(list(table_names or []))
     env_map = environ if environ is not None else os.environ
-    errors: list[str] = []
-
-    if require_cli:
-        cli_bin = _cli_bin(cfg)
-        try:
-            command = _cli_command_parts(cli_bin)[0]
-        except RuntimeError as exc:
-            errors.append(str(exc))
-        else:
-            if not _cli_command_exists(cli_bin):
-                errors.append(
-                    f"sync.phase2.cli_bin executable is not available: {command}"
-                )
-
-    required_env_names: list[str] = []
-    seen_env_names: set[str] = set()
-    for logical_name in selected_tables:
-        base_token_env, table_id_env, view_id_env = _table_env_names(cfg, logical_name)
-        if not base_token_env:
-            errors.append(
-                f"sync.phase2.tables.{logical_name}.base_token_env is required, "
-                "or provide sync.phase2.base_token_env"
-            )
-        elif base_token_env not in seen_env_names:
-            seen_env_names.add(base_token_env)
-            required_env_names.append(base_token_env)
-        if not table_id_env:
-            errors.append(f"sync.phase2.tables.{logical_name}.table_id_env is required")
-        elif table_id_env not in seen_env_names:
-            seen_env_names.add(table_id_env)
-            required_env_names.append(table_id_env)
-        if view_id_env and view_id_env not in seen_env_names:
-            seen_env_names.add(view_id_env)
-            required_env_names.append(view_id_env)
-
-    missing_env_names = [
-        env_name
-        for env_name in required_env_names
-        if not str(env_map.get(env_name, "")).strip()
-    ]
-    if missing_env_names:
-        errors.append(
-            "Required environment variables are not set: "
-            + ", ".join(missing_env_names)
-        )
-    return errors
+    return _collect_sync_preflight_errors_impl(
+        cfg,
+        table_names=table_names,
+        environ=env_map,
+        require_cli=require_cli,
+        table_order=TABLE_ORDER,
+        table_schemas=TABLE_SCHEMAS,
+        cli_bin_fn=_cli_bin,
+        cli_command_parts_fn=_cli_command_parts,
+        cli_command_exists_fn=_cli_command_exists,
+        table_env_names_fn=_table_env_names,
+    )
 
 
 def resolve_table_binding(cfg: dict[str, Any], logical_name: str) -> TableBinding:
-    if logical_name not in TABLE_SCHEMAS:
-        raise RuntimeError(f"Unknown sync table: {logical_name}")
-    base_token_env, table_id_env, view_id_env = _table_env_names(cfg, logical_name)
-
-    if not base_token_env:
-        raise RuntimeError(
-            f"sync.phase2.tables.{logical_name}.base_token_env is required, "
-            "or provide sync.phase2.base_token_env"
-        )
-    if not table_id_env:
-        raise RuntimeError(f"sync.phase2.tables.{logical_name}.table_id_env is required")
-
     return TableBinding(
-        logical_name=logical_name,
-        schema=TABLE_SCHEMAS[logical_name],
-        base_token_env=base_token_env,
-        table_id_env=table_id_env,
-        view_id_env=view_id_env,
-        base_token=_env_value(base_token_env),
-        table_id=_env_value(table_id_env),
-        view_id=_env_value(view_id_env) if view_id_env else None,
+        **_resolve_table_binding_kwargs_impl(
+            cfg,
+            logical_name,
+            table_schemas=TABLE_SCHEMAS,
+            table_env_names_fn=_table_env_names,
+            env_value_fn=_env_value,
+        )
     )
 
 
