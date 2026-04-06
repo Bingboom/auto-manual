@@ -4,10 +4,8 @@
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import re
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -75,6 +73,11 @@ from tools.process_review_start_queue_git import (  # noqa: E402
     start_review_for_record as _start_review_for_record_impl,
     sync_phase2_snapshot_before_review_start as _sync_phase2_snapshot_before_review_start_impl,
     worktree_dir_for_branch as _worktree_dir_for_branch_impl,
+)
+from tools.process_review_start_queue_entry import parse_args as _parse_args_impl, run_main as _run_main_impl  # noqa: E402
+from tools.process_review_start_queue_runtime import (  # noqa: E402
+    ReviewStartRuntimeDeps,
+    process_review_start_queue as _process_review_start_queue_impl,
 )
 from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
 
@@ -403,168 +406,51 @@ def process_review_start_queue(
     dry_run: bool,
     record_id: str | None = None,
 ) -> int:
-    errors = collect_review_start_preflight_errors(cfg, require_github=not dry_run)
-    if errors:
-        raise RuntimeError("process-review-start-queue preflight failed:\n- " + "\n- ".join(errors))
-
-    binding = resolve_review_init_binding(cfg)
-    source = LarkCliSource(cli_bin=_cli_bin(cfg), identity=_phase2_identity())
-    raw_records = source.fetch_records_with_ids(
-        base_token=binding.base_token,
-        table_id=binding.table_id,
-        view_id=binding.view_id,
+    return _process_review_start_queue_impl(
+        cfg=cfg,
+        config_path=config_path,
+        data_root=data_root,
+        dry_run=dry_run,
+        record_id=record_id,
+        deps=ReviewStartRuntimeDeps(
+            root=ROOT,
+            review_action_label=REVIEW_START_ACTION_LABEL,
+            cli_bin_fn=_cli_bin,
+            phase2_identity_fn=_phase2_identity,
+            source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
+            collect_preflight_errors_fn=collect_review_start_preflight_errors,
+            resolve_binding_fn=resolve_review_init_binding,
+            select_pending_records_fn=select_pending_review_start_records,
+            group_records_fn=group_review_start_records,
+            validate_group_fn=validate_review_start_group,
+            resolve_target_fn=resolve_target_for_review_start,
+            group_lang_fn=review_start_group_lang,
+            group_build_family_fn=review_start_group_build_family,
+            resolve_config_path_fn=_resolve_review_start_config_path,
+            record_key_fn=review_start_record_key,
+            generate_branch_name_fn=generate_review_branch_name,
+            sync_snapshot_before_fn=sync_phase2_snapshot_before_review_start,
+            run_git_fn=_run_git,
+            base_ref_contains_target_review_root_fn=base_ref_contains_target_review_root,
+            build_duplicate_fields_fn=build_review_start_duplicate_fields,
+            build_success_fields_fn=build_review_start_success_fields,
+            start_review_for_record_fn=start_review_for_record,
+            environ=os.environ,
+        ),
     )
-    pending_records = select_pending_review_start_records(raw_records, record_id=record_id)
-    if not pending_records:
-        print("[review-start] No pending review-start tasks found.")
-        return 0
-    pending_groups = group_review_start_records(pending_records)
-
-    snapshot_data_root = data_root or str((ROOT / ".tmp" / "review-start" / "phase2").resolve())
-    if dry_run:
-        for group in pending_groups:
-            record = group[0]
-            validate_review_start_group(group)
-            model, region = resolve_target_for_review_start(record)
-            group_lang = review_start_group_lang(group)
-            group_build_family = review_start_group_build_family(group)
-            build_config_path = _resolve_review_start_config_path(
-                region=region,
-                lang=group_lang,
-                build_family=group_build_family,
-            )
-            print(
-                f"[review-start] {REVIEW_START_ACTION_LABEL} DRY-RUN "
-                + json.dumps(
-                    {
-                        "record_ids": [item.record_id for item in group],
-                        "record_id": record.record_id,
-                        "label": record.label,
-                        "document_key": review_start_record_key(record),
-                        "model": model,
-                        "region": region,
-                        "build_family": group_build_family,
-                        "lang": group_lang,
-                        "langs": [item.lang for item in group if item.lang.strip()],
-                        "version": record.version,
-                        "git_ref": generate_review_branch_name(record),
-                        "workflow_action": REVIEW_START_ACTION_LABEL,
-                        "config": str(build_config_path),
-                        "data_root": snapshot_data_root,
-                    },
-                    ensure_ascii=False,
-                )
-            )
-        return 0
-
-    print(f"[review-start] Syncing latest phase2 snapshot before {REVIEW_START_ACTION_LABEL.lower()}.")
-    sync_phase2_snapshot_before_review_start(config_path=config_path, data_root=snapshot_data_root)
-
-    repository = str(os.environ.get("GITHUB_REPOSITORY", "")).strip()
-    token = str(os.environ.get("GITHUB_TOKEN", "")).strip()
-    base_ref = str(os.environ.get("REVIEW_START_BASE_REF", "main")).strip() or "main"
-    _run_git(["fetch", "origin", "--prune"])
-
-    failures: list[str] = []
-    processed = 0
-    blocked = 0
-    for group in pending_groups:
-        record = group[0]
-        try:
-            validate_review_start_group(group)
-            model, region = resolve_target_for_review_start(record)
-            group_lang = review_start_group_lang(group)
-            group_build_family = review_start_group_build_family(group)
-            build_config_path = _resolve_review_start_config_path(
-                region=region,
-                lang=group_lang,
-                build_family=group_build_family,
-            )
-            if base_ref_contains_target_review_root(
-                config_path=build_config_path,
-                model=model,
-                region=region,
-                base_ref=base_ref,
-            ):
-                duplicate_fields = build_review_start_duplicate_fields()
-                for group_record in group:
-                    source.upsert_record(
-                        base_token=binding.base_token,
-                        table_id=binding.table_id,
-                        record_id=group_record.record_id,
-                        record=duplicate_fields,
-                    )
-                blocked += 1
-                print(
-                    f"[review-start] {REVIEW_START_ACTION_LABEL} BLOCKED "
-                    f"{review_start_record_key(record)}: review root already exists in origin/{base_ref} "
-                    f"for {model}/{region} family={group_build_family or 'legacy'}; updated {len(group)} row(s)"
-                )
-                continue
-            branch_name, pr_url = start_review_for_record(
-                record=record,
-                build_config_path=build_config_path,
-                snapshot_data_root=snapshot_data_root,
-                base_ref=base_ref,
-                repository=repository,
-                token=token,
-            )
-            success_fields = build_review_start_success_fields(git_ref=branch_name, pr_url=pr_url)
-            for group_record in group:
-                source.upsert_record(
-                    base_token=binding.base_token,
-                    table_id=binding.table_id,
-                    record_id=group_record.record_id,
-                    record=success_fields,
-                )
-            processed += 1
-            print(
-                f"[review-start] {REVIEW_START_ACTION_LABEL} updated {review_start_record_key(record)}: "
-                f"family={group_build_family or 'legacy'} git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
-            )
-        except Exception as exc:
-            failures.append(f"{review_start_record_key(record)}: {exc}")
-            print(
-                f"[review-start] {REVIEW_START_ACTION_LABEL} FAILURE {review_start_record_key(record)} "
-                f"family={review_start_group_build_family(group) or 'legacy'}: {exc}",
-                file=sys.stderr,
-            )
-
-    print(
-        f"[review-start] {REVIEW_START_ACTION_LABEL} summary: "
-        f"processed={processed} blocked={blocked} failed={len(failures)}"
-    )
-    return 1 if failures else 0
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Review-init rows and start review / seed draft branches and PRs.")
-    ap.add_argument("--config", required=True, help="Config YAML path")
-    ap.add_argument("--data-root", default=None, help="Override phase2 snapshot root for review seeding")
-    ap.add_argument("--dry-run", action="store_true", help="List pending rows without creating branches or PRs")
-    ap.add_argument("--record-id", default=None, help="Only consume one Review-init record_id")
-    return ap.parse_args(argv)
+    return _parse_args_impl(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv)
-    config_path = Path(args.config)
-    if not config_path.is_absolute():
-        config_path = ROOT / config_path
-    cfg = load_config(config_path)
-    resolved_data_root = str(
-        resolve_phase2_export_root(
-            cfg,
-            repo_root=ROOT,
-            data_root=args.data_root,
-        )
-    )
-    return process_review_start_queue(
-        cfg=cfg,
-        config_path=config_path,
-        data_root=resolved_data_root,
-        dry_run=args.dry_run,
-        record_id=args.record_id,
+    return _run_main_impl(
+        argv,
+        root=ROOT,
+        load_config_fn=load_config,
+        resolve_phase2_export_root_fn=resolve_phase2_export_root,
+        process_review_start_queue_fn=process_review_start_queue,
     )
 
 
