@@ -727,6 +727,39 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(["rec_draft_object"], [record.record_id for record in records])
 
+    def test_select_pending_queue_records_should_match_object_style_publish_action(self) -> None:
+        records = process_build_queue.select_pending_queue_records(
+            [
+                {
+                    "record_id": "rec_draft_object",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_US_en_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_US"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "en"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Build Draft Package"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+                {
+                    "record_id": "rec_publish_object",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: {"text": "JE-1000F_JP_ja_1.0"},
+                        process_build_queue.DOCUMENT_KEY_FIELD: {"text": "JE-1000F_JP"},
+                        process_build_queue.VERSION_FIELD: [{"text": "1.0"}],
+                        process_build_queue.LANG_FIELD: [{"text": "ja"}],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: [{"text": "Publish"}],
+                        process_build_queue.TRIGGER_FIELD: [{"text": "Y"}],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+            ],
+            workflow_action="publish",
+        )
+
+        self.assertEqual(["rec_publish_object"], [record.record_id for record in records])
+
     def test_select_pending_queue_records_should_filter_by_record_id(self) -> None:
         records = process_build_queue.select_pending_queue_records(
             [
