@@ -12,11 +12,14 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
 
-from tools.build_docs import BuildTarget, load_config, resolve_build_targets  # noqa: E402
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.build_docs import BuildTarget, build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.review_support import review_dir_for_target  # noqa: E402
 
@@ -140,6 +143,7 @@ def _load_existing_review_bundle(
 def materialize_review_bundle(
     *,
     docs_dir: Path,
+    docs_build_dir: Path | None = None,
     model: str | None,
     region: str | None,
     lang: str | None = None,
@@ -156,7 +160,10 @@ def materialize_review_bundle(
             )
         return _load_existing_review_bundle(review_dir, model=model, region=region, lang=lang)
 
-    runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    if docs_build_dir is None:
+        runtime_bundle_dir = bundle_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
+    else:
+        runtime_bundle_dir = build_root_for_target(model, region, lang, docs_build_dir=docs_build_dir) / "rst"
     index_src = runtime_bundle_dir / "index.rst"
     page_src = runtime_bundle_dir / "page"
     generated_src = runtime_bundle_dir / "generated"
@@ -232,6 +239,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
     ap.add_argument("--all-targets", action="store_true", help="Use build.targets from config")
+    ap.add_argument("--docs-build-dir", default=None, help="Override prepared docs/_build root")
     ap.add_argument(
         "--refresh-existing",
         action="store_true",
@@ -249,6 +257,11 @@ def main(argv: list[str] | None = None) -> int:
     try:
         cfg = load_config(cfg_path)
         docs_dir = resolve_docs_dir(cfg)
+        docs_build_dir = None
+        if isinstance(args.docs_build_dir, str) and args.docs_build_dir.strip():
+            docs_build_dir = Path(args.docs_build_dir.strip())
+            if not docs_build_dir.is_absolute():
+                docs_build_dir = ROOT / docs_build_dir
         targets = resolve_build_targets(
             cfg,
             arg_model=args.model,
@@ -258,6 +271,7 @@ def main(argv: list[str] | None = None) -> int:
         for target in targets:
             review_bundle = materialize_review_bundle(
                 docs_dir=docs_dir,
+                docs_build_dir=docs_build_dir,
                 model=target.model,
                 region=target.region,
                 lang=target.lang,

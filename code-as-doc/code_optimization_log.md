@@ -1,9 +1,13 @@
 # Code Optimization Log
 
-Updated: 2026-03-31
+Updated: 2026-04-06
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
+
+For the active in-progress refactor checklist, use:
+
+- [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
 
 For current rules, see:
 
@@ -164,4 +168,225 @@ Why it mattered:
 - online content governance is now separated cleanly from the offline build contract
 - build-time consumers no longer need their own ad hoc CSV path rules
 - maintainers can switch between phase1 and phase2 snapshots without changing manifests or renderer logic
+
+## 10. 2026-04-04: Queue Action Normalization and Staged Verification Outputs
+
+Main outcomes:
+
+- made `Workflow_action` the primary queue-action field for `Document_link` while keeping `Doc_phase` as a compatibility fallback
+- updated local/GitHub queue entrypoints to prefer `--workflow-action build-draft-package|publish`
+- added `--staging-root` and `AUTO_MANUAL_STAGING_ROOT` so `docs/_build`, `reports/version_tracking`, and `reports/releases` can be redirected under an isolated root during verification
+- extended `check`, `sync-review`, `review_bundle`, `release-manifest`, and publish-path helpers to read/write against staged output roots
+- updated maintainer docs to keep `page_registry`, page selection/applicability, and `layout_params` explicitly repo-owned while queue data stays phase2-driven
+
+Why it mattered:
+
+- queue semantics are now less ambiguous for operators and Feishu automation authors
+- local parity checks and smoke runs no longer need to pollute tracked output directories
+- release-path consumers can rely on one normalized action vocabulary and one isolated-output mechanism
+
+## 11. 2026-04-04: Branch Start Guardrails
+
+Main outcomes:
+
+- added [`scripts/start_branch.ps1`](../scripts/start_branch.ps1) as the supported branch-creation entrypoint from fresh `origin/main`
+- added [`scripts/start_branch.sh`](../scripts/start_branch.sh) so the same branch-start flow is available on mac/Linux
+- moved the repo-managed [`.githooks/pre-push`](../.githooks/pre-push) guard off the earlier bash-only path and shipped companion Windows launchers [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1)
+- documented the local `git config core.hooksPath .githooks` setup, the Windows/mac entrypoints, and the intentional bypass path `git push --no-verify`
+
+Why it mattered:
+
+- continuing work in the same shell after a PR merge or close is less likely to accidentally reuse an outdated base
+- the same freshness guard can now be applied from Windows and mac without depending on a bash-only hook path
+
+## 12. 2026-04-04: Staging-First Local Validation
+
+Main outcomes:
+
+- added [`scripts/local_build.py`](../scripts/local_build.py) plus [`scripts/local_build.ps1`](../scripts/local_build.ps1) and [`scripts/local_build.sh`](../scripts/local_build.sh) as the local verification wrappers that default staging-safe build actions into `.tmp/staging`
+- updated [`scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) and [`scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) so local queue runs also default to `.tmp/staging`
+- updated the maintainer and user workflow docs so local `check`, `diff-report`, `release-manifest`, and `publish` examples stop requiring a hand-written `--staging-root`
+
+Why it mattered:
+
+- routine local verification no longer needs to pollute repo `docs/_build`, `reports/version_tracking`, or `reports/releases`
+- Windows and mac operators now have the same default isolated-output workflow for local validation
+
+## 13. 2026-04-05: Workflow_action Deprecation Cutover
+
+Main outcomes:
+
+- kept `Workflow_action` as the only recommended queue-action field in docs and CLI examples
+- retained `Doc_phase` only as a compatibility fallback, with explicit warnings in build-queue logs and CLI translation paths
+- updated queue writeback/result diagnostics so `workflow_action` stays primary and legacy `Doc_phase` only appears as `legacy_doc_phase` when that fallback path was used
+
+Why it mattered:
+
+- queue-action migration now has one clear primary field and one explicitly deprecated fallback
+- legacy queue rows can still run without hiding which compatibility path was taken
+
+## 14. 2026-04-05: Modular Decomposition of Build and Queue Orchestration
+
+Main outcomes:
+
+- extracted build path/staging/config helpers into [`tools/build_paths.py`](../tools/build_paths.py)
+- extracted diff-report and publish-path command helpers into [`tools/build_reports.py`](../tools/build_reports.py)
+- extracted CLI command assembly helpers into [`tools/build_entry_commands.py`](../tools/build_entry_commands.py)
+- extracted doctor environment/preflight helpers into [`tools/build_doctor.py`](../tools/build_doctor.py)
+- extracted shared queue dataclasses into [`tools/queue_contract.py`](../tools/queue_contract.py)
+- extracted queue action normalization into [`tools/document_link_actions.py`](../tools/document_link_actions.py)
+- extracted queue record parsing/binding/filtering into [`tools/document_link_queue.py`](../tools/document_link_queue.py)
+- extracted queue config-family routing into [`tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
+- extracted queue runtime/worktree helpers into [`tools/queue_runtime.py`](../tools/queue_runtime.py)
+- extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/queue_build_execution.py)
+- extracted per-group queue processing and writeback orchestration into [`tools/queue_group_processing.py`](../tools/queue_group_processing.py)
+- extracted grouped dry-run preview formatting into [`tools/queue_dry_run.py`](../tools/queue_dry_run.py)
+- extracted grouped queue bucketing rules into [`tools/queue_grouping.py`](../tools/queue_grouping.py)
+- extracted queue-session bootstrap and pending-state loading into [`tools/queue_session.py`](../tools/queue_session.py)
+- extracted Lark drive/wiki transport helpers into [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py)
+- extracted queue output staging and publish metadata helpers into [`tools/queue_outputs.py`](../tools/queue_outputs.py)
+- extracted queue writeback/result formatting into [`tools/queue_writeback.py`](../tools/queue_writeback.py)
+- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) from the earlier 1600+ line range down to a smaller orchestration-focused core
+
+Why it mattered:
+
+- future changes to queue transport, writeback, output staging, or action semantics no longer need to touch one giant file
+- wrapper-compatible extraction kept the public entrypoints stable while shrinking the regression surface
+- maintainers now have explicit module boundaries to extend instead of continuing to accrete logic into `build.py` and `process_build_queue.py`
+
+## 15. 2026-04-05: Module Boundary Map For Ongoing Maintenance
+
+Main outcomes:
+
+- added [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) as the living map for build and queue module ownership
+- recorded the current rule that [`build.py`](../build.py) and [`tools/process_build_queue.py`](../tools/process_build_queue.py) should stay orchestration-first while helper modules absorb low-level logic
+- linked ongoing decomposition maintenance to both the roadmap and the optimization log
+
+Why it mattered:
+
+- decomposition work is now discoverable after the commit lands, not only recoverable from Git history
+- maintainers have a stable place to document future module moves as the next large files are split
+
+## 16. 2026-04-05: Queue Entry Boundary Tightening
+
+Main outcomes:
+
+- extracted [`tools/queue_orchestration.py`](../tools/queue_orchestration.py) so [`tools/process_build_queue.py`](../tools/process_build_queue.py) now delegates its top-level session loop instead of carrying the full pending-state / dry-run / real-run branch logic
+- extracted [`tools/queue_bound_outputs.py`](../tools/queue_bound_outputs.py) so repo-root-aware output and release adapters live outside the entry file
+- preserved test-time `ROOT` patching by wiring the bound-output module through a dynamic repo-root provider instead of hardcoding repo state inside the helper
+- refreshed [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) to record the new queue ownership split
+
+Why it mattered:
+
+- queue entry behavior is now cleaner to reason about because session orchestration and repo-root output adaptation are explicit modules
+- the remaining `process_build_queue.py` surface is closer to compatibility wrappers plus dependency wiring instead of mixed implementation
+
+## 17. 2026-04-05: Queue Runtime And Transport Adapter Split
+
+Main outcomes:
+
+- extracted [`tools/queue_bound_runtime.py`](../tools/queue_bound_runtime.py) for repo-root-aware command/worktree helpers and bound `build.py` command assembly
+- extracted [`tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) for repo-root-aware Lark CLI adapters used by the queue entrypoint
+- kept compatibility names such as `_run_command`, `_run_lark_cli_json`, `get_wiki_node`, and `_command_failure_message` on [`tools/process_build_queue.py`](../tools/process_build_queue.py) so existing tests and callers still patch the same surface
+- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) further into a smaller orchestration-and-compatibility layer
+
+Why it mattered:
+
+- queue-specific runtime and transport binding no longer need to live inline with queue record/action orchestration
+- the remaining hot spots in `process_build_queue.py` are now narrower and easier to isolate in later passes
+
+## 18. 2026-04-05: Queue Binding And Record Adapter Split
+
+Main outcomes:
+
+- extracted [`tools/queue_bound_binding.py`](../tools/queue_bound_binding.py) for `Document_link` preflight and binding resolution helpers
+- extracted [`tools/queue_bound_records.py`](../tools/queue_bound_records.py) for queue record parsing, workflow-action facade logic, config routing, and grouping helpers
+- preserved `ROOT` and `load_config` patchability by wiring repo-root and config-loader providers from [`tools/process_build_queue.py`](../tools/process_build_queue.py)
+- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) further into a smaller compatibility-and-entrypoint layer
+
+Why it mattered:
+
+- queue record/config routing is now isolated from runtime, transport, output staging, and top-level orchestration
+- future changes to record semantics or config-family routing can land in smaller modules without reopening the full queue entry file
+
+## 19. 2026-04-05: Maintainability Milestone 1, Foundation And Entrypoint
+
+Main outcomes:
+
+- added shared config/bootstrap helpers in [`tools/config_loader.py`](../tools/config_loader.py) and [`tools/script_bootstrap.py`](../tools/script_bootstrap.py)
+- switched build/report/sync entry scripts to the shared config-loading and repo-root bootstrap foundation
+- extracted `build.py` runtime helpers into [`tools/build_runtime.py`](../tools/build_runtime.py)
+- extracted `build.py` publish and diff-report orchestration into [`tools/build_publish.py`](../tools/build_publish.py)
+- extracted `build.py` CLI parsing into [`tools/build_cli.py`](../tools/build_cli.py)
+- extracted `build.py` top-level action routing into [`tools/build_dispatch.py`](../tools/build_dispatch.py)
+- extended [`tools/build_doctor.py`](../tools/build_doctor.py) so the doctor runner no longer lives inline in [`build.py`](../build.py)
+
+Why it mattered:
+
+- the repo now has one shared config/bootstrap foundation instead of repeating path setup and config loading across entry scripts
+- `build.py` is closer to an orchestration shell, with parser and action dispatch logic separated from runtime and publish implementation
+- later decomposition work can keep compatibility wrappers stable while moving real logic into smaller modules
+
+## 20. 2026-04-05: Maintainability Milestone 2, Build Pipeline Decomposition
+
+Main outcomes:
+
+- split [`tools/build_docs.py`](../tools/build_docs.py) into dedicated CLI, entry, target-resolution, bundle, validation, I/O, export, theme, path, sphinx, HTML, page/index, and shared-support modules
+- reduced [`tools/build_docs.py`](../tools/build_docs.py) from the earlier 1400+ line range down to a thinner orchestration facade
+- split [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) into planning, materialization, asset, page-render, and runtime helper modules
+- split [`tools/check_docs.py`](../tools/check_docs.py) into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules
+- added config `extends` support and moved shared US single-language defaults into [`config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml) so `config.us-en/es/fr.yaml` became thin overrides with manifest-owned page stacks
+
+Why it mattered:
+
+- build-pipeline changes now land in smaller, more explicit modules instead of reopening one large mixed-responsibility file
+- bundle generation, checking, and export flow now have clearer ownership boundaries and lower regression risk
+- single-language config maintenance no longer depends on copying whole-family YAML files for small language-specific differences
+
+## 21. 2026-04-05 to 2026-04-06: Maintainability Milestone 3, Reporting, Queue, and Domain Split
+
+Main outcomes:
+
+- split [`tools/diff_report.py`](../tools/diff_report.py) into dedicated git/path, field extraction, rendering, report-generation, and model helper modules while keeping the public facade stable
+- moved release-manifest runtime assembly behind [`tools/release_manifest_service.py`](../tools/release_manifest_service.py) without changing CLI or path semantics
+- completed the queue decomposition wave across listener, review-start, build-session wiring, phase2 support, and queue-bound adapter modules while preserving patchable entry surfaces
+- split [`tools/utils/spec_master.py`](../tools/utils/spec_master.py) into dedicated shared, lookup, auditing, mapping, and repair modules while keeping the original public exports stable
+- completed the execution tracker in [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
+
+Why it mattered:
+
+- reporting, queue integration, and spec-master domain logic now have clear ownership boundaries instead of living in the same large facade files
+- maintainers can change lookup, validation, mapping, repair, reporting, or queue-adapter behavior with a much smaller regression surface
+- the maintainability campaign now has a closed loop across code, tracker state, and milestone history
+
+## 22. 2026-04-06: Workstream A Closure, Entrypoint And Tooling Parity
+
+Main outcomes:
+
+- removed hardcoded `JE-1000F` diff-report defaults from [`tools/diff_report.py`](../tools/diff_report.py) so tracked-root and output-root behavior now aligns with [`build.py`](../build.py)
+- added shared target/config defaults in [`tools/target_defaults.py`](../tools/target_defaults.py) and rewired [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) plus [`scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) to derive matrix targets from shared metadata instead of duplicating literals
+- updated [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) and [`tools/process_docs/vercel_build_review_preview.py`](../tools/process_docs/vercel_build_review_preview.py) so family-default preview config resolution matches the supported `US` / `JP` / `CN` workflow
+- refreshed [`README.md`](../README.md), [`build_doc_guide.md`](build_doc_guide.md), and [`hello_auto-doc.md`](../user-guide/hello_auto-doc.md) so script examples and preview guidance match the current supported baseline
+
+Why it mattered:
+
+- `build.py`, low-level tools, and matrix wrappers no longer disagree on review roots, report roots, or default target config resolution
+- maintainers can change shared family defaults in one place instead of editing multiple wrappers and preview scripts independently
+- user-facing script examples now describe the same entrypoint behavior that the code actually implements
+
+## 23. 2026-04-06: Maintainability Milestone 4, Preview, Domain, Export, and Sync Decomposition
+
+Main outcomes:
+
+- split [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) into dedicated target, data, render, page, postprocess, and workspace helper modules while preserving the public facade
+- reduced [`tools/utils/spec_master.py`](../tools/utils/spec_master.py) to a thin facade over dedicated shared, row-helper, lookup, auditing, mapping, and repairs modules
+- split [`tools/word_bundle_html.py`](../tools/word_bundle_html.py) into models, HTML-only, render, images, and rewrite helper modules
+- split [`tools/sync_data.py`](../tools/sync_data.py) into config, records, runtime, and CLI-output helpers while keeping `LarkCliSource`, `ROOT`, and existing patch surfaces stable
+- finished the remaining shared-bootstrap rollout across entry scripts and reduced queue-side phase2 helper coupling through [`tools/phase2_support.py`](../tools/phase2_support.py)
+
+Why it mattered:
+
+- the remaining large maintenance hot spots were reduced to orchestration-oriented facades instead of mixed implementation files
+- tests and queue/review callers kept the same patchable public surface while real implementation moved into smaller modules
+- preview, export, sync, and domain-rule changes can now land with lower regression risk because ownership boundaries are explicit
 

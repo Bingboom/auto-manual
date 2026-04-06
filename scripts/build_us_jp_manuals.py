@@ -9,10 +9,22 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from tools.script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.config_loader import load_config_mapping
+from tools.target_defaults import LANGUAGE_BATCH_TARGET_CONFIGS
+
+
 VALID_FORMATS = ("html", "word", "pdf")
-DEFAULT_LANGUAGES = ("en", "es", "fr", "ja")
+VALID_BUILD_ACTIONS = ("validate", "doctor", "check", "rst", "html", "word", "pdf", "all")
+TARGET_CONFIGS = dict(LANGUAGE_BATCH_TARGET_CONFIGS)
+DEFAULT_LANGUAGES = tuple(TARGET_CONFIGS)
 
 
 @dataclass(frozen=True)
@@ -40,40 +52,54 @@ class PlannedCommand:
         return f"[{self.target.label}] {self.action}"
 
 
-TARGETS: dict[str, MatrixTarget] = {
-    "en": MatrixTarget(
-        language="en",
-        region="US",
-        config="config.us-en.yaml",
-        include_lang_in_output_path=True,
-        word_template="manual_{model_slug}_{region_slug}_{lang_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}_{lang_slug}.pdf",
-    ),
-    "es": MatrixTarget(
-        language="es",
-        region="US",
-        config="config.us-es.yaml",
-        include_lang_in_output_path=True,
-        word_template="manual_{model_slug}_{region_slug}_{lang_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}_{lang_slug}.pdf",
-    ),
-    "fr": MatrixTarget(
-        language="fr",
-        region="US",
-        config="config.us-fr.yaml",
-        include_lang_in_output_path=True,
-        word_template="manual_{model_slug}_{region_slug}_{lang_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}_{lang_slug}.pdf",
-    ),
-    "ja": MatrixTarget(
-        language="ja",
-        region="JP",
-        config="config.ja.yaml",
-        include_lang_in_output_path=False,
-        word_template="manual_{model_slug}_{region_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}.pdf",
-    ),
-}
+def _load_build_matrix_target(language_key: str, config_name: str) -> MatrixTarget:
+    config_path = ROOT / config_name
+    cfg = load_config_mapping(config_path)
+    build_cfg = cfg.get("build")
+    if not isinstance(build_cfg, dict):
+        raise RuntimeError(f"Config build section must be a mapping: {config_name}")
+
+    raw_languages = build_cfg.get("languages")
+    if not isinstance(raw_languages, list) or len(raw_languages) != 1:
+        raise RuntimeError(
+            f"Matrix config must declare exactly one build language: {config_name}"
+        )
+    resolved_language = str(raw_languages[0]).strip().lower()
+    if resolved_language != language_key:
+        raise RuntimeError(
+            f"Matrix config language mismatch for {config_name}: expected {language_key}, got {resolved_language}"
+        )
+
+    region = str(build_cfg.get("default_region") or "").strip().upper()
+    if not region:
+        raise RuntimeError(f"Missing build.default_region in {config_name}")
+
+    word_template = str(build_cfg.get("word_output") or "").strip()
+    if not word_template:
+        raise RuntimeError(f"Missing build.word_output in {config_name}")
+
+    pdf_template = str(build_cfg.get("output_pdf") or "").strip()
+    if not pdf_template:
+        raise RuntimeError(f"Missing build.output_pdf in {config_name}")
+
+    return MatrixTarget(
+        language=resolved_language,
+        region=region,
+        config=config_name,
+        include_lang_in_output_path=bool(build_cfg.get("include_lang_in_output_path", False)),
+        word_template=word_template,
+        pdf_template=pdf_template,
+    )
+
+
+def _load_matrix_targets() -> dict[str, MatrixTarget]:
+    return {
+        language: _load_build_matrix_target(language, config_name)
+        for language, config_name in TARGET_CONFIGS.items()
+    }
+
+
+TARGETS: dict[str, MatrixTarget] = _load_matrix_targets()
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -92,6 +118,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         nargs="+",
         default=["html,word,pdf"],
         help="Subset of html, word, pdf, or 'all'. Accepts comma-separated or space-separated values.",
+    )
+    ap.add_argument(
+        "--build-action",
+        choices=VALID_BUILD_ACTIONS,
+        default=None,
+        help="Run one build.py action across every selected language target instead of deriving actions from --formats.",
     )
     ap.add_argument(
         "--source",
@@ -168,6 +200,19 @@ def planned_build_actions(formats: list[str]) -> list[str]:
     return list(formats)
 
 
+def requested_actions(args: argparse.Namespace) -> list[str]:
+    build_action = str(getattr(args, "build_action", "") or "").strip().lower()
+    if build_action:
+        return [build_action]
+    return planned_build_actions(resolve_formats(args.formats))
+
+
+def artifact_formats_for_actions(actions: list[str]) -> list[str]:
+    if "all" in actions:
+        return list(VALID_FORMATS)
+    return [action for action in actions if action in VALID_FORMATS]
+
+
 def validate_open_options(*, formats: list[str], open_html: bool) -> None:
     if open_html and "html" not in formats:
         raise RuntimeError("--open-html requires html in --formats.")
@@ -208,12 +253,14 @@ def build_py_command(
 
 def build_plan(args: argparse.Namespace) -> list[PlannedCommand]:
     targets = resolve_languages(args.languages)
-    formats = resolve_formats(args.formats)
-    actions = planned_build_actions(formats)
+    actions = requested_actions(args)
     plan: list[PlannedCommand] = []
+    should_check_first = bool(args.check_first) and any(
+        action in {"rst", "html", "word", "pdf", "all"} for action in actions
+    )
 
     for target in targets:
-        if args.check_first:
+        if should_check_first:
             plan.append(
                 PlannedCommand(
                     target=target,
@@ -338,11 +385,15 @@ def open_generated_html(model: str, *, targets: list[MatrixTarget], dry_run: boo
 
 
 def print_artifact_summary(model: str, *, targets: list[MatrixTarget], formats: list[str], dry_run: bool) -> None:
+    artifacts_by_target = [expected_artifacts(model, target, formats) for target in targets]
+    if not any(artifacts_by_target):
+        return
+
     heading = "Expected outputs" if dry_run else "Artifacts"
     print()
     print(f"{heading}:")
-    for target in targets:
-        for artifact in expected_artifacts(model, target, formats):
+    for artifacts in artifacts_by_target:
+        for artifact in artifacts:
             if dry_run or artifact.exists():
                 print(f" - {artifact}")
 
@@ -351,7 +402,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = parse_args(argv)
         targets = resolve_languages(args.languages)
-        formats = resolve_formats(args.formats)
+        actions = requested_actions(args)
+        formats = artifact_formats_for_actions(actions)
         validate_open_options(formats=formats, open_html=args.open_html)
         plan = build_plan(args)
         run_plan(plan, dry_run=args.dry_run)

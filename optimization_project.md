@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-03-31
+Updated: 2026-04-06
 
 ## 1. Role
 
@@ -14,6 +14,10 @@ Use it to track:
 - active workstreams
 - deferred work
 - next execution order
+
+The active execution tracker for the current maintainability refactor campaign lives in:
+
+- [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md)
 
 Do not use this file as the long-term architecture document.
 
@@ -82,35 +86,50 @@ Use this section for short milestone-style updates.
 - added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
 - aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
 
+### 2026-04-05
+
+- normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
+- added staging-first local validation wrappers and cross-platform branch freshness guardrails
+- started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
+- added [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_lark_ops.py)
+- continued the same queue workstream with [`tools/queue_bound_binding.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+- completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
+- started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
+
+### 2026-04-06
+
+- completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
+- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](/Users/pika/Documents/GitHub/auto-manual/tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
+- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
+- collapsed [`scripts/build_us_manuals.ps1`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_manuals.ps1) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
+- updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
+
+### 2026-04-06
+
+- completed the core maintainability refactor campaign across build entrypoints, build pipeline helpers, reporting, queue orchestration, preview/export/sync hotspots, and `spec_master`
+- split `build_review_preview.py` into target, data, render, page, postprocess, and workspace helpers
+- reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
+- split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
+- split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
+- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
+
 ## 5. Open Gaps
 
 Keep this section short and current.
 
-1. High-level CLI behavior and low-level script defaults can still drift.
-2. Several core files are large enough to slow safe refactoring.
-3. Diff-report extraction still contains heuristic parts.
-4. CI does not yet validate every important workflow surface.
-5. Multi-target conditional content is still deferred.
+1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
+2. Diff-report extraction still contains heuristic parts.
+3. CI does not yet validate every important workflow surface.
+4. Multi-target conditional content is still deferred.
 
 ## 6. Active Workstreams
 
-Use the template below for each workstream:
-
-```text
-### Workstream X: Name
-Status: active | next | deferred | done
-Why now:
-- one or two concrete reasons
-Scope:
-- what is included
-- what is explicitly excluded
-Exit criteria:
-- what must be true before this workstream can be considered done
-```
-
 ### Workstream A: Entrypoint And Tooling Parity
 
-Status: active
+Status: done
 
 Why now:
 
@@ -129,11 +148,12 @@ Exit criteria:
 
 ### Workstream B: Core File Decomposition
 
-Status: next
+Status: done
 
 Why now:
 
-- several core files are already large enough to make safe changes expensive
+- the main hotspot files needed to be split before quality-gate and traceability hardening could proceed safely
+- the earlier queue/build decomposition wave proved that behavior-preserving modularization could reduce risk without changing the command surface
 
 Scope:
 
@@ -143,14 +163,19 @@ Scope:
   - [`tools/gen_index_bundle.py`](/Users/pika/Documents/GitHub/auto-manual/tools/gen_index_bundle.py)
   - [`tools/diff_report.py`](/Users/pika/Documents/GitHub/auto-manual/tools/diff_report.py)
 - improve ownership boundaries for routing, bundle assembly, reporting, and export flow
+- keep public wrappers stable while moving implementation into dedicated modules
+- record each completed decomposition milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- keep [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) aligned with the extracted module boundaries
 
 Exit criteria:
 
 - large orchestration files are broken into smaller units with lower regression risk
+- core entry files act primarily as orchestration layers rather than carrying most low-level implementation themselves
+- module ownership stays documented after each decomposition step instead of drifting back into tribal knowledge
 
 ### Workstream C: Quality Gate Hardening
 
-Status: next
+Status: active
 
 Why now:
 
@@ -171,76 +196,19 @@ Exit criteria:
 
 Status: next
 
-Why now:
-
-- reviewers and release owners now depend on diff-report and release-manifest outputs
-
-Scope:
-
-- reduce heuristic ambiguity in field-level diff extraction
-- keep release-manifest aligned with publish behavior
-- preserve target-scoped report defaults
-
-Exit criteria:
-
-- review and release outputs are trustworthy enough for routine audit and comparison work
-
 ### Workstream E: CI Expansion
 
 Status: next
-
-Why now:
-
-- current CI proves baseline health, but not full workflow coverage
-
-Scope:
-
-- add smoke coverage where practical for:
-  - diff-report
-  - release-manifest
-  - preview
-  - publish-adjacent workflows where platform dependencies allow it
-
-Exit criteria:
-
-- CI covers the workflow surfaces the repo actually depends on day to day
-
-## 7. Deferred Work
-
-Use this section for valid future work that should not yet be active.
-
-### Deferred D1: Multi-Target Content Pilot
-
-Reason deferred:
-
-- current review, check, and traceability foundations should stay stable before adding a new content strategy layer
-
-Preferred direction:
-
-- table-driven filtering in phase1 data
-- normalized applicability fields such as `regions`, `models`, `langs`, and `feature_flags`
-- page-level and block-level filtering before RST emission
-
-Pilot recommendation:
-
-- start with `03_product_overview`
-- first support `enabled + regions + langs`
-- add `models` and `feature_flags` later
-
-Promotion rule:
-
-- move this item into `Active Workstreams` only after the current baseline stops shifting materially
 
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Entrypoint and tooling parity
-2. Core file decomposition
-3. Quality gate hardening
-4. Diff and traceability hardening
-5. CI expansion
-6. Multi-target content pilot
+1. Quality gate hardening
+2. Diff and traceability hardening
+3. CI expansion
+4. Multi-target content pilot
+
 
 ## 9. Success Criteria
 

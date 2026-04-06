@@ -1,14 +1,15 @@
 CARGANDO
 ========
 
-**Energía renovable primero:** Promovemos el uso prioritario de energía renovable. Este producto admite dos modos de carga al mismo tiempo: carga solar y carga mediante toma de corriente de CA. Cuando ambas están activadas simultáneamente, el producto dará prioridad a la carga solar y utilizará ambos métodos para cargar la batería a la máxima potencia permitida.
+**Energía renovable primero:** Abogamos por utilizar primero energía renovable. Este producto admite dos modos de carga al mismo tiempo: carga solar y carga de pared de CA.
 
-**Cargue completamente el producto antes del primer uso.**
+Cuando la carga en la pared de CA y la carga solar están activadas al mismo tiempo, el producto dará prioridad a la carga solar y se utilizarán ambos métodos para cargar la batería a la máxima potencia permitida.
+
+**Carga completamente el producto antes de usarlo por primera vez.**
 
 **NOTA**
 
-- La temperatura recomendada de carga para el producto es de -4°F a 113°F (-20°C a 45°C), y la temperatura de descarga es de -4°F a 113°F (-20°C a 45°C).
-- Utilizar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, o incluso impedir que cargue o descargue.
+- La temperatura de carga recomendada para el producto está entre -4°F y 113°F (-20°C a 45°C), y la temperatura de descarga está entre -4°F y 113°F (-20°C a 45°C). Operar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, e incluso impedir la carga o descarga.
 - La potencia de carga y la capacidad de la batería del producto pueden variar debido a las fluctuaciones de temperatura.
 
 .. only:: model_je_2000e
@@ -25,10 +26,10 @@ CARGANDO
    - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
    - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
 
-CARGA MEDIANTE TOMA DE CORRIENTE DE CA
---------------------------------------
+CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED ALTERNA
+-----------------------------------------------------
 
-Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente de pared.
+Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente.
 
 .. image:: templates/word_template/common_assets/charging/ac_wall.png
    :alt: Diagrama de carga por toma de CA.
@@ -38,8 +39,8 @@ Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una 
 
 Asegúrese de que el cable de carga de CA esté completamente insertado y firmemente conectado al puerto de entrada de CA. Una conexión incompleta puede causar corriente inestable, sobrecalentamiento, mal contacto o fallos del dispositivo.
 
-**Modo de carga de emergencia**
+**Modo de Carga de Emergencia**
 
-En este modo, puede cargar rápidamente la estación de energía portátil utilizando la carga de CA. Esta función de carga de emergencia puede activarse o desactivarse mediante la aplicación Jackery. Cuando el modo de carga de emergencia está activado, la luz circular que indica el estado de carga (SOC) parpadeará más rápido.
+Bajo este modo, puedes cargar rápidamente la estación de energía portátil utilizando el método de carga AC. Esta función de carga de emergencia se puede activar o desactivar a través de la aplicación Jackery. Cuando está en modo de carga de emergencia, la luz circular que indica el estado de carga (SOC) parpadeará más rápido.
 
-*Para maximizar la vida útil de la batería, es mejor cargar a velocidad normal. Utilice el modo de carga de emergencia solo cuando sea necesario. No se recomienda para un uso regular y prolongado.*
+*Para maximizar la vida útil de la batería, es mejor cargar a la velocidad estándar. La carga de emergencia debe reservarse para situaciones que requieren un aumento rápido de energía y no se recomienda para un uso regular y prolongado.*

@@ -11,6 +11,17 @@ from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    def test_workspace_target_templates_should_derive_family_metadata_from_config(self) -> None:
+        templates = {template.config: template for template in build_review_preview.WORKSPACE_TARGET_TEMPLATES}
+
+        self.assertEqual("US", templates["config.us-en.yaml"].family)
+        self.assertEqual("en", templates["config.us-en.yaml"].language)
+        self.assertTrue(templates["config.us-en.yaml"].include_lang_in_output_path)
+
+        self.assertEqual("JP", templates["config.ja.yaml"].family)
+        self.assertEqual("ja", templates["config.ja.yaml"].language)
+        self.assertFalse(templates["config.ja.yaml"].include_lang_in_output_path)
+
     def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
         current = build_review_preview.WorkspaceTarget(
             model="JE-1000F",
@@ -139,12 +150,89 @@ class TestBuildReviewPreview(unittest.TestCase):
             args,
             target,
             requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability={("JE-1000F", "US", "es")},
         )
 
         self.assertEqual(build_review_preview.resolve_path("config.us-es.yaml"), spec["config_path"])
         self.assertEqual("review", spec["source_mode"])
         self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_build_spec_for_target_should_fallback_to_runtime_for_secondary_language_without_review_baseline(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
+            family="US",
+            language="fr",
+            config="config.us-fr.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(
+            args,
+            target,
+            requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability=set(),
+        )
+
+        self.assertEqual("runtime", spec["source_mode"])
+        self.assertEqual("runtime", spec["source_label"])
+
+    def test_target_has_review_bundle_should_accept_family_shared_review_content_from_availability_map(self) -> None:
+        target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
+            family="US",
+            language="fr",
+            config="config.us-fr.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        self.assertTrue(
+            build_review_preview.target_has_review_bundle(
+                target,
+                review_availability={("JE-1000F", "US", None)},
+            )
+        )
+
+    def test_discover_workspace_targets_should_keep_requested_target_when_review_is_empty(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+
+        targets = build_review_preview.discover_workspace_targets(
+            args,
+            requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability=set(),
+        )
+
+        self.assertEqual(1, len(targets))
+        self.assertEqual(("JE-1000F", "US", "en"), targets[0].key)
 
     def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
         args = argparse.Namespace(
@@ -163,9 +251,33 @@ class TestBuildReviewPreview(unittest.TestCase):
         )
 
         self.assertEqual(
-            build_review_preview.resolve_path("config.us-en.yaml"),
+            build_review_preview.resolve_path("config.us.yaml"),
             build_review_preview.diff_config_for_family(args, "US"),
         )
+
+    def test_requested_workspace_target_should_infer_shared_family_config_when_config_missing(self) -> None:
+        args = argparse.Namespace(
+            config=None,
+            model="JE-1000F",
+            region="JP",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+
+        target = build_review_preview.requested_workspace_target(args)
+
+        self.assertEqual("JP", target.family)
+        self.assertEqual("ja", target.language)
+        self.assertEqual("config.ja.yaml", target.config)
+        self.assertFalse(target.include_lang_in_output_path)
 
     def test_copy_report_assets_should_return_stable_relative_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:

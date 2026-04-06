@@ -4,30 +4,45 @@
 from __future__ import annotations
 
 import argparse
-import json
-import subprocess
 import sys
-import threading
-from collections import deque
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
+
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.listen_build_queue_events import (  # noqa: E402
+    event_field_value_truthy as _event_field_value_truthy_impl,
+    event_requests_immediate_build as _event_requests_immediate_build_impl,
+)
+from tools.listen_build_queue_lark import (  # noqa: E402
+    build_event_subscribe_command as _build_event_subscribe_command_impl,
+    ensure_drive_event_subscription as _ensure_drive_event_subscription_impl,
+    fetch_field_id_map as _fetch_field_id_map_impl,
+    format_command as _format_command_impl,
+    run_lark_cli_json as _run_lark_cli_json_impl,
+    stderr_pump as _stderr_pump_impl,
+)
+from tools.listen_build_queue_runtime import (  # noqa: E402
+    BuildQueueWorker as _BuildQueueWorkerImpl,
+    listen_for_build_queue_events as _listen_for_build_queue_events_impl,
+)
 from tools.process_build_queue import (  # noqa: E402
     IMMEDIATE_TRIGGER_FIELD,
     collect_queue_preflight_errors,
     process_build_queue,
     resolve_document_link_binding,
 )
-from tools.sync_data import (  # noqa: E402
-    _cli_bin,
-    _parse_json_payload,
-    _resolved_cli_command_parts,
+from tools.phase2_support import (  # noqa: E402
+    cli_bin as _cli_bin,
     load_config,
+    parse_json_payload as _parse_json_payload,
+    resolved_cli_command_parts as _resolved_cli_command_parts,
 )
 
 EVENT_TYPE = "drive.file.bitable_record_changed_v1"
@@ -37,108 +52,49 @@ EVENT_SUBSCRIPTION_IDENTITY = "user"
 
 
 def _format_command(cmd: list[str]) -> str:
-    return subprocess.list2cmdline([str(part) for part in cmd])
+    return _format_command_impl(cmd)
 
 
 def _run_lark_cli_json(*, cli_bin: str, args: list[str]) -> dict[str, Any]:
-    cmd = [*_resolved_cli_command_parts(cli_bin), *args]
-    proc = subprocess.run(
-        cmd,
-        cwd=str(ROOT),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
+    return _run_lark_cli_json_impl(
+        cli_bin=cli_bin,
+        args=args,
+        repo_root=ROOT,
+        resolved_cli_command_parts=_resolved_cli_command_parts,
+        parse_json_payload=_parse_json_payload,
     )
-    if proc.returncode:
-        stderr = (proc.stderr or "").strip()
-        stdout = (proc.stdout or "").strip()
-        message = stderr or stdout or f"command failed: {_format_command(cmd)}"
-        raise RuntimeError(message)
-    payload = _parse_json_payload(proc.stdout or proc.stderr or "")
-    code = payload.get("code")
-    if code not in (None, 0):
-        message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
-        raise RuntimeError(f"Lark CLI API request failed: {message}")
-    return payload
 
 
 def build_event_subscribe_command(*, cli_bin: str) -> list[str]:
-    return [
-        *_resolved_cli_command_parts(cli_bin),
-        "event",
-        "+subscribe",
-        "--as",
-        EVENT_SUBSCRIPTION_IDENTITY,
-        "--event-types",
-        EVENT_TYPE,
-        "--quiet",
-    ]
+    return _build_event_subscribe_command_impl(
+        cli_bin=cli_bin,
+        resolved_cli_command_parts=_resolved_cli_command_parts,
+        event_subscription_identity=EVENT_SUBSCRIPTION_IDENTITY,
+        event_type=EVENT_TYPE,
+    )
 
 
 def ensure_drive_event_subscription(*, cli_bin: str, base_token: str) -> None:
-    _run_lark_cli_json(
+    _ensure_drive_event_subscription_impl(
         cli_bin=cli_bin,
-        args=[
-            "api",
-            "POST",
-            f"/open-apis/drive/v1/files/{base_token}/subscribe",
-            "--params",
-            json.dumps({"file_type": FILE_TYPE}, ensure_ascii=False, separators=(",", ":")),
-            "--as",
-            "user",
-        ],
+        base_token=base_token,
+        run_lark_cli_json=_run_lark_cli_json,
+        file_type=FILE_TYPE,
+        event_subscription_identity=EVENT_SUBSCRIPTION_IDENTITY,
     )
 
 
 def fetch_field_id_map(*, cli_bin: str, base_token: str, table_id: str) -> dict[str, str]:
-    payload = _run_lark_cli_json(
+    return _fetch_field_id_map_impl(
         cli_bin=cli_bin,
-        args=[
-            "base",
-            "+field-list",
-            "--as",
-            "user",
-            "--base-token",
-            base_token,
-            "--table-id",
-            table_id,
-            "--limit",
-            "500",
-        ],
+        base_token=base_token,
+        table_id=table_id,
+        run_lark_cli_json=_run_lark_cli_json,
     )
-    data = payload.get("data")
-    if not isinstance(data, dict):
-        raise RuntimeError("Lark CLI field list response is missing data payload")
-    items = data.get("items", [])
-    if not isinstance(items, list):
-        raise RuntimeError("Lark CLI field list response has invalid items payload")
-    result: dict[str, str] = {}
-    for item in items:
-        if not isinstance(item, dict):
-            continue
-        field_id = str(item.get("field_id") or "").strip()
-        field_name = str(item.get("field_name") or "").strip()
-        if field_id and field_name:
-            result[field_name] = field_id
-    return result
 
 
 def _event_field_value_truthy(value: Any) -> bool:
-    if isinstance(value, bool):
-        return value
-    text = str(value).strip()
-    if not text:
-        return False
-    try:
-        parsed = json.loads(text)
-    except json.JSONDecodeError:
-        parsed = text
-    if isinstance(parsed, bool):
-        return parsed
-    if isinstance(parsed, (int, float)):
-        return bool(parsed)
-    return str(parsed).strip().lower() in {"1", "true", "y", "yes", "checked"}
+    return _event_field_value_truthy_impl(value)
 
 
 def event_requests_immediate_build(
@@ -148,90 +104,30 @@ def event_requests_immediate_build(
     table_id: str,
     immediate_field_id: str,
 ) -> bool:
-    header = payload.get("header")
-    event = payload.get("event")
-    if not isinstance(header, dict) or not isinstance(event, dict):
-        return False
-    if str(header.get("event_type") or "").strip() != EVENT_TYPE:
-        return False
-    if str(event.get("file_token") or "").strip() != base_token:
-        return False
-    if str(event.get("file_type") or "").strip() != FILE_TYPE:
-        return False
-    if str(event.get("table_id") or "").strip() != table_id:
-        return False
-
-    action_list = event.get("action_list", [])
-    if not isinstance(action_list, list):
-        return False
-    for action in action_list:
-        if not isinstance(action, dict):
-            continue
-        action_name = str(action.get("action") or "").strip()
-        if action_name not in {"record_added", "record_edited"}:
-            continue
-        after_value = action.get("after_value", [])
-        if not isinstance(after_value, list):
-            continue
-        for field_change in after_value:
-            if not isinstance(field_change, dict):
-                continue
-            if str(field_change.get("field_id") or "").strip() != immediate_field_id:
-                continue
-            if _event_field_value_truthy(field_change.get("field_value")):
-                return True
-    return False
+    return _event_requests_immediate_build_impl(
+        payload,
+        event_type=EVENT_TYPE,
+        file_type=FILE_TYPE,
+        base_token=base_token,
+        table_id=table_id,
+        immediate_field_id=immediate_field_id,
+        event_field_value_truthy=_event_field_value_truthy,
+    )
 
 
 class BuildQueueWorker:
-    def __init__(self, *, cfg: dict[str, Any], config_path: Path, data_root: str) -> None:
-        self.cfg = cfg
-        self.config_path = config_path
-        self.data_root = data_root
-        self._lock = threading.Lock()
-        self._running = False
-        self._pending = False
-
-    def trigger(self, *, reason: str) -> None:
-        with self._lock:
-            if self._running:
-                self._pending = True
-                print(f"[build-queue-listener] Coalesced trigger while build is running: {reason}")
-                return
-            self._running = True
-        print(f"[build-queue-listener] Triggered build queue: {reason}")
-        thread = threading.Thread(target=self._run_loop, daemon=True)
-        thread.start()
-
-    def _run_loop(self) -> None:
-        while True:
-            try:
-                exit_code = process_build_queue(
-                    cfg=self.cfg,
-                    config_path=self.config_path,
-                    data_root=self.data_root,
-                    dry_run=False,
-                )
-                if exit_code:
-                    print(f"[build-queue-listener] Queue run finished with exit_code={exit_code}", file=sys.stderr)
-            except Exception as exc:
-                print(f"[build-queue-listener] Queue run failed: {exc}", file=sys.stderr)
-
-            with self._lock:
-                if self._pending:
-                    self._pending = False
-                    continue
-                self._running = False
-                return
+    def __new__(cls, *, cfg: dict[str, Any], config_path: Path, data_root: str) -> _BuildQueueWorkerImpl:
+        return _BuildQueueWorkerImpl(
+            cfg=cfg,
+            config_path=config_path,
+            data_root=data_root,
+            process_build_queue=process_build_queue,
+            stderr=sys.stderr,
+        )
 
 
 def _stderr_pump(stream: Any) -> None:
-    if stream is None:
-        return
-    for raw_line in stream:
-        line = str(raw_line).rstrip()
-        if line:
-            print(f"[build-queue-listener] {line}", file=sys.stderr)
+    _stderr_pump_impl(stream, stderr=sys.stderr)
 
 
 def listen_build_queue(
@@ -256,61 +152,19 @@ def listen_build_queue(
     ensure_drive_event_subscription(cli_bin=cli_bin, base_token=binding.base_token)
     worker = BuildQueueWorker(cfg=cfg, config_path=config_path, data_root=data_root)
 
-    cmd = build_event_subscribe_command(cli_bin=cli_bin)
-    print(f"[build-queue-listener] Listening for {EVENT_TYPE} on base={binding.base_token} table={binding.table_id}")
-    proc = subprocess.Popen(
-        cmd,
-        cwd=str(ROOT),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        encoding="utf-8",
-        bufsize=1,
+    return _listen_for_build_queue_events_impl(
+        repo_root=ROOT,
+        subscribe_command=build_event_subscribe_command(cli_bin=cli_bin),
+        base_token=binding.base_token,
+        table_id=binding.table_id,
+        immediate_field_id=immediate_field_id,
+        event_type=EVENT_TYPE,
+        max_seen_event_ids=MAX_SEEN_EVENT_IDS,
+        worker=worker,
+        event_requests_immediate_build=event_requests_immediate_build,
+        stderr_pump=_stderr_pump,
+        stderr=sys.stderr,
     )
-    stderr_thread = threading.Thread(target=_stderr_pump, args=(proc.stderr,), daemon=True)
-    stderr_thread.start()
-
-    seen_ids: set[str] = set()
-    seen_queue: deque[str] = deque()
-    try:
-        assert proc.stdout is not None
-        for raw_line in proc.stdout:
-            line = raw_line.strip()
-            if not line:
-                continue
-            try:
-                payload = json.loads(line)
-            except json.JSONDecodeError:
-                print(f"[build-queue-listener] Ignoring non-JSON event line: {line}", file=sys.stderr)
-                continue
-            if not isinstance(payload, dict):
-                continue
-            header = payload.get("header")
-            event_id = str(header.get("event_id") or "").strip() if isinstance(header, dict) else ""
-            if event_id:
-                if event_id in seen_ids:
-                    continue
-                seen_ids.add(event_id)
-                seen_queue.append(event_id)
-                if len(seen_queue) > MAX_SEEN_EVENT_IDS:
-                    seen_ids.discard(seen_queue.popleft())
-
-            if event_requests_immediate_build(
-                payload,
-                base_token=binding.base_token,
-                table_id=binding.table_id,
-                immediate_field_id=immediate_field_id,
-            ):
-                worker.trigger(reason=event_id or "bitable_record_changed")
-    finally:
-        if proc.poll() is None:
-            proc.terminate()
-            try:
-                proc.wait(timeout=5)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-                proc.wait(timeout=5)
-    return proc.returncode or 0
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

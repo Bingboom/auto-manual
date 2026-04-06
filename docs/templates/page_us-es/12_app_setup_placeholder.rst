@@ -12,11 +12,11 @@ También puede escanear el siguiente código QR para descargar e instalar la apl
 
 **2. Añadir un dispositivo**
 
-2.1 Haga clic en el botón para añadir dispositivos en la aplicación.
+2.1 Haga clic en el botón Añadir dispositivo.
 
-2.2 Pulse el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
-Cuando los iconos de Wi-Fi y Bluetooth del dispositivo parpadeen, el dispositivo habrá entrado en el modo de configuración de red.
-Pulse el botón "Icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y use los permisos de Bluetooth.
+2.2 Presione una vez el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
+Los iconos de Wi-Fi y Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red.
+A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
@@ -24,20 +24,20 @@ Pulse el botón "Icono parpadeante" y permita que la aplicación se conecte a lo
 
 |MAIN_POWER_BUTTON_LABEL|
 
-|AC_POWER_BUTTON_LABEL|
-
 |DC_USB_POWER_BUTTON_LABEL|
 
-2.3 Después de tocar el icono del dispositivo encontrado, la aplicación conectará automáticamente el dispositivo a través de Bluetooth.
+|AC_POWER_BUTTON_LABEL|
+
+2.3 Tras hacer clic en el icono del dispositivo buscado, la aplicación conecta automáticamente el dispositivo a través de Bluetooth.
 
 **NOTA**
 
-Si durante el proceso de vinculación aparece el mensaje "el dispositivo ya ha sido vinculado", pueden utilizarse las dos formas siguientes para realizar la conexión:
+Si durante el proceso de vinculación se indica que "el dispositivo ha sido vinculado", se pueden utilizar las dos formas siguientes para la conexión:
 
 - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
 - Mantenga pulsados |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
 
-2.4 Después de que el dispositivo se haya conectado correctamente, introduzca la contraseña de la red Wi-Fi a la que se conectará el dispositivo y toque el botón **Aceptar**.
+2.4 Después de que el dispositivo se haya conectado correctamente, introduzca el nombre y la contraseña de la red Wi-Fi a la que se conectará el dispositivo y toque el botón **Aceptar**.
 
 **NOTA**
 

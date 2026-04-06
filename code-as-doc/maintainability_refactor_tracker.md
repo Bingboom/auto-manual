@@ -1,0 +1,203 @@
+# Maintainability Refactor Tracker
+
+Updated: 2026-04-06
+
+This file tracks the active maintainability refactor campaign for this repository.
+Use it as the in-progress execution record.
+
+Do not use this file as:
+
+- the long-term architecture document
+- the repo-level roadmap
+- the completed optimization history log
+
+Use these documents for those topics:
+
+- [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
+- [`../optimization_project.md`](../optimization_project.md)
+- [`code_optimization_log.md`](code_optimization_log.md)
+
+## 1. Update Rules
+
+When one refactor item starts:
+
+- change its status from `pending` to `in_progress`
+- keep the scope narrow to one checklist item per PR
+
+When one refactor item is finished:
+
+- change its status from `in_progress` to `done`
+- add the completion date
+- add one short note describing the actual outcome
+
+When a whole milestone is finished:
+
+- append a short historical entry to [`code_optimization_log.md`](code_optimization_log.md)
+- update [`../optimization_project.md`](../optimization_project.md) if the workstream status changed materially
+
+Status vocabulary:
+
+- `pending`
+- `in_progress`
+- `done`
+
+## 2. Campaign Setup
+
+- [x] Create the dedicated refactor branch and execution tracker
+  - Status: `done`
+  - Completed: `2026-04-05`
+  - Note: created branch `codex/maintainability-refactor-tracker` and added this tracker file
+
+## 3. Milestone 1: Foundation And Entrypoint
+
+Milestone status: `done`
+
+- [x] PR 1: Shared config and path foundation
+  - Status: `done`
+  - Target files:
+    - [`../build.py`](../build.py)
+    - [`../tools/build_docs.py`](../tools/build_docs.py)
+    - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
+    - [`../tools/diff_report.py`](../tools/diff_report.py)
+    - [`../tools/sync_data.py`](../tools/sync_data.py)
+  - Guard tests:
+    - [`../tests/test_build_script.py`](../tests/test_build_script.py)
+    - [`../tests/test_sync_data.py`](../tests/test_sync_data.py)
+    - [`../tests/test_diff_report.py`](../tests/test_diff_report.py)
+  - Done when:
+    - one shared config-loading path exists
+    - root/path bootstrap logic is centralized
+    - behavior is unchanged
+  - Completed: `2026-04-05`
+  - Note: extracted shared config-loading and script-bootstrap helpers and switched the targeted build/report/sync modules to the shared foundation
+
+- [x] PR 2: Make `build.py` a thin dispatcher
+  - Status: `done`
+  - Target files:
+    - [`../build.py`](../build.py)
+  - Guard tests:
+    - [`../tests/test_build_script.py`](../tests/test_build_script.py)
+    - [`../tests/test_release_manifest.py`](../tests/test_release_manifest.py)
+    - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
+  - Done when:
+    - `build.py` mainly handles args and action routing
+    - publish/doctor/diff orchestration is moved out of the entry file
+  - Completed: `2026-04-05`
+  - Note: extracted validation, review-sync, diff-report, publish, cleanup, argument parsing, doctor runner, and action dispatch into shared helper modules; `build.py` dropped from 779 to 661 lines while keeping wrapper compatibility for tests
+
+## 4. Milestone 2: Build Pipeline Decomposition
+
+Milestone status: `done`
+
+- [x] PR 3: Split `tools/build_docs.py` into target, bundle, and export layers
+  - Status: `done`
+  - Target files:
+    - [`../tools/build_docs.py`](../tools/build_docs.py)
+    - [`../tools/word_bundle.py`](../tools/word_bundle.py)
+    - [`../tools/word_bundle_html.py`](../tools/word_bundle_html.py)
+    - [`../tools/word_bundle_docx.py`](../tools/word_bundle_docx.py)
+  - Guard tests:
+    - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
+    - [`../tests/test_build_docs_review_compat.py`](../tests/test_build_docs_review_compat.py)
+    - [`../tests/test_word_bundle.py`](../tests/test_word_bundle.py)
+    - [`../tests/test_word_bundle_docx.py`](../tests/test_word_bundle_docx.py)
+    - [`../tests/test_manual_html_assets.py`](../tests/test_manual_html_assets.py)
+  - Done when:
+    - target resolution, bundle preparation, and export backends are separated
+    - `tools/build_docs.py` becomes a thin orchestration shell
+  - Completed: `2026-04-05`
+  - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, shared types/constants, and additional misc support modules; `tools/build_docs.py` dropped from 1409 to 678 lines while preserving current test-facing wrappers
+
+- [x] PR 4: Split bundle materialization and check logic
+  - Status: `done`
+  - Target files:
+    - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
+    - [`../tools/check_docs.py`](../tools/check_docs.py)
+    - [`../tools/page_contracts.py`](../tools/page_contracts.py)
+  - Guard tests:
+    - [`../tests/test_check_docs.py`](../tests/test_check_docs.py)
+    - [`../tests/test_page_contracts.py`](../tests/test_page_contracts.py)
+    - [`../tests/test_pilot_configs.py`](../tests/test_pilot_configs.py)
+  - Done when:
+    - bundle planning/materialization and validation are separated cleanly
+    - page-contract behavior is preserved
+  - Completed: `2026-04-05`
+  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check_docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check_docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
+
+- [x] PR 5: Reduce config-family duplication
+  - Status: `done`
+  - Target files:
+    - [`../config.us.yaml`](../config.us.yaml)
+    - [`../config.us-en.yaml`](../config.us-en.yaml)
+    - [`../config.us-es.yaml`](../config.us-es.yaml)
+    - [`../config.us-fr.yaml`](../config.us-fr.yaml)
+  - Guard tests:
+    - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
+    - [`../tests/test_pilot_configs.py`](../tests/test_pilot_configs.py)
+    - [`../tests/test_build_review_preview.py`](../tests/test_build_review_preview.py)
+  - Done when:
+    - family-level behavior stays stable
+    - language-specific config duplication is reduced without changing command semantics
+  - Completed: `2026-04-05`
+  - Note: added config `extends` support in [`../tools/config_loader.py`](../tools/config_loader.py), moved shared US single-language defaults into [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml), converted `config.us-en/es/fr.yaml` into thin overrides, and shifted their page stacks into dedicated `docs/manifests/manual_us-single-*.yaml` files while preserving existing config filenames and command semantics
+
+## 5. Milestone 3: Reporting, Queue Flow, And Domain Split
+
+Milestone status: `done`
+
+- [x] PR 6: Split diff-report and release-manifest services
+  - Status: `done`
+  - Target files:
+    - [`../tools/diff_report.py`](../tools/diff_report.py)
+    - [`../tools/release_manifest.py`](../tools/release_manifest.py)
+  - Guard tests:
+    - [`../tests/test_diff_report.py`](../tests/test_diff_report.py)
+    - [`../tests/test_release_manifest.py`](../tests/test_release_manifest.py)
+    - [`../tests/test_build_script.py`](../tests/test_build_script.py)
+  - Done when:
+    - report extraction, diff logic, and output rendering are separated
+    - release-manifest path semantics remain unchanged
+  - Completed: `2026-04-05`
+  - Note: split diff-report into dedicated git/path, field/source extraction, HTML/CSV rendering, and top-level report-generation helpers while keeping the public facade in [`../tools/diff_report.py`](../tools/diff_report.py), and moved release-manifest runtime assembly into [`../tools/release_manifest_service.py`](../tools/release_manifest_service.py) while keeping CLI behavior and patchable entry hooks stable; `tools/diff_report.py` dropped from 1696 to 126 lines and `tools/release_manifest.py` dropped from 216 to 90 lines
+
+- [x] PR 7: Split queue flow and external integrations
+  - Status: `done`
+  - Target files:
+    - [`../tools/process_build_queue.py`](../tools/process_build_queue.py)
+    - [`../tools/process_review_start_queue.py`](../tools/process_review_start_queue.py)
+    - [`../tools/listen_build_queue.py`](../tools/listen_build_queue.py)
+    - [`../tools/sync_data.py`](../tools/sync_data.py)
+  - Guard tests:
+    - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
+    - [`../tests/test_process_review_start_queue.py`](../tests/test_process_review_start_queue.py)
+    - [`../tests/test_listen_build_queue.py`](../tests/test_listen_build_queue.py)
+    - [`../tests/test_sync_data.py`](../tests/test_sync_data.py)
+  - Done when:
+    - queue parsing, routing, build execution, and writeback are separated
+    - external system adapters stop importing private helpers across modules
+  - Completed: `2026-04-05`
+  - Note: extracted listener event/runtime/Lark helpers, decoupled review-start flow from `process_build_queue.py`, introduced shared `phase2` facade/bootstrap helpers, moved queue-session/runtime plus build/writeback implementation wiring into helper modules, and removed the last direct queue-adapter import of `sync_data.py` private helpers by routing [`../tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) through [`../tools/phase2_support.py`](../tools/phase2_support.py); [`../tools/process_build_queue.py`](../tools/process_build_queue.py) is now down to 402 lines while preserving the existing patchable/test-facing entry points and CLI routing
+
+- [x] PR 8: Split `spec_master` domain logic
+  - Status: `done`
+  - Target files:
+    - [`../tools/utils/spec_master.py`](../tools/utils/spec_master.py)
+  - Guard tests:
+    - [`../tests/test_spec_master_lookup.py`](../tests/test_spec_master_lookup.py)
+    - [`../tests/test_spec_master_audit.py`](../tests/test_spec_master_audit.py)
+    - [`../tests/test_spec_master_repairs.py`](../tests/test_spec_master_repairs.py)
+    - [`../tests/test_phase1_builder.py`](../tests/test_phase1_builder.py)
+    - [`../tests/test_phase1_renderers.py`](../tests/test_phase1_renderers.py)
+  - Done when:
+    - lookup, normalize, audit, repair, and legacy bindings are separated
+    - downstream build/report behavior is unchanged
+  - Completed: `2026-04-06`
+  - Note: extracted shared `spec_master` dataclasses and rule tables into [`../tools/utils/spec_master_shared.py`](../tools/utils/spec_master_shared.py), moved lookup/template-substitution flows into [`../tools/utils/spec_master_lookup.py`](../tools/utils/spec_master_lookup.py), moved audit/normalize into [`../tools/utils/spec_master_auditing.py`](../tools/utils/spec_master_auditing.py), moved mapping exports into [`../tools/utils/spec_master_mapping.py`](../tools/utils/spec_master_mapping.py), and moved repair flows into [`../tools/utils/spec_master_repairs.py`](../tools/utils/spec_master_repairs.py) while keeping [`../tools/utils/spec_master.py`](../tools/utils/spec_master.py) as the compatibility facade; the facade file dropped from 1190 to 691 lines with full spec-master and full-repo unit tests still passing
+
+## 6. Completion Rule
+
+This campaign is complete only when:
+
+- every checklist item in this file is marked `[x]`
+- the milestone statuses are all `done`
+- the completed milestones are summarized in [`code_optimization_log.md`](code_optimization_log.md)

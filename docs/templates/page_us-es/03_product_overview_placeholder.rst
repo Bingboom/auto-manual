@@ -52,15 +52,13 @@ VISTA LATERAL DERECHA
 
 .. list-table::
    :header-rows: 0
-   :widths: 50 50
+   :widths: 100
 
-   * - **Asa**
-     - **|SIDE_AC_INPUT_LABEL|**
+   * - **|SIDE_AC_INPUT_LABEL|**
 
        |SIDE_AC_INPUT_SPEC|
-   * -
-     - **|SIDE_DC_INPUT_LABEL|**
-
-       |SIDE_DC_INPUT_PV_SPEC|
+   * - **|SIDE_DC_INPUT_LABEL|**
 
        |SIDE_DC_INPUT_CAR_SPEC|
+
+       |SIDE_DC_INPUT_PV_SPEC|

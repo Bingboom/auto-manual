@@ -42,7 +42,9 @@ $command = @(
     "--config",
     "config.us.yaml",
     "--data-root",
-    "data/phase2"
+    "data/phase2",
+    "--staging-root",
+    ".tmp/staging"
 )
 $commandLine = ($command | ForEach-Object {
     if ($_ -match "\s") { '"' + $_ + '"' } else { $_ }
