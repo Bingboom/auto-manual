@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import argparse
 import json
 import os
 import shlex
@@ -11,10 +10,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Mapping, Protocol
+from typing import Any, Mapping
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -46,6 +44,19 @@ from tools.data_snapshot import (  # noqa: E402
     resolve_phase2_export_root,
     resolve_phase2_manifest_path,
 )
+from tools.sync_data_entry import parse_args as _parse_args_impl, run_main as _run_main_impl  # noqa: E402
+from tools.sync_data_models import (  # noqa: E402
+    ROW_KEY_MAPPING_FIELDNAMES,
+    SUPPORTED_IDENTITIES,
+    SUPPORTED_PROVIDERS,
+    SyncRunResult,
+    TABLE_ORDER,
+    TABLE_SCHEMAS,
+    RecordSource,
+    TableBinding,
+    TableSchema,
+    TableSyncResult,
+)
 from tools.sync_data_records import (  # noqa: E402
     _csv_text,
     _dict_rows_csv_text,
@@ -63,166 +74,6 @@ from tools.sync_data_runtime import (  # noqa: E402
     sync_phase2_snapshot as _sync_phase2_snapshot_impl,
 )
 from tools.utils.spec_master import build_row_label_row_key_mapping_rows  # noqa: E402
-
-TABLE_ORDER = (
-    "spec_titles",
-    "spec_footnotes",
-    "spec_notes",
-    "symbols_blocks",
-    "spec_master",
-)
-SUPPORTED_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
-SUPPORTED_IDENTITIES = {"user", "bot"}
-ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Line_order", "Row_key", "Remark")
-
-
-class RecordSource(Protocol):
-    def fetch_records(
-        self,
-        *,
-        base_token: str,
-        table_id: str,
-        view_id: str | None,
-    ) -> list[dict[str, Any]]:
-        ...
-
-
-@dataclass(frozen=True)
-class TableSchema:
-    logical_name: str
-    file_name: str
-    columns: tuple[str, ...]
-
-
-@dataclass(frozen=True)
-class TableBinding:
-    logical_name: str
-    schema: TableSchema
-    base_token_env: str
-    table_id_env: str
-    view_id_env: str | None
-    base_token: str
-    table_id: str
-    view_id: str | None
-
-
-@dataclass(frozen=True)
-class TableSyncResult:
-    logical_name: str
-    file_name: str
-    target_path: Path
-    row_count: int
-    sha256: str
-    previous_sha256: str | None
-    changed: bool
-
-
-@dataclass(frozen=True)
-class SyncRunResult:
-    export_root: Path
-    manifest_path: Path
-    dry_run: bool
-    provider: str
-    cli_bin: str
-    requested_tables: tuple[str, ...]
-    skipped_tables: tuple[str, ...]
-    synced_tables: tuple[TableSyncResult, ...]
-    derived_files: tuple[TableSyncResult, ...]
-    manifest: dict[str, Any]
-
-
-TABLE_SCHEMAS: dict[str, TableSchema] = {
-    "spec_master": TableSchema(
-        logical_name="spec_master",
-        file_name="Spec_Master.csv",
-        columns=(
-            "document_key",
-            "Region",
-            "Is_Latest",
-            "Page",
-            "Section",
-            "Section_order",
-            "Row_order",
-            "Row_key",
-            "Slot_key",
-            "Row_label_source",
-            "Row_label_footnote_refs",
-            "Line_order",
-            "Param_source",
-            "Param_footnote_refs",
-            "Value_source",
-            "Value_footnote_refs",
-            "Row_label_fr",
-            "Param_fr",
-            "Value_fr",
-            "Row_label_es",
-            "Model",
-            "Param_es",
-            "Value_es",
-            "Source_lang",
-        ),
-    ),
-    "spec_footnotes": TableSchema(
-        logical_name="spec_footnotes",
-        file_name="Spec_Footnotes.csv",
-        columns=(
-            "Footnote_id",
-            "Region",
-            "Model",
-            "Source_lang",
-            "Is_Latest",
-            "Page",
-            "Footnote_order",
-            "Text_en",
-            "Text_fr",
-            "Text_es",
-            "Text_ja",
-            "Enabled",
-        ),
-    ),
-    "spec_notes": TableSchema(
-        logical_name="spec_notes",
-        file_name="Spec_Notes.csv",
-        columns=(
-            "Note_id",
-            "Region",
-            "Model",
-            "Source_lang",
-            "Is_Latest",
-            "Page",
-            "Note_order",
-            "Text_en",
-            "Text_fr",
-            "Text_es",
-            "Text_ja",
-            "Enabled",
-        ),
-    ),
-    "spec_titles": TableSchema(
-        logical_name="spec_titles",
-        file_name="spec_titles.csv",
-        columns=("title_en", "section_order", "title_zh", "title_jp", "title_fr", "title_es"),
-    ),
-    "symbols_blocks": TableSchema(
-        logical_name="symbols_blocks",
-        file_name="symbols_blocks.csv",
-        columns=(
-            "page_id",
-            "image_path",
-            "symbol_key",
-            "text_en",
-            "text_fr",
-            "text_es",
-            "enabled",
-            "block_type",
-            "column_group",
-            "order",
-            "Region",
-            "Model",
-            "Source_lang",
-        ),
-    ),
-}
 
 
 def load_config(config_path: Path) -> dict[str, Any]:
@@ -669,43 +520,19 @@ def sync_phase2_snapshot(
     )
 
 
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Sync structured content snapshot CSVs from Feishu/Lark base tables.")
-    ap.add_argument("--config", default="config.us.yaml", help="Config YAML path")
-    ap.add_argument("--data-root", default=None, help="Override phase2 export root")
-    ap.add_argument(
-        "--table",
-        action="append",
-        default=[],
-        choices=list(TABLE_ORDER),
-        help="Logical table id to sync; defaults to all content tables",
-    )
-    ap.add_argument("--dry-run", action="store_true", help="Validate and compare without writing CSV files")
-    return ap.parse_args(argv)
+def parse_args(argv: list[str] | None = None):
+    return _parse_args_impl(argv, table_choices=list(TABLE_ORDER))
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv)
-    config_path = Path(args.config)
-    if not config_path.is_absolute():
-        config_path = ROOT / config_path
-
-    try:
-        cfg = load_config(config_path)
-        result = sync_phase2_snapshot(
-            cfg=cfg,
-            config_path=config_path,
-            data_root=args.data_root,
-            table_names=args.table,
-            dry_run=args.dry_run,
-        )
-    except (RuntimeError, subprocess.CalledProcessError) as exc:
-        print(f"[sync-data] ERROR: {exc}", file=sys.stderr)
-        return 1
-
-    for line in build_sync_run_output_lines(result):
-        print(line)
-    return 0
+    return _run_main_impl(
+        argv,
+        root=ROOT,
+        table_choices=list(TABLE_ORDER),
+        load_config_fn=load_config,
+        sync_phase2_snapshot_fn=sync_phase2_snapshot,
+        build_sync_run_output_lines_fn=build_sync_run_output_lines,
+    )
 
 
 if __name__ == "__main__":

@@ -4,16 +4,10 @@
 from __future__ import annotations
 
 import argparse
-import json
 import os
-import shutil
-import subprocess
-import sys
+import re
 from pathlib import Path
 from typing import Any
-from urllib import error as urllib_error
-from urllib import parse as urllib_parse
-from urllib import request as urllib_request
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -55,9 +49,37 @@ from tools.process_review_start_queue_records import (  # noqa: E402
     select_pending_review_start_records as _select_pending_review_start_records_impl,
     validate_review_start_group as _validate_review_start_group_impl,
 )
+from tools.process_review_start_queue_git import (  # noqa: E402
+    base_ref_contains_target_review_root as _base_ref_contains_target_review_root_impl,
+    build_py_command as _build_py_command_impl,
+    commit_review_bundle_if_changed as _commit_review_bundle_if_changed_impl,
+    configure_git_identity as _configure_git_identity_impl,
+    create_empty_review_start_commit as _create_empty_review_start_commit_impl,
+    ensure_pull_request_for_branch as _ensure_pull_request_for_branch_impl,
+    ensure_review_bundle_on_branch as _ensure_review_bundle_on_branch_impl,
+    format_command as _format_command_impl,
+    git_object_exists as _git_object_exists_impl,
+    git_ref_exists as _git_ref_exists_impl,
+    github_api_request as _github_api_request_impl,
+    prepare_branch_worktree as _prepare_branch_worktree_impl,
+    push_branch as _push_branch_impl,
+    remote_branch_exists as _remote_branch_exists_impl,
+    remove_worktree as _remove_worktree_impl,
+    resolve_docs_dir_for_config as _resolve_docs_dir_for_config_impl,
+    review_dir_for_target_config as _review_dir_for_target_impl,
+    review_root_for_target_config as _review_root_for_target_impl,
+    run_command as _run_command_impl,
+    run_git as _run_git_impl,
+    start_review_for_record as _start_review_for_record_impl,
+    sync_phase2_snapshot_before_review_start as _sync_phase2_snapshot_before_review_start_impl,
+    worktree_dir_for_branch as _worktree_dir_for_branch_impl,
+)
+from tools.process_review_start_queue_entry import parse_args as _parse_args_impl, run_main as _run_main_impl  # noqa: E402
+from tools.process_review_start_queue_runtime import (  # noqa: E402
+    ReviewStartRuntimeDeps,
+    process_review_start_queue as _process_review_start_queue_impl,
+)
 from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
-from tools.review_support import review_bundle_exists, review_dir_for_target  # noqa: E402
-from tools.utils.targets import resolve_output_lang  # noqa: E402
 
 REVIEW_TRIGGER_FIELD = "\u662f\u5426\u8fdb\u5165Review"
 REVIEW_STATUS_FIELD = "Review_status"
@@ -188,32 +210,15 @@ def build_review_start_duplicate_fields() -> dict[str, Any]:
 
 
 def _format_command(cmd: list[str]) -> str:
-    return subprocess.list2cmdline([str(part) for part in cmd])
+    return _format_command_impl(cmd)
 
 
 def _run_command(cmd: list[str], *, cwd: Path = ROOT) -> str:
-    print(f"[review-start] {_format_command(cmd)}")
-    proc = subprocess.run(
-        cmd,
-        cwd=str(cwd),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    )
-    if proc.stdout:
-        print(proc.stdout, end="")
-    if proc.stderr:
-        print(proc.stderr, end="", file=sys.stderr)
-    if proc.returncode:
-        lines = [line.strip() for line in (proc.stderr or proc.stdout or "").splitlines() if line.strip()]
-        message = lines[-1] if lines else "command failed"
-        raise RuntimeError(f"{message} (exit={proc.returncode}, cmd={_format_command(cmd)})")
-    return proc.stdout or ""
+    return _run_command_impl(cmd, root=ROOT, cwd=cwd)
 
 
 def _run_git(args: list[str], *, cwd: Path = ROOT) -> str:
-    return _run_command(["git", *args], cwd=cwd)
+    return _run_git_impl(args, root=ROOT, cwd=cwd)
 
 
 def _build_py_command(
@@ -226,143 +231,92 @@ def _build_py_command(
     data_root: str | None = None,
     source: str | None = None,
 ) -> list[str]:
-    cmd = [
-        sys.executable,
-        str(worktree / "build.py"),
-        action,
-        "--config",
-        str(config_path),
-    ]
-    if model:
-        cmd += ["--model", model]
-    if region:
-        cmd += ["--region", region]
-    if data_root:
-        cmd += ["--data-root", data_root]
-    if source:
-        cmd += ["--source", source]
-    return cmd
+    return _build_py_command_impl(
+        worktree,
+        action=action,
+        config_path=config_path,
+        model=model,
+        region=region,
+        data_root=data_root,
+        source=source,
+    )
 
 
 def sync_phase2_snapshot_before_review_start(*, config_path: Path, data_root: str | None) -> None:
-    _run_command(
-        [
-            sys.executable,
-            str(ROOT / "build.py"),
-            "sync-data",
-            "--config",
-            str(config_path),
-            *(["--data-root", data_root] if data_root else []),
-        ]
-    )
+    _sync_phase2_snapshot_before_review_start_impl(root=ROOT, config_path=config_path, data_root=data_root)
 
 
 def _resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
-    resolved_config_path = config_path if config_path.is_absolute() else (ROOT / config_path)
-    loaded_cfg = cfg if cfg is not None else load_config(resolved_config_path)
-    paths_cfg_raw = loaded_cfg.get("paths", {})
-    paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
-    raw = paths_cfg.get("docs_dir")
-    if isinstance(raw, str) and raw.strip():
-        candidate = Path(raw.strip())
-        return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
-    return resolved_config_path.parent / "docs"
+    return _resolve_docs_dir_for_config_impl(
+        root=ROOT,
+        config_path=config_path,
+        cfg=cfg,
+        load_config_fn=load_config,
+    )
 
 
 def _review_dir_for_target(config_path: Path, *, model: str, region: str) -> Path:
-    cfg = load_config(config_path)
-    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
-    output_lang = resolve_output_lang(cfg)
-    candidate = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=output_lang)
-    if candidate.exists():
-        return candidate
-    return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    return _review_dir_for_target_impl(
+        root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        load_config_fn=load_config,
+    )
 
 
 def _review_root_for_target(config_path: Path, *, model: str, region: str) -> Path:
-    cfg = load_config(config_path)
-    docs_dir = _resolve_docs_dir_for_config(config_path, cfg)
-    return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
+    return _review_root_for_target_impl(
+        root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        load_config_fn=load_config,
+    )
 
 
 def _git_ref_exists(ref_name: str) -> bool:
-    proc = subprocess.run(
-        ["git", "show-ref", "--verify", "--quiet", ref_name],
-        cwd=str(ROOT),
-        check=False,
-    )
-    return proc.returncode == 0
+    return _git_ref_exists_impl(root=ROOT, ref_name=ref_name)
 
 
 def _remote_branch_exists(branch_name: str) -> bool:
-    return _git_ref_exists(f"refs/remotes/origin/{branch_name}")
+    return _remote_branch_exists_impl(root=ROOT, branch_name=branch_name)
 
 
 def _git_object_exists(*, ref_name: str, repo_relative_path: str) -> bool:
-    proc = subprocess.run(
-        ["git", "cat-file", "-e", f"{ref_name}:{repo_relative_path}"],
-        cwd=str(ROOT),
-        check=False,
-    )
-    return proc.returncode == 0
+    return _git_object_exists_impl(root=ROOT, ref_name=ref_name, repo_relative_path=repo_relative_path)
 
 
 def base_ref_contains_target_review_root(*, config_path: Path, model: str, region: str, base_ref: str) -> bool:
-    review_root = _review_root_for_target(config_path, model=model, region=region)
-    try:
-        review_root_rel = review_root.relative_to(ROOT).as_posix()
-    except ValueError:
-        review_root_rel = review_root.as_posix()
-    return _git_object_exists(ref_name=f"origin/{base_ref}", repo_relative_path=review_root_rel)
+    return _base_ref_contains_target_review_root_impl(
+        root=ROOT,
+        config_path=config_path,
+        model=model,
+        region=region,
+        base_ref=base_ref,
+        load_config_fn=load_config,
+    )
 
 
 def _worktree_dir_for_branch(branch_name: str) -> Path:
-    return ROOT / ".tmp" / "review-start-worktrees" / _slug_branch_token(branch_name)
+    return _worktree_dir_for_branch_impl(root=ROOT, branch_name=branch_name, slug_branch_token_fn=_slug_branch_token)
 
 
 def _remove_worktree(path: Path) -> None:
-    if not path.exists():
-        return
-    proc = subprocess.run(
-        ["git", "worktree", "remove", "--force", str(path)],
-        cwd=str(ROOT),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    )
-    if proc.returncode != 0 and path.exists():
-        shutil.rmtree(path, ignore_errors=True)
+    _remove_worktree_impl(root=ROOT, path=path)
 
 
 def _prepare_branch_worktree(*, branch_name: str, base_ref: str) -> Path:
-    _run_git(["fetch", "origin", "--prune"])
-    worktree = _worktree_dir_for_branch(branch_name)
-    _remove_worktree(worktree)
-    worktree.parent.mkdir(parents=True, exist_ok=True)
-    source_ref = f"origin/{branch_name}" if _remote_branch_exists(branch_name) else f"origin/{base_ref}"
-    _run_git(["worktree", "add", "--force", str(worktree), source_ref])
-    _run_git(["checkout", "-B", branch_name, source_ref], cwd=worktree)
-    return worktree
+    return _prepare_branch_worktree_impl(
+        root=ROOT,
+        branch_name=branch_name,
+        base_ref=base_ref,
+        slug_branch_token_fn=_slug_branch_token,
+    )
 
 
 def _configure_git_identity(worktree: Path) -> None:
-    _run_git(
-        [
-            "config",
-            "user.name",
-            os.environ.get("GIT_AUTHOR_NAME", "github-actions[bot]"),
-        ],
-        cwd=worktree,
-    )
-    _run_git(
-        [
-            "config",
-            "user.email",
-            os.environ.get("GIT_AUTHOR_EMAIL", "41898282+github-actions[bot]@users.noreply.github.com"),
-        ],
-        cwd=worktree,
-    )
+    _configure_git_identity_impl(worktree=worktree, root=ROOT)
 
 
 def ensure_review_bundle_on_branch(
@@ -373,103 +327,31 @@ def ensure_review_bundle_on_branch(
     region: str,
     data_root: str | None,
 ) -> Path:
-    worktree_config_path = worktree / build_config_path.name
-    cfg = load_config(worktree_config_path)
-    docs_dir = _resolve_docs_dir_for_config(worktree_config_path, cfg)
-    output_lang = resolve_output_lang(cfg)
-    if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=output_lang):
-        return _review_dir_for_target(worktree_config_path, model=model, region=region)
-
-    _run_command(
-        _build_py_command(
-            worktree,
-            action="rst",
-            config_path=worktree_config_path,
-            model=model,
-            region=region,
-            data_root=data_root,
-            source="runtime",
-        ),
-        cwd=worktree,
+    return _ensure_review_bundle_on_branch_impl(
+        root=ROOT,
+        worktree=worktree,
+        build_config_path=build_config_path,
+        model=model,
+        region=region,
+        data_root=data_root,
+        load_config_fn=load_config,
     )
-    _run_command(
-        _build_py_command(
-            worktree,
-            action="review",
-            config_path=worktree_config_path,
-            model=model,
-            region=region,
-        ),
-        cwd=worktree,
-    )
-    review_dir = _review_dir_for_target(worktree_config_path, model=model, region=region)
-    if not review_dir.exists():
-        raise RuntimeError(f"Review bundle was not created: {review_dir}")
-    return review_dir
 
 
 def _commit_review_bundle_if_changed(*, worktree: Path, review_dir: Path, record: ReviewStartRecord) -> bool:
-    review_rel = review_dir.relative_to(worktree).as_posix()
-    _run_git(["add", "--", review_rel], cwd=worktree)
-    proc = subprocess.run(
-        ["git", "diff", "--cached", "--quiet", "--", review_rel],
-        cwd=str(worktree),
-        check=False,
-    )
-    if proc.returncode == 0:
-        return False
-    if proc.returncode != 1:
-        raise RuntimeError(f"Unable to inspect staged review changes for {review_rel}")
-    _run_git(
-        [
-            "commit",
-            "-m",
-            f"seed review bundle for {record.document_id or record.document_key}",
-        ],
-        cwd=worktree,
-    )
-    return True
+    return _commit_review_bundle_if_changed_impl(root=ROOT, worktree=worktree, review_dir=review_dir, record=record)
 
 
 def _push_branch(*, worktree: Path, branch_name: str) -> None:
-    _run_git(["push", "-u", "origin", branch_name], cwd=worktree)
+    _push_branch_impl(root=ROOT, worktree=worktree, branch_name=branch_name)
 
 
 def _create_empty_review_start_commit(*, worktree: Path, record: ReviewStartRecord) -> None:
-    _run_git(
-        [
-            "commit",
-            "--allow-empty",
-            "-m",
-            f"start review for {record.document_id or record.document_key}",
-        ],
-        cwd=worktree,
-    )
+    _create_empty_review_start_commit_impl(root=ROOT, worktree=worktree, record=record)
 
 
 def _github_api_request(*, method: str, path: str, token: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
-    body = None
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {token}",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    if payload is not None:
-        body = json.dumps(payload).encode("utf-8")
-        headers["Content-Type"] = "application/json"
-    request = urllib_request.Request(
-        "https://api.github.com" + path,
-        data=body,
-        headers=headers,
-        method=method,
-    )
-    try:
-        with urllib_request.urlopen(request) as response:
-            raw = response.read().decode("utf-8") or "{}"
-            return json.loads(raw)
-    except urllib_error.HTTPError as exc:
-        detail = exc.read().decode("utf-8")
-        raise RuntimeError(f"GitHub API {method} {path} failed: {detail or exc}") from exc
+    return _github_api_request_impl(method=method, path=path, token=token, payload=payload)
 
 
 def ensure_pull_request_for_branch(
@@ -481,63 +363,15 @@ def ensure_pull_request_for_branch(
     record: ReviewStartRecord,
     worktree: Path | None = None,
 ) -> str:
-    owner = repository.split("/", 1)[0]
-    query = urllib_parse.urlencode(
-        {
-            "state": "open",
-            "head": f"{owner}:{branch_name}",
-            "base": base_ref,
-        }
-    )
-    existing = _github_api_request(
-        method="GET",
-        path=f"/repos/{repository}/pulls?{query}",
+    return _ensure_pull_request_for_branch_impl(
+        root=ROOT,
+        repository=repository,
+        branch_name=branch_name,
+        base_ref=base_ref,
         token=token,
+        record=record,
+        worktree=worktree,
     )
-    if isinstance(existing, list) and existing:
-        first = existing[0]
-        if isinstance(first, dict):
-            url = str(first.get("html_url") or "").strip()
-            if url:
-                return url
-
-    payload = {
-        "title": f"Start review for {record.document_id or record.document_key}",
-        "head": branch_name,
-        "base": base_ref,
-        "body": "\n".join(
-            [
-                "Auto-generated review start branch.",
-                "",
-                f"- Document_ID: {record.document_id}",
-                f"- Document_Key: {record.document_key}",
-                f"- Lang: {record.lang}",
-                f"- Version: {record.version}",
-            ]
-        ),
-    }
-    try:
-        created = _github_api_request(
-            method="POST",
-            path=f"/repos/{repository}/pulls",
-            token=token,
-            payload=payload,
-        )
-    except RuntimeError as exc:
-        if worktree is None or "No commits between" not in str(exc):
-            raise
-        _create_empty_review_start_commit(worktree=worktree, record=record)
-        _push_branch(worktree=worktree, branch_name=branch_name)
-        created = _github_api_request(
-            method="POST",
-            path=f"/repos/{repository}/pulls",
-            token=token,
-            payload=payload,
-        )
-    url = str(created.get("html_url") or "").strip()
-    if not url:
-        raise RuntimeError("GitHub pull request creation did not return html_url")
-    return url
 
 
 def start_review_for_record(
@@ -549,32 +383,19 @@ def start_review_for_record(
     repository: str,
     token: str,
 ) -> tuple[str, str]:
-    model, region = resolve_target_for_review_start(record)
-    branch_name = generate_review_branch_name(record)
-    worktree = _prepare_branch_worktree(branch_name=branch_name, base_ref=base_ref)
-    try:
-        _configure_git_identity(worktree)
-        review_dir = ensure_review_bundle_on_branch(
-            worktree=worktree,
-            build_config_path=build_config_path,
-            model=model,
-            region=region,
-            data_root=snapshot_data_root,
-        )
-        changed = _commit_review_bundle_if_changed(worktree=worktree, review_dir=review_dir, record=record)
-        if changed or not _remote_branch_exists(branch_name):
-            _push_branch(worktree=worktree, branch_name=branch_name)
-        pr_url = ensure_pull_request_for_branch(
-            repository=repository,
-            branch_name=branch_name,
-            base_ref=base_ref,
-            token=token,
-            record=record,
-            worktree=worktree,
-        )
-        return branch_name, pr_url
-    finally:
-        _remove_worktree(worktree)
+    return _start_review_for_record_impl(
+        root=ROOT,
+        record=record,
+        build_config_path=build_config_path,
+        snapshot_data_root=snapshot_data_root,
+        base_ref=base_ref,
+        repository=repository,
+        token=token,
+        slug_branch_token_fn=_slug_branch_token,
+        resolve_target_for_review_start_fn=resolve_target_for_review_start,
+        generate_review_branch_name_fn=generate_review_branch_name,
+        load_config_fn=load_config,
+    )
 
 
 def process_review_start_queue(
@@ -585,168 +406,51 @@ def process_review_start_queue(
     dry_run: bool,
     record_id: str | None = None,
 ) -> int:
-    errors = collect_review_start_preflight_errors(cfg, require_github=not dry_run)
-    if errors:
-        raise RuntimeError("process-review-start-queue preflight failed:\n- " + "\n- ".join(errors))
-
-    binding = resolve_review_init_binding(cfg)
-    source = LarkCliSource(cli_bin=_cli_bin(cfg), identity=_phase2_identity())
-    raw_records = source.fetch_records_with_ids(
-        base_token=binding.base_token,
-        table_id=binding.table_id,
-        view_id=binding.view_id,
+    return _process_review_start_queue_impl(
+        cfg=cfg,
+        config_path=config_path,
+        data_root=data_root,
+        dry_run=dry_run,
+        record_id=record_id,
+        deps=ReviewStartRuntimeDeps(
+            root=ROOT,
+            review_action_label=REVIEW_START_ACTION_LABEL,
+            cli_bin_fn=_cli_bin,
+            phase2_identity_fn=_phase2_identity,
+            source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
+            collect_preflight_errors_fn=collect_review_start_preflight_errors,
+            resolve_binding_fn=resolve_review_init_binding,
+            select_pending_records_fn=select_pending_review_start_records,
+            group_records_fn=group_review_start_records,
+            validate_group_fn=validate_review_start_group,
+            resolve_target_fn=resolve_target_for_review_start,
+            group_lang_fn=review_start_group_lang,
+            group_build_family_fn=review_start_group_build_family,
+            resolve_config_path_fn=_resolve_review_start_config_path,
+            record_key_fn=review_start_record_key,
+            generate_branch_name_fn=generate_review_branch_name,
+            sync_snapshot_before_fn=sync_phase2_snapshot_before_review_start,
+            run_git_fn=_run_git,
+            base_ref_contains_target_review_root_fn=base_ref_contains_target_review_root,
+            build_duplicate_fields_fn=build_review_start_duplicate_fields,
+            build_success_fields_fn=build_review_start_success_fields,
+            start_review_for_record_fn=start_review_for_record,
+            environ=os.environ,
+        ),
     )
-    pending_records = select_pending_review_start_records(raw_records, record_id=record_id)
-    if not pending_records:
-        print("[review-start] No pending review-start tasks found.")
-        return 0
-    pending_groups = group_review_start_records(pending_records)
-
-    snapshot_data_root = data_root or str((ROOT / ".tmp" / "review-start" / "phase2").resolve())
-    if dry_run:
-        for group in pending_groups:
-            record = group[0]
-            validate_review_start_group(group)
-            model, region = resolve_target_for_review_start(record)
-            group_lang = review_start_group_lang(group)
-            group_build_family = review_start_group_build_family(group)
-            build_config_path = _resolve_review_start_config_path(
-                region=region,
-                lang=group_lang,
-                build_family=group_build_family,
-            )
-            print(
-                f"[review-start] {REVIEW_START_ACTION_LABEL} DRY-RUN "
-                + json.dumps(
-                    {
-                        "record_ids": [item.record_id for item in group],
-                        "record_id": record.record_id,
-                        "label": record.label,
-                        "document_key": review_start_record_key(record),
-                        "model": model,
-                        "region": region,
-                        "build_family": group_build_family,
-                        "lang": group_lang,
-                        "langs": [item.lang for item in group if item.lang.strip()],
-                        "version": record.version,
-                        "git_ref": generate_review_branch_name(record),
-                        "workflow_action": REVIEW_START_ACTION_LABEL,
-                        "config": str(build_config_path),
-                        "data_root": snapshot_data_root,
-                    },
-                    ensure_ascii=False,
-                )
-            )
-        return 0
-
-    print(f"[review-start] Syncing latest phase2 snapshot before {REVIEW_START_ACTION_LABEL.lower()}.")
-    sync_phase2_snapshot_before_review_start(config_path=config_path, data_root=snapshot_data_root)
-
-    repository = str(os.environ.get("GITHUB_REPOSITORY", "")).strip()
-    token = str(os.environ.get("GITHUB_TOKEN", "")).strip()
-    base_ref = str(os.environ.get("REVIEW_START_BASE_REF", "main")).strip() or "main"
-    _run_git(["fetch", "origin", "--prune"])
-
-    failures: list[str] = []
-    processed = 0
-    blocked = 0
-    for group in pending_groups:
-        record = group[0]
-        try:
-            validate_review_start_group(group)
-            model, region = resolve_target_for_review_start(record)
-            group_lang = review_start_group_lang(group)
-            group_build_family = review_start_group_build_family(group)
-            build_config_path = _resolve_review_start_config_path(
-                region=region,
-                lang=group_lang,
-                build_family=group_build_family,
-            )
-            if base_ref_contains_target_review_root(
-                config_path=build_config_path,
-                model=model,
-                region=region,
-                base_ref=base_ref,
-            ):
-                duplicate_fields = build_review_start_duplicate_fields()
-                for group_record in group:
-                    source.upsert_record(
-                        base_token=binding.base_token,
-                        table_id=binding.table_id,
-                        record_id=group_record.record_id,
-                        record=duplicate_fields,
-                    )
-                blocked += 1
-                print(
-                    f"[review-start] {REVIEW_START_ACTION_LABEL} BLOCKED "
-                    f"{review_start_record_key(record)}: review root already exists in origin/{base_ref} "
-                    f"for {model}/{region} family={group_build_family or 'legacy'}; updated {len(group)} row(s)"
-                )
-                continue
-            branch_name, pr_url = start_review_for_record(
-                record=record,
-                build_config_path=build_config_path,
-                snapshot_data_root=snapshot_data_root,
-                base_ref=base_ref,
-                repository=repository,
-                token=token,
-            )
-            success_fields = build_review_start_success_fields(git_ref=branch_name, pr_url=pr_url)
-            for group_record in group:
-                source.upsert_record(
-                    base_token=binding.base_token,
-                    table_id=binding.table_id,
-                    record_id=group_record.record_id,
-                    record=success_fields,
-                )
-            processed += 1
-            print(
-                f"[review-start] {REVIEW_START_ACTION_LABEL} updated {review_start_record_key(record)}: "
-                f"family={group_build_family or 'legacy'} git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
-            )
-        except Exception as exc:
-            failures.append(f"{review_start_record_key(record)}: {exc}")
-            print(
-                f"[review-start] {REVIEW_START_ACTION_LABEL} FAILURE {review_start_record_key(record)} "
-                f"family={review_start_group_build_family(group) or 'legacy'}: {exc}",
-                file=sys.stderr,
-            )
-
-    print(
-        f"[review-start] {REVIEW_START_ACTION_LABEL} summary: "
-        f"processed={processed} blocked={blocked} failed={len(failures)}"
-    )
-    return 1 if failures else 0
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Review-init rows and start review / seed draft branches and PRs.")
-    ap.add_argument("--config", required=True, help="Config YAML path")
-    ap.add_argument("--data-root", default=None, help="Override phase2 snapshot root for review seeding")
-    ap.add_argument("--dry-run", action="store_true", help="List pending rows without creating branches or PRs")
-    ap.add_argument("--record-id", default=None, help="Only consume one Review-init record_id")
-    return ap.parse_args(argv)
+    return _parse_args_impl(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv)
-    config_path = Path(args.config)
-    if not config_path.is_absolute():
-        config_path = ROOT / config_path
-    cfg = load_config(config_path)
-    resolved_data_root = str(
-        resolve_phase2_export_root(
-            cfg,
-            repo_root=ROOT,
-            data_root=args.data_root,
-        )
-    )
-    return process_review_start_queue(
-        cfg=cfg,
-        config_path=config_path,
-        data_root=resolved_data_root,
-        dry_run=args.dry_run,
-        record_id=args.record_id,
+    return _run_main_impl(
+        argv,
+        root=ROOT,
+        load_config_fn=load_config,
+        resolve_phase2_export_root_fn=resolve_phase2_export_root,
+        process_review_start_queue_fn=process_review_start_queue,
     )
 
 

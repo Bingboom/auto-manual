@@ -89,7 +89,7 @@ pages:
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
-    recipe: templates/recipes/us-en/05_operation_guide.yaml
+    recipe: templates/recipes/us-fr/05_operation_guide.yaml
     template: templates/page_us-fr/05_operation_guide_placeholder.rst
     langs: [fr]
     include_dir: generated/{model}/draft
@@ -148,7 +148,7 @@ pages:
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
-    recipe: templates/recipes/us-en/05_operation_guide.yaml
+    recipe: templates/recipes/us-es/05_operation_guide.yaml
     template: templates/page_us-es/05_operation_guide_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft

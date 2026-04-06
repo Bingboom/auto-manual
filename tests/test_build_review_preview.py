@@ -208,6 +208,32 @@ class TestBuildReviewPreview(unittest.TestCase):
             )
         )
 
+    def test_discover_workspace_targets_should_keep_requested_target_when_review_is_empty(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+
+        targets = build_review_preview.discover_workspace_targets(
+            args,
+            requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability=set(),
+        )
+
+        self.assertEqual(1, len(targets))
+        self.assertEqual(("JE-1000F", "US", "en"), targets[0].key)
+
     def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
         args = argparse.Namespace(
             config="config.ja.yaml",
