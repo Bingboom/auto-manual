@@ -106,8 +106,8 @@ Milestone status: `pending`
   - Completed: `2026-04-07`
   - Note: split the runtime validator into focused row/header/footnote/note/selector issue collectors so future rule additions can land in isolated helpers while preserving existing validation output
 
-- [ ] PR 3: Split generated-page checks by responsibility
-  - Status: `pending`
+- [x] PR 3: Split generated-page checks by responsibility
+  - Status: `done`
   - Target files:
     - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
     - [`../tools/check_docs.py`](../tools/check_docs.py)
@@ -118,6 +118,8 @@ Milestone status: `pending`
     - recipe validation, template/snippet validation, contract checks, and spec-binding checks are separated
     - `build.py check` behavior is preserved
     - issue messages stay at least as specific as today
+  - Completed: `2026-04-07`
+  - Note: reworked the generated-page checker into focused loader, recipe, binding, snippet, placeholder, contract, and orphan-snippet helpers while preserving the existing facade signature and issue ordering
 
 - [ ] PR 4: Add a minimal static quality gate
   - Status: `pending`
