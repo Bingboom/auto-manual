@@ -3,7 +3,12 @@
 
 from __future__ import annotations
 
+from collections import Counter, defaultdict
+import csv
 from dataclasses import dataclass
+from pathlib import Path
+import re
+from typing import cast
 
 
 @dataclass(frozen=True)
@@ -93,7 +98,7 @@ class SpecMasterRepairResult:
     removed_duplicate_lines: tuple[int, ...]
 
 
-SECTION_ORDER_BY_SECTION: dict[str, str] = {
+_SECTION_ORDER_BY_SECTION: dict[str, str] = {
     "GENERAL INFO": "1",
     "INPUT PORTS": "2",
     "OUTPUT PORTS": "3",
@@ -105,7 +110,7 @@ SECTION_ORDER_BY_SECTION: dict[str, str] = {
     "ACCESSORIES": "9",
     "TEMPLATE VARS": "99",
 }
-LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
+_LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
     "tpl_main_power_button_label": PageValueBinding(
         row_key="main_power_button",
         section="CONTROLS",
@@ -326,7 +331,7 @@ LEGACY_PAGE_VALUE_BINDINGS: dict[str, PageValueBinding] = {
         row_label_source="Battery Pack Name",
     ),
 }
-LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE: dict[tuple[str, str, str, str, str], str] = {
+_LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE: dict[tuple[str, str, str, str, str], str] = {
     (
         binding.row_key,
         binding.usage_type,
@@ -334,9 +339,9 @@ LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE: dict[tuple[str, str, str, str, str], str] =
         binding.value_role,
         binding.variant_key,
     ): legacy_key
-    for legacy_key, binding in LEGACY_PAGE_VALUE_BINDINGS.items()
+    for legacy_key, binding in _LEGACY_PAGE_VALUE_BINDINGS.items()
 }
-SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
+_SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
     "ENVIRONMENTAL OPERATING TEMPERATURE": (
         "ENVIRONMENTAL",
         "spec",
@@ -348,25 +353,25 @@ SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
         "Separate placeholder/template rows from the main specification table before section-level analysis.",
     ),
 }
-DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] = {
+_DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] = {
     "storage_temperature": ("STORAGE_TEMPERATURE", ("storage",)),
 }
-SLOT_KEY_VALUE_ALIASES = {"", "value", "default", "name"}
-KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
+_SLOT_KEY_VALUE_ALIASES = {"", "value", "default", "name"}
+_KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
     "??????": "Rated Capacity",
     "棰濆畾瀹归噺": "Rated Capacity",
 }
-KNOWN_VALUE_REPAIRS: dict[tuple[str, str, str, str], str] = {
+_KNOWN_VALUE_REPAIRS: dict[tuple[str, str, str, str], str] = {
     ("JE-2000F", "US", "tpl_front_dc12_port_spec", "Value_source"): "12V/10A Max",
     ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_source"): "メイン電源ボタン",
 }
-SOURCE_COLUMN_NAMES: dict[str, tuple[str, ...]] = {
+_SOURCE_COLUMN_NAMES: dict[str, tuple[str, ...]] = {
     "Row_label": ("Row_label_source", "row_label_source"),
     "Param": ("Param_source", "param_source"),
     "Value": ("Value_source", "value_source"),
 }
-SOURCE_SHARED_BASES = frozenset(SOURCE_COLUMN_NAMES)
-SOURCE_LANGUAGE_NORMALIZATION = {
+_SOURCE_SHARED_BASES = frozenset(_SOURCE_COLUMN_NAMES)
+_SOURCE_LANGUAGE_NORMALIZATION = {
     "en": "en",
     "english": "en",
     "英语": "en",
@@ -391,3 +396,5 @@ SOURCE_LANGUAGE_NORMALIZATION = {
     "西语": "es",
     "西班牙语": "es",
 }
+
+

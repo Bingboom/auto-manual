@@ -1,14 +1,29 @@
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import Any, cast
+from typing import cast
 
+from tools.utils.spec_master_row_helpers import (
+    _first_non_empty,
+    _is_template_row,
+    _is_truthy,
+    _normalize_line_order_suffix,
+    _page_value_metadata_from_row,
+    _pick_row_key,
+    _pick_row_label_source,
+    _pick_row_model,
+    _pick_row_region,
+    _pick_section,
+    _pick_section_order,
+    resolve_legacy_page_value_key,
+)
+from tools.utils.spec_master_shared import _LEGACY_PAGE_VALUE_BINDINGS
 
 def build_template_row_key_mapping_rows(
-    module: Any,
     rows: list[dict[str, str]],
 ) -> tuple[dict[str, str], ...]:
     usage: dict[str, dict[str, object]] = defaultdict(
@@ -23,39 +38,39 @@ def build_template_row_key_mapping_rows(
     )
 
     for raw_row in rows:
-        row_key = module._pick_row_key(raw_row)
-        if not module._is_template_row(row_key, module._pick_section(raw_row), raw_row):
+        row_key = _pick_row_key(raw_row)
+        if not _is_template_row(row_key, _pick_section(raw_row), raw_row):
             continue
 
-        metadata = module._page_value_metadata_from_row(raw_row)
+        metadata = _page_value_metadata_from_row(raw_row)
         if metadata is None:
             continue
 
-        usage_row = usage[module.resolve_legacy_page_value_key(raw_row) or row_key]
+        usage_row = usage[resolve_legacy_page_value_key(raw_row) or row_key]
         usage_row["count"] = int(usage_row["count"]) + 1
 
-        model = (module._pick_row_model(raw_row) or "").strip()
+        model = (_pick_row_model(raw_row) or "").strip()
         if model:
             cast(set[str], usage_row["models"]).add(model)
 
-        region = (module._pick_row_region(raw_row) or "").strip().upper()
+        region = (_pick_row_region(raw_row) or "").strip().upper()
         if region:
             cast(set[str], usage_row["regions"]).add(region)
 
-        section = module._pick_section(raw_row).strip()
+        section = _pick_section(raw_row).strip()
         if section:
             cast(set[str], usage_row["sections"]).add(section)
 
-        section_order = module._pick_section_order(raw_row).strip()
+        section_order = _pick_section_order(raw_row).strip()
         if section_order:
             cast(set[str], usage_row["section_orders"]).add(section_order)
 
-        row_label = module._pick_row_label_source(raw_row).strip()
+        row_label = _pick_row_label_source(raw_row).strip()
         if row_label:
             cast(set[str], usage_row["row_labels"]).add(row_label)
 
     mapping_rows: list[dict[str, str]] = []
-    for row_key, binding in module._LEGACY_PAGE_VALUE_BINDINGS.items():
+    for row_key, binding in _LEGACY_PAGE_VALUE_BINDINGS.items():
         observed = usage.get(row_key)
         models = sorted(cast(set[str], observed["models"])) if observed else []
         regions = sorted(cast(set[str], observed["regions"])) if observed else []
@@ -93,24 +108,21 @@ def build_template_row_key_mapping_rows(
 
 
 def build_row_label_row_key_mapping_rows(
-    module: Any,
     rows: list[dict[str, str]],
     existing_rows: list[dict[str, str]] | None = None,
 ) -> tuple[dict[str, str], ...]:
     observed_keys: dict[tuple[str, str], set[str]] = defaultdict(set)
 
     for raw_row in rows:
-        if not module._is_truthy(module._first_non_empty(raw_row, ["Is_Latest", "is_latest"])):
+        if not _is_truthy(_first_non_empty(raw_row, ["Is_Latest", "is_latest"])):
             continue
 
-        row_label = module._pick_row_label_source(raw_row).strip()
+        row_label = _pick_row_label_source(raw_row).strip()
         if not row_label:
             continue
 
-        line_order = module._normalize_line_order_suffix(
-            module._first_non_empty(raw_row, ["Line_order", "line_order"])
-        )
-        row_key = module._pick_row_key(raw_row).strip()
+        line_order = _normalize_line_order_suffix(_first_non_empty(raw_row, ["Line_order", "line_order"]))
+        row_key = _pick_row_key(raw_row).strip()
         if row_key:
             observed_keys[(row_label, line_order)].add(row_key)
 
@@ -135,7 +147,11 @@ def build_row_label_row_key_mapping_rows(
     observed_pairs = set(observed_keys)
     observed_labels = {row_label for row_label, _line_order in observed_pairs}
     observed_pairs.update(existing_by_pair)
-    observed_pairs.update((row_label, "") for row_label in existing_by_label if row_label not in observed_labels)
+    observed_pairs.update(
+        (row_label, "")
+        for row_label in existing_by_label
+        if row_label not in observed_labels
+    )
 
     def _line_order_sort_key(value: str) -> tuple[int, str]:
         if value.isdigit():
@@ -172,7 +188,6 @@ def build_row_label_row_key_mapping_rows(
 
 
 def build_row_label_row_key_mapping_markdown(
-    _module: Any,
     mapping_rows: tuple[dict[str, str], ...],
 ) -> str:
     lines = [
@@ -199,7 +214,6 @@ def build_row_label_row_key_mapping_markdown(
 
 
 def build_template_row_key_mapping_markdown(
-    _module: Any,
     mapping_rows: tuple[dict[str, str], ...],
 ) -> str:
     lines = [
