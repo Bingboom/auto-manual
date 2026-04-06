@@ -156,6 +156,18 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
 
 def _resolve_review_start_config_path(*, region: str, lang: str | None, build_family: str | None) -> Path:
     try:
+        return resolve_config_path_for_task(
+            repo_root=ROOT,
+            region=region,
+            lang=lang,
+            build_family=build_family,
+            config_loader=load_config,
+        )
+    except TypeError as exc:
+        message = str(exc)
+        if not any(name in message for name in ("repo_root", "config_loader", "build_family")):
+            raise
+    try:
         return resolve_config_path_for_task(region=region, lang=lang, build_family=build_family)
     except TypeError as exc:
         if "build_family" not in str(exc):

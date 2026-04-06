@@ -87,6 +87,24 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 ]
             )
 
+    def test_select_pending_review_start_records_should_accept_object_style_feishu_values(self) -> None:
+        records = process_review_start_queue.select_pending_review_start_records(
+            [
+                {
+                    "record_id": "rec_object_action",
+                    "fields": {
+                        process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_0.2",
+                        process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                        process_review_start_queue.WORKFLOW_ACTION_FIELD: [{"text": "Start Review"}],
+                        process_review_start_queue.REVIEW_STATUS_FIELD: [{"text": "NotStarted"}],
+                        process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    },
+                }
+            ]
+        )
+
+        self.assertEqual(["rec_object_action"], [record.record_id for record in records])
+
     def test_generate_review_branch_name_should_default_to_codex_prefix(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
             record_id="rec_1",
@@ -203,6 +221,26 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual(["rec_en_1"], [record.record_id for record in grouped[0]])
         self.assertEqual(["rec_en_2"], [record.record_id for record in grouped[1]])
         self.assertEqual("", mock_resolve_config_path.call_args.kwargs["build_family"])
+
+    def test_resolve_review_start_config_path_should_support_new_resolution_signature(self) -> None:
+        expected = Path("config.us.yaml")
+
+        def fake_resolver(*, repo_root, region, lang, build_family=None, config_loader):
+            self.assertEqual(process_review_start_queue.ROOT, repo_root)
+            self.assertIs(process_review_start_queue.load_config, config_loader)
+            self.assertEqual("US", region)
+            self.assertEqual("", lang)
+            self.assertEqual("us-merged", build_family)
+            return expected
+
+        with mock.patch.object(process_review_start_queue, "resolve_config_path_for_task", side_effect=fake_resolver):
+            resolved = process_review_start_queue._resolve_review_start_config_path(
+                region="US",
+                lang="",
+                build_family="us-merged",
+            )
+
+        self.assertEqual(expected, resolved)
 
     def test_resolve_target_for_review_start_should_fallback_to_document_id(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
