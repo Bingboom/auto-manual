@@ -18,16 +18,12 @@ except ImportError:
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.config_loader import load_config_mapping
+from tools.target_defaults import LANGUAGE_BATCH_TARGET_CONFIGS
 
 
 VALID_FORMATS = ("html", "word", "pdf")
 VALID_BUILD_ACTIONS = ("validate", "doctor", "check", "rst", "html", "word", "pdf", "all")
-TARGET_CONFIGS = {
-    "en": "config.us-en.yaml",
-    "es": "config.us-es.yaml",
-    "fr": "config.us-fr.yaml",
-    "ja": "config.ja.yaml",
-}
+TARGET_CONFIGS = dict(LANGUAGE_BATCH_TARGET_CONFIGS)
 DEFAULT_LANGUAGES = tuple(TARGET_CONFIGS)
 
 

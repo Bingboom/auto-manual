@@ -25,6 +25,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.build_docs import load_config
 from tools.review_support import review_content_exists
+from tools.target_defaults import FAMILY_DEFAULT_CONFIGS, REVIEW_WORKSPACE_TARGET_CONFIGS
 
 
 REQUIRED_CHANGE_REPORT_FILES = (
@@ -49,11 +50,6 @@ REQUIRED_PREVIEW_FILES = (
     "generated/workspace.json",
 )
 FAMILY_ORDER = ("US", "JP", "CN")
-FAMILY_DEFAULT_CONFIGS = {
-    "US": "config.us.yaml",
-    "JP": "config.ja.yaml",
-    "CN": "config.zh.yaml",
-}
 LANGUAGE_LABELS = {
     "en": "English",
     "es": "Spanish",
@@ -92,13 +88,7 @@ class WorkspaceTargetTemplate:
     include_lang_in_output_path: bool
 
 
-WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = (
-    "config.us-en.yaml",
-    "config.us-es.yaml",
-    "config.us-fr.yaml",
-    "config.ja.yaml",
-    "config.zh.yaml",
-)
+WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = REVIEW_WORKSPACE_TARGET_CONFIGS
 ReviewAvailability = set[tuple[str, str, str | None]]
 
 
