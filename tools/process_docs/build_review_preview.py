@@ -2,12 +2,9 @@ from __future__ import annotations
 
 import argparse
 import os
-import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
-from html import escape
 from pathlib import Path
 
 try:
@@ -102,6 +99,67 @@ REQUIRED_PREVIEW_FILES = (
     "generated/changes.json",
     "generated/workspace.json",
 )
+
+# Keep the facade's stable import/patch surface explicit. Tests and sibling
+# entry scripts still import helpers from this module while the implementation
+# lives in narrower helper modules.
+__all__ = [
+    "FAMILY_ORDER",
+    "REQUIRED_CHANGE_REPORT_FILES",
+    "REQUIRED_DOWNLOAD_CSVS",
+    "REQUIRED_PREVIEW_FILES",
+    "ReviewAvailability",
+    "WORKSPACE_TARGET_TEMPLATES",
+    "WorkspaceTarget",
+    "WorkspaceTargetTemplate",
+    "assert_preview_output_contract",
+    "build_change_workbook",
+    "build_diff_command",
+    "build_downloads_metadata",
+    "build_export_command",
+    "build_spec_for_target",
+    "capture",
+    "classify_changes",
+    "collect_changed_files",
+    "collect_review_availability",
+    "collect_workspace_target_candidates",
+    "copy_report_csvs",
+    "copy_report_set",
+    "copy_tree",
+    "default_family_config_for_region",
+    "derive_product_name",
+    "diff_config_for_family",
+    "discover_workspace_targets",
+    "display_text",
+    "format_generated_at",
+    "git_value",
+    "html_root_for_target",
+    "latest_report_prefix",
+    "locate_latest_docx",
+    "main",
+    "output_root_for_target",
+    "parse_args",
+    "path_for_display",
+    "preview_language_label",
+    "read_json_if_exists",
+    "render_changes_home_html",
+    "render_family_changes_html",
+    "render_model_changes_html",
+    "render_redirect_html",
+    "render_workspace_html",
+    "requested_workspace_target",
+    "resolve_path",
+    "resolved_primary_config_path",
+    "review_pages_for_family",
+    "rewrite_manual_switcher_links",
+    "rewrite_manual_tree_for_preview",
+    "run",
+    "target_has_review_bundle",
+    "target_sort_key",
+    "tracked_root_for_target",
+    "workspace_title",
+    "write_json",
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -345,9 +403,6 @@ def main() -> int:
         output_dir,
         workspace,
         require_word=not args.skip_word,
-        required_preview_files=REQUIRED_PREVIEW_FILES,
-        required_download_csvs=REQUIRED_DOWNLOAD_CSVS,
-        required_change_report_files=REQUIRED_CHANGE_REPORT_FILES,
     )
     return 0
 
