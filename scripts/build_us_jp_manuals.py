@@ -9,10 +9,25 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from tools.script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.config_loader import load_config_mapping
+
+
 VALID_FORMATS = ("html", "word", "pdf")
-DEFAULT_LANGUAGES = ("en", "es", "fr", "ja")
+TARGET_CONFIGS = {
+    "en": "config.us-en.yaml",
+    "es": "config.us-es.yaml",
+    "fr": "config.us-fr.yaml",
+    "ja": "config.ja.yaml",
+}
+DEFAULT_LANGUAGES = tuple(TARGET_CONFIGS)
 
 
 @dataclass(frozen=True)
@@ -40,40 +55,54 @@ class PlannedCommand:
         return f"[{self.target.label}] {self.action}"
 
 
-TARGETS: dict[str, MatrixTarget] = {
-    "en": MatrixTarget(
-        language="en",
-        region="US",
-        config="config.us-en.yaml",
-        include_lang_in_output_path=True,
-        word_template="manual_{model_slug}_{region_slug}_{lang_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}_{lang_slug}.pdf",
-    ),
-    "es": MatrixTarget(
-        language="es",
-        region="US",
-        config="config.us-es.yaml",
-        include_lang_in_output_path=True,
-        word_template="manual_{model_slug}_{region_slug}_{lang_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}_{lang_slug}.pdf",
-    ),
-    "fr": MatrixTarget(
-        language="fr",
-        region="US",
-        config="config.us-fr.yaml",
-        include_lang_in_output_path=True,
-        word_template="manual_{model_slug}_{region_slug}_{lang_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}_{lang_slug}.pdf",
-    ),
-    "ja": MatrixTarget(
-        language="ja",
-        region="JP",
-        config="config.ja.yaml",
-        include_lang_in_output_path=False,
-        word_template="manual_{model_slug}_{region_slug}.docx",
-        pdf_template="manual_{model_slug}_{region_slug}.pdf",
-    ),
-}
+def _load_build_matrix_target(language_key: str, config_name: str) -> MatrixTarget:
+    config_path = ROOT / config_name
+    cfg = load_config_mapping(config_path)
+    build_cfg = cfg.get("build")
+    if not isinstance(build_cfg, dict):
+        raise RuntimeError(f"Config build section must be a mapping: {config_name}")
+
+    raw_languages = build_cfg.get("languages")
+    if not isinstance(raw_languages, list) or len(raw_languages) != 1:
+        raise RuntimeError(
+            f"Matrix config must declare exactly one build language: {config_name}"
+        )
+    resolved_language = str(raw_languages[0]).strip().lower()
+    if resolved_language != language_key:
+        raise RuntimeError(
+            f"Matrix config language mismatch for {config_name}: expected {language_key}, got {resolved_language}"
+        )
+
+    region = str(build_cfg.get("default_region") or "").strip().upper()
+    if not region:
+        raise RuntimeError(f"Missing build.default_region in {config_name}")
+
+    word_template = str(build_cfg.get("word_output") or "").strip()
+    if not word_template:
+        raise RuntimeError(f"Missing build.word_output in {config_name}")
+
+    pdf_template = str(build_cfg.get("output_pdf") or "").strip()
+    if not pdf_template:
+        raise RuntimeError(f"Missing build.output_pdf in {config_name}")
+
+    return MatrixTarget(
+        language=resolved_language,
+        region=region,
+        config=config_name,
+        include_lang_in_output_path=bool(build_cfg.get("include_lang_in_output_path", False)),
+        word_template=word_template,
+        pdf_template=pdf_template,
+    )
+
+
+def _load_matrix_targets() -> dict[str, MatrixTarget]:
+    return {
+        language: _load_build_matrix_target(language, config_name)
+        for language, config_name in TARGET_CONFIGS.items()
+    }
+
+
+TARGETS: dict[str, MatrixTarget] = _load_matrix_targets()
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

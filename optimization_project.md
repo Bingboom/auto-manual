@@ -103,6 +103,8 @@ Use this section for short milestone-style updates.
 - completed the core maintainability refactor campaign across build entrypoints, build pipeline helpers, reporting, queue orchestration, and `spec_master`
 - reduced [`tools/utils/spec_master.py`](/Users/pika/Documents/GitHub/auto-manual/tools/utils/spec_master.py) from 1190 to 691 lines by splitting shared dataclasses/rule tables, lookup, auditing, mapping, and repair logic into dedicated helper modules
 - completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](/Users/pika/Documents/GitHub/auto-manual/tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
+- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
 
 ## 5. Open Gaps
 

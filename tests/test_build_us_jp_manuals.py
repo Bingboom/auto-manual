@@ -20,6 +20,22 @@ SPEC.loader.exec_module(build_us_jp_manuals)
 
 
 class TestBuildUsJpManuals(unittest.TestCase):
+    def test_targets_should_derive_matrix_metadata_from_configs(self) -> None:
+        en_target = build_us_jp_manuals.TARGETS["en"]
+        ja_target = build_us_jp_manuals.TARGETS["ja"]
+
+        self.assertEqual("config.us-en.yaml", en_target.config)
+        self.assertEqual("US", en_target.region)
+        self.assertTrue(en_target.include_lang_in_output_path)
+        self.assertEqual("manual_{model_slug}_{region_slug}_{lang_slug}.docx", en_target.word_template)
+        self.assertEqual("manual_{model_slug}_{region_slug}_{lang_slug}.pdf", en_target.pdf_template)
+
+        self.assertEqual("config.ja.yaml", ja_target.config)
+        self.assertEqual("JP", ja_target.region)
+        self.assertFalse(ja_target.include_lang_in_output_path)
+        self.assertEqual("manual_{model_slug}_{region_slug}.docx", ja_target.word_template)
+        self.assertEqual("manual_{model_slug}_{region_slug}.pdf", ja_target.pdf_template)
+
     def test_parse_args_should_require_explicit_model(self) -> None:
         with contextlib.redirect_stderr(io.StringIO()):
             with self.assertRaises(SystemExit):
@@ -126,4 +142,3 @@ class TestBuildUsJpManuals(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -11,6 +11,17 @@ from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    def test_workspace_target_templates_should_derive_family_metadata_from_config(self) -> None:
+        templates = {template.config: template for template in build_review_preview.WORKSPACE_TARGET_TEMPLATES}
+
+        self.assertEqual("US", templates["config.us-en.yaml"].family)
+        self.assertEqual("en", templates["config.us-en.yaml"].language)
+        self.assertTrue(templates["config.us-en.yaml"].include_lang_in_output_path)
+
+        self.assertEqual("JP", templates["config.ja.yaml"].family)
+        self.assertEqual("ja", templates["config.ja.yaml"].language)
+        self.assertFalse(templates["config.ja.yaml"].include_lang_in_output_path)
+
     def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
         current = build_review_preview.WorkspaceTarget(
             model="JE-1000F",
