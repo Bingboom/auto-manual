@@ -4,12 +4,9 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
-import re
 import shutil
 import sys
-from dataclasses import dataclass
 from pathlib import Path
 
 try:
@@ -27,8 +24,6 @@ from tools.config_pages import (
     PdfInsertPage,
     RstIncludePage,
 )
-from tools.config_loader import load_config_mapping
-from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
     GeneratedPageRender,
     render_generated_page,
@@ -72,13 +67,35 @@ from tools.gen_index_bundle_plan import (
     ensure_unique_name as _ensure_unique_name_impl,
     plan_materialized_pages as _plan_materialized_pages_impl,
 )
+from tools.gen_index_bundle_models import (
+    MaterializedBundle,
+    PlannedPage,
+    file_sha256 as _file_sha256,
+    repo_relative as _repo_relative,
+    select_planned_pages as _select_planned_pages,
+)
+from tools.gen_index_bundle_paths import (
+    build_langs as _build_langs,
+    bundle_dir_for_target,
+    cleanup_legacy_rst_artifacts,
+    format_bundle_tokenized as _format_tokenized,
+    latex_apply_lang,
+    latex_cover_block,
+    latex_overview_block,
+    load_config,
+    read_included_page_paths,
+    resolve_build_model,
+    resolve_build_region,
+    resolve_csv_rst_path as _resolve_csv_rst_path,
+    resolve_generated_recipe_path as _resolve_generated_recipe_path,
+    resolve_generated_source_path as _resolve_generated_source_path,
+    resolve_generated_template_path as _resolve_generated_template_path,
+    resolve_spec_master_csv_path as _resolve_spec_master_csv_path,
+    source_path_for_contract as _source_path_for_contract,
+)
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.targets import (
-    format_tokenized,
-    resolve_build_languages,
-    resolve_build_model as resolve_target_model,
-    resolve_build_region as resolve_target_region,
     resolve_output_lang,
 )
 from tools.word_bundle_common import (  # noqa: E402
@@ -95,285 +112,6 @@ from tools.word_bundle_common import (  # noqa: E402
 )
 
 paths = get_paths()
-
-_INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
-
-
-@dataclass(frozen=True)
-class PlannedPage:
-    page: ConfigPage
-    lang: str | None
-    file_name: str
-
-
-@dataclass(frozen=True)
-class MaterializedBundle:
-    bundle_dir: Path
-    page_dir: Path
-    index_path: Path
-    conf_path: Path
-    conf_base_path: Path
-    wrapper_index_path: Path
-    page_paths: tuple[Path, ...]
-    title: str
-    reference_doc: Path | None
-    model: str | None
-    region: str | None
-    lang: str | None
-    manifest_path: Path | None = None
-    page_manifest_path: Path | None = None
-    recipe_ids: tuple[str, ...] = ()
-    snippet_ids: tuple[str, ...] = ()
-
-
-def _repo_relative(path: Path | None, *, repo_root: Path) -> str | None:
-    if path is None:
-        return None
-    try:
-        return path.resolve(strict=False).relative_to(repo_root.resolve(strict=False)).as_posix()
-    except ValueError:
-        return path.as_posix()
-
-
-def _file_sha256(path: Path | None) -> str | None:
-    if path is None or not path.exists() or not path.is_file():
-        return None
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def _select_planned_pages(planned_pages: list[PlannedPage], page_selector: str | None) -> list[PlannedPage]:
-    if not (page_selector or "").strip():
-        return planned_pages
-
-    selector = page_selector.strip()
-    csv_matches = [planned for planned in planned_pages if isinstance(planned.page, CsvPage) and planned.page.page == selector]
-    if csv_matches:
-        return csv_matches
-    generated_matches = [
-        planned for planned in planned_pages if isinstance(planned.page, GeneratedPage) and planned.page.page == selector
-    ]
-    if generated_matches:
-        return generated_matches
-
-    stem_matches = [planned for planned in planned_pages if Path(planned.file_name).stem == selector]
-    if not stem_matches:
-        raise RuntimeError(f"Page selector did not match any materialized page: {selector}")
-    if len(stem_matches) > 1:
-        raise RuntimeError(f"Page selector matched multiple materialized pages: {selector}")
-    return stem_matches
-
-
-def load_config(cfg_path: Path) -> dict:
-    return load_config_mapping(cfg_path)
-
-
-def latex_cover_block(file_name: str) -> list[str]:
-    return [
-        ".. raw:: latex",
-        "",
-        f"   \\includepdf[pages=1-,fitpaper=true,pagecommand={{\\thispagestyle{{empty}}}}]{{{file_name}}}",
-        "   \\clearpage",
-        "   \\pagenumbering{arabic}",
-        "   \\setcounter{page}{1}",
-        "",
-    ]
-
-
-def latex_apply_lang(lang: str) -> list[str]:
-    return [
-        ".. raw:: latex",
-        "",
-        f"   \\HBApplyLang{{{lang}}}",
-        "",
-    ]
-
-
-def latex_overview_block(file_name: str) -> list[str]:
-    return [
-        ".. raw:: latex",
-        "",
-        f"   \\includepdf[pages=1-,fitpaper=true,pagecommand={{\\thispagestyle{{normal}}}}]{{{file_name}}}",
-        "",
-    ]
-
-
-def _format_tokenized(
-    text: str,
-    model: str | None,
-    region: str | None,
-) -> str:
-    return format_tokenized(text, None, model, region)
-
-
-def resolve_build_model(cfg: dict, arg_model: str | None) -> str | None:
-    return resolve_target_model(cfg, arg_model)
-
-
-def resolve_build_region(cfg: dict, arg_region: str | None) -> str | None:
-    return resolve_target_region(cfg, arg_region)
-
-
-def _build_langs(cfg: dict) -> list[str]:
-    langs = resolve_build_languages(cfg)
-    return langs or ["en"]
-
-
-def _bundle_component(value: str | None, fallback: str) -> str:
-    text = (value or "").strip() or fallback
-    return text.replace("/", "_").replace("\\", "_").replace(":", "_")
-
-
-def bundle_dir_for_target(
-    *,
-    docs_dir: Path,
-    docs_build_dir: Path | None = None,
-    model: str | None,
-    region: str | None,
-    lang: str | None = None,
-) -> Path:
-    actual_docs_build_dir = docs_build_dir or (docs_dir / "_build")
-    target_root = actual_docs_build_dir / _bundle_component(model, "_shared") / _bundle_component(region, "_default")
-    if (lang or "").strip():
-        target_root = target_root / _bundle_component(lang, "_default")
-    return target_root / "rst"
-
-
-def _legacy_bundle_dir_for_target(
-    *,
-    docs_dir: Path,
-    model: str | None,
-    region: str | None,
-) -> Path:
-    return docs_dir / _bundle_component(model, "_shared") / _bundle_component(region, "_default")
-
-
-def _legacy_generated_dir_for_target(
-    *,
-    docs_dir: Path,
-    model: str | None,
-) -> Path:
-    return docs_dir / "generated" / _bundle_component(model, "_shared")
-
-
-def cleanup_legacy_rst_artifacts(
-    *,
-    docs_dir: Path,
-    model: str | None,
-    region: str | None,
-) -> None:
-    legacy_bundle_dir = _legacy_bundle_dir_for_target(
-        docs_dir=docs_dir,
-        model=model,
-        region=region,
-    )
-    legacy_generated_dir = _legacy_generated_dir_for_target(
-        docs_dir=docs_dir,
-        model=model,
-    )
-
-    if legacy_bundle_dir.exists():
-        shutil.rmtree(legacy_bundle_dir)
-        parent = legacy_bundle_dir.parent
-        if parent != docs_dir and parent.exists() and not any(parent.iterdir()):
-            parent.rmdir()
-
-    if legacy_generated_dir.exists():
-        shutil.rmtree(legacy_generated_dir)
-        parent = legacy_generated_dir.parent
-        if parent.exists() and not any(parent.iterdir()):
-            parent.rmdir()
-
-
-def _resolve_spec_master_csv_path(
-    cfg: dict,
-    *,
-    repo_root: Path,
-    data_root: str | None,
-    model: str | None,
-    region: str | None,
-) -> Path:
-    return resolve_data_snapshot_paths(
-        cfg,
-        repo_root=repo_root,
-        data_root=data_root,
-        model=model,
-        region=region,
-    ).spec_master_csv
-
-
-def _resolve_csv_rst_path(
-    *,
-    source_root: Path,
-    page: CsvPage,
-    lang: str,
-    model: str | None,
-    region: str | None,
-) -> Path:
-    if page.include_dir is None:
-        rel = f"{page.page}_{lang}.rst"
-    else:
-        rel = str(Path(_format_tokenized(page.include_dir, model, region)) / f"{page.page}_{lang}.rst")
-    return source_root / rel
-
-
-def _resolve_generated_source_path(
-    *,
-    bundle_dir: Path,
-    page: GeneratedPage,
-    lang: str,
-    model: str | None,
-    region: str | None,
-) -> Path | None:
-    if page.include_dir is None:
-        return None
-    rel = Path(_format_tokenized(page.include_dir, model, region)) / f"{page.page}_{lang}.rst"
-    return bundle_dir / rel
-
-
-def _resolve_generated_template_path(
-    *,
-    docs_dir: Path,
-    page: GeneratedPage,
-    model: str | None,
-    region: str | None,
-) -> Path:
-    return resolve_config_path(docs_dir, page.template, model, region)
-
-
-def _resolve_generated_recipe_path(
-    *,
-    docs_dir: Path,
-    page: GeneratedPage,
-    model: str | None,
-    region: str | None,
-) -> Path:
-    return resolve_config_path(docs_dir, page.recipe, model, region)
-
-
-def _source_path_for_contract(
-    page: ConfigPage,
-    *,
-    docs_dir: Path,
-    bundle_dir: Path,
-    model: str | None,
-    region: str | None,
-    lang: str | None,
-) -> Path | None:
-    if isinstance(page, RstIncludePage):
-        return resolve_config_path(docs_dir, page.file, model, region)
-    if isinstance(page, GeneratedPage):
-        return _resolve_generated_template_path(docs_dir=docs_dir, page=page, model=model, region=region)
-    if isinstance(page, CsvPage):
-        if lang is None:
-            return None
-        return _resolve_csv_rst_path(
-            source_root=bundle_dir,
-            page=page,
-            lang=lang,
-            model=model,
-            region=region,
-        )
-    return None
 
 
 def _base_file_name_for_plan(
@@ -452,16 +190,6 @@ def build_wrapper_index_text(
         docs_dir=docs_dir,
         bundle_dir=bundle_dir,
     )
-
-
-def read_included_page_paths(index_path: Path) -> list[Path]:
-    out: list[Path] = []
-    for line in index_path.read_text(encoding="utf-8").splitlines():
-        match = _INCLUDE_RE.match(line)
-        if not match:
-            continue
-        out.append((index_path.parent / match.group(1)).resolve())
-    return out
 
 
 _is_external_path = _is_external_path_impl
