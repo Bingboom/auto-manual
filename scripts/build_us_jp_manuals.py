@@ -21,6 +21,7 @@ from tools.config_loader import load_config_mapping
 
 
 VALID_FORMATS = ("html", "word", "pdf")
+VALID_BUILD_ACTIONS = ("validate", "doctor", "check", "rst", "html", "word", "pdf", "all")
 TARGET_CONFIGS = {
     "en": "config.us-en.yaml",
     "es": "config.us-es.yaml",
@@ -123,6 +124,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Subset of html, word, pdf, or 'all'. Accepts comma-separated or space-separated values.",
     )
     ap.add_argument(
+        "--build-action",
+        choices=VALID_BUILD_ACTIONS,
+        default=None,
+        help="Run one build.py action across every selected language target instead of deriving actions from --formats.",
+    )
+    ap.add_argument(
         "--source",
         choices=("auto", "runtime", "review"),
         default="auto",
@@ -197,6 +204,19 @@ def planned_build_actions(formats: list[str]) -> list[str]:
     return list(formats)
 
 
+def requested_actions(args: argparse.Namespace) -> list[str]:
+    build_action = str(getattr(args, "build_action", "") or "").strip().lower()
+    if build_action:
+        return [build_action]
+    return planned_build_actions(resolve_formats(args.formats))
+
+
+def artifact_formats_for_actions(actions: list[str]) -> list[str]:
+    if "all" in actions:
+        return list(VALID_FORMATS)
+    return [action for action in actions if action in VALID_FORMATS]
+
+
 def validate_open_options(*, formats: list[str], open_html: bool) -> None:
     if open_html and "html" not in formats:
         raise RuntimeError("--open-html requires html in --formats.")
@@ -237,12 +257,14 @@ def build_py_command(
 
 def build_plan(args: argparse.Namespace) -> list[PlannedCommand]:
     targets = resolve_languages(args.languages)
-    formats = resolve_formats(args.formats)
-    actions = planned_build_actions(formats)
+    actions = requested_actions(args)
     plan: list[PlannedCommand] = []
+    should_check_first = bool(args.check_first) and any(
+        action in {"rst", "html", "word", "pdf", "all"} for action in actions
+    )
 
     for target in targets:
-        if args.check_first:
+        if should_check_first:
             plan.append(
                 PlannedCommand(
                     target=target,
@@ -367,11 +389,15 @@ def open_generated_html(model: str, *, targets: list[MatrixTarget], dry_run: boo
 
 
 def print_artifact_summary(model: str, *, targets: list[MatrixTarget], formats: list[str], dry_run: bool) -> None:
+    artifacts_by_target = [expected_artifacts(model, target, formats) for target in targets]
+    if not any(artifacts_by_target):
+        return
+
     heading = "Expected outputs" if dry_run else "Artifacts"
     print()
     print(f"{heading}:")
-    for target in targets:
-        for artifact in expected_artifacts(model, target, formats):
+    for artifacts in artifacts_by_target:
+        for artifact in artifacts:
             if dry_run or artifact.exists():
                 print(f" - {artifact}")
 
@@ -380,7 +406,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = parse_args(argv)
         targets = resolve_languages(args.languages)
-        formats = resolve_formats(args.formats)
+        actions = requested_actions(args)
+        formats = artifact_formats_for_actions(actions)
         validate_open_options(formats=formats, open_html=args.open_html)
         plan = build_plan(args)
         run_plan(plan, dry_run=args.dry_run)

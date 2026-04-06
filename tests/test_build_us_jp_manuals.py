@@ -54,6 +54,18 @@ class TestBuildUsJpManuals(unittest.TestCase):
         self.assertTrue(all(item.action == "all" for item in plan))
         self.assertTrue(all("--no-clean" not in item.command for item in plan))
 
+    def test_build_plan_should_support_single_build_action(self) -> None:
+        args = build_us_jp_manuals.parse_args(
+            ["--model", "JE-1000F", "--languages", "en,fr", "--build-action", "validate"]
+        )
+
+        plan = build_us_jp_manuals.build_plan(args)
+
+        self.assertEqual(
+            [("en", "validate"), ("fr", "validate")],
+            [(item.target.language, item.action) for item in plan],
+        )
+
     def test_build_plan_should_keep_previous_outputs_when_running_partial_formats(self) -> None:
         args = build_us_jp_manuals.parse_args(
             ["--model", "JE-1000F", "--languages", "en,ja", "--formats", "html,word"]
@@ -81,6 +93,15 @@ class TestBuildUsJpManuals(unittest.TestCase):
         self.assertNotIn("--no-clean", plan[0].command)
         self.assertIn("--no-clean", plan[1].command)
         self.assertIn("--no-clean", plan[2].command)
+
+    def test_build_plan_should_not_prepend_check_for_validate_action(self) -> None:
+        args = build_us_jp_manuals.parse_args(
+            ["--model", "JE-1000F", "--languages", "en", "--build-action", "validate", "--check-first"]
+        )
+
+        plan = build_us_jp_manuals.build_plan(args)
+
+        self.assertEqual(["validate"], [item.action for item in plan])
 
     def test_build_plan_should_accept_space_separated_formats_and_languages(self) -> None:
         args = build_us_jp_manuals.parse_args(
