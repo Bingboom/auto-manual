@@ -2,9 +2,6 @@ manifest_id: manual_us_single_es
 pages:
   - type: rst_include
     lang: es
-    file: templates/page_us-es/00_preface.rst
-  - type: rst_include
-    lang: es
     file: templates/page_us-es/safety_es.rst
   - type: csv_page
     source: phase1
