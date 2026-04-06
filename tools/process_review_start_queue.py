@@ -15,9 +15,12 @@ from urllib import error as urllib_error
 from urllib import parse as urllib_parse
 from urllib import request as urllib_request
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
+
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.document_link_queue import parse_document_key  # noqa: E402
