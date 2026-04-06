@@ -7,8 +7,13 @@ import sys
 from pathlib import Path
 from typing import Sequence
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from tools.script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
 DEFAULT_STAGING_ROOT = ".tmp/staging"
 SUPPORTED_ACTIONS = {
     "all",
