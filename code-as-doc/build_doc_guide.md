@@ -11,6 +11,10 @@ For user-facing review workflow details, read:
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 - [`user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md)
 
+For onboarding new external Markdown manuals into the template library, use:
+
+- [`dev/manual_template_intake_checklist.md`](./dev/manual_template_intake_checklist.md)
+
 ## 1. Recommended Entrypoint
 
 ```powershell
@@ -243,6 +247,7 @@ Parallel-language template note:
 - for manually maintained parallel-language prose templates, treat the source-language page as the structure owner
 - when that source-language page changes shared headings, section order, placeholders, includes, or `.. only::` model gates, update the derived-language counterparts in the same change before review/build
 - current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, `page_us-fr`, and `page_zh`
+- before you touch page templates for a new Markdown intake, fill out [`dev/manual_template_intake_checklist.md`](./dev/manual_template_intake_checklist.md) to decide manifest mapping, placeholder policy, and validation scope first
 
 `symbols_blocks.csv` note:
 

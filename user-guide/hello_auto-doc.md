@@ -7,6 +7,7 @@ It documents the current build layout, maintenance rules, the review bundle laye
 It is the current workflow and editing-surface guide.
 It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
 For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
+For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
 
 ---
 
@@ -280,6 +281,7 @@ Parallel-language template rule:
 - `docs/templates/page_us-en/*.rst` is the current source-language structure owner for manually maintained US prose templates.
 - `docs/templates/page_us-es/*.rst` and `docs/templates/page_us-fr/*.rst` are derived-language counterparts and must be updated in the same round when the source-language page changes shared section structure or `.. only::` gating.
 - JP currently has only `ja`, so there is no second JP derived-language template to mirror today, but any future JP derived-language page should follow the same rule.
+- before adding a new Markdown manual into the template library, fill out [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md) so section mapping and placeholder rules are decided before page edits start.
 
 Edit these when safety/spec parameters change:
 
