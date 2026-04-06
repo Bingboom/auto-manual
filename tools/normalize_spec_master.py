@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import csv
 from collections import Counter
-import sys
 from pathlib import Path
 
 try:

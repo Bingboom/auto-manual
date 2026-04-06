@@ -162,6 +162,34 @@ __all__ = [
 ]
 
 
+def _load_workspace_target_template(config_name: str) -> WorkspaceTargetTemplate:
+    config_path = (ROOT / config_name).resolve()
+    cfg = load_config(config_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    family = str(build_cfg.get("default_region") or "").strip().upper()
+    if not family:
+        raise RuntimeError(f"Review preview target config is missing build.default_region: {config_name}")
+    raw_languages = build_cfg.get("languages")
+    if not isinstance(raw_languages, list) or len(raw_languages) != 1:
+        raise RuntimeError(
+            f"Review preview target config must declare exactly one build language: {config_name}"
+        )
+    return WorkspaceTargetTemplate(
+        family=family,
+        language=str(raw_languages[0]).strip().lower(),
+        config=config_name,
+        include_lang_in_output_path=bool(build_cfg.get("include_lang_in_output_path", False)),
+    )
+
+
+def _load_workspace_target_templates() -> tuple[WorkspaceTargetTemplate, ...]:
+    return tuple(_load_workspace_target_template(config_name) for config_name in WORKSPACE_TARGET_CONFIGS)
+
+
+WORKSPACE_TARGET_TEMPLATES: tuple[WorkspaceTargetTemplate, ...] = _load_workspace_target_templates()
+
+
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
         description="Build the review handoff workspace package for Vercel or local sharing."

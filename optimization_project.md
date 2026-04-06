@@ -86,19 +86,6 @@ Use this section for short milestone-style updates.
 - added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
 - aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
 
-### 2026-04-06
-
-- completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
-- updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
-
-### 2026-04-06
-
-- completed the core file decomposition wave by splitting `build_review_preview.py` into target, data, render, page, postprocess, and workspace helpers
-- reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
-- split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
-- split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
-- finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
-
 ### 2026-04-05
 
 - normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
@@ -111,6 +98,24 @@ Use this section for short milestone-style updates.
 - completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
 - started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
 
+### 2026-04-06
+
+- completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
+- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](/Users/pika/Documents/GitHub/auto-manual/tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
+- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
+- collapsed [`scripts/build_us_manuals.ps1`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_manuals.ps1) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
+- updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
+
+### 2026-04-06
+
+- completed the core maintainability refactor campaign across build entrypoints, build pipeline helpers, reporting, queue orchestration, preview/export/sync hotspots, and `spec_master`
+- split `build_review_preview.py` into target, data, render, page, postprocess, and workspace helpers
+- reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
+- split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
+- split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
+- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
+
 ## 5. Open Gaps
 
 Keep this section short and current.
@@ -121,20 +126,6 @@ Keep this section short and current.
 4. Multi-target conditional content is still deferred.
 
 ## 6. Active Workstreams
-
-Use the template below for each workstream:
-
-```text
-### Workstream X: Name
-Status: active | next | deferred | done
-Why now:
-- one or two concrete reasons
-Scope:
-- what is included
-- what is explicitly excluded
-Exit criteria:
-- what must be true before this workstream can be considered done
-```
 
 ### Workstream A: Entrypoint And Tooling Parity
 
@@ -205,65 +196,9 @@ Exit criteria:
 
 Status: next
 
-Why now:
-
-- reviewers and release owners now depend on diff-report and release-manifest outputs
-
-Scope:
-
-- reduce heuristic ambiguity in field-level diff extraction
-- keep release-manifest aligned with publish behavior
-- preserve target-scoped report defaults
-
-Exit criteria:
-
-- review and release outputs are trustworthy enough for routine audit and comparison work
-
 ### Workstream E: CI Expansion
 
 Status: next
-
-Why now:
-
-- current CI proves baseline health, but not full workflow coverage
-
-Scope:
-
-- add smoke coverage where practical for:
-  - diff-report
-  - release-manifest
-  - preview
-  - publish-adjacent workflows where platform dependencies allow it
-
-Exit criteria:
-
-- CI covers the workflow surfaces the repo actually depends on day to day
-
-## 7. Deferred Work
-
-Use this section for valid future work that should not yet be active.
-
-### Deferred D1: Multi-Target Content Pilot
-
-Reason deferred:
-
-- current review, check, and traceability foundations should stay stable before adding a new content strategy layer
-
-Preferred direction:
-
-- table-driven filtering in phase1 data
-- normalized applicability fields such as `regions`, `models`, `langs`, and `feature_flags`
-- page-level and block-level filtering before RST emission
-
-Pilot recommendation:
-
-- start with `03_product_overview`
-- first support `enabled + regions + langs`
-- add `models` and `feature_flags` later
-
-Promotion rule:
-
-- move this item into `Active Workstreams` only after the current baseline stops shifting materially
 
 ## 8. Recommended Order
 
@@ -273,6 +208,7 @@ Re-evaluate this order whenever a workstream closes.
 2. Diff and traceability hardening
 3. CI expansion
 4. Multi-target content pilot
+
 
 ## 9. Success Criteria
 
