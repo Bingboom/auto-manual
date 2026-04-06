@@ -111,6 +111,7 @@ Windows cleanup note:
 GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
+- that workflow now runs `python -m ruff check build.py tools tests scripts` as the minimal static gate before the heavier unit/build jobs
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
@@ -179,6 +180,15 @@ Equivalent low-level checks:
 python tools\validate_config.py --config config.us.yaml
 python tools\validate_layout_params.py --csv data\layout_params.csv
 ```
+
+Minimal static check:
+
+```powershell
+python -m pip install ruff
+python -m ruff check build.py tools tests scripts
+```
+
+The committed Ruff gate is intentionally small and low-noise. It currently checks bare `except`, undefined names, and unused local variables before CI runs the heavier unit/build validation paths.
 
 If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before runtime build:
 

@@ -797,7 +797,7 @@ class TestTargetResolution(unittest.TestCase):
 
             us_html = seed_variant("US", model="M1", region="US", lang="en", title="US Root", lang_in_output_path=False)
             us_en_html = seed_variant("US", "en", model="M1", region="US", lang="en", title="US Scoped", lang_in_output_path=True)
-            us_es_html = seed_variant("US", "es", model="M1", region="US", lang="es", title="US Spanish", lang_in_output_path=True)
+            seed_variant("US", "es", model="M1", region="US", lang="es", title="US Spanish", lang_in_output_path=True)
             jp_html = seed_variant("JP", model="M1", region="JP", lang="ja", title="JP Manual", lang_in_output_path=False)
 
             build_docs.refresh_model_html_switchers(model="M1", docs_build_dir=docs_build_dir)

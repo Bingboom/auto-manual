@@ -264,7 +264,6 @@ class Phase1Builder:
         selector: BuildSelector,
     ) -> list[tuple[str, dict[str, str]]]:
         targets: list[tuple[str, dict[str, str]]] = []
-        selected_model = self._single_selector_value(selector.models)
         selected_region = self._single_selector_value(selector.regions)
 
         if selector.models:

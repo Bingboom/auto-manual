@@ -122,7 +122,7 @@ Milestone status: `pending`
   - Note: reworked the generated-page checker into focused loader, recipe, binding, snippet, placeholder, contract, and orphan-snippet helpers while preserving the existing facade signature and issue ordering
 
 - [ ] PR 4: Add a minimal static quality gate
-  - Status: `pending`
+  - Status: `done`
   - Target files:
     - [`../pyproject.toml`](../pyproject.toml)
     - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
@@ -133,6 +133,8 @@ Milestone status: `pending`
     - the repo has one committed static-check configuration
     - CI runs a minimal lint gate before or alongside unit tests
     - the first rule set stays intentionally small and low-noise
+  - Completed: `2026-04-07`
+  - Note: added a repo-level Ruff config with the intentionally small `E722/F821/F841` rule set, wired it into `Manual Validation`, documented the local command, and cleared the two existing low-noise violations
 
 - [ ] PR 5: Extract reusable test helpers for orchestration-heavy suites
   - Status: `pending`
