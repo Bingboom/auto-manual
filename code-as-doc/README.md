@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-03-24
+Updated: 2026-04-05
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single owning document for the topic you are changing.
@@ -70,13 +70,19 @@ These files are history records, not the current source of truth.
 - [`dev/dev_log.md`](dev/dev_log.md)
 - [`tests/test_report-260301.md`](tests/test_report-260301.md)
 
-## 5. Draft / Archive Docs
+## 5. Active Execution Tracker
+
+Use this file while a maintainability refactor campaign is in progress.
+
+- [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
+
+## 6. Draft / Archive Docs
 
 - [`dev/system_contract(draft_not_in_used).md`](dev/system_contract(draft_not_in_used).md)
 
 Keep draft files clearly marked so they do not compete with active guides.
 
-## 6. Maintenance Rule
+## 7. Maintenance Rule
 
 When the repo changes:
 

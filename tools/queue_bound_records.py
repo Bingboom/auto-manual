@@ -27,6 +27,7 @@ from tools.document_link_queue import (
     select_pending_queue_records as _select_pending_queue_records_impl,
     validate_queue_record_group as _validate_queue_record_group_impl,
 )
+from tools.phase2_support import load_config
 from tools.queue_config_resolution import (
     queue_by_document_key as _queue_by_document_key,
     resolve_config_path_for_task as _resolve_config_path_for_task_impl,
@@ -47,7 +48,6 @@ from tools.queue_contract import (
     QueueRecord,
 )
 from tools.queue_grouping import group_pending_queue_records as _group_pending_queue_records_impl
-from tools.sync_data import load_config
 
 
 def set_repo_root_provider(provider) -> None:

@@ -10,15 +10,15 @@ from tools.document_link_queue import (
     document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env_impl,
     resolve_document_link_binding as _resolve_document_link_binding_impl,
 )
-from tools.queue_contract import DocumentLinkBinding
-from tools.sync_data import (
-    _cli_bin,
-    _cli_command_exists,
-    _cli_command_parts,
-    _env_value,
-    _provider_name,
-    _sync_phase2_cfg,
+from tools.phase2_support import (
+    cli_bin as _cli_bin,
+    cli_command_exists as _cli_command_exists,
+    cli_command_parts as _cli_command_parts,
+    env_value as _env_value,
+    provider_name as _provider_name,
+    sync_phase2_cfg as _sync_phase2_cfg,
 )
+from tools.queue_contract import DocumentLinkBinding
 
 
 def document_link_cfg(cfg: dict[str, Any]) -> dict[str, Any]:

@@ -126,6 +126,7 @@ Current shared config families:
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
+- [`config.us-en.yaml`](../config.us-en.yaml), [`config.us-es.yaml`](../config.us-es.yaml), and [`config.us-fr.yaml`](../config.us-fr.yaml) now inherit shared single-language US defaults from [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml); keep shared defaults there and keep language-specific page stacks in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), and [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml)
 
 Page-stack note:
 
