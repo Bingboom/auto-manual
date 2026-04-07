@@ -4,6 +4,16 @@ from pathlib import Path
 from typing import Any, Callable
 
 
+def _existing_review_overlay_paths(bundle_dir: Path) -> tuple[Path, ...]:
+    paths: list[Path] = []
+    for root_name in ("page", "generated"):
+        root_dir = bundle_dir / root_name
+        if not root_dir.exists():
+            continue
+        paths.extend(path.relative_to(bundle_dir) for path in sorted(root_dir.rglob("*.rst")) if path.is_file())
+    return tuple(paths)
+
+
 def prepare_manual_bundle(
     cfg: dict,
     *,
@@ -46,14 +56,26 @@ def prepare_manual_bundle(
         if (lang or "").strip():
             review_lang_candidates.append(None)
         for review_lang in review_lang_candidates:
+            lang_fallback = bool((lang or "").strip()) and review_lang is None
             if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=review_lang):
-                overlay_review_onto_bundle(
-                    bundle_dir=bundle.bundle_dir,
-                    docs_dir=docs_dir,
-                    model=model,
-                    region=region,
-                    lang=review_lang,
-                )
+                if lang_fallback:
+                    overlay_review_content_onto_bundle(
+                        bundle_dir=bundle.bundle_dir,
+                        docs_dir=docs_dir,
+                        model=model,
+                        region=region,
+                        lang=review_lang,
+                        allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir),
+                        allow_index=False,
+                    )
+                else:
+                    overlay_review_onto_bundle(
+                        bundle_dir=bundle.bundle_dir,
+                        docs_dir=docs_dir,
+                        model=model,
+                        region=region,
+                        lang=review_lang,
+                    )
                 review_applied = True
                 break
             if review_content_exists(docs_dir=docs_dir, model=model, region=region, lang=review_lang):
@@ -63,6 +85,8 @@ def prepare_manual_bundle(
                     model=model,
                     region=region,
                     lang=review_lang,
+                    allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir) if lang_fallback else None,
+                    allow_index=not lang_fallback,
                 )
                 review_applied = True
                 break
