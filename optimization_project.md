@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-06
+Updated: 2026-04-07
 
 ## 1. Role
 
@@ -15,7 +15,11 @@ Use it to track:
 - deferred work
 - next execution order
 
-The active execution tracker for the current maintainability refactor campaign lives in:
+The active execution checklist for the current optimization wave lives in:
+
+- [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md)
+
+The completed execution tracker for the earlier maintainability refactor campaign remains here:
 
 - [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md)
 
@@ -65,7 +69,7 @@ As of 2026-03-17, the repo has working baselines for:
 - `preview`
 - `fast`
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
-- CI baseline for `unit`, `doctor`, and `check`
+- CI baseline for `lint`, `unit`, `doctor`, and `check`
 
 ## 4. Recently Completed
 
@@ -115,6 +119,11 @@ Use this section for short milestone-style updates.
 - split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
 - completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
 - finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
+
+### 2026-04-07
+
+- completed Milestone A in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by removing preview-target import side effects, splitting the Spec_Master/runtime/generated-page quality hotspots, adding a minimal Ruff gate, and introducing shared orchestration-test helpers
+- kept Workstream C active, but moved its baseline forward so the local/CI quality gate now includes a deliberate low-noise static check before the heavier unit/build validation layers run
 
 ## 5. Open Gaps
 

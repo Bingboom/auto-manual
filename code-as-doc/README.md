@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-04-05
+Updated: 2026-04-07
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single owning document for the topic you are changing.
@@ -70,11 +70,15 @@ These files are history records, not the current source of truth.
 - [`dev/dev_log.md`](dev/dev_log.md)
 - [`tests/test_report-260301.md`](tests/test_report-260301.md)
 
-## 5. Active Execution Tracker
+## 5. Active Execution Checklists
 
-Use this file while a maintainability refactor campaign is in progress.
+Use these files while a maintainability or stability optimization wave is in progress.
 
+- [`next_optimization_checklist.md`](next_optimization_checklist.md)
+  - active checklist for the current optimization wave
+  - near-term execution items grouped into `2 weeks`, `1 month`, and `deferred`
 - [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
+  - completed tracker for the earlier maintainability decomposition campaign
 
 ## 6. Draft / Archive Docs
 

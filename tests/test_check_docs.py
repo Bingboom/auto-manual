@@ -5,12 +5,12 @@ import unittest
 from pathlib import Path
 
 from tools import check_docs
+from tests.test_helpers import temp_test_root, write_lines, write_text
 
 
 class TestCheckDocs(unittest.TestCase):
     def test_resolve_spec_master_csv_path_should_honor_data_root_override(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             cfg = {"paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"}}
 
             path = check_docs.resolve_spec_master_csv_path(cfg, data_root=(root / "data" / "phase2").as_posix())
@@ -18,46 +18,36 @@ class TestCheckDocs(unittest.TestCase):
         self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", path)
 
     def test_collect_check_issues_should_report_stale_identity_literal(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             docs_dir = root / "docs"
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
             (bundle_dir / "page").mkdir(parents=True)
 
-            (bundle_dir / "index.rst").write_text(".. include:: page/overview_en.rst\n", encoding="utf-8")
-            (bundle_dir / "page" / "overview_en.rst").write_text(
-                "Compare this unit with Jackery Explorer 2000 Pro.\n",
-                encoding="utf-8",
-            )
+            write_text(bundle_dir / "index.rst", ".. include:: page/overview_en.rst\n")
+            write_text(bundle_dir / "page" / "overview_en.rst", "Compare this unit with Jackery Explorer 2000 Pro.\n")
 
             spec_master = root / "Spec_Master.csv"
-            spec_master.write_text(
-                "\n".join(
-                    [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
-                        "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
-                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
-                        "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
-                        "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
+            write_lines(
+                spec_master,
+                [
+                    "Model,Region,Is_Latest,Page,Row_key,Value_source",
+                    "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
+                    "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                    "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
+                    "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
+                ],
             )
 
             config_path = root / "config.yaml"
-            config_path.write_text(
-                "\n".join(
-                    [
-                        "build:",
-                        "  languages: [en]",
-                        "paths:",
-                        f"  docs_dir: {docs_dir.as_posix()}",
-                        f"  spec_master_csv: {spec_master.as_posix()}",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
+            write_lines(
+                config_path,
+                [
+                    "build:",
+                    "  languages: [en]",
+                    "paths:",
+                    f"  docs_dir: {docs_dir.as_posix()}",
+                    f"  spec_master_csv: {spec_master.as_posix()}",
+                ],
             )
 
             issues = check_docs.collect_check_issues(
@@ -72,52 +62,42 @@ class TestCheckDocs(unittest.TestCase):
             self.assertIn("Jackery Explorer 2000 Pro", stale_issues[0].message)
 
     def test_collect_check_issues_should_not_report_current_target_identity_as_stale(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             docs_dir = root / "docs"
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
             (bundle_dir / "page").mkdir(parents=True)
 
-            (bundle_dir / "index.rst").write_text(".. include:: page/overview_en.rst\n", encoding="utf-8")
-            (bundle_dir / "page" / "overview_en.rst").write_text(
-                "\n".join(
-                    [
-                        "Jackery Explorer 1000 Pro keeps the current naming.",
-                        ".. include:: page/JE-2000F_reference.rst",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
+            write_text(bundle_dir / "index.rst", ".. include:: page/overview_en.rst\n")
+            write_lines(
+                bundle_dir / "page" / "overview_en.rst",
+                [
+                    "Jackery Explorer 1000 Pro keeps the current naming.",
+                    ".. include:: page/JE-2000F_reference.rst",
+                ],
             )
 
             spec_master = root / "Spec_Master.csv"
-            spec_master.write_text(
-                "\n".join(
-                    [
-                        "Model,Region,Is_Latest,Page,Row_key,Value_source",
-                        "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
-                        "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
-                        "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
-                        "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
+            write_lines(
+                spec_master,
+                [
+                    "Model,Region,Is_Latest,Page,Row_key,Value_source",
+                    "JE-1000F,US,TRUE,specifications,product_name,Jackery Explorer 1000 Pro",
+                    "JE-1000F,US,TRUE,specifications,model_no,JE-1000F",
+                    "JE-2000F,US,TRUE,specifications,product_name,Jackery Explorer 2000 Pro",
+                    "JE-2000F,US,TRUE,specifications,model_no,JE-2000F",
+                ],
             )
 
             config_path = root / "config.yaml"
-            config_path.write_text(
-                "\n".join(
-                    [
-                        "build:",
-                        "  languages: [en]",
-                        "paths:",
-                        f"  docs_dir: {docs_dir.as_posix()}",
-                        f"  spec_master_csv: {spec_master.as_posix()}",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
+            write_lines(
+                config_path,
+                [
+                    "build:",
+                    "  languages: [en]",
+                    "paths:",
+                    f"  docs_dir: {docs_dir.as_posix()}",
+                    f"  spec_master_csv: {spec_master.as_posix()}",
+                ],
             )
 
             issues = check_docs.collect_check_issues(
