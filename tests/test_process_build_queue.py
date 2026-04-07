@@ -351,6 +351,65 @@ class TestProcessBuildQueue(unittest.TestCase):
                         build_family="us-en",
                     )
 
+    def test_resolve_config_path_for_task_should_reject_publish_single_language_family(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            config_path = root / "config.us-en.yaml"
+            config_path.write_text("build: {}\n", encoding="utf-8")
+            configs = {
+                "config.us-en.yaml": {
+                    "build": {
+                        "family_id": "us-en",
+                        "default_region": "US",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                }
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                with self.assertRaisesRegex(RuntimeError, "whole-book Build_family"):
+                    process_build_queue.resolve_config_path_for_task(
+                        region="US",
+                        lang="",
+                        build_family="us-en",
+                        workflow_action="publish",
+                    )
+
+    def test_resolve_config_path_for_task_should_reject_draft_lang_against_merged_family(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            config_path = root / "config.us.yaml"
+            config_path.write_text("build: {}\n", encoding="utf-8")
+            configs = {
+                "config.us.yaml": {
+                    "build": {
+                        "family_id": "us-merged",
+                        "default_region": "US",
+                        "languages": ["en", "fr", "es"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                }
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                with self.assertRaisesRegex(RuntimeError, "single-language Build_family"):
+                    process_build_queue.resolve_config_path_for_task(
+                        region="US",
+                        lang="en",
+                        build_family="us-merged",
+                        workflow_action="draft",
+                    )
+
     def test_group_pending_queue_records_should_merge_document_key_rows_when_config_requests_it(self) -> None:
         records = [
             process_build_queue.QueueRecord(
@@ -359,6 +418,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 document_key="JE-1000F_US",
                 version="1.0",
                 lang="",
+                workflow_action="Build Draft Package",
                 doc_phase="Draft",
                 git_ref="codex/review-je-1000f-us",
                 trigger_value="Y",
@@ -367,10 +427,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             ),
             process_build_queue.QueueRecord(
                 record_id="rec_us_fr",
-                document_id="JE-1000F_US_fr_1.0",
+                document_id="JE-1000F_US_1.0",
                 document_key="JE-1000F_US",
                 version="1.0",
-                lang="fr",
+                lang="",
+                workflow_action="Build Draft Package",
                 doc_phase="Draft",
                 git_ref="codex/review-je-1000f-us",
                 trigger_value="Y",
@@ -383,6 +444,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 document_key="JE-1000F_JP",
                 version="1.0",
                 lang="ja",
+                workflow_action="Build Draft Package",
                 doc_phase="Draft",
                 git_ref="codex/review-je-1000f-jp",
                 trigger_value="Y",
@@ -406,6 +468,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 document_key="JE-1000F_US",
                 version="1.0",
                 lang="en",
+                workflow_action="Build Draft Package",
                 doc_phase="Draft",
                 git_ref="codex/review-je-1000f-us-en",
                 trigger_value="Y",
@@ -418,6 +481,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 document_key="JE-1000F_US",
                 version="1.0",
                 lang="fr",
+                workflow_action="Build Draft Package",
                 doc_phase="Draft",
                 git_ref="codex/review-je-1000f-us-fr",
                 trigger_value="Y",
@@ -477,10 +541,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             {
                 "record_id": "rec_group_2",
                 "fields": {
-                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_fr_1.0",
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_1.0",
                     process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                     process_build_queue.VERSION_FIELD: ["1.0"],
-                    process_build_queue.LANG_FIELD: ["fr"],
+                    process_build_queue.LANG_FIELD: [""],
                     process_build_queue.BUILD_FAMILY_FIELD: ["us-merged"],
                     process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
@@ -522,6 +586,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         sync_mock.assert_not_called()
         self.assertEqual(3, resolve_mock.call_count)
         self.assertTrue(all(call.kwargs.get("build_family") == "us-merged" for call in resolve_mock.call_args_list))
+        self.assertTrue(all(call.kwargs.get("workflow_action") == "draft" for call in resolve_mock.call_args_list))
 
     def test_build_success_fields_should_write_local_path_and_drive_url_and_clear_trigger(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1771,10 +1836,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             {
                 "record_id": "rec_group_2",
                 "fields": {
-                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_fr_1.0",
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_1.0",
                     process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                     process_build_queue.VERSION_FIELD: ["1.0"],
-                    process_build_queue.LANG_FIELD: ["fr"],
+                    process_build_queue.LANG_FIELD: [""],
                     process_build_queue.BUILD_FAMILY_FIELD: ["us-merged"],
                     process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],

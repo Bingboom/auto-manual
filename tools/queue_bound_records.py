@@ -168,12 +168,19 @@ def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
     return _resolve_target_for_record_impl(record, parse_document_key=parse_document_key)
 
 
-def resolve_config_path_for_task(*, region: str, lang: str | None, build_family: str | None = None) -> Path:
+def resolve_config_path_for_task(
+    *,
+    region: str,
+    lang: str | None,
+    build_family: str | None = None,
+    workflow_action: str | None = None,
+) -> Path:
     return _resolve_config_path_for_task_impl(
         repo_root=_repo_root(),
         region=region,
         lang=lang,
         build_family=build_family,
+        workflow_action=workflow_action,
         config_loader=_config_loader_provider(),
     )
 
@@ -186,6 +193,7 @@ def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRe
         config_loader=_config_loader_provider(),
         queue_by_document_key=_queue_by_document_key,
         queue_record_key=queue_record_key,
+        resolve_queue_workflow_action=resolve_queue_workflow_action,
     )
 
 

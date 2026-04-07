@@ -13,6 +13,15 @@ def normalize_build_family(value: Any) -> str:
     return str(value or "").strip().lower()
 
 
+def normalize_queue_workflow_action(value: Any) -> str:
+    text = str(value or "").strip().lower()
+    if text in {"build draft package", "draft"}:
+        return "draft"
+    if text == "publish":
+        return "publish"
+    return text
+
+
 def build_languages(cfg: dict[str, Any]) -> list[str]:
     langs = build_cfg(cfg).get("languages", ["en"])
     return [str(item).strip().lower() for item in langs if str(item).strip()] or ["en"]
@@ -37,10 +46,14 @@ def validate_family_config_request(
     build_family: str,
     region: str,
     lang: str | None,
+    workflow_action: str | None = None,
 ) -> None:
     family_id = config_family_id(cfg)
     normalized_region = str(region or "").strip().upper()
     normalized_lang = str(lang or "").strip().lower()
+    normalized_action = normalize_queue_workflow_action(workflow_action)
+    current_build_cfg = build_cfg(cfg)
+    include_lang_in_output_path = bool(current_build_cfg.get("include_lang_in_output_path"))
     if family_id != build_family:
         raise RuntimeError(
             f"Config {config_path.name} does not match Build_family={build_family!r}; family_id={family_id!r}"
@@ -52,11 +65,22 @@ def validate_family_config_request(
             f"Build_family {build_family!r} routes to region {default_region!r}, not {normalized_region!r}"
         )
 
-    if not normalized_lang:
-        return
-
     languages = build_languages(cfg)
     primary_lang = languages[0] if languages else ""
+    if normalized_action == "publish":
+        if normalized_lang:
+            raise RuntimeError("Publish queue rows must leave Lang blank")
+        if include_lang_in_output_path:
+            raise RuntimeError(
+                "Publish queue rows must use a whole-book Build_family, not a single-language family"
+            )
+    if normalized_action == "draft" and normalized_lang:
+        if len(languages) != 1 or primary_lang != normalized_lang:
+            raise RuntimeError(
+                "Build Draft Package rows with Lang must use a single-language Build_family"
+            )
+    if not normalized_lang:
+        return
     if queue_by_document_key(cfg):
         if normalized_lang not in languages:
             raise RuntimeError(
@@ -107,6 +131,7 @@ def resolve_config_path_for_task(
     region: str,
     lang: str | None,
     build_family: str | None = None,
+    workflow_action: str | None = None,
     config_loader: Callable[[Path], dict[str, Any]],
 ) -> Path:
     normalized_build_family = normalize_build_family(build_family)
@@ -135,6 +160,7 @@ def resolve_config_path_for_task(
             build_family=normalized_build_family,
             region=region,
             lang=lang,
+            workflow_action=workflow_action,
         )
         return config_path
 
