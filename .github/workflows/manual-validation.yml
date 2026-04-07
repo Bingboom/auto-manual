@@ -82,3 +82,21 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Run check (JP)
         run: python build.py check --config config.ja.yaml --model JE-1000F --region JP
+
+  workflow-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - name: Run diff-report smoke
+        run: python build.py diff-report --config config.us.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
+      - name: Run release-manifest smoke
+        run: python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP

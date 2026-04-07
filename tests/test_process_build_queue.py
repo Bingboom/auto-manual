@@ -7,10 +7,51 @@ from pathlib import Path
 from unittest import mock
 
 from tools import process_build_queue
+from tools import process_build_queue_main
 from tests.test_helpers import temp_test_root, write_text
 
 
 class TestProcessBuildQueue(unittest.TestCase):
+    def test_cli_main_should_resolve_relative_paths_and_normalize_record_id(self) -> None:
+        with temp_test_root() as root:
+            seen: dict[str, object] = {}
+
+            exit_code = process_build_queue_main.run_main(
+                [
+                    "--config",
+                    "config.us.yaml",
+                    "--data-root",
+                    "data/phase2",
+                    "--dry-run",
+                    "--record-id",
+                    " rec_123 ",
+                ],
+                parse_args=process_build_queue.parse_args,
+                repo_root=root,
+                load_config=lambda path: {"build": {"default_region": "US"}},
+                resolve_phase2_export_root=lambda cfg, *, repo_root, data_root: repo_root / str(data_root),
+                process_build_queue=lambda **kwargs: seen.update(kwargs) or 0,
+            )
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(root / "config.us.yaml", seen["config_path"])
+        self.assertEqual(str(root / "data" / "phase2"), seen["data_root"])
+        self.assertTrue(seen["dry_run"])
+        self.assertEqual("rec_123", seen["record_id"])
+
+    def test_cli_main_should_return_exit_code_one_for_runtime_errors(self) -> None:
+        with temp_test_root() as root:
+            exit_code = process_build_queue_main.run_main(
+                ["--config", "config.us.yaml"],
+                parse_args=process_build_queue.parse_args,
+                repo_root=root,
+                load_config=lambda path: {},
+                resolve_phase2_export_root=lambda cfg, *, repo_root, data_root: repo_root / "data" / "phase2",
+                process_build_queue=lambda **kwargs: (_ for _ in ()).throw(RuntimeError("queue boom")),
+            )
+
+        self.assertEqual(1, exit_code)
+
     def test_pending_queue_records_should_flatten_select_values_and_filter_y_rows(self) -> None:
         records = process_build_queue.pending_queue_records(
             [

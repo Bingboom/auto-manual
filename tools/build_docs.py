@@ -24,6 +24,7 @@ from tools.build_docs_bundle import prepare_manual_bundle as _prepare_manual_bun
 from tools.build_docs_cli import parse_args as _parse_args_impl
 from tools.build_docs_entry import run_build as _run_build_impl
 from tools.build_docs_export import build_target as _build_target_impl
+from tools.build_docs_main import run_main as _run_main_impl
 from tools.build_docs_html import (
     build_manual_switcher_markup as _build_manual_switcher_markup_impl,
     collect_model_html_variants as _collect_model_html_variants_impl,
@@ -779,9 +780,10 @@ parse_args = _parse_args_impl
 
 
 def main(argv: list[str] | None = None) -> None:
-    args = parse_args(argv)
-    _run_build_impl(
-        args,
+    _run_main_impl(
+        argv,
+        parse_args=parse_args,
+        run_build=_run_build_impl,
         paths=paths,
         load_config=load_config,
         validate_loaded_config=validate_loaded_config,
