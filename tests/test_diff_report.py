@@ -1,11 +1,16 @@
 ﻿from __future__ import annotations
 
 import subprocess
+import shutil
 import tempfile
 import unittest
+from contextlib import contextmanager
 from pathlib import Path
+from typing import Iterator
 
 from tools import diff_report
+
+FIXTURES_ROOT = Path(__file__).resolve().parent / "fixtures" / "diff_report"
 
 
 def git(repo: Path, *args: str) -> str:
@@ -18,6 +23,39 @@ def git(repo: Path, *args: str) -> str:
         encoding="utf-8",
     )
     return proc.stdout
+
+
+@contextmanager
+def fixture_repo(name: str) -> Iterator[Path]:
+    scenario_root = FIXTURES_ROOT / name
+    with tempfile.TemporaryDirectory() as td:
+        repo = Path(td)
+        _copy_tree_overwrite(scenario_root / "base", repo)
+
+        git(repo, "init")
+        git(repo, "config", "user.name", "Codex")
+        git(repo, "config", "user.email", "codex@example.com")
+        git(repo, "add", ".")
+        git(repo, "commit", "-m", "base")
+
+        head_root = scenario_root / "head"
+        if head_root.exists():
+            _copy_tree_overwrite(head_root, repo)
+            git(repo, "add", ".")
+            git(repo, "commit", "-m", "head")
+
+        yield repo
+
+
+def _copy_tree_overwrite(source: Path, destination: Path) -> None:
+    for path in source.rglob("*"):
+        relative = path.relative_to(source)
+        target = destination / relative
+        if path.is_dir():
+            target.mkdir(parents=True, exist_ok=True)
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, target)
 
 
 class TestDiffReport(unittest.TestCase):
@@ -118,68 +156,8 @@ class TestDiffReport(unittest.TestCase):
             )
 
     def test_collect_field_diff_rows_should_back_map_template_fields_to_tpl_rows(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            repo = Path(td)
+        with fixture_repo("template_backmap") as repo:
             tracked_root = repo / "docs" / "_review" / "JE-1000F"
-            target_file = tracked_root / "US" / "page" / "05_operation_guide_placeholder.rst"
-            target_file.parent.mkdir(parents=True)
-            data_dir = repo / "data" / "phase1"
-            data_dir.mkdir(parents=True)
-            (repo / "config.yaml").write_text(
-                "\n".join(
-                    [
-                        "paths:",
-                        "  spec_master_csv: data/phase1/Spec_Master.csv",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            (data_dir / "Spec_Master.csv").write_text(
-                "\n".join(
-                    [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
-                        "US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default standby time,1,2 hours,JE-1000F",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-
-            git(repo, "init")
-            git(repo, "config", "user.name", "Codex")
-            git(repo, "config", "user.email", "codex@example.com")
-
-            target_file.write_text(
-                "\n".join(
-                    [
-                        "OPERATIONS",
-                        "==========",
-                        "",
-                        "**Default standby time:** 2 hours.",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            git(repo, "add", ".")
-            git(repo, "commit", "-m", "first")
-
-            target_file.write_text(
-                "\n".join(
-                    [
-                        "OPERATIONS",
-                        "==========",
-                        "",
-                        "**Default standby time:** 12 hours.",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            git(repo, "add", ".")
-            git(repo, "commit", "-m", "second")
-
             file_rows = diff_report.collect_diff_rows(
                 repo_root=repo,
                 tracked_root=tracked_root,
@@ -198,79 +176,8 @@ class TestDiffReport(unittest.TestCase):
             self.assertEqual("TEMPLATE VARS", field_rows[0].source_section_key)
 
     def test_collect_field_diff_rows_should_pair_placeholder_label_renames_as_modified(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            repo = Path(td)
+        with fixture_repo("placeholder_label_rename") as repo:
             tracked_root = repo / "docs" / "_review" / "JE-1000F"
-            target_file = tracked_root / "JP" / "generated" / "JE-1000F" / "draft" / "03_product_overview_ja.rst"
-            target_file.parent.mkdir(parents=True)
-            data_dir = repo / "data" / "phase1"
-            data_dir.mkdir(parents=True)
-            (repo / "config.ja.yaml").write_text(
-                "\n".join(
-                    [
-                        "paths:",
-                        "  spec_master_csv: data/phase1/Spec_Master.csv",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            (data_dir / "Spec_Master.csv").write_text(
-                "\n".join(
-                    [
-                        "Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model",
-                        "JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC Input,1,AC鍏ュ姏銉濄兗銉?JE-1000F",
-                        'JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC Input,1,"100V-120V~ 50Hz/60Hz锛屾渶澶?5A锛屾渶澶х磩1450W",JE-1000F',
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-
-            git(repo, "init")
-            git(repo, "config", "user.name", "Codex")
-            git(repo, "config", "user.email", "codex@example.com")
-
-            target_file.write_text(
-                "\n".join(
-                    [
-                        "RIGHT SIDE VIEW",
-                        "===============",
-                        "",
-                        ".. list-table::",
-                        "   :header-rows: 0",
-                        "",
-                        "   * - **AC鍏ュ姏**",
-                        "",
-                        "       100V-120V~50/60Hz銆?5A 鏈€澶с€佹€ラ€熷厖闆?绱?450W",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            git(repo, "add", ".")
-            git(repo, "commit", "-m", "first")
-
-            target_file.write_text(
-                "\n".join(
-                    [
-                        "RIGHT SIDE VIEW",
-                        "===============",
-                        "",
-                        ".. list-table::",
-                        "   :header-rows: 0",
-                        "",
-                        "   * - **AC鍏ュ姏銉濄兗銉?*",
-                        "",
-                        "       100V-120V~ 50Hz/60Hz锛屾渶澶?5A锛屾渶澶х磩1450W",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            git(repo, "add", ".")
-            git(repo, "commit", "-m", "second")
-
             file_rows = diff_report.collect_diff_rows(
                 repo_root=repo,
                 tracked_root=tracked_root,
@@ -285,10 +192,11 @@ class TestDiffReport(unittest.TestCase):
 
             self.assertEqual(1, len(field_rows))
             self.assertEqual("M", field_rows[0].change_type)
-            self.assertIn("AC鍏ュ姏", field_rows[0].field_key)
-            self.assertIn("->", field_rows[0].field_key)
-            self.assertIn("100V-120V", field_rows[0].field_key)
-            self.assertEqual("tpl_side_ac_input_spec", field_rows[0].source_row_key)
+            self.assertEqual("AC INPUT -> AC Input", field_rows[0].field_key)
+            self.assertEqual("100V-120V~ 50Hz/60Hz, max 5A, max 1450W", field_rows[0].old_value)
+            self.assertEqual(field_rows[0].old_value, field_rows[0].new_value)
+            self.assertIn("tpl_side_ac_input_spec", field_rows[0].source_row_key)
+            self.assertIn("tpl_side_ac_input_label", field_rows[0].source_row_key)
 
     def test_collect_field_diff_rows_should_parse_structured_rst_fields(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -392,6 +300,30 @@ class TestDiffReport(unittest.TestCase):
             self.assertEqual("product_name", field_rows[0].source_row_key)
             self.assertEqual("GENERAL INFO", field_rows[0].source_section_key)
 
+    def test_collect_field_diff_rows_should_pair_unmapped_fields_by_section_order(self) -> None:
+        with fixture_repo("section_order_fallback") as repo:
+            tracked_root = repo / "docs" / "_review" / "JE-1000F"
+            file_rows = diff_report.collect_diff_rows(
+                repo_root=repo,
+                tracked_root=tracked_root,
+                from_ref="HEAD~1",
+                to_ref="HEAD",
+            )
+            field_rows = diff_report.collect_field_diff_rows(
+                repo_root=repo,
+                file_rows=file_rows,
+                config_path=repo / "config.yaml",
+            )
+
+            self.assertEqual(2, len(field_rows))
+            self.assertEqual("M", field_rows[0].change_type)
+            self.assertEqual("Alpha -> Gamma", field_rows[0].field_key)
+            self.assertEqual("one", field_rows[0].old_value)
+            self.assertEqual("one", field_rows[0].new_value)
+            self.assertEqual("Beta -> Delta", field_rows[1].field_key)
+            self.assertEqual("two", field_rows[1].old_value)
+            self.assertEqual("two", field_rows[1].new_value)
+
     def test_collect_diff_rows_should_parse_review_bundle_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = Path(td)
@@ -467,46 +399,8 @@ class TestDiffReport(unittest.TestCase):
             self.assertEqual("page", rows[0].section)
 
     def test_generate_diff_report_should_write_csv_and_html(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            repo = Path(td)
+        with fixture_repo("template_backmap") as repo:
             tracked_root = repo / "docs" / "_review" / "JE-1000F"
-            target_file = tracked_root / "US" / "page" / "03_product_overview_placeholder.rst"
-            target_file.parent.mkdir(parents=True)
-
-            git(repo, "init")
-            git(repo, "config", "user.name", "Codex")
-            git(repo, "config", "user.email", "codex@example.com")
-
-            target_file.write_text(
-                "\n".join(
-                    [
-                        "PRODUCT OVERVIEW",
-                        "================",
-                        "",
-                        "**Default standby time:** 2 hours.",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            git(repo, "add", ".")
-            git(repo, "commit", "-m", "first")
-
-            target_file.write_text(
-                "\n".join(
-                    [
-                        "PRODUCT OVERVIEW",
-                        "================",
-                        "",
-                        "**Default standby time:** 12 hours.",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            git(repo, "add", ".")
-            git(repo, "commit", "-m", "second")
-
             output_dir = repo / "reports"
             csv_path, html_path = diff_report.generate_diff_report(
                 repo_root=repo,
@@ -514,6 +408,7 @@ class TestDiffReport(unittest.TestCase):
                 from_ref="HEAD~1",
                 to_ref="HEAD",
                 output_dir=output_dir,
+                config_path=repo / "config.yaml",
             )
 
             self.assertTrue(csv_path.exists())

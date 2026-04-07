@@ -1,0 +1,3 @@
+Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model
+JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_label,AC INPUT,1,AC INPUT,JE-1000F
+JP,TRUE,specifications,INPUT PORTS,2,tpl_side_ac_input_spec,AC INPUT,1,"100V-120V~ 50Hz/60Hz, max 5A, max 1450W",JE-1000F
