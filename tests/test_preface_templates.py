@@ -8,12 +8,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PrefaceTemplateTests(unittest.TestCase):
-    def test_us_source_preface_should_not_embed_derived_language_notices(self) -> None:
+    def test_us_source_preface_should_keep_multilingual_notice_blocks(self) -> None:
         text = (ROOT / "docs" / "templates" / "page_us-en" / "00_preface.rst").read_text(encoding="utf-8")
 
         self.assertIn("**IMPORTANT**", text)
-        self.assertNotIn("FR IMPORTANT", text)
-        self.assertNotIn("ES IMPORTANTE", text)
+        self.assertIn("FR IMPORTANT", text)
+        self.assertIn("ES IMPORTANTE", text)
 
 
 if __name__ == "__main__":

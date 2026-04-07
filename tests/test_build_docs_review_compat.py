@@ -17,8 +17,10 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
             bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "es" / "rst"
             bundle_dir.mkdir(parents=True, exist_ok=True)
             (bundle_dir / "page").mkdir(parents=True, exist_ok=True)
+            (bundle_dir / "generated" / "JE-1000F").mkdir(parents=True, exist_ok=True)
             (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
             (bundle_dir / "page" / "overview.rst").write_text("runtime overview\n", encoding="utf-8")
+            (bundle_dir / "generated" / "JE-1000F" / "spec_es.rst").write_text("runtime spec\n", encoding="utf-8")
 
             legacy_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
             (legacy_review_dir / "page").mkdir(parents=True, exist_ok=True)
@@ -61,6 +63,11 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
             model="JE-1000F",
             region="US",
             lang=None,
+            allowed_relative_paths=(
+                Path("page") / "overview.rst",
+                Path("generated") / "JE-1000F" / "spec_es.rst",
+            ),
+            allow_index=False,
         )
 
 

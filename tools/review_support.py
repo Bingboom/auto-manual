@@ -60,6 +60,24 @@ def _overlay_file_tree(src_dir: Path, dst_dir: Path, pattern: str = "*") -> None
         shutil.copy2(src_file, target_path)
 
 
+def _overlay_selected_relative_files(
+    *,
+    src_root: Path,
+    dst_root: Path,
+    relative_paths: tuple[Path, ...],
+) -> bool:
+    copied = False
+    for relative_path in relative_paths:
+        src_path = src_root / relative_path
+        if not src_path.is_file():
+            continue
+        target_path = dst_root / relative_path
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src_path, target_path)
+        copied = True
+    return copied
+
+
 def _overlay_override_assets(overrides_src: Path, bundle_dir: Path) -> None:
     for allowed_dir in ("_assets", "_static", "renderers"):
         src_dir = overrides_src / allowed_dir
@@ -111,6 +129,8 @@ def overlay_review_content_onto_bundle(
     model: str | None,
     region: str | None,
     lang: str | None = None,
+    allowed_relative_paths: tuple[Path, ...] | None = None,
+    allow_index: bool = True,
 ) -> Path | None:
     review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     if not review_content_exists(docs_dir=docs_dir, model=model, region=region, lang=lang):
@@ -122,21 +142,45 @@ def overlay_review_content_onto_bundle(
     overrides_src = review_dir / "overrides"
     applied = False
 
-    if index_src.exists():
+    if allow_index and index_src.exists():
         shutil.copy2(index_src, bundle_dir / "index.rst")
         applied = True
 
+    selected_page_paths = (
+        tuple(path.relative_to("page") for path in allowed_relative_paths if path.parts and path.parts[0] == "page")
+        if allowed_relative_paths is not None
+        else None
+    )
     page_dst = bundle_dir / "page"
     if page_src.is_dir():
         page_dst.mkdir(parents=True, exist_ok=True)
-        _overlay_file_tree(page_src, page_dst, "*.rst")
-        applied = True
+        if selected_page_paths is None:
+            _overlay_file_tree(page_src, page_dst, "*.rst")
+            applied = True
+        elif _overlay_selected_relative_files(src_root=page_src, dst_root=page_dst, relative_paths=selected_page_paths):
+            applied = True
 
+    selected_generated_paths = (
+        tuple(
+            path.relative_to("generated")
+            for path in allowed_relative_paths
+            if path.parts and path.parts[0] == "generated"
+        )
+        if allowed_relative_paths is not None
+        else None
+    )
     generated_dst = bundle_dir / "generated"
     if generated_src.is_dir():
         generated_dst.mkdir(parents=True, exist_ok=True)
-        _overlay_file_tree(generated_src, generated_dst, "*.rst")
-        applied = True
+        if selected_generated_paths is None:
+            _overlay_file_tree(generated_src, generated_dst, "*.rst")
+            applied = True
+        elif _overlay_selected_relative_files(
+            src_root=generated_src,
+            dst_root=generated_dst,
+            relative_paths=selected_generated_paths,
+        ):
+            applied = True
 
     if overrides_src.is_dir():
         _overlay_override_assets(overrides_src, bundle_dir)

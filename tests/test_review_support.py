@@ -138,6 +138,47 @@ class TestReviewSupport(unittest.TestCase):
             self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
             self.assertEqual("review overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
 
+    def test_overlay_review_content_onto_bundle_should_skip_source_only_pages_when_reusing_legacy_review_dir(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "es" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "generated" / "JE-1000F").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
+            (bundle_dir / "page" / "overview.rst").write_text("runtime overview\n", encoding="utf-8")
+            (bundle_dir / "generated" / "JE-1000F" / "spec_es.rst").write_text("runtime spec\n", encoding="utf-8")
+
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "generated" / "JE-1000F").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "page" / "overview.rst").write_text("review overview\n", encoding="utf-8")
+            (review_dir / "page" / "00_preface.rst").write_text("review source preface\n", encoding="utf-8")
+            (review_dir / "generated" / "JE-1000F" / "spec_es.rst").write_text("review spec\n", encoding="utf-8")
+
+            applied_dir = overlay_review_content_onto_bundle(
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang=None,
+                allowed_relative_paths=(
+                    Path("page") / "overview.rst",
+                    Path("generated") / "JE-1000F" / "spec_es.rst",
+                ),
+                allow_index=False,
+            )
+
+            self.assertEqual(review_dir, applied_dir)
+            self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertEqual("review overview\n", (bundle_dir / "page" / "overview.rst").read_text(encoding="utf-8"))
+            self.assertFalse((bundle_dir / "page" / "00_preface.rst").exists())
+            self.assertEqual(
+                "review spec\n",
+                (bundle_dir / "generated" / "JE-1000F" / "spec_es.rst").read_text(encoding="utf-8"),
+            )
+
     def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"
