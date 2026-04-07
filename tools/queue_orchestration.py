@@ -81,6 +81,7 @@ def process_build_queue(
             workflow_action_label=workflow_action_label,
             queue_record_action_source=queue_record_action_source,
             queue_record_legacy_doc_phase=queue_record_legacy_doc_phase,
+            resolve_queue_workflow_action=resolve_queue_workflow_action,
         )
         return 0
 

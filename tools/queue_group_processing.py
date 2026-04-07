@@ -54,12 +54,13 @@ def process_queue_record_group(
         model, region = resolve_target_for_record(record)
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
+        effective_doc_phase = resolve_queue_workflow_action(record)
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,
             build_family=group_build_family,
+            workflow_action=effective_doc_phase,
         )
-        effective_doc_phase = resolve_queue_workflow_action(record)
         if effective_doc_phase == "draft" and not record.git_ref.strip():
             raise RuntimeError(
                 "Build Draft Package queue rows require Git_ref so the worker can fetch the review branch"

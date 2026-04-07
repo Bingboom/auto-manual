@@ -19,6 +19,7 @@ def print_dry_run_groups(
     workflow_action_label: Callable[[str | None], str | None],
     queue_record_action_source: Callable[[Any], str],
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
+    resolve_queue_workflow_action: Callable[[Any], str | None],
 ) -> None:
     for group in groups:
         record = group[0]
@@ -27,10 +28,12 @@ def print_dry_run_groups(
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
         validate_queue_record_group(group)
+        effective_doc_phase = resolve_queue_workflow_action(record)
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,
             build_family=group_build_family,
+            workflow_action=effective_doc_phase,
         )
         print(
             "[build-queue] DRY-RUN "
