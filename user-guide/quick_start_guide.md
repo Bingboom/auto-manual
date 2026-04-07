@@ -6,7 +6,7 @@ Updated: 2026-04-04
 核心规则只有一句：
 
 - 结构化数据看 Feishu phase2 源表
-- Start Review/Seed Draft 看 `Review Init`；Build Draft Package 看 PR 分支里的 [`docs/_review/`](../docs/_review)
+- Start Review 看 `Review Init`；Build Draft Package 看 PR 分支里的 [`docs/_review/`](../docs/_review)
 - Publish 默认看 `Document_link.Git_ref` 指向的 review / PR 分支；只有 `Git_ref` 为空时，才会退回当前 queue worker 所在分支（远端通常是 `main`）
 
 ## 1. 先分清三张表各自负责什么
@@ -70,8 +70,8 @@ Updated: 2026-04-04
 - `Lang`
 - `Version`
 - `Git_ref`
-- `Workflow_action`
-- `Doc_phase（仅旧记录兼容，不建议新填）`
+- `Workflow_action（必填；Start Review / Build Draft Package / Publish 三选一）`
+- `Doc_phase（留空；队列只认 Workflow_action）`
 - `是否触发文档构建`
 - `是否立即构建`
 - `Document directory`
@@ -80,8 +80,8 @@ Updated: 2026-04-04
 
 它负责：
 
-- `Workflow_action` 是主语义字段，推荐只填 `Build Draft Package` 或 `Publish`
-- `Doc_phase` 只是旧记录兼容字段；新行不要再填，队列在读到它时会给出 warning
+- `Workflow_action` 是唯一队列语义字段；建分支填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
+- `Doc_phase` 不再参与队列路由，保持留空即可
 - 把结果链接回写到表里
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么

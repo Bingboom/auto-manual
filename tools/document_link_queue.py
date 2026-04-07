@@ -219,8 +219,16 @@ def select_pending_queue_records(
             continue
         if record_id and record.record_id != record_id:
             continue
+        try:
+            resolved_action = resolve_queue_workflow_action(record)
+        except RuntimeError as exc:
+            if record_id:
+                raise
+            continue
+        if resolved_action is None:
+            continue
         if normalized_filter_doc_phase is not None:
-            if resolve_queue_workflow_action(record) != normalized_filter_doc_phase:
+            if resolved_action != normalized_filter_doc_phase:
                 continue
         selected.append(record)
     return selected
@@ -315,13 +323,13 @@ def validate_queue_record_group(
         return
 
     group_key = queue_record_key(records[0])
-    doc_phases = {resolve_queue_workflow_action(record) or "" for record in records}
+    workflow_actions = {resolve_queue_workflow_action(record) or "" for record in records}
     versions = {record.version.strip() for record in records}
     git_refs = {record.git_ref.strip() for record in records}
     build_families = {record.build_family.strip().lower() for record in records if record.build_family.strip()}
     conflicts: list[str] = []
-    if len(doc_phases) > 1:
-        conflicts.append("Workflow_action/Doc_phase")
+    if len(workflow_actions) > 1:
+        conflicts.append("Workflow_action")
     if len(versions) > 1:
         conflicts.append("Version")
     if len(git_refs) > 1:

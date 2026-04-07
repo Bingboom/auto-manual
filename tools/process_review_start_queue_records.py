@@ -96,7 +96,7 @@ def normalize_review_start_action(value: Any) -> str | None:
         return None
     if text in {"start review", "seed draft", "start review seed draft", "start_review", "seed_draft"}:
         return "start_review"
-    raise RuntimeError("Workflow_action must map to Start Review/Seed Draft for review-init rows")
+    raise RuntimeError("Workflow_action must map to Start Review for review-init rows")
 
 
 def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[ReviewStartRecord]:
@@ -143,7 +143,7 @@ def select_pending_review_start_records(
         except RuntimeError as exc:
             if record_id:
                 raise RuntimeError(
-                    "Workflow_action must map to Start Review/Seed Draft "
+                    "Workflow_action must map to Start Review "
                     f"for review-start record {record.record_id}"
                 ) from exc
             continue

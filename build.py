@@ -7,7 +7,6 @@ import argparse
 import shutil
 import subprocess
 import sys
-import warnings
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -311,12 +310,6 @@ def release_manifest_command(args: argparse.Namespace) -> list[str]:
 
 
 def process_build_queue_command(args: argparse.Namespace) -> list[str]:
-    if (args.doc_phase or "").strip() and not (args.workflow_action or "").strip():
-        warnings.warn(
-            "--doc-phase is deprecated; use --workflow-action instead.",
-            UserWarning,
-            stacklevel=2,
-        )
     return _process_build_queue_command_impl(
         args,
         repo_root=ROOT,

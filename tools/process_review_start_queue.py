@@ -93,7 +93,7 @@ LANG_FIELD = "Lang"
 WORKFLOW_ACTION_FIELD = "Workflow_action"
 INITIAL_RESULT_FIELD = "Initial_result"
 REMARKS_FIELD = "Remarks"
-REVIEW_START_ACTION_LABEL = "Start Review/Seed Draft"
+REVIEW_START_ACTION_LABEL = "Start Review"
 
 REVIEW_STATUS_NOT_STARTED = "NotStarted"
 REVIEW_STATUS_IN_REVIEW = "InReview"

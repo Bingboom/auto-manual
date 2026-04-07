@@ -74,7 +74,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
     def test_select_pending_review_start_records_should_raise_for_targeted_record_with_invalid_workflow_action(self) -> None:
         with self.assertRaisesRegex(
             RuntimeError,
-            "Workflow_action must map to Start Review/Seed Draft for review-start record rec_bad_action",
+            "Workflow_action must map to Start Review for review-start record rec_bad_action",
         ):
             process_review_start_queue.select_pending_review_start_records(
                 [
