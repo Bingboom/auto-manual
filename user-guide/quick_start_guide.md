@@ -283,6 +283,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 动作：
 
 - 调 GitHub `feishu-start-review.yml`
+- `ref` 应该固定用 `main`
 
 ### 自动化 2：构建 Build Draft Package
 
@@ -309,7 +310,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 动作：
 
 - 调 GitHub `feishu-build-queue.yml`
-- workflow 可以由默认分支承载，但真正的构建源以 `Document_link.Git_ref` 为准
+- `ref` 应该固定用 `main`
+- workflow 由 `main` 承载，但真正的构建源以 `Document_link.Git_ref` 为准
 - 要保证正式 Publish 和当前 review 一致，就让 `Git_ref` 保持指向当前 review / PR 分支
 
 ## 8. 最短操作清单
