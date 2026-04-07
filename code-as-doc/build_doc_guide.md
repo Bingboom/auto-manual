@@ -62,7 +62,7 @@ Meaning:
 - when review-init reuses the shared `Document_link` binding, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row carries `Version`, Build Draft Package DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue DOCX names become `manual_je1000f_us_en_publish_0.2.docx` before upload/writeback
-- when the queue row carries `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
+- `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds fetch that review branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
@@ -98,8 +98,8 @@ Start Review, Build Draft Package, Publish:
 - use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
-- `feishu-draft-build-queue.yml` is the Build Draft Package worker for PR branches
-- if Feishu triggers the Build Draft Package worker, its GitHub dispatch request must use the PR head branch as `ref`
+- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
+- if Feishu triggers the Build Draft Package worker, dispatch it on `main`; the actual build source is resolved from `Document_link.Git_ref`, and rows missing `Git_ref` fail fast
 - if a Publish-stage row also carries `Git_ref`, the Publish worker keeps `main` only as the orchestration branch and fetches the actual build source from that review branch
 - Build Draft Package assumes the document is already in review; use `process-review-start-queue` or `feishu-start-review.yml` first to create the branch and seed `docs/_review`
 

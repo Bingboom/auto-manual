@@ -185,11 +185,11 @@ Publish 的原料是：
 
 它会：
 
-1. checkout 你指定的 PR 分支
+1. workflow 由默认分支承载
 2. 执行 `process-build-queue --workflow-action build-draft-package`
 3. 队列内部先自动 `sync-data`
-4. 再自动 `sync-review`
-5. 然后基于当前分支的 `_review` 构建 Build Draft Package Word
+4. 再按 `Document_link.Git_ref` fetch 对应的 review / PR 分支到临时 worktree
+5. 然后基于那条分支里的 `_review` 构建 Build Draft Package Word
 6. 回写：
    - `开始构建时间`
    - `构建结果`
@@ -198,10 +198,11 @@ Publish 的原料是：
 
 ### Build Draft Package 最容易配错的地方
 
-1. `ref` 必须是 PR 分支，不是 `main`
-2. `queue_record_id` 必须是真实 record id，不能写成字符串 `<record_id>`
-3. `是否触发文档构建` 必须是 `Y`
-4. 只有 `是否立即构建` 勾选但没有 `Y`，不会构建
+1. `Git_ref` 必须指向当前 review / PR 分支，不能留空
+2. GitHub dispatch 的 `ref` 应该是 `main`，不是 PR 分支
+3. `queue_record_id` 必须是真实 record id，不能写成字符串 `<record_id>`
+4. `是否触发文档构建` 必须是 `Y`
+5. 只有 `是否立即构建` 勾选但没有 `Y`，不会构建
 
 ## 5. 场景三：Review 完成，进入 Publish
 
@@ -294,7 +295,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 动作：
 
 - 调 GitHub `feishu-draft-build-queue.yml`
-- `ref` 必须是 PR 分支
+- `ref` 应该固定用 `main`
+- 真正的构建源以 `Document_link.Git_ref` 为准，而且 Build Draft Package 行不能缺这个字段
 
 ### 自动化 3：构建 Publish
 

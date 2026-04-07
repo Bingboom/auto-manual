@@ -80,7 +80,7 @@ Phase2 snapshot note:
 - when review-init reuses the shared `Document_link` view, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row includes `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
-- when the queue row includes `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
+- `Workflow_action = Build Draft Package` rows must carry `Git_ref`; the worker fetches that review branch into a temporary worktree and builds from that branch content instead of silently falling back to `main`
 - direct `build.py` actions still write Build Draft Package outputs to the repo [`docs/_build/`](docs/_build) tree by default; for local verification use [`scripts/local_build.py`](scripts/local_build.py), [`scripts/local_build.ps1`](scripts/local_build.ps1), or [`scripts/local_build.sh`](scripts/local_build.sh) so `check`, `diff-report`, `release-manifest`, and `publish` default to `.tmp/staging`
 - explicit `--staging-root <dir>` and `AUTO_MANUAL_STAGING_ROOT=<dir>` still override that default when you need another isolated root
 - `release-manifest` writes traceability files to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](reports/releases) by default, or to `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled; Publish queue outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting
@@ -104,8 +104,8 @@ Start Review, Build Draft Package, Publish:
 - `Doc_phase` no longer participates in queue routing; if a row should run, fill `Workflow_action` instead
 - `process-build-queue --record-id <record_id>` lets one workflow rebuild exactly one `Document_link` row
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
-- [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the PR-owned Build Draft Package worker
-- when you dispatch the Build Draft Package worker, the GitHub `ref` must be the PR head branch, otherwise the generated document will still come from `main`
+- [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the `main`-owned Build Draft Package worker
+- dispatch the Build Draft Package worker on `main`; the actual review content comes from `Document_link.Git_ref`, and rows without `Git_ref` now fail fast instead of silently building from `main`
 - when a Publish row carries `Git_ref`, the `main`-owned Publish queue worker now builds that review branch instead of rebuilding from `main`
 
 - recommended stage split:
