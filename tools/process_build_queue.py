@@ -427,7 +427,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--doc-phase",
         choices=("draft", "publish"),
         default=None,
-        help="Deprecated compatibility filter for legacy Doc_phase rows; prefer --workflow-action",
+        help="Unsupported legacy filter; use --workflow-action and keep queue rows on Workflow_action only",
     )
     ap.add_argument("--record-id", default=None, help="Only consume one Document_link record_id")
     return ap.parse_args(argv)

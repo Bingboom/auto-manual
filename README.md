@@ -76,8 +76,8 @@ Phase2 snapshot note:
 - `python build.py process-build-queue --config config.us.yaml` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, resolves the build config from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, builds the generated Word file, uploads it to Feishu Drive, then moves that uploaded file into the current wiki knowledge-base container before writing the local Word path back to `Document directory`, the wiki URL back to `Document link`, a timestamped status string to `构建结果`, and the trigger back to `已构建`
 - the merged US `config.us.yaml` bundle now exports one `JE-1000F / US` Word that contains `en`, `fr`, and `es` sections together; `Spec_Master.Source_lang` / `*_source` content is required, and CSV-driven non-source language fields may be blank because lookup falls back to source-language text automatically
 - queue routing is now `Build_family`-first: use `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, or `cn-zh`; `Lang` remains a compatibility field and no longer decides the target when `Build_family` is filled
-- queue rows should now use `Workflow_action = Build Draft Package` or `Workflow_action = Publish`; new rows should stop filling `Doc_phase`
-- when review-init reuses the shared `Document_link` view, the start-review worker skips rows whose `Workflow_action` is `Build Draft Package` or `Publish`; only the pending row entering review must map to `Start Review` / `Seed Draft`
+- queue rows should now use `Workflow_action` only: `Start Review` to create or reuse review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
+- when review-init reuses the shared `Document_link` view, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row includes `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
 - when the queue row includes `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
@@ -95,13 +95,13 @@ Phase2 snapshot note:
 - the push listener requires the Feishu self-built app to have the `drive.file.bitable_record_changed_v1` event added and published in the Open Platform console; without that event, the long connection stays idle even though the local listener is running
 - `page_registry.csv`, page selection/applicability, and [`data/layout_params.csv`](data/layout_params.csv) stay repo-maintained and are not overridden by `--data-root`
 
-Start Review / Seed Draft, Build Draft Package, Publish:
+Start Review, Build Draft Package, Publish:
 
 - `process-build-queue` now refreshes `data/phase2` with `sync-data` before it starts building queued rows
+- `process-review-start-queue` consumes rows whose `Workflow_action` maps to `Start Review`, then creates or reuses the review branch and seeds [`docs/_review/`](docs/_review)
 - `process-build-queue --workflow-action build-draft-package` uses Feishu-refreshed `data/phase2` plus the PR branch's current [`docs/_review/`](docs/_review) content; Build Draft Package is for documents that have already entered review
-- legacy `Doc_phase` compatibility values `Draft`, `Review`, and `Preview` still map to Build Draft Package, but queue logs now warn when that fallback is used
 - `process-build-queue --workflow-action publish` uses Feishu-refreshed `data/phase2` plus `Document_link.Git_ref` when present, runs `build.py publish` and `build.py html --source review`, then stages the formal release bundle under `reports/releases`
-- legacy `Doc_phase=Publish` still maps to Publish, but queue logs now warn when that fallback is used
+- `Doc_phase` no longer participates in queue routing; if a row should run, fill `Workflow_action` instead
 - `process-build-queue --record-id <record_id>` lets one workflow rebuild exactly one `Document_link` row
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
 - [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the PR-owned Build Draft Package worker

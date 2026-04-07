@@ -3,7 +3,6 @@
 import sys
 import tempfile
 import unittest
-import warnings
 from pathlib import Path
 from unittest import mock
 
@@ -292,13 +291,16 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("rec_init_1", cmd)
         self.assertIn("--dry-run", cmd)
 
-    def test_process_build_queue_command_should_reject_conflicting_workflow_action_and_doc_phase(self) -> None:
+    def test_process_build_queue_command_should_ignore_doc_phase_when_workflow_action_is_present(self) -> None:
         args = build_cli.parse_args(
             ["process-build-queue", "--workflow-action", "publish", "--doc-phase", "draft"]
         )
 
-        with self.assertRaisesRegex(RuntimeError, "--workflow-action and --doc-phase"):
-            build_cli.process_build_queue_command(args)
+        cmd = build_cli.process_build_queue_command(args)
+
+        self.assertIn("--workflow-action", cmd)
+        self.assertIn("publish", cmd)
+        self.assertNotIn("--doc-phase", cmd)
 
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
@@ -496,17 +498,11 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("rec_456", cmd)
         self.assertIn("--dry-run", cmd)
 
-    def test_process_build_queue_command_should_translate_legacy_doc_phase_filter(self) -> None:
+    def test_process_build_queue_command_should_reject_doc_phase_only_filter(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--doc-phase", "draft"])
 
-        with warnings.catch_warnings(record=True) as caught:
-            warnings.simplefilter("always")
-            cmd = build_cli.process_build_queue_command(args)
-
-        self.assertIn("--workflow-action", cmd)
-        self.assertIn("build-draft-package", cmd)
-        self.assertNotIn("--doc-phase", cmd)
-        self.assertTrue(any("--doc-phase is deprecated" in str(item.message) for item in caught))
+        with self.assertRaisesRegex(RuntimeError, "--doc-phase is no longer supported"):
+            build_cli.process_build_queue_command(args)
 
     def test_process_build_queue_command_should_reject_target_scoped_flags(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--model", "JE-1000F"])

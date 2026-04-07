@@ -12,12 +12,11 @@ def normalize_cli_build_queue_action(workflow_action: str | None = None, doc_pha
     normalized_explicit = None
     if explicit:
         normalized_explicit = "draft" if explicit == "build-draft-package" else "publish"
-    normalized_legacy = None
+    if normalized_explicit:
+        return normalized_explicit
     if legacy:
-        normalized_legacy = legacy
-    if normalized_explicit and normalized_legacy and normalized_explicit != normalized_legacy:
-        raise RuntimeError("--workflow-action and --doc-phase must resolve to the same build-queue action")
-    return normalized_explicit or normalized_legacy
+        raise RuntimeError("--doc-phase is no longer supported; use --workflow-action")
+    return None
 
 
 def effective_source(args: argparse.Namespace, *, source_override: str = "auto") -> str:
@@ -275,7 +274,7 @@ def process_review_start_queue_command(
 ) -> list[str]:
     if (args.model or "").strip() or (args.region or "").strip():
         raise RuntimeError(
-            "process-review-start-queue does not accept --model or --region; Start Review/Seed Draft targets come from Review-init rows"
+            "process-review-start-queue does not accept --model or --region; Start Review targets come from Review-init rows"
         )
     config_path = resolve_path_from_root(args.config)
     cmd = [

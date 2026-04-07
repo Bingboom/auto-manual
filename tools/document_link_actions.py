@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import re
-import sys
 from typing import Any
 
 DRAFT_PACKAGE_ACTION_LABEL = "Build Draft Package"
@@ -62,22 +61,19 @@ def normalize_doc_phase(value: Any) -> str | None:
 
 
 def workflow_action_uses_legacy_doc_phase(*, workflow_action: Any, doc_phase: Any) -> bool:
-    return not _scalar_text(workflow_action) and bool(_scalar_text(doc_phase))
+    return False
 
 
 def workflow_action_source(*, workflow_action: Any, doc_phase: Any) -> str:
     if _scalar_text(workflow_action):
         return "Workflow_action"
-    if workflow_action_uses_legacy_doc_phase(workflow_action=workflow_action, doc_phase=doc_phase):
-        return "Doc_phase (legacy)"
+    if _scalar_text(doc_phase):
+        return "Doc_phase (ignored)"
     return "Unspecified"
 
 
 def legacy_doc_phase_value(*, workflow_action: Any, doc_phase: Any) -> str | None:
-    if not workflow_action_uses_legacy_doc_phase(workflow_action=workflow_action, doc_phase=doc_phase):
-        return None
-    text = _scalar_text(doc_phase)
-    return text or None
+    return None
 
 
 def resolve_workflow_action(
@@ -87,14 +83,15 @@ def resolve_workflow_action(
     record_id: str | None = None,
 ) -> str | None:
     normalized_workflow_action = normalize_workflow_action(workflow_action)
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
-    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
+    if normalized_workflow_action:
+        return normalized_workflow_action
+    if _scalar_text(doc_phase):
         detail = f" for queue record {record_id}" if (record_id or "").strip() else ""
         raise RuntimeError(
-            "Workflow_action conflicts with Doc_phase"
-            f"{detail}: {workflow_action!r} vs {doc_phase!r}"
+            "Workflow_action is required"
+            f"{detail}; Doc_phase is ignored"
         )
-    return normalized_workflow_action or normalized_doc_phase
+    return None
 
 
 def workflow_action_label(value: Any) -> str | None:
@@ -108,21 +105,15 @@ def workflow_action_label(value: Any) -> str | None:
 
 def normalize_cli_queue_action(*, workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:
     normalized_workflow_action = normalize_workflow_action(workflow_action)
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
-    if normalized_workflow_action and normalized_doc_phase and normalized_workflow_action != normalized_doc_phase:
-        raise RuntimeError(
-            "--workflow-action conflicts with --doc-phase: "
-            f"{workflow_action!r} vs {doc_phase!r}"
-        )
-    return normalized_workflow_action or normalized_doc_phase
+    if normalized_workflow_action:
+        return normalized_workflow_action
+    if (doc_phase or "").strip():
+        raise RuntimeError("--doc-phase is no longer supported; use --workflow-action")
+    return None
 
 
 def warn_legacy_cli_doc_phase(doc_phase: str | None, workflow_action: str | None) -> None:
-    if (doc_phase or "").strip() and not (workflow_action or "").strip():
-        print(
-            "[build-queue] WARNING --doc-phase is deprecated; use --workflow-action instead.",
-            file=sys.stderr,
-        )
+    return None
 
 
 def warn_legacy_record_doc_phase(
@@ -131,15 +122,7 @@ def warn_legacy_record_doc_phase(
     workflow_action: Any,
     doc_phase: Any,
 ) -> None:
-    legacy_doc_phase = legacy_doc_phase_value(workflow_action=workflow_action, doc_phase=doc_phase)
-    if not legacy_doc_phase:
-        return
-    print(
-        "[build-queue] WARNING "
-        f"record {record_id} is still using legacy Doc_phase={legacy_doc_phase!r}; "
-        "set Workflow_action instead.",
-        file=sys.stderr,
-    )
+    return None
 
 
 def best_effort_queue_workflow_action(
@@ -149,19 +132,6 @@ def best_effort_queue_workflow_action(
     record_id: str | None = None,
 ) -> str | None:
     try:
-        return resolve_workflow_action(
-            workflow_action=workflow_action,
-            doc_phase=doc_phase,
-            record_id=record_id,
-        )
+        return normalize_workflow_action(workflow_action)
     except RuntimeError:
-        try:
-            normalized_workflow_action = normalize_workflow_action(workflow_action)
-        except RuntimeError:
-            normalized_workflow_action = None
-        if normalized_workflow_action:
-            return normalized_workflow_action
-        try:
-            return normalize_doc_phase(doc_phase)
-        except RuntimeError:
-            return None
+        return None
