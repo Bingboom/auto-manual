@@ -6,7 +6,7 @@ from typing import Any, Callable
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Review-init rows and start review / seed draft branches and PRs.")
+    ap = argparse.ArgumentParser(description="Consume Review-init rows and start review branches and PRs.")
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override phase2 snapshot root for review seeding")
     ap.add_argument("--dry-run", action="store_true", help="List pending rows without creating branches or PRs")

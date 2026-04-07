@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import process_build_queue
+from tests.test_helpers import temp_test_root, write_text
 
 
 class TestProcessBuildQueue(unittest.TestCase):
@@ -105,10 +106,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("US", region)
 
     def test_resolve_config_path_for_task_should_prefer_lang_specific_config(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.yaml": {
@@ -144,10 +144,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.us-en.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_use_document_key_config_as_lang_fallback(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.yaml": {
@@ -177,10 +176,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_allow_blank_lang_for_document_key_config(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -217,10 +215,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.us.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_prefer_build_family_when_present(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -469,6 +466,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: [""],
                     process_build_queue.BUILD_FAMILY_FIELD: ["us-merged"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                     process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
@@ -484,6 +482,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: ["fr"],
                     process_build_queue.BUILD_FAMILY_FIELD: ["us-merged"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                     process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
@@ -548,7 +547,6 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("SUCCESS", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", fields[process_build_queue.RESULT_FIELD])
-        self.assertIn("legacy_doc_phase=draft", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("version=1.0", fields[process_build_queue.RESULT_FIELD])
 
     def test_build_started_fields_should_write_datetime_millis(self) -> None:
@@ -584,7 +582,6 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("FAILED", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Publish", fields[process_build_queue.RESULT_FIELD])
-        self.assertIn("legacy_doc_phase=publish", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("latest_drive_link_preserved", fields[process_build_queue.RESULT_FIELD])
 
     def test_pending_queue_records_should_not_accept_immediate_checkbox_without_trigger(self) -> None:
@@ -597,6 +594,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: [{"id": "recvfw0zG4PzxS"}],
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["已构建"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -617,6 +615,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: [{"id": "recvfw0zG4PzxS"}],
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -639,6 +638,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -651,6 +651,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["fr"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: False,
@@ -671,6 +672,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -683,6 +685,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["ja"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Publish"],
                         process_build_queue.DOC_PHASE_FIELD: ["Publish"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -760,6 +763,38 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(["rec_publish_object"], [record.record_id for record in records])
 
+    def test_select_pending_queue_records_should_skip_start_review_rows_in_shared_view(self) -> None:
+        records = process_build_queue.select_pending_queue_records(
+            [
+                {
+                    "record_id": "rec_start_review",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_ja_1.0",
+                        process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                        process_build_queue.VERSION_FIELD: ["1.0"],
+                        process_build_queue.LANG_FIELD: ["ja"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Start Review"],
+                        process_build_queue.TRIGGER_FIELD: ["Y"],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+                {
+                    "record_id": "rec_publish",
+                    "fields": {
+                        process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_ja_1.0",
+                        process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                        process_build_queue.VERSION_FIELD: ["1.0"],
+                        process_build_queue.LANG_FIELD: ["ja"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Publish"],
+                        process_build_queue.TRIGGER_FIELD: ["Y"],
+                        process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    },
+                },
+            ]
+        )
+
+        self.assertEqual(["rec_publish"], [record.record_id for record in records])
+
     def test_select_pending_queue_records_should_filter_by_record_id(self) -> None:
         records = process_build_queue.select_pending_queue_records(
             [
@@ -770,6 +805,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["en"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -782,6 +818,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                         process_build_queue.VERSION_FIELD: ["1.0"],
                         process_build_queue.LANG_FIELD: ["fr"],
+                        process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                         process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                         process_build_queue.TRIGGER_FIELD: ["Y"],
                         process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -811,7 +848,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "Doc_phase must map to Build Draft Package or Publish"):
             process_build_queue.normalize_doc_phase("staging")
 
-    def test_resolve_queue_workflow_action_should_prefer_workflow_action_and_detect_conflict(self) -> None:
+    def test_resolve_queue_workflow_action_should_use_workflow_action_and_require_it(self) -> None:
         record = process_build_queue.QueueRecord(
             record_id="rec_1",
             document_id="JE-1000F_US_en_1.0",
@@ -823,7 +860,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual("draft", process_build_queue.resolve_queue_workflow_action(record))
 
-        conflict_record = process_build_queue.QueueRecord(
+        conflicting_doc_phase_record = process_build_queue.QueueRecord(
             record_id="rec_2",
             document_id="JE-1000F_US_en_1.0",
             document_key="JE-1000F_US",
@@ -832,10 +869,21 @@ class TestProcessBuildQueue(unittest.TestCase):
             workflow_action="Publish",
             doc_phase="Draft",
         )
-        with self.assertRaisesRegex(RuntimeError, "Workflow_action conflicts with Doc_phase"):
-            process_build_queue.resolve_queue_workflow_action(conflict_record)
+        self.assertEqual("publish", process_build_queue.resolve_queue_workflow_action(conflicting_doc_phase_record))
 
-    def test_queue_record_uses_legacy_doc_phase_should_only_flag_rows_without_workflow_action(self) -> None:
+        missing_workflow_action_record = process_build_queue.QueueRecord(
+            record_id="rec_3",
+            document_id="JE-1000F_US_en_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="en",
+            workflow_action="",
+            doc_phase="Draft",
+        )
+        with self.assertRaisesRegex(RuntimeError, "Workflow_action is required for queue record rec_3"):
+            process_build_queue.resolve_queue_workflow_action(missing_workflow_action_record)
+
+    def test_queue_record_uses_legacy_doc_phase_should_always_be_false(self) -> None:
         legacy_record = process_build_queue.QueueRecord(
             record_id="rec_legacy",
             document_id="JE-1000F_US_en_1.0",
@@ -855,7 +903,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             doc_phase="Draft",
         )
 
-        self.assertTrue(process_build_queue.queue_record_uses_legacy_doc_phase(legacy_record))
+        self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(legacy_record))
         self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(canonical_record))
 
     def test_build_document_for_task_should_use_review_source_for_draft_phase(self) -> None:
@@ -1254,7 +1302,9 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.DOCUMENT_KEY_FIELD: [{"id": "recvfw0zG4PzxS"}],
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -1340,7 +1390,6 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertIn("workflow_action=Build Draft Package", record_payload[process_build_queue.RESULT_FIELD])
-        self.assertIn("legacy_doc_phase=draft", record_payload[process_build_queue.RESULT_FIELD])
         build_document_mock.assert_called_once_with(
             config_path=Path("config.us-en.yaml"),
             model="JE-1000F",
@@ -1348,7 +1397,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             data_root="data/phase2",
             doc_phase="draft",
             version="1.0",
-            git_ref="",
+            git_ref="codex/review-je-1000f-us-en",
         )
         sync_mock.assert_called_once_with(
             config_path=Path("config.yaml"),
@@ -1387,6 +1436,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: ["ja"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Publish"],
                     process_build_queue.DOC_PHASE_FIELD: ["Publish"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
@@ -1472,6 +1522,105 @@ class TestProcessBuildQueue(unittest.TestCase):
             data_root="data/phase2",
         )
 
+    def test_process_build_queue_should_fail_and_write_back_when_draft_row_is_missing_git_ref(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_missing_git_ref",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_ja_0.2",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                    process_build_queue.VERSION_FIELD: ["0.2"],
+                    process_build_queue.LANG_FIELD: ["ja"],
+                    process_build_queue.BUILD_FAMILY_FIELD: ["jp-ja"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        sync_mock = mock.Mock()
+        build_document_mock = mock.Mock()
+
+        class FakeSource:
+            def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                return raw_records
+
+            def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                captured_upserts.append(kwargs)
+                return {"ok": True}
+
+        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+            process_build_queue,
+            "resolve_document_link_binding",
+            return_value=binding,
+        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+            process_build_queue,
+            "sync_phase2_snapshot_before_queue",
+            sync_mock,
+        ), mock.patch.object(
+            process_build_queue,
+            "resolve_config_path_for_task",
+            return_value=Path("config.ja.yaml"),
+        ), mock.patch.object(
+            process_build_queue,
+            "build_document_for_task",
+            build_document_mock,
+        ), mock.patch.object(
+            process_build_queue,
+            "resolve_wiki_destination",
+            return_value=process_build_queue.WikiDestination(
+                space_id="space_123",
+                parent_wiki_token="wiki_parent",
+            ),
+        ), mock.patch.object(
+            process_build_queue,
+            "_phase2_identity",
+            return_value="bot",
+        ):
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("config.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+            )
+
+        self.assertEqual(1, exit_code)
+        sync_mock.assert_called_once_with(
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+        )
+        build_document_mock.assert_not_called()
+        self.assertEqual(1, len(captured_upserts))
+        failure_payload = captured_upserts[-1]["record"]
+        self.assertIsInstance(failure_payload, dict)
+        self.assertIn("Build Draft Package queue rows require Git_ref", failure_payload[process_build_queue.RESULT_FIELD])
+        self.assertFalse(failure_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+
     def test_process_build_queue_should_sync_phase2_snapshot_before_building(self) -> None:
         cfg = {
             "sync": {
@@ -1504,7 +1653,9 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
@@ -1574,7 +1725,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(2, len(fetch_calls))
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
-        self.assertEqual("", build_document_mock.call_args.kwargs["git_ref"])
+        self.assertEqual("codex/review-je-1000f-us-en", build_document_mock.call_args.kwargs["git_ref"])
 
     def test_process_build_queue_should_build_once_per_document_key_group_and_write_back_all_rows(self) -> None:
         cfg = {
@@ -1609,6 +1760,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: [""],
                     process_build_queue.BUILD_FAMILY_FIELD: ["us-merged"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                     process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
@@ -1624,6 +1776,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.VERSION_FIELD: ["1.0"],
                     process_build_queue.LANG_FIELD: ["fr"],
                     process_build_queue.BUILD_FAMILY_FIELD: ["us-merged"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
                     process_build_queue.DOC_PHASE_FIELD: ["Draft"],
                     process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us"],
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,

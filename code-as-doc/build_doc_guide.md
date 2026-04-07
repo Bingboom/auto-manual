@@ -53,15 +53,16 @@ Meaning:
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
 - `sync-review`: refresh review files affected by CSV data changes
-- `process-review-start-queue`: Start Review/Seed Draft bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, resolve each row from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, sync the latest phase2 snapshot, create or reuse one review branch for that routed group, seed `docs/_review`, push the branch, create or reuse the PR, then write back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
+- `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, resolve each row from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, sync the latest phase2 snapshot, create or reuse one review branch for that routed group, seed `docs/_review`, push the branch, create or reuse the PR, then write back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - `process-review-start-queue` duplicate guard: review start is now treated as one-time per `Document_Key` target. If `origin/main` already contains committed `docs/_review/<model>/<region>/` content, block duplicate seeding and write back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
 - `process-build-queue`: Build Draft Package / Publish bridge; it consumes `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, run `check + word`, upload the generated DOCX to Feishu Drive, move that uploaded file into the current wiki knowledge-base container, write the local DOCX path into `Document directory`, write the moved wiki URL into `Document link`, write a timestamped build status into `构建结果`, and flip the trigger back to `已构建` on success
 - the merged US `config.us.yaml` flow now emits one `docs/_build/<model>/US/word/manual_<model>_us.docx` bundle that contains `en`, `fr`, and `es` together; CSV-driven `Source_lang` / `*_source` text is required, while non-source language values may be blank because runtime lookup falls back to source-language text
 - queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is only a compatibility fallback when `Build_family` is missing
-- queue rows should now use `Workflow_action = Build Draft Package` or `Workflow_action = Publish`; legacy `Doc_phase` values remain supported for compatibility only, and queue logs warn when they are used
+- queue rows should now use `Workflow_action` only: `Start Review` to create or reuse review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
+- when review-init reuses the shared `Document_link` binding, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - when the queue row carries `Version`, Build Draft Package DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue DOCX names become `manual_je1000f_us_en_publish_0.2.docx` before upload/writeback
-- when the queue row carries `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
+- `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds fetch that review branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
@@ -69,10 +70,10 @@ Meaning:
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - `listen-build-queue`: start the push-based Feishu long-connection listener, auto-subscribe the current `Document_link` base to docs events with the current user identity, keep the long connection on the same user identity, and trigger `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
 - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1): Windows listener wrapper for `listen-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, and writes run logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
-- [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml): GitHub-hosted queue worker for the remote repo; it runs on a 5-minute schedule plus `workflow_dispatch`, bootstraps `lark-cli` with `FEISHU_APP_ID/FEISHU_APP_SECRET`, sets `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, and then consumes the `Document_link` queue
-- [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml): GitHub-hosted review-init worker for the remote repo; it consumes the review-init table, creates or reuses the review branch, seeds `docs/_review`, pushes the branch, and writes back `Git_ref` plus `PR_url`
+- [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml): `main`-owned GitHub-hosted queue worker for the remote repo; it runs on a 5-minute schedule plus `workflow_dispatch`, bootstraps `lark-cli` with `FEISHU_APP_ID/FEISHU_APP_SECRET`, sets `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, and then consumes the `Document_link` queue
+- [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml): `main`-owned GitHub-hosted review-init worker for the remote repo; it consumes the review-init table, creates or reuses the review branch, seeds `docs/_review`, pushes the branch, and writes back `Git_ref` plus `PR_url`
 - the review-init worker now refuses duplicate initial-draft seeding when the base branch already has committed `docs/_review/<model>/<region>/` content
-- for remote immediate builds after merge to `main`, pair that workflow with a Feishu automation whose condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then send a GitHub `workflow_dispatch` request to `feishu-build-queue.yml`; the queue worker still treats `是否触发文档构建 = Y` as the actual build request, while `是否立即构建` only decides whether to wake the remote workflow immediately
+- for remote immediate builds after merge to `main`, pair that workflow with a Feishu automation whose condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then send a GitHub `workflow_dispatch` request to `feishu-build-queue.yml` on `main`; the queue worker still treats `是否触发文档构建 = Y` as the actual build request, while `是否立即构建` only decides whether to wake the remote workflow immediately
 - before enabling that remote worker, make sure the Feishu app/bot has read access to the phase2 source tables and write access to the `Document_link` table; without write permission the run can build and upload but cannot write back queue status
 - if you also want the uploaded Word file to be moved into wiki automatically, give that same user/bot identity edit/container permission on the destination wiki parent node; otherwise the move step fails after the upload succeeds
 - `publish`: run `check -> diff-report -> word -> release-manifest` for one explicit target
@@ -89,16 +90,18 @@ Meaning:
 - `--open-html`: after the batch finishes, open the generated HTML entry pages for the selected language set
 - DOCX export normalizes image relationships to embedded media before the final style pass so Feishu / other third-party viewers are less likely to hide image-backed table rows in preview
 
-Start Review / Seed Draft, Build Draft Package, Publish:
+Start Review, Build Draft Package, Publish:
 
 - the queue worker now refreshes `data/phase2` itself before it builds, so local and remote queue execution stay aligned on the same latest-snapshot rule
 - queue-driven builds treat Feishu phase2 tables as the structured-data source of truth; repo `data/phase2/*.csv` files are materialized snapshots, not the authoring source
 - use `process-build-queue --workflow-action build-draft-package` when a Build Draft Package row should be built from the current review tree
 - use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
+- `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
-- `feishu-draft-build-queue.yml` is the Build Draft Package worker for PR branches
-- if Feishu triggers the Build Draft Package worker, its GitHub dispatch request must use the PR head branch as `ref`
+- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
+- if Feishu triggers the Build Draft Package worker, dispatch it on `main`; the actual build source is resolved from `Document_link.Git_ref`, and rows missing `Git_ref` fail fast
+- if Feishu triggers the Publish worker, dispatch it on `main`; the workflow definition stays on `main`, while `Document_link.Git_ref` still controls the fetched review branch when present
 - if a Publish-stage row also carries `Git_ref`, the Publish worker keeps `main` only as the orchestration branch and fetches the actual build source from that review branch
 - Build Draft Package assumes the document is already in review; use `process-review-start-queue` or `feishu-start-review.yml` first to create the branch and seed `docs/_review`
 
@@ -111,6 +114,7 @@ Windows cleanup note:
 GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
+- that workflow now runs `python -m ruff check build.py tools tests scripts` as the minimal static gate before the heavier unit/build jobs
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
@@ -179,6 +183,15 @@ Equivalent low-level checks:
 python tools\validate_config.py --config config.us.yaml
 python tools\validate_layout_params.py --csv data\layout_params.csv
 ```
+
+Minimal static check:
+
+```powershell
+python -m pip install ruff
+python -m ruff check build.py tools tests scripts
+```
+
+The committed Ruff gate is intentionally small and low-noise. It currently checks bare `except`, undefined names, and unused local variables before CI runs the heavier unit/build validation paths.
 
 If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before runtime build:
 

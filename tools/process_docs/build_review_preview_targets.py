@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import sys
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 
 from tools.build_docs import load_config
@@ -84,7 +86,31 @@ def _load_workspace_target_templates() -> tuple[WorkspaceTargetTemplate, ...]:
     return tuple(_load_workspace_target_template(config_name) for config_name in WORKSPACE_TARGET_CONFIGS)
 
 
-WORKSPACE_TARGET_TEMPLATES: tuple[WorkspaceTargetTemplate, ...] = _load_workspace_target_templates()
+@lru_cache(maxsize=1)
+def workspace_target_templates() -> tuple[WorkspaceTargetTemplate, ...]:
+    return _load_workspace_target_templates()
+
+
+class _WorkspaceTargetTemplatesProxy(Sequence[WorkspaceTargetTemplate]):
+    """Preserve the public iterable surface without loading config at import time."""
+
+    def _resolved(self) -> tuple[WorkspaceTargetTemplate, ...]:
+        return workspace_target_templates()
+
+    def __iter__(self) -> Iterator[WorkspaceTargetTemplate]:
+        return iter(self._resolved())
+
+    def __len__(self) -> int:
+        return len(self._resolved())
+
+    def __getitem__(self, index: int) -> WorkspaceTargetTemplate:
+        return self._resolved()[index]
+
+    def __repr__(self) -> str:
+        return repr(self._resolved())
+
+
+WORKSPACE_TARGET_TEMPLATES: Sequence[WorkspaceTargetTemplate] = _WorkspaceTargetTemplatesProxy()
 
 
 def default_family_config_for_region(region: str) -> str:
@@ -131,7 +157,7 @@ def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
 
 
 def target_templates_for_family(family: str) -> list[WorkspaceTargetTemplate]:
-    return [template for template in WORKSPACE_TARGET_TEMPLATES if template.family == family]
+    return [template for template in workspace_target_templates() if template.family == family]
 
 
 def build_workspace_target(model: str, template: WorkspaceTargetTemplate) -> WorkspaceTarget:
@@ -158,7 +184,7 @@ def review_models() -> list[str]:
 
 def config_template_for_path(config_path: Path) -> WorkspaceTargetTemplate | None:
     resolved = config_path.resolve()
-    for template in WORKSPACE_TARGET_TEMPLATES:
+    for template in workspace_target_templates():
         if resolve_path(template.config) == resolved:
             return template
     return None
@@ -239,7 +265,7 @@ def collect_workspace_target_candidates(
 
     if args.all_review_models:
         for model in review_models():
-            for template in WORKSPACE_TARGET_TEMPLATES:
+            for template in workspace_target_templates():
                 target = build_workspace_target(model, template)
                 targets_by_key[target.key] = target
     else:

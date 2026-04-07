@@ -5,17 +5,6 @@ from pathlib import Path
 from typing import Any, Callable
 
 
-def _legacy_doc_phase_segment(
-    *,
-    normalized_doc_phase: str | None,
-    normalized_workflow_action: str | None,
-    raw_doc_phase: Any,
-) -> str:
-    if normalized_doc_phase and normalized_workflow_action == normalized_doc_phase and str(raw_doc_phase or "").strip():
-        return f"legacy_doc_phase={normalized_doc_phase}"
-    return ""
-
-
 def build_success_fields(
     *,
     version: str,
@@ -35,9 +24,7 @@ def build_success_fields(
     immediate_trigger_field: str,
     success_prefix: str,
 ) -> dict[str, Any]:
-    normalized_workflow_action = normalize_workflow_action(workflow_action or doc_phase)
-    action_label = workflow_action_label(workflow_action or doc_phase)
-    normalized_doc_phase = normalize_doc_phase(doc_phase) if str(doc_phase or "").strip() else None
+    action_label = workflow_action_label(workflow_action)
     return {
         result_field: " | ".join(
             part
@@ -45,11 +32,6 @@ def build_success_fields(
                 success_prefix,
                 f"version={version}" if version else "",
                 f"workflow_action={action_label}" if action_label else "",
-                _legacy_doc_phase_segment(
-                    normalized_doc_phase=normalized_doc_phase,
-                    normalized_workflow_action=normalized_workflow_action,
-                    raw_doc_phase=doc_phase,
-                ),
                 f"built_at={built_at.isoformat(timespec='seconds')}",
             )
             if part
@@ -79,9 +61,7 @@ def build_failure_fields(
     result_field: str,
     failed_prefix: str,
 ) -> dict[str, Any]:
-    normalized_workflow_action = normalize_workflow_action(workflow_action or doc_phase)
-    action_label = workflow_action_label(workflow_action or doc_phase)
-    normalized_doc_phase = normalize_doc_phase(doc_phase) if str(doc_phase or "").strip() else None
+    action_label = workflow_action_label(workflow_action)
     return {
         result_field: " | ".join(
             part
@@ -89,11 +69,6 @@ def build_failure_fields(
                 failed_prefix,
                 f"version={version}" if version else "",
                 f"workflow_action={action_label}" if action_label else "",
-                _legacy_doc_phase_segment(
-                    normalized_doc_phase=normalized_doc_phase,
-                    normalized_workflow_action=normalized_workflow_action,
-                    raw_doc_phase=doc_phase,
-                ),
                 message.strip(),
             )
             if part

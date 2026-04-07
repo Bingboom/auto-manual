@@ -96,7 +96,7 @@ def normalize_review_start_action(value: Any) -> str | None:
         return None
     if text in {"start review", "seed draft", "start review seed draft", "start_review", "seed_draft"}:
         return "start_review"
-    raise RuntimeError("Workflow_action must map to Start Review/Seed Draft for review-init rows")
+    raise RuntimeError("Workflow_action must map to Start Review for review-init rows")
 
 
 def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[ReviewStartRecord]:
@@ -134,10 +134,18 @@ def select_pending_review_start_records(
     for record in parse_review_start_records(raw_records):
         if record_id and record.record_id != record_id:
             continue
-        normalize_review_start_action(record.workflow_action)
         if not is_checkbox_enabled(record.review_trigger_value):
             continue
         if normalize_review_status(record.review_status) not in {None, "notstarted"}:
+            continue
+        try:
+            normalize_review_start_action(record.workflow_action)
+        except RuntimeError as exc:
+            if record_id:
+                raise RuntimeError(
+                    "Workflow_action must map to Start Review "
+                    f"for review-start record {record.record_id}"
+                ) from exc
             continue
         selected.append(record)
     return selected

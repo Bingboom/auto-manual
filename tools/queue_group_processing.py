@@ -60,6 +60,10 @@ def process_queue_record_group(
             build_family=group_build_family,
         )
         effective_doc_phase = resolve_queue_workflow_action(record)
+        if effective_doc_phase == "draft" and not record.git_ref.strip():
+            raise RuntimeError(
+                "Build Draft Package queue rows require Git_ref so the worker can fetch the review branch"
+            )
         started_at = datetime.now().astimezone()
         if can_write_started_at:
             start_fields = build_started_fields(started_at=started_at)

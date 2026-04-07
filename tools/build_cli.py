@@ -108,7 +108,7 @@ def parse_args(
         "--doc-phase",
         choices=("draft", "publish"),
         default=None,
-        help="Deprecated compatibility alias for --workflow-action",
+        help="Unsupported legacy alias; use --workflow-action and keep queue rows on Workflow_action only",
     )
     ap.add_argument(
         "--record-id",

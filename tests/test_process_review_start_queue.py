@@ -71,8 +71,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual(["rec_pending"], [record.record_id for record in records])
 
-    def test_select_pending_review_start_records_should_validate_workflow_action_when_present(self) -> None:
-        with self.assertRaisesRegex(RuntimeError, "Workflow_action must map to Start Review/Seed Draft"):
+    def test_select_pending_review_start_records_should_raise_for_targeted_record_with_invalid_workflow_action(self) -> None:
+        with self.assertRaisesRegex(
+            RuntimeError,
+            "Workflow_action must map to Start Review for review-start record rec_bad_action",
+        ):
             process_review_start_queue.select_pending_review_start_records(
                 [
                     {
@@ -84,7 +87,8 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                             process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
                         },
                     }
-                ]
+                ],
+                record_id="rec_bad_action",
             )
 
     def test_select_pending_review_start_records_should_accept_object_style_feishu_values(self) -> None:
@@ -104,6 +108,40 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         )
 
         self.assertEqual(["rec_object_action"], [record.record_id for record in records])
+
+    def test_select_pending_review_start_records_should_skip_non_review_actions_in_shared_view(self) -> None:
+        records = process_review_start_queue.select_pending_review_start_records(
+            [
+                {
+                    "record_id": "rec_start_review",
+                    "fields": {
+                        process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_ja_0.2",
+                        process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                        process_review_start_queue.BUILD_FAMILY_FIELD: ["jp-ja"],
+                        process_review_start_queue.LANG_FIELD: ["ja"],
+                        process_review_start_queue.VERSION_FIELD: ["0.2"],
+                        process_review_start_queue.WORKFLOW_ACTION_FIELD: "Start Review",
+                        process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_NOT_STARTED],
+                        process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    },
+                },
+                {
+                    "record_id": "rec_publish",
+                    "fields": {
+                        process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_ja_0.2",
+                        process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                        process_review_start_queue.BUILD_FAMILY_FIELD: ["jp-ja"],
+                        process_review_start_queue.LANG_FIELD: ["ja"],
+                        process_review_start_queue.VERSION_FIELD: ["0.2"],
+                        process_review_start_queue.WORKFLOW_ACTION_FIELD: "Publish",
+                        process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_NOT_STARTED],
+                        process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    },
+                },
+            ]
+        )
+
+        self.assertEqual(["rec_start_review"], [record.record_id for record in records])
 
     def test_generate_review_branch_name_should_default_to_codex_prefix(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(

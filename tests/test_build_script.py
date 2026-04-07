@@ -3,11 +3,11 @@
 import sys
 import tempfile
 import unittest
-import warnings
 from pathlib import Path
 from unittest import mock
 
 import build as build_cli
+from tests.test_helpers import patch_module_attrs, temp_test_root, write_text
 
 
 class TestBuildScript(unittest.TestCase):
@@ -118,8 +118,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--skip-root-index", cmd)
 
     def test_clean_targets_for_config_should_honor_custom_docs_dir(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
+        with temp_test_root() as root:
             docs_dir = root / "custom-docs"
             config_path = root / "config.custom.yaml"
             with mock.patch.object(build_cli, "load_config", return_value={"paths": {"docs_dir": docs_dir.as_posix()}}):
@@ -129,14 +128,14 @@ class TestBuildScript(unittest.TestCase):
             self.assertEqual(docs_dir / "renderers" / "latex" / "params.tex", params_tex)
 
     def test_collect_legacy_docs_output_dirs_should_find_legacy_generated_and_bundle_dirs(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            docs_dir = Path(td) / "docs"
+        with temp_test_root() as root:
+            docs_dir = root / "docs"
             (docs_dir / "_build").mkdir(parents=True)
             (docs_dir / "templates").mkdir()
             (docs_dir / "generated" / "M1").mkdir(parents=True)
             legacy_region_dir = docs_dir / "M1" / "US"
             (legacy_region_dir / "page").mkdir(parents=True)
-            (legacy_region_dir / "index.rst").write_text("", encoding="utf-8")
+            write_text(legacy_region_dir / "index.rst", "")
 
             legacy_dirs = build_cli.collect_legacy_docs_output_dirs(docs_dir)
 
@@ -167,15 +166,12 @@ class TestBuildScript(unittest.TestCase):
     def test_run_diff_report_should_forward_config_to_tool(self) -> None:
         args = build_cli.parse_args(["diff-report", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        original_targets = build_cli._resolve_diff_report_targets
-        try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "JP")]  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            _resolve_diff_report_targets=lambda parsed_args: [("JE-1000F", "JP")],
+            run_checked=lambda cmd: seen.append(cmd),
+        ):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertIn("--config", seen[0])
@@ -186,15 +182,12 @@ class TestBuildScript(unittest.TestCase):
     def test_run_diff_report_should_not_forward_any_initial_adds_override_by_default(self) -> None:
         args = build_cli.parse_args(["diff-report", "--model", "JE-1000F", "--region", "US"])
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        original_targets = build_cli._resolve_diff_report_targets
-        try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            _resolve_diff_report_targets=lambda parsed_args: [("JE-1000F", "US")],
+            run_checked=lambda cmd: seen.append(cmd),
+        ):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertNotIn("--ignore-initial-adds", seen[0])
@@ -203,15 +196,12 @@ class TestBuildScript(unittest.TestCase):
     def test_run_diff_report_should_forward_include_initial_adds_flag(self) -> None:
         args = build_cli.parse_args(["diff-report", "--include-initial-adds", "--model", "JE-1000F", "--region", "US"])
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        original_targets = build_cli._resolve_diff_report_targets
-        try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            _resolve_diff_report_targets=lambda parsed_args: [("JE-1000F", "US")],
+            run_checked=lambda cmd: seen.append(cmd),
+        ):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertIn("--include-initial-adds", seen[0])
@@ -219,15 +209,12 @@ class TestBuildScript(unittest.TestCase):
     def test_run_diff_report_should_forward_data_root(self) -> None:
         args = build_cli.parse_args(["diff-report", "--data-root", "data/phase2", "--model", "JE-1000F", "--region", "US"])
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        original_targets = build_cli._resolve_diff_report_targets
-        try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            _resolve_diff_report_targets=lambda parsed_args: [("JE-1000F", "US")],
+            run_checked=lambda cmd: seen.append(cmd),
+        ):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertIn("--data-root", seen[0])
@@ -238,15 +225,12 @@ class TestBuildScript(unittest.TestCase):
             ["diff-report", "--model", "JE-1000F", "--region", "US", "--staging-root", ".tmp/staging"]
         )
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        original_targets = build_cli._resolve_diff_report_targets
-        try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US")]  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            _resolve_diff_report_targets=lambda parsed_args: [("JE-1000F", "US")],
+            run_checked=lambda cmd: seen.append(cmd),
+        ):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "version_tracking" / "JE-1000F" / "US"), seen[0])
@@ -262,12 +246,8 @@ class TestBuildScript(unittest.TestCase):
             ]
         )
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        try:
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(1, len(seen))
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[0])
@@ -276,15 +256,12 @@ class TestBuildScript(unittest.TestCase):
     def test_run_diff_report_should_run_per_target_when_defaults_are_inferred(self) -> None:
         args = build_cli.parse_args(["diff-report", "--config", "config.us.yaml"])
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        original_targets = build_cli._resolve_diff_report_targets
-        try:
-            build_cli._resolve_diff_report_targets = lambda parsed_args: [("JE-1000F", "US"), ("JE-1000F", "JP")]  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            _resolve_diff_report_targets=lambda parsed_args: [("JE-1000F", "US"), ("JE-1000F", "JP")],
+            run_checked=lambda cmd: seen.append(cmd),
+        ):
             build_cli.run_diff_report(args)
-        finally:
-            build_cli._resolve_diff_report_targets = original_targets  # type: ignore[assignment]
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(2, len(seen))
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US"), seen[0])
@@ -314,13 +291,16 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("rec_init_1", cmd)
         self.assertIn("--dry-run", cmd)
 
-    def test_process_build_queue_command_should_reject_conflicting_workflow_action_and_doc_phase(self) -> None:
+    def test_process_build_queue_command_should_ignore_doc_phase_when_workflow_action_is_present(self) -> None:
         args = build_cli.parse_args(
             ["process-build-queue", "--workflow-action", "publish", "--doc-phase", "draft"]
         )
 
-        with self.assertRaisesRegex(RuntimeError, "--workflow-action and --doc-phase"):
-            build_cli.process_build_queue_command(args)
+        cmd = build_cli.process_build_queue_command(args)
+
+        self.assertIn("--workflow-action", cmd)
+        self.assertIn("publish", cmd)
+        self.assertNotIn("--doc-phase", cmd)
 
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
@@ -381,18 +361,13 @@ class TestBuildScript(unittest.TestCase):
     def test_run_check_should_forward_explicit_review_source_to_rst_build(self) -> None:
         args = build_cli.parse_args(["check", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
         seen: list[list[str]] = []
-        original_validate = build_cli.run_validate
-        original_run_checked = build_cli.run_checked
-        original_review_sync_targets = build_cli._review_sync_target_args
-        try:
-            build_cli.run_validate = lambda *argv, **kwargs: None  # type: ignore[assignment]
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
-            build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            run_validate=lambda *argv, **kwargs: None,
+            run_checked=lambda cmd: seen.append(cmd),
+            _review_sync_target_args=lambda parsed_args: [parsed_args],
+        ):
             build_cli.run_check(args)
-        finally:
-            build_cli.run_validate = original_validate  # type: ignore[assignment]
-            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
-            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
 
         self.assertEqual(4, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
@@ -408,15 +383,12 @@ class TestBuildScript(unittest.TestCase):
     def test_maybe_sync_review_before_build_should_skip_when_no_review_bundle_exists(self) -> None:
         args = build_cli.parse_args(["word", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
         seen: list[list[str]] = []
-        original_run_checked = build_cli.run_checked
-        original_review_sync_targets = build_cli._review_sync_target_args
-        try:
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
-            build_cli._review_sync_target_args = lambda parsed_args: []  # type: ignore[assignment]
+        with patch_module_attrs(
+            build_cli,
+            run_checked=lambda cmd: seen.append(cmd),
+            _review_sync_target_args=lambda parsed_args: [],
+        ):
             build_cli.maybe_sync_review_before_build(args)
-        finally:
-            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
-            build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
 
         self.assertEqual([], seen)
 
@@ -429,12 +401,8 @@ class TestBuildScript(unittest.TestCase):
 
     def test_run_validate_should_include_spec_master_validation(self) -> None:
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        try:
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
             build_cli.run_validate(build_cli.ROOT / "config.us.yaml")
-        finally:
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(3, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
@@ -443,12 +411,8 @@ class TestBuildScript(unittest.TestCase):
 
     def test_run_validate_should_forward_data_root_to_spec_master_validation(self) -> None:
         seen: list[list[str]] = []
-        original = build_cli.run_checked
-        try:
-            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+        with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
             build_cli.run_validate(build_cli.ROOT / "config.us.yaml", data_root="data/phase2")
-        finally:
-            build_cli.run_checked = original  # type: ignore[assignment]
 
         self.assertEqual(3, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
@@ -534,17 +498,11 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("rec_456", cmd)
         self.assertIn("--dry-run", cmd)
 
-    def test_process_build_queue_command_should_translate_legacy_doc_phase_filter(self) -> None:
+    def test_process_build_queue_command_should_reject_doc_phase_only_filter(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--doc-phase", "draft"])
 
-        with warnings.catch_warnings(record=True) as caught:
-            warnings.simplefilter("always")
-            cmd = build_cli.process_build_queue_command(args)
-
-        self.assertIn("--workflow-action", cmd)
-        self.assertIn("build-draft-package", cmd)
-        self.assertNotIn("--doc-phase", cmd)
-        self.assertTrue(any("--doc-phase is deprecated" in str(item.message) for item in caught))
+        with self.assertRaisesRegex(RuntimeError, "--doc-phase is no longer supported"):
+            build_cli.process_build_queue_command(args)
 
     def test_process_build_queue_command_should_reject_target_scoped_flags(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--model", "JE-1000F"])
