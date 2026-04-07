@@ -221,7 +221,7 @@ def select_pending_queue_records(
             continue
         try:
             resolved_action = resolve_queue_workflow_action(record)
-        except RuntimeError as exc:
+        except RuntimeError:
             if record_id:
                 raise
             continue
