@@ -1,14 +1,14 @@
 PRODUCT OVERVIEW
 ================
 
+FRONT VIEW
+----------
+
+.. image:: templates/word_template/common_assets/overview/front_product.jpg
+   :alt: Front view diagram placeholder.
+   :width: 420px
+
 .. only:: model_je_2000e
-
-   FRONT VIEW
-   ----------
-
-   .. image:: templates/word_template/common_assets/overview/front_product.jpg
-      :alt: Front view diagram placeholder.
-      :width: 420px
 
    .. list-table::
       :header-rows: 0
@@ -45,46 +45,7 @@ PRODUCT OVERVIEW
 
           2400W Rated, 4800W Surge Peak
 
-   LEFT SIDE VIEW
-   --------------
-
-   .. list-table::
-      :header-rows: 0
-      :widths: 100
-
-      * - **Handle**
-      * - **DC Expansion Port**
-
-          Connect to Battery Pack
-
-   RIGHT SIDE VIEW
-   ---------------
-
-   .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-      :alt: Right side view diagram placeholder.
-      :width: 420px
-
-   .. list-table::
-      :header-rows: 0
-      :widths: 100
-
-      * - **AC Input**
-
-          100V-120V~60 Hz, 15A Max
-      * - **DC Input (2 x DC8020 Ports)**
-
-          PV: 16-60V 12A Max, Double to 21A / 800W Max
-
-          Car: 11-16V 8A Max, Double to 8A Max
-
 .. only:: not model_je_2000e
-
-   FRONT VIEW
-   ----------
-
-   .. image:: templates/word_template/common_assets/overview/front_product.jpg
-      :alt: Front view diagram placeholder.
-      :width: 420px
 
    .. list-table::
       :header-rows: 0
@@ -121,12 +82,43 @@ PRODUCT OVERVIEW
 
           |FRONT_TOTAL_OUTPUT_SPEC|
 
-   RIGHT SIDE VIEW
-   ---------------
+.. only:: model_je_2000e
 
-   .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-      :alt: Right side view diagram placeholder.
-      :width: 420px
+   LEFT SIDE VIEW
+   --------------
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 100
+
+      * - **Handle**
+      * - **DC Expansion Port**
+
+          Connect to Battery Pack
+
+RIGHT SIDE VIEW
+---------------
+
+.. image:: templates/word_template/common_assets/overview/right_side_ports.png
+   :alt: Right side view diagram placeholder.
+   :width: 420px
+
+.. only:: model_je_2000e
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 100
+
+      * - **AC Input**
+
+          100V-120V~60 Hz, 15A Max
+      * - **DC Input (2 x DC8020 Ports)**
+
+          PV: 16-60V 12A Max, Double to 21A / 800W Max
+
+          Car: 11-16V 8A Max, Double to 8A Max
+
+.. only:: not model_je_2000e
 
    .. list-table::
       :header-rows: 0

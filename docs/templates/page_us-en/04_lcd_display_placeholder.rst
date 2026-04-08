@@ -1,11 +1,11 @@
 LCD DISPLAY
 ===========
 
-.. only:: model_je_2000e
+.. image:: templates/word_template/common_assets/lcd/lcd_map.png
+   :alt: LCD icon map placeholder.
+   :width: 420px
 
-   .. image:: templates/word_template/common_assets/lcd/lcd_map.png
-      :alt: LCD icon map placeholder.
-      :width: 420px
+.. only:: model_je_2000e
 
    .. list-table::
       :header-rows: 1
@@ -145,10 +145,6 @@ LCD DISPLAY
         - Displays the remaining discharging time.
 
 .. only:: not model_je_2000e
-
-   .. image:: templates/word_template/common_assets/lcd/lcd_map.png
-      :alt: LCD icon map placeholder.
-      :width: 420px
 
    .. list-table::
       :header-rows: 1
