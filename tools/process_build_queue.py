@@ -23,6 +23,7 @@ def _service_module() -> Any:
     return sys.modules[__name__]
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.process_build_queue_main import run_main as _run_main_impl  # noqa: E402
 from tools.queue_contract import (  # noqa: E402
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
@@ -434,31 +435,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv)
-    config_path = Path(args.config)
-    if not config_path.is_absolute():
-        config_path = ROOT / config_path
-    cfg = load_config(config_path)
-    resolved_data_root = str(
-        resolve_phase2_export_root(
-            cfg,
-            repo_root=ROOT,
-            data_root=args.data_root,
-        )
+    return _run_main_impl(
+        argv,
+        parse_args=parse_args,
+        repo_root=ROOT,
+        load_config=load_config,
+        resolve_phase2_export_root=resolve_phase2_export_root,
+        process_build_queue=process_build_queue,
     )
-    try:
-        return process_build_queue(
-            cfg=cfg,
-            config_path=config_path,
-            data_root=resolved_data_root,
-            dry_run=bool(args.dry_run),
-            workflow_action=args.workflow_action,
-            doc_phase=args.doc_phase,
-            record_id=(args.record_id or "").strip() or None,
-        )
-    except RuntimeError as exc:
-        print(f"[build-queue] ERROR: {exc}", file=sys.stderr)
-        return 1
 
 
 if __name__ == "__main__":

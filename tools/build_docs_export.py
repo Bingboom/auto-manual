@@ -3,6 +3,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.build_docs_artifacts import (
+    build_pdf_artifact,
+    build_word_artifact,
+    finalize_html_artifact,
+    resolve_build_artifact_plan,
+)
+
 
 def build_target(
     cfg: dict,
@@ -42,20 +49,25 @@ def build_target(
     refresh_model_html_switchers: Callable[..., None],
     printer: Callable[[str], None] = print,
 ) -> None:
-    build_langs = resolve_cfg_languages({"build": build_cfg})
-    primary_lang = str(target_lang or (build_langs[0] if build_langs else "en"))
-    docs_build_root = output_base_root or default_docs_build_dir
-    build_root = output_root or build_root_for_target(
-        target_model,
-        target_region,
-        target_lang,
-        docs_build_dir=docs_build_root,
+    artifact_plan = resolve_build_artifact_plan(
+        build_cfg=build_cfg,
+        tools_cfg=tools_cfg,
+        target_model=target_model,
+        target_region=target_region,
+        target_lang=target_lang,
+        no_open=no_open,
+        output_root=output_root,
+        output_base_root=output_base_root,
+        default_docs_build_dir=default_docs_build_dir,
+        resolve_cfg_languages=resolve_cfg_languages,
+        build_root_for_target=build_root_for_target,
+        render_build_template=render_build_template,
     )
     ensure_target_identity(
         cfg,
         model=target_model,
         region=target_region,
-        lang=primary_lang,
+        lang=artifact_plan.primary_lang,
         data_root=data_root,
     )
 
@@ -67,44 +79,12 @@ def build_target(
         data_root=data_root,
         source_mode=source_mode,
         page_selector=page_selector,
-        output_root=build_root,
+        output_root=artifact_plan.build_root,
         write_wrapper_index=write_wrapper_index,
     )
 
-    main_tex = render_build_template(
-        str(build_cfg.get("main_tex", "manual_demo.tex")),
-        model=target_model,
-        region=target_region,
-        lang=primary_lang,
-    )
-    output_pdf_name = render_build_template(
-        str(build_cfg.get("output_pdf", "manual_demo.pdf")),
-        model=target_model,
-        region=target_region,
-        lang=primary_lang,
-    )
-    xelatex_runs = int(build_cfg.get("xelatex_runs", 3))
-    word_output_name = render_build_template(
-        str(build_cfg.get("word_output", "manual_demo.docx")),
-        model=target_model,
-        region=target_region,
-        lang=primary_lang,
-    )
-    word_source = str(build_cfg.get("word_source", "bundle")).strip().lower()
-    patch_fonts_script = str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py"))
-
-    open_html = bool(build_cfg.get("open_html", False)) and (not no_open)
-    open_word = bool(build_cfg.get("open_word", False)) and (not no_open)
-    open_pdf = bool(build_cfg.get("open_pdf", False)) and (not no_open)
-
-    html_out_dir = build_root / "html"
-    word_out_dir = build_root / "word"
-    pdf_out_dir = build_root / "pdf"
-    latex_out_dir = build_root / "latex"
-
     html_built = False
     latex_built = False
-    docx_path: Path | None = None
 
     def ensure_html(*, minimal_theme: bool) -> None:
         nonlocal html_built
@@ -113,11 +93,11 @@ def build_target(
         sphinx_build(
             "html",
             src_dir=bundle.bundle_dir,
-            out_dir=html_out_dir,
+            out_dir=artifact_plan.html_out_dir,
             conf_dir=bundle.bundle_dir,
             model=target_model,
             region=target_region,
-            lang=target_lang or primary_lang,
+            lang=target_lang or artifact_plan.primary_lang,
             minimal_theme=minimal_theme,
         )
         html_built = True
@@ -129,97 +109,66 @@ def build_target(
         sphinx_build(
             "latex",
             src_dir=bundle.bundle_dir,
-            out_dir=latex_out_dir,
+            out_dir=artifact_plan.latex_out_dir,
             conf_dir=bundle.bundle_dir,
             model=target_model,
             region=target_region,
-            lang=target_lang or primary_lang,
+            lang=target_lang or artifact_plan.primary_lang,
         )
-        patch_fonts(patch_fonts_script, main_tex, build_dir=latex_out_dir)
-        compile_xelatex(main_tex, xelatex_runs, cwd=latex_out_dir)
+        patch_fonts(artifact_plan.patch_fonts_script, artifact_plan.main_tex, build_dir=artifact_plan.latex_out_dir)
+        compile_xelatex(artifact_plan.main_tex, artifact_plan.xelatex_runs, cwd=artifact_plan.latex_out_dir)
         latex_built = True
 
-    if "html" in requested_formats or word_source == "html":
-        ensure_html(minimal_theme=("html" not in requested_formats and word_source == "html"))
+    if "html" in requested_formats or artifact_plan.word_source == "html":
+        ensure_html(minimal_theme=("html" not in requested_formats and artifact_plan.word_source == "html"))
 
-    if "word" in requested_formats or ("pdf" in requested_formats and pdf_mode == "word"):
-        word_target_path = resolve_output_path(word_out_dir, word_output_name)
-        if word_source == "bundle":
-            docx_path = export_word_from_bundle(
-                cfg,
-                target_model,
-                target_region,
-                str(word_target_path),
-                materialized_bundle=bundle,
-                output_dir=word_target_path.parent,
-            )
-        elif word_source == "html":
-            ensure_html(minimal_theme=True)
-            docx_path = export_word_from_html(
-                html_out_dir / "index.html",
-                out_path=word_target_path,
-            )
-        elif word_source == "latex":
-            ensure_latex()
-            docx_path = export_word_from_latex(
-                latex_out_dir / main_tex,
-                resource_dir=latex_out_dir,
-                out_path=word_target_path,
-            )
-        else:
-            raise RuntimeError("build.word_source must be one of 'bundle', 'html', or 'latex'")
+    docx_path = build_word_artifact(
+        cfg=cfg,
+        target_model=target_model,
+        target_region=target_region,
+        requested_formats=requested_formats,
+        pdf_mode=pdf_mode,
+        plan=artifact_plan,
+        bundle=bundle,
+        resolve_output_path=resolve_output_path,
+        ensure_html=ensure_html,
+        ensure_latex=ensure_latex,
+        export_word_from_bundle=export_word_from_bundle,
+        export_word_from_html=export_word_from_html,
+        export_word_from_latex=export_word_from_latex,
+        open_file=open_file,
+        printer=printer,
+    )
 
-        printer(f"[build] Done. DOCX: {docx_path}")
-        if "word" in requested_formats and open_word and docx_path.exists():
-            open_file(docx_path)
+    build_pdf_artifact(
+        cfg=cfg,
+        target_model=target_model,
+        target_region=target_region,
+        requested_formats=requested_formats,
+        pdf_mode=pdf_mode,
+        plan=artifact_plan,
+        bundle=bundle,
+        docx_path=docx_path,
+        resolve_output_path=resolve_output_path,
+        ensure_latex=ensure_latex,
+        export_word_from_bundle=export_word_from_bundle,
+        export_pdf_from_docx_via_word=export_pdf_from_docx_via_word,
+        copy_file=copy_file,
+        open_file=open_file,
+        printer=printer,
+    )
 
-    if "pdf" in requested_formats:
-        if pdf_mode == "latex":
-            ensure_latex()
-            latex_pdf = latex_out_dir / output_pdf_name
-            if not latex_pdf.exists():
-                fallback_pdf = latex_out_dir / Path(main_tex).with_suffix(".pdf")
-                if fallback_pdf.exists():
-                    latex_pdf = fallback_pdf
-                else:
-                    raise RuntimeError(f"PDF not found after LaTeX build: {latex_pdf}")
-            pdf_target_path = resolve_output_path(pdf_out_dir, output_pdf_name)
-            pdf_target_path.parent.mkdir(parents=True, exist_ok=True)
-            copy_file(latex_pdf, pdf_target_path)
-            pdf_path = pdf_target_path
-        else:
-            if docx_path is None:
-                temp_docx_path = resolve_output_path(word_out_dir, word_output_name)
-                docx_path = export_word_from_bundle(
-                    cfg,
-                    target_model,
-                    target_region,
-                    str(temp_docx_path),
-                    materialized_bundle=bundle,
-                    output_dir=temp_docx_path.parent,
-                )
-            pdf_target_path = resolve_output_path(pdf_out_dir, output_pdf_name)
-            pdf_path = export_pdf_from_docx_via_word(docx_path, pdf_target_path)
-
-        printer(f"[build] Done. PDF: {pdf_path}")
-        if open_pdf and pdf_path.exists():
-            open_file(pdf_path)
-
-    if html_built and (target_model or "").strip() and (target_region or "").strip():
-        strip_html_cover_section(html_out_dir / "index.html")
-        write_html_manual_meta(
-            html_out_dir,
-            docs_build_dir=docs_build_root,
-            model=target_model,
-            region=target_region,
-            lang=primary_lang,
-            title=bundle.title,
-            lang_in_output_path=bool((target_lang or "").strip()),
-        )
-        refresh_model_html_switchers(model=target_model, docs_build_dir=docs_build_root)
-
-    if "html" in requested_formats:
-        html_index = html_out_dir / "index.html"
-        printer(f"[build] Done. HTML: {html_index}")
-        if open_html and html_index.exists():
-            open_file(html_index)
+    finalize_html_artifact(
+        requested_formats=requested_formats,
+        html_built=html_built,
+        plan=artifact_plan,
+        target_model=target_model,
+        target_region=target_region,
+        target_lang=target_lang,
+        bundle_title=bundle.title,
+        strip_html_cover_section=strip_html_cover_section,
+        write_html_manual_meta=write_html_manual_meta,
+        refresh_model_html_switchers=refresh_model_html_switchers,
+        open_file=open_file,
+        printer=printer,
+    )

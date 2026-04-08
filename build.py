@@ -5,8 +5,6 @@ from __future__ import annotations
 
 import argparse
 import shutil
-import subprocess
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -54,6 +52,7 @@ from tools.build_doctor import (
 )
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
+from tools.build_main import run_main as _run_main_impl
 from tools.build_reports import (
     default_report_dir_for_tracked_root as _default_report_dir_for_tracked_root_impl,
     diff_report_command as _diff_report_command,
@@ -616,38 +615,29 @@ def clean_build_artifacts(config_path: Path, *, remove_params_tex: bool = True) 
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv)
-    config_path = resolve_path_from_root(args.config)
-
-    try:
-        _dispatch_action_impl(
-            args,
-            config_path=config_path,
-            ensure_supported_staging_action=ensure_supported_staging_action,
-            run_validate=run_validate,
-            run_doctor=run_doctor,
-            run_checked=run_checked,
-            build_docs_command=build_docs_command,
-            review_bundle_command=review_bundle_command,
-            run_check=run_check,
-            sync_review_command=sync_review_command,
-            sync_data_command=sync_data_command,
-            process_review_start_queue_command=process_review_start_queue_command,
-            process_build_queue_command=process_build_queue_command,
-            listen_build_queue_command=listen_build_queue_command,
-            run_publish=run_publish,
-            run_diff_report=run_diff_report,
-            release_manifest_command=release_manifest_command,
-            clean_build_artifacts=clean_build_artifacts,
-            maybe_sync_review_before_build=maybe_sync_review_before_build,
-        )
-    except subprocess.CalledProcessError as exc:
-        return exc.returncode or 1
-    except RuntimeError as exc:
-        print(f"[build.py] ERROR: {exc}", file=sys.stderr)
-        return 1
-
-    return 0
+    return _run_main_impl(
+        argv,
+        parse_args=parse_args,
+        resolve_path_from_root=resolve_path_from_root,
+        dispatch_action=_dispatch_action_impl,
+        ensure_supported_staging_action=ensure_supported_staging_action,
+        run_validate=run_validate,
+        run_doctor=run_doctor,
+        run_checked=run_checked,
+        build_docs_command=build_docs_command,
+        review_bundle_command=review_bundle_command,
+        run_check=run_check,
+        sync_review_command=sync_review_command,
+        sync_data_command=sync_data_command,
+        process_review_start_queue_command=process_review_start_queue_command,
+        process_build_queue_command=process_build_queue_command,
+        listen_build_queue_command=listen_build_queue_command,
+        run_publish=run_publish,
+        run_diff_report=run_diff_report,
+        release_manifest_command=release_manifest_command,
+        clean_build_artifacts=clean_build_artifacts,
+        maybe_sync_review_before_build=maybe_sync_review_before_build,
+    )
 
 
 if __name__ == "__main__":

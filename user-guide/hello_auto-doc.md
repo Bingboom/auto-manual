@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-06
+Updated: 2026-04-08
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -49,8 +49,9 @@ GitHub note:
 - pull requests are gated by the `Manual Validation` workflow
 - after merge, `main` runs the same validation workflow again
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
+- `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
-- that workflow expects `pandoc` for the review Word export path and blocks preview deployment if the required Word / Excel downloads are missing
+- that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
 
 Git branch hygiene note:
 
@@ -183,7 +184,7 @@ Current flow:
 11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-14. `python tools/process_docs/build_review_preview.py` packages review HTML, review Word, diff-report HTML, diff-report CSV, and a single Excel workbook for design sharing
+14. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
 15. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
 16. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
 17. `python build.py preview` materializes one exact page selector under a preview-only output root

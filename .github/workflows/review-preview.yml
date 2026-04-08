@@ -23,6 +23,7 @@ on:
       - "code-as-doc/**"
       - "user-guide/**"
       - "site/review-preview/**"
+      - ".github/workflows/review-preview.yml"
   workflow_dispatch:
 
 concurrency:
@@ -91,7 +92,7 @@ jobs:
           echo "model=$model" >> "$GITHUB_OUTPUT"
           echo "region=$region" >> "$GITHUB_OUTPUT"
           echo "source=$source" >> "$GITHUB_OUTPUT"
-      - name: Build review preview package (workspace)
+      - name: Build review preview smoke package
         run: >
           python tools/process_docs/build_review_preview.py
           --config "${{ steps.preview-target.outputs.config }}"
@@ -101,6 +102,16 @@ jobs:
           --from-ref "$FROM_REF"
           --to-ref "$TO_REF"
           --all-review-models
+          --skip-word
+      - name: Verify review preview smoke artifacts
+        shell: bash
+        run: |
+          test -f site/review-preview/dist/index.html
+          test -f site/review-preview/dist/manual/index.html
+          test -f site/review-preview/dist/changes/index.html
+          test -f site/review-preview/dist/generated/meta.json
+          test -f site/review-preview/dist/generated/changes.json
+          test -f site/review-preview/dist/generated/workspace.json
       - name: Upload review preview artifact
         uses: actions/upload-artifact@v4
         with:

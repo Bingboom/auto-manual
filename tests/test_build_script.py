@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -162,6 +163,26 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertEqual("doctor", args.action)
         self.assertEqual("config.ja.yaml", args.config)
+
+    def test_main_should_return_runtime_error_as_exit_code_one(self) -> None:
+        with patch_module_attrs(
+            build_cli,
+            _dispatch_action_impl=lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("boom")),
+        ):
+            exit_code = build_cli.main(["check", "--config", "config.us.yaml"])
+
+        self.assertEqual(1, exit_code)
+
+    def test_main_should_return_child_exit_code_when_dispatch_raises_called_process_error(self) -> None:
+        with patch_module_attrs(
+            build_cli,
+            _dispatch_action_impl=lambda *args, **kwargs: (_ for _ in ()).throw(
+                subprocess.CalledProcessError(7, ["python", "child.py"])
+            ),
+        ):
+            exit_code = build_cli.main(["check", "--config", "config.us.yaml"])
+
+        self.assertEqual(7, exit_code)
 
     def test_run_diff_report_should_forward_config_to_tool(self) -> None:
         args = build_cli.parse_args(["diff-report", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])

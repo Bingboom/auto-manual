@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-07
+Updated: 2026-04-08
 
 ## 1. Role
 
@@ -69,7 +69,7 @@ As of 2026-03-17, the repo has working baselines for:
 - `preview`
 - `fast`
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
-- CI baseline for `lint`, `unit`, `doctor`, and `check`
+- CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
 
 ## 4. Recently Completed
 
@@ -125,14 +125,17 @@ Use this section for short milestone-style updates.
 - completed Milestone A in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by removing preview-target import side effects, splitting the Spec_Master/runtime/generated-page quality hotspots, adding a minimal Ruff gate, and introducing shared orchestration-test helpers
 - kept Workstream C active, but moved its baseline forward so the local/CI quality gate now includes a deliberate low-noise static check before the heavier unit/build validation layers run
 
+### 2026-04-08
+
+- completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
+
 ## 5. Open Gaps
 
 Keep this section short and current.
 
 1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
-2. Diff-report extraction still contains heuristic parts.
-3. CI does not yet validate every important workflow surface.
-4. Multi-target conditional content is still deferred.
+2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
+3. Multi-target conditional content is still deferred.
 
 ## 6. Active Workstreams
 
@@ -184,7 +187,7 @@ Exit criteria:
 
 ### Workstream C: Quality Gate Hardening
 
-Status: active
+Status: done
 
 Why now:
 
@@ -203,20 +206,19 @@ Exit criteria:
 
 ### Workstream D: Diff And Traceability Hardening
 
-Status: next
+Status: done
 
 ### Workstream E: CI Expansion
 
-Status: next
+Status: done
 
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Quality gate hardening
-2. Diff and traceability hardening
-3. CI expansion
-4. Multi-target content pilot
+1. Preserve the current `check` + smoke-CI baseline
+2. Revisit remaining medium wrappers only when a concrete hotspot reappears
+3. Multi-target content pilot when the deferred work becomes active
 
 
 ## 9. Success Criteria

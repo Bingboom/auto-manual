@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-04-07
+Updated: 2026-04-08
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -159,10 +159,12 @@ Milestone note: completed the first quality-gate hardening wave across preview t
 
 ## 4. Milestone B: 1 Month
 
-Milestone status: `pending`
+Milestone status: `done`
+Milestone completed: `2026-04-08`
+Milestone note: closed the second stability wave by fixing diff-report regression fixtures, expanding CI smoke coverage across diff-report/release-manifest/review-preview, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across the remaining medium orchestration files without breaking patchable compatibility points.
 
-- [ ] PR 6: Harden diff-report heuristics with fixed fixtures
-  - Status: `pending`
+- [x] PR 6: Harden diff-report heuristics with fixed fixtures
+  - Status: `done`
   - Target files:
     - [`../tools/diff_report.py`](../tools/diff_report.py)
     - [`../tools/diff_report_fields.py`](../tools/diff_report_fields.py)
@@ -174,9 +176,11 @@ Milestone status: `pending`
     - heuristic field matching is covered by fixed sample fixtures
     - high-value diff cases have stable expected outputs
     - future refactors can detect report drift early
+  - Completed: `2026-04-08`
+  - Note: added committed fixture repos for template back-mapping, placeholder label renames, section-order fallback, and fixture-driven `generate_diff_report` coverage so heuristic/report drift is caught without relying only on ad hoc temp-repo tests
 
-- [ ] PR 7: Expand CI coverage for critical non-unit workflow surfaces
-  - Status: `pending`
+- [x] PR 7: Expand CI coverage for critical non-unit workflow surfaces
+  - Status: `done`
   - Target files:
     - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
     - [`.github/workflows/review-preview.yml`](../.github/workflows/review-preview.yml)
@@ -186,9 +190,11 @@ Milestone status: `pending`
     - CI covers at least one smoke path for `diff-report`
     - CI covers at least one smoke path for `release-manifest`
     - CI covers review-preview packaging at a stable smoke level
+  - Completed: `2026-04-08`
+  - Note: added a dedicated `workflow-smoke` job for `diff-report` and `release-manifest`, then converted `Review Preview Package` into a stable smoke packaging path with `--skip-word` and explicit packaged-file checks before artifact upload
 
-- [ ] PR 8: Deduplicate shared GitHub Actions setup logic
-  - Status: `pending`
+- [x] PR 8: Deduplicate shared GitHub Actions setup logic
+  - Status: `done`
   - Target files:
     - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml)
     - [`.github/workflows/feishu-draft-build-queue.yml`](../.github/workflows/feishu-draft-build-queue.yml)
@@ -200,9 +206,11 @@ Milestone status: `pending`
     - repeated Python/Node/pandoc/lark setup is centralized
     - repeated secret-validation shell logic is reduced
     - workflow intent remains easy to read
+  - Completed: `2026-04-08`
+  - Note: centralized shared GitHub-hosted worker bootstrap in `.github/actions/feishu-common-setup/action.yml` and moved repeated required-env checks into `scripts/validate_required_env.sh` while keeping checkout/dispatch/trigger flow readable in each worker
 
-- [ ] PR 9: Strengthen package boundaries around build, quality, queue, and release concerns
-  - Status: `pending`
+- [x] PR 9: Strengthen package boundaries around build, quality, queue, and release concerns
+  - Status: `done`
   - Target files:
     - [`../tools/`](../tools)
     - [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md)
@@ -215,9 +223,11 @@ Milestone status: `pending`
     - new logic placement is driven by stable domain boundaries instead of filename prefixes alone
     - orchestration files stay orchestration-first
     - the ownership map is updated in the same change
+  - Completed: `2026-04-08`
+  - Note: documented explicit build/quality/release/queue ownership boundaries in the module map and component map, and extracted top-level CLI bootstrap helpers so the main entry files stay orchestration-first instead of reabsorbing concern-specific setup logic
 
-- [ ] PR 10: Revisit medium-sized orchestration wrappers after the quality gate hardening wave
-  - Status: `pending`
+- [x] PR 10: Revisit medium-sized orchestration wrappers after the quality gate hardening wave
+  - Status: `done`
   - Target files:
     - [`../build.py`](../build.py)
     - [`../tools/build_docs.py`](../tools/build_docs.py)
@@ -231,6 +241,8 @@ Milestone status: `pending`
     - remaining wrappers are reviewed only after the earlier hotspot splits land
     - helper boundaries are clarified without breaking patchable compatibility points
     - no low-level logic drifts back into entry files
+  - Completed: `2026-04-08`
+  - Note: kept `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py` as wrapper-compatible facades while moving CLI bootstrap and build-export artifact planning/output steps into focused helpers, then added regression tests around the new bootstrap/artifact-plan surfaces
 
 ## 5. Deferred: Do Not Touch Yet
 

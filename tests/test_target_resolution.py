@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import build_docs
+from tools import build_docs_artifacts
 from tools import gen_index_bundle
 from tests.test_helpers import temp_test_root, write_text
 
@@ -873,6 +874,74 @@ class TestTargetResolution(unittest.TestCase):
 
             self.assertEqual(len(build_docs._REMOVE_TREE_RETRY_DELAYS) + 1, rmtree_mock.call_count)
             self.assertEqual(len(build_docs._REMOVE_TREE_RETRY_DELAYS), sleep_mock.call_count)
+
+    def test_resolve_build_artifact_plan_should_follow_output_base_root_and_default_lang(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_build_dir = Path(td) / "docs" / "_build"
+            output_base_root = Path(td) / ".tmp" / "staging" / "docs" / "_build"
+
+            plan = build_docs_artifacts.resolve_build_artifact_plan(
+                build_cfg={
+                    "languages": ["fr", "en"],
+                    "main_tex": "manual_{lang}.tex",
+                    "output_pdf": "manual_{lang}.pdf",
+                    "word_output": "manual_{lang}.docx",
+                    "word_source": " html ",
+                    "open_html": True,
+                    "open_word": True,
+                    "open_pdf": False,
+                },
+                tools_cfg={"patch_fonts": "tools/custom_patch.py"},
+                target_model="JE-1000F",
+                target_region="US",
+                target_lang=None,
+                no_open=False,
+                output_root=None,
+                output_base_root=output_base_root,
+                default_docs_build_dir=docs_build_dir,
+                resolve_cfg_languages=lambda cfg: list(cfg["build"]["languages"]),
+                build_root_for_target=lambda model, region, lang, *, docs_build_dir: docs_build_dir / model / region / (lang or "_default"),
+                render_build_template=lambda template, *, model, region, lang: template.format(
+                    model=model or "",
+                    region=region or "",
+                    lang=lang or "",
+                ),
+            )
+
+        self.assertEqual("fr", plan.primary_lang)
+        self.assertEqual(output_base_root, plan.docs_build_root)
+        self.assertEqual(output_base_root / "JE-1000F" / "US" / "_default", plan.build_root)
+        self.assertEqual("html", plan.word_source)
+        self.assertTrue(plan.open_html)
+        self.assertTrue(plan.open_word)
+        self.assertFalse(plan.open_pdf)
+        self.assertEqual(Path("tools/custom_patch.py"), Path(plan.patch_fonts_script))
+
+    def test_resolve_build_artifact_plan_should_honor_explicit_output_root_and_no_open(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            explicit_output_root = Path(td) / "preview-root"
+
+            plan = build_docs_artifacts.resolve_build_artifact_plan(
+                build_cfg={"open_html": True, "open_word": True, "open_pdf": True},
+                tools_cfg={},
+                target_model="JE-1000F",
+                target_region="JP",
+                target_lang="ja",
+                no_open=True,
+                output_root=explicit_output_root,
+                output_base_root=None,
+                default_docs_build_dir=Path(td) / "docs" / "_build",
+                resolve_cfg_languages=lambda cfg: [],
+                build_root_for_target=lambda model, region, lang, *, docs_build_dir: docs_build_dir / "unused",
+                render_build_template=lambda template, *, model, region, lang: template,
+            )
+
+        self.assertEqual(explicit_output_root, plan.build_root)
+        self.assertFalse(plan.open_html)
+        self.assertFalse(plan.open_word)
+        self.assertFalse(plan.open_pdf)
+        self.assertEqual(explicit_output_root / "html", plan.html_out_dir)
+        self.assertEqual(explicit_output_root / "latex", plan.latex_out_dir)
 
 
 if __name__ == "__main__":

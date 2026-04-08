@@ -1,13 +1,13 @@
 # Code Optimization Log
 
-Updated: 2026-04-07
+Updated: 2026-04-08
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
 
-For the active in-progress refactor checklist, use:
+For the active optimization checklist, use:
 
-- [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
+- [`next_optimization_checklist.md`](next_optimization_checklist.md)
 
 For current rules, see:
 
@@ -405,3 +405,21 @@ Why it mattered:
 - quality-gate hotspots are now easier to change without reopening giant mixed-responsibility functions
 - CI can catch a small set of high-signal static issues before the heavier unit/build jobs run
 - orchestration-heavy tests now have less duplicated temp-dir, fixture-writing, and patch boilerplate, so follow-up refactors have a lower maintenance tax
+
+## 25. 2026-04-08: Next Optimization Milestone B, Diff/CI/Boundary Closure
+
+Main outcomes:
+
+- fixed high-value `diff-report` regression coverage around template back-mapping, placeholder label renames, section-order fallback, and report generation through committed fixture repos under [`tests/fixtures/diff_report/`](../tests/fixtures/diff_report)
+- expanded [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml) with smoke paths for `build.py diff-report` and `build.py release-manifest`
+- tightened [`.github/workflows/review-preview.yml`](../.github/workflows/review-preview.yml) into a stable smoke package path with `--skip-word` plus explicit packaged-artifact checks before upload
+- centralized GitHub-hosted Feishu worker bootstrap in [`.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml) and [`scripts/validate_required_env.sh`](../scripts/validate_required_env.sh)
+- extracted [`tools/build_main.py`](../tools/build_main.py), [`tools/build_docs_main.py`](../tools/build_docs_main.py), [`tools/process_build_queue_main.py`](../tools/process_build_queue_main.py), and [`tools/build_docs_artifacts.py`](../tools/build_docs_artifacts.py) so entry files stay facade-first while export planning/output steps live in dedicated helpers
+- updated [`next_optimization_checklist.md`](next_optimization_checklist.md), [`optimization_project.md`](../optimization_project.md), [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md), and [`architecture/Hello_Docs_Architecture.md`](architecture/Hello_Docs_Architecture.md) to match the closed milestone
+
+Why it mattered:
+
+- diff-report heuristic drift now has fixed regression inputs instead of relying only on ad hoc temp-repo tests
+- CI now checks more of the workflow surfaces the repo actually depends on without turning every run into a full publish/build
+- shared GitHub-hosted worker setup is easier to maintain because dependency/bootstrap changes now land in one place
+- `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py` stayed wrapper-compatible while real export/bootstrap logic moved further out of the entry files

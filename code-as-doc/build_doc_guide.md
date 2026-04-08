@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-04-06
+Updated: 2026-04-08
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -72,6 +72,7 @@ Meaning:
 - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1): Windows listener wrapper for `listen-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, and writes run logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
 - [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml): `main`-owned GitHub-hosted queue worker for the remote repo; it runs on a 5-minute schedule plus `workflow_dispatch`, bootstraps `lark-cli` with `FEISHU_APP_ID/FEISHU_APP_SECRET`, sets `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, and then consumes the `Document_link` queue
 - [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml): `main`-owned GitHub-hosted review-init worker for the remote repo; it consumes the review-init table, creates or reuses the review branch, seeds `docs/_review`, pushes the branch, and writes back `Git_ref` plus `PR_url`
+- the GitHub-hosted Feishu workers now share [`.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml) and [`../scripts/validate_required_env.sh`](../scripts/validate_required_env.sh), so setup and required-env changes only have one maintained source
 - the review-init worker now refuses duplicate initial-draft seeding when the base branch already has committed `docs/_review/<model>/<region>/` content
 - for remote immediate builds after merge to `main`, pair that workflow with a Feishu automation whose condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then send a GitHub `workflow_dispatch` request to `feishu-build-queue.yml` on `main`; the queue worker still treats `是否触发文档构建 = Y` as the actual build request, while `是否立即构建` only decides whether to wake the remote workflow immediately
 - before enabling that remote worker, make sure the Feishu app/bot has read access to the phase2 source tables and write access to the `Document_link` table; without write permission the run can build and upload but cannot write back queue status
@@ -115,10 +116,12 @@ GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
 - that workflow now runs `python -m ruff check build.py tools tests scripts` as the minimal static gate before the heavier unit/build jobs
+- that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
 - `Review Preview Package` is a separate artifact workflow for design sharing and does not gate merge
+- `Review Preview Package` now runs a smoke packaging pass with `--skip-word` and verifies the expected packaged preview files before artifact upload
 
 Git branch safety note:
 
@@ -367,8 +370,8 @@ This package contains:
 Packaging rule:
 
 - the review preview output contract is `index.html`, `manual/`, `changes/`, `downloads/`, and `generated/`
-- CI treats `review-manual.docx` and `change-report.xlsx` as required artifacts
-- `--skip-word` is for local debugging only and is not used by the CI workflow
+- CI treats `index.html`, `manual/`, `changes/`, and `generated/` as the required smoke-packaging surface
+- `--skip-word` is now used by the CI smoke workflow so review-preview packaging can stay stable without requiring the heavier Word path on every run
 - the workspace hides families with no `_review` content, so the packaged site only shows available families
 - with `--all-review-models`, the packaged site includes every existing review model and keeps the requested target as the default landing entry
 - diff, workbook, and CSV outputs stay shared inside one `family + model` package, not per-language artifacts

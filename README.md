@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-06
+Updated: 2026-04-08
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -30,7 +30,9 @@ CI note:
 - GitHub `Manual Validation` runs on pull requests for merge gating
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
-- `Review Preview Package` is a separate non-gating workflow that packages review HTML, review Word, and diff-report HTML/CSV/XLSX for sharing as a GitHub artifact
+- `Manual Validation` now includes smoke paths for `diff-report` and `release-manifest` alongside the existing `lint`, `unit`, `doctor`, and `check` jobs
+- `Review Preview Package` is a separate non-gating workflow that packages the review-preview workspace and diff-report artifacts for sharing as a GitHub artifact
+- `Review Preview Package` now runs a stable smoke package with `--skip-word` and verifies the core packaged preview files before upload
 - the published review preview root is now a multi-model review handoff workspace: families are hidden when `_review` content is missing, models are grouped inside each family, and language switching happens inside each model group
 - diff assets now stay shared across the languages of one `family + model` package, while the workspace keeps the top-level review actions and a compact document-identity card with product name, manual title, model, region, and language
 - `manual/index.html` remains a compatibility redirect to the workspace default manual, while `changes/index.html` opens the family hub and each family hub fans out to model-specific diff packages
@@ -88,6 +90,7 @@ Phase2 snapshot note:
 - `python build.py listen-build-queue --config config.us.yaml` starts the push-based queue listener: it auto-subscribes the current `Document_link` base to docs events with the current user identity, waits on the Feishu long connection with the same user identity, and triggers `process-build-queue` immediately when the `是否立即构建` checkbox is checked on a `Document_link` row
 - [`scripts/listen_build_queue.ps1`](scripts/listen_build_queue.ps1) is the Windows-friendly listener wrapper; on this machine it is launched from the Windows Startup folder so the listener starts after login, runs `listen-build-queue --staging-root .tmp/staging`, and writes logs into [`.tmp/build-queue-listener/`](.tmp/build-queue-listener)
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned remote GitHub Actions worker: after merge to the default branch and after repo secrets are configured, it runs every 5 minutes plus `workflow_dispatch`, uses `FEISHU_PHASE2_IDENTITY=bot`, syncs `data/phase2`, then consumes the `Document_link` queue without relying on any local machine
+- the three GitHub-hosted Feishu workers now share [`.github/actions/feishu-common-setup/action.yml`](.github/actions/feishu-common-setup/action.yml) plus [`scripts/validate_required_env.sh`](scripts/validate_required_env.sh), so Python/Node/pandoc/lark setup and required-env validation only need to change in one place
 - for remote immediate builds after merge to `main`, create a Feishu workflow with the combined condition `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml` on `main`; the queue still only processes rows whose trigger field is `Y`, and the checkbox acts as an accelerator instead of a standalone build request
 - the Document_link worker reuses `FEISHU_PHASE2_BASE_TOKEN`, expects `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`, and can optionally honor `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` when you want to override the default knowledge-base destination
 - the remote bot flow also needs the Feishu app behind `FEISHU_APP_ID/FEISHU_APP_SECRET` to have read access to the phase2 source tables and write access to the `Document_link` table; otherwise the poller can read pending rows but cannot write back `开始构建时间` / `构建结果`

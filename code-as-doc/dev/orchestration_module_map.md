@@ -1,9 +1,9 @@
 # Orchestration Module Map
 
-Updated: 2026-04-05
+Updated: 2026-04-08
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
-Use it as the living map for "where should this logic go?" after the build and queue decomposition wave.
+Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
 
 This is not the user workflow guide.
 For day-to-day commands, use:
@@ -16,6 +16,7 @@ For day-to-day commands, use:
 Keep these files orchestration-first:
 
 - [`build.py`](../../build.py)
+- [`tools/build_docs.py`](../../tools/build_docs.py)
 - [`tools/process_build_queue.py`](../../tools/process_build_queue.py)
 
 That means:
@@ -30,25 +31,93 @@ Do not move new low-level implementation back into these files unless the behavi
 
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
+- [`tools/build_main.py`](../../tools/build_main.py)
+  - CLI bootstrap and top-level error boundary for `build.py`
+- [`tools/build_cli.py`](../../tools/build_cli.py)
+  - argument parsing
+- [`tools/build_dispatch.py`](../../tools/build_dispatch.py)
+  - top-level action routing
 - [`tools/build_paths.py`](../../tools/build_paths.py)
   - config loading
   - repo-root path resolution
   - staging-root resolution
   - review/build/release root selection
 - [`tools/build_entry_commands.py`](../../tools/build_entry_commands.py)
-  - CLI command assembly for build/check/review/sync/release queue entrypoints
+  - CLI command assembly for build/check/review/sync/release/queue entrypoints
+- [`tools/build_runtime.py`](../../tools/build_runtime.py)
+  - validate/check/pre-build runtime helpers
+  - review auto-sync and cleanup helpers
 - [`tools/build_reports.py`](../../tools/build_reports.py)
   - diff-report target resolution
-  - publish target/tracked-root/report-dir helpers
+  - tracked-root/report-dir helpers
+  - diff-report command assembly
+- [`tools/build_publish.py`](../../tools/build_publish.py)
+  - publish orchestration over `check -> diff-report -> word -> release-manifest`
 - [`tools/build_doctor.py`](../../tools/build_doctor.py)
   - environment and dependency diagnostics
   - doctor target/pdf/reference-doc resolution
   - doctor finding collection
 
-## 3. Document Link Queue Modules
+## 3. Build Bundle And Export Modules
+
+[`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade and delegate to:
+
+- [`tools/build_docs_main.py`](../../tools/build_docs_main.py)
+  - CLI bootstrap for the low-level build entrypoint
+- [`tools/build_docs_entry.py`](../../tools/build_docs_entry.py)
+  - top-level build session orchestration
+- [`tools/build_docs_targets.py`](../../tools/build_docs_targets.py)
+  - build target resolution and configured target expansion
+- [`tools/build_docs_bundle.py`](../../tools/build_docs_bundle.py)
+  - runtime bundle preparation and review overlay entry helpers
+- [`tools/build_docs_export.py`](../../tools/build_docs_export.py)
+  - export orchestration shell for one build target
+- [`tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)
+  - export-plan derivation
+  - word/pdf/html artifact steps
+  - HTML postprocess handoff
+- [`tools/build_docs_html.py`](../../tools/build_docs_html.py)
+  - manual HTML metadata and switcher helpers
+- [`tools/build_docs_io.py`](../../tools/build_docs_io.py)
+  - Sphinx, cleanup, Word/PDF I/O helpers
+- [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)
+  - config/layout validation helpers for the build tool
+
+## 4. Quality And Release Modules
+
+Quality and release logic should follow concern-specific modules instead of drifting back into entry files:
+
+- [`tools/check_docs.py`](../../tools/check_docs.py)
+  - quality gate facade over bundle/reference/contract/generated-page checks
+- [`tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
+  - generated-page rule helpers
+- [`tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)
+  - runtime Spec_Master validation rules
+- [`tools/page_contracts.py`](../../tools/page_contracts.py)
+  - page contract enforcement
+- [`tools/diff_report.py`](../../tools/diff_report.py)
+  - compatibility facade for diff-report CLI
+- [`tools/diff_report_git.py`](../../tools/diff_report_git.py)
+  - git/path extraction helpers
+- [`tools/diff_report_fields.py`](../../tools/diff_report_fields.py)
+  - field and page diff extraction heuristics
+- [`tools/diff_report_render.py`](../../tools/diff_report_render.py)
+  - report rendering
+- [`tools/diff_report_reports.py`](../../tools/diff_report_reports.py)
+  - report assembly
+- [`tools/release_manifest.py`](../../tools/release_manifest.py)
+  - release-manifest CLI facade
+- [`tools/release_manifest_service.py`](../../tools/release_manifest_service.py)
+  - release traceability assembly
+
+## 5. Document Link Queue Modules
 
 [`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:
 
+- [`tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
+  - CLI bootstrap and data-root normalization for the queue entrypoint
+- [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+  - wrapper-compatible service grouping for queue entrypoint helpers
 - [`tools/queue_contract.py`](../../tools/queue_contract.py)
   - canonical queue contract constants
   - shared queue dataclasses
@@ -114,7 +183,7 @@ Do not move new low-level implementation back into these files unless the behavi
   - queue result formatting
   - row writeback payload assembly
 
-## 4. Maintenance Rules
+## 6. Maintenance Rules
 
 When adding or moving logic in this area:
 
@@ -127,12 +196,12 @@ When adding or moving logic in this area:
 5. If a wrapper stops being needed, remove it only after tests and call sites are updated together.
 6. When encoded field names are normalized, prefer unicode-escaped canonical constants in helper modules before deleting old literals from entry files.
 
-## 5. Known Next Decomposition Candidates
+## 7. Known Next Decomposition Candidates
 
-These files still deserve further decomposition:
+These areas still deserve follow-up only when a concrete hotspot reappears:
 
-- [`tools/build_docs.py`](../../tools/build_docs.py)
+- [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
 - [`tools/gen_index_bundle.py`](../../tools/gen_index_bundle.py)
-- [`tools/diff_report.py`](../../tools/diff_report.py)
 
-Keep future extraction notes here once those boundaries stabilize.
+Keep future extraction notes here once those boundaries stabilize again.

@@ -1,0 +1,2 @@
+Region,Is_Latest,Page,Section,Section_order,Row_key,Row_label_source,Line_order,Value_source,Model
+US,TRUE,specifications,TEMPLATE VARS,99,tpl_default_standby_duration,Default standby time,1,2 hours,JE-1000F

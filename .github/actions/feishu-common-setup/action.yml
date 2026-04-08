@@ -1,0 +1,33 @@
+name: Feishu Common Setup
+description: Set up the shared Python, Node, pandoc, and lark-cli environment for Feishu workflows.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install system dependencies
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc
+
+    - name: Install Python dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Install lark-cli
+      shell: bash
+      run: npm install --global @larksuite/cli
+
+    - name: Configure lark-cli app credentials
+      shell: bash
+      run: |
+        printf '%s' "$FEISHU_APP_SECRET" | lark-cli config init --app-id "$FEISHU_APP_ID" --app-secret-stdin --brand feishu
