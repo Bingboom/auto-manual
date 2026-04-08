@@ -18,7 +18,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 2.1 Click the add-device button in the App to add your device.
 
-2.2 Press the Main POWER Button on the device to turn it on.
+2.2 Press the POWER Button on the device to turn it on.
 When the Wi-Fi and Bluetooth icons on the device flash, the device has entered network configuration mode.
 Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and use Bluetooth permissions.
 
@@ -26,7 +26,7 @@ Tap the "Icon Flashed" button, and allow the App to connect to nearby devices an
    :alt: App add device step placeholder.
    :width: 320px
 
-Main POWER Button
+POWER Button
 
 AC Power Button
 
@@ -39,7 +39,7 @@ DC/USB Power Button
 If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
 
 - The device owner will share this device with other users through the App.
-- Press and hold main POWER button + DC/USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+- Press and hold POWER button + DC/USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
 
 2.4 After the device is successfully connected, enter your Wi-Fi password and tap the **OK** button.
 
@@ -76,4 +76,4 @@ Hold DC/USB power button + AC power button at the same time until the Wi-Fi and 
 
 **4.3 To reset Wi-Fi and Bluetooth**
 
-Hold main POWER button + DC/USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
+Hold POWER button + DC/USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.

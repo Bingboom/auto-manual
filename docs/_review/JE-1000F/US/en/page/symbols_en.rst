@@ -80,7 +80,7 @@ During the lifecycle of energy storage products, a certain degree of capacity an
    * - .. image:: _assets/templates/word_template/common_assets/symbols/battery_charging.png
           :alt: Battery charging symbol.
           :width: 40px
-     - Battery charging.
+     - Battery charging
      - .. image:: _assets/templates/word_template/common_assets/symbols/li_ion.png
           :alt: Li-ion battery symbol.
           :width: 40px
@@ -88,7 +88,7 @@ During the lifecycle of energy storage products, a certain degree of capacity an
    * - .. image:: _assets/templates/word_template/common_assets/symbols/explosive_material.png
           :alt: Explosive material symbol.
           :width: 40px
-     - Explosive material.
+     - Explosive material
      - .. image:: _assets/templates/word_template/common_assets/symbols/weee.png
           :alt: WEEE disposal symbol.
           :width: 40px
@@ -96,7 +96,7 @@ During the lifecycle of energy storage products, a certain degree of capacity an
    * - .. image:: _assets/templates/word_template/common_assets/symbols/heavy_object.png
           :alt: Heavy object symbol.
           :width: 40px
-     - Heavy object.
+     - Heavy object
      - .. image:: _assets/templates/word_template/common_assets/symbols/weee2.png
           :alt: Battery disposal symbol.
           :width: 40px
