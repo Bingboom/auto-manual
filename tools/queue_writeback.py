@@ -13,6 +13,7 @@ def build_success_fields(
     built_at: datetime,
     workflow_action: str | None,
     doc_phase: str | None,
+    status_notes: tuple[str, ...] = (),
     normalize_workflow_action: Callable[[Any], str | None],
     normalize_doc_phase: Callable[[Any], str | None],
     workflow_action_label: Callable[[Any], str | None],
@@ -33,6 +34,7 @@ def build_success_fields(
                 f"version={version}" if version else "",
                 f"workflow_action={action_label}" if action_label else "",
                 f"built_at={built_at.isoformat(timespec='seconds')}",
+                *[note.strip() for note in status_notes if note.strip()],
             )
             if part
         ),

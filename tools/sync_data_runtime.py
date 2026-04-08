@@ -32,6 +32,17 @@ class _RecordSourceLike(Protocol):
         ...
 
 
+class _RecordSourceWithIdsLike(_RecordSourceLike, Protocol):
+    def fetch_records_with_ids(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        view_id: str | None,
+    ) -> list[dict[str, Any]]:
+        ...
+
+
 class _TableSyncResultLike(Protocol):
     logical_name: str
     file_name: str
@@ -135,6 +146,76 @@ def manifest_payload(
     }
 
 
+def _record_source_with_ids(source: _RecordSourceLike) -> _RecordSourceWithIdsLike | None:
+    fetch_records_with_ids = getattr(source, "fetch_records_with_ids", None)
+    if not callable(fetch_records_with_ids):
+        return None
+    return source  # type: ignore[return-value]
+
+
+def _footnote_record_id_to_id_map(raw_records: list[dict[str, Any]]) -> dict[str, str]:
+    mapping: dict[str, str] = {}
+    for record in raw_records:
+        record_id = str(record.get("record_id") or "").strip()
+        fields_raw = record.get("fields")
+        fields = fields_raw if isinstance(fields_raw, dict) else {}
+        footnote_id = str(fields.get("Footnote_id") or fields.get("footnote_id") or "").strip()
+        if record_id and footnote_id:
+            mapping[record_id] = footnote_id
+    return mapping
+
+
+def _record_id_from_ref_token(token: str) -> str | None:
+    raw = (token or "").strip()
+    if not raw:
+        return None
+    if raw.startswith("rec"):
+        return raw
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError:
+        return None
+    if isinstance(payload, dict):
+        record_id = str(payload.get("id") or "").strip()
+        return record_id or None
+    return None
+
+
+def _normalize_footnote_ref_value(value: str, mapping: dict[str, str]) -> str:
+    raw = (value or "").strip()
+    if not raw:
+        return value
+
+    refs: list[str] = []
+    for token in raw.split(","):
+        item = token.strip()
+        if not item:
+            continue
+        mapped = mapping.get(_record_id_from_ref_token(item) or "", item)
+        if mapped not in refs:
+            refs.append(mapped)
+    return ", ".join(refs)
+
+
+def _normalize_spec_master_footnote_refs(
+    rows: list[dict[str, str]],
+    *,
+    footnote_record_id_map: dict[str, str],
+) -> None:
+    if not footnote_record_id_map:
+        return
+    for row in rows:
+        for column in (
+            "Row_label_footnote_refs",
+            "Param_footnote_refs",
+            "Value_footnote_refs",
+        ):
+            row[column] = _normalize_footnote_ref_value(
+                str(row.get(column) or ""),
+                footnote_record_id_map,
+            )
+
+
 def sync_phase2_snapshot(
     *,
     cfg: dict[str, Any],
@@ -169,17 +250,40 @@ def sync_phase2_snapshot(
     table_results: list[Any] = []
     derived_results: list[Any] = []
     written_files: list[tuple[Path, str]] = []
+    bindings_by_table: dict[str, _BindingLike] = {}
+    raw_records_by_table: dict[str, list[dict[str, Any]]] = {}
     normalized_rows_by_table: dict[str, list[dict[str, str]]] = {}
 
     for logical_name in selected_tables:
         binding = deps.resolve_table_binding(cfg, logical_name)
-        raw_records = resolved_source.fetch_records(
-            base_token=binding.base_token,
-            table_id=binding.table_id,
-            view_id=binding.view_id,
-        )
+        bindings_by_table[logical_name] = binding
+        source_with_ids = _record_source_with_ids(resolved_source)
+        if logical_name == "spec_footnotes" and source_with_ids is not None:
+            raw_records = source_with_ids.fetch_records_with_ids(
+                base_token=binding.base_token,
+                table_id=binding.table_id,
+                view_id=binding.view_id,
+            )
+        else:
+            raw_records = resolved_source.fetch_records(
+                base_token=binding.base_token,
+                table_id=binding.table_id,
+                view_id=binding.view_id,
+            )
+        raw_records_by_table[logical_name] = raw_records
         normalized_rows = deps.normalize_records(binding.schema, raw_records)
         normalized_rows_by_table[logical_name] = normalized_rows
+
+    if "spec_master" in normalized_rows_by_table:
+        if "spec_footnotes" in raw_records_by_table:
+            _normalize_spec_master_footnote_refs(
+                normalized_rows_by_table["spec_master"],
+                footnote_record_id_map=_footnote_record_id_to_id_map(raw_records_by_table["spec_footnotes"]),
+            )
+
+    for logical_name in selected_tables:
+        binding = bindings_by_table[logical_name]
+        normalized_rows = normalized_rows_by_table[logical_name]
         csv_text = deps.csv_text(binding.schema, normalized_rows)
         sha256 = deps.sha256_text(csv_text)
         target_path = export_root / binding.schema.file_name

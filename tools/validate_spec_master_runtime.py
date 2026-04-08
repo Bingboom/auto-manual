@@ -34,6 +34,7 @@ from tools.validate_spec_master_shared import (
 @dataclass(frozen=True)
 class TargetValidationRows:
     spec_rows: list[dict[str, str]]
+    latest_scope_rows: list[dict[str, str]]
     footnote_rows: list[dict[str, str]]
     note_rows: list[dict[str, str]]
 
@@ -139,11 +140,30 @@ def _rows_for_target(
     footnote_rows: list[dict[str, str]],
     note_rows: list[dict[str, str]],
     target: object,
+    langs: list[str],
 ) -> TargetValidationRows:
     target_model = getattr(target, "model")
     target_region = getattr(target, "region")
+    target_langs = [getattr(target, "lang")] if (getattr(target, "lang", "") or "").strip() else langs
+    accepted_document_keys = {f"{target_model}_{target_region}"}
+    accepted_document_keys.update(
+        f"{target_model}_{target_region}_{lang.strip()}"
+        for lang in target_langs
+        if str(lang or "").strip()
+    )
+
+    latest_scope_rows: list[dict[str, str]] = []
+    for row in rows:
+        if _row_matches_target(row, model=target_model, region=target_region):
+            latest_scope_rows.append(row)
+            continue
+        document_key = _pick_document_key(row)
+        if document_key and document_key in accepted_document_keys:
+            latest_scope_rows.append(row)
+
     return TargetValidationRows(
         spec_rows=[row for row in rows if _row_matches_target(row, model=target_model, region=target_region)],
+        latest_scope_rows=latest_scope_rows,
         footnote_rows=[
             row for row in footnote_rows if _row_matches_target(row, model=target_model, region=target_region)
         ],
@@ -665,11 +685,17 @@ def _collect_target_issues(
     has_document_key_header: bool,
 ) -> list[SpecMasterValidationIssue]:
     issues: list[SpecMasterValidationIssue] = []
-    target_rows = _rows_for_target(rows=rows, footnote_rows=footnote_rows, note_rows=note_rows, target=target)
+    target_rows = _rows_for_target(
+        rows=rows,
+        footnote_rows=footnote_rows,
+        note_rows=note_rows,
+        target=target,
+        langs=langs,
+    )
 
     issues.extend(
         _collect_latest_row_issues(
-            target_rows=target_rows.spec_rows,
+            target_rows=target_rows.latest_scope_rows,
             target=target,
             spec_master_csv=spec_master_csv,
             has_document_key_header=has_document_key_header,
