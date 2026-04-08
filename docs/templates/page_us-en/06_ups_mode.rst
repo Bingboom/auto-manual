@@ -1,7 +1,13 @@
 UNINTERRUPTIBLE POWER SUPPLY (UPS)
 ==================================
 
-Connect the product to a wall outlet with the AC charging cable, then press the |AC_POWER_BUTTON_LABEL_LOWER| and power your appliances at the same time.
+.. only:: model_je_2000e
+
+   Connect the product to a wall outlet with the AC charging cable, then press the AC1/2 power button and power your appliances at the same time.
+
+.. only:: not model_je_2000e
+
+   Connect the product to a wall outlet with the AC charging cable, then press the |AC_POWER_BUTTON_LABEL_LOWER| and power your appliances at the same time.
 
 .. image:: templates/word_template/common_assets/operation/ups_mode.png
    :alt: UPS connection diagram placeholder.

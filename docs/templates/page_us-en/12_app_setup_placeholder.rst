@@ -1,75 +1,160 @@
 APP SETUP
 =========
 
-**1. Download the App and log in**
+.. only:: model_je_2000e
 
-.. image:: templates/word_template/common_assets/app/download.png
-   :alt: App download QR and marketplace placeholder.
-   :width: 320px
+   **1. Download the App and log in**
 
-Search for "Jackery" in Google Play or App Store to install the App. After that, you can register and log in.
-Alternatively, scan the QR code below to download and install the App.
+   .. image:: templates/word_template/common_assets/app/download.png
+      :alt: App download QR and marketplace placeholder.
+      :width: 320px
 
-**2. Add device**
+   Search for "Jackery" in Google Play or App Store to install the App. After that, you can register and log in.
+   Alternatively, scan the QR code below to download and install the App.
 
-2.1 Click the add-device button in the App to add your device.
+   **2. Add device**
 
-2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn it on.
-When the Wi-Fi and Bluetooth icons on the device flash, the device has entered network configuration mode.
-Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and use Bluetooth permissions.
+   2.1 Click the add-device button in the App to add your device.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
-   :alt: App add device step placeholder.
-   :width: 320px
+   2.2 Press the Main Power Button on the device to turn it on.
+   When the Wi-Fi and Bluetooth icons on the device flash, the device has entered network configuration mode.
+   Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and use Bluetooth permissions.
 
-|MAIN_POWER_BUTTON_LABEL|
+   .. image:: templates/word_template/common_assets/app/add_device.png
+      :alt: App add device step placeholder.
+      :width: 320px
 
-|AC_POWER_BUTTON_LABEL|
+   Main Power Button
 
-|DC_USB_POWER_BUTTON_LABEL|
+   AC1 Power Button
 
-2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
+   AC2 Power Button
 
-**NOTE**
+   DC/USB Power Button
 
-If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
+   **NOTE**
 
-- The device owner will share this device with other users through the App.
-- Press and hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+   After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth.
 
-2.4 After the device is successfully connected, enter your Wi-Fi password and tap the **OK** button.
+   2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
 
-**NOTE**
+   **NOTE**
 
-- Please select a Wi-Fi network in the 2.4 GHz band. The device does not support a Wi-Fi network in the 5 GHz band.
+   If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
 
-2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
+   - The device owner will share this device with other users through the App.
+   - Press and hold the POWER button and DC/USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
-   :alt: App setup result screen placeholder.
-   :width: 360px
+   2.4 After the device is successfully connected, enter your Wi-Fi password and tap the **OK** button.
 
-The above screenshots are for reference only.
+   **NOTE**
 
-**CAUTION**
+   - Please select a Wi-Fi network in the 2.4 GHz band. The device does not support a Wi-Fi network in the 5 GHz band.
 
-The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
+   2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
 
-**3. Unbind the device**
+   .. image:: templates/word_template/common_assets/app/connect_result.png
+      :alt: App setup result screen placeholder.
+      :width: 360px
 
-Click the **Settings** icon in the upper right corner of the main interface of the device to enter the settings page, and click the **Unbind** button at the bottom of the page to unbind the device.
+   The above screenshots are for reference only.
 
-**4. Notes**
+   **CAUTION**
 
-**4.1 To turn on Wi-Fi and Bluetooth**
+   The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
 
-- Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
-- Hold |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
+   **3. Unbind the device**
 
-**4.2 To turn off Wi-Fi and Bluetooth**
+   Click the **Settings** icon in the upper right corner of the main interface of the device to enter the settings page, and click the **Unbind** button at the bottom of the page to unbind the device.
 
-Hold |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
+   **4. Notes**
 
-**4.3 To reset Wi-Fi and Bluetooth**
+   **4.1 To turn on Wi-Fi and Bluetooth**
 
-Hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
+   - Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
+   - Hold the DC/USB power button and the AC1 power button at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
+
+   **4.2 To turn off Wi-Fi and Bluetooth**
+
+   Hold the DC/USB power button and the AC1 power button at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
+
+   Wi-Fi and Bluetooth will be automatically turned off if no device is connected within 2 hours.
+
+   **4.3 To reset Wi-Fi and Bluetooth**
+
+   Hold the POWER button and DC/USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
+
+.. only:: not model_je_2000e
+
+   **1. Download the App and log in**
+
+   .. image:: templates/word_template/common_assets/app/download.png
+      :alt: App download QR and marketplace placeholder.
+      :width: 320px
+
+   Search for "Jackery" in Google Play or App Store to install the App. After that, you can register and log in.
+   Alternatively, scan the QR code below to download and install the App.
+
+   **2. Add device**
+
+   2.1 Click the add-device button in the App to add your device.
+
+   2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn it on.
+   When the Wi-Fi and Bluetooth icons on the device flash, the device has entered network configuration mode.
+   Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and use Bluetooth permissions.
+
+   .. image:: templates/word_template/common_assets/app/add_device.png
+      :alt: App add device step placeholder.
+      :width: 320px
+
+   |MAIN_POWER_BUTTON_LABEL|
+
+   |AC_POWER_BUTTON_LABEL|
+
+   |DC_USB_POWER_BUTTON_LABEL|
+
+   2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
+
+   **NOTE**
+
+   If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
+
+   - The device owner will share this device with other users through the App.
+   - Press and hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+
+   2.4 After the device is successfully connected, enter your Wi-Fi password and tap the **OK** button.
+
+   **NOTE**
+
+   - Please select a Wi-Fi network in the 2.4 GHz band. The device does not support a Wi-Fi network in the 5 GHz band.
+
+   2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
+
+   .. image:: templates/word_template/common_assets/app/connect_result.png
+      :alt: App setup result screen placeholder.
+      :width: 360px
+
+   The above screenshots are for reference only.
+
+   **CAUTION**
+
+   The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
+
+   **3. Unbind the device**
+
+   Click the **Settings** icon in the upper right corner of the main interface of the device to enter the settings page, and click the **Unbind** button at the bottom of the page to unbind the device.
+
+   **4. Notes**
+
+   **4.1 To turn on Wi-Fi and Bluetooth**
+
+   - Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
+   - Hold |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
+
+   **4.2 To turn off Wi-Fi and Bluetooth**
+
+   Hold |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
+
+   **4.3 To reset Wi-Fi and Bluetooth**
+
+   Hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
