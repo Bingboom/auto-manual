@@ -102,7 +102,7 @@ LCD DISPLAY
        **Off:** The battery level is not below 20% or the product is charging.
    * - 22
      - Energy Saving Mode
-     - When the AC or DC output is turned on by pressing the |AC_POWER_BUTTON_LABEL_LOWER| or |DC_USB_POWER_BUTTON_LABEL_LOWER|:
+     - When the AC or DC output is turned on by pressing the AC or |DC_USB_POWER_BUTTON_LABEL_LOWER|:
 
        **On:** Energy Saving Mode is enabled.
 
