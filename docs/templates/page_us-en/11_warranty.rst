@@ -49,7 +49,7 @@ Exclusions
 
 Jackery's warranty does not apply to:
 
-- Any product that has beenMisused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.
+- Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.
 - Attempted repair by anyone other than an authorized facility.
 - Any product purchased through an online auction house.
 - Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.
