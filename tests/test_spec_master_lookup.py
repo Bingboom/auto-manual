@@ -292,6 +292,110 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("3か月：0℃ ～ 45℃（0-60% RH）", jp_substitutions["STORAGE_TEMPERATURE_LINE_2"])
         self.assertEqual("1年：0℃ ～ 25℃（0-60% RH）", jp_substitutions["STORAGE_TEMPERATURE_LINE_3"])
 
+    def test_lookup_should_infer_missing_row_keys_from_same_model_source_rows(self) -> None:
+        rows = [
+            {
+                "Region": "CN",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_order": "1",
+                "Line_order": "1",
+                "Row_key": "product_name",
+                "Value_source": "户外电源2000 Pro Max",
+                "Model": "JE-2000E",
+                "Source_lang": "zh",
+            },
+            {
+                "Region": "CN",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Section": "OUTPUT PORTS",
+                "Section_order": "3",
+                "Row_order": "2",
+                "Line_order": "1",
+                "Row_key": "usb_c",
+                "Slot_key": "front.low.label",
+                "Value_source": "USB-C 30W输出端口",
+                "Model": "JE-2000E",
+                "Source_lang": "zh",
+            },
+            {
+                "Region": "CN",
+                "Is_Latest": "TRUE",
+                "Page": "operation_guide",
+                "Section": "SETTINGS",
+                "Section_order": "8",
+                "Row_order": "1",
+                "Line_order": "1",
+                "Row_key": "default_standby_duration",
+                "Slot_key": "value",
+                "Value_source": "2小时",
+                "Model": "JE-2000E",
+                "Source_lang": "zh",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_order": "1",
+                "Row_key": "",
+                "Value_source": "Jackery HomePower 2000 Plus",
+                "Model": "JE-2000E",
+                "Source_lang": "en",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Section": "OUTPUT PORTS",
+                "Section_order": "3",
+                "Row_order": "2",
+                "Row_key": "",
+                "Slot_key": "[front.low.label](front.low.label)",
+                "Value_source": "USB-C 30W Output",
+                "Model": "JE-2000E",
+                "Source_lang": "en",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "operation_guide",
+                "Section": "SETTINGS",
+                "Section_order": "8",
+                "Row_order": "1",
+                "Row_key": "",
+                "Slot_key": "value",
+                "Value_source": "2 hours",
+                "Model": "JE-2000E",
+                "Source_lang": "en",
+            },
+        ]
+
+        match = resolve_product_name_from_rows(
+            rows,
+            model="JE-2000E",
+            region="US",
+            lang="en",
+        )
+
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual("Jackery HomePower 2000 Plus", match.product_name)
+
+        substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JE-2000E",
+            region="US",
+            lang="en",
+        )
+
+        self.assertEqual("USB-C 30W Output", substitutions["FRONT_USB_C_LOW_LABEL"])
+        self.assertEqual("2 hours", substitutions["DEFAULT_STANDBY_DURATION"])
+
 
 if __name__ == "__main__":
     unittest.main()

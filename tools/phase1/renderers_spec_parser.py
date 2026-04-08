@@ -10,6 +10,7 @@ from typing import cast
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 from ..utils.spec_master import is_page_value_row, page_value_matches, source_language_for_row
+from ..utils.spec_master_row_helpers import prepare_rows_for_lookup
 
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
@@ -239,7 +240,8 @@ def _parse_spec_master_sections(
             title_lang=_pick_title_lang(lang, vars_map),
         )
 
-    for idx, raw in enumerate(blocks):
+    prepared_blocks = prepare_rows_for_lookup(blocks)
+    for idx, raw in enumerate(prepared_blocks):
         row = dict(raw)
         overflow = row.get(None)
         if isinstance(overflow, list) and any(str(x).strip() for x in overflow):

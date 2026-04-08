@@ -48,6 +48,7 @@ Meaning:
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
 - `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
+- runtime lookup and spec rendering now infer missing `Spec_Master.csv Row_key` values from same-model source rows when `Page + Section + Row_order + Line_order + Slot_key` still align across languages
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
@@ -268,6 +269,7 @@ Parallel-language template note:
 - `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - leave `Region` / `Model` blank when one symbols row is shared across manuals
+- if a target model is still missing dedicated symbols rows, runtime rendering can reuse one same-region fallback symbols table only when the donor tables are identical; otherwise it raises an ambiguity error
 - `sku_scope` is no longer used in [`symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
 
 `Spec_Master.csv` note:

@@ -18,6 +18,7 @@ from tools.utils.spec_master_row_helpers import (
     _pick_lang_value,
     _pick_row_region,
     _read_csv_rows,
+    prepare_rows_for_lookup,
     resolve_page_value_placeholder_name,
 )
 
@@ -35,8 +36,9 @@ def resolve_spec_value_from_rows(
     value_role: str | None = None,
     variant_key: str | None = None,
 ) -> SpecValueMatch | None:
+    prepared_rows = prepare_rows_for_lookup(rows)
     for row in _iter_ranked_rows(
-        rows,
+        prepared_rows,
         model=model,
         region=region,
         lang=lang,
@@ -72,9 +74,10 @@ def collect_matching_spec_rows(
     value_role: str | None = None,
     variant_key: str | None = None,
 ) -> tuple[dict[str, str], ...]:
+    prepared_rows = prepare_rows_for_lookup(rows)
     return tuple(
         _iter_ranked_rows(
-            rows,
+            prepared_rows,
             model=model,
             region=region,
             lang=lang,
@@ -103,9 +106,10 @@ def collect_spec_value_matches_from_rows(
     value_role: str | None = None,
     variant_key: str | None = None,
 ) -> tuple[SpecValueMatch, ...]:
+    prepared_rows = prepare_rows_for_lookup(rows)
     matches: list[SpecValueMatch] = []
     for row in collect_matching_spec_rows(
-        rows,
+        prepared_rows,
         model=model,
         region=region,
         lang=lang,
@@ -188,10 +192,11 @@ def resolve_template_substitutions_from_rows(
     region: str | None,
     lang: str,
 ) -> dict[str, str]:
+    prepared_rows = prepare_rows_for_lookup(rows)
     substitutions: dict[str, str] = {}
 
     product_match = resolve_spec_value_from_rows(
-        rows,
+        prepared_rows,
         model=model,
         region=region,
         lang=lang,
@@ -205,7 +210,7 @@ def resolve_template_substitutions_from_rows(
             substitutions["PRODUCT_SHORT_NAME"] = short_name
 
     model_match = resolve_spec_value_from_rows(
-        rows,
+        prepared_rows,
         model=model,
         region=region,
         lang=lang,
@@ -216,7 +221,7 @@ def resolve_template_substitutions_from_rows(
         substitutions["MODEL_NO"] = model_match.value
 
     for row in _iter_ranked_rows(
-        rows,
+        prepared_rows,
         model=model,
         region=region,
         lang=lang,
@@ -237,7 +242,7 @@ def resolve_template_substitutions_from_rows(
 
     for row_key, (placeholder_base, pages) in _DERIVED_MULTILINE_PLACEHOLDERS.items():
         for row in _iter_ranked_rows(
-            rows,
+            prepared_rows,
             model=model,
             region=region,
             lang=lang,
@@ -265,8 +270,9 @@ def resolve_product_name_from_rows(
     region: str | None,
     lang: str,
 ) -> ProductNameMatch | None:
+    prepared_rows = prepare_rows_for_lookup(rows)
     match = resolve_spec_value_from_rows(
-        rows,
+        prepared_rows,
         model=model,
         region=region,
         lang=lang,
@@ -285,7 +291,7 @@ def resolve_product_name_from_spec_master(
     region: str | None,
     lang: str,
 ) -> ProductNameMatch | None:
-    rows = _read_csv_rows(spec_master_csv)
+    rows = read_spec_master_rows(spec_master_csv)
     if not rows:
         return None
     return resolve_product_name_from_rows(rows, model=model, region=region, lang=lang)
@@ -298,11 +304,14 @@ def resolve_template_substitutions_from_spec_master(
     region: str | None,
     lang: str,
 ) -> dict[str, str]:
-    rows = _read_csv_rows(spec_master_csv)
+    rows = read_spec_master_rows(spec_master_csv)
     if not rows:
         return {}
     return resolve_template_substitutions_from_rows(rows, model=model, region=region, lang=lang)
 
 
 def read_spec_master_rows(spec_master_csv: Path) -> list[dict[str, str]]:
-    return _read_csv_rows(spec_master_csv)
+    rows = _read_csv_rows(spec_master_csv)
+    if not rows:
+        return []
+    return prepare_rows_for_lookup(rows)

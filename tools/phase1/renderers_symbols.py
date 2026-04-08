@@ -259,6 +259,69 @@ def _matches_symbols_target(
     return _scope_allows(block.get("sku_scope", "ALL"), sku_id)
 
 
+def _symbols_fallback_signature(
+    block: dict[str, str],
+    *,
+    lang_col: str,
+) -> tuple[str, str, str, str, str]:
+    return (
+        (block.get("column_group") or "").strip().lower(),
+        (block.get("symbol_key") or "").strip(),
+        (block.get("image_path") or "").strip(),
+        (block.get(lang_col) or "").strip(),
+        (block.get("order") or "").strip(),
+    )
+
+
+def _select_symbols_fallback_blocks(
+    blocks: list[dict[str, str]],
+    *,
+    lang: str,
+    lang_col: str,
+    vars_map: dict[str, str],
+) -> list[dict[str, str]]:
+    target_region = _pick_target_region(vars_map)
+    target_model = _pick_target_model(vars_map)
+    if not target_region:
+        return []
+
+    donor_sets: dict[str, list[dict[str, str]]] = {}
+    for block in blocks:
+        if not _enabled(block.get("enabled", "1")):
+            continue
+        block_region = (block.get("Region") or block.get("region") or "").strip()
+        block_model = (block.get("Model") or block.get("model") or "").strip()
+        if not block_region or block_region.casefold() != target_region.casefold():
+            continue
+        if not block_model:
+            continue
+        if target_model and block_model.casefold() == target_model.casefold():
+            continue
+        donor_sets.setdefault(block_model, []).append(block)
+
+    if not donor_sets:
+        return []
+
+    signature_sets = {
+        donor_model: tuple(
+            sorted(
+                _symbols_fallback_signature(block, lang_col=lang_col)
+                for block in donor_blocks
+            )
+        )
+        for donor_model, donor_blocks in donor_sets.items()
+    }
+    if len(set(signature_sets.values())) > 1:
+        donor_list = ", ".join(sorted(signature_sets))
+        raise ValueError(
+            "symbols page has multiple fallback tables for "
+            f"region={target_region} lang={lang}: {donor_list}"
+        )
+
+    donor_model = sorted(donor_sets)[0]
+    return donor_sets[donor_model]
+
+
 def _rst_heading(title: str) -> list[str]:
     title = rst_escape(title)
     return [title, "-" * len(title)]
@@ -363,11 +426,22 @@ def _collect_icon_rows(
     if lang_col not in blocks[0]:
         raise ValueError(f"content csv missing language column: {lang_col}")
 
+    selected_blocks = [
+        block
+        for block in blocks
+        if _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map)
+    ]
+    if not selected_blocks:
+        selected_blocks = _select_symbols_fallback_blocks(
+            blocks,
+            lang=lang,
+            lang_col=lang_col,
+            vars_map=vars_map,
+        )
+
     groups: dict[str, list[dict[str, str]]] = {"left": [], "right": []}
-    for block in blocks:
+    for block in selected_blocks:
         if not _enabled(block.get("enabled", "1")):
-            continue
-        if not _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
             continue
 
         block_type = (block.get("block_type") or "").strip()

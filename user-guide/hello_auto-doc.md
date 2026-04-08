@@ -85,6 +85,7 @@ The manual system now has four layers, but they are used at different stages.
    - For queue-driven builds, Feishu phase2 tables remain the structured-data source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2` refreshes the frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
    - during that refresh, `Spec_Master.csv Slot_key` is normalized back to plain tokens like `front.label` when the source table stores markdown-link wrappers
+   - runtime lookup and spec rendering now infer missing `Spec_Master.csv Row_key` values from same-model source rows when `Page + Section + Row_order + Line_order + Slot_key` still line up across languages
    - the sync also resolves full field names through Base field metadata, so long columns like `Row_label_footnote_refs` do not disappear when the CLI view output abbreviates them
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
    - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically, so the normal shared config still works
@@ -118,7 +119,7 @@ The manual system now has four layers, but they are used at different stages.
    - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
-   - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
+   - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared, and runtime only reuses a same-region fallback symbols table when the donor tables are identical
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row
 
 3. Review working layer

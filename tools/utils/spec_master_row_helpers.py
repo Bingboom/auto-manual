@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, defaultdict
 import csv
 from pathlib import Path
 import re
@@ -20,6 +20,8 @@ from tools.utils.spec_master_shared import (
     _SOURCE_LANGUAGE_NORMALIZATION,
     _SOURCE_SHARED_BASES,
 )
+
+_MARKDOWN_LINK_RE = re.compile(r"^\[(?P<label>.+?)\]\((?P<target>.+?)\)$")
 
 def _read_csv_rows(path: Path) -> list[dict[str, str]]:
     if not path.exists():
@@ -182,7 +184,13 @@ def _pick_row_region(row: dict[str, str]) -> str:
 
 
 def _normalize_slot_key(raw: str) -> str:
-    tokens = [token.strip().lower() for token in str(raw).replace("/", ".").split(".") if token.strip()]
+    text = str(raw or "").strip()
+    if not text:
+        return ""
+    match = _MARKDOWN_LINK_RE.match(text)
+    if match is not None:
+        text = (match.group("target") or match.group("label") or "").strip()
+    tokens = [token.strip().lower() for token in text.replace("/", ".").split(".") if token.strip()]
     return ".".join(tokens)
 
 
@@ -249,6 +257,58 @@ def _pick_slot_key(row: dict[str, str]) -> str:
         variant_key=_first_non_empty(row, ["Variant_key", "variant_key"]).lower(),
         value_role=_first_non_empty(row, ["Value_role", "value_role"]).lower(),
     )
+
+
+def _row_lookup_signature(
+    row: dict[str, str],
+    *,
+    include_region: bool,
+) -> tuple[str, str, str, str, str, str, str, str]:
+    return (
+        _pick_row_model(row),
+        _pick_row_region(row) if include_region else "",
+        ",".join(normalize_page_tokens(_first_non_empty(row, ["Page", "page"]))),
+        _pick_section(row).strip().upper(),
+        _pick_section_order(row),
+        _first_non_empty(row, ["Row_order", "row_order"]),
+        _normalize_line_order_suffix(_first_non_empty(row, ["Line_order", "line_order"])),
+        _pick_slot_key(row),
+    )
+
+
+def prepare_rows_for_lookup(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    prepared = [dict(row) for row in rows]
+
+    for row in prepared:
+        normalized_slot_key = _pick_slot_key(row)
+        slot_key_column = _first_existing_key(row, ("Slot_key", "slot_key"))
+        if slot_key_column is not None and normalized_slot_key:
+            row[slot_key_column] = normalized_slot_key
+
+    exact_index: dict[tuple[str, str, str, str, str, str, str, str], set[str]] = defaultdict(set)
+    model_index: dict[tuple[str, str, str, str, str, str, str, str], set[str]] = defaultdict(set)
+    for row in prepared:
+        row_key = _pick_row_key(row)
+        if not row_key:
+            continue
+        exact_index[_row_lookup_signature(row, include_region=True)].add(row_key)
+        model_index[_row_lookup_signature(row, include_region=False)].add(row_key)
+
+    for row in prepared:
+        if _pick_row_key(row):
+            continue
+        row_key_column = _first_existing_key(row, ("Row_key", "row_key")) or "Row_key"
+        exact_matches = exact_index.get(_row_lookup_signature(row, include_region=True), set())
+        fallback_matches = model_index.get(_row_lookup_signature(row, include_region=False), set())
+        inferred = ""
+        if len(exact_matches) == 1:
+            inferred = next(iter(exact_matches))
+        elif len(fallback_matches) == 1:
+            inferred = next(iter(fallback_matches))
+        if inferred:
+            row[row_key_column] = inferred
+
+    return prepared
 
 
 def _pick_usage_type(row: dict[str, str]) -> str:

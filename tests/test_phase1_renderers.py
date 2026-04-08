@@ -304,6 +304,83 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("AC入力", out)
         self.assertIn("急速充電モード: 100V-120V\\textasciitilde{}50/60Hz、15A Max、1450W", out)
 
+    def test_render_spec_page_can_infer_missing_row_keys_from_source_rows(self) -> None:
+        blocks = [
+            {
+                "Region": "CN",
+                "Model": "JE-2000E",
+                "Source_lang": "zh",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_order": "1",
+                "Line_order": "1",
+                "Row_key": "product_name",
+                "Row_label_source": "产品名称",
+                "Param_source": "",
+                "Value_source": "户外电源2000 Pro Max",
+            },
+            {
+                "Region": "CN",
+                "Model": "JE-2000E",
+                "Source_lang": "zh",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_order": "2",
+                "Line_order": "1",
+                "Row_key": "model_no",
+                "Row_label_source": "型号",
+                "Param_source": "",
+                "Value_source": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Model": "JE-2000E",
+                "Source_lang": "en",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_order": "1",
+                "Line_order": "1",
+                "Row_key": "",
+                "Row_label_source": "Product Name",
+                "Param_source": "",
+                "Value_source": "Jackery HomePower 2000 Plus",
+            },
+            {
+                "Region": "US",
+                "Model": "JE-2000E",
+                "Source_lang": "en",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Section": "GENERAL INFO",
+                "Section_order": "1",
+                "Row_order": "2",
+                "Line_order": "1",
+                "Row_key": "",
+                "Row_label_source": "Model No.",
+                "Param_source": "",
+                "Value_source": "JHP-2000A",
+            },
+        ]
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "JE-2000E", "region": "US"},
+        )
+
+        self.assertIn("Product Name", out)
+        self.assertIn("Jackery HomePower 2000 Plus", out)
+        self.assertIn("Model No.", out)
+        self.assertIn("JHP-2000A", out)
+
     def test_render_spec_page_rejects_unquoted_comma_overflow(self) -> None:
         blocks = self._spec_master_blocks()
         blocks[0][None] = [" 15A Max", " 1750W Max"]
@@ -455,6 +532,46 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         self.assertIn("weee2.png", out)
         self.assertIn("Battery disposal meaning.", out)
+
+    def test_render_symbols_page_can_fallback_to_same_region_symbols_table(self) -> None:
+        blocks = self._symbols_blocks()
+        for block in blocks:
+            block["Region"] = "US"
+            block["Model"] = "JE-1000F"
+        blocks[0]["text_en"] = "Fallback warning."
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JE-2000E", "region": "US"},
+        )
+
+        self.assertIn("Fallback warning.", out)
+        self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_should_reject_ambiguous_region_fallback_tables(self) -> None:
+        blocks = self._symbols_blocks()
+        for block in blocks:
+            block["Region"] = "US"
+            block["Model"] = "JE-1000F"
+
+        donor_blocks = [dict(block) for block in self._symbols_blocks()]
+        for block in donor_blocks:
+            block["Region"] = "US"
+            block["Model"] = "JE-3000X"
+        donor_blocks[0]["text_en"] = "Different fallback warning."
+        blocks.extend(donor_blocks)
+
+        with self.assertRaisesRegex(ValueError, "multiple fallback tables"):
+            renderers.render_symbols_page(
+                template=self._symbols_template(),
+                blocks=blocks,
+                sku_id="JB1000",
+                lang="en",
+                vars_map={"model": "JE-2000E", "region": "US"},
+            )
 
     def test_render_symbols_page_rejects_unknown_symbol_key(self) -> None:
         blocks = self._symbols_blocks()
