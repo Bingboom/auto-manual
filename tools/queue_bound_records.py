@@ -22,6 +22,7 @@ from tools.document_link_queue import (
     parse_queue_records as _parse_queue_records_impl,
     queue_group_build_family,
     queue_group_lang,
+    queue_record_group_key,
     queue_record_key,
     resolve_target_for_record as _resolve_target_for_record_impl,
     select_pending_queue_records as _select_pending_queue_records_impl,
@@ -192,7 +193,7 @@ def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRe
         resolve_config_path_for_task=_resolve_config_path_func_provider(),
         config_loader=_config_loader_provider(),
         queue_by_document_key=_queue_by_document_key,
-        queue_record_key=queue_record_key,
+        queue_record_group_key=queue_record_group_key,
         resolve_queue_workflow_action=resolve_queue_workflow_action,
     )
 
