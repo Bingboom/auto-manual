@@ -191,6 +191,7 @@ def build_success_fields(
     built_at: datetime,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    status_notes: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     return _build_success_fields_impl(
         version=version,
@@ -199,6 +200,7 @@ def build_success_fields(
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        status_notes=status_notes,
         normalize_workflow_action=module.normalize_workflow_action,
         normalize_doc_phase=module.normalize_doc_phase,
         workflow_action_label=module.workflow_action_label,

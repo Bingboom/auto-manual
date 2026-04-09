@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import csv
 import json
 import tempfile
 import unittest
@@ -24,6 +25,27 @@ class _FakeSource:
     ) -> list[dict[str, object]]:
         self.calls.append((base_token, table_id, view_id))
         return list(self.records_by_table[table_id])
+
+
+class _FakeSourceWithIds(_FakeSource):
+    def __init__(
+        self,
+        records_by_table: dict[str, list[dict[str, object]]],
+        records_with_ids_by_table: dict[str, list[dict[str, object]]],
+    ) -> None:
+        super().__init__(records_by_table)
+        self.records_with_ids_by_table = records_with_ids_by_table
+        self.calls_with_ids: list[tuple[str, str, str | None]] = []
+
+    def fetch_records_with_ids(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        view_id: str | None,
+    ) -> list[dict[str, object]]:
+        self.calls_with_ids.append((base_token, table_id, view_id))
+        return list(self.records_with_ids_by_table[table_id])
 
 
 class TestSyncData(unittest.TestCase):
@@ -297,6 +319,139 @@ class TestSyncData(unittest.TestCase):
             self.assertIn("Product Name,1,product_name,keep existing remark", mapping_text)
             self.assertEqual(1, len(result.derived_files))
             self.assertEqual("row_key_mapping", result.derived_files[0].logical_name)
+
+    def test_sync_phase2_snapshot_should_normalize_feishu_link_refs_without_changing_latest_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "spec_footnotes": {
+                                "table_id_env": "SPEC_FOOTNOTES_TABLE",
+                            },
+                            "spec_master": {
+                                "table_id_env": "SPEC_MASTER_TABLE",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+
+            footnote_fields = {
+                "Footnote_id": "ac_bypass",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "Is_Latest": True,
+                "Page": "specifications",
+                "Footnote_order": 1,
+                "Text_en": "Bypass footnote",
+                "Enabled": True,
+            }
+            fake_source = _FakeSourceWithIds(
+                records_by_table={
+                    "tbl_footnotes": [{"fields": footnote_fields}],
+                    "tbl_master": [
+                        {
+                            "fields": {
+                                "document_key": "JE-1000F_US",
+                                "Region": "US",
+                                "Is_Latest": False,
+                                "Page": "ups_mode",
+                                "Section": "OUTPUT PORTS",
+                                "Section_order": 3,
+                                "Row_order": 1,
+                                "Row_key": "ups_bypass_output",
+                                "Slot_key": "text",
+                                "Row_label_source": "UPS Bypass Output",
+                                "Line_order": 1,
+                                "Value_source": "1500W",
+                                "Model": "JE-1000F",
+                                "Source_lang": "en",
+                            }
+                        },
+                        {
+                            "fields": {
+                                "document_key": "JE-1000F_US",
+                                "Region": "US",
+                                "Is_Latest": True,
+                                "Page": "ups_mode",
+                                "Section": "OUTPUT PORTS",
+                                "Section_order": 3,
+                                "Row_order": 1,
+                                "Row_key": "ups_bypass_output",
+                                "Slot_key": "text",
+                                "Row_label_source": "UPS Bypass Output",
+                                "Line_order": 1,
+                                "Value_source": "12A (1440W)",
+                                "Model": "JE-2000E",
+                                "Source_lang": "en",
+                            }
+                        },
+                        {
+                            "fields": {
+                                "document_key": "JE-1000F_US",
+                                "Region": "US",
+                                "Is_Latest": True,
+                                "Page": "specifications",
+                                "Section": "INPUT PORTS",
+                                "Section_order": 2,
+                                "Row_order": 1,
+                                "Row_key": "ac_input",
+                                "Slot_key": "",
+                                "Row_label_source": "1 x AC Input",
+                                "Line_order": 1,
+                                "Param_source": "Bypass Mode",
+                                "Param_footnote_refs": {"id": "rec_ac_bypass"},
+                                "Value_source": "100V-120V~60Hz, 12A Max",
+                                "Model": "JE-1000F",
+                                "Source_lang": "en",
+                            }
+                        },
+                    ],
+                },
+                records_with_ids_by_table={
+                    "tbl_footnotes": [{"record_id": "rec_ac_bypass", "fields": footnote_fields}],
+                },
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "SPEC_FOOTNOTES_TABLE": "tbl_footnotes",
+                    "SPEC_MASTER_TABLE": "tbl_master",
+                },
+                clear=False,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["spec_footnotes", "spec_master"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            with (root / "data" / "phase2" / "Spec_Master.csv").open("r", encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+
+            self.assertEqual([("app_token", "tbl_footnotes", None)], fake_source.calls_with_ids)
+
+            ac_input_row = next(row for row in rows if row["Row_key"] == "ac_input")
+            self.assertEqual("ac_bypass", ac_input_row["Param_footnote_refs"])
+
+            latest_rows = [row for row in rows if row["Row_key"] == "ups_bypass_output"]
+            self.assertEqual(
+                [("JE-1000F", "FALSE", "1500W"), ("JE-2000E", "TRUE", "12A (1440W)")],
+                [(row["Model"], row["Is_Latest"], row["Value_source"]) for row in latest_rows],
+            )
 
     def test_sync_phase2_snapshot_should_fail_with_aggregated_preflight_errors(self) -> None:
         cfg = {

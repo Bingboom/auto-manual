@@ -317,6 +317,7 @@ def build_success_fields(
     built_at: datetime,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    status_notes: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     return _build_success_fields_service(
         _service_module(),
@@ -326,6 +327,7 @@ def build_success_fields(
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        status_notes=status_notes,
     )
 
 

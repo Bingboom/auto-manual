@@ -317,6 +317,41 @@ class TestValidateSpecMaster(unittest.TestCase):
             self.assertNotIn("INVALID_DOCUMENT_KEY", codes)
             self.assertNotIn("MISSING_DOCUMENT_KEY", codes)
 
+    def test_collect_spec_master_validation_issues_should_report_latest_row_claiming_another_targets_document_key(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "document_key,Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Row_label_source,Value_source",
+                        "JE-1000F_US,JE-1000F,US,en,TRUE,specifications,product_name,,,Product Name,Jackery 1000",
+                        "JE-1000F_US,JE-1000F,US,en,TRUE,specifications,model_no,,,Model No.,JE-1000F",
+                        "JE-1000F_US,JE-1000F,US,en,TRUE,Product overview,main_power_button,label,1,Main POWER Button,Main POWER Button",
+                        "JE-1000F_US,JE-2000E,US,en,TRUE,ups_mode,ups_bypass_output,text,1,UPS Bypass Output,12A (1440W)",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            invalid_document_key_messages = [
+                issue.message for issue in issues if issue.code == "INVALID_DOCUMENT_KEY"
+            ]
+            self.assertTrue(invalid_document_key_messages)
+            self.assertTrue(
+                any("JE-1000F_US" in message and "JE-2000E_US" in message for message in invalid_document_key_messages)
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

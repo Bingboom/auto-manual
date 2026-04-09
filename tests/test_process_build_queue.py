@@ -1659,22 +1659,23 @@ class TestProcessBuildQueue(unittest.TestCase):
                     dry_run=False,
                 )
 
-        self.assertEqual(1, exit_code)
+        self.assertEqual(0, exit_code)
         self.assertEqual(2, len(captured_upserts))
-        failure_payload = captured_upserts[1]["record"]
-        self.assertIsInstance(failure_payload, dict)
+        success_payload = captured_upserts[1]["record"]
+        self.assertIsInstance(success_payload, dict)
         self.assertEqual(
             generated_path.resolve(strict=False).as_posix(),
-            failure_payload[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
+            success_payload[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
         )
         self.assertEqual(
             "https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
-            failure_payload[process_build_queue.DOCUMENT_LINK_FIELD],
+            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
         )
-        self.assertFalse(failure_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
-        self.assertIn("FAILED", failure_payload[process_build_queue.RESULT_FIELD])
-        self.assertIn("latest_drive_link_preserved", failure_payload[process_build_queue.RESULT_FIELD])
-        self.assertIn("Permission denied [99991679]", failure_payload[process_build_queue.RESULT_FIELD])
+        self.assertEqual([process_build_queue.DONE_TRIGGER_VALUE], success_payload[process_build_queue.TRIGGER_FIELD])
+        self.assertFalse(success_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertIn("SUCCESS", success_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("drive_only", success_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("Permission denied [99991679]", success_payload[process_build_queue.RESULT_FIELD])
         sync_mock.assert_called_once_with(
             config_path=Path("config.ja.yaml"),
             data_root="data/phase2",

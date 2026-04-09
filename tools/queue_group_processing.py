@@ -12,6 +12,11 @@ class QueueGroupProcessingResult:
     failure_message: str | None = None
 
 
+def _is_recoverable_wiki_attach_failure(message: str) -> bool:
+    text = str(message or "").strip().lower()
+    return "permission denied" in text
+
+
 def process_queue_record_group(
     *,
     group: list[Any],
@@ -46,6 +51,7 @@ def process_queue_record_group(
     record = group[0]
     word_output_path: Path | None = None
     drive_url: str | None = None
+    wiki_attach_warning: str | None = None
     group_key = queue_record_key(record)
     row_count = len(group)
     try:
@@ -99,13 +105,24 @@ def process_queue_record_group(
             word_output_path=word_output_path,
             identity=identity,
         )
-        document_link_url = move_drive_file_to_wiki(
-            cli_bin=cli_bin,
-            identity=identity,
-            file_token=file_token,
-            drive_url=drive_url,
-            destination=wiki_destination,
-        )
+        try:
+            document_link_url = move_drive_file_to_wiki(
+                cli_bin=cli_bin,
+                identity=identity,
+                file_token=file_token,
+                drive_url=drive_url,
+                destination=wiki_destination,
+            )
+        except Exception as exc:
+            recovered_message = str(exc).strip()
+            if not drive_url or not _is_recoverable_wiki_attach_failure(recovered_message):
+                raise
+            wiki_attach_warning = recovered_message
+            document_link_url = drive_url
+            print(
+                f"[build-queue] WARNING wiki attach failed for {group_key}; using Drive link {drive_url}",
+                file=stderr,
+            )
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
@@ -114,6 +131,14 @@ def process_queue_record_group(
             built_at=built_at,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
+            status_notes=(
+                (
+                    "drive_only",
+                    f"wiki_attach_failed={wiki_attach_warning}",
+                )
+                if wiki_attach_warning
+                else ()
+            ),
         )
         for group_record in group:
             source.upsert_record(
