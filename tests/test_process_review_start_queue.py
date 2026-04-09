@@ -210,6 +210,71 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual(1, len(grouped))
         self.assertEqual(["rec_en", "rec_fr"], [record.record_id for record in grouped[0]])
 
+    def test_review_start_record_key_should_ignore_link_style_document_key_for_display(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_US_en_0.1",
+            document_key='{"id":"recvfw0zG4PzxS"}',
+            build_family="us-en",
+            version="0.1",
+            lang="en",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+
+        self.assertEqual("JE-1000F_US", process_review_start_queue.review_start_record_key(record))
+
+    def test_group_review_start_records_should_not_collapse_link_style_document_key_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "config.us.yaml").write_text("build: {}\n", encoding="utf-8")
+            cfgs = {
+                "config.us.yaml": {"build": {"queue_by_document_key": True}},
+            }
+            records = [
+                process_review_start_queue.ReviewStartRecord(
+                    record_id="rec_en_1",
+                    document_id="JE-1000F_US_en_0.1",
+                    document_key='{"id":"recvfw0zG4PzxS"}',
+                    build_family="us-en",
+                    version="0.1",
+                    lang="en",
+                    review_status="NotStarted",
+                    review_trigger_value=True,
+                    git_ref="",
+                    pr_url="",
+                ),
+                process_review_start_queue.ReviewStartRecord(
+                    record_id="rec_en_2",
+                    document_id="JE-1000F_US_en_0.1",
+                    document_key='{"id":"recvfw0zG4PzxS"}',
+                    build_family="us-en",
+                    version="0.1",
+                    lang="en",
+                    review_status="NotStarted",
+                    review_trigger_value=True,
+                    git_ref="",
+                    pr_url="",
+                ),
+            ]
+
+            with mock.patch.object(
+                process_review_start_queue,
+                "resolve_config_path_for_task",
+                side_effect=lambda *, region, lang, build_family=None: root / "config.us.yaml",
+            ), mock.patch.object(
+                process_review_start_queue,
+                "load_config",
+                side_effect=lambda path: cfgs[path.name],
+            ):
+                grouped = process_review_start_queue.group_review_start_records(records)
+
+        self.assertEqual(2, len(grouped))
+        self.assertEqual(["rec_en_1"], [record.record_id for record in grouped[0]])
+        self.assertEqual(["rec_en_2"], [record.record_id for record in grouped[1]])
+
     def test_group_review_start_records_should_not_collapse_same_document_key_for_single_language_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

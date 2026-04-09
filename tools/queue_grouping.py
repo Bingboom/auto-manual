@@ -10,7 +10,7 @@ def group_pending_queue_records(
     resolve_config_path_for_task: Callable[..., Any],
     config_loader: Callable[[Any], dict[str, Any]],
     queue_by_document_key: Callable[[dict[str, Any]], bool],
-    queue_record_key: Callable[[Any], str],
+    queue_record_group_key: Callable[[Any], str],
     resolve_queue_workflow_action: Callable[[Any], str | None],
 ) -> list[list[Any]]:
     grouped: list[list[Any]] = []
@@ -25,7 +25,7 @@ def group_pending_queue_records(
         )
         cfg = config_loader(config_path)
         if queue_by_document_key(cfg):
-            key = queue_record_key(record)
+            key = queue_record_group_key(record)
         else:
             key = record.record_id
         existing_index = index_by_key.get(key)

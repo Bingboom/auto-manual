@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.document_link_queue import looks_like_explicit_document_key
+
 DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
 BUILD_FAMILY_FIELD = "Build_family"
@@ -164,10 +166,6 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
     return f"codex/review-{slug}"
 
 
-def looks_like_explicit_document_key(value: str) -> bool:
-    return bool(re.fullmatch(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+", value.strip()))
-
-
 def document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
     candidate = document_id.strip()
     version_text = version.strip()
@@ -214,14 +212,14 @@ def resolve_target_for_review_start(
 
 
 def review_start_record_key(record: ReviewStartRecord) -> str:
-    if record.document_key.strip():
+    if looks_like_explicit_document_key(record.document_key):
         return record.document_key.strip().upper()
     fallback_key = document_key_from_document_id(
         document_id=record.document_id,
         lang=record.lang,
         version=record.version,
     )
-    if fallback_key:
+    if looks_like_explicit_document_key(fallback_key):
         return fallback_key.upper()
     return record.record_id
 
@@ -234,7 +232,9 @@ def queue_by_document_key(cfg: dict[str, Any]) -> bool:
 
 def review_start_group_key(record: ReviewStartRecord, *, cfg: dict[str, Any]) -> str:
     if queue_by_document_key(cfg):
-        return review_start_record_key(record)
+        if looks_like_explicit_document_key(record.document_key):
+            return record.document_key.strip().upper()
+        return record.record_id
     return record.record_id
 
 

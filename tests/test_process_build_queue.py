@@ -146,6 +146,21 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("JE-1000F", model)
         self.assertEqual("US", region)
 
+    def test_queue_record_key_should_ignore_link_style_document_key_for_display(self) -> None:
+        record = process_build_queue.QueueRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_US_en_1.0",
+            document_key='{"id":"recvfw0zG4PzxS"}',
+            version="1.0",
+            lang="en",
+            doc_phase="",
+            git_ref="",
+            trigger_value="Y",
+            immediate_trigger_value=False,
+        )
+
+        self.assertEqual("JE-1000F_US", process_build_queue.queue_record_key(record))
+
     def test_resolve_config_path_for_task_should_prefer_lang_specific_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
@@ -535,6 +550,43 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(
             [["rec_us_en"], ["rec_us_fr"]],
+            [[record.record_id for record in group] for group in grouped],
+        )
+
+    def test_group_pending_queue_records_should_not_merge_link_style_document_key_rows(self) -> None:
+        records = [
+            process_build_queue.QueueRecord(
+                record_id="rec_us_1",
+                document_id="JE-1000F_US_en_1.0",
+                document_key='{"id":"recvfw0zG4PzxS"}',
+                version="1.0",
+                lang="en",
+                workflow_action="Build Draft Package",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1000f-us-en",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+                build_family="us-en",
+            ),
+            process_build_queue.QueueRecord(
+                record_id="rec_us_2",
+                document_id="JE-1000F_US_en_1.0",
+                document_key='{"id":"recvfw0zG4PzxS"}',
+                version="1.0",
+                lang="en",
+                workflow_action="Build Draft Package",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1000f-us-en",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+                build_family="us-en",
+            ),
+        ]
+
+        grouped = process_build_queue.group_pending_queue_records(records)
+
+        self.assertEqual(
+            [["rec_us_1"], ["rec_us_2"]],
             [[record.record_id for record in group] for group in grouped],
         )
 

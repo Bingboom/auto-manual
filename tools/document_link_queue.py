@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from typing import Any, Callable
+
+_EXPLICIT_DOCUMENT_KEY_RE = re.compile(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+")
 
 
 def scalar_text(value: Any) -> str:
@@ -255,16 +258,28 @@ def document_key_from_document_id(*, document_id: str, lang: str, version: str) 
     return candidate.strip()
 
 
+def looks_like_explicit_document_key(value: Any) -> bool:
+    return bool(_EXPLICIT_DOCUMENT_KEY_RE.fullmatch(str(value or "").strip()))
+
+
+def explicit_document_key(value: Any) -> str:
+    text = str(value or "").strip()
+    if looks_like_explicit_document_key(text):
+        return text
+    return ""
+
+
 def resolve_target_for_record(record: Any, *, parse_document_key: Callable[[str], tuple[str, str]]) -> tuple[str, str]:
     candidates: list[str] = []
-    if record.document_key.strip():
-        candidates.append(record.document_key.strip())
+    explicit_key = explicit_document_key(record.document_key)
+    if explicit_key:
+        candidates.append(explicit_key)
     fallback_key = document_key_from_document_id(
         document_id=record.document_id,
         lang=record.lang,
         version=record.version,
     )
-    if fallback_key and fallback_key not in candidates:
+    if looks_like_explicit_document_key(fallback_key) and fallback_key not in candidates:
         candidates.append(fallback_key)
 
     errors: list[str] = []
@@ -284,15 +299,23 @@ def resolve_target_for_record(record: Any, *, parse_document_key: Callable[[str]
 
 
 def queue_record_key(record: Any) -> str:
-    if record.document_key.strip():
-        return record.document_key.strip().upper()
+    explicit_key = explicit_document_key(record.document_key)
+    if explicit_key:
+        return explicit_key.upper()
     fallback_key = document_key_from_document_id(
         document_id=record.document_id,
         lang=record.lang,
         version=record.version,
     )
-    if fallback_key:
+    if looks_like_explicit_document_key(fallback_key):
         return fallback_key.upper()
+    return record.record_id
+
+
+def queue_record_group_key(record: Any) -> str:
+    explicit_key = explicit_document_key(record.document_key)
+    if explicit_key:
+        return explicit_key.upper()
     return record.record_id
 
 
