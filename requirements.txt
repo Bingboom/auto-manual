@@ -16,9 +16,11 @@ furo>=2024.8.6
 # Asset utilities
 Pillow>=10.0
 numpy>=1.26
+oss2>=2.19
 
 # Notes:
 # - DOCX export via pandoc still requires pandoc installed separately.
 # - Windows Word COM export still requires Microsoft Word installed locally.
 # - PDF export still requires xelatex installed separately (TeX Live / MiKTeX).
 # - xelatex / pandoc are system dependencies, so they are not installed by pip.
+# - `oss2` is required for the optional DingTalk AliDocs queue artifact sink.

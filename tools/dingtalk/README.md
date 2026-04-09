@@ -76,4 +76,6 @@ This queue sink follows the same observed AliDocs browser-session chain used by 
 3. `commit`
 4. DingTalk node URL writeback
 
+The worker Python environment also needs `oss2`; it is now included in [`requirements.txt`](../../requirements.txt).
+
 This is separate from the App-Only token helpers in `auth.py`. The current queue sink depends on a valid AliDocs browser session, so it is intended for local/operator workers unless you have a secure way to inject the same session into automation.
