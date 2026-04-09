@@ -26,6 +26,29 @@ class TestAliDocsSession(unittest.TestCase):
         self.assertEqual("xsrf-token", config.xsrf_token)
         self.assertEqual("cookie=value", config.cookie)
 
+    def test_load_session_config_should_support_custom_env_names(self) -> None:
+        with mock.patch.dict(
+            os.environ,
+            {
+                "ALT_A_TOKEN": "a-token",
+                "ALT_XSRF_TOKEN": "xsrf-token",
+                "ALT_COOKIE": "cookie=value",
+                "ALT_BX_VERSION": "9.9.9",
+            },
+            clear=False,
+        ):
+            config = alidocs_session.load_session_config(
+                a_token_env="ALT_A_TOKEN",
+                xsrf_token_env="ALT_XSRF_TOKEN",
+                cookie_env="ALT_COOKIE",
+                bx_version_env="ALT_BX_VERSION",
+            )
+
+        self.assertEqual("a-token", config.a_token)
+        self.assertEqual("xsrf-token", config.xsrf_token)
+        self.assertEqual("cookie=value", config.cookie)
+        self.assertEqual("9.9.9", config.bx_version)
+
     def test_request_upload_ticket_should_parse_sts_payload(self) -> None:
         session = alidocs_session.AliDocsSessionConfig(a_token="a", xsrf_token="x", cookie="c")
         with tempfile.TemporaryDirectory() as tmp_dir:

@@ -27,6 +27,7 @@ Current verified helpers:
 - `auth.get_app_only_token(...)` reads `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, then calls the official App-Only token endpoint
 - `workspace.parse_node_id_from_url(...)` extracts a DingTalk docs node ID from a normal `alidocs.dingtalk.com/i/nodes/...` URL so the target workspace can be configured before the upload API is wired
 - `alidocs_session_upload_cli.py` is the current manual bridge for the observed browser-session upload chain: `uploadinfo -> OSS object upload -> commit -> node URL`
+- `tools/process_build_queue.py` can now use that same browser-session chain as an optional artifact sink while still reading queue rows from Feishu and writing `Document link` back to Feishu
 
 ## Quick Smoke
 
@@ -43,3 +44,36 @@ python tools\dingtalk\spike_cli.py all --record-id rec_phase0_smoke --update-set
 ```
 
 `all` runs `token -> list -> update -> upload` in sequence. Prefer an explicit `--record-id <stable_row_id>` for manual smoke runs. Only use `--record-id-path ... --allow-listed-record-id` when your list call is already filtered to exactly one throwaway row.
+
+## Queue Artifact Sink
+
+The current repo-integrated DingTalk queue sink is `dingtalk_alidocs_session`.
+
+It is selected with:
+
+```powershell
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="dingtalk_alidocs_session"
+$env:DINGTALK_DOCS_TARGET_NODE_URL="https://alidocs.dingtalk.com/i/nodes/..."
+$env:DINGTALK_DOCS_A_TOKEN="..."
+$env:DINGTALK_DOCS_XSRF_TOKEN="..."
+$env:DINGTALK_DOCS_COOKIE="..."
+$env:DINGTALK_DOCS_BX_V="2.5.36"
+```
+
+Environment meanings:
+
+- `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`: switch `process-build-queue` from the default `lark_drive` sink to the DingTalk browser-session sink
+- `DINGTALK_DOCS_TARGET_NODE_URL`: target AliDocs folder or node that should receive generated `.docx` files
+- `DINGTALK_DOCS_A_TOKEN`: current browser `a-token` header value
+- `DINGTALK_DOCS_XSRF_TOKEN`: current `x-xsrf-token` header value
+- `DINGTALK_DOCS_COOKIE`: current browser cookie string for `alidocs.dingtalk.com`
+- `DINGTALK_DOCS_BX_V`: optional browser `bx-v` header override; defaults to `2.5.36`
+
+This queue sink follows the same observed AliDocs browser-session chain used by the manual spike helper:
+
+1. `uploadinfo`
+2. OSS object upload
+3. `commit`
+4. DingTalk node URL writeback
+
+This is separate from the App-Only token helpers in `auth.py`. The current queue sink depends on a valid AliDocs browser session, so it is intended for local/operator workers unless you have a secure way to inject the same session into automation.

@@ -102,8 +102,6 @@ def move_drive_file_to_wiki(
         wiki_url_from_host_root=_wiki_url_from_host_root_impl,
         wait_for_wiki_move_task=module.wait_for_wiki_move_task,
     )
-
-
 def build_py_target_command(
     module: Any,
     *,
@@ -327,11 +325,10 @@ def process_build_queue(
         workflow_action_label=module.workflow_action_label,
         queue_record_action_source=module.queue_record_action_source,
         queue_record_legacy_doc_phase=module.queue_record_legacy_doc_phase,
-        resolve_wiki_destination=module.resolve_wiki_destination,
+        resolve_wiki_destination=module.resolve_artifact_destination,
         build_started_fields=module.build_started_fields,
         build_document_for_task=module.build_document_for_task,
-        upload_word_to_drive=module.upload_word_to_drive,
-        move_drive_file_to_wiki=module.move_drive_file_to_wiki,
+        publish_word_artifact=module.publish_word_artifact,
         build_success_fields=module.build_success_fields,
         publish_release_latest_dir_for_target=module._publish_release_latest_dir_for_target,
         write_publish_release_metadata=module.write_publish_release_metadata,

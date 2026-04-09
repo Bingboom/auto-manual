@@ -53,20 +53,32 @@ class AliDocsCommittedFile:
         return f"{ALIDOCS_ORIGIN}/i/nodes/{self.dentry_uuid}"
 
 
-def _required_env(name: str) -> str:
-    value = str(os.environ.get(name, "")).strip()
+def _required_env(name: str, *, environ: dict[str, str] | os._Environ[str]) -> str:
+    value = str(environ.get(name, "")).strip()
     if not value:
         raise RuntimeError(f"Required AliDocs session environment variable is not set: {name}")
     return value
 
 
-def load_session_config_from_env() -> AliDocsSessionConfig:
+def load_session_config(
+    *,
+    environ: dict[str, str] | os._Environ[str] | None = None,
+    a_token_env: str = "DINGTALK_DOCS_A_TOKEN",
+    xsrf_token_env: str = "DINGTALK_DOCS_XSRF_TOKEN",
+    cookie_env: str = "DINGTALK_DOCS_COOKIE",
+    bx_version_env: str = "DINGTALK_DOCS_BX_V",
+) -> AliDocsSessionConfig:
+    current_environ = os.environ if environ is None else environ
     return AliDocsSessionConfig(
-        a_token=_required_env("DINGTALK_DOCS_A_TOKEN"),
-        xsrf_token=_required_env("DINGTALK_DOCS_XSRF_TOKEN"),
-        cookie=_required_env("DINGTALK_DOCS_COOKIE"),
-        bx_version=str(os.environ.get("DINGTALK_DOCS_BX_V", DEFAULT_BX_VERSION)).strip() or DEFAULT_BX_VERSION,
+        a_token=_required_env(a_token_env, environ=current_environ),
+        xsrf_token=_required_env(xsrf_token_env, environ=current_environ),
+        cookie=_required_env(cookie_env, environ=current_environ),
+        bx_version=str(current_environ.get(bx_version_env, DEFAULT_BX_VERSION)).strip() or DEFAULT_BX_VERSION,
     )
+
+
+def load_session_config_from_env() -> AliDocsSessionConfig:
+    return load_session_config()
 
 
 def _json_request(

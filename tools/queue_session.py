@@ -94,24 +94,33 @@ def print_no_pending_message(*, immediate_only: bool) -> None:
 
 def resolve_and_report_wiki_destination(
     *,
+    cfg: dict[str, Any],
     cli_bin: str,
     identity: str,
     binding: Any,
     resolve_wiki_destination: Callable[..., Any],
 ) -> Any:
-    wiki_destination = resolve_wiki_destination(
+    destination = resolve_wiki_destination(
+        cfg=cfg,
         cli_bin=cli_bin,
         identity=identity,
         binding=binding,
     )
+    if hasattr(destination, "provider") and hasattr(destination, "details"):
+        label = str(getattr(destination, "label", "") or "Artifact destination").strip()
+        print(
+            f"[build-queue] {label} "
+            + json.dumps(getattr(destination, "details"), ensure_ascii=False)
+        )
+        return destination
     print(
         "[build-queue] Wiki destination "
         + json.dumps(
             {
-                "space_id": wiki_destination.space_id,
-                "parent_wiki_token": wiki_destination.parent_wiki_token,
+                "space_id": destination.space_id,
+                "parent_wiki_token": destination.parent_wiki_token,
             },
             ensure_ascii=False,
         )
     )
-    return wiki_destination
+    return destination

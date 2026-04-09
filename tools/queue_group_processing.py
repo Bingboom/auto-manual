@@ -12,21 +12,17 @@ class QueueGroupProcessingResult:
     failure_message: str | None = None
 
 
-def _is_recoverable_wiki_attach_failure(message: str) -> bool:
-    text = str(message or "").strip().lower()
-    return "permission denied" in text
-
-
 def process_queue_record_group(
     *,
     group: list[Any],
+    cfg: dict[str, Any],
     source: Any,
     binding: Any,
     data_root: str | None,
     can_write_started_at: bool,
     cli_bin: str,
     identity: str,
-    wiki_destination: Any,
+    artifact_destination: Any,
     warn_legacy_record_doc_phase: Callable[[Any], None],
     validate_queue_record_group: Callable[[list[Any]], None],
     resolve_target_for_record: Callable[[Any], tuple[str, str]],
@@ -36,8 +32,7 @@ def process_queue_record_group(
     resolve_queue_workflow_action: Callable[[Any], str | None],
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Path],
-    upload_word_to_drive: Callable[..., tuple[str, str]],
-    move_drive_file_to_wiki: Callable[..., str],
+    publish_word_artifact: Callable[..., Any],
     build_success_fields: Callable[..., dict[str, Any]],
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
     publish_release_latest_dir_for_target: Callable[..., Path],
@@ -50,8 +45,7 @@ def process_queue_record_group(
 ) -> QueueGroupProcessingResult:
     record = group[0]
     word_output_path: Path | None = None
-    drive_url: str | None = None
-    wiki_attach_warning: str | None = None
+    latest_link_url: str | None = None
     group_key = queue_record_key(record)
     row_count = len(group)
     try:
@@ -100,29 +94,15 @@ def process_queue_record_group(
             version=record.version,
             git_ref=record.git_ref,
         )
-        file_token, drive_url = upload_word_to_drive(
+        artifact_result = publish_word_artifact(
+            cfg=cfg,
             cli_bin=cli_bin,
             word_output_path=word_output_path,
             identity=identity,
+            artifact_destination=artifact_destination,
         )
-        try:
-            document_link_url = move_drive_file_to_wiki(
-                cli_bin=cli_bin,
-                identity=identity,
-                file_token=file_token,
-                drive_url=drive_url,
-                destination=wiki_destination,
-            )
-        except Exception as exc:
-            recovered_message = str(exc).strip()
-            if not drive_url or not _is_recoverable_wiki_attach_failure(recovered_message):
-                raise
-            wiki_attach_warning = recovered_message
-            document_link_url = drive_url
-            print(
-                f"[build-queue] WARNING wiki attach failed for {group_key}; using Drive link {drive_url}",
-                file=stderr,
-            )
+        latest_link_url = artifact_result.latest_link_url
+        document_link_url = artifact_result.document_link_url
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
@@ -131,14 +111,7 @@ def process_queue_record_group(
             built_at=built_at,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
-            status_notes=(
-                (
-                    "drive_only",
-                    f"wiki_attach_failed={wiki_attach_warning}",
-                )
-                if wiki_attach_warning
-                else ()
-            ),
+            status_notes=artifact_result.status_notes,
         )
         for group_record in group:
             source.upsert_record(
@@ -170,15 +143,16 @@ def process_queue_record_group(
         )
         return QueueGroupProcessingResult(processed_rows=row_count)
     except Exception as exc:
+        latest_link_url = getattr(exc, "latest_link_url", None) or latest_link_url
         message = str(exc).strip()
         failure_message = (
             f"{workflow_action_label(record.workflow_action or record.doc_phase) or 'Queue task'} "
             f"{group_key} ({row_count} row(s)): {message}"
         )
         try:
-            if drive_url:
+            if latest_link_url:
                 print(
-                    f"[build-queue] WARNING wiki attach failed for {group_key}; preserving latest Drive link {drive_url}",
+                    f"[build-queue] WARNING artifact publish failed for {group_key}; preserving latest link {latest_link_url}",
                     file=stderr,
                 )
             failure_fields = build_failure_writeback_fields(
@@ -187,7 +161,7 @@ def process_queue_record_group(
                 workflow_action=best_effort_queue_workflow_action(record),
                 doc_phase=queue_record_legacy_doc_phase(record),
                 word_output_path=word_output_path,
-                document_link_url=drive_url,
+                document_link_url=latest_link_url,
             )
             for group_record in group:
                 source.upsert_record(

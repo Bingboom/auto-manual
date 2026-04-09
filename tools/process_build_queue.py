@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from datetime import datetime
@@ -88,6 +89,16 @@ from tools.process_build_queue_services import (  # noqa: E402
     upload_word_to_drive as _upload_word_to_drive_service,
     wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
 )
+from tools.dingtalk.alidocs_session import load_session_config, upload_file_to_node  # noqa: E402
+from tools.queue_artifact_sink import (  # noqa: E402
+    ArtifactDestination,
+    ArtifactPublishError,
+    ArtifactPublishResult,
+    artifact_sink_provider,
+    collect_artifact_sink_preflight_errors,
+    dingtalk_alidocs_env_names,
+    resolve_dingtalk_artifact_destination,
+)
 from tools.queue_bound_outputs import (  # noqa: E402
     publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
     publish_release_root_for_target as _publish_release_root_for_target,
@@ -107,7 +118,7 @@ from tools.queue_bound_lark_ops import (  # noqa: E402
     run_lark_cli_json as _run_lark_cli_json,
 )
 from tools.queue_bound_binding import (  # noqa: E402
-    collect_queue_preflight_errors,
+    collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
     document_link_cfg as _document_link_cfg,
     document_link_env_names as _document_link_env_names,
     document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env,
@@ -149,6 +160,12 @@ configure_queue_bound_providers(
     config_loader_provider=lambda: load_config,
     resolve_config_path_provider=lambda: _service_module().resolve_config_path_for_task,
 )
+
+
+def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
+    errors = _collect_queue_preflight_errors_impl(cfg)
+    errors.extend(collect_artifact_sink_preflight_errors(cfg, environ=os.environ))
+    return errors
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
 LEGACY_TRIGGER_FIELDS = _QC_LEGACY_TRIGGER_FIELDS
@@ -212,6 +229,23 @@ def resolve_wiki_destination(
     )
 
 
+def resolve_artifact_destination(
+    *,
+    cfg: dict[str, Any],
+    cli_bin: str,
+    identity: str,
+    binding: DocumentLinkBinding,
+) -> WikiDestination | ArtifactDestination:
+    provider = artifact_sink_provider(cfg, environ=os.environ)
+    if provider == "dingtalk_alidocs_session":
+        return resolve_dingtalk_artifact_destination(cfg, environ=os.environ)
+    return resolve_wiki_destination(
+        cli_bin=cli_bin,
+        identity=identity,
+        binding=binding,
+    )
+
+
 def wait_for_wiki_move_task(
     *,
     cli_bin: str,
@@ -243,6 +277,79 @@ def move_drive_file_to_wiki(
         file_token=file_token,
         drive_url=drive_url,
         destination=destination,
+    )
+
+
+def publish_word_artifact(
+    *,
+    cfg: dict[str, Any],
+    cli_bin: str,
+    word_output_path: Path,
+    identity: str,
+    artifact_destination: WikiDestination | ArtifactDestination,
+) -> ArtifactPublishResult:
+    provider = artifact_sink_provider(cfg, environ=os.environ)
+    if provider == "dingtalk_alidocs_session":
+        env_names = dingtalk_alidocs_env_names(cfg)
+        session = load_session_config(
+            environ=os.environ,
+            a_token_env=env_names["a_token_env"],
+            xsrf_token_env=env_names["xsrf_token_env"],
+            cookie_env=env_names["cookie_env"],
+            bx_version_env=env_names["bx_version_env"],
+        )
+        target_node_url = (
+            artifact_destination.runtime_target
+            if isinstance(artifact_destination, ArtifactDestination)
+            else None
+        )
+        if not target_node_url:
+            raise RuntimeError("DingTalk artifact destination is missing target_node_url")
+        committed = upload_file_to_node(
+            session=session,
+            file_path=word_output_path,
+            parent_node_url=str(target_node_url),
+        )
+        return ArtifactPublishResult(
+            provider="dingtalk_alidocs_session",
+            reference_id=committed.dentry_uuid,
+            latest_link_url=committed.node_url,
+            document_link_url=committed.node_url,
+        )
+
+    file_token, drive_url = upload_word_to_drive(
+        cli_bin=cli_bin,
+        word_output_path=word_output_path,
+        identity=identity,
+    )
+    try:
+        document_link_url = move_drive_file_to_wiki(
+            cli_bin=cli_bin,
+            identity=identity,
+            file_token=file_token,
+            drive_url=drive_url,
+            destination=artifact_destination,
+        )
+    except Exception as exc:
+        recovered_message = str(exc).strip()
+        if "permission denied" not in recovered_message.lower():
+            raise ArtifactPublishError(recovered_message, latest_link_url=drive_url) from exc
+        print(
+            f"[build-queue] WARNING wiki attach failed; using Drive link {drive_url}",
+            file=sys.stderr,
+        )
+        return ArtifactPublishResult(
+            provider="lark_drive",
+            reference_id=file_token,
+            latest_link_url=drive_url,
+            document_link_url=drive_url,
+            status_notes=("drive_only", f"wiki_attach_failed={recovered_message}"),
+        )
+    return ArtifactPublishResult(
+        provider="lark_drive",
+        reference_id=file_token,
+        latest_link_url=drive_url,
+        document_link_url=document_link_url,
     )
 
 
