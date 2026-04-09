@@ -1,3 +1,8 @@
+param(
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [string[]]$ListenQueueArgs
+)
+
 $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -52,6 +57,9 @@ $command = @(
     "--staging-root",
     ".tmp/staging"
 )
+if ($ListenQueueArgs) {
+    $command += $ListenQueueArgs
+}
 $commandLine = ($command | ForEach-Object {
     if ($_ -match "\s") { '"' + $_ + '"' } else { $_ }
 }) -join " "
