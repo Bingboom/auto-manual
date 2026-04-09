@@ -25,6 +25,12 @@ class DingTalkFileReference:
     share_url: str | None = None
 
 
+@dataclass(frozen=True)
+class DingTalkWorkspaceTarget:
+    node_id: str
+    source_url: str | None = None
+
+
 class DingTalkAuthClient(Protocol):
     def get_app_only_token(self) -> DingTalkAccessToken:
         ...

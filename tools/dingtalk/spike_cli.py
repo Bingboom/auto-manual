@@ -20,6 +20,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.script_bootstrap import bootstrap_repo_root
+from tools.dingtalk.auth import request_app_only_token_response
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
@@ -337,15 +338,28 @@ def resolve_access_token(args: argparse.Namespace) -> tuple[str, dict[str, Any]]
     }
     token_url = render_template_string(args.token_url, context)
     token_body = token_request_payload(args, context)
-    response = http_request(
-        method="POST",
-        url=token_url,
-        json_body=token_body,
-        timeout_seconds=args.timeout_seconds,
-    )
-    payload = response.json_payload
-    if not isinstance(payload, dict):
-        raise RuntimeError("Token response is not a JSON object")
+    if (
+        args.token_url == DEFAULT_TOKEN_URL
+        and args.token_body_json is None
+        and args.token_path == "access_token"
+        and args.token_expiry_path == "expires_in"
+    ):
+        payload = request_app_only_token_response(
+            client_id=client_id,
+            client_secret=client_secret,
+            corp_id=corp_id,
+            token_url_template=args.token_url,
+        )
+    else:
+        response = http_request(
+            method="POST",
+            url=token_url,
+            json_body=token_body,
+            timeout_seconds=args.timeout_seconds,
+        )
+        payload = response.json_payload
+        if not isinstance(payload, dict):
+            raise RuntimeError("Token response is not a JSON object")
     access_token = str(extract_json_path(payload, args.token_path) or "").strip()
     if not access_token:
         raise RuntimeError(f"Could not resolve access token from path: {args.token_path}")

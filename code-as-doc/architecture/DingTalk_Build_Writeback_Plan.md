@@ -16,6 +16,9 @@ It focuses on:
 
 It does not redefine the long-term architecture. For that, use [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md).
 
+For the narrower first milestone that keeps Feishu as the source and queue system while only moving artifact upload to DingTalk, use
+[`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md).
+
 ## 2. Current Flow To Preserve
 
 Today the repository already has a working Feishu/Lark-based flow:
@@ -249,6 +252,12 @@ Exit criteria:
 - determine whether "attach into document space" exists
 
 If phase 0 fails, stop and choose a different DingTalk storage product before refactoring the repo.
+
+Current verified status:
+
+- the official App-Only token flow for an internal DingTalk app is now verified in-repo through [`../../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py)
+- the spike tooling can already normalize a standard DingTalk docs URL of the form `https://alidocs.dingtalk.com/i/nodes/<node_id>` into a stable node identifier through [`../../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py)
+- the remaining unresolved phase-0 question is the public upload or attach API for the chosen DingTalk docs / knowledge-space product
 
 ### Phase 1: Snapshot Sync Parity
 
