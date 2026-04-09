@@ -51,6 +51,7 @@ Meaning:
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
 - when `spec_master` and `spec_footnotes` are synced in the same run, `sync-data` rewrites Feishu linked-record footnote refs in `Spec_Master.csv` to stable `Footnote_id` values
 - `sync-data` does not repair bad `Is_Latest` flags; leave those source-table problems visible so `check` and publish validation can fail loudly
+- [`../tools/dingtalk/spike_cli.py`](../tools/dingtalk/spike_cli.py) is the manual Phase 0 smoke helper for a future DingTalk provider; it defaults to the official App-Only token flow and lets maintainers inject product-specific list/update/upload endpoints without changing `build.py`. A minimal smoke run looks like `python tools\dingtalk\spike_cli.py all --record-id <stable_row_id> --update-set smoke_checked=true --upload-file .tmp\phase0-smoke.docx`.
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
