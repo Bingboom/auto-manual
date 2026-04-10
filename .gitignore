@@ -17,5 +17,9 @@ docs/generated/
 # OS junk
 .DS_Store
 
+# OpenClaw integration runtime
+integrations/openclaw/auto-manual-control-layer/node_modules/
+integrations/openclaw/auto-manual-control-layer/runtime/
+
 # Review preview packaging
 site/review-preview/dist/
