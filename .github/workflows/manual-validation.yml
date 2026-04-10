@@ -21,7 +21,7 @@ jobs:
       - name: Install Ruff
         run: python -m pip install ruff
       - name: Run minimal static checks
-        run: python -m ruff check build.py tools tests scripts
+        run: python -m ruff check build.py integrations tools tests scripts
 
   unit:
     runs-on: ubuntu-latest

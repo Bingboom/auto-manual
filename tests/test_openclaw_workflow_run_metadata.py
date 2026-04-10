@@ -1,0 +1,89 @@
+from __future__ import annotations
+
+import tempfile
+import unittest
+from pathlib import Path
+
+from integrations.openclaw.scripts.write_workflow_run_metadata import build_metadata, latest_publish_metadata
+
+
+class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
+    def test_latest_publish_metadata_prefers_newest_built_at(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            releases_root = Path(tmpdir) / "reports" / "releases"
+            older = releases_root / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
+            newer = releases_root / "JE-1000F" / "JP" / "ja" / "latest" / "publish_meta.json"
+            older.parent.mkdir(parents=True, exist_ok=True)
+            newer.parent.mkdir(parents=True, exist_ok=True)
+            older.write_text(
+                '{\n  "built_at": "2026-04-10T09:00:00",\n  "document_link_url": "https://example.com/older"\n}\n',
+                encoding="utf-8",
+            )
+            newer.write_text(
+                '{\n  "built_at": "2026-04-10T10:00:00",\n  "document_link_url": "https://example.com/newer"\n}\n',
+                encoding="utf-8",
+            )
+
+            selected = latest_publish_metadata(releases_root)
+
+            self.assertIsNotNone(selected)
+            assert selected is not None
+            path, payload = selected
+            self.assertEqual(path, newer)
+            self.assertEqual(payload["document_link_url"], "https://example.com/newer")
+
+    def test_build_metadata_includes_publish_metadata_and_run_url(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            releases_root = Path(tmpdir) / "reports" / "releases"
+            meta_path = releases_root / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
+            meta_path.parent.mkdir(parents=True, exist_ok=True)
+            meta_path.write_text(
+                (
+                    '{\n'
+                    '  "built_at": "2026-04-10T11:30:00",\n'
+                    '  "document_link_url": "https://docs.example.com/doc",\n'
+                    '  "html_index": "reports/releases/JE-1000F/US/en/latest/html/index.html",\n'
+                    '  "word_output_path": "reports/releases/JE-1000F/US/en/versions/V1/manual.docx"\n'
+                    '}\n'
+                ),
+                encoding="utf-8",
+            )
+            env = {
+                "GITHUB_RUN_ID": "12345",
+                "GITHUB_RUN_ATTEMPT": "2",
+                "GITHUB_RUN_NUMBER": "88",
+                "GITHUB_REPOSITORY": "owner/repo",
+                "GITHUB_SERVER_URL": "https://github.example.com",
+                "GITHUB_REF_NAME": "main",
+            }
+
+            payload = build_metadata(
+                workflow_name="Feishu Build Queue",
+                workflow_file=".github/workflows/feishu-build-queue.yml",
+                queue_record_id="rec_publish",
+                trigger_source="openclaw",
+                openclaw_dispatch_nonce="nonce-123",
+                artifact_names=["feishu-build-queue-output", "openclaw-run-metadata"],
+                publish_url="https://manual.example.com/latest",
+                releases_root=releases_root,
+                env=env,
+            )
+
+            self.assertEqual(payload["workflow_name"], "Feishu Build Queue")
+            self.assertEqual(payload["queue_record_id"], "rec_publish")
+            self.assertEqual(payload["openclaw_dispatch_nonce"], "nonce-123")
+            self.assertEqual(payload["publish_url"], "https://manual.example.com/latest")
+            self.assertEqual(payload["document_link_url"], "https://docs.example.com/doc")
+            self.assertTrue(
+                str(payload["publish_metadata_path"]).replace("\\", "/").endswith(
+                    "reports/releases/JE-1000F/US/en/latest/publish_meta.json"
+                )
+            )
+            self.assertEqual(
+                payload["run_url"],
+                "https://github.example.com/owner/repo/actions/runs/12345",
+            )
+            self.assertEqual(
+                payload["artifact_names"],
+                ["feishu-build-queue-output", "openclaw-run-metadata"],
+            )
