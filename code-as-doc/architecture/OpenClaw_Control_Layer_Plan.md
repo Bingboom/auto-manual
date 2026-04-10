@@ -21,6 +21,10 @@ Phase 1 execution details live in:
 
 - [`../openclaw_phase1_implementation_checklist.md`](../openclaw_phase1_implementation_checklist.md)
 
+Current repo package:
+
+- [`../../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer)
+
 ## 2. Why This Is The Right First OpenClaw Milestone
 
 The repository already has a working remote flow:
@@ -122,6 +126,7 @@ Behavior:
 - pass:
   - `queue_record_id=<review_init_record_id>`
   - `trigger_source=openclaw`
+  - `openclaw_dispatch_nonce=<uuid>`
 
 Rules:
 
@@ -137,6 +142,7 @@ Behavior:
 - pass:
   - `queue_record_id=<document_link_record_id>`
   - `trigger_source=openclaw`
+  - `openclaw_dispatch_nonce=<uuid>`
 
 Rules:
 
@@ -152,6 +158,7 @@ Behavior:
 - pass:
   - `queue_record_id=<document_link_record_id>`
   - `trigger_source=openclaw`
+  - `openclaw_dispatch_nonce=<uuid>`
 
 Rules:
 
@@ -230,16 +237,26 @@ Those remain Feishu-owned workflow semantics.
 The current GitHub workers use `cancel-in-progress: false`.
 OpenClaw should refuse or warn on repeated manual retries when an active run is already in progress for the same workflow and `record_id`.
 
+### 7.5 Machine-Readable Run Metadata
+
+The current repo implementation now writes one small metadata JSON for each worker run and uploads it as:
+
+- `openclaw-run-metadata`
+
+That metadata is the supported Phase 1 bridge for:
+
+- `queue_record_id`
+- `openclaw_dispatch_nonce`
+- run URL
+- publish URL when the publish worker produces one
+
 ## 8. Known Risks And Constraints
 
-### 8.1 Documentation Mismatch On Start Review Secrets
+### 8.1 Start Review Secret Naming Must Stay Aligned
 
-The repo has a current documentation mismatch:
+The repo now documents the Start Review worker against `FEISHU_PHASE2_DOCUMENT_LINK_*`.
 
-- some docs still mention `FEISHU_PHASE2_REVIEW_INIT_*`
-- the actual workflow and env validator use `FEISHU_PHASE2_DOCUMENT_LINK_*`
-
-That mismatch should be corrected before OpenClaw setup instructions are treated as normative.
+Keep future setup docs aligned with that naming so OpenClaw onboarding does not drift back toward an obsolete `REVIEW_INIT_*` secret pair.
 
 ### 8.2 `trigger_source` Is Provenance, Not Routing
 

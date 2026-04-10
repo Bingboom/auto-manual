@@ -263,6 +263,7 @@ Required request body:
 - `ref: "main"`
 - `inputs.trigger_source: "openclaw"`
 - `inputs.queue_record_id: "<record_id>"`
+- `inputs.openclaw_dispatch_nonce: "<uuid>"`
 
 Implementation note:
 
@@ -333,21 +334,13 @@ Current workflow artifact names are already stable enough for Phase 1:
 - `feishu-start-review-output`
 - `feishu-draft-build-queue-output`
 - `feishu-build-queue-output`
+- `openclaw-run-metadata`
 
-Current gap:
+Current repo implementation:
 
-- the publish worker writes the Vercel URL into the GitHub step summary, but not into a strongly typed machine-readable output contract
-
-Phase 1 implementation task:
-
-- decide whether the first OpenClaw status implementation will:
-  - ignore publish URL and only link the run page, or
-  - add one machine-readable publish metadata output in the publish workflow
-
-Recommended repo-side follow-up if you want machine-readable publish URLs in Phase 1:
-
-- write one small JSON status file in the publish workflow
-- upload it as part of the existing `feishu-build-queue-output` artifact
+- each worker writes one small JSON status file through [`../integrations/openclaw/scripts/write_workflow_run_metadata.py`](../integrations/openclaw/scripts/write_workflow_run_metadata.py)
+- that file is uploaded as `openclaw-run-metadata`
+- the publish worker now includes the Vercel `publish_url` in that metadata when the deploy step returns one
 
 ## 10. OpenClaw Plugin Shape
 
@@ -357,6 +350,7 @@ Recommended Phase 1 shape:
 - use `api.registerCommand(...)` for the four commands
 - do not use ACP
 - do not use TaskFlow webhooks for the main dispatch path
+- current repo package path: [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer)
 
 Why this is the preferred shape:
 
@@ -383,57 +377,58 @@ Configuration items the plugin should accept:
 
 ### 11.2 Plugin Bootstrap
 
-- [ ] Create one custom OpenClaw plugin for the repo workflow
-- [ ] Register four commands:
+- [x] Create one custom OpenClaw plugin for the repo workflow
+- [x] Register four commands:
   - `/start-review`
   - `/build-draft`
   - `/publish`
   - `/manual-status`
-- [ ] Ensure the command handler requires authorized senders
+- [x] Ensure the command handler requires authorized senders
 
 ### 11.3 GitHub Client
 
-- [ ] Add one GitHub client wrapper for:
+- [x] Add one GitHub client wrapper for:
   - workflow dispatch
   - get workflow run
   - list workflow run artifacts
-- [ ] Store the GitHub token outside repo code
-- [ ] Use Actions `write` permission for dispatch
-- [ ] Use Actions `read` permission for status/artifact queries
+- [x] Store the GitHub token outside repo code
+- [x] Use Actions `write` permission for dispatch
+- [x] Use Actions `read` permission for status/artifact queries
 
 ### 11.4 Run Correlation
 
-- [ ] Persist `thread_id -> record_id -> workflow -> run_id`
-- [ ] If immediate `run_id` is unavailable, persist at least:
+- [x] Persist the last tracked `record_id -> workflow -> run_id`
+- [x] If immediate `run_id` is unavailable, persist at least:
   - dispatch timestamp
   - workflow name
   - record id
-- [ ] Make `/manual-status last` resolve against that stored state
+- [x] Make `/manual-status last` resolve against that stored state
 
 ### 11.5 Status Rendering
 
-- [ ] Implement one shared renderer for:
+- [x] Implement one shared renderer for:
   - queued
   - running
   - success
   - failure
   - cancelled
-- [ ] Include artifact names when the run is complete
-- [ ] Treat publish URL as optional until the workflow exposes it cleanly
+- [x] Include artifact names when the run is complete
+- [x] Treat publish URL as optional until the workflow exposes it cleanly
 
 ### 11.6 Repo Workflow Hardening
 
-- [ ] Confirm all three workflows still accept:
+- [x] Confirm all three workflows still accept:
   - `trigger_source`
   - `queue_record_id`
-- [ ] Fix the Start Review doc mismatch around `FEISHU_PHASE2_DOCUMENT_LINK_*` vs `FEISHU_PHASE2_REVIEW_INIT_*`
-- [ ] Decide whether Publish needs a machine-readable `publish_url` output in Phase 1
+- [x] Add `openclaw_dispatch_nonce` as the repo-owned correlation input
+- [x] Fix the Start Review doc mismatch around `FEISHU_PHASE2_DOCUMENT_LINK_*` vs `FEISHU_PHASE2_REVIEW_INIT_*`
+- [x] Add a machine-readable `publish_url` path in Phase 1 metadata when the deploy step exposes one
 
 ### 11.7 Operator Documentation
 
-- [ ] Update the OpenClaw plan doc if command names change again
-- [ ] Update maintainer docs after the OpenClaw command surface is actually live
-- [ ] Keep the current repo docs honest about what is planned versus what is already deployed
+- [x] Update the OpenClaw plan doc if command names change again
+- [x] Update maintainer docs after the OpenClaw command surface is actually live
+- [x] Keep the current repo docs honest about what is planned versus what is already deployed
 
 ## 12. Validation Checklist
 

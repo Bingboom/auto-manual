@@ -33,6 +33,9 @@ These files describe the current repo behavior today.
 - [`code-as-doc.md`](code-as-doc.md)
   - documentation maintenance policy
   - doc update expectations when code or data changes
+- [`../integrations/openclaw/README.md`](../integrations/openclaw/README.md)
+  - current OpenClaw integration package map
+  - plugin install path and command-bridge ownership boundary
 - [`title_style_guide.md`](title_style_guide.md)
   - heading and title source rules across outputs
 - [`dev/code_review_checklist.md`](dev/code_review_checklist.md)

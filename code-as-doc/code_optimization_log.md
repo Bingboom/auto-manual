@@ -218,6 +218,22 @@ Main outcomes:
 
 - kept `Workflow_action` as the only recommended queue-action field in docs and CLI examples
 - retained `Doc_phase` only as a compatibility fallback, with explicit warnings in build-queue logs and CLI translation paths
+
+## 14. 2026-04-10: OpenClaw Phase 1 Control-Layer Bridge
+
+Main outcomes:
+
+- added a repo-owned OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer)
+- registered `/start-review`, `/build-draft`, `/publish`, and `/manual-status` as the supported Phase 1 command surface
+- hardened the three `main`-owned GitHub workers with `openclaw_dispatch_nonce` plus the `openclaw-run-metadata` artifact for run correlation
+- added a shared Python helper at [`../integrations/openclaw/scripts/write_workflow_run_metadata.py`](../integrations/openclaw/scripts/write_workflow_run_metadata.py)
+- extended CI so the OpenClaw package runs through `npm ci && npm test` in `Manual Validation`
+
+Why it mattered:
+
+- operators now have one control-layer entrypoint without moving build execution or Feishu secrets out of GitHub Actions
+- manual retries and status lookups can map back to one specific workflow run instead of guessing the latest dispatch
+- the OpenClaw integration stays isolated from the Python execution plane while still living in the same repo history
 - updated queue writeback/result diagnostics so `workflow_action` stays primary and legacy `Doc_phase` only appears as `legacy_doc_phase` when that fallback path was used
 
 Why it mattered:
