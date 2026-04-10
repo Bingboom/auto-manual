@@ -37,8 +37,7 @@ def process_build_queue(
     resolve_wiki_destination: Callable[..., Any],
     build_started_fields: Callable[..., Any],
     build_document_for_task: Callable[..., Any],
-    upload_word_to_drive: Callable[..., Any],
-    move_drive_file_to_wiki: Callable[..., Any],
+    publish_word_artifact: Callable[..., Any],
     build_success_fields: Callable[..., Any],
     publish_release_latest_dir_for_target: Callable[..., Any],
     write_publish_release_metadata: Callable[..., Any],
@@ -105,7 +104,8 @@ def process_build_queue(
         print("[build-queue] Queue changed during sync; no pending build tasks remain.")
         return 0
 
-    wiki_destination = resolve_and_report_wiki_destination(
+    artifact_destination = resolve_and_report_wiki_destination(
+        cfg=cfg,
         cli_bin=session.cli_bin,
         identity=session.identity,
         binding=session.binding,
@@ -117,13 +117,14 @@ def process_build_queue(
     for group in pending_state.pending_groups:
         result = process_queue_record_group(
             group=group,
+            cfg=cfg,
             source=session.source,
             binding=session.binding,
             data_root=data_root,
             can_write_started_at=pending_state.can_write_started_at,
             cli_bin=session.cli_bin,
             identity=session.identity,
-            wiki_destination=wiki_destination,
+            artifact_destination=artifact_destination,
             warn_legacy_record_doc_phase=warn_legacy_record_doc_phase,
             validate_queue_record_group=validate_queue_record_group,
             resolve_target_for_record=resolve_target_for_record,
@@ -133,8 +134,7 @@ def process_build_queue(
             resolve_queue_workflow_action=resolve_queue_workflow_action,
             build_started_fields=build_started_fields,
             build_document_for_task=build_document_for_task,
-            upload_word_to_drive=upload_word_to_drive,
-            move_drive_file_to_wiki=move_drive_file_to_wiki,
+            publish_word_artifact=publish_word_artifact,
             build_success_fields=build_success_fields,
             queue_record_legacy_doc_phase=queue_record_legacy_doc_phase,
             publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
