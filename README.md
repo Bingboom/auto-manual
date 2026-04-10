@@ -240,6 +240,7 @@ Use the document that owns the topic:
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
 - maintainer doc index: [`code-as-doc/README.md`](code-as-doc/README.md)
 - current repository component map: [`code-as-doc/architecture/Hello_Docs_Architecture.md`](code-as-doc/architecture/Hello_Docs_Architecture.md)
+- planned OpenClaw operator control layer: [`code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
 - repo-level execution roadmap: [`optimization_project.md`](optimization_project.md)

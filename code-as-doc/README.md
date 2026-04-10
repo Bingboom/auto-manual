@@ -45,6 +45,9 @@ These files describe the current repo behavior today.
 - [`architecture/Hello_Docs_Architecture.md`](architecture/Hello_Docs_Architecture.md)
   - current repository component map
   - current ownership boundaries between build, review, validation, and release modules
+- [`architecture/OpenClaw_Control_Layer_Plan.md`](architecture/OpenClaw_Control_Layer_Plan.md)
+  - planned OpenClaw control-layer rollout without ACP
+  - operator entry, GitHub dispatch, and status-return boundaries
 - [`architecture/Content_Data_Model.md`](architecture/Content_Data_Model.md)
   - future canonical content model
   - conceptual schema direction beyond the current CSV snapshot files
@@ -79,6 +82,9 @@ Use these files while a maintainability or stability optimization wave is in pro
   - near-term execution items grouped into `2 weeks`, `1 month`, and `deferred`
 - [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
   - completed tracker for the earlier maintainability decomposition campaign
+- [`openclaw_phase1_implementation_checklist.md`](openclaw_phase1_implementation_checklist.md)
+  - Phase 1 execution checklist for the OpenClaw control-layer rollout
+  - command, GitHub dispatch, and status-return contracts
 
 ## 6. Draft / Archive Docs
 
