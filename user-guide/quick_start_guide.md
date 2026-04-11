@@ -118,10 +118,13 @@ Publish 的原料是：
 
 1. 查状态或查记录时，先查表定位唯一目标行：
    - `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json`
+   - 如果要先让 OpenClaw 看结构化 dry-run 结果，再走下一步：`python build.py queue-resolve-action --config config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json`
 2. 要真正执行时，直接走一条确定性命令：
    - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
+   - 如果这条命令最终会命中 `Workflow_action = Publish`，要额外带上 `--confirm-publish`
 3. 只有在排查问题或需要人工拆步骤时，再手动触发控制层：
-   - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft|publish> <record_id>`
+   - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft> <record_id>`
+   - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish <record_id> confirm`
 
 这样做的目的只有一个：
 
@@ -129,6 +132,7 @@ Publish 的原料是：
 - 不让自然语言入口临场拼“查表 -> dispatch -> 等待 -> 回读”的步骤
 - 仍然以 Feishu 队列表为唯一真源
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
+- 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
 
 当前 Phase 2 仍然只认一个交付链接字段：
 
@@ -378,7 +382,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 
 - `/start-review <review_init_record_id>`
 - `/build-draft <document_link_record_id>`
-- `/publish <document_link_record_id>`
+- `/publish <document_link_record_id> confirm`
 - `/manual-status [run_id|last]`
 
 注意：

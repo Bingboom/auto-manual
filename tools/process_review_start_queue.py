@@ -80,6 +80,12 @@ from tools.process_review_start_queue_runtime import (  # noqa: E402
     process_review_start_queue as _process_review_start_queue_impl,
 )
 from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
+from tools.review_start_failure_summary import (  # noqa: E402
+    build_review_start_failure_report as _build_review_start_failure_report_impl,
+    build_review_start_failure_summary as _build_review_start_failure_summary_impl,
+    build_review_start_no_pending_summary as _build_review_start_no_pending_summary_impl,
+    build_review_start_preflight_failure_summary as _build_review_start_preflight_failure_summary_impl,
+)
 
 REVIEW_TRIGGER_FIELD = "\u662f\u5426\u8fdb\u5165Review"
 REVIEW_STATUS_FIELD = "Review_status"
@@ -219,6 +225,49 @@ def build_review_start_duplicate_fields() -> dict[str, Any]:
         INITIAL_RESULT_FIELD: INITIAL_RESULT_DUPLICATE,
         REMARKS_FIELD: DUPLICATE_REMARKS,
     }
+
+
+def build_review_start_preflight_failure_summary(*, errors: list[str], review_action_label: str) -> dict[str, Any]:
+    return _build_review_start_preflight_failure_summary_impl(
+        errors=errors,
+        review_action_label=review_action_label,
+    )
+
+
+def build_review_start_no_pending_failure_summary(*, record_id: str, review_action_label: str) -> dict[str, Any]:
+    return _build_review_start_no_pending_summary_impl(
+        record_id=record_id,
+        review_action_label=review_action_label,
+    )
+
+
+def build_review_start_failure_summary(
+    *,
+    record: ReviewStartRecord | None,
+    exc: BaseException | str,
+    review_action_label: str,
+    model: str = "",
+    region: str = "",
+    build_family: str = "",
+    lang: str = "",
+) -> dict[str, Any]:
+    return _build_review_start_failure_summary_impl(
+        record=record,
+        exc=exc,
+        review_action_label=review_action_label,
+        model=model,
+        region=region,
+        build_family=build_family,
+        lang=lang,
+        version=getattr(record, "version", "") if record is not None else "",
+    )
+
+
+def build_review_start_failure_report(*, review_action_label: str, failures: list[dict[str, Any]]) -> dict[str, Any]:
+    return _build_review_start_failure_report_impl(
+        review_action_label=review_action_label,
+        failures=failures,
+    )
 
 
 def _format_command(cmd: list[str]) -> str:
@@ -447,6 +496,10 @@ def process_review_start_queue(
             build_duplicate_fields_fn=build_review_start_duplicate_fields,
             build_success_fields_fn=build_review_start_success_fields,
             start_review_for_record_fn=start_review_for_record,
+            build_preflight_failure_summary_fn=build_review_start_preflight_failure_summary,
+            build_no_pending_failure_summary_fn=build_review_start_no_pending_failure_summary,
+            build_failure_summary_fn=build_review_start_failure_summary,
+            build_failure_report_fn=build_review_start_failure_report,
             environ=os.environ,
         ),
     )

@@ -25,6 +25,7 @@ When a user asks to operate the workflow in natural language:
    - `--document-version`
    - `--query-workflow-action`
    If the user gives a full token like `JE-1000F_US_0.3`, treat it as exact `Document_ID` first.
+   The parser also accepts spaced asks like `JE-1000F US 0.3`, `JE-1000F US en 0.3`, and `开始 review JE-1000F us-merged`.
    Do not decompose it into guessed `Build_family`, `Lang`, or `Version` unless the user explicitly asks for a broader search.
 5. If multiple rows match, stop and tell the user which rows are ambiguous.
 6. Only fall back to the manual two-step path when debugging or when a human explicitly asks for the separate record_id first:
@@ -65,6 +66,10 @@ Examples:
 - User says `请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录`
   Execute directly:
   `python3 build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
+
+- User says `为什么 JE-1000F US 0.3 构建失败`
+  First query:
+  `python3 build.py queue-query --config config.us.yaml --query-text "为什么 JE-1000F US 0.3 构建失败" --json`
 
 Safety rules:
 

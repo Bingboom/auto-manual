@@ -1,5 +1,10 @@
 const RECORD_ID_PATTERN = /^rec[a-zA-Z0-9]+$/;
 const RUN_ID_PATTERN = /^\d+$/;
+const PUBLISH_CONFIRMATION_TOKENS = new Set(["confirm", "confirmed", "--confirm"]);
+
+function dispatchUsageExample(commandName) {
+  return commandName === "publish" ? "/publish rec_xxx confirm" : `/${commandName || "build-draft"} rec_xxx`;
+}
 
 export function ensureRecordId(rawArgs) {
   const value = (rawArgs || "").trim();
@@ -21,6 +26,45 @@ export function ensureStatusArg(rawArgs) {
     throw new Error("`/manual-status` accepts either `last` or one numeric GitHub run id.");
   }
   return value;
+}
+
+export function ensureDispatchArgs(commandName, rawArgs) {
+  const normalizedCommand = String(commandName || "").trim().toLowerCase();
+  const tokens = String(rawArgs || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!tokens.length) {
+    throw new Error(`Provide one record id, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
+  }
+
+  let queueRecordId = "";
+  let publishConfirmed = false;
+  for (const token of tokens) {
+    if (RECORD_ID_PATTERN.test(token)) {
+      if (queueRecordId) {
+        throw new Error("Provide only one record id per dispatch.");
+      }
+      queueRecordId = token;
+      continue;
+    }
+    if (normalizedCommand === "publish" && PUBLISH_CONFIRMATION_TOKENS.has(token.toLowerCase())) {
+      publishConfirmed = true;
+      continue;
+    }
+    if (normalizedCommand === "publish") {
+      throw new Error("Publish requires `/publish rec_xxx confirm`.");
+    }
+    throw new Error("Provide one record id, for example `/build-draft rec_xxx`.");
+  }
+
+  if (!queueRecordId) {
+    throw new Error(`Provide one record id, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
+  }
+  if (normalizedCommand === "publish" && !publishConfirmed) {
+    throw new Error("Publish requires explicit confirmation. Use `/publish rec_xxx confirm`.");
+  }
+  return { queueRecordId, publishConfirmed };
 }
 
 export function renderMissingConfig(missingFields) {
@@ -72,6 +116,7 @@ export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl,
     `${workflowName}`,
     `status: ${status || "pending"}`,
   ];
+  const failureSummary = metadata?.failure_summary && typeof metadata.failure_summary === "object" ? metadata.failure_summary : null;
   if (conclusion) {
     lines.push(`conclusion: ${conclusion}`);
   }
@@ -86,6 +131,32 @@ export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl,
   }
   if (artifacts?.length) {
     lines.push(`artifacts: ${artifacts.map((artifact) => artifact.name).join(", ")}`);
+  }
+  if (failureSummary?.summary_code) {
+    lines.push(`failure_code: ${failureSummary.summary_code}`);
+  } else if (failureSummary?.code) {
+    lines.push(`failure_code: ${failureSummary.code}`);
+  }
+  if (failureSummary?.summary_message) {
+    lines.push(`failure_message: ${failureSummary.summary_message}`);
+  } else if (failureSummary?.message) {
+    lines.push(`failure_message: ${failureSummary.message}`);
+  }
+  if (failureSummary?.summary_next_step) {
+    lines.push(`failure_next_step: ${failureSummary.summary_next_step}`);
+  } else if (failureSummary?.next_step) {
+    lines.push(`failure_next_step: ${failureSummary.next_step}`);
+  }
+  const firstFailure = Array.isArray(failureSummary?.failures) ? failureSummary.failures[0] : null;
+  if (firstFailure?.target) {
+    lines.push(`failure_target: ${firstFailure.target}`);
+  } else if (failureSummary?.target) {
+    lines.push(`failure_target: ${failureSummary.target}`);
+  }
+  if (firstFailure?.detail) {
+    lines.push(`failure_detail: ${String(firstFailure.detail).replace(/\s+/g, " ").trim()}`);
+  } else if (failureSummary?.detail) {
+    lines.push(`failure_detail: ${String(failureSummary.detail).replace(/\s+/g, " ").trim()}`);
   }
   if (metadata?.publish_url) {
     lines.push(`publish_url: ${metadata.publish_url}`);

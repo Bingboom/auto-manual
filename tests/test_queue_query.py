@@ -11,6 +11,7 @@ class TestQueueQuery(unittest.TestCase):
     def _args(self, **overrides) -> argparse.Namespace:
         payload = {
             "query_text": None,
+            "queue_scope": "all",
             "record_id": None,
             "document_id": None,
             "document_key": None,
@@ -128,6 +129,30 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("build-draft-package", inferred.query_workflow_action)
         self.assertEqual("document-link", inferred.queue_scope)
 
+    def test_infer_queue_query_from_text_should_parse_spaced_document_id(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("帮我生成 JE-1000F US en 0.3 草稿")
+
+        self.assertEqual("JE-1000F_US_en_0.3", inferred.document_id)
+        self.assertEqual("", inferred.document_key)
+        self.assertEqual("build-draft-package", inferred.query_workflow_action)
+        self.assertEqual("document-link", inferred.queue_scope)
+
+    def test_infer_queue_query_from_text_should_parse_document_key_for_link_queries(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("把 JE-1000F US 最新链接发我")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("JE-1000F_US", inferred.document_key)
+        self.assertEqual("", inferred.query_workflow_action)
+        self.assertEqual("document-link", inferred.queue_scope)
+
+    def test_infer_queue_query_from_text_should_parse_start_review_and_build_family(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("开始 review JE-1000F us-merged")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("us-merged", inferred.build_family)
+        self.assertEqual("start-review", inferred.query_workflow_action)
+        self.assertEqual("review-init", inferred.queue_scope)
+
     def test_apply_inferred_queue_query_should_not_override_explicit_filters(self) -> None:
         resolved = queue_query.apply_inferred_queue_query(
             self._args(
@@ -139,6 +164,15 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual("MANUAL_OVERRIDE", resolved.document_id)
         self.assertEqual("publish", resolved.query_workflow_action)
+
+    def test_apply_inferred_queue_query_should_fill_failure_reason_filters(self) -> None:
+        resolved = queue_query.apply_inferred_queue_query(
+            self._args(query_text="为什么 JE-1000F US 0.3 构建失败")
+        )
+
+        self.assertEqual("JE-1000F_US_0.3", resolved.document_id)
+        self.assertEqual("fail", resolved.result_contains)
+        self.assertEqual("document-link", resolved.queue_scope)
 
     def test_render_queue_query_rows_should_emit_json_payload(self) -> None:
         rows = [

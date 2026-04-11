@@ -79,7 +79,11 @@ class QueueQueryRow:
 class InferredQueueQuery:
     document_id: str = ""
     document_key: str = ""
+    build_family: str = ""
+    lang: str = ""
+    document_version: str = ""
     query_workflow_action: str = ""
+    result_contains: str = ""
     queue_scope: str = "all"
 
 
@@ -89,6 +93,69 @@ def _text(value: Any) -> str:
 
 _VERSION_TOKEN_RE = re.compile(r"^\d+(?:\.\d+)+$")
 _UNDERSCORE_TOKEN_RE = re.compile(r"[A-Za-z0-9.-]+(?:_[A-Za-z0-9.-]+)+")
+_QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
+_MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
+_REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}$")
+_BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
+_LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "ko"}
+
+
+def _query_tokens(text: str) -> list[str]:
+    return _QUERY_TOKEN_RE.findall(text)
+
+
+def _is_probable_lang_token(token: str) -> bool:
+    return token.strip().lower() in _LANG_CODES
+
+
+def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
+    for token in _UNDERSCORE_TOKEN_RE.findall(text):
+        parts = token.split("_")
+        if len(parts) >= 3 and _VERSION_TOKEN_RE.match(parts[-1]):
+            return token, "", "", ""
+    for token in _UNDERSCORE_TOKEN_RE.findall(text):
+        parts = token.split("_")
+        if len(parts) == 2:
+            return "", token, "", ""
+
+    tokens = _query_tokens(text)
+    for index, token in enumerate(tokens):
+        if "_" in token or not _MODEL_TOKEN_RE.match(token):
+            continue
+        if index + 1 >= len(tokens):
+            continue
+        region_token = tokens[index + 1]
+        if not _REGION_TOKEN_RE.match(region_token):
+            continue
+        region = region_token.upper()
+        lang = ""
+        version = ""
+        if index + 2 < len(tokens):
+            third = tokens[index + 2]
+            if _VERSION_TOKEN_RE.match(third):
+                version = third
+            elif _is_probable_lang_token(third):
+                lang = third.lower()
+                if index + 3 < len(tokens) and _VERSION_TOKEN_RE.match(tokens[index + 3]):
+                    version = tokens[index + 3]
+        if version:
+            if lang:
+                return f"{token}_{region}_{lang}_{version}", "", "", ""
+            return f"{token}_{region}_{version}", "", "", ""
+        document_key = f"{token}_{region}"
+        return "", document_key, lang, ""
+    return "", "", "", ""
+
+
+def _infer_build_family(text: str) -> str:
+    for token in _query_tokens(text):
+        lowered = token.lower()
+        if not _BUILD_FAMILY_TOKEN_RE.match(lowered):
+            continue
+        if _MODEL_TOKEN_RE.match(token) or "_" in token:
+            continue
+        return lowered
+    return ""
 
 
 def _normalize_query_workflow_action(value: str | None) -> str | None:
@@ -124,6 +191,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     normalized_text = re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
     workflow_action = ""
     queue_scope = "all"
+    result_contains = ""
 
     if any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
@@ -131,28 +199,34 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif "publish" in normalized_text or "发布" in text:
         workflow_action = "publish"
         queue_scope = "document-link"
-    elif any(needle in normalized_text for needle in ("start review", "review init")) or "进入review" in text or "拉进review" in text:
+    elif (
+        any(needle in normalized_text for needle in ("start review", "review init"))
+        or re.search(r"(开始|进入|拉进)\s*review", text, flags=re.IGNORECASE)
+        or "进入review" in text
+        or "拉进review" in text
+    ):
         workflow_action = "start-review"
         queue_scope = "review-init"
 
-    document_id = ""
-    document_key = ""
-    for token in _UNDERSCORE_TOKEN_RE.findall(text):
-        parts = token.split("_")
-        if len(parts) >= 3 and _VERSION_TOKEN_RE.match(parts[-1]):
-            document_id = token
-            break
-    if not document_id:
-        for token in _UNDERSCORE_TOKEN_RE.findall(text):
-            parts = token.split("_")
-            if len(parts) == 2:
-                document_key = token
-                break
+    if any(needle in normalized_text for needle in ("document link", "latest link")) or "链接" in text:
+        queue_scope = "document-link"
+    if any(needle in normalized_text for needle in ("failed", "failure")) or "失败" in text:
+        result_contains = "fail"
+        queue_scope = "document-link"
+
+    document_id, document_key, lang, document_version = _infer_document_filters(text)
+    build_family = ""
+    if not document_id and not document_key:
+        build_family = _infer_build_family(text)
 
     return InferredQueueQuery(
         document_id=document_id,
         document_key=document_key,
+        build_family=build_family,
+        lang=lang,
+        document_version=document_version,
         query_workflow_action=workflow_action,
+        result_contains=result_contains,
         queue_scope=queue_scope,
     )
 
@@ -164,8 +238,16 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.document_id = inferred.document_id
     if not getattr(merged, "document_key", None) and inferred.document_key:
         merged.document_key = inferred.document_key
+    if not getattr(merged, "build_family", None) and inferred.build_family:
+        merged.build_family = inferred.build_family
+    if not getattr(merged, "lang", None) and inferred.lang:
+        merged.lang = inferred.lang
+    if not getattr(merged, "document_version", None) and inferred.document_version:
+        merged.document_version = inferred.document_version
     if not getattr(merged, "query_workflow_action", None) and inferred.query_workflow_action:
         merged.query_workflow_action = inferred.query_workflow_action
+    if not getattr(merged, "result_contains", None) and inferred.result_contains:
+        merged.result_contains = inferred.result_contains
     if getattr(merged, "queue_scope", "all") == "all" and inferred.queue_scope != "all":
         merged.queue_scope = inferred.queue_scope
     return merged
