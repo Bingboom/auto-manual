@@ -18,6 +18,8 @@ def dispatch_action(
     run_check: Callable[[argparse.Namespace], None],
     sync_review_command: Callable[[argparse.Namespace], list[str]],
     sync_data_command: Callable[[argparse.Namespace], list[str]],
+    run_queue_query: Callable[[argparse.Namespace], None],
+    run_queue_execute: Callable[[argparse.Namespace], None],
     process_review_start_queue_command: Callable[[argparse.Namespace], list[str]],
     process_build_queue_command: Callable[[argparse.Namespace], list[str]],
     listen_build_queue_command: Callable[[argparse.Namespace], list[str]],
@@ -42,6 +44,10 @@ def dispatch_action(
         run_checked(sync_review_command(args))
     elif args.action == "sync-data":
         run_checked(sync_data_command(args))
+    elif args.action == "queue-query":
+        run_queue_query(args)
+    elif args.action == "queue-execute":
+        run_queue_execute(args)
     elif args.action == "process-review-start-queue":
         run_checked(process_review_start_queue_command(args))
     elif args.action == "process-build-queue":

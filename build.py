@@ -53,6 +53,8 @@ from tools.build_doctor import (
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
+from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
+from tools.queue_query import run_queue_query as _run_queue_query_impl
 from tools.build_reports import (
     default_report_dir_for_tracked_root as _default_report_dir_for_tracked_root_impl,
     diff_report_command as _diff_report_command,
@@ -291,6 +293,18 @@ def sync_data_command(args: argparse.Namespace) -> list[str]:
         args,
         repo_root=ROOT,
         resolve_path_from_root=resolve_path_from_root,
+    )
+
+
+def run_queue_query(args: argparse.Namespace) -> None:
+    return _run_queue_query_impl(args, config_path=resolve_path_from_root(args.config))
+
+
+def run_queue_execute(args: argparse.Namespace) -> None:
+    return _run_queue_execute_impl(
+        args,
+        config_path=resolve_path_from_root(args.config),
+        repo_root=ROOT,
     )
 
 
@@ -629,6 +643,8 @@ def main(argv: list[str] | None = None) -> int:
         run_check=run_check,
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
+        run_queue_query=run_queue_query,
+        run_queue_execute=run_queue_execute,
         process_review_start_queue_command=process_review_start_queue_command,
         process_build_queue_command=process_build_queue_command,
         listen_build_queue_command=listen_build_queue_command,

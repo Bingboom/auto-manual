@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-04-04
+Updated: 2026-04-11
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -111,6 +111,30 @@ Publish 的原料是：
 - 该分支里的 review 内容
 
 如果 `Git_ref` 为空，才会退回当前 queue worker 所在分支；远端 worker 通常是 `main`。
+
+## 2.1 OpenClaw Phase 2 自然语言入口怎么接
+
+如果你要让 OpenClaw 在飞书里按自然语言去操作这套流程，推荐固定成两个确定性入口：
+
+1. 查状态或查记录时，先查表定位唯一目标行：
+   - `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json`
+2. 要真正执行时，直接走一条确定性命令：
+   - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
+3. 只有在排查问题或需要人工拆步骤时，再手动触发控制层：
+   - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft|publish> <record_id>`
+
+这样做的目的只有一个：
+
+- 不让自然语言入口凭空猜 `record_id`
+- 不让自然语言入口临场拼“查表 -> dispatch -> 等待 -> 回读”的步骤
+- 仍然以 Feishu 队列表为唯一真源
+- 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
+
+当前 Phase 2 仍然只认一个交付链接字段：
+
+- `Document link`
+
+如果以后要把 DingTalk 双写到 `Document link_dd`，那是单独的 V2，不要和当前 Phase 2 混在一起。
 
 ## 3. 场景一：第一次把文档拉进 Review
 
