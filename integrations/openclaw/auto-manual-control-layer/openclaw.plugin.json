@@ -1,0 +1,81 @@
+{
+  "id": "auto-manual-control-layer",
+  "name": "Auto Manual Control Layer",
+  "description": "Dispatches the repository's manual review/build/publish workflows from OpenClaw and reports GitHub run status.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["githubToken", "repoOwner", "repoName"],
+    "properties": {
+      "githubToken": {
+        "type": "string",
+        "description": "GitHub token with Actions read/write permission for this repository."
+      },
+      "repoOwner": {
+        "type": "string",
+        "description": "GitHub repository owner or organization."
+      },
+      "repoName": {
+        "type": "string",
+        "description": "GitHub repository name."
+      },
+      "defaultBranch": {
+        "type": "string",
+        "description": "Branch used for all manual workflow dispatches.",
+        "default": "main"
+      },
+      "apiBaseUrl": {
+        "type": "string",
+        "description": "Optional GitHub API base URL for GitHub Enterprise.",
+        "default": "https://api.github.com"
+      },
+      "metadataArtifactName": {
+        "type": "string",
+        "description": "Artifact name that stores the OpenClaw workflow metadata JSON.",
+        "default": "openclaw-run-metadata"
+      },
+      "dispatchTimeoutSeconds": {
+        "type": "integer",
+        "description": "How long the plugin should poll for the matching workflow run after dispatch.",
+        "minimum": 10,
+        "maximum": 120,
+        "default": 40
+      },
+      "stateFile": {
+        "type": "string",
+        "description": "Optional runtime state file path relative to the plugin root."
+      }
+    }
+  },
+  "uiHints": {
+    "githubToken": {
+      "label": "GitHub Token",
+      "sensitive": true
+    },
+    "repoOwner": {
+      "label": "Repo Owner",
+      "placeholder": "owner-or-org"
+    },
+    "repoName": {
+      "label": "Repo Name",
+      "placeholder": "auto-manual"
+    },
+    "defaultBranch": {
+      "label": "Default Branch"
+    },
+    "apiBaseUrl": {
+      "label": "GitHub API Base URL",
+      "placeholder": "https://api.github.com"
+    },
+    "metadataArtifactName": {
+      "label": "Metadata Artifact Name"
+    },
+    "dispatchTimeoutSeconds": {
+      "label": "Dispatch Timeout (seconds)"
+    },
+    "stateFile": {
+      "label": "State File",
+      "placeholder": "runtime/auto-manual-control-layer-state.json"
+    }
+  }
+}

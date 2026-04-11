@@ -348,6 +348,22 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 - 出 Build Draft Package：走 PR 分支 + `_review`
 - 做 Publish：走 `Document_link` + `Git_ref` 指向的 review / PR 分支
 
+## 9.5 OpenClaw Phase 1 操作入口
+
+如果你们已经把 OpenClaw 作为统一控制层接到 Feishu，上面的三条自动化也可以直接换成 OpenClaw 命令入口：
+
+- `/start-review <review_init_record_id>`
+- `/build-draft <document_link_record_id>`
+- `/publish <document_link_record_id>`
+- `/manual-status [run_id|last]`
+
+注意：
+
+- OpenClaw 只负责统一入口和状态查询，不直接执行仓库里的 `build.py`
+- 真正的远端执行仍然是 `main` 上的 GitHub worker
+- OpenClaw dispatch 现在会额外带一个 `openclaw_dispatch_nonce`，worker 完成后也会上传 `openclaw-run-metadata`，这样状态查询可以稳定追踪到同一次手动触发
+- 插件包路径是 [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer)
+
 ## 10. 2026-04 更新
 
 - `Review Init` 和 `Document_link` 现在都是先按 `Build_family` 路由，再决定是否按 `Document_Key` 合并；只有像 `us-merged` 这类启用了 `queue_by_document_key` 的 family，才会把同一个 `Document_Key` 的多行合成一次 review / build。

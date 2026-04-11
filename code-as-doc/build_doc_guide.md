@@ -112,6 +112,8 @@ Start Review, Build Draft Package, Publish:
 - `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
+- the repo now ships one OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer); it is the supported control-layer package when you want one chat entrypoint for these three workers
+- OpenClaw dispatches still call only the `main`-owned workflows; they add `openclaw_dispatch_nonce` as a correlation input and the workflows upload `openclaw-run-metadata` as a machine-readable status artifact
 - if Feishu triggers the Build Draft Package worker, dispatch it on `main`; the actual build source is resolved from `Document_link.Git_ref`, and rows missing `Git_ref` fail fast
 - if Feishu triggers the Publish worker, dispatch it on `main`; the workflow definition stays on `main`, while `Document_link.Git_ref` still controls the fetched review branch when present
 - if a Publish-stage row also carries `Git_ref`, the Publish worker keeps `main` only as the orchestration branch and fetches the actual build source from that review branch
@@ -126,7 +128,8 @@ Windows cleanup note:
 GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
-- that workflow now runs `python -m ruff check build.py tools tests scripts` as the minimal static gate before the heavier unit/build jobs
+- that workflow now runs `python -m ruff check build.py integrations tools tests scripts` as the minimal static gate before the heavier unit/build jobs
+- that workflow now also runs `npm ci && npm test` in [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) so the OpenClaw command bridge stays covered in CI
 - that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge

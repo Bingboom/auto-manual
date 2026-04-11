@@ -1,4 +1,5 @@
 name: Feishu Draft Build Queue
+run-name: Feishu Draft Build Queue / ${{ inputs.queue_record_id != '' && inputs.queue_record_id || 'batch' }} / ${{ inputs.openclaw_dispatch_nonce != '' && inputs.openclaw_dispatch_nonce || github.run_id }}
 
 on:
   workflow_dispatch:
@@ -9,6 +10,10 @@ on:
         type: string
       queue_record_id:
         description: Optional Document_link record_id that triggered this run
+        required: false
+        type: string
+      openclaw_dispatch_nonce:
+        description: Optional nonce used by OpenClaw to correlate the dispatched run
         required: false
         type: string
 
@@ -59,6 +64,7 @@ jobs:
           echo "default_branch=${{ github.event.repository.default_branch }}"
           echo "trigger_source=${{ inputs.trigger_source || '' }}"
           echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
+          echo "openclaw_dispatch_nonce=${{ inputs.openclaw_dispatch_nonce || '' }}"
 
       - name: Validate dispatch ref
         shell: bash
@@ -79,6 +85,20 @@ jobs:
           fi
           "${cmd[@]}"
 
+      - name: Write OpenClaw run metadata
+        if: always()
+        shell: bash
+        run: |
+          python integrations/openclaw/scripts/write_workflow_run_metadata.py \
+            --output .tmp/openclaw/feishu-draft-build-queue-run.json \
+            --workflow-name "Feishu Draft Build Queue" \
+            --workflow-file ".github/workflows/feishu-draft-build-queue.yml" \
+            --queue-record-id "${{ inputs.queue_record_id || '' }}" \
+            --trigger-source "${{ inputs.trigger_source || '' }}" \
+            --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
+            --artifact-name feishu-draft-build-queue-output \
+            --artifact-name openclaw-run-metadata
+
       - name: Upload built docs artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -90,3 +110,11 @@ jobs:
             data/phase2/snapshot_manifest.json
             data/phase2/row_key_mapping.csv
           if-no-files-found: ignore
+
+      - name: Upload OpenClaw run metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openclaw-run-metadata
+          path: .tmp/openclaw/feishu-draft-build-queue-run.json
+          if-no-files-found: error
