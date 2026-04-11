@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-04-11T15:16:55.956650+00:00",
+  "git_sha": "403ebb82ae0dec8d1f79d9eb59eed1215197b609",
+  "model": "JE-2000E",
+  "region": "CN",
+  "lang": null,
+  "runtime_bundle_dir": "docs/_build/JE-2000E/CN/rst",
+  "review_dir": "docs/_review/JE-2000E/CN",
+  "index_path": "docs/_review/JE-2000E/CN/index.rst",
+  "page_files": [
+    "docs/_review/JE-2000E/CN/page/00_preface.rst",
+    "docs/_review/JE-2000E/CN/page/01_meaning_of_symbols.rst",
+    "docs/_review/JE-2000E/CN/page/02_whats_in_the_box.rst",
+    "docs/_review/JE-2000E/CN/page/03_product_overview_placeholder.rst",
+    "docs/_review/JE-2000E/CN/page/04_lcd_display_placeholder.rst",
+    "docs/_review/JE-2000E/CN/page/05_operation_guide_placeholder.rst",
+    "docs/_review/JE-2000E/CN/page/06_ups_mode.rst",
+    "docs/_review/JE-2000E/CN/page/08_charging_methods.rst",
+    "docs/_review/JE-2000E/CN/page/09_storage_and_maintenance.rst",
+    "docs/_review/JE-2000E/CN/page/10_troubleshooting.rst",
+    "docs/_review/JE-2000E/CN/page/11_warranty.rst",
+    "docs/_review/JE-2000E/CN/page/12_app_setup_placeholder.rst",
+    "docs/_review/JE-2000E/CN/page/charging.rst",
+    "docs/_review/JE-2000E/CN/page/safety_zh.rst",
+    "docs/_review/JE-2000E/CN/page/spec_zh.rst"
+  ],
+  "generated_files": [
+    "docs/_review/JE-2000E/CN/generated/JE-2000E/draft/03_product_overview_zh.rst",
+    "docs/_review/JE-2000E/CN/generated/JE-2000E/draft/05_operation_guide_zh.rst",
+    "docs/_review/JE-2000E/CN/generated/JE-2000E/draft/12_app_setup_zh.rst",
+    "docs/_review/JE-2000E/CN/generated/JE-2000E/spec_zh.rst"
+  ],
+  "override_files": [
+    "docs/_review/JE-2000E/CN/overrides/README.md"
+  ],
+  "page_manifest": "docs/manifests/manual_zh.yaml",
+  "recipe_ids": [
+    "03_product_overview",
+    "05_operation_guide",
+    "12_app_setup"
+  ],
+  "snippet_ids": [],
+  "spec_master": {
+    "path": "data/phase2/Spec_Master.csv",
+    "sha256": "97b234ae187261c1493c732cdafb1b07859a6e0e80ebd432cf483d392a0bf066"
+  }
+}
