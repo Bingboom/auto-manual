@@ -126,10 +126,16 @@ Start Review, Build Draft Package, Publish:
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
 - [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the `main`-owned Build Draft Package worker
 - the OpenClaw command bridge now lives under [`integrations/openclaw/auto-manual-control-layer/`](integrations/openclaw/auto-manual-control-layer); it exposes `/start-review`, `/build-draft`, `/publish`, and `/manual-status` without moving build execution out of GitHub Actions
+- `python build.py queue-query --config config.us.yaml --queue-scope all --document-id JE-1000F_US_0.3 --json` is the Phase 2 natural-language helper surface for resolving Feishu queue rows into one concrete `record_id`, `Workflow_action`, `Git_ref`, `Document link`, and `构建结果`
+- `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json` is the preferred natural-language entry for Phase 2; it applies document_id-first parsing so tokens like `JE-1000F_US_0.3` are treated as exact `Document_ID` before any broader field inference happens
+- `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"` is the deterministic execution entry for Phase 2; it resolves one Feishu row, dispatches the matching GitHub workflow on `main`, waits for completion, then re-reads the Feishu row and prints the final record fields
+- `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft|publish> <record_id>` is the matching local control CLI; it reuses the same GitHub workflow-dispatch and state-tracking logic as the OpenClaw Phase 1 plugin
+- `node integrations/openclaw/auto-manual-control-layer/cli.mjs status last` returns the latest tracked GitHub run state for that local control CLI
 - the three GitHub workers now accept one OpenClaw-only correlation input, `openclaw_dispatch_nonce`, and upload a small `openclaw-run-metadata` artifact so status lookups can map one manual dispatch back to one workflow run cleanly
 - dispatch the Build Draft Package worker on `main`; the actual review content comes from `Document_link.Git_ref`, and rows without `Git_ref` now fail fast instead of silently building from `main`
 - dispatch the Publish worker on `main`; `main` only carries the workflow definition, while `Document_link.Git_ref` still decides the review branch source when present
 - when a Publish row carries `Git_ref`, the `main`-owned Publish queue worker now builds that review branch instead of rebuilding from `main`
+- for the current OpenClaw Phase 2 scope, keep `Document link` as the only required artifact link field; if a later DingTalk dual-write needs `Document link_dd`, treat that as a separate V2 extension instead of mixing it into the Phase 2 control path
 
 - recommended stage split:
   - use the review-init table to move one document into review and create its branch / PR once

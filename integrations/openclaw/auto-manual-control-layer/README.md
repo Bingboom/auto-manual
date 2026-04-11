@@ -5,6 +5,15 @@ This package is the OpenClaw-side bridge for the repository's Phase 1 manual-ops
 It does not execute `build.py` directly.
 It only dispatches the existing `main`-owned GitHub workflows and reports their status back into OpenClaw.
 
+For local Phase 2 natural-language orchestration, the same package also ships a repo-local CLI:
+
+```bash
+node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch build-draft rec_xxx
+node integrations/openclaw/auto-manual-control-layer/cli.mjs status last
+```
+
+That CLI reuses the same GitHub dispatch/status modules as the plugin.
+
 ## Commands
 
 - `/start-review <review_init_record_id>`
