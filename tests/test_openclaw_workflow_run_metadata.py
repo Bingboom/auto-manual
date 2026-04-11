@@ -65,6 +65,7 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
                 openclaw_dispatch_nonce="nonce-123",
                 artifact_names=["feishu-build-queue-output", "openclaw-run-metadata"],
                 publish_url="https://manual.example.com/latest",
+                failure_summary_path=None,
                 releases_root=releases_root,
                 env=env,
             )
@@ -87,3 +88,45 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
                 payload["artifact_names"],
                 ["feishu-build-queue-output", "openclaw-run-metadata"],
             )
+
+    def test_build_metadata_includes_structured_failure_summary_when_present(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            failure_summary_path = root / ".tmp" / "openclaw" / "failure-summary.json"
+            failure_summary_path.parent.mkdir(parents=True, exist_ok=True)
+            failure_summary_path.write_text(
+                (
+                    '{\n'
+                    '  "summary_code": "missing_spec_data",\n'
+                    '  "summary_message": "缺少 JE-1000F_CN 的规格数据，无法进入 review。",\n'
+                    '  "summary_next_step": "请先补齐 JE-1000F_CN 在 Spec_Master 中的规格数据，再重试。",\n'
+                    '  "failure_count": 1,\n'
+                    '  "failures": [\n'
+                    '    {\n'
+                    '      "code": "missing_spec_data",\n'
+                    '      "target": "JE-1000F_CN"\n'
+                    '    }\n'
+                    '  ]\n'
+                    '}\n'
+                ),
+                encoding="utf-8",
+            )
+
+            payload = build_metadata(
+                workflow_name="Feishu Start Review",
+                workflow_file=".github/workflows/feishu-start-review.yml",
+                queue_record_id="rec_review",
+                trigger_source="openclaw",
+                openclaw_dispatch_nonce="nonce-456",
+                artifact_names=["feishu-start-review-output", "openclaw-run-metadata"],
+                publish_url="",
+                failure_summary_path=failure_summary_path,
+                releases_root=root / "reports" / "releases",
+                env={},
+            )
+
+            self.assertIn("failure_summary", payload)
+            failure_summary = payload["failure_summary"]
+            assert isinstance(failure_summary, dict)
+            self.assertEqual("missing_spec_data", failure_summary["summary_code"])
+            self.assertEqual("缺少 JE-1000F_CN 的规格数据，无法进入 review。", failure_summary["summary_message"])

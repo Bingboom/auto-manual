@@ -107,6 +107,28 @@ class TestQueueExecute(unittest.TestCase):
         self.assertFalse(queue_execute.is_successful_status({"conclusion": "failure"}))
         self.assertFalse(queue_execute.is_successful_status({"status": "completed"}))
 
+    def test_has_structured_failure_should_detect_failure_message(self) -> None:
+        self.assertTrue(queue_execute.has_structured_failure({"failure_message": "缺少规格数据"}))
+        self.assertFalse(queue_execute.has_structured_failure({"failure_message": ""}))
+
+    def test_build_queue_execute_failure_message_should_prefer_structured_failure_summary(self) -> None:
+        message = queue_execute.build_queue_execute_failure_message(
+            row=_draft_row("rec_review"),
+            status_payload={
+                "conclusion": "failure",
+                "run_id": "1001",
+                "run": "https://github.com/example/actions/runs/1001",
+                "failure_message": "缺少 JE-1000F_CN 的规格数据，无法进入 review。",
+                "failure_next_step": "请先补齐 JE-1000F_CN 在 Spec_Master 中的规格数据，再重试。",
+            },
+            dispatch_payload={},
+        )
+
+        self.assertIn("缺少 JE-1000F_CN 的规格数据，无法进入 review。", message)
+        self.assertIn("请先补齐 JE-1000F_CN 在 Spec_Master 中的规格数据，再重试。", message)
+        self.assertIn("record_id=rec_review", message)
+        self.assertIn("run_id=1001", message)
+
 
 if __name__ == "__main__":
     unittest.main()

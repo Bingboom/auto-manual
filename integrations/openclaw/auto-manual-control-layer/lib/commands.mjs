@@ -72,6 +72,7 @@ export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl,
     `${workflowName}`,
     `status: ${status || "pending"}`,
   ];
+  const failureSummary = metadata?.failure_summary && typeof metadata.failure_summary === "object" ? metadata.failure_summary : null;
   if (conclusion) {
     lines.push(`conclusion: ${conclusion}`);
   }
@@ -86,6 +87,32 @@ export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl,
   }
   if (artifacts?.length) {
     lines.push(`artifacts: ${artifacts.map((artifact) => artifact.name).join(", ")}`);
+  }
+  if (failureSummary?.summary_code) {
+    lines.push(`failure_code: ${failureSummary.summary_code}`);
+  } else if (failureSummary?.code) {
+    lines.push(`failure_code: ${failureSummary.code}`);
+  }
+  if (failureSummary?.summary_message) {
+    lines.push(`failure_message: ${failureSummary.summary_message}`);
+  } else if (failureSummary?.message) {
+    lines.push(`failure_message: ${failureSummary.message}`);
+  }
+  if (failureSummary?.summary_next_step) {
+    lines.push(`failure_next_step: ${failureSummary.summary_next_step}`);
+  } else if (failureSummary?.next_step) {
+    lines.push(`failure_next_step: ${failureSummary.next_step}`);
+  }
+  const firstFailure = Array.isArray(failureSummary?.failures) ? failureSummary.failures[0] : null;
+  if (firstFailure?.target) {
+    lines.push(`failure_target: ${firstFailure.target}`);
+  } else if (failureSummary?.target) {
+    lines.push(`failure_target: ${failureSummary.target}`);
+  }
+  if (firstFailure?.detail) {
+    lines.push(`failure_detail: ${String(firstFailure.detail).replace(/\s+/g, " ").trim()}`);
+  } else if (failureSummary?.detail) {
+    lines.push(`failure_detail: ${String(failureSummary.detail).replace(/\s+/g, " ").trim()}`);
   }
   if (metadata?.publish_url) {
     lines.push(`publish_url: ${metadata.publish_url}`);

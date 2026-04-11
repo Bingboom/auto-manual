@@ -121,6 +121,39 @@ def is_successful_status(status_payload: dict[str, str]) -> bool:
     return conclusion in _SUCCESS_CONCLUSIONS
 
 
+def has_structured_failure(status_payload: dict[str, str]) -> bool:
+    return bool(str(status_payload.get("failure_message", "")).strip())
+
+
+def build_queue_execute_failure_message(
+    *,
+    row: QueueQueryRow,
+    status_payload: dict[str, str],
+    dispatch_payload: dict[str, str],
+) -> str:
+    run_url = status_payload.get("run", "") or dispatch_payload.get("run", "")
+    run_id = status_payload.get("run_id", "") or dispatch_payload.get("run_id", "")
+    conclusion = status_payload.get("conclusion", "") or status_payload.get("status", "unknown")
+    failure_message = str(status_payload.get("failure_message", "")).strip()
+    failure_next_step = str(status_payload.get("failure_next_step", "")).strip()
+    if failure_message:
+        parts = [failure_message]
+        if failure_next_step:
+            parts.append(failure_next_step)
+        parts.append(f"record_id={row.record_id}")
+        if run_id:
+            parts.append(f"run_id={run_id}")
+        if run_url:
+            parts.append(f"run={run_url}")
+        return " ".join(parts)
+    return (
+        "queue-execute dispatched the workflow, but GitHub finished without Feishu writeback. "
+        f"record_id={row.record_id} conclusion={conclusion or 'unknown'}"
+        + (f" run_id={run_id}" if run_id else "")
+        + (f" run={run_url}" if run_url else "")
+    )
+
+
 def render_queue_execute_result(row: QueueQueryRow, *, as_json: bool) -> str:
     if as_json:
         return json.dumps(
@@ -221,18 +254,16 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
     refreshed_row = _refresh_queue_row(cfg, row)
     if (
         getattr(args, "wait_for_completion", True)
-        and not is_successful_status(final_status_payload)
+        and (has_structured_failure(final_status_payload) or not is_successful_status(final_status_payload))
         and not refreshed_row.result
         and not refreshed_row.document_link
     ):
-        run_url = final_status_payload.get("run", "") or dispatch_payload.get("run", "")
-        run_id = final_status_payload.get("run_id", "") or dispatch_payload.get("run_id", "")
-        conclusion = final_status_payload.get("conclusion", "") or final_status_payload.get("status", "unknown")
         raise RuntimeError(
-            "queue-execute dispatched the workflow, but GitHub finished without Feishu writeback. "
-            f"record_id={refreshed_row.record_id} conclusion={conclusion or 'unknown'}"
-            + (f" run_id={run_id}" if run_id else "")
-            + (f" run={run_url}" if run_url else "")
+            build_queue_execute_failure_message(
+                row=refreshed_row,
+                status_payload=final_status_payload,
+                dispatch_payload=dispatch_payload,
+            )
         )
     print(render_queue_execute_result(refreshed_row, as_json=bool(getattr(resolved_args, "json", False))))
 

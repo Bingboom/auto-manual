@@ -47,6 +47,7 @@ jobs:
       FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
+      AUTO_MANUAL_FAILURE_SUMMARY_PATH: .tmp/openclaw/feishu-start-review-failure-summary.json
     steps:
       - uses: actions/checkout@v4
         with:
@@ -98,6 +99,7 @@ jobs:
             --queue-record-id "${{ inputs.queue_record_id || '' }}" \
             --trigger-source "${{ inputs.trigger_source || '' }}" \
             --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
+            --failure-summary-path .tmp/openclaw/feishu-start-review-failure-summary.json \
             --artifact-name feishu-start-review-output \
             --artifact-name openclaw-run-metadata
 

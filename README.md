@@ -132,6 +132,8 @@ Start Review, Build Draft Package, Publish:
 - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft|publish> <record_id>` is the matching local control CLI; it reuses the same GitHub workflow-dispatch and state-tracking logic as the OpenClaw Phase 1 plugin
 - `node integrations/openclaw/auto-manual-control-layer/cli.mjs status last` returns the latest tracked GitHub run state for that local control CLI
 - the three GitHub workers now accept one OpenClaw-only correlation input, `openclaw_dispatch_nonce`, and upload a small `openclaw-run-metadata` artifact so status lookups can map one manual dispatch back to one workflow run cleanly
+- the review-start worker now writes a structured failure summary into `openclaw-run-metadata`, so `/manual-status` and `queue-execute` can return user-facing causes such as `缺少 JE-1000F_CN 的规格数据，无法进入 review。` instead of only a generic workflow failure
+- when OpenClaw dispatches one explicit review-start `record_id` but the GitHub worker cannot re-read that row as pending from the bound Feishu view, the worker now records that as a structured failure instead of a silent no-op success
 - dispatch the Build Draft Package worker on `main`; the actual review content comes from `Document_link.Git_ref`, and rows without `Git_ref` now fail fast instead of silently building from `main`
 - dispatch the Publish worker on `main`; `main` only carries the workflow definition, while `Document_link.Git_ref` still decides the review branch source when present
 - when a Publish row carries `Git_ref`, the `main`-owned Publish queue worker now builds that review branch instead of rebuilding from `main`

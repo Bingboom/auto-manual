@@ -26,6 +26,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--openclaw-dispatch-nonce", default="", help="Optional OpenClaw dispatch nonce.")
     ap.add_argument("--publish-url", default="", help="Optional publish URL returned by the deploy step.")
     ap.add_argument(
+        "--failure-summary-path",
+        default="",
+        help="Optional structured failure summary JSON path written by the worker.",
+    )
+    ap.add_argument(
         "--artifact-name",
         action="append",
         default=[],
@@ -48,6 +53,16 @@ def resolve_repo_path(value: str) -> Path:
 
 def read_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def read_optional_json(path: Path | None) -> dict[str, object] | None:
+    if path is None or not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
 
 
 def _parse_iso_timestamp(raw: object) -> float | None:
@@ -105,6 +120,7 @@ def build_metadata(
     openclaw_dispatch_nonce: str,
     artifact_names: list[str],
     publish_url: str,
+    failure_summary_path: Path | None,
     releases_root: Path,
     env: dict[str, str] | None = None,
 ) -> dict[str, object]:
@@ -136,6 +152,10 @@ def build_metadata(
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
 
+    failure_summary = read_optional_json(failure_summary_path)
+    if failure_summary is not None:
+        metadata["failure_summary"] = failure_summary
+
     publish_meta = latest_publish_metadata(releases_root)
     if publish_meta is None:
         return metadata
@@ -165,6 +185,7 @@ def main() -> int:
     args = parse_args()
     output_path = resolve_repo_path(args.output)
     releases_root = resolve_repo_path(args.releases_root)
+    failure_summary_path = resolve_repo_path(args.failure_summary_path) if args.failure_summary_path.strip() else None
     payload = build_metadata(
         workflow_name=args.workflow_name,
         workflow_file=args.workflow_file,
@@ -173,6 +194,7 @@ def main() -> int:
         openclaw_dispatch_nonce=args.openclaw_dispatch_nonce,
         artifact_names=args.artifact_name,
         publish_url=args.publish_url,
+        failure_summary_path=failure_summary_path,
         releases_root=releases_root,
     )
     written = write_metadata(output_path, payload)
