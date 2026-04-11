@@ -32,6 +32,31 @@ def _draft_row(record_id: str = "rec_draft") -> queue_query.QueueQueryRow:
     )
 
 
+def _publish_row(record_id: str = "rec_publish") -> queue_query.QueueQueryRow:
+    return queue_query.QueueQueryRow(
+        queue_scope="document-link",
+        record_id=record_id,
+        document_id="JE-1000F_US_0.3",
+        document_key="JE-1000F_US",
+        build_family="us-merged",
+        lang="",
+        version="0.3",
+        workflow_action="Publish",
+        normalized_workflow_action="publish",
+        git_ref="codex/review-id-recvfw0zg4pzxs",
+        document_link="https://example.com/publish.docx",
+        document_directory="/tmp/publish.docx",
+        result="SUCCESS",
+        pr_url="",
+        review_status="",
+        review_trigger_enabled=None,
+        build_trigger_requested=True,
+        immediate_build=True,
+        initial_result="",
+        remarks="",
+    )
+
+
 class TestQueueExecute(unittest.TestCase):
     def _args(self, **overrides) -> argparse.Namespace:
         payload = {
@@ -51,6 +76,7 @@ class TestQueueExecute(unittest.TestCase):
             "wait_for_completion": True,
             "wait_timeout_seconds": 420,
             "status_poll_seconds": 3.0,
+            "confirm_publish": False,
         }
         payload.update(overrides)
         return argparse.Namespace(**payload)
@@ -76,6 +102,9 @@ class TestQueueExecute(unittest.TestCase):
 
     def test_dispatch_command_for_row_should_map_draft(self) -> None:
         self.assertEqual("build-draft", queue_execute.dispatch_command_for_row(_draft_row()))
+
+    def test_dispatch_command_for_row_should_map_publish(self) -> None:
+        self.assertEqual("publish", queue_execute.dispatch_command_for_row(_publish_row()))
 
     def test_parse_control_layer_output_should_extract_key_values(self) -> None:
         payload = queue_execute.parse_control_layer_output(
@@ -110,6 +139,13 @@ class TestQueueExecute(unittest.TestCase):
     def test_has_structured_failure_should_detect_failure_message(self) -> None:
         self.assertTrue(queue_execute.has_structured_failure({"failure_message": "缺少规格数据"}))
         self.assertFalse(queue_execute.has_structured_failure({"failure_message": ""}))
+
+    def test_ensure_publish_confirmation_should_require_explicit_flag(self) -> None:
+        with self.assertRaises(RuntimeError) as ctx:
+            queue_execute.ensure_publish_confirmation(self._args(), _publish_row())
+
+        self.assertIn("--confirm-publish", str(ctx.exception))
+        queue_execute.ensure_publish_confirmation(self._args(confirm_publish=True), _publish_row())
 
     def test_build_queue_execute_failure_message_should_prefer_structured_failure_summary(self) -> None:
         message = queue_execute.build_queue_execute_failure_message(

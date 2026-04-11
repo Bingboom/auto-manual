@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { randomUUID } from "node:crypto";
 
 import {
-  ensureRecordId,
+  ensureDispatchArgs,
   ensureStatusArg,
   renderDispatchResult,
   renderDuplicateRun,
@@ -23,7 +23,8 @@ const pluginRoot = path.dirname(fileURLToPath(import.meta.url));
 function usage() {
   return [
     "Usage:",
-    "  node cli.mjs dispatch <start-review|build-draft|publish> <record_id>",
+    "  node cli.mjs dispatch <start-review|build-draft> <record_id>",
+    "  node cli.mjs dispatch publish <record_id> confirm",
     "  node cli.mjs status [last|<run_id>]",
   ].join("\n");
 }
@@ -58,7 +59,7 @@ function pluginRecordFromRun(command, queueRecordId, nonce, dispatchedAt, run) {
   };
 }
 
-async function dispatch(commandName, rawRecordId) {
+async function dispatch(commandName, rawArgs) {
   const settings = resolveCliSettings({ pluginRoot });
   const missing = missingSettings(settings);
   if (missing.length) {
@@ -70,7 +71,7 @@ async function dispatch(commandName, rawRecordId) {
     throw new Error(`Unknown dispatch command: ${commandName}\n${usage()}`);
   }
 
-  const queueRecordId = ensureRecordId(rawRecordId);
+  const { queueRecordId } = ensureDispatchArgs(commandName, rawArgs);
   const github = createGitHubClient(settings);
   const stateStore = createStateStore(settings.stateFile);
   const activeRun = await github.findActiveRunForRecord({
@@ -237,8 +238,8 @@ async function main(argv) {
     return 0;
   }
   if (action === "dispatch") {
-    const [commandName, recordId] = rest;
-    await dispatch(commandName, recordId);
+    const [commandName, ...commandArgs] = rest;
+    await dispatch(commandName, commandArgs.join(" "));
     return 0;
   }
   if (action === "status") {

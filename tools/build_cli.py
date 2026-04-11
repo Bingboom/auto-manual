@@ -145,6 +145,11 @@ def parse_args(
         help="For queue-execute: polling interval while waiting for GitHub workflow completion",
     )
     ap.add_argument(
+        "--confirm-publish",
+        action="store_true",
+        help="For queue-execute: explicitly confirm Publish dispatches after row resolution",
+    )
+    ap.add_argument(
         "--workflow-action",
         choices=("build-draft-package", "publish"),
         default=None,

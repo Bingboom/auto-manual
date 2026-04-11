@@ -87,6 +87,16 @@ def dispatch_command_for_row(row: QueueQueryRow) -> str:
     )
 
 
+def ensure_publish_confirmation(args: argparse.Namespace, row: QueueQueryRow) -> None:
+    if (row.normalized_workflow_action or "") != "publish":
+        return
+    if getattr(args, "confirm_publish", False):
+        return
+    raise RuntimeError(
+        "queue-execute resolved a Publish row. Re-run with `--confirm-publish` to dispatch the Publish worker."
+    )
+
+
 def parse_control_layer_output(text: str) -> dict[str, str]:
     payload: dict[str, str] = {"raw": text.strip()}
     notes: list[str] = []
@@ -223,8 +233,12 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
     cfg = load_config(config_path)
     rows = collect_queue_query_rows(cfg, queue_scope=getattr(args, "queue_scope", "all"))
     resolved_args, row = select_unique_queue_row(args, rows)
+    ensure_publish_confirmation(resolved_args, row)
     dispatch_command = dispatch_command_for_row(row)
-    dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id)
+    if dispatch_command == "publish":
+        dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
+    else:
+        dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id)
     final_status_payload = {
         "status": "",
         "conclusion": "",

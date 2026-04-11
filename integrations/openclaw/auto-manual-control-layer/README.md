@@ -9,6 +9,7 @@ For local Phase 2 natural-language orchestration, the same package also ships a 
 
 ```bash
 node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch build-draft rec_xxx
+node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish rec_xxx confirm
 node integrations/openclaw/auto-manual-control-layer/cli.mjs status last
 ```
 
@@ -18,7 +19,7 @@ That CLI reuses the same GitHub dispatch/status modules as the plugin.
 
 - `/start-review <review_init_record_id>`
 - `/build-draft <document_link_record_id>`
-- `/publish <document_link_record_id>`
+- `/publish <document_link_record_id> confirm`
 - `/manual-status [run_id|last]`
 
 ## Expected GitHub Workflow Inputs

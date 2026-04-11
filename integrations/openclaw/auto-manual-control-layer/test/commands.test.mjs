@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  ensureDispatchArgs,
   ensureRecordId,
   ensureStatusArg,
   renderStatusResult,
@@ -11,6 +12,28 @@ test("ensureRecordId validates rec ids", () => {
   assert.equal(ensureRecordId("recABC123"), "recABC123");
   assert.throws(() => ensureRecordId(""), /Provide one record id/);
   assert.throws(() => ensureRecordId("record-1"), /Record id must start/);
+});
+
+test("ensureDispatchArgs requires explicit publish confirmation", () => {
+  assert.deepEqual(ensureDispatchArgs("publish", "recABC123 confirm"), {
+    queueRecordId: "recABC123",
+    publishConfirmed: true,
+  });
+  assert.throws(
+    () => ensureDispatchArgs("publish", "recABC123"),
+    /Publish requires explicit confirmation/
+  );
+});
+
+test("ensureDispatchArgs keeps start-review on one record id only", () => {
+  assert.deepEqual(ensureDispatchArgs("start-review", "recABC123"), {
+    queueRecordId: "recABC123",
+    publishConfirmed: false,
+  });
+  assert.throws(
+    () => ensureDispatchArgs("start-review", "recABC123 extra"),
+    /Provide one record id/
+  );
 });
 
 test("ensureStatusArg accepts last or numeric run ids", () => {

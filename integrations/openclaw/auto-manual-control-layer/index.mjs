@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 import {
-  ensureRecordId,
+  ensureDispatchArgs,
   ensureStatusArg,
   renderDispatchResult,
   renderDuplicateRun,
@@ -36,7 +36,7 @@ async function dispatchCommand(ctx, api, command) {
 
   let queueRecordId;
   try {
-    queueRecordId = ensureRecordId(ctx.args);
+    queueRecordId = ensureDispatchArgs(command.commandName, ctx.args).queueRecordId;
   } catch (error) {
     return { text: error.message };
   }
