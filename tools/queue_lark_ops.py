@@ -42,8 +42,9 @@ def run_lark_cli_json(
 
 def cli_relative_file_arg(*, repo_root: Path, path: Path) -> str:
     resolved = path.resolve(strict=False)
+    resolved_repo_root = repo_root.resolve(strict=False)
     try:
-        relative = resolved.relative_to(repo_root)
+        relative = resolved.relative_to(resolved_repo_root)
     except ValueError as exc:
         raise RuntimeError(f"Word output must stay under repo root for lark-cli upload: {resolved}") from exc
     if os.name == "nt":

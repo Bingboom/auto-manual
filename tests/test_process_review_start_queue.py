@@ -18,7 +18,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
             docs_dir = process_review_start_queue._resolve_docs_dir_for_config(config_path, cfg)
 
-        self.assertEqual(worktree / "docs", docs_dir)
+        self.assertEqual((worktree / "docs").resolve(strict=False), docs_dir.resolve(strict=False))
 
     def test_parse_review_start_records_should_parse_build_family(self) -> None:
         records = process_review_start_queue.parse_review_start_records(
@@ -374,7 +374,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 {"paths": {"docs_dir": "docs"}},
             )
 
-        self.assertEqual((worktree / "docs").resolve(), docs_dir)
+        self.assertEqual((worktree / "docs").resolve(strict=False), docs_dir.resolve(strict=False))
 
     @mock.patch.dict(
         "os.environ",

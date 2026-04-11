@@ -132,6 +132,7 @@ Publish 的原料是：
 - 不让自然语言入口临场拼“查表 -> dispatch -> 等待 -> 回读”的步骤
 - 仍然以 Feishu 队列表为唯一真源
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
+- 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
 
 当前 Phase 2 仍然只认一个交付链接字段：
 

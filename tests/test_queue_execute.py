@@ -91,6 +91,16 @@ class TestQueueExecute(unittest.TestCase):
         self.assertEqual("build-draft-package", resolved_args.query_workflow_action)
         self.assertEqual("rec_draft", row.record_id)
 
+    def test_select_unique_queue_row_should_resolve_spaced_document_id_requests(self) -> None:
+        resolved_args, row = queue_execute.select_unique_queue_row(
+            self._args(query_text="帮我生成 JE-1000F US en 0.3 草稿"),
+            [_draft_row()],
+        )
+
+        self.assertEqual("JE-1000F_US_en_0.3", resolved_args.document_id)
+        self.assertEqual("build-draft-package", resolved_args.query_workflow_action)
+        self.assertEqual("rec_draft", row.record_id)
+
     def test_select_unique_queue_row_should_raise_for_ambiguous_matches(self) -> None:
         with self.assertRaises(RuntimeError) as ctx:
             queue_execute.select_unique_queue_row(
