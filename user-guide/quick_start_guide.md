@@ -118,6 +118,7 @@ Publish 的原料是：
 
 1. 查状态或查记录时，先查表定位唯一目标行：
    - `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json`
+   - 如果要先让 OpenClaw 看结构化 dry-run 结果，再走下一步：`python build.py queue-resolve-action --config config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json`
 2. 要真正执行时，直接走一条确定性命令：
    - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
    - 如果这条命令最终会命中 `Workflow_action = Publish`，要额外带上 `--confirm-publish`

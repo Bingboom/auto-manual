@@ -24,6 +24,7 @@ def parse_args(
             "sync-review",
             "sync-data",
             "queue-query",
+            "queue-resolve-action",
             "queue-execute",
             "process-review-start-queue",
             "process-build-queue",
@@ -105,26 +106,26 @@ def parse_args(
         "--queue-scope",
         choices=("document-link", "review-init", "all"),
         default="all",
-        help="For queue-query: which Feishu queue surface to search",
+        help="For queue-query or queue-resolve-action: which Feishu queue surface to search",
     )
     ap.add_argument(
         "--query-text",
         default=None,
-        help="For queue-query: raw natural-language text to parse with document_id-first resolution",
+        help="For queue-query or queue-resolve-action: raw natural-language text to parse with document_id-first resolution",
     )
-    ap.add_argument("--document-id", default=None, help="For queue-query: exact Document_ID filter")
-    ap.add_argument("--document-key", default=None, help="For queue-query: exact Document_Key filter")
-    ap.add_argument("--build-family", default=None, help="For queue-query: exact Build_family filter")
-    ap.add_argument("--document-version", default=None, help="For queue-query: exact Version filter")
+    ap.add_argument("--document-id", default=None, help="For queue-query or queue-resolve-action: exact Document_ID filter")
+    ap.add_argument("--document-key", default=None, help="For queue-query or queue-resolve-action: exact Document_Key filter")
+    ap.add_argument("--build-family", default=None, help="For queue-query or queue-resolve-action: exact Build_family filter")
+    ap.add_argument("--document-version", default=None, help="For queue-query or queue-resolve-action: exact Version filter")
     ap.add_argument(
         "--query-workflow-action",
         default=None,
-        help="For queue-query: start-review | build-draft-package | publish",
+        help="For queue-query or queue-resolve-action: start-review | build-draft-package | publish",
     )
-    ap.add_argument("--git-ref-contains", default=None, help="For queue-query: substring match against Git_ref")
-    ap.add_argument("--result-contains", default=None, help="For queue-query: substring match against 构建结果")
-    ap.add_argument("--limit", type=int, default=10, help="For queue-query: maximum rows to return")
-    ap.add_argument("--json", action="store_true", help="For queue-query: emit machine-readable JSON")
+    ap.add_argument("--git-ref-contains", default=None, help="For queue-query or queue-resolve-action: substring match against Git_ref")
+    ap.add_argument("--result-contains", default=None, help="For queue-query or queue-resolve-action: substring match against 构建结果")
+    ap.add_argument("--limit", type=int, default=10, help="For queue-query or queue-resolve-action: maximum rows to return")
+    ap.add_argument("--json", action="store_true", help="For queue-query or queue-resolve-action: emit machine-readable JSON")
     ap.set_defaults(wait_for_completion=True)
     ap.add_argument(
         "--no-wait",
