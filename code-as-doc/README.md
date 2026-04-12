@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-04-07
+Updated: 2026-04-11
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single owning document for the topic you are changing.
@@ -51,6 +51,9 @@ These files describe the current repo behavior today.
 - [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
   - long-term strategy
   - stable architectural principles and platform direction
+- [`architecture/Feishu_Message_OpenClaw_Control_Plan.md`](architecture/Feishu_Message_OpenClaw_Control_Plan.md)
+  - Feishu IM plus OpenClaw control-layer integration plan
+  - bounded natural-language control on top of the existing queue/review workers
 
 ## 3. User Workflow Docs
 

@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-04-08
+Updated: 2026-04-11
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -28,6 +28,7 @@ python build.py process-review-start-queue --config config.us.yaml --data-root .
 python scripts\local_build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python scripts\local_build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 python build.py process-build-queue --config config.us.yaml
+python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"
 python build.py handoff --config config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
@@ -61,6 +62,7 @@ Meaning:
 - `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, resolve each row from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, sync the latest phase2 snapshot, create or reuse one review branch for that routed group, seed `docs/_review`, push the branch, create or reuse the PR, then write back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - `process-review-start-queue` duplicate guard: review start is now treated as one-time per `Document_Key` target. If `origin/main` already contains committed `docs/_review/<model>/<region>/` content, block duplicate seeding and write back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
 - `process-build-queue`: Build Draft Package / Publish bridge; it consumes `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, run `check + word`, publish the generated DOCX through the configured artifact sink, write the local DOCX path into `Document directory`, write the resolved link into `Document link`, write a timestamped build status into `构建结果`, and flip the trigger back to `已构建` on success
+- `message-control-dry-run`: maintainer-only Phase 0 helper for the planned Feishu message plus OpenClaw control layer; it parses one raw user message and returns structured JSON for `query_status`, `Start Review`, `Build Draft Package`, or `Publish` without dispatching workflows or editing Feishu rows
 - the merged US `config.us.yaml` flow now emits one `docs/_build/<model>/US/word/manual_<model>_us.docx` bundle that contains `en`, `fr`, and `es` together; CSV-driven `Source_lang` / `*_source` text is required, while non-source language values may be blank because runtime lookup falls back to source-language text
 - queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is only a compatibility fallback when `Build_family` is missing
 - queue rows should now use `Workflow_action` only: `Start Review` to create or reuse review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
@@ -213,6 +215,7 @@ If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before ru
 python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run
 python build.py sync-data --config config.us.yaml --data-root data/phase2
 python build.py process-build-queue --config config.us.yaml
+python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"
 ```
 
 That command requires:

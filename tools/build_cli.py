@@ -32,6 +32,7 @@ def parse_args(
             "release-manifest",
             "preview",
             "fast",
+            "message-control-dry-run",
         ),
         help="Action to run",
     )
@@ -98,6 +99,14 @@ def parse_args(
         help="Output directory for diff-report CSV/HTML",
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
+    ap.add_argument("--message", default=None, help="For message-control-dry-run: raw incoming user message")
+    ap.add_argument("--document-id", default=None, help="For message-control-dry-run: explicit Document_ID hint")
+    ap.add_argument("--document-key", default=None, help="For message-control-dry-run: explicit Document_Key hint")
+    ap.add_argument("--build-family", default=None, help="For queue or message control: explicit Build_family hint")
+    ap.add_argument("--git-ref", default=None, help="For message-control-dry-run: explicit Git_ref hint")
+    ap.add_argument("--version", default=None, help="For message-control-dry-run: explicit version hint")
+    ap.add_argument("--lang", default=None, help="For message-control-dry-run: explicit language hint")
+    ap.add_argument("--confirmed", action="store_true", help="For message-control-dry-run: confirm publish intent")
     ap.add_argument(
         "--workflow-action",
         choices=("build-draft-package", "publish"),

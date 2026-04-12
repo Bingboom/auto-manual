@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-08
+Updated: 2026-04-11
 
 ## 1. Role
 
@@ -56,7 +56,7 @@ Suggested workstream statuses:
 
 ## 3. Current Baseline
 
-As of 2026-03-17, the repo has working baselines for:
+As of 2026-04-11, the repo has working baselines for:
 
 - [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) as the primary cross-platform entrypoint
 - target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
@@ -68,6 +68,7 @@ As of 2026-03-17, the repo has working baselines for:
 - `release-manifest`
 - `preview`
 - `fast`
+- `message-control-dry-run` as a maintainer-only Phase 0 natural-language control resolver that returns structured JSON without dispatching real workflows
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
 - CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
 
@@ -129,6 +130,11 @@ Use this section for short milestone-style updates.
 
 - completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
 
+### 2026-04-11
+
+- started Workstream F by adding `build.py message-control-dry-run` plus `tools/message_control_*` as the Phase 0 dry-run resolver for the planned Feishu message plus OpenClaw control layer
+- kept the Phase 0 scope intentionally narrow: resolve one raw message into structured JSON, required fields, guardrails, and the target GitHub workflow without dispatching or mutating Feishu state
+
 ## 5. Open Gaps
 
 Keep this section short and current.
@@ -136,6 +142,7 @@ Keep this section short and current.
 1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
 2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 3. Multi-target conditional content is still deferred.
+4. No live Feishu-message execution path exists yet; the new Phase 0 dry-run resolver can parse one raw message into structured actions, but webhook ingress, workflow dispatch, and Feishu row mutation still remain to be implemented.
 
 ## 6. Active Workstreams
 
@@ -212,13 +219,37 @@ Status: done
 
 Status: done
 
+### Workstream F: Feishu Message Control Layer
+
+Status: active
+
+Why now:
+
+- the queue, review-init, and publish workers are stable enough to expose through a higher-level operator surface
+- operators still need to edit Feishu table fields manually for common review/build/publish actions
+- the missing leverage point is control ergonomics, not another build-core refactor
+
+Scope:
+
+- define a bounded action contract over the current review/build/publish workers
+- add a Feishu message plus OpenClaw adapter that translates natural language into structured actions
+- return status and result information from existing queue or review-init writeback fields instead of inventing a parallel task model
+- keep build execution delegated to the current GitHub workflows and queue entrypoints
+
+Exit criteria:
+
+- operators can request `query_status`, `Start Review`, `Build Draft Package`, and `Publish` from Feishu messages without manually editing queue fields
+- execution remains constrained to existing action types, target-resolution rules, and queue/writeback contracts
+- accepted and completed replies are grounded in queue-row or review-init-row state rather than controller-local memory
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 1. Preserve the current `check` + smoke-CI baseline
-2. Revisit remaining medium wrappers only when a concrete hotspot reappears
-3. Multi-target content pilot when the deferred work becomes active
+2. Finish Phase 0 of the Feishu message plus OpenClaw control layer by adding webhook ingress, selector validation, and dispatch gating on top of the new dry-run resolver
+3. Revisit remaining medium wrappers only when a concrete hotspot reappears
+4. Multi-target content pilot when the deferred work becomes active
 
 
 ## 9. Success Criteria

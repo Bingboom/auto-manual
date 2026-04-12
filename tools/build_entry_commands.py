@@ -204,6 +204,47 @@ def sync_data_command(
     return cmd
 
 
+def message_control_dry_run_command(
+    args: argparse.Namespace,
+    *,
+    repo_root: Path,
+    resolve_path_from_root: Callable[[str], Path],
+) -> list[str]:
+    message = str(args.message or "").strip()
+    if not message:
+        raise RuntimeError("message-control-dry-run requires --message")
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(repo_root / "tools" / "message_control_dry_run.py"),
+        "--config",
+        str(config_path),
+        "--message",
+        message,
+    ]
+    if isinstance(args.record_id, str) and args.record_id.strip():
+        cmd += ["--record-id", args.record_id.strip()]
+    if isinstance(args.document_id, str) and args.document_id.strip():
+        cmd += ["--document-id", args.document_id.strip()]
+    if isinstance(args.document_key, str) and args.document_key.strip():
+        cmd += ["--document-key", args.document_key.strip()]
+    if isinstance(args.model, str) and args.model.strip():
+        cmd += ["--model", args.model.strip()]
+    if isinstance(args.region, str) and args.region.strip():
+        cmd += ["--region", args.region.strip()]
+    if isinstance(args.lang, str) and args.lang.strip():
+        cmd += ["--lang", args.lang.strip()]
+    if isinstance(args.build_family, str) and args.build_family.strip():
+        cmd += ["--build-family", args.build_family.strip()]
+    if isinstance(args.git_ref, str) and args.git_ref.strip():
+        cmd += ["--git-ref", args.git_ref.strip()]
+    if isinstance(args.version, str) and args.version.strip():
+        cmd += ["--version", args.version.strip()]
+    if args.confirmed:
+        cmd.append("--confirmed")
+    return cmd
+
+
 def release_manifest_command(
     args: argparse.Namespace,
     *,

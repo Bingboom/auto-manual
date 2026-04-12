@@ -164,6 +164,26 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("doctor", args.action)
         self.assertEqual("config.ja.yaml", args.config)
 
+    def test_parse_args_should_support_message_control_dry_run(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "message-control-dry-run",
+                "--message",
+                "publish JE-1000F us-merged",
+                "--build-family",
+                "us-merged",
+                "--git-ref",
+                "feature/review-123",
+                "--confirmed",
+            ]
+        )
+
+        self.assertEqual("message-control-dry-run", args.action)
+        self.assertEqual("publish JE-1000F us-merged", args.message)
+        self.assertEqual("us-merged", args.build_family)
+        self.assertEqual("feature/review-123", args.git_ref)
+        self.assertTrue(args.confirmed)
+
     def test_main_should_return_runtime_error_as_exit_code_one(self) -> None:
         with patch_module_attrs(
             build_cli,
@@ -518,6 +538,44 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--record-id", cmd)
         self.assertIn("rec_456", cmd)
         self.assertIn("--dry-run", cmd)
+
+    def test_message_control_dry_run_command_should_forward_message_and_selector_hints(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "message-control-dry-run",
+                "--config",
+                "config.us.yaml",
+                "--message",
+                "publish JE-1000F us-merged from branch feature/review-123",
+                "--record-id",
+                "rec123",
+                "--build-family",
+                "us-merged",
+                "--git-ref",
+                "feature/review-123",
+                "--confirmed",
+            ]
+        )
+
+        cmd = build_cli.message_control_dry_run_command(args)
+
+        self.assertEqual(sys.executable, cmd[0])
+        self.assertIn(str(build_cli.ROOT / "tools" / "message_control_dry_run.py"), cmd)
+        self.assertIn("--message", cmd)
+        self.assertIn("publish JE-1000F us-merged from branch feature/review-123", cmd)
+        self.assertIn("--record-id", cmd)
+        self.assertIn("rec123", cmd)
+        self.assertIn("--build-family", cmd)
+        self.assertIn("us-merged", cmd)
+        self.assertIn("--git-ref", cmd)
+        self.assertIn("feature/review-123", cmd)
+        self.assertIn("--confirmed", cmd)
+
+    def test_message_control_dry_run_command_should_require_message(self) -> None:
+        args = build_cli.parse_args(["message-control-dry-run"])
+
+        with self.assertRaisesRegex(RuntimeError, "requires --message"):
+            build_cli.message_control_dry_run_command(args)
 
     def test_process_build_queue_command_should_reject_doc_phase_only_filter(self) -> None:
         args = build_cli.parse_args(["process-build-queue", "--doc-phase", "draft"])

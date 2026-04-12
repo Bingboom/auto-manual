@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-08
+Updated: 2026-04-11
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -68,6 +68,7 @@ Phase2 snapshot note:
 - when a valid phase2 snapshot exists, build/review/publish flows default to that snapshot; explicit `--data-root` still overrides the default for local experiments or alternate roots
 - queue-driven build flows still treat Feishu phase2 tables as the structured-data source of truth; committed `data/phase2/*.csv` files are build-time snapshots refreshed by `sync-data`
 - `process-build-queue` still reads its queue rows from Feishu `Document_link` and still writes status plus `Document link` back to Feishu even when the artifact upload target is switched
+- `python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"` is the current Phase 0 maintainer probe for the planned Feishu message plus OpenClaw control layer; it resolves one raw message into structured JSON and guardrails without dispatching workflows or mutating Feishu rows
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain tokens such as `front.label` when the source table stores markdown-link wrappers like `[front.label](front.label)`
 - `sync-data` now resolves full field names through Base field metadata before writing CSVs, so long columns such as `Row_label_footnote_refs` are not lost when `lark-cli` abbreviates display headers in `base +record-list`
 - when `spec_master` and `spec_footnotes` are synced together, `sync-data` also converts Feishu linked-record style footnote refs such as `{"id":"rec..."}` into stable `Footnote_id` values before writing `Spec_Master.csv`
@@ -242,6 +243,7 @@ Use the document that owns the topic:
 - current repository component map: [`code-as-doc/architecture/Hello_Docs_Architecture.md`](code-as-doc/architecture/Hello_Docs_Architecture.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
+- Feishu message plus OpenClaw control-layer plan: [`code-as-doc/architecture/Feishu_Message_OpenClaw_Control_Plan.md`](code-as-doc/architecture/Feishu_Message_OpenClaw_Control_Plan.md)
 - repo-level execution roadmap: [`optimization_project.md`](optimization_project.md)
 
 ## 5. Key Directories
