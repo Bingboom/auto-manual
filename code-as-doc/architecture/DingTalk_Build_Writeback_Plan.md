@@ -1,6 +1,6 @@
 # DingTalk Build And Writeback Plan
 
-Updated: 2026-04-09
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -96,8 +96,49 @@ Important implication:
 - Feishu currently assumes a local authenticated CLI session.
 - DingTalk will likely require our worker to own token acquisition, token refresh, and 403 re-consent handling.
 - The worker must be explicit about which actions are safe with App-Only access and which require delegated access.
+- for storage and knowledge-space upload, the worker can use an App-Only token for the transport step, but the target APIs still commonly require a real operator identity such as `unionId` or `operatorId`
 
-### 3.3 There Is No Clear Official General-Purpose CLI Equivalent
+### 3.3 OpenClaw Plugin Should Own Interactive Binding, Not The Upload Itself
+
+The practical split for this repo should be:
+
+- OpenClaw plugin:
+  - launch DingTalk authorization or identity-binding UX
+  - resolve and persist one stable operator identity
+  - help the operator pick and validate a default target node
+  - write that operator identity and default node into a Feishu control-plane config row or lightweight config table
+- repo worker:
+  - read the bound operator identity and default target
+  - build the Word artifact
+  - acquire an App-Only token
+  - call DingTalk OpenAPI upload and commit endpoints
+  - write the final DingTalk link back into the Feishu queue row
+
+This keeps the current architecture boundary intact:
+
+- OpenClaw remains the ergonomic control and binding layer
+- the repo remains the deterministic build and publish engine
+
+### 3.4 Secrets And Config Ownership
+
+Recommended ownership split:
+
+- GitHub Secrets:
+  - `DINGTALK_CLIENT_ID`
+  - `DINGTALK_CLIENT_SECRET`
+  - `DINGTALK_CORP_ID`
+- Feishu control-plane config row or lightweight config table:
+  - `operator_union_id`
+  - `default_target_node_url`
+- queue row:
+  - row-level DingTalk override fields such as `是否上传钉钉` and `DingTalk_target_node_url`
+
+Important implication:
+
+- the worker should not require browser-session values such as `a-token`, `x-xsrf-token`, or `cookie` once `dingtalk_openapi` is in use
+- the OpenClaw plugin should update the Feishu-side operator/default-target config, not mutate GitHub Secrets during normal operation
+
+### 3.5 There Is No Clear Official General-Purpose CLI Equivalent
 
 Inference from the current official SDK overview:
 
@@ -191,6 +232,10 @@ Recommended new contracts:
 - `Phase2EventSource`
   - `supports_queue_events()`
   - `subscribe_queue_events(...)`
+- `DingTalkControlConfigSource`
+  - `read_operator_union_id(...)`
+  - `read_default_target_node_url(...)`
+  - `validate_target_binding(...)`
 
 ### 6.3 File-Level Refactor Targets
 
@@ -257,9 +302,32 @@ Current verified status:
 
 - the official App-Only token flow for an internal DingTalk app is now verified in-repo through [`../../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py)
 - the spike tooling can already normalize a standard DingTalk docs URL of the form `https://alidocs.dingtalk.com/i/nodes/<node_id>` into a stable node identifier through [`../../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py)
-- the remaining unresolved phase-0 question is the public upload or attach API for the chosen DingTalk docs / knowledge-space product
+- the first formal OpenAPI smoke helper now exists as [`../../tools/dingtalk/openapi_upload_cli.py`](../../tools/dingtalk/openapi_upload_cli.py), targeting the official upload-info plus commit path with App-Only token transport and explicit `operator_union_id`
+- the remaining unresolved phase-0 question is not whether file upload exists, but which exact DingTalk product and permission model should own long-lived queue rows and optional workspace attach behavior
 
-### Phase 1: Snapshot Sync Parity
+### Phase 1: OpenAPI Upload Smoke
+
+Goal:
+
+- prove that one Word artifact can be uploaded through official DingTalk OpenAPI without browser-session headers
+
+Scope:
+
+- obtain App-Only token
+- parse one target node URL into `parent_dentry_uuid`
+- use one explicit `operator_union_id`
+- call official `uploadInfos/query`
+- upload file bytes to the returned signed URL
+- call official `commit`
+- obtain at least one stable DingTalk `dentry` identifier and candidate node URL
+
+Validation:
+
+- run [`../../tools/dingtalk/openapi_upload_cli.py`](../../tools/dingtalk/openapi_upload_cli.py) against a throwaway `.docx`
+- confirm the committed file appears under the target node in DingTalk UI
+- capture the exact permission scopes and any 403 failure modes
+
+### Phase 2: Snapshot Sync Parity
 
 Goal:
 
@@ -276,7 +344,7 @@ Validation:
 - compare exported CSV shape against the Feishu-backed baseline
 - run `python -m unittest`
 
-### Phase 2: Queue Read/Write Parity
+### Phase 3: Queue Read/Write Parity
 
 Goal:
 
@@ -296,7 +364,7 @@ Validation:
 - one draft queue row
 - one publish queue row
 
-### Phase 3: Artifact Upload Parity
+### Phase 4: Artifact Upload Parity
 
 Goal:
 
@@ -312,7 +380,7 @@ Fallback rule:
 
 - if container attach is unsupported or under-granted, write back the file-space link and mark the status as link-only, similar to today's `drive_only` fallback
 
-### Phase 4: Triggering Model
+### Phase 5: Triggering Model
 
 Goal:
 
@@ -328,7 +396,7 @@ Official Stream docs confirm that Stream is suitable for DingTalk-to-app callbac
 - [Stream overview](https://open-dingtalk.github.io/developerpedia/docs/learn/stream/overview/)
 - [Stream protocol](https://open-dingtalk.github.io/developerpedia/docs/learn/stream/protocol/)
 
-### Phase 5: Review-Start Parity
+### Phase 6: Review-Start Parity
 
 This is optional for the first milestone.
 
@@ -352,6 +420,10 @@ Use App-Only access for:
 - artifact upload
 
 Use delegated access only when the target DingTalk resource model forces user-owned resource operations.
+For the upload milestone, prefer the hybrid approach:
+
+- App-Only token for transport
+- operator identity from OpenClaw-bound `unionId/operatorId`
 
 Rationale:
 
@@ -444,12 +516,13 @@ The first milestone is successful if:
 Implementation should happen in this order:
 
 1. phase 0 spike script outside the main flow
-2. provider-neutral auth and source interfaces
-3. `sync-data` parity
-4. queue row read/write parity
-5. artifact upload and share-link parity
-6. optional workspace-attach enhancement
-7. optional Stream trigger
+2. OpenClaw plugin binding flow for operator identity plus default target persistence
+3. provider-neutral auth and source interfaces
+4. `sync-data` parity
+5. queue row read/write parity
+6. artifact upload and share-link parity
+7. optional workspace-attach enhancement
+8. optional Stream trigger
 
 ## 12. Execution Summary
 

@@ -23,6 +23,7 @@ def parse_args(
             "check",
             "sync-review",
             "sync-data",
+            "dingtalk-control-config",
             "queue-query",
             "queue-resolve-action",
             "queue-execute",
@@ -126,6 +127,16 @@ def parse_args(
     ap.add_argument("--result-contains", default=None, help="For queue-query or queue-resolve-action: substring match against 构建结果")
     ap.add_argument("--limit", type=int, default=10, help="For queue-query or queue-resolve-action: maximum rows to return")
     ap.add_argument("--json", action="store_true", help="For queue-query or queue-resolve-action: emit machine-readable JSON")
+    ap.add_argument(
+        "--operator-union-id",
+        default=None,
+        help="For dingtalk-control-config: write or override operator_union_id on the bound Feishu control row",
+    )
+    ap.add_argument(
+        "--target-node-url",
+        default=None,
+        help="For dingtalk-control-config: write or override default_target_node_url on the bound Feishu control row",
+    )
     ap.set_defaults(wait_for_completion=True)
     ap.add_argument(
         "--no-wait",
@@ -165,11 +176,11 @@ def parse_args(
     ap.add_argument(
         "--record-id",
         default=None,
-        help="For process-build-queue or process-review-start-queue: only consume one table record_id",
+        help="For process-build-queue, process-review-start-queue, or dingtalk-control-config: target one explicit record_id",
     )
     ap.add_argument(
         "--dry-run",
         action="store_true",
-        help="For sync-data, process-build-queue, or process-review-start-queue: validate/report without writing files",
+        help="For sync-data, process-build-queue, process-review-start-queue, or dingtalk-control-config: validate/report without writing files",
     )
     return ap.parse_args(argv)

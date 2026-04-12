@@ -1,0 +1,7 @@
+tunnel: REPLACE_WITH_TUNNEL_UUID
+credentials-file: /Users/REPLACE_WITH_USER/.cloudflared/REPLACE_WITH_TUNNEL_UUID.json
+
+ingress:
+  - hostname: feishu-im.example.com
+    service: http://127.0.0.1:9097
+  - service: http_status:404

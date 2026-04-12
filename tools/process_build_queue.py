@@ -29,6 +29,7 @@ from tools.queue_contract import (  # noqa: E402
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
     DATA_SYNC_FIELD as _QC_DATA_SYNC_FIELD,
+    DEFAULT_TARGET_NODE_URL_FIELD as _QC_DEFAULT_TARGET_NODE_URL_FIELD,
     DINGTALK_TARGET_NODE_URL_FIELD as _QC_DINGTALK_TARGET_NODE_URL_FIELD,
     DOCUMENT_DIRECTORY_FIELD as _QC_DOCUMENT_DIRECTORY_FIELD,
     DOCUMENT_LINK_DD_FIELD as _QC_DOCUMENT_LINK_DD_FIELD,
@@ -43,6 +44,7 @@ from tools.queue_contract import (  # noqa: E402
     IMMEDIATE_TRIGGER_FIELD as _QC_IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD as _QC_LANG_FIELD,
     LEGACY_TRIGGER_FIELDS as _QC_LEGACY_TRIGGER_FIELDS,
+    OPERATOR_UNION_ID_FIELD as _QC_OPERATOR_UNION_ID_FIELD,
     RESULT_FIELD as _QC_RESULT_FIELD,
     SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
     TRIGGER_FIELD as _QC_TRIGGER_FIELD,
@@ -94,7 +96,13 @@ from tools.process_build_queue_services import (  # noqa: E402
     upload_word_to_drive as _upload_word_to_drive_service,
     wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
 )
-from tools.dingtalk.alidocs_session import load_session_config, upload_file_to_node  # noqa: E402
+from tools.dingtalk.alidocs_session import load_session_config, upload_file_to_node as upload_file_to_node_session  # noqa: E402
+from tools.dingtalk.auth import get_app_only_token  # noqa: E402
+from tools.dingtalk.openapi_upload import upload_file_to_node as upload_file_to_node_openapi  # noqa: E402
+from tools.dingtalk_control_config import (  # noqa: E402
+    collect_dingtalk_control_preflight_errors,
+    read_dingtalk_control_config,
+)
 from tools.queue_artifact_sink import (  # noqa: E402
     ArtifactDestination,
     ArtifactPublishError,
@@ -102,6 +110,8 @@ from tools.queue_artifact_sink import (  # noqa: E402
     artifact_sink_provider,
     collect_artifact_sink_preflight_errors,
     dingtalk_alidocs_env_names,
+    dingtalk_openapi_env_names,
+    resolve_dingtalk_openapi_artifact_destination,
     resolve_dingtalk_artifact_destination,
 )
 from tools.queue_bound_outputs import (  # noqa: E402
@@ -143,8 +153,10 @@ from tools.queue_bound_records import (  # noqa: E402
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
     is_trigger_requested as _is_trigger_requested,
     parse_queue_records,
+    queue_group_default_target_node_url,
     queue_group_dingtalk_target_node_url,
     queue_group_force_phase2_refresh,
+    queue_group_operator_union_id,
     queue_group_upload_dingtalk,
     pending_immediate_queue_records,
     pending_queue_records,
@@ -173,6 +185,12 @@ configure_queue_bound_providers(
 def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
     errors = _collect_queue_preflight_errors_impl(cfg)
     errors.extend(collect_artifact_sink_preflight_errors(cfg, environ=os.environ))
+    try:
+        provider = artifact_sink_provider(cfg, environ=os.environ)
+    except RuntimeError:
+        return errors
+    if provider == "dingtalk_openapi":
+        errors.extend(collect_dingtalk_control_preflight_errors(cfg, environ=os.environ))
     return errors
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
@@ -192,6 +210,8 @@ DOCUMENT_DIRECTORY_FIELD = _QC_DOCUMENT_DIRECTORY_FIELD
 DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
 DOCUMENT_LINK_DD_FIELD = _QC_DOCUMENT_LINK_DD_FIELD
 DINGTALK_TARGET_NODE_URL_FIELD = _QC_DINGTALK_TARGET_NODE_URL_FIELD
+OPERATOR_UNION_ID_FIELD = _QC_OPERATOR_UNION_ID_FIELD
+DEFAULT_TARGET_NODE_URL_FIELD = _QC_DEFAULT_TARGET_NODE_URL_FIELD
 FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
 UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
@@ -249,6 +269,8 @@ def resolve_artifact_destination(
     identity: str,
     binding: DocumentLinkBinding,
     target_node_url: str | None = None,
+    operator_union_id: str | None = None,
+    default_target_node_url: str | None = None,
 ) -> WikiDestination | ArtifactDestination:
     provider = artifact_sink_provider(cfg, environ=os.environ)
     if provider == "dingtalk_alidocs_session":
@@ -256,6 +278,19 @@ def resolve_artifact_destination(
             cfg,
             environ=os.environ,
             target_node_url=target_node_url,
+        )
+    if provider == "dingtalk_openapi":
+        control_config = read_dingtalk_control_config(
+            cfg=cfg,
+            cli_bin_override=cli_bin,
+            identity=identity,
+        )
+        return resolve_dingtalk_openapi_artifact_destination(
+            cfg,
+            environ=os.environ,
+            target_node_url=target_node_url,
+            operator_union_id=str(operator_union_id or "").strip() or control_config.operator_union_id,
+            default_target_node_url=str(default_target_node_url or "").strip() or control_config.default_target_node_url,
         )
     return resolve_wiki_destination(
         cli_bin=cli_bin,
@@ -323,7 +358,7 @@ def publish_word_artifact(
         )
         if not target_node_url:
             raise RuntimeError("DingTalk artifact destination is missing target_node_url")
-        committed = upload_file_to_node(
+        committed = upload_file_to_node_session(
             session=session,
             file_path=word_output_path,
             parent_node_url=str(target_node_url),
@@ -334,6 +369,43 @@ def publish_word_artifact(
             latest_link_url=committed.node_url,
             document_link_url=committed.node_url,
             document_link_dd_url=committed.node_url,
+        )
+    if provider == "dingtalk_openapi":
+        if not isinstance(artifact_destination, ArtifactDestination):
+            raise RuntimeError("DingTalk OpenAPI artifact destination is missing destination details")
+        env_names = dingtalk_openapi_env_names(cfg)
+        token = get_app_only_token(
+            client_id_env=env_names["client_id_env"],
+            client_secret_env=env_names["client_secret_env"],
+            corp_id_env=env_names["corp_id_env"],
+        )
+        target_node_url = str(artifact_destination.details.get("target_node_url") or "").strip()
+        operator_union_id = str(artifact_destination.details.get("operator_union_id") or "").strip()
+        if not target_node_url:
+            raise RuntimeError(
+                "DingTalk OpenAPI upload requires target node URL: provide DingTalk_target_node_url, default_target_node_url, "
+                f"or set {env_names['target_node_url_env']}"
+            )
+        if not operator_union_id:
+            raise RuntimeError(
+                "DingTalk OpenAPI upload requires operator_union_id: provide the row field operator_union_id "
+                f"or set {env_names['operator_union_id_env']}"
+            )
+        committed = upload_file_to_node_openapi(
+            access_token=token.access_token,
+            operator_union_id=operator_union_id,
+            file_path=word_output_path,
+            parent_node_url=target_node_url,
+        )
+        candidate_node_url = str(committed.candidate_node_url or "").strip()
+        if not candidate_node_url:
+            raise RuntimeError("DingTalk OpenAPI commit response did not return a candidate node URL")
+        return ArtifactPublishResult(
+            provider="dingtalk_openapi",
+            reference_id=committed.dentry_uuid or committed.dentry_id,
+            latest_link_url=candidate_node_url,
+            document_link_url=candidate_node_url,
+            document_link_dd_url=candidate_node_url,
         )
 
     file_token, drive_url = upload_word_to_drive(

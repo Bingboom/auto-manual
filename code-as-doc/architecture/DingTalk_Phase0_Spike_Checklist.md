@@ -1,6 +1,6 @@
 # DingTalk Phase 0 Spike Checklist
 
-Updated: 2026-04-09
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -39,6 +39,13 @@ Before running the spike, prepare:
 - one agreed token mode:
   - App-Only first
   - delegated access only if App-Only cannot complete the required write operations
+- one explicit operator identity for the upload smoke:
+  - preferred: `operator_union_id` captured once through an OpenClaw-assisted binding flow
+  - fallback during manual smoke: a manually provided `operator_union_id`
+
+Current helper for the upload-side smoke:
+
+- [`../../tools/dingtalk/openapi_upload_cli.py`](../../tools/dingtalk/openapi_upload_cli.py)
 
 ## 4. Execution Checklist
 
@@ -103,6 +110,7 @@ Evidence to capture:
 - Upload one sample `.docx`.
 - Confirm the response contains a durable file identifier.
 - Confirm the uploaded object remains accessible to the intended tenant audience.
+- Record whether the upload requires only an App-Only token plus explicit `operator_union_id`, or whether additional delegated token scope is required.
 
 Evidence to capture:
 
@@ -126,6 +134,7 @@ Evidence to capture:
 
 - Attempt to attach the uploaded file into the target DingTalk doc or workspace container, if such a container exists in the chosen product.
 - If attach is unsupported, explicitly record that the first implementation milestone will use file-link writeback only.
+- If upload succeeds but attach is unresolved, keep the OpenClaw plugin scope limited to binding `operator_union_id` plus default target node selection.
 
 Evidence to capture:
 

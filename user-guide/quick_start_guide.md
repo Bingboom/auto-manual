@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-04-11
+Updated: 2026-04-12
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -90,7 +90,7 @@ Updated: 2026-04-11
 - 把结果链接回写到表里
 - 如果当前 artifact sink 是 DingTalk，且表里存在 `Document link_dd`，队列会把同一个 DingTalk 节点链接双写到这个字段；`Document link` 仍保持主字段
 - 如果当前 artifact sink 是 DingTalk，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才走 DingTalk，不勾就退回 Feishu/wiki 上传
-- 如果当前 artifact sink 是 DingTalk，且该行还填了 `DingTalk_target_node_url`，worker 会优先上传到这个行级节点；只有该字段为空时，才回退到全局 `DINGTALK_DOCS_TARGET_NODE_URL`
+- 如果当前 artifact sink 是 DingTalk，且该行还填了 `DingTalk_target_node_url`，worker 会优先上传到这个行级节点；只有该字段为空时，正式 `dingtalk_openapi` worker 才回退到 Feishu 控制行里的 `default_target_node_url`，本地浏览器会话模式才回退到 `DINGTALK_DOCS_TARGET_NODE_URL`
 - 只有当 `是否强制刷新数据 = 勾选` 时，队列才会在这次构建前刷新一次 phase2；否则直接复用当前本地 snapshot
 - `data_sync` 会回写 `refreshed / skipped / failed`
 
@@ -137,9 +137,22 @@ Publish 的原料是：
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft> <record_id>`
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish <record_id> confirm`
 4. 如果要直接接飞书 IM 消息入口，而不是通过 OpenClaw 命令面板：
-   - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
-   - 把 Feishu 事件订阅指向这个 adapter 的 callback URL
+   - 启动 `scripts/run_feishu_im_webhook_adapter.sh` 或 `scripts/run_feishu_im_webhook_adapter.ps1`
+   - 把 Feishu 事件订阅指向这个 adapter 的 callback URL，例如 `https://<your-host>/feishu/events`
+   - verification token 要和 `FEISHU_IM_VERIFICATION_TOKEN` 保持一致
    - 当前 adapter 只支持明文事件回调和 verification token 校验；如果飞书事件订阅开启了加密模式，需要先切回明文或继续补适配层解密
+   - 事件订阅至少加上 `im.message.receive_v1`，并在开放平台发布应用变更后再把 bot 拉进目标会话
+   - 如果你现在就要打通，优先照 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/README.md`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/README.md) 走：本地 adapter + `cloudflared` + launchd 是当前最小可用部署面
+5. 如果要通过 Feishu IM 直接绑定 `dingtalk_openapi` worker 的默认操作者和默认目录：
+   - 发 `查看钉钉配置` 或 `钉钉配置`
+   - 发 `绑定钉钉 <operator_union_id> <https://alidocs.dingtalk.com/i/nodes/...>`
+   - 或发 `dingtalk-bind <operator_union_id> <https://alidocs.dingtalk.com/i/nodes/...>`
+   - adapter 会转调 `python build.py dingtalk-control-config --config ...`，把 `operator_union_id` 和 `default_target_node_url` 写入 Feishu 控制行；后续 `process-build-queue` 会在正式上传前读取这条配置
+6. 如果要让 GitHub-hosted worker 正式走 `dingtalk_openapi`：
+   - 在仓库 Secrets 里设置 `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER=dingtalk_openapi`
+   - 再补上 `DINGTALK_CLIENT_ID`、`DINGTALK_CLIENT_SECRET`、`DINGTALK_CORP_ID`
+   - 再补上 `FEISHU_PHASE2_DINGTALK_CONTROL_TABLE_ID`、`FEISHU_PHASE2_DINGTALK_CONTROL_VIEW_ID`
+   - 如果你只想绑一条固定控制行，再额外加 `FEISHU_PHASE2_DINGTALK_CONTROL_RECORD_ID`
 
 这样做的目的只有一个：
 
@@ -225,7 +238,7 @@ Publish 的原料是：
 - `是否立即构建 = 勾选`
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
 - `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
-- `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖全局默认节点`
+- `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖默认上传目录，不填时正式 dingtalk_openapi worker 回退到 Feishu 控制行默认节点`
 
 ### 系统会做什么
 
@@ -240,7 +253,7 @@ Publish 的原料是：
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 再按 `Document_link.Git_ref` fetch 对应的 review / PR 分支到临时 worktree
 5. 然后基于那条分支里的 `_review` 构建 Build Draft Package Word
-6. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则退回全局默认 DingTalk 节点；未勾选则退回 Feishu/wiki 上传
+6. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则正式 `dingtalk_openapi` worker 退回 Feishu 控制行默认节点；未勾选则退回 Feishu/wiki 上传
 7. 回写：
    - `开始构建时间`
    - `构建结果`
@@ -270,7 +283,7 @@ Publish 的原料是：
 - `是否立即构建 = 勾选`
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
 - `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
-- `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖全局默认节点`
+- `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖默认上传目录，不填时正式 dingtalk_openapi worker 回退到 Feishu 控制行默认节点`
 
 ### 系统会做什么
 
@@ -284,7 +297,7 @@ Publish 的原料是：
 2. 执行 `process-build-queue --workflow-action publish`
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish` 和 `build.py html --source review`
-5. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则退回全局默认 DingTalk 节点；未勾选则退回 Feishu/wiki 上传
+5. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则正式 `dingtalk_openapi` worker 退回 Feishu 控制行默认节点；未勾选则退回 Feishu/wiki 上传
 6. 回写：
    - `开始构建时间`
    - `构建结果`

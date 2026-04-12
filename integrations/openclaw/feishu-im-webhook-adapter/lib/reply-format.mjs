@@ -78,3 +78,38 @@ export function formatPendingPublishReply(resolution) {
 export function formatExecutionErrorReply(error) {
   return `执行失败：${String(error?.message || error).trim()}`;
 }
+
+function summarizeDingTalkControl(payload) {
+  const lines = [];
+  if (payload.record_id) {
+    lines.push(`record_id: ${payload.record_id}`);
+  }
+  if (payload.operator_union_id) {
+    lines.push(`operator_union_id: ${payload.operator_union_id}`);
+  }
+  if (payload.default_target_node_id) {
+    lines.push(`default_target_node_id: ${payload.default_target_node_id}`);
+  }
+  if (payload.default_target_node_url) {
+    lines.push(`default_target_node_url: ${payload.default_target_node_url}`);
+  }
+  return lines.join("\n");
+}
+
+export function formatDingTalkControlQueryReply(payload) {
+  return [
+    "当前钉钉上传控制配置：",
+    summarizeDingTalkControl(payload || {}),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatDingTalkControlUpdateReply(payload) {
+  return [
+    "已更新钉钉上传控制配置：",
+    summarizeDingTalkControl(payload || {}),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}

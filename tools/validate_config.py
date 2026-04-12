@@ -312,6 +312,21 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                     )
                 )
 
+    dingtalk_control_raw = phase2.get("dingtalk_control", {})
+    if dingtalk_control_raw is not None and not isinstance(dingtalk_control_raw, dict):
+        issues.append(Issue("ERROR", "sync.phase2.dingtalk_control must be a mapping when provided"))
+        dingtalk_control_raw = {}
+    dingtalk_control = dingtalk_control_raw if isinstance(dingtalk_control_raw, dict) else {}
+    for key in ("base_token_env", "table_id_env", "view_id_env", "record_id_env"):
+        value = dingtalk_control.get(key)
+        if value is not None and (not isinstance(value, str) or not value.strip()):
+            issues.append(
+                Issue(
+                    "ERROR",
+                    f"sync.phase2.dingtalk_control.{key} must be a non-empty string when provided",
+                )
+            )
+
     # ---- pages ----
     try:
         resolved_pages = resolve_config_pages(

@@ -191,6 +191,108 @@ test("message handler stores pending publish confirmation", async () => {
   assert.match(replies[0].text, /确认发布/);
 });
 
+test("message handler returns current DingTalk control config", async () => {
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async queryDingTalkControlConfig() {
+        return {
+          record_id: "rec_control",
+          operator_union_id: "union-123",
+          default_target_node_id: "node-123",
+          default_target_node_url: "https://alidocs.dingtalk.com/i/nodes/node-123",
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("查看钉钉配置"));
+  await result.backgroundTask();
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /operator_union_id: union-123/);
+  assert.match(replies[0].text, /default_target_node_id: node-123/);
+});
+
+test("message handler updates DingTalk control config from explicit bind command", async () => {
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async updateDingTalkControlConfig(payload) {
+        assert.deepEqual(payload, {
+          operatorUnionId: "union-123",
+          targetNodeUrl: "https://alidocs.dingtalk.com/i/nodes/node-123",
+          recordId: "",
+        });
+        return {
+          record_id: "rec_control",
+          operator_union_id: payload.operatorUnionId,
+          default_target_node_id: "node-123",
+          default_target_node_url: payload.targetNodeUrl,
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload("绑定钉钉 union-123 https://alidocs.dingtalk.com/i/nodes/node-123")
+  );
+  await result.backgroundTask();
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /已更新钉钉上传控制配置/);
+  assert.match(replies[0].text, /default_target_node_url: https:\/\/alidocs\.dingtalk\.com\/i\/nodes\/node-123/);
+});
+
+test("message handler returns DingTalk bind usage when operator id is missing", async () => {
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {},
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload("绑定钉钉 https://alidocs.dingtalk.com/i/nodes/node-123")
+  );
+  await result.backgroundTask();
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /operator_union_id/);
+  assert.match(replies[0].text, /dingtalk-bind/);
+});
+
 test("message handler suppresses duplicate event ids", async () => {
   const replies = [];
   let resolveCalls = 0;

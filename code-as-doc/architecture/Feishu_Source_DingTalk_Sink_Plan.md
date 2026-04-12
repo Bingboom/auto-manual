@@ -1,6 +1,6 @@
 # Feishu Source With DingTalk Artifact Sink Plan
 
-Updated: 2026-04-09
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -24,7 +24,8 @@ Current verified status for this hybrid path:
 - Feishu remains the already working source and queue system
 - DingTalk App-Only auth for the current internal-app model is now verified in-repo through [`../../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py)
 - DingTalk workspace target URLs can already be normalized to node IDs through [`../../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py)
-- the remaining unknown for V1 is the exact DingTalk upload or attach API that maps a local `.docx` into a tenant-visible link under the chosen docs node
+- the first official upload smoke helper now exists through [`../../tools/dingtalk/openapi_upload_cli.py`](../../tools/dingtalk/openapi_upload_cli.py)
+- the remaining unknown for V1 is which DingTalk permission scopes and operator-identity path are stable enough for the long-lived worker flow
 
 ## 2. Why This Should Be The First DingTalk Milestone
 
@@ -84,6 +85,26 @@ This milestone does not require:
 - changing `build.py` command semantics
 
 If DingTalk table writeback is later required, that should be treated as a V2 extension, not as a prerequisite for V1.
+
+## 4.1 OpenClaw Plugin Boundary
+
+For this hybrid Feishu-source milestone, OpenClaw should not directly upload the built `.docx`.
+
+Recommended split:
+
+- OpenClaw plugin:
+  - complete DingTalk login or binding UX
+  - persist `operator_union_id`
+  - persist one default DingTalk target node URL
+  - help validate target permissions before the queue is triggered
+- repo worker:
+  - read queue rows from Feishu
+  - read DingTalk operator/default-target config from a Feishu config row or lightweight config table
+  - acquire App-Only token
+  - upload the artifact through DingTalk OpenAPI
+  - write the final link back to Feishu
+
+This keeps the worker authoritative for the actual build and upload transaction, while moving interactive auth ergonomics into OpenClaw.
 
 ## 5. Current Repo Cut Points
 
@@ -169,6 +190,18 @@ The exact final config shape can change, but the intent should stay:
 - Feishu queue binding remains explicit
 - one worker can still be switched back to Feishu sink if needed
 
+Recommended config ownership:
+
+- GitHub Secrets:
+  - `DINGTALK_CLIENT_ID`
+  - `DINGTALK_CLIENT_SECRET`
+  - `DINGTALK_CORP_ID`
+- Feishu config row or lightweight config table:
+  - `operator_union_id`
+  - `default_target_node_url`
+- queue row:
+  - per-task override fields such as `DingTalk_target_node_url`
+
 ## 7. Recommended Delivery Phases
 
 ### Phase A: Add Artifact Sink Abstraction
@@ -201,6 +234,7 @@ Success criteria:
 - local DOCX uploads successfully
 - returned DingTalk link opens for the intended tenant audience
 - Feishu queue row stores the DingTalk link
+- the worker no longer depends on browser-session values such as `a-token`, `x-xsrf-token`, and `cookie`
 
 ### Phase C: Add Optional DingTalk Workspace Attach
 

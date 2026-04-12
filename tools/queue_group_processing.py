@@ -34,6 +34,8 @@ def process_queue_record_group(
     queue_group_lang: Callable[[list[Any]], str],
     queue_group_build_family: Callable[[list[Any]], str],
     queue_group_dingtalk_target_node_url: Callable[[list[Any]], str],
+    queue_group_operator_union_id: Callable[[list[Any]], str],
+    queue_group_default_target_node_url: Callable[[list[Any]], str],
     queue_group_force_phase2_refresh: Callable[[list[Any]], bool],
     queue_group_upload_dingtalk: Callable[[list[Any]], bool],
     resolve_config_path_for_task: Callable[..., Path],
@@ -67,34 +69,44 @@ def process_queue_record_group(
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
         dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
+        operator_union_id = queue_group_operator_union_id(group)
+        default_target_node_url = queue_group_default_target_node_url(group)
         force_phase2_refresh = queue_group_force_phase2_refresh(group)
         upload_dingtalk = queue_group_upload_dingtalk(group)
         data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)
         effective_artifact_destination = artifact_destination
-        if getattr(artifact_destination, "provider", None) == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
-            if upload_dingtalk:
-                if dingtalk_target_node_url:
-                    effective_artifact_destination = resolve_row_artifact_destination(
-                        cfg=cfg,
-                        cli_bin=cli_bin,
-                        identity=identity,
-                        binding=binding,
-                        target_node_url=dingtalk_target_node_url,
-                    )
-                    print(
-                        f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) "
-                        f"with row target {dingtalk_target_node_url}."
-                    )
-                else:
-                    print(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
-            else:
+        artifact_provider = getattr(artifact_destination, "provider", None)
+        if artifact_provider in {"dingtalk_alidocs_session", "dingtalk_openapi"}:
+            if has_upload_dingtalk_field and not upload_dingtalk:
                 print(f"[build-queue] Skipping DingTalk upload for {group_key} ({row_count} row(s)); using Feishu/wiki upload.")
                 effective_artifact_destination = resolve_lark_wiki_destination(
                     cli_bin=cli_bin,
                     identity=identity,
                     binding=binding,
                 )
+            else:
+                effective_artifact_destination = resolve_row_artifact_destination(
+                    cfg=cfg,
+                    cli_bin=cli_bin,
+                    identity=identity,
+                    binding=binding,
+                    target_node_url=dingtalk_target_node_url or None,
+                    operator_union_id=operator_union_id or None,
+                    default_target_node_url=default_target_node_url or None,
+                )
+                if dingtalk_target_node_url:
+                    print(
+                        f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) "
+                        f"with row target {dingtalk_target_node_url}."
+                    )
+                elif default_target_node_url:
+                    print(
+                        f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) "
+                        f"with row default target {default_target_node_url}."
+                    )
+                else:
+                    print(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) with worker default target.")
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,

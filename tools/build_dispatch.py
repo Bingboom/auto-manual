@@ -18,6 +18,7 @@ def dispatch_action(
     run_check: Callable[[argparse.Namespace], None],
     sync_review_command: Callable[[argparse.Namespace], list[str]],
     sync_data_command: Callable[[argparse.Namespace], list[str]],
+    run_dingtalk_control_config: Callable[[argparse.Namespace], None],
     run_queue_query: Callable[[argparse.Namespace], None],
     run_queue_resolve_action: Callable[[argparse.Namespace], None],
     run_queue_execute: Callable[[argparse.Namespace], None],
@@ -45,6 +46,8 @@ def dispatch_action(
         run_checked(sync_review_command(args))
     elif args.action == "sync-data":
         run_checked(sync_data_command(args))
+    elif args.action == "dingtalk-control-config":
+        run_dingtalk_control_config(args)
     elif args.action == "queue-query":
         run_queue_query(args)
     elif args.action == "queue-resolve-action":

@@ -27,6 +27,34 @@ async function runBuildJson(config, args) {
 
 export function createRepoControl(config) {
   return {
+    async queryDingTalkControlConfig({ recordId = "" } = {}) {
+      const args = [
+        "dingtalk-control-config",
+        "--config",
+        config.controlConfig,
+        "--json",
+      ];
+      if (String(recordId || "").trim()) {
+        args.push("--record-id", String(recordId).trim());
+      }
+      return runBuildJson(config, args);
+    },
+    async updateDingTalkControlConfig({ operatorUnionId, targetNodeUrl, recordId = "" }) {
+      const args = [
+        "dingtalk-control-config",
+        "--config",
+        config.controlConfig,
+        "--operator-union-id",
+        String(operatorUnionId || "").trim(),
+        "--target-node-url",
+        String(targetNodeUrl || "").trim(),
+        "--json",
+      ];
+      if (String(recordId || "").trim()) {
+        args.push("--record-id", String(recordId).trim());
+      }
+      return runBuildJson(config, args);
+    },
     async resolveAction({ messageText, confirmPublish = false }) {
       const args = [
         "queue-resolve-action",

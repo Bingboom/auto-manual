@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.auto-manual.feishu-im-cloudflared</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>__CLOUDFLARED_BIN__</string>
+    <string>tunnel</string>
+    <string>--config</string>
+    <string>__REPO_ROOT__/integrations/openclaw/feishu-im-webhook-adapter/deploy/cloudflared/config.yml</string>
+    <string>run</string>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>__REPO_ROOT__/.tmp/feishu-im-webhook-adapter/cloudflared.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>__REPO_ROOT__/.tmp/feishu-im-webhook-adapter/cloudflared.log</string>
+</dict>
+</plist>

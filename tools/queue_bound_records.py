@@ -23,9 +23,11 @@ from tools.document_link_queue import (
     parse_document_key,
     parse_queue_records as _parse_queue_records_impl,
     queue_group_build_family,
+    queue_group_default_target_node_url,
     queue_group_dingtalk_target_node_url,
     queue_group_force_phase2_refresh,
     queue_group_lang,
+    queue_group_operator_union_id,
     queue_group_upload_dingtalk,
     queue_record_group_key,
     queue_record_key,
@@ -40,6 +42,7 @@ from tools.queue_config_resolution import (
 )
 from tools.queue_contract import (
     BUILD_FAMILY_FIELD,
+    DEFAULT_TARGET_NODE_URL_FIELD,
     DOC_PHASE_FIELD,
     DINGTALK_TARGET_NODE_URL_ALIASES,
     DINGTALK_TARGET_NODE_URL_FIELD,
@@ -50,6 +53,7 @@ from tools.queue_contract import (
     IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD,
     LEGACY_TRIGGER_FIELDS,
+    OPERATOR_UNION_ID_FIELD,
     TRIGGER_FIELD,
     TRIGGER_VALUES,
     UPLOAD_DINGTALK_FIELD,
@@ -97,6 +101,8 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
         force_phase2_refresh_field=FORCE_PHASE2_REFRESH_FIELD,
         upload_dingtalk_field=UPLOAD_DINGTALK_FIELD,
         dingtalk_target_node_url_fields=(DINGTALK_TARGET_NODE_URL_FIELD, *DINGTALK_TARGET_NODE_URL_ALIASES),
+        operator_union_id_field=OPERATOR_UNION_ID_FIELD,
+        default_target_node_url_field=DEFAULT_TARGET_NODE_URL_FIELD,
     )
 
 

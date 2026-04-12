@@ -48,12 +48,42 @@ case "${preset}" in
     ;;
 esac
 
+normalize_provider() {
+  case "$(printf '%s' "${1:-}" | tr '[:upper:]' '[:lower:]')" in
+    dingtalk_openapi|dingtalk-openapi|openapi)
+      printf 'dingtalk_openapi'
+      ;;
+    dingtalk_alidocs_session|dingtalk-alidocs-session|alidocs|alidocs_session|dingtalk)
+      printf 'dingtalk_alidocs_session'
+      ;;
+    *)
+      printf '%s' "${1:-}"
+      ;;
+  esac
+}
+
 missing=()
 for name in "${required[@]}"; do
   if [ -z "${!name:-}" ]; then
     missing+=("$name")
   fi
 done
+
+provider="$(normalize_provider "${AUTO_MANUAL_ARTIFACT_SINK_PROVIDER:-}")"
+if [ "${provider}" = "dingtalk_openapi" ]; then
+  openapi_required=(
+    DINGTALK_CLIENT_ID
+    DINGTALK_CLIENT_SECRET
+    DINGTALK_CORP_ID
+    FEISHU_PHASE2_DINGTALK_CONTROL_TABLE_ID
+    FEISHU_PHASE2_DINGTALK_CONTROL_VIEW_ID
+  )
+  for name in "${openapi_required[@]}"; do
+    if [ -z "${!name:-}" ]; then
+      missing+=("$name")
+    fi
+  done
+fi
 
 if [ "${#missing[@]}" -gt 0 ]; then
   printf 'Missing required secrets/env vars:\n' >&2

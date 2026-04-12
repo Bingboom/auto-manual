@@ -20,6 +20,8 @@ Planned ownership:
 - `workspace.py`: optional attach-to-container behavior
 - `spike.py`: capability-spike checklist and helper entrypoint
 - `spike_cli.py`: manual endpoint-driven smoke runner for token, list, update, and upload checks
+- `openapi_upload.py`: official DingTalk storage upload helper for the first app-token-based upload smoke
+- `openapi_upload_cli.py`: manual smoke CLI for `App-Only token + operator_union_id + target node URL`
 - `contracts.py`: provider-facing data contracts
 
 Current verified helpers:
@@ -27,6 +29,7 @@ Current verified helpers:
 - `auth.get_app_only_token(...)` reads `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, then calls the official App-Only token endpoint
 - `workspace.parse_node_id_from_url(...)` extracts a DingTalk docs node ID from a normal `alidocs.dingtalk.com/i/nodes/...` URL so the target workspace can be configured before the upload API is wired
 - `alidocs_session_upload_cli.py` is the current manual bridge for the observed browser-session upload chain: `uploadinfo -> OSS object upload -> commit -> node URL`
+- `openapi_upload_cli.py` is the current manual bridge for the official OpenAPI upload chain: `App-Only token -> uploadInfos/query -> signed upload -> commit`
 - `tools/process_build_queue.py` can now use that same browser-session chain as an optional artifact sink while still reading queue rows from Feishu and writing `Document link` back to Feishu
 
 ## Quick Smoke
@@ -44,6 +47,24 @@ python tools\dingtalk\spike_cli.py all --record-id rec_phase0_smoke --update-set
 ```
 
 `all` runs `token -> list -> update -> upload` in sequence. Prefer an explicit `--record-id <stable_row_id>` for manual smoke runs. Only use `--record-id-path ... --allow-listed-record-id` when your list call is already filtered to exactly one throwaway row.
+
+For the first official upload-only smoke, use the narrower helper:
+
+```powershell
+$env:DINGTALK_CLIENT_ID="..."
+$env:DINGTALK_CLIENT_SECRET="..."
+$env:DINGTALK_CORP_ID="..."
+$env:DINGTALK_OPERATOR_UNION_ID="..."
+$env:DINGTALK_DEFAULT_TARGET_NODE_URL="https://alidocs.dingtalk.com/i/nodes/..."
+python tools\dingtalk\openapi_upload_cli.py --file .tmp\phase1-smoke.docx --dry-run --json
+python tools\dingtalk\openapi_upload_cli.py --file .tmp\phase1-smoke.docx --json
+```
+
+Recommended ownership for the future worker path:
+
+- GitHub Secrets should hold `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`
+- OpenClaw should bind and persist `operator_union_id` plus a default target node into a Feishu control-plane config row by calling `python build.py dingtalk-control-config --config config.us.yaml ...`
+- the repo worker should read that Feishu-side config, then execute the actual upload
 
 ## Queue Artifact Sink
 

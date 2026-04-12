@@ -129,6 +129,11 @@ class TestValidateConfig(unittest.TestCase):
                     "export_root": "data/phase2",
                     "manifest_path": "data/phase2/snapshot_manifest.json",
                     "base_token_env": "FEISHU_BASE_TOKEN",
+                    "dingtalk_control": {
+                        "table_id_env": "FEISHU_DINGTALK_CONTROL_TABLE_ID",
+                        "view_id_env": "FEISHU_DINGTALK_CONTROL_VIEW_ID",
+                        "record_id_env": "FEISHU_DINGTALK_CONTROL_RECORD_ID",
+                    },
                     "tables": {
                         "spec_master": {
                             "table_id_env": "FEISHU_SPEC_MASTER_TABLE_ID",
@@ -143,6 +148,23 @@ class TestValidateConfig(unittest.TestCase):
         issues = validate(cfg, strict_files=False)
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
+
+    def test_validate_should_reject_invalid_dingtalk_control_config_values(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "sync": {
+                "phase2": {
+                    "dingtalk_control": {
+                        "table_id_env": "",
+                    },
+                },
+            },
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertTrue(any("sync.phase2.dingtalk_control.table_id_env" in msg for msg in errors))
 
     def test_validate_should_reject_invalid_phase2_sync_table_key(self) -> None:
         cfg = {

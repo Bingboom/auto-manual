@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.auto-manual.feishu-im-webhook-adapter</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>-lc</string>
+    <string>cd "__REPO_ROOT__" &amp;&amp; FEISHU_IM_ENV_FILE="__REPO_ROOT__/.tmp/feishu-im-webhook-adapter/env.sh" ./scripts/run_feishu_im_webhook_adapter.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>__REPO_ROOT__</string>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>__REPO_ROOT__/.tmp/feishu-im-webhook-adapter/adapter.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>__REPO_ROOT__/.tmp/feishu-im-webhook-adapter/adapter.log</string>
+</dict>
+</plist>

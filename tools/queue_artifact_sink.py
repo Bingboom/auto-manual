@@ -13,6 +13,11 @@ DEFAULT_DINGTALK_A_TOKEN_ENV = "DINGTALK_DOCS_A_TOKEN"
 DEFAULT_DINGTALK_XSRF_TOKEN_ENV = "DINGTALK_DOCS_XSRF_TOKEN"
 DEFAULT_DINGTALK_COOKIE_ENV = "DINGTALK_DOCS_COOKIE"
 DEFAULT_DINGTALK_BX_VERSION_ENV = "DINGTALK_DOCS_BX_V"
+DEFAULT_DINGTALK_CLIENT_ID_ENV = "DINGTALK_CLIENT_ID"
+DEFAULT_DINGTALK_CLIENT_SECRET_ENV = "DINGTALK_CLIENT_SECRET"
+DEFAULT_DINGTALK_CORP_ID_ENV = "DINGTALK_CORP_ID"
+DEFAULT_DINGTALK_OPERATOR_UNION_ID_ENV = "DINGTALK_OPERATOR_UNION_ID"
+DEFAULT_DINGTALK_DEFAULT_TARGET_NODE_URL_ENV = "DINGTALK_DEFAULT_TARGET_NODE_URL"
 
 
 @dataclass(frozen=True)
@@ -61,6 +66,9 @@ def _normalize_provider(value: str | None) -> str:
         "dingtalk-alidocs-session": "dingtalk_alidocs_session",
         "alidocs": "dingtalk_alidocs_session",
         "alidocs_session": "dingtalk_alidocs_session",
+        "dingtalk_openapi": "dingtalk_openapi",
+        "dingtalk-openapi": "dingtalk_openapi",
+        "openapi": "dingtalk_openapi",
     }
     normalized = aliases.get(text)
     if normalized:
@@ -68,7 +76,7 @@ def _normalize_provider(value: str | None) -> str:
     raise RuntimeError(
         "Unsupported queue artifact sink provider: "
         + text
-        + ". Supported providers: lark_drive, dingtalk_alidocs_session"
+        + ". Supported providers: lark_drive, dingtalk_alidocs_session, dingtalk_openapi"
     )
 
 
@@ -92,6 +100,20 @@ def dingtalk_alidocs_env_names(cfg: dict[str, Any]) -> dict[str, str]:
         "xsrf_token_env": str(dingtalk_cfg.get("xsrf_token_env") or DEFAULT_DINGTALK_XSRF_TOKEN_ENV).strip(),
         "cookie_env": str(dingtalk_cfg.get("cookie_env") or DEFAULT_DINGTALK_COOKIE_ENV).strip(),
         "bx_version_env": str(dingtalk_cfg.get("bx_version_env") or DEFAULT_DINGTALK_BX_VERSION_ENV).strip(),
+    }
+
+
+def dingtalk_openapi_env_names(cfg: dict[str, Any]) -> dict[str, str]:
+    current_cfg = artifact_sink_cfg(cfg)
+    dingtalk_cfg = current_cfg.get("dingtalk_openapi", {})
+    if not isinstance(dingtalk_cfg, dict):
+        dingtalk_cfg = {}
+    return {
+        "client_id_env": str(dingtalk_cfg.get("client_id_env") or DEFAULT_DINGTALK_CLIENT_ID_ENV).strip(),
+        "client_secret_env": str(dingtalk_cfg.get("client_secret_env") or DEFAULT_DINGTALK_CLIENT_SECRET_ENV).strip(),
+        "corp_id_env": str(dingtalk_cfg.get("corp_id_env") or DEFAULT_DINGTALK_CORP_ID_ENV).strip(),
+        "operator_union_id_env": str(dingtalk_cfg.get("operator_union_id_env") or DEFAULT_DINGTALK_OPERATOR_UNION_ID_ENV).strip(),
+        "target_node_url_env": str(dingtalk_cfg.get("target_node_url_env") or DEFAULT_DINGTALK_DEFAULT_TARGET_NODE_URL_ENV).strip(),
     }
 
 
@@ -129,18 +151,29 @@ def collect_artifact_sink_preflight_errors(
         provider = artifact_sink_provider(cfg, environ=environ)
     except RuntimeError as exc:
         return [str(exc)]
-    if provider != "dingtalk_alidocs_session":
-        return []
-    env_names = dingtalk_alidocs_env_names(cfg)
-    missing_env_names = [
-        env_name
-        for key, env_name in env_names.items()
-        if key not in {"bx_version_env", "target_node_url_env"} and env_name and not str(environ.get(env_name, "")).strip()
-    ]
-    errors: list[str] = []
-    if missing_env_names:
-        errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
-    return errors
+    if provider == "dingtalk_alidocs_session":
+        env_names = dingtalk_alidocs_env_names(cfg)
+        missing_env_names = [
+            env_name
+            for key, env_name in env_names.items()
+            if key not in {"bx_version_env", "target_node_url_env"} and env_name and not str(environ.get(env_name, "")).strip()
+        ]
+        errors: list[str] = []
+        if missing_env_names:
+            errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
+        return errors
+    if provider == "dingtalk_openapi":
+        env_names = dingtalk_openapi_env_names(cfg)
+        missing_env_names = [
+            env_name
+            for key, env_name in env_names.items()
+            if key not in {"operator_union_id_env", "target_node_url_env"} and env_name and not str(environ.get(env_name, "")).strip()
+        ]
+        errors: list[str] = []
+        if missing_env_names:
+            errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
+        return errors
+    return []
 
 
 def resolve_dingtalk_artifact_destination(
@@ -163,4 +196,35 @@ def resolve_dingtalk_artifact_destination(
             "target_node_id": target_node_id,
         },
         runtime_target=resolved_target_node_url,
+    )
+
+
+def resolve_dingtalk_openapi_artifact_destination(
+    cfg: dict[str, Any],
+    *,
+    environ: dict[str, str] | os._Environ[str],
+    target_node_url: str | None = None,
+    operator_union_id: str | None = None,
+    default_target_node_url: str | None = None,
+) -> ArtifactDestination:
+    env_names = dingtalk_openapi_env_names(cfg)
+    resolved_operator_union_id = (
+        str(operator_union_id or "").strip()
+        or str(environ.get(env_names["operator_union_id_env"], "")).strip()
+    )
+    resolved_target_node_url = (
+        str(target_node_url or "").strip()
+        or str(default_target_node_url or "").strip()
+        or str(environ.get(env_names["target_node_url_env"], "")).strip()
+    )
+    target_node_id = parse_node_id_from_url(resolved_target_node_url) if resolved_target_node_url else ""
+    return ArtifactDestination(
+        provider="dingtalk_openapi",
+        label="DingTalk OpenAPI docs target",
+        details={
+            "target_node_url": resolved_target_node_url,
+            "target_node_id": target_node_id,
+            "operator_union_id": resolved_operator_union_id,
+        },
+        runtime_target=resolved_target_node_url or None,
     )

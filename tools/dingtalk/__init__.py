@@ -3,9 +3,13 @@ from .contracts import (
     DingTalkFileReference,
     DingTalkRecordReference,
 )
+from .openapi_upload import OpenAPICommittedFile, OpenAPIUploadInfo, OpenAPIUploadRequest
 
 __all__ = [
     "DingTalkAccessToken",
     "DingTalkFileReference",
     "DingTalkRecordReference",
+    "OpenAPICommittedFile",
+    "OpenAPIUploadInfo",
+    "OpenAPIUploadRequest",
 ]

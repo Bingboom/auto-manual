@@ -53,6 +53,7 @@ from tools.build_doctor import (
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
+from tools.dingtalk_control_config import run_dingtalk_control_config as _run_dingtalk_control_config_impl
 from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
 from tools.queue_query import run_queue_query as _run_queue_query_impl
 from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
@@ -299,6 +300,10 @@ def sync_data_command(args: argparse.Namespace) -> list[str]:
 
 def run_queue_query(args: argparse.Namespace) -> None:
     return _run_queue_query_impl(args, config_path=resolve_path_from_root(args.config))
+
+
+def run_dingtalk_control_config(args: argparse.Namespace) -> None:
+    return _run_dingtalk_control_config_impl(args, config_path=resolve_path_from_root(args.config))
 
 
 def run_queue_resolve_action(args: argparse.Namespace) -> None:
@@ -648,6 +653,7 @@ def main(argv: list[str] | None = None) -> int:
         run_check=run_check,
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
+        run_dingtalk_control_config=run_dingtalk_control_config,
         run_queue_query=run_queue_query,
         run_queue_resolve_action=run_queue_resolve_action,
         run_queue_execute=run_queue_execute,

@@ -1,6 +1,6 @@
 # 钉钉知识库上传路径配置指南
 
-Updated: 2026-04-09
+Updated: 2026-04-12
 
 这份指南说明当前仓库如何把构建好的 `.docx` 上传到钉钉知识库目录，并把生成后的钉钉节点链接回写到 Feishu `Document_link`。
 
@@ -11,7 +11,7 @@ Updated: 2026-04-09
 - `Document_link` 状态和链接仍然回写到 Feishu
 - 只有“文档产物上传目标”从 Feishu Drive 切换到 DingTalk AliDocs
 
-当前上传方案是浏览器会话模式，不是正式公开 OpenAPI 模式。
+当前上传方案是浏览器会话模式，不是最终推荐的正式 OpenAPI worker 方案。
 它基于当前已验证的 AliDocs 上传链路：
 
 1. `uploadinfo`
@@ -38,6 +38,56 @@ Updated: 2026-04-09
 
 - [`../tools/dingtalk/alidocs_session.py`](../tools/dingtalk/alidocs_session.py)
 - [`../tools/dingtalk/alidocs_session_upload_cli.py`](../tools/dingtalk/alidocs_session_upload_cli.py)
+- [`../tools/dingtalk/openapi_upload_cli.py`](../tools/dingtalk/openapi_upload_cli.py)
+
+后续目标方案：
+
+- GitHub Secrets 持有 `DINGTALK_CLIENT_ID`、`DINGTALK_CLIENT_SECRET`、`DINGTALK_CORP_ID`
+- OpenClaw 插件负责绑定钉钉操作者身份，并把 `operator_union_id` 与默认知识库节点写入 Feishu 控制面配置行
+- worker 每次执行时读取这条 Feishu 配置，再用官方 OpenAPI 完成上传
+- repo 侧已经提供 `python build.py dingtalk-control-config --config config.us.yaml --operator-union-id ... --target-node-url ... --json` 作为这条控制面命令；OpenClaw/Feishu adapter 应该调用它，而不是直接改 worker 环境变量
+
+当前这份文档仍主要覆盖“浏览器会话上传”的现状操作；官方 OpenAPI 方案目前先提供手工 smoke helper，用于验证权限和上传链路
+
+## 1.1 官方 OpenAPI Smoke（新）
+
+如果你已经有：
+
+- `DINGTALK_CLIENT_ID`
+- `DINGTALK_CLIENT_SECRET`
+- `DINGTALK_CORP_ID`
+- 一个可用的 `operator_union_id`
+- 一个默认知识库节点 URL
+
+可以先用官方 smoke helper 做最小验证：
+
+```powershell
+$env:DINGTALK_OPERATOR_UNION_ID='你的operator_union_id'
+$env:DINGTALK_DEFAULT_TARGET_NODE_URL='https://alidocs.dingtalk.com/i/nodes/你的目录节点'
+python tools\dingtalk\openapi_upload_cli.py --file .tmp\phase1-smoke.docx --dry-run --json
+python tools\dingtalk\openapi_upload_cli.py --file .tmp\phase1-smoke.docx --json
+```
+
+这条链路不再需要：
+
+- `DINGTALK_DOCS_A_TOKEN`
+- `DINGTALK_DOCS_XSRF_TOKEN`
+- `DINGTALK_DOCS_COOKIE`
+
+但它目前仍要求一个真实操作者身份 `operator_union_id`。
+
+如果要把这个默认操作者和默认上传目录正式写回 Feishu 控制面，使用：
+
+```powershell
+python build.py dingtalk-control-config --config config.us.yaml --operator-union-id 你的operator_union_id --target-node-url https://alidocs.dingtalk.com/i/nodes/你的目录节点 --json
+python build.py dingtalk-control-config --config config.us.yaml --json
+```
+
+这条命令依赖：
+
+- `FEISHU_PHASE2_DINGTALK_CONTROL_TABLE_ID`
+- `FEISHU_PHASE2_DINGTALK_CONTROL_VIEW_ID`
+- 可选 `FEISHU_PHASE2_DINGTALK_CONTROL_RECORD_ID`
 
 ## 2. 需要配置的环境变量
 

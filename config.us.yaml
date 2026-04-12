@@ -66,6 +66,10 @@ sync:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
       wiki_parent_token_env: FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN
+    dingtalk_control:
+      table_id_env: FEISHU_PHASE2_DINGTALK_CONTROL_TABLE_ID
+      view_id_env: FEISHU_PHASE2_DINGTALK_CONTROL_VIEW_ID
+      record_id_env: FEISHU_PHASE2_DINGTALK_CONTROL_RECORD_ID
     review_init:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID

@@ -7,9 +7,12 @@ import {
   shouldIgnoreMessageEvent,
   validateVerificationToken,
 } from "./feishu-events.mjs";
+import { parseDingTalkControlCommand } from "./dingtalk-control.mjs";
 import {
   formatAcceptedReply,
   formatCompletionReply,
+  formatDingTalkControlQueryReply,
+  formatDingTalkControlUpdateReply,
   formatExecutionErrorReply,
   formatPendingPublishReply,
   formatResolutionReply,
@@ -59,6 +62,33 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         );
       } catch (error) {
         logger.error?.("publish confirmation failed", error);
+        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error));
+      }
+      return;
+    }
+
+    const dingtalkControlCommand = parseDingTalkControlCommand(messageEvent.normalizedText);
+    if (dingtalkControlCommand) {
+      if (dingtalkControlCommand.error) {
+        await feishuClient.replyTextMessage(messageEvent.messageId, dingtalkControlCommand.error);
+        return;
+      }
+      try {
+        if (dingtalkControlCommand.action === "query") {
+          const payload = await repoControl.queryDingTalkControlConfig({
+            recordId: dingtalkControlCommand.recordId,
+          });
+          await feishuClient.replyTextMessage(messageEvent.messageId, formatDingTalkControlQueryReply(payload));
+          return;
+        }
+        const payload = await repoControl.updateDingTalkControlConfig({
+          operatorUnionId: dingtalkControlCommand.operatorUnionId,
+          targetNodeUrl: dingtalkControlCommand.targetNodeUrl,
+          recordId: dingtalkControlCommand.recordId,
+        });
+        await feishuClient.replyTextMessage(messageEvent.messageId, formatDingTalkControlUpdateReply(payload));
+      } catch (error) {
+        logger.error?.("dingtalk control command failed", error);
         await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error));
       }
       return;
