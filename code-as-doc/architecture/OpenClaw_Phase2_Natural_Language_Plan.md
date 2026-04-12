@@ -1,6 +1,6 @@
 # OpenClaw Phase 2 Natural Language Plan
 
-Updated: 2026-04-11
+Updated: 2026-04-12
 
 ## 1. Goal
 
@@ -14,6 +14,17 @@ to:
 - Feishu queue row resolution
 - deterministic workflow dispatch
 - status / link / failure feedback in the same conversation
+
+## 1.1 Current Repo Status
+
+As of 2026-04-12, the repo-local Phase 2 surface is implemented:
+
+- `build.py queue-query` resolves candidate queue rows
+- `build.py queue-resolve-action` turns one natural-language ask into a bounded action contract
+- `build.py queue-execute` dispatches the matching `main`-owned worker and waits for the final row state
+- [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../integrations/openclaw/feishu-im-webhook-adapter/) provides the repo-external Feishu IM ingress layer for the same control surface
+
+The main remaining gaps are deployment hardening, shared runtime state, and encrypted Feishu callback support.
 
 ## 2. Required Flow
 

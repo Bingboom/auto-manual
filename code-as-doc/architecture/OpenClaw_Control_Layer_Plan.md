@@ -1,6 +1,6 @@
 # OpenClaw Control Layer Plan
 
-Updated: 2026-04-10
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -24,6 +24,21 @@ Phase 1 execution details live in:
 Current repo package:
 
 - [`../../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer)
+- [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../integrations/openclaw/feishu-im-webhook-adapter/)
+
+## 1.1 Current Repo Status
+
+As of 2026-04-12, the repo has moved beyond the original V1-only bridge:
+
+- the GitHub-dispatch OpenClaw bridge exists under [`../../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer/)
+- the repo-local Phase 2 action surface now exists through `build.py queue-query`, `build.py queue-resolve-action`, and `build.py queue-execute`
+- a standalone Feishu IM ingress adapter now exists under [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../integrations/openclaw/feishu-im-webhook-adapter/)
+
+The remaining gaps are operational, not architectural:
+
+- deployment hardening for the external webhook process
+- shared state if multiple adapter instances are introduced
+- encrypted Feishu callback payload support
 
 ## 2. Why This Is The Right First OpenClaw Milestone
 

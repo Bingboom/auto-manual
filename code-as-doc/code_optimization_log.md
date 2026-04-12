@@ -439,3 +439,18 @@ Why it mattered:
 - CI now checks more of the workflow surfaces the repo actually depends on without turning every run into a full publish/build
 - shared GitHub-hosted worker setup is easier to maintain because dependency/bootstrap changes now land in one place
 - `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py` stayed wrapper-compatible while real export/bootstrap logic moved further out of the entry files
+
+## 26. 2026-04-12: Feishu IM Webhook Adapter Ingress
+
+Main outcomes:
+
+- added a repo-external Feishu IM ingress package under [`../integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter/)
+- kept the adapter thin by reusing the repo-owned control surfaces `queue-query`, `queue-resolve-action`, and `queue-execute`
+- added publish-confirmation state, event-id dedupe, same-thread Feishu replies, and explicit rejection for unsupported encrypted callbacks
+- aligned maintainer docs, user docs, and control-layer architecture notes with the new ingress layer
+
+Why it mattered:
+
+- operators can now enter review/build/publish asks from Feishu IM without moving build execution or Feishu writeback out of the existing queue/workflow plane
+- the ingress layer stays isolated from the Python execution core while still sharing one deterministic action contract
+- deployment and callback-mode limits are now explicit instead of being hidden behind local-only assumptions
