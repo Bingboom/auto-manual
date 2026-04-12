@@ -76,6 +76,7 @@ Updated: 2026-04-11
 - `是否立即构建`
 - `是否强制刷新数据`
 - `是否上传钉钉`
+- `DingTalk_target_node_url`
 - `Document directory`
 - `Document link`
 - `Document link_dd`
@@ -89,6 +90,7 @@ Updated: 2026-04-11
 - 把结果链接回写到表里
 - 如果当前 artifact sink 是 DingTalk，且表里存在 `Document link_dd`，队列会把同一个 DingTalk 节点链接双写到这个字段；`Document link` 仍保持主字段
 - 如果当前 artifact sink 是 DingTalk，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才走 DingTalk，不勾就退回 Feishu/wiki 上传
+- 如果当前 artifact sink 是 DingTalk，且该行还填了 `DingTalk_target_node_url`，worker 会优先上传到这个行级节点；只有该字段为空时，才回退到全局 `DINGTALK_DOCS_TARGET_NODE_URL`
 - 只有当 `是否强制刷新数据 = 勾选` 时，队列才会在这次构建前刷新一次 phase2；否则直接复用当前本地 snapshot
 - `data_sync` 会回写 `refreshed / skipped / failed`
 
@@ -223,6 +225,7 @@ Publish 的原料是：
 - `是否立即构建 = 勾选`
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
 - `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
+- `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖全局默认节点`
 
 ### 系统会做什么
 
@@ -237,7 +240,7 @@ Publish 的原料是：
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 再按 `Document_link.Git_ref` fetch 对应的 review / PR 分支到临时 worktree
 5. 然后基于那条分支里的 `_review` 构建 Build Draft Package Word
-6. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；否则退回 Feishu/wiki 上传
+6. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则退回全局默认 DingTalk 节点；未勾选则退回 Feishu/wiki 上传
 7. 回写：
    - `开始构建时间`
    - `构建结果`
@@ -267,6 +270,7 @@ Publish 的原料是：
 - `是否立即构建 = 勾选`
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
 - `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
+- `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖全局默认节点`
 
 ### 系统会做什么
 
@@ -280,7 +284,7 @@ Publish 的原料是：
 2. 执行 `process-build-queue --workflow-action publish`
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish` 和 `build.py html --source review`
-5. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；否则退回 Feishu/wiki 上传
+5. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则退回全局默认 DingTalk 节点；未勾选则退回 Feishu/wiki 上传
 6. 回写：
    - `开始构建时间`
    - `构建结果`

@@ -99,14 +99,24 @@ def resolve_dingtalk_target_node_url(
     cfg: dict[str, Any],
     *,
     environ: dict[str, str] | os._Environ[str],
+    target_node_url: str | None = None,
 ) -> str:
+    override_value = str(target_node_url or "").strip()
+    if override_value:
+        return override_value
     env_names = dingtalk_alidocs_env_names(cfg)
     env_name = env_names["target_node_url_env"]
     if not env_name:
-        raise RuntimeError("queue.artifact_sink.dingtalk_alidocs_session.target_node_url_env is required")
+        raise RuntimeError(
+            "DingTalk target node URL is required: provide row DingTalk_target_node_url "
+            "or configure queue.artifact_sink.dingtalk_alidocs_session.target_node_url_env"
+        )
     value = str(environ.get(env_name, "")).strip()
     if not value:
-        raise RuntimeError(f"Required environment variable is not set: {env_name}")
+        raise RuntimeError(
+            "DingTalk target node URL is required: "
+            f"provide row DingTalk_target_node_url or set {env_name}"
+        )
     return value
 
 
@@ -125,11 +135,9 @@ def collect_artifact_sink_preflight_errors(
     missing_env_names = [
         env_name
         for key, env_name in env_names.items()
-        if key != "bx_version_env" and env_name and not str(environ.get(env_name, "")).strip()
+        if key not in {"bx_version_env", "target_node_url_env"} and env_name and not str(environ.get(env_name, "")).strip()
     ]
     errors: list[str] = []
-    if not env_names["target_node_url_env"]:
-        errors.append("queue.artifact_sink.dingtalk_alidocs_session.target_node_url_env is required")
     if missing_env_names:
         errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
     return errors
@@ -139,15 +147,20 @@ def resolve_dingtalk_artifact_destination(
     cfg: dict[str, Any],
     *,
     environ: dict[str, str] | os._Environ[str],
+    target_node_url: str | None = None,
 ) -> ArtifactDestination:
-    target_node_url = resolve_dingtalk_target_node_url(cfg, environ=environ)
-    target_node_id = parse_node_id_from_url(target_node_url)
+    resolved_target_node_url = resolve_dingtalk_target_node_url(
+        cfg,
+        environ=environ,
+        target_node_url=target_node_url,
+    )
+    target_node_id = parse_node_id_from_url(resolved_target_node_url)
     return ArtifactDestination(
         provider="dingtalk_alidocs_session",
         label="DingTalk docs target",
         details={
-            "target_node_url": target_node_url,
+            "target_node_url": resolved_target_node_url,
             "target_node_id": target_node_id,
         },
-        runtime_target=target_node_url,
+        runtime_target=resolved_target_node_url,
     )

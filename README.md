@@ -125,6 +125,8 @@ Start Review, Build Draft Package, Publish:
 - `process-build-queue --record-id <record_id>` lets one workflow rebuild exactly one `Document_link` row
 - when the optional DingTalk artifact sink is enabled, `Document link` remains the canonical writeback URL for compatibility, and if the table also contains `Document link_dd` the same DingTalk node URL is dual-written there while the queue rows, trigger state, and build status continue to live in Feishu
 - when the optional DingTalk artifact sink is enabled and the row also contains `是否上传钉钉`, that checkbox becomes the row-level gate: checked rows use DingTalk and dual-write `Document link_dd`, unchecked rows fall back to Feishu/wiki upload for that run
+- when a checked DingTalk row also contains `DingTalk_target_node_url`, that row-level target wins over the global `DINGTALK_DOCS_TARGET_NODE_URL`; if the row field is blank, the worker falls back to the env default
+- `钉钉上传节点` is accepted as a compatibility alias for the same row-level target, but prefer `DingTalk_target_node_url` as the canonical column name
 - [`.github/workflows/feishu-start-review.yml`](.github/workflows/feishu-start-review.yml) is the `main`-owned Start Review worker; dispatch it on `main` so the branch/PR bootstrap always uses the latest workflow definition
 - [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) is the `main`-owned Publish queue worker
 - [`.github/workflows/feishu-draft-build-queue.yml`](.github/workflows/feishu-draft-build-queue.yml) is the `main`-owned Build Draft Package worker

@@ -19,6 +19,8 @@ DOCUMENT_DIRECTORY_FIELD = "Document directory"
 DOCUMENT_LINK_FIELD = "Document link"
 DOCUMENT_LINK_DD_FIELD = "Document link_dd"
 UPLOAD_DINGTALK_FIELD = "是否上传钉钉"
+DINGTALK_TARGET_NODE_URL_FIELD = "DingTalk_target_node_url"
+DINGTALK_TARGET_NODE_URL_ALIASES = ("钉钉上传节点",)
 IMMEDIATE_TRIGGER_FIELD = "\u662f\u5426\u7acb\u5373\u6784\u5efa"
 FORCE_PHASE2_REFRESH_FIELD = "\u662f\u5426\u5f3a\u5236\u5237\u65b0\u6570\u636e"
 DATA_SYNC_FIELD = "data_sync"
@@ -55,6 +57,7 @@ class QueueRecord:
     immediate_trigger_value: Any = None
     force_phase2_refresh_value: Any = None
     upload_dingtalk_value: Any = None
+    dingtalk_target_node_url: str = ""
     build_family: str = ""
 
     @property

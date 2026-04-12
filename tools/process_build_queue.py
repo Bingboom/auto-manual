@@ -29,6 +29,7 @@ from tools.queue_contract import (  # noqa: E402
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
     DATA_SYNC_FIELD as _QC_DATA_SYNC_FIELD,
+    DINGTALK_TARGET_NODE_URL_FIELD as _QC_DINGTALK_TARGET_NODE_URL_FIELD,
     DOCUMENT_DIRECTORY_FIELD as _QC_DOCUMENT_DIRECTORY_FIELD,
     DOCUMENT_LINK_DD_FIELD as _QC_DOCUMENT_LINK_DD_FIELD,
     DOCUMENT_ID_FIELD as _QC_DOCUMENT_ID_FIELD,
@@ -142,6 +143,7 @@ from tools.queue_bound_records import (  # noqa: E402
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
     is_trigger_requested as _is_trigger_requested,
     parse_queue_records,
+    queue_group_dingtalk_target_node_url,
     queue_group_force_phase2_refresh,
     queue_group_upload_dingtalk,
     pending_immediate_queue_records,
@@ -189,6 +191,7 @@ DATA_SYNC_FIELD = _QC_DATA_SYNC_FIELD
 DOCUMENT_DIRECTORY_FIELD = _QC_DOCUMENT_DIRECTORY_FIELD
 DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
 DOCUMENT_LINK_DD_FIELD = _QC_DOCUMENT_LINK_DD_FIELD
+DINGTALK_TARGET_NODE_URL_FIELD = _QC_DINGTALK_TARGET_NODE_URL_FIELD
 FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
 UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
@@ -245,10 +248,15 @@ def resolve_artifact_destination(
     cli_bin: str,
     identity: str,
     binding: DocumentLinkBinding,
+    target_node_url: str | None = None,
 ) -> WikiDestination | ArtifactDestination:
     provider = artifact_sink_provider(cfg, environ=os.environ)
     if provider == "dingtalk_alidocs_session":
-        return resolve_dingtalk_artifact_destination(cfg, environ=os.environ)
+        return resolve_dingtalk_artifact_destination(
+            cfg,
+            environ=os.environ,
+            target_node_url=target_node_url,
+        )
     return resolve_wiki_destination(
         cli_bin=cli_bin,
         identity=identity,
