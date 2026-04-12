@@ -694,6 +694,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 built_at=built_at,
                 workflow_action="Build Draft Package",
                 doc_phase="Draft",
+                data_sync_status="skipped",
             )
 
         self.assertEqual(
@@ -701,9 +702,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             fields[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
         )
         self.assertEqual(drive_url, fields[process_build_queue.DOCUMENT_LINK_FIELD])
+        self.assertNotIn(process_build_queue.DOCUMENT_LINK_DD_FIELD, fields)
         self.assertEqual(["已构建"], fields[process_build_queue.TRIGGER_FIELD])
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(fields[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", fields[process_build_queue.DATA_SYNC_FIELD])
         self.assertIn("SUCCESS", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=skipped", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("version=1.0", fields[process_build_queue.RESULT_FIELD])
 
@@ -725,6 +730,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 message="permission | Permission denied [99991679]",
                 workflow_action="Publish",
                 doc_phase="Publish",
+                data_sync_status="failed",
                 word_output_path=word_path,
                 document_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
             )
@@ -737,8 +743,12 @@ class TestProcessBuildQueue(unittest.TestCase):
             "https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
             fields[process_build_queue.DOCUMENT_LINK_FIELD],
         )
+        self.assertNotIn(process_build_queue.DOCUMENT_LINK_DD_FIELD, fields)
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(fields[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("failed", fields[process_build_queue.DATA_SYNC_FIELD])
         self.assertIn("FAILED", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=failed", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Publish", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("latest_drive_link_preserved", fields[process_build_queue.RESULT_FIELD])
 
@@ -1063,6 +1073,89 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(legacy_record))
         self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(canonical_record))
+
+    def test_validate_queue_record_group_should_reject_mixed_force_phase2_refresh_values(self) -> None:
+        record_a = process_build_queue.QueueRecord(
+            record_id="rec_a",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            force_phase2_refresh_value=True,
+        )
+        record_b = process_build_queue.QueueRecord(
+            record_id="rec_b",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            force_phase2_refresh_value=False,
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "是否强制刷新数据"):
+            process_build_queue.validate_queue_record_group([record_a, record_b])
+
+    def test_validate_queue_record_group_should_reject_mixed_upload_dingtalk_values(self) -> None:
+        record_a = process_build_queue.QueueRecord(
+            record_id="rec_a",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            upload_dingtalk_value=True,
+        )
+        record_b = process_build_queue.QueueRecord(
+            record_id="rec_b",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            upload_dingtalk_value=False,
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "是否上传钉钉"):
+            process_build_queue.validate_queue_record_group([record_a, record_b])
+
+    def test_validate_queue_record_group_should_reject_mixed_dingtalk_target_node_urls(self) -> None:
+        record_a = process_build_queue.QueueRecord(
+            record_id="rec_a",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            upload_dingtalk_value=True,
+            dingtalk_target_node_url="https://alidocs.dingtalk.com/i/nodes/nodeA",
+        )
+        record_b = process_build_queue.QueueRecord(
+            record_id="rec_b",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            upload_dingtalk_value=True,
+            dingtalk_target_node_url="https://alidocs.dingtalk.com/i/nodes/nodeB",
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "DingTalk_target_node_url"):
+            process_build_queue.validate_queue_record_group([record_a, record_b])
 
     def test_build_document_for_task_should_use_review_source_for_draft_phase(self) -> None:
         commands: list[list[str]] = []
@@ -1466,6 +1559,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1547,6 +1642,9 @@ class TestProcessBuildQueue(unittest.TestCase):
             record_payload[process_build_queue.DOCUMENT_LINK_FIELD],
         )
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(record_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", record_payload[process_build_queue.DATA_SYNC_FIELD])
+        self.assertIn("data_sync=skipped", record_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", record_payload[process_build_queue.RESULT_FIELD])
         build_document_mock.assert_called_once_with(
             config_path=Path("config.us-en.yaml"),
@@ -1557,10 +1655,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             version="1.0",
             git_ref="codex/review-je-1000f-us-en",
         )
-        sync_mock.assert_called_once_with(
-            config_path=Path("config.yaml"),
-            data_root="data/phase2",
-        )
+        sync_mock.assert_not_called()
 
     def test_process_build_queue_should_preserve_drive_link_when_wiki_move_fails(self) -> None:
         cfg = {
@@ -1599,6 +1694,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1673,13 +1770,13 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual([process_build_queue.DONE_TRIGGER_VALUE], success_payload[process_build_queue.TRIGGER_FIELD])
         self.assertFalse(success_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(success_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", success_payload[process_build_queue.DATA_SYNC_FIELD])
         self.assertIn("SUCCESS", success_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=skipped", success_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("drive_only", success_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("Permission denied [99991679]", success_payload[process_build_queue.RESULT_FIELD])
-        sync_mock.assert_called_once_with(
-            config_path=Path("config.ja.yaml"),
-            data_root="data/phase2",
-        )
+        sync_mock.assert_not_called()
 
     def test_process_build_queue_should_fail_and_write_back_when_draft_row_is_missing_git_ref(self) -> None:
         cfg = {
@@ -1718,6 +1815,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1769,18 +1868,19 @@ class TestProcessBuildQueue(unittest.TestCase):
             )
 
         self.assertEqual(1, exit_code)
-        sync_mock.assert_called_once_with(
-            config_path=Path("config.yaml"),
-            data_root="data/phase2",
-        )
+        sync_mock.assert_not_called()
         build_document_mock.assert_not_called()
         self.assertEqual(1, len(captured_upserts))
         failure_payload = captured_upserts[-1]["record"]
         self.assertIsInstance(failure_payload, dict)
         self.assertIn("Build Draft Package queue rows require Git_ref", failure_payload[process_build_queue.RESULT_FIELD])
         self.assertFalse(failure_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(failure_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", failure_payload[process_build_queue.DATA_SYNC_FIELD])
+        self.assertIn("data_sync=skipped", failure_payload[process_build_queue.RESULT_FIELD])
+        sync_mock.assert_not_called()
 
-    def test_process_build_queue_should_sync_phase2_snapshot_before_building(self) -> None:
+    def test_process_build_queue_should_sync_phase2_snapshot_before_building_when_forced(self) -> None:
         cfg = {
             "sync": {
                 "phase2": {
@@ -1818,6 +1918,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: True,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1881,10 +1983,103 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path=Path("config.yaml"),
             data_root="data/phase2",
         )
-        self.assertEqual(2, len(fetch_calls))
+        self.assertEqual(1, len(fetch_calls))
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
         self.assertEqual("codex/review-je-1000f-us-en", build_document_mock.call_args.kwargs["git_ref"])
+
+    def test_process_build_queue_should_write_failed_data_sync_when_forced_refresh_fails(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_force_sync_fail",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: True,
+                    process_build_queue.DATA_SYNC_FIELD: "",
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        sync_mock = mock.Mock(side_effect=RuntimeError("sync boom"))
+
+        class FakeSource:
+            def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                return raw_records
+
+            def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                captured_upserts.append(kwargs)
+                return {"ok": True}
+
+        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+            process_build_queue,
+            "resolve_document_link_binding",
+            return_value=binding,
+        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+            process_build_queue,
+            "sync_phase2_snapshot_before_queue",
+            sync_mock,
+        ), mock.patch.object(
+            process_build_queue,
+            "resolve_wiki_destination",
+            return_value=process_build_queue.WikiDestination(
+                space_id="space_123",
+                parent_wiki_token="wiki_parent",
+            ),
+        ), mock.patch.object(
+            process_build_queue,
+            "_phase2_identity",
+            return_value="user",
+        ):
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("config.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+            )
+
+        self.assertEqual(1, exit_code)
+        sync_mock.assert_called_once_with(
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+        )
+        self.assertEqual(1, len(captured_upserts))
+        failure_payload = captured_upserts[0]["record"]
+        self.assertEqual("failed", failure_payload[process_build_queue.DATA_SYNC_FIELD])
+        self.assertFalse(failure_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertIn("data_sync=failed", failure_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("sync boom", failure_payload[process_build_queue.RESULT_FIELD])
 
     def test_process_build_queue_should_build_once_per_document_key_group_and_write_back_all_rows(self) -> None:
         cfg = {
@@ -2024,7 +2219,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual(success_payload_1, success_payload_2)
 
-    def test_process_build_queue_should_write_dingtalk_node_url_back_to_document_link(self) -> None:
+    def test_process_build_queue_should_write_dingtalk_node_url_back_to_document_link_and_document_link_dd(self) -> None:
         cfg = {
             "sync": {
                 "phase2": {
@@ -2068,6 +2263,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.UPLOAD_DINGTALK_FIELD: True,
+                    process_build_queue.DOCUMENT_LINK_DD_FIELD: "",
                 },
             }
         ]
@@ -2112,6 +2309,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     reference_id="Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
                     latest_link_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
                     document_link_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
+                    document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
                 ),
             ), mock.patch.object(
                 process_build_queue,
@@ -2134,11 +2332,433 @@ class TestProcessBuildQueue(unittest.TestCase):
             success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
         )
         self.assertEqual(
+            "https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
+            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
+        )
+        self.assertEqual(
             generated_path.resolve(strict=False).as_posix(),
             success_payload[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
         )
         self.assertIn("SUCCESS", success_payload[process_build_queue.RESULT_FIELD])
         self.assertFalse(success_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+
+    def test_process_build_queue_should_prefer_row_level_dingtalk_target_node_url_over_default(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            },
+            "queue": {
+                "artifact_sink": {
+                    "provider": "dingtalk_alidocs_session",
+                }
+            },
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        row_target = "https://alidocs.dingtalk.com/i/nodes/RowTargetNode123?utm_scene=team_space"
+        raw_records = [
+            {
+                "record_id": "rec_dingtalk_row_target_1",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.BUILD_FAMILY_FIELD: ["us-en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.UPLOAD_DINGTALK_FIELD: True,
+                    process_build_queue.DOCUMENT_LINK_DD_FIELD: "",
+                    process_build_queue.DINGTALK_TARGET_NODE_URL_FIELD: row_target,
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        publish_destinations: list[object] = []
+        default_destination = process_build_queue.ArtifactDestination(
+            provider="dingtalk_alidocs_session",
+            label="DingTalk docs target",
+            details={"target_node_id": "DefaultNode", "target_node_url": "https://alidocs.dingtalk.com/i/nodes/DefaultNode"},
+            runtime_target="https://alidocs.dingtalk.com/i/nodes/DefaultNode",
+        )
+
+        with tempfile.TemporaryDirectory() as td:
+            generated_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "word" / "manual_je1000f_us.docx"
+            build_document_mock = mock.Mock(return_value=generated_path)
+
+            class FakeSource:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
+                def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                    captured_upserts.append(kwargs)
+                    return {"ok": True}
+
+            def fake_resolve_artifact_destination(**kwargs: object) -> object:
+                target_node_url = kwargs.get("target_node_url")
+                if target_node_url:
+                    return process_build_queue.ArtifactDestination(
+                        provider="dingtalk_alidocs_session",
+                        label="DingTalk docs target",
+                        details={"target_node_id": "RowTargetNode123", "target_node_url": target_node_url},
+                        runtime_target=target_node_url,
+                    )
+                return default_destination
+
+            def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
+                publish_destinations.append(kwargs["artifact_destination"])
+                self.assertEqual(row_target, kwargs["artifact_destination"].runtime_target)
+                return process_build_queue.ArtifactPublishResult(
+                    provider="dingtalk_alidocs_session",
+                    reference_id="row_target_upload",
+                    latest_link_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowTargetNode",
+                    document_link_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowTargetNode",
+                    document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowTargetNode",
+                )
+
+            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+                process_build_queue,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "sync_phase2_snapshot_before_queue",
+            ), mock.patch.object(
+                process_build_queue,
+                "build_document_for_task",
+                build_document_mock,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_artifact_destination",
+                side_effect=fake_resolve_artifact_destination,
+            ), mock.patch.object(
+                process_build_queue,
+                "publish_word_artifact",
+                side_effect=fake_publish_word_artifact,
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="user",
+            ):
+                exit_code = process_build_queue.process_build_queue(
+                    cfg=cfg,
+                    config_path=Path("config.us.yaml"),
+                    data_root="data/phase2",
+                    dry_run=False,
+                )
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(1, len(publish_destinations))
+        success_payload = captured_upserts[1]["record"]
+        self.assertEqual(
+            "https://alidocs.dingtalk.com/i/nodes/UploadedRowTargetNode",
+            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
+        )
+
+    def test_process_build_queue_should_allow_row_level_dingtalk_target_without_default_target(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            },
+            "queue": {
+                "artifact_sink": {
+                    "provider": "dingtalk_alidocs_session",
+                }
+            },
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        row_target = "https://alidocs.dingtalk.com/i/nodes/RowOnlyTargetNode456?utm_scene=team_space"
+        raw_records = [
+            {
+                "record_id": "rec_dingtalk_row_only_target_1",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.BUILD_FAMILY_FIELD: ["us-en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.UPLOAD_DINGTALK_FIELD: True,
+                    process_build_queue.DOCUMENT_LINK_DD_FIELD: "",
+                    process_build_queue.DINGTALK_TARGET_NODE_URL_FIELD: row_target,
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        publish_destinations: list[object] = []
+        placeholder_destination = process_build_queue.ArtifactDestination(
+            provider="dingtalk_alidocs_session",
+            label="DingTalk docs target",
+            details={"target_node_id": "", "target_node_url": ""},
+            runtime_target="",
+        )
+
+        with tempfile.TemporaryDirectory() as td:
+            generated_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "word" / "manual_je1000f_us.docx"
+            build_document_mock = mock.Mock(return_value=generated_path)
+
+            class FakeSource:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
+                def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                    captured_upserts.append(kwargs)
+                    return {"ok": True}
+
+            def fake_resolve_artifact_destination(**kwargs: object) -> object:
+                target_node_url = kwargs.get("target_node_url")
+                if target_node_url:
+                    return process_build_queue.ArtifactDestination(
+                        provider="dingtalk_alidocs_session",
+                        label="DingTalk docs target",
+                        details={"target_node_id": "RowOnlyTargetNode456", "target_node_url": target_node_url},
+                        runtime_target=target_node_url,
+                    )
+                return placeholder_destination
+
+            def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
+                publish_destinations.append(kwargs["artifact_destination"])
+                self.assertEqual(row_target, kwargs["artifact_destination"].runtime_target)
+                return process_build_queue.ArtifactPublishResult(
+                    provider="dingtalk_alidocs_session",
+                    reference_id="row_only_target_upload",
+                    latest_link_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowOnlyTargetNode",
+                    document_link_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowOnlyTargetNode",
+                    document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowOnlyTargetNode",
+                )
+
+            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+                process_build_queue,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "sync_phase2_snapshot_before_queue",
+            ), mock.patch.object(
+                process_build_queue,
+                "build_document_for_task",
+                build_document_mock,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_artifact_destination",
+                side_effect=fake_resolve_artifact_destination,
+            ), mock.patch.object(
+                process_build_queue,
+                "publish_word_artifact",
+                side_effect=fake_publish_word_artifact,
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="user",
+            ):
+                exit_code = process_build_queue.process_build_queue(
+                    cfg=cfg,
+                    config_path=Path("config.us.yaml"),
+                    data_root="data/phase2",
+                    dry_run=False,
+                )
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(1, len(publish_destinations))
+        success_payload = captured_upserts[1]["record"]
+        self.assertEqual(
+            "https://alidocs.dingtalk.com/i/nodes/UploadedRowOnlyTargetNode",
+            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
+        )
+
+    def test_process_build_queue_should_fallback_to_feishu_when_dingtalk_upload_is_not_checked(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            },
+            "queue": {
+                "artifact_sink": {
+                    "provider": "dingtalk_alidocs_session",
+                }
+            },
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_dingtalk_off_1",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.BUILD_FAMILY_FIELD: ["us-en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.DOCUMENT_LINK_DD_FIELD: "https://alidocs.dingtalk.com/i/nodes/old-link",
+                    process_build_queue.UPLOAD_DINGTALK_FIELD: False,
+                    process_build_queue.DINGTALK_TARGET_NODE_URL_FIELD: "https://alidocs.dingtalk.com/i/nodes/ignored-row-target",
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        publish_destinations: list[object] = []
+        dingtalk_destination = process_build_queue.ArtifactDestination(
+            provider="dingtalk_alidocs_session",
+            label="DingTalk docs target",
+            details={"target_node_id": "NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY"},
+            runtime_target="https://alidocs.dingtalk.com/i/nodes/NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY",
+        )
+        wiki_destination = process_build_queue.WikiDestination(
+            space_id="space_123",
+            parent_wiki_token="wiki_parent",
+        )
+
+        with tempfile.TemporaryDirectory() as td:
+            generated_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "word" / "manual_je1000f_us.docx"
+            build_document_mock = mock.Mock(return_value=generated_path)
+
+            class FakeSource:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
+                def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                    captured_upserts.append(kwargs)
+                    return {"ok": True}
+
+            def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
+                publish_destinations.append(kwargs["artifact_destination"])
+                self.assertEqual(wiki_destination, kwargs["artifact_destination"])
+                return process_build_queue.ArtifactPublishResult(
+                    provider="lark_drive",
+                    reference_id="file_token_123",
+                    latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+                    document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                )
+
+            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+                process_build_queue,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "sync_phase2_snapshot_before_queue",
+            ), mock.patch.object(
+                process_build_queue,
+                "build_document_for_task",
+                build_document_mock,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_artifact_destination",
+                return_value=dingtalk_destination,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_wiki_destination",
+                return_value=wiki_destination,
+            ), mock.patch.object(
+                process_build_queue,
+                "publish_word_artifact",
+                side_effect=fake_publish_word_artifact,
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="user",
+            ):
+                exit_code = process_build_queue.process_build_queue(
+                    cfg=cfg,
+                    config_path=Path("config.us.yaml"),
+                    data_root="data/phase2",
+                    dry_run=False,
+                )
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(1, len(publish_destinations))
+        self.assertEqual(2, len(captured_upserts))
+        success_payload = captured_upserts[1]["record"]
+        self.assertIsInstance(success_payload, dict)
+        self.assertEqual(
+            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
+        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
+
+    def test_build_success_fields_should_optionally_write_dingtalk_link(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            word_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "word" / "manual_je1000f_us.docx"
+            built_at = datetime(2026, 4, 1, 12, 34, 56)
+            dingtalk_url = "https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ"
+
+            fields = process_build_queue.build_success_fields(
+                version="1.0",
+                word_output_path=word_path,
+                document_link_url=dingtalk_url,
+                document_link_dd_url=dingtalk_url,
+                built_at=built_at,
+                workflow_action="Build Draft Package",
+                doc_phase="Draft",
+                data_sync_status="skipped",
+                write_document_link_dd=True,
+            )
+
+        self.assertEqual(dingtalk_url, fields[process_build_queue.DOCUMENT_LINK_FIELD])
+        self.assertEqual(dingtalk_url, fields[process_build_queue.DOCUMENT_LINK_DD_FIELD])
 
 
 if __name__ == "__main__":

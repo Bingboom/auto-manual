@@ -16,10 +16,15 @@ def process_queue_record_group(
     *,
     group: list[Any],
     cfg: dict[str, Any],
+    config_path: Path,
     source: Any,
     binding: Any,
     data_root: str | None,
     can_write_started_at: bool,
+    can_write_force_phase2_refresh: bool,
+    can_write_data_sync: bool,
+    can_write_document_link_dd: bool,
+    has_upload_dingtalk_field: bool,
     cli_bin: str,
     identity: str,
     artifact_destination: Any,
@@ -28,8 +33,14 @@ def process_queue_record_group(
     resolve_target_for_record: Callable[[Any], tuple[str, str]],
     queue_group_lang: Callable[[list[Any]], str],
     queue_group_build_family: Callable[[list[Any]], str],
+    queue_group_dingtalk_target_node_url: Callable[[list[Any]], str],
+    queue_group_force_phase2_refresh: Callable[[list[Any]], bool],
+    queue_group_upload_dingtalk: Callable[[list[Any]], bool],
     resolve_config_path_for_task: Callable[..., Path],
     resolve_queue_workflow_action: Callable[[Any], str | None],
+    sync_phase2_snapshot_before_queue: Callable[..., None],
+    resolve_lark_wiki_destination: Callable[..., Any],
+    resolve_row_artifact_destination: Callable[..., Any],
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Path],
     publish_word_artifact: Callable[..., Any],
@@ -46,6 +57,7 @@ def process_queue_record_group(
     record = group[0]
     word_output_path: Path | None = None
     latest_link_url: str | None = None
+    latest_document_link_dd_url: str | None = None
     group_key = queue_record_key(record)
     row_count = len(group)
     try:
@@ -54,7 +66,40 @@ def process_queue_record_group(
         model, region = resolve_target_for_record(record)
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
+        dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
+        force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        upload_dingtalk = queue_group_upload_dingtalk(group)
+        data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)
+        effective_artifact_destination = artifact_destination
+        if getattr(artifact_destination, "provider", None) == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
+            if upload_dingtalk:
+                if dingtalk_target_node_url:
+                    effective_artifact_destination = resolve_row_artifact_destination(
+                        cfg=cfg,
+                        cli_bin=cli_bin,
+                        identity=identity,
+                        binding=binding,
+                        target_node_url=dingtalk_target_node_url,
+                    )
+                    print(
+                        f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) "
+                        f"with row target {dingtalk_target_node_url}."
+                    )
+                else:
+                    if not getattr(effective_artifact_destination, "runtime_target", None):
+                        raise RuntimeError(
+                            "DingTalk target node URL is required: provide row DingTalk_target_node_url "
+                            "or configure DINGTALK_DOCS_TARGET_NODE_URL for the remote worker"
+                        )
+                    print(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
+            else:
+                print(f"[build-queue] Skipping DingTalk upload for {group_key} ({row_count} row(s)); using Feishu/wiki upload.")
+                effective_artifact_destination = resolve_lark_wiki_destination(
+                    cli_bin=cli_bin,
+                    identity=identity,
+                    binding=binding,
+                )
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,
@@ -65,6 +110,19 @@ def process_queue_record_group(
             raise RuntimeError(
                 "Build Draft Package queue rows require Git_ref so the worker can fetch the review branch"
             )
+        if force_phase2_refresh:
+            print(
+                f"[build-queue] Syncing latest phase2 snapshot before {group_key} ({row_count} row(s))."
+            )
+            try:
+                sync_phase2_snapshot_before_queue(
+                    config_path=config_path,
+                    data_root=data_root,
+                )
+            except Exception:
+                data_sync_status = "failed"
+                raise
+            data_sync_status = "refreshed"
         started_at = datetime.now().astimezone()
         if can_write_started_at:
             start_fields = build_started_fields(started_at=started_at)
@@ -99,19 +157,26 @@ def process_queue_record_group(
             cli_bin=cli_bin,
             word_output_path=word_output_path,
             identity=identity,
-            artifact_destination=artifact_destination,
+            artifact_destination=effective_artifact_destination,
         )
         latest_link_url = artifact_result.latest_link_url
         document_link_url = artifact_result.document_link_url
+        document_link_dd_url = artifact_result.document_link_dd_url
+        latest_document_link_dd_url = document_link_dd_url or None
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
             word_output_path=word_output_path,
             document_link_url=document_link_url,
+            document_link_dd_url=document_link_dd_url,
             built_at=built_at,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
+            data_sync_status=data_sync_status,
             status_notes=artifact_result.status_notes,
+            clear_force_phase2_refresh=can_write_force_phase2_refresh,
+            write_data_sync=can_write_data_sync,
+            write_document_link_dd=can_write_document_link_dd,
         )
         for group_record in group:
             source.upsert_record(
@@ -160,8 +225,13 @@ def process_queue_record_group(
                 message=message,
                 workflow_action=best_effort_queue_workflow_action(record),
                 doc_phase=queue_record_legacy_doc_phase(record),
+                data_sync_status=data_sync_status,
                 word_output_path=word_output_path,
                 document_link_url=latest_link_url,
+                document_link_dd_url=latest_document_link_dd_url,
+                clear_force_phase2_refresh=can_write_force_phase2_refresh,
+                write_data_sync=can_write_data_sync,
+                write_document_link_dd=can_write_document_link_dd,
             )
             for group_record in group:
                 source.upsert_record(

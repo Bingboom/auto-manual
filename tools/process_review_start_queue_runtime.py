@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
+FAILURE_SUMMARY_PATH_ENV = "AUTO_MANUAL_FAILURE_SUMMARY_PATH"
+
 
 @dataclass(frozen=True)
 class ReviewStartRuntimeDeps:
@@ -32,7 +34,43 @@ class ReviewStartRuntimeDeps:
     build_duplicate_fields_fn: Callable[[], dict[str, Any]]
     build_success_fields_fn: Callable[..., dict[str, Any]]
     start_review_for_record_fn: Callable[..., tuple[str, str]]
+    build_preflight_failure_summary_fn: Callable[..., dict[str, Any]]
+    build_no_pending_failure_summary_fn: Callable[..., dict[str, Any]]
+    build_failure_summary_fn: Callable[..., dict[str, Any]]
+    build_failure_report_fn: Callable[..., dict[str, Any]]
     environ: dict[str, str]
+
+
+def _failure_summary_path(*, root: Path, environ: dict[str, str]) -> Path | None:
+    raw = str(environ.get(FAILURE_SUMMARY_PATH_ENV, "")).strip()
+    if not raw:
+        return None
+    path = Path(raw)
+    if not path.is_absolute():
+        path = root / path
+    return path.resolve()
+
+
+def _clear_failure_summary(*, root: Path, environ: dict[str, str]) -> None:
+    path = _failure_summary_path(root=root, environ=environ)
+    if path is None:
+        return
+    try:
+        if path.exists():
+            path.unlink()
+    except OSError as exc:
+        print(f"[review-start] Unable to clear failure summary {path}: {exc}", file=sys.stderr)
+
+
+def _write_failure_summary(*, root: Path, environ: dict[str, str], payload: dict[str, Any]) -> None:
+    path = _failure_summary_path(root=root, environ=environ)
+    if path is None:
+        return
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    except OSError as exc:
+        print(f"[review-start] Unable to write failure summary {path}: {exc}", file=sys.stderr)
 
 
 def process_review_start_queue(
@@ -44,8 +82,23 @@ def process_review_start_queue(
     record_id: str | None,
     deps: ReviewStartRuntimeDeps,
 ) -> int:
+    _clear_failure_summary(root=deps.root, environ=deps.environ)
+    pending_groups: list[list[Any]] = []
     errors = deps.collect_preflight_errors_fn(cfg, require_github=not dry_run)
     if errors:
+        _write_failure_summary(
+            root=deps.root,
+            environ=deps.environ,
+            payload=deps.build_failure_report_fn(
+                review_action_label=deps.review_action_label,
+                failures=[
+                    deps.build_preflight_failure_summary_fn(
+                        errors=errors,
+                        review_action_label=deps.review_action_label,
+                    )
+                ],
+            ),
+        )
         raise RuntimeError("process-review-start-queue preflight failed:\n- " + "\n- ".join(errors))
 
     binding = deps.resolve_binding_fn(cfg)
@@ -57,6 +110,25 @@ def process_review_start_queue(
     )
     pending_records = deps.select_pending_records_fn(raw_records, record_id=record_id)
     if not pending_records:
+        if record_id:
+            _write_failure_summary(
+                root=deps.root,
+                environ=deps.environ,
+                payload=deps.build_failure_report_fn(
+                    review_action_label=deps.review_action_label,
+                    failures=[
+                        deps.build_no_pending_failure_summary_fn(
+                            record_id=record_id,
+                            review_action_label=deps.review_action_label,
+                        )
+                    ],
+                ),
+            )
+            print(
+                f"[review-start] No pending review-start task found for record_id={record_id}.",
+                file=sys.stderr,
+            )
+            return 1
         print("[review-start] No pending review-start tasks found.")
         return 0
     pending_groups = deps.group_records_fn(pending_records)
@@ -99,7 +171,25 @@ def process_review_start_queue(
         return 0
 
     print(f"[review-start] Syncing latest phase2 snapshot before {deps.review_action_label.lower()}.")
-    deps.sync_snapshot_before_fn(config_path=config_path, data_root=snapshot_data_root)
+    try:
+        deps.sync_snapshot_before_fn(config_path=config_path, data_root=snapshot_data_root)
+    except Exception as exc:
+        target_record = pending_groups[0][0] if len(pending_groups) == 1 and pending_groups[0] else None
+        _write_failure_summary(
+            root=deps.root,
+            environ=deps.environ,
+            payload=deps.build_failure_report_fn(
+                review_action_label=deps.review_action_label,
+                failures=[
+                    deps.build_failure_summary_fn(
+                        record=target_record,
+                        exc=exc,
+                        review_action_label=deps.review_action_label,
+                    )
+                ],
+            ),
+        )
+        raise
 
     repository = str(deps.environ.get("GITHUB_REPOSITORY", "")).strip()
     token = str(deps.environ.get("GITHUB_TOKEN", "")).strip()
@@ -107,10 +197,15 @@ def process_review_start_queue(
     deps.run_git_fn(["fetch", "origin", "--prune"])
 
     failures: list[str] = []
+    failure_summaries: list[dict[str, Any]] = []
     processed = 0
     blocked = 0
     for group in pending_groups:
         record = group[0]
+        model = ""
+        region = ""
+        group_lang = ""
+        group_build_family = ""
         try:
             deps.validate_group_fn(group)
             model, region = deps.resolve_target_fn(record)
@@ -165,11 +260,32 @@ def process_review_start_queue(
             )
         except Exception as exc:
             failures.append(f"{deps.record_key_fn(record)}: {exc}")
+            failure_summaries.append(
+                deps.build_failure_summary_fn(
+                    record=record,
+                    exc=exc,
+                    review_action_label=deps.review_action_label,
+                    model=model,
+                    region=region,
+                    build_family=group_build_family,
+                    lang=group_lang,
+                )
+            )
             print(
                 f"[review-start] {deps.review_action_label} FAILURE {deps.record_key_fn(record)} "
                 f"family={deps.group_build_family_fn(group) or 'legacy'}: {exc}",
                 file=sys.stderr,
             )
+
+    if failure_summaries:
+        _write_failure_summary(
+            root=deps.root,
+            environ=deps.environ,
+            payload=deps.build_failure_report_fn(
+                review_action_label=deps.review_action_label,
+                failures=failure_summaries,
+            ),
+        )
 
     print(
         f"[review-start] {deps.review_action_label} summary: "

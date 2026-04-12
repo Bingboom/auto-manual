@@ -218,6 +218,22 @@ Main outcomes:
 
 - kept `Workflow_action` as the only recommended queue-action field in docs and CLI examples
 - retained `Doc_phase` only as a compatibility fallback, with explicit warnings in build-queue logs and CLI translation paths
+
+## 14. 2026-04-10: OpenClaw Phase 1 Control-Layer Bridge
+
+Main outcomes:
+
+- added a repo-owned OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer)
+- registered `/start-review`, `/build-draft`, `/publish`, and `/manual-status` as the supported Phase 1 command surface
+- hardened the three `main`-owned GitHub workers with `openclaw_dispatch_nonce` plus the `openclaw-run-metadata` artifact for run correlation
+- added a shared Python helper at [`../integrations/openclaw/scripts/write_workflow_run_metadata.py`](../integrations/openclaw/scripts/write_workflow_run_metadata.py)
+- extended CI so the OpenClaw package runs through `npm ci && npm test` in `Manual Validation`
+
+Why it mattered:
+
+- operators now have one control-layer entrypoint without moving build execution or Feishu secrets out of GitHub Actions
+- manual retries and status lookups can map back to one specific workflow run instead of guessing the latest dispatch
+- the OpenClaw integration stays isolated from the Python execution plane while still living in the same repo history
 - updated queue writeback/result diagnostics so `workflow_action` stays primary and legacy `Doc_phase` only appears as `legacy_doc_phase` when that fallback path was used
 
 Why it mattered:
@@ -423,3 +439,18 @@ Why it mattered:
 - CI now checks more of the workflow surfaces the repo actually depends on without turning every run into a full publish/build
 - shared GitHub-hosted worker setup is easier to maintain because dependency/bootstrap changes now land in one place
 - `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py` stayed wrapper-compatible while real export/bootstrap logic moved further out of the entry files
+
+## 26. 2026-04-12: Feishu IM Webhook Adapter Ingress
+
+Main outcomes:
+
+- added a repo-external Feishu IM ingress package under [`../integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter/)
+- kept the adapter thin by reusing the repo-owned control surfaces `queue-query`, `queue-resolve-action`, and `queue-execute`
+- added publish-confirmation state, event-id dedupe, same-thread Feishu replies, and explicit rejection for unsupported encrypted callbacks
+- aligned maintainer docs, user docs, and control-layer architecture notes with the new ingress layer
+
+Why it mattered:
+
+- operators can now enter review/build/publish asks from Feishu IM without moving build execution or Feishu writeback out of the existing queue/workflow plane
+- the ingress layer stays isolated from the Python execution core while still sharing one deterministic action contract
+- deployment and callback-mode limits are now explicit instead of being hidden behind local-only assumptions

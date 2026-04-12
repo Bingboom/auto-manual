@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-11
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -71,6 +71,8 @@ As of 2026-04-11, the repo has working baselines for:
 - `message-control-dry-run` as a maintainer-only Phase 0 natural-language control resolver that returns structured JSON without dispatching real workflows
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
 - CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
+- OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
+- repo-owned OpenClaw integration packages under [`integrations/openclaw/`](integrations/openclaw)
 
 ## 4. Recently Completed
 
@@ -135,6 +137,12 @@ Use this section for short milestone-style updates.
 - started Workstream F by adding `build.py message-control-dry-run` plus `tools/message_control_*` as the Phase 0 dry-run resolver for the planned Feishu message plus OpenClaw control layer
 - kept the Phase 0 scope intentionally narrow: resolve one raw message into structured JSON, required fields, guardrails, and the target GitHub workflow without dispatching or mutating Feishu state
 
+### 2026-04-12
+
+- added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
+- hardened the adapter with explicit publish-confirmation state, event-id dedupe, clear rejection for unsupported encrypted callbacks, and same-thread Feishu replies
+- aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
+
 ## 5. Open Gaps
 
 Keep this section short and current.
@@ -142,7 +150,7 @@ Keep this section short and current.
 1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
 2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 3. Multi-target conditional content is still deferred.
-4. No live Feishu-message execution path exists yet; the new Phase 0 dry-run resolver can parse one raw message into structured actions, but webhook ingress, workflow dispatch, and Feishu row mutation still remain to be implemented.
+4. The Feishu IM ingress adapter is now repo-local, but deployment hardening, shared state for multi-instance use, and encrypted callback support are still open.
 
 ## 6. Active Workstreams
 
@@ -219,35 +227,35 @@ Status: done
 
 Status: done
 
-### Workstream F: Feishu Message Control Layer
+### Workstream F: Feishu IM Ingress Hardening
 
 Status: active
 
 Why now:
 
-- the queue, review-init, and publish workers are stable enough to expose through a higher-level operator surface
-- operators still need to edit Feishu table fields manually for common review/build/publish actions
-- the missing leverage point is control ergonomics, not another build-core refactor
+- the repo now owns a real Feishu IM ingress package, so deployment and callback-mode boundaries need to stay explicit
+- without a small hardening pass, operator-facing behavior can drift between local testing and real webhook use
 
 Scope:
 
-- define a bounded action contract over the current review/build/publish workers
-- add a Feishu message plus OpenClaw adapter that translates natural language into structured actions
-- return status and result information from existing queue or review-init writeback fields instead of inventing a parallel task model
-- keep build execution delegated to the current GitHub workflows and queue entrypoints
+- keep the Feishu IM adapter outside the Python execution plane
+- keep reply semantics aligned with `queue-resolve-action`, `queue-execute`, and structured failure summaries
+- keep `message-control-dry-run` as a maintainer-only offline parser probe so intent normalization can still be debugged without live Feishu ingress
+- make callback security mode explicit
+- make runtime-state expectations explicit before any multi-instance deployment
 
 Exit criteria:
 
-- operators can request `query_status`, `Start Review`, `Build Draft Package`, and `Publish` from Feishu messages without manually editing queue fields
-- execution remains constrained to existing action types, target-resolution rules, and queue/writeback contracts
-- accepted and completed replies are grounded in queue-row or review-init-row state rather than controller-local memory
+- the adapter can be deployed without ambiguity about callback mode, runtime state, and required env
+- operator replies stay deterministic for query, review-start, draft build, and publish confirmation
+- remaining gaps are clearly documented instead of being hidden in local-only assumptions
 
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 1. Preserve the current `check` + smoke-CI baseline
-2. Finish Phase 0 of the Feishu message plus OpenClaw control layer by adding webhook ingress, selector validation, and dispatch gating on top of the new dry-run resolver
+2. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state
 3. Revisit remaining medium wrappers only when a concrete hotspot reappears
 4. Multi-target content pilot when the deferred work becomes active
 

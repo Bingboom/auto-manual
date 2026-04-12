@@ -56,6 +56,9 @@ from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
 from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
+from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
+from tools.queue_query import run_queue_query as _run_queue_query_impl
+from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
 from tools.build_reports import (
     default_report_dir_for_tracked_root as _default_report_dir_for_tracked_root_impl,
     diff_report_command as _diff_report_command,
@@ -326,6 +329,20 @@ def run_message_control_dry_run(args: argparse.Namespace) -> None:
     print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False, sort_keys=True))
 
 
+def run_queue_query(args: argparse.Namespace) -> None:
+    return _run_queue_query_impl(args, config_path=resolve_path_from_root(args.config))
+
+
+def run_queue_resolve_action(args: argparse.Namespace) -> None:
+    return _run_queue_resolve_action_impl(args, config_path=resolve_path_from_root(args.config))
+
+
+def run_queue_execute(args: argparse.Namespace) -> None:
+    return _run_queue_execute_impl(
+        args,
+        config_path=resolve_path_from_root(args.config),
+        repo_root=ROOT,
+    )
 def release_manifest_command(args: argparse.Namespace) -> list[str]:
     return _release_manifest_command_impl(
         args,
@@ -662,6 +679,9 @@ def main(argv: list[str] | None = None) -> int:
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
         run_message_control_dry_run=run_message_control_dry_run,
+        run_queue_query=run_queue_query,
+        run_queue_resolve_action=run_queue_resolve_action,
+        run_queue_execute=run_queue_execute,
         process_review_start_queue_command=process_review_start_queue_command,
         process_build_queue_command=process_build_queue_command,
         listen_build_queue_command=listen_build_queue_command,

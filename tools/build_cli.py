@@ -23,6 +23,9 @@ def parse_args(
             "check",
             "sync-review",
             "sync-data",
+            "queue-query",
+            "queue-resolve-action",
+            "queue-execute",
             "process-review-start-queue",
             "process-build-queue",
             "listen-build-queue",
@@ -39,6 +42,11 @@ def parse_args(
     ap.add_argument("--config", default=default_config, help="Config YAML path, relative to repo root by default")
     ap.add_argument("--model", default=None, help="Build a single model instead of build.targets")
     ap.add_argument("--region", default=None, help="Build a single region instead of build.targets")
+    ap.add_argument(
+        "--lang",
+        default=None,
+        help="Optional language selector for queue-query, queue-resolve-action, message-control-dry-run, or other target-aware flows",
+    )
     ap.add_argument(
         "--staging-root",
         default=None,
@@ -100,13 +108,69 @@ def parse_args(
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
     ap.add_argument("--message", default=None, help="For message-control-dry-run: raw incoming user message")
-    ap.add_argument("--document-id", default=None, help="For message-control-dry-run: explicit Document_ID hint")
-    ap.add_argument("--document-key", default=None, help="For message-control-dry-run: explicit Document_Key hint")
-    ap.add_argument("--build-family", default=None, help="For queue or message control: explicit Build_family hint")
+    ap.add_argument(
+        "--document-id",
+        default=None,
+        help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_ID filter or hint",
+    )
+    ap.add_argument(
+        "--document-key",
+        default=None,
+        help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_Key filter or hint",
+    )
+    ap.add_argument(
+        "--build-family",
+        default=None,
+        help="For queue-query, queue-resolve-action, process-build-queue, or message-control-dry-run: exact Build_family filter or hint",
+    )
     ap.add_argument("--git-ref", default=None, help="For message-control-dry-run: explicit Git_ref hint")
     ap.add_argument("--version", default=None, help="For message-control-dry-run: explicit version hint")
-    ap.add_argument("--lang", default=None, help="For message-control-dry-run: explicit language hint")
     ap.add_argument("--confirmed", action="store_true", help="For message-control-dry-run: confirm publish intent")
+    ap.add_argument(
+        "--queue-scope",
+        choices=("document-link", "review-init", "all"),
+        default="all",
+        help="For queue-query or queue-resolve-action: which Feishu queue surface to search",
+    )
+    ap.add_argument(
+        "--query-text",
+        default=None,
+        help="For queue-query or queue-resolve-action: raw natural-language text to parse with document_id-first resolution",
+    )
+    ap.add_argument("--document-version", default=None, help="For queue-query or queue-resolve-action: exact Version filter")
+    ap.add_argument(
+        "--query-workflow-action",
+        default=None,
+        help="For queue-query or queue-resolve-action: start-review | build-draft-package | publish",
+    )
+    ap.add_argument("--git-ref-contains", default=None, help="For queue-query or queue-resolve-action: substring match against Git_ref")
+    ap.add_argument("--result-contains", default=None, help="For queue-query or queue-resolve-action: substring match against 构建结果")
+    ap.add_argument("--limit", type=int, default=10, help="For queue-query or queue-resolve-action: maximum rows to return")
+    ap.add_argument("--json", action="store_true", help="For queue-query or queue-resolve-action: emit machine-readable JSON")
+    ap.set_defaults(wait_for_completion=True)
+    ap.add_argument(
+        "--no-wait",
+        dest="wait_for_completion",
+        action="store_false",
+        help="For queue-execute: return after workflow dispatch without waiting for GitHub completion",
+    )
+    ap.add_argument(
+        "--wait-timeout-seconds",
+        type=int,
+        default=420,
+        help="For queue-execute: maximum time to wait for GitHub workflow completion",
+    )
+    ap.add_argument(
+        "--status-poll-seconds",
+        type=float,
+        default=3.0,
+        help="For queue-execute: polling interval while waiting for GitHub workflow completion",
+    )
+    ap.add_argument(
+        "--confirm-publish",
+        action="store_true",
+        help="For queue-execute: explicitly confirm Publish dispatches after row resolution",
+    )
     ap.add_argument(
         "--workflow-action",
         choices=("build-draft-package", "publish"),

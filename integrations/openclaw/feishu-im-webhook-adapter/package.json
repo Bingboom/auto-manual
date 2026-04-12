@@ -1,0 +1,11 @@
+{
+  "name": "auto-manual-feishu-im-webhook-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Feishu IM webhook adapter for the auto-manual OpenClaw control layer.",
+  "scripts": {
+    "test": "node --test test/**/*.test.mjs",
+    "start": "node server.mjs"
+  }
+}
