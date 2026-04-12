@@ -35,13 +35,18 @@ def parse_args(
             "release-manifest",
             "preview",
             "fast",
+            "message-control-dry-run",
         ),
         help="Action to run",
     )
     ap.add_argument("--config", default=default_config, help="Config YAML path, relative to repo root by default")
     ap.add_argument("--model", default=None, help="Build a single model instead of build.targets")
     ap.add_argument("--region", default=None, help="Build a single region instead of build.targets")
-    ap.add_argument("--lang", default=None, help="Optional language selector for queue-query or other target-aware flows")
+    ap.add_argument(
+        "--lang",
+        default=None,
+        help="Optional language selector for queue-query, queue-resolve-action, message-control-dry-run, or other target-aware flows",
+    )
     ap.add_argument(
         "--staging-root",
         default=None,
@@ -102,6 +107,25 @@ def parse_args(
         help="Output directory for diff-report CSV/HTML",
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
+    ap.add_argument("--message", default=None, help="For message-control-dry-run: raw incoming user message")
+    ap.add_argument(
+        "--document-id",
+        default=None,
+        help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_ID filter or hint",
+    )
+    ap.add_argument(
+        "--document-key",
+        default=None,
+        help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_Key filter or hint",
+    )
+    ap.add_argument(
+        "--build-family",
+        default=None,
+        help="For queue-query, queue-resolve-action, process-build-queue, or message-control-dry-run: exact Build_family filter or hint",
+    )
+    ap.add_argument("--git-ref", default=None, help="For message-control-dry-run: explicit Git_ref hint")
+    ap.add_argument("--version", default=None, help="For message-control-dry-run: explicit version hint")
+    ap.add_argument("--confirmed", action="store_true", help="For message-control-dry-run: confirm publish intent")
     ap.add_argument(
         "--queue-scope",
         choices=("document-link", "review-init", "all"),
@@ -113,9 +137,6 @@ def parse_args(
         default=None,
         help="For queue-query or queue-resolve-action: raw natural-language text to parse with document_id-first resolution",
     )
-    ap.add_argument("--document-id", default=None, help="For queue-query or queue-resolve-action: exact Document_ID filter")
-    ap.add_argument("--document-key", default=None, help="For queue-query or queue-resolve-action: exact Document_Key filter")
-    ap.add_argument("--build-family", default=None, help="For queue-query or queue-resolve-action: exact Build_family filter")
     ap.add_argument("--document-version", default=None, help="For queue-query or queue-resolve-action: exact Version filter")
     ap.add_argument(
         "--query-workflow-action",

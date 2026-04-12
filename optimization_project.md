@@ -56,7 +56,7 @@ Suggested workstream statuses:
 
 ## 3. Current Baseline
 
-As of 2026-03-17, the repo has working baselines for:
+As of 2026-04-11, the repo has working baselines for:
 
 - [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) as the primary cross-platform entrypoint
 - target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
@@ -68,6 +68,7 @@ As of 2026-03-17, the repo has working baselines for:
 - `release-manifest`
 - `preview`
 - `fast`
+- `message-control-dry-run` as a maintainer-only Phase 0 natural-language control resolver that returns structured JSON without dispatching real workflows
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
 - CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
 - OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
@@ -130,6 +131,11 @@ Use this section for short milestone-style updates.
 ### 2026-04-08
 
 - completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
+
+### 2026-04-11
+
+- started Workstream F by adding `build.py message-control-dry-run` plus `tools/message_control_*` as the Phase 0 dry-run resolver for the planned Feishu message plus OpenClaw control layer
+- kept the Phase 0 scope intentionally narrow: resolve one raw message into structured JSON, required fields, guardrails, and the target GitHub workflow without dispatching or mutating Feishu state
 
 ### 2026-04-12
 
@@ -234,6 +240,7 @@ Scope:
 
 - keep the Feishu IM adapter outside the Python execution plane
 - keep reply semantics aligned with `queue-resolve-action`, `queue-execute`, and structured failure summaries
+- keep `message-control-dry-run` as a maintainer-only offline parser probe so intent normalization can still be debugged without live Feishu ingress
 - make callback security mode explicit
 - make runtime-state expectations explicit before any multi-instance deployment
 

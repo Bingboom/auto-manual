@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-04-08
+Updated: 2026-04-11
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -28,6 +28,7 @@ python build.py process-review-start-queue --config config.us.yaml --data-root .
 python scripts\local_build.py publish --config config.ja.yaml --model JE-1000F --region JP
 python scripts\local_build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
 python build.py process-build-queue --config config.us.yaml
+python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"
 python build.py handoff --config config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config config.ja.yaml --model JE-1000F --region JP
@@ -65,6 +66,7 @@ Meaning:
 - if that checked row also has `DingTalk_target_node_url`, the worker uploads to that row-level target first; otherwise it falls back to the global `DINGTALK_DOCS_TARGET_NODE_URL`
 - `queue-query`: OpenClaw Phase 2 queue resolution helper; it reads the Feishu-bound `Review Init` / `Document_link` rows and returns the concrete `record_id`, workflow intent, `Git_ref`, `Document link`, and status fields that a natural-language control layer needs before dispatch
 - `queue-resolve-action`: structured OpenClaw dry-run resolver; it turns one natural-language ask into the bounded action contract from the control-layer plan, including `action_name`, `resolution_status`, required confirmation, missing required fields, and the matched queue row
+- `message-control-dry-run`: maintainer-only parser probe retained for offline control-layer debugging; it resolves one raw message into structured JSON and guardrails without dispatching workflows or editing Feishu rows
 - [`../integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter): standalone Feishu IM ingress adapter; it validates callback payloads, normalizes text messages, uses `queue-resolve-action|queue-query|queue-execute` as the repo-owned action surface, and replies back into the same Feishu thread
 - `queue-query --query-text` now accepts both exact underscore ids like `JE-1000F_US_0.3` and spaced asks like `JE-1000F US 0.3`; it also maps `开始 review JE-1000F us-merged` and failure-reason asks such as `为什么 JE-1000F US 0.3 构建失败`
 - `queue-execute`: OpenClaw Phase 2 deterministic execution helper; it resolves one Feishu row from `--query-text`, dispatches the matching `main`-owned GitHub workflow through the local control-layer CLI, waits for completion, then re-reads the Feishu row and returns the final `record_id`, `Git_ref`, `构建结果`, and `Document link`
@@ -230,6 +232,7 @@ If you use the Feishu-backed phase2 workflow, sync the frozen snapshot before ru
 python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run
 python build.py sync-data --config config.us.yaml --data-root data/phase2
 python build.py process-build-queue --config config.us.yaml
+python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"
 ```
 
 That command requires:

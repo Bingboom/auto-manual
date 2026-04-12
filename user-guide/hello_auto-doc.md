@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-08
+Updated: 2026-04-11
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -197,7 +197,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py sync-data|process-build-queue|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
 4. `product_name` is resolved from the active snapshot root, defaulting to a valid [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) snapshot when available and otherwise falling back to [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv); explicit `--data-root` still overrides the default
@@ -222,6 +222,7 @@ Important:
 - `python build.py sync-data --config config.us.yaml --data-root data/phase2` is the explicit local refresh step for Feishu/Lark content; build commands default to a valid phase2 snapshot when one exists and only fetch online data when you run `sync-data`.
 - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the safest readiness probe for a new machine because it checks the local CLI/env prerequisites before attempting the real sync.
 - `python build.py process-build-queue --config config.us.yaml` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
+- `python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"` is a maintainer-only Phase 0 helper for the planned Feishu message plus OpenClaw control layer; it returns structured JSON only and does not dispatch GitHub workflows or write back any Feishu fields yet.
 - when the queue row carries `Git_ref`, that queue step fetches the named review branch and builds from that branch even if the queue worker itself is running from `main`.
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
@@ -28,6 +29,7 @@ from tools.build_entry_commands import (
     check_docs_command as _check_docs_command_impl,
     effective_source as _effective_source_impl,
     listen_build_queue_command as _listen_build_queue_command_impl,
+    message_control_dry_run_command as _message_control_dry_run_command_impl,
     normalize_cli_build_queue_action as _normalize_cli_build_queue_action_impl,
     process_build_queue_command as _process_build_queue_command_impl,
     process_review_start_queue_command as _process_review_start_queue_command_impl,
@@ -53,6 +55,7 @@ from tools.build_doctor import (
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
+from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
 from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
 from tools.queue_query import run_queue_query as _run_queue_query_impl
 from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
@@ -297,6 +300,35 @@ def sync_data_command(args: argparse.Namespace) -> list[str]:
     )
 
 
+def message_control_dry_run_command(args: argparse.Namespace) -> list[str]:
+    return _message_control_dry_run_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
+
+
+def run_message_control_dry_run(args: argparse.Namespace) -> None:
+    config_path = resolve_path_from_root(args.config)
+    load_config(config_path)
+    result = _resolve_message_control_impl(
+        raw_message=str(args.message or ""),
+        repo_root=ROOT,
+        config_loader=load_config,
+        record_id=str(args.record_id or ""),
+        document_id=str(args.document_id or ""),
+        document_key=str(args.document_key or ""),
+        model=str(args.model or ""),
+        region=str(args.region or ""),
+        lang=str(args.lang or ""),
+        build_family=str(args.build_family or ""),
+        git_ref=str(args.git_ref or ""),
+        version=str(args.version or ""),
+        confirmed=bool(args.confirmed),
+    )
+    print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False, sort_keys=True))
+
+
 def run_queue_query(args: argparse.Namespace) -> None:
     return _run_queue_query_impl(args, config_path=resolve_path_from_root(args.config))
 
@@ -311,8 +343,6 @@ def run_queue_execute(args: argparse.Namespace) -> None:
         config_path=resolve_path_from_root(args.config),
         repo_root=ROOT,
     )
-
-
 def release_manifest_command(args: argparse.Namespace) -> list[str]:
     return _release_manifest_command_impl(
         args,
@@ -648,6 +678,7 @@ def main(argv: list[str] | None = None) -> int:
         run_check=run_check,
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
+        run_message_control_dry_run=run_message_control_dry_run,
         run_queue_query=run_queue_query,
         run_queue_resolve_action=run_queue_resolve_action,
         run_queue_execute=run_queue_execute,
