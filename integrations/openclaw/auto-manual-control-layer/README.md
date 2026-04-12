@@ -14,6 +14,9 @@ node integrations/openclaw/auto-manual-control-layer/cli.mjs status last
 ```
 
 That CLI reuses the same GitHub dispatch/status modules as the plugin.
+Dispatch no longer hard-fails just because the local repo checkout has not run
+`npm install` for this package; metadata artifact parsing is treated as an
+optional status enrichment step instead of a dispatch-time requirement.
 
 ## Commands
 
@@ -70,3 +73,6 @@ Every dispatch uses:
 npm install
 npm test
 ```
+
+Installing the package dependencies is still recommended for local development
+and full status-metadata coverage.
