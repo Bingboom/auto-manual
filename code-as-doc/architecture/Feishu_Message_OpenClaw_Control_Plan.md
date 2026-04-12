@@ -2,6 +2,12 @@
 
 Updated: 2026-04-11
 
+Superseded note:
+
+- this plan predates the repo-local Feishu IM webhook adapter and the consolidated OpenClaw control-layer doc
+- keep it only as implementation history
+- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
+
 ## 1. Role
 
 This file describes the integration plan for a Feishu-message-driven natural-language
@@ -33,13 +39,13 @@ The repository already has the low-level execution pieces needed for this contro
   - [`../../.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml)
 - immediate execution can already be accelerated by Feishu automation plus `workflow_dispatch`
 
-What does not exist today:
+What did not exist when this draft was written:
 
-- no Feishu IM webhook adapter in-repo
-- no natural-language intent schema
-- no OpenClaw control adapter
-- no message reply formatter
-- no bounded confirmation flow for chat-triggered publish
+- no Feishu IM webhook adapter in-repo yet
+- no natural-language intent schema yet
+- no OpenClaw control adapter yet
+- no message reply formatter yet
+- no bounded confirmation flow for chat-triggered publish yet
 
 ## 3. Stage Assessment
 

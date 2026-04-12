@@ -2,6 +2,12 @@
 
 This directory owns the repository-facing OpenClaw control-layer assets.
 
+Canonical docs:
+
+- [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md)
+- [`../../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](../../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
+- [`../../code-as-doc/build_doc_guide.md`](../../code-as-doc/build_doc_guide.md)
+
 Current package:
 
 - [`auto-manual-control-layer/`](auto-manual-control-layer)

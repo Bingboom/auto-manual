@@ -2,6 +2,12 @@
 
 Updated: 2026-04-12
 
+Superseded note:
+
+- the repo now implements the Phase 2 surface described here
+- keep this file as rollout history, not as the current architecture owner
+- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
+
 ## 1. Goal
 
 Phase 2 extends the existing OpenClaw Phase 1 control layer from:
@@ -110,7 +116,7 @@ Keep this boundary explicit:
 
 ## 6. Explicit Non-Goal
 
-`Document link_dd` is not part of Phase 2.
+`Document link_dd` was not part of the original Phase 2 required contract.
 
 If DingTalk dual-write is required later, treat it as a separate V2 extension.
 Phase 2 should continue to assume:

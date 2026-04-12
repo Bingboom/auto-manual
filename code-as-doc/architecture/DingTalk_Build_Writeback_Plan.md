@@ -2,6 +2,12 @@
 
 Updated: 2026-04-09
 
+Archived background note:
+
+- this is the broader provider-migration plan
+- the repo's current maintained DingTalk direction is the narrower hybrid path in [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md)
+- keep this file for background and future expansion only
+
 ## 1. Role
 
 This file is the implementation plan for supporting the current phase2 document build and writeback flow on DingTalk.
