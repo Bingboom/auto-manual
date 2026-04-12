@@ -46,6 +46,7 @@ from tools.process_review_start_queue import (
     REVIEW_STATUS_FIELD,
     REVIEW_TRIGGER_FIELD,
     collect_review_start_preflight_errors,
+    normalize_review_start_action,
     parse_review_start_records,
     resolve_review_init_binding,
 )
@@ -329,6 +330,11 @@ def _build_review_init_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
         fields = fields_raw if isinstance(fields_raw, dict) else {}
         parsed_records = parse_review_start_records([raw_record])
         parsed = parsed_records[0]
+        workflow_action = _text(fields.get(WORKFLOW_ACTION_FIELD)) or REVIEW_START_ACTION_LABEL
+        try:
+            normalize_review_start_action(workflow_action)
+        except RuntimeError:
+            continue
         rows.append(
             QueueQueryRow(
                 queue_scope="review-init",
@@ -338,7 +344,7 @@ def _build_review_init_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 build_family=parsed.build_family,
                 lang=parsed.lang,
                 version=parsed.version,
-                workflow_action=_text(fields.get(WORKFLOW_ACTION_FIELD)) or REVIEW_START_ACTION_LABEL,
+                workflow_action=workflow_action,
                 normalized_workflow_action="start_review",
                 git_ref=parsed.git_ref,
                 document_link="",

@@ -25,13 +25,11 @@ Current scope:
 
 Current limitations:
 
-- expects plain event callbacks plus verification token validation
-- does not yet implement Feishu encrypted callback payload decryption
+- expects standard Feishu webhook callbacks and supports encrypted callback payloads when `Encrypt Key` is configured
 - uses the repo-local `build.py` CLI and the existing OpenClaw/GitHub dispatch path
 
 ## Environment
 
-- `FEISHU_IM_VERIFICATION_TOKEN` or `FEISHU_VERIFICATION_TOKEN`
 - `FEISHU_APP_ID`
 - `FEISHU_APP_SECRET`
 - `AUTO_MANUAL_REPO_ROOT`
@@ -39,6 +37,8 @@ Current limitations:
 
 Optional:
 
+- `FEISHU_IM_VERIFICATION_TOKEN` or `FEISHU_VERIFICATION_TOKEN`
+- `FEISHU_IM_ENCRYPT_KEY` or `FEISHU_ENCRYPT_KEY`
 - `FEISHU_IM_WEBHOOK_HOST`
 - `FEISHU_IM_WEBHOOK_PORT`
 - `FEISHU_IM_WEBHOOK_PATH`
@@ -52,6 +52,10 @@ Optional:
 ```bash
 node server.mjs
 ```
+
+If the Feishu app enables `Encrypt Key` in callback security settings, set the same value in
+`FEISHU_IM_ENCRYPT_KEY` before starting the adapter. The adapter will decrypt the callback body
+first, then run the existing `Verification Token`, challenge, and `im.message.receive_v1` logic.
 
 ## Test
 

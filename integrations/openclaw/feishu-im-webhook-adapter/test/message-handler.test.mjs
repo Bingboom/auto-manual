@@ -1,7 +1,12 @@
+import crypto from "node:crypto";
 import test from "node:test";
 import assert from "node:assert/strict";
 
 import { createMessageHandler } from "../lib/message-handler.mjs";
+
+const silentLogger = {
+  error() {},
+};
 
 function basePayload(text, { eventId = "evt_123", messageId = "om_123", chatId = "oc_123", senderId = "ou_sender", chatType = "p2p" } = {}) {
   return JSON.stringify({
@@ -55,6 +60,14 @@ function createMemoryStateStore() {
   };
 }
 
+function encryptPayload(payload, encryptKey, ivHex = "00112233445566778899aabbccddeeff") {
+  const key = crypto.createHash("sha256").update(encryptKey).digest();
+  const iv = Buffer.from(ivHex, "hex");
+  const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+  const encrypted = Buffer.concat([cipher.update(JSON.stringify(payload), "utf8"), cipher.final()]);
+  return Buffer.concat([iv, encrypted]).toString("base64");
+}
+
 test("handleHttpRequest returns challenge for url verification", async () => {
   const handler = createMessageHandler({
     config: {
@@ -65,6 +78,7 @@ test("handleHttpRequest returns challenge for url verification", async () => {
     stateStore: createMemoryStateStore(),
     repoControl: {},
     feishuClient: {},
+    logger: silentLogger,
   });
 
   const result = await handler.handleHttpRequest(JSON.stringify({ token: "verify_token", type: "url_verification", challenge: "abc" }));
@@ -88,7 +102,29 @@ test("handleHttpRequest rejects invalid token", async () => {
   assert.equal(result.statusCode, 403);
 });
 
-test("handleHttpRequest rejects encrypted callbacks explicitly", async () => {
+test("handleHttpRequest returns challenge for encrypted url verification", async () => {
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      encryptKey: "encrypt-key-demo",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {},
+    feishuClient: {},
+  });
+
+  const result = await handler.handleHttpRequest(
+    JSON.stringify({
+      encrypt: encryptPayload({ token: "verify_token", type: "url_verification", challenge: "abc" }, "encrypt-key-demo"),
+    })
+  );
+  assert.equal(result.statusCode, 200);
+  assert.deepEqual(result.body, { challenge: "abc" });
+});
+
+test("handleHttpRequest rejects encrypted callbacks when encrypt key is missing", async () => {
   const handler = createMessageHandler({
     config: {
       verificationToken: "verify_token",
@@ -100,9 +136,13 @@ test("handleHttpRequest rejects encrypted callbacks explicitly", async () => {
     feishuClient: {},
   });
 
-  const result = await handler.handleHttpRequest(JSON.stringify({ encrypt: "ciphertext" }));
+  const result = await handler.handleHttpRequest(
+    JSON.stringify({
+      encrypt: encryptPayload({ token: "verify_token", type: "url_verification", challenge: "abc" }, "encrypt-key-demo"),
+    })
+  );
   assert.equal(result.statusCode, 501);
-  assert.match(result.body.msg, /encrypted callbacks/i);
+  assert.match(result.body.msg, /FEISHU_IM_ENCRYPT_KEY/i);
 });
 
 test("message handler replies with queue status for resolved query_status", async () => {
@@ -189,6 +229,36 @@ test("message handler stores pending publish confirmation", async () => {
   assert.equal(remembered.row.record_id, "rec_publish");
   assert.equal(replies.length, 1);
   assert.match(replies[0].text, /确认发布/);
+});
+
+test("message handler replies with resolution errors", async () => {
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        throw new Error("queue-query preflight failed: missing FEISHU_PHASE2_BASE_TOKEN");
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+    logger: silentLogger,
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("你好 你回答我一下"));
+  await result.backgroundTask();
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /执行失败/);
+  assert.match(replies[0].text, /FEISHU_PHASE2_BASE_TOKEN/);
 });
 
 test("message handler suppresses duplicate event ids", async () => {
