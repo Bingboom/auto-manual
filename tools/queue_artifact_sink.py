@@ -100,6 +100,7 @@ def resolve_dingtalk_target_node_url(
     *,
     environ: dict[str, str] | os._Environ[str],
     target_node_url: str | None = None,
+    allow_missing_target_node_url: bool = False,
 ) -> str:
     override_value = str(target_node_url or "").strip()
     if override_value:
@@ -113,6 +114,8 @@ def resolve_dingtalk_target_node_url(
         )
     value = str(environ.get(env_name, "")).strip()
     if not value:
+        if allow_missing_target_node_url:
+            return ""
         raise RuntimeError(
             "DingTalk target node URL is required: "
             f"provide row DingTalk_target_node_url or set {env_name}"
@@ -148,13 +151,15 @@ def resolve_dingtalk_artifact_destination(
     *,
     environ: dict[str, str] | os._Environ[str],
     target_node_url: str | None = None,
+    allow_missing_target_node_url: bool = False,
 ) -> ArtifactDestination:
     resolved_target_node_url = resolve_dingtalk_target_node_url(
         cfg,
         environ=environ,
         target_node_url=target_node_url,
+        allow_missing_target_node_url=allow_missing_target_node_url,
     )
-    target_node_id = parse_node_id_from_url(resolved_target_node_url)
+    target_node_id = parse_node_id_from_url(resolved_target_node_url) if resolved_target_node_url else ""
     return ArtifactDestination(
         provider="dingtalk_alidocs_session",
         label="DingTalk docs target",
