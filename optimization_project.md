@@ -140,7 +140,7 @@ Use this section for short milestone-style updates.
 ### 2026-04-12
 
 - added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
-- hardened the adapter with explicit publish-confirmation state, event-id dedupe, clear rejection for unsupported encrypted callbacks, and same-thread Feishu replies
+- hardened the adapter with explicit publish-confirmation state, event-id dedupe, same-thread Feishu replies, encrypted callback support, and ECS-oriented deployment assets
 - aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
 
 ## 5. Open Gaps
@@ -150,7 +150,7 @@ Keep this section short and current.
 1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
 2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 3. Multi-target conditional content is still deferred.
-4. The Feishu IM ingress adapter is now repo-local, but deployment hardening, shared state for multi-instance use, and encrypted callback support are still open.
+4. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open.
 
 ## 6. Active Workstreams
 
@@ -243,10 +243,11 @@ Scope:
 - keep `message-control-dry-run` as a maintainer-only offline parser probe so intent normalization can still be debugged without live Feishu ingress
 - make callback security mode explicit
 - make runtime-state expectations explicit before any multi-instance deployment
+- ship one repeatable ECS deployment contract instead of relying on ad hoc `nohup` steps
 
 Exit criteria:
 
-- the adapter can be deployed without ambiguity about callback mode, runtime state, and required env
+- the adapter can be deployed without ambiguity about callback mode, runtime state, required env, and restart contract on a long-lived host
 - operator replies stay deterministic for query, review-start, draft build, and publish confirmation
 - remaining gaps are clearly documented instead of being hidden in local-only assumptions
 

@@ -25,8 +25,7 @@ Current scope:
 
 Current limitations:
 
-- expects plain event callbacks plus verification token validation
-- does not yet implement Feishu encrypted callback payload decryption
+- expects the callback security mode and runtime env to stay explicit
 - uses the repo-local `build.py` CLI and the existing OpenClaw/GitHub dispatch path
 
 ## Environment
@@ -46,6 +45,7 @@ Optional:
 - `FEISHU_IM_REQUIRE_MENTION`
 - `FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS`
 - `FEISHU_IM_STATE_FILE`
+- `FEISHU_IM_ENCRYPT_KEY` or `FEISHU_ENCRYPT_KEY` when the Feishu app enables encrypted callbacks
 
 ## Run
 
