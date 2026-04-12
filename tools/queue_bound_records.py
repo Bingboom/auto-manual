@@ -16,12 +16,17 @@ from tools.document_link_actions import (
     workflow_action_uses_legacy_doc_phase as _workflow_action_uses_legacy_doc_phase,
 )
 from tools.document_link_queue import (
+    is_force_phase2_refresh_enabled as _is_force_phase2_refresh_enabled_impl,
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled_impl,
     is_trigger_requested as _is_trigger_requested_impl,
+    is_upload_dingtalk_enabled as _is_upload_dingtalk_enabled_impl,
     parse_document_key,
     parse_queue_records as _parse_queue_records_impl,
     queue_group_build_family,
+    queue_group_dingtalk_target_node_url,
+    queue_group_force_phase2_refresh,
     queue_group_lang,
+    queue_group_upload_dingtalk,
     queue_record_group_key,
     queue_record_key,
     resolve_target_for_record as _resolve_target_for_record_impl,
@@ -36,14 +41,18 @@ from tools.queue_config_resolution import (
 from tools.queue_contract import (
     BUILD_FAMILY_FIELD,
     DOC_PHASE_FIELD,
+    DINGTALK_TARGET_NODE_URL_ALIASES,
+    DINGTALK_TARGET_NODE_URL_FIELD,
     DOCUMENT_ID_FIELD,
     DOCUMENT_KEY_FIELD,
     GIT_REF_FIELD,
+    FORCE_PHASE2_REFRESH_FIELD,
     IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD,
     LEGACY_TRIGGER_FIELDS,
     TRIGGER_FIELD,
     TRIGGER_VALUES,
+    UPLOAD_DINGTALK_FIELD,
     VERSION_FIELD,
     WORKFLOW_ACTION_FIELD,
     QueueRecord,
@@ -85,6 +94,9 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
         trigger_field=TRIGGER_FIELD,
         legacy_trigger_fields=LEGACY_TRIGGER_FIELDS,
         immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
+        force_phase2_refresh_field=FORCE_PHASE2_REFRESH_FIELD,
+        upload_dingtalk_field=UPLOAD_DINGTALK_FIELD,
+        dingtalk_target_node_url_fields=(DINGTALK_TARGET_NODE_URL_FIELD, *DINGTALK_TARGET_NODE_URL_ALIASES),
     )
 
 
@@ -93,6 +105,8 @@ def is_trigger_requested(value: Any) -> bool:
 
 
 is_immediate_trigger_enabled = _is_immediate_trigger_enabled_impl
+is_force_phase2_refresh_enabled = _is_force_phase2_refresh_enabled_impl
+is_upload_dingtalk_enabled = _is_upload_dingtalk_enabled_impl
 
 
 def queue_record_uses_legacy_doc_phase(record: QueueRecord) -> bool:

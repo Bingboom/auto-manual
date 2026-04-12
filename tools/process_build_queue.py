@@ -28,13 +28,17 @@ from tools.process_build_queue_main import run_main as _run_main_impl  # noqa: E
 from tools.queue_contract import (  # noqa: E402
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
+    DATA_SYNC_FIELD as _QC_DATA_SYNC_FIELD,
+    DINGTALK_TARGET_NODE_URL_FIELD as _QC_DINGTALK_TARGET_NODE_URL_FIELD,
     DOCUMENT_DIRECTORY_FIELD as _QC_DOCUMENT_DIRECTORY_FIELD,
+    DOCUMENT_LINK_DD_FIELD as _QC_DOCUMENT_LINK_DD_FIELD,
     DOCUMENT_ID_FIELD as _QC_DOCUMENT_ID_FIELD,
     DOCUMENT_KEY_FIELD as _QC_DOCUMENT_KEY_FIELD,
     DOCUMENT_LINK_FIELD as _QC_DOCUMENT_LINK_FIELD,
     DOC_PHASE_FIELD as _QC_DOC_PHASE_FIELD,
     DONE_TRIGGER_VALUE as _QC_DONE_TRIGGER_VALUE,
     FAILED_PREFIX as _QC_FAILED_PREFIX,
+    FORCE_PHASE2_REFRESH_FIELD as _QC_FORCE_PHASE2_REFRESH_FIELD,
     GIT_REF_FIELD as _QC_GIT_REF_FIELD,
     IMMEDIATE_TRIGGER_FIELD as _QC_IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD as _QC_LANG_FIELD,
@@ -43,6 +47,7 @@ from tools.queue_contract import (  # noqa: E402
     SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
     TRIGGER_FIELD as _QC_TRIGGER_FIELD,
     TRIGGER_VALUES as _QC_TRIGGER_VALUES,
+    UPLOAD_DINGTALK_FIELD as _QC_UPLOAD_DINGTALK_FIELD,
     VERSION_FIELD as _QC_VERSION_FIELD,
     WORKFLOW_ACTION_FIELD as _QC_WORKFLOW_ACTION_FIELD,
     DocumentLinkBinding,
@@ -138,6 +143,9 @@ from tools.queue_bound_records import (  # noqa: E402
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
     is_trigger_requested as _is_trigger_requested,
     parse_queue_records,
+    queue_group_dingtalk_target_node_url,
+    queue_group_force_phase2_refresh,
+    queue_group_upload_dingtalk,
     pending_immediate_queue_records,
     pending_queue_records,
     queue_group_build_family,
@@ -179,8 +187,13 @@ WORKFLOW_ACTION_FIELD = _QC_WORKFLOW_ACTION_FIELD
 DOC_PHASE_FIELD = _QC_DOC_PHASE_FIELD
 GIT_REF_FIELD = _QC_GIT_REF_FIELD
 BUILD_STARTED_AT_FIELD = _QC_BUILD_STARTED_AT_FIELD
+DATA_SYNC_FIELD = _QC_DATA_SYNC_FIELD
 DOCUMENT_DIRECTORY_FIELD = _QC_DOCUMENT_DIRECTORY_FIELD
 DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
+DOCUMENT_LINK_DD_FIELD = _QC_DOCUMENT_LINK_DD_FIELD
+DINGTALK_TARGET_NODE_URL_FIELD = _QC_DINGTALK_TARGET_NODE_URL_FIELD
+FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
+UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
 SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
 FAILED_PREFIX = _QC_FAILED_PREFIX
@@ -235,10 +248,15 @@ def resolve_artifact_destination(
     cli_bin: str,
     identity: str,
     binding: DocumentLinkBinding,
+    target_node_url: str | None = None,
 ) -> WikiDestination | ArtifactDestination:
     provider = artifact_sink_provider(cfg, environ=os.environ)
     if provider == "dingtalk_alidocs_session":
-        return resolve_dingtalk_artifact_destination(cfg, environ=os.environ)
+        return resolve_dingtalk_artifact_destination(
+            cfg,
+            environ=os.environ,
+            target_node_url=target_node_url,
+        )
     return resolve_wiki_destination(
         cli_bin=cli_bin,
         identity=identity,
@@ -315,6 +333,7 @@ def publish_word_artifact(
             reference_id=committed.dentry_uuid,
             latest_link_url=committed.node_url,
             document_link_url=committed.node_url,
+            document_link_dd_url=committed.node_url,
         )
 
     file_token, drive_url = upload_word_to_drive(
@@ -422,19 +441,29 @@ def build_success_fields(
     word_output_path: Path,
     document_link_url: str,
     built_at: datetime,
+    document_link_dd_url: str = "",
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
     status_notes: tuple[str, ...] = (),
+    clear_force_phase2_refresh: bool = True,
+    write_data_sync: bool = True,
+    write_document_link_dd: bool = False,
 ) -> dict[str, Any]:
     return _build_success_fields_service(
         _service_module(),
         version=version,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
+        document_link_dd_url=document_link_dd_url,
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         status_notes=status_notes,
+        clear_force_phase2_refresh=clear_force_phase2_refresh,
+        write_data_sync=write_data_sync,
+        write_document_link_dd=write_document_link_dd,
     )
 
 
@@ -448,6 +477,7 @@ def build_failure_fields(
     message: str,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
 ) -> dict[str, Any]:
     return _build_failure_fields_service(
         _service_module(),
@@ -455,6 +485,7 @@ def build_failure_fields(
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
     )
 
 
@@ -464,8 +495,13 @@ def build_failure_writeback_fields(
     message: str,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
+    document_link_dd_url: str | None = None,
+    clear_force_phase2_refresh: bool = True,
+    write_data_sync: bool = True,
+    write_document_link_dd: bool = False,
 ) -> dict[str, Any]:
     return _build_failure_writeback_fields_service(
         _service_module(),
@@ -473,8 +509,13 @@ def build_failure_writeback_fields(
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
+        document_link_dd_url=document_link_dd_url,
+        clear_force_phase2_refresh=clear_force_phase2_refresh,
+        write_data_sync=write_data_sync,
+        write_document_link_dd=write_document_link_dd,
     )
 
 

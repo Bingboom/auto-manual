@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-08
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -70,6 +70,8 @@ As of 2026-03-17, the repo has working baselines for:
 - `fast`
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
 - CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
+- OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
+- repo-owned OpenClaw integration packages under [`integrations/openclaw/`](integrations/openclaw)
 
 ## 4. Recently Completed
 
@@ -129,6 +131,12 @@ Use this section for short milestone-style updates.
 
 - completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
 
+### 2026-04-12
+
+- added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
+- hardened the adapter with explicit publish-confirmation state, event-id dedupe, clear rejection for unsupported encrypted callbacks, and same-thread Feishu replies
+- aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
+
 ## 5. Open Gaps
 
 Keep this section short and current.
@@ -136,6 +144,7 @@ Keep this section short and current.
 1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
 2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 3. Multi-target conditional content is still deferred.
+4. The Feishu IM ingress adapter is now repo-local, but deployment hardening, shared state for multi-instance use, and encrypted callback support are still open.
 
 ## 6. Active Workstreams
 
@@ -212,13 +221,36 @@ Status: done
 
 Status: done
 
+### Workstream F: Feishu IM Ingress Hardening
+
+Status: active
+
+Why now:
+
+- the repo now owns a real Feishu IM ingress package, so deployment and callback-mode boundaries need to stay explicit
+- without a small hardening pass, operator-facing behavior can drift between local testing and real webhook use
+
+Scope:
+
+- keep the Feishu IM adapter outside the Python execution plane
+- keep reply semantics aligned with `queue-resolve-action`, `queue-execute`, and structured failure summaries
+- make callback security mode explicit
+- make runtime-state expectations explicit before any multi-instance deployment
+
+Exit criteria:
+
+- the adapter can be deployed without ambiguity about callback mode, runtime state, and required env
+- operator replies stay deterministic for query, review-start, draft build, and publish confirmation
+- remaining gaps are clearly documented instead of being hidden in local-only assumptions
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 1. Preserve the current `check` + smoke-CI baseline
-2. Revisit remaining medium wrappers only when a concrete hotspot reappears
-3. Multi-target content pilot when the deferred work becomes active
+2. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state
+3. Revisit remaining medium wrappers only when a concrete hotspot reappears
+4. Multi-target content pilot when the deferred work becomes active
 
 
 ## 9. Success Criteria
