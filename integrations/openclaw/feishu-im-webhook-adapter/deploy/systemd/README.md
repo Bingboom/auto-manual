@@ -85,6 +85,32 @@ export CLOUDFLARED_TUNNEL_CONFIG=/etc/cloudflared/config.yml
 If you use a config file, start from
 [`cloudflared.named.example.yml`](./cloudflared.named.example.yml).
 
+### 3.1 Deferred server TODO for a stable public URL
+
+If the adapter is already working through `trycloudflare.com`, but the stable
+hostname rollout is being deferred, keep this exact ECS follow-up checklist:
+
+1. provision or delegate one real domain to Cloudflare DNS
+2. choose one stable hostname for the adapter, for example
+   `feishu-im.example.com`
+3. run `cloudflared tunnel create auto-manual-feishu-im`
+4. run `cloudflared tunnel route dns auto-manual-feishu-im feishu-im.example.com`
+5. write `/etc/cloudflared/config.yml` with the named tunnel UUID, the
+   matching credentials file under `/root/.cloudflared/`, and
+   `service: http://127.0.0.1:9097`
+6. add `export CLOUDFLARED_TUNNEL_CONFIG=/etc/cloudflared/config.yml` to
+   `/opt/auto-manual/.tmp/feishu-im-webhook-adapter/env.sh`
+7. enable `auto-manual-feishu-im-cloudflared.service` under `systemd`
+8. update the Feishu event callback URL from the temporary
+   `trycloudflare.com` host to
+   `https://feishu-im.example.com/feishu/events`
+9. verify `https://feishu-im.example.com/healthz` before treating the old
+   `trycloudflare.com` URL as retired
+
+Do not treat this as optional cleanup. The adapter process can be stable under
+`systemd` while the public callback URL is still unstable if the ingress layer
+remains on `trycloudflare.com`.
+
 ## 4. Install the systemd units
 
 Copy the example units into `/etc/systemd/system/`:

@@ -150,7 +150,7 @@ Keep this section short and current.
 1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
 2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 3. Multi-target conditional content is still deferred.
-4. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open.
+4. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
 
 ## 6. Active Workstreams
 
@@ -244,6 +244,7 @@ Scope:
 - make callback security mode explicit
 - make runtime-state expectations explicit before any multi-instance deployment
 - ship one repeatable ECS deployment contract instead of relying on ad hoc `nohup` steps
+- keep the remaining stable-ingress rollout as an explicit ops checklist rather than tribal knowledge, including Cloudflare DNS ownership, named tunnel creation, `/etc/cloudflared/config.yml`, and the Feishu callback cutover step
 
 Exit criteria:
 
