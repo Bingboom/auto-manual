@@ -75,8 +75,10 @@ Updated: 2026-04-11
 - `是否触发文档构建`
 - `是否立即构建`
 - `是否强制刷新数据`
+- `是否上传钉钉`
 - `Document directory`
 - `Document link`
+- `Document link_dd`
 - `data_sync`
 - `构建结果`
 
@@ -85,6 +87,8 @@ Updated: 2026-04-11
 - `Workflow_action` 是唯一队列语义字段；建分支填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
 - `Doc_phase` 不再参与队列路由，保持留空即可
 - 把结果链接回写到表里
+- 如果当前 artifact sink 是 DingTalk，且表里存在 `Document link_dd`，队列会把同一个 DingTalk 节点链接双写到这个字段；`Document link` 仍保持主字段
+- 如果当前 artifact sink 是 DingTalk，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才走 DingTalk，不勾就退回 Feishu/wiki 上传
 - 只有当 `是否强制刷新数据 = 勾选` 时，队列才会在这次构建前刷新一次 phase2；否则直接复用当前本地 snapshot
 - `data_sync` 会回写 `refreshed / skipped / failed`
 
@@ -143,11 +147,15 @@ Publish 的原料是：
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
 - 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
 
-当前 Phase 2 仍然只认一个交付链接字段：
+当前 Phase 2 控制层仍然只把下面这个字段当主交付链接：
 
 - `Document link`
 
-如果以后要把 DingTalk 双写到 `Document link_dd`，那是单独的 V2，不要和当前 Phase 2 混在一起。
+如果当前 queue sink 是 DingTalk，worker 还会在表里额外双写：
+
+- `Document link_dd`
+
+但 `queue-query / queue-execute / OpenClaw` 仍以 `Document link` 为主返回字段。
 
 ## 3. 场景一：第一次把文档拉进 Review
 
@@ -214,6 +222,7 @@ Publish 的原料是：
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
+- `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
 
 ### 系统会做什么
 
@@ -228,12 +237,14 @@ Publish 的原料是：
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 再按 `Document_link.Git_ref` fetch 对应的 review / PR 分支到临时 worktree
 5. 然后基于那条分支里的 `_review` 构建 Build Draft Package Word
-6. 回写：
+6. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；否则退回 Feishu/wiki 上传
+7. 回写：
    - `开始构建时间`
    - `构建结果`
    - `data_sync`
    - `Document directory`
    - `Document link`
+   - `Document link_dd（仅 DingTalk sink 且字段存在时）`
 
 ### Build Draft Package 最容易配错的地方
 
@@ -255,6 +266,7 @@ Publish 的原料是：
 - `是否触发文档构建 = Y`
 - `是否立即构建 = 勾选`
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
+- `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
 
 ### 系统会做什么
 
@@ -268,12 +280,14 @@ Publish 的原料是：
 2. 执行 `process-build-queue --workflow-action publish`
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish` 和 `build.py html --source review`
-5. 回写：
+5. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；否则退回 Feishu/wiki 上传
+6. 回写：
    - `开始构建时间`
    - `构建结果`
    - `data_sync`
    - `Document directory`
    - `Document link`
+   - `Document link_dd（仅 DingTalk sink 且字段存在时）`
 6. 把最新 publish HTML 刷新到 Vercel
 
 Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`。

@@ -11,6 +11,7 @@ def build_success_fields(
     word_output_path: Path,
     document_link_url: str,
     built_at: datetime,
+    document_link_dd_url: str = "",
     workflow_action: str | None,
     doc_phase: str | None,
     data_sync_status: str = "",
@@ -21,6 +22,7 @@ def build_success_fields(
     result_field: str,
     document_directory_field: str,
     document_link_field: str,
+    document_link_dd_field: str,
     trigger_field: str,
     done_trigger_value: str,
     immediate_trigger_field: str,
@@ -47,6 +49,8 @@ def build_success_fields(
         trigger_field: [done_trigger_value],
         immediate_trigger_field: False,
     }
+    if document_link_dd_field:
+        fields[document_link_dd_field] = document_link_dd_url.strip()
     if force_phase2_refresh_field:
         fields[force_phase2_refresh_field] = False
     if data_sync_field and data_sync_status:
@@ -98,10 +102,12 @@ def build_failure_writeback_fields(
     data_sync_status: str = "",
     word_output_path: Path | None,
     document_link_url: str | None,
+    document_link_dd_url: str | None,
     build_failure_fields: Callable[..., dict[str, Any]],
     result_field: str,
     document_directory_field: str,
     document_link_field: str,
+    document_link_dd_field: str,
     immediate_trigger_field: str,
     force_phase2_refresh_field: str,
     data_sync_field: str,
@@ -118,6 +124,8 @@ def build_failure_writeback_fields(
     if document_link_url:
         fields[document_link_field] = document_link_url
         fields[result_field] += " | latest_drive_link_preserved"
+    if document_link_dd_field:
+        fields[document_link_dd_field] = (document_link_dd_url or "").strip()
     fields[immediate_trigger_field] = False
     if force_phase2_refresh_field:
         fields[force_phase2_refresh_field] = False

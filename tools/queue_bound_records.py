@@ -19,11 +19,13 @@ from tools.document_link_queue import (
     is_force_phase2_refresh_enabled as _is_force_phase2_refresh_enabled_impl,
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled_impl,
     is_trigger_requested as _is_trigger_requested_impl,
+    is_upload_dingtalk_enabled as _is_upload_dingtalk_enabled_impl,
     parse_document_key,
     parse_queue_records as _parse_queue_records_impl,
     queue_group_build_family,
     queue_group_force_phase2_refresh,
     queue_group_lang,
+    queue_group_upload_dingtalk,
     queue_record_group_key,
     queue_record_key,
     resolve_target_for_record as _resolve_target_for_record_impl,
@@ -47,6 +49,7 @@ from tools.queue_contract import (
     LEGACY_TRIGGER_FIELDS,
     TRIGGER_FIELD,
     TRIGGER_VALUES,
+    UPLOAD_DINGTALK_FIELD,
     VERSION_FIELD,
     WORKFLOW_ACTION_FIELD,
     QueueRecord,
@@ -89,6 +92,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
         legacy_trigger_fields=LEGACY_TRIGGER_FIELDS,
         immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
         force_phase2_refresh_field=FORCE_PHASE2_REFRESH_FIELD,
+        upload_dingtalk_field=UPLOAD_DINGTALK_FIELD,
     )
 
 
@@ -98,6 +102,7 @@ def is_trigger_requested(value: Any) -> bool:
 
 is_immediate_trigger_enabled = _is_immediate_trigger_enabled_impl
 is_force_phase2_refresh_enabled = _is_force_phase2_refresh_enabled_impl
+is_upload_dingtalk_enabled = _is_upload_dingtalk_enabled_impl
 
 
 def queue_record_uses_legacy_doc_phase(record: QueueRecord) -> bool:

@@ -29,6 +29,7 @@ class ArtifactPublishResult:
     reference_id: str
     latest_link_url: str
     document_link_url: str
+    document_link_dd_url: str = ""
     status_notes: tuple[str, ...] = ()
 
 

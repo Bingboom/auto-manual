@@ -23,6 +23,8 @@ def process_queue_record_group(
     can_write_started_at: bool,
     can_write_force_phase2_refresh: bool,
     can_write_data_sync: bool,
+    can_write_document_link_dd: bool,
+    has_upload_dingtalk_field: bool,
     cli_bin: str,
     identity: str,
     artifact_destination: Any,
@@ -32,9 +34,11 @@ def process_queue_record_group(
     queue_group_lang: Callable[[list[Any]], str],
     queue_group_build_family: Callable[[list[Any]], str],
     queue_group_force_phase2_refresh: Callable[[list[Any]], bool],
+    queue_group_upload_dingtalk: Callable[[list[Any]], bool],
     resolve_config_path_for_task: Callable[..., Path],
     resolve_queue_workflow_action: Callable[[Any], str | None],
     sync_phase2_snapshot_before_queue: Callable[..., None],
+    resolve_lark_wiki_destination: Callable[..., Any],
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Path],
     publish_word_artifact: Callable[..., Any],
@@ -51,6 +55,7 @@ def process_queue_record_group(
     record = group[0]
     word_output_path: Path | None = None
     latest_link_url: str | None = None
+    latest_document_link_dd_url: str | None = None
     group_key = queue_record_key(record)
     row_count = len(group)
     try:
@@ -60,8 +65,20 @@ def process_queue_record_group(
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
         force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        upload_dingtalk = queue_group_upload_dingtalk(group)
         data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)
+        effective_artifact_destination = artifact_destination
+        if getattr(artifact_destination, "provider", None) == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
+            if upload_dingtalk:
+                print(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)).")
+            else:
+                print(f"[build-queue] Skipping DingTalk upload for {group_key} ({row_count} row(s)); using Feishu/wiki upload.")
+                effective_artifact_destination = resolve_lark_wiki_destination(
+                    cli_bin=cli_bin,
+                    identity=identity,
+                    binding=binding,
+                )
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,
@@ -119,15 +136,18 @@ def process_queue_record_group(
             cli_bin=cli_bin,
             word_output_path=word_output_path,
             identity=identity,
-            artifact_destination=artifact_destination,
+            artifact_destination=effective_artifact_destination,
         )
         latest_link_url = artifact_result.latest_link_url
         document_link_url = artifact_result.document_link_url
+        document_link_dd_url = artifact_result.document_link_dd_url
+        latest_document_link_dd_url = document_link_dd_url or None
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
             word_output_path=word_output_path,
             document_link_url=document_link_url,
+            document_link_dd_url=document_link_dd_url,
             built_at=built_at,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
@@ -135,6 +155,7 @@ def process_queue_record_group(
             status_notes=artifact_result.status_notes,
             clear_force_phase2_refresh=can_write_force_phase2_refresh,
             write_data_sync=can_write_data_sync,
+            write_document_link_dd=can_write_document_link_dd,
         )
         for group_record in group:
             source.upsert_record(
@@ -186,8 +207,10 @@ def process_queue_record_group(
                 data_sync_status=data_sync_status,
                 word_output_path=word_output_path,
                 document_link_url=latest_link_url,
+                document_link_dd_url=latest_document_link_dd_url,
                 clear_force_phase2_refresh=can_write_force_phase2_refresh,
                 write_data_sync=can_write_data_sync,
+                write_document_link_dd=can_write_document_link_dd,
             )
             for group_record in group:
                 source.upsert_record(

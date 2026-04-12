@@ -159,6 +159,7 @@ def parse_queue_records(
     legacy_trigger_fields: tuple[str, ...],
     immediate_trigger_field: str,
     force_phase2_refresh_field: str,
+    upload_dingtalk_field: str,
 ) -> list[Any]:
     records: list[Any] = []
     for record in raw_records:
@@ -181,6 +182,7 @@ def parse_queue_records(
                 trigger_value=scalar_text(field_value(fields, trigger_field, *legacy_trigger_fields)),
                 immediate_trigger_value=fields.get(immediate_trigger_field),
                 force_phase2_refresh_value=fields.get(force_phase2_refresh_field),
+                upload_dingtalk_value=fields.get(upload_dingtalk_field),
             )
         )
     return records
@@ -196,6 +198,10 @@ def is_immediate_trigger_enabled(value: Any) -> bool:
 
 
 def is_force_phase2_refresh_enabled(value: Any) -> bool:
+    return is_immediate_trigger_enabled(value)
+
+
+def is_upload_dingtalk_enabled(value: Any) -> bool:
     return is_immediate_trigger_enabled(value)
 
 
@@ -343,6 +349,10 @@ def queue_group_force_phase2_refresh(records: list[Any]) -> bool:
     return any(is_force_phase2_refresh_enabled(getattr(record, "force_phase2_refresh_value", None)) for record in records)
 
 
+def queue_group_upload_dingtalk(records: list[Any]) -> bool:
+    return any(is_upload_dingtalk_enabled(getattr(record, "upload_dingtalk_value", None)) for record in records)
+
+
 def validate_queue_record_group(
     records: list[Any],
     *,
@@ -364,6 +374,10 @@ def validate_queue_record_group(
         is_force_phase2_refresh_enabled(getattr(record, "force_phase2_refresh_value", None))
         for record in records
     }
+    upload_dingtalk_values = {
+        is_upload_dingtalk_enabled(getattr(record, "upload_dingtalk_value", None))
+        for record in records
+    }
     conflicts: list[str] = []
     if len(workflow_actions) > 1:
         conflicts.append("Workflow_action")
@@ -375,6 +389,8 @@ def validate_queue_record_group(
         conflicts.append("Build_family")
     if len(force_phase2_refresh_values) > 1:
         conflicts.append("是否强制刷新数据")
+    if len(upload_dingtalk_values) > 1:
+        conflicts.append("是否上传钉钉")
     if conflicts:
         raise RuntimeError(
             "Queue rows merged by Document_Key must agree on "

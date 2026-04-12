@@ -20,6 +20,8 @@ class QueuePendingState:
     can_write_started_at: bool
     can_write_force_phase2_refresh: bool
     can_write_data_sync: bool
+    can_write_document_link_dd: bool
+    has_upload_dingtalk_field: bool
 
 
 def bootstrap_queue_session(
@@ -67,6 +69,8 @@ def load_pending_queue_state(
     build_started_at_field: str,
     force_phase2_refresh_field: str,
     data_sync_field: str,
+    document_link_dd_field: str,
+    upload_dingtalk_field: str,
 ) -> QueuePendingState | None:
     raw_records = source.fetch_records_with_ids(
         base_token=binding.base_token,
@@ -89,6 +93,8 @@ def load_pending_queue_state(
         can_write_started_at=can_write_started_at,
         can_write_force_phase2_refresh=force_phase2_refresh_field in field_names,
         can_write_data_sync=data_sync_field in field_names,
+        can_write_document_link_dd=document_link_dd_field in field_names,
+        has_upload_dingtalk_field=upload_dingtalk_field in field_names,
     )
 
 
