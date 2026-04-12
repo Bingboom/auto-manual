@@ -71,6 +71,43 @@ Benefits:
 
 ## 3. Target Control Flow
 
+The target flow for V1 is still the same, but the implemented repo topology is now broader because the repo also ships a Feishu IM webhook adapter and an optional DingTalk artifact sink.
+
+### 3.1 Current Implemented Topology
+
+```mermaid
+flowchart LR
+    FIM["Feishu IM\noperator thread / chat entry"]
+    FT["Feishu phase2 tables\nreview-init + Document_link\nWorkflow_action / Build_family / Git_ref\nDocument link / 构建结果"]
+    OC["OpenClaw control layer\nplugin commands or Feishu IM webhook adapter\nworkflow dispatch / manual-status / run correlation"]
+    GH["GitHub Actions on main\nfeishu-start-review\nfeishu-draft-build-queue\nfeishu-build-queue\nopenclaw-run-metadata"]
+    BP["build.py + queue workers\nqueue-query / queue-resolve-action / queue-execute\nprocess-review-start-queue\nprocess-build-queue"]
+    FD["Feishu Drive / Wiki (default)\nartifact upload sink"]
+    DT["DingTalk Docs (optional)\ndingtalk_alidocs_session sink\nDocument link_dd optional dual-write"]
+    VC["Vercel publish-latest (optional)\nlatest publish HTML"]
+
+    FIM -->|chat command / natural-language request| OC
+    OC -->|workflow_dispatch on main| GH
+    GH -->|bootstrap + worker execution| BP
+    BP <-->|queue rows + writeback fields| FT
+    BP -->|default artifact upload| FD
+    BP -->|optional artifact upload| DT
+    BP -->|publish latest HTML| VC
+    GH -->|run URL / metadata / failure summary| OC
+    OC -->|status reply / accepted-completed reply| FIM
+```
+
+### 3.2 Current Responsibility Split
+
+- Feishu IM owns the operator-facing chat thread and the final reply surface.
+- Feishu phase2 tables remain the source of truth for `review-init`, `Document_link`, `Workflow_action`, `Build_family`, `Git_ref`, `Document link`, and `构建结果`.
+- OpenClaw owns the bounded control layer: command entry, workflow dispatch, `record_id -> workflow -> run_id` correlation, and `/manual-status`; the repo-local Feishu IM adapter reuses the same action semantics through `build.py queue-query`, `queue-resolve-action`, and `queue-execute`.
+- GitHub Actions remains the trusted remote execution plane on `main`, including environment bootstrap, secret usage, workflow concurrency, artifact upload, and `openclaw-run-metadata`.
+- `build.py` plus the queue workers remain the business-logic plane: resolve queue intent, read and write Feishu rows, run review-start or build/publish logic, and choose the artifact sink.
+- Feishu Drive / Wiki is still the default artifact sink for generated documents.
+- DingTalk Docs is now an optional artifact sink for the same queue worker; when enabled, `Document link` stays canonical and `Document link_dd` is only an optional supplemental writeback.
+- Vercel is only the publish-latest HTML hosting surface; it is not the queue control plane and it is not the document source of truth.
+
 The target flow for V1 is:
 
 ```text
@@ -90,7 +127,99 @@ In other words:
 - GitHub Actions remains the execution plane
 - Feishu phase2 tables remain the workflow state and writeback system
 
-### 3.1 Ownership Boundary
+### 3.3 Post-Build Upload Execution Paths
+
+The document upload path still belongs to the queue worker.
+OpenClaw only triggers the run and reports the final run status.
+
+#### 3.3.1 Build -> Feishu knowledge base
+
+```mermaid
+flowchart LR
+    A["Feishu or OpenClaw trigger"]
+    B["GitHub Actions worker on main"]
+    C["build.py process-build-queue"]
+    D["Resolve queue row / optional sync-data / build DOCX"]
+    E["Upload DOCX to Lark Drive"]
+    F["Try move Drive file into Feishu wiki knowledge base"]
+    G["Wiki attach succeeds"]
+    H["Wiki attach fails"]
+    I["Use wiki URL as Document link"]
+    J["Keep latest Drive URL and mark drive_only"]
+    K["Write back to Feishu Document_link row"]
+    L["Document directory / Document link / 构建结果 / data_sync / trigger reset"]
+    M["GitHub run metadata"]
+    N["OpenClaw status reply"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    F --> H
+    G --> I
+    H --> J
+    I --> K
+    J --> K
+    K --> L
+    B --> M
+    M --> N
+```
+
+Notes:
+
+- this remains the default artifact sink path when `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER=lark_drive`
+- the worker uploads to Lark Drive first, then tries to attach the uploaded file into the Feishu wiki knowledge base
+- if the wiki attach fails because of permission or container limits, the build still succeeds and `Document link` falls back to the latest Drive URL
+- the canonical writeback row is still Feishu `Document_link`
+
+#### 3.3.2 Build -> DingTalk knowledge base
+
+```mermaid
+flowchart LR
+    A["Feishu or OpenClaw trigger"]
+    B["GitHub Actions worker on main"]
+    C["build.py process-build-queue"]
+    D["Resolve queue row / optional sync-data / build DOCX"]
+    E["Select DingTalk artifact sink"]
+    F["AliDocs uploadinfo"]
+    G["OSS object upload"]
+    H["AliDocs commit"]
+    I["Generate DingTalk node URL"]
+    J["Write back to Feishu Document_link row"]
+    K["Document directory / Document link / optional Document link_dd / 构建结果 / data_sync / trigger reset"]
+    L["GitHub run metadata"]
+    M["OpenClaw status reply"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    B --> L
+    L --> M
+```
+
+Notes:
+
+- this path is enabled when the active sink resolves to `dingtalk_alidocs_session`
+- Feishu still stays the queue control plane, the structured-data source, and the writeback surface
+- `Document link` remains the canonical returned link for control-layer replies; `Document link_dd` is only an optional supplemental DingTalk field
+- when the row also has `是否上传钉钉`, checked rows use the DingTalk path and unchecked rows fall back to the normal Feishu/wiki upload path
+
+Reference docs:
+
+- [`../build_doc_guide.md`](../build_doc_guide.md)
+- [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
+- [`../../user-guide/dingtalk_alidocs_upload_setup_guide.md`](../../user-guide/dingtalk_alidocs_upload_setup_guide.md)
+
+### 3.4 Ownership Boundary
 
 OpenClaw should own:
 
