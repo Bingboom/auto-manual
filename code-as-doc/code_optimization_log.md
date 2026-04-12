@@ -446,7 +446,7 @@ Main outcomes:
 
 - added a repo-external Feishu IM ingress package under [`../integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter/)
 - kept the adapter thin by reusing the repo-owned control surfaces `queue-query`, `queue-resolve-action`, and `queue-execute`
-- added publish-confirmation state, event-id dedupe, same-thread Feishu replies, and explicit rejection for unsupported encrypted callbacks
+- added publish-confirmation state, event-id dedupe, same-thread Feishu replies, and later hardened the adapter with encrypted callback support
 - aligned maintainer docs, user docs, and control-layer architecture notes with the new ingress layer
 
 Why it mattered:
@@ -454,3 +454,18 @@ Why it mattered:
 - operators can now enter review/build/publish asks from Feishu IM without moving build execution or Feishu writeback out of the existing queue/workflow plane
 - the ingress layer stays isolated from the Python execution core while still sharing one deterministic action contract
 - deployment and callback-mode limits are now explicit instead of being hidden behind local-only assumptions
+
+## 27. 2026-04-12: ECS Feishu Adapter Deployment Contract
+
+Main outcomes:
+
+- added repo-owned ECS wrapper scripts at [`../scripts/run_feishu_im_webhook_adapter_service.sh`](../scripts/run_feishu_im_webhook_adapter_service.sh) and [`../scripts/run_feishu_im_cloudflared_service.sh`](../scripts/run_feishu_im_cloudflared_service.sh)
+- added reusable `systemd` unit templates plus a named-tunnel config example under [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/)
+- documented the expected `env.sh` contract, service validation commands, restart flow, and the difference between unstable `trycloudflare.com` smoke URLs and stable named-ingress deployment
+- aligned maintainer docs and user workflow docs so a future ECS rebuild can follow one repo-owned checklist instead of recovering ad hoc shell history
+
+Why it mattered:
+
+- the Feishu IM ingress no longer depends on manual `nohup` processes to survive reboots or crashes
+- server rebuilds now have one explicit source of truth for runtime env, process bootstrap, and tunnel startup expectations
+- deployment hardening moved from tribal knowledge into versioned repo assets, which lowers the risk of reconfiguration drift on the next machine

@@ -138,8 +138,9 @@ Publish 的原料是：
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish <record_id> confirm`
 4. 如果要直接接飞书 IM 消息入口，而不是通过 OpenClaw 命令面板：
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
+   - 如果部署在长期运行的 ECS 上，改用 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/) 里的 wrapper 和 `systemd` unit 模板，不要长期靠手工 `nohup`
    - 把 Feishu 事件订阅指向这个 adapter 的 callback URL
-   - 当前 adapter 只支持明文事件回调和 verification token 校验；如果飞书事件订阅开启了加密模式，需要先切回明文或继续补适配层解密
+   - 如果飞书事件订阅启用了加密模式，给 adapter env 增加 `FEISHU_IM_ENCRYPT_KEY`
 
 这样做的目的只有一个：
 
