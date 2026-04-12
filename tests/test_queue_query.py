@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import unittest
+from unittest import mock
 
 from tools import queue_query
 
@@ -205,6 +206,45 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual(1, payload["count"])
         self.assertEqual("rec_draft", payload["rows"][0]["record_id"])
+
+    def test_build_review_init_rows_should_skip_non_start_review_actions(self) -> None:
+        cfg = {}
+        raw_records = [
+            {
+                "record_id": "rec_publish",
+                "fields": {
+                    "Document_ID": "JE-1000F_US_0.3",
+                    "Document_Key": "JE-1000F_US",
+                    "Build_family": "us-merged",
+                    "Lang": "en",
+                    "Version": "0.3",
+                    "Workflow_action": "Publish",
+                },
+            },
+            {
+                "record_id": "rec_review",
+                "fields": {
+                    "Document_ID": "JE-1000F_US_0.3",
+                    "Document_Key": "JE-1000F_US",
+                    "Build_family": "us-merged",
+                    "Lang": "en",
+                    "Version": "0.3",
+                    "Workflow_action": "Start Review",
+                },
+            },
+        ]
+
+        source = mock.Mock()
+        source.fetch_records_with_ids.return_value = raw_records
+
+        with mock.patch.object(queue_query, "collect_review_start_preflight_errors", return_value=[]), \
+             mock.patch.object(queue_query, "resolve_review_init_binding", return_value=mock.Mock(base_token="app", table_id="tbl", view_id="vew")), \
+             mock.patch.object(queue_query, "cli_bin", return_value="lark-cli"), \
+             mock.patch.object(queue_query, "phase2_identity", return_value="bot"), \
+             mock.patch.object(queue_query, "LarkCliSource", return_value=source):
+            rows = queue_query._build_review_init_rows(cfg)
+
+        self.assertEqual(["rec_review"], [row.record_id for row in rows])
 
 
 if __name__ == "__main__":

@@ -1,7 +1,9 @@
+import crypto from "node:crypto";
 import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  decryptEncryptedEventPayload,
   extractMessageEvent,
   extractMessageText,
   hasMentionMarkup,
@@ -9,10 +11,19 @@ import {
   isPublishConfirmationText,
   isUrlVerification,
   parseEventPayload,
+  resolveEventPayload,
   shouldIgnoreMessageEvent,
   stripMentionMarkup,
   validateVerificationToken,
 } from "../lib/feishu-events.mjs";
+
+function encryptPayload(payload, encryptKey, ivHex = "00112233445566778899aabbccddeeff") {
+  const key = crypto.createHash("sha256").update(encryptKey).digest();
+  const iv = Buffer.from(ivHex, "hex");
+  const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+  const encrypted = Buffer.concat([cipher.update(JSON.stringify(payload), "utf8"), cipher.final()]);
+  return Buffer.concat([iv, encrypted]).toString("base64");
+}
 
 test("parseEventPayload parses raw json", () => {
   assert.deepEqual(parseEventPayload('{"type":"url_verification","challenge":"abc"}'), {
@@ -32,10 +43,30 @@ test("isUrlVerification detects challenge payloads", () => {
   assert.equal(isUrlVerification({ type: "event_callback" }), false);
 });
 
-test("isEncryptedEventPayload detects unsupported encrypted callbacks", () => {
+test("isEncryptedEventPayload detects encrypted callbacks", () => {
   assert.equal(isEncryptedEventPayload({ encrypt: "ciphertext" }), true);
   assert.equal(isEncryptedEventPayload({ encrypt: "" }), false);
   assert.equal(isEncryptedEventPayload({ token: "tok" }), false);
+});
+
+test("decryptEncryptedEventPayload decrypts encrypted event payloads", () => {
+  const encryptKey = "encrypt-key-demo";
+  const encrypted = encryptPayload({ type: "url_verification", challenge: "abc", token: "verify_token" }, encryptKey);
+  assert.deepEqual(decryptEncryptedEventPayload({ encrypt: encrypted }, encryptKey), {
+    type: "url_verification",
+    challenge: "abc",
+    token: "verify_token",
+  });
+});
+
+test("resolveEventPayload decrypts encrypted raw request bodies", () => {
+  const encryptKey = "encrypt-key-demo";
+  const encrypted = encryptPayload({ type: "url_verification", challenge: "abc", token: "verify_token" }, encryptKey);
+  assert.deepEqual(resolveEventPayload(JSON.stringify({ encrypt: encrypted }), { encryptKey }), {
+    type: "url_verification",
+    challenge: "abc",
+    token: "verify_token",
+  });
 });
 
 test("extractMessageText and mention stripping normalize text content", () => {

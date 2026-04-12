@@ -1,9 +1,8 @@
 import {
   extractMessageEvent,
-  isEncryptedEventPayload,
   isPublishConfirmationText,
   isUrlVerification,
-  parseEventPayload,
+  resolveEventPayload,
   shouldIgnoreMessageEvent,
   validateVerificationToken,
 } from "./feishu-events.mjs";
@@ -64,10 +63,17 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       return;
     }
 
-    const resolution = await repoControl.resolveAction({
-      messageText: messageEvent.normalizedText,
-      confirmPublish: false,
-    });
+    let resolution;
+    try {
+      resolution = await repoControl.resolveAction({
+        messageText: messageEvent.normalizedText,
+        confirmPublish: false,
+      });
+    } catch (error) {
+      logger.error?.("message resolution failed", error);
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error));
+      return;
+    }
 
     if (resolution.resolution_status === "confirmation_required") {
       await stateStore.rememberPendingPublish({
@@ -117,11 +123,16 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
 
   return {
     async handleHttpRequest(rawBody) {
-      const payload = parseEventPayload(rawBody);
-      if (isEncryptedEventPayload(payload)) {
+      let payload;
+      try {
+        payload = resolveEventPayload(rawBody, { encryptKey: config.encryptKey });
+      } catch (error) {
+        const message = String(error?.message || error);
+        const statusCode = /not configured/i.test(message) ? 501 : 400;
+        logger.error?.("failed to resolve callback payload", error);
         return {
-          statusCode: 501,
-          body: { code: 501, msg: "encrypted callbacks are not supported by this adapter yet" },
+          statusCode,
+          body: { code: statusCode, msg: message },
         };
       }
       if (!validateVerificationToken(payload, config.verificationToken)) {
