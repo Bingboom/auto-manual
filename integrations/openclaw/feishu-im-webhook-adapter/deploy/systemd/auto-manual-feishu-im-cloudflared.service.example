@@ -1,0 +1,20 @@
+[Unit]
+Description=Auto-Manual Feishu IM Cloudflared Tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/auto-manual
+Environment=HOME=/root
+Environment=FEISHU_IM_ENV_FILE=/opt/auto-manual/.tmp/feishu-im-webhook-adapter/env.sh
+ExecStart=/opt/auto-manual/scripts/run_feishu_im_cloudflared_service.sh
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

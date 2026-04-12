@@ -53,6 +53,24 @@ Optional:
 node server.mjs
 ```
 
+## ECS systemd
+
+For a long-lived ECS deployment, use the service wrappers and unit examples in
+[`deploy/systemd/`](deploy/systemd):
+
+- [`deploy/systemd/README.md`](deploy/systemd/README.md)
+- [`../../../../scripts/run_feishu_im_webhook_adapter_service.sh`](../../../../scripts/run_feishu_im_webhook_adapter_service.sh)
+- [`../../../../scripts/run_feishu_im_cloudflared_service.sh`](../../../../scripts/run_feishu_im_cloudflared_service.sh)
+
+Recommended production split:
+
+- run the adapter under `systemd`
+- run a named `cloudflared` tunnel under `systemd`
+- point the Feishu callback URL at the named tunnel hostname
+
+`trycloudflare.com` is acceptable for smoke tests, but not for a stable
+callback URL after restarts.
+
 ## Test
 
 ```bash
