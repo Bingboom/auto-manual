@@ -35,6 +35,7 @@ export function loadAdapterConfig() {
     callbackPath: String(process.env.FEISHU_IM_WEBHOOK_PATH || "").trim() || "/feishu/events",
     healthPath: String(process.env.FEISHU_IM_HEALTH_PATH || "").trim() || "/healthz",
     verificationToken: String(process.env.FEISHU_IM_VERIFICATION_TOKEN || process.env.FEISHU_VERIFICATION_TOKEN || "").trim(),
+    encryptKey: String(process.env.FEISHU_IM_ENCRYPT_KEY || process.env.FEISHU_ENCRYPT_KEY || "").trim(),
     appId: String(process.env.FEISHU_IM_APP_ID || process.env.FEISHU_APP_ID || "").trim(),
     appSecret: String(process.env.FEISHU_IM_APP_SECRET || process.env.FEISHU_APP_SECRET || "").trim(),
     apiBaseUrl: String(process.env.FEISHU_IM_API_BASE_URL || "").trim() || "https://open.feishu.cn/open-apis",
@@ -50,7 +51,7 @@ export function loadAdapterConfig() {
 }
 
 export function missingAdapterConfig(config) {
-  return ["verificationToken", "appId", "appSecret"].filter((field) => !config[field]);
+  return ["appId", "appSecret"].filter((field) => !config[field]);
 }
 
 export function adapterRootPath() {

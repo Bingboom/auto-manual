@@ -1,3 +1,5 @@
+import crypto from "node:crypto";
+
 function parseJson(value) {
   if (value && typeof value === "object") {
     return value;
@@ -23,6 +25,42 @@ export function isUrlVerification(payload) {
 
 export function isEncryptedEventPayload(payload) {
   return typeof payload?.encrypt === "string" && !!payload.encrypt.trim();
+}
+
+function aesKeyForEncryptKey(encryptKey) {
+  const hash = crypto.createHash("sha256");
+  hash.update(String(encryptKey || ""));
+  return hash.digest();
+}
+
+export function decryptEncryptedEventPayload(payload, encryptKey) {
+  if (!isEncryptedEventPayload(payload)) {
+    return payload;
+  }
+  const encrypt = String(payload.encrypt || "").trim();
+  const resolvedEncryptKey = String(encryptKey || "").trim();
+  if (!resolvedEncryptKey) {
+    throw new Error("encrypted callback received but FEISHU_IM_ENCRYPT_KEY is not configured");
+  }
+  try {
+    const encryptBuffer = Buffer.from(encrypt, "base64");
+    if (encryptBuffer.length <= 16) {
+      throw new Error("ciphertext_too_short");
+    }
+    const decipher = crypto.createDecipheriv("aes-256-cbc", aesKeyForEncryptKey(resolvedEncryptKey), encryptBuffer.subarray(0, 16));
+    let decrypted = decipher.update(encryptBuffer.subarray(16).toString("hex"), "hex", "utf8");
+    decrypted += decipher.final("utf8");
+    const parsed = parseJson(decrypted);
+    const { encrypt: _discardedEncrypt, ...rest } = payload;
+    return { ...parsed, ...rest };
+  } catch {
+    throw new Error("encrypted callback decrypt failed");
+  }
+}
+
+export function resolveEventPayload(rawBody, { encryptKey = "" } = {}) {
+  const payload = parseEventPayload(rawBody);
+  return decryptEncryptedEventPayload(payload, encryptKey);
 }
 
 export function extractMessageText(messageContent) {
