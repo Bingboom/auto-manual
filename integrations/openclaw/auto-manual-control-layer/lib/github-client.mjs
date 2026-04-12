@@ -1,4 +1,3 @@
-import { extractMetadataFromZipBuffer } from "./metadata-artifact.mjs";
 import { findActiveRunForRecord, findRunByDispatch } from "./run-matching.mjs";
 
 function sleep(ms) {
@@ -11,6 +10,26 @@ async function readJson(response) {
   }
   const text = await response.text();
   return text ? JSON.parse(text) : null;
+}
+
+function isOptionalMetadataDependencyError(error) {
+  const message = String(error?.message || "");
+  return error?.code === "ERR_MODULE_NOT_FOUND" && message.includes("adm-zip");
+}
+
+export async function extractMetadataFromArtifactBuffer(
+  buffer,
+  { loadExtractor = () => import("./metadata-artifact.mjs") } = {}
+) {
+  try {
+    const { extractMetadataFromZipBuffer } = await loadExtractor();
+    return extractMetadataFromZipBuffer(buffer);
+  } catch (error) {
+    if (isOptionalMetadataDependencyError(error)) {
+      return null;
+    }
+    throw error;
+  }
 }
 
 export function createGitHubClient(settings) {
@@ -96,7 +115,7 @@ export function createGitHubClient(settings) {
       }
       const response = await requestUrl(artifact.archive_download_url);
       const arrayBuffer = await response.arrayBuffer();
-      return extractMetadataFromZipBuffer(Buffer.from(arrayBuffer));
+      return extractMetadataFromArtifactBuffer(Buffer.from(arrayBuffer));
     },
   };
 }
