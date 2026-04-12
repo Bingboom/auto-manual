@@ -256,6 +256,7 @@ def resolve_artifact_destination(
             cfg,
             environ=os.environ,
             target_node_url=target_node_url,
+            allow_missing_target_node_url=target_node_url is None,
         )
     return resolve_wiki_destination(
         cli_bin=cli_bin,

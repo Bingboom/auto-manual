@@ -68,6 +68,30 @@ class TestQueueArtifactSink(unittest.TestCase):
         self.assertEqual(explicit_target, destination.runtime_target)
         self.assertEqual("rowNode123", destination.details["target_node_id"])
 
+    def test_resolve_dingtalk_artifact_destination_should_allow_missing_default_target_for_row_override(self) -> None:
+        cfg = {
+            "queue": {
+                "artifact_sink": {
+                    "provider": "dingtalk_alidocs_session",
+                }
+            }
+        }
+        environ = {
+            "DINGTALK_DOCS_A_TOKEN": "token",
+            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
+            "DINGTALK_DOCS_COOKIE": "cookie=value",
+        }
+
+        destination = queue_artifact_sink.resolve_dingtalk_artifact_destination(
+            cfg,
+            environ=environ,
+            allow_missing_target_node_url=True,
+        )
+
+        self.assertEqual("dingtalk_alidocs_session", destination.provider)
+        self.assertEqual("", destination.runtime_target)
+        self.assertEqual("", destination.details["target_node_id"])
+
 
 if __name__ == "__main__":
     unittest.main()

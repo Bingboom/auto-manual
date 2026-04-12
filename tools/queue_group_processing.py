@@ -87,6 +87,11 @@ def process_queue_record_group(
                         f"with row target {dingtalk_target_node_url}."
                     )
                 else:
+                    if not getattr(effective_artifact_destination, "runtime_target", None):
+                        raise RuntimeError(
+                            "DingTalk target node URL is required: provide row DingTalk_target_node_url "
+                            "or configure DINGTALK_DOCS_TARGET_NODE_URL for the remote worker"
+                        )
                     print(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
             else:
                 print(f"[build-queue] Skipping DingTalk upload for {group_key} ({row_count} row(s)); using Feishu/wiki upload.")

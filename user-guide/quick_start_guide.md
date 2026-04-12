@@ -294,6 +294,15 @@ Publish 的原料是：
    - `Document link_dd（仅 DingTalk sink 且字段存在时）`
 6. 把最新 publish HTML 刷新到 Vercel
 
+### 远端 GitHub worker 想支持 DingTalk 还要配什么
+
+- GitHub Secrets 至少要有：
+  - `DINGTALK_DOCS_A_TOKEN`
+  - `DINGTALK_DOCS_XSRF_TOKEN`
+  - `DINGTALK_DOCS_COOKIE`
+- `DINGTALK_DOCS_TARGET_NODE_URL` 现在只是远端默认节点，可留空
+- 如果这行已经填了 `DingTalk_target_node_url`，远端 worker 会优先用这一行的节点，不依赖默认节点
+
 Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`。
 
 ## 6. 你平时到底该改哪里

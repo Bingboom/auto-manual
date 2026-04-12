@@ -60,3 +60,25 @@ if [ "${#missing[@]}" -gt 0 ]; then
   printf ' - %s\n' "${missing[@]}" >&2
   exit 1
 fi
+
+provider="$(printf '%s' "${AUTO_MANUAL_ARTIFACT_SINK_PROVIDER:-}" | tr '[:upper:]' '[:lower:]')"
+case "${provider}" in
+  dingtalk|dingtalk_alidocs_session|dingtalk-alidocs-session|alidocs|alidocs_session)
+    dingtalk_required=(
+      DINGTALK_DOCS_A_TOKEN
+      DINGTALK_DOCS_XSRF_TOKEN
+      DINGTALK_DOCS_COOKIE
+    )
+    dingtalk_missing=()
+    for name in "${dingtalk_required[@]}"; do
+      if [ -z "${!name:-}" ]; then
+        dingtalk_missing+=("$name")
+      fi
+    done
+    if [ "${#dingtalk_missing[@]}" -gt 0 ]; then
+      printf 'Missing required DingTalk secrets/env vars for remote artifact sink:\n' >&2
+      printf ' - %s\n' "${dingtalk_missing[@]}" >&2
+      exit 1
+    fi
+    ;;
+esac
