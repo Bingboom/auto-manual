@@ -18,6 +18,8 @@ BUILD_STARTED_AT_FIELD = "\u5f00\u59cb\u6784\u5efa\u65f6\u95f4"
 DOCUMENT_DIRECTORY_FIELD = "Document directory"
 DOCUMENT_LINK_FIELD = "Document link"
 IMMEDIATE_TRIGGER_FIELD = "\u662f\u5426\u7acb\u5373\u6784\u5efa"
+FORCE_PHASE2_REFRESH_FIELD = "\u662f\u5426\u5f3a\u5236\u5237\u65b0\u6570\u636e"
+DATA_SYNC_FIELD = "data_sync"
 
 SUCCESS_PREFIX = "SUCCESS"
 FAILED_PREFIX = "FAILED"
@@ -49,6 +51,7 @@ class QueueRecord:
     git_ref: str = ""
     trigger_value: str = ""
     immediate_trigger_value: Any = None
+    force_phase2_refresh_value: Any = None
     build_family: str = ""
 
     @property

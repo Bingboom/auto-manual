@@ -21,6 +21,8 @@ def process_build_queue(
     resolve_and_report_wiki_destination: Callable[..., Any],
     process_queue_record_group: Callable[..., Any],
     build_started_at_field: str,
+    force_phase2_refresh_field: str,
+    data_sync_field: str,
     available_field_names: Callable[..., Any],
     select_pending_queue_records: Callable[..., Any],
     group_pending_queue_records: Callable[..., Any],
@@ -28,6 +30,7 @@ def process_build_queue(
     resolve_target_for_record: Callable[..., Any],
     queue_group_lang: Callable[..., Any],
     queue_group_build_family: Callable[..., Any],
+    queue_group_force_phase2_refresh: Callable[..., Any],
     validate_queue_record_group: Callable[..., None],
     resolve_config_path_for_task: Callable[..., Any],
     queue_record_key: Callable[..., Any],
@@ -61,6 +64,8 @@ def process_build_queue(
         group_pending_queue_records=group_pending_queue_records,
         available_field_names=available_field_names,
         build_started_at_field=build_started_at_field,
+        force_phase2_refresh_field=force_phase2_refresh_field,
+        data_sync_field=data_sync_field,
     )
     if pending_state is None:
         print_no_pending_message(immediate_only=immediate_only)
@@ -84,26 +89,6 @@ def process_build_queue(
         )
         return 0
 
-    print("[build-queue] Syncing latest phase2 snapshot before building queued documents.")
-    sync_phase2_snapshot_before_queue(
-        config_path=config_path,
-        data_root=data_root,
-    )
-    pending_state = load_pending_queue_state(
-        source=session.source,
-        binding=session.binding,
-        immediate_only=immediate_only,
-        workflow_action=session.normalized_cli_action,
-        record_id=record_id,
-        select_pending_queue_records=select_pending_queue_records,
-        group_pending_queue_records=group_pending_queue_records,
-        available_field_names=available_field_names,
-        build_started_at_field=build_started_at_field,
-    )
-    if pending_state is None:
-        print("[build-queue] Queue changed during sync; no pending build tasks remain.")
-        return 0
-
     artifact_destination = resolve_and_report_wiki_destination(
         cfg=cfg,
         cli_bin=session.cli_bin,
@@ -118,10 +103,13 @@ def process_build_queue(
         result = process_queue_record_group(
             group=group,
             cfg=cfg,
+            config_path=config_path,
             source=session.source,
             binding=session.binding,
             data_root=data_root,
             can_write_started_at=pending_state.can_write_started_at,
+            can_write_force_phase2_refresh=pending_state.can_write_force_phase2_refresh,
+            can_write_data_sync=pending_state.can_write_data_sync,
             cli_bin=session.cli_bin,
             identity=session.identity,
             artifact_destination=artifact_destination,
@@ -130,8 +118,10 @@ def process_build_queue(
             resolve_target_for_record=resolve_target_for_record,
             queue_group_lang=queue_group_lang,
             queue_group_build_family=queue_group_build_family,
+            queue_group_force_phase2_refresh=queue_group_force_phase2_refresh,
             resolve_config_path_for_task=resolve_config_path_for_task,
             resolve_queue_workflow_action=resolve_queue_workflow_action,
+            sync_phase2_snapshot_before_queue=sync_phase2_snapshot_before_queue,
             build_started_fields=build_started_fields,
             build_document_for_task=build_document_for_task,
             publish_word_artifact=publish_word_artifact,

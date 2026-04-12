@@ -16,10 +16,13 @@ def process_queue_record_group(
     *,
     group: list[Any],
     cfg: dict[str, Any],
+    config_path: Path,
     source: Any,
     binding: Any,
     data_root: str | None,
     can_write_started_at: bool,
+    can_write_force_phase2_refresh: bool,
+    can_write_data_sync: bool,
     cli_bin: str,
     identity: str,
     artifact_destination: Any,
@@ -28,8 +31,10 @@ def process_queue_record_group(
     resolve_target_for_record: Callable[[Any], tuple[str, str]],
     queue_group_lang: Callable[[list[Any]], str],
     queue_group_build_family: Callable[[list[Any]], str],
+    queue_group_force_phase2_refresh: Callable[[list[Any]], bool],
     resolve_config_path_for_task: Callable[..., Path],
     resolve_queue_workflow_action: Callable[[Any], str | None],
+    sync_phase2_snapshot_before_queue: Callable[..., None],
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Path],
     publish_word_artifact: Callable[..., Any],
@@ -54,6 +59,8 @@ def process_queue_record_group(
         model, region = resolve_target_for_record(record)
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
+        force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)
         resolved_config_path = resolve_config_path_for_task(
             region=region,
@@ -65,6 +72,19 @@ def process_queue_record_group(
             raise RuntimeError(
                 "Build Draft Package queue rows require Git_ref so the worker can fetch the review branch"
             )
+        if force_phase2_refresh:
+            print(
+                f"[build-queue] Syncing latest phase2 snapshot before {group_key} ({row_count} row(s))."
+            )
+            try:
+                sync_phase2_snapshot_before_queue(
+                    config_path=config_path,
+                    data_root=data_root,
+                )
+            except Exception:
+                data_sync_status = "failed"
+                raise
+            data_sync_status = "refreshed"
         started_at = datetime.now().astimezone()
         if can_write_started_at:
             start_fields = build_started_fields(started_at=started_at)
@@ -111,7 +131,10 @@ def process_queue_record_group(
             built_at=built_at,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
+            data_sync_status=data_sync_status,
             status_notes=artifact_result.status_notes,
+            clear_force_phase2_refresh=can_write_force_phase2_refresh,
+            write_data_sync=can_write_data_sync,
         )
         for group_record in group:
             source.upsert_record(
@@ -160,8 +183,11 @@ def process_queue_record_group(
                 message=message,
                 workflow_action=best_effort_queue_workflow_action(record),
                 doc_phase=queue_record_legacy_doc_phase(record),
+                data_sync_status=data_sync_status,
                 word_output_path=word_output_path,
                 document_link_url=latest_link_url,
+                clear_force_phase2_refresh=can_write_force_phase2_refresh,
+                write_data_sync=can_write_data_sync,
             )
             for group_record in group:
                 source.upsert_record(

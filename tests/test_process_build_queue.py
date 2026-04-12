@@ -694,6 +694,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 built_at=built_at,
                 workflow_action="Build Draft Package",
                 doc_phase="Draft",
+                data_sync_status="skipped",
             )
 
         self.assertEqual(
@@ -703,7 +704,10 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(drive_url, fields[process_build_queue.DOCUMENT_LINK_FIELD])
         self.assertEqual(["已构建"], fields[process_build_queue.TRIGGER_FIELD])
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(fields[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", fields[process_build_queue.DATA_SYNC_FIELD])
         self.assertIn("SUCCESS", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=skipped", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("version=1.0", fields[process_build_queue.RESULT_FIELD])
 
@@ -725,6 +729,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 message="permission | Permission denied [99991679]",
                 workflow_action="Publish",
                 doc_phase="Publish",
+                data_sync_status="failed",
                 word_output_path=word_path,
                 document_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
             )
@@ -738,7 +743,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             fields[process_build_queue.DOCUMENT_LINK_FIELD],
         )
         self.assertFalse(fields[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(fields[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("failed", fields[process_build_queue.DATA_SYNC_FIELD])
         self.assertIn("FAILED", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=failed", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Publish", fields[process_build_queue.RESULT_FIELD])
         self.assertIn("latest_drive_link_preserved", fields[process_build_queue.RESULT_FIELD])
 
@@ -1063,6 +1071,33 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(legacy_record))
         self.assertFalse(process_build_queue.queue_record_uses_legacy_doc_phase(canonical_record))
+
+    def test_validate_queue_record_group_should_reject_mixed_force_phase2_refresh_values(self) -> None:
+        record_a = process_build_queue.QueueRecord(
+            record_id="rec_a",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            force_phase2_refresh_value=True,
+        )
+        record_b = process_build_queue.QueueRecord(
+            record_id="rec_b",
+            document_id="JE-1000F_US_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="",
+            build_family="us-merged",
+            workflow_action="Build Draft Package",
+            git_ref="codex/review-je-1000f-us",
+            force_phase2_refresh_value=False,
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "是否强制刷新数据"):
+            process_build_queue.validate_queue_record_group([record_a, record_b])
 
     def test_build_document_for_task_should_use_review_source_for_draft_phase(self) -> None:
         commands: list[list[str]] = []
@@ -1466,6 +1501,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1547,6 +1584,9 @@ class TestProcessBuildQueue(unittest.TestCase):
             record_payload[process_build_queue.DOCUMENT_LINK_FIELD],
         )
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(record_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", record_payload[process_build_queue.DATA_SYNC_FIELD])
+        self.assertIn("data_sync=skipped", record_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", record_payload[process_build_queue.RESULT_FIELD])
         build_document_mock.assert_called_once_with(
             config_path=Path("config.us-en.yaml"),
@@ -1557,10 +1597,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             version="1.0",
             git_ref="codex/review-je-1000f-us-en",
         )
-        sync_mock.assert_called_once_with(
-            config_path=Path("config.yaml"),
-            data_root="data/phase2",
-        )
+        sync_mock.assert_not_called()
 
     def test_process_build_queue_should_preserve_drive_link_when_wiki_move_fails(self) -> None:
         cfg = {
@@ -1599,6 +1636,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1673,13 +1712,13 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual([process_build_queue.DONE_TRIGGER_VALUE], success_payload[process_build_queue.TRIGGER_FIELD])
         self.assertFalse(success_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(success_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", success_payload[process_build_queue.DATA_SYNC_FIELD])
         self.assertIn("SUCCESS", success_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=skipped", success_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("drive_only", success_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("Permission denied [99991679]", success_payload[process_build_queue.RESULT_FIELD])
-        sync_mock.assert_called_once_with(
-            config_path=Path("config.ja.yaml"),
-            data_root="data/phase2",
-        )
+        sync_mock.assert_not_called()
 
     def test_process_build_queue_should_fail_and_write_back_when_draft_row_is_missing_git_ref(self) -> None:
         cfg = {
@@ -1718,6 +1757,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1769,18 +1810,19 @@ class TestProcessBuildQueue(unittest.TestCase):
             )
 
         self.assertEqual(1, exit_code)
-        sync_mock.assert_called_once_with(
-            config_path=Path("config.yaml"),
-            data_root="data/phase2",
-        )
+        sync_mock.assert_not_called()
         build_document_mock.assert_not_called()
         self.assertEqual(1, len(captured_upserts))
         failure_payload = captured_upserts[-1]["record"]
         self.assertIsInstance(failure_payload, dict)
         self.assertIn("Build Draft Package queue rows require Git_ref", failure_payload[process_build_queue.RESULT_FIELD])
         self.assertFalse(failure_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
+        self.assertFalse(failure_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertEqual("skipped", failure_payload[process_build_queue.DATA_SYNC_FIELD])
+        self.assertIn("data_sync=skipped", failure_payload[process_build_queue.RESULT_FIELD])
+        sync_mock.assert_not_called()
 
-    def test_process_build_queue_should_sync_phase2_snapshot_before_building(self) -> None:
+    def test_process_build_queue_should_sync_phase2_snapshot_before_building_when_forced(self) -> None:
         cfg = {
             "sync": {
                 "phase2": {
@@ -1818,6 +1860,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                     process_build_queue.BUILD_STARTED_AT_FIELD: None,
                     process_build_queue.TRIGGER_FIELD: ["Y"],
                     process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: True,
+                    process_build_queue.DATA_SYNC_FIELD: "",
                 },
             }
         ]
@@ -1881,10 +1925,103 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path=Path("config.yaml"),
             data_root="data/phase2",
         )
-        self.assertEqual(2, len(fetch_calls))
+        self.assertEqual(1, len(fetch_calls))
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
         self.assertEqual("codex/review-je-1000f-us-en", build_document_mock.call_args.kwargs["git_ref"])
+
+    def test_process_build_queue_should_write_failed_data_sync_when_forced_refresh_fails(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_force_sync_fail",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: True,
+                    process_build_queue.DATA_SYNC_FIELD: "",
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        sync_mock = mock.Mock(side_effect=RuntimeError("sync boom"))
+
+        class FakeSource:
+            def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                return raw_records
+
+            def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                captured_upserts.append(kwargs)
+                return {"ok": True}
+
+        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+            process_build_queue,
+            "resolve_document_link_binding",
+            return_value=binding,
+        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+            process_build_queue,
+            "sync_phase2_snapshot_before_queue",
+            sync_mock,
+        ), mock.patch.object(
+            process_build_queue,
+            "resolve_wiki_destination",
+            return_value=process_build_queue.WikiDestination(
+                space_id="space_123",
+                parent_wiki_token="wiki_parent",
+            ),
+        ), mock.patch.object(
+            process_build_queue,
+            "_phase2_identity",
+            return_value="user",
+        ):
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("config.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+            )
+
+        self.assertEqual(1, exit_code)
+        sync_mock.assert_called_once_with(
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+        )
+        self.assertEqual(1, len(captured_upserts))
+        failure_payload = captured_upserts[0]["record"]
+        self.assertEqual("failed", failure_payload[process_build_queue.DATA_SYNC_FIELD])
+        self.assertFalse(failure_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
+        self.assertIn("data_sync=failed", failure_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("sync boom", failure_payload[process_build_queue.RESULT_FIELD])
 
     def test_process_build_queue_should_build_once_per_document_key_group_and_write_back_all_rows(self) -> None:
         cfg = {

@@ -28,6 +28,7 @@ from tools.process_build_queue_main import run_main as _run_main_impl  # noqa: E
 from tools.queue_contract import (  # noqa: E402
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
+    DATA_SYNC_FIELD as _QC_DATA_SYNC_FIELD,
     DOCUMENT_DIRECTORY_FIELD as _QC_DOCUMENT_DIRECTORY_FIELD,
     DOCUMENT_ID_FIELD as _QC_DOCUMENT_ID_FIELD,
     DOCUMENT_KEY_FIELD as _QC_DOCUMENT_KEY_FIELD,
@@ -35,6 +36,7 @@ from tools.queue_contract import (  # noqa: E402
     DOC_PHASE_FIELD as _QC_DOC_PHASE_FIELD,
     DONE_TRIGGER_VALUE as _QC_DONE_TRIGGER_VALUE,
     FAILED_PREFIX as _QC_FAILED_PREFIX,
+    FORCE_PHASE2_REFRESH_FIELD as _QC_FORCE_PHASE2_REFRESH_FIELD,
     GIT_REF_FIELD as _QC_GIT_REF_FIELD,
     IMMEDIATE_TRIGGER_FIELD as _QC_IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD as _QC_LANG_FIELD,
@@ -138,6 +140,7 @@ from tools.queue_bound_records import (  # noqa: E402
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
     is_trigger_requested as _is_trigger_requested,
     parse_queue_records,
+    queue_group_force_phase2_refresh,
     pending_immediate_queue_records,
     pending_queue_records,
     queue_group_build_family,
@@ -179,8 +182,10 @@ WORKFLOW_ACTION_FIELD = _QC_WORKFLOW_ACTION_FIELD
 DOC_PHASE_FIELD = _QC_DOC_PHASE_FIELD
 GIT_REF_FIELD = _QC_GIT_REF_FIELD
 BUILD_STARTED_AT_FIELD = _QC_BUILD_STARTED_AT_FIELD
+DATA_SYNC_FIELD = _QC_DATA_SYNC_FIELD
 DOCUMENT_DIRECTORY_FIELD = _QC_DOCUMENT_DIRECTORY_FIELD
 DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
+FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
 SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
 FAILED_PREFIX = _QC_FAILED_PREFIX
@@ -424,7 +429,10 @@ def build_success_fields(
     built_at: datetime,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
     status_notes: tuple[str, ...] = (),
+    clear_force_phase2_refresh: bool = True,
+    write_data_sync: bool = True,
 ) -> dict[str, Any]:
     return _build_success_fields_service(
         _service_module(),
@@ -434,7 +442,10 @@ def build_success_fields(
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         status_notes=status_notes,
+        clear_force_phase2_refresh=clear_force_phase2_refresh,
+        write_data_sync=write_data_sync,
     )
 
 
@@ -448,6 +459,7 @@ def build_failure_fields(
     message: str,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
 ) -> dict[str, Any]:
     return _build_failure_fields_service(
         _service_module(),
@@ -455,6 +467,7 @@ def build_failure_fields(
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
     )
 
 
@@ -464,8 +477,11 @@ def build_failure_writeback_fields(
     message: str,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
+    clear_force_phase2_refresh: bool = True,
+    write_data_sync: bool = True,
 ) -> dict[str, Any]:
     return _build_failure_writeback_fields_service(
         _service_module(),
@@ -473,8 +489,11 @@ def build_failure_writeback_fields(
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
+        clear_force_phase2_refresh=clear_force_phase2_refresh,
+        write_data_sync=write_data_sync,
     )
 
 

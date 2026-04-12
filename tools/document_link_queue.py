@@ -158,6 +158,7 @@ def parse_queue_records(
     trigger_field: str,
     legacy_trigger_fields: tuple[str, ...],
     immediate_trigger_field: str,
+    force_phase2_refresh_field: str,
 ) -> list[Any]:
     records: list[Any] = []
     for record in raw_records:
@@ -179,6 +180,7 @@ def parse_queue_records(
                 git_ref=scalar_text(fields.get(git_ref_field)),
                 trigger_value=scalar_text(field_value(fields, trigger_field, *legacy_trigger_fields)),
                 immediate_trigger_value=fields.get(immediate_trigger_field),
+                force_phase2_refresh_value=fields.get(force_phase2_refresh_field),
             )
         )
     return records
@@ -191,6 +193,10 @@ def is_immediate_trigger_enabled(value: Any) -> bool:
         return bool(value)
     text = scalar_text(value).strip().lower()
     return text in {"1", "true", "y", "yes", "checked"}
+
+
+def is_force_phase2_refresh_enabled(value: Any) -> bool:
+    return is_immediate_trigger_enabled(value)
 
 
 def is_trigger_requested(value: Any, *, trigger_values: set[str]) -> bool:
@@ -333,6 +339,10 @@ def queue_group_build_family(records: list[Any]) -> str:
     return ""
 
 
+def queue_group_force_phase2_refresh(records: list[Any]) -> bool:
+    return any(is_force_phase2_refresh_enabled(getattr(record, "force_phase2_refresh_value", None)) for record in records)
+
+
 def validate_queue_record_group(
     records: list[Any],
     *,
@@ -350,6 +360,10 @@ def validate_queue_record_group(
     versions = {record.version.strip() for record in records}
     git_refs = {record.git_ref.strip() for record in records}
     build_families = {record.build_family.strip().lower() for record in records if record.build_family.strip()}
+    force_phase2_refresh_values = {
+        is_force_phase2_refresh_enabled(getattr(record, "force_phase2_refresh_value", None))
+        for record in records
+    }
     conflicts: list[str] = []
     if len(workflow_actions) > 1:
         conflicts.append("Workflow_action")
@@ -359,6 +373,8 @@ def validate_queue_record_group(
         conflicts.append("Git_ref")
     if len(build_families) > 1:
         conflicts.append("Build_family")
+    if len(force_phase2_refresh_values) > 1:
+        conflicts.append("是否强制刷新数据")
     if conflicts:
         raise RuntimeError(
             "Queue rows merged by Document_Key must agree on "

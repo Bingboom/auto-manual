@@ -189,7 +189,10 @@ def build_success_fields(
     built_at: datetime,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
     status_notes: tuple[str, ...] = (),
+    clear_force_phase2_refresh: bool = True,
+    write_data_sync: bool = True,
 ) -> dict[str, Any]:
     return _build_success_fields_impl(
         version=version,
@@ -198,6 +201,7 @@ def build_success_fields(
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         status_notes=status_notes,
         normalize_workflow_action=module.normalize_workflow_action,
         normalize_doc_phase=module.normalize_doc_phase,
@@ -208,6 +212,8 @@ def build_success_fields(
         trigger_field=module.TRIGGER_FIELD,
         done_trigger_value=module.DONE_TRIGGER_VALUE,
         immediate_trigger_field=module.IMMEDIATE_TRIGGER_FIELD,
+        force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD if clear_force_phase2_refresh else "",
+        data_sync_field=module.DATA_SYNC_FIELD if write_data_sync else "",
         success_prefix=module.SUCCESS_PREFIX,
     )
 
@@ -223,12 +229,14 @@ def build_failure_fields(
     message: str,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
 ) -> dict[str, Any]:
     return _build_failure_fields_impl(
         version=version,
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         normalize_workflow_action=module.normalize_workflow_action,
         normalize_doc_phase=module.normalize_doc_phase,
         workflow_action_label=module.workflow_action_label,
@@ -244,14 +252,18 @@ def build_failure_writeback_fields(
     message: str,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
+    data_sync_status: str = "",
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
+    clear_force_phase2_refresh: bool = True,
+    write_data_sync: bool = True,
 ) -> dict[str, Any]:
     return _build_failure_writeback_fields_impl(
         version=version,
         message=message,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
         build_failure_fields=module.build_failure_fields,
@@ -259,6 +271,8 @@ def build_failure_writeback_fields(
         document_directory_field=module.DOCUMENT_DIRECTORY_FIELD,
         document_link_field=module.DOCUMENT_LINK_FIELD,
         immediate_trigger_field=module.IMMEDIATE_TRIGGER_FIELD,
+        force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD if clear_force_phase2_refresh else "",
+        data_sync_field=module.DATA_SYNC_FIELD if write_data_sync else "",
     )
 
 
@@ -312,6 +326,8 @@ def process_build_queue(
         resolve_and_report_wiki_destination=_resolve_and_report_wiki_destination_impl,
         process_queue_record_group=_process_queue_record_group_impl,
         build_started_at_field=module.BUILD_STARTED_AT_FIELD,
+        force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD,
+        data_sync_field=module.DATA_SYNC_FIELD,
         available_field_names=module._available_field_names,
         select_pending_queue_records=module.select_pending_queue_records,
         group_pending_queue_records=module.group_pending_queue_records,
@@ -319,6 +335,7 @@ def process_build_queue(
         resolve_target_for_record=module.resolve_target_for_record,
         queue_group_lang=module.queue_group_lang,
         queue_group_build_family=module.queue_group_build_family,
+        queue_group_force_phase2_refresh=module.queue_group_force_phase2_refresh,
         validate_queue_record_group=module.validate_queue_record_group,
         resolve_config_path_for_task=module.resolve_config_path_for_task,
         queue_record_key=module.queue_record_key,
