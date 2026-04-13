@@ -1,6 +1,6 @@
 # 钉钉知识库上传路径配置指南
 
-Updated: 2026-04-09
+Updated: 2026-04-14
 
 这份指南说明当前仓库如何把构建好的 `.docx` 上传到钉钉知识库目录，并把生成后的钉钉节点链接回写到 Feishu `Document_link`。
 
@@ -51,6 +51,7 @@ Updated: 2026-04-09
 可选变量：
 
 - `DINGTALK_DOCS_BX_V`
+- `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
 
 变量含义：
 
@@ -68,6 +69,10 @@ Updated: 2026-04-09
 
 - `DINGTALK_DOCS_BX_V`
   浏览器请求头里的 `bx-v`。不填时代码会使用默认值，通常不需要手动设置。
+
+- `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
+  可选的操作员会话目录。若队列表格里有 `operator_union_id`，worker 会优先查找
+  `<session_root>/<operator_union_id>.json`，找不到时才回退到全局 `DINGTALK_DOCS_*`。
 
 ## 3. 目标目录 URL 怎么拿
 
@@ -155,6 +160,7 @@ $env:DINGTALK_DOCS_BX_V='2.5.36'
 
 ```powershell
 [Environment]::SetEnvironmentVariable('DINGTALK_DOCS_BX_V', '2.5.36', 'User')
+[Environment]::SetEnvironmentVariable('AUTO_MANUAL_DINGTALK_SESSION_ROOT', "$HOME\\.auto-manual\\dingtalk-sessions", 'User')
 ```
 
 写入后：
@@ -177,6 +183,36 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 - `DINGTALK_DOCS_A_TOKEN`
 - `DINGTALK_DOCS_XSRF_TOKEN`
 - `DINGTALK_DOCS_COOKIE`
+- 如果你准备按操作员切换会话，还应该看到 `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
+
+## 7.1 操作员会话文件模式
+
+如果你不想让所有队列记录共用一套全局 DingTalk 会话，可以改用“按操作员会话文件”：
+
+1. 先设置 `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
+2. 在该目录下按 `operator_union_id` 放 JSON 文件，例如：
+
+```text
+%USERPROFILE%\.auto-manual\dingtalk-sessions\ou_xxx.json
+```
+
+文件内容示例：
+
+```json
+{
+  "a_token": "你的a-token",
+  "xsrf_token": "你的x-xsrf-token",
+  "cookie": "你的完整cookie",
+  "bx_version": "2.5.36"
+}
+```
+
+当前行为：
+
+- 队列行里有 `operator_union_id` 时，worker 先找这个文件
+- 找到就用该操作员会话上传 DingTalk
+- 找不到才回退到全局 `DINGTALK_DOCS_A_TOKEN` / `DINGTALK_DOCS_XSRF_TOKEN` / `DINGTALK_DOCS_COOKIE`
+- 队列行里没有 `operator_union_id` 时，直接使用全局会话
 
 ## 8. 怎样启用 DingTalk 同步
 
@@ -232,6 +268,7 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
 
 - `Document link` 继续保持 Feishu/wiki 主链接
 - 如果表里有 `Document link_dd`，并且这行启用了 DingTalk 同步，队列会把 DingTalk 节点链接写到这个补充字段
+- 如果表里没有 `是否上传钉钉`，worker 会按当前全局模式处理整行：开启 mirror 的 worker 会同步 DingTalk，Feishu-only worker 不会同步
 
 ## 10. 上传成功后你会看到什么
 

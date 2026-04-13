@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-11
+Updated: 2026-04-14
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -130,7 +130,7 @@ The manual system now has four layers, but they are used at different stages.
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
 - config policy for `build.queue_by_document_key`: enable it only for merged whole-book families that intentionally produce one shared manual across multiple languages, such as today's `us-merged` and future `eu-merged` / `cn-merged`; keep it disabled for single-language families such as `us-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to run one queue row per `record_id`
    - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
-   - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars, and if optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, and `DINGTALK_DOCS_*`, then writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue) and forwards extra queue args such as `--dry-run` or `--record-id`
+   - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars, and if optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, then writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue) and forwards extra queue args such as `--dry-run` or `--record-id`
    - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1) is the one-click Feishu-only queue entry on Windows; it fixes the primary upload target to Feishu/wiki and disables DingTalk sync
    - [`../scripts/process_build_queue_dingtalk.ps1`](../scripts/process_build_queue_dingtalk.ps1) is the one-click DingTalk sync queue entry on Windows; it keeps Feishu/wiki as primary and enables DingTalk mirror upload for the same build
    - for the full local DingTalk AliDocs setup steps, including how to capture `a-token`, `x-xsrf-token`, and the full cookie string, see [`./dingtalk_alidocs_upload_setup_guide.md`](./dingtalk_alidocs_upload_setup_guide.md)
@@ -143,7 +143,9 @@ The manual system now has four layers, but they are used at different stages.
  - if you also want the remote GitHub Draft/Publish workers to sync DingTalk, configure GitHub Secrets `DINGTALK_DOCS_A_TOKEN`, `DINGTALK_DOCS_XSRF_TOKEN`, and `DINGTALK_DOCS_COOKIE`; `DINGTALK_DOCS_TARGET_NODE_URL` is optional and only acts as the remote default target
  - when DingTalk mirror sync is enabled, Feishu still remains the queue control plane and canonical writeback surface; `Document link` stays the primary returned link, and if your table also has `Document link_dd` the queue writes the mirrored DingTalk node URL there
  - if the row also has `是否上传钉钉`, that checkbox becomes the row-level DingTalk gate: checked rows also sync DingTalk, unchecked rows stay on the normal Feishu/wiki path for that run
+ - if the table does not have `是否上传钉钉`, the worker follows the current global worker mode for that whole row
  - if that checked row also has `DingTalk_target_node_url`, the worker uploads to that row-level target first; if it is blank, the worker falls back to the global `DINGTALK_DOCS_TARGET_NODE_URL` when present
+ - if the row also has `operator_union_id`, the worker can resolve a per-operator DingTalk session file from `AUTO_MANUAL_DINGTALK_SESSION_ROOT` before falling back to the global browser-session envs
  - `钉钉上传节点` is accepted as a compatibility alias, but prefer `DingTalk_target_node_url` for new tables
  - for OpenClaw Phase 2, keep `Document link` as the canonical artifact link field used by queue resolution and replies; `Document link_dd` is optional supplemental writeback for DingTalk and is not required by the control layer
   - that queue worker reuses `FEISHU_PHASE2_BASE_TOKEN`, additionally needs `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`, auto-derives the current wiki destination from the same base when possible, and optionally accepts `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` to force a different parent wiki node
