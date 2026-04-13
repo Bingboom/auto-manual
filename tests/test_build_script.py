@@ -184,6 +184,32 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("feature/review-123", args.git_ref)
         self.assertTrue(args.confirmed)
 
+    def test_parse_args_should_support_translation_memory(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "translation-memory",
+                "--config",
+                "config.us.yaml",
+                "--query-text",
+                "USB-C 100W Port",
+                "--lang",
+                "fr",
+                "--table",
+                "spec-master",
+                "--section",
+                "OUTPUT PORTS",
+                "--row-key",
+                "usb_c_high_power_port",
+            ]
+        )
+
+        self.assertEqual("translation-memory", args.action)
+        self.assertEqual("USB-C 100W Port", args.query_text)
+        self.assertEqual("fr", args.lang)
+        self.assertEqual(["spec-master"], args.table)
+        self.assertEqual("OUTPUT PORTS", args.section)
+        self.assertEqual("usb_c_high_power_port", args.row_key)
+
     def test_main_should_return_runtime_error_as_exit_code_one(self) -> None:
         with patch_module_attrs(
             build_cli,
