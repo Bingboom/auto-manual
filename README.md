@@ -31,6 +31,7 @@ CI note:
 - the same workflow runs again on `main` after merge for post-merge validation
 - feature-branch pushes do not need a second duplicate `push` validation run
 - `Manual Validation` now includes smoke paths for `diff-report` and `release-manifest` alongside the existing `lint`, `unit`, `doctor`, and `check` jobs
+- `Manual Validation` now also runs a low-noise maintainability guardrail check so known orchestration and validation hotspots do not silently regrow past their agreed size ceilings
 - `Review Preview Package` is a separate non-gating workflow that packages the review-preview workspace and diff-report artifacts for sharing as a GitHub artifact
 - `Review Preview Package` now runs a stable smoke package with `--skip-word` and verifies the core packaged preview files before upload
 - the published review preview root is now a multi-model review handoff workspace: families are hidden when `_review` content is missing, models are grouped inside each family, and language switching happens inside each model group
@@ -261,21 +262,20 @@ The current user workflow and source-of-truth rules are maintained in [`user-gui
 
 Use the document that owns the topic:
 
+- maintainer doc index and ownership map: [`code-as-doc/README.md`](code-as-doc/README.md)
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
-- focused design handoff usage guide: [`code-as-doc/README_design_handoff.md`](code-as-doc/README_design_handoff.md)
 - current JP / US family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
 - current Vercel latest-publish HTML flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md)
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
-- maintainer doc index: [`code-as-doc/README.md`](code-as-doc/README.md)
+- architecture doc index: [`code-as-doc/architecture/README.md`](code-as-doc/architecture/README.md)
 - current repository component map: [`code-as-doc/architecture/Hello_Docs_Architecture.md`](code-as-doc/architecture/Hello_Docs_Architecture.md)
-- planned OpenClaw operator control layer: [`code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
+- current OpenClaw bootstrap: [`BOOTSTRAP.md`](BOOTSTRAP.md)
 - current OpenClaw integration package: [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
 - repo-local translation memory skill for OpenClaw-assisted multilingual work: [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
-- Feishu message plus OpenClaw control-layer plan: [`code-as-doc/architecture/Feishu_Message_OpenClaw_Control_Plan.md`](code-as-doc/architecture/Feishu_Message_OpenClaw_Control_Plan.md)
 - repo-level execution roadmap: [`optimization_project.md`](optimization_project.md)
 
 ## 5. Key Directories
@@ -298,5 +298,7 @@ Use the document that owns the topic:
 When command behavior, workflow ownership, or architecture boundaries change:
 
 - update the owning document in the same change
+- keep `python tools/check_maintainability_guardrails.py` green when touching the guarded hotspot files
+- keep the PR checklist honest: if a helper boundary moves, update the module map in the same change
 - avoid restating the same rules in multiple docs
 - keep history in [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md), not in the current guides

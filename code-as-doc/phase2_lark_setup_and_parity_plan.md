@@ -2,6 +2,11 @@
 
 Updated: 2026-04-04
 
+Archived note:
+
+- this file is a one-time machine bring-up and parity record
+- use [`build_doc_guide.md`](build_doc_guide.md) and [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md) for the current maintained workflow
+
 This file is a short execution plan for the next machine.
 It covers:
 

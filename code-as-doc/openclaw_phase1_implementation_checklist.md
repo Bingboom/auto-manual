@@ -2,6 +2,12 @@
 
 Updated: 2026-04-10
 
+Archived note:
+
+- this rollout checklist is kept for implementation history only
+- the repo now has the Phase 1 command surface and the later Phase 2 natural-language surface
+- use [`../BOOTSTRAP.md`](../BOOTSTRAP.md), [`../integrations/openclaw/README.md`](../integrations/openclaw/README.md), and [`architecture/OpenClaw_Control_Layer_Plan.md`](architecture/OpenClaw_Control_Layer_Plan.md) for current behavior
+
 ## 1. Role
 
 This file is the execution checklist for Phase 1 of the OpenClaw control-layer rollout.

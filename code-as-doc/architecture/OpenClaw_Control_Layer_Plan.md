@@ -4,7 +4,9 @@ Updated: 2026-04-13
 
 ## 1. Role
 
-This file describes the first OpenClaw integration milestone for this repository.
+This file is the active architecture note for the repository's OpenClaw control layer.
+It consolidates the earlier Phase 1 and Phase 2 plans around the implementation that
+now exists in the repo.
 
 Scope of this milestone:
 
@@ -17,9 +19,10 @@ Scope of this milestone:
 This is intentionally narrower than a general "chat-driven build platform" rollout.
 The goal is to simplify operator entry and status visibility without changing the current build semantics.
 
-Phase 1 execution details live in:
+Current operator and implementation references live in:
 
-- [`../openclaw_phase1_implementation_checklist.md`](../openclaw_phase1_implementation_checklist.md)
+- [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md)
+- [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md)
 
 Current repo package:
 
@@ -38,7 +41,13 @@ The remaining gaps are operational, not architectural:
 
 - deployment hardening for the external webhook process
 - shared state if multiple adapter instances are introduced
-- encrypted Feishu callback payload support
+- stable named ingress rollout for long-lived Feishu callbacks
+
+Encrypted Feishu callback support is already repo-owned through the adapter config
+and decrypt path in
+[`../../integrations/openclaw/feishu-im-webhook-adapter/lib/config.mjs`](../../integrations/openclaw/feishu-im-webhook-adapter/lib/config.mjs)
+and
+[`../../integrations/openclaw/feishu-im-webhook-adapter/lib/feishu-events.mjs`](../../integrations/openclaw/feishu-im-webhook-adapter/lib/feishu-events.mjs).
 
 ## 2. Why This Is The Right First OpenClaw Milestone
 
