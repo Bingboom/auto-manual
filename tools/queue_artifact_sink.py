@@ -8,6 +8,7 @@ from tools.dingtalk.workspace import parse_node_id_from_url
 
 DEFAULT_ARTIFACT_SINK_PROVIDER = "lark_drive"
 DEFAULT_ARTIFACT_SINK_PROVIDER_ENV = "AUTO_MANUAL_ARTIFACT_SINK_PROVIDER"
+DEFAULT_ARTIFACT_MIRROR_PROVIDER_ENV = "AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER"
 DEFAULT_DINGTALK_TARGET_NODE_URL_ENV = "DINGTALK_DOCS_TARGET_NODE_URL"
 DEFAULT_DINGTALK_A_TOKEN_ENV = "DINGTALK_DOCS_A_TOKEN"
 DEFAULT_DINGTALK_XSRF_TOKEN_ENV = "DINGTALK_DOCS_XSRF_TOKEN"
@@ -72,6 +73,13 @@ def _normalize_provider(value: str | None) -> str:
     )
 
 
+def _normalize_optional_provider(value: str | None) -> str | None:
+    text = str(value or "").strip().lower()
+    if not text or text in {"none", "off", "disabled", "false", "no"}:
+        return None
+    return _normalize_provider(text)
+
+
 def artifact_sink_provider(cfg: dict[str, Any], *, environ: dict[str, str] | os._Environ[str]) -> str:
     current_cfg = artifact_sink_cfg(cfg)
     provider_env = str(current_cfg.get("provider_env") or DEFAULT_ARTIFACT_SINK_PROVIDER_ENV).strip()
@@ -79,6 +87,15 @@ def artifact_sink_provider(cfg: dict[str, Any], *, environ: dict[str, str] | os.
     if not provider_value:
         provider_value = str(current_cfg.get("provider") or "").strip()
     return _normalize_provider(provider_value)
+
+
+def artifact_mirror_provider(cfg: dict[str, Any], *, environ: dict[str, str] | os._Environ[str]) -> str | None:
+    current_cfg = artifact_sink_cfg(cfg)
+    provider_env = str(current_cfg.get("mirror_provider_env") or DEFAULT_ARTIFACT_MIRROR_PROVIDER_ENV).strip()
+    provider_value = str(environ.get(provider_env, "")).strip() if provider_env else ""
+    if not provider_value:
+        provider_value = str(current_cfg.get("mirror_provider") or "").strip()
+    return _normalize_optional_provider(provider_value)
 
 
 def dingtalk_alidocs_env_names(cfg: dict[str, Any]) -> dict[str, str]:
@@ -132,7 +149,11 @@ def collect_artifact_sink_preflight_errors(
         provider = artifact_sink_provider(cfg, environ=environ)
     except RuntimeError as exc:
         return [str(exc)]
-    if provider != "dingtalk_alidocs_session":
+    try:
+        mirror_provider = artifact_mirror_provider(cfg, environ=environ)
+    except RuntimeError as exc:
+        return [str(exc)]
+    if provider != "dingtalk_alidocs_session" and mirror_provider != "dingtalk_alidocs_session":
         return []
     env_names = dingtalk_alidocs_env_names(cfg)
     missing_env_names = [

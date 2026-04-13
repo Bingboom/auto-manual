@@ -47,12 +47,13 @@ python tools\dingtalk\spike_cli.py all --record-id rec_phase0_smoke --update-set
 
 ## Queue Artifact Sink
 
-The current repo-integrated DingTalk queue sink is `dingtalk_alidocs_session`.
+The current repo-integrated DingTalk provider is `dingtalk_alidocs_session`.
 
-It is selected with:
+For the stage-1 mirror flow, keep Feishu/wiki as primary and enable DingTalk sync with:
 
 ```powershell
-$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="dingtalk_alidocs_session"
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="lark_drive"
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER="dingtalk_alidocs_session"
 $env:DINGTALK_DOCS_TARGET_NODE_URL="https://alidocs.dingtalk.com/i/nodes/..."
 $env:DINGTALK_DOCS_A_TOKEN="..."
 $env:DINGTALK_DOCS_XSRF_TOKEN="..."
@@ -62,14 +63,15 @@ $env:DINGTALK_DOCS_BX_V="2.5.36"
 
 Environment meanings:
 
-- `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`: switch `process-build-queue` from the default `lark_drive` sink to the DingTalk browser-session sink
+- `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`: primary artifact sink; keep `lark_drive` for the mirror flow, or set `dingtalk_alidocs_session` only when DingTalk should replace the primary sink
+- `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`: optional mirror sink; set `dingtalk_alidocs_session` to sync the same DOCX to DingTalk after the primary Feishu/wiki upload succeeds
 - `DINGTALK_DOCS_TARGET_NODE_URL`: target AliDocs folder or node that should receive generated `.docx` files
 - `DINGTALK_DOCS_A_TOKEN`: current browser `a-token` header value
 - `DINGTALK_DOCS_XSRF_TOKEN`: current `x-xsrf-token` header value
 - `DINGTALK_DOCS_COOKIE`: current browser cookie string for `alidocs.dingtalk.com`
 - `DINGTALK_DOCS_BX_V`: optional browser `bx-v` header override; defaults to `2.5.36`
 
-This queue sink follows the same observed AliDocs browser-session chain used by the manual spike helper:
+The primary-replace mode and the mirror mode both follow the same observed AliDocs browser-session chain used by the manual spike helper:
 
 1. `uploadinfo`
 2. OSS object upload

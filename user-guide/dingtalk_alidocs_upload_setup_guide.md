@@ -9,7 +9,7 @@ Updated: 2026-04-09
 - 队列控制面仍然在 Feishu
 - phase2 结构化数据仍然从 Feishu 读取
 - `Document_link` 状态和链接仍然回写到 Feishu
-- 只有“文档产物上传目标”从 Feishu Drive 切换到 DingTalk AliDocs
+- 文档产物仍先上传到 Feishu/wiki，随后可把同一份 DOCX 同步到 DingTalk AliDocs
 
 当前上传方案是浏览器会话模式，不是正式公开 OpenAPI 模式。
 它基于当前已验证的 AliDocs 上传链路：
@@ -178,9 +178,9 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 - `DINGTALK_DOCS_XSRF_TOKEN`
 - `DINGTALK_DOCS_COOKIE`
 
-## 8. 怎样切到 DingTalk 上传
+## 8. 怎样启用 DingTalk 同步
 
-现在仓库已经支持一键切换。
+现在仓库已经支持一键启用 Feishu 主上传 + DingTalk 同步。
 
 ### 8.1 Feishu 上传
 
@@ -188,7 +188,7 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_feishu.ps1 --dry-run
 ```
 
-### 8.2 DingTalk 上传
+### 8.2 Feishu 主上传 + DingTalk 同步
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps1 --dry-run
@@ -205,7 +205,8 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps
 如果你想继续用公共入口，也可以：
 
 ```powershell
-$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER='dingtalk_alidocs_session'
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER='lark_drive'
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER='dingtalk_alidocs_session'
 powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-run
 ```
 
@@ -216,7 +217,7 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
 
 ## 9. 队列行为不会变的部分
 
-切到 DingTalk 上传后，这些行为保持不变：
+启用 DingTalk 同步后，这些行为保持不变：
 
 - 仍然先从 Feishu `Document_link` 读待构建任务
 - 仍然会先做 `sync-data`
@@ -227,9 +228,10 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
   - `Document directory`
   - `Document link`
 
-变化的只有一件事：
+变化的是：
 
-- `Document link` 的值从 Feishu Drive / wiki 链接变成 DingTalk 文档节点链接
+- `Document link` 继续保持 Feishu/wiki 主链接
+- 如果表里有 `Document link_dd`，并且这行启用了 DingTalk 同步，队列会把 DingTalk 节点链接写到这个补充字段
 
 ## 10. 上传成功后你会看到什么
 
@@ -245,7 +247,7 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
 https://alidocs.dingtalk.com/i/nodes/<dentryUuid>
 ```
 
-然后把这个链接回写到 Feishu `Document link`。
+然后把这个链接回写到 Feishu `Document link_dd`。
 
 ## 11. 什么时候需要重新抓值
 
