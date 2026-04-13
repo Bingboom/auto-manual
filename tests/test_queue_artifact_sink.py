@@ -22,6 +22,39 @@ class TestQueueArtifactSink(unittest.TestCase):
         self.assertIn("DINGTALK_DOCS_XSRF_TOKEN", errors[0])
         self.assertIn("DINGTALK_DOCS_COOKIE", errors[0])
 
+    def test_collect_artifact_sink_preflight_errors_should_require_dingtalk_session_envs_for_mirror_provider(self) -> None:
+        cfg = {
+            "queue": {
+                "artifact_sink": {
+                    "provider": "lark_drive",
+                    "mirror_provider": "dingtalk_alidocs_session",
+                }
+            }
+        }
+
+        errors = queue_artifact_sink.collect_artifact_sink_preflight_errors(cfg, environ={})
+
+        self.assertEqual(1, len(errors))
+        self.assertIn("DINGTALK_DOCS_A_TOKEN", errors[0])
+        self.assertIn("DINGTALK_DOCS_XSRF_TOKEN", errors[0])
+        self.assertIn("DINGTALK_DOCS_COOKIE", errors[0])
+
+    def test_artifact_mirror_provider_should_resolve_env_override(self) -> None:
+        cfg = {
+            "queue": {
+                "artifact_sink": {
+                    "provider": "lark_drive",
+                }
+            }
+        }
+
+        provider = queue_artifact_sink.artifact_mirror_provider(
+            cfg,
+            environ={"AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER": "dingtalk_alidocs_session"},
+        )
+
+        self.assertEqual("dingtalk_alidocs_session", provider)
+
     def test_resolve_dingtalk_artifact_destination_should_parse_target_node_url(self) -> None:
         cfg = {
             "queue": {

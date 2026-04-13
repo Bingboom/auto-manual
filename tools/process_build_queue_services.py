@@ -357,6 +357,8 @@ def process_build_queue(
         resolve_wiki_destination=module.resolve_artifact_destination,
         resolve_lark_wiki_destination=module.resolve_wiki_destination,
         resolve_row_artifact_destination=module.resolve_artifact_destination,
+        resolve_artifact_mirror_provider=module.resolve_artifact_mirror_provider,
+        resolve_dingtalk_mirror_destination=module.resolve_dingtalk_mirror_destination,
         build_started_fields=module.build_started_fields,
         build_document_for_task=module.build_document_for_task,
         publish_word_artifact=module.publish_word_artifact,

@@ -99,6 +99,7 @@ from tools.queue_artifact_sink import (  # noqa: E402
     ArtifactDestination,
     ArtifactPublishError,
     ArtifactPublishResult,
+    artifact_mirror_provider,
     artifact_sink_provider,
     collect_artifact_sink_preflight_errors,
     dingtalk_alidocs_env_names,
@@ -174,6 +175,10 @@ def collect_queue_preflight_errors(cfg: dict[str, Any]) -> list[str]:
     errors = _collect_queue_preflight_errors_impl(cfg)
     errors.extend(collect_artifact_sink_preflight_errors(cfg, environ=os.environ))
     return errors
+
+
+def resolve_artifact_mirror_provider(cfg: dict[str, Any]) -> str | None:
+    return artifact_mirror_provider(cfg, environ=os.environ)
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
 LEGACY_TRIGGER_FIELDS = _QC_LEGACY_TRIGGER_FIELDS
@@ -257,11 +262,25 @@ def resolve_artifact_destination(
             environ=os.environ,
             target_node_url=target_node_url,
             allow_missing_target_node_url=target_node_url is None,
-        )
+    )
     return resolve_wiki_destination(
         cli_bin=cli_bin,
         identity=identity,
         binding=binding,
+    )
+
+
+def resolve_dingtalk_mirror_destination(
+    *,
+    cfg: dict[str, Any],
+    target_node_url: str | None = None,
+    allow_missing_target_node_url: bool = False,
+) -> ArtifactDestination:
+    return resolve_dingtalk_artifact_destination(
+        cfg,
+        environ=os.environ,
+        target_node_url=target_node_url,
+        allow_missing_target_node_url=allow_missing_target_node_url,
     )
 
 
@@ -306,6 +325,7 @@ def publish_word_artifact(
     word_output_path: Path,
     identity: str,
     artifact_destination: WikiDestination | ArtifactDestination,
+    dingtalk_mirror_destination: ArtifactDestination | None = None,
 ) -> ArtifactPublishResult:
     provider = artifact_sink_provider(cfg, environ=os.environ)
     if provider == "dingtalk_alidocs_session":
@@ -335,6 +355,7 @@ def publish_word_artifact(
             latest_link_url=committed.node_url,
             document_link_url=committed.node_url,
             document_link_dd_url=committed.node_url,
+            status_notes=("dingtalk_sync=ok",),
         )
 
     file_token, drive_url = upload_word_to_drive(
@@ -358,18 +379,60 @@ def publish_word_artifact(
             f"[build-queue] WARNING wiki attach failed; using Drive link {drive_url}",
             file=sys.stderr,
         )
-        return ArtifactPublishResult(
+        result = ArtifactPublishResult(
             provider="lark_drive",
             reference_id=file_token,
             latest_link_url=drive_url,
             document_link_url=drive_url,
             status_notes=("drive_only", f"wiki_attach_failed={recovered_message}"),
         )
+    else:
+        result = ArtifactPublishResult(
+            provider="lark_drive",
+            reference_id=file_token,
+            latest_link_url=drive_url,
+            document_link_url=document_link_url,
+        )
+
+    if dingtalk_mirror_destination is None:
+        return result
+
+    env_names = dingtalk_alidocs_env_names(cfg)
+    session = load_session_config(
+        environ=os.environ,
+        a_token_env=env_names["a_token_env"],
+        xsrf_token_env=env_names["xsrf_token_env"],
+        cookie_env=env_names["cookie_env"],
+        bx_version_env=env_names["bx_version_env"],
+    )
+    target_node_url = str(dingtalk_mirror_destination.runtime_target or "").strip()
+    if not target_node_url:
+        raise RuntimeError("DingTalk mirror destination is missing target_node_url")
+    try:
+        committed = upload_file_to_node(
+            session=session,
+            file_path=word_output_path,
+            parent_node_url=target_node_url,
+        )
+    except Exception as exc:
+        message = str(exc).strip()
+        status_notes = (*result.status_notes, "dingtalk_sync=failed", f"dingtalk_sync_error={message}")
+        return ArtifactPublishResult(
+            provider=result.provider,
+            reference_id=result.reference_id,
+            latest_link_url=result.latest_link_url,
+            document_link_url=result.document_link_url,
+            document_link_dd_url="",
+            status_notes=status_notes,
+        )
+    status_notes = (*result.status_notes, "dingtalk_sync=ok")
     return ArtifactPublishResult(
-        provider="lark_drive",
-        reference_id=file_token,
-        latest_link_url=drive_url,
-        document_link_url=document_link_url,
+        provider=result.provider,
+        reference_id=result.reference_id,
+        latest_link_url=result.latest_link_url,
+        document_link_url=result.document_link_url,
+        document_link_dd_url=committed.node_url,
+        status_notes=status_notes,
     )
 
 
