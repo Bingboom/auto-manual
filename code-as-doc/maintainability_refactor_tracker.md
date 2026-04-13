@@ -1,18 +1,19 @@
-# Maintainability Refactor Tracker
+# Maintainability Refactor Tracker (Archived)
 
 Updated: 2026-04-06
 
-This file tracks the active maintainability refactor campaign for this repository.
-Use it as the in-progress execution record.
+This file records the completed maintainability refactor campaign for this repository.
+It is kept as historical execution context only.
 
 Do not use this file as:
 
+- the active maintainability checklist
 - the long-term architecture document
 - the repo-level roadmap
-- the completed optimization history log
 
 Use these documents for those topics:
 
+- [`next_optimization_checklist.md`](next_optimization_checklist.md)
 - [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
 - [`../optimization_project.md`](../optimization_project.md)
 - [`code_optimization_log.md`](code_optimization_log.md)
