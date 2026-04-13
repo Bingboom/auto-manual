@@ -1,63 +1,50 @@
-# PR 标题
+# PR Title
 
-[Feature/Fix/Refactor] 简短说明
-
----
-
-## 变更类型
-
-* [ ] 新功能
-* [ ] Bug 修复
-* [ ] 架构优化
-* [ ] 性能优化
-* [ ] 参数系统修改
-* [ ] 构建流程修改
+[Feature/Fix/Refactor] short summary
 
 ---
 
-## 影响范围
+## Summary
 
-* [ ] CSV Schema
-* [ ] 渲染逻辑
-* [ ] 参数系统
-* [ ] 构建入口
-* [ ] LaTeX 组件
-* [ ] 无破坏性影响
+- What changed:
+- Why it changed:
 
 ---
 
-## Code Review Checklist
+## Change Type
 
-### 数据安全
-
-* [ ] 字段校验存在
-* [ ] 枚举校验存在
-* [ ] 多语言字段校验
-
-### 构建确定性
-
-* [ ] 所有 glob 已排序
-* [ ] 无时间戳污染
-* [ ] 同输入可复现
-
-### 错误处理
-
-* [ ] 无 silent fail
-* [ ] subprocess returncode 检查
-* [ ] 报错可定位 CSV 行
-
-### 渲染安全
-
-* [ ] 统一 escape
-* [ ] raw 指令受控
+- [ ] Feature
+- [ ] Bug fix
+- [ ] Refactor
+- [ ] Performance
+- [ ] Config / schema change
+- [ ] Workflow / CI change
 
 ---
 
-## 回归验证
+## Impact Surface
 
-* [ ] Safety 示例可正常构建
-* [ ] HTML 构建正常
-* [ ] PDF 构建正常
-* [ ] diff 无异常噪声
+- [ ] CSV schema / structured snapshot
+- [ ] Template / page assembly
+- [ ] Build entrypoint / CLI
+- [ ] Review / diff / publish / release flow
+- [ ] External integrations (Feishu / DingTalk / OpenClaw)
+- [ ] Docs / CI / maintainer workflow
 
+---
 
+## Anti-Debt Checklist
+
+- [ ] New low-level logic was kept out of `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py`
+- [ ] If helper boundaries changed, `code-as-doc/dev/orchestration_module_map.md` was updated in the same PR
+- [ ] If behavior or workflow semantics changed, `README.md`, `code-as-doc/build_doc_guide.md`, and `user-guide/hello_auto-doc.md` were updated in the same PR
+- [ ] `python tools/check_maintainability_guardrails.py` passes locally
+- [ ] No new config was added only because the model changed
+
+---
+
+## Validation
+
+- [ ] `python -m unittest`
+- [ ] `python build.py check --config ... --model ... --region ...`
+- [ ] Additional targeted verification:

@@ -142,6 +142,7 @@ Use this section for short milestone-style updates.
 - added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
 - hardened the adapter with explicit publish-confirmation state, event-id dedupe, same-thread Feishu replies, encrypted callback support, and ECS-oriented deployment assets
 - aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
+- added low-noise maintainability guardrails: a hotspot size check in `Manual Validation`, a refreshed anti-debt PR checklist, and synced baseline docs for the current `468`-test suite
 
 ## 5. Open Gaps
 

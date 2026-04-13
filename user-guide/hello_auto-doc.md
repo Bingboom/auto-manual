@@ -50,6 +50,7 @@ GitHub note:
 - after merge, `main` runs the same validation workflow again
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
+- `Manual Validation` now also runs `python tools/check_maintainability_guardrails.py` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
 - that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
 
