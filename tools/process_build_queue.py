@@ -290,6 +290,22 @@ def resolve_dingtalk_mirror_destination(
     )
 
 
+def ensure_dingtalk_session_ready(
+    *,
+    cfg: dict[str, Any],
+    operator_union_id: str = "",
+) -> None:
+    env_names = dingtalk_alidocs_env_names(cfg)
+    load_session_config_for_operator_union_id(
+        operator_union_id=operator_union_id,
+        environ=os.environ,
+        a_token_env=env_names["a_token_env"],
+        xsrf_token_env=env_names["xsrf_token_env"],
+        cookie_env=env_names["cookie_env"],
+        bx_version_env=env_names["bx_version_env"],
+    )
+
+
 def wait_for_wiki_move_task(
     *,
     cli_bin: str,

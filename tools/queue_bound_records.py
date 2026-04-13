@@ -51,6 +51,7 @@ from tools.queue_contract import (
     IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD,
     LEGACY_TRIGGER_FIELDS,
+    OPERATOR_UNION_ID_ALIASES,
     OPERATOR_UNION_ID_FIELD,
     TRIGGER_FIELD,
     TRIGGER_VALUES,
@@ -98,7 +99,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
         immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
         force_phase2_refresh_field=FORCE_PHASE2_REFRESH_FIELD,
         upload_dingtalk_field=UPLOAD_DINGTALK_FIELD,
-        operator_union_id_field=OPERATOR_UNION_ID_FIELD,
+        operator_union_id_fields=(OPERATOR_UNION_ID_FIELD, *OPERATOR_UNION_ID_ALIASES),
         dingtalk_target_node_url_fields=(DINGTALK_TARGET_NODE_URL_FIELD, *DINGTALK_TARGET_NODE_URL_ALIASES),
     )
 

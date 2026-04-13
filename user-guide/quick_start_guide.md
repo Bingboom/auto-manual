@@ -94,6 +94,8 @@ Updated: 2026-04-14
 - 如果表里没有 `是否上传钉钉`，worker 就按当前全局模式处理整行：开启 mirror 的 worker 会同步 DingTalk，Feishu-only worker 不会同步
 - 如果当前启用了 DingTalk mirror，且该行还填了 `DingTalk_target_node_url`，worker 会优先同步到这个行级节点；只有该字段为空时，才回退到全局 `DINGTALK_DOCS_TARGET_NODE_URL`
 - 如果该行还填了 `operator_union_id`，worker 会优先从 `AUTO_MANUAL_DINGTALK_SESSION_ROOT/<operator_union_id>.json` 读取该操作员的钉钉会话；找不到时才回退到全局 `DINGTALK_DOCS_*`
+- `DingTalk_session_key` 和 `钉钉会话键` 也可以作为 `operator_union_id` 的别名；三者都会映射到同一个 session 文件名
+- 如果你在表里填的是 `alice`，那就要在本机或 worker 的 session 目录里准备 `alice.json`；如果缺这个文件且也没有全局 `DINGTALK_DOCS_*`，队列会在 build 前直接失败并把原因写回 `构建结果`
 - 只有当 `是否强制刷新数据 = 勾选` 时，队列才会在这次构建前刷新一次 phase2；否则直接复用当前本地 snapshot
 - `data_sync` 会回写 `refreshed / skipped / failed`
 
