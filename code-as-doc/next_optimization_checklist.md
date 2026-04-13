@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-04-08
+Updated: 2026-04-12
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -55,12 +55,13 @@ Status vocabulary:
 
 ## 2. Current Baseline
 
-This checklist assumes the 2026-04-07 baseline below:
+This checklist assumes the 2026-04-12 baseline below:
 
 - repo evaluation focus: maintainability and stability
-- local repo test baseline: `.\.venv\Scripts\python.exe -m unittest` -> `361 tests OK`
+- local repo test baseline: `.\.venv\Scripts\python.exe -m unittest` -> `468 tests OK`
 - local quality-gate baseline:
   - `.\.venv\Scripts\ruff.exe check build.py tools tests scripts`
+  - `.\.venv\Scripts\python.exe tools/check_maintainability_guardrails.py`
   - `.\.venv\Scripts\python.exe build.py check --config config.us-en.yaml --model JE-1000F --region US`
   - `.\.venv\Scripts\python.exe build.py check --config config.ja.yaml --model JE-1000F --region JP`
 - highest-leverage hotspots identified in:

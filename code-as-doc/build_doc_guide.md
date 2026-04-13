@@ -158,6 +158,7 @@ GitHub validation note:
 - that workflow now runs `python -m ruff check build.py integrations tools tests scripts` as the minimal static gate before the heavier unit/build jobs
 - that workflow now also runs `npm ci && npm test` in [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) so the OpenClaw command bridge stays covered in CI
 - that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`
+- that same workflow now also runs `python tools/check_maintainability_guardrails.py` so the current hotspot wrappers and validators do not quietly grow back into giant files
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
@@ -170,7 +171,7 @@ Git branch safety note:
 - enable the repo-managed pre-push guard with `git config core.hooksPath .githooks`
 - that guard now runs through the shared [`../scripts/git_branch_guard.py`](../scripts/git_branch_guard.py) core instead of a bash-only hook, with [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) and [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1) kept as Windows-native companion launchers
 - the guard blocks pushes from branches that do not contain the latest `origin/main`; use `git push --no-verify` only when the older base is intentional
-- for OpenClaw/Feishu chat-triggered local repo changes, use [`../scripts/openclaw_git_guard.py`](../scripts/openclaw_git_guard.py) as the only supported Git entry; do not expose raw `git pull` or `git switch` directly to the chat layer
+- if a PR adds a new helper boundary or changes workflow ownership, update the owning docs and [`dev/orchestration_module_map.md`](./dev/orchestration_module_map.md) in the same change instead of leaving the new rule as tribal knowledge
 
 ## 2. Config Rule
 
@@ -572,6 +573,7 @@ Field pairing now prefers stable source back-mapping before falling back to rend
 - Forgetting to commit `_review/<model>/<region>/` after each review round
 - Treating `_build/rst` and `_review` as the same thing
 - Putting review metadata in `overrides/` and expecting it to overlay; only `_assets`, `_static`, and `renderers` are copied into the runtime bundle
+- Letting `build.py`, `tools/build_docs.py`, or `tools/process_build_queue.py` absorb new low-level implementation instead of pushing that logic into helper modules
 
 ## 8. Minimal Troubleshooting
 
