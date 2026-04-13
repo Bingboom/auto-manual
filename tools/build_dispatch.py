@@ -25,6 +25,7 @@ def dispatch_action(
     process_review_start_queue_command: Callable[[argparse.Namespace], list[str]],
     process_build_queue_command: Callable[[argparse.Namespace], list[str]],
     listen_build_queue_command: Callable[[argparse.Namespace], list[str]],
+    listen_message_control_command: Callable[[argparse.Namespace], list[str]],
     run_publish: Callable[[argparse.Namespace], None],
     run_diff_report: Callable[[argparse.Namespace], None],
     release_manifest_command: Callable[[argparse.Namespace], list[str]],
@@ -60,6 +61,8 @@ def dispatch_action(
         run_checked(process_build_queue_command(args))
     elif args.action == "listen-build-queue":
         run_checked(listen_build_queue_command(args))
+    elif args.action == "listen-message-control":
+        run_checked(listen_message_control_command(args))
     elif args.action == "publish":
         run_publish(args)
     elif args.action == "diff-report":

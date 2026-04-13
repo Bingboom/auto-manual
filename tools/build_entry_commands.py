@@ -351,3 +351,26 @@ def listen_build_queue_command(
     ]
     append_data_root_arg(cmd, args)
     return cmd
+
+
+def listen_message_control_command(
+    args: argparse.Namespace,
+    *,
+    repo_root: Path,
+    resolve_path_from_root: Callable[[str], Path],
+) -> list[str]:
+    if (args.model or "").strip() or (args.region or "").strip():
+        raise RuntimeError(
+            "listen-message-control does not accept --model or --region; targets are resolved from incoming Feishu IM messages"
+        )
+    if (args.data_root or "").strip():
+        raise RuntimeError(
+            "listen-message-control does not accept --data-root; queue resolution stays bound to the configured Feishu tables"
+        )
+    config_path = resolve_path_from_root(args.config)
+    return [
+        "node",
+        str(repo_root / "integrations" / "openclaw" / "feishu-im-webhook-adapter" / "local-listener.mjs"),
+        "--control-config",
+        str(config_path),
+    ]

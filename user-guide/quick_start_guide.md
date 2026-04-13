@@ -137,6 +137,10 @@ Publish 的原料是：
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft> <record_id>`
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish <record_id> confirm`
 4. 如果要直接接飞书 IM 消息入口，而不是通过 OpenClaw 命令面板：
+   - 本机直连、不要服务器中转时：启动 `python build.py listen-message-control --config config.us.yaml`
+   - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
+   - 它仍然只处理这套文档控制层支持的动作和状态问题，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`
+   - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
    - 如果部署在长期运行的 ECS 上，改用 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/) 里的 wrapper 和 `systemd` unit 模板，不要长期靠手工 `nohup`
    - 把 Feishu 事件订阅指向这个 adapter 的 callback URL

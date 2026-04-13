@@ -6,6 +6,7 @@
   "description": "Feishu IM webhook adapter for the auto-manual OpenClaw control layer.",
   "scripts": {
     "test": "node --test test/**/*.test.mjs",
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "start:local": "node local-listener.mjs"
   }
 }
