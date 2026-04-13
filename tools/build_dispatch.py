@@ -18,6 +18,7 @@ def dispatch_action(
     run_check: Callable[[argparse.Namespace], None],
     sync_review_command: Callable[[argparse.Namespace], list[str]],
     sync_data_command: Callable[[argparse.Namespace], list[str]],
+    run_translation_memory: Callable[[argparse.Namespace], None],
     run_message_control_dry_run: Callable[[argparse.Namespace], None],
     run_queue_query: Callable[[argparse.Namespace], None],
     run_queue_resolve_action: Callable[[argparse.Namespace], None],
@@ -47,6 +48,8 @@ def dispatch_action(
         run_checked(sync_review_command(args))
     elif args.action == "sync-data":
         run_checked(sync_data_command(args))
+    elif args.action == "translation-memory":
+        run_translation_memory(args)
     elif args.action == "message-control-dry-run":
         run_message_control_dry_run(args)
     elif args.action == "queue-query":

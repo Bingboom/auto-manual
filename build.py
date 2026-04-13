@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -60,6 +61,11 @@ from tools.message_control_runtime import resolve_message_control as _resolve_me
 from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
 from tools.queue_query import run_queue_query as _run_queue_query_impl
 from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
+from tools.translation_memory import (
+    build_translation_memory_payload as _build_translation_memory_payload_impl,
+    payload_to_json as _payload_to_json_impl,
+    render_translation_memory_payload as _render_translation_memory_payload_impl,
+)
 from tools.build_reports import (
     default_report_dir_for_tracked_root as _default_report_dir_for_tracked_root_impl,
     diff_report_command as _diff_report_command,
@@ -299,6 +305,36 @@ def sync_data_command(args: argparse.Namespace) -> list[str]:
         repo_root=ROOT,
         resolve_path_from_root=resolve_path_from_root,
     )
+
+
+def _emit_text(text: str) -> None:
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        sys.stdout.buffer.write(text.encode("utf-8"))
+        sys.stdout.buffer.write(b"\n")
+        sys.stdout.flush()
+
+
+def run_translation_memory(args: argparse.Namespace) -> None:
+    payload = _build_translation_memory_payload_impl(
+        config_path=resolve_path_from_root(args.config),
+        repo_root=ROOT,
+        data_root=args.data_root,
+        model=args.model,
+        region=args.region,
+        query_text=args.query_text,
+        preferred_lang=args.lang,
+        tables=tuple(args.table or ()),
+        page=args.page,
+        section=args.section,
+        row_key=args.row_key,
+        limit=args.limit,
+    )
+    if args.json:
+        _emit_text(_payload_to_json_impl(payload))
+        return
+    _emit_text(_render_translation_memory_payload_impl(payload))
 
 
 def message_control_dry_run_command(args: argparse.Namespace) -> list[str]:
@@ -687,6 +723,7 @@ def main(argv: list[str] | None = None) -> int:
         run_check=run_check,
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
+        run_translation_memory=run_translation_memory,
         run_message_control_dry_run=run_message_control_dry_run,
         run_queue_query=run_queue_query,
         run_queue_resolve_action=run_queue_resolve_action,

@@ -23,6 +23,7 @@ def parse_args(
             "check",
             "sync-review",
             "sync-data",
+            "translation-memory",
             "queue-query",
             "queue-resolve-action",
             "queue-execute",
@@ -46,7 +47,7 @@ def parse_args(
     ap.add_argument(
         "--lang",
         default=None,
-        help="Optional language selector for queue-query, queue-resolve-action, message-control-dry-run, or other target-aware flows",
+        help="Optional language selector for translation-memory, queue-query, queue-resolve-action, message-control-dry-run, or other target-aware flows",
     )
     ap.add_argument(
         "--staging-root",
@@ -107,7 +108,9 @@ def parse_args(
         default=None,
         help="Output directory for diff-report CSV/HTML",
     )
-    ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
+    ap.add_argument("--table", action="append", default=[], help="For sync-data or translation-memory: logical table id")
+    ap.add_argument("--section", default=None, help="For translation-memory: exact section/title filter")
+    ap.add_argument("--row-key", default=None, help="For translation-memory: exact Row_key filter")
     ap.add_argument("--message", default=None, help="For message-control-dry-run: raw incoming user message")
     ap.add_argument(
         "--document-id",
@@ -146,7 +149,12 @@ def parse_args(
     )
     ap.add_argument("--git-ref-contains", default=None, help="For queue-query or queue-resolve-action: substring match against Git_ref")
     ap.add_argument("--result-contains", default=None, help="For queue-query or queue-resolve-action: substring match against 构建结果")
-    ap.add_argument("--limit", type=int, default=10, help="For queue-query or queue-resolve-action: maximum rows to return")
+    ap.add_argument(
+        "--limit",
+        type=int,
+        default=10,
+        help="For translation-memory, queue-query, or queue-resolve-action: maximum rows to return",
+    )
     ap.add_argument("--json", action="store_true", help="For queue-query or queue-resolve-action: emit machine-readable JSON")
     ap.set_defaults(wait_for_completion=True)
     ap.add_argument(

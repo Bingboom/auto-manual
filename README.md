@@ -141,9 +141,12 @@ Start Review, Build Draft Package, Publish:
 - `python build.py queue-query --config config.us.yaml --queue-scope all --document-id JE-1000F_US_0.3 --json` is the Phase 2 natural-language helper surface for resolving Feishu queue rows into one concrete `record_id`, `Workflow_action`, `Git_ref`, `Document link`, and `构建结果`
 - `python build.py queue-resolve-action --config config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json` is the structured action dry-run surface for OpenClaw; it turns one natural-language ask into `action_name`, `resolution_status`, confirmation / missing-field guardrails, and the matched row fields without dispatching anything
 - `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json` is the preferred natural-language entry for Phase 2; it applies document_id-first parsing so tokens like `JE-1000F_US_0.3` are treated as exact `Document_ID` before any broader field inference happens
+- `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` queries the repo-owned `data/phase2` snapshot and returns compact multilingual translation memory context for OpenClaw or maintainer translation work
+- `python .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` queries the dedicated live sentence-pair table first, auto-splits longer source text, and emits prompt-ready context for OpenClaw translation
 - the same parser also understands spaced operator asks such as `帮我生成 JE-1000F US 0.3 草稿`, `开始 review JE-1000F us-merged`, and `为什么 JE-1000F US 0.3 构建失败`; when it can build an exact `Document_ID`, that exact id still wins over broader inferred filters
 - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"` is the deterministic execution entry for Phase 2; it resolves one Feishu row, dispatches the matching GitHub workflow on `main`, waits for completion, then re-reads the Feishu row and prints the final record fields
 - when `queue-execute` resolves `Workflow_action = Publish`, it now refuses to dispatch until you add `--confirm-publish`
+- `python scripts/openclaw_git_guard.py status` and `python scripts/openclaw_git_guard.py switch --branch main --pull` are the bounded local Git helpers for OpenClaw or Feishu-triggered operator flows; they only expose branch status plus safe switch/fetch/ff-only-pull behavior and refuse branch changes from a dirty non-generated worktree
 - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft> <record_id>` and `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish <record_id> confirm` are the matching local control CLI forms; they reuse the same GitHub workflow-dispatch and state-tracking logic as the OpenClaw plugin
 - `node integrations/openclaw/auto-manual-control-layer/cli.mjs status last` returns the latest tracked GitHub run state for that local control CLI
 - the local `listen-message-control` listener stays on the same bounded action set as the webhook adapter: `query_status`, `start_review`, `build_draft_package`, `publish`, plus natural-language failure/status asks such as `为什么 JE-1000F US 0.3 构建失败`
@@ -227,6 +230,7 @@ Git workflow note:
 - the repo can use a managed pre-push guard from [`.githooks/pre-push`](.githooks/pre-push); enable it locally with `git config core.hooksPath .githooks`
 - that guard now runs through the shared [`scripts/git_branch_guard.py`](scripts/git_branch_guard.py) core instead of a bash-only hook, and the repo also ships [`.githooks/pre-push.cmd`](.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](.githooks/pre-push.ps1) as Windows-native companion launchers
 - the guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only intentionally with `git push --no-verify`
+- for chat-driven local operator flows, use [`scripts/openclaw_git_guard.py`](scripts/openclaw_git_guard.py) instead of exposing arbitrary `git` commands to OpenClaw; it only supports `status` and safe `switch --pull`
 - if a Windows GUI client still does not honor repo-managed hooks, keep the hook optional there and treat the start-branch wrapper as the required freshness guard
 
 Do not treat this file as the full command reference.
@@ -269,8 +273,7 @@ Use the document that owns the topic:
 - current repository component map: [`code-as-doc/architecture/Hello_Docs_Architecture.md`](code-as-doc/architecture/Hello_Docs_Architecture.md)
 - current OpenClaw bootstrap: [`BOOTSTRAP.md`](BOOTSTRAP.md)
 - current OpenClaw integration package: [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
-- current OpenClaw control-layer architecture: [`code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
-- current Feishu-source DingTalk-sink plan: [`code-as-doc/architecture/Feishu_Source_DingTalk_Sink_Plan.md`](code-as-doc/architecture/Feishu_Source_DingTalk_Sink_Plan.md)
+- repo-local translation memory skill for OpenClaw-assisted multilingual work: [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
 - repo-level execution roadmap: [`optimization_project.md`](optimization_project.md)
