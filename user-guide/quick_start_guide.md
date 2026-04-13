@@ -139,6 +139,7 @@ Publish 的原料是：
 4. 如果要直接接飞书 IM 消息入口，而不是通过 OpenClaw 命令面板：
    - 本机直连、不要服务器中转时：启动 `python build.py listen-message-control --config config.us.yaml`
    - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
+   - 如果同一台机器还要保留旧 app 的本地 `lark-cli` 配置，先设置 `FEISHU_IM_LARK_CLI_HOME=单独目录`，再在那个目录下初始化新 app 的 `lark-cli` 配置
    - 它仍然只处理这套文档控制层支持的动作和状态问题，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`
    - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`

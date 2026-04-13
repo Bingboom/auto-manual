@@ -52,6 +52,7 @@ Optional:
 - `FEISHU_IM_ENCRYPT_KEY` or `FEISHU_ENCRYPT_KEY` when the Feishu app enables encrypted callbacks
 - `FEISHU_IM_LARK_CLI_BIN` for local long-connection mode
 - `FEISHU_IM_EVENT_IDENTITY` for local long-connection mode; defaults to `bot`
+- `FEISHU_IM_LARK_CLI_HOME` for local long-connection mode when the new app must use an isolated `lark-cli` home and must not reuse the default `~/.lark-cli`
 
 ## Run
 
@@ -71,6 +72,16 @@ python ../../../build.py listen-message-control --config config.us.yaml
 Local mode uses `lark-cli event +subscribe` for `im.message.receive_v1`, so it
 does not need any public callback URL or tunnel. The Feishu app still needs that
 event enabled and published in the Open Platform console.
+
+When the machine must keep an older Feishu app under the default `~/.lark-cli`,
+point the new app listener at an isolated `lark-cli` home:
+
+```bash
+export FEISHU_IM_LARK_CLI_HOME="$HOME/.feishu-im-newapp"
+mkdir -p "$FEISHU_IM_LARK_CLI_HOME"
+HOME="$FEISHU_IM_LARK_CLI_HOME" printf '%s' "$FEISHU_IM_APP_SECRET" | lark-cli config init --app-id "$FEISHU_IM_APP_ID" --app-secret-stdin --brand feishu
+python ../../../build.py listen-message-control --config config.us.yaml
+```
 
 ## ECS systemd
 
