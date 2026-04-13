@@ -29,6 +29,7 @@ from tools.build_entry_commands import (
     check_docs_command as _check_docs_command_impl,
     effective_source as _effective_source_impl,
     listen_build_queue_command as _listen_build_queue_command_impl,
+    listen_message_control_command as _listen_message_control_command_impl,
     message_control_dry_run_command as _message_control_dry_run_command_impl,
     normalize_cli_build_queue_action as _normalize_cli_build_queue_action_impl,
     process_build_queue_command as _process_build_queue_command_impl,
@@ -382,6 +383,14 @@ def listen_build_queue_command(args: argparse.Namespace) -> list[str]:
     )
 
 
+def listen_message_control_command(args: argparse.Namespace) -> list[str]:
+    return _listen_message_control_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
+
+
 def run_validate(config_path: Path, *, data_root: str | None = None) -> None:
     return _run_validate_impl(
         config_path,
@@ -685,6 +694,7 @@ def main(argv: list[str] | None = None) -> int:
         process_review_start_queue_command=process_review_start_queue_command,
         process_build_queue_command=process_build_queue_command,
         listen_build_queue_command=listen_build_queue_command,
+        listen_message_control_command=listen_message_control_command,
         run_publish=run_publish,
         run_diff_report=run_diff_report,
         release_manifest_command=release_manifest_command,

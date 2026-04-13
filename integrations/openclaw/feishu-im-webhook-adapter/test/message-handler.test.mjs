@@ -261,6 +261,65 @@ test("message handler replies with resolution errors", async () => {
   assert.match(replies[0].text, /FEISHU_PHASE2_BASE_TOKEN/);
 });
 
+test("message handler can process a direct event payload without webhook token validation", async () => {
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_123",
+            document_id: "JE-1000F_US_0.3",
+            workflow_action: "Build Draft Package",
+            result: "SUCCESS",
+          },
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleEventPayload(
+    {
+      header: {
+        event_type: "im.message.receive_v1",
+        event_id: "evt_local_1",
+      },
+      event: {
+        sender: {
+          sender_id: { open_id: "ou_sender" },
+        },
+        message: {
+          message_id: "om_123",
+          chat_id: "oc_123",
+          chat_type: "p2p",
+          message_type: "text",
+          content: JSON.stringify({ text: "查 JE-1000F_US_0.3" }),
+        },
+      },
+    },
+    { skipVerification: true }
+  );
+  await result.backgroundTask();
+
+  assert.equal(result.statusCode, 200);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /SUCCESS/);
+});
+
 test("message handler suppresses duplicate event ids", async () => {
   const replies = [];
   let resolveCalls = 0;

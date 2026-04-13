@@ -121,6 +121,36 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     }
   }
 
+  async function handleEventPayload(payload, { skipVerification = false } = {}) {
+    if (!skipVerification && !validateVerificationToken(payload, config.verificationToken)) {
+      return {
+        statusCode: 403,
+        body: { code: 403, msg: "invalid verification token" },
+      };
+    }
+    if (isUrlVerification(payload)) {
+      return {
+        statusCode: 200,
+        body: { challenge: payload.challenge },
+      };
+    }
+
+    const messageEvent = extractMessageEvent(payload);
+    const ignoreReason = shouldIgnoreMessageEvent(messageEvent, { requireMention: config.requireMention });
+    if (ignoreReason && !(ignoreReason === "missing_mention" && isPublishConfirmationText(messageEvent?.normalizedText))) {
+      return {
+        statusCode: 200,
+        body: { code: 0, msg: `ignored:${ignoreReason}` },
+      };
+    }
+
+    return {
+      statusCode: 200,
+      body: { code: 0, msg: "ok" },
+      backgroundTask: async () => processMessageEvent(messageEvent),
+    };
+  }
+
   return {
     async handleHttpRequest(rawBody) {
       let payload;
@@ -135,33 +165,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           body: { code: statusCode, msg: message },
         };
       }
-      if (!validateVerificationToken(payload, config.verificationToken)) {
-        return {
-          statusCode: 403,
-          body: { code: 403, msg: "invalid verification token" },
-        };
-      }
-      if (isUrlVerification(payload)) {
-        return {
-          statusCode: 200,
-          body: { challenge: payload.challenge },
-        };
-      }
-
-      const messageEvent = extractMessageEvent(payload);
-      const ignoreReason = shouldIgnoreMessageEvent(messageEvent, { requireMention: config.requireMention });
-      if (ignoreReason && !(ignoreReason === "missing_mention" && isPublishConfirmationText(messageEvent?.normalizedText))) {
-        return {
-          statusCode: 200,
-          body: { code: 0, msg: `ignored:${ignoreReason}` },
-        };
-      }
-
-      return {
-        statusCode: 200,
-        body: { code: 0, msg: "ok" },
-        backgroundTask: async () => processMessageEvent(messageEvent),
-      };
+      return handleEventPayload(payload);
     },
+    handleEventPayload,
   };
 }

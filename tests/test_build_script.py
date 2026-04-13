@@ -350,6 +350,7 @@ class TestBuildScript(unittest.TestCase):
             ["process-build-queue", "--dry-run", "--workflow-action", "build-draft-package", "--record-id", "rec_123"]
         )
         listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.us.yaml"])
+        message_listener_args = build_cli.parse_args(["listen-message-control", "--config", "config.us.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
@@ -363,6 +364,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("build-draft-package", queue_args.workflow_action)
         self.assertEqual("rec_123", queue_args.record_id)
         self.assertEqual("listen-build-queue", listener_args.action)
+        self.assertEqual("listen-message-control", message_listener_args.action)
         self.assertEqual("publish", publish_args.action)
         self.assertEqual("JE-1000F", publish_args.model)
         self.assertEqual("JP", publish_args.region)
@@ -611,6 +613,37 @@ class TestBuildScript(unittest.TestCase):
 
         with self.assertRaisesRegex(RuntimeError, "listen-build-queue does not accept --model or --region"):
             build_cli.listen_build_queue_command(args)
+
+    def test_listen_message_control_command_should_forward_config(self) -> None:
+        args = build_cli.parse_args(["listen-message-control", "--config", "config.us.yaml"])
+
+        cmd = build_cli.listen_message_control_command(args)
+
+        self.assertEqual("node", cmd[0])
+        self.assertEqual(
+            str(
+                build_cli.ROOT
+                / "integrations"
+                / "openclaw"
+                / "feishu-im-webhook-adapter"
+                / "local-listener.mjs"
+            ),
+            cmd[1],
+        )
+        self.assertIn("--control-config", cmd)
+        self.assertIn(str(build_cli.ROOT / "config.us.yaml"), cmd)
+
+    def test_listen_message_control_command_should_reject_target_scoped_flags(self) -> None:
+        args = build_cli.parse_args(["listen-message-control", "--region", "US"])
+
+        with self.assertRaisesRegex(RuntimeError, "listen-message-control does not accept --model or --region"):
+            build_cli.listen_message_control_command(args)
+
+    def test_listen_message_control_command_should_reject_data_root(self) -> None:
+        args = build_cli.parse_args(["listen-message-control", "--data-root", "data/phase2"])
+
+        with self.assertRaisesRegex(RuntimeError, "listen-message-control does not accept --data-root"):
+            build_cli.listen_message_control_command(args)
 
     def test_publish_should_require_explicit_model_and_region(self) -> None:
         args = build_cli.parse_args(["publish"])

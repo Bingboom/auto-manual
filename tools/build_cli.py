@@ -29,6 +29,7 @@ def parse_args(
             "process-review-start-queue",
             "process-build-queue",
             "listen-build-queue",
+            "listen-message-control",
             "publish",
             "clean",
             "diff-report",

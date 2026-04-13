@@ -1,15 +1,18 @@
-# Feishu IM Webhook Adapter
+# Feishu IM Adapter
 
-This package is the repo-external ingress layer for Feishu IM messages.
+This package owns both Feishu IM ingress modes for the repo control layer:
+
+- webhook mode for a public HTTPS callback
+- local long-connection mode for a no-server local machine
 
 It does not build documents itself.
-It receives Feishu callback events, normalizes text messages, calls the repo's existing
+It receives Feishu events, normalizes text messages, calls the repo's existing
 `build.py` control-surface commands, and replies back into the same Feishu thread.
 
 Current command path:
 
 ```text
-Feishu IM webhook
+Feishu IM event
   -> feishu-im-webhook-adapter
   -> build.py queue-resolve-action
   -> build.py queue-query | build.py queue-execute
@@ -47,12 +50,27 @@ Optional:
 - `FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS`
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_ENCRYPT_KEY` or `FEISHU_ENCRYPT_KEY` when the Feishu app enables encrypted callbacks
+- `FEISHU_IM_LARK_CLI_BIN` for local long-connection mode
+- `FEISHU_IM_EVENT_IDENTITY` for local long-connection mode; defaults to `bot`
 
 ## Run
+
+Webhook mode:
 
 ```bash
 node server.mjs
 ```
+
+Local no-server mode:
+
+```bash
+node local-listener.mjs --control-config ../../../config.us.yaml
+python ../../../build.py listen-message-control --config config.us.yaml
+```
+
+Local mode uses `lark-cli event +subscribe` for `im.message.receive_v1`, so it
+does not need any public callback URL or tunnel. The Feishu app still needs that
+event enabled and published in the Open Platform console.
 
 ## ECS systemd
 
