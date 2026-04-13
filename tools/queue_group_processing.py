@@ -34,6 +34,7 @@ def process_queue_record_group(
     queue_group_lang: Callable[[list[Any]], str],
     queue_group_build_family: Callable[[list[Any]], str],
     queue_group_dingtalk_target_node_url: Callable[[list[Any]], str],
+    queue_group_operator_union_id: Callable[[list[Any]], str],
     queue_group_force_phase2_refresh: Callable[[list[Any]], bool],
     queue_group_upload_dingtalk: Callable[[list[Any]], bool],
     resolve_config_path_for_task: Callable[..., Path],
@@ -69,6 +70,7 @@ def process_queue_record_group(
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
         dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
+        dingtalk_operator_union_id = queue_group_operator_union_id(group)
         force_phase2_refresh = queue_group_force_phase2_refresh(group)
         upload_dingtalk = queue_group_upload_dingtalk(group)
         data_sync_status = "skipped"
@@ -182,6 +184,7 @@ def process_queue_record_group(
             identity=identity,
             artifact_destination=effective_artifact_destination,
             dingtalk_mirror_destination=dingtalk_mirror_destination,
+            dingtalk_operator_union_id=dingtalk_operator_union_id,
         )
         latest_link_url = artifact_result.latest_link_url
         document_link_url = artifact_result.document_link_url

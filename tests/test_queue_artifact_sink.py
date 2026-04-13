@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from tools import queue_artifact_sink
 
 
 class TestQueueArtifactSink(unittest.TestCase):
-    def test_collect_artifact_sink_preflight_errors_should_require_dingtalk_session_envs_but_not_target_url_env(self) -> None:
+    def test_collect_artifact_sink_preflight_errors_should_require_dingtalk_session_source_but_not_target_url_env(self) -> None:
         cfg = {
             "queue": {
                 "artifact_sink": {
@@ -19,10 +22,9 @@ class TestQueueArtifactSink(unittest.TestCase):
 
         self.assertEqual(1, len(errors))
         self.assertIn("DINGTALK_DOCS_A_TOKEN", errors[0])
-        self.assertIn("DINGTALK_DOCS_XSRF_TOKEN", errors[0])
-        self.assertIn("DINGTALK_DOCS_COOKIE", errors[0])
+        self.assertIn("AUTO_MANUAL_DINGTALK_SESSION_ROOT", errors[0])
 
-    def test_collect_artifact_sink_preflight_errors_should_require_dingtalk_session_envs_for_mirror_provider(self) -> None:
+    def test_collect_artifact_sink_preflight_errors_should_require_dingtalk_session_source_for_mirror_provider(self) -> None:
         cfg = {
             "queue": {
                 "artifact_sink": {
@@ -36,8 +38,36 @@ class TestQueueArtifactSink(unittest.TestCase):
 
         self.assertEqual(1, len(errors))
         self.assertIn("DINGTALK_DOCS_A_TOKEN", errors[0])
-        self.assertIn("DINGTALK_DOCS_XSRF_TOKEN", errors[0])
-        self.assertIn("DINGTALK_DOCS_COOKIE", errors[0])
+        self.assertIn("AUTO_MANUAL_DINGTALK_SESSION_ROOT", errors[0])
+
+    def test_collect_artifact_sink_preflight_errors_should_accept_session_registry_for_mirror_provider(self) -> None:
+        cfg = {
+            "queue": {
+                "artifact_sink": {
+                    "provider": "lark_drive",
+                    "mirror_provider": "dingtalk_alidocs_session",
+                }
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as td:
+            (Path(td) / "union_123.json").write_text(
+                json.dumps(
+                    {
+                        "a_token": "token",
+                        "xsrf_token": "xsrf",
+                        "cookie": "cookie=value",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            errors = queue_artifact_sink.collect_artifact_sink_preflight_errors(
+                cfg,
+                environ={"AUTO_MANUAL_DINGTALK_SESSION_ROOT": td},
+            )
+
+        self.assertEqual([], errors)
 
     def test_artifact_mirror_provider_should_resolve_env_override(self) -> None:
         cfg = {

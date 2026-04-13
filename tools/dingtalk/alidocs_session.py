@@ -14,6 +14,7 @@ from .workspace import parse_node_id_from_url
 
 ALIDOCS_ORIGIN = "https://alidocs.dingtalk.com"
 DEFAULT_BX_VERSION = "2.5.36"
+DEFAULT_SESSION_REGISTRY_ROOT = Path.home() / ".auto-manual" / "dingtalk-sessions"
 
 
 @dataclass(frozen=True)
@@ -79,6 +80,105 @@ def load_session_config(
 
 def load_session_config_from_env() -> AliDocsSessionConfig:
     return load_session_config()
+
+
+def _session_registry_root(
+    *,
+    environ: dict[str, str] | os._Environ[str],
+    registry_root_env: str,
+) -> Path:
+    root_value = str(environ.get(registry_root_env, "")).strip()
+    if root_value:
+        return Path(root_value).expanduser()
+    return DEFAULT_SESSION_REGISTRY_ROOT
+
+
+def _read_session_payload(path: Path) -> dict[str, Any]:
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise RuntimeError(f"Failed to read AliDocs session file: {path}") from exc
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"AliDocs session file is not valid JSON: {path}") from exc
+    if not isinstance(payload, dict):
+        raise RuntimeError(f"AliDocs session file must contain a JSON object: {path}")
+    return payload
+
+
+def _payload_text(payload: dict[str, Any], *keys: str) -> str:
+    for key in keys:
+        value = str(payload.get(key, "") or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def load_session_config_for_operator_union_id(
+    *,
+    operator_union_id: str,
+    environ: dict[str, str] | os._Environ[str] | None = None,
+    a_token_env: str = "DINGTALK_DOCS_A_TOKEN",
+    xsrf_token_env: str = "DINGTALK_DOCS_XSRF_TOKEN",
+    cookie_env: str = "DINGTALK_DOCS_COOKIE",
+    bx_version_env: str = "DINGTALK_DOCS_BX_V",
+    registry_root_env: str = "AUTO_MANUAL_DINGTALK_SESSION_ROOT",
+) -> AliDocsSessionConfig:
+    current_environ = os.environ if environ is None else environ
+    normalized_operator_union_id = str(operator_union_id or "").strip()
+    if not normalized_operator_union_id:
+        return load_session_config(
+            environ=current_environ,
+            a_token_env=a_token_env,
+            xsrf_token_env=xsrf_token_env,
+            cookie_env=cookie_env,
+            bx_version_env=bx_version_env,
+        )
+
+    session_path = _session_registry_root(
+        environ=current_environ,
+        registry_root_env=registry_root_env,
+    ) / f"{normalized_operator_union_id}.json"
+    if session_path.exists():
+        payload = _read_session_payload(session_path)
+        a_token = _payload_text(payload, "a_token", "aToken", a_token_env)
+        xsrf_token = _payload_text(payload, "xsrf_token", "xsrfToken", "x_xsrf_token", xsrf_token_env)
+        cookie = _payload_text(payload, "cookie", cookie_env)
+        bx_version = _payload_text(payload, "bx_version", "bxVersion", bx_version_env) or DEFAULT_BX_VERSION
+        missing: list[str] = []
+        if not a_token:
+            missing.append("a_token")
+        if not xsrf_token:
+            missing.append("xsrf_token")
+        if not cookie:
+            missing.append("cookie")
+        if missing:
+            raise RuntimeError(
+                "AliDocs session file is missing required keys for "
+                f"operator_union_id={normalized_operator_union_id}: {', '.join(missing)} ({session_path})"
+            )
+        return AliDocsSessionConfig(
+            a_token=a_token,
+            xsrf_token=xsrf_token,
+            cookie=cookie,
+            bx_version=bx_version,
+        )
+
+    try:
+        return load_session_config(
+            environ=current_environ,
+            a_token_env=a_token_env,
+            xsrf_token_env=xsrf_token_env,
+            cookie_env=cookie_env,
+            bx_version_env=bx_version_env,
+        )
+    except RuntimeError as exc:
+        raise RuntimeError(
+            "No AliDocs session found for "
+            f"operator_union_id={normalized_operator_union_id}. Expected session file {session_path} "
+            f"or environment variables {a_token_env}, {xsrf_token_env}, {cookie_env}."
+        ) from exc
 
 
 def _json_request(
