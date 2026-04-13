@@ -160,7 +160,7 @@ def parse_queue_records(
     immediate_trigger_field: str,
     force_phase2_refresh_field: str,
     upload_dingtalk_field: str,
-    operator_union_id_field: str,
+    operator_union_id_fields: tuple[str, ...],
     dingtalk_target_node_url_fields: tuple[str, ...],
 ) -> list[Any]:
     records: list[Any] = []
@@ -185,7 +185,7 @@ def parse_queue_records(
                 immediate_trigger_value=fields.get(immediate_trigger_field),
                 force_phase2_refresh_value=fields.get(force_phase2_refresh_field),
                 upload_dingtalk_value=fields.get(upload_dingtalk_field),
-                operator_union_id=scalar_text(fields.get(operator_union_id_field)),
+                operator_union_id=scalar_text(field_value(fields, *operator_union_id_fields)),
                 dingtalk_target_node_url=scalar_text(field_value(fields, *dingtalk_target_node_url_fields)),
             )
         )

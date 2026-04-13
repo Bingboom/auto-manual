@@ -61,6 +61,11 @@ Current DingTalk-specific queue behavior:
   overrides the global target
 - if a row has `operator_union_id`, the worker can resolve a per-operator
   AliDocs session file before falling back to global envs
+- `DingTalk_session_key` and `钉钉会话键` are accepted as aliases for the same
+  session selector field
+- if a DingTalk-enabled row points at a missing per-operator session or there is
+  no usable global session, the queue now fails that row before build starts
+  and writes the missing-session reason back to Feishu
 
 ## 3. Current Execution Shape
 
@@ -171,16 +176,39 @@ The main remaining gaps are:
 - a future app-only or officially supported DingTalk upload path if the browser
   session chain becomes too fragile
 
+Current live-test note:
+
+- the real `Document_link` queue row can already drive `Publish`,
+  `DingTalk_target_node_url`, and `operator_union_id`
+- the remaining blocker on the tested worker is not table routing; it is the
+  absence of a matching local DingTalk session source:
+  - either global `DINGTALK_DOCS_*`
+  - or `<session_root>/<operator_union_id>.json`
+- the queue now surfaces that missing-session problem before build starts, so
+  the live blocker is explicit in row writeback instead of hiding until upload
+
 ## 9. Recommended Next Work
 
 The recommended next work is operational, not architectural:
 
-1. validate one local Feishu primary + DingTalk mirror run against a controlled
+1. keep the current row-driven contract as the maintained rollout path:
+   `是否上传钉钉` + `DingTalk_target_node_url` + `operator_union_id` or
+   `DingTalk_session_key`
+2. run workers in one of two explicit modes:
+   - shared global-session worker: DingTalk-enabled rows may omit
+     `operator_union_id`, and the worker uses one shared `DINGTALK_DOCS_*`
+   - per-operator worker: DingTalk-enabled rows should carry
+     `operator_union_id` or its alias so the worker can resolve
+     `<session_root>/<key>.json`
+3. validate one local Feishu primary + DingTalk mirror run against a controlled
    `Document_link` row
-2. validate one GitHub Draft/Publish run with real DingTalk secrets
-3. decide whether `operator_union_id + session_root` is enough for your
-   day-to-day worker ownership model
-4. only after that, decide whether a new DingTalk provider is worth the cost
+4. validate one GitHub Draft/Publish run with real DingTalk secrets
+5. treat the rollout slice as complete only after:
+   - one real `Build Draft Package` row succeeds
+   - one real `Publish` row succeeds
+   - `Document link_dd` is written back
+   - `构建结果` contains `dingtalk_sync=ok`
+6. only after that, decide whether a new DingTalk provider is worth the cost
 
 Do not reopen the earlier "replace Feishu with DingTalk" plan unless the queue
 control plane itself is intentionally being redesigned.

@@ -193,7 +193,7 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 2. 在该目录下按 `operator_union_id` 放 JSON 文件，例如：
 
 ```text
-%USERPROFILE%\.auto-manual\dingtalk-sessions\ou_xxx.json
+%USERPROFILE%\.auto-manual\dingtalk-sessions\alice.json
 ```
 
 文件内容示例：
@@ -213,6 +213,10 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 - 找到就用该操作员会话上传 DingTalk
 - 找不到才回退到全局 `DINGTALK_DOCS_A_TOKEN` / `DINGTALK_DOCS_XSRF_TOKEN` / `DINGTALK_DOCS_COOKIE`
 - 队列行里没有 `operator_union_id` 时，直接使用全局会话
+- `DingTalk_session_key` 和 `钉钉会话键` 也可以作为同一列用途的别名；最终都会映射到同一个 `<key>.json`
+- 如果你在 Feishu `Document_link` 行里填的是 `alice`，那这里就必须准备 `alice.json`
+- 共享 worker 如果打算按行切换 DingTalk 会话，建议把 `operator_union_id` 或它的别名当成启用 DingTalk 行的必填列；否则就统一走一套全局 `DINGTALK_DOCS_*`
+- 当前队列已经会在 build 前先检查这个会话来源；缺少匹配的 `<key>.json` 且也没有全局会话时，会直接失败并把原因写回 `构建结果`
 
 ## 8. 怎样启用 DingTalk 同步
 

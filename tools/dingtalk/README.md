@@ -106,6 +106,8 @@ Current DingTalk-related queue fields:
 - `是否上传钉钉`: optional row-level DingTalk gate
 - `DingTalk_target_node_url`: optional row-level DingTalk target override
 - `operator_union_id`: optional session-file selector for per-operator uploads
+- `DingTalk_session_key` / `钉钉会话键`: aliases for the same session-file
+  selector
 
 Current behavior:
 
@@ -115,6 +117,8 @@ Current behavior:
   worker mode for that whole row
 - if the row has `DingTalk_target_node_url`, that row-level target overrides the
   global `DINGTALK_DOCS_TARGET_NODE_URL`
+- if the selected DingTalk session source is missing, the queue now fails the
+  row before build starts and writes the missing-session reason back to Feishu
 - if `Document link_dd` exists, DingTalk mirror or DingTalk primary mode writes
   the DingTalk node URL there
 - `构建结果` may include `dingtalk_sync=ok|failed|skipped`

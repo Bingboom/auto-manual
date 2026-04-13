@@ -360,6 +360,7 @@ def process_build_queue(
         resolve_row_artifact_destination=module.resolve_artifact_destination,
         resolve_artifact_mirror_provider=module.resolve_artifact_mirror_provider,
         resolve_dingtalk_mirror_destination=module.resolve_dingtalk_mirror_destination,
+        ensure_dingtalk_session_ready=module.ensure_dingtalk_session_ready,
         build_started_fields=module.build_started_fields,
         build_document_for_task=module.build_document_for_task,
         publish_word_artifact=module.publish_word_artifact,

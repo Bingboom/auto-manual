@@ -44,6 +44,7 @@ def process_queue_record_group(
     resolve_row_artifact_destination: Callable[..., Any],
     resolve_artifact_mirror_provider: Callable[..., str | None],
     resolve_dingtalk_mirror_destination: Callable[..., Any],
+    ensure_dingtalk_session_ready: Callable[..., None],
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Path],
     publish_word_artifact: Callable[..., Any],
@@ -125,6 +126,14 @@ def process_queue_record_group(
                 else:
                     dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(cfg=cfg)
                     print(f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
+        if (
+            str(getattr(effective_artifact_destination, "provider", "") or "") == "dingtalk_alidocs_session"
+            or dingtalk_mirror_destination is not None
+        ):
+            ensure_dingtalk_session_ready(
+                cfg=cfg,
+                operator_union_id=dingtalk_operator_union_id,
+            )
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,
