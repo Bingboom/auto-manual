@@ -346,6 +346,7 @@ def process_build_queue(
         queue_group_lang=module.queue_group_lang,
         queue_group_build_family=module.queue_group_build_family,
         queue_group_dingtalk_target_node_url=module.queue_group_dingtalk_target_node_url,
+        queue_group_operator_union_id=module.queue_group_operator_union_id,
         queue_group_force_phase2_refresh=module.queue_group_force_phase2_refresh,
         queue_group_upload_dingtalk=module.queue_group_upload_dingtalk,
         validate_queue_record_group=module.validate_queue_record_group,
