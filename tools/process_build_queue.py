@@ -43,6 +43,7 @@ from tools.queue_contract import (  # noqa: E402
     IMMEDIATE_TRIGGER_FIELD as _QC_IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD as _QC_LANG_FIELD,
     LEGACY_TRIGGER_FIELDS as _QC_LEGACY_TRIGGER_FIELDS,
+    OPERATOR_UNION_ID_FIELD as _QC_OPERATOR_UNION_ID_FIELD,
     RESULT_FIELD as _QC_RESULT_FIELD,
     SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
     TRIGGER_FIELD as _QC_TRIGGER_FIELD,
@@ -94,7 +95,10 @@ from tools.process_build_queue_services import (  # noqa: E402
     upload_word_to_drive as _upload_word_to_drive_service,
     wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
 )
-from tools.dingtalk.alidocs_session import load_session_config, upload_file_to_node  # noqa: E402
+from tools.dingtalk.alidocs_session import (  # noqa: E402
+    load_session_config_for_operator_union_id,
+    upload_file_to_node,
+)
 from tools.queue_artifact_sink import (  # noqa: E402
     ArtifactDestination,
     ArtifactPublishError,
@@ -151,6 +155,7 @@ from tools.queue_bound_records import (  # noqa: E402
     pending_queue_records,
     queue_group_build_family,
     queue_group_lang,
+    queue_group_operator_union_id,
     queue_record_action_source,
     queue_record_key,
     queue_record_legacy_doc_phase,
@@ -200,6 +205,7 @@ DINGTALK_TARGET_NODE_URL_FIELD = _QC_DINGTALK_TARGET_NODE_URL_FIELD
 FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
 UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
+OPERATOR_UNION_ID_FIELD = _QC_OPERATOR_UNION_ID_FIELD
 SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
 FAILED_PREFIX = _QC_FAILED_PREFIX
 TRIGGER_VALUES = _QC_TRIGGER_VALUES
@@ -326,11 +332,13 @@ def publish_word_artifact(
     identity: str,
     artifact_destination: WikiDestination | ArtifactDestination,
     dingtalk_mirror_destination: ArtifactDestination | None = None,
+    dingtalk_operator_union_id: str = "",
 ) -> ArtifactPublishResult:
     provider = artifact_sink_provider(cfg, environ=os.environ)
     if provider == "dingtalk_alidocs_session":
         env_names = dingtalk_alidocs_env_names(cfg)
-        session = load_session_config(
+        session = load_session_config_for_operator_union_id(
+            operator_union_id=dingtalk_operator_union_id,
             environ=os.environ,
             a_token_env=env_names["a_token_env"],
             xsrf_token_env=env_names["xsrf_token_env"],
@@ -398,7 +406,8 @@ def publish_word_artifact(
         return result
 
     env_names = dingtalk_alidocs_env_names(cfg)
-    session = load_session_config(
+    session = load_session_config_for_operator_union_id(
+        operator_union_id=dingtalk_operator_union_id,
         environ=os.environ,
         a_token_env=env_names["a_token_env"],
         xsrf_token_env=env_names["xsrf_token_env"],
