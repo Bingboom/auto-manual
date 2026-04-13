@@ -1,6 +1,6 @@
 # OpenClaw Control Layer Plan
 
-Updated: 2026-04-12
+Updated: 2026-04-13
 
 ## 1. Role
 
@@ -127,6 +127,89 @@ In other words:
 - GitHub Actions remains the execution plane
 - Feishu phase2 tables remain the workflow state and writeback system
 
+### 3.2.1 Local Checkout vs Remote `main`
+
+The most common maintainer setup now has two different "places" involved in one operator request:
+
+- the local control surface, which runs on the maintainer host that is currently running OpenClaw or the repo-owned Feishu IM adapter
+- the remote execution surface, which stays on GitHub Actions `main`
+
+Short answer to the common operator question:
+
+- `queue-query`, `queue-resolve-action`, `queue-execute`, and the local OpenClaw control-layer CLI run against the local checkout on the current host
+- the actual review/build/publish worker still runs remotely by dispatching the repository's GitHub workflow on `main`
+- if the target row already carries `Git_ref`, that branch is still the content source used by the remote worker, but the workflow definition itself is still loaded from remote `main`
+
+Current direct-agent path on a maintainer laptop:
+
+```mermaid
+sequenceDiagram
+    participant OP as "Operator in Feishu"
+    participant OC as "OpenClaw or Codex on maintainer host"
+    participant LR as "Local repo checkout on host"
+    participant CLI as "Local control surface"
+    participant GH as "GitHub Actions on remote main"
+    participant FT as "Feishu phase2 tables"
+    participant FS as "Artifact sink"
+
+    OP->>OC: Natural-language request
+    OC->>LR: Read local repo context
+    OC->>CLI: Run local `build.py queue-query` or `queue-resolve-action`
+    CLI->>FT: Read queue rows and current writeback fields
+    FT-->>CLI: One resolved row or ambiguity / missing-field result
+    CLI-->>OC: Structured result
+    OC->>CLI: Run local `build.py queue-execute` when dispatch is approved
+    CLI->>GH: `workflow_dispatch` on remote `main`
+    GH->>FT: Re-read row and existing workflow fields
+    GH->>GH: Run review/build/publish worker logic
+    GH->>FS: Upload artifact or publish output
+    GH->>FT: Write back `Document link`, `构建结果`, `PR_url`, or publish metadata
+    GH-->>CLI: Run status, URL, metadata, failure summary
+    CLI->>FT: Re-read final row state when needed
+    CLI-->>OC: Final structured result
+    OC-->>OP: Human-readable reply in the same thread
+```
+
+Equivalent repo-owned adapter path:
+
+```mermaid
+flowchart LR
+    A["Feishu IM thread"]
+    B["Repo-owned Feishu IM adapter process<br/>local listener or webhook host"]
+    C["Local repo checkout on adapter host<br/>queue-query / queue-resolve-action / queue-execute"]
+    D["GitHub Actions worker on remote main"]
+    E["Feishu phase2 tables + artifact sink writeback"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> C
+    C --> B
+    B --> A
+```
+
+Important difference between the two ingress styles:
+
+- direct OpenClaw or Codex chat on a maintainer laptop can still answer general natural-language questions before or around the bounded repo tool calls
+- the repo-owned `feishu-im-webhook-adapter` stays much narrower: it receives text, resolves one bounded action through `queue-resolve-action`, and replies with templated accepted / completed / confirmation / error messages
+
+This means "which `main` is used?" needs to be answered per step:
+
+- local checkout step: whatever branch or checkout currently exists on the maintainer or adapter host
+- workflow dispatch step: always the repository default branch, currently `main`
+- worker source branch step: the row's `Git_ref` when the existing worker logic expects one, especially for Build Draft Package and Publish
+
+### 3.2.2 Practical Interpretation
+
+For operators and maintainers, the safest mental model is:
+
+1. OpenClaw or the adapter uses the local checkout only as the control plane and lookup layer.
+2. GitHub Actions `main` stays the trusted remote execution plane for the actual worker.
+3. `Document_link.Git_ref` stays the remote worker's content source when the row points at a review branch.
+
+So a maintainer-hosted OpenClaw session can be "local first" for message understanding and row resolution while still being "remote main" for the real build, review, or publish run.
+
 ### 3.3 Post-Build Upload Execution Paths
 
 The document upload path still belongs to the queue worker.
@@ -251,7 +334,7 @@ Feishu phase2 tables should keep owning:
 This milestone does not require:
 
 - deploying or using Codex ACP
-- letting OpenClaw execute repo code directly
+- letting OpenClaw bypass the bounded local control surface and run arbitrary repo code as the execution plane
 - moving `FEISHU_*` secrets into OpenClaw
 - replacing Feishu phase2 tables as the state source
 - replacing `build.py` queue commands with OpenClaw-native task logic
