@@ -5,61 +5,17 @@ import readline from "node:readline";
 
 import { loadAdapterConfig, missingAdapterConfig } from "./lib/config.mjs";
 import { createFeishuClient } from "./lib/feishu-client.mjs";
+import {
+  buildLocalListenerConfig,
+  buildLocalListenerSpawnEnv,
+  localListenerUsage,
+  parseLocalListenerArgs,
+} from "./lib/local-listener-config.mjs";
 import { createMessageHandler } from "./lib/message-handler.mjs";
 import { createRepoControl } from "./lib/repo-control.mjs";
 import { createStateStore } from "./lib/state-store.mjs";
 
 const IM_EVENT_TYPE = "im.message.receive_v1";
-
-function parseArgs(argv) {
-  const result = {
-    controlConfig: "",
-    larkCliBin: "",
-    eventIdentity: "",
-  };
-  for (let index = 0; index < argv.length; index += 1) {
-    const current = String(argv[index] || "").trim();
-    if (!current) {
-      continue;
-    }
-    if (current === "--control-config") {
-      result.controlConfig = String(argv[index + 1] || "").trim();
-      index += 1;
-      continue;
-    }
-    if (current === "--lark-cli-bin") {
-      result.larkCliBin = String(argv[index + 1] || "").trim();
-      index += 1;
-      continue;
-    }
-    if (current === "--event-identity") {
-      result.eventIdentity = String(argv[index + 1] || "").trim();
-      index += 1;
-      continue;
-    }
-    if (current === "--help" || current === "-h") {
-      return { ...result, help: true };
-    }
-    throw new Error(`Unknown argument: ${current}`);
-  }
-  return result;
-}
-
-function usage() {
-  return [
-    "Usage:",
-    "  node local-listener.mjs [--control-config <config.yaml>] [--lark-cli-bin <bin>] [--event-identity <bot|user>]",
-  ].join("\n");
-}
-
-function buildListenerConfig(baseConfig, args) {
-  return {
-    ...baseConfig,
-    controlConfig: args.controlConfig || baseConfig.controlConfig,
-    larkCliBin: args.larkCliBin || String(process.env.FEISHU_IM_LARK_CLI_BIN || "").trim() || "lark-cli",
-    eventIdentity: args.eventIdentity || String(process.env.FEISHU_IM_EVENT_IDENTITY || "").trim() || "bot",
-  };
-}
 
 function pumpStream(stream, prefix, writer = console.error) {
   if (!stream) {
@@ -74,13 +30,13 @@ function pumpStream(stream, prefix, writer = console.error) {
 }
 
 async function main(argv) {
-  const args = parseArgs(argv);
+  const args = parseLocalListenerArgs(argv);
   if (args.help) {
-    console.log(usage());
+    console.log(localListenerUsage());
     return 0;
   }
 
-  const config = buildListenerConfig(loadAdapterConfig(), args);
+  const config = buildLocalListenerConfig(loadAdapterConfig(), args);
   const missing = missingAdapterConfig(config);
   if (missing.length) {
     throw new Error(`Missing adapter config: ${missing.join(", ")}`);
@@ -108,14 +64,14 @@ async function main(argv) {
   ];
   const proc = spawn(config.larkCliBin, subscribeArgs, {
     cwd: config.repoRoot,
-    env: process.env,
+    env: buildLocalListenerSpawnEnv(config),
     stdio: ["ignore", "pipe", "pipe"],
     shell: process.platform === "win32",
   });
 
   pumpStream(proc.stderr, "[feishu-im-local-listener] ");
   console.log(
-    `[feishu-im-local-listener] listening for ${IM_EVENT_TYPE} via ${config.larkCliBin} (identity=${config.eventIdentity}, control_config=${config.controlConfig})`
+    `[feishu-im-local-listener] listening for ${IM_EVENT_TYPE} via ${config.larkCliBin} (identity=${config.eventIdentity}, control_config=${config.controlConfig}${config.larkCliHome ? `, lark_cli_home=${config.larkCliHome}` : ""})`
   );
 
   const stdoutReader = readline.createInterface({

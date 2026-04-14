@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -26,6 +29,8 @@ DEFAULT_TABLE_ID = "tblnst8YURfRB1gY"
 DEFAULT_VIEW_ID = "veweqW2fQv"
 DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
+DEFAULT_CACHE_TTL_SECONDS = 900
+CACHE_SCHEMA_VERSION = 1
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -44,6 +49,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--view-id", default=DEFAULT_VIEW_ID, help="Bitable view id to read records from")
     parser.add_argument("--base-token", default=None, help="Optional base token override; skips wiki node resolution")
     parser.add_argument("--max-records", type=int, default=DEFAULT_MAX_RECORDS, help="Safety cap while paginating record-list")
+    parser.add_argument(
+        "--cache-ttl-seconds",
+        type=int,
+        default=DEFAULT_CACHE_TTL_SECONDS,
+        help="Reuse a recent local table snapshot for this many seconds before refreshing",
+    )
+    parser.add_argument("--cache-dir", default=None, help="Optional cache directory override for live table snapshots")
+    parser.add_argument("--no-cache", action="store_true", help="Always fetch the live table instead of using a local cache")
     return parser.parse_args(argv)
 
 
@@ -51,16 +64,42 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     source_lang = normalize_language(args.source_lang) or "en"
     target_lang = normalize_language(args.target_lang)
-    cli = resolve_lark_cli()
-    base_token = args.base_token or resolve_base_token(cli=cli, wiki_token=args.wiki_token)
-    language_fields = get_table_language_fields(cli=cli, base_token=base_token, table_id=args.table_id)
-    rows = list_records(
-        cli=cli,
-        base_token=base_token,
+    cache_key = build_cache_key(
+        wiki_token=args.wiki_token,
+        base_token=args.base_token,
         table_id=args.table_id,
         view_id=args.view_id,
         max_records=args.max_records,
     )
+    cache_dir = resolve_cache_dir(args.cache_dir) if not args.no_cache and args.cache_ttl_seconds > 0 else None
+    cached_snapshot = load_cached_table_snapshot(
+        cache_dir=cache_dir,
+        cache_key=cache_key,
+        max_age_seconds=args.cache_ttl_seconds,
+    )
+    if cached_snapshot is None:
+        cli = resolve_lark_cli()
+        base_token = args.base_token or resolve_base_token(cli=cli, wiki_token=args.wiki_token)
+        language_fields = get_table_language_fields(cli=cli, base_token=base_token, table_id=args.table_id)
+        rows = list_records(
+            cli=cli,
+            base_token=base_token,
+            table_id=args.table_id,
+            view_id=args.view_id,
+            max_records=args.max_records,
+        )
+        save_cached_table_snapshot(
+            cache_dir=cache_dir,
+            cache_key=cache_key,
+            wiki_token=args.wiki_token,
+            table_id=args.table_id,
+            view_id=args.view_id,
+            max_records=args.max_records,
+            language_fields=language_fields,
+            rows=rows,
+        )
+    else:
+        language_fields, rows = cached_snapshot
     entries = build_sentence_pair_entries(rows, language_fields=language_fields)
     query_units = split_translation_units(args.query_text) if args.split_units else [" ".join(args.query_text.split())]
     unit_matches = []
@@ -125,6 +164,104 @@ def resolve_lark_cli() -> str:
         if resolved:
             return resolved
     raise RuntimeError("lark-cli was not found in PATH.")
+
+
+def resolve_cache_dir(raw_cache_dir: str | None) -> Path:
+    if raw_cache_dir:
+        return Path(raw_cache_dir).expanduser()
+    if sys.platform == "darwin":
+        return Path.home() / "Library" / "Caches" / "auto-manual" / "translation-memory"
+    xdg_cache_home = os.environ.get("XDG_CACHE_HOME")
+    if xdg_cache_home:
+        return Path(xdg_cache_home) / "auto-manual" / "translation-memory"
+    if os.name == "nt":
+        local_app_data = os.environ.get("LOCALAPPDATA")
+        if local_app_data:
+            return Path(local_app_data) / "auto-manual" / "translation-memory"
+        return Path.home() / "AppData" / "Local" / "auto-manual" / "translation-memory"
+    return Path.home() / ".cache" / "auto-manual" / "translation-memory"
+
+
+def build_cache_key(
+    *,
+    wiki_token: str,
+    base_token: str | None,
+    table_id: str,
+    view_id: str,
+    max_records: int,
+) -> str:
+    raw = json.dumps(
+        {
+            "wiki_token": wiki_token,
+            "base_token": base_token or "",
+            "table_id": table_id,
+            "view_id": view_id,
+            "max_records": max_records,
+        },
+        sort_keys=True,
+        ensure_ascii=True,
+    )
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def load_cached_table_snapshot(
+    *,
+    cache_dir: Path | None,
+    cache_key: str,
+    max_age_seconds: int,
+) -> tuple[list[str], list[dict[str, object]]] | None:
+    if cache_dir is None or max_age_seconds <= 0:
+        return None
+    cache_path = cache_dir / f"{cache_key}.json"
+    try:
+        payload = json.loads(cache_path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+    except (OSError, json.JSONDecodeError):
+        return None
+    if int(payload.get("schema_version", 0) or 0) != CACHE_SCHEMA_VERSION:
+        return None
+    fetched_at = float(payload.get("fetched_at", 0) or 0)
+    if fetched_at <= 0 or time.time() - fetched_at > max_age_seconds:
+        return None
+    language_fields = payload.get("language_fields")
+    rows = payload.get("rows")
+    if not isinstance(language_fields, list) or not isinstance(rows, list):
+        return None
+    return [str(field) for field in language_fields], [dict(row) for row in rows if isinstance(row, dict)]
+
+
+def save_cached_table_snapshot(
+    *,
+    cache_dir: Path | None,
+    cache_key: str,
+    wiki_token: str,
+    table_id: str,
+    view_id: str,
+    max_records: int,
+    language_fields: list[str],
+    rows: list[dict[str, object]],
+) -> None:
+    if cache_dir is None:
+        return
+    payload = {
+        "schema_version": CACHE_SCHEMA_VERSION,
+        "fetched_at": time.time(),
+        "wiki_token": wiki_token,
+        "table_id": table_id,
+        "view_id": view_id,
+        "max_records": max_records,
+        "language_fields": language_fields,
+        "rows": rows,
+    }
+    try:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cache_path = cache_dir / f"{cache_key}.json"
+        temp_path = cache_path.with_suffix(f".{os.getpid()}.{time.time_ns()}.tmp")
+        temp_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+        temp_path.replace(cache_path)
+    except OSError:
+        return
 
 
 def resolve_base_token(*, cli: str, wiki_token: str) -> str:

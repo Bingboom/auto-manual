@@ -1,4 +1,4 @@
 interface:
   display_name: "Bitable Translation Memory"
   short_description: "Build OpenClaw translation context from live sentence pairs plus phase2 fallback"
-  default_prompt: "Query the live Translation_Memory sentence-pair table first, fall back to repo phase2 translation memory when needed, and emit prompt-ready context for OpenClaw translation."
+  default_prompt: "For any manual sentence translation in this repo, query the live Translation_Memory sentence-pair table first, use the matched target sentence as the default answer when a direct hit exists, and fall back to repo phase2 translation memory only when needed."
