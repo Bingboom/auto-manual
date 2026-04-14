@@ -114,22 +114,37 @@ def process_queue_record_group(
                 print(f"[build-queue] Skipping DingTalk sync for {group_key} ({row_count} row(s)); using Feishu/wiki only.")
                 deferred_status_notes = ("dingtalk_sync=skipped",)
             else:
-                if dingtalk_target_node_url:
-                    dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(
+                try:
+                    if dingtalk_target_node_url:
+                        dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(
+                            cfg=cfg,
+                            target_node_url=dingtalk_target_node_url,
+                        )
+                        print(
+                            f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) "
+                            f"with row target {dingtalk_target_node_url}."
+                        )
+                    else:
+                        dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(cfg=cfg)
+                        print(f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
+                    ensure_dingtalk_session_ready(
                         cfg=cfg,
-                        target_node_url=dingtalk_target_node_url,
+                        operator_union_id=dingtalk_operator_union_id,
                     )
+                except Exception as exc:
+                    message = str(exc).strip()
+                    deferred_status_notes = (
+                        *deferred_status_notes,
+                        "dingtalk_sync=failed",
+                        f"dingtalk_sync_error={message}",
+                    )
+                    dingtalk_mirror_destination = None
                     print(
-                        f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) "
-                        f"with row target {dingtalk_target_node_url}."
+                        f"[build-queue] WARNING DingTalk sync unavailable for {group_key} ({row_count} row(s)); "
+                        f"using Feishu/wiki only: {message}",
+                        file=stderr,
                     )
-                else:
-                    dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(cfg=cfg)
-                    print(f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
-        if (
-            str(getattr(effective_artifact_destination, "provider", "") or "") == "dingtalk_alidocs_session"
-            or dingtalk_mirror_destination is not None
-        ):
+        if str(getattr(effective_artifact_destination, "provider", "") or "") == "dingtalk_alidocs_session":
             ensure_dingtalk_session_ready(
                 cfg=cfg,
                 operator_union_id=dingtalk_operator_union_id,
