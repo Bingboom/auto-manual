@@ -2,17 +2,21 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
-from tools.dingtalk.workspace import parse_node_id_from_url
+from tools.dingtalk.alidocs_session import DEFAULT_SESSION_REGISTRY_ROOT
+from tools.dingtalk.workspace import normalize_node_url, parse_node_id_from_url
 
 DEFAULT_ARTIFACT_SINK_PROVIDER = "lark_drive"
 DEFAULT_ARTIFACT_SINK_PROVIDER_ENV = "AUTO_MANUAL_ARTIFACT_SINK_PROVIDER"
+DEFAULT_ARTIFACT_MIRROR_PROVIDER_ENV = "AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER"
 DEFAULT_DINGTALK_TARGET_NODE_URL_ENV = "DINGTALK_DOCS_TARGET_NODE_URL"
 DEFAULT_DINGTALK_A_TOKEN_ENV = "DINGTALK_DOCS_A_TOKEN"
 DEFAULT_DINGTALK_XSRF_TOKEN_ENV = "DINGTALK_DOCS_XSRF_TOKEN"
 DEFAULT_DINGTALK_COOKIE_ENV = "DINGTALK_DOCS_COOKIE"
 DEFAULT_DINGTALK_BX_VERSION_ENV = "DINGTALK_DOCS_BX_V"
+DEFAULT_DINGTALK_SESSION_ROOT_ENV = "AUTO_MANUAL_DINGTALK_SESSION_ROOT"
 
 
 @dataclass(frozen=True)
@@ -72,6 +76,13 @@ def _normalize_provider(value: str | None) -> str:
     )
 
 
+def _normalize_optional_provider(value: str | None) -> str | None:
+    text = str(value or "").strip().lower()
+    if not text or text in {"none", "off", "disabled", "false", "no"}:
+        return None
+    return _normalize_provider(text)
+
+
 def artifact_sink_provider(cfg: dict[str, Any], *, environ: dict[str, str] | os._Environ[str]) -> str:
     current_cfg = artifact_sink_cfg(cfg)
     provider_env = str(current_cfg.get("provider_env") or DEFAULT_ARTIFACT_SINK_PROVIDER_ENV).strip()
@@ -79,6 +90,15 @@ def artifact_sink_provider(cfg: dict[str, Any], *, environ: dict[str, str] | os.
     if not provider_value:
         provider_value = str(current_cfg.get("provider") or "").strip()
     return _normalize_provider(provider_value)
+
+
+def artifact_mirror_provider(cfg: dict[str, Any], *, environ: dict[str, str] | os._Environ[str]) -> str | None:
+    current_cfg = artifact_sink_cfg(cfg)
+    provider_env = str(current_cfg.get("mirror_provider_env") or DEFAULT_ARTIFACT_MIRROR_PROVIDER_ENV).strip()
+    provider_value = str(environ.get(provider_env, "")).strip() if provider_env else ""
+    if not provider_value:
+        provider_value = str(current_cfg.get("mirror_provider") or "").strip()
+    return _normalize_optional_provider(provider_value)
 
 
 def dingtalk_alidocs_env_names(cfg: dict[str, Any]) -> dict[str, str]:
@@ -92,7 +112,23 @@ def dingtalk_alidocs_env_names(cfg: dict[str, Any]) -> dict[str, str]:
         "xsrf_token_env": str(dingtalk_cfg.get("xsrf_token_env") or DEFAULT_DINGTALK_XSRF_TOKEN_ENV).strip(),
         "cookie_env": str(dingtalk_cfg.get("cookie_env") or DEFAULT_DINGTALK_COOKIE_ENV).strip(),
         "bx_version_env": str(dingtalk_cfg.get("bx_version_env") or DEFAULT_DINGTALK_BX_VERSION_ENV).strip(),
+        "session_root_env": str(dingtalk_cfg.get("session_root_env") or DEFAULT_DINGTALK_SESSION_ROOT_ENV).strip(),
     }
+
+
+def _has_dingtalk_session_registry(
+    *,
+    root_value: str,
+) -> bool:
+    if not root_value.strip():
+        return False
+    root = Path(root_value).expanduser()
+    if not root.exists() or not root.is_dir():
+        return False
+    for path in root.iterdir():
+        if path.is_file() and path.suffix.lower() == ".json":
+            return True
+    return False
 
 
 def resolve_dingtalk_target_node_url(
@@ -104,7 +140,7 @@ def resolve_dingtalk_target_node_url(
 ) -> str:
     override_value = str(target_node_url or "").strip()
     if override_value:
-        return override_value
+        return normalize_node_url(override_value)
     env_names = dingtalk_alidocs_env_names(cfg)
     env_name = env_names["target_node_url_env"]
     if not env_name:
@@ -120,7 +156,7 @@ def resolve_dingtalk_target_node_url(
             "DingTalk target node URL is required: "
             f"provide row DingTalk_target_node_url or set {env_name}"
         )
-    return value
+    return normalize_node_url(value)
 
 
 def collect_artifact_sink_preflight_errors(
@@ -132,17 +168,31 @@ def collect_artifact_sink_preflight_errors(
         provider = artifact_sink_provider(cfg, environ=environ)
     except RuntimeError as exc:
         return [str(exc)]
-    if provider != "dingtalk_alidocs_session":
+    try:
+        mirror_provider = artifact_mirror_provider(cfg, environ=environ)
+    except RuntimeError as exc:
+        return [str(exc)]
+    if provider != "dingtalk_alidocs_session" and mirror_provider != "dingtalk_alidocs_session":
         return []
     env_names = dingtalk_alidocs_env_names(cfg)
-    missing_env_names = [
+    errors: list[str] = []
+    session_env_names = [
         env_name
         for key, env_name in env_names.items()
-        if key not in {"bx_version_env", "target_node_url_env"} and env_name and not str(environ.get(env_name, "")).strip()
+        if key in {"a_token_env", "xsrf_token_env", "cookie_env"} and env_name
     ]
-    errors: list[str] = []
-    if missing_env_names:
-        errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
+    has_session_envs = all(str(environ.get(env_name, "")).strip() for env_name in session_env_names)
+    session_root_env = env_names["session_root_env"]
+    session_root_value = str(environ.get(session_root_env, "")).strip()
+    has_session_registry = _has_dingtalk_session_registry(root_value=session_root_value)
+    if not has_session_envs and not has_session_registry:
+        default_root = DEFAULT_SESSION_REGISTRY_ROOT.expanduser()
+        errors.append(
+            "DingTalk upload requires either global session envs "
+            + ", ".join(session_env_names)
+            + f" or JSON session files under {session_root_env} "
+            + f"(current: {session_root_value or default_root})"
+        )
     return errors
 
 

@@ -160,6 +160,7 @@ def parse_queue_records(
     immediate_trigger_field: str,
     force_phase2_refresh_field: str,
     upload_dingtalk_field: str,
+    operator_union_id_fields: tuple[str, ...],
     dingtalk_target_node_url_fields: tuple[str, ...],
 ) -> list[Any]:
     records: list[Any] = []
@@ -184,6 +185,7 @@ def parse_queue_records(
                 immediate_trigger_value=fields.get(immediate_trigger_field),
                 force_phase2_refresh_value=fields.get(force_phase2_refresh_field),
                 upload_dingtalk_value=fields.get(upload_dingtalk_field),
+                operator_union_id=scalar_text(field_value(fields, *operator_union_id_fields)),
                 dingtalk_target_node_url=scalar_text(field_value(fields, *dingtalk_target_node_url_fields)),
             )
         )
@@ -363,6 +365,14 @@ def queue_group_dingtalk_target_node_url(records: list[Any]) -> str:
     return ""
 
 
+def queue_group_operator_union_id(records: list[Any]) -> str:
+    for record in records:
+        operator_union_id = str(getattr(record, "operator_union_id", "") or "").strip()
+        if operator_union_id:
+            return operator_union_id
+    return ""
+
+
 def validate_queue_record_group(
     records: list[Any],
     *,
@@ -392,6 +402,10 @@ def validate_queue_record_group(
         str(getattr(record, "dingtalk_target_node_url", "") or "").strip()
         for record in records
     }
+    operator_union_ids = {
+        str(getattr(record, "operator_union_id", "") or "").strip()
+        for record in records
+    }
     conflicts: list[str] = []
     if len(workflow_actions) > 1:
         conflicts.append("Workflow_action")
@@ -407,6 +421,8 @@ def validate_queue_record_group(
         conflicts.append("是否上传钉钉")
     if True in upload_dingtalk_values and len(dingtalk_target_node_urls) > 1:
         conflicts.append("DingTalk_target_node_url")
+    if True in upload_dingtalk_values and len(operator_union_ids) > 1:
+        conflicts.append("operator_union_id")
     if conflicts:
         raise RuntimeError(
             "Queue rows merged by Document_Key must agree on "

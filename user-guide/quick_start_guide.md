@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-04-11
+Updated: 2026-04-14
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -77,6 +77,7 @@ Updated: 2026-04-11
 - `是否强制刷新数据`
 - `是否上传钉钉`
 - `DingTalk_target_node_url`
+- `operator_union_id`
 - `Document directory`
 - `Document link`
 - `Document link_dd`
@@ -88,9 +89,13 @@ Updated: 2026-04-11
 - `Workflow_action` 是唯一队列语义字段；建分支填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
 - `Doc_phase` 不再参与队列路由，保持留空即可
 - 把结果链接回写到表里
-- 如果当前 artifact sink 是 DingTalk，且表里存在 `Document link_dd`，队列会把同一个 DingTalk 节点链接双写到这个字段；`Document link` 仍保持主字段
-- 如果当前 artifact sink 是 DingTalk，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才走 DingTalk，不勾就退回 Feishu/wiki 上传
-- 如果当前 artifact sink 是 DingTalk，且该行还填了 `DingTalk_target_node_url`，worker 会优先上传到这个行级节点；只有该字段为空时，才回退到全局 `DINGTALK_DOCS_TARGET_NODE_URL`
+- 如果当前启用了 DingTalk mirror，且表里存在 `Document link_dd`，队列会把镜像 DingTalk 节点链接写到这个字段；`Document link` 仍保持 Feishu/wiki 主字段
+- 如果当前启用了 DingTalk mirror，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才同步 DingTalk，不勾就只走 Feishu/wiki
+- 如果表里没有 `是否上传钉钉`，worker 就按当前全局模式处理整行：开启 mirror 的 worker 会同步 DingTalk，Feishu-only worker 不会同步
+- 如果当前启用了 DingTalk mirror，且该行还填了 `DingTalk_target_node_url`，worker 会优先同步到这个行级节点；只有该字段为空时，才回退到全局 `DINGTALK_DOCS_TARGET_NODE_URL`
+- 如果该行还填了 `operator_union_id`，worker 会优先从 `AUTO_MANUAL_DINGTALK_SESSION_ROOT/<operator_union_id>.json` 读取该操作员的钉钉会话；找不到时才回退到全局 `DINGTALK_DOCS_*`
+- `DingTalk_session_key` 和 `钉钉会话键` 也可以作为 `operator_union_id` 的别名；三者都会映射到同一个 session 文件名
+- 如果你在表里填的是 `alice`，那就要在本机或 worker 的 session 目录里准备 `alice.json`；如果缺这个文件且也没有全局 `DINGTALK_DOCS_*`，队列会在 build 前直接失败并把原因写回 `构建结果`
 - 只有当 `是否强制刷新数据 = 勾选` 时，队列才会在这次构建前刷新一次 phase2；否则直接复用当前本地 snapshot
 - `data_sync` 会回写 `refreshed / skipped / failed`
 
@@ -159,7 +164,7 @@ Publish 的原料是：
 
 - `Document link`
 
-如果当前 queue sink 是 DingTalk，worker 还会在表里额外双写：
+如果当前启用了 DingTalk mirror，worker 还会在表里额外写：
 
 - `Document link_dd`
 
@@ -232,6 +237,7 @@ Publish 的原料是：
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
 - `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
 - `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖全局默认节点`
+- `operator_union_id = 这次要按操作员切换钉钉会话时可选填；填了就优先读取该操作员的 session 文件`
 
 ### 系统会做什么
 
@@ -246,14 +252,14 @@ Publish 的原料是：
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 再按 `Document_link.Git_ref` fetch 对应的 review / PR 分支到临时 worktree
 5. 然后基于那条分支里的 `_review` 构建 Build Draft Package Word
-6. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则退回全局默认 DingTalk 节点；未勾选则退回 Feishu/wiki 上传
+6. 如果当前启用了 DingTalk mirror 且 `是否上传钉钉 = 勾选`，就同步 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先同步到该行节点；否则退回全局默认 DingTalk 节点；未勾选则只保留 Feishu/wiki 上传；如果表里没有 `是否上传钉钉`，则按当前 worker 的全局模式决定是否同步
 7. 回写：
    - `开始构建时间`
    - `构建结果`
    - `data_sync`
    - `Document directory`
    - `Document link`
-   - `Document link_dd（仅 DingTalk sink 且字段存在时）`
+   - `Document link_dd（仅启用 DingTalk mirror 且字段存在时）`
 
 ### Build Draft Package 最容易配错的地方
 
@@ -277,6 +283,7 @@ Publish 的原料是：
 - `是否强制刷新数据 = 需要最新 phase2 时才勾`
 - `是否上传钉钉 = 只有这次确实要传 DingTalk 时才勾`
 - `DingTalk_target_node_url = 这次要上传到钉钉时可选填；填了就覆盖全局默认节点`
+- `operator_union_id = 这次要按操作员切换钉钉会话时可选填；填了就优先读取该操作员的 session 文件`
 
 ### 系统会做什么
 
@@ -290,14 +297,14 @@ Publish 的原料是：
 2. 执行 `process-build-queue --workflow-action publish`
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
 4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish` 和 `build.py html --source review`
-5. 如果当前 sink 是 DingTalk 且 `是否上传钉钉 = 勾选`，就上传 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先上传到该行节点；否则退回全局默认 DingTalk 节点；未勾选则退回 Feishu/wiki 上传
+5. 如果当前启用了 DingTalk mirror 且 `是否上传钉钉 = 勾选`，就同步 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先同步到该行节点；否则退回全局默认 DingTalk 节点；未勾选则只保留 Feishu/wiki 上传；如果表里没有 `是否上传钉钉`，则按当前 worker 的全局模式决定是否同步
 6. 回写：
    - `开始构建时间`
    - `构建结果`
    - `data_sync`
    - `Document directory`
    - `Document link`
-   - `Document link_dd（仅 DingTalk sink 且字段存在时）`
+   - `Document link_dd（仅启用 DingTalk mirror 且字段存在时）`
 6. 把最新 publish HTML 刷新到 Vercel
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
@@ -306,6 +313,8 @@ Publish 的原料是：
   - `DINGTALK_DOCS_A_TOKEN`
   - `DINGTALK_DOCS_XSRF_TOKEN`
   - `DINGTALK_DOCS_COOKIE`
+- 还要显式加一个 GitHub Actions repository variable：
+  - `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER = dingtalk_alidocs_session`
 - `DINGTALK_DOCS_TARGET_NODE_URL` 现在只是远端默认节点，可留空
 - 如果这行已经填了 `DingTalk_target_node_url`，远端 worker 会优先用这一行的节点，不依赖默认节点
 

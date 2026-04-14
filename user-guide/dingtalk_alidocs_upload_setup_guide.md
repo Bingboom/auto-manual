@@ -1,6 +1,6 @@
 # 钉钉知识库上传路径配置指南
 
-Updated: 2026-04-09
+Updated: 2026-04-14
 
 这份指南说明当前仓库如何把构建好的 `.docx` 上传到钉钉知识库目录，并把生成后的钉钉节点链接回写到 Feishu `Document_link`。
 
@@ -9,7 +9,7 @@ Updated: 2026-04-09
 - 队列控制面仍然在 Feishu
 - phase2 结构化数据仍然从 Feishu 读取
 - `Document_link` 状态和链接仍然回写到 Feishu
-- 只有“文档产物上传目标”从 Feishu Drive 切换到 DingTalk AliDocs
+- 文档产物仍先上传到 Feishu/wiki，随后可把同一份 DOCX 同步到 DingTalk AliDocs
 
 当前上传方案是浏览器会话模式，不是正式公开 OpenAPI 模式。
 它基于当前已验证的 AliDocs 上传链路：
@@ -51,6 +51,7 @@ Updated: 2026-04-09
 可选变量：
 
 - `DINGTALK_DOCS_BX_V`
+- `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
 
 变量含义：
 
@@ -68,6 +69,10 @@ Updated: 2026-04-09
 
 - `DINGTALK_DOCS_BX_V`
   浏览器请求头里的 `bx-v`。不填时代码会使用默认值，通常不需要手动设置。
+
+- `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
+  可选的操作员会话目录。若队列表格里有 `operator_union_id`，worker 会优先查找
+  `<session_root>/<operator_union_id>.json`，找不到时才回退到全局 `DINGTALK_DOCS_*`。
 
 ## 3. 目标目录 URL 怎么拿
 
@@ -155,6 +160,7 @@ $env:DINGTALK_DOCS_BX_V='2.5.36'
 
 ```powershell
 [Environment]::SetEnvironmentVariable('DINGTALK_DOCS_BX_V', '2.5.36', 'User')
+[Environment]::SetEnvironmentVariable('AUTO_MANUAL_DINGTALK_SESSION_ROOT', "$HOME\\.auto-manual\\dingtalk-sessions", 'User')
 ```
 
 写入后：
@@ -177,10 +183,44 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 - `DINGTALK_DOCS_A_TOKEN`
 - `DINGTALK_DOCS_XSRF_TOKEN`
 - `DINGTALK_DOCS_COOKIE`
+- 如果你准备按操作员切换会话，还应该看到 `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
 
-## 8. 怎样切到 DingTalk 上传
+## 7.1 操作员会话文件模式
 
-现在仓库已经支持一键切换。
+如果你不想让所有队列记录共用一套全局 DingTalk 会话，可以改用“按操作员会话文件”：
+
+1. 先设置 `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
+2. 在该目录下按 `operator_union_id` 放 JSON 文件，例如：
+
+```text
+%USERPROFILE%\.auto-manual\dingtalk-sessions\alice.json
+```
+
+文件内容示例：
+
+```json
+{
+  "a_token": "你的a-token",
+  "xsrf_token": "你的x-xsrf-token",
+  "cookie": "你的完整cookie",
+  "bx_version": "2.5.36"
+}
+```
+
+当前行为：
+
+- 队列行里有 `operator_union_id` 时，worker 先找这个文件
+- 找到就用该操作员会话上传 DingTalk
+- 找不到才回退到全局 `DINGTALK_DOCS_A_TOKEN` / `DINGTALK_DOCS_XSRF_TOKEN` / `DINGTALK_DOCS_COOKIE`
+- 队列行里没有 `operator_union_id` 时，直接使用全局会话
+- `DingTalk_session_key` 和 `钉钉会话键` 也可以作为同一列用途的别名；最终都会映射到同一个 `<key>.json`
+- 如果你在 Feishu `Document_link` 行里填的是 `alice`，那这里就必须准备 `alice.json`
+- 共享 worker 如果打算按行切换 DingTalk 会话，建议把 `operator_union_id` 或它的别名当成启用 DingTalk 行的必填列；否则就统一走一套全局 `DINGTALK_DOCS_*`
+- 当前队列已经会在 build 前先检查这个会话来源；缺少匹配的 `<key>.json` 且也没有全局会话时，会直接失败并把原因写回 `构建结果`
+
+## 8. 怎样启用 DingTalk 同步
+
+现在仓库已经支持一键启用 Feishu 主上传 + DingTalk 同步。
 
 ### 8.1 Feishu 上传
 
@@ -188,7 +228,7 @@ Get-ChildItem Env:DINGTALK_DOCS_*
 powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_feishu.ps1 --dry-run
 ```
 
-### 8.2 DingTalk 上传
+### 8.2 Feishu 主上传 + DingTalk 同步
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps1 --dry-run
@@ -205,7 +245,8 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps
 如果你想继续用公共入口，也可以：
 
 ```powershell
-$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER='dingtalk_alidocs_session'
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER='lark_drive'
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER='dingtalk_alidocs_session'
 powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-run
 ```
 
@@ -216,7 +257,7 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
 
 ## 9. 队列行为不会变的部分
 
-切到 DingTalk 上传后，这些行为保持不变：
+启用 DingTalk 同步后，这些行为保持不变：
 
 - 仍然先从 Feishu `Document_link` 读待构建任务
 - 仍然会先做 `sync-data`
@@ -227,9 +268,11 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
   - `Document directory`
   - `Document link`
 
-变化的只有一件事：
+变化的是：
 
-- `Document link` 的值从 Feishu Drive / wiki 链接变成 DingTalk 文档节点链接
+- `Document link` 继续保持 Feishu/wiki 主链接
+- 如果表里有 `Document link_dd`，并且这行启用了 DingTalk 同步，队列会把 DingTalk 节点链接写到这个补充字段
+- 如果表里没有 `是否上传钉钉`，worker 会按当前全局模式处理整行：开启 mirror 的 worker 会同步 DingTalk，Feishu-only worker 不会同步
 
 ## 10. 上传成功后你会看到什么
 
@@ -245,7 +288,7 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue.ps1 --dry-r
 https://alidocs.dingtalk.com/i/nodes/<dentryUuid>
 ```
 
-然后把这个链接回写到 Feishu `Document link`。
+然后把这个链接回写到 Feishu `Document link_dd`。
 
 ## 11. 什么时候需要重新抓值
 
@@ -372,5 +415,16 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps
 
 - 长期稳定的公开 OpenAPI 集成
 - 无浏览器会话的远程 GitHub Actions 默认方案
+
+如果你想让 GitHub Actions 也支持可选 DingTalk mirror，现在可以额外配置：
+
+- GitHub Secrets：
+  - `DINGTALK_DOCS_A_TOKEN`
+  - `DINGTALK_DOCS_XSRF_TOKEN`
+  - `DINGTALK_DOCS_COOKIE`
+- GitHub Actions repository variable：
+  - `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session`
+
+不配置这个 repository variable 时，远端 worker 仍然默认只保留 Feishu 主上传。
 
 如果未来 DingTalk 给出正式开放接口，这份指南再切换到更稳定的文档化方案。

@@ -1,81 +1,161 @@
-# DingTalk Integration Skeleton
+# DingTalk Integration
 
-This package is the minimal landing zone for a future `dingtalk_openapi` phase2 provider.
+This package is the repo-owned DingTalk integration surface for the current
+hybrid Feishu queue flow.
 
-Current scope:
+Current maintained scope:
 
-- define stable module boundaries
-- host the Phase 0 capability spike helpers
-- prove the verified App-Only token flow behind a reusable helper
-- keep DingTalk-specific auth, record, file, and workspace behavior out of queue orchestration modules until the capability spike is complete
+- Feishu phase2 tables remain the source of truth for queue rows and writeback
+- `build.py process-build-queue` remains the execution entrypoint
+- DingTalk is an optional artifact destination:
+  - Feishu/wiki primary + DingTalk mirror
+  - DingTalk primary replace mode when explicitly requested
+- the current DingTalk upload path is the observed AliDocs browser-session
+  chain, not a public OpenAPI knowledge-base upload provider
 
-This package is intentionally not wired into `build.py` yet.
+Current modules:
 
-Planned ownership:
+- `auth.py`: verified App-Only token helper for future endpoint-based work
+- `workspace.py`: DingTalk docs node parsing helpers
+- `alidocs_session.py`: current browser-session upload implementation
+- `alidocs_session_upload_cli.py`: manual upload smoke helper for the same chain
+- `spike.py` / `spike_cli.py`: endpoint-driven capability spike helpers kept for
+  future provider work
 
-- `auth.py`: token acquisition and permission failure handling
-- `alidocs_session.py`: browser-session upload spike for the current DingTalk docs node flow
-- `records.py`: queue and snapshot table reads and row writeback
-- `files.py`: artifact upload and share-link resolution
-- `workspace.py`: optional attach-to-container behavior
-- `spike.py`: capability-spike checklist and helper entrypoint
-- `spike_cli.py`: manual endpoint-driven smoke runner for token, list, update, and upload checks
-- `contracts.py`: provider-facing data contracts
+## Queue Integration
 
-Current verified helpers:
+The current queue integration is already wired into the repo:
 
-- `auth.get_app_only_token(...)` reads `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, then calls the official App-Only token endpoint
-- `workspace.parse_node_id_from_url(...)` extracts a DingTalk docs node ID from a normal `alidocs.dingtalk.com/i/nodes/...` URL so the target workspace can be configured before the upload API is wired
-- `alidocs_session_upload_cli.py` is the current manual bridge for the observed browser-session upload chain: `uploadinfo -> OSS object upload -> commit -> node URL`
-- `tools/process_build_queue.py` can now use that same browser-session chain as an optional artifact sink while still reading queue rows from Feishu and writing `Document link` back to Feishu
+- [`../queue_artifact_sink.py`](../queue_artifact_sink.py) resolves the primary
+  artifact sink and optional mirror sink
+- [`../queue_group_processing.py`](../queue_group_processing.py) publishes the
+  built DOCX, optionally mirrors it to DingTalk, and writes `dingtalk_sync=*`
+  status notes
+- [`../process_build_queue.py`](../process_build_queue.py) and
+  [`../process_build_queue_services.py`](../process_build_queue_services.py)
+  provide the CLI/runtime entrypoint
 
-## Quick Smoke
+The current DingTalk provider id is `dingtalk_alidocs_session`.
 
-For a manual Phase 0 smoke check, point the helper at a throwaway DingTalk table and run the combined `all` step:
+## Execution Modes
+
+Feishu/wiki primary only:
 
 ```powershell
-$env:DINGTALK_CLIENT_ID="..."
-$env:DINGTALK_CLIENT_SECRET="..."
-$env:DINGTALK_CORP_ID="..."
-$env:DINGTALK_SPIKE_LIST_URL="https://api.dingtalk.com/..."
-$env:DINGTALK_SPIKE_UPDATE_URL="https://api.dingtalk.com/..."
-$env:DINGTALK_SPIKE_UPLOAD_URL="https://api.dingtalk.com/..."
-python tools\dingtalk\spike_cli.py all --record-id rec_phase0_smoke --update-set smoke_checked=true --upload-file .tmp\phase0-smoke.docx --upload-file-id-path data.file_id --upload-share-url-path data.share_url
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="lark_drive"
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=""
 ```
 
-`all` runs `token -> list -> update -> upload` in sequence. Prefer an explicit `--record-id <stable_row_id>` for manual smoke runs. Only use `--record-id-path ... --allow-listed-record-id` when your list call is already filtered to exactly one throwaway row.
+Feishu/wiki primary + DingTalk mirror:
 
-## Queue Artifact Sink
+```powershell
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="lark_drive"
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER="dingtalk_alidocs_session"
+```
 
-The current repo-integrated DingTalk queue sink is `dingtalk_alidocs_session`.
-
-It is selected with:
+DingTalk primary replace mode:
 
 ```powershell
 $env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="dingtalk_alidocs_session"
-$env:DINGTALK_DOCS_TARGET_NODE_URL="https://alidocs.dingtalk.com/i/nodes/..."
-$env:DINGTALK_DOCS_A_TOKEN="..."
-$env:DINGTALK_DOCS_XSRF_TOKEN="..."
-$env:DINGTALK_DOCS_COOKIE="..."
-$env:DINGTALK_DOCS_BX_V="2.5.36"
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=""
 ```
 
-Environment meanings:
+For the maintained hybrid path, prefer Feishu/wiki primary plus DingTalk mirror.
+Only use DingTalk primary replace mode when you intentionally want the canonical
+artifact link to point at DingTalk for that worker.
 
-- `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`: switch `process-build-queue` from the default `lark_drive` sink to the DingTalk browser-session sink
-- `DINGTALK_DOCS_TARGET_NODE_URL`: target AliDocs folder or node that should receive generated `.docx` files
-- `DINGTALK_DOCS_A_TOKEN`: current browser `a-token` header value
-- `DINGTALK_DOCS_XSRF_TOKEN`: current `x-xsrf-token` header value
-- `DINGTALK_DOCS_COOKIE`: current browser cookie string for `alidocs.dingtalk.com`
-- `DINGTALK_DOCS_BX_V`: optional browser `bx-v` header override; defaults to `2.5.36`
+## Session Inputs
 
-This queue sink follows the same observed AliDocs browser-session chain used by the manual spike helper:
+Global browser-session envs:
 
-1. `uploadinfo`
-2. OSS object upload
-3. `commit`
-4. DingTalk node URL writeback
+- `DINGTALK_DOCS_TARGET_NODE_URL`
+- `DINGTALK_DOCS_A_TOKEN`
+- `DINGTALK_DOCS_XSRF_TOKEN`
+- `DINGTALK_DOCS_COOKIE`
+- optional `DINGTALK_DOCS_BX_V`
 
-The worker Python environment also needs `oss2`; it is now included in [`requirements.txt`](../../requirements.txt).
+Per-operator session registry:
 
-This is separate from the App-Only token helpers in `auth.py`. The current queue sink depends on a valid AliDocs browser session, so it is intended for local/operator workers unless you have a secure way to inject the same session into automation.
+- `AUTO_MANUAL_DINGTALK_SESSION_ROOT`
+- default root: `~/.auto-manual/dingtalk-sessions`
+- when the queue row carries `operator_union_id`, the worker looks for
+  `<session_root>/<operator_union_id>.json`
+
+Session-file payload keys:
+
+- `a_token` or `aToken`
+- `xsrf_token`, `xsrfToken`, or `x_xsrf_token`
+- `cookie`
+- optional `bx_version` or `bxVersion`
+
+Resolution order:
+
+1. if `operator_union_id` is present and
+   `<session_root>/<operator_union_id>.json` exists, use that session
+2. otherwise fall back to the global `DINGTALK_DOCS_*` env values
+
+This lets one local/operator worker mirror different rows to DingTalk without
+sharing one global browser session across every row.
+
+## Row-Level Queue Contract
+
+Current DingTalk-related queue fields:
+
+- `Document link`: canonical writeback field
+- `Document link_dd`: optional DingTalk supplemental writeback field
+- `是否上传钉钉`: optional row-level DingTalk gate
+- `DingTalk_target_node_url`: optional row-level DingTalk target override
+- `operator_union_id`: optional session-file selector for per-operator uploads
+- `DingTalk_session_key` / `钉钉会话键`: aliases for the same session-file
+  selector
+
+Current behavior:
+
+- if the worker runs in mirror mode and the row has `是否上传钉钉`, checked rows
+  also sync DingTalk and unchecked rows stay Feishu/wiki-only
+- if the row does not have `是否上传钉钉`, the worker follows the current global
+  worker mode for that whole row
+- if the row has `DingTalk_target_node_url`, that row-level target overrides the
+  global `DINGTALK_DOCS_TARGET_NODE_URL`
+- if the selected DingTalk session source is missing, the queue now fails the
+  row before build starts and writes the missing-session reason back to Feishu
+- if `Document link_dd` exists, DingTalk mirror or DingTalk primary mode writes
+  the DingTalk node URL there
+- `构建结果` may include `dingtalk_sync=ok|failed|skipped`
+
+## GitHub Worker Behavior
+
+The remote Draft/Publish workflows keep Feishu/wiki as the primary sink:
+
+- [`../../.github/workflows/feishu-draft-build-queue.yml`](../../.github/workflows/feishu-draft-build-queue.yml)
+- [`../../.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml)
+
+When GitHub Secrets provide the DingTalk browser-session values, those workers
+enable `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session`.
+They do not auto-switch the primary sink to DingTalk.
+
+## Manual Smoke
+
+For a local smoke run:
+
+```powershell
+$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="lark_drive"
+$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER="dingtalk_alidocs_session"
+powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps1 --record-id <record_id>
+```
+
+For a direct upload helper smoke:
+
+```powershell
+python tools\dingtalk\alidocs_session_upload_cli.py `
+  --target-node-url https://alidocs.dingtalk.com/i/nodes/... `
+  --file .tmp\phase0-smoke.docx
+```
+
+## Operational Gaps
+
+The main remaining gaps are operational, not boundary discovery:
+
+- browser-session rotation and storage hygiene
+- live GitHub worker smoke validation with real secrets
+- future migration to an app-only or officially supported DingTalk upload path

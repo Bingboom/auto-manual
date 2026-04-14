@@ -34,6 +34,7 @@ def process_queue_record_group(
     queue_group_lang: Callable[[list[Any]], str],
     queue_group_build_family: Callable[[list[Any]], str],
     queue_group_dingtalk_target_node_url: Callable[[list[Any]], str],
+    queue_group_operator_union_id: Callable[[list[Any]], str],
     queue_group_force_phase2_refresh: Callable[[list[Any]], bool],
     queue_group_upload_dingtalk: Callable[[list[Any]], bool],
     resolve_config_path_for_task: Callable[..., Path],
@@ -41,6 +42,9 @@ def process_queue_record_group(
     sync_phase2_snapshot_before_queue: Callable[..., None],
     resolve_lark_wiki_destination: Callable[..., Any],
     resolve_row_artifact_destination: Callable[..., Any],
+    resolve_artifact_mirror_provider: Callable[..., str | None],
+    resolve_dingtalk_mirror_destination: Callable[..., Any],
+    ensure_dingtalk_session_ready: Callable[..., None],
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Path],
     publish_word_artifact: Callable[..., Any],
@@ -67,12 +71,17 @@ def process_queue_record_group(
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
         dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
+        dingtalk_operator_union_id = queue_group_operator_union_id(group)
         force_phase2_refresh = queue_group_force_phase2_refresh(group)
         upload_dingtalk = queue_group_upload_dingtalk(group)
         data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)
         effective_artifact_destination = artifact_destination
-        if getattr(artifact_destination, "provider", None) == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
+        dingtalk_mirror_destination = None
+        deferred_status_notes: tuple[str, ...] = ()
+        primary_provider = str(getattr(artifact_destination, "provider", "") or "lark_drive")
+        mirror_provider = resolve_artifact_mirror_provider(cfg=cfg)
+        if primary_provider == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
             if upload_dingtalk:
                 if dingtalk_target_node_url:
                     effective_artifact_destination = resolve_row_artifact_destination(
@@ -100,6 +109,31 @@ def process_queue_record_group(
                     identity=identity,
                     binding=binding,
                 )
+        elif primary_provider == "lark_drive" and mirror_provider == "dingtalk_alidocs_session":
+            if has_upload_dingtalk_field and not upload_dingtalk:
+                print(f"[build-queue] Skipping DingTalk sync for {group_key} ({row_count} row(s)); using Feishu/wiki only.")
+                deferred_status_notes = ("dingtalk_sync=skipped",)
+            else:
+                if dingtalk_target_node_url:
+                    dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(
+                        cfg=cfg,
+                        target_node_url=dingtalk_target_node_url,
+                    )
+                    print(
+                        f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) "
+                        f"with row target {dingtalk_target_node_url}."
+                    )
+                else:
+                    dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(cfg=cfg)
+                    print(f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
+        if (
+            str(getattr(effective_artifact_destination, "provider", "") or "") == "dingtalk_alidocs_session"
+            or dingtalk_mirror_destination is not None
+        ):
+            ensure_dingtalk_session_ready(
+                cfg=cfg,
+                operator_union_id=dingtalk_operator_union_id,
+            )
         resolved_config_path = resolve_config_path_for_task(
             region=region,
             lang=group_lang,
@@ -158,6 +192,8 @@ def process_queue_record_group(
             word_output_path=word_output_path,
             identity=identity,
             artifact_destination=effective_artifact_destination,
+            dingtalk_mirror_destination=dingtalk_mirror_destination,
+            dingtalk_operator_union_id=dingtalk_operator_union_id,
         )
         latest_link_url = artifact_result.latest_link_url
         document_link_url = artifact_result.document_link_url
@@ -173,7 +209,7 @@ def process_queue_record_group(
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
             data_sync_status=data_sync_status,
-            status_notes=artifact_result.status_notes,
+            status_notes=(*artifact_result.status_notes, *deferred_status_notes),
             clear_force_phase2_refresh=can_write_force_phase2_refresh,
             write_data_sync=can_write_data_sync,
             write_document_link_dd=can_write_document_link_dd,

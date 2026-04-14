@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
@@ -21,6 +23,14 @@ from tools.queue_lark_ops import (
     wiki_url_from_host_root as _wiki_url_from_host_root_impl,
 )
 from tools.queue_orchestration import process_build_queue as _process_build_queue_impl
+from tools.queue_artifact_sink import (
+    ArtifactDestination,
+    ArtifactPublishError,
+    ArtifactPublishResult,
+    artifact_sink_provider,
+    dingtalk_alidocs_env_names,
+    resolve_dingtalk_artifact_destination,
+)
 from tools.queue_session import (
     bootstrap_queue_session as _bootstrap_queue_session_impl,
     load_pending_queue_state as _load_pending_queue_state_impl,
@@ -101,6 +111,184 @@ def move_drive_file_to_wiki(
         host_root_from_url=_host_root_from_url_impl,
         wiki_url_from_host_root=_wiki_url_from_host_root_impl,
         wait_for_wiki_move_task=module.wait_for_wiki_move_task,
+    )
+
+
+def resolve_artifact_destination(
+    module: Any,
+    *,
+    cfg: dict[str, Any],
+    cli_bin: str,
+    identity: str,
+    binding: Any,
+    target_node_url: str | None = None,
+) -> Any:
+    provider = artifact_sink_provider(cfg, environ=os.environ)
+    if provider == "dingtalk_alidocs_session":
+        return resolve_dingtalk_artifact_destination(
+            cfg,
+            environ=os.environ,
+            target_node_url=target_node_url,
+            allow_missing_target_node_url=target_node_url is None,
+        )
+    return module.resolve_wiki_destination(
+        cli_bin=cli_bin,
+        identity=identity,
+        binding=binding,
+    )
+
+
+def resolve_dingtalk_mirror_destination(
+    module: Any,
+    *,
+    cfg: dict[str, Any],
+    target_node_url: str | None = None,
+    allow_missing_target_node_url: bool = False,
+) -> ArtifactDestination:
+    return resolve_dingtalk_artifact_destination(
+        cfg,
+        environ=os.environ,
+        target_node_url=target_node_url,
+        allow_missing_target_node_url=allow_missing_target_node_url,
+    )
+
+
+def ensure_dingtalk_session_ready(
+    module: Any,
+    *,
+    cfg: dict[str, Any],
+    operator_union_id: str = "",
+) -> None:
+    env_names = dingtalk_alidocs_env_names(cfg)
+    module.load_session_config_for_operator_union_id(
+        operator_union_id=operator_union_id,
+        environ=os.environ,
+        a_token_env=env_names["a_token_env"],
+        xsrf_token_env=env_names["xsrf_token_env"],
+        cookie_env=env_names["cookie_env"],
+        bx_version_env=env_names["bx_version_env"],
+    )
+
+
+def publish_word_artifact(
+    module: Any,
+    *,
+    cfg: dict[str, Any],
+    cli_bin: str,
+    word_output_path: Path,
+    identity: str,
+    artifact_destination: Any,
+    dingtalk_mirror_destination: ArtifactDestination | None = None,
+    dingtalk_operator_union_id: str = "",
+) -> ArtifactPublishResult:
+    provider = artifact_sink_provider(cfg, environ=os.environ)
+    if provider == "dingtalk_alidocs_session":
+        env_names = dingtalk_alidocs_env_names(cfg)
+        session = module.load_session_config_for_operator_union_id(
+            operator_union_id=dingtalk_operator_union_id,
+            environ=os.environ,
+            a_token_env=env_names["a_token_env"],
+            xsrf_token_env=env_names["xsrf_token_env"],
+            cookie_env=env_names["cookie_env"],
+            bx_version_env=env_names["bx_version_env"],
+        )
+        target_node_url = (
+            artifact_destination.runtime_target
+            if isinstance(artifact_destination, ArtifactDestination)
+            else None
+        )
+        if not target_node_url:
+            raise RuntimeError("DingTalk artifact destination is missing target_node_url")
+        committed = module.upload_file_to_node(
+            session=session,
+            file_path=word_output_path,
+            parent_node_url=str(target_node_url),
+        )
+        return ArtifactPublishResult(
+            provider="dingtalk_alidocs_session",
+            reference_id=committed.dentry_uuid,
+            latest_link_url=committed.node_url,
+            document_link_url=committed.node_url,
+            document_link_dd_url=committed.node_url,
+            status_notes=("dingtalk_sync=ok",),
+        )
+
+    file_token, drive_url = module.upload_word_to_drive(
+        cli_bin=cli_bin,
+        word_output_path=word_output_path,
+        identity=identity,
+    )
+    try:
+        document_link_url = module.move_drive_file_to_wiki(
+            cli_bin=cli_bin,
+            identity=identity,
+            file_token=file_token,
+            drive_url=drive_url,
+            destination=artifact_destination,
+        )
+    except Exception as exc:
+        recovered_message = str(exc).strip()
+        if "permission denied" not in recovered_message.lower():
+            raise ArtifactPublishError(recovered_message, latest_link_url=drive_url) from exc
+        print(
+            f"[build-queue] WARNING wiki attach failed; using Drive link {drive_url}",
+            file=sys.stderr,
+        )
+        result = ArtifactPublishResult(
+            provider="lark_drive",
+            reference_id=file_token,
+            latest_link_url=drive_url,
+            document_link_url=drive_url,
+            status_notes=("drive_only", f"wiki_attach_failed={recovered_message}"),
+        )
+    else:
+        result = ArtifactPublishResult(
+            provider="lark_drive",
+            reference_id=file_token,
+            latest_link_url=drive_url,
+            document_link_url=document_link_url,
+        )
+
+    if dingtalk_mirror_destination is None:
+        return result
+
+    env_names = dingtalk_alidocs_env_names(cfg)
+    session = module.load_session_config_for_operator_union_id(
+        operator_union_id=dingtalk_operator_union_id,
+        environ=os.environ,
+        a_token_env=env_names["a_token_env"],
+        xsrf_token_env=env_names["xsrf_token_env"],
+        cookie_env=env_names["cookie_env"],
+        bx_version_env=env_names["bx_version_env"],
+    )
+    target_node_url = str(dingtalk_mirror_destination.runtime_target or "").strip()
+    if not target_node_url:
+        raise RuntimeError("DingTalk mirror destination is missing target_node_url")
+    try:
+        committed = module.upload_file_to_node(
+            session=session,
+            file_path=word_output_path,
+            parent_node_url=target_node_url,
+        )
+    except Exception as exc:
+        message = str(exc).strip()
+        status_notes = (*result.status_notes, "dingtalk_sync=failed", f"dingtalk_sync_error={message}")
+        return ArtifactPublishResult(
+            provider=result.provider,
+            reference_id=result.reference_id,
+            latest_link_url=result.latest_link_url,
+            document_link_url=result.document_link_url,
+            document_link_dd_url="",
+            status_notes=status_notes,
+        )
+    status_notes = (*result.status_notes, "dingtalk_sync=ok")
+    return ArtifactPublishResult(
+        provider=result.provider,
+        reference_id=result.reference_id,
+        latest_link_url=result.latest_link_url,
+        document_link_url=result.document_link_url,
+        document_link_dd_url=committed.node_url,
+        status_notes=status_notes,
     )
 def build_py_target_command(
     module: Any,
@@ -346,6 +534,7 @@ def process_build_queue(
         queue_group_lang=module.queue_group_lang,
         queue_group_build_family=module.queue_group_build_family,
         queue_group_dingtalk_target_node_url=module.queue_group_dingtalk_target_node_url,
+        queue_group_operator_union_id=module.queue_group_operator_union_id,
         queue_group_force_phase2_refresh=module.queue_group_force_phase2_refresh,
         queue_group_upload_dingtalk=module.queue_group_upload_dingtalk,
         validate_queue_record_group=module.validate_queue_record_group,
@@ -357,6 +546,9 @@ def process_build_queue(
         resolve_wiki_destination=module.resolve_artifact_destination,
         resolve_lark_wiki_destination=module.resolve_wiki_destination,
         resolve_row_artifact_destination=module.resolve_artifact_destination,
+        resolve_artifact_mirror_provider=module.resolve_artifact_mirror_provider,
+        resolve_dingtalk_mirror_destination=module.resolve_dingtalk_mirror_destination,
+        ensure_dingtalk_session_ready=module.ensure_dingtalk_session_ready,
         build_started_fields=module.build_started_fields,
         build_document_for_task=module.build_document_for_task,
         publish_word_artifact=module.publish_word_artifact,
