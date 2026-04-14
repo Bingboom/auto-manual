@@ -161,6 +161,48 @@ class TestQueueArtifactSink(unittest.TestCase):
         )
         self.assertEqual("rowNode123", destination.details["target_node_id"])
 
+    def test_resolve_dingtalk_artifact_destination_should_treat_dash_override_as_missing_and_fallback_to_default(self) -> None:
+        cfg = {
+            "queue": {
+                "artifact_sink": {
+                    "provider": "dingtalk_alidocs_session",
+                }
+            }
+        }
+        environ = {
+            "DINGTALK_DOCS_TARGET_NODE_URL": "https://alidocs.dingtalk.com/i/nodes/defaultNode?utm_scene=team_space",
+            "DINGTALK_DOCS_A_TOKEN": "token",
+            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
+            "DINGTALK_DOCS_COOKIE": "cookie=value",
+        }
+
+        destination = queue_artifact_sink.resolve_dingtalk_artifact_destination(
+            cfg,
+            environ=environ,
+            target_node_url="-",
+        )
+
+        self.assertEqual(environ["DINGTALK_DOCS_TARGET_NODE_URL"], destination.runtime_target)
+        self.assertEqual("defaultNode", destination.details["target_node_id"])
+
+    def test_resolve_dingtalk_artifact_destination_should_report_missing_default_when_env_is_dash(self) -> None:
+        cfg = {
+            "queue": {
+                "artifact_sink": {
+                    "provider": "dingtalk_alidocs_session",
+                }
+            }
+        }
+        environ = {
+            "DINGTALK_DOCS_TARGET_NODE_URL": "-",
+            "DINGTALK_DOCS_A_TOKEN": "token",
+            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
+            "DINGTALK_DOCS_COOKIE": "cookie=value",
+        }
+
+        with self.assertRaisesRegex(RuntimeError, "DingTalk target node URL is required"):
+            queue_artifact_sink.resolve_dingtalk_artifact_destination(cfg, environ=environ)
+
     def test_resolve_dingtalk_artifact_destination_should_allow_missing_default_target_for_row_override(self) -> None:
         cfg = {
             "queue": {

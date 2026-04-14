@@ -17,6 +17,7 @@ DEFAULT_DINGTALK_XSRF_TOKEN_ENV = "DINGTALK_DOCS_XSRF_TOKEN"
 DEFAULT_DINGTALK_COOKIE_ENV = "DINGTALK_DOCS_COOKIE"
 DEFAULT_DINGTALK_BX_VERSION_ENV = "DINGTALK_DOCS_BX_V"
 DEFAULT_DINGTALK_SESSION_ROOT_ENV = "AUTO_MANUAL_DINGTALK_SESSION_ROOT"
+_EMPTY_TARGET_SENTINELS = frozenset({"-", "--", "—", "n/a", "na", "none", "null"})
 
 
 @dataclass(frozen=True)
@@ -131,6 +132,15 @@ def _has_dingtalk_session_registry(
     return False
 
 
+def _clean_target_node_url(value: str | None) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    if text.lower() in _EMPTY_TARGET_SENTINELS:
+        return ""
+    return text
+
+
 def resolve_dingtalk_target_node_url(
     cfg: dict[str, Any],
     *,
@@ -138,7 +148,7 @@ def resolve_dingtalk_target_node_url(
     target_node_url: str | None = None,
     allow_missing_target_node_url: bool = False,
 ) -> str:
-    override_value = str(target_node_url or "").strip()
+    override_value = _clean_target_node_url(target_node_url)
     if override_value:
         return normalize_node_url(override_value)
     env_names = dingtalk_alidocs_env_names(cfg)
@@ -148,7 +158,7 @@ def resolve_dingtalk_target_node_url(
             "DingTalk target node URL is required: provide row DingTalk_target_node_url "
             "or configure queue.artifact_sink.dingtalk_alidocs_session.target_node_url_env"
         )
-    value = str(environ.get(env_name, "")).strip()
+    value = _clean_target_node_url(environ.get(env_name, ""))
     if not value:
         if allow_missing_target_node_url:
             return ""
