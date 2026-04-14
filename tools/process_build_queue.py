@@ -9,6 +9,7 @@ import os
 import sys
 import time
 from datetime import datetime
+from functools import partial
 from pathlib import Path
 from typing import Any
 
@@ -88,8 +89,12 @@ from tools.process_build_queue_services import (  # noqa: E402
     build_py_target_command as _build_py_target_command_service,
     build_started_fields as _build_started_fields_service,
     build_success_fields as _build_success_fields_service,
+    ensure_dingtalk_session_ready as _ensure_dingtalk_session_ready_service,
     move_drive_file_to_wiki as _move_drive_file_to_wiki_service,
+    publish_word_artifact as _publish_word_artifact_service,
     process_build_queue as _process_build_queue_service,
+    resolve_artifact_destination as _resolve_artifact_destination_service,
+    resolve_dingtalk_mirror_destination as _resolve_dingtalk_mirror_destination_service,
     resolve_wiki_destination as _resolve_wiki_destination_service,
     sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_service,
     upload_word_to_drive as _upload_word_to_drive_service,
@@ -101,13 +106,9 @@ from tools.dingtalk.alidocs_session import (  # noqa: E402
 )
 from tools.queue_artifact_sink import (  # noqa: E402
     ArtifactDestination,
-    ArtifactPublishError,
     ArtifactPublishResult,
     artifact_mirror_provider,
-    artifact_sink_provider,
     collect_artifact_sink_preflight_errors,
-    dingtalk_alidocs_env_names,
-    resolve_dingtalk_artifact_destination,
 )
 from tools.queue_bound_outputs import (  # noqa: E402
     publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
@@ -230,235 +231,14 @@ parse_document_key = _parse_document_key_impl
 _config_path_in_repo_root = _config_path_in_repo_root_impl
 
 
-def upload_word_to_drive(*, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
-    return _upload_word_to_drive_service(
-        _service_module(),
-        cli_bin=cli_bin,
-        word_output_path=word_output_path,
-        identity=identity,
-    )
-
-
-def resolve_wiki_destination(
-    *,
-    cli_bin: str,
-    identity: str,
-    binding: DocumentLinkBinding,
-) -> WikiDestination:
-    return _resolve_wiki_destination_service(
-        _service_module(),
-        cli_bin=cli_bin,
-        identity=identity,
-        binding=binding,
-    )
-
-
-def resolve_artifact_destination(
-    *,
-    cfg: dict[str, Any],
-    cli_bin: str,
-    identity: str,
-    binding: DocumentLinkBinding,
-    target_node_url: str | None = None,
-) -> WikiDestination | ArtifactDestination:
-    provider = artifact_sink_provider(cfg, environ=os.environ)
-    if provider == "dingtalk_alidocs_session":
-        return resolve_dingtalk_artifact_destination(
-            cfg,
-            environ=os.environ,
-            target_node_url=target_node_url,
-            allow_missing_target_node_url=target_node_url is None,
-    )
-    return resolve_wiki_destination(
-        cli_bin=cli_bin,
-        identity=identity,
-        binding=binding,
-    )
-
-
-def resolve_dingtalk_mirror_destination(
-    *,
-    cfg: dict[str, Any],
-    target_node_url: str | None = None,
-    allow_missing_target_node_url: bool = False,
-) -> ArtifactDestination:
-    return resolve_dingtalk_artifact_destination(
-        cfg,
-        environ=os.environ,
-        target_node_url=target_node_url,
-        allow_missing_target_node_url=allow_missing_target_node_url,
-    )
-
-
-def ensure_dingtalk_session_ready(
-    *,
-    cfg: dict[str, Any],
-    operator_union_id: str = "",
-) -> None:
-    env_names = dingtalk_alidocs_env_names(cfg)
-    load_session_config_for_operator_union_id(
-        operator_union_id=operator_union_id,
-        environ=os.environ,
-        a_token_env=env_names["a_token_env"],
-        xsrf_token_env=env_names["xsrf_token_env"],
-        cookie_env=env_names["cookie_env"],
-        bx_version_env=env_names["bx_version_env"],
-    )
-
-
-def wait_for_wiki_move_task(
-    *,
-    cli_bin: str,
-    identity: str,
-    task_id: str,
-    host_root: str,
-) -> str:
-    return _wait_for_wiki_move_task_service(
-        _service_module(),
-        cli_bin=cli_bin,
-        identity=identity,
-        task_id=task_id,
-        host_root=host_root,
-    )
-
-
-def move_drive_file_to_wiki(
-    *,
-    cli_bin: str,
-    identity: str,
-    file_token: str,
-    drive_url: str,
-    destination: WikiDestination,
-) -> str:
-    return _move_drive_file_to_wiki_service(
-        _service_module(),
-        cli_bin=cli_bin,
-        identity=identity,
-        file_token=file_token,
-        drive_url=drive_url,
-        destination=destination,
-    )
-
-
-def publish_word_artifact(
-    *,
-    cfg: dict[str, Any],
-    cli_bin: str,
-    word_output_path: Path,
-    identity: str,
-    artifact_destination: WikiDestination | ArtifactDestination,
-    dingtalk_mirror_destination: ArtifactDestination | None = None,
-    dingtalk_operator_union_id: str = "",
-) -> ArtifactPublishResult:
-    provider = artifact_sink_provider(cfg, environ=os.environ)
-    if provider == "dingtalk_alidocs_session":
-        env_names = dingtalk_alidocs_env_names(cfg)
-        session = load_session_config_for_operator_union_id(
-            operator_union_id=dingtalk_operator_union_id,
-            environ=os.environ,
-            a_token_env=env_names["a_token_env"],
-            xsrf_token_env=env_names["xsrf_token_env"],
-            cookie_env=env_names["cookie_env"],
-            bx_version_env=env_names["bx_version_env"],
-        )
-        target_node_url = (
-            artifact_destination.runtime_target
-            if isinstance(artifact_destination, ArtifactDestination)
-            else None
-        )
-        if not target_node_url:
-            raise RuntimeError("DingTalk artifact destination is missing target_node_url")
-        committed = upload_file_to_node(
-            session=session,
-            file_path=word_output_path,
-            parent_node_url=str(target_node_url),
-        )
-        return ArtifactPublishResult(
-            provider="dingtalk_alidocs_session",
-            reference_id=committed.dentry_uuid,
-            latest_link_url=committed.node_url,
-            document_link_url=committed.node_url,
-            document_link_dd_url=committed.node_url,
-            status_notes=("dingtalk_sync=ok",),
-        )
-
-    file_token, drive_url = upload_word_to_drive(
-        cli_bin=cli_bin,
-        word_output_path=word_output_path,
-        identity=identity,
-    )
-    try:
-        document_link_url = move_drive_file_to_wiki(
-            cli_bin=cli_bin,
-            identity=identity,
-            file_token=file_token,
-            drive_url=drive_url,
-            destination=artifact_destination,
-        )
-    except Exception as exc:
-        recovered_message = str(exc).strip()
-        if "permission denied" not in recovered_message.lower():
-            raise ArtifactPublishError(recovered_message, latest_link_url=drive_url) from exc
-        print(
-            f"[build-queue] WARNING wiki attach failed; using Drive link {drive_url}",
-            file=sys.stderr,
-        )
-        result = ArtifactPublishResult(
-            provider="lark_drive",
-            reference_id=file_token,
-            latest_link_url=drive_url,
-            document_link_url=drive_url,
-            status_notes=("drive_only", f"wiki_attach_failed={recovered_message}"),
-        )
-    else:
-        result = ArtifactPublishResult(
-            provider="lark_drive",
-            reference_id=file_token,
-            latest_link_url=drive_url,
-            document_link_url=document_link_url,
-        )
-
-    if dingtalk_mirror_destination is None:
-        return result
-
-    env_names = dingtalk_alidocs_env_names(cfg)
-    session = load_session_config_for_operator_union_id(
-        operator_union_id=dingtalk_operator_union_id,
-        environ=os.environ,
-        a_token_env=env_names["a_token_env"],
-        xsrf_token_env=env_names["xsrf_token_env"],
-        cookie_env=env_names["cookie_env"],
-        bx_version_env=env_names["bx_version_env"],
-    )
-    target_node_url = str(dingtalk_mirror_destination.runtime_target or "").strip()
-    if not target_node_url:
-        raise RuntimeError("DingTalk mirror destination is missing target_node_url")
-    try:
-        committed = upload_file_to_node(
-            session=session,
-            file_path=word_output_path,
-            parent_node_url=target_node_url,
-        )
-    except Exception as exc:
-        message = str(exc).strip()
-        status_notes = (*result.status_notes, "dingtalk_sync=failed", f"dingtalk_sync_error={message}")
-        return ArtifactPublishResult(
-            provider=result.provider,
-            reference_id=result.reference_id,
-            latest_link_url=result.latest_link_url,
-            document_link_url=result.document_link_url,
-            document_link_dd_url="",
-            status_notes=status_notes,
-        )
-    status_notes = (*result.status_notes, "dingtalk_sync=ok")
-    return ArtifactPublishResult(
-        provider=result.provider,
-        reference_id=result.reference_id,
-        latest_link_url=result.latest_link_url,
-        document_link_url=result.document_link_url,
-        document_link_dd_url=committed.node_url,
-        status_notes=status_notes,
-    )
+upload_word_to_drive = partial(_upload_word_to_drive_service, _service_module())
+resolve_wiki_destination = partial(_resolve_wiki_destination_service, _service_module())
+resolve_artifact_destination = partial(_resolve_artifact_destination_service, _service_module())
+resolve_dingtalk_mirror_destination = partial(_resolve_dingtalk_mirror_destination_service, _service_module())
+ensure_dingtalk_session_ready = partial(_ensure_dingtalk_session_ready_service, _service_module())
+wait_for_wiki_move_task = partial(_wait_for_wiki_move_task_service, _service_module())
+move_drive_file_to_wiki = partial(_move_drive_file_to_wiki_service, _service_module())
+publish_word_artifact = partial(_publish_word_artifact_service, _service_module())
 
 
 def _build_py_target_command(
