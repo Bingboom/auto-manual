@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.dingtalk.alidocs_session import DEFAULT_SESSION_REGISTRY_ROOT
-from tools.dingtalk.workspace import parse_node_id_from_url
+from tools.dingtalk.workspace import normalize_node_url, parse_node_id_from_url
 
 DEFAULT_ARTIFACT_SINK_PROVIDER = "lark_drive"
 DEFAULT_ARTIFACT_SINK_PROVIDER_ENV = "AUTO_MANUAL_ARTIFACT_SINK_PROVIDER"
@@ -140,7 +140,7 @@ def resolve_dingtalk_target_node_url(
 ) -> str:
     override_value = str(target_node_url or "").strip()
     if override_value:
-        return override_value
+        return normalize_node_url(override_value)
     env_names = dingtalk_alidocs_env_names(cfg)
     env_name = env_names["target_node_url_env"]
     if not env_name:
@@ -156,7 +156,7 @@ def resolve_dingtalk_target_node_url(
             "DingTalk target node URL is required: "
             f"provide row DingTalk_target_node_url or set {env_name}"
         )
-    return value
+    return normalize_node_url(value)
 
 
 def collect_artifact_sink_preflight_errors(

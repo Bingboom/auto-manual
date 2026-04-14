@@ -416,4 +416,15 @@ powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps
 - 长期稳定的公开 OpenAPI 集成
 - 无浏览器会话的远程 GitHub Actions 默认方案
 
+如果你想让 GitHub Actions 也支持可选 DingTalk mirror，现在可以额外配置：
+
+- GitHub Secrets：
+  - `DINGTALK_DOCS_A_TOKEN`
+  - `DINGTALK_DOCS_XSRF_TOKEN`
+  - `DINGTALK_DOCS_COOKIE`
+- GitHub Actions repository variable：
+  - `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session`
+
+不配置这个 repository variable 时，远端 worker 仍然默认只保留 Feishu 主上传。
+
 如果未来 DingTalk 给出正式开放接口，这份指南再切换到更稳定的文档化方案。

@@ -313,6 +313,8 @@ Publish 的原料是：
   - `DINGTALK_DOCS_A_TOKEN`
   - `DINGTALK_DOCS_XSRF_TOKEN`
   - `DINGTALK_DOCS_COOKIE`
+- 还要显式加一个 GitHub Actions repository variable：
+  - `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER = dingtalk_alidocs_session`
 - `DINGTALK_DOCS_TARGET_NODE_URL` 现在只是远端默认节点，可留空
 - 如果这行已经填了 `DingTalk_target_node_url`，远端 worker 会优先用这一行的节点，不依赖默认节点
 

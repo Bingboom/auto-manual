@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 from urllib import error, request
 
-from .workspace import parse_node_id_from_url
+from .workspace import normalize_node_url, parse_node_id_from_url
 
 
 ALIDOCS_ORIGIN = "https://alidocs.dingtalk.com"
@@ -364,12 +364,13 @@ def upload_file_to_node(
     file_path: Path,
     parent_node_url: str,
 ) -> AliDocsCommittedFile:
-    parent_dentry_uuid = parse_node_id_from_url(parent_node_url)
+    normalized_parent_node_url = normalize_node_url(parent_node_url)
+    parent_dentry_uuid = parse_node_id_from_url(normalized_parent_node_url)
     ticket = request_upload_ticket(
         session=session,
         parent_dentry_uuid=parent_dentry_uuid,
         file_path=file_path,
-        referer_url=parent_node_url,
+        referer_url=normalized_parent_node_url,
     )
     upload_file_to_oss(ticket=ticket, file_path=file_path)
-    return commit_uploaded_file(session=session, ticket=ticket, referer_url=parent_node_url)
+    return commit_uploaded_file(session=session, ticket=ticket, referer_url=normalized_parent_node_url)

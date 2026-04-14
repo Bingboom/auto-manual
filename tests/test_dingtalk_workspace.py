@@ -6,9 +6,29 @@ from tools.dingtalk import workspace
 
 
 class TestDingTalkWorkspace(unittest.TestCase):
+    def test_normalize_node_url_should_unwrap_markdown_link_target(self) -> None:
+        raw = (
+            "[https://alidocs.dingtalk.com/i/nodes/LeBq413JAw6ZqaOQUBxLL332WDOnGvpb?utm_scene=team_space]"
+            "(https://alidocs.dingtalk.com/i/nodes/LeBq413JAw6ZqaOQUBxLL332WDOnGvpb?utm_scene=team_space)"
+        )
+
+        normalized = workspace.normalize_node_url(raw)
+
+        self.assertEqual(
+            "https://alidocs.dingtalk.com/i/nodes/LeBq413JAw6ZqaOQUBxLL332WDOnGvpb?utm_scene=team_space",
+            normalized,
+        )
+
     def test_parse_node_id_from_url_should_extract_node(self) -> None:
         node_id = workspace.parse_node_id_from_url(
             "https://alidocs.dingtalk.com/i/nodes/NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY?utm_scene=team_space"
+        )
+
+        self.assertEqual("NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY", node_id)
+
+    def test_parse_node_id_from_url_should_extract_node_from_markdown_link(self) -> None:
+        node_id = workspace.parse_node_id_from_url(
+            "[folder](https://alidocs.dingtalk.com/i/nodes/NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY?utm_scene=team_space)"
         )
 
         self.assertEqual("NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY", node_id)
