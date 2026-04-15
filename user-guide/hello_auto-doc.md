@@ -1,12 +1,14 @@
 # Hello Auto Doc
 
-Updated: 2026-04-03
+Updated: 2026-04-14
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
 It is the current workflow and editing-surface guide.
 It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
 For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
+For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
+For Codex-assisted Markdown-to-template intake, use [`../.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md).
 
 ---
 
@@ -48,8 +50,19 @@ GitHub note:
 - pull requests are gated by the `Manual Validation` workflow
 - after merge, `main` runs the same validation workflow again
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
+- `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
+- the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
+- `Manual Validation` now also runs `python tools/check_maintainability_guardrails.py` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
-- that workflow expects `pandoc` for the review Word export path and blocks preview deployment if the required Word / Excel downloads are missing
+- that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
+
+Git branch hygiene note:
+
+- after one PR is merged or closed, start the next change with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` on Windows or `./scripts/start_branch.sh codex/<topic>` on mac/Linux so the new branch comes from the latest `origin/main`
+- enable the repo-managed pre-push guard with `git config core.hooksPath .githooks`
+- that guard now runs through the shared [`../scripts/git_branch_guard.py`](../scripts/git_branch_guard.py) core instead of a bash-only hook, and the repo also ships [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1) as Windows-native companion launchers
+- that guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only when intentional with `git push --no-verify`
+- if OpenClaw on your local machine needs to report branch state or switch to an existing branch from a Feishu chat flow, use [`../scripts/openclaw_git_guard.py`](../scripts/openclaw_git_guard.py) instead of exposing raw Git commands; it only supports `status` and safe `switch --pull`, and it refuses non-generated dirty worktrees
 
 ---
 
@@ -73,32 +86,75 @@ The manual system now has four layers, but they are used at different stages.
    - legacy baseline [`data/phase1/`](../data/phase1)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
-   - For queue-driven Draft / Publish builds, Feishu phase2 tables are the source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
-   - `python build.py sync-data --config config.us.yaml --data-root data/phase2` refreshes the preferred frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
+   - When a valid phase2 snapshot exists, build/review/publish flows default to `data/phase2`; explicit `--data-root` still overrides that default.
+   - For queue-driven builds, Feishu phase2 tables remain the structured-data source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
+   - `python build.py sync-data --config config.us.yaml --data-root data/phase2` refreshes the frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
+   - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` reads the same snapshot as a compact multilingual memory lookup, which is useful when OpenClaw or a maintainer needs terminology grounded in the current Base content before translating copy
+   - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` is the higher-priority sentence-pair lookup when you already maintain a dedicated translation memory table in Feishu Base; on chat surfaces, treat it as background wording memory and answer with the translation itself instead of a narrated lookup step. The script keeps a short local cache for repeat lookups; use `--no-cache` only when you need a forced refresh.
    - during that refresh, `Spec_Master.csv Slot_key` is normalized back to plain tokens like `front.label` when the source table stores markdown-link wrappers
    - the sync also resolves full field names through Base field metadata, so long columns like `Row_label_footnote_refs` do not disappear when the CLI view output abbreviates them
+   - when `spec_master` and `spec_footnotes` are refreshed together, linked-record style footnote refs like `{"id":"rec..."}` are converted to `Footnote_id` values before `Spec_Master.csv` is written
+   - the sync does not auto-fix bad `Is_Latest` data; if a latest row is wrong, keep it wrong in the snapshot and let validation stop the build
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
    - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically, so the normal shared config still works
    - when `spec_master` is part of that refresh, the command also regenerates [`../data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) while preserving existing manual `Row_key` and `Remark` entries when possible
-- `python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2` is the review-init bridge: it reads `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, resolves each row from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs a fresh phase2 snapshot, creates or reuses one review branch, seeds `docs/_review`, pushes the branch, creates or reuses the PR, then writes the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state back to every row in that routed group
-  - the review-init bridge now treats review start as one-time per `Document_Key` target. If `origin/main` already contains committed `docs/_review/<model>/<region>/` content, it blocks duplicate seeding and writes back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
-  - [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml) is the remote review-init worker that performs the same review-start flow from GitHub Actions after a Feishu workflow dispatch
-- `python build.py process-build-queue --config config.us.yaml --data-root data/phase2` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, builds the local Word file, uploads it to Feishu Drive, moves the uploaded file into the current wiki knowledge-base container, writes the local path into `Document directory`, writes the moved wiki URL into `Document link`, writes a timestamped status into `构建结果`, and flips the trigger back to `已构建` on success
-   - if that `Document_link` row has a `Version`, Draft queue DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`; for example `manual_je1000f_us_en_publish_0.2.docx`
-   - if that `Document_link` row also has `Git_ref`, queue builds fetch that branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
-   - Draft queue outputs stay staged under the current repo [`../docs/_build/`](../docs/_build) tree before upload/writeback
-- queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is now an optional compatibility field
-- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
+   - for future app-only DingTalk provider research, [`../tools/dingtalk/spike_cli.py`](../tools/dingtalk/spike_cli.py) is the manual Phase 0 smoke helper; it gets an App-Only token by default, then lets you supply the exact DingTalk list/update/upload endpoints for the chosen product without changing the current queue runtime
+   - [`../tools/dingtalk/auth.py`](../tools/dingtalk/auth.py) now wraps the verified App-Only token flow behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and [`../tools/dingtalk/workspace.py`](../tools/dingtalk/workspace.py) can already extract a target docs node ID from a standard `alidocs.dingtalk.com/i/nodes/...` URL
+   - [`../tools/dingtalk/alidocs_session_upload_cli.py`](../tools/dingtalk/alidocs_session_upload_cli.py) is the current manual spike for the observed DingTalk docs browser-session upload chain; it needs the current browser `a-token`, XSRF token, and cookie, then follows `uploadinfo -> OSS upload -> commit` to produce a tenant node URL
+   - `python build.py process-review-start-queue --config config.us.yaml --data-root .tmp/review-start/phase2` is the Start Review bridge: it reads `sync.phase2.review_init` rows where `是否进入Review` is checked and `Review_status` is empty / `NotStarted`, resolves each row from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs a fresh phase2 snapshot, creates or reuses one review branch, seeds `docs/_review`, pushes the branch, creates or reuses the PR, then writes the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state back to every row in that routed group
+ - the review-init bridge now treats review start as one-time per `Document_Key` target. If `origin/main` already contains committed `docs/_review/<model>/<region>/` content, it blocks duplicate seeding and writes back `Initial_result=不允许重复创建` plus `Remarks=如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
+ - [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml) is the `main`-owned remote review-init worker that performs the same review-start flow from GitHub Actions after a Feishu workflow dispatch
+ - `python build.py queue-query --config config.us.yaml --queue-scope all --document-id JE-1000F_US_0.3 --json` is the recommended local Phase 2 lookup before a natural-language OpenClaw action; it resolves the exact Feishu row and returns the `record_id`, `Workflow_action`, `Git_ref`, `Document link`, and `构建结果`
+ - `python build.py queue-resolve-action --config config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json` is the structured dry-run resolver for the control layer; it returns the bounded `action_name`, `resolution_status`, confirmation requirement, and matched row fields before any dispatch happens
+ - inside this repo, OpenClaw should be treated as the default document-build assistant: the main expectation is that it helps you build, review, publish, inspect queue rows, and explain failures for `auto-manual`, with translation and copy work acting as supporting helpers
+ - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` is the repo-local terminology lookup that pairs well with OpenClaw translation asks; it keeps the prompt small by returning matched multilingual rows instead of dumping raw CSV tables
+ - [`../integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter/) is the repo-external Feishu IM webhook adapter for this control layer; it receives Feishu text messages, calls `queue-resolve-action|queue-query|queue-execute`, and replies back into the same Feishu thread
+ - `python build.py listen-message-control --config config.us.yaml` is the no-server local Feishu IM entry for the same control layer; it listens to `im.message.receive_v1` through `lark-cli` and replies in-thread without exposing a public callback URL
+ - if the same machine must keep the old Feishu app for local phase2 operations, set `FEISHU_IM_LARK_CLI_HOME` before starting `listen-message-control`; that makes the new app use its own isolated `lark-cli` home instead of rewriting the default `~/.lark-cli`
+ - for a long-lived ECS host, use the adapter `systemd` deployment assets under [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/); the wrapper script sources the same `env.sh` you already use for manual startup
+ - the same `queue-query --query-text` parser also understands spaced asks like `帮我生成 JE-1000F US 0.3 草稿`, `开始 review JE-1000F us-merged`, and `为什么 JE-1000F US 0.3 构建失败`; if it can derive an exact `Document_ID`, that exact id still takes priority
+ - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"` is the recommended deterministic execution entry for natural-language OpenClaw build asks; it resolves the Feishu row, dispatches the matching `main`-owned workflow, waits for completion, and then re-reads the Feishu row before returning the final fields
+ - against the Feishu message control plan, the repo now has the full repo-local Phase 2 stack: query, deterministic execute, structured failure replies, explicit Publish confirmation, and a standalone Feishu IM webhook adapter are all live. Encrypted callback support and ECS deployment assets are now repo-owned; the remaining gaps are shared state and a stable named ingress rollout.
+ - if you keep using `trycloudflare.com`, only the process restart becomes stable; the callback URL itself still changes after a tunnel restart. For a stable URL, switch the same adapter to a named Cloudflare Tunnel or another fixed HTTPS ingress
+ - if `queue-execute` resolves `Workflow_action = Publish`, add `--confirm-publish`; otherwise it now stops before dispatch
+ - repo-local OpenClaw dispatch no longer treats `adm-zip` as a required local install just to send a Build Draft Package or Publish dispatch from ECS; metadata artifact parsing is now best-effort, so missing package installs degrade status detail instead of blocking dispatch
+ - when a `Start Review` worker fails before Feishu writeback, the worker now writes a structured failure summary into `openclaw-run-metadata`; OpenClaw status and `queue-execute` surface that summary directly, for example `缺少 JE-1000F_CN 的规格数据，无法进入 review。`
+ - if OpenClaw dispatches one explicit review-start `record_id` but the GitHub worker cannot re-read that row as pending from the current Feishu view, that run now also emits a structured failure summary instead of ending as a silent success
+- `python build.py process-build-queue --config config.us.yaml` is the optional Feishu task-table bridge: it reads `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, writes `开始构建时间` as soon as one row is picked up, resolves the matching config family from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, runs `sync-data` only when that row group has `是否强制刷新数据 = true`, keeps Build Draft Package rows on DOCX upload, upgrades Publish rows to `check -> diff-report -> word -> pdf`, uploads the Publish PDF to the primary Feishu/wiki destination, can also sync that same PDF to DingTalk as an optional mirror, writes the local DOCX release path into `Document directory`, writes the canonical PDF URL into `Document link`, optionally writes the mirrored DingTalk node URL into `Document link_dd`, writes a timestamped status into `构建结果`, writes the refresh result into `data_sync`, clears `是否强制刷新数据`, and flips the trigger back to `已构建` on success
+   - if that `Document_link` row has a `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue release artifact names use `manual_<model>_<region>_<lang>_publish_<Version>.docx` and `manual_<model>_<region>_<lang>_publish_<Version>.pdf`; only the PDF is uploaded back to `Document link`
+- `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds fetch that review branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
+  - on a local worker, if a same-named local `Git_ref` branch already exists, the queue uses that local branch directly so you can verify and upload review updates before pushing them
+  - if GitHub is briefly unstable but that same `origin/<Git_ref>` or local branch is already cached on the worker, the queue will reuse the cached ref and continue building from the intended review branch
+   - queue rows should now use `Workflow_action` only: `Start Review` to create or reuse review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
+   - when review-init reuses the shared `Document_link` view, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
+   - Build Draft Package outputs stay under the current repo [`../docs/_build/`](../docs/_build) tree by default; pass `--staging-root <dir>` or set `AUTO_MANUAL_STAGING_ROOT=<dir>` to isolate generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under that root instead
+- queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `eu-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is now an optional compatibility field
+- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
+- config policy for `build.queue_by_document_key`: enable it only for merged whole-book families that intentionally produce one shared manual across multiple languages, such as today's `us-merged` and future `eu-merged` / `cn-merged`; keep it disabled for single-language families such as `us-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to run one queue row per `record_id`
    - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
-   - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
-   - `python build.py listen-build-queue --config config.us.yaml --data-root data/phase2` is the push-based immediate-build listener: after the Feishu app has the `drive.file.bitable_record_changed_v1` event enabled, it subscribes the table and keeps the long connection on the same current user identity, then triggers `process-build-queue` immediately when `Document_link` rows are checked in `是否立即构建`
+   - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars, and if optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, then writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue) and forwards extra queue args such as `--dry-run` or `--record-id`
+   - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1) is the one-click Feishu-only queue entry on Windows; it fixes the primary upload target to Feishu/wiki and disables DingTalk sync
+   - [`../scripts/process_build_queue_dingtalk.ps1`](../scripts/process_build_queue_dingtalk.ps1) is the one-click DingTalk sync queue entry on Windows; it keeps Feishu/wiki as primary and enables DingTalk mirror upload for the same build
+   - for the full local DingTalk AliDocs setup steps, including how to capture `a-token`, `x-xsrf-token`, and the full cookie string, see [`./dingtalk_alidocs_upload_setup_guide.md`](./dingtalk_alidocs_upload_setup_guide.md)
+   - `python build.py listen-build-queue --config config.us.yaml` is the push-based immediate-build listener: after the Feishu app has the `drive.file.bitable_record_changed_v1` event enabled, it subscribes the table and keeps the long connection on the same current user identity, then triggers `process-build-queue` immediately when `Document_link` rows are checked in `是否立即构建`
    - [`../scripts/listen_build_queue.ps1`](../scripts/listen_build_queue.ps1) is the Windows wrapper for that listener; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars and writes logs into [`../.tmp/build-queue-listener/`](../.tmp/build-queue-listener)
-  - [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is the remote-repo alternative: once it is merged into the default branch and the required GitHub Secrets are configured, GitHub Actions can poll the Feishu queue every 5 minutes with `FEISHU_PHASE2_IDENTITY=bot`, without depending on a local always-on machine
-   - if you want remote immediate builds instead of waiting for the next poll, create a Feishu workflow whose combined condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml`; the queue still only builds rows whose trigger field is `Y`
-  - that remote bot flow requires the Feishu app/bot to have read access to the phase2 source tables and write access to the `Document_link` table; otherwise it can detect pending rows but cannot write back `开始构建时间` or `构建结果`
-  - if you also want the uploaded Word file to land inside wiki automatically, give that same user/bot identity edit/container permission on the destination wiki parent node; otherwise the upload succeeds but the wiki move step fails
+  - [`../.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is the `main`-owned remote-repo alternative: once it is merged into the default branch and the required GitHub Secrets are configured, GitHub Actions can poll the Feishu queue every 5 minutes with `FEISHU_PHASE2_IDENTITY=bot`, without depending on a local always-on machine
+   - if you want remote immediate builds instead of waiting for the next poll, create a Feishu workflow whose combined condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml` on `main`; the queue still only builds rows whose trigger field is `Y`
+ - that remote bot flow requires the Feishu app/bot to have read access to the phase2 source tables and write access to the `Document_link` table; otherwise it can detect pending rows but cannot write back `开始构建时间` or `构建结果`
+ - if you also want the uploaded Word file to land inside wiki automatically, give that same user/bot identity edit/container permission on the destination wiki parent node; otherwise the upload still succeeds, `Document link` falls back to the latest Drive URL, and the status is marked `drive_only` with the wiki attach error
+ - if you also want the remote GitHub Draft/Publish workers to mirror to DingTalk, configure GitHub Secrets `DINGTALK_DOCS_A_TOKEN`, `DINGTALK_DOCS_XSRF_TOKEN`, and `DINGTALK_DOCS_COOKIE`, then explicitly set the GitHub Actions repository variable `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session`; `DINGTALK_DOCS_TARGET_NODE_URL` is optional and only acts as the remote default target
+ - when DingTalk mirror sync is enabled, Feishu still remains the queue control plane and canonical writeback surface; `Document link` stays the primary returned link, and if your table also has `Document link_dd` the queue writes the mirrored DingTalk node URL there
+ - when Feishu is primary and DingTalk is only the mirror, mirror target/session errors no longer abort the whole row; the queue still writes the Feishu result and records the DingTalk problem as `dingtalk_sync=failed`
+ - if the row also has `是否上传钉钉`, that checkbox becomes the row-level DingTalk gate: checked rows also sync DingTalk, unchecked rows stay on the normal Feishu/wiki path for that run
+ - if the table does not have `是否上传钉钉`, the worker follows the current global worker mode for that whole row
+ - if that checked row also has `DingTalk_target_node_url`, the worker uploads to that row-level target first; if it is blank, the worker falls back to the global `DINGTALK_DOCS_TARGET_NODE_URL` when present
+ - if the row also has `operator_union_id`, the worker can resolve a per-operator DingTalk session file from `AUTO_MANUAL_DINGTALK_SESSION_ROOT` before falling back to the global browser-session envs
+ - `DingTalk_session_key` and `钉钉会话键` are accepted as aliases for `operator_union_id`; if a row uses `alice`, the worker expects `<session_root>/alice.json`
+ - if a DingTalk-enabled row points at a missing per-operator session or there is no usable global DingTalk session, the queue now fails that row before build starts and writes the missing-session reason back to `构建结果`
+ - `钉钉上传节点` is accepted as a compatibility alias, but prefer `DingTalk_target_node_url` for new tables
+ - for OpenClaw Phase 2, keep `Document link` as the canonical artifact link field used by queue resolution and replies; `Document link_dd` is optional supplemental writeback for DingTalk and is not required by the control layer
   - that queue worker reuses `FEISHU_PHASE2_BASE_TOKEN`, additionally needs `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`, auto-derives the current wiki destination from the same base when possible, and optionally accepts `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` to force a different parent wiki node
-   - `page_registry.csv` and [`data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not overridden by `--data-root`
+   - `page_registry.csv`, page selection/applicability, and [`data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not overridden by `--data-root`
    - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
    - `Spec_Footnotes.csv` now holds only reusable spec footnote definitions; `Footnote_order` controls the rendered superscript marker order and `Footnote_id` is referenced from `Spec_Master.csv`
    - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
@@ -155,14 +211,15 @@ Rules:
 
 The cross-platform entrypoint is [`build.py`](../build.py).
 It wraps [`tools/build_docs.py`](../tools/build_docs.py), which still drives the actual build logic.
-If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) as a thin wrapper over `build.py`.
+If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scripts/build_us_jp_manuals.ps1`](../scripts/build_us_jp_manuals.ps1) as a thin wrapper over [`../scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py). For the US-only subset, use [`../scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) as the compatibility wrapper.
 
 Current flow:
 
-1. `python build.py sync-data|process-build-queue|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py listen-message-control --config config.us.yaml`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
-4. `product_name` is resolved from the active snapshot root, defaulting to [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv) and switching to [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) when `--data-root data/phase2` is passed
+4. `product_name` is resolved from the active snapshot root, defaulting to a valid [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) snapshot when available and otherwise falling back to [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv); explicit `--data-root` still overrides the default
 5. CSV-backed pages are generated by [`tools/phase1_build.py`](../tools/phase1_build.py)
 6. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes the runtime bundle
 7. the runtime bundle is written to [`docs/_build/<model>/<region>/rst/`](../docs/_build)
@@ -172,7 +229,7 @@ Current flow:
 11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-14. `python tools/process_docs/build_review_preview.py` packages review HTML, review Word, diff-report HTML, diff-report CSV, and a single Excel workbook for design sharing
+14. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
 15. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
 16. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
 17. `python build.py preview` materializes one exact page selector under a preview-only output root
@@ -181,13 +238,18 @@ Current flow:
 Important:
 
 - `python build.py rst` only materializes the RST bundle.
-- `python build.py sync-data --config config.us.yaml --data-root data/phase2` is the explicit local pull step for Feishu/Lark content; build commands never fetch online data implicitly.
+- `python build.py sync-data --config config.us.yaml --data-root data/phase2` is the explicit local refresh step for Feishu/Lark content; build commands default to a valid phase2 snapshot when one exists and only fetch online data when you run `sync-data`.
 - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the safest readiness probe for a new machine because it checks the local CLI/env prerequisites before attempting the real sync.
-- `python build.py process-build-queue --config config.us.yaml --data-root data/phase2` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
+- `python build.py process-build-queue --config config.us.yaml` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
+- `python build.py message-control-dry-run --message "publish JE-1000F us-merged from branch feature/review-123"` is a maintainer-only Phase 0 helper for the planned Feishu message plus OpenClaw control layer; it returns structured JSON only and does not dispatch GitHub workflows or write back any Feishu fields yet.
+- `python build.py listen-message-control --config config.us.yaml` is the matching no-server runtime entry: it keeps one local Feishu IM long connection through `lark-cli`, supports the same bounded action set as the webhook adapter, and is the recommended path when you want one local machine to receive Feishu app messages and trigger remote GitHub Actions directly
+- when you need the same machine to keep the old local Feishu app unchanged, initialize the new app under `FEISHU_IM_LARK_CLI_HOME` first and then start `listen-message-control`; that isolates the new app's `lark-cli` config from the default home used by the old app
 - when the queue row carries `Git_ref`, that queue step fetches the named review branch and builds from that branch even if the queue worker itself is running from `main`.
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
 - build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.
+- `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`.
+- `review` does not accept `--staging-root` because it seeds the real repo `docs/_review`, so it is intentionally excluded from `scripts/local_build.py`.
 - `python build.py review` prepares a runtime draft from template/data, then seeds review only if review does not already exist.
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
@@ -195,13 +257,15 @@ Important:
 - if you intentionally want one review page replaced from runtime, keep using `sync-review --page-file <file>`; if you need the whole review bundle replaced, use `review --refresh-review`.
 - single-language US English review targets still use `docs/_review/<model>/US/en/`, but the merged US `config.us.yaml` queue/review flow now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`.
 - for that merged US flow, `Spec_Master.Source_lang` / `*_source` values are required, while CSV-driven non-source language columns may be blank because runtime lookup falls back to the source-language text automatically.
-- for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first, then pass `--data-root data/phase2` to `rst`, `check`, `diff-report`, `release-manifest`, or `publish`.
+- for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first; once a valid snapshot exists, `rst`, `check`, `diff-report`, `release-manifest`, and `publish` default to it, while explicit `--data-root` still overrides the source root.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
-- `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> release-manifest` as one formal release command.
-- when `Document_link.Doc_phase = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish DOCX and the latest publish HTML are both built from that same branch instead of drifting back to `main`.
+- `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> pdf -> release-manifest` as one formal release command.
+- when `Document_link.Workflow_action = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish PDF, the release-only DOCX, and the latest publish HTML are all built from that same branch instead of drifting back to `main`.
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
+- `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --build-action validate --languages en,fr` runs one explicit `build.py` action across the selected matrix targets instead of deriving actions from `--formats`.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html --open-html` builds the selected HTML set and opens the generated HTML entry pages.
+- `.\scripts\build_us_manuals.ps1 -Action check -Model <MODEL> -Languages en,es -DryRun` is the US-only compatibility wrapper over the same matrix runner and now requires an explicit `-Model`.
 - `check` now catches stale foreign model names, unresolved placeholders, missing assets, and contract-required spec keys / page-value selectors / assets.
 - review overrides only overlay `overrides/_assets/**`, `overrides/_static/**`, and `overrides/renderers/**` into the runtime bundle.
 
@@ -267,6 +331,7 @@ Parallel-language template rule:
 - `docs/templates/page_us-en/*.rst` is the current source-language structure owner for manually maintained US prose templates.
 - `docs/templates/page_us-es/*.rst` and `docs/templates/page_us-fr/*.rst` are derived-language counterparts and must be updated in the same round when the source-language page changes shared section structure or `.. only::` gating.
 - JP currently has only `ja`, so there is no second JP derived-language template to mirror today, but any future JP derived-language page should follow the same rule.
+- before adding a new Markdown manual into the template library, fill out [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md) so section mapping and placeholder rules are decided before page edits start.
 
 Edit these when safety/spec parameters change:
 
@@ -421,9 +486,10 @@ python build.py all
 Config scope rule:
 
 - [`config.us.yaml`](../config.us.yaml): shared EN / US template-family config
-- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English review / CI / review-preview entrypoint
+- [`config.us-en.yaml`](../config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template-family config
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
+- [`config.us-en.yaml`](../config.us-en.yaml), [`config.us-es.yaml`](../config.us-es.yaml), and [`config.us-fr.yaml`](../config.us-fr.yaml) now inherit their shared single-language US defaults from [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml); keep common single-language build defaults there and keep language-specific page order in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), and [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml)
 - the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US` and `JE-1000F / JP`
 - do not create a new config only because the model changed; pass `--model` and `--region` instead
 - create a new config only when the page stack, template family, or output conventions are genuinely different
@@ -460,14 +526,15 @@ Source mode meaning:
 PR preview note:
 
 - when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
+- when `--region` is `US`, `JP`, or `CN`, `python tools/process_docs/build_review_preview.py` can omit `--config` and fall back to the shared family default; keep `--config config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
 
 `publish` behavior:
 
 - requires explicit `--model` and `--region`
 - requires an existing `_review/<model>/<region>/`
 - exports revision reports to [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking) by default
-- writes a release manifest to [`reports/releases/<model>/<region>/`](../reports/releases)
-- queue-driven `Doc_phase=Publish` additionally stages the formal DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) and mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel
+- writes a release manifest to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases)
+- queue-driven `Workflow_action=Publish` additionally stages the formal DOCX and PDF under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads the PDF URL back to `Document link`, and mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel
 
 `preview` behavior:
 
@@ -685,6 +752,7 @@ For a normal JE-1000F US review cycle:
 
 ```powershell
 python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.eu-en.yaml --model JE-2000E --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Refresh JE-1000F US manual"
 python build.py publish --config config.us-en.yaml --model JE-1000F --region US
@@ -798,7 +866,7 @@ After changing templates or CSV values, verify at least the following:
 6. generated pages contain no stale model names from older products
 7. safety and spec still resolve from the intended source, including the JP template-backed safety page and the remaining CSV-backed generated pages
 8. the expected `.docx`, `.html`, or `.pdf` file is generated when requested
-9. `publish` or `release-manifest` produced a JSON / CSV record under [`reports/releases/<model>/<region>/`](../reports/releases)
+9. `publish` or `release-manifest` produced a JSON / CSV record under [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases)
 
 Useful checks:
 
@@ -815,11 +883,14 @@ git status --short -- docs/_review/JE-1000F/US
 Templates and CSV create the first draft.
 [`docs/_review/**`](../docs/_review) becomes the target editing source after review starts.
 [`docs/_build/**/**/rst/**`](../docs/_build) remains the runtime publish bundle behind the final outputs.
-## Draft / Publish Queue Split
+## Start Review, Build Draft Package, Publish
 
-- `process-build-queue` now runs one fresh `sync-data` pull before it builds queued rows.
-- `Doc_phase=Draft` means the queue builds from the current review tree.
-- `Doc_phase=Publish` means the queue runs the publish path.
-- `feishu-draft-build-queue.yml` is the Draft-stage worker and must be dispatched with the PR head branch as GitHub `ref`.
-- `feishu-build-queue.yml` is the Publish-stage worker and should stay owned by `main`.
-
+- `process-build-queue` no longer runs `sync-data` unconditionally; it now refreshes phase2 only when `Document_link.是否强制刷新数据 = true`.
+- `Document_link.data_sync` is the writeback field for that decision: `refreshed`, `skipped`, or `failed`.
+- `Workflow_action=Build Draft Package` and `Workflow_action=Publish` are now the primary queue actions.
+- queue routing only looks at `Workflow_action`: use `Start Review`, `Build Draft Package`, or `Publish`, and keep `Doc_phase` blank.
+- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide which review branch gets fetched and built.
+- `feishu-start-review.yml` is the Start Review worker on `main`; dispatch it on `main` so review-init always uses the latest worker definition.
+- `feishu-build-queue.yml` is the Publish-stage worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide the review-branch source when present.
+- if your team uses OpenClaw as the operator entrypoint, install the repo package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) and use `/start-review`, `/build-draft`, `/publish`, and `/manual-status` instead of hand-calling the GitHub API.
+- the OpenClaw bridge does not move `build.py`, Feishu secrets, or queue writeback out of GitHub Actions. It only dispatches the existing workers on `main` and tracks them through `openclaw_dispatch_nonce` plus the `openclaw-run-metadata` artifact.

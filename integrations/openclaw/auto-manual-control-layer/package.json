@@ -1,0 +1,16 @@
+{
+  "name": "auto-manual-openclaw-control-layer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenClaw command bridge for the auto-manual repository.",
+  "openclaw": {
+    "extensions": ["./index.mjs"]
+  },
+  "scripts": {
+    "test": "node --test test/**/*.test.mjs"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  }
+}

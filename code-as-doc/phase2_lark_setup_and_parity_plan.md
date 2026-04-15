@@ -1,6 +1,11 @@
 # Phase2 Lark Setup And Parity Plan
 
-Updated: 2026-04-01
+Updated: 2026-04-04
+
+Archived note:
+
+- this file is a one-time machine bring-up and parity record
+- use [`build_doc_guide.md`](build_doc_guide.md) and [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md) for the current maintained workflow
 
 This file is a short execution plan for the next machine.
 It covers:
@@ -21,7 +26,7 @@ Exit criteria:
 1. `python3 build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` succeeds on the new machine.
 2. `python3 build.py sync-data --config config.us.yaml --data-root data/phase2` succeeds and refreshes [`data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json).
 3. One explicit target parity run proves that `phase1` and `phase2` produce identical or expected-difference outputs.
-4. The parity run does not touch the main working copy's `docs/_build/`, `docs/_review/`, `reports/version_tracking/`, or `reports/releases/`.
+4. The parity run keeps generated `docs/_build/`, `reports/version_tracking/`, and `reports/releases/` under an isolated staging root instead of polluting the main working copy.
 
 ## 2. Part A: Enable `lark-cli`
 
@@ -105,10 +110,10 @@ Failure triage:
 - if `sync-data` fails on auth, rerun `lark-cli auth status`
 - if `sync-data` fails on table access, re-check the specific table/view ID pair
 
-## 4. Part C: Run Parity In A Disposable Worktree
+## 4. Part C: Run Parity With An Isolated Staging Root
 
-Use a separate Git worktree because `check`, `diff-report`, and `release-manifest` write into tracked output directories under the repo root.
-The cleanest no-pollution approach is to let those writes happen in a disposable sibling worktree.
+`build.py` now supports `--staging-root`, so parity no longer needs a disposable worktree just to keep generated outputs out of the tracked repo paths.
+Use the main repo checkout, but redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` into `.tmp/parity/...`.
 
 Recommended target:
 
@@ -118,41 +123,38 @@ Recommended target:
 
 Execution steps:
 
-1. Create a disposable worktree next to the main repo:
+1. Create isolated staging folders:
 
 ```bash
-git worktree add ../auto-manual-parity codex/phase2-feishu-sync
+mkdir -p .tmp/parity/phase1 .tmp/parity/phase2
 ```
 
-2. In that worktree, set up the Python environment and dependencies.
-3. Create a scratch folder for captured comparison artifacts:
+2. Create a scratch folder for captured comparison artifacts:
 
 ```bash
 mkdir -p .tmp/parity
 ```
 
-4. Capture the `phase1` baseline:
+3. Capture the `phase1` baseline:
 
 ```bash
-python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime
-cp -R docs/_build/JE-1000F/US .tmp/parity/phase1_build
-python3 build.py check --config config.us.yaml --model JE-1000F --region US
-python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US
+python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase1 --staging-root .tmp/parity/phase1
+python3 build.py check --config config.us.yaml --model JE-1000F --region US --data-root data/phase1 --staging-root .tmp/parity/phase1
+python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US --data-root data/phase1 --staging-root .tmp/parity/phase1
 ```
 
-5. Capture the `phase2` build:
+4. Capture the `phase2` build:
 
 ```bash
-python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase2
-cp -R docs/_build/JE-1000F/US .tmp/parity/phase2_build
-python3 build.py check --config config.us.yaml --model JE-1000F --region US --data-root data/phase2
-python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US --data-root data/phase2
+python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase2 --staging-root .tmp/parity/phase2
+python3 build.py check --config config.us.yaml --model JE-1000F --region US --data-root data/phase2 --staging-root .tmp/parity/phase2
+python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US --data-root data/phase2 --staging-root .tmp/parity/phase2
 ```
 
-6. Compare the outputs:
+5. Compare the outputs:
 
 ```bash
-diff -ru .tmp/parity/phase1_build/rst .tmp/parity/phase2_build/rst > .tmp/parity/rst.diff || true
+diff -ru .tmp/parity/phase1/docs/_build/JE-1000F/US/rst .tmp/parity/phase2/docs/_build/JE-1000F/US/rst > .tmp/parity/rst.diff || true
 ```
 
 Focus areas:
@@ -240,4 +242,3 @@ Only make that change after:
 1. `sync-data` is reproducible on the new machine
 2. one target parity run is clean
 3. any remaining release-manifest or diff-report path-only deltas are understood
-

@@ -1,0 +1,132 @@
+page_id: 03_product_overview
+template: templates/page_eu-en/03_product_overview_placeholder.rst
+field_map:
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: main_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  FRONT_DC12_PORT_LABEL:
+    row_key: dc12_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+  FRONT_DC12_PORT_SPEC:
+    row_key: dc12_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+  DC_USB_POWER_BUTTON_LABEL:
+    row_key: dc_usb_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  FRONT_USB_C_LOW_LABEL:
+    row_key: usb_c
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+    variant_key: low
+  FRONT_USB_C_LOW_SPEC:
+    row_key: usb_c
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+    variant_key: low
+  FRONT_USB_C_HIGH_LABEL:
+    row_key: usb_c
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+    variant_key: high
+  FRONT_USB_C_HIGH_SPEC:
+    row_key: usb_c
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+    variant_key: high
+  AC_POWER_BUTTON_LABEL:
+    row_key: ac_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  FRONT_USB_A_LABEL:
+    row_key: usb_a
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+  FRONT_USB_A_SPEC:
+    row_key: usb_a
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+  FRONT_AC_OUTPUT_LABEL:
+    row_key: ac_output
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+  FRONT_AC_OUTPUT_SPEC:
+    row_key: ac_output
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+  FRONT_TOTAL_OUTPUT_LABEL:
+    row_key: total_output
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: label
+  FRONT_TOTAL_OUTPUT_SPEC:
+    row_key: total_output
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: front
+    value_role: spec
+  SIDE_AC_INPUT_LABEL:
+    row_key: ac_input
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: label
+  SIDE_AC_INPUT_SPEC:
+    row_key: ac_input
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: spec
+  SIDE_DC_INPUT_LABEL:
+    row_key: dc_input
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: label
+  SIDE_DC_INPUT_PV_SPEC:
+    row_key: dc_input
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: spec
+    variant_key: pv
+  SIDE_DC_INPUT_CAR_SPEC:
+    row_key: dc_input
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    value_role: spec
+    variant_key: car
+required_row_keys:
+  - product_name
+  - model_no
+snippet_slots: {}
+contracts:
+  - 03_product_overview

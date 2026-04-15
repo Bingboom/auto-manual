@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-03-31
+Updated: 2026-04-12
 
 ## 1. Role
 
@@ -14,6 +14,14 @@ Use it to track:
 - active workstreams
 - deferred work
 - next execution order
+
+The active execution checklist for the current optimization wave lives in:
+
+- [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md)
+
+The completed execution tracker for the earlier maintainability refactor campaign remains here:
+
+- [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md)
 
 Do not use this file as the long-term architecture document.
 
@@ -48,7 +56,7 @@ Suggested workstream statuses:
 
 ## 3. Current Baseline
 
-As of 2026-03-17, the repo has working baselines for:
+As of 2026-04-11, the repo has working baselines for:
 
 - [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) as the primary cross-platform entrypoint
 - target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
@@ -60,8 +68,11 @@ As of 2026-03-17, the repo has working baselines for:
 - `release-manifest`
 - `preview`
 - `fast`
+- `message-control-dry-run` as a maintainer-only Phase 0 natural-language control resolver that returns structured JSON without dispatching real workflows
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
-- CI baseline for `unit`, `doctor`, and `check`
+- CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
+- OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
+- repo-owned OpenClaw integration packages under [`integrations/openclaw/`](integrations/openclaw)
 
 ## 4. Recently Completed
 
@@ -82,35 +93,71 @@ Use this section for short milestone-style updates.
 - added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
 - aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
 
+### 2026-04-05
+
+- normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
+- added staging-first local validation wrappers and cross-platform branch freshness guardrails
+- started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
+- added [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_lark_ops.py)
+- continued the same queue workstream with [`tools/queue_bound_binding.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+- completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
+- started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
+
+### 2026-04-06
+
+- completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
+- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](/Users/pika/Documents/GitHub/auto-manual/tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
+- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
+- collapsed [`scripts/build_us_manuals.ps1`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_manuals.ps1) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
+- updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
+
+### 2026-04-06
+
+- completed the core maintainability refactor campaign across build entrypoints, build pipeline helpers, reporting, queue orchestration, preview/export/sync hotspots, and `spec_master`
+- split `build_review_preview.py` into target, data, render, page, postprocess, and workspace helpers
+- reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
+- split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
+- split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
+- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
+
+### 2026-04-07
+
+- completed Milestone A in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by removing preview-target import side effects, splitting the Spec_Master/runtime/generated-page quality hotspots, adding a minimal Ruff gate, and introducing shared orchestration-test helpers
+- kept Workstream C active, but moved its baseline forward so the local/CI quality gate now includes a deliberate low-noise static check before the heavier unit/build validation layers run
+
+### 2026-04-08
+
+- completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
+
+### 2026-04-11
+
+- started Workstream F by adding `build.py message-control-dry-run` plus `tools/message_control_*` as the Phase 0 dry-run resolver for the planned Feishu message plus OpenClaw control layer
+- kept the Phase 0 scope intentionally narrow: resolve one raw message into structured JSON, required fields, guardrails, and the target GitHub workflow without dispatching or mutating Feishu state
+
+### 2026-04-12
+
+- added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
+- hardened the adapter with explicit publish-confirmation state, event-id dedupe, same-thread Feishu replies, encrypted callback support, and ECS-oriented deployment assets
+- aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
+- added low-noise maintainability guardrails: a hotspot size check in `Manual Validation`, a refreshed anti-debt PR checklist, and synced baseline docs for the current `468`-test suite
+
 ## 5. Open Gaps
 
 Keep this section short and current.
 
-1. High-level CLI behavior and low-level script defaults can still drift.
-2. Several core files are large enough to slow safe refactoring.
-3. Diff-report extraction still contains heuristic parts.
-4. CI does not yet validate every important workflow surface.
-5. Multi-target conditional content is still deferred.
+1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
+2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
+3. Multi-target conditional content is still deferred.
+4. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
 
 ## 6. Active Workstreams
 
-Use the template below for each workstream:
-
-```text
-### Workstream X: Name
-Status: active | next | deferred | done
-Why now:
-- one or two concrete reasons
-Scope:
-- what is included
-- what is explicitly excluded
-Exit criteria:
-- what must be true before this workstream can be considered done
-```
-
 ### Workstream A: Entrypoint And Tooling Parity
 
-Status: active
+Status: done
 
 Why now:
 
@@ -129,11 +176,12 @@ Exit criteria:
 
 ### Workstream B: Core File Decomposition
 
-Status: next
+Status: done
 
 Why now:
 
-- several core files are already large enough to make safe changes expensive
+- the main hotspot files needed to be split before quality-gate and traceability hardening could proceed safely
+- the earlier queue/build decomposition wave proved that behavior-preserving modularization could reduce risk without changing the command surface
 
 Scope:
 
@@ -143,14 +191,19 @@ Scope:
   - [`tools/gen_index_bundle.py`](/Users/pika/Documents/GitHub/auto-manual/tools/gen_index_bundle.py)
   - [`tools/diff_report.py`](/Users/pika/Documents/GitHub/auto-manual/tools/diff_report.py)
 - improve ownership boundaries for routing, bundle assembly, reporting, and export flow
+- keep public wrappers stable while moving implementation into dedicated modules
+- record each completed decomposition milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- keep [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) aligned with the extracted module boundaries
 
 Exit criteria:
 
 - large orchestration files are broken into smaller units with lower regression risk
+- core entry files act primarily as orchestration layers rather than carrying most low-level implementation themselves
+- module ownership stays documented after each decomposition step instead of drifting back into tribal knowledge
 
 ### Workstream C: Quality Gate Hardening
 
-Status: next
+Status: done
 
 Why now:
 
@@ -169,78 +222,46 @@ Exit criteria:
 
 ### Workstream D: Diff And Traceability Hardening
 
-Status: next
-
-Why now:
-
-- reviewers and release owners now depend on diff-report and release-manifest outputs
-
-Scope:
-
-- reduce heuristic ambiguity in field-level diff extraction
-- keep release-manifest aligned with publish behavior
-- preserve target-scoped report defaults
-
-Exit criteria:
-
-- review and release outputs are trustworthy enough for routine audit and comparison work
+Status: done
 
 ### Workstream E: CI Expansion
 
-Status: next
+Status: done
+
+### Workstream F: Feishu IM Ingress Hardening
+
+Status: active
 
 Why now:
 
-- current CI proves baseline health, but not full workflow coverage
+- the repo now owns a real Feishu IM ingress package, so deployment and callback-mode boundaries need to stay explicit
+- without a small hardening pass, operator-facing behavior can drift between local testing and real webhook use
 
 Scope:
 
-- add smoke coverage where practical for:
-  - diff-report
-  - release-manifest
-  - preview
-  - publish-adjacent workflows where platform dependencies allow it
+- keep the Feishu IM adapter outside the Python execution plane
+- keep reply semantics aligned with `queue-resolve-action`, `queue-execute`, and structured failure summaries
+- keep `message-control-dry-run` as a maintainer-only offline parser probe so intent normalization can still be debugged without live Feishu ingress
+- make callback security mode explicit
+- make runtime-state expectations explicit before any multi-instance deployment
+- ship one repeatable ECS deployment contract instead of relying on ad hoc `nohup` steps
+- keep the remaining stable-ingress rollout as an explicit ops checklist rather than tribal knowledge, including Cloudflare DNS ownership, named tunnel creation, `/etc/cloudflared/config.yml`, and the Feishu callback cutover step
 
 Exit criteria:
 
-- CI covers the workflow surfaces the repo actually depends on day to day
-
-## 7. Deferred Work
-
-Use this section for valid future work that should not yet be active.
-
-### Deferred D1: Multi-Target Content Pilot
-
-Reason deferred:
-
-- current review, check, and traceability foundations should stay stable before adding a new content strategy layer
-
-Preferred direction:
-
-- table-driven filtering in phase1 data
-- normalized applicability fields such as `regions`, `models`, `langs`, and `feature_flags`
-- page-level and block-level filtering before RST emission
-
-Pilot recommendation:
-
-- start with `03_product_overview`
-- first support `enabled + regions + langs`
-- add `models` and `feature_flags` later
-
-Promotion rule:
-
-- move this item into `Active Workstreams` only after the current baseline stops shifting materially
+- the adapter can be deployed without ambiguity about callback mode, runtime state, required env, and restart contract on a long-lived host
+- operator replies stay deterministic for query, review-start, draft build, and publish confirmation
+- remaining gaps are clearly documented instead of being hidden in local-only assumptions
 
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Entrypoint and tooling parity
-2. Core file decomposition
-3. Quality gate hardening
-4. Diff and traceability hardening
-5. CI expansion
-6. Multi-target content pilot
+1. Preserve the current `check` + smoke-CI baseline
+2. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state
+3. Revisit remaining medium wrappers only when a concrete hotspot reappears
+4. Multi-target content pilot when the deferred work becomes active
+
 
 ## 9. Success Criteria
 

@@ -27,8 +27,12 @@ import csv
 import sys
 from pathlib import Path
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
 CSV_PATH = ROOT / "data" / "layout_params.csv"
 OUT_TEX = ROOT / "docs" / "renderers" / "latex" / "params.tex"
 

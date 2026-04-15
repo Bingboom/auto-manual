@@ -1,0 +1,71 @@
+from __future__ import annotations
+
+from tools.diff_report_fields_extract import (
+    _build_field_entries,
+    _consume_list_table,
+    _looks_like_heading,
+    extract_field_entries,
+)
+from tools.diff_report_fields_rows import (
+    _annotate_field_entries,
+    _build_field_diff_row,
+    _format_field_key,
+    _merge_resolved_sources,
+    _resolve_entry_sources,
+    _safe_int,
+    collect_field_diff_rows,
+    collect_page_diff_rows,
+)
+from tools.diff_report_fields_shared import (
+    _clean_field_text,
+    derive_label_lower,
+    derive_lang_from_page_key,
+    derive_short_product_name,
+    first_non_empty,
+    is_truthy,
+    load_config,
+    load_spec_title_map,
+    normalize_title_lang,
+    pick_lang_value,
+    read_csv_rows,
+    resolve_data_path,
+    resolve_spec_paths,
+)
+from tools.diff_report_fields_sources import (
+    build_placeholder_source_lookup,
+    build_spec_source_lookup,
+    match_placeholder_sources,
+    merge_sources,
+)
+
+__all__ = [
+    "_annotate_field_entries",
+    "_build_field_diff_row",
+    "_build_field_entries",
+    "_clean_field_text",
+    "_consume_list_table",
+    "_format_field_key",
+    "_looks_like_heading",
+    "_merge_resolved_sources",
+    "_resolve_entry_sources",
+    "_safe_int",
+    "build_placeholder_source_lookup",
+    "build_spec_source_lookup",
+    "collect_field_diff_rows",
+    "collect_page_diff_rows",
+    "derive_label_lower",
+    "derive_lang_from_page_key",
+    "derive_short_product_name",
+    "extract_field_entries",
+    "first_non_empty",
+    "is_truthy",
+    "load_config",
+    "load_spec_title_map",
+    "match_placeholder_sources",
+    "merge_sources",
+    "normalize_title_lang",
+    "pick_lang_value",
+    "read_csv_rows",
+    "resolve_data_path",
+    "resolve_spec_paths",
+]

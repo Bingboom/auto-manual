@@ -1,0 +1,13 @@
+[tool.ruff]
+target-version = "py312"
+extend-exclude = [
+    ".venv",
+    ".tmp",
+    "docs/_build",
+    "docs/_review",
+    "reports",
+    "site",
+]
+
+[tool.ruff.lint]
+select = ["E722", "F821", "F841"]

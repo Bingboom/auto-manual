@@ -4,20 +4,102 @@
 from __future__ import annotations
 
 import argparse
-import glob
-import importlib
-import re
+import json
 import shutil
-import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+
+from tools.build_paths import (
+    clean_targets_for_config as _clean_targets_for_config,
+    load_config as _load_config,
+    resolve_docs_dir as _resolve_docs_dir,
+    resolve_layout_params_csv as _resolve_layout_params_csv,
+    resolve_path_from_root as _resolve_path_from_root,
+    resolve_staging_root as _resolve_staging_root,
+    review_root_for_config as _review_root_for_config,
+    staging_docs_build_dir as _staging_docs_build_dir,
+    staging_releases_root as _staging_releases_root,
+    staging_version_tracking_root as _staging_version_tracking_root,
+    version_tracking_root as _version_tracking_root,
+)
+from tools.build_entry_commands import (
+    append_data_root_arg as _append_data_root_arg_impl,
+    append_target_args as _append_target_args_impl,
+    build_docs_command as _build_docs_command_impl,
+    check_docs_command as _check_docs_command_impl,
+    effective_source as _effective_source_impl,
+    listen_build_queue_command as _listen_build_queue_command_impl,
+    listen_message_control_command as _listen_message_control_command_impl,
+    message_control_dry_run_command as _message_control_dry_run_command_impl,
+    normalize_cli_build_queue_action as _normalize_cli_build_queue_action_impl,
+    process_build_queue_command as _process_build_queue_command_impl,
+    process_review_start_queue_command as _process_review_start_queue_command_impl,
+    release_manifest_command as _release_manifest_command_impl,
+    review_bundle_command as _review_bundle_command_impl,
+    sync_data_command as _sync_data_command_impl,
+    sync_review_command as _sync_review_command_impl,
+)
+from tools.build_doctor import (
+    check_word_com_available as _check_word_com_available_impl,
+    collect_doctor_findings as _collect_doctor_findings_impl,
+    doctor_import as _doctor_import_impl,
+    find_xelatex as _find_xelatex_impl,
+    is_windows_platform as _is_windows_platform_impl,
+    render_config_tokenized_value as _render_config_tokenized_value_impl,
+    render_finding as _doctor_render_finding_impl,
+    resolve_doctor_pdf_mode as _resolve_doctor_pdf_mode_impl,
+    resolve_doctor_target as _resolve_doctor_target_impl,
+    resolve_reference_doc_status as _resolve_reference_doc_status_impl,
+    run_doctor as _run_doctor_impl,
+    slug_token as _slug_token_impl,
+)
+from tools.build_cli import parse_args as _parse_args_impl
+from tools.build_dispatch import dispatch_action as _dispatch_action_impl
+from tools.build_main import run_main as _run_main_impl
+from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
+from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
+from tools.queue_query import run_queue_query as _run_queue_query_impl
+from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
+from tools.translation_memory import (
+    build_translation_memory_payload as _build_translation_memory_payload_impl,
+    payload_to_json as _payload_to_json_impl,
+    render_translation_memory_payload as _render_translation_memory_payload_impl,
+)
+from tools.build_reports import (
+    default_report_dir_for_tracked_root as _default_report_dir_for_tracked_root_impl,
+    diff_report_command as _diff_report_command,
+    publish_target_components as _publish_target_components_impl,
+    report_dir_for_target as _report_dir_for_target_impl,
+    require_explicit_target as _require_explicit_target_impl,
+    resolve_diff_report_targets as _resolve_diff_report_targets_impl,
+    tracked_root_for_target as _tracked_root_for_target_impl,
+)
+from tools.build_publish import (
+    run_diff_report as _run_diff_report_impl,
+    run_diff_report_with_paths as _run_diff_report_with_paths_impl,
+    run_publish as _run_publish_impl,
+)
+from tools.build_runtime import (
+    clean_build_artifacts as _clean_build_artifacts_impl,
+    collect_legacy_docs_output_dirs as _collect_legacy_docs_output_dirs_impl,
+    format_command as _format_command_impl,
+    is_legacy_bundle_dir as _is_legacy_bundle_dir_impl,
+    maybe_sync_review_before_build as _maybe_sync_review_before_build_impl,
+    path_component as _path_component_impl,
+    preview_output_root as _preview_output_root_impl,
+    review_sync_target_args as _review_sync_target_args_impl,
+    run_check as _run_check_impl,
+    run_checked as _run_checked_impl,
+    run_validate as _run_validate_impl,
+)
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = "config.us.yaml"
 BUILD_ACTIONS = ("rst", "word", "html", "pdf", "all")
 ALL_OUTPUT_FORMATS = "html,word,pdf"
 VALID_PDF_MODES = {"latex", "word"}
+STAGING_ROOT_ENV = "AUTO_MANUAL_STAGING_ROOT"
 
 
 @dataclass
@@ -28,234 +110,117 @@ class DoctorFinding:
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(
-        description="Cross-platform build entrypoint for Auto-Manual.",
+    return _parse_args_impl(
+        argv,
+        default_config=DEFAULT_CONFIG,
+        build_actions=BUILD_ACTIONS,
+        staging_root_env=STAGING_ROOT_ENV,
     )
-    ap.add_argument(
-        "action",
-        choices=(
-            "validate",
-            "doctor",
-            *BUILD_ACTIONS,
-            "review",
-            "check",
-            "sync-review",
-            "sync-data",
-            "process-review-start-queue",
-            "process-build-queue",
-            "listen-build-queue",
-            "publish",
-            "clean",
-            "diff-report",
-            "release-manifest",
-            "preview",
-            "fast",
-        ),
-        help="Action to run",
-    )
-    ap.add_argument("--config", default=DEFAULT_CONFIG, help="Config YAML path, relative to repo root by default")
-    ap.add_argument("--model", default=None, help="Build a single model instead of build.targets")
-    ap.add_argument("--region", default=None, help="Build a single region instead of build.targets")
-    ap.add_argument(
-        "--source",
-        choices=("auto", "runtime", "review"),
-        default="auto",
-        help="Content source for build actions: auto, runtime, or review",
-    )
-    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
-    ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
-    ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")
-    ap.add_argument("--no-clean", action="store_true", help="Skip cleaning current target outputs before build")
-    ap.add_argument(
-        "--skip-root-index",
-        action="store_true",
-        help="Do not rewrite docs/index.rst when materializing the target bundle",
-    )
-    ap.add_argument(
-        "--refresh-review",
-        action="store_true",
-        help="Refresh an existing review bundle from the runtime template/data output",
-    )
-    ap.add_argument(
-        "--sync-scope",
-        choices=("generated", "params"),
-        default="params",
-        help="For sync-review: generated = generated csv/draft pages only; params = generated plus parameter-driven page refresh without resetting manual review prose",
-    )
-    ap.add_argument(
-        "--page-file",
-        action="append",
-        default=[],
-        help="For sync-review: extra review page file name to sync from runtime/page",
-    )
-    ap.add_argument("--page", default=None, help="For preview: exact page selector to materialize")
-    ap.add_argument("--tracked-root", default=None, help="Tracked subtree for diff-report")
-    ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report")
-    ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report")
-    ap.set_defaults(ignore_initial_adds=True)
-    ap.add_argument(
-        "--ignore-initial-adds",
-        dest="ignore_initial_adds",
-        action="store_true",
-        help="Ignore initial all-Added rows when the tracked subtree is first introduced (default for diff-report)",
-    )
-    ap.add_argument(
-        "--include-initial-adds",
-        dest="ignore_initial_adds",
-        action="store_false",
-        help="Include initial all-Added rows when the tracked subtree is first introduced",
-    )
-    ap.add_argument(
-        "--report-dir",
-        default=None,
-        help="Output directory for diff-report CSV/HTML",
-    )
-    ap.add_argument("--table", action="append", default=[], help="For sync-data: logical table id to sync")
-    ap.add_argument(
-        "--doc-phase",
-        choices=("draft", "publish"),
-        default=None,
-        help="For process-build-queue: only consume one Document_link Doc_phase",
-    )
-    ap.add_argument(
-        "--record-id",
-        default=None,
-        help="For process-build-queue or process-review-start-queue: only consume one table record_id",
-    )
-    ap.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="For sync-data, process-build-queue, or process-review-start-queue: validate/report without writing files",
-    )
-    return ap.parse_args(argv)
 
 
 def resolve_path_from_root(raw_path: str) -> Path:
-    path = Path(raw_path)
-    return path if path.is_absolute() else (ROOT / path)
+    return _resolve_path_from_root(ROOT, raw_path)
+
+
+def resolve_staging_root(args: argparse.Namespace) -> Path | None:
+    return _resolve_staging_root(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
+
+
+def staging_docs_build_dir(args: argparse.Namespace) -> Path | None:
+    return _staging_docs_build_dir(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
+
+
+def staging_version_tracking_root(args: argparse.Namespace) -> Path | None:
+    return _staging_version_tracking_root(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
+
+
+def staging_releases_root(args: argparse.Namespace) -> Path | None:
+    return _staging_releases_root(repo_root=ROOT, args=args, env_var=STAGING_ROOT_ENV)
 
 
 def load_config(config_path: Path) -> dict:
-    try:
-        import yaml  # type: ignore
-    except ImportError as exc:
-        raise RuntimeError("PyYAML not installed. Please run: pip install pyyaml") from exc
-
-    if not config_path.exists():
-        raise RuntimeError(f"Config not found: {config_path}")
-
-    try:
-        with config_path.open("r", encoding="utf-8") as handle:
-            data = yaml.safe_load(handle) or {}
-    except Exception as exc:
-        raise RuntimeError(f"Failed to load config: {config_path}") from exc
-
-    if not isinstance(data, dict):
-        raise RuntimeError(f"Config root must be a mapping: {config_path}")
-    return data
+    return _load_config(config_path)
 
 
 def resolve_layout_params_csv(config_path: Path) -> Path:
-    cfg = load_config(config_path)
-    paths_cfg = cfg.get("paths", {})
-    if isinstance(paths_cfg, dict):
-        raw = paths_cfg.get("layout_params_csv")
-        if isinstance(raw, str) and raw.strip():
-            return resolve_path_from_root(raw.strip())
-    return ROOT / "data" / "layout_params.csv"
+    return _resolve_layout_params_csv(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def resolve_docs_dir(config_path: Path) -> Path:
-    try:
-        cfg = load_config(config_path)
-    except RuntimeError:
-        return ROOT / "docs"
-
-    paths_cfg = cfg.get("paths", {})
-    if isinstance(paths_cfg, dict):
-        raw = paths_cfg.get("docs_dir")
-        if isinstance(raw, str) and raw.strip():
-            return resolve_path_from_root(raw.strip())
-    return ROOT / "docs"
+    return _resolve_docs_dir(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def clean_targets_for_config(config_path: Path) -> tuple[Path, Path]:
-    docs_dir = resolve_docs_dir(config_path)
-    return docs_dir / "_build", docs_dir / "renderers" / "latex" / "params.tex"
+    return _clean_targets_for_config(config_path, repo_root=ROOT, config_loader=load_config)
 
 
 def review_root_for_config(config_path: Path) -> Path:
-    docs_dir = resolve_docs_dir(config_path)
-    return docs_dir / "_review"
+    return _review_root_for_config(config_path, repo_root=ROOT, config_loader=load_config)
 
 
-def version_tracking_root() -> Path:
-    return ROOT / "reports" / "version_tracking"
+def version_tracking_root(*, base_root: Path | None = None) -> Path:
+    return _version_tracking_root(repo_root=ROOT, base_root=base_root)
 
 
 def _path_component(value: str) -> str:
-    text = value.strip()
-    return text.replace("/", "_").replace("\\", "_").replace(":", "_")
+    return _path_component_impl(value)
 
 
-def _preview_output_root(config_path: Path, *, model: str, region: str, page: str) -> Path:
-    docs_dir = resolve_docs_dir(config_path)
-    return docs_dir / "_build" / _path_component(model) / _path_component(region) / "preview" / _path_component(page)
+def _preview_output_root(
+    config_path: Path,
+    *,
+    model: str,
+    region: str,
+    page: str,
+    docs_build_dir: Path | None = None,
+) -> Path:
+    return _preview_output_root_impl(
+        config_path,
+        model=model,
+        region=region,
+        page=page,
+        docs_build_dir=docs_build_dir,
+        resolve_docs_dir=resolve_docs_dir,
+    )
 
 
 def is_legacy_bundle_dir(path: Path) -> bool:
-    return path.is_dir() and (path / "index.rst").exists() and (path / "page").is_dir()
+    return _is_legacy_bundle_dir_impl(path)
 
 
 def collect_legacy_docs_output_dirs(docs_dir: Path) -> list[Path]:
-    if not docs_dir.exists():
-        return []
-
-    legacy_dirs: list[Path] = []
-    generated_dir = docs_dir / "generated"
-    if generated_dir.exists():
-        legacy_dirs.append(generated_dir)
-
-    reserved = {"_build", "_static", "renderers", "templates", "__pycache__"}
-    for child in docs_dir.iterdir():
-        if not child.is_dir() or child.name in reserved or child == generated_dir:
-            continue
-        if is_legacy_bundle_dir(child):
-            legacy_dirs.append(child)
-            continue
-        subdirs = [item for item in child.iterdir() if item.is_dir()]
-        if subdirs and all(is_legacy_bundle_dir(item) for item in subdirs):
-            legacy_dirs.append(child)
-    return legacy_dirs
+    return _collect_legacy_docs_output_dirs_impl(docs_dir)
 
 
 def format_command(cmd: list[str]) -> str:
-    return subprocess.list2cmdline([str(part) for part in cmd])
+    return _format_command_impl(cmd)
 
 
 def run_checked(cmd: list[str]) -> None:
-    print(f"[build.py] {format_command(cmd)}")
-    subprocess.run(cmd, cwd=str(ROOT), check=True)
+    return _run_checked_impl(cmd, repo_root=ROOT)
+
+
+def ensure_supported_staging_action(args: argparse.Namespace) -> None:
+    if resolve_staging_root(args) is None:
+        return
+    if args.action == "review":
+        raise RuntimeError("review does not support --staging-root because it seeds docs/_review from the repo runtime bundle")
+
+
+def normalize_cli_build_queue_action(workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:
+    return _normalize_cli_build_queue_action_impl(workflow_action, doc_phase)
 
 
 def _effective_source(args: argparse.Namespace, *, source_override: str = "auto") -> str:
-    return args.source if source_override == "auto" else source_override
+    return _effective_source_impl(args, source_override=source_override)
 
 
 def _append_target_args(cmd: list[str], args: argparse.Namespace) -> list[str]:
-    if args.model:
-        cmd += ["--model", args.model]
-    if args.region:
-        cmd += ["--region", args.region]
-    if not (args.model or args.region):
-        cmd.append("--all-targets")
-    return cmd
+    return _append_target_args_impl(cmd, args)
 
 
 def _append_data_root_arg(cmd: list[str], args: argparse.Namespace) -> list[str]:
-    if isinstance(args.data_root, str) and args.data_root.strip():
-        cmd += ["--data-root", args.data_root.strip()]
-    return cmd
+    return _append_data_root_arg_impl(cmd, args)
 
 
 def build_docs_command(
@@ -264,370 +229,260 @@ def build_docs_command(
     action_override: str | None = None,
     source_override: str | None = None,
 ) -> list[str]:
-    action = action_override or args.action
-    if action not in (*BUILD_ACTIONS, "preview", "fast"):
-        raise RuntimeError(f"Action '{action}' is not a build action")
-
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "build_docs.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_target_args(cmd, args)
-    _append_data_root_arg(cmd, args)
-    effective_source = source_override or args.source
-    if action == "fast":
-        effective_source = "runtime"
-    cmd += ["--source", effective_source]
-
-    if action in {"rst", "preview", "fast"}:
-        cmd.append("--prepare-only")
-    elif action == "all":
-        cmd += ["--formats", ALL_OUTPUT_FORMATS]
-    else:
-        cmd += ["--formats", action]
-
-    if action == "preview":
-        model, region = _require_explicit_target(args, action_name="preview")
-        page = (args.page or "").strip()
-        if not page:
-            raise RuntimeError("preview requires --page so the bundle scope is explicit")
-        cmd += ["--page-selector", page]
-        cmd += ["--output-root", str(_preview_output_root(config_path, model=model, region=region, page=page))]
-        cmd.append("--skip-root-index")
-    elif args.skip_root_index:
-        cmd.append("--skip-root-index")
-
-    if args.pdf_mode:
-        cmd += ["--pdf-mode", args.pdf_mode]
-    if action != "fast" and not args.no_clean:
-        cmd.append("--clean")
-    if not args.open:
-        cmd.append("--no-open")
-    return cmd
+    return _build_docs_command_impl(
+        args,
+        repo_root=ROOT,
+        build_actions=BUILD_ACTIONS,
+        all_output_formats=ALL_OUTPUT_FORMATS,
+        resolve_path_from_root=resolve_path_from_root,
+        staging_docs_build_dir=staging_docs_build_dir,
+        preview_output_root=_preview_output_root,
+        require_explicit_target=lambda parsed_args, action_name: _require_explicit_target(
+            parsed_args,
+            action_name=action_name,
+        ),
+        action_override=action_override,
+        source_override=source_override,
+    )
 
 
 def review_bundle_command(args: argparse.Namespace) -> list[str]:
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "review_bundle.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_target_args(cmd, args)
-    if args.refresh_review:
-        cmd.append("--refresh-existing")
-    return cmd
+    return _review_bundle_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+        staging_docs_build_dir=staging_docs_build_dir,
+    )
 
 
 def check_docs_command(args: argparse.Namespace) -> list[str]:
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "check_docs.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_target_args(cmd, args)
-    return _append_data_root_arg(cmd, args)
+    return _check_docs_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+        staging_docs_build_dir=staging_docs_build_dir,
+    )
 
 
 def sync_review_command(args: argparse.Namespace) -> list[str]:
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "sync_review.py"),
-        "--config",
-        str(config_path),
-        "--sync-scope",
-        args.sync_scope,
-    ]
-    _append_target_args(cmd, args)
-    for page_file in args.page_file:
-        cmd += ["--page-file", page_file]
-    return cmd
+    return _sync_review_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+        staging_docs_build_dir=staging_docs_build_dir,
+    )
 
 
 def _review_sync_target_args(args: argparse.Namespace) -> list[argparse.Namespace]:
     from tools.build_docs import resolve_build_targets
     from tools.review_support import review_bundle_exists
 
-    config_path = resolve_path_from_root(args.config)
-    cfg = load_config(config_path)
-    docs_dir = resolve_docs_dir(config_path)
-    targets = resolve_build_targets(
-        cfg,
-        arg_model=args.model,
-        arg_region=args.region,
-        all_targets=not (args.model or args.region),
+    return _review_sync_target_args_impl(
+        args,
+        resolve_path_from_root=resolve_path_from_root,
+        load_config=load_config,
+        resolve_docs_dir=resolve_docs_dir,
+        resolve_build_targets=resolve_build_targets,
+        review_bundle_exists=review_bundle_exists,
     )
-
-    seen: set[tuple[str, str]] = set()
-    sync_args_list: list[argparse.Namespace] = []
-    for target in targets:
-        if not review_bundle_exists(
-            docs_dir=docs_dir,
-            model=target.model,
-            region=target.region,
-            lang=target.lang,
-        ):
-            continue
-        key = (str(target.model or ""), str(target.region or ""))
-        if key in seen:
-            continue
-        seen.add(key)
-        cloned = argparse.Namespace(**vars(args))
-        cloned.config = str(config_path)
-        cloned.model = target.model
-        cloned.region = target.region
-        cloned.sync_scope = "params"
-        cloned.page_file = []
-        sync_args_list.append(cloned)
-    return sync_args_list
 
 
 def maybe_sync_review_before_build(args: argparse.Namespace, *, source_override: str = "auto") -> None:
-    effective_source = _effective_source(args, source_override=source_override)
-    if effective_source not in {"auto", "review"}:
-        return
-    for sync_args in _review_sync_target_args(args):
-        run_checked(build_docs_command(sync_args, action_override="rst", source_override="runtime"))
-        run_checked(sync_review_command(sync_args))
+    return _maybe_sync_review_before_build_impl(
+        args,
+        source_override=source_override,
+        effective_source=lambda parsed_args: _effective_source(parsed_args, source_override="auto"),
+        review_sync_target_args=_review_sync_target_args,
+        run_checked=run_checked,
+        build_docs_command=build_docs_command,
+        sync_review_command=sync_review_command,
+    )
 
 
 def sync_data_command(args: argparse.Namespace) -> list[str]:
-    if (args.model or "").strip() or (args.region or "").strip():
-        raise RuntimeError("sync-data does not accept --model or --region; it always exports full snapshot tables")
+    return _sync_data_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
+
+
+def _emit_text(text: str) -> None:
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        sys.stdout.buffer.write(text.encode("utf-8"))
+        sys.stdout.buffer.write(b"\n")
+        sys.stdout.flush()
+
+
+def run_translation_memory(args: argparse.Namespace) -> None:
+    payload = _build_translation_memory_payload_impl(
+        config_path=resolve_path_from_root(args.config),
+        repo_root=ROOT,
+        data_root=args.data_root,
+        model=args.model,
+        region=args.region,
+        query_text=args.query_text,
+        preferred_lang=args.lang,
+        tables=tuple(args.table or ()),
+        page=args.page,
+        section=args.section,
+        row_key=args.row_key,
+        limit=args.limit,
+    )
+    if args.json:
+        _emit_text(_payload_to_json_impl(payload))
+        return
+    _emit_text(_render_translation_memory_payload_impl(payload))
+
+
+def message_control_dry_run_command(args: argparse.Namespace) -> list[str]:
+    return _message_control_dry_run_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
+
+
+def run_message_control_dry_run(args: argparse.Namespace) -> None:
     config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "sync_data.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_data_root_arg(cmd, args)
-    for table in args.table:
-        cmd += ["--table", table]
-    if args.dry_run:
-        cmd.append("--dry-run")
-    return cmd
+    load_config(config_path)
+    result = _resolve_message_control_impl(
+        raw_message=str(args.message or ""),
+        repo_root=ROOT,
+        config_loader=load_config,
+        record_id=str(args.record_id or ""),
+        document_id=str(args.document_id or ""),
+        document_key=str(args.document_key or ""),
+        model=str(args.model or ""),
+        region=str(args.region or ""),
+        lang=str(args.lang or ""),
+        build_family=str(args.build_family or ""),
+        git_ref=str(args.git_ref or ""),
+        version=str(args.version or ""),
+        confirmed=bool(args.confirmed),
+    )
+    print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False, sort_keys=True))
 
 
+def run_queue_query(args: argparse.Namespace) -> None:
+    return _run_queue_query_impl(args, config_path=resolve_path_from_root(args.config))
+
+
+def run_queue_resolve_action(args: argparse.Namespace) -> None:
+    return _run_queue_resolve_action_impl(args, config_path=resolve_path_from_root(args.config))
+
+
+def run_queue_execute(args: argparse.Namespace) -> None:
+    return _run_queue_execute_impl(
+        args,
+        config_path=resolve_path_from_root(args.config),
+        repo_root=ROOT,
+    )
 def release_manifest_command(args: argparse.Namespace) -> list[str]:
-    model, region = _require_explicit_target(args, action_name="release-manifest")
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "release_manifest.py"),
-        "--config",
-        str(config_path),
-        "--model",
-        model,
-        "--region",
-        region,
-    ]
-    return _append_data_root_arg(cmd, args)
+    return _release_manifest_command_impl(
+        args,
+        repo_root=ROOT,
+        require_explicit_target=lambda parsed_args, action_name: _require_explicit_target(
+            parsed_args,
+            action_name=action_name,
+        ),
+        resolve_path_from_root=resolve_path_from_root,
+        staging_docs_build_dir=staging_docs_build_dir,
+        staging_releases_root=staging_releases_root,
+    )
 
 
 def process_build_queue_command(args: argparse.Namespace) -> list[str]:
-    if (args.model or "").strip() or (args.region or "").strip():
-        raise RuntimeError(
-            "process-build-queue does not accept --model or --region; targets come from Document_link rows"
-        )
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "process_build_queue.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_data_root_arg(cmd, args)
-    if isinstance(args.doc_phase, str) and args.doc_phase.strip():
-        cmd += ["--doc-phase", args.doc_phase.strip()]
-    if isinstance(args.record_id, str) and args.record_id.strip():
-        cmd += ["--record-id", args.record_id.strip()]
-    if args.dry_run:
-        cmd.append("--dry-run")
-    return cmd
+    return _process_build_queue_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+        normalize_cli_build_queue_action=normalize_cli_build_queue_action,
+    )
 
 
 def process_review_start_queue_command(args: argparse.Namespace) -> list[str]:
-    if (args.model or "").strip() or (args.region or "").strip():
-        raise RuntimeError(
-            "process-review-start-queue does not accept --model or --region; targets come from Review-init rows"
-        )
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "process_review_start_queue.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_data_root_arg(cmd, args)
-    if isinstance(args.record_id, str) and args.record_id.strip():
-        cmd += ["--record-id", args.record_id.strip()]
-    if args.dry_run:
-        cmd.append("--dry-run")
-    return cmd
+    return _process_review_start_queue_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
 
 
 def listen_build_queue_command(args: argparse.Namespace) -> list[str]:
-    if (args.model or "").strip() or (args.region or "").strip():
-        raise RuntimeError(
-            "listen-build-queue does not accept --model or --region; targets come from Document_link events"
-        )
-    config_path = resolve_path_from_root(args.config)
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "listen_build_queue.py"),
-        "--config",
-        str(config_path),
-    ]
-    _append_data_root_arg(cmd, args)
-    return cmd
+    return _listen_build_queue_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
+
+
+def listen_message_control_command(args: argparse.Namespace) -> list[str]:
+    return _listen_message_control_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
 
 
 def run_validate(config_path: Path, *, data_root: str | None = None) -> None:
-    run_checked(
-        [
-            sys.executable,
-            str(ROOT / "tools" / "validate_config.py"),
-            "--config",
-            str(config_path),
-        ]
+    return _run_validate_impl(
+        config_path,
+        repo_root=ROOT,
+        resolve_layout_params_csv=resolve_layout_params_csv,
+        run_checked=run_checked,
+        data_root=data_root,
     )
-    run_checked(
-        [
-            sys.executable,
-            str(ROOT / "tools" / "validate_layout_params.py"),
-            "--csv",
-            str(resolve_layout_params_csv(config_path)),
-        ]
-    )
-    run_checked(
-        [
-            sys.executable,
-            str(ROOT / "tools" / "validate_spec_master.py"),
-            "--config",
-            str(config_path),
-            *(
-                ["--data-root", data_root.strip()]
-                if isinstance(data_root, str) and data_root.strip()
-                else []
-            ),
-        ]
-    )
-
 
 def _doctor_add(findings: list[DoctorFinding], level: str, area: str, message: str) -> None:
     findings.append(DoctorFinding(level=level, area=area, message=message))
 
 
 def _doctor_render_finding(finding: DoctorFinding) -> str:
-    return f"[doctor] {finding.level:<5} {finding.area}: {finding.message}"
+    return _doctor_render_finding_impl(finding)
 
 
 def _doctor_import(module_name: str) -> tuple[bool, str]:
-    try:
-        importlib.import_module(module_name)
-    except Exception as exc:
-        return False, str(exc)
-    return True, ""
+    return _doctor_import_impl(module_name)
 
 
 def _slug_token(value: str | None) -> str:
-    text = (value or "").strip().lower()
-    if not text:
-        return ""
-    return re.sub(r"[^a-z0-9]+", "", text)
-
-
-class _SafeFormatDict(dict[str, str]):
-    def __missing__(self, key: str) -> str:
-        return "{" + key + "}"
+    return _slug_token_impl(value)
 
 
 def _render_config_tokenized_value(value: str, model: str | None, region: str | None) -> str:
-    context = _SafeFormatDict(
-        model=model or "",
-        region=region or "",
-        model_slug=_slug_token(model),
-        region_slug=_slug_token(region),
-    )
-    try:
-        return value.format_map(context)
-    except Exception:
-        return value
+    return _render_config_tokenized_value_impl(value, model, region)
 
 
 def _is_windows_platform() -> bool:
-    return sys.platform.startswith("win")
+    return _is_windows_platform_impl()
 
 
 def _find_xelatex() -> str | None:
     from tools.utils.process_utils import find_exe
 
-    return find_exe(["xelatex"])
+    return _find_xelatex_impl(find_exe=find_exe)
 
 
 def _check_word_com_available() -> tuple[bool, str]:
-    if not _is_windows_platform():
-        return False, "Word COM check is only available on Windows"
-
-    powershell = shutil.which("powershell")
-    if not powershell:
-        return False, "powershell not found in PATH"
-
-    script = (
-        "$ErrorActionPreference='Stop'; "
-        "$word = New-Object -ComObject Word.Application; "
-        "$word.Visible = $false; "
-        "$word.Quit()"
-    )
-    try:
-        subprocess.run(
-            [
-                powershell,
-                "-NoProfile",
-                "-ExecutionPolicy",
-                "Bypass",
-                "-Command",
-                script,
-            ],
-            check=True,
-            cwd=str(ROOT),
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.PIPE,
-            timeout=20,
-            text=True,
-        )
-    except subprocess.TimeoutExpired:
-        return False, "timed out while creating Word COM object"
-    except subprocess.CalledProcessError as exc:
-        detail = (exc.stderr or "").strip() or "unable to create Word COM object"
-        return False, detail
-    return True, "Microsoft Word COM automation is available"
+    return _check_word_com_available_impl(repo_root=ROOT, is_windows_platform=_is_windows_platform)
 
 
 def _resolve_doctor_target(cfg: dict, args: argparse.Namespace) -> tuple[str | None, str | None]:
     from tools.utils.targets import resolve_build_model, resolve_build_region
 
-    return resolve_build_model(cfg, args.model), resolve_build_region(cfg, args.region)
+    return _resolve_doctor_target_impl(
+        cfg,
+        args,
+        resolve_build_model=resolve_build_model,
+        resolve_build_region=resolve_build_region,
+    )
 
 
 def _resolve_doctor_pdf_mode(cfg: dict, cli_pdf_mode: str | None) -> str:
-    if cli_pdf_mode and cli_pdf_mode.strip():
-        mode = cli_pdf_mode.strip().lower()
-    else:
-        pdf_cfg_raw = cfg.get("pdf", {})
-        pdf_cfg = pdf_cfg_raw if isinstance(pdf_cfg_raw, dict) else {}
-        mode = str(pdf_cfg.get("mode", "latex")).strip().lower()
-    if mode not in VALID_PDF_MODES:
-        raise RuntimeError(f"Unsupported pdf mode: {mode}")
-    return mode
+    return _resolve_doctor_pdf_mode_impl(cfg, cli_pdf_mode, valid_pdf_modes=VALID_PDF_MODES)
 
 
 def _resolve_reference_doc_status(
@@ -636,28 +491,14 @@ def _resolve_reference_doc_status(
     model: str | None,
     region: str | None,
 ) -> DoctorFinding | None:
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    reference_raw = build_cfg.get("word_reference_doc")
-    if not isinstance(reference_raw, str) or not reference_raw.strip():
-        return None
-
-    rendered = _render_config_tokenized_value(reference_raw.strip(), model, region)
-    if any(ch in rendered for ch in "*?["):
-        pattern = rendered
-        if not Path(pattern).is_absolute():
-            pattern = str(ROOT / pattern)
-        matches = sorted(glob.glob(pattern))
-        if matches:
-            return DoctorFinding("OK", "word.reference_doc", f"matched {matches[0]}")
-        return DoctorFinding("ERROR", "word.reference_doc", f"no files matched: {rendered}")
-
-    path = Path(rendered)
-    if not path.is_absolute():
-        path = ROOT / path
-    if path.exists():
-        return DoctorFinding("OK", "word.reference_doc", f"found {path}")
-    return DoctorFinding("ERROR", "word.reference_doc", f"not found: {path}")
+    return _resolve_reference_doc_status_impl(
+        cfg,
+        model=model,
+        region=region,
+        repo_root=ROOT,
+        finding_cls=DoctorFinding,
+        render_config_tokenized_value=_render_config_tokenized_value,
+    )
 
 
 def _collect_doctor_findings(args: argparse.Namespace) -> list[DoctorFinding]:
@@ -665,193 +506,59 @@ def _collect_doctor_findings(args: argparse.Namespace) -> list[DoctorFinding]:
     from tools.validate_config import validate as validate_cfg
     from tools.validate_layout_params import validate as validate_layout
 
-    findings: list[DoctorFinding] = []
-    config_path = resolve_path_from_root(args.config)
-
-    try:
-        cfg = load_validate_yaml(config_path)
-    except Exception as exc:
-        _doctor_add(findings, "ERROR", "config", f"failed to load {config_path}: {exc}")
-        return findings
-
-    _doctor_add(findings, "OK", "config", f"loaded {config_path}")
-
-    config_issues = validate_cfg(cfg, strict_files=False)
-    config_errors = [issue for issue in config_issues if issue.level == "ERROR"]
-    config_warnings = [issue for issue in config_issues if issue.level == "WARN"]
-    if not config_issues:
-        _doctor_add(findings, "OK", "validate_config", "config structure is valid")
-    else:
-        for issue in config_warnings:
-            _doctor_add(findings, "WARN", "validate_config", issue.msg)
-        for issue in config_errors:
-            _doctor_add(findings, "ERROR", "validate_config", issue.msg)
-
-    layout_csv = resolve_layout_params_csv(config_path)
-    layout_issues = validate_layout(layout_csv)
-    layout_errors = [issue for issue in layout_issues if issue.level == "ERROR"]
-    if not layout_issues:
-        _doctor_add(findings, "OK", "layout_params", f"validated {layout_csv}")
-    else:
-        for issue in layout_issues:
-            level = "ERROR" if issue.level == "ERROR" else "WARN"
-            _doctor_add(findings, level, "layout_params", issue.msg)
-
-    required_modules = [
-        ("yaml", "python", "PyYAML available"),
-        ("sphinx", "python", "Sphinx available"),
-        ("docutils", "python", "docutils available"),
-    ]
-    optional_modules = [
-        ("furo", "python.optional", "furo theme available"),
-        ("PIL", "python.optional", "Pillow available"),
-        ("numpy", "python.optional", "numpy available"),
-    ]
-    for module_name, area, ok_message in required_modules:
-        ok, detail = _doctor_import(module_name)
-        if ok:
-            _doctor_add(findings, "OK", area, ok_message)
-        else:
-            _doctor_add(findings, "ERROR", area, f"missing module '{module_name}': {detail}")
-    for module_name, area, ok_message in optional_modules:
-        ok, detail = _doctor_import(module_name)
-        if ok:
-            _doctor_add(findings, "OK", area, ok_message)
-        else:
-            _doctor_add(findings, "WARN", area, f"missing optional module '{module_name}': {detail}")
-
-    model, region = _resolve_doctor_target(cfg, args)
-    _doctor_add(
-        findings,
-        "OK",
-        "target",
-        f"effective target model='{model or ''}' region='{region or ''}'",
+    return _collect_doctor_findings_impl(
+        args,
+        finding_cls=DoctorFinding,
+        resolve_path_from_root=resolve_path_from_root,
+        load_validate_yaml=load_validate_yaml,
+        validate_cfg=validate_cfg,
+        validate_layout=validate_layout,
+        resolve_layout_params_csv=resolve_layout_params_csv,
+        doctor_add=_doctor_add,
+        doctor_import=_doctor_import,
+        resolve_doctor_target=_resolve_doctor_target,
+        resolve_reference_doc_status=_resolve_reference_doc_status,
+        is_windows_platform=_is_windows_platform,
+        check_word_com_available=_check_word_com_available,
+        find_xelatex=_find_xelatex,
+        resolve_doctor_pdf_mode=_resolve_doctor_pdf_mode,
+        clean_targets_for_config=clean_targets_for_config,
     )
-
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    word_source = str(build_cfg.get("word_source", "bundle")).strip().lower()
-    _doctor_add(findings, "OK", "word", f"word_source={word_source}")
-
-    reference_doc_status = _resolve_reference_doc_status(cfg, model=model, region=region)
-    if reference_doc_status is not None:
-        findings.append(reference_doc_status)
-
-    pandoc = shutil.which("pandoc")
-    if word_source == "bundle":
-        if _is_windows_platform():
-            ok, detail = _check_word_com_available()
-            _doctor_add(findings, "OK" if ok else "ERROR", "word.runtime", detail)
-            if pandoc:
-                _doctor_add(findings, "OK", "word.pandoc", f"found {pandoc} (optional for bundle on Windows)")
-            else:
-                _doctor_add(findings, "WARN", "word.pandoc", "pandoc not found; okay for bundle on Windows, but html/latex export will fail")
-        else:
-            if pandoc:
-                _doctor_add(findings, "OK", "word.pandoc", f"found {pandoc}")
-            else:
-                _doctor_add(findings, "ERROR", "word.pandoc", "pandoc not found; required for bundle export on non-Windows")
-    elif word_source == "html":
-        if pandoc:
-            _doctor_add(findings, "OK", "word.pandoc", f"found {pandoc}")
-        else:
-            _doctor_add(findings, "ERROR", "word.pandoc", "pandoc not found; required for word_source=html")
-    elif word_source == "latex":
-        if pandoc:
-            _doctor_add(findings, "OK", "word.pandoc", f"found {pandoc}")
-        else:
-            _doctor_add(findings, "ERROR", "word.pandoc", "pandoc not found; required for word_source=latex")
-        xelatex = _find_xelatex()
-        if xelatex:
-            _doctor_add(findings, "OK", "word.xelatex", f"found {xelatex}")
-        else:
-            _doctor_add(findings, "ERROR", "word.xelatex", "xelatex not found; required for word_source=latex")
-    else:
-        _doctor_add(findings, "ERROR", "word", "build.word_source must be one of bundle/html/latex")
-
-    try:
-        pdf_mode = _resolve_doctor_pdf_mode(cfg, args.pdf_mode)
-        _doctor_add(findings, "OK", "pdf", f"pdf_mode={pdf_mode}")
-    except RuntimeError as exc:
-        _doctor_add(findings, "ERROR", "pdf", str(exc))
-        return findings
-
-    _build_dir, params_tex = clean_targets_for_config(config_path)
-    tools_cfg_raw = cfg.get("tools", {})
-    tools_cfg = tools_cfg_raw if isinstance(tools_cfg_raw, dict) else {}
-    patch_fonts_script = tools_cfg.get("patch_fonts")
-
-    if pdf_mode == "latex":
-        xelatex = _find_xelatex()
-        if xelatex:
-            _doctor_add(findings, "OK", "pdf.xelatex", f"found {xelatex}")
-        else:
-            _doctor_add(findings, "ERROR", "pdf.xelatex", "xelatex not found; required for pdf.mode=latex")
-
-        if params_tex.exists():
-            _doctor_add(findings, "OK", "pdf.params_tex", f"found {params_tex}")
-        else:
-            _doctor_add(findings, "ERROR", "pdf.params_tex", f"missing {params_tex}; run python tools/csv_to_tex_params.py")
-
-        if isinstance(patch_fonts_script, str) and patch_fonts_script.strip():
-            patch_path = resolve_path_from_root(patch_fonts_script.strip())
-            if patch_path.exists():
-                _doctor_add(findings, "OK", "pdf.patch_fonts", f"found {patch_path}")
-            else:
-                _doctor_add(findings, "ERROR", "pdf.patch_fonts", f"missing {patch_path}")
-    else:
-        if not _is_windows_platform():
-            _doctor_add(findings, "ERROR", "pdf.runtime", "pdf.mode=word is only supported on Windows")
-        else:
-            ok, detail = _check_word_com_available()
-            _doctor_add(findings, "OK" if ok else "ERROR", "pdf.runtime", detail)
-
-    return findings
 
 
 def run_doctor(args: argparse.Namespace) -> None:
-    findings = _collect_doctor_findings(args)
-    for finding in findings:
-        print(_doctor_render_finding(finding))
-
-    errors = sum(1 for finding in findings if finding.level == "ERROR")
-    warnings = sum(1 for finding in findings if finding.level == "WARN")
-    print(f"[doctor] SUMMARY errors={errors} warnings={warnings}")
-    if errors:
-        raise RuntimeError(f"doctor found {errors} blocking issue(s)")
+    return _run_doctor_impl(
+        args,
+        collect_doctor_findings=_collect_doctor_findings,
+        render_finding=_doctor_render_finding,
+    )
 
 
 def run_diff_report(args: argparse.Namespace) -> None:
-    config_path = resolve_path_from_root(args.config)
-    tracked_root_explicit = args.tracked_root is not None
-    report_dir_explicit = args.report_dir is not None
-
-    if tracked_root_explicit:
-        tracked_root = resolve_path_from_root(args.tracked_root)
-        if report_dir_explicit:
-            report_dir = resolve_path_from_root(args.report_dir)
-        else:
-            report_dir = _default_report_dir_for_tracked_root(config_path, tracked_root)
-        run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
-        return
-
-    targets = _resolve_diff_report_targets(args)
-    if report_dir_explicit and len(targets) != 1:
-        raise RuntimeError("diff-report with explicit --report-dir requires a single resolved target or explicit --tracked-root")
-
-    for target in targets:
-        if len(target) == 2:
-            model, region = target
-            lang = None
-        else:
-            model, region, lang = target
-        tracked_root = _tracked_root_for_target(config_path, model=model, region=region, lang=lang)
-        report_dir = (
-            resolve_path_from_root(args.report_dir)
-            if report_dir_explicit
-            else _report_dir_for_target(model, region, lang=lang)
-        )
-        run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
+    return _run_diff_report_impl(
+        args,
+        resolve_path_from_root=resolve_path_from_root,
+        resolve_staging_root=resolve_staging_root,
+        default_report_dir_for_tracked_root=lambda config_path, tracked_root: _default_report_dir_for_tracked_root(
+            config_path,
+            tracked_root,
+            base_root=resolve_staging_root(args),
+        ),
+        run_diff_report_with_paths=run_diff_report_with_paths,
+        resolve_diff_report_targets=_resolve_diff_report_targets,
+        tracked_root_for_target=lambda config_path, model, region, lang: _tracked_root_for_target(
+            config_path,
+            model=model,
+            region=region,
+            lang=lang,
+        ),
+        report_dir_for_target=lambda model, region, lang, base_root: _report_dir_for_target(
+            model,
+            region,
+            lang=lang,
+            base_root=base_root,
+        ),
+    )
 
 
 def run_diff_report_with_paths(
@@ -860,56 +567,53 @@ def run_diff_report_with_paths(
     tracked_root: Path,
     report_dir: Path,
 ) -> None:
-    cmd = [
-        sys.executable,
-        str(ROOT / "tools" / "diff_report.py"),
-        "--tracked-root",
-        str(tracked_root),
-        "--config",
-        str(resolve_path_from_root(args.config)),
-        "--from-ref",
-        args.from_ref,
-        "--to-ref",
-        args.to_ref,
-        "--output-dir",
-        str(report_dir),
-        *(
-            ["--data-root", args.data_root.strip()]
-            if isinstance(args.data_root, str) and args.data_root.strip()
-            else []
+    return _run_diff_report_with_paths_impl(
+        args,
+        run_checked=run_checked,
+        diff_report_command=lambda parsed_args, current_tracked_root, current_report_dir: _diff_report_command(
+            repo_root=ROOT,
+            config_path=resolve_path_from_root(parsed_args.config),
+            tracked_root=current_tracked_root,
+            report_dir=current_report_dir,
+            from_ref=parsed_args.from_ref,
+            to_ref=parsed_args.to_ref,
+            data_root=parsed_args.data_root,
+            ignore_initial_adds=parsed_args.ignore_initial_adds,
         ),
-    ]
-    if not args.ignore_initial_adds:
-        cmd.append("--include-initial-adds")
-    run_checked(cmd)
+        tracked_root=tracked_root,
+        report_dir=report_dir,
+    )
 
 
 def run_check(args: argparse.Namespace, *, source_override: str = "auto") -> None:
-    config_path = resolve_path_from_root(args.config)
-    if isinstance(args.data_root, str) and args.data_root.strip():
-        run_validate(config_path, data_root=args.data_root)
-    else:
-        run_validate(config_path)
-    effective_source = _effective_source(args, source_override=source_override)
-    maybe_sync_review_before_build(args, source_override=effective_source)
-    run_checked(build_docs_command(args, action_override="rst", source_override=effective_source))
-    run_checked(check_docs_command(args))
+    return _run_check_impl(
+        args,
+        source_override=source_override,
+        resolve_path_from_root=resolve_path_from_root,
+        run_validate=run_validate,
+        effective_source=lambda parsed_args: _effective_source(parsed_args, source_override="auto"),
+        maybe_sync_review_before_build=maybe_sync_review_before_build,
+        run_checked=run_checked,
+        build_docs_command=build_docs_command,
+        check_docs_command=check_docs_command,
+    )
 
 
 def _publish_target_components(args: argparse.Namespace) -> tuple[str, str, str | None]:
-    model, region = _require_explicit_target(args, action_name="publish")
     from tools.utils.targets import resolve_output_lang
 
-    cfg = load_config(resolve_path_from_root(args.config))
-    return model, region, resolve_output_lang(cfg)
+    return _publish_target_components_impl(
+        config_path=resolve_path_from_root(args.config),
+        model=args.model,
+        region=args.region,
+        action_name="publish",
+        config_loader=load_config,
+        resolve_output_lang=resolve_output_lang,
+    )
 
 
 def _require_explicit_target(args: argparse.Namespace, *, action_name: str) -> tuple[str, str]:
-    model = (args.model or "").strip()
-    region = (args.region or "").strip()
-    if not model or not region:
-        raise RuntimeError(f"{action_name} requires --model and --region so the release target is explicit")
-    return model, region
+    return _require_explicit_target_impl(model=args.model, region=args.region, action_name=action_name)
 
 
 def _publish_tracked_root(args: argparse.Namespace) -> Path:
@@ -923,7 +627,7 @@ def _publish_report_dir(args: argparse.Namespace) -> Path:
     model, region, lang = _publish_target_components(args)
     if args.report_dir is not None:
         return resolve_path_from_root(args.report_dir)
-    return _report_dir_for_target(model, region, lang=lang)
+    return _report_dir_for_target(model, region, lang=lang, base_root=resolve_staging_root(args))
 
 
 def _tracked_root_for_target(
@@ -933,112 +637,108 @@ def _tracked_root_for_target(
     region: str | None,
     lang: str | None = None,
 ) -> Path:
-    base = review_root_for_config(config_path) / (model or "_shared") / (region or "_default")
-    if (lang or "").strip():
-        return base / lang
-    return base
+    return _tracked_root_for_target_impl(
+        config_path=config_path,
+        model=model,
+        region=region,
+        lang=lang,
+        review_root_for_config=review_root_for_config,
+    )
 
 
-def _report_dir_for_target(model: str | None, region: str | None, *, lang: str | None = None) -> Path:
-    base = version_tracking_root() / (model or "_shared") / (region or "_default")
-    if (lang or "").strip():
-        return base / lang
-    return base
+def _report_dir_for_target(
+    model: str | None,
+    region: str | None,
+    *,
+    lang: str | None = None,
+    base_root: Path | None = None,
+) -> Path:
+    return _report_dir_for_target_impl(
+        model=model,
+        region=region,
+        lang=lang,
+        version_tracking_root=version_tracking_root,
+        base_root=base_root,
+    )
 
 
-def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path) -> Path:
-    review_root = review_root_for_config(config_path)
-    try:
-        rel = tracked_root.resolve(strict=False).relative_to(review_root.resolve(strict=False))
-    except ValueError:
-        return version_tracking_root() / tracked_root.name
-    return version_tracking_root() / rel
+def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path, *, base_root: Path | None = None) -> Path:
+    return _default_report_dir_for_tracked_root_impl(
+        config_path=config_path,
+        tracked_root=tracked_root,
+        review_root_for_config=review_root_for_config,
+        version_tracking_root=version_tracking_root,
+        base_root=base_root,
+    )
 
 
 def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | None, str | None, str | None]]:
     from tools.build_docs import resolve_build_targets
 
-    config_path = resolve_path_from_root(args.config)
-    cfg = load_config(config_path)
-    targets = resolve_build_targets(
-        cfg,
-        arg_model=args.model,
-        arg_region=args.region,
-        all_targets=not (args.model or args.region),
+    return _resolve_diff_report_targets_impl(
+        config_path=resolve_path_from_root(args.config),
+        config_loader=load_config,
+        resolve_build_targets=resolve_build_targets,
+        model=args.model,
+        region=args.region,
     )
-    return [(target.model, target.region, target.lang) for target in targets]
 
 
 def run_publish(args: argparse.Namespace) -> None:
-    tracked_root = _publish_tracked_root(args)
-    report_dir = _publish_report_dir(args)
-    run_check(args, source_override="review")
-    run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
-    run_checked(build_docs_command(args, action_override="word", source_override="review"))
-    run_checked(release_manifest_command(args))
+    return _run_publish_impl(
+        args,
+        publish_tracked_root=_publish_tracked_root,
+        publish_report_dir=_publish_report_dir,
+        run_check=run_check,
+        run_diff_report_with_paths=run_diff_report_with_paths,
+        run_checked=run_checked,
+        build_docs_command=build_docs_command,
+        release_manifest_command=release_manifest_command,
+    )
 
 
 def clean_build_artifacts(config_path: Path, *, remove_params_tex: bool = True) -> None:
-    build_dir, params_tex = clean_targets_for_config(config_path)
-    review_dir = review_root_for_config(config_path)
-    docs_dir = resolve_docs_dir(config_path)
-    print(f"[build.py] remove {build_dir}")
-    shutil.rmtree(build_dir, ignore_errors=True)
-    print(f"[build.py] remove {review_dir}")
-    shutil.rmtree(review_dir, ignore_errors=True)
-    if remove_params_tex:
-        print(f"[build.py] remove {params_tex}")
-        params_tex.unlink(missing_ok=True)
-    for legacy_dir in collect_legacy_docs_output_dirs(docs_dir):
-        print(f"[build.py] remove {legacy_dir}")
-        shutil.rmtree(legacy_dir, ignore_errors=True)
+    return _clean_build_artifacts_impl(
+        config_path,
+        clean_targets_for_config=clean_targets_for_config,
+        review_root_for_config=review_root_for_config,
+        resolve_docs_dir=resolve_docs_dir,
+        collect_legacy_docs_output_dirs=collect_legacy_docs_output_dirs,
+        remove_params_tex=remove_params_tex,
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parse_args(argv)
-    config_path = resolve_path_from_root(args.config)
-
-    try:
-        if args.action == "validate":
-            run_validate(config_path, data_root=args.data_root)
-        elif args.action == "doctor":
-            run_doctor(args)
-        elif args.action == "review":
-            run_checked(build_docs_command(args, action_override="rst", source_override="runtime"))
-            run_checked(review_bundle_command(args))
-        elif args.action == "check":
-            run_check(args)
-        elif args.action == "sync-review":
-            run_checked(build_docs_command(args, action_override="rst", source_override="runtime"))
-            run_checked(sync_review_command(args))
-        elif args.action == "sync-data":
-            run_checked(sync_data_command(args))
-        elif args.action == "process-review-start-queue":
-            run_checked(process_review_start_queue_command(args))
-        elif args.action == "process-build-queue":
-            run_checked(process_build_queue_command(args))
-        elif args.action == "listen-build-queue":
-            run_checked(listen_build_queue_command(args))
-        elif args.action == "publish":
-            run_publish(args)
-        elif args.action == "diff-report":
-            run_diff_report(args)
-        elif args.action == "release-manifest":
-            run_checked(release_manifest_command(args))
-        elif args.action == "clean":
-            clean_build_artifacts(config_path)
-        else:
-            maybe_sync_review_before_build(args)
-            run_checked(build_docs_command(args))
-    except subprocess.CalledProcessError as exc:
-        return exc.returncode or 1
-    except RuntimeError as exc:
-        print(f"[build.py] ERROR: {exc}", file=sys.stderr)
-        return 1
-
-    return 0
+    return _run_main_impl(
+        argv,
+        parse_args=parse_args,
+        resolve_path_from_root=resolve_path_from_root,
+        dispatch_action=_dispatch_action_impl,
+        ensure_supported_staging_action=ensure_supported_staging_action,
+        run_validate=run_validate,
+        run_doctor=run_doctor,
+        run_checked=run_checked,
+        build_docs_command=build_docs_command,
+        review_bundle_command=review_bundle_command,
+        run_check=run_check,
+        sync_review_command=sync_review_command,
+        sync_data_command=sync_data_command,
+        run_translation_memory=run_translation_memory,
+        run_message_control_dry_run=run_message_control_dry_run,
+        run_queue_query=run_queue_query,
+        run_queue_resolve_action=run_queue_resolve_action,
+        run_queue_execute=run_queue_execute,
+        process_review_start_queue_command=process_review_start_queue_command,
+        process_build_queue_command=process_build_queue_command,
+        listen_build_queue_command=listen_build_queue_command,
+        listen_message_control_command=listen_message_control_command,
+        run_publish=run_publish,
+        run_diff_report=run_diff_report,
+        release_manifest_command=release_manifest_command,
+        clean_build_artifacts=clean_build_artifacts,
+        maybe_sync_review_before_build=maybe_sync_review_before_build,
+    )
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -5,9 +5,15 @@ import json
 import shutil
 from datetime import datetime
 from pathlib import Path
+import sys
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 
 def parse_args() -> argparse.Namespace:

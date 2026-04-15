@@ -10,6 +10,8 @@
 
 ※ Jackery SolarSagaアダプターを使って3枚接続はできません（電圧が許容範囲を超え、故障のリスクがあります）。
 
+■ 1枚または2枚接続時
+
 - 直接接続可能です。追加のアクセサリーは不要です。
 
   本製品のDC入力ポートは「8020メス」です。ソーラーパネル側の「8020オス」と接続してください。
@@ -17,6 +19,8 @@
 .. image:: templates/word_template/common_assets/charging/solar_direct.png
    :alt: Direct solar charging diagram.
    :width: 360px
+
+■ 4枚接続時
 
 - 別売りの「Jackery SolarSaga アダプター（Pro/Plus/New専用）」が必要です。
 

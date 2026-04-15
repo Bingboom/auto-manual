@@ -1,6 +1,6 @@
 # Current Repository Component Map
 
-Updated: 2026-03-17
+Updated: 2026-04-08
 
 ## 1. Role
 
@@ -24,6 +24,7 @@ Use these documents for those topics:
 ### 2.1 Entrypoint Layer
 
 - [`../../build.py`](../../build.py)
+- [`../../tools/build_main.py`](../../tools/build_main.py)
 
 Current responsibility:
 
@@ -34,6 +35,10 @@ Current responsibility:
 ### 2.2 Build Orchestration Layer
 
 - [`../../tools/build_docs.py`](../../tools/build_docs.py)
+- [`../../tools/build_docs_main.py`](../../tools/build_docs_main.py)
+- [`../../tools/build_docs_entry.py`](../../tools/build_docs_entry.py)
+- [`../../tools/build_docs_export.py`](../../tools/build_docs_export.py)
+- [`../../tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)
 - [`../../tools/utils/targets.py`](../../tools/utils/targets.py)
 
 Current responsibility:
@@ -41,6 +46,7 @@ Current responsibility:
 - resolve targets
 - prepare runtime bundles
 - coordinate export order
+- keep low-level build/export wrappers patchable while real artifact steps live in helper modules
 
 ### 2.3 Structured Content Layer
 
@@ -98,8 +104,10 @@ Current responsibility:
 - [`../../tools/validate_config.py`](../../tools/validate_config.py)
 - [`../../tools/validate_layout_params.py`](../../tools/validate_layout_params.py)
 - [`../../tools/check_docs.py`](../../tools/check_docs.py)
+- [`../../tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
 - [`../../tools/check_identity_drift.py`](../../tools/check_identity_drift.py)
 - [`../../tools/page_contracts.py`](../../tools/page_contracts.py)
+- [`../../tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)
 
 Current responsibility:
 
@@ -108,10 +116,28 @@ Current responsibility:
 - stale identity detection
 - page contract enforcement
 
-### 2.8 Reporting and Release Layer
+### 2.8 Queue Orchestration Layer
+
+- [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
+- [`../../tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
+- [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`../../tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+- [`../../tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+
+Current responsibility:
+
+- bridge queued review/build/publish work into the repo command surface
+- keep queue entrypoints orchestration-first
+- isolate transport, worktree, writeback, and release-output helpers behind queue-specific modules
+
+### 2.9 Reporting and Release Layer
 
 - [`../../tools/diff_report.py`](../../tools/diff_report.py)
+- [`../../tools/diff_report_fields.py`](../../tools/diff_report_fields.py)
+- [`../../tools/diff_report_render.py`](../../tools/diff_report_render.py)
+- [`../../tools/diff_report_reports.py`](../../tools/diff_report_reports.py)
 - [`../../tools/release_manifest.py`](../../tools/release_manifest.py)
+- [`../../tools/release_manifest_service.py`](../../tools/release_manifest_service.py)
 - [`../../reports/`](../../reports)
 
 Current responsibility:
@@ -120,7 +146,7 @@ Current responsibility:
 - report generation
 - release traceability
 
-### 2.9 Test Layer
+### 2.10 Test Layer
 
 - [`../../tests/`](../../tests)
 
@@ -132,23 +158,30 @@ Current responsibility:
 
 ```mermaid
 flowchart TD
-  A["build.py"] --> B["tools/build_docs.py"]
-  B --> C["data/phase1/*.csv"]
-  B --> D["docs/templates/**"]
-  B --> E["tools/phase1_build.py"]
-  B --> F["tools/gen_index_bundle.py"]
-  F --> G["docs/_build/<model>/<region>/rst"]
-  G --> H["docs/_review/<model>/<region> overlay"]
-  H --> I["html / word / pdf"]
-  H --> J["check"]
-  H --> K["diff-report"]
-  I --> L["release-manifest"]
+  A["build.py"] --> B["tools/build_dispatch.py"]
+  B --> C["tools/build_docs.py"]
+  B --> D["tools/build_runtime.py"]
+  B --> E["tools/build_reports.py"]
+  B --> F["tools/build_publish.py"]
+  C --> G["tools/gen_index_bundle.py"]
+  C --> H["tools/build_docs_export.py"]
+  H --> I["docs/_build/<model>/<region>/rst"]
+  I --> J["docs/_review/<model>/<region> overlay"]
+  J --> K["html / word / pdf"]
+  J --> L["check"]
+  J --> M["diff-report"]
+  K --> N["release-manifest"]
+  A --> O["tools/process_build_queue.py"]
+  O --> P["queue_* / queue_bound_* helpers"]
 ```
 
 ## 4. Ownership Rules
 
 - command behavior changes belong first to [`../../build.py`](../../build.py) and the low-level script it wraps
 - target resolution changes belong in shared target helpers, not duplicated across commands
+- quality-gate changes belong in validation/check modules, not inline in entrypoints
+- release and diff-report changes belong in release/reporting helpers, not inline in queue or build entry files
+- queue transport/writeback changes belong in queue modules, not in generic build helpers
 - review lifecycle changes belong in the review support modules and the user workflow docs
 - current data-file semantics belong in [`../spec_master_user_guide.md`](../spec_master_user_guide.md)
 - long-term architecture changes belong in [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md), not here

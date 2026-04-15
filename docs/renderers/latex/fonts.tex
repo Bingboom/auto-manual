@@ -54,8 +54,17 @@
         \setmainfont{Calibri}[Ligatures=TeX]
         \setsansfont{Calibri}[Ligatures=TeX]
       }{%
-        \setmainfont{Times New Roman}[Ligatures=TeX]
-        \setsansfont{Arial}[Ligatures=TeX]
+        \IfFontExistsTF{Liberation Serif}{%
+          \setmainfont{Liberation Serif}[Ligatures=TeX]
+          \IfFontExistsTF{Liberation Sans}{%
+            \setsansfont{Liberation Sans}[Ligatures=TeX]
+          }{%
+            \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+          }%
+        }{%
+          \setmainfont{Latin Modern Roman}[Ligatures=TeX]
+          \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+        }%
       }%
     }%
   }%
@@ -95,22 +104,40 @@
         \setCJKmainfont{Microsoft YaHei}
         \setCJKsansfont{Microsoft YaHei}
       }{%
-        % 3) macOS common
-        \IfFontExistsTF{PingFang SC}{%
-          \setCJKmainfont{PingFang SC}
-          \setCJKsansfont{PingFang SC}
-        }{%
-          \IfFontExistsTF{Songti SC}{%
-            \setCJKmainfont{Songti SC}
-            \setCJKsansfont{Songti SC}
+        \IfFontExistsTF{Noto Serif CJK SC}{%
+          \setCJKmainfont{Noto Serif CJK SC}
+          \IfFontExistsTF{Noto Sans CJK SC}{%
+            \setCJKsansfont{Noto Sans CJK SC}
           }{%
-            \IfFontExistsTF{Heiti SC}{%
-              \setCJKmainfont{Heiti SC}
-              \setCJKsansfont{Heiti SC}
+            \setCJKsansfont{Noto Serif CJK SC}
+          }%
+        }{%
+          \IfFontExistsTF{Noto Serif CJK JP}{%
+            \setCJKmainfont{Noto Serif CJK JP}
+            \IfFontExistsTF{Noto Sans CJK JP}{%
+              \setCJKsansfont{Noto Sans CJK JP}
             }{%
-              % 4) last resort: TeXLive built-in (prevents xeCJK Fandol warning + keeps build alive)
-              \setCJKmainfont{FandolSong-Regular}
-              \setCJKsansfont{FandolSong-Regular}
+              \setCJKsansfont{Noto Serif CJK JP}
+            }%
+          }{%
+        % 3) macOS common
+            \IfFontExistsTF{PingFang SC}{%
+              \setCJKmainfont{PingFang SC}
+              \setCJKsansfont{PingFang SC}
+            }{%
+              \IfFontExistsTF{Songti SC}{%
+                \setCJKmainfont{Songti SC}
+                \setCJKsansfont{Songti SC}
+              }{%
+                \IfFontExistsTF{Heiti SC}{%
+                  \setCJKmainfont{Heiti SC}
+                  \setCJKsansfont{Heiti SC}
+                }{%
+                  % 4) last resort: TeXLive built-in (prevents xeCJK Fandol warning + keeps build alive)
+                  \setCJKmainfont{FandolSong-Regular}
+                  \setCJKsansfont{FandolSong-Regular}
+                }%
+              }%
             }%
           }%
         }%

@@ -1,98 +1,11 @@
-doc_type: manual_bundle
+extends: config-bases/us-single-language-base.yaml
 
 build:
   family_id: us-fr
-  languages: [ fr ]
+  languages: [fr]
   include_lang_in_output_path: true
-  default_model: JE-1000F
-  default_region: US
-  targets:
-    - model: JE-1000F
-      region: US
-  main_tex: manual_demo.tex
-  output_pdf: manual_{model_slug}_{region_slug}_{lang_slug}.pdf
-  xelatex_runs: 3
-  open_pdf: false
-  build_word: true
-  word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
-  word_source: bundle
   word_reference_doc: docs/templates/word_template/template.docx
   word_title: "|PRODUCT_NAME| Manuel d'utilisation"
-  open_word: false
-  build_html: false
-  open_html: false
 
 paths:
-  docs_dir: docs
-  layout_params_csv: data/layout_params.csv
-  spec_master_csv: data/phase1/Spec_Master.csv
-  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
-  spec_titles_csv: data/phase1/spec_titles.csv
-
-tools:
-  patch_fonts: tools/patch_latex_fonts.py
-
-pages:
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/00_preface.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/safety_fr.rst
-
-- type: csv_page
-  source: phase1
-  page: symbols
-  langs: [ fr ]
-  include_dir: generated/{model}
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/02_whats_in_the_box.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/03_product_overview_placeholder.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/04_lcd_display_placeholder.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/05_operation_guide_placeholder.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/06_ups_mode.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/charging.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/08_charging_methods.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/09_storage_and_maintenance.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/10_troubleshooting.rst
-
-- type: csv_page
-  source: phase1
-  page: spec
-  langs: [ fr ]
-  include_dir: generated/{model}
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/11_warranty.rst
-
-- type: rst_include
-  lang: fr
-  file: templates/page_us-fr/12_app_setup_placeholder.rst
+  page_manifest: docs/manifests/manual_us-single-fr.yaml

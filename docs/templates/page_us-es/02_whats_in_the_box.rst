@@ -34,7 +34,7 @@ Cualquier cambio o modificación no aprobado expresamente por el cesionario de e
 
 .. list-table::
    :header-rows: 0
-   :widths: 25 25 25 25
+   :widths: 33 33 34
 
    * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Imagen de la estación de energía.
@@ -47,16 +47,15 @@ Cualquier cambio o modificación no aprobado expresamente por el cesionario de e
 
        **Cable de carga de CA**
      - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: Imagen del manual del usuario.
+          :alt: Imagen de los documentos.
           :width: 120px
 
-       **Manual del usuario**
-     - **Tarjeta de garantía**
+       **Documentos**
 
 .. list-table::
    :header-rows: 0
    :widths: 10 90
 
    * - **CONSEJOS**
-     - El cable de carga para automóvil no está incluido, pero puede adquirirse por separado en nuestro sitio web.
-       Para obtener ayuda, póngase en contacto con el servicio de atención al cliente de Jackery.
+     - El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web.
+       Para obtener asistencia, comunícate con el servicio al cliente de Jackery.
