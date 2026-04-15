@@ -1,0 +1,16 @@
+extends: config-bases/us-single-language-base.yaml
+
+build:
+  family_id: eu-en
+  default_model: JE-2000E
+  default_region: US
+  targets:
+    - model: JE-2000E
+      region: US
+  languages: [en]
+  include_lang_in_output_path: true
+  word_reference_doc: docs/templates/word_template/reference_en.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+
+paths:
+  page_manifest: docs/manifests/manual_eu-en.yaml

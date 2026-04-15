@@ -8,6 +8,7 @@ It is the current workflow and editing-surface guide.
 It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
 For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
 For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
+For Codex-assisted Markdown-to-template intake, use [`../.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md).
 
 ---
 
@@ -127,8 +128,8 @@ The manual system now has four layers, but they are used at different stages.
    - queue rows should now use `Workflow_action` only: `Start Review` to create or reuse review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
    - when review-init reuses the shared `Document_link` view, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
    - Build Draft Package outputs stay under the current repo [`../docs/_build/`](../docs/_build) tree by default; pass `--staging-root <dir>` or set `AUTO_MANUAL_STAGING_ROOT=<dir>` to isolate generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under that root instead
-- queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is now an optional compatibility field
-- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
+- queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `eu-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is now an optional compatibility field
+- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
 - config policy for `build.queue_by_document_key`: enable it only for merged whole-book families that intentionally produce one shared manual across multiple languages, such as today's `us-merged` and future `eu-merged` / `cn-merged`; keep it disabled for single-language families such as `us-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to run one queue row per `record_id`
    - Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
    - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars, and if optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, then writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue) and forwards extra queue args such as `--dry-run` or `--record-id`
@@ -751,6 +752,7 @@ For a normal JE-1000F US review cycle:
 
 ```powershell
 python build.py check --config config.us-en.yaml --model JE-1000F --region US
+python build.py check --config config.eu-en.yaml --model JE-2000E --region US
 git add docs/_review/JE-1000F/US
 git commit -m "Refresh JE-1000F US manual"
 python build.py publish --config config.us-en.yaml --model JE-1000F --region US

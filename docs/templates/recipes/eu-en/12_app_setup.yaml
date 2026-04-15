@@ -1,0 +1,22 @@
+page_id: 12_app_setup
+template: templates/page_eu-en/12_app_setup_placeholder.rst
+field_map:
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: main_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  AC_POWER_BUTTON_LABEL:
+    row_key: ac_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  DC_USB_POWER_BUTTON_LABEL:
+    row_key: dc_usb_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 12_app_setup

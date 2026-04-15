@@ -3,6 +3,7 @@ source_files:
   - templates/page_us-en/03_product_overview_placeholder.rst
   - templates/page_us-es/03_product_overview_placeholder.rst
   - templates/page_us-fr/03_product_overview_placeholder.rst
+  - templates/page_eu-en/03_product_overview_placeholder.rst
   - templates/page_jp/03_product_overview_placeholder.rst
   - templates/page_zh/03_product_overview_placeholder.rst
 required_placeholders:

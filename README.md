@@ -62,6 +62,7 @@ Review sync note:
 - use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
 - single-language US review bundles from `config.us-en.yaml` still live under `docs/_review/<model>/US/en/`; the merged US queue/review flow driven by `config.us.yaml` now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`
 - `config.us-en.yaml`, `config.us-es.yaml`, and `config.us-fr.yaml` now inherit shared single-language defaults from [`config-bases/us-single-language-base.yaml`](config-bases/us-single-language-base.yaml) and keep their page stacks in [`docs/manifests/manual_us-single-*.yaml`](docs/manifests), so common build defaults no longer need to be edited in three places
+- `config.eu-en.yaml` now wires [`docs/templates/page_eu-en/`](docs/templates/page_eu-en) into [`docs/manifests/manual_eu-en.yaml`](docs/manifests/manual_eu-en.yaml) for the HomePower 2000 Plus English proofreading flow backed by the live `JE-2000E_US` phase2 snapshot rows
 
 Phase2 snapshot note:
 
@@ -85,10 +86,10 @@ Phase2 snapshot note:
 - [`.github/workflows/feishu-start-review.yml`](.github/workflows/feishu-start-review.yml) is the `main`-owned GitHub-hosted review-init worker; it reuses `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` and `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`, and it is the recommended way to let a Feishu table create the review branch + PR automatically
 - `python build.py process-build-queue --config config.us.yaml` consumes the `sync.phase2.document_link` task table, writes `开始构建时间` as soon as a pending row starts, resolves the build config from `Build_family` first and `Lang` second, groups only the rows whose resolved config enables `build.queue_by_document_key`, builds the generated Word file, publishes it to the primary Feishu/wiki destination, can then sync the same DOCX to DingTalk as an optional mirror, writes the local Word path back to `Document directory`, writes the canonical Feishu/wiki URL back to `Document link`, optionally writes the DingTalk node URL to `Document link_dd`, adds the sync note into `构建结果`, writes the refresh result back to `data_sync`, and flips the trigger back to `已构建`
 - the merged US `config.us.yaml` bundle now exports one `JE-1000F / US` Word that contains `en`, `fr`, and `es` sections together; `Spec_Master.Source_lang` / `*_source` content is required, and CSV-driven non-source language fields may be blank because lookup falls back to source-language text automatically
-- queue routing is now `Build_family`-first: use `us-merged`, `us-en`, `us-es`, `us-fr`, `jp-ja`, or `cn-zh`; `Lang` remains a compatibility field and no longer decides the target when `Build_family` is filled
+- queue routing is now `Build_family`-first: use `us-merged`, `us-en`, `eu-en`, `us-es`, `us-fr`, `jp-ja`, or `cn-zh`; `Lang` remains a compatibility field and no longer decides the target when `Build_family` is filled
 - queue rows should now use `Workflow_action` only: `Start Review` to create or reuse review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
 - when review-init reuses the shared `Document_link` view, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
-- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `us-fr` / `us-es`
+- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
 - config policy for `build.queue_by_document_key`: enable it only on merged whole-book families that intentionally represent one shared manual across languages, such as today's `us-merged` and any future `eu-merged` / `cn-merged`; keep it disabled for single-language families such as `us-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to route one row per `record_id`
 - when the queue row includes `Version`, Build Draft Package DOCX names use `manual_<model>_<region>_<lang>_<Version>.docx`, while Publish queue DOCX names use `manual_<model>_<region>_<lang>_publish_<Version>.docx`
 - `Workflow_action = Build Draft Package` rows must carry `Git_ref`; the worker fetches that review branch into a temporary worktree and builds from that branch content instead of silently falling back to `main`
@@ -297,6 +298,7 @@ Use the document that owns the topic:
 - [`data/phase2/`](data/phase2): preferred Feishu-synced CSV snapshot inputs
 - [`data/phase1/`](data/phase1): legacy baseline snapshot inputs
 - [`docs/templates/`](docs/templates): shared seed templates
+- [`.agents/skills/markdown-rst-template-intake/`](.agents/skills/markdown-rst-template-intake): repo-local Codex skill for mapping external Markdown manuals into the current RST template and recipe layout
 - [`docs/_review/`](docs/_review): target-specific review layer
 - [`docs/_build/`](docs/_build): runtime bundles and export outputs
 - [`reports/`](reports): revision reports and release manifests
