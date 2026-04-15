@@ -21,6 +21,11 @@ BUILD = DOCS / "_build" / "latex"
 FONTS_SRC = DOCS / "renderers" / "latex" / "fonts.tex"
 FONTS_DST = BUILD / "fonts.tex"
 
+FRAGILE_UNICODE_REPLACEMENTS = (
+    ("\u2393", " DC "),
+    ("\u203b", "*"),
+)
+
 
 def die(msg: str) -> None:
     raise SystemExit(f"[patch_latex_fonts] ERROR: {msg}")
@@ -49,6 +54,21 @@ def inject_before_begin_document(tex_path: Path) -> None:
     s2 = re.sub(pat, r"\\input{fonts.tex}\n\1", s, count=1)
     tex_path.write_text(s2, encoding="utf-8")
     print(f"[patch_latex_fonts] injected into: {tex_path.name}")
+
+
+def sanitize_fragile_unicode_glyphs(tex_path: Path) -> int:
+    s = tex_path.read_text(encoding="utf-8", errors="ignore")
+    total = 0
+    for raw, replacement in FRAGILE_UNICODE_REPLACEMENTS:
+        count = s.count(raw)
+        if not count:
+            continue
+        s = s.replace(raw, replacement)
+        total += count
+    if total:
+        tex_path.write_text(s, encoding="utf-8")
+        print(f"[patch_latex_fonts] sanitized fragile Unicode glyphs in: {tex_path.name} (changes={total})")
+    return total
 
 
 def patch_build_fonts_tex_windows(fonts_path: Path) -> int:
@@ -142,6 +162,7 @@ def main() -> None:
 
     main_tex = find_main_tex(build_dir, args.tex)
     inject_before_begin_document(main_tex)
+    sanitize_fragile_unicode_glyphs(main_tex)
 
 
 if __name__ == "__main__":

@@ -99,7 +99,12 @@ jobs:
             texlive-fonts-recommended \
             texlive-latex-extra \
             texlive-lang-cjk \
-            fonts-noto-cjk
+            fonts-dejavu-core \
+            fonts-freefont-otf \
+            fonts-noto-cjk \
+            fonts-noto-core \
+            fonts-noto-extra \
+            fonts-noto-mono
 
       - name: Process Feishu build queue
         shell: bash
