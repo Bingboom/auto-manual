@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-14
+Updated: 2026-04-15
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -54,6 +54,12 @@ python3 build.py process-review-start-queue --config config.us.yaml --data-root 
 python3 build.py process-build-queue --config config.us.yaml
 python3 scripts/local_build.py publish --config config.us-en.yaml --model JE-1000F --region US
 ```
+
+Local PDF font override note:
+
+- to preview PDF with local Gilroy files only on your machine, set `AUTO_MANUAL_LOCAL_GILROY_DIR` to the extracted font directory before running `pdf` or `publish`
+- that directory must contain `gilroy-regular-3.otf`, `gilroy-bold-4.otf`, `Gilroy-LightItalic-12.otf`, and `Gilroy-ExtraBoldItalic-10.otf`
+- the override is injected only into the generated `_build/latex/fonts.tex` copy; if the env var is unset or the files are incomplete, the build falls back to the normal shared font chain and CI stays unchanged
 
 Review sync note:
 

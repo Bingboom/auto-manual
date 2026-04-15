@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-04-14
+Updated: 2026-04-15
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -44,6 +44,12 @@ python build.py clean
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 .\scripts\build_us_manuals.ps1 -Action check -Model JE-1000F -Languages en,es -DryRun
 ```
+
+Local PDF font override:
+
+- for local-only Gilroy preview, set `AUTO_MANUAL_LOCAL_GILROY_DIR=<absolute-font-dir>` before `python build.py pdf ...` or `python build.py publish ...`
+- the font directory must contain `gilroy-regular-3.otf`, `gilroy-bold-4.otf`, `Gilroy-LightItalic-12.otf`, and `Gilroy-ExtraBoldItalic-10.otf`
+- the helper only patches the generated `_build/latex/fonts.tex` copy for that run; unset the env var to return to the shared fallback chain, and remote CI workers are unaffected
 
 Meaning:
 
