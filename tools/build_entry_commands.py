@@ -52,6 +52,7 @@ def build_docs_command(
     require_explicit_target: Callable[[argparse.Namespace, str], tuple[str, str]],
     action_override: str | None = None,
     source_override: str | None = None,
+    no_clean_override: bool | None = None,
 ) -> list[str]:
     action = action_override or args.action
     if action not in (*build_actions, "preview", "fast"):
@@ -105,7 +106,8 @@ def build_docs_command(
 
     if args.pdf_mode:
         cmd += ["--pdf-mode", args.pdf_mode]
-    if action != "fast" and not args.no_clean:
+    effective_no_clean = args.no_clean if no_clean_override is None else no_clean_override
+    if action != "fast" and not effective_no_clean:
         cmd.append("--clean")
     if not args.open:
         cmd.append("--no-open")

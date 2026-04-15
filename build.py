@@ -217,6 +217,7 @@ def build_docs_command(
     *,
     action_override: str | None = None,
     source_override: str | None = None,
+    no_clean_override: bool | None = None,
 ) -> list[str]:
     return _build_docs_command_impl(
         args,
@@ -232,6 +233,7 @@ def build_docs_command(
         ),
         action_override=action_override,
         source_override=source_override,
+        no_clean_override=no_clean_override,
     )
 
 
