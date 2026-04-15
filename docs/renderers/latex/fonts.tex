@@ -3,34 +3,25 @@
 \usepackage{xeCJK}
 
 % Apply late so we override Sphinx/class defaults
+\newif\ifHBLocalGilroyFontsConfigured
+\HBLocalGilroyFontsConfiguredfalse
+
+\newcommand{\HBLocalGilroyOverride}{%
+  % AUTO_MANUAL_LOCAL_GILROY_OVERRIDE
+}
+
 \newcommand{\HBSetupFonts}{%
+  \HBLocalGilroyOverride
 
   % =========================
   % Latin fonts (main/sans)
   % =========================
-  % NOTE:
-  % On some macOS + XeLaTeX setups, \IfFontExistsTF{Gilroy} can false-negative.
-  % Use file-path loading on macOS (local preview target);
-  % keep Windows/Linux behavior unchanged (production build target).
-  \IfFileExists{/System/Library/Fonts/Helvetica.ttc}{%
-    % macOS branch: force Gilroy via file path.
-    \IfFileExists{/Users/pika/Library/Fonts/gilroy-regular-3.otf}{%
-      \setmainfont{gilroy-regular-3.otf}[
-        Path=/Users/pika/Library/Fonts/,
-        Ligatures=TeX,
-        BoldFont=gilroy-bold-4.otf,
-        ItalicFont=Gilroy-LightItalic-12.otf,
-        BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf
-      ]
-      \setsansfont{gilroy-regular-3.otf}[
-        Path=/Users/pika/Library/Fonts/,
-        Ligatures=TeX,
-        BoldFont=gilroy-bold-4.otf,
-        ItalicFont=Gilroy-LightItalic-12.otf,
-        BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf
-      ]
+  \ifHBLocalGilroyFontsConfigured
+  \else
+    \IfFontExistsTF{Gilroy}{%
+      \setmainfont{Gilroy}[Ligatures=TeX]
+      \setsansfont{Gilroy}[Ligatures=TeX]
     }{%
-      % Fallback if the specific local files are missing.
       \IfFontExistsTF{System Font}{%
         \setmainfont{System Font}[Ligatures=TeX]
         \setsansfont{System Font}[Ligatures=TeX]
@@ -39,53 +30,44 @@
           \setmainfont{Helvetica Neue}[Ligatures=TeX]
           \setsansfont{Helvetica Neue}[Ligatures=TeX]
         }{%
-          \setmainfont{Times New Roman}[Ligatures=TeX]
-          \setsansfont{Arial}[Ligatures=TeX]
-        }%
-      }%
-    }%
-  }{%
-    % non-macOS branch (Windows/Linux): preserve existing Gilroy-first behavior.
-    \IfFontExistsTF{Gilroy}{%
-      \setmainfont{Gilroy}[Ligatures=TeX]
-      \setsansfont{Gilroy}[Ligatures=TeX]
-    }{%
-      \IfFontExistsTF{Calibri}{%
-        \setmainfont{Calibri}[Ligatures=TeX]
-        \setsansfont{Calibri}[Ligatures=TeX]
-      }{%
-        \IfFontExistsTF{Noto Serif}{%
-          \setmainfont{Noto Serif}[Ligatures=TeX]
-          \IfFontExistsTF{Noto Sans}{%
-            \setsansfont{Noto Sans}[Ligatures=TeX]
+          \IfFontExistsTF{Calibri}{%
+            \setmainfont{Calibri}[Ligatures=TeX]
+            \setsansfont{Calibri}[Ligatures=TeX]
           }{%
-            \setsansfont{Noto Serif}[Ligatures=TeX]
-          }%
-        }{%
-          \IfFontExistsTF{FreeSerif}{%
-            \setmainfont{FreeSerif}[Ligatures=TeX]
-            \IfFontExistsTF{FreeSans}{%
-              \setsansfont{FreeSans}[Ligatures=TeX]
-            }{%
-              \setsansfont{FreeSerif}[Ligatures=TeX]
-            }%
-          }{%
-            \IfFontExistsTF{Liberation Serif}{%
-              \setmainfont{Liberation Serif}[Ligatures=TeX]
-              \IfFontExistsTF{Liberation Sans}{%
-                \setsansfont{Liberation Sans}[Ligatures=TeX]
+            \IfFontExistsTF{Noto Serif}{%
+              \setmainfont{Noto Serif}[Ligatures=TeX]
+              \IfFontExistsTF{Noto Sans}{%
+                \setsansfont{Noto Sans}[Ligatures=TeX]
               }{%
-                \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+                \setsansfont{Noto Serif}[Ligatures=TeX]
               }%
             }{%
-              \setmainfont{Latin Modern Roman}[Ligatures=TeX]
-              \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+              \IfFontExistsTF{FreeSerif}{%
+                \setmainfont{FreeSerif}[Ligatures=TeX]
+                \IfFontExistsTF{FreeSans}{%
+                  \setsansfont{FreeSans}[Ligatures=TeX]
+                }{%
+                  \setsansfont{FreeSerif}[Ligatures=TeX]
+                }%
+              }{%
+                \IfFontExistsTF{Liberation Serif}{%
+                  \setmainfont{Liberation Serif}[Ligatures=TeX]
+                  \IfFontExistsTF{Liberation Sans}{%
+                    \setsansfont{Liberation Sans}[Ligatures=TeX]
+                  }{%
+                    \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+                  }%
+                }{%
+                  \setmainfont{Latin Modern Roman}[Ligatures=TeX]
+                  \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+                }%
+              }%
             }%
           }%
         }%
       }%
     }%
-  }%
+  \fi
 
   % =========================
   % Mono font

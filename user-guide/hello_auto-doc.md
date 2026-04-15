@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-14
+Updated: 2026-04-15
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -42,6 +42,10 @@ Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip insta
 - PDF export requires `xelatex`.
 - Word export requires `pandoc` on macOS / Linux and on non-Word-COM paths.
 - The Python dependencies in [`requirements.txt`](../requirements.txt) include the Sphinx theme and build libraries used by the current workflow.
+
+If you want Gilroy only on your own machine for PDF preview, set `AUTO_MANUAL_LOCAL_GILROY_DIR` to the extracted font folder before running `pdf` or `publish`.
+That folder must contain `gilroy-regular-3.otf`, `gilroy-bold-4.otf`, `Gilroy-LightItalic-12.otf`, and `Gilroy-ExtraBoldItalic-10.otf`.
+If the env var is not set, or the folder is incomplete, the build keeps the normal shared fallback fonts and CI does not change.
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
 
