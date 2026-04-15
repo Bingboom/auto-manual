@@ -175,12 +175,17 @@ def publish_word_artifact(
     *,
     cfg: dict[str, Any],
     cli_bin: str,
-    word_output_path: Path,
+    artifact_output_path: Path | None = None,
+    word_output_path: Path | None = None,
     identity: str,
     artifact_destination: Any,
     dingtalk_mirror_destination: ArtifactDestination | None = None,
     dingtalk_operator_union_id: str = "",
+    artifact_label: str = "artifact",
 ) -> ArtifactPublishResult:
+    resolved_artifact_output_path = artifact_output_path or word_output_path
+    if resolved_artifact_output_path is None:
+        raise RuntimeError("publish_word_artifact requires artifact_output_path")
     provider = artifact_sink_provider(cfg, environ=os.environ)
     if provider == "dingtalk_alidocs_session":
         env_names = dingtalk_alidocs_env_names(cfg)
@@ -201,7 +206,7 @@ def publish_word_artifact(
             raise RuntimeError("DingTalk artifact destination is missing target_node_url")
         committed = module.upload_file_to_node(
             session=session,
-            file_path=word_output_path,
+            file_path=resolved_artifact_output_path,
             parent_node_url=str(target_node_url),
         )
         return ArtifactPublishResult(
@@ -210,12 +215,12 @@ def publish_word_artifact(
             latest_link_url=committed.node_url,
             document_link_url=committed.node_url,
             document_link_dd_url=committed.node_url,
-            status_notes=("dingtalk_sync=ok",),
+            status_notes=(f"published_artifact={artifact_label}", "dingtalk_sync=ok"),
         )
 
     file_token, drive_url = module.upload_word_to_drive(
         cli_bin=cli_bin,
-        word_output_path=word_output_path,
+        word_output_path=resolved_artifact_output_path,
         identity=identity,
     )
     try:
@@ -239,7 +244,7 @@ def publish_word_artifact(
             reference_id=file_token,
             latest_link_url=drive_url,
             document_link_url=drive_url,
-            status_notes=("drive_only", f"wiki_attach_failed={recovered_message}"),
+            status_notes=(f"published_artifact={artifact_label}", "drive_only", f"wiki_attach_failed={recovered_message}"),
         )
     else:
         result = ArtifactPublishResult(
@@ -247,6 +252,7 @@ def publish_word_artifact(
             reference_id=file_token,
             latest_link_url=drive_url,
             document_link_url=document_link_url,
+            status_notes=(f"published_artifact={artifact_label}",),
         )
 
     if dingtalk_mirror_destination is None:
@@ -267,7 +273,7 @@ def publish_word_artifact(
     try:
         committed = module.upload_file_to_node(
             session=session,
-            file_path=word_output_path,
+            file_path=resolved_artifact_output_path,
             parent_node_url=target_node_url,
         )
     except Exception as exc:
@@ -344,7 +350,7 @@ def build_document_for_task(
     doc_phase: str | None,
     version: str = "",
     git_ref: str = "",
-) -> Path:
+) -> Any:
     return _build_document_for_task_impl(
         repo_root=module.ROOT,
         config_path=config_path,
@@ -361,6 +367,8 @@ def build_document_for_task(
         run_command=module._run_command,
         build_py_target_command=module._build_py_target_command,
         resolve_word_output_path_for_target=module.resolve_word_output_path_for_target,
+        resolve_pdf_output_path_for_target=module.resolve_pdf_output_path_for_target,
+        versioned_pdf_output_path=module._versioned_pdf_output_path,
         versioned_word_output_path=module._versioned_word_output_path,
         resolve_html_output_dir_for_target=module.resolve_html_output_dir_for_target,
         stage_publish_assets_to_host_repo=module._stage_publish_assets_to_host_repo,

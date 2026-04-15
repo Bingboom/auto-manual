@@ -395,7 +395,7 @@ test("message handler executes confirmed publish from pending state", async () =
               document_id: "JE-1000F_US_0.3",
               workflow_action: "Publish",
               result: "SUCCESS",
-              document_link: "https://example.com/publish.docx",
+              document_link: "https://example.com/publish.pdf",
             },
           ],
         };

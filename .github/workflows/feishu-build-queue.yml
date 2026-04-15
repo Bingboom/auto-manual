@@ -90,6 +90,17 @@ jobs:
 
       - uses: ./.github/actions/feishu-common-setup
 
+      - name: Install XeLaTeX runtime for publish PDF
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-latex-extra \
+            texlive-lang-cjk \
+            fonts-noto-cjk
+
       - name: Process Feishu build queue
         shell: bash
         run: |

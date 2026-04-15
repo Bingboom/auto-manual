@@ -64,6 +64,45 @@ def resolve_word_output_path_for_target(
     return resolve_output_path(build_root / "word", word_output_name)
 
 
+def resolve_pdf_output_path_for_target(
+    *,
+    config_path: Path,
+    model: str,
+    region: str,
+    repo_root: Path,
+    config_loader: Callable[[Path], dict[str, Any]],
+    build_languages: Callable[[dict[str, Any]], list[str]],
+    resolve_output_lang: Callable[[dict[str, Any]], str | None],
+    build_root_for_target: Callable[..., Path],
+    render_build_template: Callable[..., str],
+    resolve_output_path: Callable[[Path, str], Path],
+) -> Path:
+    cfg = config_loader(config_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    docs_dir = resolve_docs_dir_for_config(
+        config_path=config_path,
+        repo_root=repo_root,
+        cfg=cfg,
+        config_loader=config_loader,
+    )
+    primary_lang = build_languages(cfg)[0]
+    output_lang = resolve_output_lang(cfg)
+    build_root = build_root_for_target(
+        model,
+        region,
+        lang=output_lang,
+        docs_build_dir=docs_dir / "_build",
+    )
+    pdf_output_name = render_build_template(
+        str(build_cfg.get("output_pdf", "manual_demo.pdf")),
+        model=model,
+        region=region,
+        lang=primary_lang,
+    )
+    return resolve_output_path(build_root / "pdf", pdf_output_name)
+
+
 def resolve_html_output_dir_for_target(
     *,
     config_path: Path,
@@ -91,8 +130,8 @@ def resolve_html_output_dir_for_target(
     return build_root / "html"
 
 
-def versioned_word_output_path(
-    word_output_path: Path,
+def _versioned_release_output_path(
+    output_path: Path,
     *,
     version: str,
     doc_phase: str | None,
@@ -107,9 +146,43 @@ def versioned_word_output_path(
     if version_token:
         suffix_parts.append(version_token)
     if not suffix_parts:
-        return word_output_path
-    return word_output_path.with_name(
-        f"{word_output_path.stem}_{'_'.join(suffix_parts)}{word_output_path.suffix}"
+        return output_path
+    return output_path.with_name(
+        f"{output_path.stem}_{'_'.join(suffix_parts)}{output_path.suffix}"
+    )
+
+
+def versioned_word_output_path(
+    word_output_path: Path,
+    *,
+    version: str,
+    doc_phase: str | None,
+    normalize_release_token: Callable[[str], str],
+    normalize_workflow_action: Callable[[Any], str | None],
+) -> Path:
+    return _versioned_release_output_path(
+        word_output_path,
+        version=version,
+        doc_phase=doc_phase,
+        normalize_release_token=normalize_release_token,
+        normalize_workflow_action=normalize_workflow_action,
+    )
+
+
+def versioned_pdf_output_path(
+    pdf_output_path: Path,
+    *,
+    version: str,
+    doc_phase: str | None,
+    normalize_release_token: Callable[[str], str],
+    normalize_workflow_action: Callable[[Any], str | None],
+) -> Path:
+    return _versioned_release_output_path(
+        pdf_output_path,
+        version=version,
+        doc_phase=doc_phase,
+        normalize_release_token=normalize_release_token,
+        normalize_workflow_action=normalize_workflow_action,
     )
 
 
@@ -218,6 +291,7 @@ def stage_draft_word_output_to_host_repo(
 def stage_publish_assets_to_host_repo(
     *,
     built_word_output_path: Path,
+    built_pdf_output_path: Path,
     built_html_dir: Path,
     host_config_path: Path,
     model: str,
@@ -226,7 +300,7 @@ def stage_publish_assets_to_host_repo(
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     copy_tree: Callable[[Path, Path], None],
-) -> tuple[Path, Path]:
+) -> tuple[Path, Path, Path]:
     version_dir = publish_release_version_dir_for_target(
         config_path=host_config_path,
         model=model,
@@ -242,9 +316,11 @@ def stage_publish_assets_to_host_repo(
     latest_dir.mkdir(parents=True, exist_ok=True)
     staged_word_output_path = version_dir / built_word_output_path.name
     shutil.copy2(built_word_output_path, staged_word_output_path)
+    staged_pdf_output_path = version_dir / built_pdf_output_path.name
+    shutil.copy2(built_pdf_output_path, staged_pdf_output_path)
     latest_html_dir = latest_dir / "html"
     copy_tree(built_html_dir, latest_html_dir)
-    return staged_word_output_path, latest_html_dir
+    return staged_word_output_path, staged_pdf_output_path, latest_html_dir
 
 
 def write_publish_release_metadata(
@@ -256,6 +332,7 @@ def write_publish_release_metadata(
     git_ref: str,
     built_at: datetime,
     word_output_path: Path,
+    pdf_output_path: Path,
     html_dir: Path,
     document_link_url: str,
     publish_release_version_dir_for_target: Callable[..., Path],
@@ -283,6 +360,7 @@ def write_publish_release_metadata(
         "doc_phase": "publish",
         "built_at": built_at.isoformat(timespec="seconds"),
         "word_output_path": repo_relative(word_output_path),
+        "pdf_output_path": repo_relative(pdf_output_path),
         "html_dir": repo_relative(html_dir),
         "html_index": repo_relative(html_dir / "index.html"),
         "document_link_url": document_link_url.strip(),

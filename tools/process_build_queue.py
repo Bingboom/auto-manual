@@ -117,9 +117,11 @@ from tools.queue_bound_outputs import (  # noqa: E402
     repo_relative as _repo_relative,
     resolve_docs_dir_for_config as _resolve_docs_dir_for_config,
     resolve_html_output_dir_for_target,
+    resolve_pdf_output_path_for_target,
     resolve_word_output_path_for_target,
     stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo,
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo,
+    versioned_pdf_output_path as _versioned_pdf_output_path,
     versioned_word_output_path as _versioned_word_output_path,
     write_publish_release_metadata,
 )
@@ -291,7 +293,7 @@ def build_document_for_task(
     doc_phase: str | None,
     version: str = "",
     git_ref: str = "",
-) -> Path:
+) -> Any:
     return _build_document_for_task_service(
         _service_module(),
         config_path=config_path,
