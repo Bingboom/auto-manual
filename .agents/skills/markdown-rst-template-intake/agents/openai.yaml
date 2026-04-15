@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown RST Template Intake"
+  short_description: "Map Markdown manuals into repo RST templates"
+  default_prompt: "Read the provided Markdown manual, map each section into this repo's RST template family, preserve placeholder-driven content, update the correct template and recipe files, and validate with the recommended build commands."
