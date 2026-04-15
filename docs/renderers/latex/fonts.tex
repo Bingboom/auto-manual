@@ -54,16 +54,34 @@
         \setmainfont{Calibri}[Ligatures=TeX]
         \setsansfont{Calibri}[Ligatures=TeX]
       }{%
-        \IfFontExistsTF{Liberation Serif}{%
-          \setmainfont{Liberation Serif}[Ligatures=TeX]
-          \IfFontExistsTF{Liberation Sans}{%
-            \setsansfont{Liberation Sans}[Ligatures=TeX]
+        \IfFontExistsTF{Noto Serif}{%
+          \setmainfont{Noto Serif}[Ligatures=TeX]
+          \IfFontExistsTF{Noto Sans}{%
+            \setsansfont{Noto Sans}[Ligatures=TeX]
           }{%
-            \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+            \setsansfont{Noto Serif}[Ligatures=TeX]
           }%
         }{%
-          \setmainfont{Latin Modern Roman}[Ligatures=TeX]
-          \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+          \IfFontExistsTF{FreeSerif}{%
+            \setmainfont{FreeSerif}[Ligatures=TeX]
+            \IfFontExistsTF{FreeSans}{%
+              \setsansfont{FreeSans}[Ligatures=TeX]
+            }{%
+              \setsansfont{FreeSerif}[Ligatures=TeX]
+            }%
+          }{%
+            \IfFontExistsTF{Liberation Serif}{%
+              \setmainfont{Liberation Serif}[Ligatures=TeX]
+              \IfFontExistsTF{Liberation Sans}{%
+                \setsansfont{Liberation Sans}[Ligatures=TeX]
+              }{%
+                \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+              }%
+            }{%
+              \setmainfont{Latin Modern Roman}[Ligatures=TeX]
+              \setsansfont{Latin Modern Sans}[Ligatures=TeX]
+            }%
+          }%
         }%
       }%
     }%
@@ -75,14 +93,30 @@
   \IfFontExistsTF{JetBrains Mono}{%
     \setmonofont{JetBrains Mono}[Scale=MatchLowercase]
   }{%
-    % macOS default mono
-    \IfFontExistsTF{Menlo}{%
-      \setmonofont{Menlo}[Scale=MatchLowercase]
+    \IfFontExistsTF{Noto Sans Mono}{%
+      \setmonofont{Noto Sans Mono}[Scale=MatchLowercase]
     }{%
-      \IfFontExistsTF{Consolas}{%
-        \setmonofont{Consolas}[Scale=MatchLowercase]
+      \IfFontExistsTF{FreeMono}{%
+        \setmonofont{FreeMono}[Scale=MatchLowercase]
       }{%
-        \setmonofont{Courier New}[Scale=MatchLowercase]
+        \IfFontExistsTF{DejaVu Sans Mono}{%
+          \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+        }{%
+          % macOS / Windows fallbacks
+          \IfFontExistsTF{Menlo}{%
+            \setmonofont{Menlo}[Scale=MatchLowercase]
+          }{%
+            \IfFontExistsTF{Consolas}{%
+              \setmonofont{Consolas}[Scale=MatchLowercase]
+            }{%
+              \IfFontExistsTF{Liberation Mono}{%
+                \setmonofont{Liberation Mono}[Scale=MatchLowercase]
+              }{%
+                \setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+              }%
+            }%
+          }%
+        }%
       }%
     }%
   }%
