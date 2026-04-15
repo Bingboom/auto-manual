@@ -722,6 +722,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("pdf", seen[6])
         self.assertIn("--source", seen[6])
         self.assertIn("review", seen[6])
+        self.assertNotIn("--clean", seen[6])
 
         self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[7][1])
         self.assertIn("--model", seen[7])
