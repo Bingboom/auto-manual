@@ -46,7 +46,7 @@ def cli_relative_file_arg(*, repo_root: Path, path: Path) -> str:
     try:
         relative = resolved.relative_to(resolved_repo_root)
     except ValueError as exc:
-        raise RuntimeError(f"Word output must stay under repo root for lark-cli upload: {resolved}") from exc
+        raise RuntimeError(f"Artifact output must stay under repo root for lark-cli upload: {resolved}") from exc
     if os.name == "nt":
         return ".\\" + str(relative).replace("/", "\\")
     return "./" + relative.as_posix()
@@ -62,7 +62,7 @@ def upload_word_to_drive(
     cli_relative_file_arg: Callable[..., str],
 ) -> tuple[str, str]:
     if not word_output_path.exists():
-        raise RuntimeError(f"Word output was not created: {word_output_path}")
+        raise RuntimeError(f"Artifact output was not created: {word_output_path}")
 
     upload_payload = run_lark_cli_json(
         cli_bin=cli_bin,

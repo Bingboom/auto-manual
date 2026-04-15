@@ -1,6 +1,6 @@
 # OpenClaw Bootstrap
 
-Updated: 2026-04-13
+Updated: 2026-04-15
 
 Use this file only as the short entrypoint for the repo's current OpenClaw surface.
 It is not the detailed architecture plan and it is not the full workflow guide.
@@ -16,7 +16,7 @@ The execution plane stays unchanged:
 - Feishu phase2 tables remain the source of truth
 - `build.py queue-query`, `queue-resolve-action`, and `queue-execute` are the repo-owned control surface
 - GitHub Actions on `main` remain the remote execution plane
-- `Document link` remains the canonical returned artifact link field
+- `Document link` remains the canonical returned artifact link field; Build Draft keeps returning DOCX there, while Publish now returns the uploaded PDF and leaves the DOCX under `reports/releases`
 
 ## 2. Canonical Docs
 

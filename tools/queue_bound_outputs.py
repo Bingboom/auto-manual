@@ -17,9 +17,11 @@ from tools.queue_outputs import (  # noqa: E402
     repo_relative as _repo_relative_impl,
     resolve_docs_dir_for_config as _resolve_docs_dir_for_config_impl,
     resolve_html_output_dir_for_target as _resolve_html_output_dir_for_target_impl,
+    resolve_pdf_output_path_for_target as _resolve_pdf_output_path_for_target_impl,
     resolve_word_output_path_for_target as _resolve_word_output_path_for_target_impl,
     stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo_impl,
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo_impl,
+    versioned_pdf_output_path as _versioned_pdf_output_path_impl,
     versioned_word_output_path as _versioned_word_output_path_impl,
     write_publish_release_metadata as _write_publish_release_metadata_impl,
 )
@@ -67,6 +69,21 @@ def resolve_word_output_path_for_target(*, config_path: Path, model: str, region
     )
 
 
+def resolve_pdf_output_path_for_target(*, config_path: Path, model: str, region: str) -> Path:
+    return _resolve_pdf_output_path_for_target_impl(
+        config_path=config_path,
+        model=model,
+        region=region,
+        repo_root=_repo_root(),
+        config_loader=load_config,
+        build_languages=_build_languages,
+        resolve_output_lang=resolve_output_lang,
+        build_root_for_target=build_root_for_target,
+        render_build_template=render_build_template,
+        resolve_output_path=resolve_output_path,
+    )
+
+
 def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
     return _resolve_html_output_dir_for_target_impl(
         config_path=config_path,
@@ -82,6 +99,16 @@ def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region:
 def versioned_word_output_path(word_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
     return _versioned_word_output_path_impl(
         word_output_path,
+        version=version,
+        doc_phase=doc_phase,
+        normalize_release_token=normalize_release_token,
+        normalize_workflow_action=normalize_workflow_action,
+    )
+
+
+def versioned_pdf_output_path(pdf_output_path: Path, *, version: str, doc_phase: str | None = None) -> Path:
+    return _versioned_pdf_output_path_impl(
+        pdf_output_path,
         version=version,
         doc_phase=doc_phase,
         normalize_release_token=normalize_release_token,
@@ -151,14 +178,16 @@ def stage_draft_word_output_to_host_repo(
 def stage_publish_assets_to_host_repo(
     *,
     built_word_output_path: Path,
+    built_pdf_output_path: Path,
     built_html_dir: Path,
     host_config_path: Path,
     model: str,
     region: str,
     version: str,
-) -> tuple[Path, Path]:
+) -> tuple[Path, Path, Path]:
     return _stage_publish_assets_to_host_repo_impl(
         built_word_output_path=built_word_output_path,
+        built_pdf_output_path=built_pdf_output_path,
         built_html_dir=built_html_dir,
         host_config_path=host_config_path,
         model=model,
@@ -179,6 +208,7 @@ def write_publish_release_metadata(
     git_ref: str,
     built_at: Any,
     word_output_path: Path,
+    pdf_output_path: Path,
     html_dir: Path,
     document_link_url: str,
 ) -> Path:
@@ -190,6 +220,7 @@ def write_publish_release_metadata(
         git_ref=git_ref,
         built_at=built_at,
         word_output_path=word_output_path,
+        pdf_output_path=pdf_output_path,
         html_dir=html_dir,
         document_link_url=document_link_url,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,

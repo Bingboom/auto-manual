@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-04-14
+Updated: 2026-04-15
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -89,6 +89,8 @@ Updated: 2026-04-14
 - `Workflow_action` 是唯一队列语义字段；建分支填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
 - `Doc_phase` 不再参与队列路由，保持留空即可
 - 把结果链接回写到表里
+- `Build Draft Package` 仍把 DOCX 链接回写到 `Document link`
+- `Publish` 会把主交付 PDF 链接回写到 `Document link`，并把 release 留档 DOCX 路径写回 `Document directory`
 - 如果当前启用了 DingTalk mirror，且表里存在 `Document link_dd`，队列会把镜像 DingTalk 节点链接写到这个字段；`Document link` 仍保持 Feishu/wiki 主字段
 - 如果当前启用了 DingTalk mirror，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才同步 DingTalk，不勾就只走 Feishu/wiki
 - 如果表里没有 `是否上传钉钉`，worker 就按当前全局模式处理整行：开启 mirror 的 worker 会同步 DingTalk，Feishu-only worker 不会同步
@@ -125,6 +127,8 @@ Publish 的原料是：
 - 当前 phase2 snapshot；如果这条记录勾了 `是否强制刷新数据`，队列会先把它刷新成 Feishu 最新数据
 - `Document_link.Git_ref` 指向分支上的代码
 - 该分支里的 review 内容
+
+正式 Publish 仍然会基于这条 review / PR 分支重新构建，不复用旧的 Draft DOCX；构建完成后会上传 Publish PDF，并把 DOCX 只留在 release 目录归档。
 
 如果 `Git_ref` 为空，才会退回当前 queue worker 所在分支；远端 worker 通常是 `main`。
 
@@ -164,11 +168,13 @@ Publish 的原料是：
 
 - `Document link`
 
+其中 Build Draft Package 场景下这里通常是 DOCX 链接，Publish 场景下这里会回写 PDF 链接。
+
 如果当前启用了 DingTalk mirror，worker 还会在表里额外写：
 
 - `Document link_dd`
 
-但 `queue-query / queue-execute / OpenClaw` 仍以 `Document link` 为主返回字段。
+但 `queue-query / queue-execute / OpenClaw` 仍以 `Document link` 为主返回字段；Publish 时也就是返回 PDF URL。
 
 ## 3. 场景一：第一次把文档拉进 Review
 
@@ -296,16 +302,16 @@ Publish 的原料是：
 1. workflow 可以由默认分支承载
 2. 执行 `process-build-queue --workflow-action publish`
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
-4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish` 和 `build.py html --source review`
+4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish`（内部会跑 `check -> diff-report -> word -> pdf -> release-manifest`）和 `build.py html --source review`
 5. 如果当前启用了 DingTalk mirror 且 `是否上传钉钉 = 勾选`，就同步 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先同步到该行节点；否则退回全局默认 DingTalk 节点；未勾选则只保留 Feishu/wiki 上传；如果表里没有 `是否上传钉钉`，则按当前 worker 的全局模式决定是否同步
 6. 回写：
    - `开始构建时间`
    - `构建结果`
    - `data_sync`
-   - `Document directory`
-   - `Document link`
-   - `Document link_dd（仅启用 DingTalk mirror 且字段存在时）`
-6. 把最新 publish HTML 刷新到 Vercel
+   - `Document directory（release 留档 DOCX 路径）`
+   - `Document link（主交付 PDF 链接）`
+   - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份 Publish PDF）`
+7. 把最新 publish HTML 刷新到 Vercel
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 
@@ -318,7 +324,7 @@ Publish 的原料是：
 - `DINGTALK_DOCS_TARGET_NODE_URL` 现在只是远端默认节点，可留空
 - 如果这行已经填了 `DingTalk_target_node_url`，远端 worker 会优先用这一行的节点，不依赖默认节点
 
-Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`。
+Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`；正式回写给业务侧的主链接是 PDF，DOCX 只保留在 release 目录里做留档。
 
 ## 6. 你平时到底该改哪里
 
@@ -424,7 +430,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
-4. 等队列回写 `Document directory`、`Document link`，并确认 Vercel 最新页面已刷新
+4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接），并确认 Vercel 最新页面已刷新
 
 ## 9. 一句话规则
 

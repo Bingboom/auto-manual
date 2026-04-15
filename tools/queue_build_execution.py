@@ -1,9 +1,18 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 import shutil
 import sys
 from pathlib import Path
 from typing import Callable
+
+
+@dataclass(frozen=True)
+class BuiltDocumentOutputs:
+    word_output_path: Path
+    upload_output_path: Path
+    pdf_output_path: Path | None = None
+    html_output_dir: Path | None = None
 
 
 def build_py_target_command(
@@ -84,11 +93,13 @@ def build_document_for_task(
     run_command: Callable[..., None],
     build_py_target_command: Callable[..., list[str]],
     resolve_word_output_path_for_target: Callable[..., Path],
+    resolve_pdf_output_path_for_target: Callable[..., Path],
+    versioned_pdf_output_path: Callable[..., Path],
     versioned_word_output_path: Callable[..., Path],
     resolve_html_output_dir_for_target: Callable[..., Path],
-    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path]],
+    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path]],
     stage_draft_word_output_to_host_repo: Callable[..., Path],
-) -> Path:
+) -> BuiltDocumentOutputs:
     normalized_doc_phase = normalize_workflow_action(doc_phase)
     effective_repo_root = repo_root
     effective_config_path = config_path
@@ -192,6 +203,22 @@ def build_document_for_task(
             shutil.copy2(word_output_path, versioned_path)
             word_output_path = versioned_path
         if normalized_doc_phase == "publish":
+            pdf_output_path = resolve_pdf_output_path_for_target(
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+            )
+            if not pdf_output_path.exists():
+                raise RuntimeError(f"PDF output was not created for publish: {pdf_output_path}")
+            versioned_pdf_path = versioned_pdf_output_path(
+                pdf_output_path,
+                version=version,
+                doc_phase=normalized_doc_phase,
+            )
+            if versioned_pdf_path != pdf_output_path:
+                versioned_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(pdf_output_path, versioned_pdf_path)
+                pdf_output_path = versioned_pdf_path
             html_output_dir = resolve_html_output_dir_for_target(
                 config_path=effective_config_path,
                 model=model,
@@ -200,17 +227,23 @@ def build_document_for_task(
             if not html_output_dir.exists():
                 raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
             host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
-            staged_word_output_path, _latest_html_dir = stage_publish_assets_to_host_repo(
+            staged_word_output_path, staged_pdf_output_path, latest_html_dir = stage_publish_assets_to_host_repo(
                 built_word_output_path=word_output_path,
+                built_pdf_output_path=pdf_output_path,
                 built_html_dir=html_output_dir,
                 host_config_path=host_config_path,
                 model=model,
                 region=region,
                 version=version,
             )
-            return staged_word_output_path
+            return BuiltDocumentOutputs(
+                word_output_path=staged_word_output_path,
+                upload_output_path=staged_pdf_output_path,
+                pdf_output_path=staged_pdf_output_path,
+                html_output_dir=latest_html_dir,
+            )
         if effective_repo_root != repo_root:
-            return stage_draft_word_output_to_host_repo(
+            staged_word_output_path = stage_draft_word_output_to_host_repo(
                 built_word_output_path=word_output_path,
                 host_config_path=config_path_in_repo_root(config_path, repo_root=repo_root),
                 model=model,
@@ -218,7 +251,14 @@ def build_document_for_task(
                 version=version,
                 doc_phase=normalized_doc_phase,
             )
-        return word_output_path
+            return BuiltDocumentOutputs(
+                word_output_path=staged_word_output_path,
+                upload_output_path=staged_word_output_path,
+            )
+        return BuiltDocumentOutputs(
+            word_output_path=word_output_path,
+            upload_output_path=word_output_path,
+        )
     finally:
         if worktree is not None:
             remove_worktree(worktree)

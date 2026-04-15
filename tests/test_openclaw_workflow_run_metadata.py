@@ -43,7 +43,8 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
                     '  "built_at": "2026-04-10T11:30:00",\n'
                     '  "document_link_url": "https://docs.example.com/doc",\n'
                     '  "html_index": "reports/releases/JE-1000F/US/en/latest/html/index.html",\n'
-                    '  "word_output_path": "reports/releases/JE-1000F/US/en/versions/V1/manual.docx"\n'
+                    '  "word_output_path": "reports/releases/JE-1000F/US/en/versions/V1/manual.docx",\n'
+                    '  "pdf_output_path": "reports/releases/JE-1000F/US/en/versions/V1/manual.pdf"\n'
                     '}\n'
                 ),
                 encoding="utf-8",
@@ -75,6 +76,10 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
             self.assertEqual(payload["openclaw_dispatch_nonce"], "nonce-123")
             self.assertEqual(payload["publish_url"], "https://manual.example.com/latest")
             self.assertEqual(payload["document_link_url"], "https://docs.example.com/doc")
+            self.assertEqual(
+                payload["publish_pdf_output_path"],
+                "reports/releases/JE-1000F/US/en/versions/V1/manual.pdf",
+            )
             self.assertTrue(
                 str(payload["publish_metadata_path"]).replace("\\", "/").endswith(
                     "reports/releases/JE-1000F/US/en/latest/publish_meta.json"

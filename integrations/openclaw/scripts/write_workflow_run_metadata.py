@@ -166,12 +166,15 @@ def build_metadata(
     document_link_url = publish_meta_payload.get("document_link_url")
     html_index = publish_meta_payload.get("html_index")
     word_output_path = publish_meta_payload.get("word_output_path")
+    pdf_output_path = publish_meta_payload.get("pdf_output_path")
     if isinstance(document_link_url, str) and document_link_url.strip():
         metadata["document_link_url"] = document_link_url.strip()
     if isinstance(html_index, str) and html_index.strip():
         metadata["publish_html_index"] = html_index.strip()
     if isinstance(word_output_path, str) and word_output_path.strip():
         metadata["publish_word_output_path"] = word_output_path.strip()
+    if isinstance(pdf_output_path, str) and pdf_output_path.strip():
+        metadata["publish_pdf_output_path"] = pdf_output_path.strip()
     return metadata
 
 

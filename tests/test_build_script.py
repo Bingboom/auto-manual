@@ -693,7 +693,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
             build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
 
-        self.assertEqual(7, len(seen))
+        self.assertEqual(8, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
         self.assertIn("--source", seen[0])
         self.assertIn("runtime", seen[0])
@@ -717,11 +717,17 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--source", seen[5])
         self.assertIn("review", seen[5])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[6][1])
-        self.assertIn("--model", seen[6])
-        self.assertIn("JE-1000F", seen[6])
-        self.assertIn("--region", seen[6])
-        self.assertIn("JP", seen[6])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[6][1])
+        self.assertIn("--formats", seen[6])
+        self.assertIn("pdf", seen[6])
+        self.assertIn("--source", seen[6])
+        self.assertIn("review", seen[6])
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[7][1])
+        self.assertIn("--model", seen[7])
+        self.assertIn("JE-1000F", seen[7])
+        self.assertIn("--region", seen[7])
+        self.assertIn("JP", seen[7])
 
     def test_release_manifest_command_should_require_explicit_target(self) -> None:
         args = build_cli.parse_args(["release-manifest"])
@@ -793,11 +799,11 @@ class TestBuildScript(unittest.TestCase):
             build_cli.load_config = original_load_config  # type: ignore[assignment]
             build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
 
-        self.assertEqual(7, len(seen))
+        self.assertEqual(8, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[4][1])
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[4])
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[4])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[6][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[7][1])
 
     def test_publish_should_redirect_generated_outputs_into_staging_root(self) -> None:
         args = build_cli.parse_args(
@@ -820,8 +826,9 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[0])
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[2])
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[4])
-        self.assertIn("--docs-build-dir", seen[6])
-        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "releases"), seen[6])
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[6])
+        self.assertIn("--docs-build-dir", seen[7])
+        self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "releases"), seen[7])
 
     def test_collect_doctor_findings_should_require_word_com_for_windows_bundle(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])

@@ -46,7 +46,7 @@ def process_queue_record_group(
     resolve_dingtalk_mirror_destination: Callable[..., Any],
     ensure_dingtalk_session_ready: Callable[..., None],
     build_started_fields: Callable[..., dict[str, Any]],
-    build_document_for_task: Callable[..., Path],
+    build_document_for_task: Callable[..., Any],
     publish_word_artifact: Callable[..., Any],
     build_success_fields: Callable[..., dict[str, Any]],
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
@@ -60,6 +60,8 @@ def process_queue_record_group(
 ) -> QueueGroupProcessingResult:
     record = group[0]
     word_output_path: Path | None = None
+    pdf_output_path: Path | None = None
+    artifact_output_path: Path | None = None
     latest_link_url: str | None = None
     latest_document_link_dd_url: str | None = None
     group_key = queue_record_key(record)
@@ -192,7 +194,7 @@ def process_queue_record_group(
                 "[build-queue] Marked start time for "
                 f"{group_key} ({row_count} row(s)): {started_at.isoformat(timespec='seconds')}"
             )
-        word_output_path = build_document_for_task(
+        built_outputs = build_document_for_task(
             config_path=resolved_config_path,
             model=model,
             region=region,
@@ -201,14 +203,23 @@ def process_queue_record_group(
             version=record.version,
             git_ref=record.git_ref,
         )
+        if isinstance(built_outputs, Path):
+            word_output_path = built_outputs
+            artifact_output_path = built_outputs
+            pdf_output_path = built_outputs if built_outputs.suffix.lower() == ".pdf" else None
+        else:
+            word_output_path = built_outputs.word_output_path
+            pdf_output_path = built_outputs.pdf_output_path
+            artifact_output_path = built_outputs.upload_output_path
         artifact_result = publish_word_artifact(
             cfg=cfg,
             cli_bin=cli_bin,
-            word_output_path=word_output_path,
+            artifact_output_path=artifact_output_path,
             identity=identity,
             artifact_destination=effective_artifact_destination,
             dingtalk_mirror_destination=dingtalk_mirror_destination,
             dingtalk_operator_union_id=dingtalk_operator_union_id,
+            artifact_label="pdf" if artifact_output_path.suffix.lower() == ".pdf" else "docx",
         )
         latest_link_url = artifact_result.latest_link_url
         document_link_url = artifact_result.document_link_url
@@ -250,12 +261,13 @@ def process_queue_record_group(
                 git_ref=record.git_ref,
                 built_at=built_at,
                 word_output_path=word_output_path,
+                pdf_output_path=pdf_output_path or artifact_output_path,
                 html_dir=latest_html_dir,
                 document_link_url=document_link_url,
             )
         print(
             f"[build-queue] {workflow_action_label(effective_doc_phase) or 'Updated'} "
-            f"{group_key} ({row_count} row(s)): {word_output_path} -> {document_link_url}"
+            f"{group_key} ({row_count} row(s)): {artifact_output_path} -> {document_link_url}"
         )
         return QueueGroupProcessingResult(processed_rows=row_count)
     except Exception as exc:

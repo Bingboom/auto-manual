@@ -1233,9 +1233,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                     doc_phase="Draft",
                     version="0.2",
                 )
-                self.assertTrue(resolved_path.exists())
+                self.assertTrue(resolved_path.word_output_path.exists())
 
-        self.assertEqual(word_path.with_name("manual_je1000f_us_en_0.2.docx"), resolved_path)
+        self.assertEqual(word_path.with_name("manual_je1000f_us_en_0.2.docx"), resolved_path.word_output_path)
+        self.assertEqual(resolved_path.word_output_path, resolved_path.upload_output_path)
+        self.assertIsNone(resolved_path.pdf_output_path)
         self.assertEqual(2, len(commands))
         self.assertEqual("check", commands[0][2])
         self.assertIn("--source", commands[0])
@@ -1253,12 +1255,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             host_config_path = root / "config.us-en.yaml"
             worktree_config_path = worktree / "config.us-en.yaml"
             worktree_word_path = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            worktree_pdf_path = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "pdf" / "manual_je1000f_us_en.pdf"
             worktree_html_dir = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
             worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
             worktree_config_path.write_text("build: {}\n", encoding="utf-8")
             worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
             worktree_word_path.write_bytes(b"docx")
+            worktree_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+            worktree_pdf_path.write_bytes(b"pdf")
             worktree_html_dir.mkdir(parents=True, exist_ok=True)
             (worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
 
@@ -1279,6 +1284,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=worktree_word_path,
             ), mock.patch.object(
                 process_build_queue,
+                "resolve_pdf_output_path_for_target",
+                return_value=worktree_pdf_path,
+            ), mock.patch.object(
+                process_build_queue,
                 "resolve_html_output_dir_for_target",
                 return_value=worktree_html_dir,
             ):
@@ -1291,11 +1300,16 @@ class TestProcessBuildQueue(unittest.TestCase):
                     version="0.2",
                     git_ref="codex/review-us-en",
                 )
-                self.assertTrue(resolved_path.exists())
+                self.assertTrue(resolved_path.word_output_path.exists())
+                self.assertTrue(resolved_path.upload_output_path.exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx",
-            resolved_path,
+            resolved_path.word_output_path,
+        )
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf",
+            resolved_path.upload_output_path,
         )
         self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][0][2])
@@ -1311,10 +1325,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             root = Path(td)
             config_path = root / "config.ja.yaml"
             word_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
+            pdf_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "pdf" / "manual_je1000f_jp.pdf"
             html_dir = root / "docs" / "_build" / "JE-1000F" / "JP" / "html"
             config_path.write_text("build:\n  languages: [ja]\n", encoding="utf-8")
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
+            pdf_path.parent.mkdir(parents=True, exist_ok=True)
+            pdf_path.write_bytes(b"pdf")
             html_dir.mkdir(parents=True, exist_ok=True)
             (html_dir / "index.html").write_text("<html>publish</html>\n", encoding="utf-8")
 
@@ -1328,6 +1345,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=word_path,
             ), mock.patch.object(
                 process_build_queue,
+                "resolve_pdf_output_path_for_target",
+                return_value=pdf_path,
+            ), mock.patch.object(
+                process_build_queue,
                 "resolve_html_output_dir_for_target",
                 return_value=html_dir,
             ):
@@ -1339,11 +1360,16 @@ class TestProcessBuildQueue(unittest.TestCase):
                     doc_phase="Publish",
                     version="1.0",
                 )
-                self.assertTrue(resolved_path.exists())
+                self.assertTrue(resolved_path.word_output_path.exists())
+                self.assertTrue(resolved_path.upload_output_path.exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.docx",
-            resolved_path,
+            resolved_path.word_output_path,
+        )
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.pdf",
+            resolved_path.upload_output_path,
         )
         self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][2])
@@ -1356,10 +1382,12 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path = root / "config.us-en.yaml"
             config_path.write_text("build:\n  languages: [en]\n  include_lang_in_output_path: true\n", encoding="utf-8")
             word_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx"
+            pdf_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf"
             html_dir = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "latest" / "html"
             word_output_path.parent.mkdir(parents=True, exist_ok=True)
             html_dir.mkdir(parents=True, exist_ok=True)
             word_output_path.write_bytes(b"docx")
+            pdf_output_path.write_bytes(b"pdf")
             (html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
 
             with mock.patch.object(process_build_queue, "ROOT", root):
@@ -1371,6 +1399,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     git_ref="codex/review-us-en",
                     built_at=datetime(2026, 4, 4, 12, 0, 0),
                     word_output_path=word_output_path,
+                    pdf_output_path=pdf_output_path,
                     html_dir=html_dir,
                     document_link_url="https://example.feishu.cn/wiki/token_123",
                 )
@@ -1385,6 +1414,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             self.assertEqual("en", payload["lang"])
             self.assertEqual("0.2", payload["version"])
             self.assertEqual("https://example.feishu.cn/wiki/token_123", payload["document_link_url"])
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/versions/0.2/manual_je1000f_us_en_publish_0.2.pdf",
+                payload["pdf_output_path"],
+            )
             self.assertEqual(
                 "reports/releases/JE-1000F/US/en/latest/html/index.html",
                 payload["html_index"],
@@ -1418,6 +1451,20 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(
             Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en_publish_0.2.docx"),
+            resolved,
+        )
+
+    def test_versioned_pdf_output_path_should_insert_publish_before_version(self) -> None:
+        path = Path("docs/_build/JE-1000F/US/en/pdf/manual_je1000f_us_en.pdf")
+
+        resolved = process_build_queue._versioned_pdf_output_path(
+            path,
+            version="0.2",
+            doc_phase="publish",
+        )
+
+        self.assertEqual(
+            Path("docs/_build/JE-1000F/US/en/pdf/manual_je1000f_us_en_publish_0.2.pdf"),
             resolved,
         )
 
