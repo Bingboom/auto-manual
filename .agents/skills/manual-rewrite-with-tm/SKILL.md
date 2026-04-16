@@ -134,6 +134,10 @@ Example:
 
 `python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de -o output.de.md`
 
+Use bound Feishu terminology source first:
+
+`python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de --use-feishu-term-source -o output.de.md`
+
 Current script behavior:
 
 - splits markdown into headings, text blocks, lists, tables, and images
@@ -151,7 +155,8 @@ Term-priority table:
 - local fallback example file: `references/term-priority.example.tsv`
 - format: tab-separated with `source` and `target` columns
 - use it for button names, port names, warning labels, UI strings, and other repeated terms that should be normalized before sentence-level processing
-- when the live Feishu terminology source is reachable, treat it as the preferred term source; otherwise fall back to the local TSV table
+- use `--use-feishu-term-source` to read the bound Feishu terminology table in a `master_spec`-style live-table flow
+- when the live Feishu terminology source is reachable, treat it as the preferred term source; otherwise fall back to the local TSV table and cached term snapshot when available
 
 Use this script as the default batch path, then spot-check the output for terminology consistency and any missed structural edge cases.
 

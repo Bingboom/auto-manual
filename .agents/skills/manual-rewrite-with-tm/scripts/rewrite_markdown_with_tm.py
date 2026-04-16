@@ -1,23 +1,39 @@
 #!/usr/bin/env python3
 import argparse
 import csv
+import json
+import os
 import re
+import shutil
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 
-QUERY_SCRIPT = Path('.agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py')
-DEFAULT_TERM_TABLE = Path('.agents/skills/manual-rewrite-with-tm/references/term-priority.example.tsv')
+REPO_ROOT = Path(__file__).resolve().parents[4]
+QUERY_SCRIPT = REPO_ROOT / '.agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py'
+DEFAULT_TERM_TABLE = REPO_ROOT / '.agents/skills/manual-rewrite-with-tm/references/term-priority.example.tsv'
+DEFAULT_TERM_SOURCE = REPO_ROOT / '.agents/skills/manual-rewrite-with-tm/references/term-source.md'
 SENTENCE_SPLIT_RE = re.compile(r'(?<=[.!?。！？])\s+(?=(?:[A-Z0-9#*`\[]|\*\*|==))')
+TERM_CACHE_SCHEMA = 1
+TERM_CACHE_TTL_SECONDS = 900
 
 
 @dataclass
 class Segment:
     kind: str
     text: str
+
+
+@dataclass
+class FeishuTermSource:
+    wiki_token: str
+    table_id: str
+    view_id: str
+    wiki_url: str = ''
 
 
 def run_tm_query(text: str, source_lang: str, target_lang: str) -> str:
@@ -35,6 +51,161 @@ def run_tm_query(text: str, source_lang: str, target_lang: str) -> str:
     return proc.stdout
 
 
+def resolve_lark_cli() -> str:
+    for candidate in ('lark-cli.cmd', 'lark-cli', 'lark-cli.ps1'):
+        resolved = shutil.which(candidate)
+        if resolved:
+            return resolved
+    raise RuntimeError('lark-cli was not found in PATH.')
+
+
+def run_lark_json(cmd: List[str]) -> dict:
+    completed = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8')
+    if completed.returncode != 0:
+        raise RuntimeError(completed.stderr.strip() or completed.stdout.strip() or f"lark-cli failed: {' '.join(cmd)}")
+    payload = json.loads(completed.stdout)
+    if not payload.get('ok', True) and int(payload.get('code', 0) or 0) != 0:
+        raise RuntimeError(json.dumps(payload, ensure_ascii=False))
+    return payload
+
+
+def resolve_cache_dir() -> Path:
+    if sys.platform == 'darwin':
+        return Path.home() / 'Library' / 'Caches' / 'auto-manual' / 'manual-rewrite-with-tm'
+    xdg_cache_home = os.environ.get('XDG_CACHE_HOME')
+    if xdg_cache_home:
+        return Path(xdg_cache_home) / 'auto-manual' / 'manual-rewrite-with-tm'
+    if os.name == 'nt':
+        local_app_data = os.environ.get('LOCALAPPDATA')
+        if local_app_data:
+            return Path(local_app_data) / 'auto-manual' / 'manual-rewrite-with-tm'
+    return Path.home() / '.cache' / 'auto-manual' / 'manual-rewrite-with-tm'
+
+
+def parse_term_source_md(path: Path) -> Optional[FeishuTermSource]:
+    if not path.exists():
+        return None
+    values: Dict[str, str] = {}
+    for line in path.read_text(encoding='utf-8').splitlines():
+        m = re.match(r'-\s+(wiki_url|wiki_token|table_id|view_id):\s+`(.+?)`\s*$', line.strip())
+        if m:
+            values[m.group(1)] = m.group(2)
+    if values.get('wiki_token') and values.get('table_id') and values.get('view_id'):
+        return FeishuTermSource(
+            wiki_token=values['wiki_token'],
+            table_id=values['table_id'],
+            view_id=values['view_id'],
+            wiki_url=values.get('wiki_url', ''),
+        )
+    return None
+
+
+def resolve_base_token(cli: str, wiki_token: str) -> str:
+    payload = run_lark_json([cli, 'wiki', 'spaces', 'get_node', '--params', json.dumps({'token': wiki_token}, ensure_ascii=False)])
+    return str(payload['data']['node']['obj_token'])
+
+
+def list_records(cli: str, base_token: str, table_id: str, view_id: str, max_records: int = 2000) -> List[dict]:
+    page_size = 200
+    offset = 0
+    rows: List[dict] = []
+    while offset < max_records:
+        payload = run_lark_json([
+            cli, 'base', '+record-list',
+            '--base-token', base_token,
+            '--table-id', table_id,
+            '--view-id', view_id,
+            '--offset', str(offset),
+            '--limit', str(min(page_size, max_records - offset)),
+        ])
+        data = payload['data']
+        field_names = [str(name) for name in data.get('fields', [])]
+        record_ids = [str(item) for item in data.get('record_id_list', [])]
+        row_values = data.get('data', [])
+        for record_id, values in zip(record_ids, row_values):
+            row = {'record_id': record_id}
+            for field_name, value in zip(field_names, values):
+                row[field_name] = value
+            rows.append(row)
+        if not data.get('has_more'):
+            break
+        offset += len(record_ids)
+    return rows
+
+
+def build_term_cache_key(source: FeishuTermSource, target_lang: str) -> str:
+    raw = json.dumps({
+        'wiki_token': source.wiki_token,
+        'table_id': source.table_id,
+        'view_id': source.view_id,
+        'target_lang': target_lang,
+    }, sort_keys=True)
+    return str(abs(hash(raw)))
+
+
+def load_cached_terms(cache_path: Path) -> Optional[Dict[str, str]]:
+    try:
+        payload = json.loads(cache_path.read_text(encoding='utf-8'))
+    except Exception:
+        return None
+    if int(payload.get('schema_version', 0) or 0) != TERM_CACHE_SCHEMA:
+        return None
+    fetched_at = float(payload.get('fetched_at', 0) or 0)
+    if fetched_at <= 0 or time.time() - fetched_at > TERM_CACHE_TTL_SECONDS:
+        return None
+    terms = payload.get('terms')
+    if not isinstance(terms, dict):
+        return None
+    return {str(k): str(v) for k, v in terms.items()}
+
+
+def save_cached_terms(cache_path: Path, terms: Dict[str, str]) -> None:
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        'schema_version': TERM_CACHE_SCHEMA,
+        'fetched_at': time.time(),
+        'terms': terms,
+    }
+    cache_path.write_text(json.dumps(payload, ensure_ascii=False), encoding='utf-8')
+
+
+def pick_lang_field(row: dict, preferred: List[str]) -> Optional[str]:
+    lowered = {str(k).lower(): k for k in row.keys()}
+    for name in preferred:
+        if name.lower() in lowered:
+            return str(lowered[name.lower()])
+    return None
+
+
+def build_terms_from_rows(rows: List[dict], target_lang: str) -> Dict[str, str]:
+    terms: Dict[str, str] = {}
+    for row in rows:
+        src_field = pick_lang_field(row, ['en', 'source', 'source text', 'english'])
+        tgt_field = pick_lang_field(row, [target_lang, 'de', 'target', 'target text', 'german', 'deutsch'])
+        if not src_field or not tgt_field:
+            continue
+        src = str(row.get(src_field) or '').strip()
+        tgt = str(row.get(tgt_field) or '').strip()
+        if src and tgt:
+            terms[src] = tgt
+    return terms
+
+
+def load_terms_from_feishu(source: FeishuTermSource, target_lang: str) -> Dict[str, str]:
+    cache_dir = resolve_cache_dir()
+    cache_path = cache_dir / f"term-table-{build_term_cache_key(source, target_lang)}.json"
+    cached = load_cached_terms(cache_path)
+    if cached:
+        return cached
+    cli = resolve_lark_cli()
+    base_token = resolve_base_token(cli, source.wiki_token)
+    rows = list_records(cli, base_token, source.table_id, source.view_id)
+    terms = build_terms_from_rows(rows, target_lang)
+    if terms:
+        save_cached_terms(cache_path, terms)
+    return terms
+
+
 def load_term_table(path: Optional[str]) -> Dict[str, str]:
     table_path = Path(path) if path else DEFAULT_TERM_TABLE
     if not table_path.exists():
@@ -48,6 +219,22 @@ def load_term_table(path: Optional[str]) -> Dict[str, str]:
             if src and tgt:
                 terms[src] = tgt
     return terms
+
+
+def load_terms(term_table: Optional[str], use_feishu_term_source: bool, target_lang: str) -> Dict[str, str]:
+    local_terms = load_term_table(term_table)
+    if not use_feishu_term_source:
+        return local_terms
+    source = parse_term_source_md(DEFAULT_TERM_SOURCE)
+    if not source:
+        return local_terms
+    try:
+        remote_terms = load_terms_from_feishu(source, target_lang)
+    except Exception:
+        remote_terms = {}
+    merged = dict(local_terms)
+    merged.update(remote_terms)
+    return merged
 
 
 def apply_term_priority(text: str, terms: Dict[str, str]) -> str:
@@ -109,8 +296,7 @@ def split_markdown(content: str) -> List[Segment]:
 
 def parse_prompt_candidates(prompt_output: str) -> List[Tuple[str, str]]:
     pairs: List[Tuple[str, str]] = []
-    lines = prompt_output.splitlines()
-    for line in lines:
+    for line in prompt_output.splitlines():
         m = re.search(r'`(.+?)` -> `(.+?)`', line)
         if m:
             pairs.append((m.group(1), m.group(2)))
@@ -144,21 +330,17 @@ def translate_unit(text: str, source_lang: str, target_lang: str, highlight_unma
     stripped = text.strip()
     if not stripped:
         return text
-
     prompt = run_tm_query(stripped, source_lang, target_lang)
     candidates = parse_prompt_candidates(prompt)
-
     for src, tgt in candidates:
         if src.strip() == stripped:
             return text.replace(stripped, tgt)
-
     norm = normalize_for_pattern(stripped)
     for src, tgt in candidates:
         if normalize_for_pattern(src) == norm:
             reused = replace_params(tgt, src, stripped)
             if reused:
                 return text.replace(stripped, reused)
-
     return text.replace(stripped, f'=={stripped}==') if highlight_unmatched else text
 
 
@@ -170,12 +352,10 @@ def split_sentences(text: str) -> List[str]:
 def translate_segment(text: str, source_lang: str, target_lang: str, highlight_unmatched: bool, terms: Dict[str, str]) -> str:
     if not text.strip():
         return text
-
     text = apply_term_priority(text, terms)
     sentences = split_sentences(text)
     if len(sentences) <= 1:
         return translate_unit(text, source_lang, target_lang, highlight_unmatched)
-
     rebuilt: List[str] = []
     for sentence in sentences:
         trailing_ws = ''
@@ -233,12 +413,13 @@ def main() -> int:
     parser.add_argument('--source-lang', default='en')
     parser.add_argument('--target-lang', required=True)
     parser.add_argument('--term-table', help='TSV term table with source and target columns')
+    parser.add_argument('--use-feishu-term-source', action='store_true', help='Load bound Feishu term source first, then fall back to local TSV')
     parser.add_argument('--no-highlight-unmatched', action='store_true')
     args = parser.parse_args()
 
     input_path = Path(args.input)
     content = input_path.read_text(encoding='utf-8')
-    terms = load_term_table(args.term_table)
+    terms = load_terms(args.term_table, args.use_feishu_term_source, args.target_lang)
     result = process_markdown(
         content,
         source_lang=args.source_lang,
