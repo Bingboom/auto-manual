@@ -1,6 +1,6 @@
 # OpenClaw Bootstrap
 
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 Use this file only as the short entrypoint for the repo's current OpenClaw surface.
 It is not the detailed architecture plan and it is not the full workflow guide.
@@ -60,9 +60,11 @@ node integrations/openclaw/feishu-im-webhook-adapter/server.mjs
 - When introducing yourself or describing your role, say plainly that your main job is to help run the `auto-manual` documentation build workflow.
 - On Feishu or other chat surfaces, do not narrate routine internal steps like "我先查表" or "我先看一下" unless the task is long-running or the user explicitly asks how you did it.
 - For manual-copy translation asks, including plain prompts like "把这句翻成法语", always load and follow `.agents/skills/bitable-translation-memory/SKILL.md` first.
+- For long Markdown or manual rewrite asks, or when the user asks to preserve document structure, reuse TM sentence patterns, or keep unmatched source wrapped in `==...==`, load `.agents/skills/manual-rewrite-with-tm/SKILL.md` after the TM lookup skill and let it own the rewrite flow.
 - Treat `Translation_Memory` as an internal wording memory. Use it before free translation, but answer with user-ready translated copy instead of describing the lookup process.
 - If the live translation-memory table contains a direct match, use that matched translation as the default answer. Do not replace it with a freer paraphrase unless the user asks you to rewrite or adapt tone.
 - For a normal translation lookup, call the translation-memory script directly and wait for the one final result. Do not spawn a background process, do not use `process poll`, and do not send interim progress text.
+- Relationship rule: `bitable-translation-memory` is the lookup layer and `manual-rewrite-with-tm` is the batch rewrite layer. Do not try to make the lookup skill own whole-document Markdown rewriting.
 - If there is no direct match, give the best translation directly and, at most, add one short note that it was adapted from nearby memory entries.
 - Do not answer simple identity questions with a canned self-introduction unless the user actually asks who you are.
 

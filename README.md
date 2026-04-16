@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -159,6 +159,7 @@ Start Review, Build Draft Package, Publish:
 - `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json` is the preferred natural-language entry for Phase 2; it applies document_id-first parsing so tokens like `JE-1000F_US_0.3` are treated as exact `Document_ID` before any broader field inference happens
 - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` queries the repo-owned `data/phase2` snapshot and returns compact multilingual translation memory context for OpenClaw or maintainer translation work
 - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` queries the dedicated live sentence-pair table first, auto-splits longer source text, and emits prompt-ready context for OpenClaw translation; on chat surfaces, use that table as hidden wording memory, return the translated copy directly, keep the lookup as one foreground step instead of a background poll loop, and let the script reuse its short local cache for repeat lookups unless you explicitly force `--no-cache`
+- `python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de --use-feishu-term-source -o output.de.md` is the repo-local batch rewrite path for full Markdown manuals or sections: it uses the live `bitable-translation-memory` lookup layer first, preserves headings, tables, lists, and image links, reuses safe sentence patterns when only parameters change, and keeps unmatched source text highlighted with `==...==`
 - the same parser also understands spaced operator asks such as `帮我生成 JE-1000F US 0.3 草稿`, `开始 review JE-1000F us-merged`, and `为什么 JE-1000F US 0.3 构建失败`; when it can build an exact `Document_ID`, that exact id still wins over broader inferred filters
 - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"` is the deterministic execution entry for Phase 2; it resolves one Feishu row, dispatches the matching GitHub workflow on `main`, waits for completion, then re-reads the Feishu row and prints the final record fields
 - when `queue-execute` resolves `Workflow_action = Publish`, it now refuses to dispatch until you add `--confirm-publish`
@@ -290,6 +291,7 @@ Use the document that owns the topic:
 - current OpenClaw bootstrap: [`BOOTSTRAP.md`](BOOTSTRAP.md)
 - current OpenClaw integration package: [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
 - repo-local translation memory skill for OpenClaw-assisted multilingual work: [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md)
+- repo-local TM-first manual rewrite skill for structured Markdown/manual translation work: [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](.agents/skills/manual-rewrite-with-tm/SKILL.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
 - repo-level execution roadmap: [`optimization_project.md`](optimization_project.md)
@@ -304,6 +306,8 @@ Use the document that owns the topic:
 - [`data/phase2/`](data/phase2): preferred Feishu-synced CSV snapshot inputs
 - [`data/phase1/`](data/phase1): legacy baseline snapshot inputs
 - [`docs/templates/`](docs/templates): shared seed templates
+- [`.agents/skills/bitable-translation-memory/`](.agents/skills/bitable-translation-memory): repo-local Codex skill for live sentence-pair lookup and terminology grounding
+- [`.agents/skills/manual-rewrite-with-tm/`](.agents/skills/manual-rewrite-with-tm): repo-local Codex skill for TM-first Markdown/manual rewrite with structure preservation and `==...==` unmatched fallback
 - [`.agents/skills/markdown-rst-template-intake/`](.agents/skills/markdown-rst-template-intake): repo-local Codex skill for mapping external Markdown manuals into the current RST template and recipe layout
 - [`docs/_review/`](docs/_review): target-specific review layer
 - [`docs/_build/`](docs/_build): runtime bundles and export outputs
