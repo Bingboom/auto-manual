@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 import argparse
+import csv
 import re
 import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 
 QUERY_SCRIPT = Path('.agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py')
+DEFAULT_TERM_TABLE = Path('.agents/skills/manual-rewrite-with-tm/references/term-priority.example.tsv')
+SENTENCE_SPLIT_RE = re.compile(r'(?<=[.!?。！？])\s+(?=(?:[A-Z0-9#*`\[]|\*\*|==))')
 
 
 @dataclass
@@ -32,11 +35,37 @@ def run_tm_query(text: str, source_lang: str, target_lang: str) -> str:
     return proc.stdout
 
 
+def load_term_table(path: Optional[str]) -> Dict[str, str]:
+    table_path = Path(path) if path else DEFAULT_TERM_TABLE
+    if not table_path.exists():
+        return {}
+    terms: Dict[str, str] = {}
+    with table_path.open('r', encoding='utf-8') as f:
+        reader = csv.DictReader(f, delimiter='\t')
+        for row in reader:
+            src = (row.get('source') or '').strip()
+            tgt = (row.get('target') or '').strip()
+            if src and tgt:
+                terms[src] = tgt
+    return terms
+
+
+def apply_term_priority(text: str, terms: Dict[str, str]) -> str:
+    if not terms:
+        return text
+    items = sorted(terms.items(), key=lambda kv: len(kv[0]), reverse=True)
+    out = text
+    for src, tgt in items:
+        out = re.sub(rf'(?<![A-Za-z0-9]){re.escape(src)}(?![A-Za-z0-9])', tgt, out)
+    return out
+
+
 def split_markdown(content: str) -> List[Segment]:
     lines = content.splitlines(keepends=True)
     segments: List[Segment] = []
     buf: List[str] = []
     current_kind: Optional[str] = None
+    in_code = False
 
     def flush():
         nonlocal buf, current_kind
@@ -47,7 +76,12 @@ def split_markdown(content: str) -> List[Segment]:
 
     for line in lines:
         stripped = line.strip()
-        if not stripped:
+        if stripped.startswith('```'):
+            kind = 'codefence'
+            in_code = not in_code if current_kind == 'codefence' or not in_code else in_code
+        elif in_code:
+            kind = 'codefence'
+        elif not stripped:
             kind = 'blank'
         elif stripped.startswith('#'):
             kind = 'heading'
@@ -55,8 +89,6 @@ def split_markdown(content: str) -> List[Segment]:
             kind = 'table'
         elif re.match(r'^!\[.*\]\(.*\)$', stripped):
             kind = 'image'
-        elif stripped.startswith('```'):
-            kind = 'codefence'
         elif re.match(r'^[*-]\s+', stripped) or re.match(r'^\d+\.\s+', stripped):
             kind = 'list'
         else:
@@ -88,13 +120,13 @@ def parse_prompt_candidates(prompt_output: str) -> List[Tuple[str, str]]:
 def normalize_for_pattern(text: str) -> str:
     text = text.strip()
     text = re.sub(r'\b\d+(?:[.,]\d+)?\b', '<NUM>', text)
-    text = re.sub(r'\b(?:[A-Z]{1,5}-)?\d+[A-Z0-9-]*\b', '<ID>', text)
+    text = re.sub(r'\b(?:[A-Z]{1,8}-)?\d+[A-Z0-9-]*\b', '<ID>', text)
     text = re.sub(r'\s+', ' ', text)
     return text
 
 
 def extract_params(text: str) -> List[str]:
-    return re.findall(r'\b(?:[A-Z]{1,5}-)?\d+[A-Z0-9.-]*\b|\b\d+(?:[.,]\d+)?(?:W|V|A|Hz|Wh|°C|°F|ms|%)?\b', text)
+    return re.findall(r'\b(?:[A-Z]{1,8}-)?\d+[A-Z0-9./-]*\b|\b\d+(?:[.,]\d+)?(?:W|V|A|Hz|Wh|°C|°F|ms|%|mm|cm|kg|lbs)?\b', text)
 
 
 def replace_params(skeleton: str, source_example: str, new_source: str) -> Optional[str]:
@@ -108,7 +140,7 @@ def replace_params(skeleton: str, source_example: str, new_source: str) -> Optio
     return result
 
 
-def translate_segment(text: str, source_lang: str, target_lang: str, highlight_unmatched: bool) -> str:
+def translate_unit(text: str, source_lang: str, target_lang: str, highlight_unmatched: bool) -> str:
     stripped = text.strip()
     if not stripped:
         return text
@@ -130,7 +162,34 @@ def translate_segment(text: str, source_lang: str, target_lang: str, highlight_u
     return text.replace(stripped, f'=={stripped}==') if highlight_unmatched else text
 
 
-def process_table_block(text: str, source_lang: str, target_lang: str, highlight_unmatched: bool) -> str:
+def split_sentences(text: str) -> List[str]:
+    parts = re.split(SENTENCE_SPLIT_RE, text)
+    return [p for p in parts if p]
+
+
+def translate_segment(text: str, source_lang: str, target_lang: str, highlight_unmatched: bool, terms: Dict[str, str]) -> str:
+    if not text.strip():
+        return text
+
+    text = apply_term_priority(text, terms)
+    sentences = split_sentences(text)
+    if len(sentences) <= 1:
+        return translate_unit(text, source_lang, target_lang, highlight_unmatched)
+
+    rebuilt: List[str] = []
+    for sentence in sentences:
+        trailing_ws = ''
+        m = re.search(r'(\s+)$', sentence)
+        if m:
+            trailing_ws = m.group(1)
+            sentence_core = sentence[:-len(trailing_ws)]
+        else:
+            sentence_core = sentence
+        rebuilt.append(translate_unit(sentence_core, source_lang, target_lang, highlight_unmatched) + trailing_ws)
+    return ''.join(rebuilt)
+
+
+def process_table_block(text: str, source_lang: str, target_lang: str, highlight_unmatched: bool, terms: Dict[str, str]) -> str:
     out_lines = []
     for line in text.splitlines(keepends=True):
         stripped = line.strip()
@@ -148,22 +207,22 @@ def process_table_block(text: str, source_lang: str, target_lang: str, highlight
             if re.search(r'!\[.*\]\(.*\)', cell_stripped):
                 new_cells.append(raw)
                 continue
-            replaced = translate_segment(cell_stripped, source_lang, target_lang, highlight_unmatched)
+            replaced = translate_segment(cell_stripped, source_lang, target_lang, highlight_unmatched, terms)
             new_cells.append(raw.replace(cell_stripped, replaced, 1))
         out_lines.append('|'.join(new_cells))
     return ''.join(out_lines)
 
 
-def process_markdown(content: str, source_lang: str, target_lang: str, highlight_unmatched: bool) -> str:
+def process_markdown(content: str, source_lang: str, target_lang: str, highlight_unmatched: bool, terms: Dict[str, str]) -> str:
     segments = split_markdown(content)
     out: List[str] = []
     for seg in segments:
         if seg.kind in {'blank', 'image', 'codefence'}:
             out.append(seg.text)
         elif seg.kind == 'table':
-            out.append(process_table_block(seg.text, source_lang, target_lang, highlight_unmatched))
+            out.append(process_table_block(seg.text, source_lang, target_lang, highlight_unmatched, terms))
         else:
-            out.append(translate_segment(seg.text, source_lang, target_lang, highlight_unmatched))
+            out.append(translate_segment(seg.text, source_lang, target_lang, highlight_unmatched, terms))
     return ''.join(out)
 
 
@@ -173,16 +232,19 @@ def main() -> int:
     parser.add_argument('-o', '--output', help='Output markdown file')
     parser.add_argument('--source-lang', default='en')
     parser.add_argument('--target-lang', required=True)
+    parser.add_argument('--term-table', help='TSV term table with source and target columns')
     parser.add_argument('--no-highlight-unmatched', action='store_true')
     args = parser.parse_args()
 
     input_path = Path(args.input)
     content = input_path.read_text(encoding='utf-8')
+    terms = load_term_table(args.term_table)
     result = process_markdown(
         content,
         source_lang=args.source_lang,
         target_lang=args.target_lang,
         highlight_unmatched=not args.no_highlight_unmatched,
+        terms=terms,
     )
 
     if args.output:

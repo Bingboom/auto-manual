@@ -137,11 +137,19 @@ Example:
 Current script behavior:
 
 - splits markdown into headings, text blocks, lists, tables, and images
+- applies a term-priority table before paragraph translation
+- splits normal text more finely by sentence to reduce whole-paragraph fallback highlighting
 - queries translation memory block by block
 - prefers exact sentence matches
 - reuses translation-memory sentence skeletons when only parameters differ
 - preserves unmatched source text and highlights it with `==...==`
 - keeps markdown tables and image links in place
+
+Term-priority table:
+
+- default example file: `references/term-priority.example.tsv`
+- format: tab-separated with `source` and `target` columns
+- use it for button names, port names, warning labels, UI strings, and other repeated terms that should be normalized before sentence-level processing
 
 Use this script as the default batch path, then spot-check the output for terminology consistency and any missed structural edge cases.
 

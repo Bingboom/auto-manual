@@ -1,0 +1,42 @@
+source	target
+WARNING	WARNUNG
+CAUTION	VORSICHT
+NOTE	HINWEIS
+TIP	TIPP
+Main Power Button	Netztaste
+DC/USB Power Button	DC/USB-Taste
+AC1 Power Button	AC1-Taste
+AC2 Power Button	AC2-Taste
+LED Light Button	LED-Lichttaste
+LED Light	LED-Leuchte
+AC Input	AC-Eingang
+AC Output	AC-Ausgang
+DC Input	DC-Eingang
+DC Expansion Port	DC-Erweiterungsanschluss
+Handle	Griff
+Battery Pack	Batteriepack
+Charging Power Limit	Ladeleistungsbegrenzung
+Battery Saving Mode	Batterieschonmodus
+Energy Saving Mode	Energiesparmodus
+Quiet Charging Mode	Leiser Lademodus
+Emergency Charging Mode	Notfalllademodus
+Charging Plan	Ladeplan
+Self-powered Mode	Eigenversorgungsmodus
+TOU Mode	TOU-Modus
+Fault code	Fehlercode
+Output Power	Ausgangsleistung
+Input Power	Eingangsleistung
+Remaining Charge Time	Verbleibende Ladezeit
+Remaining Discharge Time	Verbleibende Entladezeit
+Remaining Battery Percentage	Verbleibender Batteriestand
+Low Battery Indicator	Anzeige für niedrigen Batteriestand
+High Temperature Indicator	Hochtemperaturanzeige
+Low Temperature Indicator	Niedrigtemperaturanzeige
+Solar Charging Indicator	Solar-Ladeanzeige
+Car Charging Indicator	Fahrzeug-Ladeanzeige
+AC Wall Charging Indicator	AC-Netzladeanzeige
+AC Power Indicator	AC-Betriebsanzeige
+Output Voltage and Frequency	Ausgangsspannung und Frequenz
+Connected Batteries	Angeschlossene Batterien
+Wi-Fi	WLAN
+Bluetooth	Bluetooth
