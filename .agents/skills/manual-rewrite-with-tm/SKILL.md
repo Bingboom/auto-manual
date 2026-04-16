@@ -126,6 +126,25 @@ Preferred query pattern:
 
 For larger work, run multiple focused queries on representative paragraphs, labels, or table rows.
 
+## Batch markdown script
+
+Use `scripts/rewrite_markdown_with_tm.py` when the task is a full markdown file or a long manual.
+
+Example:
+
+`python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de -o output.de.md`
+
+Current script behavior:
+
+- splits markdown into headings, text blocks, lists, tables, and images
+- queries translation memory block by block
+- prefers exact sentence matches
+- reuses translation-memory sentence skeletons when only parameters differ
+- preserves unmatched source text and highlights it with `==...==`
+- keeps markdown tables and image links in place
+
+Use this script as the default batch path, then spot-check the output for terminology consistency and any missed structural edge cases.
+
 ## Quality check before returning
 
 Verify all of the following:
