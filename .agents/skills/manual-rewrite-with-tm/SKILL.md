@@ -147,9 +147,11 @@ Current script behavior:
 
 Term-priority table:
 
-- default example file: `references/term-priority.example.tsv`
+- bound terminology source record: `references/term-source.md`
+- local fallback example file: `references/term-priority.example.tsv`
 - format: tab-separated with `source` and `target` columns
 - use it for button names, port names, warning labels, UI strings, and other repeated terms that should be normalized before sentence-level processing
+- when the live Feishu terminology source is reachable, treat it as the preferred term source; otherwise fall back to the local TSV table
 
 Use this script as the default batch path, then spot-check the output for terminology consistency and any missed structural edge cases.
 
