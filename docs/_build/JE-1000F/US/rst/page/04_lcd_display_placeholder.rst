@@ -104,13 +104,6 @@ LCD DISPLAY
        **Blink:** The battery level is below 5%.
 
        **Off:** The battery level is not below 20% or the product is charging.
-   * -
-     - Discharge Timer
-     - **On:** A discharge timer is set.
-
-       **Off:** No discharge timer is set.
-
-       Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.
    * - 22
      - Energy Saving Mode
      - When the AC or DC output is turned on by pressing the AC power button or DC/USB power button:

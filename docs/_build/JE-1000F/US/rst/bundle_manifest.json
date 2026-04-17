@@ -2,10 +2,10 @@
   "model": "JE-1000F",
   "region": "US",
   "lang": null,
-  "page_manifest": "docs/manifests/manual_us-en.yaml",
+  "page_manifest": "docs/manifests/manual_us.yaml",
   "spec_master": {
     "path": "data/phase2/Spec_Master.csv",
-    "sha256": "ef0274e46835d96c32f6bd0ce8a21c280a6a40865847fd48508476d5a42a8823"
+    "sha256": "db7475108df51b7d905832c6c480018a0b0c1a8c73b770742077a389a7910546"
   },
   "recipe_ids": [
     "03_product_overview",
@@ -14,7 +14,7 @@
   ],
   "snippet_ids": [],
   "page_files": [
-    "docs/_build/JE-1000F/US/rst/page/cover.rst",
+    "docs/_build/JE-1000F/US/rst/page/cover-en.rst",
     "docs/_build/JE-1000F/US/rst/page/00_preface.rst",
     "docs/_build/JE-1000F/US/rst/page/safety_en.rst",
     "docs/_build/JE-1000F/US/rst/page/symbols_en.rst",
@@ -29,13 +29,51 @@
     "docs/_build/JE-1000F/US/rst/page/10_troubleshooting.rst",
     "docs/_build/JE-1000F/US/rst/page/spec_en.rst",
     "docs/_build/JE-1000F/US/rst/page/11_warranty.rst",
-    "docs/_build/JE-1000F/US/rst/page/12_app_setup_placeholder.rst"
+    "docs/_build/JE-1000F/US/rst/page/12_app_setup_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/safety_fr.rst",
+    "docs/_build/JE-1000F/US/rst/page/symbols_fr.rst",
+    "docs/_build/JE-1000F/US/rst/page/p19_02_whats_in_the_box.rst",
+    "docs/_build/JE-1000F/US/rst/page/p20_03_product_overview_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/p21_04_lcd_display_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/p22_05_operation_guide_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/p23_06_ups_mode.rst",
+    "docs/_build/JE-1000F/US/rst/page/p24_charging.rst",
+    "docs/_build/JE-1000F/US/rst/page/p25_08_charging_methods.rst",
+    "docs/_build/JE-1000F/US/rst/page/p26_09_storage_and_maintenance.rst",
+    "docs/_build/JE-1000F/US/rst/page/p27_10_troubleshooting.rst",
+    "docs/_build/JE-1000F/US/rst/page/spec_fr.rst",
+    "docs/_build/JE-1000F/US/rst/page/p29_11_warranty.rst",
+    "docs/_build/JE-1000F/US/rst/page/p30_12_app_setup_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/safety_es.rst",
+    "docs/_build/JE-1000F/US/rst/page/symbols_es.rst",
+    "docs/_build/JE-1000F/US/rst/page/p33_02_whats_in_the_box.rst",
+    "docs/_build/JE-1000F/US/rst/page/p34_03_product_overview_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/p35_04_lcd_display_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/p36_05_operation_guide_placeholder.rst",
+    "docs/_build/JE-1000F/US/rst/page/p37_06_ups_mode.rst",
+    "docs/_build/JE-1000F/US/rst/page/p38_charging.rst",
+    "docs/_build/JE-1000F/US/rst/page/p39_08_charging_methods.rst",
+    "docs/_build/JE-1000F/US/rst/page/p40_09_storage_and_maintenance.rst",
+    "docs/_build/JE-1000F/US/rst/page/p41_10_troubleshooting.rst",
+    "docs/_build/JE-1000F/US/rst/page/spec_es.rst",
+    "docs/_build/JE-1000F/US/rst/page/p43_11_warranty.rst",
+    "docs/_build/JE-1000F/US/rst/page/p44_12_app_setup_placeholder.rst"
   ],
   "generated_files": [
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/03_product_overview_en.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/03_product_overview_es.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/03_product_overview_fr.rst",
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/05_operation_guide_en.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/05_operation_guide_es.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/05_operation_guide_fr.rst",
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/12_app_setup_en.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/12_app_setup_es.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/draft/12_app_setup_fr.rst",
     "docs/_build/JE-1000F/US/rst/generated/JE-1000F/spec_en.rst",
-    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/symbols_en.rst"
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/spec_es.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/spec_fr.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/symbols_en.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/symbols_es.rst",
+    "docs/_build/JE-1000F/US/rst/generated/JE-1000F/symbols_fr.rst"
   ]
 }

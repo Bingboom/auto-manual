@@ -92,6 +92,18 @@ class TestSpecMasterLookup(unittest.TestCase):
         )
         self.assertIsNone(match)
 
+    def test_lookup_product_name_should_normalize_document_key_style_model_suffix(self) -> None:
+        match = resolve_product_name_from_rows(
+            self._rows(),
+            model="JHP-2000A_JP",
+            region="JP",
+            lang="ja",
+        )
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual("Jackery HomePower 2000 Plus JP", match.product_name)
+        self.assertEqual("JP", match.region)
+
     def test_template_substitutions_should_include_derived_and_custom_values(self) -> None:
         substitutions = resolve_template_substitutions_from_rows(
             self._rows(),

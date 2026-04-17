@@ -6,6 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
+from ..utils.spec_master import canonicalize_model_token
 
 PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
 PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
@@ -245,11 +246,14 @@ def _matches_symbols_target(
     vars_map: dict[str, str],
 ) -> bool:
     block_region = (block.get("Region") or block.get("region") or "").strip()
-    block_model = (block.get("Model") or block.get("model") or "").strip()
+    block_model = canonicalize_model_token(
+        (block.get("Model") or block.get("model") or "").strip(),
+        region=block_region,
+    )
 
     if block_region or block_model:
         target_region = _pick_target_region(vars_map)
-        target_model = _pick_target_model(vars_map)
+        target_model = canonicalize_model_token(_pick_target_model(vars_map), region=target_region)
         if block_region and (not target_region or block_region.casefold() != target_region.casefold()):
             return False
         if block_model and (not target_model or block_model.casefold() != target_model.casefold()):

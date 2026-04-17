@@ -110,6 +110,55 @@ class TestCheckDocs(unittest.TestCase):
             stale_issues = [issue for issue in issues if issue.code == "STALE_IDENTITY_LITERAL"]
             self.assertEqual([], stale_issues)
 
+    def test_collect_check_issues_should_treat_document_key_style_target_model_as_current_identity(self) -> None:
+        with temp_test_root() as root:
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F_JP" / "JP" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+
+            write_text(bundle_dir / "index.rst", ".. include:: page/overview_ja.rst\n")
+            write_lines(
+                bundle_dir / "page" / "overview_ja.rst",
+                [
+                    "Jackery ポータブル電源 1000 New を正しく表示します。",
+                    "型番は JE-1000F / JE-1000F-SG です。",
+                ],
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            write_lines(
+                spec_master,
+                [
+                    "Model,Region,Is_Latest,Page,Row_key,Value_source",
+                    "JE-1000F,JP,TRUE,specifications,product_name,Jackery ポータブル電源 1000 New",
+                    "JE-1000F,JP,TRUE,specifications,model_no,JE-1000F / JE-1000F-SG",
+                    "JE-2000F,JP,TRUE,specifications,product_name,Jackery ポータブル電源 2000 Pro",
+                    "JE-2000F,JP,TRUE,specifications,model_no,JE-2000F",
+                ],
+            )
+
+            config_path = root / "config.yaml"
+            write_lines(
+                config_path,
+                [
+                    "build:",
+                    "  languages: [ja]",
+                    "paths:",
+                    f"  docs_dir: {docs_dir.as_posix()}",
+                    f"  spec_master_csv: {spec_master.as_posix()}",
+                ],
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F_JP",
+                region="JP",
+                all_targets=False,
+            )
+
+            stale_issues = [issue for issue in issues if issue.code == "STALE_IDENTITY_LITERAL"]
+            self.assertEqual([], stale_issues)
+
     def test_collect_check_issues_should_allow_whitelisted_foreign_identity_literals(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

@@ -82,6 +82,33 @@ class TestSyncData(unittest.TestCase):
             errors,
         )
 
+    def test_collect_sync_preflight_errors_should_allow_literal_table_and_view_ids(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "tables": {
+                        "spec_master": {
+                            "table_id": "tbl_master_total",
+                            "view_id": "view_master_total",
+                        },
+                    },
+                }
+            }
+        }
+
+        with mock.patch("tools.sync_data.shutil.which", return_value=r"C:\tools\lark-cli.cmd"):
+            errors = sync_data.collect_sync_preflight_errors(
+                cfg,
+                table_names=["spec_master"],
+                environ={"BASE_TOKEN": "app_token"},
+                require_cli=True,
+            )
+
+        self.assertEqual([], errors)
+
     def test_sync_phase2_snapshot_should_write_csvs_and_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -206,6 +233,76 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual(2, len(manifest["tables"]))
             self.assertEqual(1, len(manifest["derived_files"]))
             self.assertEqual("row_key_mapping", manifest["derived_files"][0]["logical_name"])
+
+    def test_sync_phase2_snapshot_should_prefer_literal_table_and_view_ids(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "spec_master": {
+                                "table_id": "tbl_master_total",
+                                "view_id": "view_master_total",
+                                "table_id_env": "SPEC_MASTER_TABLE",
+                                "view_id_env": "SPEC_MASTER_VIEW",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+
+            fake_source = _FakeSource(
+                {
+                    "tbl_master_total": [
+                        {
+                            "fields": {
+                                "document_key": "JE-1000F_US_en",
+                                "Region": "US",
+                                "Is_Latest": True,
+                                "Page": "specifications",
+                                "Section": "GENERAL INFO",
+                                "Section_order": 1,
+                                "Row_order": 1,
+                                "Row_key": "product_name",
+                                "Row_label_source": "Product Name",
+                                "Line_order": 1,
+                                "Value_source": "Jackery Explorer 1000",
+                                "Model": "JE-1000F",
+                                "Source_lang": "en",
+                            }
+                        },
+                    ],
+                }
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "SPEC_MASTER_TABLE": "tbl_master_wrong",
+                    "SPEC_MASTER_VIEW": "view_master_wrong",
+                },
+                clear=False,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["spec_master"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            self.assertEqual(
+                [("app_token", "tbl_master_total", "view_master_total")],
+                fake_source.calls,
+            )
 
     def test_sync_phase2_snapshot_should_not_write_files_in_dry_run(self) -> None:
         with tempfile.TemporaryDirectory() as td:

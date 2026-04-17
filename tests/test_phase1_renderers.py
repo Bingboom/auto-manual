@@ -427,6 +427,23 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("US JE-1000F warning.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
 
+    def test_render_symbols_page_should_normalize_document_key_style_target_model(self) -> None:
+        blocks = self._symbols_blocks()
+        for block in blocks:
+            block["Region"] = "US"
+            block["Model"] = "JE-1000F"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JE-1000F_US", "region": "US"},
+        )
+
+        self.assertIn("Warning symbol meaning.", out)
+        self.assertIn("Do not dismantle.", out)
+
     def test_render_symbols_page_supports_weee2_symbol_asset(self) -> None:
         blocks = self._symbols_blocks()
         blocks.append(
@@ -512,6 +529,22 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         joined = "\n".join("\n".join(str(x) for x in sec["rows"]) for sec in data["sections"])
         self.assertNotIn("SHOULD_NOT_BE_RENDERED", joined)
+
+    def test_collect_spec_content_should_normalize_document_key_style_model_suffix(self) -> None:
+        blocks = self._spec_master_blocks()
+        for row in blocks:
+            row["Region"] = "JP"
+
+        data = renderers.collect_spec_content(
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JHP-2000A_JP", "region": "JP"},
+        )
+
+        joined = "\n".join("\n".join(str(x) for x in sec["rows"]) for sec in data["sections"])
+        self.assertIn("Model No.", joined)
+        self.assertIn("JHP-2000A", joined)
 
     def test_collect_spec_content_supports_title_override_rows(self) -> None:
         blocks = self._spec_master_blocks()

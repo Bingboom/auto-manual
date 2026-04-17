@@ -1,10 +1,8 @@
-﻿.. include:: page/cover_jp.rst
+.. include:: page/cover_jp.rst
 
 .. include:: page/safety_ja.rst
 
 .. include:: page/01_meaning_of_symbols.rst
-
-.. include:: page/09_storage_and_maintenance.rst
 
 .. include:: page/02_whats_in_the_box.rst
 
@@ -18,6 +16,8 @@
 
 .. include:: page/charging.rst
 
+.. include:: page/08_charging_methods.rst
+
 .. include:: page/10_troubleshooting.rst
 
 .. include:: page/spec_ja.rst
@@ -25,5 +25,4 @@
 .. include:: page/11_warranty.rst
 
 .. include:: page/12_app_setup_placeholder.rst
-
 

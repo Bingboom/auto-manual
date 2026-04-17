@@ -302,7 +302,7 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 )
             )
             continue
-        for key in ("base_token_env", "table_id_env", "view_id_env"):
+        for key in ("base_token_env", "table_id_env", "view_id_env", "table_id", "view_id"):
             value = table_cfg.get(key)
             if value is not None and (not isinstance(value, str) or not value.strip()):
                 issues.append(

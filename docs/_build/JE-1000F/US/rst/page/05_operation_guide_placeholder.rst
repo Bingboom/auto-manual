@@ -22,7 +22,7 @@ The product will automatically shut down after 2 hours of inactivity, with no ch
 
 *The standby time can be set in the Jackery App.*
 
-When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or DC/USB power button is ON but the product is neither charging nor discharging.
+When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or DC/USB output is on but the product is neither charging nor discharging.
 
 AC OUTPUT ON/OFF
 ----------------
@@ -67,9 +67,9 @@ The product can charge your car battery using the Jackery 12V automobile battery
 ENERGY SAVING MODE
 ------------------
 
-To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W DC/USB output) for 12 hours, the product automatically turns off the outputs. Please set the Energy Saving Mode duration in the Jackery app.
+To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W DC/USB output), the corresponding output will automatically turn off after the set time. The default setting is 12 hours. The Energy Saving Mode duration can be set in the Jackery App to 2H, 8H, 12H, or 24H. If it is set to Never Off, Energy Saving Mode will be disabled.
 
-To disable the energy saving mode, press and hold both the AC power button and the main POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
+To disable the energy saving mode, press and hold both the AC power button and the POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
 
 When powering low-power devices (AC <= 25W or DC/USB <= 2W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
@@ -114,11 +114,11 @@ LCD SCREEN
           :width: 140px
      - Shortly On
      - Turn on
-     - Press the Main POWER Button or when the product is charging.
+     - Press the POWER Button or when the product is charging.
    * -
      - Shortly On
      - Turn off
-     - Press the Main POWER Button.
+     - Press the POWER Button.
    * -
      - Shortly On
      - Auto-off
@@ -126,11 +126,11 @@ LCD SCREEN
    * -
      - Steady On (in charging or discharging state)
      - Turn on
-     - Press the main POWER button twice when the product is powered on.
+     - Press the POWER button twice when the product is powered on.
    * -
      - Steady On (in charging or discharging state)
      - Turn off
-     - Press the Main POWER Button.
+     - Press the POWER Button.
    * -
      - Steady On (in charging or discharging state)
      - Auto-off
@@ -138,8 +138,8 @@ LCD SCREEN
 
 You can also set the screen display mode in the Jackery App.
 
-KEY COMBINATION
----------------
+KEY COMBINATIONS
+-----------------
 
 .. list-table::
    :header-rows: 1
@@ -148,12 +148,15 @@ KEY COMBINATION
    * - Buttons
      - Operation
      - Function
-   * - Main POWER Button + AC power button
+   * - POWER Button + AC Power Button
      - Press and hold both for 3s
      - Turn on/off the Energy Saving Mode
-   * - main POWER button + DC/USB power button
+   * - POWER Button + DC/USB Power Button
      - Press and hold both for 3s
      - Reset Wi-Fi and Bluetooth
-   * - DC/USB power button + AC power button
+   * - DC/USB Power Button + AC Power Button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth
+   * - POWER button + LED Light button
+     - Press and hold both for 1s
+     - Turn on/off Emergency Charging Mode

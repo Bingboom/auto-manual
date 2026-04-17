@@ -190,7 +190,7 @@ LCDスクリーン
       \setlength{\tabcolsep}{6pt}
       \begin{tabular}{|m{0.24\linewidth}|m{0.12\linewidth}|m{0.12\linewidth}|m{0.40\linewidth}|}
       \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{_assets/templates/word_template/common_assets/operation/lcd_mode.png}}}
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
       & \multirow{3}{*}{短くオン} & オンにする & 主電源ボタンを押すか、充電入力がある場合。 \\ \cline{3-4}
       & & オフにする & 主電源ボタンを押します。 \\ \cline{3-4}
       & & 自動オフ & 2分後にLCDは自動的に消灯し、スリープモードになります。 \\ \cline{2-4}

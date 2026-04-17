@@ -57,6 +57,7 @@ latex_additional_files = [
     "renderers/latex/components_safety.tex",
     "renderers/latex/components_spec.tex",
     "renderers/latex/page_fit.tex",
+    "_assets/templates/word_template/common_assets/operation/lcd_mode.png",
 ]
 
 # latex_documents 默认（子类可覆盖）
