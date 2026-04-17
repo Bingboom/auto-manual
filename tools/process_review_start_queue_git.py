@@ -204,8 +204,6 @@ def ensure_review_bundle_on_branch(
     load_config_fn: Callable[[Path], dict[str, Any]],
 ) -> Path:
     worktree_config_path = worktree / build_config_path.name
-    cfg = load_config_fn(worktree_config_path)
-    docs_dir = resolve_docs_dir_for_config(root=root, config_path=worktree_config_path, cfg=cfg, load_config_fn=load_config_fn)
 
     run_command(
         build_py_command(
