@@ -30,8 +30,6 @@ class ReviewStartRuntimeDeps:
     generate_branch_name_fn: Callable[[Any], str]
     sync_snapshot_before_fn: Callable[..., None]
     run_git_fn: Callable[[list[str]], str]
-    base_ref_contains_target_review_root_fn: Callable[..., bool]
-    build_duplicate_fields_fn: Callable[[], dict[str, Any]]
     build_success_fields_fn: Callable[..., dict[str, Any]]
     start_review_for_record_fn: Callable[..., tuple[str, str]]
     build_preflight_failure_summary_fn: Callable[..., dict[str, Any]]
@@ -216,27 +214,6 @@ def process_review_start_queue(
                 lang=group_lang,
                 build_family=group_build_family,
             )
-            if deps.base_ref_contains_target_review_root_fn(
-                config_path=build_config_path,
-                model=model,
-                region=region,
-                base_ref=base_ref,
-            ):
-                duplicate_fields = deps.build_duplicate_fields_fn()
-                for group_record in group:
-                    source.upsert_record(
-                        base_token=binding.base_token,
-                        table_id=binding.table_id,
-                        record_id=group_record.record_id,
-                        record=duplicate_fields,
-                    )
-                blocked += 1
-                print(
-                    f"[review-start] {deps.review_action_label} BLOCKED "
-                    f"{deps.record_key_fn(record)}: review root already exists in origin/{base_ref} "
-                    f"for {model}/{region} family={group_build_family or 'legacy'}; updated {len(group)} row(s)"
-                )
-                continue
             branch_name, pr_url = deps.start_review_for_record_fn(
                 record=record,
                 build_config_path=build_config_path,

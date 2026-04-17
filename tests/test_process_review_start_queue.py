@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import process_review_start_queue
+from tools import process_review_start_queue_git
 
 
 class TestProcessReviewStartQueue(unittest.TestCase):
@@ -40,7 +41,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual("us-merged", records[0].build_family)
 
-    def test_select_pending_review_start_records_should_require_checkbox_and_notstarted_status(self) -> None:
+    def test_select_pending_review_start_records_should_require_checkbox_but_allow_inreview_status(self) -> None:
         records = process_review_start_queue.select_pending_review_start_records(
             [
                 {
@@ -70,7 +71,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             ]
         )
 
-        self.assertEqual(["rec_pending"], [record.record_id for record in records])
+        self.assertEqual(["rec_pending", "rec_started"], [record.record_id for record in records])
 
     def test_select_pending_review_start_records_should_raise_for_targeted_record_with_invalid_workflow_action(self) -> None:
         with self.assertRaisesRegex(
@@ -162,6 +163,138 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertTrue(branch_name.startswith("codex/review-"))
         self.assertIn("je-1000f-jp", branch_name)
+
+    def test_prepare_branch_worktree_should_always_seed_from_latest_base_ref(self) -> None:
+        with tempfile.TemporaryDirectory() as td, mock.patch.object(
+            process_review_start_queue_git,
+            "run_git",
+        ) as mock_run_git:
+            root = Path(td)
+
+            worktree = process_review_start_queue_git.prepare_branch_worktree(
+                root=root,
+                branch_name="codex/review-je-1000f-jp",
+                base_ref="main",
+                slug_branch_token_fn=lambda _: "review-je-1000f-jp",
+            )
+
+        self.assertEqual(root / ".tmp" / "review-start-worktrees" / "review-je-1000f-jp", worktree)
+        observed_commands = [call.args[0] for call in mock_run_git.call_args_list]
+        self.assertEqual(
+            [
+                ["fetch", "origin", "--prune"],
+                ["worktree", "add", "--force", str(worktree), "origin/main"],
+                ["checkout", "-B", "codex/review-je-1000f-jp", "origin/main"],
+            ],
+            observed_commands,
+        )
+
+    def test_ensure_review_bundle_on_branch_should_refresh_existing_review_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as td, mock.patch.object(
+            process_review_start_queue_git,
+            "run_command",
+        ) as mock_run_command:
+            root = Path(td)
+            worktree = root / "worktree"
+            docs_dir = worktree / "docs"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "JP"
+            review_dir.mkdir(parents=True, exist_ok=True)
+            config_path = worktree / "config.ja.yaml"
+            config_path.write_text("paths:\n  docs_dir: docs\n", encoding="utf-8")
+
+            observed = process_review_start_queue_git.ensure_review_bundle_on_branch(
+                root=root,
+                worktree=worktree,
+                build_config_path=config_path,
+                model="JE-1000F",
+                region="JP",
+                data_root=str(root / ".tmp" / "review-start" / "phase2"),
+                load_config_fn=lambda _: {"paths": {"docs_dir": "docs"}},
+            )
+
+        self.assertEqual(review_dir, observed)
+        review_command = mock_run_command.call_args_list[1].args[0]
+        self.assertIn("--refresh-review", review_command)
+
+    def test_push_branch_should_force_with_lease(self) -> None:
+        with tempfile.TemporaryDirectory() as td, mock.patch.object(
+            process_review_start_queue_git,
+            "run_git",
+        ) as mock_run_git:
+            root = Path(td)
+            worktree = root / "worktree"
+
+            process_review_start_queue_git.push_branch(
+                root=root,
+                worktree=worktree,
+                branch_name="codex/review-je-1000f-jp",
+            )
+
+        mock_run_git.assert_called_once_with(
+            ["push", "--force-with-lease", "-u", "origin", "codex/review-je-1000f-jp"],
+            root=root,
+            cwd=worktree,
+        )
+
+    def test_start_review_for_record_should_push_even_when_seed_matches_base_ref(self) -> None:
+        with tempfile.TemporaryDirectory() as td, \
+            mock.patch.object(
+                process_review_start_queue_git,
+                "prepare_branch_worktree",
+                return_value=Path(td) / "worktree",
+            ), \
+            mock.patch.object(process_review_start_queue_git, "configure_git_identity"), \
+            mock.patch.object(
+                process_review_start_queue_git,
+                "ensure_review_bundle_on_branch",
+                return_value=Path(td) / "worktree" / "docs" / "_review" / "JE-1000F" / "JP",
+            ), \
+            mock.patch.object(
+                process_review_start_queue_git,
+                "commit_review_bundle_if_changed",
+                return_value=False,
+            ), \
+            mock.patch.object(process_review_start_queue_git, "push_branch") as mock_push_branch, \
+            mock.patch.object(
+                process_review_start_queue_git,
+                "ensure_pull_request_for_branch",
+                return_value="https://github.com/Bingboom/auto-manual/pull/999",
+            ), \
+            mock.patch.object(process_review_start_queue_git, "remove_worktree"):
+            record = process_review_start_queue.ReviewStartRecord(
+                record_id="rec_review",
+                document_id="JE-1000F_JP_ja_0.1",
+                document_key="JE-1000F_JP",
+                build_family="jp-ja",
+                version="0.1",
+                lang="ja",
+                review_status="InReview",
+                review_trigger_value=True,
+                git_ref="codex/review-je-1000f-jp",
+                pr_url="https://github.com/Bingboom/auto-manual/pull/998",
+            )
+
+            branch_name, pr_url = process_review_start_queue_git.start_review_for_record(
+                root=Path(td),
+                record=record,
+                build_config_path=Path(td) / "config.ja.yaml",
+                snapshot_data_root=str(Path(td) / ".tmp" / "review-start" / "phase2"),
+                base_ref="main",
+                repository="Bingboom/auto-manual",
+                token="ghs_token",
+                slug_branch_token_fn=lambda value: value,
+                resolve_target_for_review_start_fn=lambda _: ("JE-1000F", "JP"),
+                generate_review_branch_name_fn=lambda _: "codex/review-je-1000f-jp",
+                load_config_fn=lambda _: {"paths": {"docs_dir": "docs"}},
+            )
+
+        self.assertEqual("codex/review-je-1000f-jp", branch_name)
+        self.assertEqual("https://github.com/Bingboom/auto-manual/pull/999", pr_url)
+        mock_push_branch.assert_called_once_with(
+            root=Path(td),
+            worktree=Path(td) / "worktree",
+            branch_name="codex/review-je-1000f-jp",
+        )
 
     def test_group_review_start_records_should_collapse_same_document_key_for_merged_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -467,7 +600,6 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 "resolve_config_path_for_task",
                 side_effect=lambda *, region, lang, build_family=None: Path(td) / ("config.us.yaml" if build_family == "us-merged" else "config.us-en.yaml"),
             ) as mock_resolve_config_path, \
-            mock.patch.object(process_review_start_queue, "base_ref_contains_target_review_root", return_value=False), \
             mock.patch.object(
                 process_review_start_queue,
                 "start_review_for_record",
@@ -511,7 +643,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             )
             self.assertFalse(record_payload[process_review_start_queue.REVIEW_TRIGGER_FIELD])
 
-    def test_process_review_start_queue_should_block_duplicate_review_root_and_write_initial_result(self) -> None:
+    def test_process_review_start_queue_should_force_restart_existing_inreview_row(self) -> None:
         cfg = {
             "sync": {
                 "phase2": {
@@ -534,8 +666,10 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     process_review_start_queue.BUILD_FAMILY_FIELD: ["us-merged"],
                     process_review_start_queue.LANG_FIELD: ["en"],
                     process_review_start_queue.VERSION_FIELD: ["0.1"],
-                    process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_NOT_STARTED],
+                    process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_IN_REVIEW],
                     process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    process_review_start_queue.GIT_REF_FIELD: "codex/review-je-1000f-us",
+                    process_review_start_queue.PR_URL_FIELD: "https://github.com/Bingboom/auto-manual/pull/998",
                 },
             }
         ]
@@ -557,8 +691,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 "resolve_config_path_for_task",
                 return_value=Path(td) / "config.us.yaml",
             ), \
-            mock.patch.object(process_review_start_queue, "base_ref_contains_target_review_root", return_value=True), \
-            mock.patch.object(process_review_start_queue, "start_review_for_record") as mock_start_review:
+            mock.patch.object(
+                process_review_start_queue,
+                "start_review_for_record",
+                return_value=("codex/review-je-1000f-us", "https://github.com/Bingboom/auto-manual/pull/999"),
+            ) as mock_start_review:
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
@@ -576,17 +713,21 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             )
 
         self.assertEqual(0, exit_code)
-        mock_start_review.assert_not_called()
+        mock_start_review.assert_called_once()
         source.upsert_record.assert_called_once()
         kwargs = source.upsert_record.call_args.kwargs
         self.assertEqual("rec_init_dup", kwargs["record_id"])
         self.assertEqual(
-            process_review_start_queue.INITIAL_RESULT_DUPLICATE,
-            kwargs["record"][process_review_start_queue.INITIAL_RESULT_FIELD],
+            ["InReview"],
+            kwargs["record"][process_review_start_queue.REVIEW_STATUS_FIELD],
         )
         self.assertEqual(
-            process_review_start_queue.DUPLICATE_REMARKS,
-            kwargs["record"][process_review_start_queue.REMARKS_FIELD],
+            "codex/review-je-1000f-us",
+            kwargs["record"][process_review_start_queue.GIT_REF_FIELD],
+        )
+        self.assertEqual(
+            "https://github.com/Bingboom/auto-manual/pull/999",
+            kwargs["record"][process_review_start_queue.PR_URL_FIELD],
         )
         self.assertFalse(kwargs["record"][process_review_start_queue.REVIEW_TRIGGER_FIELD])
 
@@ -804,7 +945,6 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 "resolve_config_path_for_task",
                 return_value=Path(td) / "config.zh.yaml",
             ), \
-            mock.patch.object(process_review_start_queue, "base_ref_contains_target_review_root", return_value=False), \
             mock.patch.object(
                 process_review_start_queue,
                 "start_review_for_record",
@@ -899,6 +1039,6 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     payload["summary_message"],
                 )
                 self.assertEqual(
-                    "请检查 GitHub secrets 里的 table/view 绑定、bot 权限，以及该记录当前是否仍处于待进入 review 状态。",
+                    "请检查 GitHub secrets 里的 table/view 绑定、bot 权限，以及该记录当前是否仍勾选 是否进入Review 且 Workflow_action=Start Review。",
                     payload["summary_next_step"],
                 )

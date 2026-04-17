@@ -3,7 +3,7 @@ export const COMMAND_DEFINITIONS = [
     commandName: "start-review",
     workflowFile: "feishu-start-review.yml",
     workflowName: "Feishu Start Review",
-    description: "Dispatch the Start Review worker on main for one review-init record.",
+    description: "Dispatch the Start Review worker on main for one review-init record and force-reseed from the latest template.",
   },
   {
     commandName: "build-draft",

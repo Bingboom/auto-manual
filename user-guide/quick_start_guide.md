@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-04-15
+Updated: 2026-04-17
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -28,7 +28,7 @@ Updated: 2026-04-15
 
 ### 1.2 Review Init 表
 
-这张表只做一次性动作：把文档拉进 review。
+这张表只做 Start Review 动作：把文档拉进 review，或者强制重开并按最新模板重新 seed。
 
 建议字段：
 
@@ -44,18 +44,22 @@ Updated: 2026-04-15
 - `Initial_result`
 - `Remarks`
 
-这张表触发后，系统会按 `Document_Key` 对应的 `Model + Region` 启动 review：
+这张表触发后，系统会按 `Document_Key` 对应的 `Model + Region` 启动 review。`Start Review` 的语义现在是“强制重开并按最新模板重新 seed”：
 
-1. 先检查 `main` 是否已经提交过这个目标对应的 review 根目录
-2. 如果已经有旧 review 内容，就拒绝重复创建，并回写：
-   - `Initial_result = 不允许重复创建`
-   - `Remarks = 如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
-3. 如果没有旧 review 内容，才创建或复用 review 分支
-4. seed `docs/_review`
+1. 同步最新 phase2 snapshot
+2. 从最新 `main` 起 review worktree
+3. 不管旧 review 分支是否存在，都按最新模板/数据重新 seed `docs/_review`
+4. 如果 review 分支已存在，就强制更新那条分支到这次最新 seed
 5. 创建或复用 PR
 6. 回写 `Git_ref`
 7. 回写 `PR_url`
 8. 把 `Review_status` 改成 `InReview`
+9. 清掉 `是否进入Review`
+
+额外规则：
+
+- `Review_status` 不再是 Start Review 的门槛；只要再次勾选 `是否进入Review` 且 `Workflow_action = Start Review`，系统就会重开
+- `main` 上已经存在旧的 `docs/_review/<model>/<region>/` 内容，也不会再阻止 Start Review
 
 `Review Init` 这条链默认直接复用 `Document_link` 的表 / 视图绑定，所以 GitHub 侧继续用 `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` 和 `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID` 即可，不需要单独再配一组 `REVIEW_INIT_*` secrets。
 
@@ -86,7 +90,7 @@ Updated: 2026-04-15
 
 它负责：
 
-- `Workflow_action` 是唯一队列语义字段；建分支填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
+- `Workflow_action` 是唯一队列语义字段；强制重开 review / 重新 seed 填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
 - `Doc_phase` 不再参与队列路由，保持留空即可
 - 把结果链接回写到表里
 - `Build Draft Package` 仍把 DOCX 链接回写到 `Document link`
@@ -192,6 +196,8 @@ Publish 的原料是：
 - `Review_status = NotStarted`
 - `是否进入Review = 勾选`
 
+如果是已经在 review 里的目标，要强制按最新模板重开，也可以直接在原行再次勾选 `是否进入Review`；`Review_status` 保持 `InReview` 也会重跑。
+
 ### 系统会做什么
 
 触发 review-init workflow：
@@ -201,15 +207,12 @@ Publish 的原料是：
 它会：
 
 1. 同步最新 phase2 快照
-2. 先检查 `main` 是否已经提交过这个目标对应的 review 根目录
-3. 如果旧 review 已提交，则拒绝重复创建，并回写：
-   - `Initial_result = 不允许重复创建`
-   - `Remarks = 如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md.`
-4. 如果旧 review 不存在，才创建或复用 review 分支
-5. 生成这个目标的 [`docs/_review/...`](../docs/_review)
-6. push 分支
-7. 创建或复用 PR
-8. 回写：
+2. 从最新 `main` 起 review worktree
+3. 按最新模板和最新 snapshot 重新生成这个目标的 [`docs/_review/...`](../docs/_review)
+4. 如果 review 分支已存在，就强制更新到这次最新 seed；如果不存在，就新建
+5. push 分支
+6. 创建或复用 PR
+7. 回写：
    - `Git_ref`
    - `PR_url`
    - `Review_status = InReview`
@@ -221,7 +224,7 @@ Publish 的原料是：
 - 多维表里出现 `PR_url`
 - 仓库里已经有 PR
 - 对应分支里已经有 review 内容
-- 如果 `main` 已经提交过这个目标对应的 review 根目录，多维表会回写 `Initial_result = 不允许重复创建`
+- 如果这次是重开 review，原来的 review 分支也会被更新成这次最新 seed
 
 如果这一步没做，后面的 Build Draft Package 只是“构建一条记录”，不算完整的 review 流程。
 

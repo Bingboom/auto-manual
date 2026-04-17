@@ -58,9 +58,9 @@ def build_review_start_no_pending_summary(
         "detail": (
             f"record_id={normalized_record_id} was not returned as a pending review-start row. "
             "The row may be outside the bound view, not visible to the current Feishu identity, "
-            "or no longer satisfies 是否进入Review=true and Review_status in {empty, NotStarted}."
+            "or no longer satisfies 是否进入Review=true with Workflow_action=Start Review."
         ),
-        "next_step": "请检查 GitHub secrets 里的 table/view 绑定、bot 权限，以及该记录当前是否仍处于待进入 review 状态。",
+        "next_step": "请检查 GitHub secrets 里的 table/view 绑定、bot 权限，以及该记录当前是否仍勾选 是否进入Review 且 Workflow_action=Start Review。",
         "workflow_action": review_action_label,
         "record_id": normalized_record_id,
         "retryable": True,
