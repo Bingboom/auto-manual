@@ -429,6 +429,8 @@ class TestPhase1Renderers(unittest.TestCase):
             lang="fr",
             vars_map={},
         )
+        self.assertIn("**AVERTISSEMENT**", out)
+        self.assertIn("**ATTENTION**", out)
         self.assertIn(
             "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
             out,
@@ -446,6 +448,8 @@ class TestPhase1Renderers(unittest.TestCase):
             lang="es",
             vars_map={},
         )
+        self.assertIn("**ADVERTENCIA**", out)
+        self.assertNotIn("**PELIGRO**", out)
         self.assertIn(
             "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
             out,

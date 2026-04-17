@@ -30,6 +30,7 @@ from tools.word_bundle_html_rewrite import (
 )
 
 _RST_HEADING_CHARS = set("=-~^\"`:+*#")
+_LANG_TOKEN_RE = re.compile(r"(?:^|[_-])(en|fr|es|de|it|ja|zh)(?:$|[_-])")
 
 
 def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: set[str] | None = None) -> str:
@@ -163,6 +164,15 @@ def _resolve_fragment_asset_path(src: str, source_path: Path) -> Path | None:
     return None
 
 
+def _infer_fragment_lang(source_path: Path) -> str | None:
+    candidates = [source_path.stem.lower(), source_path.parent.name.lower()]
+    for candidate in candidates:
+        match = _LANG_TOKEN_RE.search(candidate)
+        if match:
+            return match.group(1)
+    return None
+
+
 def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -> str:
     assets_dir = bundle_dir / "assets"
     assets_dir.mkdir(parents=True, exist_ok=True)
@@ -228,10 +238,11 @@ def _convert_rst_fragment_to_html(
     active_tags: set[str] | None = None,
 ) -> str:
     source_name = source_path.name.lower()
+    fragment_lang = _infer_fragment_lang(source_path)
     if source_name.startswith("safety_"):
         raw_html = _extract_raw_html_blocks(rst_text, active_tags=active_tags)
         if raw_html:
-            rewritten_fragment = _rewrite_word_friendly_fragment(raw_html)
+            rewritten_fragment = _rewrite_word_friendly_fragment(raw_html, lang=fragment_lang)
             return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
     published_fragment = _publish_rst_fragment_to_html(rst_text, source_path, active_tags=active_tags)
@@ -241,7 +252,7 @@ def _convert_rst_fragment_to_html(
         if spec_data is not None:
             published_fragment = render_spec_word_html(spec_data)
 
-    rewritten_fragment = _rewrite_word_friendly_fragment(published_fragment)
+    rewritten_fragment = _rewrite_word_friendly_fragment(published_fragment, lang=fragment_lang)
     return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
 

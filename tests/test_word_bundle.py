@@ -221,6 +221,51 @@ Congratulations on your new manual.
         self.assertIn("<strong>WARNING</strong>", out)
         self.assertIn("Risk of fire.", out)
 
+    def test_rewrite_word_friendly_fragment_should_localize_french_warning_box_label(self) -> None:
+        fragment = (
+            '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-text">Consultez les consignes de sécurité avant utilisation.</div>'
+            '</div></div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment, lang="fr")
+
+        self.assertIn("<strong>AVERTISSEMENT</strong>", out)
+        self.assertNotIn("<strong>WARNING</strong>", out)
+
+    def test_rewrite_word_friendly_fragment_should_localize_spanish_warning_box_label(self) -> None:
+        fragment = (
+            '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-text">Consulte las instrucciones de seguridad antes de usarlo.</div>'
+            '</div></div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment, lang="es")
+
+        self.assertIn("<strong>ADVERTENCIA</strong>", out)
+        self.assertNotIn("<strong>WARNING</strong>", out)
+
+    def test_convert_rst_fragment_to_html_should_infer_warning_box_label_from_source_name(self) -> None:
+        rst = """
+.. only:: html
+
+   .. raw:: html
+
+      <div class="hb-warning-box">
+        <div class="hb-warning-row">
+          <div class="hb-warning-text">Consulte las instrucciones antes de usarlo.</div>
+        </div>
+      </div>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("safety_es.rst"),
+                Path(td),
+            )
+
+        self.assertIn("<strong>ADVERTENCIA</strong>", html)
+
     def test_rewrite_word_friendly_fragment_should_convert_alert_paragraphs_into_tables(self) -> None:
         fragment = (
             "<p><strong>CAUTION</strong></p>"

@@ -7,6 +7,8 @@ from copy import deepcopy
 import re
 from xml.etree import ElementTree as ET
 
+from tools.signal_words import get_safety_warning_label
+
 
 _ALERT_LABELS = {"WARNING", "CAUTION", "DANGER", "NOTE", "TIP", "TIPS"}
 _SIGNAL_WORD_BANNERS = {
@@ -47,6 +49,18 @@ def _html_class_names(element: ET.Element) -> set[str]:
 
 def _normalize_inline_text(text: str) -> str:
     return " ".join((text or "").split()).strip()
+
+
+def _localized_warning_label(warning_text: str, *, lang: str | None = None) -> str:
+    if lang:
+        return get_safety_warning_label(lang)
+
+    normalized = _normalize_inline_text(warning_text).upper()
+    if "INSTRUCTIONS CONCERNANT LES RISQUES" in normalized:
+        return get_safety_warning_label("fr")
+    if "INSTRUCCIONES RELATIVAS AL RIESGO" in normalized:
+        return get_safety_warning_label("es")
+    return get_safety_warning_label("en")
 
 
 def _element_text_weight(element: ET.Element) -> int:
@@ -339,14 +353,18 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
     return table
 
 
-def _rewrite_word_friendly_children(children: list[ET.Element]) -> list[ET.Element]:
+def _rewrite_word_friendly_children(
+    children: list[ET.Element],
+    *,
+    lang: str | None = None,
+) -> list[ET.Element]:
     normalized_children: list[ET.Element] = []
     for child in children:
         rewritten_child = deepcopy(child)
         if list(rewritten_child):
             _set_element_children(
                 rewritten_child,
-                _rewrite_word_friendly_children(list(rewritten_child)),
+                _rewrite_word_friendly_children(list(rewritten_child), lang=lang),
             )
         rewritten_child = _rewrite_known_safety_sublists(rewritten_child)
         rewritten_child = _rewrite_signal_word_banner_table(rewritten_child)
@@ -380,7 +398,9 @@ def _rewrite_word_friendly_children(children: list[ET.Element]) -> list[ET.Eleme
                 para = ET.Element("p")
                 para.text = warning_text
                 body_nodes.append(para)
-            rewritten.append(_build_alert_table("WARNING", body_nodes))
+            rewritten.append(
+                _build_alert_table(_localized_warning_label(warning_text, lang=lang), body_nodes)
+            )
             index += 1
             continue
 
@@ -424,14 +444,14 @@ def _rewrite_word_friendly_children(children: list[ET.Element]) -> list[ET.Eleme
     return rewritten
 
 
-def _rewrite_word_friendly_fragment(fragment: str) -> str:
+def _rewrite_word_friendly_fragment(fragment: str, *, lang: str | None = None) -> str:
     wrapped = f"<root>{fragment}</root>"
     try:
         root = ET.fromstring(wrapped)
     except ET.ParseError:
         return fragment
 
-    rewritten = _rewrite_word_friendly_children(list(root))
+    rewritten = _rewrite_word_friendly_children(list(root), lang=lang)
     return "".join(ET.tostring(node, encoding="unicode", method="html") for node in rewritten)
 
 
