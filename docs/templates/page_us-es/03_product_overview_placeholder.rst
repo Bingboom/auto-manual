@@ -44,7 +44,7 @@ VISTA FRONTAL
        |FRONT_TOTAL_OUTPUT_SPEC|
 
 VISTA LATERAL DERECHA
---------------------
+---------------------
 
 .. image:: templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Diagrama de vista lateral derecha.

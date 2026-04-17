@@ -78,24 +78,20 @@
     \IfFontExistsTF{Noto Sans Mono}{%
       \setmonofont{Noto Sans Mono}[Scale=MatchLowercase]
     }{%
-      \IfFontExistsTF{FreeMono}{%
-        \setmonofont{FreeMono}[Scale=MatchLowercase]
+      \IfFontExistsTF{DejaVu Sans Mono}{%
+        \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
       }{%
-        \IfFontExistsTF{DejaVu Sans Mono}{%
-          \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+        % macOS / Windows / common Linux fallbacks
+        \IfFontExistsTF{Menlo}{%
+          \setmonofont{Menlo}[Scale=MatchLowercase]
         }{%
-          % macOS / Windows fallbacks
-          \IfFontExistsTF{Menlo}{%
-            \setmonofont{Menlo}[Scale=MatchLowercase]
+          \IfFontExistsTF{Consolas}{%
+            \setmonofont{Consolas}[Scale=MatchLowercase]
           }{%
-            \IfFontExistsTF{Consolas}{%
-              \setmonofont{Consolas}[Scale=MatchLowercase]
+            \IfFontExistsTF{Liberation Mono}{%
+              \setmonofont{Liberation Mono}[Scale=MatchLowercase]
             }{%
-              \IfFontExistsTF{Liberation Mono}{%
-                \setmonofont{Liberation Mono}[Scale=MatchLowercase]
-              }{%
-                \setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
-              }%
+              \setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
             }%
           }%
         }%

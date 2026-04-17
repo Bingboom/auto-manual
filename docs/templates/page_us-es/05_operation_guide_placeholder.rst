@@ -2,7 +2,7 @@ OPERACIONES
 ===========
 
 ENCENDIDO/APAGADO
-----------------
+-----------------
 
 .. image:: templates/word_template/common_assets/operation/main_power.png
    :alt: Operación de encendido/apagado.
@@ -21,7 +21,7 @@ El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| 
 Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
 
 ENCENDER/APAGAR SALIDA DE CA
----------------------------
+----------------------------
 
 **Requisito previo:** El producto está encendido.
 

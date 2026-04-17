@@ -11,7 +11,7 @@
    :widths: 33 33 34
 
    * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Imagen de la estaci贸n de energ铆a.
+          :alt: Imagen de la estación de energía.
           :width: 120px
 
        |PRODUCT_NAME_BOLD|
@@ -31,5 +31,5 @@
    :widths: 10 90
 
    * - **CONSEJOS**
-     - El cable de carga para autom贸vil no est谩 incluido, pero est谩 disponible para su compra por separado en nuestro sitio web.
-       Para obtener asistencia, comun铆cate con el servicio al cliente de Jackery.
+     - El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web.
+       Para obtener asistencia, comunícate con el servicio al cliente de Jackery.
