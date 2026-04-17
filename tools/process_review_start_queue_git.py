@@ -11,7 +11,7 @@ from urllib import error as urllib_error
 from urllib import parse as urllib_parse
 from urllib import request as urllib_request
 
-from tools.review_support import review_bundle_exists, review_dir_for_target
+from tools.review_support import review_dir_for_target
 from tools.utils.targets import resolve_output_lang
 
 
@@ -54,6 +54,7 @@ def build_py_command(
     region: str | None = None,
     data_root: str | None = None,
     source: str | None = None,
+    refresh_review: bool = False,
 ) -> list[str]:
     cmd = [
         sys.executable,
@@ -70,6 +71,8 @@ def build_py_command(
         cmd += ["--data-root", data_root]
     if source:
         cmd += ["--source", source]
+    if refresh_review:
+        cmd.append("--refresh-review")
     return cmd
 
 
@@ -133,53 +136,6 @@ def review_root_for_target_config(
     cfg = load_config_fn(config_path)
     docs_dir = resolve_docs_dir_for_config(root=root, config_path=config_path, cfg=cfg, load_config_fn=load_config_fn)
     return review_dir_for_target(docs_dir=docs_dir, model=model, region=region)
-
-
-def git_ref_exists(*, root: Path, ref_name: str) -> bool:
-    proc = subprocess.run(
-        ["git", "show-ref", "--verify", "--quiet", ref_name],
-        cwd=str(root),
-        check=False,
-    )
-    return proc.returncode == 0
-
-
-def remote_branch_exists(*, root: Path, branch_name: str) -> bool:
-    return git_ref_exists(root=root, ref_name=f"refs/remotes/origin/{branch_name}")
-
-
-def git_object_exists(*, root: Path, ref_name: str, repo_relative_path: str) -> bool:
-    proc = subprocess.run(
-        ["git", "cat-file", "-e", f"{ref_name}:{repo_relative_path}"],
-        cwd=str(root),
-        check=False,
-    )
-    return proc.returncode == 0
-
-
-def base_ref_contains_target_review_root(
-    *,
-    root: Path,
-    config_path: Path,
-    model: str,
-    region: str,
-    base_ref: str,
-    load_config_fn: Callable[[Path], dict[str, Any]],
-) -> bool:
-    review_root = review_root_for_target_config(
-        root=root,
-        config_path=config_path,
-        model=model,
-        region=region,
-        load_config_fn=load_config_fn,
-    )
-    try:
-        review_root_rel = review_root.relative_to(root).as_posix()
-    except ValueError:
-        review_root_rel = review_root.as_posix()
-    return git_object_exists(root=root, ref_name=f"origin/{base_ref}", repo_relative_path=review_root_rel)
-
-
 def worktree_dir_for_branch(*, root: Path, branch_name: str, slug_branch_token_fn: Callable[[str], str]) -> Path:
     return root / ".tmp" / "review-start-worktrees" / slug_branch_token_fn(branch_name)
 
@@ -210,7 +166,7 @@ def prepare_branch_worktree(
     worktree = worktree_dir_for_branch(root=root, branch_name=branch_name, slug_branch_token_fn=slug_branch_token_fn)
     remove_worktree(root=root, path=worktree)
     worktree.parent.mkdir(parents=True, exist_ok=True)
-    source_ref = f"origin/{branch_name}" if remote_branch_exists(root=root, branch_name=branch_name) else f"origin/{base_ref}"
+    source_ref = f"origin/{base_ref}"
     run_git(["worktree", "add", "--force", str(worktree), source_ref], root=root)
     run_git(["checkout", "-B", branch_name, source_ref], root=root, cwd=worktree)
     return worktree
@@ -250,15 +206,6 @@ def ensure_review_bundle_on_branch(
     worktree_config_path = worktree / build_config_path.name
     cfg = load_config_fn(worktree_config_path)
     docs_dir = resolve_docs_dir_for_config(root=root, config_path=worktree_config_path, cfg=cfg, load_config_fn=load_config_fn)
-    output_lang = resolve_output_lang(cfg)
-    if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=output_lang):
-        return review_dir_for_target_config(
-            root=root,
-            config_path=worktree_config_path,
-            model=model,
-            region=region,
-            load_config_fn=load_config_fn,
-        )
 
     run_command(
         build_py_command(
@@ -280,6 +227,7 @@ def ensure_review_bundle_on_branch(
             config_path=worktree_config_path,
             model=model,
             region=region,
+            refresh_review=True,
         ),
         root=root,
         cwd=worktree,
@@ -321,7 +269,7 @@ def commit_review_bundle_if_changed(*, root: Path, worktree: Path, review_dir: P
 
 
 def push_branch(*, root: Path, worktree: Path, branch_name: str) -> None:
-    run_git(["push", "-u", "origin", branch_name], root=root, cwd=worktree)
+    run_git(["push", "--force-with-lease", "-u", "origin", branch_name], root=root, cwd=worktree)
 
 
 def create_empty_review_start_commit(*, root: Path, worktree: Path, record: Any) -> None:
@@ -464,9 +412,8 @@ def start_review_for_record(
             data_root=snapshot_data_root,
             load_config_fn=load_config_fn,
         )
-        changed = commit_review_bundle_if_changed(root=root, worktree=worktree, review_dir=review_dir, record=record)
-        if changed or not remote_branch_exists(root=root, branch_name=branch_name):
-            push_branch(root=root, worktree=worktree, branch_name=branch_name)
+        commit_review_bundle_if_changed(root=root, worktree=worktree, review_dir=review_dir, record=record)
+        push_branch(root=root, worktree=worktree, branch_name=branch_name)
         pr_url = ensure_pull_request_for_branch(
             root=root,
             repository=repository,

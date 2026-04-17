@@ -50,7 +50,6 @@ from tools.process_review_start_queue_records import (  # noqa: E402
     validate_review_start_group as _validate_review_start_group_impl,
 )
 from tools.process_review_start_queue_git import (  # noqa: E402
-    base_ref_contains_target_review_root as _base_ref_contains_target_review_root_impl,
     build_py_command as _build_py_command_impl,
     commit_review_bundle_if_changed as _commit_review_bundle_if_changed_impl,
     configure_git_identity as _configure_git_identity_impl,
@@ -58,12 +57,9 @@ from tools.process_review_start_queue_git import (  # noqa: E402
     ensure_pull_request_for_branch as _ensure_pull_request_for_branch_impl,
     ensure_review_bundle_on_branch as _ensure_review_bundle_on_branch_impl,
     format_command as _format_command_impl,
-    git_object_exists as _git_object_exists_impl,
-    git_ref_exists as _git_ref_exists_impl,
     github_api_request as _github_api_request_impl,
     prepare_branch_worktree as _prepare_branch_worktree_impl,
     push_branch as _push_branch_impl,
-    remote_branch_exists as _remote_branch_exists_impl,
     remove_worktree as _remove_worktree_impl,
     resolve_docs_dir_for_config as _resolve_docs_dir_for_config_impl,
     review_dir_for_target_config as _review_dir_for_target_impl,
@@ -103,9 +99,6 @@ REVIEW_START_ACTION_LABEL = "Start Review"
 
 REVIEW_STATUS_NOT_STARTED = "NotStarted"
 REVIEW_STATUS_IN_REVIEW = "InReview"
-INITIAL_RESULT_DUPLICATE = "不允许重复创建"
-DUPLICATE_REMARKS = "如需强制刷新内容，请在vs通过相关git命令操作，具体详见文档quick_start_guide.md."
-
 def _review_init_env_names(cfg: dict[str, Any]) -> tuple[str, str, str | None]:
     return _review_init_env_names_impl(cfg, sync_phase2_cfg=_sync_phase2_cfg)
 
@@ -219,14 +212,6 @@ def build_review_start_success_fields(*, git_ref: str, pr_url: str) -> dict[str,
     }
 
 
-def build_review_start_duplicate_fields() -> dict[str, Any]:
-    return {
-        REVIEW_TRIGGER_FIELD: False,
-        INITIAL_RESULT_FIELD: INITIAL_RESULT_DUPLICATE,
-        REMARKS_FIELD: DUPLICATE_REMARKS,
-    }
-
-
 def build_review_start_preflight_failure_summary(*, errors: list[str], review_action_label: str) -> dict[str, Any]:
     return _build_review_start_preflight_failure_summary_impl(
         errors=errors,
@@ -332,29 +317,6 @@ def _review_root_for_target(config_path: Path, *, model: str, region: str) -> Pa
         config_path=config_path,
         model=model,
         region=region,
-        load_config_fn=load_config,
-    )
-
-
-def _git_ref_exists(ref_name: str) -> bool:
-    return _git_ref_exists_impl(root=ROOT, ref_name=ref_name)
-
-
-def _remote_branch_exists(branch_name: str) -> bool:
-    return _remote_branch_exists_impl(root=ROOT, branch_name=branch_name)
-
-
-def _git_object_exists(*, ref_name: str, repo_relative_path: str) -> bool:
-    return _git_object_exists_impl(root=ROOT, ref_name=ref_name, repo_relative_path=repo_relative_path)
-
-
-def base_ref_contains_target_review_root(*, config_path: Path, model: str, region: str, base_ref: str) -> bool:
-    return _base_ref_contains_target_review_root_impl(
-        root=ROOT,
-        config_path=config_path,
-        model=model,
-        region=region,
-        base_ref=base_ref,
         load_config_fn=load_config,
     )
 
@@ -492,8 +454,6 @@ def process_review_start_queue(
             generate_branch_name_fn=generate_review_branch_name,
             sync_snapshot_before_fn=sync_phase2_snapshot_before_review_start,
             run_git_fn=_run_git,
-            base_ref_contains_target_review_root_fn=base_ref_contains_target_review_root,
-            build_duplicate_fields_fn=build_review_start_duplicate_fields,
             build_success_fields_fn=build_review_start_success_fields,
             start_review_for_record_fn=start_review_for_record,
             build_preflight_failure_summary_fn=build_review_start_preflight_failure_summary,

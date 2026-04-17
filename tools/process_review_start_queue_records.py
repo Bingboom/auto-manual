@@ -138,8 +138,6 @@ def select_pending_review_start_records(
             continue
         if not is_checkbox_enabled(record.review_trigger_value):
             continue
-        if normalize_review_status(record.review_status) not in {None, "notstarted"}:
-            continue
         try:
             normalize_review_start_action(record.workflow_action)
         except RuntimeError as exc:
