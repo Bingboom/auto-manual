@@ -15,6 +15,9 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: en
+    file: templates/page_us-en/01_fcc.rst
+  - type: rst_include
+    lang: en
     file: templates/page_us-en/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview

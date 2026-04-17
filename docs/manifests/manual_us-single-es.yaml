@@ -10,6 +10,9 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: es
+    file: templates/page_us-es/01_fcc.rst
+  - type: rst_include
+    lang: es
     file: templates/page_us-es/02_whats_in_the_box.rst
   - type: rst_include
     lang: es
