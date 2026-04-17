@@ -21,6 +21,20 @@ BUILD = DOCS / "_build" / "latex"
 FONTS_SRC = DOCS / "renderers" / "latex" / "fonts.tex"
 FONTS_DST = BUILD / "fonts.tex"
 
+FRAGILE_UNICODE_REPLACEMENTS = (
+    ("\u2393", " DC "),
+    ("\u203b", "*"),
+)
+
+LOCAL_GILROY_DIR_ENV = "AUTO_MANUAL_LOCAL_GILROY_DIR"
+LOCAL_GILROY_OVERRIDE_MARKER = "% AUTO_MANUAL_LOCAL_GILROY_OVERRIDE"
+LOCAL_GILROY_REQUIRED_FILES = (
+    "gilroy-regular-3.otf",
+    "gilroy-bold-4.otf",
+    "Gilroy-LightItalic-12.otf",
+    "Gilroy-ExtraBoldItalic-10.otf",
+)
+
 
 def die(msg: str) -> None:
     raise SystemExit(f"[patch_latex_fonts] ERROR: {msg}")
@@ -49,6 +63,90 @@ def inject_before_begin_document(tex_path: Path) -> None:
     s2 = re.sub(pat, r"\\input{fonts.tex}\n\1", s, count=1)
     tex_path.write_text(s2, encoding="utf-8")
     print(f"[patch_latex_fonts] injected into: {tex_path.name}")
+
+
+def sanitize_fragile_unicode_glyphs(tex_path: Path) -> int:
+    s = tex_path.read_text(encoding="utf-8", errors="ignore")
+    total = 0
+    for raw, replacement in FRAGILE_UNICODE_REPLACEMENTS:
+        count = s.count(raw)
+        if not count:
+            continue
+        s = s.replace(raw, replacement)
+        total += count
+    if total:
+        tex_path.write_text(s, encoding="utf-8")
+        print(f"[patch_latex_fonts] sanitized fragile Unicode glyphs in: {tex_path.name} (changes={total})")
+    return total
+
+
+def resolve_local_gilroy_dir() -> Path | None:
+    raw = os.environ.get(LOCAL_GILROY_DIR_ENV, "").strip()
+    if not raw:
+        return None
+
+    font_dir = Path(raw).expanduser()
+    if not font_dir.exists():
+        print(f"[patch_latex_fonts] local Gilroy dir not found, skipping override: {font_dir}")
+        return None
+    if not font_dir.is_dir():
+        print(f"[patch_latex_fonts] local Gilroy path is not a directory, skipping override: {font_dir}")
+        return None
+
+    missing = [name for name in LOCAL_GILROY_REQUIRED_FILES if not (font_dir / name).exists()]
+    if missing:
+        print(
+            "[patch_latex_fonts] local Gilroy dir missing required font files, skipping override: "
+            + ", ".join(missing)
+        )
+        return None
+
+    return font_dir.resolve()
+
+
+def build_local_gilroy_override(font_dir: Path) -> str:
+    font_path = font_dir.as_posix().rstrip("/") + "/"
+    regular_font = (font_dir / LOCAL_GILROY_REQUIRED_FILES[0]).as_posix()
+    return "\n".join(
+        (
+            f"  \\IfFileExists{{{regular_font}}}{{%",
+            "    \\setmainfont{gilroy-regular-3.otf}[",
+            f"      Path={{{font_path}}},",
+            "      Ligatures=TeX,",
+            "      BoldFont=gilroy-bold-4.otf,",
+            "      ItalicFont=Gilroy-LightItalic-12.otf,",
+            "      BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf",
+            "    ]",
+            "    \\setsansfont{gilroy-regular-3.otf}[",
+            f"      Path={{{font_path}}},",
+            "      Ligatures=TeX,",
+            "      BoldFont=gilroy-bold-4.otf,",
+            "      ItalicFont=Gilroy-LightItalic-12.otf,",
+            "      BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf",
+            "    ]",
+            "    \\global\\HBLocalGilroyFontsConfiguredtrue",
+            "  }{}",
+        )
+    )
+
+
+def apply_local_gilroy_override(fonts_path: Path) -> bool:
+    if not fonts_path.exists():
+        return False
+
+    font_dir = resolve_local_gilroy_dir()
+    if font_dir is None:
+        return False
+
+    s = fonts_path.read_text(encoding="utf-8", errors="ignore")
+    if LOCAL_GILROY_OVERRIDE_MARKER not in s:
+        raise RuntimeError(f"Cannot find local Gilroy override marker in {fonts_path}")
+
+    override_block = build_local_gilroy_override(font_dir)
+    s = s.replace(LOCAL_GILROY_OVERRIDE_MARKER, override_block, 1)
+    fonts_path.write_text(s, encoding="utf-8")
+    print(f"[patch_latex_fonts] enabled local Gilroy override from: {font_dir}")
+    return True
 
 
 def patch_build_fonts_tex_windows(fonts_path: Path) -> int:
@@ -138,10 +236,12 @@ def main() -> None:
     shutil.copyfile(FONTS_SRC, fonts_dst)
     print(f"[patch_latex_fonts] copied fonts.tex -> {fonts_dst}")
 
+    apply_local_gilroy_override(fonts_dst)
     patch_build_fonts_tex_windows(fonts_dst)
 
     main_tex = find_main_tex(build_dir, args.tex)
     inject_before_begin_document(main_tex)
+    sanitize_fragile_unicode_glyphs(main_tex)
 
 
 if __name__ == "__main__":

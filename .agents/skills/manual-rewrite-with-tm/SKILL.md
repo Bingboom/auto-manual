@@ -1,6 +1,6 @@
 ---
 name: manual-rewrite-with-tm
-description: Rewrite or translate manuals and other structured markdown/doc-style content with translation-memory-first behavior. Use when the user asks to translate or rewrite documentation by memory rules such as: prefer translation-memory matches, keep unmatched source text in place and highlight it with ==...==, unify terminology, preserve markdown structure, or reuse a matched sentence pattern while replacing only parameters like wattage, voltage, model names, temperatures, units, ports, or counts.
+description: "Rewrite or translate full manuals and other structured markdown/doc-style content with translation-memory-first behavior. Use when the user asks to translate or rewrite documentation by memory rules such as: prefer translation-memory matches, keep unmatched source text in place and highlight it with ==...==, unify terminology, preserve markdown structure, or reuse a matched sentence pattern while replacing only parameters like wattage, voltage, model names, temperatures, units, ports, or counts."
 ---
 
 # Manual Rewrite With TM
@@ -10,6 +10,14 @@ description: Rewrite or translate manuals and other structured markdown/doc-styl
 Use this skill for manual-style content where wording must follow repo terminology and translation-memory patterns instead of free translation.
 
 Preserve document structure, keep markdown stable, and apply deterministic rewrite rules before introducing any freer wording.
+
+## Skill boundary in this repo
+
+Use `bitable-translation-memory` for one-shot sentence translation, terminology lookup, or prompt-ready live TM context.
+
+Use this skill for whole files, long sections, or structured Markdown/manual content where headings, lists, tables, images, and unmatched-source fallback must stay stable.
+
+When both skills are relevant, load `bitable-translation-memory` first for live sentence-pair lookup and terminology grounding, then use this skill to execute the rewrite.
 
 ## Core workflow
 
@@ -118,7 +126,7 @@ Prefer smaller focused translation-memory queries for paragraphs, warnings, tabl
 
 ## Using translation memory in this repo
 
-Use the live translation-memory query first via the existing repo tooling from the `bitable-translation-memory` skill.
+This skill uses `bitable-translation-memory` as its live lookup layer. Query the live translation-memory source first via that existing repo skill.
 
 Preferred query pattern:
 
