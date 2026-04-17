@@ -1,6 +1,6 @@
 % docs/renderers/latex/fonts.tex
 \usepackage{fontspec}
-\usepackage{xeCJK}
+\usepackage[LoadFandol=false]{xeCJK}
 
 % Apply late so we override Sphinx/class defaults
 \newif\ifHBLocalGilroyFontsConfigured
@@ -8,6 +8,12 @@
 
 \newcommand{\HBLocalGilroyOverride}{%
   % AUTO_MANUAL_LOCAL_GILROY_OVERRIDE
+}
+
+\newcommand{\HBSetSingleFaceCJKFonts}[1]{%
+  \setCJKmainfont{#1}[AutoFakeBold=2.0,AutoFakeSlant=0.2]
+  \setCJKsansfont{#1}[AutoFakeBold=2.0,AutoFakeSlant=0.2]
+  \setCJKmonofont{#1}[AutoFakeBold=2.0,AutoFakeSlant=0.2]
 }
 
 \newcommand{\HBSetupFonts}{%
@@ -104,50 +110,57 @@
   % =========================
   % 1) Your preferred CN fonts (if installed)
   \IfFontExistsTF{方正兰亭中黑简体}{%
-    \setCJKmainfont{方正兰亭中黑简体}
-    \setCJKsansfont{方正兰亭中黑简体}
+    \HBSetSingleFaceCJKFonts{方正兰亭中黑简体}
   }{%
     \IfFontExistsTF{方正兰亭黑简体}{%
-      \setCJKmainfont{方正兰亭黑简体}
-      \setCJKsansfont{方正兰亭黑简体}
+      \HBSetSingleFaceCJKFonts{方正兰亭黑简体}
     }{%
       % 2) Windows common
       \IfFontExistsTF{Microsoft YaHei}{%
         \setCJKmainfont{Microsoft YaHei}
         \setCJKsansfont{Microsoft YaHei}
+        \setCJKmonofont{Microsoft YaHei}
       }{%
         \IfFontExistsTF{Noto Serif CJK SC}{%
           \setCJKmainfont{Noto Serif CJK SC}
           \IfFontExistsTF{Noto Sans CJK SC}{%
             \setCJKsansfont{Noto Sans CJK SC}
+            \setCJKmonofont{Noto Sans CJK SC}
           }{%
             \setCJKsansfont{Noto Serif CJK SC}
+            \setCJKmonofont{Noto Serif CJK SC}
           }%
         }{%
           \IfFontExistsTF{Noto Serif CJK JP}{%
             \setCJKmainfont{Noto Serif CJK JP}
             \IfFontExistsTF{Noto Sans CJK JP}{%
               \setCJKsansfont{Noto Sans CJK JP}
+              \setCJKmonofont{Noto Sans CJK JP}
             }{%
               \setCJKsansfont{Noto Serif CJK JP}
+              \setCJKmonofont{Noto Serif CJK JP}
             }%
           }{%
         % 3) macOS common
             \IfFontExistsTF{PingFang SC}{%
               \setCJKmainfont{PingFang SC}
               \setCJKsansfont{PingFang SC}
+              \setCJKmonofont{PingFang SC}
             }{%
               \IfFontExistsTF{Songti SC}{%
                 \setCJKmainfont{Songti SC}
                 \setCJKsansfont{Songti SC}
+                \setCJKmonofont{Songti SC}
               }{%
                 \IfFontExistsTF{Heiti SC}{%
                   \setCJKmainfont{Heiti SC}
                   \setCJKsansfont{Heiti SC}
+                  \setCJKmonofont{Heiti SC}
                 }{%
                   % 4) last resort: TeXLive built-in (prevents xeCJK Fandol warning + keeps build alive)
                   \setCJKmainfont{FandolSong-Regular}
                   \setCJKsansfont{FandolSong-Regular}
+                  \setCJKmonofont{FandolFang-Regular}
                 }%
               }%
             }%
@@ -158,4 +171,6 @@
   }%
 }
 
-\AtBeginDocument{\HBSetupFonts}
+% fonts.tex is injected in the preamble after Sphinx defaults, so apply the
+% overrides immediately instead of redefining xeCJK families at begin-document.
+\HBSetupFonts
