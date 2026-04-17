@@ -122,8 +122,8 @@ LANG_COPY: dict[str, dict[str, object]] = {
     "fr": {
         "danger_title": "AVERTISSEMENT",
         "danger_bullets": [
-            "Cet appareil est destiné à un usage intérieur uniquement. Lors d'une utilisation en extérieur, placez-le dans un environnement similaire à un intérieur, par exemple une maison, un camping-car, une tente ou un chalet.",
-            "Cet appareil n'est ni étanche ni résistant à la poussière. Tenez-le éloigné de la pluie et des environnements humides pendant son utilisation.",
+            "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
+            "Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.",
         ],
         "maintenance_title": "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR",
         "maintenance_paragraph": (
@@ -169,8 +169,8 @@ LANG_COPY: dict[str, dict[str, object]] = {
     "es": {
         "danger_title": "PELIGRO",
         "danger_bullets": [
-            "Este dispositivo está diseñado únicamente para uso en interiores. Cuando lo utilice en exteriores, colóquelo en un entorno similar al interior, por ejemplo en el hogar, una autocaravana, una tienda de campaña o una cabaña.",
-            "Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.",
+            "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
+            "Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y ambientes húmedos durante su uso.",
         ],
         "maintenance_title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
         "maintenance_paragraph": (
@@ -279,6 +279,36 @@ def _append_text_cell(lines: list[str], prefix: str, text: str) -> None:
         lines.append(continuation + line)
 
 
+def _append_notice_table(
+    lines: list[str],
+    *,
+    title: str,
+    paragraphs: list[str],
+    note_prefix: str = "※ ",
+) -> None:
+    lines.extend(
+        [
+            ".. list-table::",
+            "   :header-rows: 0",
+            "   :widths: 18 82",
+            "",
+            f"   * - **{rst_escape(title)}**",
+        ]
+    )
+
+    if not paragraphs:
+        lines.append("     -")
+        return
+
+    first = rst_escape(paragraphs[0])
+    lines.append(f"     - {first}")
+
+    for extra in paragraphs[1:]:
+        text = rst_escape(extra)
+        lines.append("")
+        lines.append(f"       {note_prefix}{text}")
+
+
 def _append_image_cell(
     lines: list[str],
     prefix: str,
@@ -311,10 +341,7 @@ def _signal_section(lang: str) -> str:
     signal_rows = list(copy["signal_rows"])
 
     lines: list[str] = []
-    lines.extend(_rst_heading(danger_title))
-    lines.append("")
-    for bullet in danger_bullets:
-        lines.append(f"- {rst_escape(bullet)}")
+    _append_notice_table(lines, title=danger_title, paragraphs=danger_bullets)
     lines.append("")
     lines.extend(_rst_heading(maintenance_title))
     lines.append("")
