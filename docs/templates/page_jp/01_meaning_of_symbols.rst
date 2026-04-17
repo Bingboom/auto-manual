@@ -1,23 +1,3 @@
-絵表示について
-----------------
-
-製品を安全に正しくお使いいただき、お客様や他の方々への危害や財産への損害を未然に防止するための表示です。
-
-内容をよく理解してから本文をお読みください。
-
-.. list-table::
-   :header-rows: 0
-   :widths: 10 90
-
-   * - **警告**
-     - この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。
-   * - **注意**
-     - この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。
-   * - **説明**
-     - この表示を無視して誤った取り扱いをすると、機器の損傷、データの消失、性能の低下、または予期しない動作が発生する可能性があることを示しています。
-   * - **ヒント**
-     - 文章内の重要な情報や操作のヒントを補足する内容を示しています。
-
 絵表示の説明
 --------------
 
@@ -41,16 +21,22 @@
           :alt: Read manual symbol.
           :width: 40px
      - 操作の前に取扱説明書をお読みください。
-     - .. image:: templates/word_template/common_assets/symbols/prohibited.png
-          :alt: Keep away from fire symbol.
+     - .. image:: templates/word_template/common_assets/symbols/no_open_flame.png
+          :alt: No open flame symbol.
           :width: 40px
      - 本製品を火気の近くに置かないでください。
-   * - .. image:: templates/word_template/common_assets/symbols/prohibited.png
+   * - .. image:: templates/word_template/common_assets/symbols/keep_away_from_children.png
           :alt: Keep away from children symbol.
           :width: 40px
      - 小さなお子様の手の届かない場所に保管してください。
-     -
-     -
+     - .. image:: templates/word_template/common_assets/symbols/battery_recycle.png
+          :alt: Battery recycling symbol.
+          :width: 40px
+     - 電池および蓄電池は家庭ごみと一緒に廃棄してはいけません。
+
+       消費者の皆様は、有害物質の有無にかかわらず、すべての電池および蓄電池を指定された収集場所で廃棄することが法律で義務付けられています。
+
+       使用済みの電池および蓄電池は、お近くの収集拠点、リサイクルセンター、または購入した小売店にお持ちください。適切な廃棄は環境に配慮したリサイクルを確保し、人間の健康と環境への潜在的な害を防ぎます。
    * - .. image:: templates/word_template/common_assets/symbols/do_not_dismantle.png
           :alt: Do not dismantle symbol.
           :width: 40px
