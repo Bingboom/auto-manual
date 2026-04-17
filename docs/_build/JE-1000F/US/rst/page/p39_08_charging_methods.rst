@@ -1,0 +1,48 @@
+.. raw:: latex
+
+   \HBApplyLang{es}
+
+CARGA MEDIANTE PANELES SOLARES (SE VENDEN POR SEPARADO)
+-------------------------------------------------------
+
+Jackery Explorer 1000 cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de Jackery.
+
+.. image:: _assets/templates/word_template/common_assets/charging/solar_direct.png
+   :alt: Diagrama de conexión para carga solar 1.
+   :width: 360px
+
+Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
+
+.. image:: _assets/templates/word_template/common_assets/charging/solar_adapter.png
+   :alt: Diagrama de conexión para carga solar 2.
+   :width: 360px
+
+**PRECAUCIÓN**
+
+Un puerto de entrada DC8020 puede conectarse como máximo a dos paneles solares.
+
+**PRECAUCIÓN**
+
+Asegúrese de que el voltaje de entrada para ambos puertos de entrada de CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
+
+- Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
+- No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Esto puede fundir el fusible del automóvil o provocar un fallo de carga.
+
+Se recomienda usar el panel solar Jackery para cargar el Jackery Explorer 1000. Asegúrese de que el voltaje en circuito abierto (Voc) del panel solar se sitúe dentro del rango de entrada de CC de Jackery Explorer 1000 (16V-60V). Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.
+
+CARGA MEDIANTE CARGADOR DE AUTOMÓVIL (SE VENDE POR SEPARADO)
+------------------------------------------------------------
+
+Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de que el cargador de coche y el encendedor de coche ofrezcan una buena conexión.
+
+.. image:: _assets/templates/word_template/common_assets/charging/car_charge.png
+   :alt: Diagrama de carga en automóvil.
+   :width: 360px
+
+*El cable de carga para automóvil se vende por separado.*
+
+**PRECAUCIÓN**
+
+- Encienda el vehículo antes de cargar la estación de energía.
+- Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar que se queme debido a una mala conexión. La empresa no se responsabiliza por pérdidas causadas por un uso incorrecto.
+- La carga en vehículo solo es aplicable a vehículos con 12V CC, no a 24V CC. Por favor, no cargue este producto en vehículos de 24V para evitar lesiones personales y daños materiales.

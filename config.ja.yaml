@@ -39,6 +39,8 @@ sync:
     base_token_env: FEISHU_PHASE2_BASE_TOKEN
     tables:
       spec_master:
+        table_id: tbl7Kxyq8AaDKwsn
+        view_id: vewbjo4Zfz
         table_id_env: FEISHU_PHASE2_SPEC_MASTER_TABLE_ID
         view_id_env: FEISHU_PHASE2_SPEC_MASTER_VIEW_ID
       spec_footnotes:

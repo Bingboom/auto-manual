@@ -2,6 +2,10 @@
 
    \HBApplyLang{en}
 
+.. raw:: latex
+
+   \HBApplyLang{en}
+
 .. only:: latex
 
    .. raw:: latex

@@ -23,13 +23,11 @@ JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,1,main_power_button,label,Main P
 JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,2,dc_usb_power_button,label,DC/USB Power Button,,1,,,DC/USB出力ボタン,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,Product overview,CONTROLS,7,3,ac_power_button,label,AC Power Button,,1,,,AC出力ボタン,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,1,product_name,,製品の名称,,1,,,Jackery ポータブル電源 1000 New,,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,FALSE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F,,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F-测试同步逻辑123,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,2,model_no,,型番,,1,,,JE-1000F / JE-1000F-SG,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,3,capacity,,定格容量,,1,,,1024Wh (20Ah/51.2V DC),,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,バッテリータイプ,,1,,,LiFePO₄ (リン酸鉄リチウムイオン電池),,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,5,weight,,重量,,1,,,約10.6 kg,,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,6,dimensions,,サイズ,,1,,,約314 × 201 × 236 mm,,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,7,cycle_life,,サイクル寿命,,1,,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,4,cell_chemistry,,バッテリータイプ,,1,,,LiFePO4 (リン酸鉄リチウムイオン電池),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,5,cycle_life,,サイクル寿命,,1,,,6000回 (6000回の充放電後も初期容量の70%以上を維持),,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,GENERAL INFO,1,6,size_weight,,サイズ＆重量,,1,,,約314 × 201 × 236 mm (約10.6 kg),,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1×ACポート,,1,,,"100V-120V~50Hz/60Hz, 最大15A, 1450W±50W",max_charge_power,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,1,ac_input,,1×ACポート,,2,バススルー,ac_bypass,"100V-120V~50Hz/60Hz, 最大15A, 最大1500W",,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,INPUT PORTS,2,2,dc8020_ports,,2×DC8020ポート,,1,PV,,"16V-60V⎓12A, 2ポート 最大21A, 最大400W",,,,,,JE-1000F,,,ja
@@ -44,7 +42,10 @@ JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,4,usb_c,,2×USB-Cポート,,3,
 JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,5,usb_a,,1×USB-Aポート,,1,,,"5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,OUTPUT PORTS,3,6,dc12_port,,シガーソケット出力,,1,,,12V⎓最大10A,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charging_temperature,,充電温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
-JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,放電温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharging_temperature,,動作温度,,1,,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,3,storage_temperature,,保存温度,,1,1ヶ月,,-20℃ ~ 45℃,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,3,storage_temperature,,保存温度,,2,3ヶ月,,0℃ ~ 45℃,,,,,,JE-1000F,,,ja
+JE-1000F_JP,JP,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,3,storage_temperature,,保存温度,,3,1年間,,0℃ ~ 25℃,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,1,1か月,,-20℃ ～ 45℃（0-60% RH）,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,2,3か月,,0℃ ～ 45℃（0-60% RH）,,,,,,JE-1000F,,,ja
 JE-1000F_JP,JP,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,保管温度,,3,1年,,0℃ ～ 25℃（0-60% RH）,,,,,,JE-1000F,,,ja

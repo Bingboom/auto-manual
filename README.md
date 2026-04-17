@@ -73,6 +73,7 @@ Review sync note:
 Phase2 snapshot note:
 
 - `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2), using the CLI's `base` record listing flow under the hood
+- for each `sync.phase2.tables.<name>` binding, you can now pin `table_id` and `view_id` directly in config; when those literals are present they override the corresponding `*_env` values, which is useful when one shared family must always sync from one fixed Base view
 - when a valid phase2 snapshot exists, build/review/publish flows default to that snapshot; explicit `--data-root` still overrides the default for local experiments or alternate roots
 - queue-driven build flows still treat Feishu phase2 tables as the structured-data source of truth; committed `data/phase2/*.csv` files are build-time snapshots refreshed by `sync-data`
 - `process-build-queue` still reads its queue rows from Feishu `Document_link` and still writes status plus `Document link` back to Feishu even when the artifact upload target is switched
@@ -80,6 +81,7 @@ Phase2 snapshot note:
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain tokens such as `front.label` when the source table stores markdown-link wrappers like `[front.label](front.label)`
 - `sync-data` now resolves full field names through Base field metadata before writing CSVs, so long columns such as `Row_label_footnote_refs` are not lost when `lark-cli` abbreviates display headers in `base +record-list`
 - when `spec_master` and `spec_footnotes` are synced together, `sync-data` also converts Feishu linked-record style footnote refs such as `{"id":"rec..."}` into stable `Footnote_id` values before writing `Spec_Master.csv`
+- `Spec_Master.csv` lookups now normalize document-key style model tokens such as `JE-1000F_JP` or `JE-1000F-JP` back to the base model before matching, then still use the explicit target `Region`; a `JP` target therefore keeps reading `JP` spec rows rather than falling across to `US`
 - `sync-data` does not auto-correct invalid `Is_Latest` rows; mismatched latest flags stay in the snapshot so validation can catch the source-data issue
 - when `spec_master` is part of the sync, `sync-data` also regenerates [`data/phase2/row_key_mapping.csv`](data/phase2/row_key_mapping.csv) from the synced snapshot while preserving any existing manual `Row_key` / `Remark` entries
 - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the fastest preflight on a new machine; it now reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API call

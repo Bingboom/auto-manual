@@ -88,6 +88,13 @@ def table_env_names(cfg: dict[str, Any], logical_name: str) -> tuple[str, str, s
     return base_token_env, table_id_env, view_id_env
 
 
+def table_binding_values(cfg: dict[str, Any], logical_name: str) -> tuple[str | None, str | None]:
+    logical_cfg = table_cfg(cfg, logical_name)
+    table_id = str(logical_cfg.get("table_id") or "").strip() or None
+    view_id = str(logical_cfg.get("view_id") or "").strip() or None
+    return table_id, view_id
+
+
 def cli_command_parts(
     cli_bin: str,
     *,
@@ -160,6 +167,7 @@ def collect_sync_preflight_errors(
     seen_env_names: set[str] = set()
     for logical_name in selected:
         base_token_env, table_id_env, view_id_env = table_env_names_fn(cfg, logical_name)
+        table_id, view_id = table_binding_values(cfg, logical_name)
         if not base_token_env:
             errors.append(
                 f"sync.phase2.tables.{logical_name}.base_token_env is required, "
@@ -168,12 +176,16 @@ def collect_sync_preflight_errors(
         elif base_token_env not in seen_env_names:
             seen_env_names.add(base_token_env)
             required_env_names.append(base_token_env)
-        if not table_id_env:
-            errors.append(f"sync.phase2.tables.{logical_name}.table_id_env is required")
+        if not table_id and not table_id_env:
+            errors.append(
+                f"sync.phase2.tables.{logical_name}.table_id or "
+                f"sync.phase2.tables.{logical_name}.table_id_env is required"
+            )
         elif table_id_env not in seen_env_names:
-            seen_env_names.add(table_id_env)
-            required_env_names.append(table_id_env)
-        if view_id_env and view_id_env not in seen_env_names:
+            if table_id is None:
+                seen_env_names.add(table_id_env)
+                required_env_names.append(table_id_env)
+        if view_id is None and view_id_env and view_id_env not in seen_env_names:
             seen_env_names.add(view_id_env)
             required_env_names.append(view_id_env)
 
@@ -201,14 +213,18 @@ def resolve_table_binding_kwargs(
     if logical_name not in table_schemas:
         raise RuntimeError(f"Unknown sync table: {logical_name}")
     base_token_env, table_id_env, view_id_env = table_env_names_fn(cfg, logical_name)
+    table_id, view_id = table_binding_values(cfg, logical_name)
 
     if not base_token_env:
         raise RuntimeError(
             f"sync.phase2.tables.{logical_name}.base_token_env is required, "
             "or provide sync.phase2.base_token_env"
         )
-    if not table_id_env:
-        raise RuntimeError(f"sync.phase2.tables.{logical_name}.table_id_env is required")
+    if table_id is None and not table_id_env:
+        raise RuntimeError(
+            f"sync.phase2.tables.{logical_name}.table_id or "
+            f"sync.phase2.tables.{logical_name}.table_id_env is required"
+        )
 
     return {
         "logical_name": logical_name,
@@ -217,6 +233,6 @@ def resolve_table_binding_kwargs(
         "table_id_env": table_id_env,
         "view_id_env": view_id_env,
         "base_token": env_value_fn(base_token_env),
-        "table_id": env_value_fn(table_id_env),
-        "view_id": env_value_fn(view_id_env) if view_id_env else None,
+        "table_id": table_id if table_id is not None else env_value_fn(table_id_env),
+        "view_id": view_id if view_id is not None else (env_value_fn(view_id_env) if view_id_env else None),
     }

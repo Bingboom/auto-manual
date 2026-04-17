@@ -9,7 +9,12 @@ import re
 from typing import cast
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
-from ..utils.spec_master import is_page_value_row, page_value_matches, source_language_for_row
+from ..utils.spec_master import (
+    canonicalize_model_token,
+    is_page_value_row,
+    page_value_matches,
+    source_language_for_row,
+)
 
 
 def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]:
@@ -228,7 +233,8 @@ def _parse_spec_master_sections(
     section_title_overrides: dict[str, str] = {}
 
     var_region = _first_non_empty(vars_map, ["region", "Region"])
-    var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
+    raw_var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
+    var_model = canonicalize_model_token(raw_var_model, region=var_region)
     target_sku = _first_non_empty(vars_map, ["sku_id", "sku"]) or rst_escape(sku_id)
     title_map: dict[str, str] = {}
     section_order_map: dict[str, float] = {}
@@ -268,7 +274,8 @@ def _parse_spec_master_sections(
             row,
             ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
         )
-        if var_model and row_model and row_model != var_model:
+        row_model = canonicalize_model_token(row_model, region=row_region or var_region)
+        if var_model and row_model and row_model.casefold() != var_model.casefold():
             continue
 
         page_value = _first_non_empty(row, ["Page", "page"])
@@ -450,7 +457,7 @@ def _parse_spec_master_sections(
     }
 
     if not rows:
-        model_msg = f" model={var_model}" if var_model else ""
+        model_msg = f" model={raw_var_model}" if raw_var_model else ""
         raise ValueError(
             f"spec page has no usable Spec_Master rows for sku={sku_id} lang={lang}{model_msg}"
         )

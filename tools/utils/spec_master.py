@@ -30,6 +30,7 @@ from tools.utils.spec_master_repairs import (
     repair_known_spec_master_values,
 )
 from tools.utils.spec_master_row_helpers import (
+    canonicalize_model_token,
     is_page_value_row,
     normalize_page_tokens,
     normalize_source_lang,
@@ -69,6 +70,7 @@ __all__ = [
     'build_row_label_row_key_mapping_rows',
     'build_template_row_key_mapping_markdown',
     'build_template_row_key_mapping_rows',
+    'canonicalize_model_token',
     'collect_matching_spec_rows',
     'collect_spec_value_matches_from_rows',
     'is_page_value_row',

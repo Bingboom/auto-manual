@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from tools.utils.spec_master import read_spec_master_rows, source_language_for_row
+from tools.utils.spec_master import canonicalize_model_token, read_spec_master_rows, source_language_for_row
 
 
 @dataclass(frozen=True)
@@ -58,8 +58,8 @@ def _derive_short_product_name(name: str) -> str:
 
 
 def _target_key(row: dict[str, str]) -> tuple[str | None, str | None]:
-    model = _first_non_empty(row, ("Model", "model")) or None
     region = _first_non_empty(row, ("Region", "region")) or None
+    model = canonicalize_model_token(_first_non_empty(row, ("Model", "model")), region=region) or None
     return model, region
 
 
@@ -112,7 +112,7 @@ def find_identity_drift_matches(
         return ()
 
     identities = _collect_latest_identity_literals(spec_master_csv, langs=langs)
-    target = (model, region)
+    target = (canonicalize_model_token(model, region=region), region)
     current_values = identities.get(target, {"product_name": set(), "model_no": set()})
     allowed_literals = {value for value in current_values.get("product_name", set()) if value}
     allowed_literals.update(value for value in current_values.get("model_no", set()) if value)
@@ -121,6 +121,9 @@ def find_identity_drift_matches(
         if short_name:
             allowed_literals.add(short_name)
     allowed_literals.add(model)
+    normalized_target_model = canonicalize_model_token(model, region=region)
+    if normalized_target_model:
+        allowed_literals.add(normalized_target_model)
     allowed_literals.update(value.strip() for value in allowlist if value.strip())
 
     forbidden_literals: dict[str, tuple[str | None, str | None]] = {}

@@ -317,6 +317,37 @@ class TestValidateSpecMaster(unittest.TestCase):
             self.assertNotIn("INVALID_DOCUMENT_KEY", codes)
             self.assertNotIn("MISSING_DOCUMENT_KEY", codes)
 
+    def test_collect_spec_master_validation_issues_should_accept_document_key_style_target_model(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "document_key,Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Row_label_source,Value_source",
+                        "JE-1000F_JP,JE-1000F,JP,en,TRUE,specifications,product_name,,,Product Name,Jackery 1000 JP",
+                        "JE-1000F_JP,JE-1000F,JP,en,TRUE,specifications,model_no,,,Model No.,JE-1000F",
+                        "JE-1000F_JP,JE-1000F,JP,en,TRUE,Product overview,main_power_button,label,1,Main Power Button,Main Power Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F_JP",
+                region="JP",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertNotIn("MISSING_REQUIRED_SPEC_ROW", codes)
+            self.assertNotIn("INVALID_DOCUMENT_KEY", codes)
+            self.assertNotIn("MISSING_DOCUMENT_KEY", codes)
+
     def test_collect_spec_master_validation_issues_should_report_latest_row_claiming_another_targets_document_key(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

@@ -16,6 +16,12 @@ class ManualHtmlAssetsTests(unittest.TestCase):
         self.assertIn("hb_manual.js", text)
         self.assertNotIn("hb_paged.css", text)
         self.assertNotIn("hb_paged.js", text)
+        self.assertIn("_assets/templates/word_template/common_assets/operation/lcd_mode.png", text)
+
+    def test_latex_theme_should_load_multirow_for_merged_table_cells(self) -> None:
+        text = (ROOT / "docs" / "renderers" / "latex" / "theme.tex").read_text(encoding="utf-8")
+
+        self.assertIn(r"\usepackage{multirow}", text)
 
     def test_manual_css_should_hide_furo_chrome_in_manual_preview_mode(self) -> None:
         text = (ROOT / "docs" / "_static" / "hb_manual.css").read_text(encoding="utf-8")
@@ -49,4 +55,3 @@ class ManualHtmlAssetsTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

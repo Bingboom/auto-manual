@@ -144,6 +144,28 @@ class TestValidateConfig(unittest.TestCase):
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
 
+    def test_validate_should_accept_phase2_snapshot_config_with_literal_table_binding(self) -> None:
+        cfg = {
+            "build": {"languages": ["ja"]},
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "base_token_env": "FEISHU_BASE_TOKEN",
+                    "tables": {
+                        "spec_master": {
+                            "table_id": "tbl7Kxyq8AaDKwsn",
+                            "view_id": "vewbjo4Zfz",
+                        },
+                    },
+                },
+            },
+            "pages": [{"type": "rst_include", "lang": "ja", "file": "templates/page_jp/cover_jp.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
+
     def test_validate_should_reject_invalid_phase2_sync_table_key(self) -> None:
         cfg = {
             "build": {"languages": ["en"]},

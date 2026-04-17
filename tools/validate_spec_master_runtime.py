@@ -5,6 +5,7 @@ from pathlib import Path
 
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.utils.spec_master import (
+    canonicalize_model_token,
     collect_matching_spec_rows,
     collect_spec_value_matches_from_rows,
     normalize_source_lang,
@@ -145,12 +146,15 @@ def _rows_for_target(
     target_model = getattr(target, "model")
     target_region = getattr(target, "region")
     target_langs = [getattr(target, "lang")] if (getattr(target, "lang", "") or "").strip() else langs
-    accepted_document_keys = {f"{target_model}_{target_region}"}
-    accepted_document_keys.update(
-        f"{target_model}_{target_region}_{lang.strip()}"
-        for lang in target_langs
-        if str(lang or "").strip()
-    )
+    canonical_target_model = canonicalize_model_token(target_model or "", region=target_region)
+    accepted_document_keys: set[str] = set()
+    if canonical_target_model and str(target_region or "").strip():
+        accepted_document_keys.add(f"{canonical_target_model}_{target_region}")
+        accepted_document_keys.update(
+            f"{canonical_target_model}_{target_region}_{lang.strip()}"
+            for lang in target_langs
+            if str(lang or "").strip()
+        )
 
     latest_scope_rows: list[dict[str, str]] = []
     for row in rows:

@@ -181,6 +181,22 @@ def _pick_row_region(row: dict[str, str]) -> str:
     return _first_non_empty(row, ["Region", "region"])
 
 
+def canonicalize_model_token(value: str, *, region: str | None = None) -> str:
+    text = (value or "").strip()
+    normalized_region = (region or "").strip()
+    if not text or not normalized_region:
+        return text
+
+    upper_text = text.upper()
+    upper_region = normalized_region.upper()
+    for separator in ("_", "-"):
+        suffix = f"{separator}{upper_region}"
+        if upper_text.endswith(suffix):
+            candidate = text[: -len(suffix)].strip()
+            return candidate.rstrip("_-").strip()
+    return text
+
+
 def _normalize_slot_key(raw: str) -> str:
     tokens = [token.strip().lower() for token in str(raw).replace("/", ".").split(".") if token.strip()]
     return ".".join(tokens)
@@ -459,13 +475,13 @@ def _row_matches_target(
     if not page_value_matches(_first_non_empty(row, ["Page", "page"]), pages):
         return False
 
-    target_model = (model or "").strip()
-    row_model = _pick_row_model(row)
-    if target_model and row_model and row_model != target_model:
+    target_region = (region or "").strip()
+    target_model = canonicalize_model_token(model or "", region=target_region)
+    row_region = _pick_row_region(row)
+    row_model = canonicalize_model_token(_pick_row_model(row), region=row_region or target_region)
+    if target_model and row_model and row_model.casefold() != target_model.casefold():
         return False
 
-    target_region = (region or "").strip()
-    row_region = _pick_row_region(row)
     if target_region and row_region and row_region != target_region:
         return False
 
@@ -497,13 +513,13 @@ def _score_row(
     region: str | None,
     lang: str,
 ) -> int:
-    target_model = (model or "").strip()
     target_region = (region or "").strip()
-    row_model = _pick_row_model(row)
+    target_model = canonicalize_model_token(model or "", region=target_region)
+    row_model = canonicalize_model_token(_pick_row_model(row), region=_pick_row_region(row) or target_region)
     row_region = _pick_row_region(row)
 
     score = 0
-    if row_model and target_model and row_model == target_model:
+    if row_model and target_model and row_model.casefold() == target_model.casefold():
         score += 8
     if row_region and target_region and row_region == target_region:
         score += 8
