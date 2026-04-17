@@ -63,3 +63,9 @@ For current human workflows, read:
 - `_build`, `reports/version_tracking`, and `reports/releases` may contain user work or verification artifacts.
 - Do not delete or revert generated outputs unless the task explicitly requires cleanup.
 
+## 7. Local Skills
+
+- Use [`.agents/skills/markdown-rst-template-intake/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/markdown-rst-template-intake/SKILL.md) when mapping external Markdown manuals into this repo's reusable RST template and recipe layout.
+- Use [`.agents/skills/bitable-translation-memory/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/bitable-translation-memory/SKILL.md) for one-shot sentence translation, terminology lookup, and live sentence-pair retrieval.
+- Use [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/manual-rewrite-with-tm/SKILL.md) for full manual or Markdown rewrite tasks that must preserve structure, reuse translation-memory phrasing, or keep unmatched source text highlighted with `==...==`.
+- For TM-guided rewrite jobs, use the skills in this order: `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.

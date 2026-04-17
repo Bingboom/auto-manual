@@ -1,12 +1,18 @@
 ---
 name: bitable-translation-memory
-description: Query Feishu/Lark Base phase2 multilingual snapshot content as translation memory for OpenClaw or Codex translation tasks. Use for any manual-copy translation ask in this repo, including plain requests like "把这句翻成法语", even when the user does not explicitly mention terminology or Translation_Memory.
+description: Query Feishu/Lark Base phase2 multilingual snapshot content as translation memory for OpenClaw or Codex translation tasks. Use for direct sentence or paragraph translation asks, terminology lookup, and as the lookup layer beneath `manual-rewrite-with-tm` batch rewrite jobs in this repo, including plain requests like "把这句翻成法语" even when the user does not explicitly mention terminology or Translation_Memory.
 ---
 
 # Bitable Translation Memory
 
 Use this skill when the task is "translate with repo terminology", not generic free translation.
 The preferred source is the dedicated Feishu sentence-pair table `Translation_Memory`, and the repo `data/phase2` snapshot is the fallback context layer.
+
+## Skill boundary in this repo
+
+Use this skill when the task is a one-shot translation reply, a sentence or paragraph lookup, or terminology grounding for another tool.
+
+If the user wants a whole Markdown page or manual rewritten, wants headings and tables preserved, wants unmatched source text kept in `==...==`, or wants translation-memory sentence patterns reused across a structured document, load `manual-rewrite-with-tm` after this skill and let that skill own the output document.
 
 ## Default workflow
 
@@ -38,6 +44,7 @@ The preferred source is the dedicated Feishu sentence-pair table `Translation_Me
 - Treat the live sentence-pair table as the highest-priority wording memory because it is purpose-built for aligned translation pairs.
 - Keep row/page metadata when repeated terms need disambiguation.
 - For larger translation jobs, run multiple focused queries instead of one huge catch-all search.
+- If the task expands into a full Markdown or manual rewrite, use this skill as the lookup layer and hand the document rewrite flow to `manual-rewrite-with-tm`.
 - Use `--json` when another tool or prompt-construction step needs structured output.
 
 ## Good queries

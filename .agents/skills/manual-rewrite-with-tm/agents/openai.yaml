@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manual Rewrite With TM"
+  short_description: "Rewrite Markdown manuals with TM-first rules"
+  default_prompt: "Use $manual-rewrite-with-tm to rewrite or translate this Markdown manual with translation-memory-first behavior, preserve structure, reuse safe sentence patterns, and keep unmatched source text highlighted with ==...==."
