@@ -15,7 +15,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, PdfInsertPage, RstIncludePage  # noqa: E402
+from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludePage  # noqa: E402
 from tools.build_docs import build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target, plan_materialized_pages  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
@@ -107,9 +107,6 @@ def resolve_sync_plan(
         page = planned.page
         page_relative = Path("page") / planned.file_name
         if isinstance(page, CsvPage):
-            sync_plan[page_relative] = SyncPlanEntry(relative_path=page_relative)
-            continue
-        if isinstance(page, GeneratedPage):
             sync_plan[page_relative] = SyncPlanEntry(relative_path=page_relative)
             continue
         if scope == "generated":

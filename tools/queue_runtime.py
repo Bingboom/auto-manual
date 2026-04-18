@@ -177,7 +177,6 @@ def prepare_git_ref_worktree(
     branch_name = git_ref.strip()
     if not branch_name:
         raise RuntimeError("Git_ref is required when preparing a queue build worktree")
-    base_ref = "origin/main"
     source_ref = f"origin/{branch_name}"
     cached_remote_ref = f"refs/remotes/origin/{branch_name}"
     local_branch_ref = f"refs/heads/{branch_name}"
@@ -202,8 +201,5 @@ def prepare_git_ref_worktree(
     worktree = worktree_dir_for_git_ref(repo_root=repo_root, git_ref=branch_name)
     remove_worktree(repo_root=repo_root, path=worktree)
     worktree.parent.mkdir(parents=True, exist_ok=True)
-    run_git(["worktree", "add", "--force", "--detach", str(worktree), base_ref])
-    # Review branches are content branches under docs/_review. Seed the worktree from
-    # current main so queue builds use the latest toolchain, then overlay review content.
-    run_git(["-C", str(worktree), "checkout", source_ref, "--", "docs/_review"])
+    run_git(["worktree", "add", "--force", "--detach", str(worktree), source_ref])
     return worktree
