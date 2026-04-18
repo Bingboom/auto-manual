@@ -6,9 +6,9 @@
 
    <h1>FCC</h1>
 
-|Este dispositivo cumple con la parte 15 de las Reglas de la FCC. El funcionamiento está sujeto a las siguientes dos condiciones:
-|(1) Este dispositivo no debe causar interferencias dañinas, y
-|(2) Este dispositivo debe aceptar cualquier interferencia recibida, incluidas las interferencias que puedan causar un funcionamiento no deseado.
+| Este dispositivo cumple con la parte 15 de las Reglas de la FCC. El funcionamiento está sujeto a las siguientes dos condiciones:
+| (1) Este dispositivo no debe causar interferencias dañinas, y
+| (2) Este dispositivo debe aceptar cualquier interferencia recibida, incluidas las interferencias que puedan causar un funcionamiento no deseado.
 
 **NOTA:** Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B,
 de acuerdo con el Apartado 15 de las Reglas de la FCC.
