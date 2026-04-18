@@ -6,11 +6,10 @@
 
    <h1>FCC</h1>
 
-Cet appareil est conforme à la partie 15 du règlement de la FCC. Son fonctionnement est soumis aux deux conditions suivantes :
+｜Cet appareil est conforme à la partie 15 du règlement de la FCC. Son fonctionnement est soumis aux deux conditions suivantes :
 
-(1) Cet appareil ne doit pas provoquer d'interférences dangereuses, et
-
-(2) Cet appareil doit accepter toute interférence reçue, y compris les interférences pouvant provoquer un fonctionnement non désiré.
+｜(1) Cet appareil ne doit pas provoquer d'interférences dangereuses, et
+｜(2) Cet appareil doit accepter toute interférence reçue, y compris les interférences pouvant provoquer un fonctionnement non désiré.
 
 **REMARQUE :** Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC.
 Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d'une installation résidentielle.

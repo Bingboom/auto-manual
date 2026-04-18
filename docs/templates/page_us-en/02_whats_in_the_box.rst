@@ -8,7 +8,7 @@
 
 .. list-table::
    :header-rows: 0
-   :widths: 25 25 25 25
+   :widths: 33 33 34
 
    * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
           :alt: Power station image placeholder.
@@ -24,8 +24,7 @@
           :alt: User manual image placeholder.
           :width: 120px
 
-       **Documents**
-     -
+       Documents
 
 .. list-table::
    :header-rows: 0
