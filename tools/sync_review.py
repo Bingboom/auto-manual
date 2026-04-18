@@ -19,7 +19,12 @@ from tools.config_pages import CoverPdfPage, CsvPage, PdfInsertPage, RstIncludeP
 from tools.build_docs import build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target, plan_materialized_pages  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
-from tools.review_support import SyncPlanEntry, review_dir_for_target, sync_review_paths  # noqa: E402
+from tools.review_support import (  # noqa: E402
+    SyncPlanEntry,
+    resolve_existing_review_bundle_dir,
+    review_dir_for_target,
+    sync_review_paths,
+)
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
@@ -163,12 +168,19 @@ def main(argv: list[str] | None = None) -> int:
                     target.lang,
                     docs_build_dir=docs_build_dir,
                 ) / "rst"
-            review_dir = review_dir_for_target(
+            review_dir = resolve_existing_review_bundle_dir(
                 docs_dir=docs_dir,
                 model=target.model,
                 region=target.region,
                 lang=target.lang,
             )
+            if review_dir is None:
+                review_dir = review_dir_for_target(
+                    docs_dir=docs_dir,
+                    model=target.model,
+                    region=target.region,
+                    lang=target.lang,
+                )
             sync_plan = resolve_sync_plan(
                 cfg=cfg,
                 docs_dir=docs_dir,

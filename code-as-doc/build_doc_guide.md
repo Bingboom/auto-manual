@@ -375,6 +375,7 @@ By default this updates data-driven files in the review bundle without resetting
 
 That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
 Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
+When a single-language build points at a merged review branch and only `docs/_review/<model>/US/` exists, that automatic sync falls back to the merged review root instead of skipping the refresh.
 For the single-language US English config, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout. For the merged US `config.us.yaml` queue/review flow, the canonical review root is now `docs/_review/<model>/US/`.
 
 Useful variants:

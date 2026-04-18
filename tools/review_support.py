@@ -39,6 +39,38 @@ def review_bundle_exists(*, docs_dir: Path, model: str | None, region: str | Non
     return (review_dir / "index.rst").exists() and (review_dir / "page").is_dir()
 
 
+def resolve_existing_review_bundle_dir(
+    *,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None = None,
+) -> Path | None:
+    candidates: list[str | None] = [lang]
+    if (lang or "").strip():
+        candidates.append(None)
+
+    seen: set[Path] = set()
+    for candidate_lang in candidates:
+        review_dir = review_dir_for_target(
+            docs_dir=docs_dir,
+            model=model,
+            region=region,
+            lang=candidate_lang,
+        )
+        if review_dir in seen:
+            continue
+        seen.add(review_dir)
+        if review_bundle_exists(
+            docs_dir=docs_dir,
+            model=model,
+            region=region,
+            lang=candidate_lang,
+        ):
+            return review_dir
+    return None
+
+
 def review_content_exists(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> bool:
     if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=lang):
         return True
