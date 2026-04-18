@@ -523,7 +523,7 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("weee2.png", out)
         self.assertIn("Battery disposal meaning.", out)
 
-    def test_render_symbols_page_splits_icon_table_into_multiple_chunks(self) -> None:
+    def test_render_symbols_page_keeps_icon_table_as_single_table(self) -> None:
         blocks = self._symbols_blocks()
         blocks.extend(
             [
@@ -580,7 +580,7 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertEqual(4, out.count(".. list-table::"))
+        self.assertEqual(3, out.count(".. list-table::"))
         self.assertIn("Electric shock symbol meaning.", out)
         self.assertIn("Battery disposal meaning.", out)
         self.assertIn("WEEE disposal meaning.", out)

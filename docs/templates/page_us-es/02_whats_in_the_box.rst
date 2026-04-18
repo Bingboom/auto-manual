@@ -28,7 +28,7 @@
 
 .. list-table::
    :header-rows: 0
-   :widths: 10 90
+   :widths: 12 88
 
    * - **CONSEJOS**
      - El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web.

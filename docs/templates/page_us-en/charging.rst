@@ -39,7 +39,7 @@ CHARGING
    :widths: 12 88
 
    * - **NOTE**
-     - - The recommended charging temperature for the product ranges from -4掳F to 113掳F (-20掳C to 45掳C), and the discharging temperature ranges from -4掳F to 113掳F (-20掳C to 45掳C).
+     - - The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C).
        - Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.
        - The charging power and battery capacity of the product may vary due to temperature fluctuations.
 

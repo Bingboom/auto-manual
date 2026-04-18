@@ -11,7 +11,6 @@ from ..utils.spec_master import canonicalize_model_token
 
 PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
 PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
-ICON_TABLE_ROWS_PER_CHUNK = 2
 
 
 @dataclass(frozen=True)
@@ -458,56 +457,48 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
     right_rows = groups["right"]
     max_rows = max(len(left_rows), len(right_rows))
 
-    lines: list[str] = []
-    for chunk_start in range(0, max_rows, ICON_TABLE_ROWS_PER_CHUNK):
-        if lines:
-            lines.append("")
+    lines: list[str] = [
+        ".. list-table::",
+        "   :header-rows: 1",
+        "   :widths: 12 38 12 38",
+        "",
+        f"   * - {header_symbol}",
+        f"     - {header_meaning}",
+        f"     - {header_symbol}",
+        f"     - {header_meaning}",
+    ]
 
-        lines.extend(
-            [
-                ".. list-table::",
-                "   :header-rows: 1",
-                "   :widths: 12 38 12 38",
-                "",
-                f"   * - {header_symbol}",
-                f"     - {header_meaning}",
-                f"     - {header_symbol}",
-                f"     - {header_meaning}",
-            ]
-        )
+    for idx in range(max_rows):
+        left = left_rows[idx] if idx < len(left_rows) else None
+        right = right_rows[idx] if idx < len(right_rows) else None
 
-        chunk_end = min(chunk_start + ICON_TABLE_ROWS_PER_CHUNK, max_rows)
-        for idx in range(chunk_start, chunk_end):
-            left = left_rows[idx] if idx < len(left_rows) else None
-            right = right_rows[idx] if idx < len(right_rows) else None
+        if left is not None:
+            left_asset = SYMBOL_ASSETS[left["symbol_key"]]
+            _append_image_cell(
+                lines,
+                "   * - ",
+                image_path=str(left["image_path"]),
+                alt=left_asset.alt,
+                width=left_asset.width,
+            )
+            _append_text_cell(lines, "     - ", left["text"])
+        else:
+            lines.append("   * -")
+            lines.append("     -")
 
-            if left is not None:
-                left_asset = SYMBOL_ASSETS[left["symbol_key"]]
-                _append_image_cell(
-                    lines,
-                    "   * - ",
-                    image_path=str(left["image_path"]),
-                    alt=left_asset.alt,
-                    width=left_asset.width,
-                )
-                _append_text_cell(lines, "     - ", left["text"])
-            else:
-                lines.append("   * -")
-                lines.append("     -")
-
-            if right is not None:
-                right_asset = SYMBOL_ASSETS[right["symbol_key"]]
-                _append_image_cell(
-                    lines,
-                    "     - ",
-                    image_path=str(right["image_path"]),
-                    alt=right_asset.alt,
-                    width=right_asset.width,
-                )
-                _append_text_cell(lines, "     - ", right["text"])
-            else:
-                lines.append("     -")
-                lines.append("     -")
+        if right is not None:
+            right_asset = SYMBOL_ASSETS[right["symbol_key"]]
+            _append_image_cell(
+                lines,
+                "     - ",
+                image_path=str(right["image_path"]),
+                alt=right_asset.alt,
+                width=right_asset.width,
+            )
+            _append_text_cell(lines, "     - ", right["text"])
+        else:
+            lines.append("     -")
+            lines.append("     -")
 
     return "\n".join(lines) + "\n"
 

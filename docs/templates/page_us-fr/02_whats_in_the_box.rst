@@ -28,7 +28,7 @@
 
 .. list-table::
    :header-rows: 0
-   :widths: 10 90
+   :widths: 12 88
 
    * - **CONSEILS**
      - Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web.
