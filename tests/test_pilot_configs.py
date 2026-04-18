@@ -56,9 +56,9 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_us_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 15),
-            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 14),
-            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 14),
+            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 16),
+            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 15),
+            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 15),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:

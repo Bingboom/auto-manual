@@ -6,6 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
+from ..signal_words import get_signal_word, get_symbols_notice_label
 from ..utils.spec_master import canonicalize_model_token
 
 PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
@@ -120,10 +121,10 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "fr": {
-        "danger_title": "AVERTISSEMENT",
+        "danger_title": get_symbols_notice_label("fr"),
         "danger_bullets": [
-            "Cet appareil est destiné à un usage intérieur uniquement. Lors d'une utilisation en extérieur, placez-le dans un environnement similaire à un intérieur, par exemple une maison, un camping-car, une tente ou un chalet.",
-            "Cet appareil n'est ni étanche ni résistant à la poussière. Tenez-le éloigné de la pluie et des environnements humides pendant son utilisation.",
+            "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
+            "Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.",
         ],
         "maintenance_title": "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR",
         "maintenance_paragraph": (
@@ -140,37 +141,37 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Symbole d'avertissement.",
-                "label": "AVERTISSEMENT",
+                "label": get_signal_word("fr", "warning"),
                 "meaning": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Symbole de mise en garde.",
-                "label": "ATTENTION",
+                "label": get_signal_word("fr", "caution"),
                 "meaning": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Symbole de remarque.",
-                "label": "REMARQUE",
+                "label": get_signal_word("fr", "note"),
                 "meaning": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une dégradation des performances ou des résultats inattendus.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Symbole de conseil.",
-                "label": "CONSEILS",
+                "label": get_signal_word("fr", "tips"),
                 "meaning": "Complète les informations importantes ou les conseils d'utilisation du texte.",
             },
         ],
     },
     "es": {
-        "danger_title": "PELIGRO",
+        "danger_title": get_symbols_notice_label("es"),
         "danger_bullets": [
-            "Este dispositivo está diseñado únicamente para uso en interiores. Cuando lo utilice en exteriores, colóquelo en un entorno similar al interior, por ejemplo en el hogar, una autocaravana, una tienda de campaña o una cabaña.",
-            "Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.",
+            "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
+            "Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y ambientes húmedos durante su uso.",
         ],
         "maintenance_title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
         "maintenance_paragraph": (
@@ -187,28 +188,28 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Símbolo de advertencia.",
-                "label": "ADVERTENCIA",
+                "label": get_signal_word("es", "warning"),
                 "meaning": "Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Símbolo de precaución.",
-                "label": "PRECAUCIÓN",
+                "label": get_signal_word("es", "caution"),
                 "meaning": "Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Símbolo de nota.",
-                "label": "NOTA",
+                "label": get_signal_word("es", "note"),
                 "meaning": "Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Símbolo de consejo.",
-                "label": "CONSEJOS",
+                "label": get_signal_word("es", "tips"),
                 "meaning": "Complementa la información importante o los consejos de operación del texto.",
             },
         ],
@@ -279,6 +280,36 @@ def _append_text_cell(lines: list[str], prefix: str, text: str) -> None:
         lines.append(continuation + line)
 
 
+def _append_notice_table(
+    lines: list[str],
+    *,
+    title: str,
+    paragraphs: list[str],
+    note_prefix: str = "※ ",
+) -> None:
+    lines.extend(
+        [
+            ".. list-table::",
+            "   :header-rows: 0",
+            "   :widths: 18 82",
+            "",
+            f"   * - **{rst_escape(title)}**",
+        ]
+    )
+
+    if not paragraphs:
+        lines.append("     -")
+        return
+
+    first = rst_escape(paragraphs[0])
+    lines.append(f"     - {first}")
+
+    for extra in paragraphs[1:]:
+        text = rst_escape(extra)
+        lines.append("")
+        lines.append(f"       {note_prefix}{text}")
+
+
 def _append_image_cell(
     lines: list[str],
     prefix: str,
@@ -311,10 +342,7 @@ def _signal_section(lang: str) -> str:
     signal_rows = list(copy["signal_rows"])
 
     lines: list[str] = []
-    lines.extend(_rst_heading(danger_title))
-    lines.append("")
-    for bullet in danger_bullets:
-        lines.append(f"- {rst_escape(bullet)}")
+    _append_notice_table(lines, title=danger_title, paragraphs=danger_bullets)
     lines.append("")
     lines.extend(_rst_heading(maintenance_title))
     lines.append("")
@@ -429,7 +457,7 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
     right_rows = groups["right"]
     max_rows = max(len(left_rows), len(right_rows))
 
-    lines = [
+    lines: list[str] = [
         ".. list-table::",
         "   :header-rows: 1",
         "   :widths: 12 38 12 38",

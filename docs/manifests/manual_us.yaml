@@ -16,6 +16,9 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: en
+    file: templates/page_us-en/01_fcc.rst
+  - type: rst_include
+    lang: en
     file: templates/page_us-en/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
@@ -75,6 +78,9 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: fr
+    file: templates/page_us-fr/01_fcc.rst
+  - type: rst_include
+    lang: fr
     file: templates/page_us-fr/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
@@ -132,6 +138,9 @@ pages:
     page: symbols
     langs: [es]
     include_dir: generated/{model}
+  - type: rst_include
+    lang: es
+    file: templates/page_us-es/01_fcc.rst
   - type: rst_include
     lang: es
     file: templates/page_us-es/02_whats_in_the_box.rst

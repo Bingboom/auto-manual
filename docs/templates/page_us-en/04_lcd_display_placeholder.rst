@@ -48,6 +48,15 @@ LCD DISPLAY
      - **On:** The product is operating in bypass mode. Loads connected to the AC ports consume power from the grid instead of the power station. If the grid suddenly fails, the product automatically switches to its battery power within 10 ms.
 
        **Off:** The product is not in bypass mode. Loads connected to the AC ports are powered by the internal battery of the power station.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 12 28 60
+
+   * - ID
+     - Indicator
+     - Description
+
    * - 7
      - AC Power Indicator
      - The AC output (pure sine wave) is on.
@@ -69,6 +78,15 @@ LCD DISPLAY
    * - 13
      - Solar Charging Indicator
      - The product is charged via the DC Input (DC8020) using solar panel(s).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 12 28 60
+
+   * - ID
+     - Indicator
+     - Description
+
    * - 4
      - Battery Saving Mode
      - **On:** Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan.
@@ -100,6 +118,15 @@ LCD DISPLAY
        **Blink:** The battery level is below 5%.
 
        **Off:** The battery level is not below 20% or the product is charging.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 12 28 60
+
+   * - ID
+     - Indicator
+     - Description
+
    * - 22
      - Energy Saving Mode
      - When the AC or DC output is turned on by pressing the |AC_POWER_BUTTON_LABEL_LOWER| or |DC_USB_POWER_BUTTON_LABEL_LOWER|:

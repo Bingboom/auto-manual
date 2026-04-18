@@ -107,7 +107,7 @@
         </div>
       </div>
 
-**PELIGRO**
+**ADVERTENCIA**
 
 Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, p. ej. autocaravanas, tiendas de campaña, cabañas, etc.).
 

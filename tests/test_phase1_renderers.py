@@ -385,6 +385,18 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
 
+    def test_render_symbols_page_should_render_danger_notice_without_bullet_list(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+        self.assertIn("**DANGER**", out)
+        self.assertIn("※ This device is not waterproof or dustproof.", out)
+        self.assertNotIn("\n- This device is intended for indoor use only", out)
+
     def test_render_symbols_page_uses_image_path_from_blocks(self) -> None:
         blocks = self._symbols_blocks()
         blocks[0]["image_path"] = "custom/symbols/warning_triangle.png"
@@ -408,6 +420,44 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("SIGNIFICATION DES SYMBOLES", out)
         self.assertIn("Symbole", out)
         self.assertIn("Signification du symbole d'avertissement.", out)
+
+    def test_render_symbols_page_should_match_french_danger_notice_copy(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="fr",
+            vars_map={},
+        )
+        self.assertIn("**AVERTISSEMENT**", out)
+        self.assertIn("**ATTENTION**", out)
+        self.assertIn(
+            "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
+            out,
+        )
+        self.assertIn(
+            "※ Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.",
+            out,
+        )
+
+    def test_render_symbols_page_should_match_spanish_danger_notice_copy(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="es",
+            vars_map={},
+        )
+        self.assertIn("**ADVERTENCIA**", out)
+        self.assertNotIn("**PELIGRO**", out)
+        self.assertIn(
+            "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
+            out,
+        )
+        self.assertIn(
+            "※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y ambientes húmedos durante su uso.",
+            out,
+        )
 
     def test_render_symbols_page_filters_by_model_and_region(self) -> None:
         blocks = self._symbols_blocks()
@@ -472,6 +522,68 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         self.assertIn("weee2.png", out)
         self.assertIn("Battery disposal meaning.", out)
+
+    def test_render_symbols_page_keeps_icon_table_as_single_table(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks.extend(
+            [
+                {
+                    "block_type": "table_row",
+                    "column_group": "left",
+                    "symbol_key": "electric_shock",
+                    "image_path": "templates/word_template/common_assets/symbols/electric_shock.png",
+                    "order": "30",
+                    "Region": "",
+                    "Model": "",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "Electric shock symbol meaning.",
+                    "text_fr": "Signification du symbole de choc électrique.",
+                    "text_es": "Significado del símbolo de descarga eléctrica.",
+                },
+                {
+                    "block_type": "table_row",
+                    "column_group": "right",
+                    "symbol_key": "weee2",
+                    "image_path": "templates/word_template/common_assets/symbols/weee2.png",
+                    "order": "20",
+                    "Region": "",
+                    "Model": "",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "Battery disposal meaning.",
+                    "text_fr": "Signification de mise au rebut des batteries.",
+                    "text_es": "Significado de eliminación de baterías.",
+                },
+                {
+                    "block_type": "table_row",
+                    "column_group": "right",
+                    "symbol_key": "weee",
+                    "image_path": "templates/word_template/common_assets/symbols/weee.png",
+                    "order": "30",
+                    "Region": "",
+                    "Model": "",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "WEEE disposal meaning.",
+                    "text_fr": "Signification DEEE.",
+                    "text_es": "Significado RAEE.",
+                },
+            ]
+        )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertEqual(3, out.count(".. list-table::"))
+        self.assertIn("Electric shock symbol meaning.", out)
+        self.assertIn("Battery disposal meaning.", out)
+        self.assertIn("WEEE disposal meaning.", out)
 
     def test_render_symbols_page_rejects_unknown_symbol_key(self) -> None:
         blocks = self._symbols_blocks()

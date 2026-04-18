@@ -24,6 +24,7 @@ FONTS_DST = BUILD / "fonts.tex"
 FRAGILE_UNICODE_REPLACEMENTS = (
     ("\u2393", " DC "),
     ("\u203b", "*"),
+    ("\u2084", r"\textsubscript{4}"),
 )
 
 LOCAL_GILROY_DIR_ENV = "AUTO_MANUAL_LOCAL_GILROY_DIR"
@@ -78,6 +79,25 @@ def sanitize_fragile_unicode_glyphs(tex_path: Path) -> int:
         tex_path.write_text(s, encoding="utf-8")
         print(f"[patch_latex_fonts] sanitized fragile Unicode glyphs in: {tex_path.name} (changes={total})")
     return total
+
+
+def strip_sphinx_default_mono_font(tex_path: Path) -> int:
+    s = tex_path.read_text(encoding="utf-8", errors="ignore")
+    pattern = re.compile(
+        r"\\setmonofont\{FreeMono\}\[Scale=0\.9,\n"
+        r"  Extension      = \.otf,\n"
+        r"  UprightFont    = \*,\n"
+        r"  ItalicFont     = \*Oblique,\n"
+        r"  BoldFont       = \*Bold,\n"
+        r"  BoldItalicFont = \*BoldOblique,\n"
+        r"\]\n",
+        flags=re.MULTILINE,
+    )
+    s2, count = pattern.subn("% Sphinx default FreeMono removed; fonts.tex provides mono font fallback.\n", s, count=1)
+    if count:
+        tex_path.write_text(s2, encoding="utf-8")
+        print(f"[patch_latex_fonts] removed Sphinx default FreeMono block from: {tex_path.name}")
+    return count
 
 
 def resolve_local_gilroy_dir() -> Path | None:
@@ -240,6 +260,7 @@ def main() -> None:
     patch_build_fonts_tex_windows(fonts_dst)
 
     main_tex = find_main_tex(build_dir, args.tex)
+    strip_sphinx_default_mono_font(main_tex)
     inject_before_begin_document(main_tex)
     sanitize_fragile_unicode_glyphs(main_tex)
 

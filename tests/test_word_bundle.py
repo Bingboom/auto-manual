@@ -221,6 +221,51 @@ Congratulations on your new manual.
         self.assertIn("<strong>WARNING</strong>", out)
         self.assertIn("Risk of fire.", out)
 
+    def test_rewrite_word_friendly_fragment_should_localize_french_warning_box_label(self) -> None:
+        fragment = (
+            '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-text">Consultez les consignes de sécurité avant utilisation.</div>'
+            '</div></div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment, lang="fr")
+
+        self.assertIn("<strong>AVERTISSEMENT</strong>", out)
+        self.assertNotIn("<strong>WARNING</strong>", out)
+
+    def test_rewrite_word_friendly_fragment_should_localize_spanish_warning_box_label(self) -> None:
+        fragment = (
+            '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-text">Consulte las instrucciones de seguridad antes de usarlo.</div>'
+            '</div></div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment, lang="es")
+
+        self.assertIn("<strong>ADVERTENCIA</strong>", out)
+        self.assertNotIn("<strong>WARNING</strong>", out)
+
+    def test_convert_rst_fragment_to_html_should_infer_warning_box_label_from_source_name(self) -> None:
+        rst = """
+.. only:: html
+
+   .. raw:: html
+
+      <div class="hb-warning-box">
+        <div class="hb-warning-row">
+          <div class="hb-warning-text">Consulte las instrucciones antes de usarlo.</div>
+        </div>
+      </div>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("safety_es.rst"),
+                Path(td),
+            )
+
+        self.assertIn("<strong>ADVERTENCIA</strong>", html)
+
     def test_rewrite_word_friendly_fragment_should_convert_alert_paragraphs_into_tables(self) -> None:
         fragment = (
             "<p><strong>CAUTION</strong></p>"
@@ -302,8 +347,8 @@ Congratulations on your new manual.
             '<div class="hb-two-col">'
             '<ul class="hb-list">'
             '<li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product\'s specified operating temperature ranges:</li>'
-            '<li>Charging temperature: -4掳F to 113掳F (-20掳C to 45掳C)</li>'
-            '<li>Discharging temperature: -4掳F to 113掳F (-20掳C to 45掳C)</li>'
+            '<li>Charging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
+            '<li>Discharging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
             '<li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.</li>'
             '<li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li>'
             '<li>Water can cause short circuits or damage to the charger, leading to safety risks.</li>'
