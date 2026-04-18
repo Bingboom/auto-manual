@@ -9,6 +9,7 @@ from tools.review_support import (
     SyncPlanEntry,
     overlay_review_content_onto_bundle,
     overlay_review_onto_bundle,
+    resolve_existing_review_bundle_dir,
     review_bundle_exists,
     review_content_exists,
     sync_review_from_runtime,
@@ -112,6 +113,22 @@ class TestReviewSupport(unittest.TestCase):
 
             self.assertFalse(review_bundle_exists(docs_dir=docs_dir, model="JE-1000F", region="US", lang=None))
             self.assertTrue(review_content_exists(docs_dir=docs_dir, model="JE-1000F", region="US", lang=None))
+
+    def test_resolve_existing_review_bundle_dir_should_fallback_to_legacy_dir_for_lang_targets(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            legacy_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (legacy_review_dir / "page").mkdir(parents=True)
+            (legacy_review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+
+            resolved = resolve_existing_review_bundle_dir(
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+            )
+
+            self.assertEqual(legacy_review_dir, resolved)
 
     def test_overlay_review_content_onto_bundle_should_preserve_runtime_index_when_legacy_review_dir_has_no_index(self) -> None:
         with tempfile.TemporaryDirectory() as td:

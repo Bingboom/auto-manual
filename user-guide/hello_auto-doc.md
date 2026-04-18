@@ -262,6 +262,7 @@ Important:
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
 - review builds now auto-run the same parameter sync before `check`, `html`, `word`, `pdf`, and `publish`, so parameter lines stay current without overwriting the rest of the review prose.
+- when a single-language build targets a merged review branch and only `docs/_review/<model>/US/` exists, that auto sync falls back to the merged review root instead of silently skipping the refresh.
 - if you intentionally want one review page replaced from runtime, keep using `sync-review --page-file <file>`; if you need the whole review bundle replaced, use `review --refresh-review`.
 - single-language US English review targets still use `docs/_review/<model>/US/en/`, but the merged US `config.us.yaml` queue/review flow now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`.
 - for that merged US flow, `Spec_Master.Source_lang` / `*_source` values are required, while CSV-driven non-source language columns may be blank because runtime lookup falls back to the source-language text automatically.

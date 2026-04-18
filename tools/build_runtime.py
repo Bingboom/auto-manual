@@ -68,7 +68,7 @@ def review_sync_target_args(
     load_config: Callable[[Path], dict[str, Any]],
     resolve_docs_dir: Callable[[Path], Path],
     resolve_build_targets: Callable[..., list[Any]],
-    review_bundle_exists: Callable[..., bool],
+    resolve_existing_review_bundle_dir: Callable[..., Path | None],
 ) -> list[argparse.Namespace]:
     config_path = resolve_path_from_root(args.config)
     cfg = load_config(config_path)
@@ -83,12 +83,12 @@ def review_sync_target_args(
     seen: set[tuple[str, str]] = set()
     sync_args_list: list[argparse.Namespace] = []
     for target in targets:
-        if not review_bundle_exists(
+        if resolve_existing_review_bundle_dir(
             docs_dir=docs_dir,
             model=target.model,
             region=target.region,
             lang=target.lang,
-        ):
+        ) is None:
             continue
         key = (str(target.model or ""), str(target.region or ""))
         if key in seen:

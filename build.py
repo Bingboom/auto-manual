@@ -277,7 +277,7 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
 
 def _review_sync_target_args(args: argparse.Namespace) -> list[argparse.Namespace]:
     from tools.build_docs import resolve_build_targets
-    from tools.review_support import review_bundle_exists
+    from tools.review_support import resolve_existing_review_bundle_dir
 
     return _review_sync_target_args_impl(
         args,
@@ -285,7 +285,7 @@ def _review_sync_target_args(args: argparse.Namespace) -> list[argparse.Namespac
         load_config=load_config,
         resolve_docs_dir=resolve_docs_dir,
         resolve_build_targets=resolve_build_targets,
-        review_bundle_exists=review_bundle_exists,
+        resolve_existing_review_bundle_dir=resolve_existing_review_bundle_dir,
     )
 
 

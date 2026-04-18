@@ -5,10 +5,13 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest import mock
 
 import build as build_cli
 from tests.test_helpers import patch_module_attrs, temp_test_root, write_text
+from tools.build_runtime import review_sync_target_args as runtime_review_sync_target_args
+from tools.review_support import resolve_existing_review_bundle_dir
 
 
 class TestBuildScript(unittest.TestCase):
@@ -426,6 +429,34 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertIn("--docs-build-dir", cmd)
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
+
+    def test_review_sync_target_args_should_include_lang_target_when_only_legacy_review_bundle_exists(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            legacy_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (legacy_review_dir / "page").mkdir(parents=True)
+            write_text(legacy_review_dir / "index.rst", "review index\n")
+
+            args = build_cli.parse_args(
+                ["word", "--config", "config.us-en.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"]
+            )
+
+            sync_args = runtime_review_sync_target_args(
+                args,
+                resolve_path_from_root=lambda raw_path: root / raw_path,
+                load_config=lambda config_path: {"build": {"languages": ["en"]}},
+                resolve_docs_dir=lambda config_path: docs_dir,
+                resolve_build_targets=lambda *argv, **kwargs: [
+                    SimpleNamespace(model="JE-1000F", region="US", lang="en")
+                ],
+                resolve_existing_review_bundle_dir=resolve_existing_review_bundle_dir,
+            )
+
+            self.assertEqual(1, len(sync_args))
+            self.assertEqual("JE-1000F", sync_args[0].model)
+            self.assertEqual("US", sync_args[0].region)
+            self.assertEqual("params", sync_args[0].sync_scope)
 
     def test_run_check_should_forward_explicit_review_source_to_rst_build(self) -> None:
         args = build_cli.parse_args(["check", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
