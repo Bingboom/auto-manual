@@ -106,7 +106,7 @@ Meaning:
 - merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
 - config policy for `build.queue_by_document_key`: turn it on only for merged whole-book families that intentionally build one shared manual across languages, such as today's `us-merged` and future `eu-merged` / `cn-merged`; leave it off for single-language families such as `us-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to be isolated by `record_id`
 - when the queue row carries `Version`, Build Draft Package DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue release artifact names become `manual_je1000f_us_en_publish_0.2.docx` and `manual_je1000f_us_en_publish_0.2.pdf`; only the PDF is uploaded back to `Document link`
-- `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds fetch that review branch into a temporary worktree and build from that branch content instead of silently falling back to `main`
+- `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds now seed a temporary worktree from the latest `origin/main`, then overlay only `docs/_review` from that review branch, so the queue keeps the current `main` toolchain while still rendering the selected review content instead of silently falling back to `main`
 - on a local worker, if a same-named local branch for `Git_ref` already exists, the queue uses that branch directly so local review edits can be built before they are pushed upstream
 - if that fetch hits a transient GitHub network failure but the worker already has the same `origin/<Git_ref>` or local branch cached, the queue reuses the cached ref and keeps building from the intended review content
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
@@ -161,6 +161,7 @@ Start Review, Build Draft Package, Publish:
 - if Feishu triggers the Build Draft Package worker, dispatch it on `main`; the actual build source is resolved from `Document_link.Git_ref`, and rows missing `Git_ref` fail fast
 - if Feishu triggers the Publish worker, dispatch it on `main`; the workflow definition stays on `main`, while `Document_link.Git_ref` still controls the fetched review branch when present
 - if a Publish-stage row also carries `Git_ref`, the Publish worker keeps `main` only as the orchestration branch and fetches the actual build source from that review branch
+- in both Draft and Publish queue builds, `Git_ref` is treated as a review-content branch: the worker keeps the latest `main` code/toolchain and overlays only `docs/_review` from `Git_ref`, so review-branch edits outside `docs/_review` are not part of queue builds
 - Build Draft Package assumes the document is already in review; use `process-review-start-queue` or `feishu-start-review.yml` first to create the branch and seed `docs/_review`
 
 Windows cleanup note:
@@ -375,6 +376,7 @@ By default this updates data-driven files in the review bundle without resetting
 
 That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
 Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
+That sync now also refreshes `generated_page` placeholder files under `page/*.rst`, so final review builds do not keep stale placeholder text after runtime/generated data changes.
 When a single-language build points at a merged review branch and only `docs/_review/<model>/US/` exists, that automatic sync falls back to the merged review root instead of skipping the refresh.
 For the single-language US English config, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout. For the merged US `config.us.yaml` queue/review flow, the canonical review root is now `docs/_review/<model>/US/`.
 
