@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+from io import BytesIO
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -52,8 +54,63 @@ class _DocBlock:
     element: ET.Element
 
 
+_XMLNS_DECL_RE = re.compile(r'\sxmlns(?::(?P<prefix>[-A-Za-z0-9_.]+))?="[^"]+"')
+
+
 def _ps_quote(value: str) -> str:
     return value.replace("'", "''")
+
+
+def _collect_xml_namespaces(xml_payload: bytes) -> dict[str, str]:
+    namespaces: dict[str, str] = {}
+    for _event, ns_decl in ET.iterparse(BytesIO(xml_payload), events=("start-ns",)):
+        prefix, uri = ns_decl
+        namespaces.setdefault(prefix or "", uri)
+    return namespaces
+
+
+def _inject_missing_namespace_declarations(xml_payload: bytes, namespaces: dict[str, str]) -> bytes:
+    if not namespaces:
+        return xml_payload
+
+    xml_text = xml_payload.decode("utf-8")
+    search_from = 0
+    if xml_text.startswith("<?xml"):
+        decl_end = xml_text.find("?>")
+        if decl_end != -1:
+            search_from = decl_end + 2
+
+    root_start = xml_text.find("<", search_from)
+    root_end = xml_text.find(">", root_start + 1)
+    if root_start == -1 or root_end == -1:
+        return xml_payload
+
+    root_open = xml_text[root_start:root_end]
+    existing_prefixes = {match.group("prefix") or "" for match in _XMLNS_DECL_RE.finditer(root_open)}
+
+    additions: list[str] = []
+    for prefix, uri in namespaces.items():
+        if prefix in existing_prefixes:
+            continue
+        escaped_uri = uri.replace("&", "&amp;").replace('"', "&quot;")
+        if prefix:
+            additions.append(f' xmlns:{prefix}="{escaped_uri}"')
+        else:
+            additions.append(f' xmlns="{escaped_uri}"')
+
+    if not additions:
+        return xml_payload
+
+    xml_text = f"{xml_text[:root_end]}{''.join(additions)}{xml_text[root_end:]}"
+    return xml_text.encode("utf-8")
+
+
+def _serialize_xml_preserving_namespaces(root: ET.Element, *, original_xml: bytes) -> bytes:
+    namespaces = _collect_xml_namespaces(original_xml)
+    for prefix, uri in namespaces.items():
+        ET.register_namespace(prefix, uri)
+    serialized = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+    return _inject_missing_namespace_declarations(serialized, namespaces)
 
 
 def _collect_word_heading_style_ids(styles_xml: bytes) -> tuple[set[str], set[str]]:
@@ -394,8 +451,7 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
     if not changed:
         return
 
-    ET.register_namespace("w", _W_NS)
-    blobs["word/document.xml"] = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+    blobs["word/document.xml"] = _serialize_xml_preserving_namespaces(root, original_xml=doc_xml)
 
     tmp_path = docx_path.with_suffix(".styles.tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:
@@ -489,10 +545,9 @@ def _embed_external_docx_images(docx_path: Path) -> None:
             xml_changed = True
 
         if xml_changed:
-            blobs[member_name] = ET.tostring(xml_root, encoding="utf-8", xml_declaration=True)
+            blobs[member_name] = _serialize_xml_preserving_namespaces(xml_root, original_xml=payload)
 
-    ET.register_namespace("", _REL_NS)
-    blobs["word/_rels/document.xml.rels"] = ET.tostring(rel_root, encoding="utf-8", xml_declaration=True)
+    blobs["word/_rels/document.xml.rels"] = _serialize_xml_preserving_namespaces(rel_root, original_xml=rels_xml)
 
     content_types_xml = blobs.get("[Content_Types].xml")
     if content_types_xml:
@@ -511,8 +566,7 @@ def _embed_external_docx_images(docx_path: Path) -> None:
                 Extension=ext,
                 ContentType=_IMAGE_CONTENT_TYPES[suffix],
             )
-        ET.register_namespace("", _CT_NS)
-        blobs["[Content_Types].xml"] = ET.tostring(ct_root, encoding="utf-8", xml_declaration=True)
+        blobs["[Content_Types].xml"] = _serialize_xml_preserving_namespaces(ct_root, original_xml=content_types_xml)
 
     tmp_path = docx_path.with_suffix(".embed.tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:
@@ -572,8 +626,7 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
     if not changed:
         return
 
-    ET.register_namespace("w", _W_NS)
-    blobs["word/document.xml"] = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+    blobs["word/document.xml"] = _serialize_xml_preserving_namespaces(root, original_xml=doc_xml)
 
     tmp_path = docx_path.with_suffix(".tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:
