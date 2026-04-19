@@ -6,12 +6,12 @@ PANTALLA LCD
    :width: 420px
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 28 60
 
-   * - ID
-     - Indicador
-     - Descripción
+   * - **ID**
+     - **Indicador**
+     - **Descripción**
    * - 1
      - Wi-Fi
      - **Encendido:** Wi-Fi conectado.
@@ -51,14 +51,6 @@ PANTALLA LCD
 
        **Apagado:** El producto no está en modo bypass. Las cargas conectadas a los puertos de CA son alimentadas por la batería interna de la estación de energía.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicador
-     - Descripción
-
    * - 7
      - Indicador de alimentación de CA
      - La salida de CA (onda sinusoidal pura) está activada.
@@ -80,14 +72,6 @@ PANTALLA LCD
    * - 13
      - Indicador de carga solar
      - El producto se carga mediante la entrada de CC (DC8020) utilizando paneles solares.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicador
-     - Descripción
 
    * - 14
      - Modo de ahorro de batería
@@ -118,14 +102,6 @@ PANTALLA LCD
    * - 18
      - Porcentaje de batería restante
      - Muestra el porcentaje de batería restante.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicador
-     - Descripción
 
    * - 19
      - Modo de ahorro de energía

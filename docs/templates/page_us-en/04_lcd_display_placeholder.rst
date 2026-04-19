@@ -6,12 +6,12 @@ LCD DISPLAY
    :width: 420px
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 28 60
 
-   * - ID
-     - Indicator
-     - Description
+   * - **ID**
+     - **Indicator**
+     - **Description**
    * - 1
      - Wi-Fi
      - **On:** Wi-Fi connected.
@@ -49,14 +49,6 @@ LCD DISPLAY
 
        **Off:** The product is not in bypass mode. Loads connected to the AC ports are powered by the internal battery of the power station.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicator
-     - Description
-
    * - 7
      - AC Power Indicator
      - The AC output (pure sine wave) is on.
@@ -78,14 +70,6 @@ LCD DISPLAY
    * - 13
      - Solar Charging Indicator
      - The product is charged via the DC Input (DC8020) using solar panel(s).
-
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicator
-     - Description
 
    * - 4
      - Battery Saving Mode
@@ -118,14 +102,6 @@ LCD DISPLAY
        **Blink:** The battery level is below 5%.
 
        **Off:** The battery level is not below 20% or the product is charging.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicator
-     - Description
 
    * - 22
      - Energy Saving Mode

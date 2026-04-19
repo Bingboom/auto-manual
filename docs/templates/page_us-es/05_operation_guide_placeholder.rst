@@ -8,17 +8,14 @@ ENCENDIDO/APAGADO
    :alt: Operación de encendido/apagado.
    :width: 360px
 
-Encendido: Presione una vez.
-
-Apagado: Mantenga presionado durante 3 segundos.
-
-**Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
-
-El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
-
-*El tiempo de espera puede configurarse en la aplicación Jackery.*
-
-Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
+| Encendido: Presione una vez.
+| Apagado: Mantenga presionado durante 3 segundos.
+|
+| **Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
+| El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
+| *El tiempo de espera puede configurarse en la aplicación Jackery.*
+|
+| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
 
 ENCENDER/APAGAR SALIDA DE CA
 ----------------------------
@@ -42,9 +39,10 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
    :alt: Operación de salida de CC y USB.
    :width: 360px
 
-Encendido: Presione una vez.
-
-Apagado: Presione una vez.
+|
+| Encendido: Presione una vez.
+| Apagado: Presione una vez.
+|
 
 **PRECAUCIÓN**
 
@@ -52,7 +50,9 @@ Apagado: Presione una vez.
 - Conecte |PRODUCT_NAME| únicamente a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otras normas equivalentes).
 - Para obtener la máxima potencia de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100 W).
 
-El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
+|
+| El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
+|
 
 **PRECAUCIÓN**
 
@@ -73,7 +73,9 @@ Cuando alimente dispositivos de baja potencia (CA <= |ENERGY_SAVING_AC_THRESHOLD
    :alt: Operación del modo de ahorro de energía.
    :width: 320px
 
-Mantenga pulsados ambos botones durante 3 segundos.
+|
+| Mantenga pulsados ambos botones durante 3 segundos.
+|
 
 **NOTA**
 
@@ -88,49 +90,68 @@ La luz LED tiene dos modos: modo de iluminación y modo SOS. En cualquier modo, 
    :alt: Operación de la luz LED.
    :width: 360px
 
-Presione una vez el botón de la luz LED para encenderla.
-
-Presiónelo nuevamente para cambiar al modo SOS.
-
-Presiónelo una tercera vez para apagar la luz.
+|
+| Presione una vez el botón de la luz LED para encenderla.
+| Presiónelo nuevamente para cambiar al modo SOS.
+| Presiónelo una tercera vez para apagar la luz.
 
 PANTALLA LCD
 ------------
 
-.. list-table::
-   :header-rows: 1
-   :widths: 30 20 20 30
+.. only:: html
 
-   * - Pantalla
-     - Modo
-     - Acción
-     - Comportamiento
-   * - .. image:: templates/word_template/common_assets/operation/lcd_mode.png
-          :alt: Modo de pantalla LCD.
-          :width: 140px
-     - En breve
-     - Encender
-     - Presione el botón de encendido principal o cuando el producto se esté cargando.
-   * -
-     - En breve
-     - Apagar
-     - Presione el botón de encendido principal.
-   * -
-     - En breve
-     - Apagado automático
-     - La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.
-   * -
-     - Estable en (durante el estado de carga o descarga)
-     - Encender
-     - Presione dos veces el botón de encendido principal cuando el producto esté encendido.
-   * -
-     - Estable en (durante el estado de carga o descarga)
-     - Apagar
-     - Presione el botón de encendido principal.
-   * -
-     - Estable en (durante el estado de carga o descarga)
-     - Apagado automático
-     - La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad.
+   .. raw:: html
+
+      <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
+        <tr>
+          <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
+            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+          </td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">En breve</td>
+          <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal o cuando el producto se esté cargando.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagar</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagado automático</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Estable en (durante el estado de carga o descarga)</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione dos veces el botón de encendido principal cuando el producto esté encendido.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagar</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagado automático</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad.</td>
+        </tr>
+      </table>
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{En breve}} & Encender & Presione el botón de encendido principal o cuando el producto se esté cargando. \\ \cline{3-4}
+      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & & Apagado automático & La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Estable en (durante el estado de carga o descarga)}} & Encender & Presione dos veces el botón de encendido principal cuando el producto esté encendido. \\ \cline{3-4}
+      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & & Apagado automático & La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad. \\ \hline
+      \end{tabular}
+      \endgroup
 
 También puede configurar el modo de visualización de la pantalla en la aplicación Jackery.
 

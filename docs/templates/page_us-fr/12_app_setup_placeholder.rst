@@ -21,13 +21,14 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
    :width: 320px
 
-|MAIN_POWER_BUTTON_LABEL|
+|
+| |MAIN_POWER_BUTTON_LABEL|
+| |DC_USB_POWER_BUTTON_LABEL|
+| |AC_POWER_BUTTON_LABEL|
+|
 
-|DC_USB_POWER_BUTTON_LABEL|
-
-|AC_POWER_BUTTON_LABEL|
-
-2.3 Une fois que vous avez appuyé sur l'icône de recherche d'appareils, l'appareil est automatiquement associé à l'application via le Bluetooth.
+| 2.3 Une fois que vous avez appuyé sur l'icône de recherche d'appareils, l'appareil est automatiquement associé à l'application via le Bluetooth.
+|
 
 **REMARQUE**
 
@@ -36,24 +37,27 @@ Si le message «l'appareil a été associé» s'affiche pendant l'appairage, vou
 - Le propriétaire de l'appareil peut partager ce dernier avec d'autres utilisateurs dans l'application.
 - Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil et l'associer de nouveau.
 
-2.4 Une fois l'appairage réalisé avec succès, vous devrez saisir le nom et le mot de passe du Wi-Fi pour que l'appareil se connecte automatiquement au réseau Wi-Fi.
+|
+| 2.4 Une fois l'appairage réalisé avec succès, vous devrez saisir le nom et le mot de passe du Wi-Fi pour que l'appareil se connecte automatiquement au réseau Wi-Fi.
 
 **REMARQUE**
 
 - Veuillez choisir un réseau Wi-Fi 2,4 GHz. L'appareil ne prend pas en charge le réseau Wi-Fi 5 GHz.
 
-2.5 Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
+| 2.5 Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.
    :width: 360px
 
-Les captures d'écran ci-dessus sont fournies à titre indicatif.
+| Les captures d'écran ci-dessus sont fournies à titre indicatif.
+|
 
 **ATTENTION**
 
 L'application Jackery ne peut se connecter qu'à une seule station d'énergie à la fois via Bluetooth. Revenir à la liste des appareils déconnecte automatiquement le Bluetooth. Touchez à nouveau la station d'énergie dans la liste pour vous reconnecter automatiquement.
 
+|
 **3. Dissocier l'appareil**
 
 Cliquez sur le bouton des paramètres en haut à droite de l'interface principale pour accéder à la page des paramètres. Cliquez sur le bouton de dissociation en bas de la page pour dissocier l'appareil.
@@ -67,7 +71,8 @@ Cliquez sur le bouton des paramètres en haut à droite de l'interface principal
 
 **4.2 Pour désactiver le Wi-Fi et le Bluetooth**
 
-Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu'à ce que les icônes Wi-Fi et Bluetooth s'éteignent de l'écran.
+| Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu'à ce que les icônes Wi-Fi et Bluetooth s'éteignent de l'écran.
+|
 
 **4.3 Pour réinitialiser le Wi-Fi et le Bluetooth**
 
