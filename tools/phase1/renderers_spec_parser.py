@@ -284,7 +284,7 @@ def _parse_spec_master_sections(
 
         footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
         note_id = _first_non_empty(row, ["Note_id", "note_id"])
-        row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind"]).lower()
+        row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind", "Kind", "type", "Type"]).lower()
         if not row_kind:
             if footnote_id:
                 row_kind = "footnote"

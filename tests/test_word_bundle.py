@@ -5,13 +5,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.word_bundle import derive_word_title, render_safety_word_html, resolve_reference_doc
+from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
 from tools.word_bundle_html import (
     _build_word_only_tags,
     _convert_rst_fragment_to_html,
     _inject_img_dimensions,
     _rewrite_word_friendly_fragment,
 )
+from tools.word_bundle_html_rewrite import _extract_spec_word_data
 
 
 class TestWordBundle(unittest.TestCase):
@@ -64,6 +65,72 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("<h1>IMPORTANT SAFETY INFORMATION</h1>", html)
         self.assertIn("<h2>OPERATING INSTRUCTIONS</h2>", html)
         self.assertIn("<li>Top item</li>", html)
+
+    def test_render_spec_word_html_should_reject_ambiguous_trailer_order(self) -> None:
+        with self.assertRaisesRegex(ValueError, "spec trailer order must come from the upstream HTML fragment"):
+            render_spec_word_html(
+                {
+                    "title_main": "SPECIFICATIONS",
+                    "sections": [
+                        {
+                            "title": "Environmental Operating Temperature",
+                            "rows": [
+                                ("Charging Temperature", "-4°F to 113°F / -20°C to 45°C"),
+                                ("Discharging Temperature", "-4°F to 113°F / -20°C to 45°C"),
+                            ],
+                        }
+                    ],
+                    "notes": ["※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."],
+                    "footnotes": [
+                        "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports."
+                    ],
+                }
+            )
+
+    def test_convert_rst_fragment_to_html_should_keep_spec_trailer_order_from_html(self) -> None:
+        rst = """
+.. only:: html
+
+   .. raw:: html
+
+      <h1 class="hb-h1-pill">SPECIFICATIONS</h1>
+
+   .. raw:: html
+
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">ENVIRONMENTAL OPERATING TEMPERATURE</span></h2>
+      <table class="hb-spec-table">
+        <tbody>
+          <tr>
+            <th scope="row" class="hb-spec-label">Charging Temperature</th>
+            <td class="hb-spec-value">-4°F to 113°F / -20°C to 45°C</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>
+      <p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</p>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("spec_en.rst"),
+                Path(td),
+            )
+
+        self.assertIn('class="manual-spec-trailer-spacer"', html)
+        self.assertIn(
+            '<p class="manual-spec-note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>',
+            html,
+        )
+        self.assertIn(
+            '<p class="manual-spec-footnote">① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</p>',
+            html,
+        )
+        self.assertLess(
+            html.find("※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."),
+            html.find(
+                "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports."
+            ),
+        )
 
     def test_convert_rst_fragment_to_html_should_convert_safety_two_column_blocks(self) -> None:
         rst = """
@@ -136,6 +203,99 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("GENERAL INFO", html)
         self.assertIn('class="manual-table manual-spec-table"', html)
         self.assertIn("JE-1000F", html)
+
+    def test_extract_spec_word_data_should_preserve_multiline_spec_values(self) -> None:
+        fragment = (
+            "<h1>SPECIFICATIONS</h1>"
+            "<h2>● INPUT PORTS</h2>"
+            "<table><tbody>"
+            "<tr>"
+            "<td>1 × AC Input</td>"
+            "<td>Charge Mode: 100V-120V~60Hz, 15A Max<br/>Bypass Mode①: 100V-120V~60Hz, 12A Max</td>"
+            "</tr>"
+            "</tbody></table>"
+        )
+
+        data = _extract_spec_word_data(fragment)
+
+        self.assertIsNotNone(data)
+        assert data is not None
+        self.assertEqual(
+            "Charge Mode: 100V-120V~60Hz, 15A Max\nBypass Mode①: 100V-120V~60Hz, 12A Max",
+            data["sections"][0]["rows"][0][1],
+        )
+
+    def test_extract_spec_word_data_should_preserve_trailer_kind_from_html_metadata(self) -> None:
+        fragment = (
+            "<h1>SPECIFICATIONS</h1>"
+            "<h2>● ENVIRONMENTAL OPERATING TEMPERATURE</h2>"
+            "<table><tbody>"
+            "<tr><td>Charging Temperature</td><td>-4°F to 113°F / -20°C to 45°C</td></tr>"
+            "</tbody></table>"
+            '<p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>'
+            '<p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</p>'
+        )
+
+        data = _extract_spec_word_data(fragment)
+
+        self.assertIsNotNone(data)
+        assert data is not None
+        self.assertEqual(
+            [
+                ("note", "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."),
+                (
+                    "footnote",
+                    "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
+                ),
+            ],
+            data["trailers"],
+        )
+        self.assertEqual(
+            ["※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."],
+            data["notes"],
+        )
+        self.assertEqual(
+            ["① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports."],
+            data["footnotes"],
+        )
+
+    def test_convert_rst_fragment_to_html_should_split_multiline_spec_values_into_rowspan_rows(self) -> None:
+        rst = """
+.. only:: html
+
+   .. raw:: html
+
+      <h1 class="hb-h1-pill">SPECIFICATIONS</h1>
+
+   .. raw:: html
+
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">INPUT PORTS</span></h2>
+      <table class="hb-spec-table">
+        <tbody>
+          <tr>
+            <th scope="row" class="hb-spec-label">1 × AC Input</th>
+            <td class="hb-spec-value">Charge Mode: 100V-120V~60Hz, 15A Max<br/>Bypass Mode①: 100V-120V~60Hz, 12A Max</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">2 × DC8020 Ports</th>
+            <td class="hb-spec-value">11V-16V⎓8A Max, Double to 8A Max<br/>16V-60V⎓12A Max, Double to 21A / 400W Max</td>
+          </tr>
+        </tbody>
+      </table>
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("spec_en.rst"),
+                Path(td),
+            )
+
+        self.assertIn('rowspan="2"', html)
+        self.assertIn("Charge Mode: 100V-120V~60Hz, 15A Max", html)
+        self.assertIn("Bypass Mode①: 100V-120V~60Hz, 12A Max", html)
+        self.assertIn("16V-60V⎓12A Max, Double to 21A / 400W Max", html)
+        self.assertNotIn("MaxBypass", html)
+        self.assertNotIn("Max16V-60V", html)
 
     def test_build_word_only_tags_should_normalize_target_context(self) -> None:
         tags = _build_word_only_tags(model="JE-2000E", region="US", lang="en")

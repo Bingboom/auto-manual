@@ -177,6 +177,15 @@ class Phase1Builder:
         return _read_csv(path)
 
     @staticmethod
+    def _normalize_spec_trailer_kind(value: str, *, default: str) -> str:
+        normalized = (value or "").strip().casefold()
+        if normalized == "note":
+            return "note"
+        if normalized == "footnote":
+            return "footnote"
+        return default
+
+    @staticmethod
     def _normalize_spec_footnote_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         if not rows:
             return []
@@ -187,6 +196,14 @@ class Phase1Builder:
         normalized: list[dict[str, str]] = []
         for row in rows:
             order = (row.get("Footnote_order") or row.get("footnote_order") or "").strip()
+            trailer_kind = Phase1Builder._normalize_spec_trailer_kind(
+                (row.get("Type") or row.get("type") or "").strip(),
+                default="footnote",
+            )
+            text_en = row.get("Text_en", "") or row.get("text_en", "") or ""
+            text_fr = row.get("Text_fr", "") or row.get("text_fr", "") or ""
+            text_es = row.get("Text_es", "") or row.get("text_es", "") or ""
+            text_ja = row.get("Text_ja", "") or row.get("text_ja", "") or ""
             normalized.append(
                 {
                     "__line__": row.get("__line__", ""),
@@ -195,14 +212,20 @@ class Phase1Builder:
                     "Source_lang": (row.get("Source_lang") or row.get("source_lang") or "").strip(),
                     "Is_Latest": (row.get("Is_Latest") or row.get("is_latest") or "TRUE").strip(),
                     "Page": (row.get("Page") or row.get("page") or "specifications").strip(),
-                    "row_kind": "footnote",
+                    "row_kind": trailer_kind,
+                    "kind": trailer_kind,
                     "row_order": order,
                     "footnote_id": (row.get("Footnote_id") or row.get("footnote_id") or "").strip(),
                     "footnote_order": order,
-                    "footnote_text_en": row.get("Text_en", "") or row.get("text_en", "") or "",
-                    "footnote_text_fr": row.get("Text_fr", "") or row.get("text_fr", "") or "",
-                    "footnote_text_es": row.get("Text_es", "") or row.get("text_es", "") or "",
-                    "footnote_text_ja": row.get("Text_ja", "") or row.get("text_ja", "") or "",
+                    "footnote_text_en": text_en,
+                    "footnote_text_fr": text_fr,
+                    "footnote_text_es": text_es,
+                    "footnote_text_ja": text_ja,
+                    "note_text_en": text_en,
+                    "note_text_fr": text_fr,
+                    "note_text_es": text_es,
+                    "note_text_ja": text_ja,
+                    "type": (row.get("Type") or row.get("type") or "").strip(),
                     "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
                 }
             )
@@ -216,6 +239,14 @@ class Phase1Builder:
         normalized: list[dict[str, str]] = []
         for row in rows:
             order = (row.get("Note_order") or row.get("note_order") or "").strip()
+            trailer_kind = Phase1Builder._normalize_spec_trailer_kind(
+                (row.get("Type") or row.get("type") or "").strip(),
+                default="note",
+            )
+            text_en = row.get("Text_en", "") or row.get("text_en", "") or ""
+            text_fr = row.get("Text_fr", "") or row.get("text_fr", "") or ""
+            text_es = row.get("Text_es", "") or row.get("text_es", "") or ""
+            text_ja = row.get("Text_ja", "") or row.get("text_ja", "") or ""
             normalized.append(
                 {
                     "__line__": row.get("__line__", ""),
@@ -224,14 +255,20 @@ class Phase1Builder:
                     "Source_lang": (row.get("Source_lang") or row.get("source_lang") or "").strip(),
                     "Is_Latest": (row.get("Is_Latest") or row.get("is_latest") or "TRUE").strip(),
                     "Page": (row.get("Page") or row.get("page") or "specifications").strip(),
-                    "row_kind": "note",
+                    "row_kind": trailer_kind,
+                    "kind": trailer_kind,
                     "row_order": order,
                     "note_id": (row.get("Note_id") or row.get("note_id") or "").strip(),
                     "note_order": order,
-                    "note_text_en": row.get("Text_en", "") or row.get("text_en", "") or "",
-                    "note_text_fr": row.get("Text_fr", "") or row.get("text_fr", "") or "",
-                    "note_text_es": row.get("Text_es", "") or row.get("text_es", "") or "",
-                    "note_text_ja": row.get("Text_ja", "") or row.get("text_ja", "") or "",
+                    "note_text_en": text_en,
+                    "note_text_fr": text_fr,
+                    "note_text_es": text_es,
+                    "note_text_ja": text_ja,
+                    "footnote_text_en": text_en,
+                    "footnote_text_fr": text_fr,
+                    "footnote_text_es": text_es,
+                    "footnote_text_ja": text_ja,
+                    "type": (row.get("Type") or row.get("type") or "").strip(),
                     "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
                 }
             )

@@ -98,6 +98,11 @@ def _render_table_cell_html(text: str) -> str:
     return "<br/>".join(lines)
 
 
+def _split_spec_value_lines(text: str) -> list[str]:
+    lines = [line for line in str(text).replace("\\n", "\n").splitlines()]
+    return [line for line in lines if line.strip()]
+
+
 def render_spec_word_html(data: dict[str, object]) -> str:
     parts = [
         '<section class="manual-section spec-section">',
@@ -115,17 +120,56 @@ def render_spec_word_html(data: dict[str, object]) -> str:
         parts.append('<table class="manual-table manual-spec-table">')
         parts.append("<tbody>")
         for left, right in section["rows"]:
+            right_lines = _split_spec_value_lines(str(right))
+            if not right_lines:
+                right_lines = [""]
+            if len(right_lines) == 1:
+                parts.append("<tr>")
+                parts.append(f'<td class="manual-spec-label">{_render_table_cell_html(str(left))}</td>')
+                parts.append(f'<td class="manual-spec-value">{_render_table_cell_html(right_lines[0])}</td>')
+                parts.append("</tr>")
+                continue
+
             parts.append("<tr>")
-            parts.append(f"<td>{_render_table_cell_html(str(left))}</td>")
-            parts.append(f"<td>{_render_table_cell_html(str(right))}</td>")
+            parts.append(
+                f'<td class="manual-spec-label" rowspan="{len(right_lines)}">{_render_table_cell_html(str(left))}</td>'
+            )
+            parts.append(f'<td class="manual-spec-value">{_render_table_cell_html(right_lines[0])}</td>')
             parts.append("</tr>")
+            for line in right_lines[1:]:
+                parts.append("<tr>")
+                parts.append(f'<td class="manual-spec-value">{_render_table_cell_html(line)}</td>')
+                parts.append("</tr>")
         parts.append("</tbody>")
         parts.append("</table>")
 
-    for footnote in data["footnotes"]:
-        parts.append(f'<p class="manual-spec-footnote">{_render_table_cell_html(str(footnote))}</p>')
-    for note in data["notes"]:
-        parts.append(f'<p class="manual-spec-note">{_render_table_cell_html(str(note))}</p>')
+    trailers: list[tuple[str, str]] = []
+    raw_trailers = data.get("trailers")
+    if isinstance(raw_trailers, list):
+        for item in raw_trailers:
+            if not isinstance(item, (tuple, list)) or len(item) != 2:
+                continue
+            kind = str(item[0]).strip().lower()
+            text = str(item[1])
+            if kind not in {"note", "footnote"} or not text:
+                continue
+            trailers.append((kind, text))
+
+    if not trailers:
+        notes = [str(note) for note in data.get("notes", [])]
+        footnotes = [str(footnote) for footnote in data.get("footnotes", [])]
+        if notes and footnotes:
+            raise ValueError(
+                "spec trailer order must come from the upstream HTML fragment; "
+                "do not reconstruct note/footnote order inside Word rendering"
+            )
+        trailers = [("note", note) for note in notes]
+        trailers.extend(("footnote", footnote) for footnote in footnotes)
+    if trailers:
+        parts.append('<p class="manual-spec-trailer-spacer" aria-hidden="true">&#160;</p>')
+    for kind, text in trailers:
+        class_name = "manual-spec-note" if kind == "note" else "manual-spec-footnote"
+        parts.append(f'<p class="{class_name}">{_render_table_cell_html(text)}</p>')
 
     parts.append("</section>")
     return "".join(parts)

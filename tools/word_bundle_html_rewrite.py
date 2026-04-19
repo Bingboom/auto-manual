@@ -464,14 +464,25 @@ def _html_fragment_root(fragment: str) -> ET.Element | None:
 
 
 def _extract_html_cell_text(cell: ET.Element) -> str:
-    lines: list[str] = []
-    for child in list(cell):
-        text = _normalize_inline_text("".join(child.itertext()))
-        if text:
-            lines.append(text)
-    if not lines:
-        lines.append(_normalize_inline_text("".join(cell.itertext())))
-    return "\n".join(line for line in lines if line)
+    fragments: list[str] = []
+
+    def walk(element: ET.Element) -> None:
+        if element.text:
+            fragments.append(element.text)
+        for child in list(element):
+            tag = _html_tag_name(child)
+            if tag == "br":
+                fragments.append("\n")
+            else:
+                walk(child)
+                if tag in {"p", "div", "li", "ul", "ol"}:
+                    fragments.append("\n")
+            if child.tail:
+                fragments.append(child.tail)
+
+    walk(cell)
+    normalized_lines = [_normalize_inline_text(line) for line in "".join(fragments).splitlines()]
+    return "\n".join(line for line in normalized_lines if line)
 
 
 def _normalize_spec_section_title(text: str) -> str:
@@ -490,6 +501,7 @@ def _extract_spec_word_data(fragment: str) -> dict[str, object] | None:
     sections: list[dict[str, object]] = []
     notes: list[str] = []
     footnotes: list[str] = []
+    trailers: list[tuple[str, str]] = []
     current_section: dict[str, object] | None = None
 
     for child in list(root):
@@ -528,10 +540,27 @@ def _extract_spec_word_data(fragment: str) -> dict[str, object] | None:
             continue
 
         if tag == "p":
-            if text.startswith("*"):
+            trailer_kind = _normalize_inline_text(str(child.get("data-spec-trailer-kind") or "")).lower()
+            class_names = {
+                token.strip()
+                for token in str(child.get("class") or "").split()
+                if token.strip()
+            }
+            if trailer_kind == "footnote":
                 footnotes.append(text)
+                trailers.append(("footnote", text))
+            elif trailer_kind == "note":
+                notes.append(text)
+                trailers.append(("note", text))
+            elif "hb-spec-footnote" in class_names or "manual-spec-footnote" in class_names:
+                footnotes.append(text)
+                trailers.append(("footnote", text))
+            elif "hb-spec-note" in class_names or "manual-spec-note" in class_names:
+                notes.append(text)
+                trailers.append(("note", text))
             else:
                 notes.append(text)
+                trailers.append(("note", text))
 
     if not title_main or not sections:
         return None
@@ -540,4 +569,5 @@ def _extract_spec_word_data(fragment: str) -> dict[str, object] | None:
         "sections": sections,
         "notes": notes,
         "footnotes": footnotes,
+        "trailers": trailers,
     }
