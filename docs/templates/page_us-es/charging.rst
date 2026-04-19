@@ -37,13 +37,15 @@ Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una 
    :width: 360px
 
 |
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-Asegúrese de que el cable de carga de CA esté completamente insertado y firmemente conectado al puerto de entrada de CA. Una conexión incompleta puede causar corriente inestable, sobrecalentamiento, mal contacto o fallos del dispositivo.
+   * - **PRECAUCIÓN**
+     - Asegúrese de que el cable de carga de CA esté completamente insertado y firmemente conectado al puerto de entrada de CA. Una conexión incompleta puede causar corriente inestable, sobrecalentamiento, mal contacto o fallos del dispositivo.
 
 |
 **Modo de Carga de Emergencia**
-
-Bajo este modo, puedes cargar rápidamente la estación de energía portátil utilizando el método de carga AC. Esta función de carga de emergencia se puede activar o desactivar a través de la aplicación Jackery. Cuando está en modo de carga de emergencia, la luz circular que indica el estado de carga (SOC) parpadeará más rápido.
-
-*Para maximizar la vida útil de la batería, es mejor cargar a la velocidad estándar. La carga de emergencia debe reservarse para situaciones que requieren un aumento rápido de energía y no se recomienda para un uso regular y prolongado.*
+| 
+| Bajo este modo, puedes cargar rápidamente la estación de energía portátil utilizando el método de carga AC. Esta función de carga de emergencia se puede activar o desactivar a través de la aplicación Jackery. Cuando está en modo de carga de emergencia, la luz circular que indica el estado de carga (SOC) parpadeará más rápido.
+| *Para maximizar la vida útil de la batería, es mejor cargar a la velocidad estándar. La carga de emergencia debe reservarse para situaciones que requieren un aumento rápido de energía y no se recomienda para un uso regular y prolongado.*

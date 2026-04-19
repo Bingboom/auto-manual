@@ -12,8 +12,12 @@ FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)
 | la potencia de salida real es menor que la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.
 |
 
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación conmutada de 0 ms, como servidores de datos o estaciones de trabajo.
-- Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.
-- No conecte cargas que superen la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.
+   * - **PRECAUCIÓN**
+     -
+       - Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación conmutada de 0 ms, como servidores de datos o estaciones de trabajo.
+       - Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.
+       - No conecte cargas que superen la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.

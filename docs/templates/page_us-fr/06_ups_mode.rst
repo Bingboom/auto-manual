@@ -12,8 +12,12 @@ ALIMENTATION SANS INTERRUPTION (ASI)
 | En mode UPS, la puissance de crête de sortie de l'appareil atteint |UPS_BYPASS_OUTPUT_TEXT| avant les coupures de courant. Comme la charge et la décharge simultanées sont activées en mode dérivation, la puissance de sortie réelle est inférieure à la puissance nominale en mode dérivation, mais revient à la puissance nominale lors des coupures.
 |
 
-**ATTENTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- Ce produit ne prend pas en charge un basculement instantané (0 ms). Ne le connectez pas à des équipements nécessitant une alimentation avec commutation en 0 ms, tels que des serveurs de données ou des stations de travail.
-- Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.
-- Ne connectez pas de charges dépassant la puissance maximale de sortie du produit. Sinon, la protection contre les surcharges sera déclenchée.
+   * - **ATTENTION**
+     -
+       - Ce produit ne prend pas en charge un basculement instantané (0 ms). Ne le connectez pas à des équipements nécessitant une alimentation avec commutation en 0 ms, tels que des serveurs de données ou des stations de travail.
+       - Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.
+       - Ne connectez pas de charges dépassant la puissance maximale de sortie du produit. Sinon, la protection contre les surcharges sera déclenchée.

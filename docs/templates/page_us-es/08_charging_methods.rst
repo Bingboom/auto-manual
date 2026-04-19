@@ -15,16 +15,22 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
    :width: 360px
 
 |
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-Un puerto de entrada DC8020 puede conectarse como máximo a dos paneles solares.
+   * - **PRECAUCIÓN**
+     - Un puerto de entrada DC8020 puede conectarse como máximo a dos paneles solares.
 
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-Asegúrese de que el voltaje de entrada para ambos puertos de entrada de CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
+   * - **PRECAUCIÓN**
+     - Asegúrese de que el voltaje de entrada para ambos puertos de entrada de CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
 
-- Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
-- No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Esto puede fundir el fusible del automóvil o provocar un fallo de carga.
+       - Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
+       - No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Esto puede fundir el fusible del automóvil o provocar un fallo de carga.
 
 |
 Se recomienda usar el panel solar Jackery para cargar el |PRODUCT_NAME|. Asegúrese de que el voltaje en circuito abierto (Voc) del panel solar se sitúe dentro del rango de entrada de CC de |PRODUCT_NAME| (16V-60V). Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.
@@ -42,8 +48,12 @@ Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de 
 | *El cable de carga para automóvil se vende por separado.*
 |
 
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- Encienda el vehículo antes de cargar la estación de energía.
-- Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar que se queme debido a una mala conexión. La empresa no se responsabiliza por pérdidas causadas por un uso incorrecto.
-- La carga en vehículo solo es aplicable a vehículos con 12V CC, no a 24V CC. Por favor, no cargue este producto en vehículos de 24V para evitar lesiones personales y daños materiales.
+   * - **PRECAUCIÓN**
+     -
+       - Encienda el vehículo antes de cargar la estación de energía.
+       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar que se queme debido a una mala conexión. La empresa no se responsabiliza por pérdidas causadas por un uso incorrecto.
+       - La carga en vehículo solo es aplicable a vehículos con 12V CC, no a 24V CC. Por favor, no cargue este producto en vehículos de 24V para evitar lesiones personales y daños materiales.
