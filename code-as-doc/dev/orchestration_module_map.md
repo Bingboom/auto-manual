@@ -82,6 +82,10 @@ Do not move new low-level implementation back into these files unless the behavi
   - Sphinx, cleanup, Word/PDF I/O helpers
 - [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)
   - config/layout validation helpers for the build tool
+- [`tools/word_bundle_docx.py`](../../tools/word_bundle_docx.py)
+  - DOCX export assembly and Word post-processing passes
+- [`tools/word_bundle_docx_xml.py`](../../tools/word_bundle_docx_xml.py)
+  - namespace-preserving XML serialization helpers for DOCX package rewrites
 
 ## 4. Quality And Release Modules
 

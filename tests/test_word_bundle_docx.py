@@ -6,7 +6,11 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from tools.word_bundle_docx import _embed_external_docx_images, _remap_reference_doc_styles
+from tools.word_bundle_docx import (
+    _embed_external_docx_images,
+    _enforce_docx_outline_levels,
+    _remap_reference_doc_styles,
+)
 from tools.word_bundle_html import WordBundlePageMeta
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
@@ -15,6 +19,10 @@ _NS = {"w": _W_NS}
 _REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
 _DOC_REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 _DRAWING_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
+_MC_NS = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+_W14_NS = "http://schemas.microsoft.com/office/word/2010/wordml"
+_W15_NS = "http://schemas.microsoft.com/office/word/2012/wordml"
+_WP14_NS = "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
 
 
 class TestWordBundleDocx(unittest.TestCase):
@@ -111,7 +119,29 @@ class TestWordBundleDocx(unittest.TestCase):
             self.assertEqual("34", self._paragraph_run_size(blocks[12]))
             self.assertTrue(self._paragraph_run_bold(blocks[12]))
 
-    def _write_minimal_docx(self, path: Path) -> None:
+    def test_remap_reference_doc_styles_should_preserve_markup_compatibility_prefixes(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docx_path = root / "demo.docx"
+            self._write_minimal_docx(docx_path, with_markup_compat=True)
+
+            page_metas = (WordBundlePageMeta(source_path=Path("00_preface.rst"), anchor_text="IMPORTANT"),)
+
+            _remap_reference_doc_styles(docx_path, page_metas)
+
+            self._assert_markup_compatibility_prefixes(docx_path)
+
+    def test_enforce_docx_outline_levels_should_preserve_markup_compatibility_prefixes(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docx_path = root / "demo.docx"
+            self._write_minimal_docx(docx_path, with_markup_compat=True)
+
+            _enforce_docx_outline_levels(docx_path)
+
+            self._assert_markup_compatibility_prefixes(docx_path)
+
+    def _write_minimal_docx(self, path: Path, *, with_markup_compat: bool = False) -> None:
         styles_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:styles xmlns:w="{_W_NS}">
   <w:style w:type="paragraph" w:styleId="dingding-heading1"><w:name w:val="heading 1"/></w:style>
@@ -127,10 +157,24 @@ class TestWordBundleDocx(unittest.TestCase):
   <w:style w:type="table" w:styleId="tableHeader"><w:name w:val="tableHeader"/></w:style>
 </w:styles>
 """
+        document_root_attrs = [f'xmlns:w="{_W_NS}"']
+        first_para_attrs = ""
+        if with_markup_compat:
+            document_root_attrs.extend(
+                [
+                    f'xmlns:mc="{_MC_NS}"',
+                    f'xmlns:w14="{_W14_NS}"',
+                    f'xmlns:w15="{_W15_NS}"',
+                    f'xmlns:wp14="{_WP14_NS}"',
+                    'mc:Ignorable="w14 w15 wp14"',
+                ]
+            )
+            first_para_attrs = ' w14:paraId="4047BD08"'
+
         document_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:document xmlns:w="{_W_NS}">
+<w:document {' '.join(document_root_attrs)}>
   <w:body>
-    <w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t>IMPORTANT</w:t></w:r></w:p>
+    <w:p{first_para_attrs}><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t>IMPORTANT</w:t></w:r></w:p>
     <w:p><w:pPr><w:pStyle w:val="BodyText"/></w:pPr><w:r><w:t>Intro body.</w:t></w:r></w:p>
     <w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t>IMPORTANT SAFETY INFORMATION</w:t></w:r></w:p>
     <w:p><w:pPr><w:pStyle w:val="Compact"/></w:pPr><w:r><w:t>Safety bullet.</w:t></w:r></w:p>
@@ -225,6 +269,16 @@ class TestWordBundleDocx(unittest.TestCase):
     def _paragraph_run_bold(self, para: ET.Element) -> bool:
         bold = para.find("w:r/w:rPr/w:b", _NS)
         return bold is not None and bold.attrib.get(f"{_W}val", "1") != "0"
+
+    def _assert_markup_compatibility_prefixes(self, path: Path) -> None:
+        with zipfile.ZipFile(path) as bundle:
+            document_xml = bundle.read("word/document.xml").decode("utf-8")
+
+        self.assertIn(f'xmlns:mc="{_MC_NS}"', document_xml)
+        self.assertIn(f'xmlns:w14="{_W14_NS}"', document_xml)
+        self.assertIn(f'xmlns:w15="{_W15_NS}"', document_xml)
+        self.assertIn(f'xmlns:wp14="{_WP14_NS}"', document_xml)
+        self.assertIn('mc:Ignorable="w14 w15 wp14"', document_xml)
 
 
 if __name__ == "__main__":

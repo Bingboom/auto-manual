@@ -6,6 +6,8 @@
 
 .. include:: page/symbols_en.rst
 
+.. include:: page/01_fcc.rst
+
 .. include:: page/02_whats_in_the_box.rst
 
 .. include:: page/03_product_overview_placeholder.rst
@@ -34,55 +36,59 @@
 
 .. include:: page/symbols_fr.rst
 
-.. include:: page/p19_02_whats_in_the_box.rst
+.. include:: page/p20_01_fcc.rst
 
-.. include:: page/p20_03_product_overview_placeholder.rst
+.. include:: page/p21_02_whats_in_the_box.rst
 
-.. include:: page/p21_04_lcd_display_placeholder.rst
+.. include:: page/p22_03_product_overview_placeholder.rst
 
-.. include:: page/p22_05_operation_guide_placeholder.rst
+.. include:: page/p23_04_lcd_display_placeholder.rst
 
-.. include:: page/p23_06_ups_mode.rst
+.. include:: page/p24_05_operation_guide_placeholder.rst
 
-.. include:: page/p24_charging.rst
+.. include:: page/p25_06_ups_mode.rst
 
-.. include:: page/p25_08_charging_methods.rst
+.. include:: page/p26_charging.rst
 
-.. include:: page/p26_09_storage_and_maintenance.rst
+.. include:: page/p27_08_charging_methods.rst
 
-.. include:: page/p27_10_troubleshooting.rst
+.. include:: page/p28_09_storage_and_maintenance.rst
+
+.. include:: page/p29_10_troubleshooting.rst
 
 .. include:: page/spec_fr.rst
 
-.. include:: page/p29_11_warranty.rst
+.. include:: page/p31_11_warranty.rst
 
-.. include:: page/p30_12_app_setup_placeholder.rst
+.. include:: page/p32_12_app_setup_placeholder.rst
 
 .. include:: page/safety_es.rst
 
 .. include:: page/symbols_es.rst
 
-.. include:: page/p33_02_whats_in_the_box.rst
+.. include:: page/p35_01_fcc.rst
 
-.. include:: page/p34_03_product_overview_placeholder.rst
+.. include:: page/p36_02_whats_in_the_box.rst
 
-.. include:: page/p35_04_lcd_display_placeholder.rst
+.. include:: page/p37_03_product_overview_placeholder.rst
 
-.. include:: page/p36_05_operation_guide_placeholder.rst
+.. include:: page/p38_04_lcd_display_placeholder.rst
 
-.. include:: page/p37_06_ups_mode.rst
+.. include:: page/p39_05_operation_guide_placeholder.rst
 
-.. include:: page/p38_charging.rst
+.. include:: page/p40_06_ups_mode.rst
 
-.. include:: page/p39_08_charging_methods.rst
+.. include:: page/p41_charging.rst
 
-.. include:: page/p40_09_storage_and_maintenance.rst
+.. include:: page/p42_08_charging_methods.rst
 
-.. include:: page/p41_10_troubleshooting.rst
+.. include:: page/p43_09_storage_and_maintenance.rst
+
+.. include:: page/p44_10_troubleshooting.rst
 
 .. include:: page/spec_es.rst
 
-.. include:: page/p43_11_warranty.rst
+.. include:: page/p46_11_warranty.rst
 
-.. include:: page/p44_12_app_setup_placeholder.rst
+.. include:: page/p47_12_app_setup_placeholder.rst
 

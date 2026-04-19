@@ -15,6 +15,7 @@ from xml.etree import ElementTree as ET
 
 from tools.gen_index_bundle import MaterializedBundle
 from tools.word_bundle_common import paths
+from tools.word_bundle_docx_xml import serialize_xml_preserving_namespaces
 from tools.word_bundle_html import WordBundlePageMeta, build_word_bundle_html
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
@@ -394,8 +395,7 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
     if not changed:
         return
 
-    ET.register_namespace("w", _W_NS)
-    blobs["word/document.xml"] = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+    blobs["word/document.xml"] = serialize_xml_preserving_namespaces(root, original_xml=doc_xml)
 
     tmp_path = docx_path.with_suffix(".styles.tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:
@@ -489,10 +489,9 @@ def _embed_external_docx_images(docx_path: Path) -> None:
             xml_changed = True
 
         if xml_changed:
-            blobs[member_name] = ET.tostring(xml_root, encoding="utf-8", xml_declaration=True)
+            blobs[member_name] = serialize_xml_preserving_namespaces(xml_root, original_xml=payload)
 
-    ET.register_namespace("", _REL_NS)
-    blobs["word/_rels/document.xml.rels"] = ET.tostring(rel_root, encoding="utf-8", xml_declaration=True)
+    blobs["word/_rels/document.xml.rels"] = serialize_xml_preserving_namespaces(rel_root, original_xml=rels_xml)
 
     content_types_xml = blobs.get("[Content_Types].xml")
     if content_types_xml:
@@ -511,8 +510,7 @@ def _embed_external_docx_images(docx_path: Path) -> None:
                 Extension=ext,
                 ContentType=_IMAGE_CONTENT_TYPES[suffix],
             )
-        ET.register_namespace("", _CT_NS)
-        blobs["[Content_Types].xml"] = ET.tostring(ct_root, encoding="utf-8", xml_declaration=True)
+        blobs["[Content_Types].xml"] = serialize_xml_preserving_namespaces(ct_root, original_xml=content_types_xml)
 
     tmp_path = docx_path.with_suffix(".embed.tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:
@@ -572,8 +570,7 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
     if not changed:
         return
 
-    ET.register_namespace("w", _W_NS)
-    blobs["word/document.xml"] = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+    blobs["word/document.xml"] = serialize_xml_preserving_namespaces(root, original_xml=doc_xml)
 
     tmp_path = docx_path.with_suffix(".tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:

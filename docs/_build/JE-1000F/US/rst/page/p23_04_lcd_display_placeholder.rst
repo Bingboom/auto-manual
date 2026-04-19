@@ -10,12 +10,12 @@ AFFICHAGE LCD
    :width: 420px
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 28 60
 
-   * - ID
-     - Indicateur
-     - Description
+   * - **ID**
+     - **Indicateur**
+     - **Description**
    * - 1
      - Wi-Fi
      - **Allumé :** Wi-Fi connecté.
@@ -54,6 +54,7 @@ AFFICHAGE LCD
        En cas de coupure soudaine du réseau, le produit bascule automatiquement sur son alimentation par batterie en 10 ms.
 
        **Éteint :** Le produit n'est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d'énergie.
+
    * - 7
      - Indicateur d'alimentation CA
      - La sortie CA (onde sinusoïdale pure) est activée.
@@ -75,6 +76,7 @@ AFFICHAGE LCD
    * - 13
      - Indicateur de charge solaire
      - Le produit est chargé via l'entrée CC (DC8020) à l'aide de panneaux solaires.
+
    * - 14
      - Mode d'économie de batterie
      - **Allumé :** Le mode d'économie de batterie est activé. Des limites de charge et de décharge sont appliquées afin de prolonger la durée de vie de la batterie.
@@ -104,6 +106,7 @@ AFFICHAGE LCD
    * - 18
      - Pourcentage de batterie restant
      - Affiche le pourcentage de batterie restant.
+
    * - 19
      - Mode d'économie d'énergie
      - Lorsque la sortie CA ou CC est activée en appuyant sur le bouton d’alimentation CA ou le bouton d’alimentation CC/USB :

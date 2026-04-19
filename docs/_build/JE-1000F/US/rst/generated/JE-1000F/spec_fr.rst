@@ -68,18 +68,18 @@
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{\HBSpecMarkerOne{} Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
+   \HBTypeSpecNote{※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.}\par
    }
 
 
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.}\par
+   \HBTypeSpecNote{\HBSpecMarkerOne{} Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
    }
 
 
@@ -189,8 +189,8 @@
 
    .. raw:: html
    
-      <p class="hb-spec-footnote">① Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>
+      <p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.</p>
 
    .. raw:: html
    
-      <p class="hb-spec-note">※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.</p>
+      <p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>

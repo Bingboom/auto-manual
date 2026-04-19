@@ -68,18 +68,18 @@
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{\HBSpecMarkerOne{} The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.}\par
+   \HBTypeSpecNote{※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
    }
 
 
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.}\par
+   \HBTypeSpecNote{\HBSpecMarkerOne{} The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.}\par
    }
 
 
@@ -189,8 +189,8 @@
 
    .. raw:: html
    
-      <p class="hb-spec-footnote">① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</p>
+      <p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>
 
    .. raw:: html
    
-      <p class="hb-spec-note">※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>
+      <p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</p>
