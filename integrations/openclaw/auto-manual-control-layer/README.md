@@ -37,8 +37,13 @@ Every dispatch uses:
 
 - `ref = main` by default
 - `trigger_source = openclaw`
-- `queue_record_id = rec_xxx`
 - `openclaw_dispatch_nonce = <uuid>`
+
+Record-scoped dispatches also send:
+
+- `queue_record_id = rec_xxx`
+
+For `build-draft`, the control layer now reuses one short-lived shared GitHub queue worker when several language rows are dispatched back-to-back. The worker is still triggered on `main`, but the workflow dispatch itself is sent without one fixed `queue_record_id` so it can drain the pending Build Draft Package rows together instead of launching one competing Actions run per language.
 
 ## Minimal Plugin Config
 

@@ -1,4 +1,4 @@
-import { findActiveRunForRecord, findRunByDispatch } from "./run-matching.mjs";
+import { findActiveRunForRecord, findRecentActiveRun, findRunByDispatch } from "./run-matching.mjs";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -81,6 +81,17 @@ export function createGitHubClient(settings) {
     async findActiveRunForRecord({ workflowFile, queueRecordId, branch }) {
       const runs = await listWorkflowRuns(workflowFile, branch);
       return findActiveRunForRecord(runs, queueRecordId);
+    },
+    async findRecentActiveRun({ workflowFile, branch, createdAfter }) {
+      const runs = await listWorkflowRuns(workflowFile, branch);
+      return findRecentActiveRun(runs, { createdAfter });
+    },
+    async findRecentRunByDispatch({ workflowFile, dispatchNonce, branch, dispatchedAfter }) {
+      const runs = await listWorkflowRuns(workflowFile, branch);
+      return findRunByDispatch(runs, {
+        dispatchNonce,
+        dispatchedAfter,
+      });
     },
     async findDispatchedRun({ workflowFile, queueRecordId, dispatchNonce, branch, dispatchedAfter }) {
       const timeoutMs = settings.dispatchTimeoutSeconds * 1000;

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { findActiveRunForRecord, findRunByDispatch } from "../lib/run-matching.mjs";
+import { findActiveRunForRecord, findRecentActiveRun, findRunByDispatch } from "../lib/run-matching.mjs";
 
 test("findRunByDispatch matches the nonce in the run title", () => {
   const runs = [
@@ -40,6 +40,29 @@ test("findActiveRunForRecord skips completed runs", () => {
   ];
 
   const matched = findActiveRunForRecord(runs, "rec123");
+
+  assert.equal(matched.id, 2);
+});
+
+test("findRecentActiveRun only returns non-completed runs inside the time window", () => {
+  const runs = [
+    {
+      id: 1,
+      display_title: "Feishu Draft Build Queue / rec_old / nonce-old",
+      status: "in_progress",
+      created_at: "2026-04-10T09:59:00Z",
+    },
+    {
+      id: 2,
+      display_title: "Feishu Draft Build Queue / rec_new / nonce-new",
+      status: "queued",
+      created_at: "2026-04-10T10:01:00Z",
+    },
+  ];
+
+  const matched = findRecentActiveRun(runs, {
+    createdAfter: "2026-04-10T10:00:30Z",
+  });
 
   assert.equal(matched.id, 2);
 });

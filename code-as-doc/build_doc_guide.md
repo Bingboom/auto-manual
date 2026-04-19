@@ -158,6 +158,7 @@ Start Review, Build Draft Package, Publish:
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
 - the repo now ships one OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer); it is the supported control-layer package when you want one chat entrypoint for these three workers
 - OpenClaw dispatches still call only the `main`-owned workflows; they add `openclaw_dispatch_nonce` as a correlation input and the workflows upload `openclaw-run-metadata` as a machine-readable status artifact
+- rapid multi-language `build-draft` bursts from OpenClaw now reuse one short-lived shared draft-queue worker on `main`; the first dispatch wakes the worker, and near-simultaneous sibling language asks reuse that same worker instead of launching competing queue runs that can cancel each other before the job starts
 - if Feishu triggers the Build Draft Package worker, dispatch it on `main`; the actual build source is resolved from `Document_link.Git_ref`, and rows missing `Git_ref` fail fast
 - if Feishu triggers the Publish worker, dispatch it on `main`; the workflow definition stays on `main`, while `Document_link.Git_ref` still controls the fetched review branch when present
 - if a Publish-stage row also carries `Git_ref`, the Publish worker keeps `main` only as the orchestration branch and fetches the actual build source from that review branch

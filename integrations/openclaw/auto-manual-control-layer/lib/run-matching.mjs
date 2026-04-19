@@ -29,3 +29,13 @@ export function findActiveRunForRecord(runs, queueRecordId) {
     return runTitle(run).includes(queueRecordId);
   }) || null;
 }
+
+export function findRecentActiveRun(runs, { createdAfter }) {
+  const createdAfterTime = createdAfter ? Date.parse(createdAfter) : 0;
+  return runs.find((run) => {
+    if (run.status === "completed") {
+      return false;
+    }
+    return createdAtTime(run) >= createdAfterTime;
+  }) || null;
+}
