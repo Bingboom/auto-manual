@@ -85,9 +85,13 @@ Lors de l'alimentation d'appareils à faible puissance (CA <= |ENERGY_SAVING_AC_
 | Appuyez et maintenez pendant 3 secondes.
 |
 
-**REMARQUE**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Un changement de mode nécessite un commutateur manuel.
+   * - **REMARQUE**
+     - Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Un changement de mode nécessite un commutateur manuel.
+| 
 
 LAMPE LED MARCHE/ARRÊT
 ----------------------
