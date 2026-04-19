@@ -7,12 +7,14 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
    :alt: Solar charging connection diagram placeholder 1.
    :width: 360px
 
+| 
 If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
 
 .. image:: templates/word_template/common_assets/charging/solar_adapter.png
    :alt: Solar charging connection diagram placeholder 2.
    :width: 360px
 
+| 
 **CAUTION**
 
 One DC8020 input port can be connected to at most two solar panels.
@@ -24,6 +26,7 @@ Ensure that the input voltage for both DC input ports is the same. Failure to do
 - Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 Input ports.
 - Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure.
 
+| 
 It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (16V-60V) of |PRODUCT_NAME|. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.
 
 CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)
@@ -35,8 +38,9 @@ This product can be charged using a 12V car charger. Ensure that the car charger
    :alt: Car charging connection diagram placeholder.
    :width: 360px
 
-*The car charging cable is sold separately.*
-
+| 
+| *The car charging cable is sold separately.*
+| 
 **CAUTION**
 
 - Please start the vehicle before charging your power station.

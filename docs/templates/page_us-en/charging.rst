@@ -34,6 +34,7 @@ CHARGING
 
 **Fully charge the product before its first use.**
 
+| 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
@@ -52,10 +53,12 @@ Connect the AC charging cable to the AC input port of the product and a wall out
    :alt: AC wall charging diagram placeholder.
    :width: 360px
 
+| 
 **CAUTION**
 
 Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.
 
+| 
 **Emergency Charging Mode**
 
 Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
