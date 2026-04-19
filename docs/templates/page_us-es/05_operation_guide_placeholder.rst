@@ -90,11 +90,10 @@ La luz LED tiene dos modos: modo de iluminación y modo SOS. En cualquier modo, 
    :alt: Operación de la luz LED.
    :width: 360px
 
-Presione una vez el botón de la luz LED para encenderla.
-
-Presiónelo nuevamente para cambiar al modo SOS.
-
-Presiónelo una tercera vez para apagar la luz.
+|
+| Presione una vez el botón de la luz LED para encenderla.
+| Presiónelo nuevamente para cambiar al modo SOS.
+| Presiónelo una tercera vez para apagar la luz.
 
 PANTALLA LCD
 ------------

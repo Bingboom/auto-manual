@@ -90,11 +90,10 @@ La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe
    :alt: Fonction de la lampe LED.
    :width: 360px
 
-Appuyez une fois sur le bouton de la lampe LED pour l'allumer.
-
-Appuyez de nouveau pour passer en mode SOS.
-
-Appuyez une troisième fois pour éteindre la lampe.
+|
+| Appuyez une fois sur le bouton de la lampe LED pour l'allumer.
+| Appuyez de nouveau pour passer en mode SOS.
+| Appuyez une troisième fois pour éteindre la lampe.
 
 AFFICHAGE LCD
 -------------

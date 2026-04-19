@@ -89,11 +89,10 @@ The LED light has two modes: Light mode and SOS mode. In any mode, press and hol
    :alt: LED light mode operation placeholder.
    :width: 360px
 
-Press the LED Light button once to turn on the light.
-
-Press it again to switch to SOS Mode.
-
-Press it a third time to turn off the light.
+|
+| Press the LED Light button once to turn on the light.
+| Press it again to switch to SOS Mode.
+| Press it a third time to turn off the light.
 
 LCD SCREEN
 ----------
