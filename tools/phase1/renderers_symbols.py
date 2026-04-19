@@ -342,6 +342,8 @@ def _signal_section(lang: str) -> str:
     signal_rows = list(copy["signal_rows"])
 
     lines: list[str] = []
+    lines.append("|")
+    lines.append("")
     _append_notice_table(lines, title=danger_title, paragraphs=danger_bullets)
     lines.append("")
     lines.extend(_rst_heading(maintenance_title))

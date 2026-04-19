@@ -40,6 +40,8 @@ _PANDOC_MAJOR_HEADING_STYLE_IDS = {"Title", "Heading1"}
 _PANDOC_SUBHEADING_STYLE_IDS = {"Heading2"}
 _PANDOC_BODY_STYLE_IDS = {"BodyText", "FirstParagraph", "Compact"}
 _PRESERVED_SOURCE_PREFIXES = ("safety_", "spec_")
+_H1_RUN_SIZE = "34"
+_H2_RUN_SIZE = "28"
 
 
 @dataclass(frozen=True)
@@ -134,6 +136,49 @@ def _clear_paragraph_style_and_outline(para: ET.Element, ns: dict[str, str]) -> 
 
     if changed and len(ppr) == 0 and not ppr.attrib:
         para.remove(ppr)
+    return changed
+
+
+def _ensure_heading_run_formatting(para: ET.Element, ns: dict[str, str], *, size: str) -> bool:
+    changed = False
+    for run in para.findall("w:r", ns):
+        rpr = run.find("w:rPr", ns)
+        if rpr is None:
+            rpr = ET.SubElement(run, f"{{{_W_NS}}}rPr")
+            changed = True
+
+        bold = rpr.find("w:b", ns)
+        if bold is None:
+            bold = ET.SubElement(rpr, f"{{{_W_NS}}}b")
+            changed = True
+        if bold.attrib.get(_W_VAL) != "1":
+            bold.attrib[_W_VAL] = "1"
+            changed = True
+
+        bold_cs = rpr.find("w:bCs", ns)
+        if bold_cs is None:
+            bold_cs = ET.SubElement(rpr, f"{{{_W_NS}}}bCs")
+            changed = True
+        if bold_cs.attrib.get(_W_VAL) != "1":
+            bold_cs.attrib[_W_VAL] = "1"
+            changed = True
+
+        sz = rpr.find("w:sz", ns)
+        if sz is None:
+            sz = ET.SubElement(rpr, f"{{{_W_NS}}}sz")
+            changed = True
+        if sz.attrib.get(_W_VAL) != size:
+            sz.attrib[_W_VAL] = size
+            changed = True
+
+        sz_cs = rpr.find("w:szCs", ns)
+        if sz_cs is None:
+            sz_cs = ET.SubElement(rpr, f"{{{_W_NS}}}szCs")
+            changed = True
+        if sz_cs.attrib.get(_W_VAL) != size:
+            sz_cs.attrib[_W_VAL] = size
+            changed = True
+
     return changed
 
 
@@ -319,6 +364,8 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
                     outline_level="0",
                 ):
                     changed = True
+                if _ensure_heading_run_formatting(block.element, ns, size=_H1_RUN_SIZE):
+                    changed = True
             elif style_id in _PANDOC_SUBHEADING_STYLE_IDS | {_REFERENCE_H2_STYLE_ID}:
                 if _set_paragraph_style_and_outline(
                     block.element,
@@ -326,6 +373,8 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
                     style_id=_REFERENCE_H2_STYLE_ID,
                     outline_level="1",
                 ):
+                    changed = True
+                if _ensure_heading_run_formatting(block.element, ns, size=_H2_RUN_SIZE):
                     changed = True
             elif style_id in _PANDOC_BODY_STYLE_IDS:
                 if _clear_paragraph_style_and_outline(block.element, ns):
@@ -505,6 +554,8 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
                 outline_level="0",
             ):
                 changed = True
+            if _ensure_heading_run_formatting(para, ns, size=_H1_RUN_SIZE):
+                changed = True
             continue
         if style_id in h2_ids:
             if _set_paragraph_style_and_outline(
@@ -513,6 +564,8 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
                 style_id=style_id,
                 outline_level="1",
             ):
+                changed = True
+            if _ensure_heading_run_formatting(para, ns, size=_H2_RUN_SIZE):
                 changed = True
             continue
 
