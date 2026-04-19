@@ -44,11 +44,14 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
 | Apagado: Presione una vez.
 |
 
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- **Los puertos USB-C de 100 W son puertos de salida de alta potencia de tipo Fuente de Alimentación 3 (PS3) según USB-PD.** Si el dispositivo o accesorio conectado no cumple los requisitos de seguridad, puede existir riesgo de incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio conectado tenga protección contra incendios.
-- Conecte |PRODUCT_NAME| únicamente a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otras normas equivalentes).
-- Para obtener la máxima potencia de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100 W).
+   * - **PRECAUCIÓN**
+     - - **Los puertos USB-C de 100 W son puertos de salida de alta potencia de tipo Fuente de Alimentación 3 (PS3) según USB-PD.** Si el dispositivo o accesorio conectado no cumple los requisitos de seguridad, puede existir riesgo de incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio conectado tenga protección contra incendios.
+       - Conecte |PRODUCT_NAME| únicamente a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otras normas equivalentes).
+       - Para obtener la máxima potencia de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100 W).
 
 |
 | El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
@@ -56,9 +59,14 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
 
 **PRECAUCIÓN**
 
-- El puerto de CC de 12V solo es compatible con baterías de automóvil de 12V y no es adecuado para sistemas de 24V.
-- No arranque el automóvil mientras el producto está cargando la batería a través del puerto de salida de CC de 12V, ya que podría dañar el producto.
-- Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de automóvil agotada o dañada.
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **PRECAUCIÓN**
+     - - El puerto de CC de 12V solo es compatible con baterías de automóvil de 12V y no es adecuado para sistemas de 24V.
+       - No arranque el automóvil mientras el producto está cargando la batería a través del puerto de salida de CC de 12V, ya que podría dañar el producto.
+       - Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de automóvil agotada o dañada.
 
 MODO DE AHORRO DE ENERGÍA
 -------------------------
