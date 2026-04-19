@@ -76,26 +76,40 @@ class TestWordBundleDocx(unittest.TestCase):
             blocks = [child for child in list(body) if child.tag in {f"{_W}p", f"{_W}tbl"}]
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[0]))
+            self.assertEqual("34", self._paragraph_run_size(blocks[0]))
+            self.assertTrue(self._paragraph_run_bold(blocks[0]))
             self.assertEqual("", self._paragraph_style(blocks[1]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[2]))
+            self.assertEqual("34", self._paragraph_run_size(blocks[2]))
+            self.assertTrue(self._paragraph_run_bold(blocks[2]))
             self.assertEqual("Compact", self._paragraph_style(blocks[3]))
             self.assertEqual("Table", self._table_style(blocks[4]))
             self.assertEqual("FirstParagraph", self._paragraph_style(blocks[4].find(".//w:p", _NS)))
             self.assertEqual("dingding-heading2", self._paragraph_style(blocks[5]))
+            self.assertEqual("28", self._paragraph_run_size(blocks[5]))
+            self.assertTrue(self._paragraph_run_bold(blocks[5]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[6]))
+            self.assertEqual("34", self._paragraph_run_size(blocks[6]))
+            self.assertTrue(self._paragraph_run_bold(blocks[6]))
             self.assertEqual("TableGrid", self._table_style(blocks[7]))
             first_box_cell = blocks[7].find(".//w:p", _NS)
             self.assertIsNotNone(first_box_cell)
             self.assertEqual("", self._paragraph_style(first_box_cell))
             self.assertEqual("dingding-heading2", self._paragraph_style(blocks[8]))
+            self.assertEqual("28", self._paragraph_run_size(blocks[8]))
+            self.assertTrue(self._paragraph_run_bold(blocks[8]))
             self.assertEqual("", self._paragraph_style(blocks[9]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[10]))
+            self.assertEqual("34", self._paragraph_run_size(blocks[10]))
+            self.assertTrue(self._paragraph_run_bold(blocks[10]))
             self.assertEqual("Table", self._table_style(blocks[11]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[12]))
+            self.assertEqual("34", self._paragraph_run_size(blocks[12]))
+            self.assertTrue(self._paragraph_run_bold(blocks[12]))
 
     def _write_minimal_docx(self, path: Path) -> None:
         styles_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -203,6 +217,14 @@ class TestWordBundleDocx(unittest.TestCase):
     def _table_style(self, tbl: ET.Element) -> str:
         style = tbl.find("w:tblPr/w:tblStyle", _NS)
         return style.attrib.get(f"{_W}val", "") if style is not None else ""
+
+    def _paragraph_run_size(self, para: ET.Element) -> str:
+        size = para.find("w:r/w:rPr/w:sz", _NS)
+        return size.attrib.get(f"{_W}val", "") if size is not None else ""
+
+    def _paragraph_run_bold(self, para: ET.Element) -> bool:
+        bold = para.find("w:r/w:rPr/w:b", _NS)
+        return bold is not None and bold.attrib.get(f"{_W}val", "1") != "0"
 
 
 if __name__ == "__main__":
