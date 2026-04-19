@@ -117,6 +117,52 @@ class TestSyncReview(unittest.TestCase):
 
             self.assertEqual("copy", plan_by_path[Path("page") / "box.rst"].mode)
 
+    def test_resolve_sync_plan_should_mark_generated_pages_for_param_merge(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            runtime_dir.mkdir(parents=True)
+
+            templates_dir = docs_dir / "templates" / "page_us-en"
+            templates_dir.mkdir(parents=True)
+            (templates_dir / "03_product_overview_placeholder.rst").write_text(
+                "|FRONT_USB_C_LOW_SPEC|\n",
+                encoding="utf-8",
+            )
+
+            cfg = {
+                "build": {"languages": ["en"]},
+                "pages": [
+                    {
+                        "type": "generated_page",
+                        "page": "03_product_overview",
+                        "engine": "draft_v1",
+                        "recipe": "templates/recipes/us-en/03_product_overview.yaml",
+                        "template": "templates/page_us-en/03_product_overview_placeholder.rst",
+                        "langs": ["en"],
+                        "include_dir": "generated/{model}/draft",
+                    }
+                ],
+            }
+
+            sync_plan = resolve_sync_plan(
+                cfg=cfg,
+                docs_dir=docs_dir,
+                runtime_bundle_dir=runtime_dir,
+                model="JE-1000F",
+                region="US",
+                scope="params",
+                page_files=(),
+            )
+            plan_by_path = {entry.relative_path: entry for entry in sync_plan}
+
+            self.assertEqual("merge_params", plan_by_path[Path("page") / "03_product_overview_placeholder.rst"].mode)
+            self.assertEqual(
+                templates_dir / "03_product_overview_placeholder.rst",
+                plan_by_path[Path("page") / "03_product_overview_placeholder.rst"].template_path,
+            )
+
     def test_resolve_sync_relative_paths_should_support_generated_only_scope(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
