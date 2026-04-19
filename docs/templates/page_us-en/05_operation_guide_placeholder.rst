@@ -97,40 +97,60 @@ The LED light has two modes: Light mode and SOS mode. In any mode, press and hol
 LCD SCREEN
 ----------
 
-.. list-table::
-   :header-rows: 1
-   :widths: 30 20 20 30
+.. only:: html
 
-   * - Display
-     - Mode
-     - Action
-     - Behavior
-   * - .. image:: templates/word_template/common_assets/operation/lcd_mode.png
-          :alt: LCD display mode placeholder.
-          :width: 140px
-     - Shortly On
-     - Turn on
-     - Press the POWER Button or when the product is charging.
-   * -
-     - Shortly On
-     - Turn off
-     - Press the POWER Button.
-   * -
-     - Shortly On
-     - Auto-off
-     - The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.
-   * -
-     - Steady On (in charging or discharging state)
-     - Turn on
-     - Press the POWER button twice when the product is powered on.
-   * -
-     - Steady On (in charging or discharging state)
-     - Turn off
-     - Press the POWER Button.
-   * -
-     - Steady On (in charging or discharging state)
-     - Auto-off
-     - The LCD turns off automatically after |DEFAULT_STANDBY_DURATION| of inactivity.
+   .. raw:: html
+
+      <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
+        <tr>
+          <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
+            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="LCD display mode placeholder." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+          </td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Shortly On</td>
+          <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Turn on</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Press the POWER Button or when the product is charging.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Turn off</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Press the POWER Button.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Auto-off</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Steady On (in charging or discharging state)</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Turn on</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Press the POWER button twice when the product is powered on.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Turn off</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Press the POWER Button.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Auto-off</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">The LCD turns off automatically after |DEFAULT_STANDBY_DURATION| of inactivity.</td>
+        </tr>
+      </table>
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Shortly On}} & Turn on & Press the POWER Button or when the product is charging. \\ \cline{3-4}
+      & & Turn off & Press the POWER Button. \\ \cline{3-4}
+      & & Auto-off & The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Steady On (in charging or discharging state)}} & Turn on & Press the POWER button twice when the product is powered on. \\ \cline{3-4}
+      & & Turn off & Press the POWER Button. \\ \cline{3-4}
+      & & Auto-off & The LCD turns off automatically after |DEFAULT_STANDBY_DURATION| of inactivity. \\ \hline
+      \end{tabular}
+      \endgroup
 
 You can also set the screen display mode in the Jackery App.
 

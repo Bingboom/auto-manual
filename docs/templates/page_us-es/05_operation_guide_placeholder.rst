@@ -98,40 +98,60 @@ La luz LED tiene dos modos: modo de iluminación y modo SOS. En cualquier modo, 
 PANTALLA LCD
 ------------
 
-.. list-table::
-   :header-rows: 1
-   :widths: 30 20 20 30
+.. only:: html
 
-   * - Pantalla
-     - Modo
-     - Acción
-     - Comportamiento
-   * - .. image:: templates/word_template/common_assets/operation/lcd_mode.png
-          :alt: Modo de pantalla LCD.
-          :width: 140px
-     - En breve
-     - Encender
-     - Presione el botón de encendido principal o cuando el producto se esté cargando.
-   * -
-     - En breve
-     - Apagar
-     - Presione el botón de encendido principal.
-   * -
-     - En breve
-     - Apagado automático
-     - La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.
-   * -
-     - Estable en (durante el estado de carga o descarga)
-     - Encender
-     - Presione dos veces el botón de encendido principal cuando el producto esté encendido.
-   * -
-     - Estable en (durante el estado de carga o descarga)
-     - Apagar
-     - Presione el botón de encendido principal.
-   * -
-     - Estable en (durante el estado de carga o descarga)
-     - Apagado automático
-     - La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad.
+   .. raw:: html
+
+      <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
+        <tr>
+          <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
+            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+          </td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">En breve</td>
+          <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal o cuando el producto se esté cargando.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagar</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagado automático</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Estable en (durante el estado de carga o descarga)</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione dos veces el botón de encendido principal cuando el producto esté encendido.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagar</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagado automático</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad.</td>
+        </tr>
+      </table>
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{En breve}} & Encender & Presione el botón de encendido principal o cuando el producto se esté cargando. \\ \cline{3-4}
+      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & & Apagado automático & La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Estable en (durante el estado de carga o descarga)}} & Encender & Presione dos veces el botón de encendido principal cuando el producto esté encendido. \\ \cline{3-4}
+      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & & Apagado automático & La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad. \\ \hline
+      \end{tabular}
+      \endgroup
 
 También puede configurar el modo de visualización de la pantalla en la aplicación Jackery.
 

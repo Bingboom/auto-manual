@@ -98,40 +98,60 @@ La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe
 AFFICHAGE LCD
 -------------
 
-.. list-table::
-   :header-rows: 1
-   :widths: 30 20 20 30
+.. only:: html
 
-   * - Affichage
-     - Mode
-     - Action
-     - Comportement
-   * - .. image:: templates/word_template/common_assets/operation/lcd_mode.png
-          :alt: Mode d'affichage LCD.
-          :width: 140px
-     - Allumer en discontinu
-     - Allumer
-     - Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.
-   * -
-     - Allumer en discontinu
-     - Éteindre
-     - Appuyez sur le bouton d'alimentation principal.
-   * -
-     - Allumer en discontinu
-     - Arrêt automatique
-     - L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.
-   * -
-     - Allumer en continu (en cours de charge ou de décharge)
-     - Allumer
-     - Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.
-   * -
-     - Allumer en continu (en cours de charge ou de décharge)
-     - Éteindre
-     - Appuyez sur le bouton d'alimentation principal.
-   * -
-     - Allumer en continu (en cours de charge ou de décharge)
-     - Arrêt automatique
-     - L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.
+   .. raw:: html
+
+      <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
+        <tr>
+          <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
+            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+          </td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
+          <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation principal.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en continu (en cours de charge ou de décharge)</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation principal.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.</td>
+        </tr>
+      </table>
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en discontinu}} & Allumer & Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge. \\ \cline{3-4}
+      & & Éteindre & Appuyez sur le bouton d'alimentation principal. \\ \cline{3-4}
+      & & Arrêt automatique & L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en continu (en cours de charge ou de décharge)}} & Allumer & Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé. \\ \cline{3-4}
+      & & Éteindre & Appuyez sur le bouton d'alimentation principal. \\ \cline{3-4}
+      & & Arrêt automatique & L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité. \\ \hline
+      \end{tabular}
+      \endgroup
 
 Vous pouvez également définir le mode d'affichage de l'écran dans l'application Jackery.
 
