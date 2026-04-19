@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-04-12
+Updated: 2026-04-19
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single current source of truth for the topic you are changing.
@@ -12,6 +12,8 @@ Use these docs first before opening older plans or historical trackers:
 - [`build_doc_guide.md`](build_doc_guide.md)
   - current maintainer command reference
   - build, review, check, diff, publish, and release semantics
+- [`business_logic_overview.md`](business_logic_overview.md)
+  - current end-to-end business logic, lifecycle, and invariants
 - [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
   - current workflow and editing-surface rules
 - [`../user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md)
@@ -25,6 +27,8 @@ These files describe the repo behavior that should be maintained today.
 
 - [`build_doc_guide.md`](build_doc_guide.md)
   - maintainer commands and output layout
+- [`business_logic_overview.md`](business_logic_overview.md)
+  - current business lifecycle, queue semantics, and must-maintain rules
 - [`code_style_guide.md`](code_style_guide.md)
   - codebase maintainability rules and change-placement boundaries
 - [`code-as-doc.md`](code-as-doc.md)

@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-16
+Updated: 2026-04-19
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -286,6 +286,7 @@ The current user workflow and source-of-truth rules are maintained in [`user-gui
 Use the document that owns the topic:
 
 - maintainer doc index and ownership map: [`code-as-doc/README.md`](code-as-doc/README.md)
+- current business logic overview and invariants: [`code-as-doc/business_logic_overview.md`](code-as-doc/business_logic_overview.md)
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - current JP / US family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)

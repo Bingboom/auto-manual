@@ -26,6 +26,13 @@ This repo now supports two authoring paths for manual pages:
    - `python build.py check --config <config> --model <model> --region <region>`
    - `python build.py review --config <config> --model <model> --region <region>`
 
+## Review sync behavior
+
+- A `generated_page` produces both generated draft fragments under `generated/{model}/...` and one materialized wrapper page under `page/*.rst`.
+- `python build.py sync-review --sync-scope params` refreshes the review copy of that wrapper page through placeholder-line merging, so parameter-driven values stay current without overwriting the rest of the reviewed prose.
+- `python build.py sync-review --sync-scope generated` only refreshes generated draft/spec files. It does not replace the `generated_page` wrapper under `page/*.rst`.
+- If you intentionally need the whole wrapper page replaced from runtime, use `python build.py sync-review --page-file <file>` or reseed with `python build.py review --refresh-review`.
+
 ## Draft recipe rules
 
 - Keep `page_id` aligned with the `generated_page.page` value in the manifest.
