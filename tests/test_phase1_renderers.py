@@ -400,6 +400,17 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("※ This device is not waterproof or dustproof.", out)
         self.assertNotIn("\n- This device is intended for indoor use only", out)
 
+    def test_render_symbols_page_should_insert_blank_line_before_danger_notice(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertTrue(out.startswith("|\n\n.. list-table::"))
+
     def test_render_symbols_page_uses_image_path_from_blocks(self) -> None:
         blocks = self._symbols_blocks()
         blocks[0]["image_path"] = "custom/symbols/warning_triangle.png"
