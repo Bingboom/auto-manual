@@ -1,13 +1,10 @@
 UNINTERRUPTIBLE POWER SUPPLY (UPS)
 ==================================
-| 
 | Connect the product to a wall outlet with the AC charging cable, then press the |AC_POWER_BUTTON_LABEL_LOWER| and power your appliances at the same time.
-| 
 .. image:: templates/word_template/common_assets/operation/ups_mode.png
    :alt: UPS connection diagram placeholder.
    :width: 360px
 
-| 
 | An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails.
 | In the event of a sudden loss of grid power, |PRODUCT_NAME| will automatically switch to stored power within 10 ms to keep your appliances running.
 | In UPS mode, the unit's peak output reaches |UPS_BYPASS_OUTPUT_TEXT| before power outages. As simultaneous charging/discharging is enabled in Bypass Mode,
