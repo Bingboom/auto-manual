@@ -2,11 +2,16 @@
 
    \HBApplyLang{en}
 
-DANGER
-------
+|
 
-- This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).
-- This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
+.. list-table::
+   :header-rows: 0
+   :widths: 18 82
+
+   * - **DANGER**
+     - This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).
+
+       ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
 
 USER MAINTENANCE INSTRUCTIONS
 -----------------------------
@@ -46,13 +51,13 @@ During the lifecycle of energy storage products, a certain degree of capacity an
 
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 38 12 38
 
-   * - Symbol
-     - Meaning
-     - Symbol
-     - Meaning
+   * - **Symbol**
+     - **Meaning**
+     - **Symbol**
+     - **Meaning**
    * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Warning symbol.
           :width: 40px

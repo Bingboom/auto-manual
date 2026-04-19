@@ -68,18 +68,18 @@
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{\HBSpecMarkerOne{} El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.}\par
+   \HBTypeSpecNote{※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.}\par
    }
 
 
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.}\par
+   \HBTypeSpecNote{\HBSpecMarkerOne{} El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.}\par
    }
 
 
@@ -189,8 +189,8 @@
 
    .. raw:: html
    
-      <p class="hb-spec-footnote">① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.</p>
+      <p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.</p>
 
    .. raw:: html
    
-      <p class="hb-spec-note">※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.</p>
+      <p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.</p>

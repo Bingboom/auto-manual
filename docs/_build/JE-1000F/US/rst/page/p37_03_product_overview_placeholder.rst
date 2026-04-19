@@ -48,7 +48,7 @@ VISTA FRONTAL
        1500 W nominales,3000 W pico de sobretensión
 
 VISTA LATERAL DERECHA
---------------------
+---------------------
 
 .. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Diagrama de vista lateral derecha.

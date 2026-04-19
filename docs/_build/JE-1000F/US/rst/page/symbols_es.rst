@@ -2,11 +2,16 @@
 
    \HBApplyLang{es}
 
-PELIGRO
--------
+|
 
-- Este dispositivo está diseñado únicamente para uso en interiores. Cuando lo utilice en exteriores, colóquelo en un entorno similar al interior, por ejemplo en el hogar, una autocaravana, una tienda de campaña o una cabaña.
-- Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.
+.. list-table::
+   :header-rows: 0
+   :widths: 18 82
+
+   * - **ADVERTENCIA**
+     - Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).
+
+       ※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y ambientes húmedos durante su uso.
 
 INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO
 ----------------------------------------------
@@ -54,13 +59,13 @@ Durante el ciclo de vida de los productos de almacenamiento de energía, se prod
 
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 38 12 38
 
-   * - Símbolo
-     - Significado
-     - Símbolo
-     - Significado
+   * - **Símbolo**
+     - **Significado**
+     - **Símbolo**
+     - **Significado**
    * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Warning symbol.
           :width: 40px

@@ -26,39 +26,53 @@ A continuación, pulse el botón "icono parpadeante" y permita que la aplicació
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
    :width: 320px
 
-Botón de encendido principal
+|
+| Botón de encendido principal
+| Botón de energía CC/USB
+| Botón de energía CA
+|
 
-Botón de energía CC/USB
+| 2.3 Tras hacer clic en el icono del dispositivo buscado, la aplicación conecta automáticamente el dispositivo a través de Bluetooth.
+|
 
-Botón de energía CA
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-2.3 Tras hacer clic en el icono del dispositivo buscado, la aplicación conecta automáticamente el dispositivo a través de Bluetooth.
+   * - **NOTA**
+     - Si durante el proceso de vinculación se indica que "el dispositivo ha sido vinculado", se pueden utilizar las dos formas siguientes para la conexión:
 
-**NOTA**
+       - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
+       - Mantenga pulsados botón de encendido principal y botón de energía CC/USB durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
 
-Si durante el proceso de vinculación se indica que "el dispositivo ha sido vinculado", se pueden utilizar las dos formas siguientes para la conexión:
+|
+| 2.4 Después de que el dispositivo se haya conectado correctamente, introduzca el nombre y la contraseña de la red Wi-Fi a la que se conectará el dispositivo y toque el botón **Aceptar**.
 
-- El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
-- Mantenga pulsados botón de encendido principal y botón de energía CC/USB durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-2.4 Después de que el dispositivo se haya conectado correctamente, introduzca el nombre y la contraseña de la red Wi-Fi a la que se conectará el dispositivo y toque el botón **Aceptar**.
+   * - **NOTA**
+     -
+       - Seleccione una red Wi-Fi de 2,4 GHz. El dispositivo no admite redes Wi-Fi de 5 GHz.
 
-**NOTA**
-
-- Seleccione una red Wi-Fi de 2,4 GHz. El dispositivo no admite redes Wi-Fi de 5 GHz.
-
-2.5 Después de añadir correctamente el dispositivo a la aplicación, el icono de Wi-Fi del dispositivo permanecerá siempre encendido.
+| 2.5 Después de añadir correctamente el dispositivo a la aplicación, el icono de Wi-Fi del dispositivo permanecerá siempre encendido.
 
 .. image:: _assets/templates/word_template/common_assets/app/connect_result.png
    :alt: Marcador de posición de la pantalla de resultado de conexión en la aplicación.
    :width: 360px
 
-Las capturas de pantalla anteriores son solo de referencia.
+| Las capturas de pantalla anteriores son solo de referencia.
+|
 
-**PRECAUCIÓN**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-La aplicación Jackery solo puede conectarse a una estación de energía por Bluetooth a la vez. Volver a la lista de dispositivos desconectará automáticamente Bluetooth. Toque de nuevo la estación de energía en la lista para reconectarse automáticamente.
+   * - **PRECAUCIÓN**
+     - La aplicación Jackery solo puede conectarse a una estación de energía por Bluetooth a la vez. Volver a la lista de dispositivos desconectará automáticamente Bluetooth. Toque de nuevo la estación de energía en la lista para reconectarse automáticamente.
 
+|
 **3. Desvincular el dispositivo**
 
 Haga clic en el icono **Configuración**, en la esquina superior derecha de la interfaz principal del dispositivo, para acceder a la página de configuración. A continuación, haga clic en el botón **Desvincular**, situado en la parte inferior de la página, para desvincular el dispositivo.
@@ -72,7 +86,8 @@ Haga clic en el icono **Configuración**, en la esquina superior derecha de la i
 
 **4.2 Para desactivar Wi-Fi y Bluetooth**
 
-Mantenga pulsados botón de energía CC/USB y botón de energía CA al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth de la pantalla se apaguen.
+| Mantenga pulsados botón de energía CC/USB y botón de energía CA al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth de la pantalla se apaguen.
+|
 
 **4.3 Para restablecer Wi-Fi y Bluetooth**
 

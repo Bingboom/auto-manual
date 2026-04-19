@@ -2,11 +2,16 @@
 
    \HBApplyLang{fr}
 
-AVERTISSEMENT
--------------
+|
 
-- Cet appareil est destiné à un usage intérieur uniquement. Lors d'une utilisation en extérieur, placez-le dans un environnement similaire à un intérieur, par exemple une maison, un camping-car, une tente ou un chalet.
-- Cet appareil n'est ni étanche ni résistant à la poussière. Tenez-le éloigné de la pluie et des environnements humides pendant son utilisation.
+.. list-table::
+   :header-rows: 0
+   :widths: 18 82
+
+   * - **AVERTISSEMENT**
+     - Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).
+
+       ※ Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.
 
 INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR
 ------------------------------------------
@@ -54,13 +59,13 @@ Au cours du cycle de vie des produits de stockage d'énergie, un certain degré 
 
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 38 12 38
 
-   * - Symbole
-     - Signification
-     - Symbole
-     - Signification
+   * - **Symbole**
+     - **Signification**
+     - **Symbole**
+     - **Signification**
    * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
           :alt: Warning symbol.
           :width: 40px

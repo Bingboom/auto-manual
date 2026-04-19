@@ -1,39 +1,39 @@
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{fr}
 
 .. raw:: latex
 
-   \section{WHAT'S IN THE BOX}
+   \section{CONTENU DE LA BOÎTE}
 
 .. raw:: html
 
-   <h1>WHAT'S IN THE BOX</h1>
+   <h1>CONTENU DE LA BOÎTE</h1>
 
 .. list-table::
    :header-rows: 0
    :widths: 33 33 34
 
    * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Power station image placeholder.
+          :alt: Image de la station d'énergie.
           :width: 120px
 
        **Jackery Explorer 1000**
      - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: AC charging cable image placeholder.
+          :alt: Image du câble de charge CA.
           :width: 120px
 
-       **AC Charging Cable**
+       **Câble de charge CA**
      - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: User manual image placeholder.
+          :alt: Image des documents.
           :width: 120px
 
        Documents
 
 .. list-table::
    :header-rows: 0
-   :widths: 10 90
+   :widths: 12 88
 
-   * - **TIPS**
-     - The car charging cable is not included but is available for purchase separately on our website.
-       For assistance, please contact Jackery customer service.
+   * - **CONSEILS**
+     - Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web.
+       Pour obtenir de l'aide, veuillez contacter le service à la clientèle de Jackery.
