@@ -6,12 +6,12 @@ AFFICHAGE LCD
    :width: 420px
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 0
    :widths: 12 28 60
 
-   * - ID
-     - Indicateur
-     - Description
+   * - **ID**
+     - **Indicateur**
+     - **Description**
    * - 1
      - Wi-Fi
      - **Allumé :** Wi-Fi connecté.
@@ -51,14 +51,6 @@ AFFICHAGE LCD
 
        **Éteint :** Le produit n'est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d'énergie.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicateur
-     - Description
-
    * - 7
      - Indicateur d'alimentation CA
      - La sortie CA (onde sinusoïdale pure) est activée.
@@ -80,14 +72,6 @@ AFFICHAGE LCD
    * - 13
      - Indicateur de charge solaire
      - Le produit est chargé via l'entrée CC (DC8020) à l'aide de panneaux solaires.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicateur
-     - Description
 
    * - 14
      - Mode d'économie de batterie
@@ -118,14 +102,6 @@ AFFICHAGE LCD
    * - 18
      - Pourcentage de batterie restant
      - Affiche le pourcentage de batterie restant.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 12 28 60
-
-   * - ID
-     - Indicateur
-     - Description
 
    * - 19
      - Mode d'économie d'énergie

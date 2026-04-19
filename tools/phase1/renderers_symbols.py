@@ -459,13 +459,13 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
 
     lines: list[str] = [
         ".. list-table::",
-        "   :header-rows: 1",
+        "   :header-rows: 0",
         "   :widths: 12 38 12 38",
         "",
-        f"   * - {header_symbol}",
-        f"     - {header_meaning}",
-        f"     - {header_symbol}",
-        f"     - {header_meaning}",
+        f"   * - **{header_symbol}**",
+        f"     - **{header_meaning}**",
+        f"     - **{header_symbol}**",
+        f"     - **{header_meaning}**",
     ]
 
     for idx in range(max_rows):

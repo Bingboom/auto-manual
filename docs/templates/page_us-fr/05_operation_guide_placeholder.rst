@@ -8,17 +8,14 @@ MARCHE/ARRÊT
    :alt: Fonction marche/arrêt.
    :width: 360px
 
-Marche : appuyez une fois.
-
-Arrêt : appuyez et maintenez pendant 3 secondes.
-
-**Temps de veille par défaut :** |DEFAULT_STANDBY_DURATION|.
-
-Le produit s'éteindra automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité, sans charge ni décharge.
-
-*Le temps de veille peut être réglé dans l'application Jackery.*
-
-Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si le |AC_POWER_BUTTON_LABEL_LOWER| ou le |DC_USB_POWER_BUTTON_LABEL_LOWER| est activé mais que le produit ne charge ni ne décharge.
+| Marche : appuyez une fois.
+| Arrêt : appuyez et maintenez pendant 3 secondes.
+|
+| **Temps de veille par défaut :** |DEFAULT_STANDBY_DURATION|.
+| Le produit s'éteindra automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité, sans charge ni décharge.
+| *Le temps de veille peut être réglé dans l'application Jackery.*
+|
+| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si le |AC_POWER_BUTTON_LABEL_LOWER| ou le |DC_USB_POWER_BUTTON_LABEL_LOWER| est activé mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
 ----------------------
@@ -42,9 +39,10 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
    :alt: Fonction de sortie CC et USB.
    :width: 360px
 
-Marche : appuyez une fois.
-
-Arrêt : appuyez une fois.
+|
+| Marche : appuyez une fois.
+| Arrêt : appuyez une fois.
+|
 
 **ATTENTION**
 
@@ -52,7 +50,9 @@ Arrêt : appuyez une fois.
 - Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
 - Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5A, 100 W).
 
-Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12V, vendu séparément et disponible sur notre site web.
+|
+| Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12V, vendu séparément et disponible sur notre site web.
+|
 
 **ATTENTION**
 
@@ -73,7 +73,9 @@ Lors de l'alimentation d'appareils à faible puissance (CA <= |ENERGY_SAVING_AC_
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
 
-Appuyez et maintenez pendant 3 secondes.
+|
+| Appuyez et maintenez pendant 3 secondes.
+|
 
 **REMARQUE**
 

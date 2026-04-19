@@ -8,17 +8,14 @@ ENCENDIDO/APAGADO
    :alt: Operación de encendido/apagado.
    :width: 360px
 
-Encendido: Presione una vez.
-
-Apagado: Mantenga presionado durante 3 segundos.
-
-**Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
-
-El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
-
-*El tiempo de espera puede configurarse en la aplicación Jackery.*
-
-Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
+| Encendido: Presione una vez.
+| Apagado: Mantenga presionado durante 3 segundos.
+|
+| **Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
+| El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
+| *El tiempo de espera puede configurarse en la aplicación Jackery.*
+|
+| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
 
 ENCENDER/APAGAR SALIDA DE CA
 ----------------------------
@@ -42,9 +39,10 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
    :alt: Operación de salida de CC y USB.
    :width: 360px
 
-Encendido: Presione una vez.
-
-Apagado: Presione una vez.
+|
+| Encendido: Presione una vez.
+| Apagado: Presione una vez.
+|
 
 **PRECAUCIÓN**
 
@@ -52,7 +50,9 @@ Apagado: Presione una vez.
 - Conecte |PRODUCT_NAME| únicamente a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otras normas equivalentes).
 - Para obtener la máxima potencia de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100 W).
 
-El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
+|
+| El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
+|
 
 **PRECAUCIÓN**
 
@@ -73,7 +73,9 @@ Cuando alimente dispositivos de baja potencia (CA <= |ENERGY_SAVING_AC_THRESHOLD
    :alt: Operación del modo de ahorro de energía.
    :width: 320px
 
-Mantenga pulsados ambos botones durante 3 segundos.
+|
+| Mantenga pulsados ambos botones durante 3 segundos.
+|
 
 **NOTA**
 

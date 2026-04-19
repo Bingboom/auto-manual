@@ -8,17 +8,14 @@ POWER ON/OFF
    :alt: Power on/off operation placeholder.
    :width: 360px
 
-On: Press once.
-
-Off: Press and hold for 3s.
-
-**Default standby time:** |DEFAULT_STANDBY_DURATION|.
-
-The product will automatically shut down after |DEFAULT_STANDBY_DURATION| of inactivity, with no charging or discharging.
-
-*The standby time can be set in the Jackery App.*
-
-When Energy Saving Mode is enabled, the product will automatically shut down after |ENERGY_SAVING_AUTO_OFF_DURATION| if the AC or DC/USB output is on but the product is neither charging nor discharging.
+| On: Press once.
+| Off: Press and hold for 3s.
+|
+| **Default standby time:** |DEFAULT_STANDBY_DURATION|.
+| The product will automatically shut down after |DEFAULT_STANDBY_DURATION| of inactivity, with no charging or discharging.
+| *The standby time can be set in the Jackery App.*
+|
+| When Energy Saving Mode is enabled, the product will automatically shut down after |ENERGY_SAVING_AUTO_OFF_DURATION| if the AC or DC/USB output is on but the product is neither charging nor discharging.
 
 AC OUTPUT ON/OFF
 ----------------
@@ -42,9 +39,10 @@ DC 12V/USB OUTPUT ON/OFF
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 
-On: Press once.
-
-Off: Press once.
+| 
+| On: Press once.
+| Off: Press once.
+|
 
 **CAUTION**
 
@@ -52,7 +50,9 @@ Off: Press once.
 - Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
 - To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
-The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
+| 
+| The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
+| 
 
 **CAUTION**
 
@@ -73,8 +73,9 @@ When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <=
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
-Press and hold both buttons for more than 3 seconds.
-
+|
+| Press and hold both buttons for more than 3 seconds.
+| 
 **NOTE**
 
 Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
