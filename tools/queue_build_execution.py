@@ -76,6 +76,27 @@ def sync_phase2_snapshot_before_queue(
     )
 
 
+def _remove_path(path: Path) -> None:
+    if not path.exists():
+        return
+    if path.is_dir() and not path.is_symlink():
+        shutil.rmtree(path)
+        return
+    path.unlink()
+
+
+def _replace_path(src: Path, dst: Path) -> bool:
+    if not src.exists():
+        return False
+    _remove_path(dst)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    if src.is_dir():
+        shutil.copytree(src, dst)
+    else:
+        shutil.copy2(src, dst)
+    return True
+
+
 def build_document_for_task(
     *,
     repo_root: Path,
@@ -103,11 +124,25 @@ def build_document_for_task(
     normalized_doc_phase = normalize_workflow_action(doc_phase)
     effective_repo_root = repo_root
     effective_config_path = config_path
-    worktree: Path | None = None
+    build_workspace: Path | None = None
+    review_workspace: Path | None = None
     if git_ref.strip():
-        worktree = prepare_git_ref_worktree(git_ref.strip())
-        effective_repo_root = worktree
-        effective_config_path = config_path_in_repo_root(config_path, repo_root=worktree)
+        build_workspace = prepare_git_ref_worktree("main")
+        review_ref = git_ref.strip()
+        review_workspace = build_workspace if review_ref == "main" else prepare_git_ref_worktree(review_ref)
+        if not _replace_path(
+            review_workspace / "docs" / "_review",
+            build_workspace / "docs" / "_review",
+        ):
+            raise RuntimeError(
+                f"Git_ref {review_ref} does not contain docs/_review; queue builds must render review content from the review branch."
+            )
+        if data_root:
+            data_root_path = Path(data_root)
+            if not data_root_path.is_absolute():
+                _replace_path(repo_root / data_root_path, build_workspace / data_root_path)
+        effective_repo_root = build_workspace
+        effective_config_path = config_path_in_repo_root(config_path, repo_root=build_workspace)
 
     try:
         if normalized_doc_phase == "draft":
@@ -260,5 +295,9 @@ def build_document_for_task(
             upload_output_path=word_output_path,
         )
     finally:
-        if worktree is not None:
-            remove_worktree(worktree)
+        cleaned_paths: set[Path] = set()
+        for workspace in (review_workspace, build_workspace):
+            if workspace is None or workspace in cleaned_paths:
+                continue
+            remove_worktree(workspace)
+            cleaned_paths.add(workspace)
