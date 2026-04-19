@@ -44,21 +44,29 @@ DC 12V/USB OUTPUT ON/OFF
 | Off: Press once.
 |
 
-**CAUTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- **|USB_C_HIGH_POWER_PORT_LABEL| is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
-- Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
-- To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).
+   * - **CAUTION**
+     -
+       - **|USB_C_HIGH_POWER_PORT_LABEL| is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
+       - Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
+       - To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
 | 
 | The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
 | 
 
-**CAUTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- The DC 12V port is only compatible with 12V car batteries and not suitable for 24V systems.
-- Do not start the car while the product is charging the car battery through the 12V DC output port, as this may damage the product.
-- This feature is intended for emergency use only and cannot charge a dead or damaged car battery.
+   * - **CAUTION**
+     -
+       - The DC 12V port is only compatible with 12V car batteries and not suitable for 24V systems.
+       - Do not start the car while the product is charging the car battery through the 12V DC output port, as this may damage the product.
+       - This feature is intended for emergency use only and cannot charge a dead or damaged car battery.
 
 ENERGY SAVING MODE
 ------------------

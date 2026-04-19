@@ -30,19 +30,26 @@ Tap the "Icon Flashed" button, and allow the App to connect to nearby devices an
 
 | 2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
 | 
-**NOTE**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
+   * - **NOTE**
+     - If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
 
-- The device owner will share this device with other users through the App.
-- Press and hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+       - The device owner will share this device with other users through the App.
+       - Press and hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
 
 | 
 | 2.4 After the device is successfully connected, enter your Wi-Fi password and tap the **OK** button.
 
-**NOTE**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- Please select a Wi-Fi network in the 2.4 GHz band. The device does not support a Wi-Fi network in the 5 GHz band.
+   * - **NOTE**
+     -
+       - Please select a Wi-Fi network in the 2.4 GHz band. The device does not support a Wi-Fi network in the 5 GHz band.
 
 | 2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
 
@@ -53,9 +60,12 @@ If "the device has been bound" is prompted during the binding process, the follo
 | The above screenshots are for reference only.
 | 
 
-**CAUTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
+   * - **CAUTION**
+     - The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
 
 | 
 **3. Unbind the device**
