@@ -57,8 +57,6 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 | Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12V, vendu séparément et disponible sur notre site web.
 |
 
-**ATTENTION**
-
 .. list-table::
    :header-rows: 0
    :widths: 12 88

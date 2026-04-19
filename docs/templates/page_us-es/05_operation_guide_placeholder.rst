@@ -57,8 +57,6 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
 | El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
 |
 
-**PRECAUCIÓN**
-
 .. list-table::
    :header-rows: 0
    :widths: 12 88
