@@ -1247,30 +1247,44 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("review", commands[1])
         self.assertIn("--no-clean", commands[1])
 
-    def test_build_document_for_task_should_build_from_git_ref_and_stage_output_under_host_repo(self) -> None:
+    def test_build_document_for_task_should_build_from_main_workspace_overlay_review_content_and_stage_output_under_host_repo(self) -> None:
         commands: list[tuple[list[str], Path]] = []
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            worktree = root / ".tmp" / "process-build-queue-worktrees" / "codex-review-us-en"
+            main_worktree = root / ".tmp" / "process-build-queue-worktrees" / "main"
+            review_worktree = root / ".tmp" / "process-build-queue-worktrees" / "codex-review-us-en"
             host_config_path = root / "config.us-en.yaml"
-            worktree_config_path = worktree / "config.us-en.yaml"
-            worktree_word_path = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
-            worktree_pdf_path = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "pdf" / "manual_je1000f_us_en.pdf"
-            worktree_html_dir = worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
+            main_worktree_config_path = main_worktree / "config.us-en.yaml"
+            main_worktree_word_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            )
+            main_worktree_pdf_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "pdf" / "manual_je1000f_us_en.pdf"
+            )
+            main_worktree_html_dir = main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
-            worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
-            worktree_config_path.write_text("build: {}\n", encoding="utf-8")
-            worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
-            worktree_word_path.write_bytes(b"docx")
-            worktree_pdf_path.parent.mkdir(parents=True, exist_ok=True)
-            worktree_pdf_path.write_bytes(b"pdf")
-            worktree_html_dir.mkdir(parents=True, exist_ok=True)
-            (worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
+            main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_config_path.write_text("build: {}\n", encoding="utf-8")
+            main_worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_word_path.write_bytes(b"docx")
+            main_worktree_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_pdf_path.write_bytes(b"pdf")
+            main_worktree_html_dir.mkdir(parents=True, exist_ok=True)
+            (main_worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
+            (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
+            (root / "data" / "phase2" / "Spec_Master.csv").write_text("fresh-main-data\n", encoding="utf-8")
+            (review_worktree / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True, exist_ok=True)
+            (review_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").write_text(
+                "review-content\n",
+                encoding="utf-8",
+            )
+            (review_worktree / "data" / "phase2").mkdir(parents=True, exist_ok=True)
+            (review_worktree / "data" / "phase2" / "Spec_Master.csv").write_text("stale-review-data\n", encoding="utf-8")
 
             with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
                 process_build_queue,
                 "_prepare_git_ref_worktree",
-                return_value=worktree,
+                side_effect=[main_worktree, review_worktree],
             ) as prepare_mock, mock.patch.object(
                 process_build_queue,
                 "_remove_worktree",
@@ -1281,15 +1295,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_word_output_path_for_target",
-                return_value=worktree_word_path,
+                return_value=main_worktree_word_path,
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_pdf_output_path_for_target",
-                return_value=worktree_pdf_path,
+                return_value=main_worktree_pdf_path,
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_html_output_dir_for_target",
-                return_value=worktree_html_dir,
+                return_value=main_worktree_html_dir,
             ):
                 resolved_path = process_build_queue.build_document_for_task(
                     config_path=host_config_path,
@@ -1302,6 +1316,14 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
                 self.assertTrue(resolved_path.word_output_path.exists())
                 self.assertTrue(resolved_path.upload_output_path.exists())
+                self.assertEqual(
+                    "review-content\n",
+                    (main_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").read_text(encoding="utf-8"),
+                )
+                self.assertEqual(
+                    "fresh-main-data\n",
+                    (main_worktree / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8"),
+                )
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx",
@@ -1313,11 +1335,11 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][0][2])
-        self.assertEqual(worktree, commands[0][1])
+        self.assertEqual(main_worktree, commands[0][1])
         self.assertEqual("html", commands[1][0][2])
-        self.assertEqual(worktree, commands[1][1])
-        prepare_mock.assert_called_once_with("codex/review-us-en")
-        remove_mock.assert_called_once_with(worktree)
+        self.assertEqual(main_worktree, commands[1][1])
+        self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
+        self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
 
     def test_build_document_for_task_should_use_publish_action_for_publish_phase(self) -> None:
         commands: list[list[str]] = []
