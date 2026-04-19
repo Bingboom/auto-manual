@@ -7,12 +7,15 @@ import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
+from functools import lru_cache
 import json
 from pathlib import Path
 import re
 
 
+ROOT = Path(__file__).resolve().parents[1]
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
+REVIEW_DUPLICATE_PREFIX_RE = re.compile(r"^p\d+_")
 
 
 @dataclass(frozen=True)
@@ -20,6 +23,7 @@ class SyncPlanEntry:
     relative_path: Path
     mode: str = "copy"
     template_path: Path | None = None
+    source_relative_path: Path | None = None
 
 
 def _target_component(value: str | None, fallback: str) -> str:
@@ -83,6 +87,142 @@ def review_content_exists(*, docs_dir: Path, model: str | None, region: str | No
     )
 
 
+def _normalized_materialized_page_name(file_name: str) -> str:
+    return REVIEW_DUPLICATE_PREFIX_RE.sub("", file_name, count=1)
+
+
+def _review_manifest(review_dir: Path) -> dict[str, object]:
+    manifest_path = review_dir / "manifest.json"
+    if not manifest_path.exists():
+        return {}
+    try:
+        raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return raw if isinstance(raw, dict) else {}
+
+
+def _resolve_repo_path(value: object) -> Path | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    path = Path(value.strip())
+    if not path.is_absolute():
+        path = ROOT / path
+    return path.resolve()
+
+
+def _family_page_manifest_path(*, model: str | None, region: str | None) -> tuple[Path | None, Path | None]:
+    from tools.config_loader import load_config_mapping
+    from tools.page_manifest import resolve_page_manifest_path
+    from tools.target_defaults import FAMILY_DEFAULT_CONFIGS
+
+    config_name = FAMILY_DEFAULT_CONFIGS.get((region or "").strip().upper())
+    if config_name is None:
+        return None, None
+    config_path = (ROOT / config_name).resolve()
+    cfg = load_config_mapping(config_path)
+    return resolve_page_manifest_path(cfg, root=ROOT, model=model, region=region), config_path
+
+
+def _target_config_path_for_review_mapping(*, region: str | None, lang: str) -> Path | None:
+    from tools.config_loader import load_config_mapping
+    from tools.queue_config_resolution import resolve_config_path_for_task
+
+    normalized_region = (region or "").strip().upper()
+    normalized_lang = lang.strip().lower()
+    if not normalized_region or not normalized_lang:
+        return None
+    return resolve_config_path_for_task(
+        repo_root=ROOT,
+        region=normalized_region,
+        lang=normalized_lang,
+        config_loader=load_config_mapping,
+    ).resolve()
+
+
+@lru_cache(maxsize=None)
+def _shared_review_page_path_pairs(
+    *,
+    family_config_path: str,
+    target_config_path: str,
+    model: str | None,
+    region: str | None,
+) -> tuple[tuple[str, str], ...]:
+    from tools.config_loader import load_config_mapping
+    from tools.gen_index_bundle import plan_materialized_pages
+
+    family_cfg = load_config_mapping(Path(family_config_path))
+    target_cfg = load_config_mapping(Path(target_config_path))
+
+    family_pages = plan_materialized_pages(family_cfg, model=model, region=region, root=ROOT)
+    target_pages = plan_materialized_pages(target_cfg, model=model, region=region, root=ROOT)
+
+    family_by_key: dict[tuple[str, str], list[str]] = {}
+    for planned in family_pages:
+        key = ((planned.lang or "").strip().lower(), _normalized_materialized_page_name(planned.file_name))
+        family_by_key.setdefault(key, []).append(planned.file_name)
+
+    mapped_pairs: list[tuple[str, str]] = []
+    for planned in target_pages:
+        key = ((planned.lang or "").strip().lower(), _normalized_materialized_page_name(planned.file_name))
+        shared_names = family_by_key.get(key)
+        if not shared_names:
+            continue
+        mapped_pairs.append(
+            (
+                (Path("page") / planned.file_name).as_posix(),
+                (Path("page") / shared_names.pop(0)).as_posix(),
+            )
+        )
+    return tuple(mapped_pairs)
+
+
+def resolve_review_page_path_map(
+    *,
+    review_dir: Path,
+    model: str | None,
+    region: str | None,
+    target_lang: str | None,
+) -> dict[Path, Path]:
+    normalized_target_lang = (target_lang or "").strip().lower()
+    if not normalized_target_lang:
+        return {}
+
+    review_manifest = _review_manifest(review_dir)
+    manifest_lang = str(review_manifest.get("lang") or "").strip().lower()
+    if manifest_lang:
+        return {}
+
+    review_manifest_path = _resolve_repo_path(review_manifest.get("page_manifest"))
+    family_manifest_path, family_config_path = _family_page_manifest_path(model=model, region=region)
+    if review_manifest_path is None or family_manifest_path is None or family_config_path is None:
+        return {}
+    if review_manifest_path != family_manifest_path.resolve():
+        return {}
+
+    target_config_path = _target_config_path_for_review_mapping(region=region, lang=normalized_target_lang)
+    if target_config_path is None:
+        return {}
+
+    from tools.config_loader import load_config_mapping
+    from tools.page_manifest import resolve_page_manifest_path
+
+    target_cfg = load_config_mapping(target_config_path)
+    target_manifest_path = resolve_page_manifest_path(target_cfg, root=ROOT, model=model, region=region)
+    if target_manifest_path is None or target_manifest_path.resolve() == family_manifest_path.resolve():
+        return {}
+
+    return {
+        Path(target_relative): Path(review_relative)
+        for target_relative, review_relative in _shared_review_page_path_pairs(
+            family_config_path=family_config_path.as_posix(),
+            target_config_path=target_config_path.as_posix(),
+            model=model,
+            region=region,
+        )
+    }
+
+
 def _overlay_file_tree(src_dir: Path, dst_dir: Path, pattern: str = "*") -> None:
     if not src_dir.exists():
         return
@@ -96,14 +236,14 @@ def _overlay_selected_relative_files(
     *,
     src_root: Path,
     dst_root: Path,
-    relative_paths: tuple[Path, ...],
+    relative_path_pairs: tuple[tuple[Path, Path], ...],
 ) -> bool:
     copied = False
-    for relative_path in relative_paths:
-        src_path = src_root / relative_path
+    for src_relative_path, dst_relative_path in relative_path_pairs:
+        src_path = src_root / src_relative_path
         if not src_path.is_file():
             continue
-        target_path = dst_root / relative_path
+        target_path = dst_root / dst_relative_path
         target_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src_path, target_path)
         copied = True
@@ -161,6 +301,7 @@ def overlay_review_content_onto_bundle(
     model: str | None,
     region: str | None,
     lang: str | None = None,
+    target_lang: str | None = None,
     allowed_relative_paths: tuple[Path, ...] | None = None,
     allow_index: bool = True,
 ) -> Path | None:
@@ -178,6 +319,16 @@ def overlay_review_content_onto_bundle(
         shutil.copy2(index_src, bundle_dir / "index.rst")
         applied = True
 
+    page_relative_path_map = (
+        resolve_review_page_path_map(
+            review_dir=review_dir,
+            model=model,
+            region=region,
+            target_lang=target_lang,
+        )
+        if allowed_relative_paths is not None
+        else {}
+    )
     selected_page_paths = (
         tuple(path.relative_to("page") for path in allowed_relative_paths if path.parts and path.parts[0] == "page")
         if allowed_relative_paths is not None
@@ -189,8 +340,24 @@ def overlay_review_content_onto_bundle(
         if selected_page_paths is None:
             _overlay_file_tree(page_src, page_dst, "*.rst")
             applied = True
-        elif _overlay_selected_relative_files(src_root=page_src, dst_root=page_dst, relative_paths=selected_page_paths):
-            applied = True
+        else:
+            selected_page_pairs: list[tuple[Path, Path]] = []
+            for dst_relative_path in selected_page_paths:
+                target_relative_path = Path("page") / dst_relative_path
+                if page_relative_path_map:
+                    mapped_source_path = page_relative_path_map.get(target_relative_path)
+                    if mapped_source_path is None or not mapped_source_path.parts or mapped_source_path.parts[0] != "page":
+                        continue
+                    src_relative_path = mapped_source_path.relative_to("page")
+                else:
+                    src_relative_path = dst_relative_path
+                selected_page_pairs.append((src_relative_path, dst_relative_path))
+            if _overlay_selected_relative_files(
+                src_root=page_src,
+                dst_root=page_dst,
+                relative_path_pairs=tuple(selected_page_pairs),
+            ):
+                applied = True
 
     selected_generated_paths = (
         tuple(
@@ -210,7 +377,7 @@ def overlay_review_content_onto_bundle(
         elif _overlay_selected_relative_files(
             src_root=generated_src,
             dst_root=generated_dst,
-            relative_paths=selected_generated_paths,
+            relative_path_pairs=tuple((relative_path, relative_path) for relative_path in selected_generated_paths),
         ):
             applied = True
 
@@ -221,9 +388,15 @@ def overlay_review_content_onto_bundle(
     return review_dir if applied else None
 
 
-def _copy_relative_file(src_root: Path, dst_root: Path, relative_path: Path) -> Path:
-    src_path = src_root / relative_path
-    dst_path = dst_root / relative_path
+def _copy_relative_file(
+    src_root: Path,
+    dst_root: Path,
+    *,
+    src_relative_path: Path,
+    dst_relative_path: Path,
+) -> Path:
+    src_path = src_root / src_relative_path
+    dst_path = dst_root / dst_relative_path
     if not src_path.exists():
         raise RuntimeError(f"Sync source file not found: {src_path}")
     dst_path.parent.mkdir(parents=True, exist_ok=True)
@@ -418,10 +591,18 @@ def sync_review_paths(
 
     copied: list[Path] = []
     for entry in sync_plan:
-        src_path = runtime_bundle_dir / entry.relative_path
+        src_relative_path = entry.source_relative_path or entry.relative_path
+        src_path = runtime_bundle_dir / src_relative_path
         dst_path = review_dir / entry.relative_path
         if entry.mode == "copy":
-            copied.append(_copy_relative_file(runtime_bundle_dir, review_dir, entry.relative_path))
+            copied.append(
+                _copy_relative_file(
+                    runtime_bundle_dir,
+                    review_dir,
+                    src_relative_path=src_relative_path,
+                    dst_relative_path=entry.relative_path,
+                )
+            )
             continue
         if entry.mode == "merge_params":
             if entry.template_path is None:

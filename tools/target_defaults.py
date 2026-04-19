@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 US_SINGLE_LANGUAGE_TARGET_CONFIGS: dict[str, str] = {
     "en": "config.us-en.yaml",
     "es": "config.us-es.yaml",

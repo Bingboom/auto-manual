@@ -65,6 +65,7 @@ def prepare_manual_bundle(
                         model=model,
                         region=region,
                         lang=review_lang,
+                        target_lang=lang,
                         allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir),
                         allow_index=False,
                     )
@@ -85,6 +86,7 @@ def prepare_manual_bundle(
                     model=model,
                     region=region,
                     lang=review_lang,
+                    target_lang=lang if lang_fallback else None,
                     allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir) if lang_fallback else None,
                     allow_index=not lang_fallback,
                 )

@@ -196,6 +196,40 @@ class TestReviewSupport(unittest.TestCase):
                 (bundle_dir / "generated" / "JE-1000F" / "spec_es.rst").read_text(encoding="utf-8"),
             )
 
+    def test_overlay_review_content_onto_bundle_should_map_shared_us_review_pages_to_single_language_targets(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "fr" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
+            (bundle_dir / "page" / "01_fcc.rst").write_text("runtime french page\n", encoding="utf-8")
+
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("shared review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text(
+                '{\n  "lang": null,\n  "page_manifest": "docs/manifests/manual_us.yaml"\n}\n',
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "01_fcc.rst").write_text("shared english page\n", encoding="utf-8")
+            (review_dir / "page" / "p20_01_fcc.rst").write_text("shared french page\n", encoding="utf-8")
+
+            applied_dir = overlay_review_content_onto_bundle(
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang=None,
+                target_lang="fr",
+                allowed_relative_paths=(Path("page") / "01_fcc.rst",),
+                allow_index=False,
+            )
+
+            self.assertEqual(review_dir, applied_dir)
+            self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertEqual("shared french page\n", (bundle_dir / "page" / "01_fcc.rst").read_text(encoding="utf-8"))
+
     def test_sync_review_from_runtime_should_refresh_parameter_driven_files_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"

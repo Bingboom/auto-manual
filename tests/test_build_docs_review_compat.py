@@ -63,6 +63,7 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
             model="JE-1000F",
             region="US",
             lang=None,
+            target_lang="es",
             allowed_relative_paths=(
                 Path("page") / "overview.rst",
                 Path("generated") / "JE-1000F" / "spec_es.rst",

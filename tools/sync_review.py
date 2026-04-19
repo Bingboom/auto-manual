@@ -22,6 +22,7 @@ from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import (  # noqa: E402
     SyncPlanEntry,
     resolve_existing_review_bundle_dir,
+    resolve_review_page_path_map,
     review_dir_for_target,
     sync_review_paths,
 )
@@ -142,6 +143,81 @@ def resolve_sync_plan(
     return tuple(sync_plan[path] for path in sorted(sync_plan))
 
 
+def resolve_review_dir_for_sync(
+    *,
+    docs_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None = None,
+) -> Path:
+    review_dir = resolve_existing_review_bundle_dir(
+        docs_dir=docs_dir,
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    if review_dir is not None:
+        return review_dir
+    return review_dir_for_target(
+        docs_dir=docs_dir,
+        model=model,
+        region=region,
+        lang=lang,
+    )
+
+
+def remap_sync_plan_for_review_dir(
+    sync_plan: tuple[SyncPlanEntry, ...],
+    *,
+    docs_dir: Path,
+    review_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> tuple[SyncPlanEntry, ...]:
+    normalized_lang = (lang or "").strip().lower()
+    if not normalized_lang:
+        return sync_plan
+
+    shared_review_dir = review_dir_for_target(
+        docs_dir=docs_dir,
+        model=model,
+        region=region,
+    )
+    if review_dir != shared_review_dir:
+        return sync_plan
+
+    page_path_map = resolve_review_page_path_map(
+        review_dir=review_dir,
+        model=model,
+        region=region,
+        target_lang=normalized_lang,
+    )
+    if not page_path_map:
+        return sync_plan
+
+    remapped_plan: list[SyncPlanEntry] = []
+    for entry in sync_plan:
+        destination_relative_path = entry.relative_path
+        if destination_relative_path.parts and destination_relative_path.parts[0] == "page":
+            mapped_relative_path = page_path_map.get(destination_relative_path)
+            if mapped_relative_path is None:
+                raise RuntimeError(
+                    "Shared review bundle mapping is missing page file "
+                    f"for lang '{normalized_lang}': {destination_relative_path.as_posix()}"
+                )
+            destination_relative_path = mapped_relative_path
+        remapped_plan.append(
+            SyncPlanEntry(
+                relative_path=destination_relative_path,
+                mode=entry.mode,
+                template_path=entry.template_path,
+                source_relative_path=entry.relative_path,
+            )
+        )
+    return tuple(remapped_plan)
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     cfg_path = Path(args.config)
@@ -177,19 +253,12 @@ def main(argv: list[str] | None = None) -> int:
                     target.lang,
                     docs_build_dir=docs_build_dir,
                 ) / "rst"
-            review_dir = resolve_existing_review_bundle_dir(
+            review_dir = resolve_review_dir_for_sync(
                 docs_dir=docs_dir,
                 model=target.model,
                 region=target.region,
                 lang=target.lang,
             )
-            if review_dir is None:
-                review_dir = review_dir_for_target(
-                    docs_dir=docs_dir,
-                    model=target.model,
-                    region=target.region,
-                    lang=target.lang,
-                )
             sync_plan = resolve_sync_plan(
                 cfg=cfg,
                 docs_dir=docs_dir,
@@ -198,6 +267,14 @@ def main(argv: list[str] | None = None) -> int:
                 region=target.region,
                 scope=args.sync_scope,
                 page_files=tuple(args.page_file),
+            )
+            sync_plan = remap_sync_plan_for_review_dir(
+                sync_plan,
+                docs_dir=docs_dir,
+                review_dir=review_dir,
+                model=target.model,
+                region=target.region,
+                lang=target.lang,
             )
             copied = sync_review_paths(
                 runtime_bundle_dir=runtime_bundle_dir,

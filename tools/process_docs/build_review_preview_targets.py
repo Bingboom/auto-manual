@@ -10,7 +10,10 @@ from pathlib import Path
 from tools.build_docs import load_config
 from tools.review_support import review_content_exists
 from tools.script_bootstrap import bootstrap_repo_root
-from tools.target_defaults import FAMILY_DEFAULT_CONFIGS, REVIEW_WORKSPACE_TARGET_CONFIGS
+from tools.target_defaults import (
+    FAMILY_DEFAULT_CONFIGS,
+    REVIEW_WORKSPACE_TARGET_CONFIGS,
+)
 
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
