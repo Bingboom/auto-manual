@@ -12,7 +12,7 @@ runs:
     - name: Install pandoc
       uses: pandoc/actions/setup@v1
       with:
-        version: "3.1.3"
+        version: "3.9.0.2"
 
     - name: Print pandoc version
       shell: bash

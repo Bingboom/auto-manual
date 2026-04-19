@@ -1,9 +1,11 @@
 ﻿from __future__ import annotations
 
+import subprocess
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest.mock import patch
 from xml.etree import ElementTree as ET
 
 from tools.word_bundle_docx import (
@@ -11,6 +13,7 @@ from tools.word_bundle_docx import (
     _enforce_docx_outline_levels,
     _remap_reference_doc_styles,
 )
+from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc
 from tools.word_bundle_html import WordBundlePageMeta
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
@@ -140,6 +143,29 @@ class TestWordBundleDocx(unittest.TestCase):
             _enforce_docx_outline_levels(docx_path)
 
             self._assert_markup_compatibility_prefixes(docx_path)
+
+    def test_known_bad_pandoc_version_should_be_rejected_for_reference_doc_exports(self) -> None:
+        with patch(
+            "tools.word_bundle_docx_pandoc.subprocess.run",
+            return_value=subprocess.CompletedProcess(
+                args=["pandoc", "--version"],
+                returncode=0,
+                stdout="pandoc.EXE 3.1.3\n",
+            ),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "pandoc 3.1.3"):
+                ensure_supported_pandoc_for_reference_doc("pandoc", Path("reference_en.docx"))
+
+    def test_newer_pandoc_version_should_be_allowed_for_reference_doc_exports(self) -> None:
+        with patch(
+            "tools.word_bundle_docx_pandoc.subprocess.run",
+            return_value=subprocess.CompletedProcess(
+                args=["pandoc", "--version"],
+                returncode=0,
+                stdout="pandoc 3.9.0.2\n",
+            ),
+        ):
+            ensure_supported_pandoc_for_reference_doc("pandoc", Path("reference_en.docx"))
 
     def _write_minimal_docx(self, path: Path, *, with_markup_compat: bool = False) -> None:
         styles_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
