@@ -358,6 +358,7 @@ Parallel-language template note:
 - keep one row per reusable footnote definition
 - use `Footnote_id` as the stable reference key
 - use `Footnote_order` to control the rendered superscript order
+- keep `Type=Footnote` in the synced Feishu-backed rows so downstream renderers preserve the explicit trailer type
 - keep only plain footnote body text in `Text_*`; the renderer derives the visible superscript marker automatically
 - `project_code` / `项目代码` is no longer part of `Spec_Footnotes.csv`; target rows by `Region` + `Model`
 
@@ -365,7 +366,9 @@ Parallel-language template note:
 
 - use this file for bottom-of-spec notes that are not tied to a superscript reference
 - use `Note_id` as the stable note key and `Note_order` as the rendered order
+- keep `Type=Note` in the synced Feishu-backed rows so downstream renderers preserve the explicit trailer type
 - keep only plain note text in `Text_*`
+- when both note and footnote blocks appear at the bottom of one spec page, the final display order follows [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
 
 run:
 

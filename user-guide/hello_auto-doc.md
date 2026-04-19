@@ -165,8 +165,10 @@ The manual system now has four layers, but they are used at different stages.
    - `page_registry.csv`, page selection/applicability, and [`data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not overridden by `--data-root`
    - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
    - `Spec_Footnotes.csv` now holds only reusable spec footnote definitions; `Footnote_order` controls the rendered superscript marker order and `Footnote_id` is referenced from `Spec_Master.csv`
+   - `Spec_Footnotes.csv` and `Spec_Notes.csv` both carry a `Type` field from the Feishu source; keep it explicit as `Footnote` or `Note` so downstream renderers do not infer type from the visible text
    - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
    - `Spec_Footnotes.csv` and `Spec_Notes.csv` now match rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
+   - when one spec page renders both bottom notes and bottom footnotes, the final output order follows [`docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
    - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`

@@ -68,13 +68,13 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
                 encoding="utf-8",
             )
             spec_footnotes_csv.write_text(
-                "Region,Model,Source_lang,Is_Latest,Page,Footnote_id,Footnote_order,Text_en,Enabled\n"
-                "US,DEMO-1000,en,TRUE,specifications,demo_ref,1,Demo footnote from dedicated csv,TRUE\n",
+                "Region,Model,Source_lang,Is_Latest,Page,Footnote_id,Footnote_order,Type,Text_en,Enabled\n"
+                "US,DEMO-1000,en,TRUE,specifications,demo_ref,1,Footnote,Demo footnote from dedicated csv,TRUE\n",
                 encoding="utf-8",
             )
             spec_notes_csv.write_text(
-                "Region,Model,Source_lang,Is_Latest,Page,Note_id,Note_order,Text_en,Enabled\n"
-                "US,DEMO-1000,en,TRUE,specifications,demo_note,2,Demo note from dedicated csv,TRUE\n",
+                "Region,Model,Source_lang,Is_Latest,Page,Note_id,Note_order,Type,Text_en,Enabled\n"
+                "US,DEMO-1000,en,TRUE,specifications,demo_note,2,Note,Demo note from dedicated csv,TRUE\n",
                 encoding="utf-8",
             )
 
@@ -90,8 +90,14 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             )
             builder = Phase1Builder(paths)
             rows = builder._load_page_blocks("spec")
-            self.assertTrue(any(row.get("footnote_id") == "demo_ref" for row in rows))
-            self.assertTrue(any(row.get("note_id") == "demo_note" for row in rows))
+            footnote_row = next(row for row in rows if row.get("footnote_id") == "demo_ref")
+            note_row = next(row for row in rows if row.get("note_id") == "demo_note")
+            self.assertEqual("footnote", footnote_row.get("row_kind"))
+            self.assertEqual("footnote", footnote_row.get("kind"))
+            self.assertEqual("Footnote", footnote_row.get("type"))
+            self.assertEqual("note", note_row.get("row_kind"))
+            self.assertEqual("note", note_row.get("kind"))
+            self.assertEqual("Note", note_row.get("type"))
 
     def test_load_spec_keeps_master_rows_when_titles_csv_is_configured(self) -> None:
         with tempfile.TemporaryDirectory() as td:

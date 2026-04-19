@@ -574,6 +574,7 @@ Current schema:
 - `Page`
 - `Footnote_id`
 - `Footnote_order`
+- `Type`
 - `Text_en`
 - `Text_fr`
 - `Text_es`
@@ -585,6 +586,7 @@ Current rule:
 - keep only plain body text in `Text_*`
 - do not store `①②③` or `*` in the footnote text cells
 - use `Footnote_order` to control the rendered marker order
+- keep `Type=Footnote` for explicit trailer classification coming from the Feishu source
 - `Footnote_id` must be stable enough to be referenced from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - `Spec_Footnotes.csv` no longer has a `project_code` / `项目代码` column
 - target matching is based on `Region` + `Model`
@@ -605,6 +607,7 @@ Current schema:
 - `Page`
 - `Note_id`
 - `Note_order`
+- `Type`
 - `Text_en`
 - `Text_fr`
 - `Text_es`
@@ -615,7 +618,9 @@ Current rule:
 
 - keep only plain note text in `Text_*`
 - use `Note_order` to control the rendered note order
+- keep `Type=Note` for explicit trailer classification coming from the Feishu source
 - `Spec_Notes.csv` is not referenced from spec cells and does not generate superscript markers
+- when one rendered spec page contains both notes and footnotes at the bottom, their final display order follows [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
 
 ### 7.3 How [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) References Footnotes
 
@@ -826,4 +831,3 @@ This is the current maintainable path:
 - sync review
 - publish from review
 - keep the release manifest with the exported outputs
-

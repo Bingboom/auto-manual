@@ -108,7 +108,7 @@ def _render_text_blocks_latex(rows: list[str], before_vspace_tex: str = "") -> s
     return raw_latex_block(lines)
 
 
-def _render_text_blocks_html(rows: list[str], *, class_name: str) -> str:
+def _render_text_blocks_html(rows: list[str], *, class_name: str, kind: str) -> str:
     if not rows:
         return ""
     lines: list[str] = []
@@ -120,7 +120,9 @@ def _render_text_blocks_html(rows: list[str], *, class_name: str) -> str:
         )
         lines.append(".. raw:: html")
         lines.append("")
-        lines.append(f"   <p class=\"{class_name}\">{text_html}</p>")
+        lines.append(
+            f"   <p class=\"{class_name}\" data-spec-trailer-kind=\"{html_escape(kind)}\">{text_html}</p>"
+        )
         lines.append("")
     return "\n".join(lines).strip() + ("\n" if lines else "")
 
@@ -148,8 +150,8 @@ def render_spec_page(
     )
 
     sections_html = _render_spec_sections_html(sections)
-    notes_html = _render_text_blocks_html(notes, class_name="hb-spec-note")
-    footnotes_html = _render_text_blocks_html(footnotes, class_name="hb-spec-footnote")
+    notes_html = _render_text_blocks_html(notes, class_name="hb-spec-note", kind="note")
+    footnotes_html = _render_text_blocks_html(footnotes, class_name="hb-spec-footnote", kind="footnote")
 
     return (
         template.replace(PH_SPEC_TITLE_MAIN, title_main_latex)
