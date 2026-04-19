@@ -4,10 +4,79 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.sync_review import resolve_sync_plan, resolve_sync_relative_paths
+from tools.review_support import SyncPlanEntry
+from tools.sync_review import (
+    remap_sync_plan_for_review_dir,
+    resolve_review_dir_for_sync,
+    resolve_sync_plan,
+    resolve_sync_relative_paths,
+)
 
 
 class TestSyncReview(unittest.TestCase):
+    def test_resolve_review_dir_for_sync_should_keep_shared_us_review_dir_for_secondary_language(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            shared_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (shared_review_dir / "page").mkdir(parents=True)
+            (shared_review_dir / "index.rst").write_text("shared review index\n", encoding="utf-8")
+
+            resolved = resolve_review_dir_for_sync(
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang="es",
+            )
+
+            self.assertEqual(shared_review_dir, resolved)
+
+    def test_resolve_review_dir_for_sync_should_keep_primary_us_language_on_shared_review_dir(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            shared_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (shared_review_dir / "page").mkdir(parents=True)
+            (shared_review_dir / "index.rst").write_text("shared review index\n", encoding="utf-8")
+
+            resolved = resolve_review_dir_for_sync(
+                docs_dir=docs_dir,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+            )
+
+            self.assertEqual(shared_review_dir, resolved)
+
+    def test_remap_sync_plan_for_review_dir_should_map_shared_us_review_pages_by_language(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text(
+                '{\n  "lang": null,\n  "page_manifest": "docs/manifests/manual_us.yaml"\n}\n',
+                encoding="utf-8",
+            )
+
+            remapped = remap_sync_plan_for_review_dir(
+                (
+                    SyncPlanEntry(relative_path=Path("page") / "01_fcc.rst"),
+                    SyncPlanEntry(relative_path=Path("generated") / "JE-1000F" / "spec_fr.rst"),
+                ),
+                docs_dir=docs_dir,
+                review_dir=review_dir,
+                model="JE-1000F",
+                region="US",
+                lang="fr",
+            )
+
+            self.assertEqual(Path("page") / "p20_01_fcc.rst", remapped[0].relative_path)
+            self.assertEqual(Path("page") / "01_fcc.rst", remapped[0].source_relative_path)
+            self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].relative_path)
+            self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].source_relative_path)
+
     def test_resolve_sync_plan_should_mark_placeholder_backed_pages_for_param_merge(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

@@ -209,6 +209,8 @@ Important current rule:
 
 - `Start Review` now means force restart and reseed from the latest template/data state
 - existing review content on `main` is not used as a duplicate guard
+- for merged families such as `JE-1000F_US`, `Start Review` seeds one shared family review bundle under `docs/_review/<model>/<region>/`
+- the languages contained by that shared family review bundle come from the family config, for example `config.us.yaml build.languages`, not from separate per-language review-init tasks
 
 ### 4.4 Review Editing
 
@@ -241,6 +243,9 @@ Current detailed rules:
 - `sync-review --page-file <file>` means explicit page replacement
 - `sync-review --sync-scope params` refreshes parameter-driven lines without replacing the whole review page
 - `generated_page` wrapper pages under `page/*.rst` are part of that parameter-refresh logic, not a special ignore case
+- when a single-language target reuses a family-level shared review bundle, `sync-review` must map page files by language-aware manifest identity, not by naive same-name copy
+- this matters for merged manuals where the shared review bundle may contain sibling files such as `01_fcc.rst`, `p20_01_fcc.rst`, and `p35_01_fcc.rst` while the single-language runtime bundle still uses `01_fcc.rst`
+- in that case the system must refresh the matching language page inside the shared review bundle and must not overwrite the English sibling page
 
 ### 4.6 Build Draft Package
 
@@ -251,6 +256,7 @@ Current maintained meaning:
 - rebuild review-stage artifacts from the selected review branch
 - keep the current `main` toolchain and workflow code
 - overlay only `docs/_review` from `Git_ref`
+- if the authoritative review content for a target lives in a shared family review bundle, the rebuild must resolve the correct language pages from that shared bundle instead of falling back to same-name English pages
 
 This rule matters:
 
@@ -331,6 +337,7 @@ Business meaning:
 
 - a merged family represents one shared manual across languages
 - a single-language family represents one language-specific manual job
+- for review-stage US manuals, `JE-1000F_US` is the family document key and its included languages are defined by `config.us.yaml`, so downstream ES/FR builds are contained by that family review scope rather than starting separate family review bundles
 
 ### 5.4 Forced Snapshot Refresh
 
@@ -410,6 +417,8 @@ Any refactor that changes them should be treated as a business-logic change, not
 - `review --refresh-review` replaces review content intentionally
 - `sync-review` preserves reviewed prose while refreshing data-driven parts
 - parameter refresh must continue to cover placeholder-backed generated-page wrappers
+- merged family review bundles must remain authoritative for the languages declared by the family config
+- when single-language build or sync flows consume a shared family review bundle, page selection must stay language-aware and manifest-aware rather than name-only
 
 ### 7.3 Queue Invariants
 

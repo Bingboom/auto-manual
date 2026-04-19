@@ -203,7 +203,7 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertEqual("runtime", spec["source_mode"])
         self.assertEqual("runtime", spec["source_label"])
 
-    def test_target_has_review_bundle_should_accept_family_shared_review_content_from_availability_map(self) -> None:
+    def test_target_has_review_bundle_should_accept_family_shared_review_content_for_secondary_language(self) -> None:
         target = build_review_preview.WorkspaceTarget(
             model="JE-1000F",
             family="US",
