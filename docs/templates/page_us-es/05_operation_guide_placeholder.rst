@@ -85,9 +85,12 @@ Cuando alimente dispositivos de baja potencia (CA <= |ENERGY_SAVING_AC_THRESHOLD
 | Mantenga pulsados ambos botones durante 3 segundos.
 |
 
-**NOTA**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-El modo de ahorro de energía retoma el estado anterior después del encendido. Es necesario cambiarlo manualmente si se desea modificar el modo.
+   * - **NOTA**
+     - El modo de ahorro de energía retoma el estado anterior después del encendido. Es necesario cambiarlo manualmente si se desea modificar el modo.
 
 ENCENDER/APAGAR LA LUZ LED
 --------------------------
