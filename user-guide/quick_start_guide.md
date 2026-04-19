@@ -456,6 +456,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 - OpenClaw 只负责统一入口和状态查询，不直接执行仓库里的 `build.py`
 - 真正的远端执行仍然是 `main` 上的 GitHub worker
 - OpenClaw dispatch 现在会额外带一个 `openclaw_dispatch_nonce`，worker 完成后也会上传 `openclaw-run-metadata`，这样状态查询可以稳定追踪到同一次手动触发
+- 如果同一批 `en / es / fr` Build Draft Package 行在很短时间内连续触发，OpenClaw 现在会复用一个共享 draft queue worker，而不是给每个语言各发一条会互相竞争的 GitHub queue run
 - 插件包路径是 [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer)
 
 ## 10. 2026-04 更新
