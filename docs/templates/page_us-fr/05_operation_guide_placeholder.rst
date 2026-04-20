@@ -24,11 +24,10 @@ SORTIE CA MARCHE/ARRÊT
    :alt: Fonction de sortie CA.
    :width: 360px
 | 
-Marche 
-appuyez une fois
-
-Arrêt 
-appuyez une fois
+| **Marche** 
+| appuyez une fois
+| **Arrêt** 
+| appuyez une fois
 |
 
 SORTIE CC 12V/USB MARCHE/ARRÊT
@@ -41,8 +40,10 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
    :width: 360px
 
 |
-| Marche : appuyez une fois.
-| Arrêt : appuyez une fois.
+| **Marche** 
+| appuyez une fois
+| **Arrêt** 
+| appuyez une fois
 |
 
 .. list-table::

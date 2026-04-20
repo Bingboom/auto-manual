@@ -8,8 +8,11 @@ ENCENDIDO/APAGADO
    :alt: Operación de encendido/apagado.
    :width: 360px
 
-| Encendido: Presione una vez.
-| Apagado: Mantenga presionado durante 3 segundos.
+|
+| **Encendido**
+| Presione una vez
+| **Apagado**
+| Mantenga presionado durante 3 segundos
 |
 | **Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
 | El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
@@ -26,10 +29,10 @@ ENCENDER/APAGAR SALIDA DE CA
    :width: 360px
 
 |
-Encendido
+**Encendido**
 Presione una vez
 
-Apagado
+**Apagado**
 Presione una vez
 |
 

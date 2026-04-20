@@ -25,9 +25,12 @@ AC OUTPUT ON/OFF
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
-On: Press once.
-
-Off: Press once.
+| 
+| **On**
+| Press once
+| **Off**
+| Press once
+| 
 
 DC 12V/USB OUTPUT ON/OFF
 ------------------------
@@ -39,10 +42,10 @@ DC 12V/USB OUTPUT ON/OFF
    :width: 360px
 
 | 
-On
-Press once
-Off
-Press once
+| **On**
+| Press once
+| **Off**
+| Press once
 |
 
 .. list-table::
