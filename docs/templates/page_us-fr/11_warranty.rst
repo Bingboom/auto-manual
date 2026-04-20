@@ -21,7 +21,7 @@ Période de garantie
 
    * - **3 ANS Garantie standard**
 
-       La période de garantie standard de |PRODUCT_NAME| est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.
+       La période de garantie standard du |PRODUCT_NAME| est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.
 
      - **2 ANS Garantie prolongée**
 

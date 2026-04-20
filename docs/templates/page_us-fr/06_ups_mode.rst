@@ -19,4 +19,4 @@ ALIMENTATION SANS INTERRUPTION (ASI)
      -
        - Ce produit ne prend pas en charge un basculement instantané (0 ms). Ne le connectez pas à des équipements nécessitant une alimentation avec commutation en 0 ms, tels que des serveurs de données ou des stations de travail.
        - Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.
-       - Ne connectez pas de charges dépassant la puissance maximale de sortie du produit. Sinon, la protection contre les surcharges sera déclenchée.
+       - Ne connectez pas de charges dépassant la puissance de sortie maximale du produit. Sinon, la protection contre les surcharges sera déclenchée.

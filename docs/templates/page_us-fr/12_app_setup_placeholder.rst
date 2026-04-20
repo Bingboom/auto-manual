@@ -7,7 +7,7 @@ CONFIGURATION DE L'APPLICATION
    :alt: Code QR de téléchargement de l'application et emplacement réservé aux boutiques.
    :width: 320px
 
-Recherchez "Jackery" dans Google Play ou dans l'App Store pour installer l'application. Une fois que c'est fait, vous pouvez vous inscrire et vous connecter.
+Recherchez « Jackery » dans Google Play ou dans l'App Store pour installer l'application. Une fois que c'est fait, vous pouvez vous inscrire et vous connecter.
 
 Vous pouvez également scanner le code QR ci-dessous pour télécharger et installer l'application.
 
@@ -29,31 +29,31 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 | |DC_USB_POWER_BUTTON_LABEL|
 | |AC_POWER_BUTTON_LABEL|
 
-| 2.3 Une fois que vous avez appuyé sur l'icône de recherche d'appareils, l'appareil est automatiquement associé à l'application via le Bluetooth.
+| 2.3. Une fois que vous avez appuyé sur l'icône de recherche d'appareils, l'appareil est automatiquement associé à l'application via le Bluetooth.
 
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
-   * - **REMARQUE**
+   * - **Remarque**
      - Si le message «l'appareil a été associé» s'affiche pendant l'appairage, vous pouvez suivre l'une de ces deux étapes pour procéder à la connexion.
 
        - Le propriétaire de l'appareil peut partager ce dernier avec d'autres utilisateurs dans l'application.
        - Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil et l'associer de nouveau.
 
 
-| 2.4 Une fois l'appairage réalisé avec succès, vous devrez saisir le nom et le mot de passe du Wi-Fi pour que l'appareil se connecte automatiquement au réseau Wi-Fi.
+| 2.4. Une fois l'appairage réalisé avec succès, vous devrez saisir le nom et le mot de passe du Wi-Fi pour que l'appareil se connecte automatiquement au réseau Wi-Fi.
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
-   * - **REMARQUE**
+   * - **Remarque**
      -
        - Veuillez choisir un réseau Wi-Fi 2,4 GHz. L'appareil ne prend pas en charge le réseau Wi-Fi 5 GHz.
 
-| 2.5 Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
+| 2.5. Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.
@@ -76,16 +76,16 @@ Cliquez sur le bouton des paramètres en haut à droite de l'interface principal
 
 **4. Remarques**
 
-**4.1 Pour activer le Wi-Fi et le Bluetooth**
+**4.1. Pour activer le Wi-Fi et le Bluetooth :**
 
 - Le Wi-Fi et le Bluetooth sont automatiquement activés, une fois l'appareil allumé. Leurs icônes s'allument sur l'écran.
 - Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu'à ce que les icônes Wi-Fi et Bluetooth s'allument sur l'écran.
 
-**4.2 Pour désactiver le Wi-Fi et le Bluetooth**
+**4.2. Pour désactiver le Wi-Fi et le Bluetooth :**
 
 | Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu’à ce que les icônes Wi-Fi et Bluetooth s’éteignent de l’écran.
 
 
-**4.3 Pour réinitialiser le Wi-Fi et le Bluetooth**
+**4.3. Pour réinitialiser le Wi-Fi et le Bluetooth :**
 
 Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés simultanément pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth aux paramètres d’usine. Le compte connecté dans l’application sera dissocié.
