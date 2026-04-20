@@ -81,10 +81,10 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
         "maintenance_title": "USER MAINTENANCE INSTRUCTIONS",
         "maintenance_paragraph": (
-            "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation "
-            "is expected. As the number of charge and discharge cycles increases and storage time extends, this "
-            "degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging "
-            "of battery cells."
+            "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is "
+            "expected. As the number of charge and discharge cycles increases and storage time extends, this "
+            "degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of "
+            "battery cells."
         ),
         "page_title": "MEANING OF SYMBOLS",
         "header_symbol": "Symbol",
@@ -128,10 +128,10 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
         "maintenance_title": "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR",
         "maintenance_paragraph": (
-            "Au cours du cycle de vie des produits de stockage d'énergie, un certain degré de dégradation de la "
-            "capacité et de l'énergie est attendu. À mesure que le nombre de cycles de charge et de décharge "
-            "augmente et que la durée de stockage s'allonge, cette dégradation s'intensifie progressivement. "
-            "Il s'agit d'un phénomène normal conforme au vieillissement naturel des cellules de batterie."
+            "Au cours du cycle des produits de stockage d'énergie, une certaine dégradation de la capacité et de "
+            "l'énergie se produira. À mesure que le nombre de cycles d'utilisation augmente et que la durée de "
+            "stockage s'allonge, cette dégradation s'intensifiera progressivement, ce qui est un phénomène normal "
+            "conforme au modèle de vieillissement naturel des cellules de batterie. "
         ),
         "page_title": "SIGNIFICATION DES SYMBOLES",
         "header_symbol": "Symbole",
@@ -175,10 +175,10 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
         "maintenance_title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
         "maintenance_paragraph": (
-            "Durante el ciclo de vida de los productos de almacenamiento de energía, se producirá cierto grado de "
-            "degradación de capacidad y energía. A medida que aumenta el número de ciclos de carga y descarga y "
-            "se prolonga el tiempo de almacenamiento, esta degradación se intensificará gradualmente, lo cual es "
-            "un fenómeno normal acorde con el envejecimiento natural de las celdas de la batería."
+            "Durante el ciclo de vida de los productos de almacenamiento de energía, se producirá cierto grado de degradación "
+            "de capacidad y energía. A medida que aumenta el número de ciclos de uso y se extiende el tiempo de "
+            "almacenamiento, esta degradación se intensificará gradualmente, lo cual es un fenómeno normal acorde con el "
+            "patrón de envejecimiento natural de las celdas de la batería. "
         ),
         "page_title": "SIGNIFICADO DE LOS SÍMBOLOS",
         "header_symbol": "Símbolo",
