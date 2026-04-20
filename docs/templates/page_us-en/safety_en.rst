@@ -106,3 +106,17 @@
           <ul class="hb-list"><li>Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.</li><li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product&#x27;s specified operating temperature ranges:<ul class="hb-sublist"><li>Charging temperature: -4°F to 113°F (-20°C to 45°C)</li><li>Discharging temperature: -4°F to 113°F (-20°C to 45°C)</li></ul></li><li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.<ul class="hb-sublist"><li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li><li>Water can cause short circuits or damage to the charger, leading to safety risks.</li></ul></li><li>Unplug the power cord from a power outlet during a storm.</li><li>Immediately turn off the product by pressing the POWER button if it has fallen, been dropped, or exposed to vibrations.</li><li>Ensure the device(s) are powered off before connecting them to the product.</li><li>Do not charge the product using a damaged or broken charging cord or plug.</li><li>Do not use the product to charge any device with a damaged or broken cable or plug.</li><li>Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.</li><li>Ensure the product is properly secured when transporting it in a moving vehicle.</li><li>DO NOT place the unit upside down or on its side during use or storage.</li><li>DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.</li><li>DO NOT use the product&#x27;s accessories with other devices or equipment.</li><li>Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible.</li></ul>
         </div>
       </div>
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **DANGER**
+     - This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).
+
+       This device is not waterproof or dustproof. Keep away from rain and humid environments during use.
+
+USER MAINTENANCE INSTRUCTIONS
+-----------------------------
+
+During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.

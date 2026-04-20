@@ -33,14 +33,14 @@ LCD DISPLAY
        **Off:** Quiet Charging Mode is disabled.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
-   * - 5
+   * - 4
      - Charging Plan
      - Customizes the charging time of |PRODUCT_NAME|. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
-   * -
+   * - 5
      - Self-powered Mode
-     - Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs.The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.
+     - Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.
 
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
    * - 6
@@ -71,7 +71,7 @@ LCD DISPLAY
      - Solar Charging Indicator
      - The product is charged via the DC Input (DC8020) using solar panel(s).
 
-   * - 4
+   * - 14
      - Battery Saving Mode
      - **On:** Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan.
 
@@ -80,7 +80,7 @@ LCD DISPLAY
        Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
 
        When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.
-   * - 14
+   * - 15
      - Charging Power Limit
      - **On:** Charging Power limit is enabled in the Jackery app.
 
@@ -92,10 +92,10 @@ LCD DISPLAY
      - When the product is being charged, the orange circle around the battery percentage will light up in sequence.
 
        When charging other devices, the orange circle will stay on.
-   * - 18
+   * - 17
      - Remaining Battery Percentage
      - Displays the remaining battery percentage.
-   * - 17
+   * - 18
      - Low Battery Indicator
      - **On:** The battery level is below 20%.
 
@@ -103,25 +103,25 @@ LCD DISPLAY
 
        **Off:** The battery level is not below 20% or the product is charging.
 
-   * - 22
+   * - 19
      - Energy Saving Mode
      - When the AC or DC output is turned on by pressing the |AC_POWER_BUTTON_LABEL_LOWER| or |DC_USB_POWER_BUTTON_LABEL_LOWER|:
 
        **On:** Energy Saving Mode is enabled.
 
        **Off:** Energy Saving Mode is disabled.
-   * - 21
+   * - 20
      - High Temperature Indicator
      - High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
    * -
      - Low Temperature Indicator
      - Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
-   * - 20
+   * - 21
      - Fault code
      - A product error has occurred. Please refer to the Troubleshooting section for details.
-   * - 23
+   * - 22
      - Output Power
      - Displays the output power in watts.
-   * - 24
+   * - 23
      - Remaining Discharge Time
      - Displays the remaining discharging time.
