@@ -12,7 +12,11 @@ Alternatively, scan the QR code below to download and install the App.
 
 **2. Add device**
 
-2.1 Click the add-device button in the App to add your device.
+.. |add_device_icon| image:: templates/word_template/common_assets/app/add_device_plus.svg
+   :alt: Add device icon.
+   :width: 14px
+
+2.1 Click |add_device_icon| in the App to add your device.
 
 2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn it on.
 When the Wi-Fi and Bluetooth icons on the device flash, the device has entered network configuration mode.

@@ -12,7 +12,11 @@ También puede escanear el siguiente código QR para descargar e instalar la apl
 
 **2. Añadir un dispositivo**
 
-2.1 Haga clic en el botón Añadir dispositivo.
+.. |add_device_icon| image:: templates/word_template/common_assets/app/add_device_plus.svg
+   :alt: Icono para añadir dispositivo.
+   :width: 14px
+
+2.1 Haga clic en el icono |add_device_icon| de la aplicación para añadir el dispositivo.
 
 2.2 Presione una vez el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
 Los iconos de Wi-Fi y Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red.

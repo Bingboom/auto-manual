@@ -13,22 +13,24 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 **2. Ajouter un appareil**
 
-2.1 Cliquez sur le bouton d'ajout d'appareil pour ajouter un appareil.
+.. |add_device_icon| image:: templates/word_template/common_assets/app/add_device_plus.svg
+   :alt: Icône d'ajout d'appareil.
+   :width: 14px
 
-2.2 Maintenez enfoncé le |MAIN_POWER_BUTTON_LABEL| sur l'appareil pour l'allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l'appareil afin d'indiquer qu'il est entré dans le mode Configuration réseau. Cliquez sur le bouton «icône qui clignotante» et autorisez l'application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
+2.1 Cliquez sur le bouton |add_device_icon| pour ajouter un appareil.
+
+2.2 Maintenez enfoncé le |MAIN_POWER_BUTTON_LABEL| sur l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton «icône qui clignotante» et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
    :width: 320px
 
-|
 | |MAIN_POWER_BUTTON_LABEL|
 | |DC_USB_POWER_BUTTON_LABEL|
 | |AC_POWER_BUTTON_LABEL|
-|
 
 | 2.3 Une fois que vous avez appuyé sur l'icône de recherche d'appareils, l'appareil est automatiquement associé à l'application via le Bluetooth.
-|
+
 
 .. list-table::
    :header-rows: 0
@@ -40,7 +42,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
        - Le propriétaire de l'appareil peut partager ce dernier avec d'autres utilisateurs dans l'application.
        - Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil et l'associer de nouveau.
 
-|
+
 | 2.4 Une fois l'appairage réalisé avec succès, vous devrez saisir le nom et le mot de passe du Wi-Fi pour que l'appareil se connecte automatiquement au réseau Wi-Fi.
 
 .. list-table::
@@ -58,7 +60,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
    :width: 360px
 
 | Les captures d'écran ci-dessus sont fournies à titre indicatif.
-|
+
 
 .. list-table::
    :header-rows: 0
@@ -67,7 +69,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
    * - **ATTENTION**
      - L'application Jackery ne peut se connecter qu'à une seule station d'énergie à la fois via Bluetooth. Revenir à la liste des appareils déconnecte automatiquement le Bluetooth. Touchez à nouveau la station d'énergie dans la liste pour vous reconnecter automatiquement.
 
-|
+
 **3. Dissocier l'appareil**
 
 Cliquez sur le bouton des paramètres en haut à droite de l'interface principale pour accéder à la page des paramètres. Cliquez sur le bouton de dissociation en bas de la page pour dissocier l'appareil.
@@ -81,9 +83,9 @@ Cliquez sur le bouton des paramètres en haut à droite de l'interface principal
 
 **4.2 Pour désactiver le Wi-Fi et le Bluetooth**
 
-| Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu'à ce que les icônes Wi-Fi et Bluetooth s'éteignent de l'écran.
-|
+| Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu’à ce que les icônes Wi-Fi et Bluetooth s’éteignent de l’écran.
+
 
 **4.3 Pour réinitialiser le Wi-Fi et le Bluetooth**
 
-Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés simultanément pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth aux paramètres d'usine. Le compte connecté dans l'application sera dissocié.
+Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés simultanément pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth aux paramètres d’usine. Le compte connecté dans l’application sera dissocié.

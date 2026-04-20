@@ -23,12 +23,11 @@ SORTIE CA MARCHE/ARRÊT
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: Fonction de sortie CA.
    :width: 360px
-| 
+
 | **Marche** 
 | appuyez une fois
 | **Arrêt** 
 | appuyez une fois
-|
 
 SORTIE CC 12V/USB MARCHE/ARRÊT
 ------------------------------
@@ -39,12 +38,10 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
    :alt: Fonction de sortie CC et USB.
    :width: 360px
 
-|
 | **Marche** 
 | appuyez une fois
 | **Arrêt** 
 | appuyez une fois
-|
 
 .. list-table::
    :header-rows: 0
@@ -56,9 +53,7 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
        - Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
        - Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5A, 100 W).
 
-|
 | Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12V, vendu séparément et disponible sur notre site web.
-|
 
 .. list-table::
    :header-rows: 0
@@ -83,9 +78,7 @@ Lors de l'alimentation d'appareils à faible puissance (CA <= |ENERGY_SAVING_AC_
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
 
-|
 | Appuyez et maintenez pendant 3 secondes.
-|
 
 .. list-table::
    :header-rows: 0
