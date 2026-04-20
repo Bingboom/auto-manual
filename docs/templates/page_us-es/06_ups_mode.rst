@@ -17,6 +17,6 @@ FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)
 
    * - **PRECAUCIÓN**
      -
-       - Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación conmutada de 0 ms, como servidores de datos o estaciones de trabajo.
+       - Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.
        - Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.
-       - No conecte cargas que superen la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.
+       - No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.

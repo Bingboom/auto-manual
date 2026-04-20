@@ -46,7 +46,6 @@ DC 12V/USB OUTPUT ON/OFF
 | Press once
 | **Off**
 | Press once
-|
 
 .. list-table::
    :header-rows: 0
@@ -58,9 +57,9 @@ DC 12V/USB OUTPUT ON/OFF
        - Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
        - To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
-| 
+
 | The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website.
-| 
+ 
 
 .. list-table::
    :header-rows: 0
@@ -85,12 +84,17 @@ When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <=
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
-|
-| Press and hold both buttons for more than 3 seconds.
-| 
-**NOTE**
 
-Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
+| Press and hold both buttons for more than 3 seconds.
+
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **NOTE**
+     - Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
+ 
 
 LED LIGHT ON/OFF
 ----------------

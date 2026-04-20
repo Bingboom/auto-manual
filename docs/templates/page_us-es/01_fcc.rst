@@ -17,8 +17,7 @@
 
 - Reorientar o reubicar la antena receptora.
 - Aumentar la separación entre el equipo y el receptor.
-- Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el
-receptor.
+- Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor.
 - Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda.
 
 **MODIFICACIÓN:**
