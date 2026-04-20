@@ -3,7 +3,7 @@ GARANTÍA
 
 **Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.**
 
-*El período de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.*
+\*El período de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.*
 
 Garantía limitada
 -----------------

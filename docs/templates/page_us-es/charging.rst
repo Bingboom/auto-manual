@@ -8,7 +8,6 @@ Cuando la carga en la pared de CA y la carga solar están activadas al mismo tie
 **Carga completamente el producto antes de usarlo por primera vez.**
 
 
-| 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
@@ -17,7 +16,6 @@ Cuando la carga en la pared de CA y la carga solar están activadas al mismo tie
      - La temperatura de carga recomendada para el producto está entre -4°F y 113°F (-20°C a 45°C), y la temperatura de descarga está entre -4°F y 113°F (-20°C a 45°C). Operar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, e incluso impedir la carga o descarga.
      - La potencia de carga y la capacidad de la batería del producto pueden variar debido a las fluctuaciones de temperatura.
 
-| 
 
 .. only:: model_je_2000e
 
@@ -42,7 +40,7 @@ Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una 
    :alt: Diagrama de carga por toma de CA.
    :width: 360px
 
-|
+
 .. list-table::
    :header-rows: 0
    :widths: 12 88

@@ -22,14 +22,11 @@ A continuación, pulse el botón "icono parpadeante" y permita que la aplicació
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
    :width: 320px
 
-|
 | |MAIN_POWER_BUTTON_LABEL|
 | |DC_USB_POWER_BUTTON_LABEL|
 | |AC_POWER_BUTTON_LABEL|
-|
 
 | 2.3 Tras hacer clic en el icono del dispositivo buscado, la aplicación conecta automáticamente el dispositivo a través de Bluetooth.
-|
 
 .. list-table::
    :header-rows: 0
@@ -59,7 +56,6 @@ A continuación, pulse el botón "icono parpadeante" y permita que la aplicació
    :width: 360px
 
 | Las capturas de pantalla anteriores son solo de referencia.
-|
 
 .. list-table::
    :header-rows: 0
@@ -68,7 +64,6 @@ A continuación, pulse el botón "icono parpadeante" y permita que la aplicació
    * - **PRECAUCIÓN**
      - La aplicación Jackery solo puede conectarse a una estación de energía por Bluetooth a la vez. Volver a la lista de dispositivos desconectará automáticamente Bluetooth. Toque de nuevo la estación de energía en la lista para reconectarse automáticamente.
 
-|
 **3. Desvincular el dispositivo**
 
 Haga clic en el icono **Configuración**, en la esquina superior derecha de la interfaz principal del dispositivo, para acceder a la página de configuración. A continuación, haga clic en el botón **Desvincular**, situado en la parte inferior de la página, para desvincular el dispositivo.
@@ -83,7 +78,6 @@ Haga clic en el icono **Configuración**, en la esquina superior derecha de la i
 **4.2 Para desactivar Wi-Fi y Bluetooth**
 
 | Mantenga pulsados |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth de la pantalla se apaguen.
-|
 
 **4.3 Para restablecer Wi-Fi y Bluetooth**
 
