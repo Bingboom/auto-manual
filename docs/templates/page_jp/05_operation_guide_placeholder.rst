@@ -92,10 +92,18 @@ USB/カーポート出力オン/オフ
 
        ● この機能はあくまで車のバッテリーの緊急補助用であり、深刻なバッテリー上がりや故障したバッテリーには対応しておりません。
 
-省エネモード
-------------
+.. |energy_saving_12h_title| image:: templates/word_template/common_assets/operation/energy_saving_12h.svg
+   :alt: 12H省エネアイコン
+   :width: 28px
 
-省エネモードは、出力ボタンの消し忘れによる無駄なバッテリー消耗を防ぐための機能で、初期設定ではオンになっています。AC出力が|ENERGY_SAVING_AC_THRESHOLD|以下、またはDC/USB出力が|ENERGY_SAVING_DC_THRESHOLD|以下の状態が|ENERGY_SAVING_AUTO_OFF_DURATION|続くと、自動的に出力がオフになります。ACまたはDC/USB出力がオンの状態では、画面に省エネアイコンが表示されます。アイコンの表示時間は、設定された省エネ時間に応じて変わります。省エネ時間は、Jackeryアプリで2H、8H、12H、24Hに設定できます。「オフにしない」に設定すると、省エネモードは無効になります。
+.. |energy_saving_12h_icon| image:: templates/word_template/common_assets/operation/energy_saving_12h.svg
+   :alt: 12H省エネアイコン
+   :width: 16px
+
+省エネモード |energy_saving_12h_title|
+--------------------------------------
+
+省エネモードは、出力ボタンの消し忘れによる無駄なバッテリー消耗を防ぐための機能で、初期設定ではオンになっています。AC出力が|ENERGY_SAVING_AC_THRESHOLD|以下、またはDC/USB出力が|ENERGY_SAVING_DC_THRESHOLD|以下の状態が|ENERGY_SAVING_AUTO_OFF_DURATION|続くと、自動的に出力がオフになります。ACまたはDC/USB出力がオンの状態では、画面に省エネアイコン |energy_saving_12h_icon| が表示されます。アイコンの表示時間は、設定された省エネ時間に応じて変わります。省エネ時間は、Jackeryアプリで2H、8H、12H、24Hに設定できます。「オフにしない」に設定すると、省エネモードは無効になります。
 
 .. |es_ac| replace:: ≤|ENERGY_SAVING_AC_THRESHOLD|
 .. |es_dc| replace:: ≤|ENERGY_SAVING_DC_THRESHOLD|
@@ -109,7 +117,7 @@ USB/カーポート出力オン/オフ
 | DC/USB出力ポート     | |es_dc|      |                                            |
 +----------------------+--------------+--------------------------------------------+
 
-| ※ 交流|ENERGY_SAVING_AC_THRESHOLD|および直流|ENERGY_SAVING_DC_THRESHOLD|以下の低消費電力機器をご使用の場合、出力が途中で自動的にオフにならないように、省エネモードをオフにしてください。省エネモードをオフにすると、画面上の省エネアイコンは表示されなくなります。
+| ※ 交流|ENERGY_SAVING_AC_THRESHOLD|および直流|ENERGY_SAVING_DC_THRESHOLD|以下の低消費電力機器をご使用の場合、出力が途中で自動的にオフにならないように、省エネモードをオフにしてください。省エネモードをオフにすると、画面上の |energy_saving_12h_icon| アイコンは表示されなくなります。
 |
 | AC出力ボタンがオンの状態で、AC出力ボタンと主電源ボタンを同時に長押しし、省エネアイコンの表示（オン）／非表示（オフ）が切り替わるまで押し続けてください。
 

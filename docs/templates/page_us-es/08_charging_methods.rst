@@ -7,7 +7,7 @@ CARGA MEDIANTE PANELES SOLARES (SE VENDEN POR SEPARADO)
    :alt: Diagrama de conexión para carga solar 1.
    :width: 360px
 
-|
+
 Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
 
 .. image:: templates/word_template/common_assets/charging/solar_adapter.png
@@ -32,7 +32,7 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
        - Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
        - No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Esto puede fundir el fusible del automóvil o provocar un fallo de carga.
 
-|
+
 Se recomienda usar el panel solar Jackery para cargar el |PRODUCT_NAME|. Asegúrese de que el voltaje en circuito abierto (Voc) del panel solar se sitúe dentro del rango de entrada de CC de |PRODUCT_NAME| (16V-60V). Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.
 
 CARGA MEDIANTE CARGADOR DE AUTOMÓVIL (SE VENDE POR SEPARADO)
@@ -44,9 +44,9 @@ Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de 
    :alt: Diagrama de carga en automóvil.
    :width: 360px
 
-|
-| *El cable de carga para automóvil se vende por separado.*
-|
+
+| \*El cable de carga para automóvil se vende por separado.
+
 
 .. list-table::
    :header-rows: 0

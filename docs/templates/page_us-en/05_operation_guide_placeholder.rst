@@ -13,8 +13,7 @@ POWER ON/OFF
 |
 | **Default standby time:** |DEFAULT_STANDBY_DURATION|.
 | The product will automatically shut down after |DEFAULT_STANDBY_DURATION| of inactivity, with no charging or discharging.
-| *The standby time can be set in the Jackery App.*
-|
+| \*The standby time can be set in the Jackery App.
 | When Energy Saving Mode is enabled, the product will automatically shut down after |ENERGY_SAVING_AUTO_OFF_DURATION| if the AC or DC/USB output is on but the product is neither charging nor discharging.
 
 AC OUTPUT ON/OFF
@@ -26,9 +25,12 @@ AC OUTPUT ON/OFF
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
-On: Press once.
-
-Off: Press once.
+| 
+| **On**
+| Press once
+| **Off**
+| Press once
+| 
 
 DC 12V/USB OUTPUT ON/OFF
 ------------------------
@@ -40,8 +42,10 @@ DC 12V/USB OUTPUT ON/OFF
    :width: 360px
 
 | 
-| On: Press once.
-| Off: Press once.
+| **On**
+| Press once
+| **Off**
+| Press once
 |
 
 .. list-table::
