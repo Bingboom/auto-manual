@@ -19,10 +19,10 @@ ENCENDIDO/APAGADO
 | \*El tiempo de espera puede configurarse en la aplicación Jackery.
 | Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
 
-ENCENDER/APAGAR SALIDA DE CA
-----------------------------
+ENCENDER/APAGAR LA SALIDA DE CA
+--------------------------------
 
-**Requisito previo:** El producto está encendido.
+**Requisito previo:** el producto está encendido.
 
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: Operación de salida de CA.
@@ -38,15 +38,17 @@ ENCENDER/APAGAR SALIDA DE CA
 ENCENDER/APAGAR SALIDA DE CC 12V/USB
 ------------------------------------
 
-**Requisito previo:** El producto está encendido.
+**Requisito previo:** el producto está encendido.
 
 .. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: Operación de salida de CC y USB.
    :width: 360px
 
 |
-| Encendido: Presione una vez.
-| Apagado: Presione una vez.
+| **Encendido**
+| Presione una vez
+| **Apagado**
+| Presione una vez
 |
 
 .. list-table::
@@ -55,9 +57,9 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
 
    * - **PRECAUCIÓN**
      -
-       - **Los puertos USB-C de 100 W son puertos de salida de alta potencia de tipo Fuente de Alimentación 3 (PS3) según USB-PD.** Si el dispositivo o accesorio conectado no cumple los requisitos de seguridad, puede existir riesgo de incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio conectado tenga protección contra incendios.
-       - Conecte |PRODUCT_NAME| únicamente a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otras normas equivalentes).
-       - Para obtener la máxima potencia de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100 W).
+       - El puerto USB‑C de 100 W es una salida de alta potencia de tipo Fuente de Alimentación 3 (PS3) según USB‑PD. Si el dispositivo del usuario o accesorio conectado no cumple con los requisitos de seguridad, puede existir riesgo de incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio conectado tenga protección contra incendios. 
+       - CSolo conecte el |PRODUCT_NAME| a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares equivalentes). 
+       - ● Para obtener la potencia máxima de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100W). 
 
 | El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
 

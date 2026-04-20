@@ -7,8 +7,8 @@ CONFIGURACIÓN DE LA APLICACIÓN
    :alt: Código QR de descarga de la aplicación y marcador de tienda.
    :width: 320px
 
-Busque "Jackery" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarse e iniciar sesión.
-También puede escanear el siguiente código QR para descargar e instalar la aplicación.
+Buscar "Jackery" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión.
+Alternativamente, escanee el código QR a continuación para descargar e instalar la app.
 
 **2. Añadir un dispositivo**
 
@@ -19,8 +19,7 @@ También puede escanear el siguiente código QR para descargar e instalar la apl
 2.1 Haga clic en el icono |add_device_icon| de la aplicación para añadir el dispositivo.
 
 2.2 Presione una vez el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
-Los iconos de Wi-Fi y Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red.
-A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
+Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red. A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
@@ -40,33 +39,32 @@ A continuación, pulse el botón "icono parpadeante" y permita que la aplicació
      - Si durante el proceso de vinculación se indica que "el dispositivo ha sido vinculado", se pueden utilizar las dos formas siguientes para la conexión:
 
        - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
-       - Mantenga pulsados |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para restablecer el Wi-Fi y el Bluetooth del dispositivo y volver a vincularlo.
+       - Mantenga pulsados el |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para reiniciar el Wi‑Fi y el Bluetooth del dispositivo y, a continuación, vuelva a vincularlo.
 
 |
-| 2.4 Después de que el dispositivo se haya conectado correctamente, introduzca el nombre y la contraseña de la red Wi-Fi a la que se conectará el dispositivo y toque el botón **Aceptar**.
+| 2.4 Una vez que el dispositivo se haya conectado correctamente, es necesario introducir el nombre y la contraseña de la red Wi-Fi a la que se conectará el dispositivo. Una vez introducidos, el dispositivo se conectará automáticamente a la red Wi-Fi.
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
    * - **NOTA**
-     -
-       - Seleccione una red Wi-Fi de 2,4 GHz. El dispositivo no admite redes Wi-Fi de 5 GHz.
+     - Selecciona una red Wi-Fi en la banda de 2,4 GHz. El dispositivo no admite una red Wi-Fi en la banda de 5 GHz.
 
-| 2.5 Después de añadir correctamente el dispositivo a la aplicación, el icono de Wi-Fi del dispositivo permanecerá siempre encendido.
+| 2.5 Después de agregar exitosamente el dispositivo en la App, el icono del Wi-Fi en el dispositivo permanecerá siempre encendido.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Marcador de posición de la pantalla de resultado de conexión en la aplicación.
    :width: 360px
 
-| Las capturas de pantalla anteriores son solo de referencia.
+| Las capturas de pantalla anteriores sirven solo de referencia.
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
    * - **PRECAUCIÓN**
-     - La aplicación Jackery solo puede conectarse a una estación de energía por Bluetooth a la vez. Volver a la lista de dispositivos desconectará automáticamente Bluetooth. Toque de nuevo la estación de energía en la lista para reconectarse automáticamente.
+     - La aplicación Jackery solo puede conectarse a una estación de energía a la vez mediante Bluetooth. Regresar a la lista de dispositivos desconecta automáticamente Bluetooth. Toque la estación de energía en la lista nuevamente para reconectarse automáticamente.
 
 **3. Desvincular el dispositivo**
 
@@ -76,13 +74,13 @@ Haga clic en el icono **Configuración**, en la esquina superior derecha de la i
 
 **4.1 Para activar Wi-Fi y Bluetooth**
 
-- Wi-Fi y Bluetooth se activan automáticamente después de encender el dispositivo, y los iconos de Wi-Fi y Bluetooth se iluminan en la pantalla.
-- Mantenga pulsados |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth se iluminen en la pantalla.
+- El wifi y el Bluetooth se encienden automáticamente al encender el dispositivo y se iluminan los iconos de wifi y Bluetooth de la pantalla.
+- Pulse el |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que se enciendan los iconos de wifi y Bluetooth en la pantalla.
 
 **4.2 Para desactivar Wi-Fi y Bluetooth**
 
-| Mantenga pulsados |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que los iconos de Wi-Fi y Bluetooth de la pantalla se apaguen.
+Pulse el | Mantenga pulsados |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que se apaguen los iconos de wifi y Bluetooth en la pantalla.
 
 **4.3 Para restablecer Wi-Fi y Bluetooth**
 
-Mantenga pulsados |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| al mismo tiempo durante 3 segundos para restablecer Wi-Fi y Bluetooth a la configuración de fábrica. La cuenta de la aplicación conectada se desvinculará.
+Pulsa el |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| al mismo tiempo durante 3 segundos para restablecer los ajustes de fábrica de Wi-Fi y Bluetooth. Se desvinculará la cuenta de la aplicación conectada.

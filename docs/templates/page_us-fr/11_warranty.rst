@@ -19,15 +19,11 @@ Période de garantie
    :header-rows: 0
    :widths: 50 50
 
-   * - **3 ANS**
-
-       **Garantie standard**
+   * - **3 ANS Garantie standard**
 
        La période de garantie standard de |PRODUCT_NAME| est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.
 
-     - **2 ANS**
-
-       **Garantie prolongée**
+     - **2 ANS Garantie prolongée**
 
        Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à hello@jackery.com afin de prolonger la durée de la garantie standard.
 
