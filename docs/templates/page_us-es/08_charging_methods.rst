@@ -36,8 +36,8 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
 | 
 Se recomienda usar el panel solar Jackery para cargar el |PRODUCT_NAME|. Asegúrese de que el voltaje en circuito abierto (Voc) del panel solar se sitúe dentro del rango de entrada de CC de |PRODUCT_NAME| (16V-60V). Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.
 
-CARGA MEDIANTE CARGADOR DE AUTOMÓVIL (SE VENDE POR SEPARADO)
-------------------------------------------------------------
+CARGA CON UN CARGADOR DE EN EL VEHÍCULO (SE VENDE POR SEPARADO)
+----------------------------------------------------------------
 
 Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de que el cargador de coche y el encendedor de coche ofrezcan una buena conexión.
 
@@ -46,7 +46,7 @@ Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de 
    :width: 360px
 
 Vehículo
-| \※El cable de carga para automóvil se vende por separado.
+| ※ El cable de carga para auto se vende por separado.
 
 
 .. list-table::

@@ -16,7 +16,7 @@ Alternativamente, escanee el código QR a continuación para descargar e instala
    :alt: Icono para añadir dispositivo.
    :width: 14px
 
-2.1 Haga clic en el icono |add_device_icon| de la aplicación para añadir el dispositivo.
+2.1 Haga clic en el botón Añadir dispositivo.
 
 2.2 Presione una vez el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
 Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red. A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
@@ -36,9 +36,9 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
    :widths: 12 88
 
    * - **NOTA**
-     - Si durante el proceso de vinculación se indica que "el dispositivo ha sido vinculado", se pueden utilizar las dos formas siguientes para la conexión:
+     - Si durante el proceso de vinculación se indica que "**el dispositivo ha sido vinculado**", se pueden utilizar las dos formas siguientes para la conexión.
 
-       - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
+       - El propietario del dispositivo lo compartirá con otros usuarios a través de la App.
        - Mantenga pulsados el |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para reiniciar el Wi‑Fi y el Bluetooth del dispositivo y, a continuación, vuelva a vincularlo.
 
 |
@@ -68,19 +68,19 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
 
 **3. Desvincular el dispositivo**
 
-Haga clic en el icono **Configuración**, en la esquina superior derecha de la interfaz principal del dispositivo, para acceder a la página de configuración. A continuación, haga clic en el botón **Desvincular**, situado en la parte inferior de la página, para desvincular el dispositivo.
+Haga clic en el botón «Configuración» situado en la esquina superior derecha de la interfaz principal del dispositivo para entrar en la página de configuración. Después, haga clic en el botón «Desvincular» situado en la parte inferior de la página para desvincular el dispositivo.
 
 **4. Notas**
 
-**4.1 Para activar Wi-Fi y Bluetooth**
+**4.1 Para activar Wi-Fi y Bluetooth:**
 
 - El wifi y el Bluetooth se encienden automáticamente al encender el dispositivo y se iluminan los iconos de wifi y Bluetooth de la pantalla.
 - Pulse el |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que se enciendan los iconos de wifi y Bluetooth en la pantalla.
 
-**4.2 Para desactivar Wi-Fi y Bluetooth**
+**4.2 Para desactivar Wi-Fi y Bluetooth:**
 
-Pulse el | Mantenga pulsados |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que se apaguen los iconos de wifi y Bluetooth en la pantalla.
+Pulse el |DC_USB_POWER_BUTTON_LABEL_LOWER| y |AC_POWER_BUTTON_LABEL_LOWER| al mismo tiempo hasta que se apaguen los iconos de wifi y Bluetooth en la pantalla.
 
-**4.3 Para restablecer Wi-Fi y Bluetooth**
+**4.3 Para restablecer Wi-Fi y Bluetooth:**
 
 Pulsa el |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| al mismo tiempo durante 3 segundos para restablecer los ajustes de fábrica de Wi-Fi y Bluetooth. Se desvinculará la cuenta de la aplicación conectada.

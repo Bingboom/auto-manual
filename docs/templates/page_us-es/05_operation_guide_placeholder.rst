@@ -19,7 +19,7 @@ ENCENDIDO/APAGADO
 | \*El tiempo de espera puede configurarse en la aplicación Jackery.
 | Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
 
-ENCENDER/APAGAR LA SALIDA DE CA
+ENCENDER/APAGAR SALIDA CA
 --------------------------------
 
 **Requisito previo:** el producto está encendido.
@@ -35,7 +35,7 @@ ENCENDER/APAGAR LA SALIDA DE CA
 | Presione una vez
 |
 
-ENCENDER/APAGAR SALIDA DE CC 12V/USB
+ENCENDER/APAGAR SALIDA CC 12V/USB
 ------------------------------------
 
 **Requisito previo:** el producto está encendido.
@@ -58,8 +58,8 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
    * - **PRECAUCIÓN**
      -
        - El puerto USB‑C de 100 W es una salida de alta potencia de tipo Fuente de Alimentación 3 (PS3) según USB‑PD. Si el dispositivo del usuario o accesorio conectado no cumple con los requisitos de seguridad, puede existir riesgo de incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio conectado tenga protección contra incendios. 
-       - CSolo conecte el |PRODUCT_NAME| a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares equivalentes). 
-       - ● Para obtener la potencia máxima de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100W). 
+       - Solo conecte el |PRODUCT_NAME| a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares equivalentes). 
+       - Para obtener la potencia máxima de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100W). 
 
 | El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
 
@@ -69,8 +69,8 @@ ENCENDER/APAGAR SALIDA DE CC 12V/USB
 
    * - **PRECAUCIÓN**
      -
-       - El puerto de CC de 12V solo es compatible con baterías de automóvil de 12V y no es adecuado para sistemas de 24V.
-       - No arranque el automóvil mientras el producto está cargando la batería a través del puerto de salida de CC de 12V, ya que podría dañar el producto.
+       - El puerto del mechero para auto solo es compatible con baterías de automóvil de 12V y no es adecuado para sistemas de 24V.
+       - No arranque el automóvil mientras el producto está cargando la batería del automóvil a través del puerto de salida CC de 12V, ya que esto podría dañar el producto.
        - Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de automóvil agotada o dañada.
 
 MODO DE AHORRO DE ENERGÍA
@@ -93,12 +93,12 @@ Cuando alimente dispositivos de baja potencia (CA <= |ENERGY_SAVING_AC_THRESHOLD
    :widths: 12 88
 
    * - **NOTA**
-     - El modo de ahorro de energía retoma el estado anterior después del encendido. Es necesario cambiarlo manualmente si se desea modificar el modo.
+     - El modo de ahorro de energía reanuda el estado anterior después de encender. Se requiere un cambio manual para modificar el modo.
 
-ENCENDER/APAGAR LA LUZ LED
+ENCENDER/APAGAR LUZ LED
 --------------------------
 
-La luz LED tiene dos modos: modo de iluminación y modo SOS. En cualquier modo, mantenga presionado el botón de la luz LED para apagarla.
+La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla.
 
 .. image:: templates/word_template/common_assets/operation/led_light.png
    :alt: Operación de la luz LED.
