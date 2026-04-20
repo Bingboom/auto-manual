@@ -10,11 +10,9 @@ MARCHE/ARRÊT
 
 | Marche : appuyez une fois.
 | Arrêt : appuyez et maintenez pendant 3 secondes.
-|
 | **Temps de veille par défaut :** |DEFAULT_STANDBY_DURATION|.
 | Le produit s'éteindra automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité, sans charge ni décharge.
-| *Le temps de veille peut être réglé dans l'application Jackery.*
-|
+| \*Le temps de veille peut être réglé dans l'application Jackery.
 | Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si le |AC_POWER_BUTTON_LABEL_LOWER| ou le |DC_USB_POWER_BUTTON_LABEL_LOWER| est activé mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
@@ -25,10 +23,13 @@ SORTIE CA MARCHE/ARRÊT
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: Fonction de sortie CA.
    :width: 360px
+| 
+Marche 
+appuyez une fois
 
-Marche : appuyez une fois.
-
-Arrêt : appuyez une fois.
+Arrêt 
+appuyez une fois
+|
 
 SORTIE CC 12V/USB MARCHE/ARRÊT
 ------------------------------
