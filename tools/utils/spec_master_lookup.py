@@ -17,9 +17,63 @@ from tools.utils.spec_master_row_helpers import (
     _normalize_line_order_suffix,
     _pick_lang_value,
     _pick_row_region,
+    _pick_usage_type,
+    _pick_value_role,
     _read_csv_rows,
     resolve_page_value_placeholder_name,
+    source_language_for_row,
 )
+
+
+def _pick_lang_specific_value(row: dict[str, str], base: str, lang: str) -> str:
+    normalized_lang = (lang or "").strip()
+    if not normalized_lang:
+        return ""
+    return _first_non_empty(
+        row,
+        [
+            f"{base}_{normalized_lang}",
+            f"{base}_{normalized_lang.lower()}",
+            f"{base}_{normalized_lang.upper()}",
+        ],
+    )
+
+
+def _looks_like_translation_note(value: str) -> bool:
+    text = (value or "").strip()
+    if not text:
+        return False
+    lowered = text.casefold()
+    return (
+        "\n" in text
+        or "\r" in text
+        or "说明" in text
+        or "占位符" in text
+        or "placeholder" in lowered
+    )
+
+
+def _preferred_page_value_text(row: dict[str, str], *, lang: str) -> str:
+    normalized_lang = (lang or "").strip().lower()
+    source_lang = source_language_for_row(row)
+    if (
+        normalized_lang
+        and normalized_lang != "en"
+        and normalized_lang != source_lang
+        and _pick_usage_type(row) == "page_value"
+        and _pick_value_role(row) == "label"
+    ):
+        localized_row_label = _pick_lang_specific_value(row, "Row_label", normalized_lang)
+        source_row_label = _first_non_empty(row, ["Row_label_source", "row_label_source"])
+        source_value = _first_non_empty(row, ["Value_source", "value_source"])
+        if (
+            localized_row_label
+            and not _looks_like_translation_note(localized_row_label)
+            and localized_row_label != source_row_label
+            and localized_row_label != source_value
+        ):
+            return localized_row_label
+    return _pick_lang_value(row, "Value", lang)
 
 def resolve_spec_value_from_rows(
     rows: list[dict[str, str]],
@@ -48,7 +102,7 @@ def resolve_spec_value_from_rows(
         value_role=value_role,
         variant_key=variant_key,
     ):
-        value = _pick_lang_value(row, "Value", lang)
+        value = _preferred_page_value_text(row, lang=lang)
         if value:
             return SpecValueMatch(
                 value=value,
@@ -117,7 +171,7 @@ def collect_spec_value_matches_from_rows(
         value_role=value_role,
         variant_key=variant_key,
     ):
-        value = _pick_lang_value(row, "Value", lang)
+        value = _preferred_page_value_text(row, lang=lang)
         if not value:
             continue
         matches.append(
@@ -226,7 +280,7 @@ def resolve_template_substitutions_from_rows(
         if not placeholder:
             continue
 
-        value = _pick_lang_value(row, "Value", lang)
+        value = _preferred_page_value_text(row, lang=lang)
         if not value:
             continue
 
