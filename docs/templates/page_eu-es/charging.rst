@@ -14,7 +14,7 @@ Cuando la carga en la pared de CA y la carga solar están activadas al mismo tie
 
    * - **NOTA**
        - 
-          - La temperatura de carga recomendada para el producto está entre -4°F y 113°F (-20°C a 45°C), y la temperatura de descarga está entre -4°F y 113°F (-20°C a 45°C). Operar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, e incluso impedir la carga o descarga.
+          - La temperatura de carga recomendada para el producto está entre -20°C y 45°C, y la temperatura de descarga está entre -20°C y 45°C. Operar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, e incluso impedir la carga o descarga.
           - La potencia de carga y la capacidad de la batería del producto pueden variar debido a las fluctuaciones de temperatura.
 
 
@@ -28,7 +28,7 @@ Cuando la carga en la pared de CA y la carga solar están activadas al mismo tie
    **PRECAUCIÓN**
 
    - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
-   - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
+   - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 200 mm de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
    - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
    - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
 
