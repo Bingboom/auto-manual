@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import os
-import shutil
 import subprocess
 import sys
 import zipfile
@@ -15,7 +14,7 @@ from xml.etree import ElementTree as ET
 
 from tools.gen_index_bundle import MaterializedBundle
 from tools.word_bundle_common import paths
-from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc
+from tools.word_bundle_docx_pandoc import resolve_pandoc_binary
 from tools.word_bundle_docx_xml import serialize_xml_preserving_namespaces
 from tools.word_bundle_html import WordBundlePageMeta, build_word_bundle_html
 
@@ -581,10 +580,7 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
 
 
 def _export_docx_via_pandoc(bundle_html: Path, out_path: Path, reference_doc: Path | None) -> None:
-    pandoc = shutil.which("pandoc")
-    if not pandoc:
-        raise RuntimeError("pandoc is required for non-Windows word bundle export")
-    ensure_supported_pandoc_for_reference_doc(pandoc, reference_doc)
+    pandoc = resolve_pandoc_binary(reference_doc)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     resource_path = os.pathsep.join(

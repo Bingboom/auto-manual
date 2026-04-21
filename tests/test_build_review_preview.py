@@ -126,12 +126,47 @@ class TestBuildReviewPreview(unittest.TestCase):
             args,
             target,
             requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability={("JE-1000F", "US", "en")},
         )
 
         self.assertEqual(build_review_preview.resolve_path("config.us-en.yaml"), spec["config_path"])
         self.assertEqual("review", spec["source_mode"])
         self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
+
+    def test_build_spec_for_target_should_fallback_to_runtime_for_requested_target_without_review_bundle(self) -> None:
+        args = argparse.Namespace(
+            config="config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=False,
+            all_review_models=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
+            family="US",
+            language="en",
+            config="config.us-en.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        spec = build_review_preview.build_spec_for_target(
+            args,
+            target,
+            requested_target=build_review_preview.requested_workspace_target(args),
+            review_availability=set(),
+        )
+
+        self.assertEqual("runtime", spec["source_mode"])
+        self.assertEqual("runtime", spec["source_label"])
 
     def test_build_spec_for_target_should_use_review_for_existing_secondary_language_bundles(self) -> None:
         args = argparse.Namespace(

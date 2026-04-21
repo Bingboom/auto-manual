@@ -1,0 +1,195 @@
+ОПЕРАЦІЇ
+========
+
+ВКЛ./ВИКЛ.
+---------
+
+.. image:: templates/word_template/common_assets/operation/main_power.png
+   :alt: Заглушка операції вмикання/вимикання живлення.
+   :width: 360px
+
+| Увімкнення: натисніть один раз.
+| Вимкнення: натисніть і утримуйте 3 с.
+|
+| **Стандартний час очікування:** |DEFAULT_STANDBY_DURATION|.
+| Пристрій автоматично вимкнеться після |DEFAULT_STANDBY_DURATION| бездіяльності, якщо не відбувається заряджання чи розряджання.
+| \* Час очікування можна налаштувати в Додатку Jackery.
+| Коли режим енергозбереження ввімкнено, пристрій автоматично вимкнеться після |ENERGY_SAVING_AUTO_OFF_DURATION|, якщо вихід AC або DC/USB увімкнено, але пристрій не заряджається і не розряджається.
+
+УВІМК./ВИМК. ВИХОДУ AC
+---------------------
+
+**Передумова**: пристрій увімкнено.
+
+.. image:: templates/word_template/common_assets/operation/ac_output.png
+   :alt: Заглушка операції вмикання/вимикання виходу AC.
+   :width: 360px
+
+| 
+| **Увімкнути**
+| Натисніть один раз
+| **Вимкнути**
+| Натисніть один раз
+| 
+
+УВІМК./ВИМК. ВИХОДУ DC 12V/USB
+------------------------------
+
+**Передумова**: пристрій увімкнено.
+
+.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
+   :alt: Заглушка операції вмикання/вимикання виходу DC USB.
+   :width: 360px
+
+| 
+| **Увімкнути**
+| Натисніть один раз
+| **Вимкнути**
+| Натисніть один раз
+|
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **УВАГА**
+     -
+       - **|USB_C_HIGH_POWER_PORT_LABEL| є високопотужним вихідним портом USB-PD Power Source 3 (PS3).** Якщо підключений пристрій користувача або аксесуар не відповідає вимогам безпеки, існує ризик пожежі. Перед використанням цих портів переконайтеся, що підключений пристрій або аксесуар має захист від пожежі.
+       - Підключайте Jackery Explorer 1000 лише до пристроїв або аксесуарів, що відповідають пунктам 6.3, 6.4 і 6.5 IEC/EN/UL 62368-1 (або іншим еквівалентним стандартам).
+       - Щоб отримати максимальну вихідну потужність, використовуйте кабель USB-C до USB-C 5A (20V DC/5A, 100W).
+
+
+| Пристрій може заряджати акумулятор вашого автомобіля за допомогою автомобільного кабелю заряджання Jackery 12V, який продається окремо та доступний на нашому вебсайті.
+ 
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **УВАГА**
+     -
+       - Перш ніж заряджати, обов'язково запустіть автомобіль.
+       - Якщо автомобіль рухається нерівними дорогами, використовувати автомобільний зарядний пристрій заборонено, оскільки це може спричинити нестандартну роботу. Компанія не несе відповідальності за будь-які втрати, спричинені нестандартною роботою.
+       - Автомобільне заряджання застосовується лише для транспортних засобів із 12V DC, а не з 24V DC. Будь ласка, не заряджайте цей пристрій у транспортному засобі з 24V, щоб уникнути травмування людей і матеріальних збитків.
+
+РЕЖИМ ЕНЕРГОЗБЕРЕЖЕННЯ
+----------------------
+
+Щоб запобігти зайвому витрачанню заряду батареї через забутий увімкнений вихід, пристрій за замовчуванням активує режим енергозбереження. Коли вихід AC або DC/USB увімкнено, на екрані LCD відображатиметься значок режиму енергозбереження. У цьому режимі, якщо пристрій не підключено або споживання підключеного пристрою нижче певного порогу (|ENERGY_SAVING_AC_THRESHOLD| для виходу AC або |ENERGY_SAVING_DC_THRESHOLD| для виходу DC/USB), відповідний вихід автоматично вимкнеться після встановленого часу. Значення за замовчуванням - |ENERGY_SAVING_AUTO_OFF_DURATION|. Тривалість режиму енергозбереження можна встановити в Додатку Jackery на 2H, 8H, 12H або 24H. Якщо вибрано Never Off, режим енергозбереження буде вимкнено.
+
+Щоб вимкнути режим енергозбереження, натисніть і утримуйте кнопку живлення AC та основну кнопку POWER одночасно понад 3 секунди. Після вимкнення режиму енергозбереження значок більше не з'являтиметься на екрані LCD, і пристрій не вимикатиме автоматично вихід AC або USB.
+
+Під час живлення малопотужних пристроїв (AC <= |ENERGY_SAVING_AC_THRESHOLD| або DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|) вимкніть режим енергозбереження, щоб запобігти автоматичному вимкненню виходу під час роботи.
+
+.. image:: templates/word_template/common_assets/operation/energy_saving.png
+   :alt: Заглушка операції керування режимом енергозбереження.
+   :width: 320px
+
+
+| Натисніть і утримуйте обидві кнопки понад 3 секунди.
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **ПРИМІТКА**
+     - Після ввімкнення пристрій відновлює попередній стан режиму енергозбереження. Для зміни режиму потрібне ручне перемикання.
+
+
+ВКЛ./ВИКЛ. LED-СВІТЛА
+--------------------
+
+LED-світло має два режими: режим освітлення та режим SOS. У будь-якому режимі натисніть і утримуйте кнопку LED-світла, щоб вимкнути світло.
+
+.. image:: templates/word_template/common_assets/operation/led_light.png
+   :alt: Заглушка операції режимів LED-світла.
+   :width: 360px
+
+|
+| Натисніть кнопку LED Light один раз, щоб увімкнути світло.
+| Натисніть її ще раз, щоб перейти в режим SOS.
+| Натисніть її втретє, щоб вимкнути світло.
+
+ЕКРАН LCD
+---------
+
+.. only:: html
+
+   .. raw:: html
+
+      <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
+        <tr>
+          <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
+            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Заглушка режиму дисплея LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+          </td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Короткочасне увімкнення</td>
+          <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Увімкнути</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Натисніть кнопку POWER або коли пристрій заряджається.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Вимкнути</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Натисніть кнопку POWER.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Автовимкнення</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">LCD автоматично вимикається та переходить у режим сну після 2 хвилин бездіяльності.</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Постійно увімкнено (під час заряджання або розряджання)</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Увімкнути</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Натисніть кнопку POWER двічі, коли пристрій увімкнено.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Вимкнути</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Натисніть кнопку POWER.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Автовимкнення</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">LCD автоматично вимикається після |DEFAULT_STANDBY_DURATION| бездіяльності.</td>
+        </tr>
+      </table>
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Короткочасне увімкнення}} & Увімкнути & Натисніть кнопку POWER або коли пристрій заряджається. \\ \cline{3-4}
+      & & Вимкнути & Натисніть кнопку POWER. \\ \cline{3-4}
+      & & Автовимкнення & LCD автоматично вимикається та переходить у режим сну після 2 хвилин бездіяльності. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Постійно увімкнено (під час заряджання або розряджання)}} & Увімкнути & Натисніть кнопку POWER двічі, коли пристрій увімкнено. \\ \cline{3-4}
+      & & Вимкнути & Натисніть кнопку POWER. \\ \cline{3-4}
+      & & Автовимкнення & LCD автоматично вимикається після |DEFAULT_STANDBY_DURATION| бездіяльності. \\ \hline
+      \end{tabular}
+      \endgroup
+
+Ви також можете встановити режим відображення екрана в Додатку Jackery.
+
+КОМБІНАЦІЯ КНОПОК
+-----------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 25 35
+
+   * - Кнопки
+     - Дія
+     - Функція
+   * - Кнопка POWER + кнопка живлення AC
+     - Натисніть і утримуйте обидві протягом 3 с
+     - Увімк./вимк. режим енергозбереження
+   * - Кнопка POWER + кнопка живлення DC/USB
+     - Натисніть і утримуйте обидві протягом 3 с
+     - Скинути Wi-Fi та Bluetooth
+   * - Кнопка живлення DC/USB + кнопка живлення AC
+     - Натисніть і утримуйте обидві протягом 1 с
+     - Увімк./вимк. Wi-Fi та Bluetooth
+   * - Кнопка POWER + кнопка LED Light
+     - Натисніть і утримуйте обидві протягом 1 с
+     - Увімк./вимк. аварійний режим заряджання
+

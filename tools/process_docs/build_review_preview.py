@@ -279,7 +279,7 @@ def review_pages_for_family(changed_files: list[str], model: str, family: str) -
 def rewrite_manual_switcher_links(
     text: str,
     *,
-    model: str,
+    model: str | None = None,
     current_target: WorkspaceTarget,
     current_relative_path: Path,
     all_targets: list[WorkspaceTarget],

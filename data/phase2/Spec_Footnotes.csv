@@ -1,11 +1,4 @@
-Footnote_id,Region,Model,Source_lang,Is_Latest,Page,Footnote_order,Text_en,Text_fr,Text_es,Text_ja,Enabled
-,,,,,,,,,,,
-,,,,,,,,,,,
-,,,,,,,,,,,
-,,,,,,,,,,,
-,,,,,,,,,,,
-,,,,,,,,,,,
-,,,,,,,,,,,
-max_charge_power,JP,JE-1000F,ja,TRUE,specifications,1,,,,この数値は最大充電電力の参考値です。実際の電力量は、温度、バッテリー残量(SOC)、アプリの設定によって変動する場合があります。,TRUE
-ac_bypass,JP,JE-1000F,ja,TRUE,specifications,2,,,,本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。,TRUE
-ac_bypass,US,JE-1000F,en,TRUE,specifications,1,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.,El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.,,TRUE
+Footnote_id,Region,Model,Source_lang,Is_Latest,Page,Footnote_order,Text_en,Text_fr,Text_es,Text_ja,Text_de,Text_it,Text_uk,Enabled
+max_charge_power,JP,JE-1000F,ja,TRUE,specifications,1,,,,この数値は最大充電電力の参考値です。実際の電力量は、温度、バッテリー残量(SOC)、アプリの設定によって変動する場合があります。,,,,TRUE
+ac_bypass,JP,JE-1000F,ja,TRUE,specifications,2,,,,本製品は、ACコンセントからバッテリーを充電しながら、AC出力ポートを通じて給電することができます。,,,,TRUE
+ac_bypass,US,JE-1000F,en,TRUE,specifications,1,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.,El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.,,Das Produkt kann den Akku über die Netzsteckdose aufladen und gleichzeitig Strom über die AC-Ausgangsanschlüsse liefern.,Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.,Виріб може заряджати акумулятор від настінної розетки AC і водночас подавати живлення через вихідні порти AC.,TRUE

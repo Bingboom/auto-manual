@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.word_bundle_docx_pandoc import pandoc_version, resolve_pandoc_binary
+
 
 class SafeFormatDict(dict[str, str]):
     def __missing__(self, key: str) -> str:
@@ -251,10 +253,21 @@ def collect_doctor_findings(
             else:
                 doctor_add(findings, "WARN", "word.pandoc", "pandoc not found; okay for bundle on Windows, but html/latex export will fail")
         else:
-            if pandoc:
-                doctor_add(findings, "OK", "word.pandoc", f"found {pandoc}")
+            reference_doc = Path("_reference.docx") if reference_doc_status is not None and getattr(reference_doc_status, "level", "") == "OK" else None
+            try:
+                resolved_pandoc = resolve_pandoc_binary(reference_doc)
+            except RuntimeError as exc:
+                if pandoc:
+                    doctor_add(findings, "OK", "word.pandoc", f"found {pandoc}")
+                else:
+                    doctor_add(findings, "ERROR", "word.pandoc", "pandoc not found; required for bundle export on non-Windows")
+                if reference_doc is not None:
+                    doctor_add(findings, "ERROR", "word.pandoc.version", str(exc))
             else:
-                doctor_add(findings, "ERROR", "word.pandoc", "pandoc not found; required for bundle export on non-Windows")
+                doctor_add(findings, "OK", "word.pandoc", f"found {resolved_pandoc}")
+                if reference_doc is not None:
+                    version_text = pandoc_version(resolved_pandoc) or "unknown"
+                    doctor_add(findings, "OK", "word.pandoc.version", f"pandoc {version_text} supports reference-doc exports")
     elif word_source == "html":
         if pandoc:
             doctor_add(findings, "OK", "word.pandoc", f"found {pandoc}")

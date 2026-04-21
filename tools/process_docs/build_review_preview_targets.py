@@ -290,15 +290,21 @@ def build_spec_for_target(
 ) -> dict[str, object]:
     config_path = resolve_path(target.config)
     output_root = output_root_for_target(target.model, target)
-    source_mode = (
-        "review"
-        if target_has_review_bundle(target, review_availability=review_availability, docs_dir=docs_dir)
-        else "runtime"
+    has_review_bundle = target_has_review_bundle(
+        target,
+        review_availability=review_availability,
+        docs_dir=docs_dir,
     )
+    source_mode = "review" if has_review_bundle else "runtime"
     source_label = source_mode
     if target.key == requested_target.key:
-        source_mode = args.source
-        source_label = args.source
+        requested_source = args.source
+        if requested_source == "review" and not has_review_bundle:
+            source_mode = "runtime"
+            source_label = "runtime"
+        else:
+            source_mode = requested_source
+            source_label = requested_source
 
     return {
         "config_path": config_path,

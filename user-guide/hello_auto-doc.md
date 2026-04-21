@@ -42,6 +42,7 @@ Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip insta
 
 - PDF export requires `xelatex`.
 - Word export requires `pandoc` on macOS / Linux and on non-Word-COM paths.
+- If the target uses a Word reference template such as the bundle flow, install `pandoc 3.9.0.2` or newer. The bundle exporter now auto-selects a compatible installed `pandoc` when multiple versions are present, and older versions can emit an invalid `/word/media/` content-type override that makes Microsoft Word repair the generated `.docx`.
 - The Python dependencies in [`requirements.txt`](../requirements.txt) include the Sphinx theme and build libraries used by the current workflow.
 
 If you want Gilroy only on your own machine for PDF preview, set `AUTO_MANUAL_LOCAL_GILROY_DIR` to the extracted font folder before running `pdf` or `publish`.

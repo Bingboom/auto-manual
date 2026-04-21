@@ -1,0 +1,55 @@
+extends: config-bases/us-single-language-base.yaml
+
+build:
+  family_id: eu-it
+  default_model: JE-1000F
+  default_region: EU
+  targets:
+    - model: JE-1000F
+      region: EU
+  languages: [it]
+  include_lang_in_output_path: true
+  word_reference_doc: docs/templates/word_template/template.docx
+  word_title: "|PRODUCT_NAME| Manuale utente"
+
+paths:
+  structured_data_dir: data/phase2
+  page_registry_csv: data/phase2/page_registry.csv
+  page_manifest: docs/manifests/manual_eu-single-it.yaml
+
+checks:
+  allowed_foreign_identity_literals:
+    - 占位符
+
+sync:
+  phase2:
+    provider: lark_cli
+    cli_bin: lark-cli
+    export_root: data/phase2
+    manifest_path: data/phase2/snapshot_manifest.json
+    base_token_env: FEISHU_PHASE2_BASE_TOKEN
+    tables:
+      spec_master:
+        table_id: tbl7Kxyq8AaDKwsn
+        view_id: vewbjo4Zfz
+        table_id_env: FEISHU_PHASE2_SPEC_MASTER_TABLE_ID
+        view_id_env: FEISHU_PHASE2_SPEC_MASTER_VIEW_ID
+      spec_footnotes:
+        table_id_env: FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID
+        view_id_env: FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID
+      spec_notes:
+        table_id_env: FEISHU_PHASE2_SPEC_NOTES_TABLE_ID
+        view_id_env: FEISHU_PHASE2_SPEC_NOTES_VIEW_ID
+      spec_titles:
+        table_id_env: FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
+        view_id_env: FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
+      symbols_blocks:
+        table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
+        view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
+    document_link:
+      table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
+      view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
+      wiki_parent_token_env: FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN
+    review_init:
+      table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
+      view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID

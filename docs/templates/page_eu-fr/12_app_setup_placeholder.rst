@@ -13,11 +13,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 **2. Ajouter un appareil**
 
-.. |add_device_icon| image:: templates/word_template/common_assets/app/add_device_plus.svg
-   :alt: Icône d'ajout d'appareil.
-   :width: 14px
-
-2.1 Cliquez sur le bouton |add_device_icon| pour ajouter un appareil.
+2.1 Cliquez sur le bouton **+** pour ajouter un appareil.
 
 2.2 Maintenez enfoncé le |MAIN_POWER_BUTTON_LABEL| sur l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton «icône qui clignotante» et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 

@@ -13,6 +13,15 @@ _SIGNAL_WORDS: dict[str, dict[str, str]] = {
         "note": "NOTE",
         "tips": "TIP",
     },
+    "de": {
+        "safety_warning": "WARNUNG",
+        "symbols_notice": "WARNUNG",
+        "warning": "WARNUNG",
+        "danger": "GEFAHR",
+        "caution": "VORSICHT",
+        "note": "HINWEIS",
+        "tips": "TIPP",
+    },
     "fr": {
         "safety_warning": "AVERTISSEMENT",
         "symbols_notice": "AVERTISSEMENT",
@@ -30,6 +39,24 @@ _SIGNAL_WORDS: dict[str, dict[str, str]] = {
         "caution": "PRECAUCIÓN",
         "note": "NOTA",
         "tips": "CONSEJOS",
+    },
+    "it": {
+        "safety_warning": "AVVERTENZA",
+        "symbols_notice": "AVVERTENZA",
+        "warning": "AVVERTENZA",
+        "danger": "PERICOLO",
+        "caution": "ATTENZIONE",
+        "note": "NOTA",
+        "tips": "SUGGERIMENTO",
+    },
+    "uk": {
+        "safety_warning": "ПОПЕРЕДЖЕННЯ",
+        "symbols_notice": "ПОПЕРЕДЖЕННЯ",
+        "warning": "ПОПЕРЕДЖЕННЯ",
+        "danger": "НЕБЕЗПЕКА",
+        "caution": "УВАГА",
+        "note": "ПРИМІТКА",
+        "tips": "ПОРАДА",
     },
 }
 

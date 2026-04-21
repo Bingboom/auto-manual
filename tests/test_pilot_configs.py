@@ -94,12 +94,12 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml"),
-            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml"),
-            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml"),
+            ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 15),
+            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
+            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
         )
 
-        for config_name, expected_lang, expected_family, expected_manifest in cases:
+        for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
             with self.subTest(config_name=config_name):
                 cfg = check_docs.load_config(ROOT / config_name)
                 self.assertEqual(expected_family, cfg.get("build", {}).get("family_id"))
@@ -132,7 +132,7 @@ class TestPilotConfigs(unittest.TestCase):
 
                 self.assertEqual({"03_product_overview", "05_operation_guide", "12_app_setup"}, {page.page for page in generated_pages})
                 self.assertEqual({"symbols", "spec"}, {page.page for page in csv_pages})
-                self.assertEqual(15, len(resolved.pages))
+                self.assertEqual(expected_page_count, len(resolved.pages))
 
                 issues = check_docs.collect_generated_page_issues(
                     cfg,
@@ -173,9 +173,9 @@ class TestPilotConfigs(unittest.TestCase):
         generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
         csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-        self.assertEqual(43, len(resolved.pages))
-        self.assertEqual(9, len(generated_pages))
-        self.assertEqual(6, len(csv_pages))
+        self.assertEqual(85, len(resolved.pages))
+        self.assertEqual(18, len(generated_pages))
+        self.assertEqual(12, len(csv_pages))
 
         issues = check_docs.collect_generated_page_issues(
             cfg,

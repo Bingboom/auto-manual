@@ -1,0 +1,35 @@
+.. raw:: latex
+
+   \section{LIEFERUMFANG}
+
+.. raw:: html
+
+   <h1>LIEFERUMFANG</h1>
+
+.. list-table::
+   :header-rows: 0
+   :widths: 33 33 34
+
+   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+          :alt: Abbildung der Power Station als Platzhalter.
+          :width: 120px
+
+       |PRODUCT_NAME_BOLD|
+     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+          :alt: Abbildung des AC-Ladekabels als Platzhalter.
+          :width: 120px
+
+       **AC-Ladekabel**
+     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+          :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
+          :width: 120px
+
+       Dokumente
+
+.. list-table::
+   :header-rows: 0
+   :widths: 10 90
+
+   * - **HINWEIS**
+     - Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden.
+       Wenden Sie sich für Unterstützung bitte an den Jackery-Kundendienst.

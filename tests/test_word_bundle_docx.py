@@ -13,7 +13,7 @@ from tools.word_bundle_docx import (
     _enforce_docx_outline_levels,
     _remap_reference_doc_styles,
 )
-from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc
+from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc, resolve_pandoc_binary
 from tools.word_bundle_html import WordBundlePageMeta
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
@@ -144,16 +144,16 @@ class TestWordBundleDocx(unittest.TestCase):
 
             self._assert_markup_compatibility_prefixes(docx_path)
 
-    def test_known_bad_pandoc_version_should_be_rejected_for_reference_doc_exports(self) -> None:
+    def test_older_pandoc_version_should_be_rejected_for_reference_doc_exports(self) -> None:
         with patch(
             "tools.word_bundle_docx_pandoc.subprocess.run",
             return_value=subprocess.CompletedProcess(
                 args=["pandoc", "--version"],
                 returncode=0,
-                stdout="pandoc.EXE 3.1.3\n",
+                stdout="pandoc 3.8.2\n",
             ),
         ):
-            with self.assertRaisesRegex(RuntimeError, "pandoc 3.1.3"):
+            with self.assertRaisesRegex(RuntimeError, "pandoc 3.8.2"):
                 ensure_supported_pandoc_for_reference_doc("pandoc", Path("reference_en.docx"))
 
     def test_newer_pandoc_version_should_be_allowed_for_reference_doc_exports(self) -> None:
@@ -166,6 +166,23 @@ class TestWordBundleDocx(unittest.TestCase):
             ),
         ):
             ensure_supported_pandoc_for_reference_doc("pandoc", Path("reference_en.docx"))
+
+    def test_resolve_pandoc_binary_should_prefer_supported_reference_doc_candidate(self) -> None:
+        def fake_run(args: list[str], check: bool, capture_output: bool, text: bool) -> subprocess.CompletedProcess[str]:
+            binary = args[0]
+            stdout = {
+                "/opt/homebrew/bin/pandoc": "pandoc 3.8.2\n",
+                "/usr/local/bin/pandoc": "pandoc 3.9.0.2\n",
+            }[binary]
+            return subprocess.CompletedProcess(args=args, returncode=0, stdout=stdout)
+
+        with patch("tools.word_bundle_docx_pandoc.subprocess.run", side_effect=fake_run):
+            resolved = resolve_pandoc_binary(
+                Path("reference_en.docx"),
+                candidates=("/opt/homebrew/bin/pandoc", "/usr/local/bin/pandoc"),
+            )
+
+        self.assertEqual("/usr/local/bin/pandoc", resolved)
 
     def _write_minimal_docx(self, path: Path, *, with_markup_compat: bool = False) -> None:
         styles_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
