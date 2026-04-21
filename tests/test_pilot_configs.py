@@ -109,6 +109,7 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertEqual([expected_lang], cfg.get("build", {}).get("languages"))
                 self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
                 self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
+                self.assertEqual(["占位符"], cfg.get("checks", {}).get("allowed_foreign_identity_literals"))
                 self.assertEqual(
                     "tbl7Kxyq8AaDKwsn",
                     cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
@@ -151,6 +152,7 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertFalse(cfg.get("build", {}).get("include_lang_in_output_path"))
         self.assertTrue(cfg.get("build", {}).get("queue_by_document_key"))
         self.assertEqual("docs/manifests/manual_eu.yaml", cfg.get("paths", {}).get("page_manifest"))
+        self.assertEqual(["占位符"], cfg.get("checks", {}).get("allowed_foreign_identity_literals"))
         self.assertEqual(
             "tbl7Kxyq8AaDKwsn",
             cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
