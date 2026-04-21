@@ -12,11 +12,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
 
 **2. Aggiungi dispositivo**
 
-.. |add_device_icon| image:: templates/word_template/common_assets/app/add_device_plus.svg
-   :alt: Icona aggiungi dispositivo.
-   :width: 14px
-
-2.1 Fai clic sul pulsante |add_device_icon| per aggiungere il dispositivo.
+2.1 Fai clic sul pulsante **+** per aggiungere il dispositivo.
 
 2.2 Premi il |MAIN_POWER_BUTTON_LABEL| sul dispositivo per accenderlo; le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo e entrato nella modalita di configurazione di rete. Tocca il pulsante "**Icona lampeggiante**" e consenti all'app di connettersi ai dispositivi vicini e di aprire le autorizzazioni Bluetooth.
 

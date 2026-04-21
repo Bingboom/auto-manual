@@ -25,14 +25,14 @@ build:
 
 paths:
   docs_dir: docs
-  structured_data_dir: data/phase1
+  structured_data_dir: data/phase2
   layout_params_csv: data/layout_params.csv
-  page_registry_csv: data/phase1/page_registry.csv
-  page_blocks_dir: data/phase1
-  spec_master_csv: data/phase1/Spec_Master.csv
-  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
-  spec_notes_csv: data/phase1/Spec_Notes.csv
-  spec_titles_csv: data/phase1/spec_titles.csv
+  page_registry_csv: data/phase2/page_registry.csv
+  page_blocks_dir: data/phase2
+  spec_master_csv: data/phase2/Spec_Master.csv
+  spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
+  spec_notes_csv: data/phase2/Spec_Notes.csv
+  spec_titles_csv: data/phase2/spec_titles.csv
   page_manifest: docs/manifests/manual_eu.yaml
 
 sync:
