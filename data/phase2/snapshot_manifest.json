@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-04-02T10:20:16.046318+00:00",
+  "generated_at": "2026-04-21T03:30:34.103379+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -28,35 +28,35 @@
       "file_name": "Spec_Footnotes.csv",
       "path": "data/phase2/Spec_Footnotes.csv",
       "row_count": 10,
-      "sha256": "96d81e9c1f605e7ae8a4f8789fab7724da0a191b14eb651b352f03c8cc1f04a9",
-      "previous_sha256": "0491ab1934002294286a2ee226437823aa40f81b2852e259866a2243edb20928",
-      "changed": true
+      "sha256": "5bcbe19b5926c7b954541b5a58fb18d1241a528cfba7bfb713872f43d397d43c",
+      "previous_sha256": "5bcbe19b5926c7b954541b5a58fb18d1241a528cfba7bfb713872f43d397d43c",
+      "changed": false
     },
     {
       "logical_name": "spec_notes",
       "file_name": "Spec_Notes.csv",
       "path": "data/phase2/Spec_Notes.csv",
-      "row_count": 10,
-      "sha256": "7ccdff9b7788bf8ce50fb8df1d1d2ef0638d2aa2902287ce51c5e6388dccec8c",
-      "previous_sha256": "b0dc40efeac3188c3d7cd20085ba68bb8c079b1bb2817349c517160665d429c5",
-      "changed": true
+      "row_count": 2,
+      "sha256": "d5a10fb470660dbce2b74b13fa722e7d72a517119ea5dd8036f2d16b814f02cb",
+      "previous_sha256": "d5a10fb470660dbce2b74b13fa722e7d72a517119ea5dd8036f2d16b814f02cb",
+      "changed": false
     },
     {
       "logical_name": "symbols_blocks",
       "file_name": "symbols_blocks.csv",
       "path": "data/phase2/symbols_blocks.csv",
       "row_count": 12,
-      "sha256": "6bb77039d3c6ce8c6687280f463f97b2060a7b9951dd22dc87b788e205826e7e",
-      "previous_sha256": "acc875eb7b758de73c825650354b8f576f82893152e4ea5637150f073525f68e",
-      "changed": true
+      "sha256": "72b22c56a7b645663ebac47fee3e092643ac6d2ae909d73498cab2449ffb372c",
+      "previous_sha256": "72b22c56a7b645663ebac47fee3e092643ac6d2ae909d73498cab2449ffb372c",
+      "changed": false
     },
     {
       "logical_name": "spec_master",
       "file_name": "Spec_Master.csv",
       "path": "data/phase2/Spec_Master.csv",
-      "row_count": 155,
-      "sha256": "081abf88b9821971ab7bc2c8f3fc919d88d25dfc6d65cbc9bb0804b4f71ba5ad",
-      "previous_sha256": "e7381311a764b870dd321dcf3a3cacfe23c66970e7a86d7ab004cd51deafc7a0",
+      "row_count": 305,
+      "sha256": "1692202b6f1106d91f6b82a7e398b7d02f4416f7dce25b27de1be06df083829d",
+      "previous_sha256": "4886067fe0397b50569e677df67722b78ee0ad6c29ac932f96e96e075b40f407",
       "changed": true
     }
   ],
@@ -65,10 +65,10 @@
       "logical_name": "row_key_mapping",
       "file_name": "row_key_mapping.csv",
       "path": "data/phase2/row_key_mapping.csv",
-      "row_count": 95,
-      "sha256": "151fd75ad4157aae5d2ae4725239814e94ca143586abe03939f79cd580dd1114",
-      "previous_sha256": "151fd75ad4157aae5d2ae4725239814e94ca143586abe03939f79cd580dd1114",
-      "changed": false
+      "row_count": 102,
+      "sha256": "38d34ab8357fa3cb57cc7e6255eb77204ca6c3492bb531fa115522610fdecdec",
+      "previous_sha256": "2b6843a737d31d8d90a24a898f6eb74b9426f6ca1cb90814c6083046b704afdb",
+      "changed": true
     }
   ]
 }

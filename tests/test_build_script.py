@@ -519,6 +519,22 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--data-root", seen[2])
         self.assertIn("data/phase2", seen[2])
 
+    def test_run_validate_should_forward_explicit_target_to_spec_master_validation(self) -> None:
+        seen: list[list[str]] = []
+        with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
+            build_cli.run_validate(
+                build_cli.ROOT / "config.eu-en.yaml",
+                model="JE-1000F",
+                region="US",
+            )
+
+        self.assertEqual(3, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertIn("--model", seen[2])
+        self.assertIn("JE-1000F", seen[2])
+        self.assertIn("--region", seen[2])
+        self.assertIn("US", seen[2])
+
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(
             [
@@ -715,7 +731,7 @@ class TestBuildScript(unittest.TestCase):
         original_run_checked = build_cli.run_checked
         original_review_sync_targets = build_cli._review_sync_target_args
         try:
-            build_cli.run_validate = lambda config_path: None  # type: ignore[assignment]
+            build_cli.run_validate = lambda *args, **kwargs: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
             build_cli.run_publish(args)
@@ -815,7 +831,7 @@ class TestBuildScript(unittest.TestCase):
         original_load_config = build_cli.load_config
         original_review_sync_targets = build_cli._review_sync_target_args
         try:
-            build_cli.run_validate = lambda config_path: None  # type: ignore[assignment]
+            build_cli.run_validate = lambda *args, **kwargs: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
             build_cli.load_config = lambda config_path: {  # type: ignore[assignment]

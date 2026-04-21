@@ -271,6 +271,26 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertGreater(model_pos, -1)
         self.assertGreater(ac_pos, -1)
 
+    def test_render_spec_page_should_fallback_to_sibling_region_footnote_definition(self) -> None:
+        blocks = self._spec_master_blocks()
+        for row in blocks:
+            if row.get("footnote_id") == "ac_bypass":
+                row["Region"] = "US"
+            else:
+                row["Region"] = "EU"
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JHP-2000A", "region": "EU"},
+        )
+
+        self.assertIn("Demo footnote text", out)
+        self.assertIn(r"\HBSpecMarkerOne{}", out)
+        self.assertIn('class="hb-spec-footnote" data-spec-trailer-kind="footnote"', out)
+
     def test_render_spec_page_should_use_source_columns_for_jp_source_language_rows(self) -> None:
         jp_row = dict(self._spec_master_blocks()[0])
         jp_row["Region"] = "JP"
@@ -490,6 +510,23 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         self.assertIn("US JE-1000F warning.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_symbols_page_should_fallback_to_sibling_region_rows(self) -> None:
+        blocks = self._symbols_blocks()
+        for block in blocks:
+            block["Region"] = "US"
+            block["Model"] = "JE-1000F"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"model": "JE-1000F", "region": "EU"},
+        )
+
+        self.assertIn("Warning symbol meaning.", out)
+        self.assertIn("Do not dismantle.", out)
 
     def test_render_symbols_page_should_normalize_document_key_style_target_model(self) -> None:
         blocks = self._symbols_blocks()

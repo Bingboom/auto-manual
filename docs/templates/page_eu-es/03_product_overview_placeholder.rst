@@ -1,11 +1,11 @@
-PRODUCT OVERVIEW
-================
+DESCRIPCIÓN GENERAL DEL PRODUCTO
+================================
 
-FRONT VIEW
-----------
+VISTA FRONTAL
+-------------
 
 .. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: Front view diagram placeholder.
+   :alt: Diagrama de vista frontal.
    :width: 420px
 
 .. list-table::
@@ -13,17 +13,17 @@ FRONT VIEW
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **Handle**
+     - **Asa**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
      - **LCD**
    * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **LED Light Button**
+     - **Botón de luz LED**
    * - **|FRONT_USB_C_LOW_LABEL|**
 
        |FRONT_USB_C_LOW_SPEC|
-     - **LED Light**
+     - **Luz LED**
    * - **|FRONT_USB_C_HIGH_LABEL|**
 
        |FRONT_USB_C_HIGH_SPEC|
@@ -43,24 +43,22 @@ FRONT VIEW
 
        |FRONT_TOTAL_OUTPUT_SPEC|
 
-RIGHT SIDE VIEW
----------------
+VISTA LATERAL DERECHA
+---------------------
 
 .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: Right side view diagram placeholder.
+   :alt: Diagrama de vista lateral derecha.
    :width: 420px
 
 .. list-table::
    :header-rows: 0
-   :widths: 50 50
+   :widths: 100
 
-   * - **Handle**
-     - **|SIDE_AC_INPUT_LABEL|**
+   * - **|SIDE_AC_INPUT_LABEL|**
 
        |SIDE_AC_INPUT_SPEC|
-   * -
-     - **|SIDE_DC_INPUT_LABEL|**
-
-       |SIDE_DC_INPUT_PV_SPEC|
+   * - **|SIDE_DC_INPUT_LABEL|**
 
        |SIDE_DC_INPUT_CAR_SPEC|
+
+       |SIDE_DC_INPUT_PV_SPEC|

@@ -69,7 +69,7 @@ Review sync note:
 - use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
 - single-language US review bundles from `config.us-en.yaml` still live under `docs/_review/<model>/US/en/`; the merged US queue/review flow driven by `config.us.yaml` now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`
 - `config.us-en.yaml`, `config.us-es.yaml`, and `config.us-fr.yaml` now inherit shared single-language defaults from [`config-bases/us-single-language-base.yaml`](config-bases/us-single-language-base.yaml) and keep their page stacks in [`docs/manifests/manual_us-single-*.yaml`](docs/manifests), so common build defaults no longer need to be edited in three places
-- `config.eu-en.yaml` now wires [`docs/templates/page_eu-en/`](docs/templates/page_eu-en) into [`docs/manifests/manual_eu-en.yaml`](docs/manifests/manual_eu-en.yaml) for the HomePower 2000 Plus English proofreading flow backed by the live `JE-2000E_US` phase2 snapshot rows
+- `config.eu-en.yaml` now wires [`docs/templates/page_eu-en/`](docs/templates/page_eu-en) into [`docs/manifests/manual_eu-en.yaml`](docs/manifests/manual_eu-en.yaml) for the JE-1000F English EU-page-family proofreading flow, defaults to `JE-1000F / EU`, and pins `spec_master` to the live Base view that contains the `JE-1000F_EU` rows instead of relying on the shared US spec view env binding
 
 Phase2 snapshot note:
 
@@ -82,6 +82,7 @@ Phase2 snapshot note:
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain tokens such as `front.label` when the source table stores markdown-link wrappers like `[front.label](front.label)`
 - `sync-data` now resolves full field names through Base field metadata before writing CSVs, so long columns such as `Row_label_footnote_refs` are not lost when `lark-cli` abbreviates display headers in `base +record-list`
 - when `spec_master` and `spec_footnotes` are synced together, `sync-data` also converts Feishu linked-record style footnote refs such as `{"id":"rec..."}` into stable `Footnote_id` values before writing `Spec_Master.csv`
+- when a target references one `Footnote_id` but the exact region row is missing in `Spec_Footnotes.csv`, validation and rendering now reuse one unambiguous sibling-region definition for the same model before failing the build, which keeps families such as `JE-1000F / EU / en` moving when the live footnote text is shared with `US`
 - `Spec_Master.csv` lookups now normalize document-key style model tokens such as `JE-1000F_JP` or `JE-1000F-JP` back to the base model before matching, then still use the explicit target `Region`; a `JP` target therefore keeps reading `JP` spec rows rather than falling across to `US`
 - `sync-data` does not auto-correct invalid `Is_Latest` rows; mismatched latest flags stay in the snapshot so validation can catch the source-data issue
 - when `spec_master` is part of the sync, `sync-data` also regenerates [`data/phase2/row_key_mapping.csv`](data/phase2/row_key_mapping.csv) from the synced snapshot while preserving any existing manual `Row_key` / `Remark` entries

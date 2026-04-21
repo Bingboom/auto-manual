@@ -1,7 +1,8 @@
 TROUBLESHOOTING
 ===============
 
-If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, please contact Jackery Customer Support.
+If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.
+If the fault persists, please contact Jackery Customer Support.
 
 .. list-table::
    :header-rows: 1
@@ -23,7 +24,7 @@ If any of the following fault codes appear, follow the listed corrective actions
      - Charge the product via solar panels or an AC wall outlet until the fault disappears.
    * - F6
      - 1. Wait for the grid to normalize before charging the product via an AC wall outlet.
-       2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both sides of the product.
+       2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product.
        3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.
        4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
        5. Restart the product.
@@ -35,8 +36,5 @@ If any of the following fault codes appear, follow the listed corrective actions
      - Contact Jackery Customer Support.
    * - F9
      - Remove the load connected to the USB ports of the product. Wait until the fault disappears.
-   * - FC
-     - 1. Restart the battery packs and the HP2000 Plus, respectively.
-       2. If the fault persists, disconnect the battery pack from the HP2000 Plus and connect them again.
    * - FE
      - Contact Jackery Customer Support.

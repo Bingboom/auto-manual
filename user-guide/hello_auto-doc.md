@@ -95,6 +95,7 @@ The manual system now has four layers, but they are used at different stages.
    - When a valid phase2 snapshot exists, build/review/publish flows default to `data/phase2`; explicit `--data-root` still overrides that default.
    - For queue-driven builds, Feishu phase2 tables remain the structured-data source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2` refreshes the frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
+   - `config.eu-en.yaml` now defaults to `JE-1000F / EU` and pins `sync.phase2.tables.spec_master` to the live Base view that contains `JE-1000F_EU` rows, so the EU English family consumes EU data instead of inheriting the shared US spec view binding
    - when one family must always read from one known Base view, `sync.phase2.tables.<name>` can pin `table_id` and `view_id` directly in config; those literal bindings override the corresponding `*_env` values for that table
    - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` reads the same snapshot as a compact multilingual memory lookup, which is useful when OpenClaw or a maintainer needs terminology grounded in the current Base content before translating copy
    - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` is the higher-priority sentence-pair lookup when you already maintain a dedicated translation memory table in Feishu Base; on chat surfaces, treat it as background wording memory and answer with the translation itself instead of a narrated lookup step. The script keeps a short local cache for repeat lookups; use `--no-cache` only when you need a forced refresh.
@@ -102,6 +103,7 @@ The manual system now has four layers, but they are used at different stages.
    - during that refresh, `Spec_Master.csv Slot_key` is normalized back to plain tokens like `front.label` when the source table stores markdown-link wrappers
    - the sync also resolves full field names through Base field metadata, so long columns like `Row_label_footnote_refs` do not disappear when the CLI view output abbreviates them
    - when `spec_master` and `spec_footnotes` are refreshed together, linked-record style footnote refs like `{"id":"rec..."}` are converted to `Footnote_id` values before `Spec_Master.csv` is written
+   - when one target references a `Footnote_id` that is missing only in its own region but exists as one unambiguous sibling-region row for the same model, validation and rendering now reuse that fallback definition instead of stopping the build immediately
    - the sync does not auto-fix bad `Is_Latest` data; if a latest row is wrong, keep it wrong in the snapshot and let validation stop the build
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
    - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically, so the normal shared config still works
@@ -765,7 +767,7 @@ For a normal JE-1000F US review cycle:
 
 ```powershell
 python build.py check --config config.us-en.yaml --model JE-1000F --region US
-python build.py check --config config.eu-en.yaml --model JE-2000E --region US
+python build.py check --config config.eu-en.yaml --model JE-1000F --region EU
 git add docs/_review/JE-1000F/US
 git commit -m "Refresh JE-1000F US manual"
 python build.py publish --config config.us-en.yaml --model JE-1000F --region US

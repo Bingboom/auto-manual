@@ -131,6 +131,8 @@ def run_validate(
     resolve_layout_params_csv: Callable[[Path], Path],
     run_checked: Callable[[list[str]], None],
     data_root: str | None = None,
+    model: str | None = None,
+    region: str | None = None,
 ) -> None:
     run_checked(
         [
@@ -155,6 +157,16 @@ def run_validate(
             "--config",
             str(config_path),
             *(
+                ["--model", model.strip()]
+                if isinstance(model, str) and model.strip()
+                else []
+            ),
+            *(
+                ["--region", region.strip()]
+                if isinstance(region, str) and region.strip()
+                else []
+            ),
+            *(
                 ["--data-root", data_root.strip()]
                 if isinstance(data_root, str) and data_root.strip()
                 else []
@@ -177,9 +189,18 @@ def run_check(
 ) -> None:
     config_path = resolve_path_from_root(args.config)
     if isinstance(args.data_root, str) and args.data_root.strip():
-        run_validate(config_path, data_root=args.data_root)
+        run_validate(
+            config_path,
+            data_root=args.data_root,
+            model=args.model,
+            region=args.region,
+        )
     else:
-        run_validate(config_path)
+        run_validate(
+            config_path,
+            model=args.model,
+            region=args.region,
+        )
     current_effective_source = effective_source(args)
     if source_override != "auto":
         current_effective_source = source_override

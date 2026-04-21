@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Mapping
 from collections import Counter
 import csv
 from pathlib import Path
@@ -76,6 +77,114 @@ def source_language_for_row(row: dict[str, str]) -> str:
 
 def _source_language_uses_latin_script(source_lang: str) -> bool:
     return normalize_source_lang(source_lang) == "en"
+
+
+def _is_truthy(value: str) -> bool:
+    token = (value or "").strip().lower()
+    if not token:
+        return True
+    return token in {"1", "true", "yes", "y"}
+
+
+def _row_matches_footnote_target(
+    row: dict[str, str],
+    *,
+    model: str | None,
+    region: str | None,
+    page: str | None = None,
+) -> bool:
+    if not _is_truthy(_first_non_empty(row, ["Enabled", "enabled"])):
+        return False
+    if not _is_truthy(_first_non_empty(row, ["Is_Latest", "is_latest"])):
+        return False
+    if not _first_non_empty(row, ["Footnote_id", "footnote_id"]):
+        return False
+    if page and not page_value_matches(_first_non_empty(row, ["Page", "page"]), page):
+        return False
+
+    target_region = (region or "").strip()
+    target_model = canonicalize_model_token(model or "", region=target_region)
+    row_region = _first_non_empty(row, ["Region", "region"])
+    row_model = canonicalize_model_token(
+        _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
+        region=row_region or target_region,
+    )
+    if target_model and row_model and row_model.casefold() != target_model.casefold():
+        return False
+    if target_region and row_region and row_region.casefold() != target_region.casefold():
+        return False
+    return True
+
+
+def collect_matching_footnote_rows(
+    rows: list[dict[str, str]],
+    *,
+    model: str | None,
+    region: str | None,
+    referenced_ids_by_page: Mapping[str, set[str]] | None = None,
+    preferred_source_langs: Iterable[str] = (),
+) -> list[dict[str, str]]:
+    exact_rows = [row for row in rows if _row_matches_footnote_target(row, model=model, region=region)]
+    if not referenced_ids_by_page:
+        return exact_rows
+
+    preferred_langs = {
+        normalized
+        for normalized in (normalize_source_lang(value) for value in preferred_source_langs)
+        if normalized
+    }
+    selected = list(exact_rows)
+
+    def _has_selected_definition(page: str, footnote_id: str) -> bool:
+        for candidate in selected:
+            if _first_non_empty(candidate, ["Footnote_id", "footnote_id"]) != footnote_id:
+                continue
+            if page_value_matches(_first_non_empty(candidate, ["Page", "page"]), page):
+                return True
+        return False
+
+    target_region = (region or "").strip()
+    target_model = canonicalize_model_token(model or "", region=target_region)
+
+    for raw_page, raw_ids in referenced_ids_by_page.items():
+        page = (raw_page or "").strip()
+        for footnote_id in sorted({str(value).strip() for value in raw_ids if str(value).strip()}):
+            if _has_selected_definition(page, footnote_id):
+                continue
+
+            best_rows: list[dict[str, str]] = []
+            best_score: tuple[int, int, int, str] | None = None
+            for row in rows:
+                if not _row_matches_footnote_target(row, model=model, region=None, page=page):
+                    continue
+                if _first_non_empty(row, ["Footnote_id", "footnote_id"]) != footnote_id:
+                    continue
+
+                row_region = _first_non_empty(row, ["Region", "region"])
+                row_model = canonicalize_model_token(
+                    _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
+                    region=row_region or target_region,
+                )
+                if target_model and row_model and row_model.casefold() != target_model.casefold():
+                    continue
+
+                source_lang = source_language_for_row(row)
+                score = (
+                    0 if not row_region else 1,
+                    0 if row_model else 1,
+                    0 if not preferred_langs or source_lang in preferred_langs else 1,
+                    _first_non_empty(row, ["__line__"]) or "0",
+                )
+                if best_score is None or score < best_score:
+                    best_rows = [row]
+                    best_score = score
+                elif score == best_score:
+                    best_rows.append(row)
+
+            if len(best_rows) == 1:
+                selected.append(best_rows[0])
+
+    return selected
 
 
 def _contains_east_asian_text(value: str) -> bool:
