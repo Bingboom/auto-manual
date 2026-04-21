@@ -9,9 +9,6 @@ LCD DISPLAY
    :header-rows: 0
    :widths: 12 28 60
 
-   * - **ID**
-     - **Indicator**
-     - **Description**
    * - 1
      - Wi-Fi
      - **On:** Wi-Fi connected.

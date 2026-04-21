@@ -16,7 +16,7 @@ Alternativamente, escanee el código QR a continuación para descargar e instala
    :alt: Icono para añadir dispositivo.
    :width: 14px
 
-2.1 Haga clic en el icono |add_device_icon| de la aplicación para añadir el dispositivo.
+2.1 Haga clic en el botón Añadir dispositivo.
 
 2.2 Presione una vez el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
 Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red. A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
@@ -38,7 +38,7 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
    * - **NOTA**
      - Si durante el proceso de vinculación se indica que "el dispositivo ha sido vinculado", se pueden utilizar las dos formas siguientes para la conexión:
 
-       - El propietario del dispositivo compartirá este dispositivo con otros usuarios a través de la aplicación.
+       - El propietario del dispositivo lo compartirá con otros usuarios a través de la App.
        - Mantenga pulsados el |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para reiniciar el Wi‑Fi y el Bluetooth del dispositivo y, a continuación, vuelva a vincularlo.
 
 |

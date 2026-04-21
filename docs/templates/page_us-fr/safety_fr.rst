@@ -19,7 +19,7 @@
 
    .. raw:: latex
 
-      \safetylead{Respectez toujours les précautions de base lors de l'utilisation de ce produit.}
+      \safetylead{Respectez toujours les précautions suivantes lors de l’utilisation du produit.}
 
 
    - Lisez toutes les instructions avant d’utiliser le produit.
