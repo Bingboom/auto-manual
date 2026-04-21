@@ -29,7 +29,7 @@ Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives in
        5. Redémarrez le produit.
    * - F7
      - 1. Retirez toutes les entrées CC du produit.
-       2. Vérifiez la tension en circuit ouvert (Voc) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60 V.
+       2. Vérifiez la tension en circuit ouvert (Voc) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60V.
        3. Redémarrez le produit et laissez-le inactif. Attendez que l'erreur disparaisse.
    * - F8
      - Contacter le service à la clientèle de Jackery.
