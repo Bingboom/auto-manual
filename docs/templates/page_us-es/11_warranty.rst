@@ -3,7 +3,7 @@ GARANTÍA
 
 **Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.**
 
-\*El período de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.*
+\*El período de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.
 
 Garantía limitada
 -----------------
@@ -19,15 +19,11 @@ Período de garantía
    :header-rows: 0
    :widths: 50 50
 
-   * - **3 AÑOS**
-
-       **Garantía estándar**
+   * - **3 AÑOS Garantía estándar**
 
        El período de garantía estándar de |PRODUCT_NAME| es de 36 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se requiere el recibo de venta del primer comprador consumidor u otra prueba documental razonable.
 
-     - **2 AÑOS**
-
-       **Garantía extendida**
+     - **2 AÑOS Garantía extendida**
 
        Para activar la extensión de garantía, debe registrar su producto en línea o ponerse en contacto con nuestro equipo de atención al cliente en hello@jackery.com para ampliar la duración de la garantía estándar.
 
