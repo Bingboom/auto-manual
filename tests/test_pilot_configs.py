@@ -133,6 +133,48 @@ class TestPilotConfigs(unittest.TestCase):
         )
         self.assertEqual([], issues)
 
+    def test_eu_merged_config_should_resolve_manifest_backed_pages_without_issues(self) -> None:
+        cfg = check_docs.load_config(ROOT / "config.eu.yaml")
+        self.assertEqual("eu-merged", cfg.get("build", {}).get("family_id"))
+        self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
+        self.assertEqual("EU", cfg.get("build", {}).get("default_region"))
+        self.assertEqual([{"model": "JE-1000F", "region": "EU"}], cfg.get("build", {}).get("targets"))
+        self.assertEqual(["en", "fr", "es", "de", "it", "uk"], cfg.get("build", {}).get("languages"))
+        self.assertFalse(cfg.get("build", {}).get("include_lang_in_output_path"))
+        self.assertTrue(cfg.get("build", {}).get("queue_by_document_key"))
+        self.assertEqual("docs/manifests/manual_eu.yaml", cfg.get("paths", {}).get("page_manifest"))
+        self.assertEqual(
+            "tbl7Kxyq8AaDKwsn",
+            cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
+        )
+        self.assertEqual(
+            "vewbjo4Zfz",
+            cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("view_id"),
+        )
+
+        resolved = resolve_config_pages_or_raise(
+            cfg,
+            default_languages=["en", "fr", "es", "de", "it", "uk"],
+            root=ROOT,
+            model="JE-1000F",
+            region="EU",
+            error_prefix="config.pages",
+        )
+        generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
+        csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
+
+        self.assertEqual(43, len(resolved.pages))
+        self.assertEqual(9, len(generated_pages))
+        self.assertEqual(6, len(csv_pages))
+
+        issues = check_docs.collect_generated_page_issues(
+            cfg,
+            docs_dir=check_docs.resolve_docs_dir(cfg),
+            target=check_docs.BuildTarget(model="JE-1000F", region="EU"),
+            langs=["en", "fr", "es", "de", "it", "uk"],
+        )
+        self.assertEqual([], issues)
+
 
 if __name__ == "__main__":
     unittest.main()

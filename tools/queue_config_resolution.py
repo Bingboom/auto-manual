@@ -125,33 +125,6 @@ def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, l
     return score
 
 
-def blank_lang_single_language_region_score(
-    *,
-    config_path: Path,
-    cfg: dict[str, Any],
-    region: str,
-) -> int | None:
-    current_build_cfg = build_cfg(cfg)
-    default_region = str(current_build_cfg.get("default_region") or "").strip().upper()
-    languages = build_languages(cfg)
-    if default_region != region.upper():
-        return None
-    if queue_by_document_key(cfg):
-        return None
-    if len(languages) != 1:
-        return None
-
-    score = 10
-    file_name = config_path.name.lower()
-    if region.lower() in file_name:
-        score += 4
-    if bool(current_build_cfg.get("include_lang_in_output_path")):
-        score += 2
-    if file_name != "config.us.yaml":
-        score += 1
-    return score
-
-
 def resolve_config_path_for_task(
     *,
     repo_root: Path,
@@ -203,31 +176,6 @@ def resolve_config_path_for_task(
         candidates.append((score, config_path))
 
     if not candidates:
-        normalized_lang = str(lang or "").strip().lower()
-        if not normalized_lang:
-            fallback_candidates: list[tuple[int, Path]] = []
-            for config_path in sorted(repo_root.glob("config*.yaml")):
-                try:
-                    cfg = config_loader(config_path)
-                except RuntimeError:
-                    continue
-                score = blank_lang_single_language_region_score(
-                    config_path=config_path,
-                    cfg=cfg,
-                    region=region,
-                )
-                if score is None:
-                    continue
-                fallback_candidates.append((score, config_path))
-            fallback_candidates.sort(key=lambda item: (-item[0], item[1].name))
-            if len(fallback_candidates) == 1:
-                return fallback_candidates[0][1]
-            if fallback_candidates:
-                names = ", ".join(path.name for _, path in fallback_candidates)
-                raise RuntimeError(
-                    f"Blank Lang for region='{region}' matches multiple single-language config files: {names}. "
-                    "Add Build_family or Lang to the queue row."
-                )
         raise RuntimeError(f"No config family matches region='{region}' and lang='{lang}'")
     candidates.sort(key=lambda item: (-item[0], item[1].name))
     return candidates[0][1]

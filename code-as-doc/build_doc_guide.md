@@ -101,11 +101,11 @@ Meaning:
 - `process-review-start-queue` now writes a structured failure summary when the worker fails before Feishu writeback; that summary is packed into `openclaw-run-metadata`, and both `/manual-status` and `queue-execute` prefer the summary message over a generic GitHub failure
 - one explicit `record_id` that no longer resolves to a pending review-start row is also treated as a structured failure now; batch queue scans with no pending rows still stay as normal idle runs
 - the merged US `config.us.yaml` flow now emits one `docs/_build/<model>/US/word/manual_<model>_us.docx` bundle that contains `en`, `fr`, and `es` together; CSV-driven `Source_lang` / `*_source` text is required, while non-source language values may be blank because runtime lookup falls back to source-language text
-- queue routing now uses `Build_family` as the primary selector: `us-merged`, `us-en`, `eu-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is only a compatibility fallback when `Build_family` is missing
+- queue routing now uses `Build_family` as the primary selector: `us-merged`, `eu-merged`, `us-en`, `eu-en`, `us-es`, `us-fr`, `jp-ja`, and `cn-zh`; `Lang` is only a compatibility fallback when `Build_family` is missing
 - queue rows should now use `Workflow_action` only: `Start Review` to force restart/reseed review branches, `Build Draft Package` for review-stage rebuilds, and `Publish` for publish-stage builds; leave `Doc_phase` blank
 - when review-init reuses the shared `Document_link` binding, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
-- merged US review-init and build-queue rows should use `Build_family = us-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
-- config policy for `build.queue_by_document_key`: turn it on only for merged whole-book families that intentionally build one shared manual across languages, such as today's `us-merged` and future `eu-merged` / `cn-merged`; leave it off for single-language families such as `us-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to be isolated by `record_id`
+- merged US/EU review-init and build-queue rows should use `Build_family = us-merged` / `eu-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
+- config policy for `build.queue_by_document_key`: turn it on only for merged whole-book families that intentionally build one shared manual across languages, such as today's `us-merged`, `eu-merged`, and future `cn-merged`; leave it off for single-language families such as `us-en`, `eu-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to be isolated by `record_id`
 - when the queue row carries `Version`, Build Draft Package DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue release artifact names become `manual_je1000f_us_en_publish_0.2.docx` and `manual_je1000f_us_en_publish_0.2.pdf`; only the PDF is uploaded back to `Document link`
 - `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds now seed a temporary worktree from the latest `origin/main`, then overlay only `docs/_review` from that review branch, so the queue keeps the current `main` toolchain while still rendering the selected review content instead of silently falling back to `main`
 - on a local worker, if a same-named local branch for `Git_ref` already exists, the queue uses that branch directly so local review edits can be built before they are pushed upstream
@@ -533,7 +533,7 @@ python build.py word --config config.eu-en.yaml --model JE-1000F --region EU
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-`config.eu-en.yaml` now defaults to `JE-1000F / EU` and pins `sync.phase2.tables.spec_master` to the live Base view that contains `JE-1000F_EU` rows, so `sync-data`, `check`, and export commands no longer inherit the shared US spec-master view by mistake.
+`config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `config.eu-en.yaml` remains the English-only EU proofreading surface when you explicitly need the single-language page family.
 
 Word styling note:
 
