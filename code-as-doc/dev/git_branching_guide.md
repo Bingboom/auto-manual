@@ -1,6 +1,6 @@
 # Git Branching Guide
 
-Updated: 2026-03-23
+Updated: 2026-04-21
 
 Use this file for the current Git branching, pull request, merge, tag, and GitHub branch protection rules for this repo.
 
@@ -9,6 +9,7 @@ This guide complements:
 - [`AGENTS.md`](../../AGENTS.md)
 - [`../build_doc_guide.md`](../build_doc_guide.md)
 - [`code_review_checklist.md`](code_review_checklist.md)
+- [`git_worktree_guide.md`](./git_worktree_guide.md)
 - [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
 
 ## 1. Default Model
@@ -126,6 +127,9 @@ Current platform note:
 - mac/Linux: use [`scripts/start_branch.sh`](../../scripts/start_branch.sh) as the default entrypoint
 - mac/Linux and Git Bash can enable the repo-managed hook directly with `git config core.hooksPath .githooks`
 - Windows GUI clients should no longer need a bash/WSL bridge just to evaluate the repo hook, but if a specific GUI still ignores repo-managed hooks, keep the hook optional there and rely on the start-branch wrapper as the required freshness check
+
+When you need multiple local review branches open at the same time, use a separate worktree per branch instead of repeatedly switching one checkout back and forth.
+Use [`git_worktree_guide.md`](./git_worktree_guide.md) for the repo's recommended local folder layout, branch-to-worktree setup flow, rename and cleanup commands, and the current Windows-specific troubleshooting notes.
 
 ### 4.2 Keep The Scope Small
 
