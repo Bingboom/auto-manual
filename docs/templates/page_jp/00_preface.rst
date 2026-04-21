@@ -1,7 +1,7 @@
 取扱説明書
 ==========
 
-国内専用 / For use only in Japan
+国内専用 /For use only in Japan
 
 カスタマーサポート: jackery.jp@jackery.com
 
