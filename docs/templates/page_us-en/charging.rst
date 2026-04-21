@@ -32,9 +32,9 @@ CHARGING
 
 **Green energy first:** We advocate using green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging, and both methods will be used to charge the battery at the maximum permissible power.
 
+
 **Fully charge the product before its first use.**
 
-| 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
@@ -64,5 +64,5 @@ Connect the AC charging cable to the AC input port of the product and a wall out
 | 
 **Emergency Charging Mode**
 | 
-| under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
-| *To maximize battery life, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.*
+| Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
+| \*To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.

@@ -5,12 +5,10 @@ UNINTERRUPTIBLE POWER SUPPLY (UPS)
    :alt: UPS connection diagram placeholder.
    :width: 360px
 
-| 
 | An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails.
 | In the event of a sudden loss of grid power, |PRODUCT_NAME| will automatically switch to stored power within 10 ms to keep your appliances running.
 | In UPS mode, the unit's peak output reaches |UPS_BYPASS_OUTPUT_TEXT| before power outages. As simultaneous charging/discharging is enabled in Bypass Mode,
 | the actual output power is lower than the rated output power in this mode but returns to rated output power during outages.
-| 
 
 .. list-table::
    :header-rows: 0

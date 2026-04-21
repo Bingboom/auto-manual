@@ -3,7 +3,7 @@ WARRANTY
 
 **This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.**
 
-*Warranty period and details may vary according to local laws, regulations, and authorized dealers.*
+\*Warranty period and details may vary according to local laws, regulations, and authorized dealers.
 
 Limited Warranty
 ----------------

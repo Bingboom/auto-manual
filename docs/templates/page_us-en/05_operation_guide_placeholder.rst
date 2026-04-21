@@ -19,7 +19,7 @@ POWER ON/OFF
 AC OUTPUT ON/OFF
 ----------------
 
-**Prerequisite:** The product is powered on.
+**Prerequisite**: The product is powered on.
 
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: AC output on/off operation placeholder.
@@ -35,7 +35,7 @@ AC OUTPUT ON/OFF
 DC 12V/USB OUTPUT ON/OFF
 ------------------------
 
-**Prerequisite:** The product is powered on.
+**Prerequisite**: The product is powered on.
 
 .. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: DC USB output on/off operation placeholder.
@@ -75,9 +75,9 @@ DC 12V/USB OUTPUT ON/OFF
 ENERGY SAVING MODE
 ------------------
 
-To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (|ENERGY_SAVING_AC_THRESHOLD| AC output or |ENERGY_SAVING_DC_THRESHOLD| DC/USB output), the corresponding output will automatically turn off after the set time. The default setting is |ENERGY_SAVING_AUTO_OFF_DURATION|. The Energy Saving Mode duration can be set in the Jackery App to 2H, 8H, 12H, or 24H. If it is set to Never Off, Energy Saving Mode will be disabled.
+To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (|ENERGY_SAVING_AC_THRESHOLD| AC output or |ENERGY_SAVING_DC_THRESHOLD| DC/USB output), the corresponding output will automatically turns off after the set time. The default setting is |ENERGY_SAVING_AUTO_OFF_DURATION|. The Energy Saving Mode duration can be set in the Jackery App to 2H, 8H, 12H, or 24H. If it is set to Never Off, Energy Saving Mode will be disabled.
 
-To disable the energy saving mode, press and hold both the AC power button and the POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
+To disable the energy saving mode, press and hold both the AC power button and the main POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
 
 When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
@@ -85,12 +85,16 @@ When powering low-power devices (AC <= |ENERGY_SAVING_AC_THRESHOLD| or DC/USB <=
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
-|
-| Press and hold both buttons for more than 3 seconds.
-| 
-**NOTE**
 
-Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
+| Press and hold both buttons for more than 3 seconds.
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **NOTE**
+     - Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
+
 
 LED LIGHT ON/OFF
 ----------------
@@ -166,8 +170,8 @@ LCD SCREEN
 
 You can also set the screen display mode in the Jackery App.
 
-KEY COMBINATIONS
------------------
+KEY COMBINATION
+---------------
 
 .. list-table::
    :header-rows: 1

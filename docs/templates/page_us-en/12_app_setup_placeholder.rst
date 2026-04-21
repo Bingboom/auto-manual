@@ -16,11 +16,9 @@ Alternatively, scan the QR code below to download and install the App.
    :alt: Add device icon.
    :width: 14px
 
-2.1 Click |add_device_icon| in the App to add your device.
+2.1 Click the |add_device_icon| button to add your device.
 
-2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn it on.
-When the Wi-Fi and Bluetooth icons on the device flash, the device has entered network configuration mode.
-Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and use Bluetooth permissions.
+2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode, tap the "**Icon Flashed**" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: App add device step placeholder.
@@ -39,7 +37,7 @@ Tap the "Icon Flashed" button, and allow the App to connect to nearby devices an
    :widths: 12 88
 
    * - **NOTE**
-     - If "the device has been bound" is prompted during the binding process, the following two ways can be used for connection:
+     - If "**the device has been bound**" is prompted during the binding process, the following two ways can be used for connection:
 
        - The device owner will share this device with other users through the App.
        - Press and hold |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
