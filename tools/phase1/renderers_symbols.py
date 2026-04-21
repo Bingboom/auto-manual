@@ -264,6 +264,24 @@ def _matches_symbols_target(
     return _scope_allows(block.get("sku_scope", "ALL"), sku_id)
 
 
+def _matches_symbols_fallback_scope(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
+    block_region = (block.get("Region") or block.get("region") or "").strip()
+    block_model = canonicalize_model_token(
+        (block.get("Model") or block.get("model") or "").strip(),
+        region=block_region,
+    )
+    if not block_region and not block_model:
+        return False
+
+    target_region = _pick_target_region(vars_map)
+    target_model = canonicalize_model_token(_pick_target_model(vars_map), region=target_region)
+    if block_region and target_region and block_region.casefold() == target_region.casefold():
+        return False
+    if block_model and (not target_model or block_model.casefold() != target_model.casefold()):
+        return False
+    return True
+
+
 def _rst_heading(title: str) -> list[str]:
     title = rst_escape(title)
     return [title, "-" * len(title)]
@@ -398,10 +416,9 @@ def _collect_icon_rows(
         raise ValueError(f"content csv missing language column: {lang_col}")
 
     groups: dict[str, list[dict[str, str]]] = {"left": [], "right": []}
+    fallback_scopes: dict[tuple[str, str, str], dict[str, list[dict[str, str]]]] = {}
     for block in blocks:
         if not _enabled(block.get("enabled", "1")):
-            continue
-        if not _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
             continue
 
         block_type = (block.get("block_type") or "").strip()
@@ -432,14 +449,50 @@ def _collect_icon_rows(
         asset = SYMBOL_ASSETS[symbol_key]
         image_path = (block.get("image_path") or "").strip() or asset.path
 
-        groups[group].append(
-            {
-                "symbol_key": symbol_key,
-                "image_path": image_path,
-                "text": rst_escape(text),
-                "order": (block.get("order") or "").strip(),
-            }
-        )
+        row = {
+            "symbol_key": symbol_key,
+            "image_path": image_path,
+            "text": rst_escape(text),
+            "order": (block.get("order") or "").strip(),
+        }
+        if _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
+            groups[group].append(row)
+            continue
+        if _matches_symbols_fallback_scope(block, vars_map=vars_map):
+            block_region = (block.get("Region") or block.get("region") or "").strip().casefold()
+            block_model = canonicalize_model_token(
+                (block.get("Model") or block.get("model") or "").strip(),
+                region=(block.get("Region") or block.get("region") or "").strip(),
+            ).casefold()
+            source_lang = (block.get("Source_lang") or block.get("source_lang") or "").strip().casefold()
+            scope = fallback_scopes.setdefault((block_region, block_model, source_lang), {"left": [], "right": []})
+            scope[group].append(row)
+
+    missing_groups = [group for group, rows in groups.items() if not rows]
+    if missing_groups:
+        ranked_scopes: list[tuple[tuple[int, int, str, str], dict[str, list[dict[str, str]]]]] = []
+        for (scope_region, scope_model, _scope_source_lang), scope_groups in fallback_scopes.items():
+            if any(not scope_groups[group] for group in missing_groups):
+                continue
+            ranked_scopes.append(
+                (
+                    (
+                        -(len(scope_groups["left"]) + len(scope_groups["right"])),
+                        0 if scope_model else 1,
+                        scope_region,
+                        scope_model,
+                    ),
+                    scope_groups,
+                )
+            )
+        ranked_scopes.sort(key=lambda item: item[0])
+        if ranked_scopes:
+            best_score = ranked_scopes[0][0]
+            best_matches = [scope_groups for score, scope_groups in ranked_scopes if score == best_score]
+            if len(best_matches) == 1:
+                best_scope = best_matches[0]
+                for group in missing_groups:
+                    groups[group] = list(best_scope[group])
 
     for group, rows in groups.items():
         rows.sort(key=_sort_key)

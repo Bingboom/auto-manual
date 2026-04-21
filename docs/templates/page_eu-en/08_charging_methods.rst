@@ -1,7 +1,7 @@
 CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 -------------------------------------------
 
-Jackery HomePower 2000 Plus has two DC8020 input ports and is compatible with the Jackery solar panels.
+|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels.
 
 .. image:: templates/word_template/common_assets/charging/solar_direct.png
    :alt: Solar charging connection diagram placeholder 1.
@@ -13,18 +13,24 @@ If one DC8020 input port needs to connect two solar panels simultaneously, pleas
    :alt: Solar charging connection diagram placeholder 2.
    :width: 360px
 
-**CAUTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-One DC8020 input port can be connected to at most two solar panels.
+   * - **CAUTION**
+     - One DC8020 input port can be connected to at most two solar panels.
 
-**CAUTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-Ensure that the input voltage for both DC input ports is the same. Failure to do so may damage the product. For example:
+   * - **CAUTION**
+     - Ensure that the input voltage for both DC input ports is the same. Failure to do so may damage the product. For example:
 
-- Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 input ports.
-- Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure.
+       - Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 Input ports.
+       - Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure.
 
-It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (16V-60V) of the HomePower 2000 Plus. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.
+It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (16V-60V) of |PRODUCT_NAME|. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.
 
 CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)
 --------------------------------------------
@@ -35,10 +41,14 @@ This product can be charged using a 12V car charger. Ensure that the car charger
    :alt: Car charging connection diagram placeholder.
    :width: 360px
 
-*The car charging cable is sold separately.*
+| \*The car charging cable is sold separately.
 
-**CAUTION**
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
 
-- Please start the vehicle before charging your power station.
-- If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused by non-standard operation.
-- Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in a 24V vehicle to avoid personal injury and property loss.
+   * - **CAUTION**
+     -
+       - Please start the vehicle before charging your power station.
+       - If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused by non-standard operation.
+       - Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in a 24V vehicle to avoid personal injury and property loss.

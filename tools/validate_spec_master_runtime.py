@@ -6,6 +6,7 @@ from pathlib import Path
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.utils.spec_master import (
     canonicalize_model_token,
+    collect_matching_footnote_rows,
     collect_matching_spec_rows,
     collect_spec_value_matches_from_rows,
     normalize_source_lang,
@@ -165,12 +166,40 @@ def _rows_for_target(
         if document_key and document_key in accepted_document_keys:
             latest_scope_rows.append(row)
 
+    spec_rows = [row for row in rows if _row_matches_target(row, model=target_model, region=target_region)]
+    preferred_source_langs = {
+        normalized
+        for normalized in (
+            normalize_source_lang(_first_non_empty(row, ("Source_lang", "source_lang"))) for row in spec_rows
+        )
+        if normalized
+    }
+    referenced_footnote_ids_by_page: dict[str, set[str]] = {}
+    for row in spec_rows:
+        page = _first_non_empty(row, ("Page", "page")) or "specifications"
+        refs: set[str] = set()
+        for ref_column in (
+            "Row_label_footnote_refs",
+            "row_label_footnote_refs",
+            "Param_footnote_refs",
+            "param_footnote_refs",
+            "Value_footnote_refs",
+            "value_footnote_refs",
+        ):
+            refs.update(_parse_ref_ids(_first_non_empty(row, (ref_column,))))
+        if refs:
+            referenced_footnote_ids_by_page.setdefault(page, set()).update(refs)
+
     return TargetValidationRows(
-        spec_rows=[row for row in rows if _row_matches_target(row, model=target_model, region=target_region)],
+        spec_rows=spec_rows,
         latest_scope_rows=latest_scope_rows,
-        footnote_rows=[
-            row for row in footnote_rows if _row_matches_target(row, model=target_model, region=target_region)
-        ],
+        footnote_rows=collect_matching_footnote_rows(
+            footnote_rows,
+            model=target_model,
+            region=target_region,
+            referenced_ids_by_page=referenced_footnote_ids_by_page,
+            preferred_source_langs=preferred_source_langs,
+        ),
         note_rows=[row for row in note_rows if _row_matches_target(row, model=target_model, region=target_region)],
     )
 

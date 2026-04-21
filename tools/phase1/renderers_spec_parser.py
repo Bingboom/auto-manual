@@ -11,6 +11,7 @@ from typing import cast
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 from ..utils.spec_master import (
     canonicalize_model_token,
+    collect_matching_footnote_rows,
     is_page_value_row,
     page_value_matches,
     source_language_for_row,
@@ -229,6 +230,8 @@ def _parse_spec_master_sections(
     notes: list[tuple[float, str]] = []
     footnotes: list[tuple[float, str]] = []
     footnote_defs: list[tuple[float, str, str]] = []
+    referenced_footnote_ids_by_page: dict[str, set[str]] = {}
+    target_source_langs: set[str] = set()
     title_candidates: list[tuple[float, str]] = []
     section_title_overrides: dict[str, str] = {}
 
@@ -292,6 +295,9 @@ def _parse_spec_master_sections(
                 row_kind = "note"
             else:
                 row_kind = "data"
+        source_lang = source_language_for_row(row)
+        if source_lang and row_kind not in {"note", "footnote"}:
+            target_source_langs.add(source_lang)
         base_order = _to_float(_first_non_empty(row, ["row_order", "Row_order"]), idx)
         title_text = _pick_spec_lang_text(
             row,
@@ -416,6 +422,11 @@ def _parse_spec_master_sections(
         value_refs = _parse_footnote_refs(
             _first_non_empty(row, ["Value_footnote_refs", "value_footnote_refs"])
         )
+        if row_label_refs or param_refs or value_refs:
+            page_token = page_value or "specifications"
+            referenced_footnote_ids_by_page.setdefault(page_token, set()).update(
+                [*row_label_refs, *param_refs, *value_refs]
+            )
         sep = _pick_spec_lang_text(
             row,
             base="param_value_sep",
@@ -444,6 +455,39 @@ def _parse_spec_master_sections(
                 "source_order": idx,
             }
         )
+
+    if referenced_footnote_ids_by_page:
+        existing_footnote_ids = {footnote_id for _order, footnote_id, _text in footnote_defs}
+        for row in collect_matching_footnote_rows(
+            blocks,
+            model=var_model or raw_var_model,
+            region=var_region,
+            referenced_ids_by_page=referenced_footnote_ids_by_page,
+            preferred_source_langs=target_source_langs,
+        ):
+            footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
+            if not footnote_id or footnote_id in existing_footnote_ids:
+                continue
+            footnote_text = _pick_spec_lang_text(
+                row,
+                base="footnote_text",
+                lang=lang,
+                default_keys=["footnote", "Footnote"],
+            )
+            if not footnote_text:
+                continue
+            footnote_order = _to_float(
+                _first_non_empty(row, ["footnote_order", "Footnote_order"]),
+                _to_float(_first_non_empty(row, ["row_order", "Row_order"]), 0.0),
+            )
+            footnote_defs.append(
+                (
+                    footnote_order,
+                    footnote_id,
+                    apply_vars(_strip_legacy_footnote_prefix(footnote_text), vars_map),
+                )
+            )
+            existing_footnote_ids.add(footnote_id)
 
     if section_title_overrides:
         for row in rows:

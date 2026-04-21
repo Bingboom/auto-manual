@@ -10,7 +10,7 @@ def dispatch_action(
     *,
     config_path: Path,
     ensure_supported_staging_action: Callable[[argparse.Namespace], None],
-    run_validate: Callable[[Path], None],
+    run_validate: Callable[..., None],
     run_doctor: Callable[[argparse.Namespace], None],
     run_checked: Callable[[list[str]], None],
     build_docs_command: Callable[..., list[str]],
@@ -35,7 +35,12 @@ def dispatch_action(
 ) -> None:
     ensure_supported_staging_action(args)
     if args.action == "validate":
-        run_validate(config_path, data_root=args.data_root)
+        run_validate(
+            config_path,
+            data_root=args.data_root,
+            model=args.model,
+            region=args.region,
+        )
     elif args.action == "doctor":
         run_doctor(args)
     elif args.action == "review":

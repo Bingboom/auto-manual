@@ -60,6 +60,7 @@ Meaning:
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
 - when `spec_master` and `spec_footnotes` are synced in the same run, `sync-data` rewrites Feishu linked-record footnote refs in `Spec_Master.csv` to stable `Footnote_id` values
+- when one target references a `Footnote_id` that is missing only in its own region but exists as one unambiguous sibling-region row for the same model, validation and rendering now reuse that fallback definition instead of stopping the build immediately
 - `sync-data` does not repair bad `Is_Latest` flags; leave those source-table problems visible so `check` and publish validation can fail loudly
 - [`../tools/dingtalk/spike_cli.py`](../tools/dingtalk/spike_cli.py) is the manual Phase 0 smoke helper for future app-only DingTalk provider research; it defaults to the official App-Only token flow and lets maintainers inject product-specific list/update/upload endpoints without changing the current queue runtime. A minimal smoke run looks like `python tools\dingtalk\spike_cli.py all --record-id <stable_row_id> --update-set smoke_checked=true --upload-file .tmp\phase0-smoke.docx`.
 - [`../tools/dingtalk/auth.py`](../tools/dingtalk/auth.py) now exposes the verified App-Only token helper behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and [`../tools/dingtalk/workspace.py`](../tools/dingtalk/workspace.py) can parse a target node ID from a normal DingTalk docs URL such as `https://alidocs.dingtalk.com/i/nodes/<node_id>`.
@@ -528,9 +529,11 @@ Build one explicit target:
 
 ```powershell
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
-python build.py word --config config.eu-en.yaml --model JE-2000E --region US
+python build.py word --config config.eu-en.yaml --model JE-1000F --region EU
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
+
+`config.eu-en.yaml` now defaults to `JE-1000F / EU` and pins `sync.phase2.tables.spec_master` to the live Base view that contains `JE-1000F_EU` rows, so `sync-data`, `check`, and export commands no longer inherit the shared US spec-master view by mistake.
 
 Word styling note:
 
