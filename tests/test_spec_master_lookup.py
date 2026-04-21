@@ -119,6 +119,111 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("main POWER button", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
         self.assertEqual("**Jackery Battery Pack 3600**", substitutions["BATTERY_PACK_NAME_BOLD"])
 
+    def test_lookup_should_prefer_localized_row_label_for_translated_label_page_values(self) -> None:
+        rows = [
+            {
+                "Region": "EU",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Row_key": "main_power_button",
+                "Slot_key": "label",
+                "Source_lang": "en",
+                "Row_label_source": "Power Button",
+                "Row_label_de": "Einschalttaste",
+                "Value_source": "POWER Button",
+                "Value_de": "POWER-Taste",
+                "Model": "JE-1000F",
+            }
+        ]
+
+        match = resolve_spec_value_from_rows(
+            rows,
+            model="JE-1000F",
+            region="EU",
+            lang="de",
+            row_key="main_power_button",
+            pages=("Product overview",),
+            usage_type="page_value",
+            value_role="label",
+        )
+
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual("Einschalttaste", match.value)
+
+        substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JE-1000F",
+            region="EU",
+            lang="de",
+        )
+        self.assertEqual("Einschalttaste", substitutions["MAIN_POWER_BUTTON_LABEL"])
+        self.assertEqual("einschalttaste", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
+
+    def test_lookup_should_fallback_to_value_when_localized_row_label_contains_translation_note(self) -> None:
+        rows = [
+            {
+                "Region": "EU",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Row_key": "ac_power_button",
+                "Slot_key": "label",
+                "Source_lang": "en",
+                "Row_label_source": "AC Power Button",
+                "Row_label_uk": "Вхід струму змінного струму\n（说明：这是翻译备注）",
+                "Value_source": "AC Power Button",
+                "Value_uk": "Кнопка живлення змінного струму",
+                "Model": "JE-1000F",
+            }
+        ]
+
+        match = resolve_spec_value_from_rows(
+            rows,
+            model="JE-1000F",
+            region="EU",
+            lang="uk",
+            row_key="ac_power_button",
+            pages=("Product overview",),
+            usage_type="page_value",
+            value_role="label",
+        )
+
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual("Кнопка живлення змінного струму", match.value)
+
+    def test_lookup_should_fallback_to_value_when_localized_row_label_matches_source_text(self) -> None:
+        rows = [
+            {
+                "Region": "EU",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Row_key": "dc_usb_power_button",
+                "Slot_key": "label",
+                "Source_lang": "en",
+                "Row_label_source": "DC/USB Power Button",
+                "Row_label_de": "DC/USB Power Button",
+                "Value_source": "DC/USB Power Button",
+                "Value_de": "DC/USB-Ein/Ausschaltknopf",
+                "Model": "JE-1000F",
+            }
+        ]
+
+        match = resolve_spec_value_from_rows(
+            rows,
+            model="JE-1000F",
+            region="EU",
+            lang="de",
+            row_key="dc_usb_power_button",
+            pages=("Product overview",),
+            usage_type="page_value",
+            value_role="label",
+        )
+
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual("DC/USB-Ein/Ausschaltknopf", match.value)
+
     def test_lookup_should_match_comma_separated_page_values(self) -> None:
         rows = [
             {
