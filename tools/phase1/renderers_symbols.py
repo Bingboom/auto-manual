@@ -120,6 +120,53 @@ LANG_COPY: dict[str, dict[str, object]] = {
             },
         ],
     },
+    "de": {
+        "danger_title": get_symbols_notice_label("de"),
+        "danger_bullets": [
+            "Dieses Gerät ist nur für die Verwendung in Innenräumen bestimmt (stellen Sie das Gerät bei der Nutzung im Freien in einer vergleichbaren Innenumgebung auf, z. B. in Wohnmobilen, Zelten, Hütten usw.).",
+            "Dieses Gerät ist weder wasserdicht noch staubdicht. Halten Sie es während der Verwendung von Regen und feuchten Umgebungen fern.",
+        ],
+        "maintenance_title": "ANWEISUNGEN ZUR WARTUNG DURCH DEN BENUTZER",
+        "maintenance_paragraph": (
+            "Während des Lebenszyklus von Energiespeicherprodukten ist mit einem gewissen Verlust an Kapazität "
+            "und Energie zu rechnen. Mit zunehmender Anzahl von Lade- und Entladezyklen und längerer "
+            "Lagerdauer nimmt diese Degradation allmählich zu. Dies ist ein normales Phänomen, das der "
+            "natürlichen Alterung der Batteriezellen entspricht."
+        ),
+        "page_title": "BEDEUTUNG DER SYMBOLE",
+        "header_symbol": "Symbol",
+        "header_meaning": "Bedeutung",
+        "signal_rows": [
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Warnsymbol.",
+                "label": get_signal_word("de", "warning"),
+                "meaning": "Gefährliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachschäden führen können.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Vorsichtssymbol.",
+                "label": get_signal_word("de", "caution"),
+                "meaning": "Gefährliche Handlungen, die zu Personenschäden und/oder zu Sachschäden führen können.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Hinweissymbol.",
+                "label": get_signal_word("de", "note"),
+                "meaning": "Handlungen, die zu Geräteschäden, Datenverlust, Leistungseinbußen oder unerwarteten Ergebnissen führen können.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Tippsymbol.",
+                "label": get_signal_word("de", "tips"),
+                "meaning": "Ergänzt wichtige Informationen oder Bedienhinweise im Text.",
+            },
+        ],
+    },
     "fr": {
         "danger_title": get_symbols_notice_label("fr"),
         "danger_bullets": [
@@ -211,6 +258,100 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "alt": "Símbolo de consejo.",
                 "label": get_signal_word("es", "tips"),
                 "meaning": "Complementa la información importante o consejos de operación en el texto.",
+            },
+        ],
+    },
+    "it": {
+        "danger_title": get_symbols_notice_label("it"),
+        "danger_bullets": [
+            "Questo dispositivo è destinato esclusivamente all'uso in ambienti interni (quando lo si utilizza all'aperto, collocarlo in un ambiente simile a un interno, ad es. casa, camper, tende, cabine, ecc.).",
+            "Questo dispositivo non è impermeabile né antipolvere. Tenerlo lontano dalla pioggia e dagli ambienti umidi durante l'uso.",
+        ],
+        "maintenance_title": "ISTRUZIONI DI MANUTENZIONE PER L'UTENTE",
+        "maintenance_paragraph": (
+            "Durante il ciclo di vita dei prodotti per l'accumulo di energia, è previsto un certo grado di degrado "
+            "della capacità e dell'energia. Con l'aumentare dei cicli di carica e scarica e il prolungarsi del "
+            "tempo di immagazzinamento, tale degrado tenderà a intensificarsi gradualmente, in linea con il "
+            "naturale invecchiamento delle celle della batteria."
+        ),
+        "page_title": "SIGNIFICATO DEI SIMBOLI",
+        "header_symbol": "Simbolo",
+        "header_meaning": "Significato",
+        "signal_rows": [
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Simbolo di avvertenza.",
+                "label": get_signal_word("it", "warning"),
+                "meaning": "Pratiche pericolose che possono causare lesioni gravi, morte e/o danni materiali.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Simbolo di attenzione.",
+                "label": get_signal_word("it", "caution"),
+                "meaning": "Pratiche pericolose che possono causare lesioni personali e/o danni materiali.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Simbolo di nota.",
+                "label": get_signal_word("it", "note"),
+                "meaning": "Pratiche che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Simbolo di suggerimento.",
+                "label": get_signal_word("it", "tips"),
+                "meaning": "Integra le informazioni importanti o i consigli operativi nel testo.",
+            },
+        ],
+    },
+    "uk": {
+        "danger_title": get_symbols_notice_label("uk"),
+        "danger_bullets": [
+            "Цей пристрій призначений лише для використання в приміщенні (під час використання на вулиці розміщуйте його в подібному до приміщення середовищі, наприклад у будинку, автофургоні, наметі, кабіні тощо).",
+            "Цей пристрій не є водонепроникним і пилонепроникним. Під час використання тримайте його подалі від дощу та вологого середовища.",
+        ],
+        "maintenance_title": "ІНСТРУКЦІЇ З ОБСЛУГОВУВАННЯ ДЛЯ КОРИСТУВАЧА",
+        "maintenance_paragraph": (
+            "Протягом життєвого циклу продуктів для накопичення енергії очікується певний ступінь деградації "
+            "ємності та енергії. Зі збільшенням кількості циклів заряджання й розряджання та тривалості "
+            "зберігання ця деградація поступово посилюватиметься, що є нормальним явищем і відповідає "
+            "природному старінню акумуляторних елементів."
+        ),
+        "page_title": "ЗНАЧЕННЯ СИМВОЛІВ",
+        "header_symbol": "Символ",
+        "header_meaning": "Значення",
+        "signal_rows": [
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Попереджувальний символ.",
+                "label": get_signal_word("uk", "warning"),
+                "meaning": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "alt": "Символ уваги.",
+                "label": get_signal_word("uk", "caution"),
+                "meaning": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Символ примітки.",
+                "label": get_signal_word("uk", "note"),
+                "meaning": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",
+            },
+            {
+                "mode": "icon_label",
+                "image": "templates/word_template/common_assets/symbols/mandatory.png",
+                "alt": "Символ поради.",
+                "label": get_signal_word("uk", "tips"),
+                "meaning": "Доповнює важливу інформацію або поради з експлуатації в тексті.",
             },
         ],
     },

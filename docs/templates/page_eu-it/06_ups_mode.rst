@@ -1,0 +1,21 @@
+GRUPPO DI CONTINUITA (UPS)
+==========================
+| Collega il prodotto a una presa a muro con il cavo di ricarica CA, quindi premi il |AC_POWER_BUTTON_LABEL_LOWER| e alimenta contemporaneamente i tuoi apparecchi.
+.. image:: templates/word_template/common_assets/operation/ups_mode.png
+   :alt: Segnaposto diagramma di connessione UPS.
+   :width: 360px
+
+| Un gruppo di continuita (UPS) e un sistema di alimentazione continua che fornisce automaticamente energia di riserva a un carico quando viene a mancare l'alimentazione della rete elettrica.
+| In caso di improvvisa interruzione dell'alimentazione di rete, |PRODUCT_NAME| passera automaticamente all'alimentazione accumulata entro 10 ms per mantenere in funzione i tuoi apparecchi.
+| In modalita UPS, la potenza di picco dell'unita raggiunge |UPS_BYPASS_OUTPUT_TEXT| prima dei blackout. Poiche in modalita bypass sono abilitati la carica e la scarica simultanee,
+| la potenza di uscita effettiva in questa modalita e inferiore alla potenza nominale, ma torna alla potenza nominale durante i blackout.
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **ATTENZIONE**
+     -
+       - Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo ad apparecchiature che richiedono un'alimentazione con commutazione a 0 ms, come server di dati o workstation.
+       - Prima dell'uso, verifica piu volte la compatibilita con il tuo dispositivo.
+       - Non collegare carichi che superano la potenza massima di uscita del prodotto. In caso contrario, verra attivata la protezione da sovraccarico.

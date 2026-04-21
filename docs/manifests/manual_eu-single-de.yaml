@@ -1,0 +1,60 @@
+manifest_id: manual_eu_single_de
+pages:
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/safety_de.rst
+  - type: csv_page
+    source: phase1
+    page: symbols
+    langs: [de]
+    include_dir: generated/{model}
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/02_whats_in_the_box.rst
+  - type: generated_page
+    page: 03_product_overview
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/03_product_overview.yaml
+    template: templates/page_eu-de/03_product_overview_placeholder.rst
+    langs: [de]
+    include_dir: generated/{model}/draft
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/04_lcd_display_placeholder.rst
+  - type: generated_page
+    page: 05_operation_guide
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/05_operation_guide.yaml
+    template: templates/page_eu-de/05_operation_guide_placeholder.rst
+    langs: [de]
+    include_dir: generated/{model}/draft
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/06_ups_mode.rst
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/charging.rst
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/08_charging_methods.rst
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/09_storage_and_maintenance.rst
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/10_troubleshooting.rst
+  - type: csv_page
+    source: phase1
+    page: spec
+    langs: [de]
+    include_dir: generated/{model}
+  - type: rst_include
+    lang: de
+    file: templates/page_eu-de/11_warranty.rst
+  - type: generated_page
+    page: 12_app_setup
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/12_app_setup.yaml
+    template: templates/page_eu-de/12_app_setup_placeholder.rst
+    langs: [de]
+    include_dir: generated/{model}/draft

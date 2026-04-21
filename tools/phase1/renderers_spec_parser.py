@@ -123,10 +123,16 @@ def _pick_title_lang(lang: str, vars_map: dict[str, str]) -> str:
 
     if value in {"ja", "jp"}:
         return "jp"
+    if value.startswith("de"):
+        return "de"
     if value.startswith("fr"):
         return "fr"
+    if value.startswith("it"):
+        return "it"
     if value.startswith("es"):
         return "es"
+    if value.startswith("uk") or value.startswith("ua"):
+        return "uk"
     if value.startswith("zh"):
         return "zh"
     return "en"
