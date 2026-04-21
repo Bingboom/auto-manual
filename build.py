@@ -429,13 +429,7 @@ def listen_message_control_command(args: argparse.Namespace) -> list[str]:
     )
 
 
-def run_validate(
-    config_path: Path,
-    *,
-    data_root: str | None = None,
-    model: str | None = None,
-    region: str | None = None,
-) -> None:
+def run_validate(config_path: Path, *, data_root: str | None = None, model: str | None = None, region: str | None = None) -> None:
     return _run_validate_impl(
         config_path,
         repo_root=ROOT,
