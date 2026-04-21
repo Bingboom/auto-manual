@@ -49,6 +49,123 @@ class _FakeSourceWithIds(_FakeSource):
 
 
 class TestSyncData(unittest.TestCase):
+    def test_phase2_table_schemas_should_include_eu_de_it_uk_columns(self) -> None:
+        self.assertEqual(
+            (
+                "document_key",
+                "Region",
+                "Is_Latest",
+                "Page",
+                "Section",
+                "Section_order",
+                "Row_order",
+                "Row_key",
+                "Slot_key",
+                "Row_label_source",
+                "Row_label_footnote_refs",
+                "Line_order",
+                "Param_source",
+                "Param_footnote_refs",
+                "Value_source",
+                "Value_footnote_refs",
+                "Row_label_fr",
+                "Param_fr",
+                "Value_fr",
+                "Row_label_es",
+                "Model",
+                "Param_es",
+                "Value_es",
+                "Row_label_de",
+                "Param_de",
+                "Value_de",
+                "Row_label_it",
+                "Param_it",
+                "Value_it",
+                "Row_label_uk",
+                "Param_uk",
+                "Value_uk",
+                "Source_lang",
+            ),
+            sync_data.TABLE_SCHEMAS["spec_master"].columns,
+        )
+        self.assertEqual(
+            (
+                "Footnote_id",
+                "Region",
+                "Model",
+                "Source_lang",
+                "Is_Latest",
+                "Page",
+                "Footnote_order",
+                "Type",
+                "Text_en",
+                "Text_fr",
+                "Text_es",
+                "Text_ja",
+                "Text_de",
+                "Text_it",
+                "Text_uk",
+                "Enabled",
+            ),
+            sync_data.TABLE_SCHEMAS["spec_footnotes"].columns,
+        )
+        self.assertEqual(
+            (
+                "Note_id",
+                "Region",
+                "Model",
+                "Source_lang",
+                "Is_Latest",
+                "Page",
+                "Note_order",
+                "Type",
+                "Text_en",
+                "Text_fr",
+                "Text_es",
+                "Text_ja",
+                "Text_de",
+                "Text_it",
+                "Text_uk",
+                "Enabled",
+            ),
+            sync_data.TABLE_SCHEMAS["spec_notes"].columns,
+        )
+        self.assertEqual(
+            (
+                "title_en",
+                "section_order",
+                "title_zh",
+                "title_jp",
+                "title_fr",
+                "title_es",
+                "title_de",
+                "title_it",
+                "title_uk",
+            ),
+            sync_data.TABLE_SCHEMAS["spec_titles"].columns,
+        )
+        self.assertEqual(
+            (
+                "page_id",
+                "image_path",
+                "symbol_key",
+                "text_en",
+                "text_fr",
+                "text_es",
+                "text_de",
+                "text_it",
+                "text_uk",
+                "enabled",
+                "block_type",
+                "column_group",
+                "order",
+                "Region",
+                "Model",
+                "Source_lang",
+            ),
+            sync_data.TABLE_SCHEMAS["symbols_blocks"].columns,
+        )
+
     def test_collect_sync_preflight_errors_should_report_missing_cli_and_envs_together(self) -> None:
         cfg = {
             "sync": {
@@ -212,11 +329,18 @@ class TestSyncData(unittest.TestCase):
             )
 
             titles_lines = (root / "data" / "phase2" / "spec_titles.csv").read_text(encoding="utf-8").splitlines()
-            self.assertEqual("title_en,section_order,title_zh,title_jp,title_fr,title_es", titles_lines[0])
+            self.assertEqual(
+                "title_en,section_order,title_zh,title_jp,title_fr,title_es,title_de,title_it,title_uk",
+                titles_lines[0],
+            )
             self.assertTrue(titles_lines[1].startswith("A,1"))
             self.assertTrue(titles_lines[2].startswith("B,2"))
 
             master_lines = (root / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8").splitlines()
+            self.assertEqual(
+                "document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Model,Param_es,Value_es,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk,Source_lang",
+                master_lines[0],
+            )
             self.assertIn("TRUE", master_lines[1])
             self.assertIn("product_name", master_lines[1])
             self.assertIn("model_no", master_lines[2])
