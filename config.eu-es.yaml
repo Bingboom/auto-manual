@@ -15,6 +15,10 @@ build:
 paths:
   page_manifest: docs/manifests/manual_eu-single-es.yaml
 
+checks:
+  allowed_foreign_identity_literals:
+    - 占位符
+
 sync:
   phase2:
     provider: lark_cli

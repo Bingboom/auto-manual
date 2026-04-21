@@ -70,3 +70,7 @@ sync:
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
+
+checks:
+  allowed_foreign_identity_literals:
+    - 占位符
