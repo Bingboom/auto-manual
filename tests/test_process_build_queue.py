@@ -293,6 +293,82 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(root / "config.us.yaml", config_path)
 
+    def test_resolve_config_path_for_task_should_allow_blank_lang_for_merged_eu_config(self) -> None:
+        with temp_test_root() as root:
+            for name in ("config.us.yaml", "config.eu.yaml", "config.eu-en.yaml"):
+                write_text(root / name, "build: {}\n")
+
+            configs = {
+                "config.us.yaml": {
+                    "build": {
+                        "default_region": "US",
+                        "languages": ["en", "fr", "es"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                },
+                "config.eu.yaml": {
+                    "build": {
+                        "family_id": "eu-merged",
+                        "default_region": "EU",
+                        "languages": ["en", "fr", "es", "de", "it", "uk"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                },
+                "config.eu-en.yaml": {
+                    "build": {
+                        "family_id": "eu-en",
+                        "default_region": "EU",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                config_path = process_build_queue.resolve_config_path_for_task(region="EU", lang="")
+
+        self.assertEqual(root / "config.eu.yaml", config_path)
+
+    def test_resolve_config_path_for_task_should_reject_blank_lang_without_merged_region_config(self) -> None:
+        with temp_test_root() as root:
+            for name in ("config.eu-en.yaml", "config.eu-fr.yaml"):
+                write_text(root / name, "build: {}\n")
+
+            configs = {
+                "config.eu-en.yaml": {
+                    "build": {
+                        "family_id": "eu-en",
+                        "default_region": "EU",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+                "config.eu-fr.yaml": {
+                    "build": {
+                        "family_id": "eu-fr",
+                        "default_region": "EU",
+                        "languages": ["fr"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ), self.assertRaisesRegex(
+                RuntimeError,
+                "No config family matches region='EU' and lang=''",
+            ):
+                process_build_queue.resolve_config_path_for_task(region="EU", lang="")
+
     def test_resolve_config_path_for_task_should_prefer_build_family_when_present(self) -> None:
         with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
