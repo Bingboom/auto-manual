@@ -2,6 +2,9 @@ manifest_id: manual_eu_single_fr
 pages:
   - type: rst_include
     lang: fr
+    file: templates/page_eu-fr/00_preface.rst
+  - type: rst_include
+    lang: fr
     file: templates/page_eu-fr/safety_fr.rst
   - type: csv_page
     source: phase1

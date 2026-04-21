@@ -95,8 +95,8 @@ class TestPilotConfigs(unittest.TestCase):
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
             ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 15),
-            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 14),
-            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 14),
+            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
+            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
