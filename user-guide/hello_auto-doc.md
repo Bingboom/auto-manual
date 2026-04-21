@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-16
+Updated: 2026-04-21
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -68,6 +68,7 @@ Git branch hygiene note:
 - that guard now runs through the shared [`../scripts/git_branch_guard.py`](../scripts/git_branch_guard.py) core instead of a bash-only hook, and the repo also ships [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1) as Windows-native companion launchers
 - that guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only when intentional with `git push --no-verify`
 - if OpenClaw on your local machine needs to report branch state or switch to an existing branch from a Feishu chat flow, use [`../scripts/openclaw_git_guard.py`](../scripts/openclaw_git_guard.py) instead of exposing raw Git commands; it only supports `status` and safe `switch --pull`, and it refuses non-generated dirty worktrees
+- if you need to keep `main` open while editing one or more review branches in parallel, use the repo worktree flow in [`../code-as-doc/dev/git_worktree_guide.md`](../code-as-doc/dev/git_worktree_guide.md); on Windows, prefer worktree paths under your current user such as `C:\Users\<you>\Documents\cms2docs\worktrees\...` instead of another user's home directory
 
 ---
 
