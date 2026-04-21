@@ -909,6 +909,63 @@ class TestBuildScript(unittest.TestCase):
         areas = {(finding.area, finding.level, finding.message) for finding in findings}
         self.assertIn(("word.runtime", "ERROR", "Word COM unavailable"), areas)
 
+    def test_collect_doctor_findings_should_flag_unsupported_pandoc_for_reference_doc_bundle(self) -> None:
+        args = build_cli.parse_args(["doctor", "--config", "config.eu.yaml", "--model", "JE-1000F", "--region", "EU"])
+        cfg = {
+            "build": {
+                "languages": ["en", "fr", "es", "de", "it", "uk"],
+                "default_model": "JE-1000F",
+                "default_region": "EU",
+                "word_source": "bundle",
+                "word_reference_doc": "docs/reference/reference_en.docx",
+            },
+            "paths": {
+                "layout_params_csv": "data/layout_params.csv",
+            },
+        }
+
+        with mock.patch.object(build_cli, "_is_windows_platform", return_value=False), \
+            mock.patch.object(build_cli, "load_config", return_value=cfg), \
+            mock.patch.object(build_cli, "resolve_layout_params_csv", return_value=build_cli.ROOT / "data" / "layout_params.csv"), \
+            mock.patch.object(build_cli, "_doctor_import", return_value=(True, "")), \
+            mock.patch.object(build_cli, "_resolve_doctor_target", return_value=("JE-1000F", "EU")), \
+            mock.patch.object(
+                build_cli,
+                "_resolve_reference_doc_status",
+                return_value=build_cli.DoctorFinding("OK", "word.reference_doc", "found /tmp/reference_en.docx"),
+            ), \
+            mock.patch.object(build_cli, "_find_xelatex", return_value="/Library/TeX/texbin/xelatex"), \
+            mock.patch.object(build_cli, "clean_targets_for_config", return_value=(build_cli.ROOT / "docs" / "_build", build_cli.ROOT / "docs" / "renderers" / "latex" / "params.tex")), \
+            mock.patch("tools.build_doctor.shutil.which", return_value="/opt/homebrew/bin/pandoc"), \
+            mock.patch(
+                "tools.build_doctor.resolve_pandoc_binary",
+                side_effect=RuntimeError(
+                    "pandoc 3.8.2 is incompatible with this repository's reference DOCX template. "
+                    "Versions older than 3.9.0.2 can emit an invalid '/word/media/' content-type override "
+                    "that makes Microsoft Word show an unreadable-content repair prompt. "
+                    "Use pandoc 3.9.0.2 or newer for reference-doc exports. "
+                    "Checked pandoc candidates: /opt/homebrew/bin/pandoc (3.8.2)"
+                ),
+            ), \
+            mock.patch("tools.validate_config.load_yaml", return_value=cfg), \
+            mock.patch("tools.validate_config.validate", return_value=[]), \
+            mock.patch("tools.validate_layout_params.validate", return_value=[]):
+                findings = build_cli._collect_doctor_findings(args)
+
+        areas = {(finding.area, finding.level, finding.message) for finding in findings}
+        self.assertIn(
+            (
+                "word.pandoc.version",
+                "ERROR",
+                "pandoc 3.8.2 is incompatible with this repository's reference DOCX template. "
+                "Versions older than 3.9.0.2 can emit an invalid '/word/media/' content-type override "
+                "that makes Microsoft Word show an unreadable-content repair prompt. "
+                "Use pandoc 3.9.0.2 or newer for reference-doc exports. "
+                "Checked pandoc candidates: /opt/homebrew/bin/pandoc (3.8.2)",
+            ),
+            areas,
+        )
+
     def test_collect_doctor_findings_should_flag_missing_params_tex_for_latex_pdf(self) -> None:
         args = build_cli.parse_args(["doctor", "--config", "config.us.yaml"])
         cfg = {

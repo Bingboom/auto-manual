@@ -173,9 +173,9 @@ class TestPilotConfigs(unittest.TestCase):
         generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
         csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-        self.assertEqual(43, len(resolved.pages))
-        self.assertEqual(9, len(generated_pages))
-        self.assertEqual(6, len(csv_pages))
+        self.assertEqual(85, len(resolved.pages))
+        self.assertEqual(18, len(generated_pages))
+        self.assertEqual(12, len(csv_pages))
 
         issues = check_docs.collect_generated_page_issues(
             cfg,
