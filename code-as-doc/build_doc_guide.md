@@ -205,7 +205,7 @@ Current shared config families:
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
 - [`config.eu.yaml`](../config.eu.yaml): shared EU merged family backed by [`docs/manifests/manual_eu.yaml`](../docs/manifests/manual_eu.yaml)
-- [`config.eu-en.yaml`](../config.eu-en.yaml), [`config.eu-fr.yaml`](../config.eu-fr.yaml), and [`config.eu-es.yaml`](../config.eu-es.yaml): explicit EU single-language entrypoints backed by [`../docs/manifests/manual_eu-en.yaml`](../docs/manifests/manual_eu-en.yaml), [`../docs/manifests/manual_eu-single-fr.yaml`](../docs/manifests/manual_eu-single-fr.yaml), and [`../docs/manifests/manual_eu-single-es.yaml`](../docs/manifests/manual_eu-single-es.yaml)
+- [`config.eu-en.yaml`](../config.eu-en.yaml), [`config.eu-fr.yaml`](../config.eu-fr.yaml), [`config.eu-es.yaml`](../config.eu-es.yaml), [`config.eu-de.yaml`](../config.eu-de.yaml), [`config.eu-it.yaml`](../config.eu-it.yaml), and [`config.eu-uk.yaml`](../config.eu-uk.yaml): explicit EU single-language entrypoints backed by [`../docs/manifests/manual_eu-en.yaml`](../docs/manifests/manual_eu-en.yaml) plus the corresponding [`../docs/manifests/manual_eu-single-*.yaml`](../docs/manifests) stacks
 - [`config.us-en.yaml`](../config.us-en.yaml), [`config.us-es.yaml`](../config.us-es.yaml), and [`config.us-fr.yaml`](../config.us-fr.yaml) now inherit shared single-language US defaults from [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml); keep shared defaults there and keep language-specific page stacks in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), and [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml)
 
 Page-stack note:
@@ -385,8 +385,8 @@ By default this updates data-driven files in the review bundle without resetting
 That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
 Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
 That sync now also refreshes `generated_page` placeholder files under `page/*.rst`, so final review builds do not keep stale placeholder text after runtime/generated data changes.
-When a single-language build points at a merged review branch and only `docs/_review/<model>/US/` exists, that automatic sync falls back to the merged review root instead of skipping the refresh.
-For the single-language US English config, the canonical review root is `docs/_review/<model>/US/en/`; do not use or recreate the old `docs/_review/<model>/US/page/**` layout. For the merged US `config.us.yaml` queue/review flow, the canonical review root is now `docs/_review/<model>/US/`.
+When a single-language build points at a merged review branch and only `docs/_review/<model>/US/` or `docs/_review/<model>/EU/` exists, that automatic sync falls back to the merged review root instead of skipping the refresh, then remaps shared-family review pages onto the requested single-language page layout.
+For the single-language US English config, the canonical review root is `docs/_review/<model>/US/en/`; for the single-language EU configs, the canonical review roots remain `docs/_review/<model>/EU/<lang>/`. Do not use or recreate the old shared single-language `docs/_review/<model>/<region>/page/**` layout. For the merged `config.us.yaml` / `config.eu.yaml` queue/review flows, the canonical shared review roots are `docs/_review/<model>/US/` and `docs/_review/<model>/EU/`.
 
 Useful variants:
 

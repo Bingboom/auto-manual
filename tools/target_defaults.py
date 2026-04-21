@@ -18,6 +18,7 @@ REVIEW_WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = (
 
 FAMILY_DEFAULT_CONFIGS: dict[str, str] = {
     "US": "config.us.yaml",
+    "EU": "config.eu.yaml",
     "JP": "config.ja.yaml",
     "CN": "config.zh.yaml",
 }
