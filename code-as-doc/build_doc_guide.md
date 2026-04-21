@@ -203,6 +203,8 @@ Current shared config families:
 - [`config.us-en.yaml`](../config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
 - [`config.ja.yaml`](../config.ja.yaml): shared JP template family
 - [`config.zh.yaml`](../config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
+- [`config.eu.yaml`](../config.eu.yaml): shared EU merged family backed by [`docs/manifests/manual_eu.yaml`](../docs/manifests/manual_eu.yaml)
+- [`config.eu-en.yaml`](../config.eu-en.yaml), [`config.eu-fr.yaml`](../config.eu-fr.yaml), and [`config.eu-es.yaml`](../config.eu-es.yaml): explicit EU single-language entrypoints backed by [`../docs/manifests/manual_eu-en.yaml`](../docs/manifests/manual_eu-en.yaml), [`../docs/manifests/manual_eu-single-fr.yaml`](../docs/manifests/manual_eu-single-fr.yaml), and [`../docs/manifests/manual_eu-single-es.yaml`](../docs/manifests/manual_eu-single-es.yaml)
 - [`config.us-en.yaml`](../config.us-en.yaml), [`config.us-es.yaml`](../config.us-es.yaml), and [`config.us-fr.yaml`](../config.us-fr.yaml) now inherit shared single-language US defaults from [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml); keep shared defaults there and keep language-specific page stacks in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), and [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml)
 
 Page-stack note:
@@ -533,7 +535,7 @@ python build.py word --config config.eu-en.yaml --model JE-1000F --region EU
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-`config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `config.eu-en.yaml` remains the English-only EU proofreading surface when you explicitly need the single-language page family.
+`config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `config.eu-en.yaml`, `config.eu-fr.yaml`, and `config.eu-es.yaml` are the explicit English, French, and Spanish single-language EU surfaces when you need one language family at a time.
 
 Word styling note:
 

@@ -70,7 +70,7 @@ Review sync note:
 - single-language US review bundles from `config.us-en.yaml` still live under `docs/_review/<model>/US/en/`; the merged US queue/review flow driven by `config.us.yaml` now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`
 - `config.us-en.yaml`, `config.us-es.yaml`, and `config.us-fr.yaml` now inherit shared single-language defaults from [`config-bases/us-single-language-base.yaml`](config-bases/us-single-language-base.yaml) and keep their page stacks in [`docs/manifests/manual_us-single-*.yaml`](docs/manifests), so common build defaults no longer need to be edited in three places
 - `config.eu.yaml` now models the live `EU` row from the region-config Base as `Build_family = eu-merged`, keeps `JE-1000F / EU` pinned to the `JE-1000F_EU` spec-master view, and routes blank-`Lang` queue rows to the merged EU family instead of misclassifying them as English-only
-- `config.eu-en.yaml` remains the single-language English EU proofreading surface and continues to use [`docs/manifests/manual_eu-en.yaml`](docs/manifests/manual_eu-en.yaml) when you explicitly want the English-only page family
+- `config.eu-en.yaml` remains the single-language English EU proofreading surface, while `config.eu-fr.yaml` and `config.eu-es.yaml` now provide explicit French and Spanish single-language EU entrypoints backed by [`docs/manifests/manual_eu-single-fr.yaml`](docs/manifests/manual_eu-single-fr.yaml) and [`docs/manifests/manual_eu-single-es.yaml`](docs/manifests/manual_eu-single-es.yaml)
 
 Phase2 snapshot note:
 

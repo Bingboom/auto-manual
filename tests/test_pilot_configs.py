@@ -92,46 +92,54 @@ class TestPilotConfigs(unittest.TestCase):
                 )
                 self.assertEqual([], issues)
 
-    def test_eu_single_language_config_should_resolve_manifest_backed_pages_without_issues(self) -> None:
-        cfg = check_docs.load_config(ROOT / "config.eu-en.yaml")
-        self.assertEqual("eu-en", cfg.get("build", {}).get("family_id"))
-        self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
-        self.assertEqual("EU", cfg.get("build", {}).get("default_region"))
-        self.assertEqual([{"model": "JE-1000F", "region": "EU"}], cfg.get("build", {}).get("targets"))
-        self.assertEqual(["en"], cfg.get("build", {}).get("languages"))
-        self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
-        self.assertEqual("docs/manifests/manual_eu-en.yaml", cfg.get("paths", {}).get("page_manifest"))
-        self.assertEqual(
-            "tbl7Kxyq8AaDKwsn",
-            cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
-        )
-        self.assertEqual(
-            "vewbjo4Zfz",
-            cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("view_id"),
+    def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
+        cases = (
+            ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml"),
+            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml"),
+            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml"),
         )
 
-        resolved = resolve_config_pages_or_raise(
-            cfg,
-            default_languages=["en"],
-            root=ROOT,
-            model="JE-1000F",
-            region="EU",
-            error_prefix="config.pages",
-        )
-        generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
-        csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
+        for config_name, expected_lang, expected_family, expected_manifest in cases:
+            with self.subTest(config_name=config_name):
+                cfg = check_docs.load_config(ROOT / config_name)
+                self.assertEqual(expected_family, cfg.get("build", {}).get("family_id"))
+                self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
+                self.assertEqual("EU", cfg.get("build", {}).get("default_region"))
+                self.assertEqual([{"model": "JE-1000F", "region": "EU"}], cfg.get("build", {}).get("targets"))
+                self.assertEqual([expected_lang], cfg.get("build", {}).get("languages"))
+                self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
+                self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
+                self.assertEqual(
+                    "tbl7Kxyq8AaDKwsn",
+                    cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
+                )
+                self.assertEqual(
+                    "vewbjo4Zfz",
+                    cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("view_id"),
+                )
 
-        self.assertEqual({"03_product_overview", "05_operation_guide", "12_app_setup"}, {page.page for page in generated_pages})
-        self.assertEqual({"symbols", "spec"}, {page.page for page in csv_pages})
-        self.assertEqual(15, len(resolved.pages))
+                resolved = resolve_config_pages_or_raise(
+                    cfg,
+                    default_languages=[expected_lang],
+                    root=ROOT,
+                    model="JE-1000F",
+                    region="EU",
+                    error_prefix="config.pages",
+                )
+                generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
+                csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-        issues = check_docs.collect_generated_page_issues(
-            cfg,
-            docs_dir=check_docs.resolve_docs_dir(cfg),
-            target=check_docs.BuildTarget(model="JE-1000F", region="EU", lang="en"),
-            langs=["en"],
-        )
-        self.assertEqual([], issues)
+                self.assertEqual({"03_product_overview", "05_operation_guide", "12_app_setup"}, {page.page for page in generated_pages})
+                self.assertEqual({"symbols", "spec"}, {page.page for page in csv_pages})
+                self.assertEqual(15, len(resolved.pages))
+
+                issues = check_docs.collect_generated_page_issues(
+                    cfg,
+                    docs_dir=check_docs.resolve_docs_dir(cfg),
+                    target=check_docs.BuildTarget(model="JE-1000F", region="EU", lang=expected_lang),
+                    langs=[expected_lang],
+                )
+                self.assertEqual([], issues)
 
     def test_eu_merged_config_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cfg = check_docs.load_config(ROOT / "config.eu.yaml")
