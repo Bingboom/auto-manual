@@ -8,7 +8,7 @@ GARANTÍA
 Garantía limitada
 -----------------
 
-Jackery Inc. garantiza al comprador consumidor original que el producto Jackery estará libre de defectos de mano de obra y materiales en condiciones normales de uso por parte del consumidor durante el período de garantía aplicable identificado en la sección "Período de garantía" que figura a continuación, sujeto a las exclusiones establecidas más abajo.
+Jackery Inc. garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de garantía aplicable identificado en la sección "Período de garantía" que figura a continuación, sujeto a las exclusiones que se establecen a continuación.
 
 Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en relación con la venta de nuestros productos.
 
@@ -21,7 +21,7 @@ Período de garantía
 
    * - **3 AÑOS Garantía estándar**
 
-       El período de garantía estándar de |PRODUCT_NAME| es de 36 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se requiere el recibo de venta del primer comprador consumidor u otra prueba documental razonable.
+       El período de garantía estándar de |PRODUCT_NAME| es de 36 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se necesita el recibo de venta de la primera compra del consumidor u otra prueba documental razonable.
 
      - **2 AÑOS Garantía extendida**
 
@@ -35,7 +35,7 @@ Jackery reparará o reemplazará (a cargo de Jackery) cualquier producto Jackery
 Limitado al comprador consumidor original
 -----------------------------------------
 
-La garantía del producto Jackery se limita al comprador consumidor original y no es transferible a ningún propietario posterior.
+La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún propietario posterior.
 
 Exclusiones
 -----------
