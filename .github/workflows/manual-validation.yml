@@ -70,8 +70,12 @@ jobs:
           python-version: "3.12"
       - name: Install system dependencies
         run: |
+          PANDOC_VERSION=3.9.0.2
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-xetex
+          sudo apt-get install -y curl texlive-xetex
+          curl -L "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb" -o /tmp/pandoc.deb
+          sudo dpkg -i /tmp/pandoc.deb
+          pandoc --version | head -n 1
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
