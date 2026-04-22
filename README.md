@@ -65,12 +65,12 @@ Review sync note:
 
 - once a review bundle exists, `check`, `html`, `word`, `pdf`, and `publish` automatically prepare the runtime bundle and run the same parameter sync before export
 - that auto sync now refreshes parameter-driven lines in review-backed RST pages without overwriting the rest of the manual review prose
-- when a single-language build is pointed at a merged review branch that only has `docs/_review/<model>/US/`, the pre-build review sync now falls back to that merged review root instead of skipping the refresh
+- when a single-language build is pointed at a merged review branch that only has `docs/_review/<model>/US/` or `docs/_review/<model>/EU/`, the pre-build review sync now falls back to that merged review root instead of skipping the refresh, and remaps shared-family review pages back onto the requested single-language page stack before export
 - use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
 - single-language US review bundles from `config.us-en.yaml` still live under `docs/_review/<model>/US/en/`; the merged US queue/review flow driven by `config.us.yaml` now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`
 - `config.us-en.yaml`, `config.us-es.yaml`, and `config.us-fr.yaml` now inherit shared single-language defaults from [`config-bases/us-single-language-base.yaml`](config-bases/us-single-language-base.yaml) and keep their page stacks in [`docs/manifests/manual_us-single-*.yaml`](docs/manifests), so common build defaults no longer need to be edited in three places
 - `config.eu.yaml` now models the live `EU` row from the region-config Base as `Build_family = eu-merged`, keeps `JE-1000F / EU` pinned to the `JE-1000F_EU` spec-master view, and routes blank-`Lang` queue rows to the merged EU family instead of misclassifying them as English-only
-- `config.eu-en.yaml` remains the single-language English EU proofreading surface, while `config.eu-fr.yaml` and `config.eu-es.yaml` now provide explicit French and Spanish single-language EU entrypoints backed by [`docs/manifests/manual_eu-single-fr.yaml`](docs/manifests/manual_eu-single-fr.yaml) and [`docs/manifests/manual_eu-single-es.yaml`](docs/manifests/manual_eu-single-es.yaml)
+- `config.eu-en.yaml` remains the single-language English EU proofreading surface, while `config.eu-fr.yaml`, `config.eu-es.yaml`, `config.eu-de.yaml`, `config.eu-it.yaml`, and `config.eu-uk.yaml` provide explicit EU single-language entrypoints backed by the corresponding [`docs/manifests/manual_eu-single-*.yaml`](docs/manifests) stacks
 
 Phase2 snapshot note:
 

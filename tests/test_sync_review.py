@@ -77,6 +77,63 @@ class TestSyncReview(unittest.TestCase):
             self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].relative_path)
             self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].source_relative_path)
 
+    def test_remap_sync_plan_for_review_dir_should_map_shared_eu_review_pages_by_language(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "EU"
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text(
+                '{\n  "lang": null,\n  "page_manifest": "docs/manifests/manual_eu.yaml"\n}\n',
+                encoding="utf-8",
+            )
+
+            remapped = remap_sync_plan_for_review_dir(
+                (
+                    SyncPlanEntry(relative_path=Path("page") / "02_whats_in_the_box.rst"),
+                    SyncPlanEntry(relative_path=Path("generated") / "JE-1000F" / "spec_fr.rst"),
+                ),
+                docs_dir=docs_dir,
+                review_dir=review_dir,
+                model="JE-1000F",
+                region="EU",
+                lang="fr",
+            )
+
+            self.assertEqual(Path("page") / "p18_02_whats_in_the_box.rst", remapped[0].relative_path)
+            self.assertEqual(Path("page") / "02_whats_in_the_box.rst", remapped[0].source_relative_path)
+            self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].relative_path)
+            self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].source_relative_path)
+
+    def test_remap_sync_plan_for_review_dir_should_skip_unmapped_shared_eu_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "EU"
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text(
+                '{\n  "lang": null,\n  "page_manifest": "docs/manifests/manual_eu.yaml"\n}\n',
+                encoding="utf-8",
+            )
+
+            remapped = remap_sync_plan_for_review_dir(
+                (
+                    SyncPlanEntry(relative_path=Path("page") / "00_preface.rst"),
+                    SyncPlanEntry(relative_path=Path("page") / "02_whats_in_the_box.rst"),
+                ),
+                docs_dir=docs_dir,
+                review_dir=review_dir,
+                model="JE-1000F",
+                region="EU",
+                lang="fr",
+            )
+
+            self.assertEqual(1, len(remapped))
+            self.assertEqual(Path("page") / "p18_02_whats_in_the_box.rst", remapped[0].relative_path)
+            self.assertEqual(Path("page") / "02_whats_in_the_box.rst", remapped[0].source_relative_path)
+
     def test_resolve_sync_plan_should_mark_placeholder_backed_pages_for_param_merge(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

@@ -202,10 +202,10 @@ def remap_sync_plan_for_review_dir(
         if destination_relative_path.parts and destination_relative_path.parts[0] == "page":
             mapped_relative_path = page_path_map.get(destination_relative_path)
             if mapped_relative_path is None:
-                raise RuntimeError(
-                    "Shared review bundle mapping is missing page file "
-                    f"for lang '{normalized_lang}': {destination_relative_path.as_posix()}"
-                )
+                # Shared family review bundles can intentionally omit language-only
+                # pages such as localized prefaces. Leave those runtime pages in place
+                # instead of aborting the whole sync.
+                continue
             destination_relative_path = mapped_relative_path
         remapped_plan.append(
             SyncPlanEntry(
