@@ -113,7 +113,7 @@ Meaning:
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
-- Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting
+- Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting; when `Document_link.HTML_link` exists, the remote publish worker writes the deployed Vercel URL back to that field after the production deploy step
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, and when optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, runs with `--staging-root .tmp/staging`, forwards any extra queue args such as `--dry-run` or `--record-id`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1): one-click Windows wrapper that forces Feishu/wiki-only upload before calling the shared queue wrapper
 - [`../scripts/process_build_queue_dingtalk.ps1`](../scripts/process_build_queue_dingtalk.ps1): one-click Windows wrapper that keeps Feishu/wiki as primary and enables DingTalk mirror sync before calling the shared queue wrapper
@@ -455,7 +455,7 @@ Packaging rule:
 Vercel note:
 
 - `Review Preview Package` now uploads the review-preview workspace as a GitHub artifact only
-- [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is now the Vercel deployment path: after a successful queue-driven Publish row, it stages [`../site/publish-latest/dist/`](../site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`
+- [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is now the Vercel deployment path: after a successful queue-driven Publish row, it stages [`../site/publish-latest/dist/`](../site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`; if `Document_link` exposes `HTML_link`, the workflow also writes that deployed URL back to the source row
 - Vercel should host the latest publish HTML only; do not rely on Git-triggered Vercel Python builds for this flow
 - configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
 

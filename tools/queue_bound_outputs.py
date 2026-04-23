@@ -211,6 +211,7 @@ def write_publish_release_metadata(
     pdf_output_path: Path,
     html_dir: Path,
     document_link_url: str,
+    queue_record_ids: tuple[str, ...] = (),
 ) -> Path:
     return _write_publish_release_metadata_impl(
         config_path=config_path,
@@ -223,6 +224,7 @@ def write_publish_release_metadata(
         pdf_output_path=pdf_output_path,
         html_dir=html_dir,
         document_link_url=document_link_url,
+        queue_record_ids=queue_record_ids,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         release_lang_for_config=release_lang_for_config,

@@ -335,6 +335,7 @@ def write_publish_release_metadata(
     pdf_output_path: Path,
     html_dir: Path,
     document_link_url: str,
+    queue_record_ids: tuple[str, ...] = (),
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     release_lang_for_config: Callable[[Path], str | None],
@@ -364,6 +365,7 @@ def write_publish_release_metadata(
         "html_dir": repo_relative(html_dir),
         "html_index": repo_relative(html_dir / "index.html"),
         "document_link_url": document_link_url.strip(),
+        "queue_record_ids": [record_id.strip() for record_id in queue_record_ids if record_id.strip()],
     }
     version_dir.mkdir(parents=True, exist_ok=True)
     latest_dir.mkdir(parents=True, exist_ok=True)
