@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import sys
 from typing import Any
 
@@ -75,6 +76,29 @@ def _clean_texts(values: list[str] | tuple[str, ...]) -> tuple[str, ...]:
         seen.add(cleaned)
         deduped.append(cleaned)
     return tuple(deduped)
+
+
+_NON_ALNUM_RE = re.compile(r"[^0-9A-Za-z]+")
+
+
+def _normalize_field_name(value: str) -> str:
+    return _NON_ALNUM_RE.sub("", str(value or "").strip()).lower()
+
+
+def resolve_field_name(field_id_map: dict[str, str], target_name: str) -> str | None:
+    if target_name in field_id_map:
+        return target_name
+    normalized_target = _normalize_field_name(target_name)
+    if not normalized_target:
+        return None
+    matches = [
+        field_name
+        for field_name in field_id_map
+        if _normalize_field_name(field_name) == normalized_target
+    ]
+    if not matches:
+        return None
+    return sorted(matches)[0]
 
 
 def target_record_ids_from_publish_meta(
@@ -156,12 +180,13 @@ def write_publish_html_link(
         identity=identity,
         run_lark_cli_json=run_lark_cli_json,
     )
-    if HTML_LINK_FIELD not in field_id_map:
+    resolved_html_link_field = resolve_field_name(field_id_map, HTML_LINK_FIELD)
+    if not resolved_html_link_field:
         print(f"[publish-html-link] Document_link table does not expose {HTML_LINK_FIELD}; skipping writeback.")
         return 0
 
     source = LarkCliSource(cli_bin=resolved_cli_bin, identity=identity)
-    writeback_record = {HTML_LINK_FIELD: publish_url}
+    writeback_record = {resolved_html_link_field: publish_url}
     for record_id in record_ids:
         source.upsert_record(
             base_token=binding.base_token,
@@ -169,7 +194,7 @@ def write_publish_html_link(
             record_id=record_id,
             record=writeback_record,
         )
-        print(f"[publish-html-link] Updated {record_id}: {HTML_LINK_FIELD}={publish_url}")
+        print(f"[publish-html-link] Updated {record_id}: {resolved_html_link_field}={publish_url}")
     return len(record_ids)
 
 
