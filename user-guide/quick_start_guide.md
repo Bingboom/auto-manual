@@ -314,7 +314,7 @@ Publish 的原料是：
    - `Document directory（release 留档 DOCX 路径）`
    - `Document link（主交付 PDF 链接）`
    - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份 Publish PDF）`
-7. 把最新 publish HTML 刷新到 Vercel；如果 `Document_link` 里有 `HTML_link` 字段，workflow 会把这次 deploy 返回的 Vercel URL 再回写到该字段
+7. 把最新 publish HTML 刷新到 Vercel；如果 `Document_link` 里有 `HTML_link` 字段，workflow 会把这次 deploy 返回的 Vercel URL 再回写到该字段。GitHub Actions summary 里的 URL 可能会被脱敏打星，原始链接以 `HTML_link`、`publish_meta.json` 和 `openclaw-run-metadata` 为准
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 

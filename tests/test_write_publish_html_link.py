@@ -20,6 +20,15 @@ class TestWritePublishHtmlLink(unittest.TestCase):
 
         self.assertEqual("HTML link", resolved)
 
+    def test_resolve_html_link_field_name_should_support_aliases(self) -> None:
+        resolved = write_publish_html_link.resolve_html_link_field_name(
+            {
+                "网页链接": "fld_html",
+            }
+        )
+
+        self.assertEqual("网页链接", resolved)
+
     def test_target_record_ids_from_publish_meta_should_prefer_explicit_ids(self) -> None:
         payload = {"queue_record_ids": ["rec_meta_1", "rec_meta_2"]}
 
@@ -197,6 +206,7 @@ class TestWritePublishHtmlLink(unittest.TestCase):
             )
             binding = mock.Mock(base_token="base_123", table_id="tbl_123")
             source = mock.Mock()
+            source.upsert_record.side_effect = RuntimeError("unknown field")
 
             with mock.patch.object(write_publish_html_link, "load_config", return_value={"sync": {"phase2": {}}}), mock.patch.object(
                 write_publish_html_link,
@@ -226,4 +236,68 @@ class TestWritePublishHtmlLink(unittest.TestCase):
                 )
 
             self.assertEqual(0, written)
-            source.upsert_record.assert_not_called()
+            self.assertGreater(source.upsert_record.call_count, 0)
+
+    def test_write_publish_html_link_should_fallback_to_direct_html_link_write(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            config_path = root / "config.us.yaml"
+            releases_root = root / "reports" / "releases"
+            latest_meta_path = releases_root / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
+            config_path.write_text("sync:\n  phase2:\n    provider: lark_cli\n", encoding="utf-8")
+            latest_meta_path.parent.mkdir(parents=True, exist_ok=True)
+            write_publish_html_link.write_json(
+                latest_meta_path,
+                {
+                    "built_at": "2026-04-24T12:00:00",
+                    "version": "0.2",
+                    "queue_record_ids": ["rec_publish_1"],
+                },
+            )
+            binding = mock.Mock(base_token="base_123", table_id="tbl_123")
+            source = mock.Mock()
+
+            def fake_upsert_record(**kwargs: object) -> dict[str, object]:
+                record = kwargs["record"]
+                if record != {write_publish_html_link.HTML_LINK_FIELD: "https://manual.example.com/latest"}:
+                    raise RuntimeError("unknown field")
+                return {"ok": True}
+
+            source.upsert_record.side_effect = fake_upsert_record
+
+            with mock.patch.object(write_publish_html_link, "load_config", return_value={"sync": {"phase2": {}}}), mock.patch.object(
+                write_publish_html_link,
+                "collect_queue_preflight_errors",
+                return_value=[],
+            ), mock.patch.object(
+                write_publish_html_link,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "cli_bin",
+                return_value="lark-cli",
+            ), mock.patch.object(
+                write_publish_html_link,
+                "fetch_field_id_map",
+                return_value={"Document link": "fld_doc"},
+            ), mock.patch.object(
+                write_publish_html_link,
+                "LarkCliSource",
+                return_value=source,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "phase2_identity",
+                return_value="bot",
+            ):
+                written = write_publish_html_link.write_publish_html_link(
+                    config_path=config_path,
+                    publish_url="https://manual.example.com/latest",
+                    releases_root=releases_root,
+                )
+
+            self.assertEqual(1, written)
+            self.assertEqual(
+                {write_publish_html_link.HTML_LINK_FIELD: "https://manual.example.com/latest"},
+                source.upsert_record.call_args.kwargs["record"],
+            )

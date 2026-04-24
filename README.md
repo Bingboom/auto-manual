@@ -234,7 +234,7 @@ Review-sharing config note:
 Vercel note:
 
 - the repo-level [`vercel.json`](vercel.json) now points at the latest publish HTML flow, not the review-preview package
-- [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) builds queue-driven Publish rows, stages the latest publish HTML under [`site/publish-latest/dist/`](site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`; if the `Document_link` table includes `HTML_link`, the same workflow writes that deployed Vercel URL back to the originating publish row
+- [`.github/workflows/feishu-build-queue.yml`](.github/workflows/feishu-build-queue.yml) builds queue-driven Publish rows, stages the latest publish HTML under [`site/publish-latest/dist/`](site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`; if the `Document_link` table includes `HTML_link`, the same workflow writes that deployed Vercel URL back to the originating publish row, and the raw deploy URL is preserved in `publish_meta.json` plus `openclaw-run-metadata` because GitHub summaries/logs may mask it
 - the Vercel bridge entrypoint is [`tools/process_docs/vercel_build_publish_latest.py`](tools/process_docs/vercel_build_publish_latest.py), which reuses an already staged latest publish site when it exists
 - `Review Preview Package` no longer deploys to Vercel; it uploads the review-sharing package as an artifact only
 
