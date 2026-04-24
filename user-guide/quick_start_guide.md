@@ -314,7 +314,7 @@ Publish 的原料是：
    - `Document directory（release 留档 DOCX 路径）`
    - `Document link（主交付 PDF 链接）`
    - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份 Publish PDF）`
-7. 把最新 publish HTML 刷新到 Vercel；如果 `Document_link` 里有 `HTML_link` 字段，workflow 会把这次 deploy 返回的 Vercel URL 再回写到该字段。GitHub Actions summary 里的 URL 可能会被脱敏打星，原始链接以 `HTML_link`、`publish_meta.json` 和 `openclaw-run-metadata` 为准
+7. 把最新 publish HTML 刷新到 Vercel；如果 `Document_link` 里有 `HTML_link` 字段，workflow 会把这次 deploy 返回的 Vercel URL 再回写到该字段。如果表里还有 `RTD_link`，并且 GitHub 仓库变量 `AUTO_MANUAL_RTD_URL` 已配置，workflow 也会把稳定的 Read the Docs 入口写回去。GitHub Actions summary 里的 Vercel URL 可能会被脱敏打星，原始链接以 `HTML_link`、`publish_meta.json` 和 `openclaw-run-metadata` 为准
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 
@@ -433,7 +433,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
-4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）；如果表里有 `HTML_link`，还会看到最新 Vercel HTML 链接，并确认 Vercel 最新页面已刷新
+4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）；如果表里有 `HTML_link`，还会看到最新 Vercel HTML 链接；如果表里有 `RTD_link` 且 `AUTO_MANUAL_RTD_URL` 已配置，还会看到稳定的 Read the Docs 入口
 
 ## 9. 一句话规则
 

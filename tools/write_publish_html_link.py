@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -22,7 +23,7 @@ from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_ide
 from tools.process_docs.build_publish_latest_site import latest_publish_meta  # noqa: E402
 from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
 from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
-from tools.queue_contract import HTML_LINK_FIELD  # noqa: E402
+from tools.queue_contract import HTML_LINK_FIELD, RTD_LINK_FIELD  # noqa: E402
 
 HTML_LINK_FIELD_ALIASES = (
     HTML_LINK_FIELD,
@@ -36,13 +37,32 @@ HTML_LINK_FIELD_ALIASES = (
     "Vercel链接",
     "Vercel 链接",
 )
-_LINKISH_FIELD_TOKENS = ("html", "link", "vercel", "链接", "网页")
+RTD_LINK_FIELD_ALIASES = (
+    RTD_LINK_FIELD,
+    "RTD link",
+    "RTDLink",
+    "RTD链接",
+    "RTD 链接",
+    "ReadTheDocs_link",
+    "Read the Docs link",
+    "Read the Docs URL",
+    "ReadTheDocs URL",
+    "ReadTheDocs链接",
+    "Read the Docs链接",
+    "文档站链接",
+)
+_LINKISH_FIELD_TOKENS = ("html", "link", "vercel", "rtd", "readthedocs", "docs", "链接", "网页", "文档")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Write the Vercel publish URL back to Document_link.HTML_link.")
+    ap = argparse.ArgumentParser(description="Write publish URLs back to Document_link.HTML_link / RTD_link.")
     ap.add_argument("--config", required=True, help="Config YAML path")
-    ap.add_argument("--publish-url", required=True, help="Resolved Vercel production URL")
+    ap.add_argument("--publish-url", default="", help="Resolved Vercel production URL")
+    ap.add_argument(
+        "--rtd-url",
+        default=os.environ.get("AUTO_MANUAL_RTD_URL", ""),
+        help="Optional stable Read the Docs URL. Defaults to AUTO_MANUAL_RTD_URL when set.",
+    )
     ap.add_argument(
         "--releases-root",
         default="reports/releases",
@@ -123,13 +143,22 @@ def resolve_html_link_field_name(field_id_map: dict[str, str]) -> str | None:
     return None
 
 
-def link_like_field_names(field_id_map: dict[str, str]) -> tuple[str, ...]:
+def resolve_rtd_link_field_name(field_id_map: dict[str, str]) -> str | None:
+    for alias in RTD_LINK_FIELD_ALIASES:
+        resolved = resolve_field_name(field_id_map, alias)
+        if resolved:
+            return resolved
+    return None
+
+
+def link_like_field_names(field_id_map: dict[str, str], *, extra_tokens: tuple[str, ...] = ()) -> tuple[str, ...]:
+    tokens = tuple(token.lower() for token in (*_LINKISH_FIELD_TOKENS[:6], *extra_tokens))
     return tuple(
         sorted(
             field_name
             for field_name in field_id_map
-            if any(token in field_name.lower() for token in _LINKISH_FIELD_TOKENS[:3])
-            or any(token in field_name for token in _LINKISH_FIELD_TOKENS[3:])
+            if any(token in field_name.lower() for token in tokens)
+            or any(token in field_name for token in _LINKISH_FIELD_TOKENS[6:])
         )
     )
 
@@ -157,12 +186,22 @@ def version_meta_path(latest_meta_path: Path, payload: dict[str, Any]) -> Path |
     return candidate if candidate.exists() else None
 
 
-def persist_publish_url(*, latest_meta_path: Path, payload: dict[str, Any], publish_url: str) -> tuple[Path, ...]:
+def persist_publish_urls(
+    *,
+    latest_meta_path: Path,
+    payload: dict[str, Any],
+    publish_url: str,
+    rtd_url: str = "",
+) -> tuple[Path, ...]:
     publish_url = publish_url.strip()
-    if not publish_url:
+    rtd_url = rtd_url.strip()
+    if not publish_url and not rtd_url:
         return ()
     updated_payload = dict(payload)
-    updated_payload["publish_url"] = publish_url
+    if publish_url:
+        updated_payload["publish_url"] = publish_url
+    if rtd_url:
+        updated_payload["rtd_url"] = rtd_url
     write_json(latest_meta_path, updated_payload)
     written = [latest_meta_path]
     version_path = version_meta_path(latest_meta_path, payload)
@@ -172,15 +211,24 @@ def persist_publish_url(*, latest_meta_path: Path, payload: dict[str, Any], publ
     return tuple(written)
 
 
-def write_html_link_records(
+def persist_publish_url(*, latest_meta_path: Path, payload: dict[str, Any], publish_url: str) -> tuple[Path, ...]:
+    return persist_publish_urls(
+        latest_meta_path=latest_meta_path,
+        payload=payload,
+        publish_url=publish_url,
+        rtd_url="",
+    )
+
+
+def write_link_records(
     *,
     source: Any,
     binding: Any,
     record_ids: tuple[str, ...],
     field_name: str,
-    publish_url: str,
+    link_url: str,
 ) -> int:
-    writeback_record = {field_name: publish_url}
+    writeback_record = {field_name: link_url}
     for record_id in record_ids:
         source.upsert_record(
             base_token=binding.base_token,
@@ -188,25 +236,95 @@ def write_html_link_records(
             record_id=record_id,
             record=writeback_record,
         )
-        print(f"[publish-html-link] Updated {record_id}: {field_name}={publish_url}")
+        print(f"[publish-html-link] Updated {record_id}: {field_name}={link_url}")
     return len(record_ids)
+
+
+def write_named_link_field(
+    *,
+    source: Any,
+    binding: Any,
+    record_ids: tuple[str, ...],
+    field_id_map: dict[str, str],
+    canonical_field_name: str,
+    field_aliases: tuple[str, ...],
+    link_url: str,
+    extra_lookup_tokens: tuple[str, ...] = (),
+) -> int:
+    link_url = link_url.strip()
+    if not link_url:
+        print(f"[publish-html-link] Skipping {canonical_field_name} writeback because the URL is empty.")
+        return 0
+
+    resolved_field_name = None
+    for alias in field_aliases:
+        resolved_field_name = resolve_field_name(field_id_map, alias)
+        if resolved_field_name:
+            break
+    if resolved_field_name:
+        return write_link_records(
+            source=source,
+            binding=binding,
+            record_ids=record_ids,
+            field_name=resolved_field_name,
+            link_url=link_url,
+        )
+
+    nearby_fields = link_like_field_names(field_id_map, extra_tokens=extra_lookup_tokens)
+    if nearby_fields:
+        print(
+            f"[publish-html-link] {canonical_field_name} lookup missed. Nearby link-like fields: "
+            + ", ".join(nearby_fields)
+        )
+    else:
+        print(f"[publish-html-link] {canonical_field_name} lookup missed. Field list returned no link-like fields.")
+
+    attempted_fields: list[str] = []
+    for fallback_field_name in _clean_texts(field_aliases):
+        attempted_fields.append(fallback_field_name)
+        try:
+            return write_link_records(
+                source=source,
+                binding=binding,
+                record_ids=record_ids,
+                field_name=fallback_field_name,
+                link_url=link_url,
+            )
+        except Exception as exc:
+            print(
+                f"[publish-html-link] Fallback writeback via {fallback_field_name} failed: {exc}",
+                file=sys.stderr,
+            )
+
+    print(
+        f"[publish-html-link] Document_link table does not expose a writable {canonical_field_name} field; "
+        f"attempted={', '.join(attempted_fields)}. Skipping writeback."
+    )
+    return 0
 
 
 def write_publish_html_link(
     *,
     config_path: Path,
     publish_url: str,
+    rtd_url: str = "",
     releases_root: Path,
     explicit_record_ids: tuple[str, ...] = (),
 ) -> int:
     publish_url = publish_url.strip()
-    if not publish_url:
-        print("[publish-html-link] Skipping writeback because publish_url is empty.")
+    rtd_url = rtd_url.strip()
+    if not publish_url and not rtd_url:
+        print("[publish-html-link] Skipping writeback because both publish_url and rtd_url are empty.")
         return 0
 
     meta_path = latest_publish_meta(releases_root)
     payload = read_json(meta_path)
-    written_meta = persist_publish_url(latest_meta_path=meta_path, payload=payload, publish_url=publish_url)
+    written_meta = persist_publish_urls(
+        latest_meta_path=meta_path,
+        payload=payload,
+        publish_url=publish_url,
+        rtd_url=rtd_url,
+    )
     if written_meta:
         print(
             "[publish-html-link] Updated publish metadata: "
@@ -234,47 +352,27 @@ def write_publish_html_link(
         identity=identity,
         run_lark_cli_json=run_lark_cli_json,
     )
-    resolved_html_link_field = resolve_html_link_field_name(field_id_map)
-    if resolved_html_link_field:
-        return write_html_link_records(
-            source=source,
-            binding=binding,
-            record_ids=record_ids,
-            field_name=resolved_html_link_field,
-            publish_url=publish_url,
-        )
-
-    nearby_fields = link_like_field_names(field_id_map)
-    if nearby_fields:
-        print(
-            "[publish-html-link] HTML_link lookup missed. Nearby link-like fields: "
-            + ", ".join(nearby_fields)
-        )
-    else:
-        print("[publish-html-link] HTML_link lookup missed. Field list returned no link-like fields.")
-
-    attempted_fields: list[str] = []
-    for fallback_field_name in _clean_texts(HTML_LINK_FIELD_ALIASES):
-        attempted_fields.append(fallback_field_name)
-        try:
-            return write_html_link_records(
-                source=source,
-                binding=binding,
-                record_ids=record_ids,
-                field_name=fallback_field_name,
-                publish_url=publish_url,
-            )
-        except Exception as exc:
-            print(
-                f"[publish-html-link] Fallback writeback via {fallback_field_name} failed: {exc}",
-                file=sys.stderr,
-            )
-
-    print(
-        "[publish-html-link] Document_link table does not expose a writable HTML link field; "
-        f"attempted={', '.join(attempted_fields)}. Skipping writeback."
+    html_written = write_named_link_field(
+        source=source,
+        binding=binding,
+        record_ids=record_ids,
+        field_id_map=field_id_map,
+        canonical_field_name=HTML_LINK_FIELD,
+        field_aliases=HTML_LINK_FIELD_ALIASES,
+        link_url=publish_url,
+        extra_lookup_tokens=("html", "vercel"),
     )
-    return 0
+    rtd_written = write_named_link_field(
+        source=source,
+        binding=binding,
+        record_ids=record_ids,
+        field_id_map=field_id_map,
+        canonical_field_name=RTD_LINK_FIELD,
+        field_aliases=RTD_LINK_FIELD_ALIASES,
+        link_url=rtd_url,
+        extra_lookup_tokens=("rtd", "read the docs", "文档站"),
+    )
+    return max(html_written, rtd_written)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -285,13 +383,14 @@ def main(argv: list[str] | None = None) -> int:
         written = write_publish_html_link(
             config_path=config_path,
             publish_url=args.publish_url,
+            rtd_url=args.rtd_url,
             releases_root=releases_root,
             explicit_record_ids=_clean_texts(tuple(args.record_id)),
         )
     except Exception as exc:
         print(f"[publish-html-link] ERROR: {exc}", file=sys.stderr)
         return 1
-    print(f"[publish-html-link] Completed HTML_link writeback for {written} record(s).")
+    print(f"[publish-html-link] Completed publish link writeback for {written} record(s).")
     return 0
 
 

@@ -29,6 +29,15 @@ class TestWritePublishHtmlLink(unittest.TestCase):
 
         self.assertEqual("网页链接", resolved)
 
+    def test_resolve_rtd_link_field_name_should_support_aliases(self) -> None:
+        resolved = write_publish_html_link.resolve_rtd_link_field_name(
+            {
+                "Read the Docs URL": "fld_rtd",
+            }
+        )
+
+        self.assertEqual("Read the Docs URL", resolved)
+
     def test_target_record_ids_from_publish_meta_should_prefer_explicit_ids(self) -> None:
         payload = {"queue_record_ids": ["rec_meta_1", "rec_meta_2"]}
 
@@ -39,7 +48,7 @@ class TestWritePublishHtmlLink(unittest.TestCase):
 
         self.assertEqual(("rec_cli_1", "rec_cli_2"), resolved)
 
-    def test_persist_publish_url_should_update_latest_and_version_metadata(self) -> None:
+    def test_persist_publish_urls_should_update_latest_and_version_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             latest_meta_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
@@ -53,10 +62,11 @@ class TestWritePublishHtmlLink(unittest.TestCase):
             write_publish_html_link.write_json(latest_meta_path, payload)
             write_publish_html_link.write_json(version_meta_path, payload)
 
-            written = write_publish_html_link.persist_publish_url(
+            written = write_publish_html_link.persist_publish_urls(
                 latest_meta_path=latest_meta_path,
                 payload=payload,
                 publish_url="https://manual.example.com/latest",
+                rtd_url="https://docs.example.com/en/latest/",
             )
 
             self.assertEqual((latest_meta_path, version_meta_path), written)
@@ -64,6 +74,8 @@ class TestWritePublishHtmlLink(unittest.TestCase):
             version_payload = write_publish_html_link.read_json(version_meta_path)
             self.assertEqual("https://manual.example.com/latest", latest_payload["publish_url"])
             self.assertEqual("https://manual.example.com/latest", version_payload["publish_url"])
+            self.assertEqual("https://docs.example.com/en/latest/", latest_payload["rtd_url"])
+            self.assertEqual("https://docs.example.com/en/latest/", version_payload["rtd_url"])
 
     def test_write_publish_html_link_should_update_all_queue_record_ids(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -185,6 +197,131 @@ class TestWritePublishHtmlLink(unittest.TestCase):
             self.assertEqual(1, written)
             self.assertEqual(
                 {"HTML link": "https://manual.example.com/latest"},
+                source.upsert_record.call_args.kwargs["record"],
+            )
+
+    def test_write_publish_html_link_should_update_rtd_link_when_url_is_provided(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            config_path = root / "config.us.yaml"
+            releases_root = root / "reports" / "releases"
+            latest_meta_path = releases_root / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
+            config_path.write_text("sync:\n  phase2:\n    provider: lark_cli\n", encoding="utf-8")
+            latest_meta_path.parent.mkdir(parents=True, exist_ok=True)
+            write_publish_html_link.write_json(
+                latest_meta_path,
+                {
+                    "built_at": "2026-04-24T12:00:00",
+                    "version": "0.2",
+                    "queue_record_ids": ["rec_publish_1"],
+                },
+            )
+            binding = mock.Mock(base_token="base_123", table_id="tbl_123")
+            source = mock.Mock()
+
+            with mock.patch.object(write_publish_html_link, "load_config", return_value={"sync": {"phase2": {}}}), mock.patch.object(
+                write_publish_html_link,
+                "collect_queue_preflight_errors",
+                return_value=[],
+            ), mock.patch.object(
+                write_publish_html_link,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "cli_bin",
+                return_value="lark-cli",
+            ), mock.patch.object(
+                write_publish_html_link,
+                "fetch_field_id_map",
+                return_value={
+                    write_publish_html_link.HTML_LINK_FIELD: "fld_html",
+                    write_publish_html_link.RTD_LINK_FIELD: "fld_rtd",
+                },
+            ), mock.patch.object(
+                write_publish_html_link,
+                "LarkCliSource",
+                return_value=source,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "phase2_identity",
+                return_value="bot",
+            ):
+                written = write_publish_html_link.write_publish_html_link(
+                    config_path=config_path,
+                    publish_url="https://manual.example.com/latest",
+                    rtd_url="https://docs.example.com/en/latest/",
+                    releases_root=releases_root,
+                )
+
+            self.assertEqual(1, written)
+            self.assertEqual(2, source.upsert_record.call_count)
+            self.assertEqual(
+                {write_publish_html_link.HTML_LINK_FIELD: "https://manual.example.com/latest"},
+                source.upsert_record.call_args_list[0].kwargs["record"],
+            )
+            self.assertEqual(
+                {write_publish_html_link.RTD_LINK_FIELD: "https://docs.example.com/en/latest/"},
+                source.upsert_record.call_args_list[1].kwargs["record"],
+            )
+            updated_meta = write_publish_html_link.read_json(latest_meta_path)
+            self.assertEqual("https://docs.example.com/en/latest/", updated_meta["rtd_url"])
+
+    def test_write_publish_html_link_should_write_only_rtd_link_when_publish_url_is_empty(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            config_path = root / "config.us.yaml"
+            releases_root = root / "reports" / "releases"
+            latest_meta_path = releases_root / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
+            config_path.write_text("sync:\n  phase2:\n    provider: lark_cli\n", encoding="utf-8")
+            latest_meta_path.parent.mkdir(parents=True, exist_ok=True)
+            write_publish_html_link.write_json(
+                latest_meta_path,
+                {
+                    "built_at": "2026-04-24T12:00:00",
+                    "version": "0.2",
+                    "queue_record_ids": ["rec_publish_1"],
+                },
+            )
+            binding = mock.Mock(base_token="base_123", table_id="tbl_123")
+            source = mock.Mock()
+
+            with mock.patch.object(write_publish_html_link, "load_config", return_value={"sync": {"phase2": {}}}), mock.patch.object(
+                write_publish_html_link,
+                "collect_queue_preflight_errors",
+                return_value=[],
+            ), mock.patch.object(
+                write_publish_html_link,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "cli_bin",
+                return_value="lark-cli",
+            ), mock.patch.object(
+                write_publish_html_link,
+                "fetch_field_id_map",
+                return_value={write_publish_html_link.RTD_LINK_FIELD: "fld_rtd"},
+            ), mock.patch.object(
+                write_publish_html_link,
+                "LarkCliSource",
+                return_value=source,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "phase2_identity",
+                return_value="bot",
+            ):
+                written = write_publish_html_link.write_publish_html_link(
+                    config_path=config_path,
+                    publish_url="",
+                    rtd_url="https://docs.example.com/en/latest/",
+                    releases_root=releases_root,
+                )
+
+            self.assertEqual(1, written)
+            self.assertEqual(1, source.upsert_record.call_count)
+            self.assertEqual(
+                {write_publish_html_link.RTD_LINK_FIELD: "https://docs.example.com/en/latest/"},
                 source.upsert_record.call_args.kwargs["record"],
             )
 

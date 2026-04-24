@@ -57,6 +57,7 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      AUTO_MANUAL_RTD_URL: ${{ vars.AUTO_MANUAL_RTD_URL }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -147,17 +148,23 @@ jobs:
             echo
             echo "- GitHub Actions summaries and logs may mask the raw Vercel URL."
             echo "- Use \`HTML_link\`, \`publish_meta.json\`, or the \`openclaw-run-metadata\` artifact for the unmasked deploy URL."
+            echo "- If configured, \`RTD_link\` stores the stable Read the Docs entry URL for this queue row."
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Write publish HTML_link back to Document_link
-        if: ${{ steps.deploy.outputs.publish_url != '' }}
+      - name: Write publish links back to Document_link
+        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' && (steps.deploy.outputs.publish_url != '' || env.AUTO_MANUAL_RTD_URL != '') }}
         shell: bash
         run: |
           cmd=(
             python tools/write_publish_html_link.py
             --config config.us.yaml
-            --publish-url "${{ steps.deploy.outputs.publish_url }}"
           )
+          if [ -n "${{ steps.deploy.outputs.publish_url }}" ]; then
+            cmd+=(--publish-url "${{ steps.deploy.outputs.publish_url }}")
+          fi
+          if [ -n "${AUTO_MANUAL_RTD_URL:-}" ]; then
+            cmd+=(--rtd-url "${AUTO_MANUAL_RTD_URL}")
+          fi
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi
