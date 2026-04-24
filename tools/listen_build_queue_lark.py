@@ -87,6 +87,7 @@ def fetch_field_id_map(
     cli_bin: str,
     base_token: str,
     table_id: str,
+    identity: str = "user",
     run_lark_cli_json: Callable[..., dict[str, Any]],
 ) -> dict[str, str]:
     payload = run_lark_cli_json(
@@ -95,7 +96,7 @@ def fetch_field_id_map(
             "base",
             "+field-list",
             "--as",
-            "user",
+            identity,
             "--base-token",
             base_token,
             "--table-id",

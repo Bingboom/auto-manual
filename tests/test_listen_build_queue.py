@@ -19,6 +19,21 @@ class TestListenBuildQueue(unittest.TestCase):
         self.assertIn("user", cmd)
         self.assertIn(listen_build_queue.EVENT_TYPE, cmd)
 
+    def test_fetch_field_id_map_should_use_user_identity(self) -> None:
+        with unittest.mock.patch.object(
+            listen_build_queue,
+            "_fetch_field_id_map_impl",
+            return_value={"是否立即构建": "fld_immediate"},
+        ) as fetch_impl:
+            resolved = listen_build_queue.fetch_field_id_map(
+                cli_bin="lark-cli",
+                base_token="base_123",
+                table_id="tbl_123",
+            )
+
+        self.assertEqual({"是否立即构建": "fld_immediate"}, resolved)
+        self.assertEqual("user", fetch_impl.call_args.kwargs["identity"])
+
     def test_event_field_value_truthy_should_accept_checkbox_shapes(self) -> None:
         self.assertTrue(listen_build_queue._event_field_value_truthy(True))
         self.assertTrue(listen_build_queue._event_field_value_truthy("true"))

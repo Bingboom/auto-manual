@@ -81,15 +81,15 @@ class TestWritePublishHtmlLink(unittest.TestCase):
                 write_publish_html_link,
                 "fetch_field_id_map",
                 return_value={write_publish_html_link.HTML_LINK_FIELD: "fld_html"},
-            ), mock.patch.object(
+            ) as fetch_field_id_map, mock.patch.object(
                 write_publish_html_link,
                 "LarkCliSource",
                 return_value=source,
-            ), mock.patch.object(
+            ) as lark_cli_source, mock.patch.object(
                 write_publish_html_link,
                 "phase2_identity",
                 return_value="bot",
-            ):
+            ) as phase2_identity:
                 written = write_publish_html_link.write_publish_html_link(
                     config_path=config_path,
                     publish_url="https://manual.example.com/latest",
@@ -106,6 +106,9 @@ class TestWritePublishHtmlLink(unittest.TestCase):
                 {write_publish_html_link.HTML_LINK_FIELD: "https://manual.example.com/latest"},
                 first_call["record"],
             )
+            self.assertEqual("bot", phase2_identity.return_value)
+            self.assertEqual("bot", fetch_field_id_map.call_args.kwargs["identity"])
+            self.assertEqual("bot", lark_cli_source.call_args.kwargs["identity"])
             updated_meta = write_publish_html_link.read_json(latest_meta_path)
             self.assertEqual("https://manual.example.com/latest", updated_meta["publish_url"])
 

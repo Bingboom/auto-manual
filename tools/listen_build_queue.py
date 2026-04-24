@@ -89,6 +89,7 @@ def fetch_field_id_map(*, cli_bin: str, base_token: str, table_id: str) -> dict[
         cli_bin=cli_bin,
         base_token=base_token,
         table_id=table_id,
+        identity=EVENT_SUBSCRIPTION_IDENTITY,
         run_lark_cli_json=_run_lark_cli_json,
     )
 

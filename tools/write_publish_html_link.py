@@ -148,17 +148,19 @@ def write_publish_html_link(
 
     binding = resolve_document_link_binding(cfg)
     resolved_cli_bin = cli_bin(cfg)
+    identity = phase2_identity()
     field_id_map = fetch_field_id_map(
         cli_bin=resolved_cli_bin,
         base_token=binding.base_token,
         table_id=binding.table_id,
+        identity=identity,
         run_lark_cli_json=run_lark_cli_json,
     )
     if HTML_LINK_FIELD not in field_id_map:
         print(f"[publish-html-link] Document_link table does not expose {HTML_LINK_FIELD}; skipping writeback.")
         return 0
 
-    source = LarkCliSource(cli_bin=resolved_cli_bin, identity=phase2_identity())
+    source = LarkCliSource(cli_bin=resolved_cli_bin, identity=identity)
     writeback_record = {HTML_LINK_FIELD: publish_url}
     for record_id in record_ids:
         source.upsert_record(
