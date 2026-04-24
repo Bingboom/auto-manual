@@ -9,6 +9,17 @@ from tools import write_publish_html_link
 
 
 class TestWritePublishHtmlLink(unittest.TestCase):
+    def test_resolve_field_name_should_match_normalized_html_link(self) -> None:
+        resolved = write_publish_html_link.resolve_field_name(
+            {
+                "Document link": "fld_doc",
+                "HTML link": "fld_html",
+            },
+            write_publish_html_link.HTML_LINK_FIELD,
+        )
+
+        self.assertEqual("HTML link", resolved)
+
     def test_target_record_ids_from_publish_meta_should_prefer_explicit_ids(self) -> None:
         payload = {"queue_record_ids": ["rec_meta_1", "rec_meta_2"]}
 
@@ -111,6 +122,62 @@ class TestWritePublishHtmlLink(unittest.TestCase):
             self.assertEqual("bot", lark_cli_source.call_args.kwargs["identity"])
             updated_meta = write_publish_html_link.read_json(latest_meta_path)
             self.assertEqual("https://manual.example.com/latest", updated_meta["publish_url"])
+
+    def test_write_publish_html_link_should_use_resolved_field_name(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            config_path = root / "config.us.yaml"
+            releases_root = root / "reports" / "releases"
+            latest_meta_path = releases_root / "JE-1000F" / "US" / "en" / "latest" / "publish_meta.json"
+            config_path.write_text("sync:\n  phase2:\n    provider: lark_cli\n", encoding="utf-8")
+            latest_meta_path.parent.mkdir(parents=True, exist_ok=True)
+            write_publish_html_link.write_json(
+                latest_meta_path,
+                {
+                    "built_at": "2026-04-24T12:00:00",
+                    "version": "0.2",
+                    "queue_record_ids": ["rec_publish_1"],
+                },
+            )
+            binding = mock.Mock(base_token="base_123", table_id="tbl_123")
+            source = mock.Mock()
+
+            with mock.patch.object(write_publish_html_link, "load_config", return_value={"sync": {"phase2": {}}}), mock.patch.object(
+                write_publish_html_link,
+                "collect_queue_preflight_errors",
+                return_value=[],
+            ), mock.patch.object(
+                write_publish_html_link,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "cli_bin",
+                return_value="lark-cli",
+            ), mock.patch.object(
+                write_publish_html_link,
+                "fetch_field_id_map",
+                return_value={"HTML link": "fld_html"},
+            ), mock.patch.object(
+                write_publish_html_link,
+                "LarkCliSource",
+                return_value=source,
+            ), mock.patch.object(
+                write_publish_html_link,
+                "phase2_identity",
+                return_value="bot",
+            ):
+                written = write_publish_html_link.write_publish_html_link(
+                    config_path=config_path,
+                    publish_url="https://manual.example.com/latest",
+                    releases_root=releases_root,
+                )
+
+            self.assertEqual(1, written)
+            self.assertEqual(
+                {"HTML link": "https://manual.example.com/latest"},
+                source.upsert_record.call_args.kwargs["record"],
+            )
 
     def test_write_publish_html_link_should_skip_when_html_link_field_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
