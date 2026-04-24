@@ -142,7 +142,12 @@ jobs:
       - name: Publish Vercel summary
         if: ${{ steps.deploy.outputs.publish_url != '' }}
         run: |
-          echo "Latest publish HTML: ${{ steps.deploy.outputs.publish_url }}" >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "Latest publish HTML deployed successfully."
+            echo
+            echo "- GitHub Actions summaries and logs may mask the raw Vercel URL."
+            echo "- Use \`HTML_link\`, \`publish_meta.json\`, or the \`openclaw-run-metadata\` artifact for the unmasked deploy URL."
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Write publish HTML_link back to Document_link
         if: ${{ steps.deploy.outputs.publish_url != '' }}

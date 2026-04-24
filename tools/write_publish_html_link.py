@@ -24,6 +24,20 @@ from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_do
 from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.queue_contract import HTML_LINK_FIELD  # noqa: E402
 
+HTML_LINK_FIELD_ALIASES = (
+    HTML_LINK_FIELD,
+    "HTML link",
+    "HTMLLink",
+    "HTML链接",
+    "HTML 链接",
+    "网页链接",
+    "网页链接地址",
+    "Vercel URL",
+    "Vercel链接",
+    "Vercel 链接",
+)
+_LINKISH_FIELD_TOKENS = ("html", "link", "vercel", "链接", "网页")
+
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Write the Vercel publish URL back to Document_link.HTML_link.")
@@ -101,6 +115,25 @@ def resolve_field_name(field_id_map: dict[str, str], target_name: str) -> str | 
     return sorted(matches)[0]
 
 
+def resolve_html_link_field_name(field_id_map: dict[str, str]) -> str | None:
+    for alias in HTML_LINK_FIELD_ALIASES:
+        resolved = resolve_field_name(field_id_map, alias)
+        if resolved:
+            return resolved
+    return None
+
+
+def link_like_field_names(field_id_map: dict[str, str]) -> tuple[str, ...]:
+    return tuple(
+        sorted(
+            field_name
+            for field_name in field_id_map
+            if any(token in field_name.lower() for token in _LINKISH_FIELD_TOKENS[:3])
+            or any(token in field_name for token in _LINKISH_FIELD_TOKENS[3:])
+        )
+    )
+
+
 def target_record_ids_from_publish_meta(
     payload: dict[str, Any],
     *,
@@ -139,6 +172,26 @@ def persist_publish_url(*, latest_meta_path: Path, payload: dict[str, Any], publ
     return tuple(written)
 
 
+def write_html_link_records(
+    *,
+    source: Any,
+    binding: Any,
+    record_ids: tuple[str, ...],
+    field_name: str,
+    publish_url: str,
+) -> int:
+    writeback_record = {field_name: publish_url}
+    for record_id in record_ids:
+        source.upsert_record(
+            base_token=binding.base_token,
+            table_id=binding.table_id,
+            record_id=record_id,
+            record=writeback_record,
+        )
+        print(f"[publish-html-link] Updated {record_id}: {field_name}={publish_url}")
+    return len(record_ids)
+
+
 def write_publish_html_link(
     *,
     config_path: Path,
@@ -173,6 +226,7 @@ def write_publish_html_link(
     binding = resolve_document_link_binding(cfg)
     resolved_cli_bin = cli_bin(cfg)
     identity = phase2_identity()
+    source = LarkCliSource(cli_bin=resolved_cli_bin, identity=identity)
     field_id_map = fetch_field_id_map(
         cli_bin=resolved_cli_bin,
         base_token=binding.base_token,
@@ -180,22 +234,47 @@ def write_publish_html_link(
         identity=identity,
         run_lark_cli_json=run_lark_cli_json,
     )
-    resolved_html_link_field = resolve_field_name(field_id_map, HTML_LINK_FIELD)
-    if not resolved_html_link_field:
-        print(f"[publish-html-link] Document_link table does not expose {HTML_LINK_FIELD}; skipping writeback.")
-        return 0
-
-    source = LarkCliSource(cli_bin=resolved_cli_bin, identity=identity)
-    writeback_record = {resolved_html_link_field: publish_url}
-    for record_id in record_ids:
-        source.upsert_record(
-            base_token=binding.base_token,
-            table_id=binding.table_id,
-            record_id=record_id,
-            record=writeback_record,
+    resolved_html_link_field = resolve_html_link_field_name(field_id_map)
+    if resolved_html_link_field:
+        return write_html_link_records(
+            source=source,
+            binding=binding,
+            record_ids=record_ids,
+            field_name=resolved_html_link_field,
+            publish_url=publish_url,
         )
-        print(f"[publish-html-link] Updated {record_id}: {resolved_html_link_field}={publish_url}")
-    return len(record_ids)
+
+    nearby_fields = link_like_field_names(field_id_map)
+    if nearby_fields:
+        print(
+            "[publish-html-link] HTML_link lookup missed. Nearby link-like fields: "
+            + ", ".join(nearby_fields)
+        )
+    else:
+        print("[publish-html-link] HTML_link lookup missed. Field list returned no link-like fields.")
+
+    attempted_fields: list[str] = []
+    for fallback_field_name in _clean_texts(HTML_LINK_FIELD_ALIASES):
+        attempted_fields.append(fallback_field_name)
+        try:
+            return write_html_link_records(
+                source=source,
+                binding=binding,
+                record_ids=record_ids,
+                field_name=fallback_field_name,
+                publish_url=publish_url,
+            )
+        except Exception as exc:
+            print(
+                f"[publish-html-link] Fallback writeback via {fallback_field_name} failed: {exc}",
+                file=sys.stderr,
+            )
+
+    print(
+        "[publish-html-link] Document_link table does not expose a writable HTML link field; "
+        f"attempted={', '.join(attempted_fields)}. Skipping writeback."
+    )
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:

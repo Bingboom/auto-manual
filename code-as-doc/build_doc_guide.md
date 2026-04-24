@@ -455,7 +455,7 @@ Packaging rule:
 Vercel note:
 
 - `Review Preview Package` now uploads the review-preview workspace as a GitHub artifact only
-- [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is now the Vercel deployment path: after a successful queue-driven Publish row, it stages [`../site/publish-latest/dist/`](../site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`; if `Document_link` exposes `HTML_link`, the workflow also writes that deployed URL back to the source row
+- [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) is now the Vercel deployment path: after a successful queue-driven Publish row, it stages [`../site/publish-latest/dist/`](../site/publish-latest/dist), then runs `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`; if `Document_link` exposes `HTML_link`, the workflow also writes that deployed URL back to the source row, while the raw deploy URL stays available in `publish_meta.json` and `openclaw-run-metadata` even when GitHub masks the summary/log display
 - Vercel should host the latest publish HTML only; do not rely on Git-triggered Vercel Python builds for this flow
 - configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` in repository secrets for the deploy step
 
