@@ -90,35 +90,44 @@ def fetch_field_id_map(
     identity: str = "user",
     run_lark_cli_json: Callable[..., dict[str, Any]],
 ) -> dict[str, str]:
-    payload = run_lark_cli_json(
-        cli_bin=cli_bin,
-        args=[
-            "base",
-            "+field-list",
-            "--as",
-            identity,
-            "--base-token",
-            base_token,
-            "--table-id",
-            table_id,
-            "--limit",
-            "500",
-        ],
-    )
-    data = payload.get("data")
-    if not isinstance(data, dict):
-        raise RuntimeError("Lark CLI field list response is missing data payload")
-    items = data.get("items", [])
-    if not isinstance(items, list):
-        raise RuntimeError("Lark CLI field list response has invalid items payload")
     result: dict[str, str] = {}
-    for item in items:
-        if not isinstance(item, dict):
-            continue
-        field_id = str(item.get("field_id") or "").strip()
-        field_name = str(item.get("field_name") or "").strip()
-        if field_id and field_name:
-            result[field_name] = field_id
+    offset = 0
+    limit = 500
+    while True:
+        payload = run_lark_cli_json(
+            cli_bin=cli_bin,
+            args=[
+                "base",
+                "+field-list",
+                "--as",
+                identity,
+                "--base-token",
+                base_token,
+                "--table-id",
+                table_id,
+                "--limit",
+                str(limit),
+                "--offset",
+                str(offset),
+            ],
+        )
+        data = payload.get("data")
+        if not isinstance(data, dict):
+            raise RuntimeError("Lark CLI field list response is missing data payload")
+        items = data.get("items", [])
+        if not isinstance(items, list):
+            raise RuntimeError("Lark CLI field list response has invalid items payload")
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            field_id = str(item.get("field_id") or "").strip()
+            field_name = str(item.get("field_name") or "").strip()
+            if field_id and field_name:
+                result[field_name] = field_id
+        total = int(data.get("total") or len(result))
+        offset += len(items)
+        if not items or offset >= total:
+            break
     return result
 
 
