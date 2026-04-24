@@ -144,6 +144,20 @@ jobs:
         run: |
           echo "Latest publish HTML: ${{ steps.deploy.outputs.publish_url }}" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Write publish HTML_link back to Document_link
+        if: ${{ steps.deploy.outputs.publish_url != '' }}
+        shell: bash
+        run: |
+          cmd=(
+            python tools/write_publish_html_link.py
+            --config config.us.yaml
+            --publish-url "${{ steps.deploy.outputs.publish_url }}"
+          )
+          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
+            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          fi
+          "${cmd[@]}"
+
       - name: Write OpenClaw run metadata
         if: always()
         shell: bash

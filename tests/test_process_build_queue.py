@@ -1500,6 +1500,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     pdf_output_path=pdf_output_path,
                     html_dir=html_dir,
                     document_link_url="https://example.feishu.cn/wiki/token_123",
+                    queue_record_ids=("rec_publish_1", "rec_publish_2"),
                 )
 
             self.assertEqual(
@@ -1520,6 +1521,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 "reports/releases/JE-1000F/US/en/latest/html/index.html",
                 payload["html_index"],
             )
+            self.assertEqual(["rec_publish_1", "rec_publish_2"], payload["queue_record_ids"])
 
     def test_versioned_word_output_path_should_preserve_original_when_version_missing(self) -> None:
         path = Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx")

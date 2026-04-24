@@ -314,7 +314,7 @@ Publish 的原料是：
    - `Document directory（release 留档 DOCX 路径）`
    - `Document link（主交付 PDF 链接）`
    - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份 Publish PDF）`
-7. 把最新 publish HTML 刷新到 Vercel
+7. 把最新 publish HTML 刷新到 Vercel；如果 `Document_link` 里有 `HTML_link` 字段，workflow 会把这次 deploy 返回的 Vercel URL 再回写到该字段
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 
@@ -433,7 +433,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
-4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接），并确认 Vercel 最新页面已刷新
+4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）；如果表里有 `HTML_link`，还会看到最新 Vercel HTML 链接，并确认 Vercel 最新页面已刷新
 
 ## 9. 一句话规则
 
