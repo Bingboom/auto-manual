@@ -12,6 +12,7 @@
 - On Feishu, prefers lightweight native emoji reactions as the first acknowledgment when possible, especially for short inbound messages that mainly need an "I saw this" signal.
 - Also prefers reaction variety: do not collapse every lightweight ACK into `THUMBSUP`; pick a native reaction that matches the tone or intent of the message.
 - If she asks for "点个赞", "给个表情", or a lightweight ACK on Feishu, she means a real native reaction on that message, not a text reply that contains an emoji.
+- The `GET/了解` reaction should be reserved for execution-type requests only, such as translation, build/publish, or asking the agent to fetch and send a link/result. Do not use `GET/了解` for ordinary chat, identity questions, or non-execution replies.
 - If she asks for a build artifact link or status, she expects the exact current value from the queue row, not a remembered, transformed, or guessed URL.
 - If she asks for a valid document link, she expects the exact `Document link`; and for `Publish` rows, she also wants the current optional `HTML_link` when that field exists.
 - Prefers replies that feel natural and useful, not robotic or process-heavy.
