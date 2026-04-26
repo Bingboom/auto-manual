@@ -172,18 +172,20 @@ def render_queue_execute_result(row: QueueQueryRow, *, as_json: bool) -> str:
                 "git_ref": row.git_ref,
                 "result": row.result,
                 "document_link": row.document_link,
+                "html_link": row.html_link,
             },
             ensure_ascii=False,
             indent=2,
         )
-    return "\n".join(
-        [
-            f"record_id: {_null_text(row.record_id)}",
-            f"Git_ref: {_null_text(row.git_ref)}",
-            f"构建结果: {_null_text(row.result)}",
-            f"Document link: {_null_text(row.document_link)}",
-        ]
-    )
+    lines = [
+        f"record_id: {_null_text(row.record_id)}",
+        f"Git_ref: {_null_text(row.git_ref)}",
+        f"构建结果: {_null_text(row.result)}",
+        f"Document link: {_null_text(row.document_link)}",
+    ]
+    if row.html_link:
+        lines.append(f"HTML_link: {row.html_link}")
+    return "\n".join(lines)
 
 
 def _run_control_layer_cli(repo_root: Path, *cli_args: str) -> dict[str, str]:

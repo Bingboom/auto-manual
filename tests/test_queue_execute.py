@@ -20,6 +20,7 @@ def _draft_row(record_id: str = "rec_draft") -> queue_query.QueueQueryRow:
         normalized_workflow_action="draft",
         git_ref="codex/review-id-recvfw0zg4pzxs",
         document_link="https://example.com/doc.docx",
+        html_link="",
         document_directory="/tmp/doc.docx",
         result="SUCCESS",
         pr_url="",
@@ -45,6 +46,7 @@ def _publish_row(record_id: str = "rec_publish") -> queue_query.QueueQueryRow:
         normalized_workflow_action="publish",
         git_ref="codex/review-id-recvfw0zg4pzxs",
         document_link="https://example.com/publish.docx",
+        html_link="https://manual.example.com/latest",
         document_directory="/tmp/publish.docx",
         result="SUCCESS",
         pr_url="",
@@ -137,6 +139,7 @@ class TestQueueExecute(unittest.TestCase):
                 "git_ref": "codex/review-id-recvfw0zg4pzxs",
                 "result": "SUCCESS",
                 "document_link": "https://example.com/doc.docx",
+                "html_link": "",
             },
             payload,
         )

@@ -21,6 +21,7 @@ from tools.phase2_support import (
     load_config,
     phase2_identity,
 )
+from tools.queue_contract import HTML_LINK_FIELD
 from tools.process_build_queue import (
     BUILD_FAMILY_FIELD,
     DOCUMENT_DIRECTORY_FIELD,
@@ -65,6 +66,7 @@ class QueueQueryRow:
     normalized_workflow_action: str | None
     git_ref: str
     document_link: str
+    html_link: str
     document_directory: str
     result: str
     pr_url: str
@@ -299,6 +301,7 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 ),
                 git_ref=_text(fields.get(GIT_REF_FIELD)),
                 document_link=_text(fields.get(DOCUMENT_LINK_FIELD)),
+                html_link=_text(fields.get(HTML_LINK_FIELD)),
                 document_directory=_text(fields.get(DOCUMENT_DIRECTORY_FIELD)),
                 result=_text(fields.get(RESULT_FIELD)),
                 pr_url="",
@@ -348,6 +351,7 @@ def _build_review_init_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 normalized_workflow_action="start_review",
                 git_ref=parsed.git_ref,
                 document_link="",
+                html_link="",
                 document_directory="",
                 result="",
                 pr_url=parsed.pr_url,
@@ -442,6 +446,8 @@ def render_queue_query_rows(rows: list[QueueQueryRow], *, as_json: bool) -> str:
             lines.append(f"pr_url: {row.pr_url}")
         if row.document_link:
             lines.append(f"document_link: {row.document_link}")
+        if row.html_link:
+            lines.append(f"html_link: {row.html_link}")
         if row.document_directory:
             lines.append(f"document_directory: {row.document_directory}")
         if row.result:

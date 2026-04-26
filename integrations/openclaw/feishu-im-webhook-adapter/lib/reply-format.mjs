@@ -29,6 +29,9 @@ function summarizeRow(row) {
   if (row.document_link) {
     lines.push(`Document link: ${row.document_link}`);
   }
+  if (row.html_link) {
+    lines.push(`HTML_link: ${row.html_link}`);
+  }
   if (row.document_directory) {
     lines.push(`Document directory: ${row.document_directory}`);
   }
