@@ -27,12 +27,12 @@ _LANG_SUFFIX = {
 
 _LANG_COPY = {
     "en": {"title": "LCD DISPLAY", "alt": "LCD icon map placeholder."},
-    "fr": {"title": "AFFICHAGE LCD", "alt": "Carte des icones de l'ecran LCD."},
+    "fr": {"title": "AFFICHAGE LCD", "alt": "Carte des icônes de l'écran LCD."},
     "es": {"title": "PANTALLA LCD", "alt": "Mapa de iconos de la pantalla LCD."},
     "de": {"title": "LCD-ANZEIGE", "alt": "Abbildung der LCD-Symbole als Platzhalter."},
     "it": {"title": "DISPLAY LCD", "alt": "Segnaposto mappa icone LCD."},
-    "uk": {"title": "LCD DISPLAY", "alt": "LCD icon map placeholder."},
-    "ja": {"title": "LCD DISPLAY", "alt": "LCD icon map placeholder."},
+    "uk": {"title": "ЕКРАН LCD", "alt": "Заглушка схеми значків LCD."},
+    "ja": {"title": "液晶画面", "alt": "LCDアイコンマップ。"},
 }
 
 

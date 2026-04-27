@@ -667,9 +667,11 @@ class TestPhase1Renderers(unittest.TestCase):
                 "Is_latest": "TRUE",
                 "icon_en": "Energy Saving Mode",
                 "icon_fr": "Mode economie d'energie",
+                "icon_jp": "省エネモード",
                 "icon_ukr": "Energy Saving Mode",
                 "icon_desc_en": "When the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} output is on:\nOn: Enabled.\nOff: Disabled.",
                 "icon_desc_fr": "When the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} output is on:\nOn: Enabled.\nOff: Disabled.",
+                "icon_desc_jp": "{{AC_POWER_BUTTON_LABEL}} / {{DC_USB_POWER_BUTTON_LABEL}}",
                 "icon_desc_ukr": "{{AC_POWER_BUTTON_LABEL}} / {{DC_USB_POWER_BUTTON_LABEL}}",
                 "variable_keys": "AC_POWER_BUTTON_LABEL, DC_USB_POWER_BUTTON_LABEL",
             },
@@ -747,6 +749,17 @@ class TestPhase1Renderers(unittest.TestCase):
                     "variable_lang_overrides_csv": str(overrides),
                 },
             )
+            ja_out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="ja",
+                vars_map={
+                    "model": "JE-1000F",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
             uk_out = renderers.render_lcd_icons_page(
                 template=self._lcd_template(),
                 blocks=self._lcd_blocks(),
@@ -760,7 +773,11 @@ class TestPhase1Renderers(unittest.TestCase):
             )
 
         self.assertIn("When the CA or CC/USB output is on:", fr_out)
+        self.assertIn("液晶画面", ja_out)
+        self.assertIn("LCDアイコンマップ。", ja_out)
         self.assertIn("AC_UKR / DC_UKR", uk_out)
+        self.assertIn("ЕКРАН LCD", uk_out)
+        self.assertIn("Заглушка схеми значків LCD.", uk_out)
 
     def test_collect_spec_content_supports_spec_master_schema(self) -> None:
         data = renderers.collect_spec_content(
