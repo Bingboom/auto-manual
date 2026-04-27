@@ -166,6 +166,27 @@ class TestValidateConfig(unittest.TestCase):
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
 
+    def test_validate_should_accept_lcd_variable_phase2_tables(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "base_token_env": "FEISHU_BASE_TOKEN",
+                    "tables": {
+                        "lcd_icons": {"table_id": "tblDII3oyqFhQYHn", "view_id": "vewerElnZ3"},
+                        "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
+                        "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
+                    },
+                },
+            },
+            "pages": [{"type": "csv_page", "source": "phase1", "page": "lcd_icons", "langs": ["en"]}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
+
     def test_validate_should_reject_invalid_phase2_sync_table_key(self) -> None:
         cfg = {
             "build": {"languages": ["en"]},

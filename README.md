@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-04-19
+Updated: 2026-04-27
 
 Auto-Manual is the repository that turns structured content into target-specific manual bundles and release outputs.
 It owns the current build, review, validation, revision tracking, and publish flow for this repo.
@@ -76,6 +76,8 @@ Phase2 snapshot note:
 
 - `sync-data` uses the local `lark-cli` login and `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`data/phase2/`](data/phase2), using the CLI's `base` record listing flow under the hood
 - for each `sync.phase2.tables.<name>` binding, you can now pin `table_id` and `view_id` directly in config; when those literals are present they override the corresponding `*_env` values, which is useful when one shared family must always sync from one fixed Base view
+- `lcd_icons`, `variable_defaults`, and `variable_lang_overrides` are first-class phase2 sync tables; the LCD icons page renders from `lcd_icons_blocks.csv`, then resolves `{{VARIABLE_KEY}}` placeholders through `Variable_Defaults.csv` and exact language rows in `Variable_Lang_Overrides.csv`
+- for variable defaults, use `Model_key` as the stable text model selector when the authoring Base also has a linked `Model` field, because linked fields may export as record ids instead of visible model names
 - when a valid phase2 snapshot exists, build/review/publish flows default to that snapshot; explicit `--data-root` still overrides the default for local experiments or alternate roots
 - queue-driven build flows still treat Feishu phase2 tables as the structured-data source of truth; committed `data/phase2/*.csv` files are build-time snapshots refreshed by `sync-data`
 - `process-build-queue` still reads its queue rows from Feishu `Document_link` and still writes status plus `Document link` back to Feishu even when the artifact upload target is switched

@@ -21,9 +21,11 @@ pages:
     template: templates/page_eu-es/03_product_overview_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: es
-    file: templates/page_eu-es/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [es]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1

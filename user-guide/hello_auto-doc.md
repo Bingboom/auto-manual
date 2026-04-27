@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-04-21
+Updated: 2026-04-27
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -90,6 +90,9 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
    - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
    - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
+   - [`data/phase2/lcd_icons_blocks.csv`](../data/phase2/lcd_icons_blocks.csv)
+   - [`data/phase2/Variable_Defaults.csv`](../data/phase2/Variable_Defaults.csv)
+   - [`data/phase2/Variable_Lang_Overrides.csv`](../data/phase2/Variable_Lang_Overrides.csv)
    - legacy baseline [`data/phase1/`](../data/phase1)
    - [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
@@ -99,6 +102,8 @@ The manual system now has four layers, but they are used at different stages.
    - `config.eu.yaml` now represents the live `EU` region-family row as `Build_family = eu-merged`, keeps `JE-1000F / EU` pinned to the `JE-1000F_EU` spec-master view, and is the config that blank-`Lang` queue rows should resolve to
    - `config.eu-en.yaml`, `config.eu-fr.yaml`, and `config.eu-es.yaml` are the explicit English, French, and Spanish EU single-language surfaces when you want one language family at a time
    - when one family must always read from one known Base view, `sync.phase2.tables.<name>` can pin `table_id` and `view_id` directly in config; those literal bindings override the corresponding `*_env` values for that table
+   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
+   - for variable defaults, keep `Model_key` as the text model selector when the Base `Model` field is a linked record; linked model fields can export as record ids and are not stable enough for build matching
    - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` reads the same snapshot as a compact multilingual memory lookup, which is useful when OpenClaw or a maintainer needs terminology grounded in the current Base content before translating copy
    - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` is the higher-priority sentence-pair lookup when you already maintain a dedicated translation memory table in Feishu Base; on chat surfaces, treat it as background wording memory and answer with the translation itself instead of a narrated lookup step. The script keeps a short local cache for repeat lookups; use `--no-cache` only when you need a forced refresh.
    - `python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de --use-feishu-term-source -o output.de.md` is the batch rewrite path when a full Markdown page or manual must follow TM wording, keep headings, tables, lists, and image links stable, and preserve unmatched source text as `==...==` instead of silently paraphrasing it

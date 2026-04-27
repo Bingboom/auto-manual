@@ -132,6 +132,29 @@ class TestPhase1BuilderNormalization(unittest.TestCase):
             self.assertEqual(1, len(rows))
             self.assertEqual("draft_row", rows[0]["Row_key"])
 
+    def test_load_lcd_icons_allows_table_schema_without_block_type(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            data_dir = root / "data" / "phase2"
+            data_dir.mkdir(parents=True, exist_ok=True)
+            (data_dir / "lcd_icons_blocks.csv").write_text(
+                "No.,Model,Is_latest,icon_en,icon_desc_en\n"
+                "22,JE-1000F,TRUE,Energy Saving Mode,Demo text\n",
+                encoding="utf-8",
+            )
+
+            paths = BuildPaths(
+                root=root,
+                page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=data_dir,
+                template_dir=root / "docs" / "templates",
+                output_dir=root / "docs" / "generated",
+                spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
+            )
+            rows = Phase1Builder(paths)._load_page_blocks("lcd_icons")
+
+        self.assertEqual("Energy Saving Mode", rows[0]["icon_en"])
+
     def test_select_targets_supports_model_and_region_filters(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

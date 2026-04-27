@@ -1,3 +1,4 @@
 page_id,order,page_type,sku_scope,langs,template,content_query,asset_ref,enabled
 symbols,15,csv_page,ALL,"en,es,fr",symbols_template.rst,page_id=symbols,,1
+lcd_icons,16,csv_page,ALL,"en,es,fr,ja",lcd_icons_template.rst,page_id=lcd_icons,,1
 spec,20,csv_page,ALL,"en,es,fr,ja,zh",spec_template.rst,page_id=spec,,1

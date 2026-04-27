@@ -17,9 +17,11 @@ pages:
   - type: rst_include
     lang: es
     file: templates/page_us-es/03_product_overview_placeholder.rst
-  - type: rst_include
-    lang: es
-    file: templates/page_us-es/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [es]
+    include_dir: generated/{model}
   - type: rst_include
     lang: es
     file: templates/page_us-es/05_operation_guide_placeholder.rst

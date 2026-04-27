@@ -55,6 +55,15 @@ sync:
       symbols_blocks:
         table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
         view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
+      lcd_icons:
+        table_id: tblDII3oyqFhQYHn
+        view_id: vewerElnZ3
+      variable_defaults:
+        table_id: tblRyRdqRg2MGVgH
+        view_id: vew5jbxqLj
+      variable_lang_overrides:
+        table_id: tblkcXujDMGXnHMo
+        view_id: vewODokxUs
     document_link:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID

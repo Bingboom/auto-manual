@@ -21,9 +21,11 @@ pages:
     template: templates/page_eu-en/03_product_overview_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: en
-    file: templates/page_eu-en/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [en]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
@@ -80,9 +82,11 @@ pages:
     template: templates/page_eu-fr/03_product_overview_placeholder.rst
     langs: [fr]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: fr
-    file: templates/page_eu-fr/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [fr]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
@@ -139,9 +143,11 @@ pages:
     template: templates/page_eu-es/03_product_overview_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: es
-    file: templates/page_eu-es/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [es]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
@@ -198,9 +204,11 @@ pages:
     template: templates/page_eu-de/03_product_overview_placeholder.rst
     langs: [de]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: de
-    file: templates/page_eu-de/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [de]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
@@ -257,9 +265,11 @@ pages:
     template: templates/page_eu-it/03_product_overview_placeholder.rst
     langs: [it]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: it
-    file: templates/page_eu-it/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [it]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
@@ -316,9 +326,11 @@ pages:
     template: templates/page_eu-uk/03_product_overview_placeholder.rst
     langs: [uk]
     include_dir: generated/{model}/draft
-  - type: rst_include
-    lang: uk
-    file: templates/page_eu-uk/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [uk]
+    include_dir: generated/{model}
   - type: generated_page
     page: 05_operation_guide
     engine: draft_v1
