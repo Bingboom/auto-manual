@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import csv
+import json
 import re
+import unicodedata
 from pathlib import Path
 
 from .renderers_common import apply_vars, rst_escape
@@ -203,6 +205,7 @@ def _collect_rows(
         rows.append(
             {
                 "no": (row.get("No.") or row.get("No") or "").strip(),
+                "figure": _figure_image_path(row.get("figure") or row.get("Figure") or ""),
                 "name": apply_vars(name, row_vars),
                 "description": apply_vars(description, row_vars),
                 "sort_no": row.get("No.") or row.get("No") or "",
@@ -222,6 +225,44 @@ def _format_description_line(line: str) -> str:
         if line.startswith(prefix):
             return f"**{prefix}**{line[len(prefix):]}"
     return line
+
+
+def _figure_image_path(value: str) -> str:
+    raw = (value or "").strip()
+    if not raw:
+        return ""
+    if not raw.startswith(("{", "[")):
+        return raw
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError:
+        return ""
+    items = payload if isinstance(payload, list) else [payload]
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        for key in ("path", "local_path", "relative_path", "file_path"):
+            path_value = str(item.get(key) or "").strip()
+            if path_value:
+                return path_value
+        file_token = str(item.get("file_token") or item.get("token") or "").strip()
+        if file_token:
+            name = str(item.get("name") or item.get("file_name") or "").strip()
+            suffix = Path(name).suffix.lower() or ".png"
+            return f"data/phase2/_attachments/lcd_icons/{file_token}{suffix}"
+    return ""
+
+
+def _append_image_cell(lines: list[str], prefix: str, path: str, *, alt: str) -> None:
+    raw_path = (path or "").strip()
+    if not raw_path:
+        lines.append(prefix.rstrip())
+        return
+    option_prefix = " " * (len(prefix) + 3)
+    alt_text = " ".join((alt or "").replace("\\n", "\n").split()) or "LCD icon"
+    lines.append(prefix + f".. image:: {raw_path}")
+    lines.append(option_prefix + f":alt: {rst_escape(alt_text)}")
+    lines.append(option_prefix + ":width: 42px")
 
 
 def _append_text_cell(lines: list[str], prefix: str, text: str, *, format_status: bool = False) -> None:
@@ -253,11 +294,12 @@ def _table(rows: list[dict[str, str]]) -> str:
     lines: list[str] = [
         ".. list-table::",
         "   :header-rows: 0",
-        "   :widths: 12 28 60",
+        "   :widths: 8 12 28 52",
         "",
     ]
     for row in rows:
         _append_text_cell(lines, "   * - ", row["no"])
+        _append_image_cell(lines, "     - ", row["figure"], alt=row["name"])
         _append_text_cell(lines, "     - ", row["name"])
         _append_text_cell(lines, "     - ", row["description"], format_status=True)
     return "\n".join(lines) + "\n"
@@ -265,7 +307,8 @@ def _table(rows: list[dict[str, str]]) -> str:
 
 def _heading(title: str) -> str:
     clean = rst_escape(title)
-    return clean + "\n" + ("=" * len(clean))
+    underline_width = sum(2 if unicodedata.east_asian_width(ch) in {"F", "W"} else 1 for ch in clean)
+    return clean + "\n" + ("=" * max(len(clean), underline_width))
 
 
 def render_lcd_icons_page(

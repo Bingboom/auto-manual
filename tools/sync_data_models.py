@@ -178,6 +178,7 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
         file_name="symbols_blocks.csv",
         columns=(
             "page_id",
+            "Figure",
             "image_path",
             "symbol_key",
             "text_en",

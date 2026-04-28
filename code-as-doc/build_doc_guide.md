@@ -57,7 +57,7 @@ Meaning:
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
 - `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood
 - `sync.phase2.tables.<name>` may now pin `table_id` and `view_id` directly in config; when present, those literal bindings take precedence over `table_id_env` / `view_id_env`, which is the safest way to keep one family on one known Base view
-- `lcd_icons`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv`, uses `Variable_Defaults.csv` for the base `Variable_key + Model_key` value, then applies `Variable_Lang_Overrides.csv` by `Variable_key + lang + source_value`
+- `lcd_icons`, `symbols_blocks`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv` and renders downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, the symbols renderer uses downloaded `Figure` attachments from `data/phase2/_attachments/symbols/` when present, and LCD variables resolve from `Variable_Defaults.csv` plus `Variable_Lang_Overrides.csv`
 - if the Base keeps `Model` as a linked-record field, maintain a text `Model_key` column for variable defaults so exact model matching stays independent of Feishu record ids
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
@@ -339,6 +339,7 @@ Parallel-language template note:
 `symbols_blocks.csv` note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon
+- when the phase2 authoring Base provides a `Figure` attachment, `sync-data` downloads it into `data/phase2/_attachments/symbols/` and writes that local file back to `image_path`
 - `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
 - leave `Region` / `Model` blank when one symbols row is shared across manuals
