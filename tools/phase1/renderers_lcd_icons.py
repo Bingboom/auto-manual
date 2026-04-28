@@ -230,16 +230,23 @@ def _append_text_cell(lines: list[str], prefix: str, text: str, *, format_status
     if not raw_lines:
         lines.append(prefix.rstrip())
         return
-    first = rst_escape(raw_lines[0])
-    if format_status:
-        first = _format_description_line(first)
-    lines.append(prefix + first)
-    continuation = " " * len(prefix)
-    for raw_line in raw_lines[1:]:
+
+    def format_line(raw_line: str) -> str:
         line = rst_escape(raw_line)
         if format_status:
             line = _format_description_line(line)
-        lines.append((continuation + line) if line else "")
+        return line
+
+    if len(raw_lines) == 1:
+        lines.append(prefix + format_line(raw_lines[0]))
+        return
+
+    first = format_line(raw_lines[0])
+    lines.append(prefix + (f"| {first}" if first else "|"))
+    continuation = " " * len(prefix)
+    for raw_line in raw_lines[1:]:
+        line = format_line(raw_line)
+        lines.append(continuation + (f"| {line}" if line else "|"))
 
 
 def _table(rows: list[dict[str, str]]) -> str:
