@@ -649,6 +649,135 @@ class TestPhase1Renderers(unittest.TestCase):
                 vars_map={},
             )
 
+    def _lcd_template(self) -> str:
+        return (
+            renderers.PH_LCD_ICONS_HEADING_RST
+            + "\n\n"
+            + renderers.PH_LCD_ICONS_IMAGE_ALT
+            + "\n\n"
+            + renderers.PH_LCD_ICONS_TABLE_RST
+            + "\n"
+        )
+
+    def _lcd_blocks(self) -> list[dict[str, str]]:
+        return [
+            {
+                "No.": "22",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": "Energy Saving Mode",
+                "icon_fr": "Mode economie d'energie",
+                "icon_jp": "省エネモード",
+                "icon_ukr": "Energy Saving Mode",
+                "icon_desc_en": "When the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} output is on:\nOn: Enabled.\nOff: Disabled.",
+                "icon_desc_fr": "When the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} output is on:\nOn: Enabled.\nOff: Disabled.",
+                "icon_desc_jp": "{{AC_POWER_BUTTON_LABEL}} / {{DC_USB_POWER_BUTTON_LABEL}}",
+                "icon_desc_ukr": "{{AC_POWER_BUTTON_LABEL}} / {{DC_USB_POWER_BUTTON_LABEL}}",
+                "variable_keys": "AC_POWER_BUTTON_LABEL, DC_USB_POWER_BUTTON_LABEL",
+            },
+            {
+                "No.": "23",
+                "Model": "OTHER-MODEL",
+                "Is_latest": "TRUE",
+                "icon_en": "SHOULD_NOT_RENDER",
+                "icon_fr": "SHOULD_NOT_RENDER",
+                "icon_ukr": "SHOULD_NOT_RENDER",
+                "icon_desc_en": "SHOULD_NOT_RENDER",
+                "icon_desc_fr": "SHOULD_NOT_RENDER",
+                "icon_desc_ukr": "SHOULD_NOT_RENDER",
+            },
+        ]
+
+    def test_render_lcd_icons_page_resolves_model_default_variables(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            defaults = Path(td) / "Variable_Defaults.csv"
+            overrides = Path(td) / "Variable_Lang_Overrides.csv"
+            defaults.write_text(
+                "Variable_key,Model,Value,is_default\n"
+                "AC_POWER_BUTTON_LABEL,JE-1000F,AC,FALSE\n"
+                "AC_POWER_BUTTON_LABEL,,AC1/2,TRUE\n"
+                "DC_USB_POWER_BUTTON_LABEL,,DC/USB,TRUE\n",
+                encoding="utf-8",
+            )
+            overrides.write_text("Variable_key,lang,source_value,Value\n", encoding="utf-8")
+
+            out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="en",
+                vars_map={
+                    "model": "JE-1000F",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+
+        self.assertIn("LCD DISPLAY", out)
+        self.assertIn("Energy Saving Mode", out)
+        self.assertIn("When the AC or DC/USB output is on:", out)
+        self.assertIn("**On:** Enabled.", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_lcd_icons_page_applies_language_overrides_and_aliases(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            defaults = Path(td) / "Variable_Defaults.csv"
+            overrides = Path(td) / "Variable_Lang_Overrides.csv"
+            defaults.write_text(
+                "Variable_key,Model,Value,is_default\n"
+                "AC_POWER_BUTTON_LABEL,JE-1000F,AC,FALSE\n"
+                "DC_USB_POWER_BUTTON_LABEL,,DC/USB,TRUE\n",
+                encoding="utf-8",
+            )
+            overrides.write_text(
+                "Variable_key,lang,source_value,Value,from_prefix,to_prefix\n"
+                "AC_POWER_BUTTON_LABEL,fr,AC,CA,,\n"
+                "DC_USB_POWER_BUTTON_LABEL,fr,DC/USB,CC/USB,,\n"
+                "AC_POWER_BUTTON_LABEL,ukr,,,AC,AC_UKR\n"
+                "DC_USB_POWER_BUTTON_LABEL,ukr,,,DC/USB,DC_UKR\n",
+                encoding="utf-8",
+            )
+
+            fr_out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="fr",
+                vars_map={
+                    "model": "JE-1000F",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+            ja_out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="ja",
+                vars_map={
+                    "model": "JE-1000F",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+            uk_out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="uk",
+                vars_map={
+                    "model": "JE-1000F",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+
+        self.assertIn("When the CA or CC/USB output is on:", fr_out)
+        self.assertIn("液晶画面", ja_out)
+        self.assertIn("LCDアイコンマップ。", ja_out)
+        self.assertIn("AC_UKR / DC_UKR", uk_out)
+        self.assertIn("ЕКРАН LCD", uk_out)
+        self.assertIn("Заглушка схеми значків LCD.", uk_out)
 
     def test_collect_spec_content_supports_spec_master_schema(self) -> None:
         data = renderers.collect_spec_content(

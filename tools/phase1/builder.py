@@ -389,6 +389,9 @@ class Phase1Builder:
         if not rows:
             return []
 
+        if page_id == "lcd_icons":
+            return rows
+
         headers = set(rows[0].keys())
         if "block_type" not in headers:
             raise ValueError(
@@ -469,6 +472,13 @@ class Phase1Builder:
                         render_vars["region"] = region_value
                     if page.page_id == "spec" and self.paths.spec_titles_csv is not None:
                         render_vars["spec_titles_csv"] = str(self.paths.spec_titles_csv)
+                    if page.page_id == "lcd_icons":
+                        render_vars["variable_defaults_csv"] = str(
+                            self.paths.page_blocks_dir / "Variable_Defaults.csv"
+                        )
+                        render_vars["variable_lang_overrides_csv"] = str(
+                            self.paths.page_blocks_dir / "Variable_Lang_Overrides.csv"
+                        )
                     self._inject_product_name(render_vars, lang=lang)
                     render_sku = (render_vars.get("sku_id") or render_vars.get("sku") or "").strip()
                     rst = renderer(template, page_blocks, render_sku, lang, render_vars)

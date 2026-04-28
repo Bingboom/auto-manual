@@ -83,6 +83,10 @@ def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
         return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "symbols_blocks" and column == "enabled":
         return _normalize_boolish(value, style="digit_bool")
+    if schema.logical_name == "lcd_icons" and column in {"Is_latest", "has_variables"}:
+        return _normalize_boolish(value, style="upper_bool")
+    if schema.logical_name == "variable_defaults" and column == "is_default":
+        return _normalize_boolish(value, style="upper_bool")
     return value
 
 
@@ -157,6 +161,23 @@ def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
             _text_sort_token(row.get("column_group", "")),
             _numeric_sort_token(row.get("order", "")),
             _text_sort_token(row.get("symbol_key", "")),
+        )
+    if schema.logical_name == "lcd_icons":
+        return (
+            _numeric_sort_token(row.get("No.", "")),
+            _text_sort_token(row.get("icon_en", "")),
+        )
+    if schema.logical_name == "variable_defaults":
+        return (
+            _text_sort_token(row.get("Variable_key", "")),
+            0 if _normalize_boolish(row.get("is_default", ""), style="upper_bool") != "TRUE" else 1,
+            _text_sort_token(row.get("Model", "")),
+        )
+    if schema.logical_name == "variable_lang_overrides":
+        return (
+            _text_sort_token(row.get("Variable_key", "")),
+            _text_sort_token(row.get("lang", "")),
+            _text_sort_token(row.get("source_value", "") or row.get("from_prefix", "")),
         )
     return (
         _text_sort_token(row.get("document_key", "")),

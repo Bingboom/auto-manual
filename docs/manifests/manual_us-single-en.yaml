@@ -20,9 +20,11 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_us-en/03_product_overview_placeholder.rst
-  - type: rst_include
-    lang: en
-    file: templates/page_us-en/04_lcd_display_placeholder.rst
+  - type: csv_page
+    source: phase1
+    page: lcd_icons
+    langs: [en]
+    include_dir: generated/{model}
   - type: rst_include
     lang: en
     file: templates/page_us-en/05_operation_guide_placeholder.rst

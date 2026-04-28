@@ -1,74 +1,50 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-04-21T03:30:34.103379+00:00",
+  "generated_at": "2026-04-27T09:38:13.873575+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
   "requested_tables": [
+    "lcd_icons",
+    "variable_defaults",
+    "variable_lang_overrides"
+  ],
+  "skipped_tables": [
     "spec_titles",
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
     "spec_master"
   ],
-  "skipped_tables": [],
   "tables": [
     {
-      "logical_name": "spec_titles",
-      "file_name": "spec_titles.csv",
-      "path": "data/phase2/spec_titles.csv",
-      "row_count": 10,
-      "sha256": "3e2a7ecbbce63581ede127888030cef38577db405f8a30145851847025f4e8c8",
-      "previous_sha256": "3e2a7ecbbce63581ede127888030cef38577db405f8a30145851847025f4e8c8",
+      "logical_name": "lcd_icons",
+      "file_name": "lcd_icons_blocks.csv",
+      "path": "data/phase2/lcd_icons_blocks.csv",
+      "row_count": 27,
+      "sha256": "93e96648297d3a5f8e1213a05ca3ed092e3eb19b8ee974e55e23dffe7b4bf35b",
+      "previous_sha256": "93e96648297d3a5f8e1213a05ca3ed092e3eb19b8ee974e55e23dffe7b4bf35b",
       "changed": false
     },
     {
-      "logical_name": "spec_footnotes",
-      "file_name": "Spec_Footnotes.csv",
-      "path": "data/phase2/Spec_Footnotes.csv",
-      "row_count": 10,
-      "sha256": "5bcbe19b5926c7b954541b5a58fb18d1241a528cfba7bfb713872f43d397d43c",
-      "previous_sha256": "5bcbe19b5926c7b954541b5a58fb18d1241a528cfba7bfb713872f43d397d43c",
-      "changed": false
-    },
-    {
-      "logical_name": "spec_notes",
-      "file_name": "Spec_Notes.csv",
-      "path": "data/phase2/Spec_Notes.csv",
-      "row_count": 2,
-      "sha256": "d5a10fb470660dbce2b74b13fa722e7d72a517119ea5dd8036f2d16b814f02cb",
-      "previous_sha256": "d5a10fb470660dbce2b74b13fa722e7d72a517119ea5dd8036f2d16b814f02cb",
-      "changed": false
-    },
-    {
-      "logical_name": "symbols_blocks",
-      "file_name": "symbols_blocks.csv",
-      "path": "data/phase2/symbols_blocks.csv",
-      "row_count": 12,
-      "sha256": "72b22c56a7b645663ebac47fee3e092643ac6d2ae909d73498cab2449ffb372c",
-      "previous_sha256": "72b22c56a7b645663ebac47fee3e092643ac6d2ae909d73498cab2449ffb372c",
-      "changed": false
-    },
-    {
-      "logical_name": "spec_master",
-      "file_name": "Spec_Master.csv",
-      "path": "data/phase2/Spec_Master.csv",
-      "row_count": 305,
-      "sha256": "1692202b6f1106d91f6b82a7e398b7d02f4416f7dce25b27de1be06df083829d",
-      "previous_sha256": "4886067fe0397b50569e677df67722b78ee0ad6c29ac932f96e96e075b40f407",
+      "logical_name": "variable_defaults",
+      "file_name": "Variable_Defaults.csv",
+      "path": "data/phase2/Variable_Defaults.csv",
+      "row_count": 3,
+      "sha256": "45d4e52b1ad8b4e9c93548f8617b89ef36c40173882dbc1ceff14c3d61a86be5",
+      "previous_sha256": "ecf0cb3f81c3cd25a510d236f3b72295c538eb4944ddddfeb3371fbe82162767",
       "changed": true
+    },
+    {
+      "logical_name": "variable_lang_overrides",
+      "file_name": "Variable_Lang_Overrides.csv",
+      "path": "data/phase2/Variable_Lang_Overrides.csv",
+      "row_count": 9,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482",
+      "previous_sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482",
+      "changed": false
     }
   ],
-  "derived_files": [
-    {
-      "logical_name": "row_key_mapping",
-      "file_name": "row_key_mapping.csv",
-      "path": "data/phase2/row_key_mapping.csv",
-      "row_count": 102,
-      "sha256": "38d34ab8357fa3cb57cc7e6255eb77204ca6c3492bb531fa115522610fdecdec",
-      "previous_sha256": "2b6843a737d31d8d90a24a898f6eb74b9426f6ca1cb90814c6083046b704afdb",
-      "changed": true
-    }
-  ]
+  "derived_files": []
 }

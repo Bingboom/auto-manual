@@ -165,6 +165,41 @@ class TestSyncData(unittest.TestCase):
             ),
             sync_data.TABLE_SCHEMAS["symbols_blocks"].columns,
         )
+        self.assertEqual(
+            (
+                "No.",
+                "Model",
+                "Is_latest",
+                "Version",
+                "icon_en",
+                "icon_jp",
+                "icon_fr",
+                "icon_es",
+                "icon_de",
+                "icon_it",
+                "icon_ukr",
+                "icon_desc_en",
+                "icon_desc_jp",
+                "icon_desc_fr",
+                "icon_desc_es",
+                "icon_desc_de",
+                "icon_desc_it",
+                "icon_desc_ukr",
+                "has_variables",
+                "variable_keys",
+                "figure",
+                "render_preview_en",
+            ),
+            sync_data.TABLE_SCHEMAS["lcd_icons"].columns,
+        )
+        self.assertEqual(
+            ("Variable_key", "Model_key", "Model", "Value", "is_default"),
+            sync_data.TABLE_SCHEMAS["variable_defaults"].columns,
+        )
+        self.assertEqual(
+            ("Variable_key", "lang", "source_value", "Value", "from_prefix", "to_prefix"),
+            sync_data.TABLE_SCHEMAS["variable_lang_overrides"].columns,
+        )
 
     def test_collect_sync_preflight_errors_should_report_missing_cli_and_envs_together(self) -> None:
         cfg = {

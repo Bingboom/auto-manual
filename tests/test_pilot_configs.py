@@ -81,7 +81,7 @@ class TestPilotConfigs(unittest.TestCase):
                 csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
                 self.assertEqual([], generated_pages)
-                self.assertEqual({"symbols", "spec"}, {page.page for page in csv_pages})
+                self.assertEqual({"lcd_icons", "symbols", "spec"}, {page.page for page in csv_pages})
                 self.assertEqual(expected_page_count, len(resolved.pages))
 
                 issues = check_docs.collect_generated_page_issues(
@@ -131,7 +131,7 @@ class TestPilotConfigs(unittest.TestCase):
                 csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
                 self.assertEqual({"03_product_overview", "05_operation_guide", "12_app_setup"}, {page.page for page in generated_pages})
-                self.assertEqual({"symbols", "spec"}, {page.page for page in csv_pages})
+                self.assertEqual({"lcd_icons", "symbols", "spec"}, {page.page for page in csv_pages})
                 self.assertEqual(expected_page_count, len(resolved.pages))
 
                 issues = check_docs.collect_generated_page_issues(
@@ -175,7 +175,8 @@ class TestPilotConfigs(unittest.TestCase):
 
         self.assertEqual(85, len(resolved.pages))
         self.assertEqual(18, len(generated_pages))
-        self.assertEqual(12, len(csv_pages))
+        self.assertEqual(18, len(csv_pages))
+        self.assertEqual({"lcd_icons", "symbols", "spec"}, {page.page for page in csv_pages})
 
         issues = check_docs.collect_generated_page_issues(
             cfg,

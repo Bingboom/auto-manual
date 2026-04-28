@@ -45,6 +45,9 @@ SYNC_PHASE2_TABLES = {
     "spec_notes",
     "spec_titles",
     "symbols_blocks",
+    "lcd_icons",
+    "variable_defaults",
+    "variable_lang_overrides",
 }
 
 

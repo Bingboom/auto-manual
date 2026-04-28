@@ -13,6 +13,12 @@ from .renderers_common import (
     render_bullet_rst,
     rst_escape,
 )
+from .renderers_lcd_icons import (
+    PH_LCD_ICONS_HEADING_RST,
+    PH_LCD_ICONS_IMAGE_ALT,
+    PH_LCD_ICONS_TABLE_RST,
+    render_lcd_icons_page,
+)
 from .renderers_spec import (
     PH_SPEC_FOOTNOTES_HTML,
     PH_SPEC_FOOTNOTES_LATEX,
@@ -36,6 +42,7 @@ Renderer = Callable[[str, list[dict[str, str]], str, str, dict[str, str]], str]
 PAGE_RENDERERS: dict[str, Renderer] = {
     "spec": render_spec_page,
     "symbols": render_symbols_page,
+    "lcd_icons": render_lcd_icons_page,
 }
 
 
