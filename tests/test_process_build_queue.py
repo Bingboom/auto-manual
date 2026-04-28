@@ -1417,6 +1417,83 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
 
+    def test_build_document_for_task_should_copy_absolute_repo_data_root_into_git_ref_worktree(self) -> None:
+        commands: list[tuple[list[str], Path]] = []
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source_data_root = root / "data" / "phase2"
+            main_worktree = root / ".tmp" / "process-build-queue-worktrees" / "main"
+            review_worktree = root / ".tmp" / "process-build-queue-worktrees" / "codex-review-us-en"
+            host_config_path = root / "config.us-en.yaml"
+            main_worktree_config_path = main_worktree / "config.us-en.yaml"
+            main_worktree_word_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            )
+            staged_word_path = root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en_0.3.docx"
+            host_config_path.write_text("build: {}\n", encoding="utf-8")
+            main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_config_path.write_text("build: {}\n", encoding="utf-8")
+            main_worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_word_path.write_bytes(b"docx")
+            source_data_root.mkdir(parents=True, exist_ok=True)
+            (source_data_root / "Spec_Master.csv").write_text("fresh-host-data\n", encoding="utf-8")
+            (source_data_root / "_attachments" / "lcd_icons").mkdir(parents=True, exist_ok=True)
+            (source_data_root / "_attachments" / "lcd_icons" / "1_Wi-Fi_token.png").write_bytes(b"png")
+            (main_worktree / "data" / "phase2").mkdir(parents=True, exist_ok=True)
+            (main_worktree / "data" / "phase2" / "Spec_Master.csv").write_text("stale-worktree-data\n", encoding="utf-8")
+            (review_worktree / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True, exist_ok=True)
+            (review_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").write_text(
+                "review-content\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "_prepare_git_ref_worktree",
+                side_effect=[main_worktree, review_worktree],
+            ), mock.patch.object(
+                process_build_queue,
+                "_remove_worktree",
+            ), mock.patch.object(
+                process_build_queue,
+                "_run_command",
+                side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd"))),
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_word_output_path_for_target",
+                return_value=main_worktree_word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "_stage_draft_word_output_to_host_repo",
+                return_value=staged_word_path,
+            ):
+                resolved_path = process_build_queue.build_document_for_task(
+                    config_path=host_config_path,
+                    model="JE-1000F",
+                    region="US",
+                    data_root=str(source_data_root),
+                    doc_phase="Draft",
+                    version="0.3",
+                    git_ref="codex/review-us-en",
+                )
+                self.assertEqual(staged_word_path, resolved_path.word_output_path)
+                self.assertEqual(
+                    "review-content\n",
+                    (main_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").read_text(encoding="utf-8"),
+                )
+                self.assertEqual(
+                    "fresh-host-data\n",
+                    (main_worktree / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8"),
+                )
+                self.assertTrue((main_worktree / "data" / "phase2" / "_attachments" / "lcd_icons" / "1_Wi-Fi_token.png").exists())
+
+        expected_data_root = str(main_worktree / "data" / "phase2")
+        self.assertEqual(2, len(commands))
+        for command, cwd in commands:
+            self.assertEqual(main_worktree, cwd)
+            data_root_index = command.index("--data-root")
+            self.assertEqual(expected_data_root, command[data_root_index + 1])
+
     def test_build_document_for_task_should_use_publish_action_for_publish_phase(self) -> None:
         commands: list[list[str]] = []
         with tempfile.TemporaryDirectory() as td:
