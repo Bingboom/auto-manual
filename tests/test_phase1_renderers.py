@@ -443,6 +443,37 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         self.assertIn("custom/symbols/warning_triangle.png", out)
 
+    def test_render_symbols_page_prefers_figure_attachment_path(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Figure"] = "data/phase2/_attachments/symbols/10_warning_triangle.png"
+        blocks[0]["image_path"] = "templates/word_template/common_assets/symbols/warning_triangle.png"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertIn("data/phase2/_attachments/symbols/10_warning_triangle.png", out)
+        self.assertNotIn("templates/word_template/common_assets/symbols/warning_triangle.png", out)
+
+    def test_render_symbols_page_resolves_figure_attachment_json(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Figure"] = '{"file_token":"warning_token","name":"warning.svg"}'
+        blocks[0]["image_path"] = "templates/word_template/common_assets/symbols/warning_triangle.png"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertIn(".. image:: data/phase2/_attachments/symbols/warning_token.svg", out)
+
     def test_render_symbols_page_uses_language_specific_copy(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),

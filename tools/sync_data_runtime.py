@@ -284,6 +284,21 @@ def _lcd_icon_attachment_path(
     return export_root / "_attachments" / "lcd_icons" / f"{no_part}_{name_part}_{token_part}{_extension_from_attachment(item)}"
 
 
+def _symbols_attachment_path(
+    row: dict[str, str],
+    item: dict[str, Any],
+    *,
+    export_root: Path,
+) -> Path | None:
+    file_token = str(item.get("file_token") or item.get("token") or "").strip()
+    if not file_token:
+        return None
+    order_part = _safe_filename_part(row.get("order") or "", fallback="row")
+    key_part = _safe_filename_part(row.get("symbol_key") or "", fallback="symbol")
+    token_part = _safe_filename_part(file_token, fallback="file")
+    return export_root / "_attachments" / "symbols" / f"{order_part}_{key_part}_{token_part}{_extension_from_attachment(item)}"
+
+
 def _materialize_lcd_icon_attachments(
     rows: list[dict[str, str]],
     *,
@@ -306,6 +321,37 @@ def _materialize_lcd_icon_attachments(
             continue
         if downloader is None:
             raise RuntimeError("lcd_icons figure attachments require the sync source to support drive file downloads")
+        downloader.download_drive_file(
+            file_token=str(items[0].get("file_token") or items[0].get("token") or "").strip(),
+            output_path=target_path,
+            overwrite=True,
+        )
+
+
+def _materialize_symbols_attachments(
+    rows: list[dict[str, str]],
+    *,
+    export_root: Path,
+    repo_root: Path,
+    source: _RecordSourceLike,
+    dry_run: bool,
+) -> None:
+    downloader = _drive_file_downloader(source)
+
+    for row in rows:
+        items = _attachment_items_from_cell(row.get("Figure") or row.get("figure") or "")
+        if not items:
+            continue
+        target_path = _symbols_attachment_path(row, items[0], export_root=export_root)
+        if target_path is None:
+            continue
+        display_path = _display_path(target_path, repo_root=repo_root)
+        row["Figure"] = display_path
+        row["image_path"] = display_path
+        if dry_run:
+            continue
+        if downloader is None:
+            raise RuntimeError("symbols_blocks Figure attachments require the sync source to support drive file downloads")
         downloader.download_drive_file(
             file_token=str(items[0].get("file_token") or items[0].get("token") or "").strip(),
             output_path=target_path,
@@ -381,6 +427,15 @@ def sync_phase2_snapshot(
     if "lcd_icons" in normalized_rows_by_table:
         _materialize_lcd_icon_attachments(
             normalized_rows_by_table["lcd_icons"],
+            export_root=export_root,
+            repo_root=deps.repo_root,
+            source=resolved_source,
+            dry_run=dry_run,
+        )
+
+    if "symbols_blocks" in normalized_rows_by_table:
+        _materialize_symbols_attachments(
+            normalized_rows_by_table["symbols_blocks"],
             export_root=export_root,
             repo_root=deps.repo_root,
             source=resolved_source,

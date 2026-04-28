@@ -1,11 +1,12 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-04-28T12:28:10.775780+00:00",
+  "generated_at": "2026-04-28T12:56:43.134327+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
   "requested_tables": [
+    "symbols_blocks",
     "lcd_icons",
     "variable_defaults",
     "variable_lang_overrides"
@@ -14,10 +15,18 @@
     "spec_titles",
     "spec_footnotes",
     "spec_notes",
-    "symbols_blocks",
     "spec_master"
   ],
   "tables": [
+    {
+      "logical_name": "symbols_blocks",
+      "file_name": "symbols_blocks.csv",
+      "path": "data/phase2/symbols_blocks.csv",
+      "row_count": 12,
+      "sha256": "4ead42a53c80b9eebed07368d2a036bb79c0c278ab81fb03782f01f5569b94f0",
+      "previous_sha256": "78ae88ff70cd052ac8957836a316eff104ca04442d00f781107a9095e95f70db",
+      "changed": true
+    },
     {
       "logical_name": "lcd_icons",
       "file_name": "lcd_icons_blocks.csv",

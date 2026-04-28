@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
+from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 from ..signal_words import get_signal_word, get_symbols_notice_label
@@ -486,6 +488,32 @@ def _append_image_cell(
         lines.append(f"       **{rst_escape(label)}**")
 
 
+def _figure_image_path(value: str) -> str:
+    raw = (value or "").strip()
+    if not raw:
+        return ""
+    if not raw.startswith(("{", "[")):
+        return raw
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError:
+        return ""
+    items = payload if isinstance(payload, list) else [payload]
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        for key in ("path", "local_path", "relative_path", "file_path"):
+            path_value = str(item.get(key) or "").strip()
+            if path_value:
+                return path_value
+        file_token = str(item.get("file_token") or item.get("token") or "").strip()
+        if file_token:
+            name = str(item.get("name") or item.get("file_name") or "").strip()
+            suffix = Path(name).suffix.lower() or ".png"
+            return f"data/phase2/_attachments/symbols/{file_token}{suffix}"
+    return ""
+
+
 def _signal_section(lang: str) -> str:
     copy = LANG_COPY.get(lang)
     if copy is None:
@@ -588,7 +616,8 @@ def _collect_icon_rows(
         if symbol_key not in SYMBOL_ASSETS:
             raise ValueError(f"unknown symbols symbol_key='{symbol_key}'")
         asset = SYMBOL_ASSETS[symbol_key]
-        image_path = (block.get("image_path") or "").strip() or asset.path
+        image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
+        image_path = image_path or (block.get("image_path") or "").strip() or asset.path
 
         row = {
             "symbol_key": symbol_key,

@@ -158,6 +158,7 @@ class TestSyncData(unittest.TestCase):
         self.assertEqual(
             (
                 "page_id",
+                "Figure",
                 "image_path",
                 "symbol_key",
                 "text_en",
@@ -473,6 +474,80 @@ class TestSyncData(unittest.TestCase):
                 "data/phase2/_attachments/lcd_icons/1_Wi-Fi_file_token_wifi.png",
                 rows[0]["figure"],
             )
+
+    def test_sync_phase2_snapshot_should_download_symbol_figure_attachments(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "symbols_blocks": {
+                                "table_id_env": "SYMBOLS_TABLE",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+
+            fake_source = _FakeSourceWithDownloads(
+                {
+                    "tbl_symbols": [
+                        {
+                            "fields": {
+                                "page_id": "symbols",
+                                "Figure": [{"file_token": "file_token_warning", "name": "warning.png"}],
+                                "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                                "symbol_key": "warning_triangle",
+                                "text_en": "Warning symbol meaning.",
+                                "enabled": True,
+                                "block_type": "table_row",
+                                "column_group": "left",
+                                "order": "10",
+                                "Region": "US",
+                                "Model": "JE-1000F",
+                                "Source_lang": "en",
+                            }
+                        }
+                    ],
+                }
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "SYMBOLS_TABLE": "tbl_symbols",
+                },
+                clear=False,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["symbols_blocks"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            expected_asset = root / "data" / "phase2" / "_attachments" / "symbols" / "10_warning_triangle_file_token_warning.png"
+            self.assertEqual([("file_token_warning", expected_asset, True)], fake_source.downloads)
+            self.assertTrue(expected_asset.exists())
+
+            with (root / "data" / "phase2" / "symbols_blocks.csv").open(
+                "r",
+                encoding="utf-8-sig",
+                newline="",
+            ) as handle:
+                rows = list(csv.DictReader(handle))
+            expected_path = "data/phase2/_attachments/symbols/10_warning_triangle_file_token_warning.png"
+            self.assertEqual(expected_path, rows[0]["Figure"])
+            self.assertEqual(expected_path, rows[0]["image_path"])
 
     def test_sync_phase2_snapshot_should_prefer_literal_table_and_view_ids(self) -> None:
         with tempfile.TemporaryDirectory() as td:
