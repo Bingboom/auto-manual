@@ -6,6 +6,7 @@ from __future__ import annotations
 import csv
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 from .renderers_common import apply_vars, rst_escape
@@ -258,8 +259,9 @@ def _append_image_cell(lines: list[str], prefix: str, path: str, *, alt: str) ->
         lines.append(prefix.rstrip())
         return
     option_prefix = " " * (len(prefix) + 3)
+    alt_text = " ".join((alt or "").replace("\\n", "\n").split()) or "LCD icon"
     lines.append(prefix + f".. image:: {raw_path}")
-    lines.append(option_prefix + f":alt: {rst_escape(alt)}")
+    lines.append(option_prefix + f":alt: {rst_escape(alt_text)}")
     lines.append(option_prefix + ":width: 42px")
 
 
@@ -305,7 +307,8 @@ def _table(rows: list[dict[str, str]]) -> str:
 
 def _heading(title: str) -> str:
     clean = rst_escape(title)
-    return clean + "\n" + ("=" * len(clean))
+    underline_width = sum(2 if unicodedata.east_asian_width(ch) in {"F", "W"} else 1 for ch in clean)
+    return clean + "\n" + ("=" * max(len(clean), underline_width))
 
 
 def render_lcd_icons_page(

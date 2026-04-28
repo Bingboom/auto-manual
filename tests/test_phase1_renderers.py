@@ -748,6 +748,31 @@ class TestPhase1Renderers(unittest.TestCase):
 
         self.assertIn(".. image:: data/phase2/_attachments/lcd_icons/wifi_token.svg", out)
 
+    def test_render_lcd_icons_page_flattens_multiline_image_alt(self) -> None:
+        blocks = [
+            {
+                "No.": "8",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_jp": "交流電源による出力マーク\n（正弦波)",
+                "icon_desc_jp": "AC出力がオンになっています。",
+                "figure": "data/phase2/_attachments/lcd_icons/ac_power.png",
+            }
+        ]
+
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="ja",
+            vars_map={"model": "JE-1000F"},
+        )
+
+        self.assertIn("液晶画面\n========", out)
+        self.assertIn(":alt: 交流電源による出力マーク （正弦波)", out)
+        self.assertNotIn(":alt: 交流電源による出力マーク\n（正弦波)", out)
+        self.assertIn("          :width: 42px", out)
+
     def test_render_lcd_icons_page_treats_literal_newline_marker_as_line_block(self) -> None:
         blocks = [
             {
