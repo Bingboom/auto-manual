@@ -716,8 +716,33 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("LCD DISPLAY", out)
         self.assertIn("Energy Saving Mode", out)
         self.assertIn("When the AC or DC/USB output is on:", out)
-        self.assertIn("**On:** Enabled.", out)
+        self.assertIn("     - | When the AC or DC/USB output is on:", out)
+        self.assertIn("       | **On:** Enabled.", out)
+        self.assertIn("       | **Off:** Disabled.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_lcd_icons_page_treats_literal_newline_marker_as_line_block(self) -> None:
+        blocks = [
+            {
+                "No.": "1",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": "Wi-Fi",
+                "icon_desc_en": "On: Wi-Fi connected.\\nBlink: Ready to connect to Wi-Fi.\\nOff: Wi-Fi disconnected.",
+            }
+        ]
+
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "JE-1000F"},
+        )
+
+        self.assertIn("     - | **On:** Wi-Fi connected.", out)
+        self.assertIn("       | **Blink:** Ready to connect to Wi-Fi.", out)
+        self.assertIn("       | **Off:** Wi-Fi disconnected.", out)
 
     def test_render_lcd_icons_page_applies_language_overrides_and_aliases(self) -> None:
         with tempfile.TemporaryDirectory() as td:
