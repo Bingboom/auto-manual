@@ -97,6 +97,22 @@ def _replace_path(src: Path, dst: Path) -> bool:
     return True
 
 
+def _worktree_data_root(
+    data_root: str,
+    *,
+    repo_root: Path,
+    build_workspace: Path,
+) -> tuple[Path, Path]:
+    data_root_path = Path(data_root)
+    if data_root_path.is_absolute():
+        try:
+            relative_data_root = data_root_path.resolve(strict=False).relative_to(repo_root.resolve(strict=False))
+        except ValueError:
+            relative_data_root = Path("data") / data_root_path.name
+        return data_root_path, build_workspace / relative_data_root
+    return repo_root / data_root_path, build_workspace / data_root_path
+
+
 def build_document_for_task(
     *,
     repo_root: Path,
@@ -124,6 +140,7 @@ def build_document_for_task(
     normalized_doc_phase = normalize_workflow_action(doc_phase)
     effective_repo_root = repo_root
     effective_config_path = config_path
+    effective_data_root = data_root
     build_workspace: Path | None = None
     review_workspace: Path | None = None
     if git_ref.strip():
@@ -138,9 +155,13 @@ def build_document_for_task(
                 f"Git_ref {review_ref} does not contain docs/_review; queue builds must render review content from the review branch."
             )
         if data_root:
-            data_root_path = Path(data_root)
-            if not data_root_path.is_absolute():
-                _replace_path(repo_root / data_root_path, build_workspace / data_root_path)
+            source_data_root, workspace_data_root = _worktree_data_root(
+                data_root,
+                repo_root=repo_root,
+                build_workspace=build_workspace,
+            )
+            _replace_path(source_data_root, workspace_data_root)
+            effective_data_root = str(workspace_data_root)
         effective_repo_root = build_workspace
         effective_config_path = config_path_in_repo_root(config_path, repo_root=build_workspace)
 
@@ -153,7 +174,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
-                    data_root=data_root,
+                    data_root=effective_data_root,
                     source="review",
                 ),
                 cwd=effective_repo_root,
@@ -165,7 +186,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
-                    data_root=data_root,
+                    data_root=effective_data_root,
                     source="review",
                     no_clean=True,
                 ),
@@ -179,7 +200,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
-                    data_root=data_root,
+                    data_root=effective_data_root,
                 ),
                 cwd=effective_repo_root,
             )
@@ -190,7 +211,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
-                    data_root=data_root,
+                    data_root=effective_data_root,
                     source="review",
                     no_clean=True,
                 ),
@@ -204,7 +225,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
-                    data_root=data_root,
+                    data_root=effective_data_root,
                 ),
                 cwd=effective_repo_root,
             )
@@ -215,7 +236,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
-                    data_root=data_root,
+                    data_root=effective_data_root,
                     no_clean=True,
                 ),
                 cwd=effective_repo_root,
