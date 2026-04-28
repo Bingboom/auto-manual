@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -40,6 +41,17 @@ class _RecordSourceWithIdsLike(_RecordSourceLike, Protocol):
         table_id: str,
         view_id: str | None,
     ) -> list[dict[str, Any]]:
+        ...
+
+
+class _DriveFileDownloaderLike(_RecordSourceLike, Protocol):
+    def download_drive_file(
+        self,
+        *,
+        file_token: str,
+        output_path: Path,
+        overwrite: bool = False,
+    ) -> None:
         ...
 
 
@@ -216,6 +228,91 @@ def _normalize_spec_master_footnote_refs(
             )
 
 
+def _drive_file_downloader(source: _RecordSourceLike) -> _DriveFileDownloaderLike | None:
+    download_drive_file = getattr(source, "download_drive_file", None)
+    if not callable(download_drive_file):
+        return None
+    return source  # type: ignore[return-value]
+
+
+def _safe_filename_part(value: str, *, fallback: str) -> str:
+    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", (value or "").strip())
+    cleaned = cleaned.strip("._-")
+    return cleaned or fallback
+
+
+def _attachment_items_from_cell(value: str) -> list[dict[str, Any]]:
+    raw = (value or "").strip()
+    if not raw:
+        return []
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError:
+        return []
+    items = payload if isinstance(payload, list) else [payload]
+    return [item for item in items if isinstance(item, dict)]
+
+
+def _extension_from_attachment(item: dict[str, Any]) -> str:
+    name = str(item.get("name") or item.get("file_name") or "").strip()
+    suffix = Path(name).suffix.lower()
+    if suffix:
+        return suffix
+    mime_type = str(item.get("mime_type") or item.get("type") or "").strip().lower()
+    return {
+        "image/jpeg": ".jpg",
+        "image/jpg": ".jpg",
+        "image/png": ".png",
+        "image/svg+xml": ".svg",
+        "image/webp": ".webp",
+        "image/gif": ".gif",
+    }.get(mime_type, ".png")
+
+
+def _lcd_icon_attachment_path(
+    row: dict[str, str],
+    item: dict[str, Any],
+    *,
+    export_root: Path,
+) -> Path | None:
+    file_token = str(item.get("file_token") or item.get("token") or "").strip()
+    if not file_token:
+        return None
+    no_part = _safe_filename_part(row.get("No.") or row.get("No") or "", fallback="row")
+    name_part = _safe_filename_part(row.get("icon_en") or "", fallback="icon")
+    token_part = _safe_filename_part(file_token, fallback="file")
+    return export_root / "_attachments" / "lcd_icons" / f"{no_part}_{name_part}_{token_part}{_extension_from_attachment(item)}"
+
+
+def _materialize_lcd_icon_attachments(
+    rows: list[dict[str, str]],
+    *,
+    export_root: Path,
+    repo_root: Path,
+    source: _RecordSourceLike,
+    dry_run: bool,
+) -> None:
+    downloader = _drive_file_downloader(source)
+
+    for row in rows:
+        items = _attachment_items_from_cell(row.get("figure", ""))
+        if not items:
+            continue
+        target_path = _lcd_icon_attachment_path(row, items[0], export_root=export_root)
+        if target_path is None:
+            continue
+        row["figure"] = _display_path(target_path, repo_root=repo_root)
+        if dry_run:
+            continue
+        if downloader is None:
+            raise RuntimeError("lcd_icons figure attachments require the sync source to support drive file downloads")
+        downloader.download_drive_file(
+            file_token=str(items[0].get("file_token") or items[0].get("token") or "").strip(),
+            output_path=target_path,
+            overwrite=True,
+        )
+
+
 def sync_phase2_snapshot(
     *,
     cfg: dict[str, Any],
@@ -280,6 +377,15 @@ def sync_phase2_snapshot(
                 normalized_rows_by_table["spec_master"],
                 footnote_record_id_map=_footnote_record_id_to_id_map(raw_records_by_table["spec_footnotes"]),
             )
+
+    if "lcd_icons" in normalized_rows_by_table:
+        _materialize_lcd_icon_attachments(
+            normalized_rows_by_table["lcd_icons"],
+            export_root=export_root,
+            repo_root=deps.repo_root,
+            source=resolved_source,
+            dry_run=dry_run,
+        )
 
     for logical_name in selected_tables:
         binding = bindings_by_table[logical_name]

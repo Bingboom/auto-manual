@@ -48,6 +48,17 @@ class _FakeSourceWithIds(_FakeSource):
         return list(self.records_with_ids_by_table[table_id])
 
 
+class _FakeSourceWithDownloads(_FakeSource):
+    def __init__(self, records_by_table: dict[str, list[dict[str, object]]]) -> None:
+        super().__init__(records_by_table)
+        self.downloads: list[tuple[str, Path, bool]] = []
+
+    def download_drive_file(self, *, file_token: str, output_path: Path, overwrite: bool = False) -> None:
+        self.downloads.append((file_token, output_path, overwrite))
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_bytes(b"fake image")
+
+
 class TestSyncData(unittest.TestCase):
     def test_phase2_table_schemas_should_include_eu_de_it_uk_columns(self) -> None:
         self.assertEqual(
@@ -392,6 +403,76 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual(2, len(manifest["tables"]))
             self.assertEqual(1, len(manifest["derived_files"]))
             self.assertEqual("row_key_mapping", manifest["derived_files"][0]["logical_name"])
+
+    def test_sync_phase2_snapshot_should_download_lcd_icon_figure_attachments(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "lcd_icons": {
+                                "table_id_env": "LCD_TABLE",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+
+            fake_source = _FakeSourceWithDownloads(
+                {
+                    "tbl_lcd": [
+                        {
+                            "fields": {
+                                "No.": "1",
+                                "Model": "JE-1000F",
+                                "Is_latest": True,
+                                "Version": "V1.0",
+                                "icon_en": "Wi-Fi",
+                                "icon_desc_en": "On: Wi-Fi connected.",
+                                "figure": [{"file_token": "file_token_wifi", "name": "wifi.png"}],
+                            }
+                        }
+                    ],
+                }
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "LCD_TABLE": "tbl_lcd",
+                },
+                clear=False,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["lcd_icons"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            expected_asset = root / "data" / "phase2" / "_attachments" / "lcd_icons" / "1_Wi-Fi_file_token_wifi.png"
+            self.assertEqual([("file_token_wifi", expected_asset, True)], fake_source.downloads)
+            self.assertTrue(expected_asset.exists())
+
+            with (root / "data" / "phase2" / "lcd_icons_blocks.csv").open(
+                "r",
+                encoding="utf-8-sig",
+                newline="",
+            ) as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertEqual(
+                "data/phase2/_attachments/lcd_icons/1_Wi-Fi_file_token_wifi.png",
+                rows[0]["figure"],
+            )
 
     def test_sync_phase2_snapshot_should_prefer_literal_table_and_view_ids(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -673,6 +673,7 @@ class TestPhase1Renderers(unittest.TestCase):
                 "icon_desc_fr": "When the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} output is on:\nOn: Enabled.\nOff: Disabled.",
                 "icon_desc_jp": "{{AC_POWER_BUTTON_LABEL}} / {{DC_USB_POWER_BUTTON_LABEL}}",
                 "icon_desc_ukr": "{{AC_POWER_BUTTON_LABEL}} / {{DC_USB_POWER_BUTTON_LABEL}}",
+                "figure": "data/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode.png",
                 "variable_keys": "AC_POWER_BUTTON_LABEL, DC_USB_POWER_BUTTON_LABEL",
             },
             {
@@ -714,12 +715,38 @@ class TestPhase1Renderers(unittest.TestCase):
             )
 
         self.assertIn("LCD DISPLAY", out)
+        self.assertIn("   :widths: 8 12 28 52", out)
+        self.assertIn("     - .. image:: data/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode.png", out)
+        self.assertIn("          :alt: Energy Saving Mode", out)
+        self.assertIn("          :width: 42px", out)
         self.assertIn("Energy Saving Mode", out)
         self.assertIn("When the AC or DC/USB output is on:", out)
         self.assertIn("     - | When the AC or DC/USB output is on:", out)
         self.assertIn("       | **On:** Enabled.", out)
         self.assertIn("       | **Off:** Disabled.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_lcd_icons_page_resolves_figure_attachment_json(self) -> None:
+        blocks = [
+            {
+                "No.": "1",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": "Wi-Fi",
+                "icon_desc_en": "On: Wi-Fi connected.",
+                "figure": '{"file_token":"wifi_token","name":"wifi.svg"}',
+            }
+        ]
+
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "JE-1000F"},
+        )
+
+        self.assertIn(".. image:: data/phase2/_attachments/lcd_icons/wifi_token.svg", out)
 
     def test_render_lcd_icons_page_treats_literal_newline_marker_as_line_block(self) -> None:
         blocks = [

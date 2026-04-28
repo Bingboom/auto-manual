@@ -57,7 +57,7 @@ Meaning:
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
 - `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood
 - `sync.phase2.tables.<name>` may now pin `table_id` and `view_id` directly in config; when present, those literal bindings take precedence over `table_id_env` / `view_id_env`, which is the safest way to keep one family on one known Base view
-- `lcd_icons`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv`, uses `Variable_Defaults.csv` for the base `Variable_key + Model_key` value, then applies `Variable_Lang_Overrides.csv` by `Variable_key + lang + source_value`
+- `lcd_icons`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv`, renders the downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, uses `Variable_Defaults.csv` for the base `Variable_key + Model_key` value, then applies `Variable_Lang_Overrides.csv` by `Variable_key + lang + source_value`
 - if the Base keeps `Model` as a linked-record field, maintain a text `Model_key` column for variable defaults so exact model matching stays independent of Feishu record ids
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output

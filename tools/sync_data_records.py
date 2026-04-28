@@ -39,6 +39,16 @@ def _coerce_scalar(value: Any) -> str:
     return str(value)
 
 
+def _coerce_attachment_cell(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, (list, dict)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return _coerce_scalar(value)
+
+
 def _normalize_boolish(value: str, *, style: str) -> str:
     raw = (value or "").strip()
     if not raw:
@@ -74,6 +84,8 @@ def _normalize_slot_key(value: str) -> str:
 
 
 def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
+    if schema.logical_name == "lcd_icons" and column == "figure":
+        return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     value = _coerce_scalar(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "spec_master" and column == "Is_Latest":
         return _normalize_boolish(value, style="upper_bool")

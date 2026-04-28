@@ -320,6 +320,42 @@ class LarkCliSource:
             include_record_ids=True,
         )
 
+    def download_drive_file(
+        self,
+        *,
+        file_token: str,
+        output_path: Path,
+        overwrite: bool = False,
+    ) -> None:
+        token = (file_token or "").strip()
+        if not token:
+            raise RuntimeError("Drive download requires a non-empty file_token")
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            output_arg = output_path.relative_to(ROOT).as_posix()
+        except ValueError:
+            output_arg = output_path.as_posix()
+        cmd = [
+            *_resolved_cli_command_parts(self.cli_bin),
+            "api",
+            "GET",
+            f"/open-apis/drive/v1/medias/{token}/download",
+            "--as",
+            self.identity,
+            "--output",
+            output_arg,
+        ]
+        if output_path.exists() and not overwrite:
+            return
+        subprocess.run(
+            cmd,
+            cwd=str(ROOT),
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+
     def _fetch_records(
         self,
         *,
