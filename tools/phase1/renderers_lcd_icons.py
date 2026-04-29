@@ -10,6 +10,7 @@ import unicodedata
 from pathlib import Path
 
 from .renderers_common import apply_vars, rst_escape
+from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens, resolve_variable_value
 
 PH_LCD_ICONS_HEADING_RST = "{{ lcd_icons_heading_rst }}"
@@ -73,7 +74,15 @@ def _pick_target_model(vars_map: dict[str, str]) -> str:
     return ""
 
 
-def _matches_model(row: dict[str, str], *, target_model: str) -> bool:
+def _pick_target_region(vars_map: dict[str, str]) -> str:
+    for key in ("region", "Region"):
+        value = (vars_map.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _matches_model(row: dict[str, str], *, target_model: str, target_region: str) -> bool:
     model_value = row.get("Model") or row.get("model") or ""
     tokens = parse_model_tokens(model_value)
     if not tokens:
@@ -82,7 +91,13 @@ def _matches_model(row: dict[str, str], *, target_model: str) -> bool:
         return True
     if not target_model:
         return False
-    return target_model in tokens
+    normalized_target = canonicalize_model_token(target_model, region=target_region)
+    normalized_tokens = {
+        canonicalize_model_token(token, region=target_region).casefold()
+        for token in tokens
+        if token
+    }
+    return normalized_target.casefold() in normalized_tokens
 
 
 def _sort_key(row: dict[str, str]) -> tuple[int, float | str, str]:
@@ -184,11 +199,12 @@ def _collect_rows(
         raise ValueError(f"lcd_icons csv missing language description column: {desc_col}")
 
     target_model = _pick_target_model(vars_map)
+    target_region = _pick_target_region(vars_map)
     rows: list[dict[str, str]] = []
     for row in blocks:
         if not _truthy(row.get("Is_latest") or row.get("Is_Latest") or row.get("is_latest"), default=True):
             continue
-        if not _matches_model(row, target_model=target_model):
+        if not _matches_model(row, target_model=target_model, target_region=target_region):
             continue
         name = (row.get(name_col) or row.get("icon_en") or "").strip()
         description = (row.get(desc_col) or "").strip()

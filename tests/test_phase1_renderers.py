@@ -859,6 +859,35 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("       | **Off:** Disabled.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
 
+    def test_render_lcd_icons_page_should_normalize_document_key_style_target_model(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            defaults = Path(td) / "Variable_Defaults.csv"
+            overrides = Path(td) / "Variable_Lang_Overrides.csv"
+            defaults.write_text(
+                "Variable_key,Model,Value,is_default\n"
+                "AC_POWER_BUTTON_LABEL,JE-1000F,AC,FALSE\n"
+                "AC_POWER_BUTTON_LABEL,,AC1/2,TRUE\n"
+                "DC_USB_POWER_BUTTON_LABEL,,DC/USB,TRUE\n",
+                encoding="utf-8",
+            )
+            overrides.write_text("Variable_key,lang,source_value,Value\n", encoding="utf-8")
+
+            out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="en",
+                vars_map={
+                    "model": "JE-1000F_US",
+                    "region": "US",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+
+        self.assertIn("Energy Saving Mode", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+
     def test_render_lcd_icons_page_resolves_figure_attachment_json(self) -> None:
         blocks = [
             {
