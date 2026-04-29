@@ -80,7 +80,7 @@ class TestPilotConfigs(unittest.TestCase):
                 generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
                 csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-                self.assertEqual([], generated_pages)
+                self.assertEqual({"12_app_setup"}, {page.page for page in generated_pages})
                 self.assertEqual({"lcd_icons", "symbols", "spec"}, {page.page for page in csv_pages})
                 self.assertEqual(expected_page_count, len(resolved.pages))
 

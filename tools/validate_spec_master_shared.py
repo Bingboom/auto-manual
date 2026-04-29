@@ -274,6 +274,8 @@ def _collect_target_selectors(
                 )
             )
         for placeholder, binding in recipe.field_map.items():
+            if binding.default is not None:
+                continue
             selectors.append(
                 SpecSelector(
                     owner=f"recipe '{recipe.page_id}' field_map.{placeholder}",

@@ -112,6 +112,47 @@ class TestValidateSpecMaster(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertIn("DUPLICATE_LATEST_SPEC_ROW", codes)
 
+    def test_collect_spec_master_validation_issues_should_allow_field_map_default_without_row(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            recipe_path = root / "docs" / "templates" / "recipes" / "demo.yaml"
+            recipe_path.write_text(
+                recipe_path.read_text(encoding="utf-8").replace(
+                    "  MAIN_POWER_BUTTON_LABEL:\n"
+                    "    row_key: main_power_button\n"
+                    "    pages: [Product overview]\n"
+                    "    usage_type: page_value\n"
+                    "    value_role: label\n",
+                    "  MAIN_POWER_BUTTON_LABEL:\n"
+                    "    row_key: main_power_button\n"
+                    "    default: Main POWER Button\n",
+                ),
+                encoding="utf-8",
+            )
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Value_source",
+                        "JE-1000F,US,en,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,en,TRUE,specifications,model_no,,,JE-1000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            self.assertNotIn("MISSING_REQUIRED_SPEC_ROW", {issue.code for issue in issues})
+
     def test_collect_spec_master_validation_issues_should_report_ambiguous_selector_values(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
