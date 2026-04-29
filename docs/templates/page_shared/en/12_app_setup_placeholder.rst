@@ -12,7 +12,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 **2. Add device**
 
-2.1 Click the **+** button to add your device.
+|ADD_DEVICE_STEP|
 
 2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode, tap the "**Icon Flashed**" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
 

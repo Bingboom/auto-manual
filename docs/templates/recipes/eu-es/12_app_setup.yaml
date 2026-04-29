@@ -1,5 +1,5 @@
 page_id: 12_app_setup
-template: templates/page_shared/en/12_app_setup_placeholder.rst
+template: templates/page_shared/es/12_app_setup_placeholder.rst
 field_map:
   MAIN_POWER_BUTTON_LABEL:
     row_key: main_power_button
@@ -18,7 +18,7 @@ field_map:
     value_role: label
   ADD_DEVICE_STEP:
     row_key: app_add_device_step
-    default: 2.1 Click the **Add device** button to add your device.
+    default: 2.1 Haga clic en el botón **+** para añadir el dispositivo.
 required_row_keys: []
 snippet_slots: {}
 contracts:

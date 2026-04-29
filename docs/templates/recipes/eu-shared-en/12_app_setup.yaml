@@ -18,7 +18,7 @@ field_map:
     value_role: label
   ADD_DEVICE_STEP:
     row_key: app_add_device_step
-    default: 2.1 Click the **Add device** button to add your device.
+    default: 2.1 Click the **+** button to add your device.
 required_row_keys: []
 snippet_slots: {}
 contracts:

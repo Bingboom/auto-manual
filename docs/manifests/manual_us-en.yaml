@@ -60,11 +60,11 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: en
-    file: templates/page_us-en/11_warranty.rst
+    file: templates/page_shared/en/11_warranty.rst
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1
     recipe: templates/recipes/us-en/12_app_setup.yaml
-    template: templates/page_us-en/12_app_setup_placeholder.rst
+    template: templates/page_shared/en/12_app_setup_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
