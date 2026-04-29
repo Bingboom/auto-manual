@@ -65,6 +65,6 @@ pages:
     page: 12_app_setup
     engine: draft_v1
     recipe: templates/recipes/us-en/12_app_setup.yaml
-    template: templates/page_us-en/12_app_setup_placeholder.rst
+    template: templates/page_shared/en/12_app_setup_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft

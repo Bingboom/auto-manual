@@ -66,7 +66,7 @@ pages:
     page: 12_app_setup
     engine: draft_v1
     recipe: templates/recipes/us-en/12_app_setup.yaml
-    template: templates/page_us-en/12_app_setup_placeholder.rst
+    template: templates/page_shared/en/12_app_setup_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
 
@@ -129,8 +129,8 @@ pages:
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1
-    recipe: templates/recipes/us-en/12_app_setup.yaml
-    template: templates/page_us-fr/12_app_setup_placeholder.rst
+    recipe: templates/recipes/us-fr/12_app_setup.yaml
+    template: templates/page_shared/fr/12_app_setup_placeholder.rst
     langs: [fr]
     include_dir: generated/{model}/draft
 
@@ -193,7 +193,7 @@ pages:
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1
-    recipe: templates/recipes/us-en/12_app_setup.yaml
-    template: templates/page_us-es/12_app_setup_placeholder.rst
+    recipe: templates/recipes/us-es/12_app_setup.yaml
+    template: templates/page_shared/es/12_app_setup_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft

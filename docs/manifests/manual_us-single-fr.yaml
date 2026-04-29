@@ -48,6 +48,10 @@ pages:
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/11_warranty.rst
-  - type: rst_include
-    lang: fr
-    file: templates/page_us-fr/12_app_setup_placeholder.rst
+  - type: generated_page
+    page: 12_app_setup
+    engine: draft_v1
+    recipe: templates/recipes/us-fr/12_app_setup.yaml
+    template: templates/page_shared/fr/12_app_setup_placeholder.rst
+    langs: [fr]
+    include_dir: generated/{model}/draft

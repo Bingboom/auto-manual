@@ -1,5 +1,5 @@
 page_id: 12_app_setup
-template: templates/page_eu-en/12_app_setup_placeholder.rst
+template: templates/page_shared/en/12_app_setup_placeholder.rst
 field_map:
   MAIN_POWER_BUTTON_LABEL:
     row_key: main_power_button
