@@ -55,7 +55,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/11_warranty.rst
+    file: templates/page_shared/es/11_warranty.rst
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1

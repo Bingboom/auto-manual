@@ -47,7 +47,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/11_warranty.rst
+    file: templates/page_shared/fr/11_warranty.rst
   - type: rst_include
     lang: fr
     file: templates/page_us-fr/12_app_setup_placeholder.rst
