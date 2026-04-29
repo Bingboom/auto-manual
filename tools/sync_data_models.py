@@ -189,7 +189,6 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "text_uk",
             "enabled",
             "block_type",
-            "column_group",
             "order",
             "Region",
             "Model",

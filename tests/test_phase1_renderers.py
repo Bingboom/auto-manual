@@ -352,10 +352,9 @@ class TestPhase1Renderers(unittest.TestCase):
         return [
             {
                 "block_type": "table_row",
-                "column_group": "left",
                 "symbol_key": "warning_triangle",
                 "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "order": "10",
+                "order": "1",
                 "Region": "",
                 "Model": "",
                 "Source_lang": "en",
@@ -366,10 +365,9 @@ class TestPhase1Renderers(unittest.TestCase):
             },
             {
                 "block_type": "table_row",
-                "column_group": "left",
                 "symbol_key": "read_manual",
                 "image_path": "templates/word_template/common_assets/symbols/read_manual_operator.png",
-                "order": "20",
+                "order": "2",
                 "Region": "",
                 "Model": "",
                 "Source_lang": "en",
@@ -380,10 +378,9 @@ class TestPhase1Renderers(unittest.TestCase):
             },
             {
                 "block_type": "table_row",
-                "column_group": "right",
                 "symbol_key": "do_not_dismantle",
                 "image_path": "templates/word_template/common_assets/symbols/do_not_dismantle.png",
-                "order": "10",
+                "order": "3",
                 "Region": "",
                 "Model": "",
                 "Source_lang": "en",
@@ -542,6 +539,115 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("US JE-1000F warning.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
 
+    def test_render_symbols_page_filters_inactive_rows(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Is_Latest"] = "False"
+        blocks[0]["text_en"] = "SHOULD_NOT_RENDER"
+        blocks.append(
+            {
+                "block_type": "table_row",
+                "symbol_key": "electric_shock",
+                "image_path": "templates/word_template/common_assets/symbols/electric_shock.png",
+                "order": "30",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Active replacement.",
+                "text_fr": "Remplacement actif.",
+                "text_es": "Reemplazo activo.",
+            }
+        )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+        self.assertIn("Active replacement.", out)
+
+    def test_render_symbols_page_filters_by_market(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Market"] = "US"
+        blocks[0]["text_en"] = "US-only warning."
+        blocks[1]["Market"] = "US, EU"
+        blocks[1]["text_en"] = "Shared read manual."
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"region": "EU"},
+        )
+
+        self.assertNotIn("US-only warning.", out)
+        self.assertIn("Shared read manual.", out)
+        self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_filters_by_market_json_list(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Market"] = '[{"text":"US"},{"text":"EU"}]'
+        blocks[0]["text_en"] = "Shared warning."
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"region": "EU"},
+        )
+
+        self.assertIn("Shared warning.", out)
+
+    def test_render_symbols_page_auto_distributes_unique_order_rows(self) -> None:
+        blocks = self._symbols_blocks()
+        rows = [
+            ("warning_triangle", "1", "Order 1."),
+            ("read_manual", "2", "Order 2."),
+            ("electric_shock", "3", "Order 3."),
+            ("do_not_dismantle", "4", "Order 4."),
+            ("weee", "5", "Order 5."),
+        ]
+        for block, (symbol_key, order, text) in zip(blocks, rows):
+            block["symbol_key"] = symbol_key
+            block["order"] = order
+            block["text_en"] = text
+        for symbol_key, order, text in rows[len(blocks) :]:
+            blocks.append(
+                {
+                    "block_type": "table_row",
+                    "symbol_key": symbol_key,
+                    "image_path": f"templates/word_template/common_assets/symbols/{symbol_key}.png",
+                    "order": order,
+                    "Region": "",
+                    "Model": "",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": text,
+                    "text_fr": text,
+                    "text_es": text,
+                }
+            )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        order_positions = [out.index(f"Order {idx}.") for idx in range(1, 6)]
+        self.assertLess(order_positions[0], order_positions[3])
+        self.assertLess(order_positions[3], order_positions[1])
+        self.assertLess(order_positions[1], order_positions[4])
+        self.assertLess(order_positions[4], order_positions[2])
+
     def test_render_symbols_page_should_fallback_to_sibling_region_rows(self) -> None:
         blocks = self._symbols_blocks()
         for block in blocks:
@@ -581,10 +687,9 @@ class TestPhase1Renderers(unittest.TestCase):
         blocks.append(
             {
                 "block_type": "table_row",
-                "column_group": "right",
                 "symbol_key": "weee2",
                 "image_path": "templates/word_template/common_assets/symbols/weee2.png",
-                "order": "20",
+                "order": "4",
                 "Region": "",
                 "Model": "",
                 "Source_lang": "en",
@@ -611,10 +716,9 @@ class TestPhase1Renderers(unittest.TestCase):
             [
                 {
                     "block_type": "table_row",
-                    "column_group": "left",
                     "symbol_key": "electric_shock",
                     "image_path": "templates/word_template/common_assets/symbols/electric_shock.png",
-                    "order": "30",
+                    "order": "4",
                     "Region": "",
                     "Model": "",
                     "Source_lang": "en",
@@ -625,10 +729,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 },
                 {
                     "block_type": "table_row",
-                    "column_group": "right",
                     "symbol_key": "weee2",
                     "image_path": "templates/word_template/common_assets/symbols/weee2.png",
-                    "order": "20",
+                    "order": "5",
                     "Region": "",
                     "Model": "",
                     "Source_lang": "en",
@@ -639,10 +742,9 @@ class TestPhase1Renderers(unittest.TestCase):
                 },
                 {
                     "block_type": "table_row",
-                    "column_group": "right",
                     "symbol_key": "weee",
                     "image_path": "templates/word_template/common_assets/symbols/weee.png",
-                    "order": "30",
+                    "order": "6",
                     "Region": "",
                     "Model": "",
                     "Source_lang": "en",
@@ -755,6 +857,35 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("     - | When the AC or DC/USB output is on:", out)
         self.assertIn("       | **On:** Enabled.", out)
         self.assertIn("       | **Off:** Disabled.", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_lcd_icons_page_should_normalize_document_key_style_target_model(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            defaults = Path(td) / "Variable_Defaults.csv"
+            overrides = Path(td) / "Variable_Lang_Overrides.csv"
+            defaults.write_text(
+                "Variable_key,Model,Value,is_default\n"
+                "AC_POWER_BUTTON_LABEL,JE-1000F,AC,FALSE\n"
+                "AC_POWER_BUTTON_LABEL,,AC1/2,TRUE\n"
+                "DC_USB_POWER_BUTTON_LABEL,,DC/USB,TRUE\n",
+                encoding="utf-8",
+            )
+            overrides.write_text("Variable_key,lang,source_value,Value\n", encoding="utf-8")
+
+            out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=self._lcd_blocks(),
+                sku_id="",
+                lang="en",
+                vars_map={
+                    "model": "JE-1000F_US",
+                    "region": "US",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+
+        self.assertIn("Energy Saving Mode", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
 
     def test_render_lcd_icons_page_resolves_figure_attachment_json(self) -> None:

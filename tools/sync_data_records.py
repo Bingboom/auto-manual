@@ -172,7 +172,6 @@ def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
             _text_sort_token(row.get("Region", "")),
             _text_sort_token(row.get("Model", "")),
             _text_sort_token(row.get("Source_lang", "")),
-            _text_sort_token(row.get("column_group", "")),
             _numeric_sort_token(row.get("order", "")),
             _text_sort_token(row.get("symbol_key", "")),
         )

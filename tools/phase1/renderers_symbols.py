@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -13,6 +14,9 @@ from ..utils.spec_master import canonicalize_model_token
 
 PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
 PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
+
+_TRUE_VALUES = {"1", "true", "yes", "y"}
+_FALSE_VALUES = {"0", "false", "no", "n"}
 
 
 @dataclass(frozen=True)
@@ -367,6 +371,22 @@ def _sort_key(row: dict[str, str]) -> float:
         return 0.0
 
 
+def _has_unique_explicit_orders(rows: list[dict[str, str]]) -> bool:
+    orders = [(row.get("order") or "").strip() for row in rows]
+    if any(not order for order in orders):
+        return False
+    return len({order.casefold() for order in orders}) == len(orders)
+
+
+def _distribute_ordered_rows(rows: list[dict[str, str]]) -> dict[str, list[dict[str, str]]]:
+    ordered = sorted(rows, key=_sort_key)
+    split_at = (len(ordered) + 1) // 2
+    return {
+        "left": ordered[:split_at],
+        "right": ordered[split_at:],
+    }
+
+
 def _pick_target_model(vars_map: dict[str, str]) -> str:
     for key in ("model", "product_model", "model_no", "model_number", "Model"):
         value = (vars_map.get(key) or "").strip()
@@ -381,6 +401,60 @@ def _pick_target_region(vars_map: dict[str, str]) -> str:
         if value:
             return value
     return ""
+
+
+def _truthy(value: str, *, default: bool = True) -> bool:
+    raw = (value or "").strip().casefold()
+    if not raw:
+        return default
+    if raw in _TRUE_VALUES:
+        return True
+    if raw in _FALSE_VALUES:
+        return False
+    return default
+
+
+def _split_condition_tokens(value: str) -> list[str]:
+    raw = (value or "").strip()
+    if not raw:
+        return []
+    if raw.startswith(("[", "{")):
+        try:
+            payload = json.loads(raw)
+        except json.JSONDecodeError:
+            payload = None
+        if isinstance(payload, list):
+            tokens: list[str] = []
+            for item in payload:
+                if isinstance(item, dict):
+                    item_value = item.get("text") or item.get("name") or item.get("value")
+                else:
+                    item_value = item
+                token = str(item_value or "").strip()
+                if token:
+                    tokens.append(token)
+            return tokens
+    return [token for token in re.split(r"[,;|/、，\s]+", raw) if token]
+
+
+def _matches_market(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
+    value = block.get("Market") or block.get("market") or block.get("Markets") or block.get("markets") or ""
+    tokens = _split_condition_tokens(value)
+    if not tokens:
+        return True
+    if any(token.casefold() == "all" for token in tokens):
+        return True
+    target_region = _pick_target_region(vars_map)
+    if not target_region:
+        return False
+    return any(token.casefold() == target_region.casefold() for token in tokens)
+
+
+def _matches_row_conditions(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
+    is_latest = block.get("Is_Latest") or block.get("Is_latest") or block.get("is_latest") or ""
+    if not _truthy(is_latest, default=True):
+        return False
+    return _matches_market(block, vars_map=vars_map)
 
 
 def _matches_symbols_target(
@@ -584,10 +658,12 @@ def _collect_icon_rows(
     if lang_col not in blocks[0]:
         raise ValueError(f"content csv missing language column: {lang_col}")
 
-    groups: dict[str, list[dict[str, str]]] = {"left": [], "right": []}
-    fallback_scopes: dict[tuple[str, str, str], dict[str, list[dict[str, str]]]] = {}
+    rows: list[dict[str, str]] = []
+    fallback_scopes: dict[tuple[str, str, str], list[dict[str, str]]] = {}
     for block in blocks:
         if not _enabled(block.get("enabled", "1")):
+            continue
+        if not _matches_row_conditions(block, vars_map=vars_map):
             continue
 
         block_type = (block.get("block_type") or "").strip()
@@ -600,12 +676,6 @@ def _collect_icon_rows(
         if not text.strip():
             raise ValueError(
                 f"symbols row missing {lang_col} text at line {(block.get('__line__') or '?').strip()}"
-            )
-
-        group = (block.get("column_group") or "").strip().lower()
-        if group not in groups:
-            raise ValueError(
-                f"symbols row has invalid column_group='{group or '?'}' at line {(block.get('__line__') or '?').strip()}"
             )
 
         symbol_key = (block.get("symbol_key") or "").strip()
@@ -626,7 +696,7 @@ def _collect_icon_rows(
             "order": (block.get("order") or "").strip(),
         }
         if _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
-            groups[group].append(row)
+            rows.append(row)
             continue
         if _matches_symbols_fallback_scope(block, vars_map=vars_map):
             block_region = (block.get("Region") or block.get("region") or "").strip().casefold()
@@ -635,39 +705,35 @@ def _collect_icon_rows(
                 region=(block.get("Region") or block.get("region") or "").strip(),
             ).casefold()
             source_lang = (block.get("Source_lang") or block.get("source_lang") or "").strip().casefold()
-            scope = fallback_scopes.setdefault((block_region, block_model, source_lang), {"left": [], "right": []})
-            scope[group].append(row)
+            fallback_scopes.setdefault((block_region, block_model, source_lang), []).append(row)
 
-    missing_groups = [group for group, rows in groups.items() if not rows]
-    if missing_groups:
-        ranked_scopes: list[tuple[tuple[int, int, str, str], dict[str, list[dict[str, str]]]]] = []
-        for (scope_region, scope_model, _scope_source_lang), scope_groups in fallback_scopes.items():
-            if any(not scope_groups[group] for group in missing_groups):
-                continue
+    if not rows:
+        ranked_scopes: list[tuple[tuple[int, int, str, str], list[dict[str, str]]]] = []
+        for (scope_region, scope_model, _scope_source_lang), scope_rows in fallback_scopes.items():
             ranked_scopes.append(
                 (
                     (
-                        -(len(scope_groups["left"]) + len(scope_groups["right"])),
+                        -len(scope_rows),
                         0 if scope_model else 1,
                         scope_region,
                         scope_model,
                     ),
-                    scope_groups,
+                    scope_rows,
                 )
             )
         ranked_scopes.sort(key=lambda item: item[0])
         if ranked_scopes:
             best_score = ranked_scopes[0][0]
-            best_matches = [scope_groups for score, scope_groups in ranked_scopes if score == best_score]
+            best_matches = [scope_rows for score, scope_rows in ranked_scopes if score == best_score]
             if len(best_matches) == 1:
-                best_scope = best_matches[0]
-                for group in missing_groups:
-                    groups[group] = list(best_scope[group])
+                rows = list(best_matches[0])
 
-    for group, rows in groups.items():
-        rows.sort(key=_sort_key)
-        if not rows:
-            raise ValueError(f"symbols page has no '{group}' rows sku={sku_id} lang={lang}")
+    if not rows:
+        raise ValueError(f"symbols page has no matching rows sku={sku_id} lang={lang}")
+    if not _has_unique_explicit_orders(rows):
+        raise ValueError(f"symbols page requires unique non-empty order values sku={sku_id} lang={lang}")
+
+    groups = _distribute_ordered_rows(rows)
     return groups
 
 
