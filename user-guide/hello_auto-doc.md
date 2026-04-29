@@ -185,6 +185,7 @@ The manual system now has four layers, but they are used at different stages.
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row; phase2 sync fills it from the Base `Figure` attachment when present
+   - `symbols_blocks.csv` can also use `Is_Latest` and `Market` as row conditions: rows marked false are skipped, and `Market` must include the current build region such as `US` or `EU`
 
 3. Review working layer
    - [`docs/_review/<model>/<region>/index.rst`](../docs/_review)

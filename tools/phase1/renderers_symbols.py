@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -13,6 +14,9 @@ from ..utils.spec_master import canonicalize_model_token
 
 PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
 PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
+
+_TRUE_VALUES = {"1", "true", "yes", "y"}
+_FALSE_VALUES = {"0", "false", "no", "n"}
 
 
 @dataclass(frozen=True)
@@ -383,6 +387,60 @@ def _pick_target_region(vars_map: dict[str, str]) -> str:
     return ""
 
 
+def _truthy(value: str, *, default: bool = True) -> bool:
+    raw = (value or "").strip().casefold()
+    if not raw:
+        return default
+    if raw in _TRUE_VALUES:
+        return True
+    if raw in _FALSE_VALUES:
+        return False
+    return default
+
+
+def _split_condition_tokens(value: str) -> list[str]:
+    raw = (value or "").strip()
+    if not raw:
+        return []
+    if raw.startswith(("[", "{")):
+        try:
+            payload = json.loads(raw)
+        except json.JSONDecodeError:
+            payload = None
+        if isinstance(payload, list):
+            tokens: list[str] = []
+            for item in payload:
+                if isinstance(item, dict):
+                    item_value = item.get("text") or item.get("name") or item.get("value")
+                else:
+                    item_value = item
+                token = str(item_value or "").strip()
+                if token:
+                    tokens.append(token)
+            return tokens
+    return [token for token in re.split(r"[,;|/、，\s]+", raw) if token]
+
+
+def _matches_market(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
+    value = block.get("Market") or block.get("market") or block.get("Markets") or block.get("markets") or ""
+    tokens = _split_condition_tokens(value)
+    if not tokens:
+        return True
+    if any(token.casefold() == "all" for token in tokens):
+        return True
+    target_region = _pick_target_region(vars_map)
+    if not target_region:
+        return False
+    return any(token.casefold() == target_region.casefold() for token in tokens)
+
+
+def _matches_row_conditions(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
+    is_latest = block.get("Is_Latest") or block.get("Is_latest") or block.get("is_latest") or ""
+    if not _truthy(is_latest, default=True):
+        return False
+    return _matches_market(block, vars_map=vars_map)
+
+
 def _matches_symbols_target(
     block: dict[str, str],
     *,
@@ -588,6 +646,8 @@ def _collect_icon_rows(
     fallback_scopes: dict[tuple[str, str, str], dict[str, list[dict[str, str]]]] = {}
     for block in blocks:
         if not _enabled(block.get("enabled", "1")):
+            continue
+        if not _matches_row_conditions(block, vars_map=vars_map):
             continue
 
         block_type = (block.get("block_type") or "").strip()

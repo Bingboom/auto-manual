@@ -542,6 +542,72 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("US JE-1000F warning.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
 
+    def test_render_symbols_page_filters_inactive_rows(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Is_Latest"] = "False"
+        blocks[0]["text_en"] = "SHOULD_NOT_RENDER"
+        blocks.append(
+            {
+                "block_type": "table_row",
+                "column_group": "left",
+                "symbol_key": "electric_shock",
+                "image_path": "templates/word_template/common_assets/symbols/electric_shock.png",
+                "order": "30",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Active replacement.",
+                "text_fr": "Remplacement actif.",
+                "text_es": "Reemplazo activo.",
+            }
+        )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+        self.assertIn("Active replacement.", out)
+
+    def test_render_symbols_page_filters_by_market(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Market"] = "US"
+        blocks[0]["text_en"] = "US-only warning."
+        blocks[1]["Market"] = "US, EU"
+        blocks[1]["text_en"] = "Shared read manual."
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"region": "EU"},
+        )
+
+        self.assertNotIn("US-only warning.", out)
+        self.assertIn("Shared read manual.", out)
+        self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_filters_by_market_json_list(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Market"] = '[{"text":"US"},{"text":"EU"}]'
+        blocks[0]["text_en"] = "Shared warning."
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"region": "EU"},
+        )
+
+        self.assertIn("Shared warning.", out)
+
     def test_render_symbols_page_should_fallback_to_sibling_region_rows(self) -> None:
         blocks = self._symbols_blocks()
         for block in blocks:
