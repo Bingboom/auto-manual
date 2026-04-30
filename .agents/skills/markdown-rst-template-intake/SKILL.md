@@ -47,8 +47,8 @@ Do not use it for routine post-review wording edits inside `docs/_review/**` unl
   treat `03_product_overview`, `05_operation_guide`, and `12_app_setup` as placeholder-backed pages. Preserve intentional `|PLACEHOLDER|` tokens and sync the matching recipe path when needed.
 - LCD display:
   route to `data/phase1/lcd_icons_blocks.csv` or the active phase2 snapshot. Current manifests generate it through `csv_page` page `lcd_icons`.
-- Static prose pages such as in-the-box, UPS, charging, charging methods, storage, troubleshooting, and warranty:
-  edit the family page template directly.
+- Static prose pages such as in-the-box and UPS:
+  edit the family page template directly. For US/EU shared en/fr/es prose pages such as charging, charging methods, storage, troubleshooting, and warranty, prefer the matching `templates/page_shared/<lang>/` source.
 
 ## Handle placeholders deliberately
 

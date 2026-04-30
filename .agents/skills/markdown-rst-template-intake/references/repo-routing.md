@@ -34,7 +34,7 @@
 - Storage and maintenance:
   route to `09_storage_and_maintenance.rst` where that family has the page.
 - Troubleshooting:
-  route to `10_troubleshooting.rst`.
+  route US/EU en/fr/es to `templates/page_shared/<lang>/10_troubleshooting.rst`; route other families to their local `10_troubleshooting.rst`.
 - Specs:
   route to `data/phase1/Spec_Master.csv`, `Spec_Footnotes.csv`, and `Spec_Notes.csv`.
 - Warranty:
