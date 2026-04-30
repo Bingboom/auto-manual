@@ -2,7 +2,7 @@ manifest_id: manual_eu_multilang
 pages:
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/00_preface.rst
+    file: templates/page_shared/en/00_preface.rst
   - type: rst_include
     lang: en
     file: templates/page_eu-en/safety_en.rst
@@ -13,7 +13,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/02_whats_in_the_box.rst
+    file: templates/page_shared/en/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -35,7 +35,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/06_ups_mode.rst
+    file: templates/page_shared/en/06_ups_mode.rst
   - type: rst_include
     lang: en
     file: templates/page_shared/en/charging.rst
@@ -74,7 +74,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/02_whats_in_the_box.rst
+    file: templates/page_shared/fr/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -96,7 +96,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/06_ups_mode.rst
+    file: templates/page_shared/fr/06_ups_mode.rst
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/charging.rst
@@ -135,7 +135,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/02_whats_in_the_box.rst
+    file: templates/page_shared/es/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -157,7 +157,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/06_ups_mode.rst
+    file: templates/page_shared/es/06_ups_mode.rst
   - type: rst_include
     lang: es
     file: templates/page_shared/es/charging.rst
@@ -196,7 +196,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/02_whats_in_the_box.rst
+    file: templates/page_shared/de/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -218,19 +218,19 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/06_ups_mode.rst
+    file: templates/page_shared/de/06_ups_mode.rst
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/charging.rst
+    file: templates/page_shared/de/charging.rst
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/08_charging_methods.rst
+    file: templates/page_shared/de/08_charging_methods.rst
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/09_storage_and_maintenance.rst
+    file: templates/page_shared/de/09_storage_and_maintenance.rst
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/10_troubleshooting.rst
+    file: templates/page_shared/de/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec
@@ -238,12 +238,12 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: de
-    file: templates/page_eu-de/11_warranty.rst
+    file: templates/page_shared/de/11_warranty.rst
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1
     recipe: templates/recipes/eu-en/12_app_setup.yaml
-    template: templates/page_eu-de/12_app_setup_placeholder.rst
+    template: templates/page_shared/de/12_app_setup_placeholder.rst
     langs: [de]
     include_dir: generated/{model}/draft
 
@@ -257,7 +257,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/02_whats_in_the_box.rst
+    file: templates/page_shared/it/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -279,19 +279,19 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/06_ups_mode.rst
+    file: templates/page_shared/it/06_ups_mode.rst
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/charging.rst
+    file: templates/page_shared/it/charging.rst
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/08_charging_methods.rst
+    file: templates/page_shared/it/08_charging_methods.rst
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/09_storage_and_maintenance.rst
+    file: templates/page_shared/it/09_storage_and_maintenance.rst
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/10_troubleshooting.rst
+    file: templates/page_shared/it/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec
@@ -299,12 +299,12 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: it
-    file: templates/page_eu-it/11_warranty.rst
+    file: templates/page_shared/it/11_warranty.rst
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1
     recipe: templates/recipes/eu-en/12_app_setup.yaml
-    template: templates/page_eu-it/12_app_setup_placeholder.rst
+    template: templates/page_shared/it/12_app_setup_placeholder.rst
     langs: [it]
     include_dir: generated/{model}/draft
 
@@ -318,7 +318,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/02_whats_in_the_box.rst
+    file: templates/page_shared/uk/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -340,19 +340,19 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/06_ups_mode.rst
+    file: templates/page_shared/uk/06_ups_mode.rst
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/charging.rst
+    file: templates/page_shared/uk/charging.rst
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/08_charging_methods.rst
+    file: templates/page_shared/uk/08_charging_methods.rst
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/09_storage_and_maintenance.rst
+    file: templates/page_shared/uk/09_storage_and_maintenance.rst
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/10_troubleshooting.rst
+    file: templates/page_shared/uk/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec
@@ -360,11 +360,11 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: uk
-    file: templates/page_eu-uk/11_warranty.rst
+    file: templates/page_shared/uk/11_warranty.rst
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1
     recipe: templates/recipes/eu-en/12_app_setup.yaml
-    template: templates/page_eu-uk/12_app_setup_placeholder.rst
+    template: templates/page_shared/uk/12_app_setup_placeholder.rst
     langs: [uk]
     include_dir: generated/{model}/draft

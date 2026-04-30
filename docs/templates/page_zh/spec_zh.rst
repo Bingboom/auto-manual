@@ -75,9 +75,9 @@
    :widths: 30 70
 
    * - 充电温度
-     - -20°C 至 45°C
+     - |CHARGING_TEMPERATURE_VALUE_1|
    * - 放电温度
-     - -20°C 至 45°C
+     - |DISCHARGING_TEMPERATURE_VALUE_1|
 
 备注
 ----

@@ -1,3 +1,5 @@
+|MANUAL_LANGUAGE_SCOPE|
+
 **IMPORTANT**
 
 | Congratulations on your new |PRODUCT_NAME|. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.

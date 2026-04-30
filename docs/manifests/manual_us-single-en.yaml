@@ -2,7 +2,7 @@ manifest_id: manual_us_single_en
 pages:
   - type: rst_include
     lang: en
-    file: templates/page_us-en/00_preface.rst
+    file: templates/page_shared/en/00_preface.rst
   - type: rst_include
     lang: en
     file: templates/page_us-en/safety_en.rst
@@ -16,7 +16,7 @@ pages:
     file: templates/page_us-en/01_fcc.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/02_whats_in_the_box.rst
+    file: templates/page_shared/en/02_whats_in_the_box.rst
   - type: rst_include
     lang: en
     file: templates/page_us-en/03_product_overview_placeholder.rst
@@ -30,7 +30,7 @@ pages:
     file: templates/page_us-en/05_operation_guide_placeholder.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/06_ups_mode.rst
+    file: templates/page_shared/en/06_ups_mode.rst
   - type: rst_include
     lang: en
     file: templates/page_shared/en/charging.rst

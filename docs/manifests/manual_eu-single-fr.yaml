@@ -2,9 +2,6 @@ manifest_id: manual_eu_single_fr
 pages:
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/00_preface.rst
-  - type: rst_include
-    lang: fr
     file: templates/page_eu-fr/safety_fr.rst
   - type: csv_page
     source: phase1
@@ -13,7 +10,7 @@ pages:
     include_dir: generated/{model}
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/02_whats_in_the_box.rst
+    file: templates/page_shared/fr/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -35,7 +32,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/06_ups_mode.rst
+    file: templates/page_shared/fr/06_ups_mode.rst
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/charging.rst

@@ -13,7 +13,7 @@ pages:
     file: templates/page_us-fr/01_fcc.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/02_whats_in_the_box.rst
+    file: templates/page_shared/fr/02_whats_in_the_box.rst
   - type: rst_include
     lang: fr
     file: templates/page_us-fr/03_product_overview_placeholder.rst
@@ -27,7 +27,7 @@ pages:
     file: templates/page_us-fr/05_operation_guide_placeholder.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/06_ups_mode.rst
+    file: templates/page_shared/fr/06_ups_mode.rst
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/charging.rst

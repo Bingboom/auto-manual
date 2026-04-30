@@ -52,6 +52,7 @@ def resolve_bundle_materialization_context(
     pick_vars_map: Callable[[str | None, str | None], dict[str, str]],
     fill_product_name_from_spec_master: Callable[..., dict[str, str]],
     load_rst_substitutions: Callable[[Path], dict[str, str]],
+    load_config_rst_substitutions: Callable[[dict], dict[str, str]],
     resolve_spec_master_substitutions: Callable[..., dict[str, str]],
     resolve_reference_doc: Callable[..., Path | None],
     derive_word_title: Callable[..., str],
@@ -103,7 +104,10 @@ def resolve_bundle_materialization_context(
         region=target_region,
         lang=primary_lang,
     )
-    base_substitutions = load_rst_substitutions(docs_dir / "conf_base.py")
+    base_substitutions = {
+        **load_rst_substitutions(docs_dir / "conf_base.py"),
+        **load_config_rst_substitutions(cfg),
+    }
     title_substitutions = {
         **base_substitutions,
         **resolve_spec_master_substitutions(

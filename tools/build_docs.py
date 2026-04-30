@@ -139,7 +139,7 @@ from tools.utils.targets import (
 )
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
-from tools.word_bundle_common import load_rst_substitutions  # noqa: E402
+from tools.word_bundle_common import load_config_rst_substitutions, load_rst_substitutions  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
@@ -358,6 +358,7 @@ def resolve_rst_substitutions_for_build(
         repo_root=repo_root or paths.root,
         docs_dir=paths.docs_dir,
         load_rst_substitutions=load_rst_substitutions,
+        load_config_rst_substitutions=load_config_rst_substitutions,
         resolve_spec_master_csv_path=_resolve_spec_master_csv_path,
         resolve_template_substitutions_from_spec_master=resolve_template_substitutions_from_spec_master,
     )
