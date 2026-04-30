@@ -1,4 +1,5 @@
 .venv/
+.tmp/
 
 # Build outputs
 docs/_build/*
