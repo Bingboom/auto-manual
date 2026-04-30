@@ -33,10 +33,10 @@ pages:
     file: templates/page_us-fr/charging.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/08_charging_methods.rst
+    file: templates/page_shared/fr/08_charging_methods.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/09_storage_and_maintenance.rst
+    file: templates/page_shared/fr/09_storage_and_maintenance.rst
   - type: rst_include
     lang: fr
     file: templates/page_us-fr/10_troubleshooting.rst

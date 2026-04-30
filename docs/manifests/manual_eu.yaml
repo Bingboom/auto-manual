@@ -41,10 +41,10 @@ pages:
     file: templates/page_eu-en/charging.rst
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/08_charging_methods.rst
+    file: templates/page_shared/en/08_charging_methods.rst
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/09_storage_and_maintenance.rst
+    file: templates/page_shared/en/09_storage_and_maintenance.rst
   - type: rst_include
     lang: en
     file: templates/page_eu-en/10_troubleshooting.rst
@@ -102,10 +102,10 @@ pages:
     file: templates/page_eu-fr/charging.rst
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/08_charging_methods.rst
+    file: templates/page_shared/fr/08_charging_methods.rst
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/09_storage_and_maintenance.rst
+    file: templates/page_shared/fr/09_storage_and_maintenance.rst
   - type: rst_include
     lang: fr
     file: templates/page_eu-fr/10_troubleshooting.rst
@@ -163,10 +163,10 @@ pages:
     file: templates/page_eu-es/charging.rst
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/08_charging_methods.rst
+    file: templates/page_shared/es/08_charging_methods.rst
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/09_storage_and_maintenance.rst
+    file: templates/page_shared/es/09_storage_and_maintenance.rst
   - type: rst_include
     lang: es
     file: templates/page_eu-es/10_troubleshooting.rst

@@ -41,10 +41,10 @@ pages:
     file: templates/page_eu-en/charging.rst
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/08_charging_methods.rst
+    file: templates/page_shared/en/08_charging_methods.rst
   - type: rst_include
     lang: en
-    file: templates/page_eu-en/09_storage_and_maintenance.rst
+    file: templates/page_shared/en/09_storage_and_maintenance.rst
   - type: rst_include
     lang: en
     file: templates/page_eu-en/10_troubleshooting.rst
