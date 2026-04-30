@@ -1,4 +1,4 @@
-﻿manifest_id: manual_eu_multilang
+manifest_id: manual_eu_multilang
 pages:
   - type: rst_include
     lang: en

@@ -1,4 +1,4 @@
-﻿manifest_id: manual_us_single_en
+manifest_id: manual_us_single_en
 pages:
   - type: rst_include
     lang: en
