@@ -7,7 +7,7 @@ CONFIGURACIÓN DE LA APLICACIÓN
    :alt: Código QR de descarga de la aplicación y marcador de tienda.
    :width: 320px
 
-Buscar "Jackery" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión.
+Buscar "Jackery" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarse e iniciar sesión.
 Alternativamente, escanee el código QR a continuación para descargar e instalar la app.
 
 **2. Añadir un dispositivo**

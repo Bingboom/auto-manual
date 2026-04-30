@@ -30,7 +30,7 @@ If one DC8020 input port needs to connect two solar panels simultaneously, pleas
        - Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 Input ports.
        - Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure.
 
-It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (16V-60V) of |PRODUCT_NAME|. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.
+It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (V\ :sub:`oc`) of the solar panel is within the DC input range (16V-60V) of |PRODUCT_NAME|. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.
 
 CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)
 --------------------------------------------

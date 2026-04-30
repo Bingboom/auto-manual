@@ -31,7 +31,7 @@ Si aparece alguno de los siguientes códigos de falla, siga las acciones correct
           5. Reinicie el producto.
       * - F7
         - 1. Retire todas las entradas de CC del producto.
-          2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (Voc) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.
+          2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (V\ :sub:`oc`) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.
           3. Reinicie el producto y déjelo inactivo. Espere hasta que la falla desaparezca.
       * - F8
         - Contacte con atención al cliente de Jackery.
@@ -68,7 +68,7 @@ Si aparece alguno de los siguientes códigos de falla, siga las acciones correct
           5. Reinicie el producto.
       * - F7
         - 1. Retire todas las entradas de CC del producto.
-          2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (Voc) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.
+          2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (V\ :sub:`oc`) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.
           3. Reinicie el producto y déjelo inactivo. Espere hasta que la falla desaparezca.
       * - F8
         - Contacte con atención al cliente de Jackery.

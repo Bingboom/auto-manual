@@ -27,10 +27,10 @@ Período de garantía
 
        Para activar la extensión de garantía, debe registrar su producto en línea o ponerse en contacto con nuestro equipo de atención al cliente en hello@jackery.com para ampliar la duración de la garantía estándar.
 
-Reparación o reemplazo
+Reparación o sustitución
 ----------------------
 
-Jackery reparará o reemplazará (a cargo de Jackery) cualquier producto Jackery que no funcione durante el período de garantía aplicable debido a defectos en la mano de obra o el material. El producto reparado o reemplazado asumirá el período restante de la garantía desde la fecha original de compra.
+Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione durante el período de garantía aplicable debido a defectos en la mano de obra o el material. El producto reparado o sustituido asumirá el período restante de la garantía desde la fecha original de compra.
 
 Limitado al comprador consumidor original
 -----------------------------------------

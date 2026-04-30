@@ -15,7 +15,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 |ADD_DEVICE_STEP|
 
-2.2 Maintenez enfoncé le |MAIN_POWER_BUTTON_LABEL| sur l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton «icône qui clignotante» et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
+2.2 Appuyez sur le |MAIN_POWER_BUTTON_LABEL| de l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton «icône qui clignotante» et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
@@ -79,7 +79,7 @@ Cliquez sur le bouton des paramètres en haut à droite de l'interface principal
 
 **4.2 Pour désactiver le Wi-Fi et le Bluetooth**
 
-| Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu’à ce que les icônes Wi-Fi et Bluetooth s’éteignent de l’écran.
+| Appuyez simultanément sur le |DC_USB_POWER_BUTTON_LABEL_LOWER| et le |AC_POWER_BUTTON_LABEL_LOWER| jusqu’à ce que les icônes Wi-Fi et Bluetooth s’éteignent sur l’écran.
 
 
 **4.3 Pour réinitialiser le Wi-Fi et le Bluetooth**

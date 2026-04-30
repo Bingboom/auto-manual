@@ -55,8 +55,8 @@
 
    - Deja de usar el producto de inmediato si muestra signos de daño. Suspende el uso y contacta al servicio al cliente para recibir asistencia.
    - No cargues la batería en ambientes extremadamente calientes o fríos y cumple estrictamente con los rangos de temperatura especificados por el producto:
-     - Temperatura de carga: -4°F a 113°F (-20°C a 45°C)
-     - Temperatura de descarga: -4°F a 113°F (-20°C a 45°C)
+     - Temperatura de carga: 14°F a 113°F (-10°C a 45°C)
+     - Temperatura de descarga: 14°F a 113°F (-10°C a 45°C)
    - Para garantizar una circulación de aire adecuada, no cubras las rejillas de ventilación del producto. El área donde se use el producto debe tener un flujo de aire adecuado en un entorno fresco y seco para evitar el sobrecalentamiento.
      - Cargar en espacios húmedos o mal ventilados puede representar riesgos para la seguridad.
      - El agua puede provocar cortocircuitos o dañar el cargador, generando riesgos para la seguridad.
@@ -71,6 +71,7 @@
    - NO coloques el producto en el suelo o a una altura menor de 18 pulgadas (457 mm) sobre el suelo durante el funcionamiento en un taller o centro de reparación.
    - NO uses los accesorios del producto con otros dispositivos o equipos.
    - El tiempo de carga solar depende de las condiciones meteorológicas. Coloque su panel solar donde reciba la mayor cantidad posible de luz solar directa.
+   - INSTRUCCIONES PARA LA CONEXIÓN A TIERRA-Este producto debe estar conectado a tierra. Si presenta mal funcionamiento o fallas, la conexión a tierra proporciona una ruta de menor resistencia para la corriente eléctrica y reduce el riesgo de descarga eléctrica. Este producto está equipado con un cable que tiene un conductor de conexión a tierra y un enchufe con polo a tierra. El enchufe debe conectarse a un tomacorriente que esté instalado y conectado a tierra correctamente, de acuerdo con todos los códigos y ordenanzas locales.
 
 
 
@@ -78,6 +79,12 @@
    .. raw:: latex
 
       \end{safetytwocol}
+
+   .. raw:: latex
+
+      \safetywarning{ADVERTENCIA}
+
+   Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.
 
 
 .. only:: html
@@ -103,6 +110,14 @@
 
         <div class="hb-two-col">
           <p class="hb-lead">GUARDE ESTAS INSTRUCCIONES</p>
-          <ul class="hb-list"><li>Deja de usar el producto de inmediato si muestra signos de daño. Suspende el uso y contacta al servicio al cliente para recibir asistencia.</li><li>No cargues la batería en ambientes extremadamente calientes o fríos, y respeta estrictamente los rangos de temperatura especificados para el producto.<ul class="hb-sublist"><li>Temperatura de carga: -4°F a 113°F (-20°C a 45°C)</li><li>Temperatura de descarga: -4°F a 113°F (-20°C a 45°C)</li></ul></li><li>Para garantizar una circulación de aire adecuada, no cubras las rejillas de ventilación del producto. El área donde se use debe tener suficiente flujo de aire en un ambiente fresco y seco para evitar el sobrecalentamiento.<ul class="hb-sublist"><li>Cargar en espacios húmedos o mal ventilados puede representar riesgos para la seguridad.</li><li>El agua puede provocar cortocircuitos o dañar el cargador, generando riesgos para la seguridad.</li></ul></li><li>Desconecta el cable de alimentación de la toma de corriente durante tormentas eléctricas.</li><li>Apaga el producto de inmediato presionando el botón de encendido si se ha caído, golpeado o expuesto a vibraciones.</li><li>Asegúrate de que los dispositivos estén apagados antes de conectarlos al producto.</li><li>No cargues el producto con un cable o enchufe dañado.</li><li>No uses el producto para cargar dispositivos con un cable o enchufe dañado.</li><li>Siempre desconecta el cable de carga tirando del enchufe, no del cable, para reducir el riesgo de daño.</li><li>Asegúrate de que el producto esté bien asegurado al transportar en un vehículo en movimiento.</li><li>NO coloques la unidad boca abajo o en su lado durante el uso o almacenamiento.</li><li>NO coloques el producto en el suelo o a una altura menor de 18 pulgadas (457 mm) sobre el suelo durante la operación en un taller o centro de reparación.</li><li>NO uses los accesorios del producto con otros dispositivos o equipos.</li><li>El tiempo de carga solar depende de las condiciones meteorológicas. Coloca tu panel solar donde reciba la mayor cantidad posible de luz solar directa.</li></ul>
+          <ul class="hb-list"><li>Deja de usar el producto de inmediato si muestra signos de daño. Suspende el uso y contacta al servicio al cliente para recibir asistencia.</li><li>No cargues la batería en ambientes extremadamente calientes o fríos, y respeta estrictamente los rangos de temperatura especificados para el producto.<ul class="hb-sublist"><li>Temperatura de carga: 14°F a 113°F (-10°C a 45°C)</li><li>Temperatura de descarga: 14°F a 113°F (-10°C a 45°C)</li></ul></li><li>Para garantizar una circulación de aire adecuada, no cubras las rejillas de ventilación del producto. El área donde se use debe tener suficiente flujo de aire en un ambiente fresco y seco para evitar el sobrecalentamiento.<ul class="hb-sublist"><li>Cargar en espacios húmedos o mal ventilados puede representar riesgos para la seguridad.</li><li>El agua puede provocar cortocircuitos o dañar el cargador, generando riesgos para la seguridad.</li></ul></li><li>Desconecta el cable de alimentación de la toma de corriente durante tormentas eléctricas.</li><li>Apaga el producto de inmediato presionando el botón de encendido si se ha caído, golpeado o expuesto a vibraciones.</li><li>Asegúrate de que los dispositivos estén apagados antes de conectarlos al producto.</li><li>No cargues el producto con un cable o enchufe dañado.</li><li>No uses el producto para cargar dispositivos con un cable o enchufe dañado.</li><li>Siempre desconecta el cable de carga tirando del enchufe, no del cable, para reducir el riesgo de daño.</li><li>Asegúrate de que el producto esté bien asegurado al transportar en un vehículo en movimiento.</li><li>NO coloques la unidad boca abajo o en su lado durante el uso o almacenamiento.</li><li>NO coloques el producto en el suelo o a una altura menor de 18 pulgadas (457 mm) sobre el suelo durante la operación en un taller o centro de reparación.</li><li>NO uses los accesorios del producto con otros dispositivos o equipos.</li><li>El tiempo de carga solar depende de las condiciones meteorológicas. Coloca tu panel solar donde reciba la mayor cantidad posible de luz solar directa.</li><li>INSTRUCCIONES PARA LA CONEXIÓN A TIERRA-Este producto debe estar conectado a tierra. Si presenta mal funcionamiento o fallas, la conexión a tierra proporciona una ruta de menor resistencia para la corriente eléctrica y reduce el riesgo de descarga eléctrica. Este producto está equipado con un cable que tiene un conductor de conexión a tierra y un enchufe con polo a tierra. El enchufe debe conectarse a un tomacorriente que esté instalado y conectado a tierra correctamente, de acuerdo con todos los códigos y ordenanzas locales.</li></ul>
         </div>
+
+        <div class="hb-warning-box">
+          <div class="hb-warning-row">
+            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-text">ADVERTENCIA</div>
+          </div>
+        </div>
+        <p class="hb-lead">Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.</p>
       </div>
