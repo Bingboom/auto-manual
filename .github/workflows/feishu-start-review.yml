@@ -18,7 +18,7 @@ on:
         type: string
 
 concurrency:
-  group: feishu-start-review
+  group: feishu-start-review-${{ inputs.queue_record_id != '' && inputs.queue_record_id || 'batch' }}
   cancel-in-progress: false
 
 permissions:
