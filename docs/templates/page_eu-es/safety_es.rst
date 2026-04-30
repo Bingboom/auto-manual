@@ -6,15 +6,15 @@
 
    .. raw:: latex
 
-      \section{INFORMACIÓN IMPORTANTE DE SEGURIDAD}
+      \section{PRECAUCIONES DE SEGURIDAD PARA EL USO}
 
    .. raw:: latex
 
-      \safetywarning{ADVERTENCIA\hspace{0.75em}INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES}
+      \safetywarning{INSTRUCCIONES DE SEGURIDAD PARA PREVENIR INCENDIOS, DESCARGAS ELÉCTRICAS O LESIONES}
 
    .. raw:: latex
 
-      \begin{safetytwocol}
+      \begin{safetysinglecol}
 
 
    .. raw:: latex
@@ -22,69 +22,37 @@
       \safetylead{Sigue siempre estas precauciones básicas al usar este producto.}
 
 
-   - Lee todas las instrucciones antes de usar el producto.
-   - No permitas que los niños jueguen sobre del producto. Se requiere la supervisión cercana de adultos cuando se use cerca de niños.
-   - Evita colocar las manos o los dedos dentro del producto.
-   - Deja de usar el producto de inmediato si ha sufrido daños físicos o modificaciones. El uso inadecuado puede causar un comportamiento impredecible, provocando incendio, explosión o lesiones.
-   - Si se observan los siguientes síntomas —(incluyendo sobrecalentamiento, olores extraños o humo, fugas o quemaduras)— deja de usar el producto de inmediato y contacta al distribuidor o a nuestro servicio al cliente.
-   - Nunca intentes abrir, reparar o modificar el producto. Cualquier manipulación, re ensamblaje o modificación puede resultar en descarga eléctrica, incendio o daños a la batería.
-   - Ten en cuenta que el líquido expulsado del producto puede causar irritación o quemaduras. El uso inapropiado o abusivo puede causar fugas en la batería. Evita el contacto directo con líquidos que se filtren. Si el líquido entra en contacto con los ojos, busca atención médica de inmediato. Si entra en contacto con otras partes del cuerpo, enjuaga con agua corriente y consulta a un médico de inmediato.
-   - No expongas el producto al fuego o a temperaturas extremas. Hacerlo puede provocar una explosión si la temperatura supera los 130 °C.
-   - El uso de materiales o piezas no recomendadas o no suministradas puede implicar riesgo de incendio, descarga eléctrica o lesiones personales.
-   - No dejes la batería cargando sin supervisión durante periodos prolongados. Supervisa siempre el proceso de carga para garantizar un funcionamiento seguro.
-   - Para reducir el riesgo de descarga eléctrica, desconecta el producto de cualquier fuente de energía antes de realizar servicio técnico o resolución de problemas.
+   - Lee todas las instrucciones antes de usar este producto.
+   - No permitas que los niños jueguen con el producto. Se requiere supervisión estrecha cuando el producto se utilice cerca de niños.
+   - Puede existir riesgo de descarga eléctrica si se utilizan accesorios recomendados o vendidos por fabricantes no profesionales.
+   - Cuando el producto no esté en uso, desconecta el enchufe de alimentación de la toma del producto.
+   - No desmontes el producto, ya que esto puede causar riesgos imprevisibles como incendio, explosión o descarga eléctrica.
+   - No utilices el producto con cables, enchufes o cables de salida dañados, ya que esto puede provocar una descarga eléctrica.
+   - Para garantizar una circulación de aire adecuada, mantén descubiertas las rejillas de ventilación del producto. El área donde se utilice el producto debe tener un flujo de aire adecuado en un entorno fresco y seco para evitar el sobrecalentamiento.
 
-
-   .. raw:: latex
-
-      \end{safetytwocol}
-
-   .. raw:: latex
-
-      \safetysubbar{INSTRUCCIONES DE USO}
-
-   .. raw:: latex
-
-      \begin{safetytwocol}
-
-
-   .. raw:: latex
-
-      \safetylead{GUARDE ESTAS INSTRUCCIONES}
-
-
-   - Deja de usar el producto de inmediato si muestra signos de daño. Suspende el uso y contacta al servicio al cliente para recibir asistencia.
-   - No cargues la batería en ambientes extremadamente calientes o fríos y cumple estrictamente con los rangos de temperatura especificados por el producto:
-     - Temperatura de carga: |CHARGING_TEMPERATURE_VALUE_1|
-     - Temperatura de descarga: |DISCHARGING_TEMPERATURE_VALUE_1|
-   - Para garantizar una circulación de aire adecuada, no cubras las rejillas de ventilación del producto. El área donde se use el producto debe tener un flujo de aire adecuado en un entorno fresco y seco para evitar el sobrecalentamiento.
      - Cargar en espacios húmedos o mal ventilados puede representar riesgos para la seguridad.
      - El agua puede provocar cortocircuitos o dañar el cargador, generando riesgos para la seguridad.
-   - Desconecta el cable de alimentación de la toma de corriente durante tormentas eléctricas.
-   - Apaga el producto de inmediato presionando el botón de encendido si se ha caído, golpeado o expuesto a vibraciones.
-   - Asegúrate de que los dispositivos estén apagados antes de conectarlos al producto.
-   - No cargues el producto con un cable o enchufe dañado o roto. 
-   - No uses el producto para cargar dispositivos con cable o enchufe dañado o roto.
-   - Siempre desconecta el cable de carga tirando del enchufe, no del cable, para evitar daños.
-   - Asegúrate de que el producto esté bien asegurado al transportarlo en un vehículo en movimiento.
-   - NO coloques la unidad boca abajo ni de lado durante el uso o almacenamiento. 
-   - NO coloques el producto en el suelo o a una altura menor de 457 mm sobre el suelo durante el funcionamiento en un taller o centro de reparación.
-   - NO uses los accesorios del producto con otros dispositivos o equipos.
-   - El tiempo de carga solar depende de las condiciones meteorológicas. Coloque su panel solar donde reciba la mayor cantidad posible de luz solar directa.
-   - INSTRUCCIONES PARA LA CONEXIÓN A TIERRA-Este producto debe estar conectado a tierra. Si presenta mal funcionamiento o fallas, la conexión a tierra proporciona una ruta de menor resistencia para la corriente eléctrica y reduce el riesgo de descarga eléctrica. Este producto está equipado con un cable que tiene un conductor de conexión a tierra y un enchufe con polo a tierra. El enchufe debe conectarse a un tomacorriente que esté instalado y conectado a tierra correctamente, de acuerdo con todos los códigos y ordenanzas locales.
 
-
+   - No expongas el producto al fuego, a altas temperaturas, a la luz solar directa ni a entornos calurosos como el interior de un vehículo estacionado. Dicha exposición puede causar un incendio o una explosión.
 
 
    .. raw:: latex
 
-      \end{safetytwocol}
+      \end{safetysinglecol}
 
    .. raw:: latex
 
-      \safetywarning{ADVERTENCIA}
+      \safetysubbar{INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO}
 
-   Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.
+   .. raw:: latex
+
+      \begin{safetysinglecol}
+
+   Durante el ciclo de vida de los productos de almacenamiento de energía, se espera cierto grado de degradación de la capacidad y de la energía. A medida que aumenta el número de ciclos de carga y descarga y se prolonga el tiempo de almacenamiento, esta degradación se intensificará gradualmente. Esta es una condición normal coherente con el envejecimiento natural de las celdas de la batería.
+
+   .. raw:: latex
+
+      \end{safetysinglecol}
 
 
 .. only:: html
@@ -92,32 +60,23 @@
    .. raw:: html
 
       <div class="hb-safety">
-        <h1 class="hb-h1-pill">INFORMACIÓN IMPORTANTE DE SEGURIDAD</h1>
+        <h1 class="hb-h1-pill">PRECAUCIONES DE SEGURIDAD PARA EL USO</h1>
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
-            <div class="hb-warning-lockup">⚠️</div>
-            <div class="hb-warning-text">INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES</div>
+            <div class="hb-warning-lockup">ADVERTENCIA</div>
+            <div class="hb-warning-text">INSTRUCCIONES DE SEGURIDAD PARA PREVENIR INCENDIOS, DESCARGAS ELÉCTRICAS O LESIONES</div>
           </div>
         </div>
 
-        <div class="hb-two-col">
+        <div class="hb-single-col">
           <p class="hb-lead">Sigue siempre estas precauciones básicas al usar este producto.</p>
-          <ul class="hb-list"><li>Lee todas las instrucciones antes de usar el producto.</li><li>No permitas que los niños jueguen sobre el producto. Se requiere la supervisión cercana de adultos cuando se use cerca de niños.</li><li>Evita colocar las manos o los dedos dentro del producto.</li><li>Deja de usar el producto de inmediato si ha sufrido daños físicos o modificaciones. El uso inadecuado puede causar un comportamiento impredecible, provocar una explosión o lesiones personales.</li><li>Si se observan los siguientes síntomas (incluyendo sobrecalentamiento, olores extraños o humo, fugas o quemaduras), deja de usar el producto de inmediato y contacta al distribuidor o a nuestro servicio al cliente.</li><li>Nunca intentes abrir, reparar o modificar el producto. Cualquier manipulación, reensamblaje o modificación puede resultar en descarga eléctrica, incendio o daños a la batería.</li><li>Ten en cuenta que el líquido eyectado del producto puede causar irritación o quemaduras. El uso inapropiado o abusivo puede causar fugas en la batería. Evita el contacto directo. Si el líquido entra en contacto con los ojos, busca atención médica de inmediato. Si entra en contacto con otras partes del cuerpo, enjuaga con agua corriente y consulta a un médico de inmediato.</li><li>No expongas el producto al fuego o a temperaturas excesivas. Una temperatura superior a 130°C puede resultar en una explosión.</li><li>El uso de materiales o piezas no recomendados o no suministrados puede implicar riesgo de incendio, descarga eléctrica o lesiones personales.</li><li>No dejes la batería cargando sin supervisión durante períodos prolongados. Supervisa siempre el proceso de carga para garantizar un funcionamiento seguro.</li><li>Para reducir el riesgo de descarga eléctrica, desconecta el producto de cualquier fuente de energía antes de realizar servicio técnico o resolución de problemas.</li></ul>
+          <ul class="hb-list"><li>Lee todas las instrucciones antes de usar este producto.</li><li>No permitas que los niños jueguen con el producto. Se requiere supervisión estrecha cuando el producto se utilice cerca de niños.</li><li>Puede existir riesgo de descarga eléctrica si se utilizan accesorios recomendados o vendidos por fabricantes no profesionales.</li><li>Cuando el producto no esté en uso, desconecta el enchufe de alimentación de la toma del producto.</li><li>No desmontes el producto, ya que esto puede causar riesgos imprevisibles como incendio, explosión o descarga eléctrica.</li><li>No utilices el producto con cables, enchufes o cables de salida dañados, ya que esto puede provocar una descarga eléctrica.</li><li>Para garantizar una circulación de aire adecuada, mantén descubiertas las rejillas de ventilación del producto. El área donde se utilice el producto debe tener un flujo de aire adecuado en un entorno fresco y seco para evitar el sobrecalentamiento.<ul class="hb-sublist"><li>Cargar en espacios húmedos o mal ventilados puede representar riesgos para la seguridad.</li><li>El agua puede provocar cortocircuitos o dañar el cargador, generando riesgos para la seguridad.</li></ul></li><li>No expongas el producto al fuego, a altas temperaturas, a la luz solar directa ni a entornos calurosos como el interior de un vehículo estacionado. Dicha exposición puede causar un incendio o una explosión.</li></ul>
         </div>
 
-        <h2 class="hb-subbar">INSTRUCCIONES DE USO</h2>
+        <h2 class="hb-subbar">INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO</h2>
 
-        <div class="hb-two-col">
-          <p class="hb-lead">GUARDE ESTAS INSTRUCCIONES</p>
-          <ul class="hb-list"><li>Deja de usar el producto de inmediato si muestra signos de daño. Suspende el uso y contacta al servicio al cliente para recibir asistencia.</li><li>No cargues la batería en ambientes extremadamente calientes o fríos, y respeta estrictamente los rangos de temperatura especificados para el producto.<ul class="hb-sublist"><li>Temperatura de carga: |CHARGING_TEMPERATURE_VALUE_1|</li><li>Temperatura de descarga: |DISCHARGING_TEMPERATURE_VALUE_1|</li></ul></li><li>Para garantizar una circulación de aire adecuada, no cubras las rejillas de ventilación del producto. El área donde se use debe tener suficiente flujo de aire en un ambiente fresco y seco para evitar el sobrecalentamiento.<ul class="hb-sublist"><li>Cargar en espacios húmedos o mal ventilados puede representar riesgos para la seguridad.</li><li>El agua puede provocar cortocircuitos o dañar el cargador, generando riesgos para la seguridad.</li></ul></li><li>Desconecta el cable de alimentación de la toma de corriente durante tormentas eléctricas.</li><li>Apaga el producto de inmediato presionando el botón de encendido si se ha caído, golpeado o expuesto a vibraciones.</li><li>Asegúrate de que los dispositivos estén apagados antes de conectarlos al producto.</li><li>No cargues el producto con un cable o enchufe dañado.</li><li>No uses el producto para cargar dispositivos con un cable o enchufe dañado.</li><li>Siempre desconecta el cable de carga tirando del enchufe, no del cable, para reducir el riesgo de daño.</li><li>Asegúrate de que el producto esté bien asegurado al transportar en un vehículo en movimiento.</li><li>NO coloques la unidad boca abajo o en su lado durante el uso o almacenamiento.</li><li>NO coloques el producto en el suelo o a una altura menor de 457 mm sobre el suelo durante la operación en un taller o centro de reparación.</li><li>NO uses los accesorios del producto con otros dispositivos o equipos.</li><li>El tiempo de carga solar depende de las condiciones meteorológicas. Coloca tu panel solar donde reciba la mayor cantidad posible de luz solar directa.</li><li>INSTRUCCIONES PARA LA CONEXIÓN A TIERRA-Este producto debe estar conectado a tierra. Si presenta mal funcionamiento o fallas, la conexión a tierra proporciona una ruta de menor resistencia para la corriente eléctrica y reduce el riesgo de descarga eléctrica. Este producto está equipado con un cable que tiene un conductor de conexión a tierra y un enchufe con polo a tierra. El enchufe debe conectarse a un tomacorriente que esté instalado y conectado a tierra correctamente, de acuerdo con todos los códigos y ordenanzas locales.</li></ul>
+        <div class="hb-single-col">
+          <p>Durante el ciclo de vida de los productos de almacenamiento de energía, se espera cierto grado de degradación de la capacidad y de la energía. A medida que aumenta el número de ciclos de carga y descarga y se prolonga el tiempo de almacenamiento, esta degradación se intensificará gradualmente. Esta es una condición normal coherente con el envejecimiento natural de las celdas de la batería.</p>
         </div>
-
-        <div class="hb-warning-box">
-          <div class="hb-warning-row">
-            <div class="hb-warning-lockup">⚠️</div>
-            <div class="hb-warning-text">ADVERTENCIA</div>
-          </div>
-        </div>
-        <p class="hb-lead">Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.</p>
       </div>

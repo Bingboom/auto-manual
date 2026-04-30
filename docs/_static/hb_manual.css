@@ -75,6 +75,9 @@
   column-count:2;
   column-gap:24px;
 }
+.hb-single-col{
+  column-count:1;
+}
 .hb-lead{ font-weight:700; margin: 0 0 8px 0; }
 .hb-list{ margin:0; padding-left: 18px; }
 .hb-list > li{ margin: 0 0 6px 0; break-inside: avoid; }
