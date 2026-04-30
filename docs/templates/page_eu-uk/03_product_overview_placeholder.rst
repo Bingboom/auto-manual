@@ -1,67 +1,87 @@
-ОГЛЯД ПРОДУКТУ
-===============
+.. only:: latex
 
-ВИГЛЯД СПЕРЕДУ
--------------
+   .. raw:: latex
 
-.. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: Заглушка схеми вигляду спереду.
-   :width: 420px
+      \section{ОГЛЯД ПРОДУКТУ}
+      \HBOverviewPanel{ВИГЛЯД СПЕРЕДУ}{front_product.jpg}{%
+      \HBOverviewPair{|MAIN_POWER_BUTTON_LABEL|}{}{Ручка}{}
+      \HBOverviewPair{|FRONT_DC12_PORT_LABEL|}{|FRONT_DC12_PORT_SPEC|}{LCD}{}
+      \HBOverviewPair{|DC_USB_POWER_BUTTON_LABEL|}{}{Кнопка LED-світла}{}
+      \HBOverviewPair{|FRONT_USB_C_LOW_LABEL|}{|FRONT_USB_C_LOW_SPEC|}{LED-світло}{}
+      \HBOverviewPair{|FRONT_USB_C_HIGH_LABEL|}{|FRONT_USB_C_HIGH_SPEC|}{|AC_POWER_BUTTON_LABEL|}{}
+      \HBOverviewPair{|FRONT_USB_A_LABEL|}{|FRONT_USB_A_SPEC|}{|FRONT_AC_OUTPUT_LABEL|}{|FRONT_AC_OUTPUT_SPEC|}
+      \HBOverviewFull{|FRONT_TOTAL_OUTPUT_LABEL|}{|FRONT_TOTAL_OUTPUT_SPEC|}
+      }
+      \HBOverviewPanel{ВИГЛЯД ПРАВОГО БОКУ}{right_side_ports.png}{%
+      \HBOverviewPair{Ручка}{}{|SIDE_AC_INPUT_LABEL|}{|SIDE_AC_INPUT_SPEC|}
+      \HBOverviewPair{}{}{|SIDE_DC_INPUT_LABEL|}{|SIDE_DC_INPUT_PV_SPEC| \newline |SIDE_DC_INPUT_CAR_SPEC|}
+      }
 
-.. list-table::
-   :header-rows: 0
-   :widths: 50 50
+.. only:: not latex
 
-   * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **Ручка**
-   * - **|FRONT_DC12_PORT_LABEL|**
+   ОГЛЯД ПРОДУКТУ
+   ===============
 
-       |FRONT_DC12_PORT_SPEC|
-     - **LCD**
-   * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **Кнопка LED-світла**
-   * - **|FRONT_USB_C_LOW_LABEL|**
+   ВИГЛЯД СПЕРЕДУ
+   -------------
 
-       |FRONT_USB_C_LOW_SPEC|
-     - **LED-світло**
-   * - **|FRONT_USB_C_HIGH_LABEL|**
+   .. image:: templates/word_template/common_assets/overview/front_product.jpg
+      :alt: Заглушка схеми вигляду спереду.
+      :width: 420px
 
-       |FRONT_USB_C_HIGH_SPEC|
-     - **|AC_POWER_BUTTON_LABEL|**
-   * - **|FRONT_USB_A_LABEL|**
+   .. list-table::
+      :header-rows: 0
+      :widths: 50 50
 
-       |FRONT_USB_A_SPEC|
-     - **|FRONT_AC_OUTPUT_LABEL|**
+      * - **|MAIN_POWER_BUTTON_LABEL|**
+        - **Ручка**
+      * - **|FRONT_DC12_PORT_LABEL|**
 
-       |FRONT_AC_OUTPUT_SPEC|
+          |FRONT_DC12_PORT_SPEC|
+        - **LCD**
+      * - **|DC_USB_POWER_BUTTON_LABEL|**
+        - **Кнопка LED-світла**
+      * - **|FRONT_USB_C_LOW_LABEL|**
 
-.. list-table::
-   :header-rows: 0
-   :widths: 100
+          |FRONT_USB_C_LOW_SPEC|
+        - **LED-світло**
+      * - **|FRONT_USB_C_HIGH_LABEL|**
 
-   * - **|FRONT_TOTAL_OUTPUT_LABEL|**
+          |FRONT_USB_C_HIGH_SPEC|
+        - **|AC_POWER_BUTTON_LABEL|**
+      * - **|FRONT_USB_A_LABEL|**
 
-       |FRONT_TOTAL_OUTPUT_SPEC|
+          |FRONT_USB_A_SPEC|
+        - **|FRONT_AC_OUTPUT_LABEL|**
 
-ВИГЛЯД ПРАВОГО БОКУ
-------------------
+          |FRONT_AC_OUTPUT_SPEC|
 
-.. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: Заглушка схеми вигляду правого боку.
-   :width: 420px
+   .. list-table::
+      :header-rows: 0
+      :widths: 100
 
-.. list-table::
-   :header-rows: 0
-   :widths: 50 50
+      * - **|FRONT_TOTAL_OUTPUT_LABEL|**
 
-   * - **Ручка**
-     - **|SIDE_AC_INPUT_LABEL|**
+          |FRONT_TOTAL_OUTPUT_SPEC|
 
-       |SIDE_AC_INPUT_SPEC|
-   * -
-     - **|SIDE_DC_INPUT_LABEL|**
+   ВИГЛЯД ПРАВОГО БОКУ
+   ------------------
 
-       |SIDE_DC_INPUT_PV_SPEC|
+   .. image:: templates/word_template/common_assets/overview/right_side_ports.png
+      :alt: Заглушка схеми вигляду правого боку.
+      :width: 420px
 
-       |SIDE_DC_INPUT_CAR_SPEC|
+   .. list-table::
+      :header-rows: 0
+      :widths: 50 50
 
+      * - **Ручка**
+        - **|SIDE_AC_INPUT_LABEL|**
+
+          |SIDE_AC_INPUT_SPEC|
+      * -
+        - **|SIDE_DC_INPUT_LABEL|**
+
+          |SIDE_DC_INPUT_PV_SPEC|
+
+          |SIDE_DC_INPUT_CAR_SPEC|

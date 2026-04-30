@@ -1,66 +1,87 @@
-PRODUKTÜBERSICHT
-================
+.. only:: latex
 
-VORDERANSICHT
--------------
+   .. raw:: latex
 
-.. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: Abbildung der Vorderansicht als Platzhalter.
-   :width: 420px
+      \section{PRODUKTÜBERSICHT}
+      \HBOverviewPanel{VORDERANSICHT}{front_product.jpg}{%
+      \HBOverviewPair{|MAIN_POWER_BUTTON_LABEL|}{}{}{}
+      \HBOverviewPair{|FRONT_DC12_PORT_LABEL|}{|FRONT_DC12_PORT_SPEC|}{LCD}{}
+      \HBOverviewPair{|DC_USB_POWER_BUTTON_LABEL|}{}{LED-Lichttaste}{}
+      \HBOverviewPair{|FRONT_USB_C_LOW_LABEL|}{|FRONT_USB_C_LOW_SPEC|}{LED-Licht}{}
+      \HBOverviewPair{|FRONT_USB_C_HIGH_LABEL|}{|FRONT_USB_C_HIGH_SPEC|}{|AC_POWER_BUTTON_LABEL|}{}
+      \HBOverviewPair{|FRONT_USB_A_LABEL|}{|FRONT_USB_A_SPEC|}{|FRONT_AC_OUTPUT_LABEL|}{|FRONT_AC_OUTPUT_SPEC|}
+      \HBOverviewFull{|FRONT_TOTAL_OUTPUT_LABEL|}{|FRONT_TOTAL_OUTPUT_SPEC|}
+      }
+      \HBOverviewPanel{ANSICHT DER RECHTEN SEITE}{right_side_ports.png}{%
+      \HBOverviewPair{Griff}{}{|SIDE_AC_INPUT_LABEL|}{|SIDE_AC_INPUT_SPEC|}
+      \HBOverviewPair{}{}{|SIDE_DC_INPUT_LABEL|}{|SIDE_DC_INPUT_PV_SPEC| \newline |SIDE_DC_INPUT_CAR_SPEC|}
+      }
 
-.. list-table::
-   :header-rows: 0
-   :widths: 50 50
+.. only:: not latex
 
-   * - **|MAIN_POWER_BUTTON_LABEL|**
-     -
-   * - **|FRONT_DC12_PORT_LABEL|**
+   PRODUKTÜBERSICHT
+   ================
 
-       |FRONT_DC12_PORT_SPEC|
-     - **LCD**
-   * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **LED-Lichttaste**
-   * - **|FRONT_USB_C_LOW_LABEL|**
+   VORDERANSICHT
+   -------------
 
-       |FRONT_USB_C_LOW_SPEC|
-     - **LED-Licht**
-   * - **|FRONT_USB_C_HIGH_LABEL|**
+   .. image:: templates/word_template/common_assets/overview/front_product.jpg
+      :alt: Abbildung der Vorderansicht als Platzhalter.
+      :width: 420px
 
-       |FRONT_USB_C_HIGH_SPEC|
-     - **|AC_POWER_BUTTON_LABEL|**
-   * - **|FRONT_USB_A_LABEL|**
+   .. list-table::
+      :header-rows: 0
+      :widths: 50 50
 
-       |FRONT_USB_A_SPEC|
-     - **|FRONT_AC_OUTPUT_LABEL|**
+      * - **|MAIN_POWER_BUTTON_LABEL|**
+        -
+      * - **|FRONT_DC12_PORT_LABEL|**
 
-       |FRONT_AC_OUTPUT_SPEC|
+          |FRONT_DC12_PORT_SPEC|
+        - **LCD**
+      * - **|DC_USB_POWER_BUTTON_LABEL|**
+        - **LED-Lichttaste**
+      * - **|FRONT_USB_C_LOW_LABEL|**
 
-.. list-table::
-   :header-rows: 0
-   :widths: 100
+          |FRONT_USB_C_LOW_SPEC|
+        - **LED-Licht**
+      * - **|FRONT_USB_C_HIGH_LABEL|**
 
-   * - **|FRONT_TOTAL_OUTPUT_LABEL|**
+          |FRONT_USB_C_HIGH_SPEC|
+        - **|AC_POWER_BUTTON_LABEL|**
+      * - **|FRONT_USB_A_LABEL|**
 
-       |FRONT_TOTAL_OUTPUT_SPEC|
+          |FRONT_USB_A_SPEC|
+        - **|FRONT_AC_OUTPUT_LABEL|**
 
-ANSICHT DER RECHTEN SEITE
--------------------------
+          |FRONT_AC_OUTPUT_SPEC|
 
-.. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: Abbildung der rechten Seitenansicht als Platzhalter.
-   :width: 420px
+   .. list-table::
+      :header-rows: 0
+      :widths: 100
 
-.. list-table::
-   :header-rows: 0
-   :widths: 50 50
+      * - **|FRONT_TOTAL_OUTPUT_LABEL|**
 
-   * - **Griff**
-     - **|SIDE_AC_INPUT_LABEL|**
+          |FRONT_TOTAL_OUTPUT_SPEC|
 
-       |SIDE_AC_INPUT_SPEC|
-   * -
-     - **|SIDE_DC_INPUT_LABEL|**
+   ANSICHT DER RECHTEN SEITE
+   -------------------------
 
-       |SIDE_DC_INPUT_PV_SPEC|
+   .. image:: templates/word_template/common_assets/overview/right_side_ports.png
+      :alt: Abbildung der rechten Seitenansicht als Platzhalter.
+      :width: 420px
 
-       |SIDE_DC_INPUT_CAR_SPEC|
+   .. list-table::
+      :header-rows: 0
+      :widths: 50 50
+
+      * - **Griff**
+        - **|SIDE_AC_INPUT_LABEL|**
+
+          |SIDE_AC_INPUT_SPEC|
+      * -
+        - **|SIDE_DC_INPUT_LABEL|**
+
+          |SIDE_DC_INPUT_PV_SPEC|
+
+          |SIDE_DC_INPUT_CAR_SPEC|

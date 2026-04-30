@@ -1,35 +1,41 @@
-.. raw:: latex
+.. only:: latex
 
-   \section{CONTENIDO DE LA CAJA}
+   .. raw:: latex
 
-.. raw:: html
+      \section{CONTENIDO DE LA CAJA}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Cable de carga de CA}{manual_icon1.png}{Documentos}
+      \HBTipBlock{CONSEJOS}{El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web. Para obtener asistencia, comunícate con el servicio al cliente de Jackery.}
 
-   <h1>CONTENIDO DE LA CAJA</h1>
+.. only:: not latex
 
-.. list-table::
-   :header-rows: 0
-   :widths: 33 33 34
+   .. raw:: html
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Imagen de la estación de energía.
-          :width: 120px
+      <h1>CONTENIDO DE LA CAJA</h1>
 
-       |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: Imagen del cable de carga de CA.
-          :width: 120px
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
 
-       **Cable de carga de CA**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: Imagen de los documentos.
-          :width: 120px
+      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Imagen de la estación de energía.
+             :width: 120px
 
-       **Documentos**
+          |PRODUCT_NAME_BOLD|
+        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: Imagen del cable de carga de CA.
+             :width: 120px
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+          **Cable de carga de CA**
+        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: Imagen de los documentos.
+             :width: 120px
 
-   * - **CONSEJOS**
-     - El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web.
-       Para obtener asistencia, comunícate con el servicio al cliente de Jackery.
+          **Documentos**
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **CONSEJOS**
+        - El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web.
+          Para obtener asistencia, comunícate con el servicio al cliente de Jackery.

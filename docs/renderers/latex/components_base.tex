@@ -4,7 +4,41 @@
 % Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
+\usepackage{array}
 \usepackage{colortbl}
+\usepackage{graphicx}
+
+% ------------------------------
+% Raw LaTeX component helpers
+% ------------------------------
+\makeatletter
+
+\providecommand{\HBIfBlankTF}[3]{%
+  \edef\HB@blanktest{\detokenize{#1}}%
+  \ifx\HB@blanktest\@empty
+    #2%
+  \else
+    #3%
+  \fi
+}
+
+\providecommand{\HBImagePlaceholder}[2]{%
+  \makebox[#1][c]{\rule{0pt}{#2}}%
+}
+
+\providecommand{\HBImageOrPlaceholder}[3]{%
+  \HBIfBlankTF{#3}{%
+    \HBImagePlaceholder{#1}{#2}%
+  }{%
+    \IfFileExists{#3}{%
+      \includegraphics[width=#1,height=#2,keepaspectratio]{#3}%
+    }{%
+      \HBImagePlaceholder{#1}{#2}%
+    }%
+  }%
+}
+
+\makeatother
 
 % ------------------------------
 % List base (enumitem)
@@ -104,6 +138,546 @@
   top=\csname HBcomp_note_pad_tb\endcsname,
   bottom=\csname HBcomp_note_pad_tb\endcsname,
 }
+
+% ------------------------------
+% Notice / note / tip / caution blocks for raw LaTeX renderers
+% Signature: \HBNoticeBlock[kind]{label}{primary text}{secondary text}
+% Supported kind values: notice, note, tip, caution.
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_notice_before\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_notice_after\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_notice_pad_lr\endcsname{1.4mm}
+\expandafter\providecommand\csname HBcomp_notice_pad_tb\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_notice_arc\endcsname{0.9mm}
+\expandafter\providecommand\csname HBcomp_notice_rule\endcsname{0.35pt}
+\expandafter\providecommand\csname HBcomp_notice_label_width\endcsname{0.18\linewidth}
+\expandafter\providecommand\csname HBcomp_notice_label_gap\endcsname{1.2mm}
+\expandafter\providecommand\csname HBtype_notice_label_font_size\endcsname{6.8pt}
+\expandafter\providecommand\csname HBtype_notice_label_font_leading\endcsname{7.4pt}
+\expandafter\providecommand\csname HBtype_notice_body_font_size\endcsname{6.6pt}
+\expandafter\providecommand\csname HBtype_notice_body_font_leading\endcsname{7.4pt}
+
+\colorlet{HBNoticeBgnotice}{BgK05}
+\colorlet{HBNoticeFramenotice}{LineK40}
+\colorlet{HBNoticeLabelnotice}{TextK90}
+\colorlet{HBNoticeBgnote}{BgK05}
+\colorlet{HBNoticeFramenote}{LineK40}
+\colorlet{HBNoticeLabelnote}{TextK90}
+\colorlet{HBNoticeBgtip}{AccentBlue!7}
+\colorlet{HBNoticeFrametip}{AccentBlue!60!black}
+\colorlet{HBNoticeLabeltip}{AccentBlue!60!black}
+\colorlet{HBNoticeBgcaution}{white}
+\colorlet{HBNoticeFramecaution}{BrandDark}
+\colorlet{HBNoticeLabelcaution}{BrandDark}
+
+\makeatletter
+\providecommand{\HBNoticeColor}[2]{%
+  \ifcsname color@HBNotice#1#2\endcsname
+    HBNotice#1#2%
+  \else
+    HBNotice#1note%
+  \fi
+}
+\makeatother
+
+\providecommand{\HBTypeNoticeLabel}[2]{%
+  {\HBFontSemiBold
+   \color{\HBNoticeColor{Label}{#1}}%
+   \fontsize{\csname HBtype_notice_label_font_size\endcsname}
+            {\csname HBtype_notice_label_font_leading\endcsname}\selectfont
+   \RaggedRight #2}%
+}
+
+\providecommand{\HBTypeNoticeBody}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_notice_body_font_size\endcsname}
+            {\csname HBtype_notice_body_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\newcommand{\HBNoticeBlock}[4][notice]{%
+  \par\noindent
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=\HBNoticeColor{Bg}{#1},
+    colframe=\HBNoticeColor{Frame}{#1},
+    arc=\csname HBcomp_notice_arc\endcsname,
+    boxrule=\csname HBcomp_notice_rule\endcsname,
+    boxsep=0mm,
+    left=\csname HBcomp_notice_pad_lr\endcsname,
+    right=\csname HBcomp_notice_pad_lr\endcsname,
+    top=\csname HBcomp_notice_pad_tb\endcsname,
+    bottom=\csname HBcomp_notice_pad_tb\endcsname,
+    before skip=\csname HBcomp_notice_before\endcsname,
+    after skip=\csname HBcomp_notice_after\endcsname
+  ]%
+    \HBTypeNoticeLabel{#1}{#2}%
+    \par\vspace{0.25mm}%
+    \HBTypeNoticeBody{#3}%
+    \HBIfBlankTF{#4}{}{%
+      \par\vspace{0.35mm}%
+      \HBTypeNoticeBody{#4}%
+    }%
+  \end{tcolorbox}%
+}
+
+\providecommand{\HBNoteBlock}[2]{%
+  \HBNoticeBlock[note]{#1}{#2}{}%
+}
+\providecommand{\HBTipBlock}[2]{%
+  \HBNoticeBlock[tip]{#1}{#2}{}%
+}
+\providecommand{\HBCautionBlock}[2]{%
+  \HBNoticeBlock[caution]{#1}{#2}{}%
+}
+
+% ------------------------------
+% Compact "WHAT'S IN THE BOX" layout for raw LaTeX templates
+% Signature:
+%   \HBInBoxThree{image1}{label1}{image2}{label2}{image3}{label3}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_inbox_image_width\endcsname{24mm}
+\expandafter\providecommand\csname HBcomp_inbox_image_height\endcsname{18mm}
+\expandafter\providecommand\csname HBcomp_inbox_table_tabcolsep\endcsname{2.2pt}
+\expandafter\providecommand\csname HBcomp_inbox_table_row_stretch\endcsname{0.9}
+\expandafter\providecommand\csname HBcomp_inbox_label_gap\endcsname{0.65mm}
+\expandafter\providecommand\csname HBcomp_inbox_after\endcsname{1.0mm}
+\expandafter\providecommand\csname HBtype_inbox_label_font_size\endcsname{6.3pt}
+\expandafter\providecommand\csname HBtype_inbox_label_font_leading\endcsname{7.0pt}
+
+\providecommand{\HBTypeInBoxLabel}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_inbox_label_font_size\endcsname}
+            {\csname HBtype_inbox_label_font_leading\endcsname}\selectfont
+   \centering #1}%
+}
+
+\providecommand{\HBInBoxCell}[2]{%
+  \begin{minipage}[t]{0.29\linewidth}
+    \centering
+    \HBImageOrPlaceholder
+      {\csname HBcomp_inbox_image_width\endcsname}
+      {\csname HBcomp_inbox_image_height\endcsname}
+      {#1}%
+    \par\vspace{\csname HBcomp_inbox_label_gap\endcsname}%
+    \HBTypeInBoxLabel{#2}%
+  \end{minipage}%
+}
+
+\newtcolorbox{hbinboxthreeframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=HBSharedTableFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+  before skip=0.5mm,
+  after skip=\csname HBcomp_inbox_after\endcsname,
+}
+
+\newcommand{\HBInBoxThree}[6]{%
+  \par\noindent
+  \begin{hbinboxthreeframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
+  \setlength{\tabcolsep}{\csname HBcomp_inbox_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_inbox_table_row_stretch\endcsname}
+  \begin{tabular}{|
+    >{\centering\arraybackslash}m{\dimexpr(\linewidth-6\tabcolsep-4\arrayrulewidth)/3\relax}|
+    >{\centering\arraybackslash}m{\dimexpr(\linewidth-6\tabcolsep-4\arrayrulewidth)/3\relax}|
+    >{\centering\arraybackslash}m{\dimexpr(\linewidth-6\tabcolsep-4\arrayrulewidth)/3\relax}|}
+  \hline
+  \HBInBoxCell{#1}{#2} & \HBInBoxCell{#3}{#4} & \HBInBoxCell{#5}{#6}\tabularnewline
+  \hline
+  \end{tabular}
+  \endgroup
+  \end{hbinboxthreeframe}
+  \par
+}
+
+% ------------------------------
+% Compact product overview panels for raw LaTeX templates
+% Signatures:
+%   \HBOverviewPanel{title}{image path or basename}{row macro calls}
+%   \HBOverviewPair{left label}{left text}{right label}{right text}
+%   \HBOverviewFull{label}{text}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_overview_image_width\endcsname{0.72\linewidth}
+\expandafter\providecommand\csname HBcomp_overview_image_height\endcsname{34mm}
+\expandafter\providecommand\csname HBcomp_overview_image_after\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_overview_table_tabcolsep\endcsname{2.2pt}
+\expandafter\providecommand\csname HBcomp_overview_table_row_stretch\endcsname{0.88}
+\expandafter\providecommand\csname HBtype_overview_label_font_size\endcsname{5.9pt}
+\expandafter\providecommand\csname HBtype_overview_label_font_leading\endcsname{6.5pt}
+\expandafter\providecommand\csname HBtype_overview_value_font_size\endcsname{5.7pt}
+\expandafter\providecommand\csname HBtype_overview_value_font_leading\endcsname{6.3pt}
+
+\providecommand{\HBTypeOverviewLabel}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_overview_label_font_size\endcsname}
+            {\csname HBtype_overview_label_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBTypeOverviewValue}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_overview_value_font_size\endcsname}
+            {\csname HBtype_overview_value_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBOverviewCell}[2]{%
+  \begin{minipage}[t]{\linewidth}
+    \HBIfBlankTF{#1}{}{\HBTypeOverviewLabel{#1}}%
+    \HBIfBlankTF{#2}{}{%
+      \HBIfBlankTF{#1}{}{\par\vspace{0.25mm}}%
+      \HBTypeOverviewValue{#2}%
+    }%
+  \end{minipage}%
+}
+
+\newtcolorbox{hboverviewtableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=HBSharedTableFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+\newcommand{\HBOverviewPanel}[3]{%
+  \safetysubbar{#1}%
+  \begin{center}
+    \HBImageOrPlaceholder
+      {\csname HBcomp_overview_image_width\endcsname}
+      {\csname HBcomp_overview_image_height\endcsname}
+      {#2}%
+  \end{center}
+  \vspace{-\csname HBcomp_overview_image_after\endcsname}%
+  \par\noindent
+  \begin{hboverviewtableframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
+  \setlength{\tabcolsep}{\csname HBcomp_overview_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_overview_table_row_stretch\endcsname}
+  \begin{tabular}{|
+    >{\RaggedRight\arraybackslash}m{\dimexpr(\linewidth-4\tabcolsep-3\arrayrulewidth)/2\relax}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr(\linewidth-4\tabcolsep-3\arrayrulewidth)/2\relax}|}
+  \hline
+  #3%
+  \end{tabular}
+  \endgroup
+  \end{hboverviewtableframe}
+  \par\vspace{0.8mm}%
+}
+
+\providecommand{\HBOverviewPair}[4]{%
+  \HBOverviewCell{#1}{#2} & \HBOverviewCell{#3}{#4}\tabularnewline\hline
+}
+
+\providecommand{\HBOverviewFull}[2]{%
+  \multicolumn{2}{|>{\RaggedRight\arraybackslash}m{\dimexpr\linewidth-2\tabcolsep-2\arrayrulewidth\relax}|}{%
+    \HBOverviewCell{#1}{#2}%
+  }\tabularnewline\hline
+}
+
+% ------------------------------
+% Compact symbol table for raw LaTeX renderers
+% Signatures:
+%   \HBSymbolTable{symbol header}{meaning header}{row macro calls}
+%   \HBSymbolSignalRow{image path or basename}{optional label}{description}
+%   \HBSymbolIconRow{image path or basename}{description}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_symbol_icon_width\endcsname{8.5mm}
+\expandafter\providecommand\csname HBcomp_symbol_icon_height\endcsname{8.5mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_width\endcsname{30mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_height\endcsname{8.5mm}
+\expandafter\providecommand\csname HBcomp_symbol_icon_col_width\endcsname{32mm}
+\expandafter\providecommand\csname HBcomp_symbol_table_tabcolsep\endcsname{2.2pt}
+\expandafter\providecommand\csname HBcomp_symbol_table_row_stretch\endcsname{0.86}
+\expandafter\providecommand\csname HBtype_symbol_header_font_size\endcsname{6.4pt}
+\expandafter\providecommand\csname HBtype_symbol_header_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_symbol_label_font_size\endcsname{6.4pt}
+\expandafter\providecommand\csname HBtype_symbol_label_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_symbol_body_font_size\endcsname{6.2pt}
+\expandafter\providecommand\csname HBtype_symbol_body_font_leading\endcsname{7.0pt}
+
+\providecommand{\HBTypeSymbolHeader}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_symbol_header_font_size\endcsname}
+            {\csname HBtype_symbol_header_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBTypeSymbolLabel}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_symbol_label_font_size\endcsname}
+            {\csname HBtype_symbol_label_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBTypeSymbolText}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_symbol_body_font_size\endcsname}
+            {\csname HBtype_symbol_body_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\newtcolorbox{hbsymboltableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=HBSharedTableFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+\newcommand{\HBSymbolTable}[3]{%
+  \par\noindent
+  \begin{hbsymboltableframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
+  \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}
+  \begin{tabular}{|
+    >{\centering\arraybackslash}m{\csname HBcomp_symbol_icon_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_symbol_icon_col_width\endcsname
+      -4\tabcolsep-3\arrayrulewidth\relax}|}
+  \hline
+  \rowcolor{HBSharedTableLeftBg}
+  \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
+  \hline
+  #3%
+  \end{tabular}
+  \endgroup
+  \end{hbsymboltableframe}
+  \par
+}
+
+\providecommand{\HBSymbolSignalRow}[3]{%
+  \begin{minipage}[c]{\csname HBcomp_symbol_icon_col_width\endcsname}
+    \centering
+    \HBImageOrPlaceholder
+      {\csname HBcomp_symbol_signal_width\endcsname}
+      {\csname HBcomp_symbol_signal_height\endcsname}
+      {#1}%
+    \HBIfBlankTF{#2}{}{\\[-0.2mm]\HBTypeSymbolLabel{#2}}%
+  \end{minipage}
+  &
+  \HBTypeSymbolText{#3}%
+  \tabularnewline\hline
+}
+
+\providecommand{\HBSymbolIconRow}[2]{%
+  \HBImageOrPlaceholder
+    {\csname HBcomp_symbol_icon_width\endcsname}
+    {\csname HBcomp_symbol_icon_height\endcsname}
+    {#1}%
+  &
+  \HBTypeSymbolText{#2}%
+  \tabularnewline\hline
+}
+
+% ------------------------------
+% Compact LCD icon table for raw LaTeX renderers
+% Signatures:
+%   \begin{HBLcdIconTable} ... \end{HBLcdIconTable}
+%   \HBLcdIconRow{no}{image path or basename}{icon/name}{description}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_lcd_no_col_width\endcsname{5.2mm}
+\expandafter\providecommand\csname HBcomp_lcd_icon_width\endcsname{8mm}
+\expandafter\providecommand\csname HBcomp_lcd_icon_height\endcsname{8mm}
+\expandafter\providecommand\csname HBcomp_lcd_icon_col_width\endcsname{11mm}
+\expandafter\providecommand\csname HBcomp_lcd_label_col_width\endcsname{0.24\linewidth}
+\expandafter\providecommand\csname HBcomp_lcd_table_tabcolsep\endcsname{2.0pt}
+\expandafter\providecommand\csname HBcomp_lcd_table_row_stretch\endcsname{0.82}
+\expandafter\providecommand\csname HBtype_lcd_no_font_size\endcsname{5.8pt}
+\expandafter\providecommand\csname HBtype_lcd_no_font_leading\endcsname{6.4pt}
+\expandafter\providecommand\csname HBtype_lcd_label_font_size\endcsname{6.2pt}
+\expandafter\providecommand\csname HBtype_lcd_label_font_leading\endcsname{6.8pt}
+\expandafter\providecommand\csname HBtype_lcd_body_font_size\endcsname{6.0pt}
+\expandafter\providecommand\csname HBtype_lcd_body_font_leading\endcsname{6.8pt}
+
+\providecommand{\HBTypeLcdNo}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_lcd_no_font_size\endcsname}
+            {\csname HBtype_lcd_no_font_leading\endcsname}\selectfont
+   \centering #1}%
+}
+
+\providecommand{\HBTypeLcdLabel}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_lcd_label_font_size\endcsname}
+            {\csname HBtype_lcd_label_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBTypeLcdText}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_lcd_body_font_size\endcsname}
+            {\csname HBtype_lcd_body_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\newtcolorbox{hblcdicontableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=LineK40,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+\newenvironment{HBLcdIconTable}{%
+  \par\noindent
+  \begin{hblcdicontableframe}
+  \begingroup
+  \arrayrulecolor{LineK40}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
+  \setlength{\tabcolsep}{\csname HBcomp_lcd_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_lcd_table_row_stretch\endcsname}
+  \begin{tabular}{|
+    >{\centering\arraybackslash}m{\csname HBcomp_lcd_no_col_width\endcsname}|
+    >{\centering\arraybackslash}m{\csname HBcomp_lcd_icon_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_label_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_lcd_no_col_width\endcsname
+      -\csname HBcomp_lcd_icon_col_width\endcsname
+      -\csname HBcomp_lcd_label_col_width\endcsname
+      -8\tabcolsep-5\arrayrulewidth\relax}|}
+  \hline
+}{%
+  \end{tabular}
+  \endgroup
+  \end{hblcdicontableframe}
+  \par
+}
+
+\providecommand{\HBLcdIconRow}[4]{%
+  \HBTypeLcdNo{#1}%
+  &
+  \HBImageOrPlaceholder
+    {\csname HBcomp_lcd_icon_width\endcsname}
+    {\csname HBcomp_lcd_icon_height\endcsname}
+    {#2}%
+  &
+  \HBTypeLcdLabel{#3}%
+  &
+  \HBTypeLcdText{#4}%
+  \tabularnewline\hline
+}
+
+% ------------------------------
+% Compact LCD mode table for operation pages
+% Signatures:
+%   \begin{HBLcdModeTable}{image path or basename}
+%   \HBLcdModeFirstGroup{mode}{action1}{text1}{action2}{text2}{action3}{text3}
+%   \HBLcdModeSecondGroup{mode}{action1}{text1}{action2}{text2}{action3}{text3}
+%   \end{HBLcdModeTable}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_lcd_mode_image_col_width\endcsname{22mm}
+\expandafter\providecommand\csname HBcomp_lcd_mode_image_width\endcsname{20mm}
+\expandafter\providecommand\csname HBcomp_lcd_mode_image_height\endcsname{22mm}
+\expandafter\providecommand\csname HBcomp_lcd_mode_state_col_width\endcsname{21mm}
+\expandafter\providecommand\csname HBcomp_lcd_mode_action_col_width\endcsname{15mm}
+\expandafter\providecommand\csname HBcomp_lcd_mode_table_tabcolsep\endcsname{2.0pt}
+\expandafter\providecommand\csname HBcomp_lcd_mode_table_row_stretch\endcsname{0.9}
+
+\newtcolorbox{hblcdmodetableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=LineK40,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+\makeatletter
+\newenvironment{HBLcdModeTable}[1]{%
+  \def\HB@lcdmodeimage{#1}%
+  \par\noindent
+  \begin{hblcdmodetableframe}
+  \begingroup
+  \arrayrulecolor{LineK40}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
+  \setlength{\tabcolsep}{\csname HBcomp_lcd_mode_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_lcd_mode_table_row_stretch\endcsname}
+  \begin{tabular}{|
+    >{\centering\arraybackslash}m{\csname HBcomp_lcd_mode_image_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_mode_state_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_mode_action_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_lcd_mode_image_col_width\endcsname
+      -\csname HBcomp_lcd_mode_state_col_width\endcsname
+      -\csname HBcomp_lcd_mode_action_col_width\endcsname
+      -8\tabcolsep-5\arrayrulewidth\relax}|}
+  \hline
+}{%
+  \end{tabular}
+  \endgroup
+  \end{hblcdmodetableframe}
+  \par
+}
+
+\newcommand{\HBLcdModeFirstGroup}[7]{%
+  \multirow{6}{*}{%
+    \parbox[c]{\csname HBcomp_lcd_mode_image_col_width\endcsname}{%
+      \centering
+      \HBImageOrPlaceholder
+        {\csname HBcomp_lcd_mode_image_width\endcsname}
+        {\csname HBcomp_lcd_mode_image_height\endcsname}
+        {\HB@lcdmodeimage}%
+    }%
+  }%
+  &
+  \multirow{3}{*}{%
+    \parbox[t]{\csname HBcomp_lcd_mode_state_col_width\endcsname}{\HBTypeLcdLabel{#1}}%
+  }%
+  & \HBTypeLcdLabel{#2} & \HBTypeLcdText{#3}\tabularnewline \cline{3-4}
+  & & \HBTypeLcdLabel{#4} & \HBTypeLcdText{#5}\tabularnewline \cline{3-4}
+  & & \HBTypeLcdLabel{#6} & \HBTypeLcdText{#7}\tabularnewline \cline{2-4}
+}
+
+\newcommand{\HBLcdModeSecondGroup}[7]{%
+  &
+  \multirow{3}{*}{%
+    \parbox[t]{\csname HBcomp_lcd_mode_state_col_width\endcsname}{\HBTypeLcdLabel{#1}}%
+  }%
+  & \HBTypeLcdLabel{#2} & \HBTypeLcdText{#3}\tabularnewline \cline{3-4}
+  & & \HBTypeLcdLabel{#4} & \HBTypeLcdText{#5}\tabularnewline \cline{3-4}
+  & & \HBTypeLcdLabel{#6} & \HBTypeLcdText{#7}\tabularnewline \hline
+}
+\makeatother
 
 % ------------------------------
 % Shared H1 section title

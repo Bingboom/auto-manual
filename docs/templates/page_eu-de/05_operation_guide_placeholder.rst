@@ -171,20 +171,10 @@ LCD-ANZEIGE
 
    .. raw:: latex
 
-      \begingroup
-      \renewcommand{\arraystretch}{1.25}
-      \setlength{\tabcolsep}{6pt}
-      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
-      \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Kurzzeitig an}} & Ein & Drücken Sie die POWER-Taste oder während das Produkt geladen wird. \\ \cline{3-4}
-      & & Aus & Drücken Sie die POWER-Taste. \\ \cline{3-4}
-      & & Autom. aus & Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Dauerhaft an (beim Laden oder Entladen)}} & Ein & Drücken Sie die POWER-Taste zweimal, wenn das Produkt eingeschaltet ist. \\ \cline{3-4}
-      & & Aus & Drücken Sie die POWER-Taste. \\ \cline{3-4}
-      & & Autom. aus & Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus. \\ \hline
-      \end{tabular}
-      \endgroup
+      \begin{HBLcdModeTable}{lcd_mode.png}
+      \HBLcdModeFirstGroup{Kurzzeitig an}{Ein}{Drücken Sie die POWER-Taste oder während das Produkt geladen wird.}{Aus}{Drücken Sie die POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.}
+      \HBLcdModeSecondGroup{Dauerhaft an (beim Laden oder Entladen)}{Ein}{Drücken Sie die POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.}{Aus}{Drücken Sie die POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus.}
+      \end{HBLcdModeTable}
 
 Sie können den Bildschirm-Anzeigemodus auch in der Jackery-App einstellen.
 
