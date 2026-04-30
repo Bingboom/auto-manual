@@ -38,16 +38,16 @@ pages:
     file: templates/page_eu-es/06_ups_mode.rst
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/charging.rst
+    file: templates/page_shared/es/charging.rst
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/08_charging_methods.rst
+    file: templates/page_shared/es/08_charging_methods.rst
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/09_storage_and_maintenance.rst
+    file: templates/page_shared/es/09_storage_and_maintenance.rst
   - type: rst_include
     lang: es
-    file: templates/page_eu-es/10_troubleshooting.rst
+    file: templates/page_shared/es/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec

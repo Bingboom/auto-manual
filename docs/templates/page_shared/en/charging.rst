@@ -9,15 +9,30 @@
       :alt: Battery pack connection diagram placeholder.
       :width: 360px
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 12 88
+   .. only:: region_us
 
-      * - **CAUTION**
-        - - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
-          - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (about 200 mm) of space between the vents and any objects to allow for proper heat dissipation.
-          - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
-          - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **CAUTION**
+           - - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+             - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (about 200 mm) of space between the vents and any objects to allow for proper heat dissipation.
+             - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
+             - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
+
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **CAUTION**
+           - - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+             - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.
+             - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
+             - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
 
    .. list-table::
       :header-rows: 0
@@ -40,7 +55,7 @@ CHARGING
    :widths: 12 88
 
    * - **NOTE**
-     - - The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C).
+     - - The recommended charging temperature for the product ranges from |CHARGING_TEMPERATURE_VALUE_1|, and the discharging temperature ranges from |DISCHARGING_TEMPERATURE_VALUE_1|.
        - Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.
        - The charging power and battery capacity of the product may vary due to temperature fluctuations.
 
@@ -62,6 +77,6 @@ Connect the AC charging cable to the AC input port of the product and a wall out
 
 
 **Emergency Charging Mode**
-| 
+|
 | Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
 | \*To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.

@@ -44,16 +44,16 @@ pages:
     file: templates/page_us-en/06_ups_mode.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/charging.rst
+    file: templates/page_shared/en/charging.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/08_charging_methods.rst
+    file: templates/page_shared/en/08_charging_methods.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/09_storage_and_maintenance.rst
+    file: templates/page_shared/en/09_storage_and_maintenance.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/10_troubleshooting.rst
+    file: templates/page_shared/en/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec
@@ -108,16 +108,16 @@ pages:
     file: templates/page_us-fr/06_ups_mode.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/charging.rst
+    file: templates/page_shared/fr/charging.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/08_charging_methods.rst
+    file: templates/page_shared/fr/08_charging_methods.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/09_storage_and_maintenance.rst
+    file: templates/page_shared/fr/09_storage_and_maintenance.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/10_troubleshooting.rst
+    file: templates/page_shared/fr/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec
@@ -172,16 +172,16 @@ pages:
     file: templates/page_us-es/06_ups_mode.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/charging.rst
+    file: templates/page_shared/es/charging.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/08_charging_methods.rst
+    file: templates/page_shared/es/08_charging_methods.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/09_storage_and_maintenance.rst
+    file: templates/page_shared/es/09_storage_and_maintenance.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/10_troubleshooting.rst
+    file: templates/page_shared/es/10_troubleshooting.rst
   - type: csv_page
     source: phase1
     page: spec

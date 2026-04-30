@@ -293,6 +293,28 @@ class TestSpecMasterLookup(unittest.TestCase):
             {
                 "Region": "US",
                 "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Row_key": "charging_temperature",
+                "Line_order": "1",
+                "Value_source": "-4°F to 113°F / -20°C to 45°C",
+                "Value_fr": "-4°F à 113°F / -20°C à 45°C",
+                "Value_es": "-4°F a 113°F / -20°C a 45°C",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "specifications",
+                "Row_key": "discharging_temperature",
+                "Line_order": "1",
+                "Value_source": "-4°F to 113°F / -20°C to 45°C",
+                "Value_fr": "-4°F à 113°F / -20°C à 45°C",
+                "Value_es": "-4°F a 113°F / -20°C a 45°C",
+                "Model": "JHP-2000A",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
                 "Page": "storage",
                 "Row_key": "storage_temperature",
                 "Line_order": "1",
@@ -346,12 +368,28 @@ class TestSpecMasterLookup(unittest.TestCase):
             en_substitutions["STORAGE_TEMPERATURE_LINE_1"],
         )
         self.assertEqual(
+            "-4°F to 113°F / -20°C to 45°C",
+            en_substitutions["CHARGING_TEMPERATURE_VALUE_1"],
+        )
+        self.assertEqual(
+            "-4°F to 113°F / -20°C to 45°C",
+            en_substitutions["DISCHARGING_TEMPERATURE_VALUE_1"],
+        )
+        self.assertEqual(
             "1 mois : -4°F à 113°F / -20°C à 45°C (0-60% HR)",
             fr_substitutions["STORAGE_TEMPERATURE_LINE_1"],
         )
         self.assertEqual(
+            "-4°F à 113°F / -20°C à 45°C",
+            fr_substitutions["CHARGING_TEMPERATURE_VALUE_1"],
+        )
+        self.assertEqual(
             "1 mes: -4°F a 113°F / -20°C a 45°C (0-60% HR)",
             es_substitutions["STORAGE_TEMPERATURE_LINE_1"],
+        )
+        self.assertEqual(
+            "-4°F a 113°F / -20°C a 45°C",
+            es_substitutions["CHARGING_TEMPERATURE_VALUE_1"],
         )
         self.assertEqual(
             "1か月：-20℃ ～ 45℃（0-60% RH）",
@@ -398,6 +436,15 @@ class TestSpecMasterLookup(unittest.TestCase):
                 lang=lang,
             )
             self.assertEqual(expected, substitutions["STORAGE_TEMPERATURE_LINE_1"])
+
+        us_en_substitutions = resolve_template_substitutions_from_spec_master(
+            spec_master_csv,
+            model="JE-1000F",
+            region="US",
+            lang="en",
+        )
+        self.assertEqual("-4°F to 113°F / -20°C to 45°C", us_en_substitutions["CHARGING_TEMPERATURE_VALUE_1"])
+        self.assertEqual("-4°F to 113°F / -20°C to 45°C", us_en_substitutions["DISCHARGING_TEMPERATURE_VALUE_1"])
 
         jp_substitutions = resolve_template_substitutions_from_spec_master(
             spec_master_csv,
