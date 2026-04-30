@@ -1,7 +1,7 @@
 CONFIGURAZIONE DELL'APP
 =======================
 
-**1. Scarica l'app e accedi**
+**1. Per scaricare l'app e accedere**
 
 .. image:: templates/word_template/common_assets/app/download.png
    :alt: Segnaposto QR di download dell'app e marketplace.
@@ -10,11 +10,11 @@ CONFIGURAZIONE DELL'APP
 Cerca "Jackery" su Google Play o nell'App Store per installare l'app. Dopodiche, puoi registrarti e accedere.
 In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'app.
 
-**2. Aggiungi dispositivo**
+**2. Per aggiungere il dispositivo**
 
 2.1 Fai clic sul pulsante **+** per aggiungere il dispositivo.
 
-2.2 Premi il |MAIN_POWER_BUTTON_LABEL| sul dispositivo per accenderlo; le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo e entrato nella modalita di configurazione di rete. Tocca il pulsante "**Icona lampeggiante**" e consenti all'app di connettersi ai dispositivi vicini e di aprire le autorizzazioni Bluetooth.
+2.2 Premi il |MAIN_POWER_BUTTON_LABEL| sul dispositivo per accenderlo; le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo e entrato nella modalita di configurazione di rete. Fai clic sul pulsante "**Icon Flashed**" (icona lampeggiante) e consenti all'app di connettersi ai dispositivi vicini e di aprire le autorizzazioni Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Segnaposto per il passaggio di aggiunta dispositivo nell'app.
@@ -48,7 +48,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
      -
        - Seleziona una rete Wi-Fi nella banda da 2,4 GHz. Il dispositivo non supporta reti Wi-Fi nella banda da 5 GHz.
 
-| 2.5 Dopo che il dispositivo e stato aggiunto con successo all'app, l'icona Wi-Fi sul dispositivo restera sempre accesa.
+| Dopo che il dispositivo e stato aggiunto con successo all'app, l'icona Wi-Fi sul dispositivo restera sempre accesa.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Segnaposto schermata di risultato configurazione app.

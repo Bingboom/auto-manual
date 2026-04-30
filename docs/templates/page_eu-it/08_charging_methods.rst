@@ -18,7 +18,7 @@ Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli s
    :widths: 12 88
 
    * - **ATTENZIONE**
-     - A una porta di ingresso DC8020 possono essere collegati al massimo due pannelli solari.
+     - Una porta di ingresso DC8020 può essere collegata al massimo a due pannelli solari.
 
 .. list-table::
    :header-rows: 0
@@ -32,14 +32,16 @@ Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli s
 
 Si consiglia di utilizzare il pannello solare Jackery per caricare il prodotto. Assicurarsi che la tensione a circuito aperto (V\ :sub:`oc`) del pannello solare rientri nell'intervallo di ingresso CC (16V-60V) di |PRODUCT_NAME|. Jackery non e responsabile di eventuali danni o perdite derivanti dall'uso di pannelli solari di terze parti.
 
-RICARICA TRAMITE CARICATORE PER AUTO (VENDUTO SEPARATAMENTE)
+RICARICA TRAMITE CARICATORE PER AUTO (VENDUTI SEPARATAMENTE)
 ------------------------------------------------------------
 
-Questo prodotto puo essere caricato utilizzando un caricatore per auto da 12V. Assicurarsi che il caricatore per auto e la presa di alimentazione per auto da 12V (accendisigari dell'auto) forniscano un collegamento stabile.
+Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e l'accendisigari dell'auto siano ben collegati.
 
 .. image:: templates/word_template/common_assets/charging/car_charge.png
    :alt: Segnaposto diagramma di collegamento per la ricarica in auto.
    :width: 360px
+
+Veicolo
 
 | \*Il cavo di ricarica per auto e venduto separatamente.
 

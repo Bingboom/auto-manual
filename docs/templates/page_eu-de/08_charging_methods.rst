@@ -1,5 +1,5 @@
-AUFLADEN ÜBER SOLARPANEL (SEPARAT ERHÄLTLICH)
----------------------------------------------
+AUFLADEN ÜBER SOLARMODULE (SEPARAT ERHÄLTLICH)
+----------------------------------------------
 
 |PRODUCT_NAME| verfügt über zwei DC8020-Eingangsanschlüsse und ist mit den Jackery-Solarmodulen kompatibel.
 

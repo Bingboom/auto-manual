@@ -1,8 +1,8 @@
-BEDIENUNG
-=========
+GRUNDLEGENDE OPERATIONEN
+========================
 
-EIN-/AUSSCHALTEN
----------------
+HAUPTSTROMVERSORGUNG EIN/AUS
+----------------------------
 
 .. image:: templates/word_template/common_assets/operation/main_power.png
    :alt: Platzhalter für Ein-/Ausschalten.
@@ -54,10 +54,8 @@ DC 12V/USB-AUSGANG EIN/AUS
 
    * - **VORSICHT**
      -
-       - **|USB_C_HIGH_POWER_PORT_LABEL| ist ein Hochleistungs-Ausgangsanschluss der USB-PD Power Source 3 (PS3).** Wenn das angeschlossene Endgerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, besteht Brandgefahr. Bevor Sie diese Anschlüsse verwenden, stellen Sie sicher, dass das angeschlossene Gerät oder Zubehör über einen geeigneten Brandschutz verfügt.
        - Schließen Sie den Jackery Explorer 1000 nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder anderen gleichwertigen Normen) entsprechen.
-       - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5A-Kabel (20 V DC/5 A, 100 W).
-
+       - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W).
 
 | Das Produkt kann Ihre Fahrzeugbatterie mit dem Jackery 12-V-Autobatterie-Ladekabel aufladen, das separat erhältlich und auf unserer Website verfügbar ist.
  
@@ -75,9 +73,9 @@ DC 12V/USB-AUSGANG EIN/AUS
 ENERGIESPARMODUS
 ----------------
 
-Um zu verhindern, dass die Batterie unnötig entladen wird, wenn das Ausschalten des Ausgangs vergessen wird, ist der Energiesparmodus standardmäßig aktiviert. Wenn der AC- oder DC/USB-Ausgang eingeschaltet wird, wird das Energiesparmodus-Symbol auf dem LCD angezeigt. In diesem Modus schaltet sich der entsprechende Ausgang nach der eingestellten Zeit automatisch aus, wenn kein Gerät angeschlossen ist oder die Leistungsaufnahme des angeschlossenen Geräts unter einem bestimmten Schwellenwert liegt (|ENERGY_SAVING_AC_THRESHOLD| beim AC-Ausgang oder |ENERGY_SAVING_DC_THRESHOLD| beim DC/USB-Ausgang). Die Standardeinstellung ist |ENERGY_SAVING_AUTO_OFF_DURATION|. Die Dauer des Energiesparmodus kann in der Jackery-App auf 2H, 8H, 12H oder 24H eingestellt werden. Wenn "Nie ausschalten" eingestellt ist, wird der Energiesparmodus deaktiviert.
+Um zu verhindern, dass die Batterie unnötig entladen wird, wenn das Ausschalten des Ausgangs vergessen wird, ist der Energiesparmodus standardmäßig aktiviert. Wenn der AC- oder DC/USB-Ausgang eingeschaltet wird, wird das Energiesparmodus-Symbol auf dem LCD angezeigt. In diesem Modus schaltet sich der entsprechende Ausgang nach der eingestellten Zeit automatisch aus, wenn kein Gerät angeschlossen ist oder die Leistungsaufnahme des angeschlossenen Geräts unter einem bestimmten Schwellenwert liegt (|ENERGY_SAVING_AC_THRESHOLD| beim AC-Ausgang oder |ENERGY_SAVING_DC_THRESHOLD| beim DC/USB-Ausgang). Die Standardeinstellung ist |ENERGY_SAVING_AUTO_OFF_DURATION|. Die Dauer des Energiesparmodus kann in der Jackery-App auf 1 H, 2 H, 8 H, 12 H oder 24 H eingestellt werden. Wenn "Nie ausschalten" eingestellt ist, wird der Energiesparmodus deaktiviert.
 
-Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Stromtaste als auch den Hauptnetzschalter länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder USB-Ausgang nicht mehr automatisch aus.
+Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Stromtaste als auch die POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus.
 
 Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
 
@@ -109,6 +107,26 @@ Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie i
 | Drücken Sie die LED-Lichttaste einmal, um das Licht einzuschalten.
 | Drücken Sie sie erneut, um in den SOS-Modus zu wechseln.
 | Drücken Sie sie ein drittes Mal, um das Licht auszuschalten.
+
+Wiederaufnahmefunktion für AC- und DC-Ausgänge
+----------------------------------------------
+
+Diese Funktion speichert den Ausgangszustand und stellt die AC- und DC-Ausgänge unter bestimmten Bedingungen automatisch wieder her.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 50 50
+
+   * - Bedingungen für automatische Wiederherstellung
+     - Bedingungen ohne automatische Wiederherstellung
+   * - Einschalten/Neustart nach Abschalten oder Neustart
+     - Manuelles Ausschalten der Ausgänge (Taste/App)
+   * - Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze
+     - Ausgang im Energiesparmodus deaktiviert
+   * -
+     - Schutzbedingter Ausgang deaktiviert
+   * - OTA-Update abgeschlossen
+     - Durch Entlade-Timer gesteuerter Ausgang deaktiviert
 
 LCD-ANZEIGE
 -----------

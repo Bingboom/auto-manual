@@ -1,8 +1,8 @@
 RISOLUZIONE DEI PROBLEMI
 ========================
 
-Se compare uno dei seguenti codici di errore, segui le azioni correttive elencate per risolvere il problema.
-Se il guasto persiste, contatta l'Assistenza clienti Jackery.
+Se viene visualizzato uno dei seguenti codici di errore, segui le azioni correttive elencate per risolvere il problema.
+Se l'errore persiste, contatta l'Assistenza clienti Jackery.
 
 .. list-table::
    :header-rows: 1
@@ -11,17 +11,17 @@ Se il guasto persiste, contatta l'Assistenza clienti Jackery.
    * - Codice errore
      - Misure correttive
    * - F0
-     - Riavvia il prodotto.
+     - Riavviare il prodotto.
    * - F1
-     - Riavvia il prodotto.
+     - Riavviare il prodotto.
    * - F2
-     - Riavvia il prodotto.
+     - Riavviare il prodotto.
    * - F3
-     - Riavvia il prodotto.
+     - Riavviare il prodotto.
    * - F4
      - Collega il prodotto ai carichi per scaricare la batteria fino a quando il guasto scompare.
    * - F5
-     - Carica il prodotto tramite pannelli solari o una presa a muro CA fino a quando il guasto scompare.
+     - Caricare il prodotto tramite pannelli solari o una presa a muro CA fino a quando l'errore non scompare.
    * - F6
      - 1. Attendi che la rete torni alla normalita prima di caricare il prodotto tramite una presa a muro CA.
        2. Verifica che le prese d'aria di ingresso e di scarico non siano ostruite; assicurati che ci siano 20 cm di spazio libero su entrambi i lati del prodotto.

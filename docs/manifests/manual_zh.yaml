@@ -5,9 +5,6 @@ pages:
     file: templates/page_zh/00_preface.rst
   - type: rst_include
     lang: zh
-    file: templates/page_zh/safety_zh.rst
-  - type: rst_include
-    lang: zh
     file: templates/page_zh/01_meaning_of_symbols.rst
   - type: rst_include
     lang: zh
@@ -51,9 +48,6 @@ pages:
     page: spec
     langs: [zh]
     include_dir: generated/{model}
-  - type: rst_include
-    lang: zh
-    file: templates/page_zh/11_warranty.rst
   - type: generated_page
     page: 12_app_setup
     engine: draft_v1

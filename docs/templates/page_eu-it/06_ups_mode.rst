@@ -7,8 +7,8 @@ GRUPPO DI CONTINUITA (UPS)
 
 | Un gruppo di continuita (UPS) e un sistema di alimentazione continua che fornisce automaticamente energia di riserva a un carico quando viene a mancare l'alimentazione della rete elettrica.
 | In caso di improvvisa interruzione dell'alimentazione di rete, |PRODUCT_NAME| passera automaticamente all'alimentazione accumulata entro 10 ms per mantenere in funzione i tuoi apparecchi.
-| In modalita UPS, la potenza di picco dell'unita raggiunge |UPS_BYPASS_OUTPUT_TEXT| prima dei blackout. Poiche in modalita bypass sono abilitati la carica e la scarica simultanee,
-| la potenza di uscita effettiva in questa modalita e inferiore alla potenza nominale, ma torna alla potenza nominale durante i blackout.
+| In modalita UPS, la potenza di picco dell'unita raggiunge |UPS_BYPASS_OUTPUT_TEXT| prima dei interruzioni di corrente. Poiche in modalita bypass sono abilitati la carica e la scarica simultanee,
+| la potenza di uscita effettiva in questa modalita e inferiore alla potenza nominale, ma torna alla potenza nominale durante i interruzioni di corrente.
 
 .. list-table::
    :header-rows: 0
