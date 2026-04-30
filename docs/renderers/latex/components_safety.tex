@@ -106,6 +106,20 @@
 }
 
 % ==================================================
+% SINGLE COLUMN
+% ==================================================
+
+\newenvironment{safetysinglecol}{%
+  \par\noindent
+  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
+  \begingroup
+    \HBTypeListStart
+}{%
+  \par
+  \endgroup
+}
+
+% ==================================================
 % LEAD
 % ==================================================
 

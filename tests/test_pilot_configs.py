@@ -92,6 +92,17 @@ class TestPilotConfigs(unittest.TestCase):
                 )
                 self.assertEqual([], issues)
 
+    def test_us_safety_pages_should_remain_two_column(self) -> None:
+        for lang in ("en", "fr", "es"):
+            with self.subTest(lang=lang):
+                safety_path = ROOT / "docs" / "templates" / f"page_us-{lang}" / f"safety_{lang}.rst"
+                text = safety_path.read_text(encoding="utf-8")
+
+                self.assertIn("safetytwocol", text)
+                self.assertIn("hb-two-col", text)
+                self.assertNotIn("safetysinglecol", text)
+                self.assertNotIn("hb-single-col", text)
+
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
             ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 15),
@@ -141,6 +152,44 @@ class TestPilotConfigs(unittest.TestCase):
                     langs=[expected_lang],
                 )
                 self.assertEqual([], issues)
+
+    def test_eu_safety_pages_should_use_eu_safety_content(self) -> None:
+        cases = (
+            ("en", "SAFETY PRECAUTIONS FOR USE", "USER MAINTENANCE INSTRUCTIONS"),
+            ("fr", "PRÉCAUTIONS DE SÉCURITÉ POUR L'UTILISATION", "INSTRUCTIONS D’ENTRETIEN PAR L’UTILISATEUR"),
+            ("es", "PRECAUCIONES DE SEGURIDAD PARA EL USO", "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO"),
+            ("de", "SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG", "ANWEISUNGEN ZUR BENUTZERWARTUNG"),
+            ("it", "PRECAUZIONI DI SICUREZZA", "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL'UTENTE"),
+            ("uk", "ЗАХОДИ БЕЗПЕКИ ПІД ЧАС ВИКОРИСТАННЯ", "ІНСТРУКЦІЇ З ТЕХНІЧНОГО ОБСЛУГОВУВАННЯ КОРИСТУВАЧЕМ"),
+        )
+        us_only_markers = (
+            "SAVE THESE INSTRUCTIONS",
+            "CONSERVEZ CES INSTRUCTIONS",
+            "GUARDE ESTAS INSTRUCCIONES",
+            "ЗБЕРЕЖІТЬ ЦІ ВКАЗІВКИ",
+            "MISE À LA TERRE",
+            "CONEXIÓN A TIERRA",
+            "GROUNDING",
+            "457 mm",
+            "18 pouces",
+            "18 pulgadas",
+            "|CHARGING_TEMPERATURE_VALUE_1|",
+            "|DISCHARGING_TEMPERATURE_VALUE_1|",
+        )
+
+        for lang, expected_title, expected_maintenance_heading in cases:
+            with self.subTest(lang=lang):
+                safety_path = ROOT / "docs" / "templates" / f"page_eu-{lang}" / f"safety_{lang}.rst"
+                text = safety_path.read_text(encoding="utf-8")
+
+                self.assertIn(expected_title, text)
+                self.assertIn(expected_maintenance_heading, text)
+                self.assertIn("safetysinglecol", text)
+                self.assertIn("hb-single-col", text)
+                self.assertNotIn("safetytwocol", text)
+                self.assertNotIn("hb-two-col", text)
+                for marker in us_only_markers:
+                    self.assertNotIn(marker, text)
 
     def test_eu_merged_config_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cfg = check_docs.load_config(ROOT / "config.eu.yaml")
