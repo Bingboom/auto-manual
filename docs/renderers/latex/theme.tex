@@ -30,3 +30,6 @@
 % --- enforce paragraph spacing (override sphinx/parskip) ---
 \setlength{\parindent}{\csname HBpage_parindent\endcsname}
 \setlength{\parskip}{\csname HBpage_parskip\endcsname}
+
+% Apply the compact manual body type after fonts.tex is injected.
+\AtBeginDocument{\HBTypeBaseStart}

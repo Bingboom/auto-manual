@@ -59,7 +59,10 @@
       &
       \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
         \HBTypeWarningTextStart
-        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
+        \HBapplyalignment
+        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{%
+          \HBifupper{\csname HBtype_warning_text_force_upper\endcsname}{#1}%
+        }%
       }%
     \end{tabular}%
   \end{safetywarningbox}%
@@ -102,7 +105,7 @@
     \HBTypeListStart
 }{%
   \end{multicols}
-  \par
+  \par\vspace*{\csname HBcomp_twocol_after\endcsname}
 }
 
 % ==================================================
@@ -117,6 +120,7 @@
 }{%
   \par
   \endgroup
+  \vspace*{\csname HBcomp_twocol_after\endcsname}
 }
 
 % ==================================================

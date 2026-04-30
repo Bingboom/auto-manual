@@ -16,6 +16,40 @@
   \setCJKmonofont{#1}[AutoFakeBold=2.0,AutoFakeSlant=0.2]
 }
 
+\providecommand{\HBFontRegular}{\normalfont\mdseries}
+\providecommand{\HBFontMedium}{\normalfont\mdseries}
+\providecommand{\HBFontSemiBold}{\normalfont\bfseries}
+\providecommand{\HBFontBold}{\normalfont\bfseries}
+\providecommand{\HBFontHeavy}{\normalfont\bfseries}
+
+\newcommand{\HBSetupLatinWeightMacros}{%
+  \IfFontExistsTF{Gilroy}{%
+    \newfontfamily\HBGilroyRegular{Gilroy}[Ligatures=TeX]%
+    \renewcommand{\HBFontRegular}{\HBGilroyRegular}%
+  }{}%
+  \IfFontExistsTF{Gilroy Medium}{%
+    \newfontfamily\HBGilroyMedium{Gilroy Medium}[Ligatures=TeX]%
+    \renewcommand{\HBFontMedium}{\HBGilroyMedium}%
+  }{}%
+  \IfFontExistsTF{Gilroy SemiBold}{%
+    \newfontfamily\HBGilroySemiBold{Gilroy SemiBold}[Ligatures=TeX]%
+    \renewcommand{\HBFontSemiBold}{\HBGilroySemiBold}%
+  }{%
+    \IfFontExistsTF{Gilroy Medium}{%
+      \newfontfamily\HBGilroySemiBold{Gilroy Medium}[Ligatures=TeX]%
+      \renewcommand{\HBFontSemiBold}{\HBGilroySemiBold}%
+    }{}%
+  }%
+  \IfFontExistsTF{Gilroy Bold}{%
+    \newfontfamily\HBGilroyBold{Gilroy Bold}[Ligatures=TeX]%
+    \renewcommand{\HBFontBold}{\HBGilroyBold}%
+  }{}%
+  \IfFontExistsTF{Gilroy Heavy}{%
+    \newfontfamily\HBGilroyHeavy{Gilroy Heavy}[Ligatures=TeX]%
+    \renewcommand{\HBFontHeavy}{\HBGilroyHeavy}%
+  }{}%
+}
+
 \newcommand{\HBSetupFonts}{%
   \HBLocalGilroyOverride
 
@@ -169,6 +203,10 @@
       }%
     }%
   }%
+
+  % Weight-specific Latin macros for reference-style typography.
+  % Missing weights fall back to the default document family safely.
+  \HBSetupLatinWeightMacros
 }
 
 % fonts.tex is injected in the preamble after Sphinx defaults, so apply the
