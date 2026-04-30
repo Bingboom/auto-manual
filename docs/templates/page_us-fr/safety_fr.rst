@@ -57,8 +57,8 @@
 
    - Cessez immédiatement d’utiliser le produit s’il présente des signes de dommage. Arrêtez l’utilisation et contactez l’assistance clientèle pour obtenir de l’aide.
    - Ne rechargez pas la batterie dans un environnement extrêmement chaud ou froid, et respectez strictement les plages de températures d’utilisation spécifiées du produit :
-     - Température de charge : -4°F à 113°F (-20°C à 45°C)
-     - Température de décharge : -4°F à 113°F (-20°C à 45°C)
+     - Température de charge : 14°F à 113°F (-10°C à 45°C)
+     - Température de décharge : 14°F à 113°F (-10°C à 45°C)
    - Pour garantir une bonne circulation de l’air, gardez les orifices de ventilation du produit dégagés. Utilisez-le dans un endroit bien aéré, frais et sec pour éviter toute surchauffe.
      - La charge dans un environnement humide ou mal ventilé peut présenter des risques pour la sécurité.
      - L’eau peut provoquer des courts-circuits ou endommager le chargeur, entraînant des risques.
@@ -73,6 +73,7 @@
    - NE placez PAS le produit sur le sol ou à une hauteur inférieure à 457 mm (18 pouces) lors de son utilisation dans un atelier ou un centre de réparation.
    - N’utilisez PAS les accessoires du produit avec d’autres appareils ou équipements.
    - Le temps de charge solaire dépend des conditions météorologiques. Placez le panneau solaire dans un endroit exposé au soleil direct autant que possible.
+   - INSTRUCTION DE MISE À LA TERRE - Ce produit doit être mis à la terre. En cas de dysfonctionnement ou de panne, la mise à la terre fournit un chemin de moindre résistance au courant électrique afin de réduire le risque de choc électrique. Ce produit est équipé d'un cordon avec un conducteur de mise à la terre et d'une fiche de mise à la terre. La fiche doit être branchée dans une prise correctement installée et mise à la terre conformément à tous les codes et règlements locaux.
 
 
 
@@ -80,6 +81,12 @@
    .. raw:: latex
 
       \end{safetytwocol}
+
+   .. raw:: latex
+
+      \safetywarning{AVERTISSEMENT}
+
+   Une connexion incorrecte du conducteur de mise à la terre peut entraîner un risque de choc électrique. Consultez un électricien qualifié si vous avez des doutes quant à la mise à la terre correcte du produit. Ne modifiez pas la fiche fournie avec le produit – si elle ne correspond pas à la prise, faites installer une prise appropriée par un électricien qualifié.
 
 
 .. only:: html
@@ -105,6 +112,14 @@
 
         <div class="hb-two-col">
           <p class="hb-lead">CONSERVEZ CES INSTRUCTIONS</p>
-          <ul class="hb-list"><li>Cessez immédiatement d&#x27;utiliser le produit s&#x27;il présente des signes de dommage. Arrêtez l&#x27;utilisation et contactez l&#x27;assistance clientèle pour obtenir de l&#x27;aide.</li><li>Ne rechargez pas la batterie dans un environnement extrêmement chaud ou froid, et respectez strictement les plages de températures spécifiées.<ul class="hb-sublist"><li>Température de charge : -4°F à 113°F (-20°C à 45°C)</li><li>Température de décharge : -4°F à 113°F (-20°C à 45°C)</li></ul></li><li>Pour garantir une circulation de l&#x27;air adéquate, laissez les orifices de ventilation du produit dégagés. Utilisez-le dans un endroit bien aéré, frais et sec pour éviter toute surchauffe.<ul class="hb-sublist"><li>La charge dans un environnement humide ou mal ventilé peut présenter des risques pour la sécurité.</li><li>L&#x27;eau peut provoquer des courts-circuits ou endommager le chargeur, entraînant des risques pour la sécurité.</li></ul></li><li>Débranchez le cordon d&#x27;alimentation de la prise secteur pendant un orage.</li><li>Éteignez immédiatement le produit à l&#x27;aide du bouton d&#x27;alimentation s&#x27;il est tombé, a subi un choc ou a été exposé à des vibrations.</li><li>Assurez-vous que les appareil(s) sont éteints avant de les connecter au produit.</li><li>Ne rechargez pas le produit avec un câble ou une fiche endommagé(e).</li><li>N&#x27;utilisez pas le produit pour charger un appareil équipé d&#x27;un câble ou d&#x27;une fiche endommagé(e).</li><li>Débranchez toujours le cordon de charge en tirant sur la fiche, jamais sur le câble, afin de réduire le risque de dommage.</li><li>Veillez à ce que le produit soit correctement fixé lors du transport dans un véhicule en mouvement.</li><li>NE placez PAS l&#x27;appareil à l&#x27;envers ou sur le côté pendant l&#x27;utilisation ou le stockage.</li><li>NE placez PAS le produit sur le sol ou à une hauteur inférieure à 18 pouces (457 mm) au-dessus du sol pendant son utilisation dans un atelier ou un centre de réparation.</li><li>N&#x27;utilisez PAS les accessoires du produit avec d&#x27;autres appareils ou équipements.</li><li>Le temps de charge solaire dépend des conditions météorologiques. Placez votre panneau solaire à un endroit exposé au soleil direct autant que possible.</li></ul>
+          <ul class="hb-list"><li>Cessez immédiatement d&#x27;utiliser le produit s&#x27;il présente des signes de dommage. Arrêtez l&#x27;utilisation et contactez l&#x27;assistance clientèle pour obtenir de l&#x27;aide.</li><li>Ne rechargez pas la batterie dans un environnement extrêmement chaud ou froid, et respectez strictement les plages de températures spécifiées.<ul class="hb-sublist"><li>Température de charge : 14°F à 113°F (-10°C à 45°C)</li><li>Température de décharge : 14°F à 113°F (-10°C à 45°C)</li></ul></li><li>Pour garantir une circulation de l&#x27;air adéquate, laissez les orifices de ventilation du produit dégagés. Utilisez-le dans un endroit bien aéré, frais et sec pour éviter toute surchauffe.<ul class="hb-sublist"><li>La charge dans un environnement humide ou mal ventilé peut présenter des risques pour la sécurité.</li><li>L&#x27;eau peut provoquer des courts-circuits ou endommager le chargeur, entraînant des risques pour la sécurité.</li></ul></li><li>Débranchez le cordon d&#x27;alimentation de la prise secteur pendant un orage.</li><li>Éteignez immédiatement le produit à l&#x27;aide du bouton d&#x27;alimentation s&#x27;il est tombé, a subi un choc ou a été exposé à des vibrations.</li><li>Assurez-vous que les appareil(s) sont éteints avant de les connecter au produit.</li><li>Ne rechargez pas le produit avec un câble ou une fiche endommagé(e).</li><li>N&#x27;utilisez pas le produit pour charger un appareil équipé d&#x27;un câble ou d&#x27;une fiche endommagé(e).</li><li>Débranchez toujours le cordon de charge en tirant sur la fiche, jamais sur le câble, afin de réduire le risque de dommage.</li><li>Veillez à ce que le produit soit correctement fixé lors du transport dans un véhicule en mouvement.</li><li>NE placez PAS l&#x27;appareil à l&#x27;envers ou sur le côté pendant l&#x27;utilisation ou le stockage.</li><li>NE placez PAS le produit sur le sol ou à une hauteur inférieure à 18 pouces (457 mm) au-dessus du sol pendant son utilisation dans un atelier ou un centre de réparation.</li><li>N&#x27;utilisez PAS les accessoires du produit avec d&#x27;autres appareils ou équipements.</li><li>Le temps de charge solaire dépend des conditions météorologiques. Placez votre panneau solaire à un endroit exposé au soleil direct autant que possible.</li><li>INSTRUCTION DE MISE À LA TERRE - Ce produit doit être mis à la terre. En cas de dysfonctionnement ou de panne, la mise à la terre fournit un chemin de moindre résistance au courant électrique afin de réduire le risque de choc électrique. Ce produit est équipé d'un cordon avec un conducteur de mise à la terre et d'une fiche de mise à la terre. La fiche doit être branchée dans une prise correctement installée et mise à la terre conformément à tous les codes et règlements locaux.</li></ul>
         </div>
+
+        <div class="hb-warning-box">
+          <div class="hb-warning-row">
+            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-text">AVERTISSEMENT</div>
+          </div>
+        </div>
+        <p class="hb-lead">Une connexion incorrecte du conducteur de mise à la terre peut entraîner un risque de choc électrique. Consultez un électricien qualifié si vous avez des doutes quant à la mise à la terre correcte du produit. Ne modifiez pas la fiche fournie avec le produit – si elle ne correspond pas à la prise, faites installer une prise appropriée par un électricien qualifié.</p>
       </div>

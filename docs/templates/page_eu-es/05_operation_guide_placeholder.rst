@@ -12,7 +12,7 @@ ENCENDIDO/APAGADO
 | **Encendido**
 | Presione una vez
 | **Apagado**
-| Mantenga presionado durante 3 segundos
+| Mantenga presionado durante más de 3 segundos
 |
 | **Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
 | El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
@@ -69,18 +69,18 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
 
    * - **PRECAUCIÓN**
      -
-       - El puerto del mechero para auto solo es compatible con baterías de automóvil de 12V y no es adecuado para sistemas de 24V.
+       - El puerto CC de 12 V solo es compatible con baterías de automóvil de 12 V y no es adecuado para sistemas de 24 V.
        - No arranque el automóvil mientras el producto está cargando la batería del automóvil a través del puerto de salida CC de 12V, ya que esto podría dañar el producto.
-       - Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de automóvil agotada o dañada.
+       - Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de automóvil descargada o dañada.
 
 MODO DE AHORRO DE ENERGÍA
 -------------------------
 
-Para evitar un consumo innecesario de batería por olvidar apagar la salida, el producto activa por defecto el Modo de Ahorro de Energía. Cuando la salida de CA o CC/USB está encendida, el icono del modo de ahorro de energía se mostrará en la pantalla LCD. En este modo, si no hay ningún dispositivo conectado o si el consumo del dispositivo conectado está por debajo de cierto umbral (|ENERGY_SAVING_AC_THRESHOLD| en salida de CA o |ENERGY_SAVING_DC_THRESHOLD| en salida de CC/USB), la salida correspondiente se apagará automáticamente después del tiempo configurado. La configuración predeterminada es |ENERGY_SAVING_AUTO_OFF_DURATION|. La duración del Modo de Ahorro de Energía puede configurarse en la aplicación Jackery en 2 h, 8 h, 12 h o 24 h. Si se establece en "Never Off", el Modo de Ahorro de Energía se desactivará.
+Para evitar un consumo innecesario de batería por olvidar apagar la salida, el producto activa por defecto el Modo de Ahorro de Energía. Cuando la salida de CA o CC/USB está encendida, el icono del modo de ahorro de energía se mostrará en la pantalla LCD. En este modo, si no hay ningún dispositivo conectado o si el consumo del dispositivo conectado está por debajo de cierto umbral (|ENERGY_SAVING_AC_THRESHOLD| en salida de CA o |ENERGY_SAVING_DC_THRESHOLD| en salida de CC/USB), la salida correspondiente se apagará automáticamente después del tiempo configurado. La configuración predeterminada es |ENERGY_SAVING_AUTO_OFF_DURATION|. La duración del Modo de Ahorro de Energía puede configurarse en la aplicación Jackery en 1H, 2 H, 8 H, 12 H o 24 H. Si se establece en "Never Off", el Modo de Ahorro de Energía se desactivará.
 
 Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el |AC_POWER_BUTTON_LABEL_LOWER| y el |MAIN_POWER_BUTTON_LABEL_LOWER| durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB.
 
-Cuando alimente dispositivos de baja potencia (CA <= |ENERGY_SAVING_AC_THRESHOLD| o CC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
+Cuando alimente dispositivos de baja potencia (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| o CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
 
 .. image:: templates/word_template/common_assets/operation/energy_saving.png
    :alt: Operación del modo de ahorro de energía.
@@ -108,6 +108,23 @@ La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga 
 | Presione una vez el botón de la luz LED para encenderla.
 | Presiónelo nuevamente para cambiar al modo SOS.
 | Presiónelo una tercera vez para apagar la luz.
+
+Función de reanudación de Salida de CA y CC
+----------------------------------------------
+
+Esta función memoriza el estado de la salida y reanuda automáticamente las salidas de CA y CC bajo condiciones definidas.
+
++-----------------------------------------------------------------------+----------------------------------------------------------+
+| Condiciones de reanudación automática                                 | Condiciones sin reanudación automática                   |
++=======================================================================+==========================================================+
+| Encendido/Reiniciar después de apagado o reinicio                     | Apagado manual de la salida (botón/App)                  |
++-----------------------------------------------------------------------+----------------------------------------------------------+
+| SOC de la batería ≥ límite de descarga +10 % después de alcanzar      | Apagado de salida en modo de ahorro de energía           |
+| el límite                                                             +----------------------------------------------------------+
+|                                                                       | Apagado de salida activado por protección                |
++-----------------------------------------------------------------------+----------------------------------------------------------+
+| Actualización OTA completada                                          | Apagado de salida activado por temporizador de descarga  |
++-----------------------------------------------------------------------+----------------------------------------------------------+
 
 PANTALLA LCD
 ------------
@@ -190,4 +207,4 @@ COMBINACIONES DE TECLAS
      - Encender/apagar Wi-Fi y Bluetooth
    * - Botón de encendido principal + botón de luz LED
      - Mantenga pulsados ambos botones durante 1 segundo
-     - Activar/desactivar el modo de carga rápida de emergencia
+     - Activar/desactivar el modo de carga de emergencia

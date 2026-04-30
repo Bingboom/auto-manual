@@ -1,7 +1,7 @@
 CHARGEMENT PAR PANNEAUX SOLAIRES (Vendu séparément)
 ---------------------------------------------------
 
-Le |PRODUCT_NAME| dispose de deux ports d’entrée DC8020 et est compatible avec les panneaux solaires de la Jackery.
+Le |PRODUCT_NAME| dispose de deux ports d’entrée DC8020 et est compatible avec les panneaux solaires de Jackery.
 
 .. image:: templates/word_template/common_assets/charging/solar_direct.png
    :alt: Schéma de connexion pour la charge solaire 1.
@@ -32,12 +32,12 @@ Si un seul port d’entrée DC8020 doit être connecté à deux panneaux solaire
        - Ne chargez pas le produit à la fois avec un chargeur de voiture et un panneau solaire simultanément. Cela pourrait faire sauter le fusible de la voiture ou entraîner un échec de la charge.
 
 
-Il est recommandé d’utiliser le panneau solaire Jackery pour charger le |PRODUCT_NAME|. Assurez-vous que la tension en circuit ouvert (Voc) du panneau solaire se situe dans la plage de tension d’entrée CC du Jackery Explorer 1000 (16V–60V). Jackery décline toute responsabilité en cas de pertes causées par l’utilisation de panneaux solaires d’autres marques.
+Il est recommandé d’utiliser le panneau solaire Jackery pour charger le |PRODUCT_NAME|. Assurez-vous que la tension en circuit ouvert (V\ :sub:`oc`) du panneau solaire se situe dans la plage de tension d’entrée CC du Jackery Explorer 1000 (16V–60V). Jackery décline toute responsabilité pour tout dommage ou toute perte résultant de l’utilisation de panneaux solaires tiers.
 
 CHARGEMENT PAR PRISE DE VOITURE (Vendu séparément)
 --------------------------------------------------
 
-Ce produit peut être chargé à l'aide d'un chargeur de voiture 12 V. Assurez-vous que le chargeur allume-cigare et l'allume-cigare de la voiture sont bien branchés.
+Ce produit peut être chargé à l'aide d'un chargeur de voiture 12 V. Assurez-vous que le chargeur de voiture est correctement connecté à la prise 12 V du véhicule (allume-cigare).
 
 .. image:: templates/word_template/common_assets/charging/car_charge.png
    :alt: Schéma de charge en voiture.

@@ -30,7 +30,7 @@ Se il guasto persiste, contatta l'Assistenza clienti Jackery.
        5. Riavvia il prodotto.
    * - F7
      - 1. Rimuovi tutti gli ingressi CC dal prodotto.
-       2. Verifica la tensione a circuito aperto (Voc) dei pannelli solari collegati. Il prodotto consente una tensione di ingresso CC massima di 60 V.
+       2. Verifica la tensione a circuito aperto (V\ :sub:`oc`) dei pannelli solari collegati. Il prodotto consente una tensione di ingresso CC massima di 60 V.
        3. Riavvia il prodotto e lascialo inattivo. Attendi che il guasto scompaia.
    * - F8
      - Contatta l'Assistenza clienti Jackery.

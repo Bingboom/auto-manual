@@ -49,7 +49,7 @@ Connectez le câble de charge CA au port d'entrée CA de l'appareil et à une pr
    :widths: 12 88
 
    * - **ATTENTION**
-     - Assurez-vous que le câble de charge CA est entièrement inséré et solidement connecté au port d'entrée CA. Une connexion incomplète peut entraîner un courant instable, une surchauffe, un mauvais contact ou un dysfonctionnement de l'appareil.
+     - Assurez-vous que le câble de charge CA est entièrement et solidement inséré dans le port d’entrée CA. Une connexion incomplète peut entraîner un courant instable, une surchauffe, un mauvais contact ou un dysfonctionnement de l'appareil.
 
 
 **Mode de charge d'urgence**

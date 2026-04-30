@@ -68,24 +68,24 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 MODE D'ÉCONOMIE D'ÉNERGIE
 -------------------------
 
-Pour éviter une consommation inutile de la batterie due à l'oubli de désactiver la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (sortie CA de |ENERGY_SAVING_AC_THRESHOLD| ou sortie CC/USB de |ENERGY_SAVING_DC_THRESHOLD|), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est |ENERGY_SAVING_AUTO_OFF_DURATION|. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 2 h, 8 h, 12 h ou 24 h. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
+Pour éviter une consommation inutile de la batterie due à l'oubli de désactiver la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (sortie CA de |ENERGY_SAVING_AC_THRESHOLD| ou sortie CC/USB de |ENERGY_SAVING_DC_THRESHOLD|), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est |ENERGY_SAVING_AUTO_OFF_DURATION|. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 1H, 2 H, 8 H, 12 H ou 24 H. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
 
 Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le |AC_POWER_BUTTON_LABEL_LOWER| et sur le |MAIN_POWER_BUTTON_LABEL_LOWER| pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
 
-Lors de l'alimentation d'appareils à faible puissance (CA <= |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
+Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
 .. image:: templates/word_template/common_assets/operation/energy_saving.png
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
 
-| Appuyez et maintenez pendant 3 secondes.
+| Maintenez les deux boutons enfoncés pendant plus de 3 secondes.
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
    * - **REMARQUE**
-     - Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Un changement de mode nécessite un commutateur manuel.
+     - Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Toute modification du mode doit être effectuée manuellement.
 | 
 
 LAMPE LED MARCHE/ARRÊT
@@ -101,6 +101,23 @@ La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe
 | Appuyez une fois sur le bouton de la lampe LED pour l'allumer.
 | Appuyez de nouveau pour passer en mode SOS.
 | Appuyez une troisième fois pour éteindre la lampe.
+
+Fonction de reprise de Sortie CA et CC
+---------------------------------------
+
+Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
+
++-----------------------------------------------------------------------+------------------------------------------------------------+
+| Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
++=======================================================================+============================================================+
+| Mise sous tension/redémarrage après arrêt ou redémarrage              | Sortie désactivée manuellement (bouton/App)                |
++-----------------------------------------------------------------------+------------------------------------------------------------+
+| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie              |
+| la limite                                                             +------------------------------------------------------------+
+|                                                                       | Sortie désactivée suite à un déclenchement de protection   |
++-----------------------------------------------------------------------+------------------------------------------------------------+
+| Mise à niveau OTA terminée                                            | Sortie désactivée par le minuteur de décharge              |
++-----------------------------------------------------------------------+------------------------------------------------------------+
 
 AFFICHAGE LCD
 -------------
@@ -183,4 +200,4 @@ FONCTIONNEMENT DES BOUTONS
      - Activer/désactiver le Wi-Fi et le Bluetooth
    * - Bouton d'alimentation principal + Bouton d'éclairage LED
      - Appuyer 1 seconde sur les deux
-     - Activer/désactiver le mode de charge rapide d'urgence
+     - Activer/désactiver le mode d'urgence
