@@ -13,7 +13,7 @@ VISTA FRONTALE
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **Maniglia**
+     -
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|

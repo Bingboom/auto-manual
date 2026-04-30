@@ -30,6 +30,6 @@
    :header-rows: 0
    :widths: 10 90
 
-   * - **HINWEIS**
+   * - **TIPP**
      - Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden.
-       Wenden Sie sich für Unterstützung bitte an den Jackery-Kundendienst.
+       Bei Fragen wenden Sie sich bitte an den Jackery-Kundendienst.

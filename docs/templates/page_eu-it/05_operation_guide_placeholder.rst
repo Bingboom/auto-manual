@@ -32,8 +32,8 @@ USCITA CA ATTIVA/DISATTIVA
 | Premi una volta
 | 
 
-USCITA CC 12V/USB ATTIVA/DISATTIVA
-----------------------------------
+USCITA CC 12 V/ USB ATTIVA/DISATTIVA
+------------------------------------
 
 **Prerequisito**: il prodotto e acceso.
 
@@ -54,9 +54,10 @@ USCITA CC 12V/USB ATTIVA/DISATTIVA
 
    * - **ATTENZIONE**
      -
-       - **|USB_C_HIGH_POWER_PORT_LABEL| e una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3).** Se il dispositivo utente o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurati che il dispositivo o l'accessorio collegato disponga di protezione antincendio.
        - Collega Jackery Explorer 1000 solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o di altri standard equivalenti).
        - Per ottenere la massima potenza di uscita, usa il cavo da USB-C a USB-C da 5 A (20 V CC/5 A, 100 W).
+
+.. Shared EU recipe compatibility: |USB_C_HIGH_POWER_PORT_LABEL| is unused in the IT source manual.
 
 
 | Il prodotto puo ricaricare la batteria dell'auto utilizzando il cavo Jackery per la ricarica della batteria dell'auto a 12 V, venduto separatamente e disponibile sul nostro sito web.
@@ -75,9 +76,9 @@ USCITA CC 12V/USB ATTIVA/DISATTIVA
 MODALITA RISPARMIO ENERGETICO
 -----------------------------
 
-Per evitare un consumo inutile della batteria dovuto al mancato spegnimento dell'uscita, il prodotto abilita per impostazione predefinita la Modalita risparmio energetico. Quando l'uscita CA o CC e attiva, l'icona della Modalita risparmio energetico viene visualizzata sullo schermo LCD. In questa modalita, se non e collegato alcun dispositivo oppure il consumo del dispositivo collegato e inferiore a una certa soglia (|ENERGY_SAVING_AC_THRESHOLD| per l'uscita CA o |ENERGY_SAVING_DC_THRESHOLD| per l'uscita CC/USB), l'uscita corrispondente si spegnera automaticamente dopo il tempo impostato. L'impostazione predefinita e |ENERGY_SAVING_AUTO_OFF_DURATION|. La durata della Modalita risparmio energetico puo essere impostata nell'App Jackery su 2 H, 8 H, 12 H o 24 H. Se viene impostata su Mai spegnimento, la Modalita risparmio energetico sara disattivata.
+Per evitare un consumo inutile della batteria dovuto al mancato spegnimento dell'uscita, il prodotto abilita per impostazione predefinita la Modalita risparmio energetico. Quando l'uscita CA o CC e attiva, l'icona della Modalita risparmio energetico viene visualizzata sullo schermo LCD. In questa modalita, se non e collegato alcun dispositivo oppure il consumo del dispositivo collegato e inferiore a una certa soglia (|ENERGY_SAVING_AC_THRESHOLD| per l'uscita CA o |ENERGY_SAVING_DC_THRESHOLD| per l'uscita CC/USB), l'uscita corrispondente si spegnera automaticamente dopo il tempo impostato. L'impostazione predefinita e |ENERGY_SAVING_AUTO_OFF_DURATION|. La durata della Modalita risparmio energetico puo essere impostata nell'App Jackery su 1 H, 2 H, 8 H, 12 H o 24 H. Se viene impostata su Mai spegnimento, la Modalita risparmio energetico sara disattivata.
 
-Per disattivare la Modalita risparmio energetico, tieni premuti per piu di 3 secondi sia il pulsante di alimentazione CA sia il pulsante di accensione principale. Una volta disattivata la Modalita risparmio energetico, l'icona non comparira piu sullo schermo LCD e il prodotto non spegnera automaticamente l'uscita CA o USB.
+Per disattivare la Modalita risparmio energetico, tieni premuti per piu di 3 secondi sia il pulsante di alimentazione CA sia il pulsante di alimentazione. Una volta disattivata la Modalita risparmio energetico, l'icona non comparira piu sullo schermo LCD e il prodotto non spegnera automaticamente l'uscita CA o USB.
 
 Quando si alimentano dispositivi a basso consumo (CA <= |ENERGY_SAVING_AC_THRESHOLD| oppure CC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disattiva la Modalita risparmio energetico per evitare che l'uscita si spenga automaticamente durante il funzionamento.
 
@@ -110,6 +111,26 @@ La luce LED ha due modalita: modalita luce e modalita SOS. In qualsiasi modalita
 | Premilo di nuovo per passare alla modalita SOS.
 | Premilo una terza volta per spegnere la luce.
 
+Funzione di ripristino delle uscite CA e CC
+-------------------------------------------
+
+Questa funzione memorizza lo stato delle uscite e ripristina automaticamente le uscite CA e CC in determinate condizioni.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 50 50
+
+   * - Condizioni di ripristino automatico
+     - Condizioni senza ripristino automatico
+   * - Accensione/Riavvio dopo lo spegnimento o il riavvio
+     - Spegnimento manuale delle uscite (pulsante/App)
+   * - SOC della batteria ≥ limite di scarica +10% dopo aver raggiunto il limite
+     - Spegnimento delle uscite in modalità risparmio energetico
+   * -
+     - Spegnimento delle uscite attivato da protezione
+   * - Aggiornamento OTA completato
+     - Spegnimento delle uscite attivato dal timer di scarica
+
 SCHERMO LCD
 -----------
 
@@ -124,11 +145,11 @@ SCHERMO LCD
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso brevemente</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante POWER oppure quando il prodotto e in carica.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante di alimentazione oppure quando il prodotto e in carica.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Spegni</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante POWER.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante di alimentazione.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Spegnimento automatico</td>
@@ -137,11 +158,11 @@ SCHERMO LCD
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso fisso (in carica o in scarica)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi due volte il pulsante POWER quando il prodotto e acceso.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi due volte il pulsante di alimentazione quando il prodotto e acceso.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Spegni</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante POWER.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante di alimentazione.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Spegnimento automatico</td>
@@ -159,11 +180,11 @@ SCHERMO LCD
       \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
       \hline
       \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Acceso brevemente}} & Accendi & Premi il pulsante POWER oppure quando il prodotto e in carica. \\ \cline{3-4}
-      & & Spegni & Premi il pulsante POWER. \\ \cline{3-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Acceso brevemente}} & Accendi & Premi il pulsante di alimentazione oppure quando il prodotto e in carica. \\ \cline{3-4}
+      & & Spegni & Premi il pulsante di alimentazione. \\ \cline{3-4}
       & & Spegnimento automatico & Lo schermo LCD si spegne automaticamente ed entra in modalita sleep dopo 2 minuti di inattivita. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Acceso fisso (in carica o in scarica)}} & Accendi & Premi due volte il pulsante POWER quando il prodotto e acceso. \\ \cline{3-4}
-      & & Spegni & Premi il pulsante POWER. \\ \cline{3-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Acceso fisso (in carica o in scarica)}} & Accendi & Premi due volte il pulsante di alimentazione quando il prodotto e acceso. \\ \cline{3-4}
+      & & Spegni & Premi il pulsante di alimentazione. \\ \cline{3-4}
       & & Spegnimento automatico & Lo schermo LCD si spegne automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattivita. \\ \hline
       \end{tabular}
       \endgroup
@@ -180,15 +201,15 @@ COMBINAZIONI DI TASTI
    * - Pulsanti
      - Operazione
      - Funzione
-   * - Pulsante POWER + Pulsante di alimentazione CA
+   * - Pulsante di alimentazione + Pulsante di alimentazione CA
      - Tieni premuti entrambi per 3 s
      - Attiva/disattiva la Modalita risparmio energetico
-   * - Pulsante POWER + Pulsante di alimentazione CC/USB
+   * - Pulsante di alimentazione + Pulsante di alimentazione CC/USB
      - Tieni premuti entrambi per 3 s
      - Ripristina Wi-Fi e Bluetooth
    * - Pulsante di alimentazione CC/USB + Pulsante di alimentazione CA
      - Tieni premuti entrambi per 1 s
      - Attiva/disattiva Wi-Fi e Bluetooth
-   * - Pulsante POWER + pulsante luce LED
+   * - Pulsante di alimentazione + Pulsante luce LED
      - Tieni premuti entrambi per 1 s
      - Attiva/disattiva la Modalita di ricarica di emergenza

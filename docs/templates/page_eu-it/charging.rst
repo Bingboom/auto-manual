@@ -40,7 +40,7 @@ RICARICA
    :widths: 12 88
 
    * - **NOTA**
-     - - La temperatura di ricarica consigliata per il prodotto varia da -20°C a 45°C e la temperatura di scarica varia da -20°C a 45°C.
+     - - La temperatura di ricarica consigliata per il prodotto varia da -10°C a 45°C e la temperatura di scarica varia da -10°C a 45°C.
        - L'utilizzo del prodotto al di fuori di questo intervallo di temperatura puo limitarne le capacita di carica e scarica, o addirittura impedirne la carica o la scarica.
        - La potenza di ricarica e la capacita della batteria del prodotto possono variare a causa delle fluttuazioni di temperatura.
 
