@@ -354,6 +354,8 @@ _SECTION_NORMALIZATION_RULES: dict[str, tuple[str, str, str]] = {
     ),
 }
 _DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] = {
+    "charging_temperature": ("CHARGING_TEMPERATURE", ("specifications",)),
+    "discharging_temperature": ("DISCHARGING_TEMPERATURE", ("specifications",)),
     "storage_temperature": ("STORAGE_TEMPERATURE", ("storage",)),
 }
 _SLOT_KEY_VALUE_ALIASES = {"", "value", "default", "name"}
@@ -396,5 +398,4 @@ _SOURCE_LANGUAGE_NORMALIZATION = {
     "西语": "es",
     "西班牙语": "es",
 }
-
 

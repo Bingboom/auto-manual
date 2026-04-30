@@ -30,7 +30,7 @@ pages:
     file: templates/page_us-es/06_ups_mode.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/charging.rst
+    file: templates/page_shared/es/charging.rst
   - type: rst_include
     lang: es
     file: templates/page_shared/es/08_charging_methods.rst

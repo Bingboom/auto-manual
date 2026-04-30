@@ -43,7 +43,7 @@ pages:
     file: templates/page_us-en/06_ups_mode.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/charging.rst
+    file: templates/page_shared/en/charging.rst
   - type: rst_include
     lang: en
     file: templates/page_shared/en/08_charging_methods.rst

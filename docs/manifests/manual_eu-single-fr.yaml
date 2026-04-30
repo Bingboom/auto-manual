@@ -38,7 +38,7 @@ pages:
     file: templates/page_eu-fr/06_ups_mode.rst
   - type: rst_include
     lang: fr
-    file: templates/page_eu-fr/charging.rst
+    file: templates/page_shared/fr/charging.rst
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/08_charging_methods.rst
