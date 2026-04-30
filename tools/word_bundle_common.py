@@ -88,6 +88,24 @@ def load_rst_substitutions(conf_base_path: Path) -> dict[str, str]:
     return substitutions
 
 
+def load_config_rst_substitutions(cfg: dict) -> dict[str, str]:
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    raw = build_cfg.get("rst_substitutions", cfg.get("rst_substitutions", {}))
+    if raw is None:
+        return {}
+    if not isinstance(raw, dict):
+        raise RuntimeError("build.rst_substitutions must be a mapping")
+
+    substitutions: dict[str, str] = {}
+    for key_raw, value_raw in raw.items():
+        key = str(key_raw).strip().strip("|")
+        if not key:
+            raise RuntimeError("build.rst_substitutions contains an empty key")
+        substitutions[key] = str(value_raw).strip()
+    return substitutions
+
+
 def apply_rst_substitutions(
     text: str,
     substitutions: dict[str, str],

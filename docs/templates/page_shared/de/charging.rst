@@ -40,7 +40,7 @@ LADEN
    :widths: 12 88
 
    * - **HINWEIS**
-     - - Die empfohlene Ladetemperatur für das Produkt liegt zwischen -10 °C und 45 °C, und die Entladetemperatur liegt zwischen -10 °C und 45 °C.
+     - - Die empfohlene Ladetemperatur für das Produkt liegt bei |CHARGING_TEMPERATURE_VALUE_1|, und die Entladetemperatur liegt bei |DISCHARGING_TEMPERATURE_VALUE_1|.
        - Der Betrieb des Produkts außerhalb dieses Temperaturbereichs kann die Lade- und Entladefähigkeit einschränken oder sogar verhindern, dass das Produkt lädt oder entlädt.
        - Ladeleistung und Batteriekapazität des Produkts können sich aufgrund von Temperaturschwankungen ändern.
 

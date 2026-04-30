@@ -1,10 +1,10 @@
-manifest_id: manual_us_multilang
+﻿manifest_id: manual_us_multilang
 pages:
   - type: cover_pdf
     file: cover-en.pdf
   - type: rst_include
     lang: en
-    file: templates/page_us-en/00_preface.rst
+    file: templates/page_shared/en/00_preface.rst
 
   - type: rst_include
     lang: en
@@ -19,7 +19,7 @@ pages:
     file: templates/page_us-en/01_fcc.rst
   - type: rst_include
     lang: en
-    file: templates/page_us-en/02_whats_in_the_box.rst
+    file: templates/page_shared/en/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -41,7 +41,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: en
-    file: templates/page_us-en/06_ups_mode.rst
+    file: templates/page_shared/en/06_ups_mode.rst
   - type: rst_include
     lang: en
     file: templates/page_shared/en/charging.rst
@@ -83,7 +83,7 @@ pages:
     file: templates/page_us-fr/01_fcc.rst
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/02_whats_in_the_box.rst
+    file: templates/page_shared/fr/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -105,7 +105,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: fr
-    file: templates/page_us-fr/06_ups_mode.rst
+    file: templates/page_shared/fr/06_ups_mode.rst
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/charging.rst
@@ -147,7 +147,7 @@ pages:
     file: templates/page_us-es/01_fcc.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/02_whats_in_the_box.rst
+    file: templates/page_shared/es/02_whats_in_the_box.rst
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
@@ -169,7 +169,7 @@ pages:
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: es
-    file: templates/page_us-es/06_ups_mode.rst
+    file: templates/page_shared/es/06_ups_mode.rst
   - type: rst_include
     lang: es
     file: templates/page_shared/es/charging.rst

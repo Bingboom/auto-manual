@@ -1,4 +1,4 @@
-manifest_id: manual_us_single_es
+﻿manifest_id: manual_us_single_es
 pages:
   - type: rst_include
     lang: es
@@ -13,7 +13,7 @@ pages:
     file: templates/page_us-es/01_fcc.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/02_whats_in_the_box.rst
+    file: templates/page_shared/es/02_whats_in_the_box.rst
   - type: rst_include
     lang: es
     file: templates/page_us-es/03_product_overview_placeholder.rst
@@ -27,7 +27,7 @@ pages:
     file: templates/page_us-es/05_operation_guide_placeholder.rst
   - type: rst_include
     lang: es
-    file: templates/page_us-es/06_ups_mode.rst
+    file: templates/page_shared/es/06_ups_mode.rst
   - type: rst_include
     lang: es
     file: templates/page_shared/es/charging.rst
