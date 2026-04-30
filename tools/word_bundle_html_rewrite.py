@@ -7,10 +7,16 @@ from copy import deepcopy
 import re
 from xml.etree import ElementTree as ET
 
-from tools.signal_words import get_safety_warning_label
-
 
 _ALERT_LABELS = {"WARNING", "CAUTION", "DANGER", "NOTE", "TIP", "TIPS"}
+_WARNING_BOX_LABEL_TEXTS = {
+    *_ALERT_LABELS,
+    "WARNUNG",
+    "AVERTISSEMENT",
+    "ADVERTENCIA",
+    "AVVERTENZA",
+    "ПОПЕРЕДЖЕННЯ",
+}
 _SIGNAL_WORD_BANNERS = {
     "WARNING": "templates/word_template/common_assets/symbols/warning_bar.png",
     "CAUTION": "templates/word_template/common_assets/symbols/caution_bar.png",
@@ -49,18 +55,6 @@ def _html_class_names(element: ET.Element) -> set[str]:
 
 def _normalize_inline_text(text: str) -> str:
     return " ".join((text or "").split()).strip()
-
-
-def _localized_warning_label(warning_text: str, *, lang: str | None = None) -> str:
-    if lang:
-        return get_safety_warning_label(lang)
-
-    normalized = _normalize_inline_text(warning_text).upper()
-    if "INSTRUCTIONS CONCERNANT LES RISQUES" in normalized:
-        return get_safety_warning_label("fr")
-    if "INSTRUCCIONES RELATIVAS AL RIESGO" in normalized:
-        return get_safety_warning_label("es")
-    return get_safety_warning_label("en")
 
 
 def _element_text_weight(element: ET.Element) -> int:
@@ -324,23 +318,25 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
     tbody = ET.SubElement(table, "tbody")
     row = ET.SubElement(tbody, "tr")
 
-    label_cell = ET.SubElement(
-        row,
-        "td",
-        {
-            "class": "manual-callout-label",
-            "style": "width:16%; border:1px solid #888; padding:6px 8px; vertical-align:top; background:#f3c27b;",
-        },
-    )
-    label_p = ET.SubElement(label_cell, "p")
-    label_strong = ET.SubElement(label_p, "strong")
-    label_strong.text = label
+    if label:
+        label_cell = ET.SubElement(
+            row,
+            "td",
+            {
+                "class": "manual-callout-label",
+                "style": "width:16%; border:1px solid #888; padding:6px 8px; vertical-align:top; background:#f3c27b;",
+            },
+        )
+        label_p = ET.SubElement(label_cell, "p")
+        label_strong = ET.SubElement(label_p, "strong")
+        label_strong.text = label
 
     body_cell = ET.SubElement(
         row,
         "td",
         {
             "class": "manual-callout-body",
+            **({"colspan": "2"} if not label else {}),
             "style": "border:1px solid #888; padding:6px 8px; vertical-align:top;",
         },
     )
@@ -351,6 +347,30 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
     for node in body_nodes:
         body_cell.append(deepcopy(node))
     return table
+
+
+def _warning_box_table_parts(element: ET.Element) -> tuple[str, list[ET.Element]]:
+    lockup_text = ""
+    warning_text = ""
+    for node in element.iter():
+        node_classes = _html_class_names(node)
+        if "hb-warning-lockup" in node_classes and not lockup_text:
+            lockup_text = _normalize_inline_text("".join(node.itertext()))
+        if "hb-warning-text" in node_classes and not warning_text:
+            warning_text = _normalize_inline_text("".join(node.itertext()))
+
+    label = lockup_text
+    body_text = warning_text
+    if not label and warning_text.upper() in _WARNING_BOX_LABEL_TEXTS:
+        label = warning_text
+        body_text = ""
+
+    body_nodes: list[ET.Element] = []
+    if body_text:
+        para = ET.Element("p")
+        para.text = body_text
+        body_nodes.append(para)
+    return label, body_nodes
 
 
 def _rewrite_word_friendly_children(
@@ -388,19 +408,8 @@ def _rewrite_word_friendly_children(
             continue
 
         if child_tag == "div" and "hb-warning-box" in child_classes:
-            warning_text = ""
-            for node in child.iter():
-                if "hb-warning-text" in _html_class_names(node):
-                    warning_text = _normalize_inline_text("".join(node.itertext()))
-                    break
-            body_nodes: list[ET.Element] = []
-            if warning_text:
-                para = ET.Element("p")
-                para.text = warning_text
-                body_nodes.append(para)
-            rewritten.append(
-                _build_alert_table(_localized_warning_label(warning_text, lang=lang), body_nodes)
-            )
+            label, body_nodes = _warning_box_table_parts(child)
+            rewritten.append(_build_alert_table(label, body_nodes))
             index += 1
             continue
 

@@ -378,10 +378,11 @@ Congratulations on your new manual.
 
         self.assertIn("<h1>Demo Manual</h1>", out)
         self.assertIn("manual-callout-table", out)
-        self.assertIn("<strong>WARNING</strong>", out)
+        self.assertIn("<strong>!</strong>", out)
+        self.assertNotIn("<strong>WARNING</strong>", out)
         self.assertIn("Risk of fire.", out)
 
-    def test_rewrite_word_friendly_fragment_should_localize_french_warning_box_label(self) -> None:
+    def test_rewrite_word_friendly_fragment_should_not_synthesize_french_warning_box_label(self) -> None:
         fragment = (
             '<div class="hb-warning-box"><div class="hb-warning-row">'
             '<div class="hb-warning-text">Consultez les consignes de sécurité avant utilisation.</div>'
@@ -390,12 +391,14 @@ Congratulations on your new manual.
 
         out = _rewrite_word_friendly_fragment(fragment, lang="fr")
 
-        self.assertIn("<strong>AVERTISSEMENT</strong>", out)
+        self.assertNotIn("<strong>AVERTISSEMENT</strong>", out)
         self.assertNotIn("<strong>WARNING</strong>", out)
+        self.assertIn("Consultez les consignes de sécurité avant utilisation.", out)
 
-    def test_rewrite_word_friendly_fragment_should_localize_spanish_warning_box_label(self) -> None:
+    def test_rewrite_word_friendly_fragment_should_preserve_source_warning_lockup(self) -> None:
         fragment = (
             '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-lockup">ADVERTENCIA</div>'
             '<div class="hb-warning-text">Consulte las instrucciones de seguridad antes de usarlo.</div>'
             '</div></div>'
         )
@@ -404,8 +407,33 @@ Congratulations on your new manual.
 
         self.assertIn("<strong>ADVERTENCIA</strong>", out)
         self.assertNotIn("<strong>WARNING</strong>", out)
+        self.assertIn("Consulte las instrucciones de seguridad antes de usarlo.", out)
 
-    def test_convert_rst_fragment_to_html_should_infer_warning_box_label_from_source_name(self) -> None:
+    def test_rewrite_word_friendly_fragment_should_dedupe_warning_text_matching_label(self) -> None:
+        fragment = (
+            '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-text">WARNING</div>'
+            '</div></div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment, lang="en")
+
+        self.assertEqual(1, out.count("WARNING"))
+        self.assertIn("<strong>WARNING</strong>", out)
+
+    def test_rewrite_word_friendly_fragment_should_dedupe_localized_warning_text_matching_label(self) -> None:
+        fragment = (
+            '<div class="hb-warning-box"><div class="hb-warning-row">'
+            '<div class="hb-warning-text">ADVERTENCIA</div>'
+            '</div></div>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment, lang="es")
+
+        self.assertEqual(1, out.count("ADVERTENCIA"))
+        self.assertIn("<strong>ADVERTENCIA</strong>", out)
+
+    def test_convert_rst_fragment_to_html_should_not_infer_warning_box_label_from_source_name(self) -> None:
         rst = """
 .. only:: html
 
@@ -424,7 +452,8 @@ Congratulations on your new manual.
                 Path(td),
             )
 
-        self.assertIn("<strong>ADVERTENCIA</strong>", html)
+        self.assertNotIn("<strong>ADVERTENCIA</strong>", html)
+        self.assertIn("Consulte las instrucciones antes de usarlo.", html)
 
     def test_rewrite_word_friendly_fragment_should_convert_alert_paragraphs_into_tables(self) -> None:
         fragment = (

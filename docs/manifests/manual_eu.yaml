@@ -2,7 +2,7 @@ manifest_id: manual_eu_multilang
 pages:
   - type: rst_include
     lang: en
-    file: templates/page_shared/en/00_preface.rst
+    file: templates/page_eu/00_preface.rst
   - type: rst_include
     lang: en
     file: templates/page_eu-en/safety_en.rst
