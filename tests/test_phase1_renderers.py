@@ -958,6 +958,33 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("       | **Blink:** Ready to connect to Wi-Fi.", out)
         self.assertIn("       | **Off:** Wi-Fi disconnected.", out)
 
+    def test_render_lcd_icons_page_supports_zh_columns(self) -> None:
+        blocks = [
+            {
+                "No.": "1",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": "Wi-Fi",
+                "icon_zh": "Wi-Fi",
+                "icon_desc_zh": "点亮：Wi-Fi 已连接。\\n闪烁：准备连接 Wi-Fi。\\n熄灭：Wi-Fi 未连接。",
+                "figure": "data/phase2/_attachments/lcd_icons/1_Wi-Fi.png",
+            }
+        ]
+
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="zh",
+            vars_map={"model": "JE-1000F"},
+        )
+
+        self.assertIn("显示屏界面", out)
+        self.assertIn("LCD 图标示意图。", out)
+        self.assertIn("     - | **点亮：** Wi-Fi 已连接。", out)
+        self.assertIn("       | **闪烁：** 准备连接 Wi-Fi。", out)
+        self.assertIn("       | **熄灭：** Wi-Fi 未连接。", out)
+
     def test_render_lcd_icons_page_applies_language_overrides_and_aliases(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             defaults = Path(td) / "Variable_Defaults.csv"

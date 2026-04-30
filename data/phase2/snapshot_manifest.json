@@ -1,59 +1,42 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-04-28T12:56:43.134327+00:00",
+  "generated_at": "2026-04-30T03:23:44.625194+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
   "requested_tables": [
-    "symbols_blocks",
-    "lcd_icons",
-    "variable_defaults",
-    "variable_lang_overrides"
+    "spec_master"
   ],
   "skipped_tables": [
     "spec_titles",
     "spec_footnotes",
     "spec_notes",
-    "spec_master"
+    "symbols_blocks",
+    "lcd_icons",
+    "variable_defaults",
+    "variable_lang_overrides"
   ],
   "tables": [
     {
-      "logical_name": "symbols_blocks",
-      "file_name": "symbols_blocks.csv",
-      "path": "data/phase2/symbols_blocks.csv",
-      "row_count": 12,
-      "sha256": "586bf523605ef0ceaead5c42ae3b38323676297d89da08b9af22f9aadf013649",
-      "previous_sha256": "78ae88ff70cd052ac8957836a316eff104ca04442d00f781107a9095e95f70db",
-      "changed": true
-    },
-    {
-      "logical_name": "lcd_icons",
-      "file_name": "lcd_icons_blocks.csv",
-      "path": "data/phase2/lcd_icons_blocks.csv",
-      "row_count": 27,
-      "sha256": "0952867cb1e48e9e8248bbc8538eb1b1bc8cb43b4175baf3ca6bfe38f4f73203",
-      "previous_sha256": "63c1f290a1fe2bd70048de1e46a83ff4fe6a590e42cdf6058c653ef586ed92c3",
-      "changed": true
-    },
-    {
-      "logical_name": "variable_defaults",
-      "file_name": "Variable_Defaults.csv",
-      "path": "data/phase2/Variable_Defaults.csv",
-      "row_count": 3,
-      "sha256": "45d4e52b1ad8b4e9c93548f8617b89ef36c40173882dbc1ceff14c3d61a86be5",
-      "previous_sha256": "84cc0a148eee66f2e2437c29a3dbf233496a4c84ebb565ff963a875f0adece80",
-      "changed": true
-    },
-    {
-      "logical_name": "variable_lang_overrides",
-      "file_name": "Variable_Lang_Overrides.csv",
-      "path": "data/phase2/Variable_Lang_Overrides.csv",
-      "row_count": 9,
-      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482",
-      "previous_sha256": "384b4f8f57d46ffd7c3be843fa3e81edac89950a7efca9c18f509f4a995bc306",
+      "logical_name": "spec_master",
+      "file_name": "Spec_Master.csv",
+      "path": "data/phase2/Spec_Master.csv",
+      "row_count": 373,
+      "sha256": "0d5ff4d8adeaa79c56b05d0085dcb06ac0e9917de4b9ee22278f338be29381c0",
+      "previous_sha256": "f6f5aee06608ccf7c81f2827333377bc84b6d827e9c3a577653332f0c8b55405",
       "changed": true
     }
   ],
-  "derived_files": []
+  "derived_files": [
+    {
+      "logical_name": "row_key_mapping",
+      "file_name": "row_key_mapping.csv",
+      "path": "data/phase2/row_key_mapping.csv",
+      "row_count": 111,
+      "sha256": "996ccb992ece165f4397019119eb6a56d7bb73ba7955cc5537a22abe1eadd2f7",
+      "previous_sha256": "38d34ab8357fa3cb57cc7e6255eb77204ca6c3492bb531fa115522610fdecdec",
+      "changed": true
+    }
+  ]
 }

@@ -36,6 +36,7 @@ _LANG_COPY = {
     "it": {"title": "DISPLAY LCD", "alt": "Segnaposto mappa icone LCD."},
     "uk": {"title": "ЕКРАН LCD", "alt": "Заглушка схеми значків LCD."},
     "ja": {"title": "液晶画面", "alt": "LCDアイコンマップ。"},
+    "zh": {"title": "显示屏界面", "alt": "LCD 图标示意图。"},
 }
 
 
@@ -236,10 +237,13 @@ def _collect_rows(
 
 
 def _format_description_line(line: str) -> str:
-    for label in ("On", "Off", "Blink"):
-        prefix = f"{label}:"
-        if line.startswith(prefix):
-            return f"**{prefix}**{line[len(prefix):]}"
+    for label in ("On", "Off", "Blink", "点亮", "熄灭", "闪烁"):
+        for separator in (":", "："):
+            prefix = f"{label}{separator}"
+            if line.startswith(prefix):
+                remainder = line[len(prefix):]
+                spacer = "" if not remainder or remainder.startswith(" ") else " "
+                return f"**{prefix}**{spacer}{remainder}"
     return line
 
 

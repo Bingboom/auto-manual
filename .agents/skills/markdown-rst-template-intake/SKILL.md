@@ -46,7 +46,7 @@ Do not use it for routine post-review wording edits inside `docs/_review/**` unl
 - Product overview, operation guide, app setup:
   treat `03_product_overview`, `05_operation_guide`, and `12_app_setup` as placeholder-backed pages. Preserve intentional `|PLACEHOLDER|` tokens and sync the matching recipe path when needed.
 - LCD display:
-  edit `04_lcd_display_placeholder.rst` directly. In the current repo it has placeholders but no dedicated recipe file.
+  route to `data/phase1/lcd_icons_blocks.csv` or the active phase2 snapshot. Current manifests generate it through `csv_page` page `lcd_icons`.
 - Static prose pages such as in-the-box, UPS, charging, charging methods, storage, troubleshooting, and warranty:
   edit the family page template directly.
 
