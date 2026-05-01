@@ -23,15 +23,15 @@ Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Jackery-Kundendi
    * - F5
      - Laden Sie das Produkt über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.
    * - F6
-     - 1. Warten Sie, bis sich das Stromnetz normalisiert hat, bevor Sie das Produkt über eine AC-Wandsteckdose aufladen.
-       2. Prüfen Sie, ob die Lufteinlass- und Luftauslassöffnungen blockiert sind; stellen Sie auf beiden Seiten des Produkts einen Abstand von 20 cm sicher.
-       3. Platzieren Sie das Produkt an einem Ort, der keinem direkten Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist.
-       4. Trennen Sie alle Lasten vom Produkt. Lassen Sie das Produkt im Leerlauf und warten Sie, bis der Fehler verschwindet.
-       5. Starten Sie das Produkt neu.
+     - | 1. Warten Sie, bis sich das Stromnetz normalisiert hat, bevor Sie das Produkt über eine AC-Wandsteckdose aufladen.
+       | 2. Prüfen Sie, ob die Lufteinlass- und Luftauslassöffnungen blockiert sind; stellen Sie auf beiden Seiten des Produkts einen Abstand von 20 cm sicher.
+       | 3. Platzieren Sie das Produkt an einem Ort, der keinem direkten Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist.
+       | 4. Trennen Sie alle Lasten vom Produkt. Lassen Sie das Produkt im Leerlauf und warten Sie, bis der Fehler verschwindet.
+       | 5. Starten Sie das Produkt neu.
    * - F7
-     - 1. Trennen Sie alle DC-Eingänge vom Produkt.
-       2. Prüfen Sie die Leerlaufspannung (V\ :sub:`oc`) der angeschlossenen Solarmodule. Das Produkt erlaubt eine maximale DC-Eingangsspannung von 60 V.
-       3. Starten Sie das Produkt neu und lassen Sie es im Leerlauf. Warten Sie, bis der Fehler verschwindet.
+     - | 1. Trennen Sie alle DC-Eingänge vom Produkt.
+       | 2. Prüfen Sie die Leerlaufspannung (V\ :sub:`oc`) der angeschlossenen Solarmodule. Das Produkt erlaubt eine maximale DC-Eingangsspannung von 60 V.
+       | 3. Starten Sie das Produkt neu und lassen Sie es im Leerlauf. Warten Sie, bis der Fehler verschwindet.
    * - F8
      - Wenden Sie sich an den Jackery-Kundendienst.
    * - F9
