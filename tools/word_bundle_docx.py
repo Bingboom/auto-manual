@@ -35,14 +35,28 @@ _IMAGE_CONTENT_TYPES = {
 }
 _REFERENCE_H1_STYLE_ID = "dingding-heading1"
 _REFERENCE_H2_STYLE_ID = "dingding-heading2"
+_REFERENCE_H3_STYLE_ID = "dingding-heading3"
 _REFERENCE_TABLE_STYLE_ID = "tableHeader"
 _REFERENCE_GRID_TABLE_STYLE_ID = "TableGrid"
 _PANDOC_MAJOR_HEADING_STYLE_IDS = {"Title", "Heading1"}
 _PANDOC_SUBHEADING_STYLE_IDS = {"Heading2"}
+_PANDOC_MINOR_HEADING_STYLE_IDS = {"Heading3"}
 _PANDOC_BODY_STYLE_IDS = {"BodyText", "FirstParagraph", "Compact"}
 _PRESERVED_SOURCE_PREFIXES = ("safety_", "spec_")
 _H1_RUN_SIZE = "34"
 _H2_RUN_SIZE = "28"
+_H3_RUN_SIZE = "22"
+_HEADING_DARK = "343031"
+_WORD_HEADING_BLACK = "000000"
+_SPEC_SOURCE_PREFIXES = ("spec_",)
+_SPEC_TABLE_BORDER_COLOR = "000000"
+_SPEC_TABLE_BORDER_SIZE = "4"
+_SPEC_TABLE_WIDTH_TYPE = "pct"
+_SPEC_TABLE_WIDTH_VALUE = "5000"
+_SPEC_TABLE_LABEL_WIDTH_PCT = "1650"
+_SPEC_TABLE_VALUE_WIDTH_PCT = "3350"
+_SPEC_TABLE_FALLBACK_GRID_WIDTH = 7920
+_SPEC_TABLE_LABEL_RATIO = 0.33
 
 
 @dataclass(frozen=True)
@@ -57,11 +71,12 @@ def _ps_quote(value: str) -> str:
     return value.replace("'", "''")
 
 
-def _collect_word_heading_style_ids(styles_xml: bytes) -> tuple[set[str], set[str]]:
+def _collect_word_heading_style_ids(styles_xml: bytes) -> tuple[set[str], set[str], set[str]]:
     ns = {"w": _W_NS}
     root = ET.fromstring(styles_xml)
     h1_ids: set[str] = set()
     h2_ids: set[str] = set()
+    h3_ids: set[str] = set()
 
     for style in root.findall(".//w:style", ns):
         if style.attrib.get(f"{{{_W_NS}}}type") != "paragraph":
@@ -76,13 +91,17 @@ def _collect_word_heading_style_ids(styles_xml: bytes) -> tuple[set[str], set[st
             h1_ids.add(style_id)
         elif name in {"heading 2", "heading2", "标题 2", "标题2"}:
             h2_ids.add(style_id)
+        elif name in {"heading 3", "heading3", "标题 3", "标题3"}:
+            h3_ids.add(style_id)
 
     # Fallback for common built-in IDs when the style name lookup is unavailable.
     if not h1_ids:
         h1_ids.update({"Heading1", "1"})
     if not h2_ids:
         h2_ids.update({"Heading2", "2"})
-    return h1_ids, h2_ids
+    if not h3_ids:
+        h3_ids.update({"Heading3", "3"})
+    return h1_ids, h2_ids, h3_ids
 
 
 def _set_paragraph_style_and_outline(
@@ -119,6 +138,26 @@ def _set_paragraph_style_and_outline(
     return changed
 
 
+def _ensure_child(parent: ET.Element, tag: str) -> tuple[ET.Element, bool]:
+    child = parent.find(f"w:{tag}", {"w": _W_NS})
+    if child is not None:
+        return child, False
+    return ET.SubElement(parent, f"{{{_W_NS}}}{tag}"), True
+
+
+def _set_w_attr(element: ET.Element, attr: str, value: str) -> bool:
+    key = f"{{{_W_NS}}}{attr}"
+    if element.attrib.get(key) == value:
+        return False
+    element.attrib[key] = value
+    return True
+
+
+def _ensure_empty_child(parent: ET.Element, tag: str) -> bool:
+    child, created = _ensure_child(parent, tag)
+    return created or bool(_set_w_attr(child, "val", "1"))
+
+
 def _clear_paragraph_style_and_outline(para: ET.Element, ns: dict[str, str]) -> bool:
     ppr = para.find("w:pPr", ns)
     if ppr is None:
@@ -140,7 +179,13 @@ def _clear_paragraph_style_and_outline(para: ET.Element, ns: dict[str, str]) -> 
     return changed
 
 
-def _ensure_heading_run_formatting(para: ET.Element, ns: dict[str, str], *, size: str) -> bool:
+def _ensure_heading_run_formatting(
+    para: ET.Element,
+    ns: dict[str, str],
+    *,
+    size: str,
+    color: str | None = None,
+) -> bool:
     changed = False
     for run in para.findall("w:r", ns):
         rpr = run.find("w:rPr", ns)
@@ -148,20 +193,9 @@ def _ensure_heading_run_formatting(para: ET.Element, ns: dict[str, str], *, size
             rpr = ET.SubElement(run, f"{{{_W_NS}}}rPr")
             changed = True
 
-        bold = rpr.find("w:b", ns)
-        if bold is None:
-            bold = ET.SubElement(rpr, f"{{{_W_NS}}}b")
+        if _ensure_empty_child(rpr, "b"):
             changed = True
-        if bold.attrib.get(_W_VAL) != "1":
-            bold.attrib[_W_VAL] = "1"
-            changed = True
-
-        bold_cs = rpr.find("w:bCs", ns)
-        if bold_cs is None:
-            bold_cs = ET.SubElement(rpr, f"{{{_W_NS}}}bCs")
-            changed = True
-        if bold_cs.attrib.get(_W_VAL) != "1":
-            bold_cs.attrib[_W_VAL] = "1"
+        if _ensure_empty_child(rpr, "bCs"):
             changed = True
 
         sz = rpr.find("w:sz", ns)
@@ -180,7 +214,204 @@ def _ensure_heading_run_formatting(para: ET.Element, ns: dict[str, str], *, size
             sz_cs.attrib[_W_VAL] = size
             changed = True
 
+        if color:
+            color_el, created = _ensure_child(rpr, "color")
+            if created:
+                changed = True
+            if _set_w_attr(color_el, "val", color):
+                changed = True
+
     return changed
+
+
+def _ensure_heading_style_run_properties(style: ET.Element, *, size: str, color: str) -> bool:
+    changed = False
+    rpr, created = _ensure_child(style, "rPr")
+    if created:
+        changed = True
+    for tag in ("b", "bCs"):
+        if _ensure_empty_child(rpr, tag):
+            changed = True
+    for tag in ("sz", "szCs"):
+        child, created = _ensure_child(rpr, tag)
+        if created:
+            changed = True
+        if _set_w_attr(child, "val", size):
+            changed = True
+    color_el, created = _ensure_child(rpr, "color")
+    if created:
+        changed = True
+    if _set_w_attr(color_el, "val", color):
+        changed = True
+    return changed
+
+
+def _ensure_spacing(ppr: ET.Element, *, before: str, after: str, line: str) -> bool:
+    spacing, created = _ensure_child(ppr, "spacing")
+    changed = created
+    for attr, value in (("before", before), ("after", after), ("line", line), ("lineRule", "auto")):
+        if _set_w_attr(spacing, attr, value):
+            changed = True
+    return changed
+
+
+def _remove_num_pr(ppr: ET.Element) -> bool:
+    existing = ppr.find("w:numPr", {"w": _W_NS})
+    if existing is None:
+        return False
+    ppr.remove(existing)
+    return True
+
+
+def _remove_paragraph_borders(ppr: ET.Element) -> bool:
+    existing = ppr.find("w:pBdr", {"w": _W_NS})
+    if existing is None:
+        return False
+    ppr.remove(existing)
+    return True
+
+
+def _ensure_heading_style_definition(
+    style: ET.Element,
+    *,
+    size: str,
+    color: str,
+    outline_level: str,
+    before: str,
+    after: str,
+    line: str,
+    shading: str | None = None,
+    remove_borders: bool = False,
+) -> bool:
+    changed = False
+    ppr, created = _ensure_child(style, "pPr")
+    if created:
+        changed = True
+    for tag in ("keepNext", "keepLines"):
+        child, created = _ensure_child(ppr, tag)
+        if created:
+            changed = True
+        if _set_w_attr(child, "val", "1"):
+            changed = True
+    if _ensure_spacing(ppr, before=before, after=after, line=line):
+        changed = True
+    if _remove_num_pr(ppr):
+        changed = True
+    if remove_borders and _remove_paragraph_borders(ppr):
+        changed = True
+    outline, created = _ensure_child(ppr, "outlineLvl")
+    if created:
+        changed = True
+    if _set_w_attr(outline, "val", outline_level):
+        changed = True
+
+    existing_shd = ppr.find("w:shd", {"w": _W_NS})
+    if shading:
+        shd = existing_shd
+        if shd is None:
+            shd = ET.SubElement(ppr, f"{{{_W_NS}}}shd")
+            changed = True
+        for attr, value in (("val", "clear"), ("color", "auto"), ("fill", shading)):
+            if _set_w_attr(shd, attr, value):
+                changed = True
+    elif existing_shd is not None:
+        ppr.remove(existing_shd)
+        changed = True
+
+    if _ensure_heading_style_run_properties(style, size=size, color=color):
+        changed = True
+    return changed
+
+
+def _style_by_id(styles_root: ET.Element, style_id: str) -> ET.Element | None:
+    ns = {"w": _W_NS}
+    for style in styles_root.findall(".//w:style", ns):
+        if style.attrib.get(f"{{{_W_NS}}}styleId") == style_id:
+            return style
+    return None
+
+
+def _ensure_paragraph_style(
+    styles_root: ET.Element,
+    *,
+    style_id: str,
+    name: str,
+    based_on: str | None = None,
+) -> tuple[ET.Element, bool]:
+    style = _style_by_id(styles_root, style_id)
+    if style is not None:
+        return style, False
+
+    style = ET.SubElement(
+        styles_root,
+        f"{{{_W_NS}}}style",
+        {
+            f"{{{_W_NS}}}type": "paragraph",
+            f"{{{_W_NS}}}styleId": style_id,
+        },
+    )
+    ET.SubElement(style, f"{{{_W_NS}}}name", {f"{{{_W_NS}}}val": name})
+    if based_on:
+        ET.SubElement(style, f"{{{_W_NS}}}basedOn", {f"{{{_W_NS}}}val": based_on})
+    ET.SubElement(style, f"{{{_W_NS}}}uiPriority", {f"{{{_W_NS}}}val": "9"})
+    ET.SubElement(style, f"{{{_W_NS}}}qFormat")
+    return style, True
+
+
+def _ensure_reference_heading_style_definitions(styles_xml: bytes) -> bytes:
+    root = ET.fromstring(styles_xml)
+    changed = False
+    h1_style = _style_by_id(root, _REFERENCE_H1_STYLE_ID)
+    h2_style = _style_by_id(root, _REFERENCE_H2_STYLE_ID)
+    h3_style = _style_by_id(root, _REFERENCE_H3_STYLE_ID)
+    if h3_style is None:
+        h3_style, created = _ensure_paragraph_style(
+            root,
+            style_id=_REFERENCE_H3_STYLE_ID,
+            name="heading 3",
+            based_on="NormalParagraph",
+        )
+        if created:
+            changed = True
+
+    if h1_style is not None:
+        if _ensure_heading_style_definition(
+            h1_style,
+            size=_H1_RUN_SIZE,
+            color=_WORD_HEADING_BLACK,
+            outline_level="0",
+            before="240",
+            after="180",
+            line="300",
+            remove_borders=True,
+        ):
+            changed = True
+    if h2_style is not None:
+        if _ensure_heading_style_definition(
+            h2_style,
+            size=_H2_RUN_SIZE,
+            color=_HEADING_DARK,
+            outline_level="1",
+            before="240",
+            after="140",
+            line="300",
+        ):
+            changed = True
+    if h3_style is not None:
+        if _ensure_heading_style_definition(
+            h3_style,
+            size=_H3_RUN_SIZE,
+            color=_HEADING_DARK,
+            outline_level="2",
+            before="160",
+            after="120",
+            line="280",
+        ):
+            changed = True
+
+    if not changed:
+        return styles_xml
+    return serialize_xml_preserving_namespaces(root, original_xml=styles_xml)
 
 
 def _normalize_docx_text(text: str) -> str:
@@ -211,6 +442,153 @@ def _set_table_style(tbl: ET.Element, ns: dict[str, str], style_id: str) -> bool
 
     if tbl_style.attrib.get(_W_VAL) != style_id:
         tbl_style.attrib[_W_VAL] = style_id
+        changed = True
+    return changed
+
+
+def _ensure_table_properties(tbl: ET.Element, ns: dict[str, str]) -> tuple[ET.Element, bool]:
+    tbl_pr = tbl.find("w:tblPr", ns)
+    if tbl_pr is not None:
+        return tbl_pr, False
+    tbl_pr = ET.Element(f"{{{_W_NS}}}tblPr")
+    tbl.insert(0, tbl_pr)
+    return tbl_pr, True
+
+
+def _ensure_table_grid(tbl: ET.Element, ns: dict[str, str]) -> tuple[ET.Element, bool]:
+    tbl_grid = tbl.find("w:tblGrid", ns)
+    if tbl_grid is not None:
+        return tbl_grid, False
+    tbl_grid = ET.Element(f"{{{_W_NS}}}tblGrid")
+    tbl_pr = tbl.find("w:tblPr", ns)
+    insert_at = 1 if tbl_pr is not None and list(tbl).index(tbl_pr) == 0 else 0
+    tbl.insert(insert_at, tbl_grid)
+    return tbl_grid, True
+
+
+def _ensure_cell_properties(cell: ET.Element, ns: dict[str, str]) -> tuple[ET.Element, bool]:
+    tc_pr = cell.find("w:tcPr", ns)
+    if tc_pr is not None:
+        return tc_pr, False
+    tc_pr = ET.Element(f"{{{_W_NS}}}tcPr")
+    cell.insert(0, tc_pr)
+    return tc_pr, True
+
+
+def _set_spec_table_grid(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    tbl_grid, created = _ensure_table_grid(tbl, ns)
+    if created:
+        changed = True
+
+    existing_widths: list[int] = []
+    for col in tbl_grid.findall("w:gridCol", ns):
+        try:
+            existing_widths.append(int(col.attrib.get(f"{{{_W_NS}}}w", "")))
+        except ValueError:
+            existing_widths = []
+            break
+    total_width = sum(existing_widths) if len(existing_widths) == 2 and sum(existing_widths) > 0 else _SPEC_TABLE_FALLBACK_GRID_WIDTH
+    label_width = max(1, round(total_width * _SPEC_TABLE_LABEL_RATIO))
+    value_width = max(1, total_width - label_width)
+    target_widths = (str(label_width), str(value_width))
+
+    grid_cols = tbl_grid.findall("w:gridCol", ns)
+    if len(grid_cols) != 2:
+        for col in grid_cols:
+            tbl_grid.remove(col)
+        grid_cols = [
+            ET.SubElement(tbl_grid, f"{{{_W_NS}}}gridCol"),
+            ET.SubElement(tbl_grid, f"{{{_W_NS}}}gridCol"),
+        ]
+        changed = True
+
+    for col, width in zip(grid_cols, target_widths, strict=True):
+        if _set_w_attr(col, "w", width):
+            changed = True
+    return changed
+
+
+def _set_cell_width(cell: ET.Element, ns: dict[str, str], width: str) -> bool:
+    changed = False
+    tc_pr, created = _ensure_cell_properties(cell, ns)
+    if created:
+        changed = True
+    tc_w = tc_pr.find("w:tcW", ns)
+    if tc_w is None:
+        tc_w = ET.Element(f"{{{_W_NS}}}tcW")
+        tc_pr.insert(0, tc_w)
+        changed = True
+    if _set_w_attr(tc_w, "type", _SPEC_TABLE_WIDTH_TYPE):
+        changed = True
+    if _set_w_attr(tc_w, "w", width):
+        changed = True
+    return changed
+
+
+def _set_spec_table_cell_widths(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    for row in tbl.findall("w:tr", ns):
+        cells = row.findall("w:tc", ns)
+        if len(cells) != 2:
+            continue
+        if _set_cell_width(cells[0], ns, _SPEC_TABLE_LABEL_WIDTH_PCT):
+            changed = True
+        if _set_cell_width(cells[1], ns, _SPEC_TABLE_VALUE_WIDTH_PCT):
+            changed = True
+    return changed
+
+
+def _set_spec_table_borders(tbl_pr: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    tbl_borders, created = _ensure_child(tbl_pr, "tblBorders")
+    if created:
+        changed = True
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        border, created = _ensure_child(tbl_borders, edge)
+        if created:
+            changed = True
+        for attr, value in (
+            ("val", "single"),
+            ("sz", _SPEC_TABLE_BORDER_SIZE),
+            ("space", "0"),
+            ("color", _SPEC_TABLE_BORDER_COLOR),
+        ):
+            if _set_w_attr(border, attr, value):
+                changed = True
+    return changed
+
+
+def _set_spec_table_layout(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    rows, max_cols = _table_dimensions(tbl, ns)
+    if rows == 0 or max_cols != 2:
+        return False
+
+    changed = False
+    tbl_pr, created = _ensure_table_properties(tbl, ns)
+    if created:
+        changed = True
+
+    tbl_w, created = _ensure_child(tbl_pr, "tblW")
+    if created:
+        changed = True
+    if _set_w_attr(tbl_w, "type", _SPEC_TABLE_WIDTH_TYPE):
+        changed = True
+    if _set_w_attr(tbl_w, "w", _SPEC_TABLE_WIDTH_VALUE):
+        changed = True
+
+    if _set_spec_table_borders(tbl_pr, ns):
+        changed = True
+
+    tbl_layout, created = _ensure_child(tbl_pr, "tblLayout")
+    if created:
+        changed = True
+    if _set_w_attr(tbl_layout, "type", "fixed"):
+        changed = True
+
+    if _set_spec_table_grid(tbl, ns):
+        changed = True
+    if _set_spec_table_cell_widths(tbl, ns):
         changed = True
     return changed
 
@@ -269,11 +647,15 @@ def _resolve_page_start_indexes(blocks: list[_DocBlock], page_metas: tuple[WordB
     return starts
 
 
-def _preserved_page_block_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> set[int]:
+def _page_block_indexes_for_prefixes(
+    blocks: list[_DocBlock],
+    page_metas: tuple[WordBundlePageMeta, ...],
+    prefixes: tuple[str, ...],
+) -> set[int]:
     starts = _resolve_page_start_indexes(blocks, page_metas)
-    preserved: set[int] = set()
+    block_indexes: set[int] = set()
     for page_idx, meta in enumerate(page_metas):
-        if not meta.source_path.name.lower().startswith(_PRESERVED_SOURCE_PREFIXES):
+        if not meta.source_path.name.lower().startswith(prefixes):
             continue
         start = starts[page_idx]
         if start is None:
@@ -283,8 +665,12 @@ def _preserved_page_block_indexes(blocks: list[_DocBlock], page_metas: tuple[Wor
             if next_start is not None:
                 end = next_start
                 break
-        preserved.update(range(start, end))
-    return preserved
+        block_indexes.update(range(start, end))
+    return block_indexes
+
+
+def _preserved_page_block_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> set[int]:
+    return _page_block_indexes_for_prefixes(blocks, page_metas, _PRESERVED_SOURCE_PREFIXES)
 
 
 def _preserved_page_start_indexes(blocks: list[_DocBlock], page_metas: tuple[WordBundlePageMeta, ...]) -> set[int]:
@@ -330,10 +716,18 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
     if not styles_xml or not doc_xml or not page_metas:
         return
 
+    original_styles_xml = styles_xml
+    styles_xml = _ensure_reference_heading_style_definitions(styles_xml)
+    blobs["word/styles.xml"] = styles_xml
+    package_changed = styles_xml != original_styles_xml
+
     available_paragraph_styles = _collect_available_style_ids(styles_xml, style_type="paragraph")
     available_table_styles = _collect_available_style_ids(styles_xml, style_type="table")
     if not {_REFERENCE_H1_STYLE_ID, _REFERENCE_H2_STYLE_ID}.issubset(available_paragraph_styles):
         return
+    reference_h3_style = (
+        _REFERENCE_H3_STYLE_ID if _REFERENCE_H3_STYLE_ID in available_paragraph_styles else "Heading3"
+    )
     if not ({_REFERENCE_TABLE_STYLE_ID, _REFERENCE_GRID_TABLE_STYLE_ID} & available_table_styles):
         return
 
@@ -346,6 +740,7 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
     blocks = _iter_doc_blocks(body, ns)
     preserved_blocks = _preserved_page_block_indexes(blocks, page_metas)
     preserved_page_starts = _preserved_page_start_indexes(blocks, page_metas)
+    spec_blocks = _page_block_indexes_for_prefixes(blocks, page_metas, _SPEC_SOURCE_PREFIXES)
     changed = False
 
     for block_idx, block in enumerate(blocks):
@@ -354,7 +749,12 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
             if (
                 block_idx in preserved_blocks
                 and block_idx not in preserved_page_starts
-                and style_id not in (_PANDOC_SUBHEADING_STYLE_IDS | {_REFERENCE_H2_STYLE_ID})
+                and style_id
+                not in (
+                    _PANDOC_SUBHEADING_STYLE_IDS
+                    | _PANDOC_MINOR_HEADING_STYLE_IDS
+                    | {_REFERENCE_H2_STYLE_ID, reference_h3_style}
+                )
             ):
                 continue
             if style_id in _PANDOC_MAJOR_HEADING_STYLE_IDS | {_REFERENCE_H1_STYLE_ID}:
@@ -365,7 +765,12 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
                     outline_level="0",
                 ):
                     changed = True
-                if _ensure_heading_run_formatting(block.element, ns, size=_H1_RUN_SIZE):
+                if _ensure_heading_run_formatting(
+                    block.element,
+                    ns,
+                    size=_H1_RUN_SIZE,
+                    color=_WORD_HEADING_BLACK,
+                ):
                     changed = True
             elif style_id in _PANDOC_SUBHEADING_STYLE_IDS | {_REFERENCE_H2_STYLE_ID}:
                 if _set_paragraph_style_and_outline(
@@ -375,13 +780,35 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
                     outline_level="1",
                 ):
                     changed = True
-                if _ensure_heading_run_formatting(block.element, ns, size=_H2_RUN_SIZE):
+                if _ensure_heading_run_formatting(
+                    block.element,
+                    ns,
+                    size=_H2_RUN_SIZE,
+                    color=_HEADING_DARK,
+                ):
+                    changed = True
+            elif style_id in _PANDOC_MINOR_HEADING_STYLE_IDS | {reference_h3_style}:
+                if _set_paragraph_style_and_outline(
+                    block.element,
+                    ns,
+                    style_id=reference_h3_style,
+                    outline_level="2",
+                ):
+                    changed = True
+                if _ensure_heading_run_formatting(
+                    block.element,
+                    ns,
+                    size=_H3_RUN_SIZE,
+                    color=_HEADING_DARK,
+                ):
                     changed = True
             elif style_id in _PANDOC_BODY_STYLE_IDS:
                 if _clear_paragraph_style_and_outline(block.element, ns):
                     changed = True
         elif block.kind == "tbl":
             if block_idx in preserved_blocks:
+                if block_idx in spec_blocks and _set_spec_table_layout(block.element, ns):
+                    changed = True
                 continue
             target_style = _choose_reference_table_style(block.element, ns, available_table_styles)
             if target_style and _table_style_id(block.element, ns) != target_style:
@@ -392,10 +819,11 @@ def _remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePag
                     if _clear_paragraph_style_and_outline(para, ns):
                         changed = True
 
-    if not changed:
+    if not changed and not package_changed:
         return
 
-    blobs["word/document.xml"] = serialize_xml_preserving_namespaces(root, original_xml=doc_xml)
+    if changed:
+        blobs["word/document.xml"] = serialize_xml_preserving_namespaces(root, original_xml=doc_xml)
 
     tmp_path = docx_path.with_suffix(".styles.tmp.docx")
     with zipfile.ZipFile(tmp_path, "w") as zout:
@@ -531,7 +959,7 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
     if not styles_xml or not doc_xml:
         return
 
-    h1_ids, h2_ids = _collect_word_heading_style_ids(styles_xml)
+    h1_ids, h2_ids, h3_ids = _collect_word_heading_style_ids(styles_xml)
     ns = {"w": _W_NS}
     root = ET.fromstring(doc_xml)
     changed = False
@@ -552,7 +980,7 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
                 outline_level="0",
             ):
                 changed = True
-            if _ensure_heading_run_formatting(para, ns, size=_H1_RUN_SIZE):
+            if _ensure_heading_run_formatting(para, ns, size=_H1_RUN_SIZE, color=_WORD_HEADING_BLACK):
                 changed = True
             continue
         if style_id in h2_ids:
@@ -563,7 +991,18 @@ def _enforce_docx_outline_levels(docx_path: Path) -> None:
                 outline_level="1",
             ):
                 changed = True
-            if _ensure_heading_run_formatting(para, ns, size=_H2_RUN_SIZE):
+            if _ensure_heading_run_formatting(para, ns, size=_H2_RUN_SIZE, color=_HEADING_DARK):
+                changed = True
+            continue
+        if style_id in h3_ids:
+            if _set_paragraph_style_and_outline(
+                para,
+                ns,
+                style_id=style_id,
+                outline_level="2",
+            ):
+                changed = True
+            if _ensure_heading_run_formatting(para, ns, size=_H3_RUN_SIZE, color=_HEADING_DARK):
                 changed = True
             continue
 
