@@ -1,6 +1,6 @@
 # Title Style Guide
 
-Updated: 2026-03-12
+Updated: 2026-05-01
 
 This file explains where headings and document titles come from in the current HTML, Word, and PDF flows.
 
@@ -12,7 +12,7 @@ That means:
 
 - page structure lives in RST templates
 - spec section title localization lives in [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- visual style lives in CSS or LaTeX components
+- visual style lives in CSS, LaTeX components, or the shared Word DOCX style remapper
 - Word document title comes from config plus placeholder substitution
 
 ## 2. Current Source Matrix
@@ -62,6 +62,14 @@ Current examples:
 - [`config.ja.yaml`](../config.ja.yaml): `|PRODUCT_NAME| 取扱説明書`
 
 This title is resolved by placeholder substitution before Word export.
+
+Word heading appearance is normalized after export by
+[`tools/word_bundle_docx.py`](../tools/word_bundle_docx.py). The remapper updates the shared reference heading styles
+instead of hard-coding page text:
+
+- `dingding-heading1`: Word level-1 title style with black text, no copied PDF title block
+- `dingding-heading2`: bold level-2 title with a solid-dot visual marker, without Word numbering
+- `dingding-heading3` / `Heading3`: smaller solid-dot local title when the style exists
 
 ## 3. Current Rules
 
