@@ -64,6 +64,23 @@ class TestPageContracts(unittest.TestCase):
         assert matched is not None
         self.assertEqual("03_product_overview", matched.page_id)
 
+    def test_product_overview_contract_should_not_apply_to_hardcoded_zh_template(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        contracts = page_contracts.load_page_contracts(repo_root / "docs" / "templates" / "contracts")
+
+        self.assertIsNone(
+            page_contracts.find_contract_for_source(
+                "templates/page_zh/03_product_overview_placeholder.rst",
+                contracts,
+            )
+        )
+        self.assertIsNotNone(
+            page_contracts.find_contract_for_source(
+                "templates/page_jp/03_product_overview_placeholder.rst",
+                contracts,
+            )
+        )
+
     def test_load_page_contracts_should_parse_page_value_selectors_and_scope(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             contracts_dir = Path(td)
@@ -154,4 +171,3 @@ class TestPageContracts(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
