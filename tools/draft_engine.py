@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -12,11 +13,15 @@ from tools.utils.spec_master import (
     resolve_spec_value_from_rows,
     resolve_template_substitutions_from_rows,
 )
+from tools.product_overview_renderer import render_product_overview_page
 from tools.word_bundle_common import apply_rst_substitutions, resolve_config_path
 
 
 SNIPPET_TOKEN_PREFIX = "{{snippet:"
 SNIPPET_TOKEN_SUFFIX = "}}"
+PROMOTE_STANDALONE_BOLD_NUMBERED_HEADINGS = "promote_standalone_bold_numbered_headings"
+_SUPPORTED_DRAFT_POSTPROCESSORS = frozenset({PROMOTE_STANDALONE_BOLD_NUMBERED_HEADINGS})
+_STANDALONE_BOLD_NUMBERED_HEADING_RE = re.compile(r"^\*\*(?P<title>(?P<number>\d+(?:\.\d+)*\.?)\s+\S.*?)\*\*$")
 
 
 @dataclass(frozen=True)
@@ -39,6 +44,7 @@ class DraftRecipe:
     required_row_keys: tuple[str, ...]
     snippet_slots: dict[str, str]
     contracts: tuple[str, ...]
+    postprocess: tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -185,6 +191,12 @@ def load_draft_recipe(path: Path) -> DraftRecipe:
         if str(slot).strip() and str(snippet_id).strip()
     }
     contracts = _normalize_csv_or_list(data.get("contracts"), field_name="contracts")
+    postprocess = _normalize_csv_or_list(data.get("postprocess"), field_name="postprocess")
+    unknown_postprocessors = sorted(set(postprocess) - _SUPPORTED_DRAFT_POSTPROCESSORS)
+    if unknown_postprocessors:
+        raise RuntimeError(
+            f"Unsupported draft recipe postprocess step(s) in {path}: {', '.join(unknown_postprocessors)}"
+        )
 
     return DraftRecipe(
         page_id=page_id,
@@ -193,6 +205,7 @@ def load_draft_recipe(path: Path) -> DraftRecipe:
         required_row_keys=required_row_keys,
         snippet_slots=snippet_slots,
         contracts=contracts,
+        postprocess=postprocess,
     )
 
 
@@ -418,6 +431,31 @@ def _render_snippet_text(
     return text if text.endswith("\n") else f"{text}\n"
 
 
+def _promote_standalone_bold_numbered_headings(text: str) -> str:
+    lines: list[str] = []
+    for line in text.splitlines():
+        match = _STANDALONE_BOLD_NUMBERED_HEADING_RE.match(line.strip())
+        if match is None or line[: len(line) - len(line.lstrip())]:
+            lines.append(line)
+            continue
+        title = match.group("title")
+        number = match.group("number").rstrip(".")
+        underline_char = "~" if "." in number else "-"
+        lines.extend([title, underline_char * len(title)])
+    rendered = "\n".join(lines)
+    return rendered + ("\n" if text.endswith("\n") else "")
+
+
+def _apply_recipe_postprocess(text: str, recipe: DraftRecipe) -> str:
+    rendered = text
+    for step in recipe.postprocess:
+        if step == PROMOTE_STANDALONE_BOLD_NUMBERED_HEADINGS:
+            rendered = _promote_standalone_bold_numbered_headings(rendered)
+            continue
+        raise RuntimeError(f"Unsupported draft recipe postprocess step: {step}")
+    return rendered
+
+
 def render_generated_page(
     *,
     docs_dir: Path,
@@ -496,7 +534,9 @@ def render_generated_page(
         template_text = template_text.replace(token, snippet_text.rstrip("\n"))
         used_snippet_ids.append(snippet_id)
 
+    template_text = render_product_overview_page(template_text, substitutions, lang=lang)
     rendered = apply_rst_substitutions(template_text, substitutions, vars_map)
+    rendered = _apply_recipe_postprocess(rendered, recipe)
     if rendered_source_path is not None:
         rendered_source_path.parent.mkdir(parents=True, exist_ok=True)
         rendered_source_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")

@@ -426,7 +426,56 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertTrue(out.startswith("|\n\n.. list-table::"))
+        self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n|\n\n.. only:: latex"))
+        self.assertIn("\n\n.. only:: not latex\n\n   .. list-table::", out)
+
+    def test_render_symbols_page_should_seed_rst_title_hierarchy_with_page_title(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        page_title = "MEANING OF SYMBOLS\n=================="
+        maintenance_title = "USER MAINTENANCE INSTRUCTIONS\n-----------------------------"
+        self.assertLess(out.index(page_title), out.index(maintenance_title))
+        self.assertNotIn(r"\section{MEANING OF SYMBOLS}", out)
+
+    def test_render_symbols_page_emits_latex_notice_and_symbol_macros(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertIn(r"\HBNoticeBlock{DANGER}", out)
+        self.assertIn(r"\HBSymbolTable{Symbol}{Meaning}{%", out)
+        self.assertIn(r"\HBSymbolSignalRow{warning_bar.png}{}", out)
+        self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
+        self.assertIn(".. only:: not latex", out)
+        self.assertIn(".. image:: templates/word_template/common_assets/symbols/warning_triangle.png", out)
+
+    def test_render_symbols_page_latex_image_args_use_basenames(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Figure"] = "data/phase2/_attachments/symbols/10_warning_triangle.png"
+        blocks[1]["image_path"] = "custom/symbols/read_manual_operator.png"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        self.assertIn(r"\HBSymbolIconRow{10_warning_triangle.png}{Warning symbol meaning.}", out)
+        self.assertIn(r"\HBSymbolIconRow{read_manual_operator.png}{Read the manual.}", out)
+        self.assertNotIn(r"\HBSymbolIconRow{data/phase2/_attachments", out)
+        self.assertNotIn(r"\HBSymbolIconRow{custom/symbols", out)
 
     def test_render_symbols_page_uses_image_path_from_blocks(self) -> None:
         blocks = self._symbols_blocks()
@@ -858,6 +907,40 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("       | **On:** Enabled.", out)
         self.assertIn("       | **Off:** Disabled.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
+
+    def test_render_lcd_icons_page_emits_latex_macro_table_with_basename_images(self) -> None:
+        blocks = [
+            {
+                "No.": "7",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": "Battery 50% & AC",
+                "icon_desc_en": "On: Charge_#1 & ready.\nOff: 0% $idle$.",
+                "figure": "data/phase2/_attachments/lcd_icons/7_Battery_AC.png",
+            }
+        ]
+
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "JE-1000F"},
+        )
+
+        row_line = next(line for line in out.splitlines() if r"\HBLcdIconRow" in line)
+        self.assertIn(".. only:: not latex", out)
+        self.assertIn(".. list-table::", out)
+        self.assertIn(".. only:: latex", out)
+        self.assertIn(r"\begin{HBLcdIconTable}", out)
+        self.assertIn(r"\end{HBLcdIconTable}", out)
+        self.assertIn("{7_Battery_AC.png}", row_line)
+        self.assertNotIn("data/phase2", row_line)
+        self.assertIn(r"{Battery 50\% \& AC}", row_line)
+        self.assertIn(
+            r"{\textbf{On:} Charge\_\#1 \& ready. \newline \textbf{Off:} 0\% \$idle\$.}",
+            row_line,
+        )
 
     def test_render_lcd_icons_page_should_normalize_document_key_style_target_model(self) -> None:
         with tempfile.TemporaryDirectory() as td:

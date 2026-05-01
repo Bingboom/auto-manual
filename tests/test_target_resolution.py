@@ -114,6 +114,17 @@ class TestTargetResolution(unittest.TestCase):
         )
         self.assertIn(".. include:: page/spec_en.rst", text)
 
+    def test_gen_index_should_seed_latex_title_hierarchy_without_template_burden(self) -> None:
+        cfg = self._tokenized_cfg()
+        text = gen_index_bundle.build_index_from_pages(
+            cfg,
+            model="JHP-2000A",
+            region="US",
+        )
+
+        self.assertTrue(text.startswith(".. only:: latex\n\n   =============\n   Manual Bundle\n   =============\n\n"))
+        self.assertIn(".. include:: page/spec_en.rst", text)
+
     def test_gen_index_should_reject_unsupported_sku_token(self) -> None:
         cfg = self._tokenized_cfg()
         cfg["pages"][0]["include_dir"] = "generated/{sku}"

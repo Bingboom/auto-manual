@@ -1,35 +1,41 @@
-.. raw:: latex
+.. only:: latex
 
-   \section{CONTENUTO DELLA CONFEZIONE}
+   .. raw:: latex
 
-.. raw:: html
+      \section{CONTENUTO DELLA CONFEZIONE}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Cavo di ricarica CA}{manual_icon1.png}{Documenti}
+      \HBTipBlock{SUGGERIMENTO}{Il cavo di ricarica per auto non e incluso, ma e disponibile per l'acquisto separato sul nostro sito web. Per assistenza, contatta il servizio clienti Jackery.}
 
-   <h1>CONTENUTO DELLA CONFEZIONE</h1>
+.. only:: not latex
 
-.. list-table::
-   :header-rows: 0
-   :widths: 33 33 34
+   .. raw:: html
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Segnaposto immagine della stazione di alimentazione.
-          :width: 120px
+      <h1>CONTENUTO DELLA CONFEZIONE</h1>
 
-       |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: Segnaposto immagine del cavo di ricarica CA.
-          :width: 120px
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
 
-       **Cavo di ricarica CA**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: Segnaposto immagine del manuale utente.
-          :width: 120px
+      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Segnaposto immagine della stazione di alimentazione.
+             :width: 120px
 
-       Documenti
+          |PRODUCT_NAME_BOLD|
+        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: Segnaposto immagine del cavo di ricarica CA.
+             :width: 120px
 
-.. list-table::
-   :header-rows: 0
-   :widths: 10 90
+          **Cavo di ricarica CA**
+        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: Segnaposto immagine del manuale utente.
+             :width: 120px
 
-   * - **SUGGERIMENTO**
-     - Il cavo di ricarica per auto non e incluso, ma e disponibile per l'acquisto separato sul nostro sito web.
-       Per assistenza, contatta il servizio clienti Jackery.
+          Documenti
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 10 90
+
+      * - **SUGGERIMENTO**
+        - Il cavo di ricarica per auto non e incluso, ma e disponibile per l'acquisto separato sul nostro sito web.
+          Per assistenza, contatta il servizio clienti Jackery.

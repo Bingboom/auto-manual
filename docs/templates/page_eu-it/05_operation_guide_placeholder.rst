@@ -171,20 +171,10 @@ SCHERMO LCD
 
    .. raw:: latex
 
-      \begingroup
-      \renewcommand{\arraystretch}{1.25}
-      \setlength{\tabcolsep}{6pt}
-      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
-      \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Acceso brevemente}} & Accendi & Premi il pulsante di alimentazione oppure quando il prodotto e in carica. \\ \cline{3-4}
-      & & Spegni & Premi il pulsante di alimentazione. \\ \cline{3-4}
-      & & Spegnimento automatico & Lo schermo LCD si spegne automaticamente ed entra in modalita sleep dopo 2 minuti di inattivita. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Acceso fisso (in carica o in scarica)}} & Accendi & Premi due volte il pulsante di alimentazione quando il prodotto e acceso. \\ \cline{3-4}
-      & & Spegni & Premi il pulsante di alimentazione. \\ \cline{3-4}
-      & & Spegnimento automatico & Lo schermo LCD si spegne automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattivita. \\ \hline
-      \end{tabular}
-      \endgroup
+      \begin{HBLcdModeTable}{lcd_mode.png}
+      \HBLcdModeFirstGroup{Acceso brevemente}{Accendi}{Premi il pulsante di alimentazione oppure quando il prodotto e in carica.}{Spegni}{Premi il pulsante di alimentazione.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente ed entra in modalita sleep dopo 2 minuti di inattivita.}
+      \HBLcdModeSecondGroup{Acceso fisso (in carica o in scarica)}{Accendi}{Premi due volte il pulsante di alimentazione quando il prodotto e acceso.}{Spegni}{Premi il pulsante di alimentazione.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattivita.}
+      \end{HBLcdModeTable}
 
 Puoi anche impostare la modalita di visualizzazione dello schermo nell'App Jackery.
 

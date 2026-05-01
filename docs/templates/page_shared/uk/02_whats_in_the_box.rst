@@ -1,36 +1,41 @@
-.. raw:: latex
+.. only:: latex
 
-   \section{ЩО В КОРОБЦІ}
+   .. raw:: latex
 
-.. raw:: html
+      \section{ЩО В КОРОБЦІ}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Кабель для заряджання AC}{manual_icon1.png}{Документація}
+      \HBTipBlock{ПОРАДИ}{Кабель для заряджання від автомобіля не входить до комплекту, але його можна придбати окремо на нашому вебсайті. Для отримання допомоги зверніться до служби підтримки Jackery.}
 
-   <h1>ЩО В КОРОБЦІ</h1>
+.. only:: not latex
 
-.. list-table::
-   :header-rows: 0
-   :widths: 33 33 34
+   .. raw:: html
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Заглушка зображення електростанції.
-          :width: 120px
+      <h1>ЩО В КОРОБЦІ</h1>
 
-       |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: Заглушка зображення кабелю для заряджання AC.
-          :width: 120px
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
 
-       **Кабель для заряджання AC**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: Заглушка зображення посібника користувача.
-          :width: 120px
+      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Заглушка зображення електростанції.
+             :width: 120px
 
-       Документація
+          |PRODUCT_NAME_BOLD|
+        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: Заглушка зображення кабелю для заряджання AC.
+             :width: 120px
 
-.. list-table::
-   :header-rows: 0
-   :widths: 10 90
+          **Кабель для заряджання AC**
+        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: Заглушка зображення посібника користувача.
+             :width: 120px
 
-   * - **ПОРАДИ**
-     - Кабель для заряджання від автомобіля не входить до комплекту, але його можна придбати окремо на нашому вебсайті.
-       Для отримання допомоги зверніться до служби підтримки Jackery.
+          Документація
 
+   .. list-table::
+      :header-rows: 0
+      :widths: 10 90
+
+      * - **ПОРАДИ**
+        - Кабель для заряджання від автомобіля не входить до комплекту, але його можна придбати окремо на нашому вебсайті.
+          Для отримання допомоги зверніться до служби підтримки Jackery.

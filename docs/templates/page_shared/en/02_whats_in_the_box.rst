@@ -1,35 +1,41 @@
-.. raw:: latex
+.. only:: latex
 
-   \section{WHAT'S IN THE BOX}
+   .. raw:: latex
 
-.. raw:: html
+      \section{WHAT'S IN THE BOX}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{Documents}
+      \HBTipBlock{TIPS}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
 
-   <h1>WHAT'S IN THE BOX</h1>
+.. only:: not latex
 
-.. list-table::
-   :header-rows: 0
-   :widths: 33 33 34
+   .. raw:: html
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Power station image placeholder.
-          :width: 120px
+      <h1>WHAT'S IN THE BOX</h1>
 
-       |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: AC charging cable image placeholder.
-          :width: 120px
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
 
-       **AC Charging Cable**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: User manual image placeholder.
-          :width: 120px
+      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Power station image placeholder.
+             :width: 120px
 
-       Documents
+          |PRODUCT_NAME_BOLD|
+        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: AC charging cable image placeholder.
+             :width: 120px
 
-.. list-table::
-   :header-rows: 0
-   :widths: 10 90
+          **AC Charging Cable**
+        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: User manual image placeholder.
+             :width: 120px
 
-   * - **TIPS**
-     - The car charging cable is not included but is available for purchase separately on our website.
-       For assistance, please contact Jackery customer service.
+          Documents
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 10 90
+
+      * - **TIPS**
+        - The car charging cable is not included but is available for purchase separately on our website.
+          For assistance, please contact Jackery customer service.

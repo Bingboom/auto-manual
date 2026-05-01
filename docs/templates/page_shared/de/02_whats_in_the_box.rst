@@ -1,35 +1,41 @@
-.. raw:: latex
+.. only:: latex
 
-   \section{LIEFERUMFANG}
+   .. raw:: latex
 
-.. raw:: html
+      \section{LIEFERUMFANG}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{AC-Ladekabel}{manual_icon1.png}{Dokumente}
+      \HBTipBlock{TIPP}{Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden. Bei Fragen wenden Sie sich bitte an den Jackery-Kundendienst.}
 
-   <h1>LIEFERUMFANG</h1>
+.. only:: not latex
 
-.. list-table::
-   :header-rows: 0
-   :widths: 33 33 34
+   .. raw:: html
 
-   * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Abbildung der Power Station als Platzhalter.
-          :width: 120px
+      <h1>LIEFERUMFANG</h1>
 
-       |PRODUCT_NAME_BOLD|
-     - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: Abbildung des AC-Ladekabels als Platzhalter.
-          :width: 120px
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
 
-       **AC-Ladekabel**
-     - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
-          :width: 120px
+      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Abbildung der Power Station als Platzhalter.
+             :width: 120px
 
-       Dokumente
+          |PRODUCT_NAME_BOLD|
+        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: Abbildung des AC-Ladekabels als Platzhalter.
+             :width: 120px
 
-.. list-table::
-   :header-rows: 0
-   :widths: 10 90
+          **AC-Ladekabel**
+        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
+             :width: 120px
 
-   * - **TIPP**
-     - Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden.
-       Bei Fragen wenden Sie sich bitte an den Jackery-Kundendienst.
+          Dokumente
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 10 90
+
+      * - **TIPP**
+        - Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden.
+          Bei Fragen wenden Sie sich bitte an den Jackery-Kundendienst.

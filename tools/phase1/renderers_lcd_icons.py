@@ -9,7 +9,7 @@ import re
 import unicodedata
 from pathlib import Path
 
-from .renderers_common import apply_vars, rst_escape
+from .renderers_common import apply_vars, latex_arg_escape, rst_escape
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens, resolve_variable_value
 
@@ -310,7 +310,7 @@ def _append_text_cell(lines: list[str], prefix: str, text: str, *, format_status
         lines.append(continuation + (f"| {line}" if line else "|"))
 
 
-def _table(rows: list[dict[str, str]]) -> str:
+def _rst_table(rows: list[dict[str, str]]) -> str:
     lines: list[str] = [
         ".. list-table::",
         "   :header-rows: 0",
@@ -323,6 +323,79 @@ def _table(rows: list[dict[str, str]]) -> str:
         _append_text_cell(lines, "     - ", row["name"])
         _append_text_cell(lines, "     - ", row["description"], format_status=True)
     return "\n".join(lines) + "\n"
+
+
+def _indent_block(text: str, spaces: int) -> str:
+    prefix = " " * spaces
+    return "\n".join((prefix + line) if line else line for line in text.rstrip("\n").splitlines())
+
+
+def _latex_image_arg(path: str) -> str:
+    raw = (path or "").strip()
+    if not raw:
+        return ""
+    return Path(raw).name
+
+
+def _latex_lines_arg(text: str) -> str:
+    raw = (text or "").replace("\\n", "\n")
+    parts = [part.strip() for part in raw.splitlines() if part.strip()]
+    return r" \newline ".join(latex_arg_escape(part) for part in parts)
+
+
+def _latex_description_line(line: str) -> str:
+    for label in ("On", "Off", "Blink", "点亮", "熄灭", "闪烁"):
+        for separator in (":", "："):
+            prefix = f"{label}{separator}"
+            if line.startswith(prefix):
+                remainder = line[len(prefix):]
+                remainder = remainder.strip()
+                spacer = " " if remainder else ""
+                return rf"\textbf{{{latex_arg_escape(prefix)}}}{spacer}{latex_arg_escape(remainder)}"
+    return latex_arg_escape(line)
+
+
+def _latex_description_arg(text: str) -> str:
+    raw = (text or "").replace("\\n", "\n")
+    parts = [part.strip() for part in raw.splitlines() if part.strip()]
+    return r" \newline ".join(_latex_description_line(part) for part in parts)
+
+
+def _latex_table(rows: list[dict[str, str]]) -> str:
+    # Worker A owns the macro definitions. Keep this renderer limited to calling
+    # the shared LCD table interface with escaped text and basename image args.
+    lines: list[str] = [
+        r"\begin{HBLcdIconTable}",
+    ]
+    for row in rows:
+        lines.append(
+            r"\HBLcdIconRow"
+            f"{{{latex_arg_escape(row['no'])}}}"
+            f"{{{_latex_image_arg(row['figure'])}}}"
+            f"{{{_latex_lines_arg(row['name'])}}}"
+            f"{{{_latex_description_arg(row['description'])}}}"
+        )
+    lines.append(r"\end{HBLcdIconTable}")
+    return "\n".join(lines)
+
+
+def _table(rows: list[dict[str, str]]) -> str:
+    rst_table = _rst_table(rows)
+    latex_table = _latex_table(rows)
+    return "\n".join(
+        [
+            ".. only:: not latex",
+            "",
+            _indent_block(rst_table, 3),
+            "",
+            ".. only:: latex",
+            "",
+            "   .. raw:: latex",
+            "",
+            _indent_block(latex_table, 6),
+            "",
+        ]
+    )
 
 
 def _heading(title: str) -> str:

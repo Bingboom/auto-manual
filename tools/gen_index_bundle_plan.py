@@ -175,7 +175,18 @@ def build_index_from_pages(
     root: Path,
     plan_materialized_pages: Callable[..., list[Any]],
 ) -> str:
-    lines: list[str] = []
+    # Sphinx uses the first RST title style it sees to seed the whole
+    # document hierarchy. Give LaTeX a hidden document title with a distinct
+    # overline style so page-level "=" titles remain level 1 and page-local
+    # "-" titles remain level 2, without asking templates to carry this rule.
+    lines: list[str] = [
+        ".. only:: latex",
+        "",
+        "   =============",
+        "   Manual Bundle",
+        "   =============",
+        "",
+    ]
     for planned in plan_materialized_pages(cfg, model=model, region=region, root=root):
         lines.extend([f".. include:: page/{planned.file_name}", ""])
     return "\n".join(lines) + "\n"

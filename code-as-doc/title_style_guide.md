@@ -1,6 +1,6 @@
 # Title Style Guide
 
-Updated: 2026-03-12
+Updated: 2026-05-01
 
 This file explains where headings and document titles come from in the current HTML, Word, and PDF flows.
 
@@ -12,7 +12,7 @@ That means:
 
 - page structure lives in RST templates
 - spec section title localization lives in [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- visual style lives in CSS or LaTeX components
+- visual style lives in CSS, LaTeX components, or the shared Word DOCX style remapper
 - Word document title comes from config plus placeholder substitution
 
 ## 2. Current Source Matrix
@@ -63,16 +63,67 @@ Current examples:
 
 This title is resolved by placeholder substitution before Word export.
 
+Word heading appearance is normalized after export by
+[`tools/word_bundle_docx_styles.py`](../tools/word_bundle_docx_styles.py), called from
+[`tools/word_bundle_docx.py`](../tools/word_bundle_docx.py). The remapper updates the shared reference heading styles
+instead of hard-coding page text:
+
+- `dingding-heading1`: Word level-1 title style with black text, no copied PDF title block
+- `dingding-heading2`: bold level-2 title with a solid-dot visual marker, without Word numbering
+- `dingding-heading3` / `Heading3`: smaller solid-dot local title when the style exists
+
 ## 3. Current Rules
 
-### 3.1 Shared Structure Change
+### 3.1 Structural Title Scale
+
+Manual output uses one three-level title scale across HTML and PDF:
+
+- level 1: page/major section titles, rendered as a dark full-width title bar
+- level 2: RST subsections, product overview panel titles, generated spec section titles, and subbar-style section breaks, rendered as a large solid-dot heading
+- level 3: RST subsubsections and lower local headings, rendered as a smaller solid-dot heading
+
+PDF/LaTeX entrypoints:
+
+- `\section` -> `\HBTitleLevelOne`
+- `\subsection`, `\HBOverviewPanel`, `\specsectiontitle`, `\safetysubbar` -> `\HBTitleLevelTwo`
+- `\subsubsection` -> `\HBTitleLevelThree`
+
+The runtime bundle index adds a LaTeX-only document root title with an overline/underline RST style before page includes.
+That hidden root title seeds Sphinx's title hierarchy so templates can keep natural page-local RST:
+`=` for page/major titles, `-` for level 2, and the next local adornment for level 3.
+Do not add manual hierarchy seed headings to page templates.
+
+Generated app setup pages opt into a recipe postprocess step,
+`promote_standalone_bold_numbered_headings`, to promote standalone bold numbered step labels to structural headings during draft generation:
+`**1. ...**` becomes level 2, and dotted substeps such as `**4.1 ...**` become level 3.
+Keep those labels easy to maintain in the source template; the recipe owns whether this semantic promotion runs.
+
+Product overview pages use the `{{ product_overview }}` marker and [`tools/product_overview_renderer.py`](../tools/product_overview_renderer.py).
+That renderer owns the shared overview structure and emits both LaTeX `\HBOverviewPanel` blocks and not-LaTeX RST from one layout definition.
+Do not duplicate raw LaTeX and RST overview tables in page templates.
+
+HTML entrypoints:
+
+- `h1` and `.hb-h1-pill` -> level 1
+- plain `h2`, `.hb-subbar`, and `.hb-spec-section` -> level 2
+- `h3` -> level 3
+
+The editable LaTeX parameters for this scale live in [`data/layout_params.csv`](../data/layout_params.csv) under `type_title_l2*`, `type_title_l3*`, `comp_title_l2*`, and `comp_title_l3*`.
+
+Word entrypoints:
+
+- structural Heading 1 / `dingding-heading1` -> level 1
+- structural Heading 2 / `dingding-heading2` -> level 2
+- structural Heading 3 / `dingding-heading3` or `Heading3` -> level 3
+
+### 3.2 Shared Structure Change
 
 If the heading hierarchy should change for many manuals:
 
 - edit the template under [`docs/templates/page_*/*.rst`](../docs/templates)
 - update CSS or LaTeX if the visual design also changes
 
-### 3.2 Target-Specific Review Wording
+### 3.3 Target-Specific Review Wording
 
 If the change is only for one manual already in review:
 
@@ -80,13 +131,13 @@ If the change is only for one manual already in review:
 
 Do not edit shared templates for one-off target review wording.
 
-### 3.3 Spec Section Text
+### 3.4 Spec Section Text
 
 If the change is specifically a localized spec title:
 
 - edit [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
 
-### 3.4 Do Not Encode Semantics in Exporter Text Matching
+### 3.5 Do Not Encode Semantics in Exporter Text Matching
 
 Avoid logic such as:
 
@@ -143,4 +194,3 @@ Change the document title shown in Word:
 - changing only Word appearance while leaving HTML and PDF inconsistent
 - hard-coding title-level decisions in exporter code based on literal text
 - editing [`params.tex`](../docs/renderers/latex/params.tex) instead of [`data/layout_params.csv`](../data/layout_params.csv)
-

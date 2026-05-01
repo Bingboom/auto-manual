@@ -168,6 +168,33 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("Always follow these basic precautions.", html)
         self.assertIn("Item 4", html)
 
+    def test_convert_rst_fragment_to_html_should_keep_troubleshooting_steps_plain_in_tables(self) -> None:
+        rst = """
+TROUBLESHOOTING
+===============
+
+.. list-table::
+   :header-rows: 1
+   :widths: 14 86
+
+   * - Error Code
+     - Corrective Measures
+   * - F6
+     - | 1. Wait for the grid to normalize.
+       | 2. Check the air intake and exhaust vents.
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("10_troubleshooting.rst"),
+                Path(td),
+            )
+
+        self.assertIn("1. Wait for the grid to normalize.", html)
+        self.assertIn("2. Check the air intake and exhaust vents.", html)
+        self.assertIn("line-block", html)
+        self.assertNotIn("<ol", html)
+
     def test_convert_rst_fragment_to_html_should_render_spec_pages_via_word_html(self) -> None:
         rst = """
 .. only:: html

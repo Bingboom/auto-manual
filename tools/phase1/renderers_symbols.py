@@ -8,7 +8,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
+from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
 from ..signal_words import get_signal_word, get_symbols_notice_label
 from ..utils.spec_master import canonicalize_model_token
 
@@ -499,9 +499,9 @@ def _matches_symbols_fallback_scope(block: dict[str, str], *, vars_map: dict[str
     return True
 
 
-def _rst_heading(title: str) -> list[str]:
+def _rst_heading(title: str, underline: str = "-") -> list[str]:
     title = rst_escape(title)
-    return [title, "-" * len(title)]
+    return [title, underline * len(title)]
 
 
 def _append_text_cell(lines: list[str], prefix: str, text: str) -> None:
@@ -543,6 +543,50 @@ def _append_notice_table(
         text = rst_escape(extra)
         lines.append("")
         lines.append(f"       {note_prefix}{text}")
+
+
+def _only_not_latex_block(block_lines: list[str]) -> list[str]:
+    lines = [".. only:: not latex", ""]
+    lines.extend(f"   {line}" if line else "" for line in block_lines)
+    return lines
+
+
+def _only_latex_raw_block(tex_lines: list[str]) -> list[str]:
+    lines = [".. only:: latex", "", "   .. raw:: latex", ""]
+    lines.extend(f"      {line}" if line else "      " for line in tex_lines)
+    return lines
+
+
+def _latex_image_name(image_path: str) -> str:
+    return Path(image_path).name
+
+
+def _latex_text_arg(text: str) -> str:
+    parts = [latex_arg_escape(part) for part in (text or "").splitlines()]
+    return r" \newline ".join(part for part in parts if part) or ""
+
+
+def _notice_table_rst(
+    *,
+    title: str,
+    paragraphs: list[str],
+    note_prefix: str = "※ ",
+) -> list[str]:
+    lines: list[str] = []
+    _append_notice_table(lines, title=title, paragraphs=paragraphs, note_prefix=note_prefix)
+    return lines
+
+
+def _notice_block_latex(*, title: str, paragraphs: list[str]) -> list[str]:
+    # LaTeX component contract, provided by the shared symbols component layer:
+    # \HBNoticeBlock{title}{primary paragraph}{secondary paragraph}
+    primary = _latex_text_arg(paragraphs[0]) if paragraphs else ""
+    secondary = _latex_text_arg("\n".join(paragraphs[1:])) if len(paragraphs) > 1 else ""
+    return _only_latex_raw_block(
+        [
+            rf"\HBNoticeBlock{{{latex_arg_escape(title)}}}{{{primary}}}{{{secondary}}}",
+        ]
+    )
 
 
 def _append_image_cell(
@@ -603,44 +647,64 @@ def _signal_section(lang: str) -> str:
     signal_rows = list(copy["signal_rows"])
 
     lines: list[str] = []
+    lines.extend(_rst_heading(page_title, "="))
+    lines.append("")
     lines.append("|")
     lines.append("")
-    _append_notice_table(lines, title=danger_title, paragraphs=danger_bullets)
+    lines.extend(_notice_block_latex(title=danger_title, paragraphs=danger_bullets))
+    lines.append("")
+    lines.extend(
+        _only_not_latex_block(_notice_table_rst(title=danger_title, paragraphs=danger_bullets))
+    )
     lines.append("")
     lines.extend(_rst_heading(maintenance_title))
     lines.append("")
     lines.append(rst_escape(maintenance_paragraph))
     lines.append("")
+    # LaTeX component contract:
+    # \HBSymbolTable{symbol header}{meaning header}{row macro calls}
+    # \HBSymbolSignalRow{image basename}{optional signal label}{meaning}
+    signal_tex_rows = []
+    for row in signal_rows:
+        mode = str(row["mode"]).strip()
+        label = str(row["label"]) if mode == "icon_label" else ""
+        signal_tex_rows.append(
+            rf"\HBSymbolSignalRow{{{_latex_image_name(str(row['image']))}}}"
+            rf"{{{latex_arg_escape(label)}}}{{{_latex_text_arg(str(row['meaning']))}}}"
+        )
     lines.extend(
-        [
-            ".. raw:: latex",
-            "",
-            f"   \\section{{{rst_escape(page_title)}}}",
-            "",
-            ".. raw:: html",
-            "",
-            f"   <h1>{rst_escape(page_title)}</h1>",
-            "",
-            ".. list-table::",
-            "   :header-rows: 1",
-            "   :widths: 22 78",
-            "",
-            f"   * - {header_symbol}",
-            f"     - {header_meaning}",
-        ]
+        _only_latex_raw_block(
+            [
+                rf"\HBSymbolTable{{{latex_arg_escape(header_symbol)}}}{{{latex_arg_escape(header_meaning)}}}{{%",
+                *signal_tex_rows,
+                "}",
+            ]
+        )
     )
+    lines.append("")
+
+    signal_table_lines: list[str] = [
+        ".. list-table::",
+        "   :header-rows: 1",
+        "   :widths: 22 78",
+        "",
+        f"   * - {header_symbol}",
+        f"     - {header_meaning}",
+    ]
 
     for row in signal_rows:
         mode = str(row["mode"]).strip()
         _append_image_cell(
-            lines,
+            signal_table_lines,
             "   * - ",
             image_path=str(row["image"]),
             alt=str(row["alt"]),
             width=str(row.get("width", "40px")),
             label=str(row["label"]) if mode == "icon_label" else None,
         )
-        _append_text_cell(lines, "     - ", str(row["meaning"]))
+        _append_text_cell(signal_table_lines, "     - ", str(row["meaning"]))
+
+    lines.extend(_only_not_latex_block(signal_table_lines))
 
     return "\n".join(lines) + "\n"
 
@@ -748,7 +812,36 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
     right_rows = groups["right"]
     max_rows = max(len(left_rows), len(right_rows))
 
-    lines: list[str] = [
+    # LaTeX component contract:
+    # \HBSymbolTable{symbol header}{meaning header}{row macro calls}
+    # \HBSymbolIconRow{image basename}{meaning}
+    tex_rows: list[str] = []
+    for idx in range(max_rows):
+        paired_rows = (
+            left_rows[idx] if idx < len(left_rows) else None,
+            right_rows[idx] if idx < len(right_rows) else None,
+        )
+        for row in paired_rows:
+            if row is None:
+                continue
+            tex_rows.append(
+                rf"\HBSymbolIconRow{{{_latex_image_name(str(row['image_path']))}}}"
+                rf"{{{_latex_text_arg(row['text'])}}}"
+            )
+
+    lines: list[str] = []
+    lines.extend(
+        _only_latex_raw_block(
+            [
+                rf"\HBSymbolTable{{{latex_arg_escape(header_symbol)}}}{{{latex_arg_escape(header_meaning)}}}{{%",
+                *tex_rows,
+                "}",
+            ]
+        )
+    )
+    lines.append("")
+
+    table_lines: list[str] = [
         ".. list-table::",
         "   :header-rows: 0",
         "   :widths: 12 38 12 38",
@@ -766,30 +859,32 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
         if left is not None:
             left_asset = SYMBOL_ASSETS[left["symbol_key"]]
             _append_image_cell(
-                lines,
+                table_lines,
                 "   * - ",
                 image_path=str(left["image_path"]),
                 alt=left_asset.alt,
                 width=left_asset.width,
             )
-            _append_text_cell(lines, "     - ", left["text"])
+            _append_text_cell(table_lines, "     - ", left["text"])
         else:
-            lines.append("   * -")
-            lines.append("     -")
+            table_lines.append("   * -")
+            table_lines.append("     -")
 
         if right is not None:
             right_asset = SYMBOL_ASSETS[right["symbol_key"]]
             _append_image_cell(
-                lines,
+                table_lines,
                 "     - ",
                 image_path=str(right["image_path"]),
                 alt=right_asset.alt,
                 width=right_asset.width,
             )
-            _append_text_cell(lines, "     - ", right["text"])
+            _append_text_cell(table_lines, "     - ", right["text"])
         else:
-            lines.append("     -")
-            lines.append("     -")
+            table_lines.append("     -")
+            table_lines.append("     -")
+
+    lines.extend(_only_not_latex_block(table_lines))
 
     return "\n".join(lines) + "\n"
 

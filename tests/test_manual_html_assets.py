@@ -29,13 +29,15 @@ class ManualHtmlAssetsTests(unittest.TestCase):
         self.assertIn("body.hb-manual-switcher-body .sidebar-drawer", text)
         self.assertIn("body.hb-manual-switcher-body .toc-drawer", text)
         self.assertIn("body.hb-manual-switcher-body .article-container", text)
-        self.assertIn("body.hb-manual-switcher-body #furo-main-content", text)
+        self.assertIn('body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"])', text)
 
     def test_manual_css_should_define_reading_surface_rules(self) -> None:
         text = (ROOT / "docs" / "_static" / "hb_manual.css").read_text(encoding="utf-8")
 
-        self.assertIn("#furo-main-content h1:not(.hb-h1-pill)", text)
-        self.assertIn("#furo-main-content h2:not(.hb-subbar):not(.hb-spec-section)", text)
+        self.assertIn(':is(#furo-main-content, .body[role="main"]) h1', text)
+        self.assertIn(':is(#furo-main-content, .body[role="main"]) h2:not(.hb-subbar):not(.hb-spec-section)', text)
+        self.assertIn(':is(#furo-main-content, .body[role="main"]) h2:not(.hb-subbar):not(.hb-spec-section)::before', text)
+        self.assertIn(':is(#furo-main-content, .body[role="main"]) h3::before', text)
         self.assertIn("> a.reference.internal.image-reference", text)
         self.assertIn(".table-wrapper.docutils", text)
         self.assertIn(".hb-preface__block", text)
@@ -46,6 +48,8 @@ class ManualHtmlAssetsTests(unittest.TestCase):
 
         self.assertIn("initPrefaceLayout", text)
         self.assertIn("initManualSidebar", text)
+        self.assertIn("manualContentRoot", text)
+        self.assertIn('.body[role="main"]', text)
         self.assertIn('document.body.classList.contains("hb-manual-switcher-body")', text)
         self.assertIn("hb-preface__block", text)
         self.assertIn("hb-manual-toc__link", text)

@@ -81,6 +81,8 @@ class TestWordBundleDocx(unittest.TestCase):
 
             with zipfile.ZipFile(docx_path) as bundle:
                 root_xml = ET.fromstring(bundle.read("word/document.xml"))
+                styles_xml = ET.fromstring(bundle.read("word/styles.xml"))
+                numbering_xml = ET.fromstring(bundle.read("word/numbering.xml"))
 
             body = root_xml.find("w:body", _NS)
             self.assertIsNotNone(body)
@@ -88,39 +90,77 @@ class TestWordBundleDocx(unittest.TestCase):
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[0]))
             self.assertEqual("34", self._paragraph_run_size(blocks[0]))
+            self.assertEqual("000000", self._paragraph_run_color(blocks[0]))
             self.assertTrue(self._paragraph_run_bold(blocks[0]))
             self.assertEqual("", self._paragraph_style(blocks[1]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[2]))
             self.assertEqual("34", self._paragraph_run_size(blocks[2]))
+            self.assertEqual("000000", self._paragraph_run_color(blocks[2]))
             self.assertTrue(self._paragraph_run_bold(blocks[2]))
             self.assertEqual("Compact", self._paragraph_style(blocks[3]))
             self.assertEqual("Table", self._table_style(blocks[4]))
             self.assertEqual("FirstParagraph", self._paragraph_style(blocks[4].find(".//w:p", _NS)))
             self.assertEqual("dingding-heading2", self._paragraph_style(blocks[5]))
             self.assertEqual("28", self._paragraph_run_size(blocks[5]))
+            self.assertEqual("343031", self._paragraph_run_color(blocks[5]))
             self.assertTrue(self._paragraph_run_bold(blocks[5]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[6]))
             self.assertEqual("34", self._paragraph_run_size(blocks[6]))
+            self.assertEqual("000000", self._paragraph_run_color(blocks[6]))
             self.assertTrue(self._paragraph_run_bold(blocks[6]))
             self.assertEqual("TableGrid", self._table_style(blocks[7]))
             first_box_cell = blocks[7].find(".//w:p", _NS)
             self.assertIsNotNone(first_box_cell)
             self.assertEqual("", self._paragraph_style(first_box_cell))
+            table_list_item = next(
+                para
+                for para in blocks[7].findall(".//w:p", _NS)
+                if "".join(para.itertext()) == "Numbered table item."
+            )
+            self.assertEqual(("", ""), self._paragraph_indent(table_list_item))
+            self.assertEqual(
+                ("decimal", "%1."),
+                self._numbering_format(numbering_xml, self._paragraph_num_id(table_list_item)),
+            )
             self.assertEqual("dingding-heading2", self._paragraph_style(blocks[8]))
             self.assertEqual("28", self._paragraph_run_size(blocks[8]))
+            self.assertEqual("343031", self._paragraph_run_color(blocks[8]))
             self.assertTrue(self._paragraph_run_bold(blocks[8]))
             self.assertEqual("", self._paragraph_style(blocks[9]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[10]))
             self.assertEqual("34", self._paragraph_run_size(blocks[10]))
+            self.assertEqual("000000", self._paragraph_run_color(blocks[10]))
             self.assertTrue(self._paragraph_run_bold(blocks[10]))
             self.assertEqual("Table", self._table_style(blocks[11]))
+            self.assertEqual(("pct", "5000"), self._table_width(blocks[11]))
+            self.assertEqual("fixed", self._table_layout(blocks[11]))
+            self.assertEqual(["2614", "5306"], self._table_grid_widths(blocks[11]))
+            self.assertEqual(
+                {
+                    "top": ("single", "4", "0", "000000"),
+                    "left": ("single", "4", "0", "000000"),
+                    "bottom": ("single", "4", "0", "000000"),
+                    "right": ("single", "4", "0", "000000"),
+                    "insideH": ("single", "4", "0", "000000"),
+                    "insideV": ("single", "4", "0", "000000"),
+                },
+                self._table_borders(blocks[11]),
+            )
+            self.assertEqual([("pct", "1650"), ("pct", "3350")], self._first_row_cell_widths(blocks[11]))
 
             self.assertEqual("dingding-heading1", self._paragraph_style(blocks[12]))
             self.assertEqual("34", self._paragraph_run_size(blocks[12]))
+            self.assertEqual("000000", self._paragraph_run_color(blocks[12]))
             self.assertTrue(self._paragraph_run_bold(blocks[12]))
+            self.assertEqual("", self._style_shading(styles_xml, "dingding-heading1"))
+            self.assertFalse(self._style_has_paragraph_borders(styles_xml, "dingding-heading1"))
+            self.assertEqual("000000", self._style_run_color(styles_xml, "dingding-heading1"))
+            self.assertEqual("", self._style_num_id(styles_xml, "dingding-heading1"))
+            self.assertEqual("", self._style_num_id(styles_xml, "dingding-heading2"))
+            self.assertEqual("", self._style_num_id(styles_xml, "dingding-heading3"))
 
     def test_remap_reference_doc_styles_should_preserve_markup_compatibility_prefixes(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -143,6 +183,71 @@ class TestWordBundleDocx(unittest.TestCase):
             _enforce_docx_outline_levels(docx_path)
 
             self._assert_markup_compatibility_prefixes(docx_path)
+
+    def test_remap_reference_doc_styles_should_create_missing_heading3_style(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docx_path = root / "demo.docx"
+            self._write_minimal_docx(docx_path, with_reference_h3_style=False)
+
+            page_metas = (WordBundlePageMeta(source_path=Path("00_preface.rst"), anchor_text="IMPORTANT"),)
+
+            _remap_reference_doc_styles(docx_path, page_metas)
+
+            with zipfile.ZipFile(docx_path) as bundle:
+                styles_xml = ET.fromstring(bundle.read("word/styles.xml"))
+
+            self.assertEqual("heading 3", self._style_name(styles_xml, "dingding-heading3"))
+            self.assertEqual("343031", self._style_run_color(styles_xml, "dingding-heading3"))
+            self.assertEqual("22", self._style_run_size(styles_xml, "dingding-heading3"))
+            self.assertEqual("", self._style_num_id(styles_xml, "dingding-heading3"))
+
+    def test_remap_reference_doc_styles_should_leave_table_decimal_lists_alone(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docx_path = root / "demo.docx"
+            self._write_minimal_docx(
+                docx_path,
+                include_high_decimal_numbering=True,
+                table_list_num_id="1000",
+            )
+
+            page_metas = (WordBundlePageMeta(source_path=Path("00_preface.rst"), anchor_text="IMPORTANT"),)
+
+            _remap_reference_doc_styles(docx_path, page_metas)
+
+            with zipfile.ZipFile(docx_path) as bundle:
+                root_xml = ET.fromstring(bundle.read("word/document.xml"))
+                numbering_xml = ET.fromstring(bundle.read("word/numbering.xml"))
+
+            table_list_item = next(
+                para
+                for para in root_xml.findall(".//w:tbl//w:p", _NS)
+                if "".join(para.itertext()) == "Numbered table item."
+            )
+            self.assertEqual("1000", self._paragraph_num_id(table_list_item))
+            self.assertEqual(("decimal", "%1."), self._numbering_format(numbering_xml, "1000"))
+
+    def test_enforce_docx_outline_levels_should_support_heading3(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docx_path = root / "demo.docx"
+            self._write_minimal_docx(docx_path, with_heading3=True)
+
+            _enforce_docx_outline_levels(docx_path)
+
+            with zipfile.ZipFile(docx_path) as bundle:
+                root_xml = ET.fromstring(bundle.read("word/document.xml"))
+
+            body = root_xml.find("w:body", _NS)
+            self.assertIsNotNone(body)
+            blocks = [child for child in list(body) if child.tag == f"{_W}p"]
+            heading3 = next(block for block in blocks if "".join(block.itertext()) == "Connect to High-PV Input Port")
+
+            self.assertEqual("Heading3", self._paragraph_style(heading3))
+            self.assertEqual("2", self._paragraph_outline_level(heading3))
+            self.assertEqual("22", self._paragraph_run_size(heading3))
+            self.assertTrue(self._paragraph_run_bold(heading3))
 
     def test_older_pandoc_version_should_be_rejected_for_reference_doc_exports(self) -> None:
         with patch(
@@ -184,13 +289,28 @@ class TestWordBundleDocx(unittest.TestCase):
 
         self.assertEqual("/usr/local/bin/pandoc", resolved)
 
-    def _write_minimal_docx(self, path: Path, *, with_markup_compat: bool = False) -> None:
+    def _write_minimal_docx(
+        self,
+        path: Path,
+        *,
+        with_markup_compat: bool = False,
+        with_heading3: bool = False,
+        with_reference_h3_style: bool = True,
+        include_high_decimal_numbering: bool = False,
+        table_list_num_id: str = "1",
+    ) -> None:
+        reference_h3_style_xml = (
+            '  <w:style w:type="paragraph" w:styleId="dingding-heading3"><w:name w:val="heading 3"/><w:pPr><w:numPr><w:ilvl w:val="0"/><w:numId w:val="1"/></w:numPr></w:pPr></w:style>\n'
+            if with_reference_h3_style
+            else ""
+        )
         styles_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:styles xmlns:w="{_W_NS}">
-  <w:style w:type="paragraph" w:styleId="dingding-heading1"><w:name w:val="heading 1"/></w:style>
-  <w:style w:type="paragraph" w:styleId="dingding-heading2"><w:name w:val="heading 2"/></w:style>
-  <w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="Heading 1"/></w:style>
+  <w:style w:type="paragraph" w:styleId="dingding-heading1"><w:name w:val="heading 1"/><w:pPr><w:shd w:fill="343031"/><w:pBdr><w:bottom w:val="single" w:sz="4"/></w:pBdr></w:pPr></w:style>
+  <w:style w:type="paragraph" w:styleId="dingding-heading2"><w:name w:val="heading 2"/><w:pPr><w:numPr><w:ilvl w:val="0"/><w:numId w:val="1"/></w:numPr></w:pPr></w:style>
+{reference_h3_style_xml}  <w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="Heading 1"/></w:style>
   <w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="Heading 2"/></w:style>
+  <w:style w:type="paragraph" w:styleId="Heading3"><w:name w:val="Heading 3"/></w:style>
   <w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/></w:style>
   <w:style w:type="paragraph" w:styleId="BodyText"><w:name w:val="Body Text"/></w:style>
   <w:style w:type="paragraph" w:styleId="FirstParagraph"><w:name w:val="First Paragraph"/></w:style>
@@ -199,6 +319,23 @@ class TestWordBundleDocx(unittest.TestCase):
   <w:style w:type="table" w:styleId="TableGrid"><w:name w:val="Table Grid"/></w:style>
   <w:style w:type="table" w:styleId="tableHeader"><w:name w:val="tableHeader"/></w:style>
 </w:styles>
+"""
+        high_decimal_numbering_xml = (
+            '  <w:abstractNum w:abstractNumId="99201">\n'
+            '    <w:lvl w:ilvl="0"><w:numFmt w:val="decimal"/><w:lvlText w:val="%1."/><w:pPr><w:ind w:left="720" w:hanging="360"/></w:pPr></w:lvl>\n'
+            "  </w:abstractNum>\n"
+            '  <w:num w:numId="1000"><w:abstractNumId w:val="99201"/></w:num>\n'
+            if include_high_decimal_numbering
+            else ""
+        )
+        numbering_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:numbering xmlns:w="{_W_NS}">
+  <w:abstractNum w:abstractNumId="0">
+    <w:lvl w:ilvl="0"><w:numFmt w:val="decimal"/><w:lvlText w:val="%1."/><w:pPr><w:ind w:left="720" w:hanging="360"/></w:pPr></w:lvl>
+  </w:abstractNum>
+  <w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num>
+{high_decimal_numbering_xml}
+</w:numbering>
 """
         document_root_attrs = [f'xmlns:w="{_W_NS}"']
         first_para_attrs = ""
@@ -213,6 +350,13 @@ class TestWordBundleDocx(unittest.TestCase):
                 ]
             )
             first_para_attrs = ' w14:paraId="4047BD08"'
+
+        heading3_xml = ""
+        if with_heading3:
+            heading3_xml = (
+                '<w:p><w:pPr><w:pStyle w:val="Heading3"/></w:pPr>'
+                "<w:r><w:t>Connect to High-PV Input Port</w:t></w:r></w:p>"
+            )
 
         document_xml = f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document {' '.join(document_root_attrs)}>
@@ -233,7 +377,10 @@ class TestWordBundleDocx(unittest.TestCase):
     <w:tbl>
       <w:tblPr><w:tblStyle w:val="Table"/></w:tblPr>
       <w:tr>
-        <w:tc><w:p><w:pPr><w:pStyle w:val="FirstParagraph"/></w:pPr><w:r><w:t>Main Unit</w:t></w:r></w:p></w:tc>
+        <w:tc>
+          <w:p><w:pPr><w:pStyle w:val="FirstParagraph"/></w:pPr><w:r><w:t>Main Unit</w:t></w:r></w:p>
+          <w:p><w:pPr><w:numPr><w:ilvl w:val="0"/><w:numId w:val="{table_list_num_id}"/></w:numPr></w:pPr><w:r><w:t>Numbered table item.</w:t></w:r></w:p>
+        </w:tc>
         <w:tc><w:p><w:pPr><w:pStyle w:val="BodyText"/></w:pPr><w:r><w:t>AC Cable</w:t></w:r></w:p></w:tc>
         <w:tc><w:p><w:pPr><w:pStyle w:val="Compact"/></w:pPr><w:r><w:t>Manual</w:t></w:r></w:p></w:tc>
       </w:tr>
@@ -247,6 +394,7 @@ class TestWordBundleDocx(unittest.TestCase):
       <w:tr><w:tc><w:p><w:r><w:t>Model</w:t></w:r></w:p></w:tc><w:tc><w:p><w:r><w:t>M1</w:t></w:r></w:p></w:tc></w:tr>
     </w:tbl>
     <w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t>WARRANTY</w:t></w:r></w:p>
+    {heading3_xml}
     <w:sectPr />
   </w:body>
 </w:document>
@@ -254,6 +402,7 @@ class TestWordBundleDocx(unittest.TestCase):
 
         with zipfile.ZipFile(path, "w") as bundle:
             bundle.writestr("word/styles.xml", styles_xml)
+            bundle.writestr("word/numbering.xml", numbering_xml)
             bundle.writestr("word/document.xml", document_xml)
 
     def _write_linked_image_docx(self, path: Path, image_path: Path) -> None:
@@ -301,9 +450,49 @@ class TestWordBundleDocx(unittest.TestCase):
         style = para.find("w:pPr/w:pStyle", _NS)
         return style.attrib.get(f"{_W}val", "") if style is not None else ""
 
+    def _paragraph_outline_level(self, para: ET.Element) -> str:
+        outline = para.find("w:pPr/w:outlineLvl", _NS)
+        return outline.attrib.get(f"{_W}val", "") if outline is not None else ""
+
     def _table_style(self, tbl: ET.Element) -> str:
         style = tbl.find("w:tblPr/w:tblStyle", _NS)
         return style.attrib.get(f"{_W}val", "") if style is not None else ""
+
+    def _table_width(self, tbl: ET.Element) -> tuple[str, str]:
+        tbl_w = tbl.find("w:tblPr/w:tblW", _NS)
+        if tbl_w is None:
+            return "", ""
+        return tbl_w.attrib.get(f"{_W}type", ""), tbl_w.attrib.get(f"{_W}w", "")
+
+    def _table_layout(self, tbl: ET.Element) -> str:
+        tbl_layout = tbl.find("w:tblPr/w:tblLayout", _NS)
+        return tbl_layout.attrib.get(f"{_W}type", "") if tbl_layout is not None else ""
+
+    def _table_grid_widths(self, tbl: ET.Element) -> list[str]:
+        return [col.attrib.get(f"{_W}w", "") for col in tbl.findall("w:tblGrid/w:gridCol", _NS)]
+
+    def _table_borders(self, tbl: ET.Element) -> dict[str, tuple[str, str, str, str]]:
+        borders = {}
+        for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+            border = tbl.find(f"w:tblPr/w:tblBorders/w:{edge}", _NS)
+            if border is None:
+                continue
+            borders[edge] = (
+                border.attrib.get(f"{_W}val", ""),
+                border.attrib.get(f"{_W}sz", ""),
+                border.attrib.get(f"{_W}space", ""),
+                border.attrib.get(f"{_W}color", ""),
+            )
+        return borders
+
+    def _first_row_cell_widths(self, tbl: ET.Element) -> list[tuple[str, str]]:
+        first_row = tbl.find("w:tr", _NS)
+        self.assertIsNotNone(first_row)
+        widths: list[tuple[str, str]] = []
+        for cell in first_row.findall("w:tc", _NS):
+            tc_w = cell.find("w:tcPr/w:tcW", _NS)
+            widths.append(("", "") if tc_w is None else (tc_w.attrib.get(f"{_W}type", ""), tc_w.attrib.get(f"{_W}w", "")))
+        return widths
 
     def _paragraph_run_size(self, para: ET.Element) -> str:
         size = para.find("w:r/w:rPr/w:sz", _NS)
@@ -312,6 +501,61 @@ class TestWordBundleDocx(unittest.TestCase):
     def _paragraph_run_bold(self, para: ET.Element) -> bool:
         bold = para.find("w:r/w:rPr/w:b", _NS)
         return bold is not None and bold.attrib.get(f"{_W}val", "1") != "0"
+
+    def _paragraph_indent(self, para: ET.Element) -> tuple[str, str]:
+        ind = para.find("w:pPr/w:ind", _NS)
+        if ind is None:
+            return "", ""
+        return ind.attrib.get(f"{_W}left", ""), ind.attrib.get(f"{_W}hanging", "")
+
+    def _paragraph_num_id(self, para: ET.Element) -> str:
+        num_id = para.find("w:pPr/w:numPr/w:numId", _NS)
+        return num_id.attrib.get(f"{_W}val", "") if num_id is not None else ""
+
+    def _paragraph_run_color(self, para: ET.Element) -> str:
+        color = para.find("w:r/w:rPr/w:color", _NS)
+        return color.attrib.get(f"{_W}val", "") if color is not None else ""
+
+    def _style_by_id(self, styles: ET.Element, style_id: str) -> ET.Element:
+        style = styles.find(f".//w:style[@w:styleId='{style_id}']", _NS)
+        self.assertIsNotNone(style)
+        return style
+
+    def _style_shading(self, styles: ET.Element, style_id: str) -> str:
+        shd = self._style_by_id(styles, style_id).find("w:pPr/w:shd", _NS)
+        return shd.attrib.get(f"{_W}fill", "") if shd is not None else ""
+
+    def _style_has_paragraph_borders(self, styles: ET.Element, style_id: str) -> bool:
+        return self._style_by_id(styles, style_id).find("w:pPr/w:pBdr", _NS) is not None
+
+    def _style_name(self, styles: ET.Element, style_id: str) -> str:
+        name = self._style_by_id(styles, style_id).find("w:name", _NS)
+        return name.attrib.get(f"{_W}val", "") if name is not None else ""
+
+    def _style_run_color(self, styles: ET.Element, style_id: str) -> str:
+        color = self._style_by_id(styles, style_id).find("w:rPr/w:color", _NS)
+        return color.attrib.get(f"{_W}val", "") if color is not None else ""
+
+    def _style_run_size(self, styles: ET.Element, style_id: str) -> str:
+        size = self._style_by_id(styles, style_id).find("w:rPr/w:sz", _NS)
+        return size.attrib.get(f"{_W}val", "") if size is not None else ""
+
+    def _style_num_id(self, styles: ET.Element, style_id: str) -> str:
+        num_id = self._style_by_id(styles, style_id).find("w:pPr/w:numPr/w:numId", _NS)
+        return num_id.attrib.get(f"{_W}val", "") if num_id is not None else ""
+
+    def _numbering_format(self, numbering: ET.Element, num_id: str) -> tuple[str, str]:
+        abstract_id = numbering.find(f".//w:num[@w:numId='{num_id}']/w:abstractNumId", _NS)
+        self.assertIsNotNone(abstract_id)
+        abstract = abstract_id.attrib.get(f"{_W}val", "")
+        lvl = numbering.find(f".//w:abstractNum[@w:abstractNumId='{abstract}']/w:lvl", _NS)
+        self.assertIsNotNone(lvl)
+        num_fmt = lvl.find("w:numFmt", _NS)
+        lvl_text = lvl.find("w:lvlText", _NS)
+        return (
+            num_fmt.attrib.get(f"{_W}val", "") if num_fmt is not None else "",
+            lvl_text.attrib.get(f"{_W}val", "") if lvl_text is not None else "",
+        )
 
     def _assert_markup_compatibility_prefixes(self, path: Path) -> None:
         with zipfile.ZipFile(path) as bundle:
