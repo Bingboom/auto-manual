@@ -499,9 +499,9 @@ def _matches_symbols_fallback_scope(block: dict[str, str], *, vars_map: dict[str
     return True
 
 
-def _rst_heading(title: str) -> list[str]:
+def _rst_heading(title: str, underline: str = "-") -> list[str]:
     title = rst_escape(title)
-    return [title, "-" * len(title)]
+    return [title, underline * len(title)]
 
 
 def _append_text_cell(lines: list[str], prefix: str, text: str) -> None:
@@ -647,6 +647,8 @@ def _signal_section(lang: str) -> str:
     signal_rows = list(copy["signal_rows"])
 
     lines: list[str] = []
+    lines.extend(_rst_heading(page_title, "="))
+    lines.append("")
     lines.append("|")
     lines.append("")
     lines.extend(_notice_block_latex(title=danger_title, paragraphs=danger_bullets))
@@ -673,7 +675,6 @@ def _signal_section(lang: str) -> str:
     lines.extend(
         _only_latex_raw_block(
             [
-                rf"\section{{{latex_arg_escape(page_title)}}}",
                 rf"\HBSymbolTable{{{latex_arg_escape(header_symbol)}}}{{{latex_arg_escape(header_meaning)}}}{{%",
                 *signal_tex_rows,
                 "}",
@@ -683,10 +684,6 @@ def _signal_section(lang: str) -> str:
     lines.append("")
 
     signal_table_lines: list[str] = [
-        ".. raw:: html",
-        "",
-        f"   <h1>{rst_escape(page_title)}</h1>",
-        "",
         ".. list-table::",
         "   :header-rows: 1",
         "   :widths: 22 78",

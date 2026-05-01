@@ -8,6 +8,68 @@ from tools.draft_engine import render_generated_page
 
 
 class TestDraftEngine(unittest.TestCase):
+    def _render_numbered_heading_fixture(self, *, recipe_extra_lines: list[str] | None = None) -> str:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            (docs_dir / "templates" / "recipes").mkdir(parents=True)
+            (docs_dir / "templates" / "snippets").mkdir(parents=True)
+            (docs_dir / "templates" / "page_shared" / "en").mkdir(parents=True)
+
+            recipe_path = docs_dir / "templates" / "recipes" / "app_setup.yaml"
+            recipe_lines = [
+                "page_id: 12_app_setup",
+                "template: templates/page_shared/en/12_app_setup_placeholder.rst",
+                "field_map: {}",
+                "required_row_keys: []",
+                "snippet_slots: {}",
+            ]
+            recipe_lines.extend(recipe_extra_lines or [])
+            recipe_lines.append("contracts: []")
+            recipe_path.write_text("\n".join(recipe_lines) + "\n", encoding="utf-8")
+
+            template_path = docs_dir / "templates" / "page_shared" / "en" / "12_app_setup_placeholder.rst"
+            template_path.write_text(
+                "\n".join(
+                    [
+                        "APP SETUP",
+                        "=========",
+                        "",
+                        "**1. Download the App and log in**",
+                        "",
+                        "Body text.",
+                        "",
+                        "**4.1 To turn on Wi-Fi and Bluetooth**",
+                        "",
+                        "Nested body.",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            registry_path = docs_dir / "templates" / "snippets" / "registry.yaml"
+            registry_path.write_text("snippets: []\n", encoding="utf-8")
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_source\n",
+                encoding="utf-8",
+            )
+
+            result = render_generated_page(
+                docs_dir=docs_dir,
+                recipe_path=recipe_path,
+                template_path=template_path,
+                spec_master_csv=spec_master_csv,
+                registry_path=registry_path,
+                vars_map={},
+                base_substitutions={},
+                model="JE-1000F",
+                region="US",
+                lang="en",
+            )
+            return result.text
+
     def test_render_generated_page_should_apply_field_map_and_snippets(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -178,7 +240,25 @@ class TestDraftEngine(unittest.TestCase):
 
             self.assertIn("Main Power Button", result.text)
 
+    def test_render_generated_page_should_promote_configured_numbered_steps_to_headings(self) -> None:
+        text = self._render_numbered_heading_fixture(
+            recipe_extra_lines=[
+                "postprocess:",
+                "  - promote_standalone_bold_numbered_headings",
+            ]
+        )
+
+        self.assertIn("1. Download the App and log in\n------------------------------", text)
+        self.assertIn("4.1 To turn on Wi-Fi and Bluetooth\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", text)
+        self.assertNotIn("**1. Download the App and log in**", text)
+
+    def test_render_generated_page_should_not_promote_numbered_steps_by_default(self) -> None:
+        text = self._render_numbered_heading_fixture()
+
+        self.assertIn("**1. Download the App and log in**", text)
+        self.assertIn("**4.1 To turn on Wi-Fi and Bluetooth**", text)
+        self.assertNotIn("1. Download the App and log in\n------------------------------", text)
+
 
 if __name__ == "__main__":
     unittest.main()
-

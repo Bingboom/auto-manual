@@ -29,19 +29,9 @@
 \expandafter\providecommand\csname HBtype_spec_note_font_size\endcsname{5.9pt}
 \expandafter\providecommand\csname HBtype_spec_note_font_leading\endcsname{6.7pt}
 
-% ---- spec section title (bullet + uppercase heading) ----
+% ---- spec section title (shared level-2 dot heading) ----
 \providecommand{\specsectiontitle}[1]{%
-  \par\noindent
-  \vspace*{\csname HBcomp_spec_section_before\endcsname}%
-  {\bfseries
-   \color{\csname HBtype_rubric_color\endcsname}%
-   \fontsize{\csname HBtype_spec_section_font_size\endcsname}
-            {\csname HBtype_spec_section_font_leading\endcsname}
-   \selectfont
-   \raisebox{\csname HBcomp_spec_section_bullet_raise\endcsname}{\csname HBcomp_spec_section_bullet_symbol\endcsname}%
-   \hspace{\csname HBcomp_spec_section_bullet_gap\endcsname}%
-   \MakeUppercase{#1}\par}%
-  \vspace*{\csname HBcomp_spec_section_after\endcsname}%
+  \HBTitleLevelTwoBlock{#1}%
 }
 
 % ---- spec table wrapper (reuses shared style from components_base.tex) ----

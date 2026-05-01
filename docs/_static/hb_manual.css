@@ -1,35 +1,63 @@
 .hb-safety { max-width: var(--hb-reading-width, 900px); margin: 0 auto; }
-.hb-h1-pill, .hb-subbar{
-  background:#2f2f2f; color:#fff; font-weight:700;
-  padding:10px 14px; border-radius:10px;
-  margin: 10px 0 12px 0;
+.hb-h1-pill{
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  background:#343031;
+  color:#fff;
+  font-weight:800;
+  padding:10px 14px 9px;
+  border-radius:0 0 10px 10px;
+  margin: 10px 0 14px 0;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.hb-subbar{
+  display:flex;
+  align-items:center;
+  box-sizing:border-box;
+  gap:0.56rem;
+  color:#343031;
+  font-weight:800;
+  margin: 18px 0 10px 0;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 .hb-h1-pill{
-  font-size: 1.58rem;
+  font-size: 1.52rem;
   line-height: 1.2;
 }
 
 .hb-subbar{
-  font-size: 1.08rem;
-  line-height: 1.2;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+.hb-subbar::before{
+  content:"";
+  flex:0 0 auto;
+  width:0.74rem;
+  height:0.74rem;
+  border-radius:50%;
+  background:#343031;
 }
 .hb-spec-section{
   display:flex;
   align-items:center;
-  gap:0.4rem;
-  margin: 14px 0 8px 0;
-  font-size: 0.98rem;
-  line-height: 1.2;
-  font-weight:700;
-  color:#454545;
+  gap:0.56rem;
+  margin: 18px 0 10px 0;
+  font-size: 1.02rem;
+  line-height: 1.25;
+  font-weight:800;
+  color:#343031;
   text-transform: uppercase;
+  letter-spacing: 0;
 }
 .hb-spec-bullet{
   font-size: 1.1em;
   line-height: 1;
 }
 .hb-spec-section-text{
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 .hb-spec-table{
   width: min(100%, var(--hb-reading-width, 900px));
@@ -216,7 +244,7 @@ body.hb-manual-switcher-body .hb-manual-toc__link:hover{
   color: #111827;
 }
 
-body.hb-manual-switcher-body #furo-main-content{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]){
   width: min(100%, 980px);
   margin: 0 auto;
   padding: 0 18px 48px;
@@ -234,14 +262,14 @@ body.hb-manual-switcher-body #furo-main-content{
   --hb-shadow-soft: 0 8px 20px rgba(15, 23, 42, 0.05);
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface{
   width: min(100%, var(--hb-reading-width));
   margin: 0 auto 30px;
   display: grid;
   gap: 10px;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__block{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__block{
   position: relative;
   overflow: hidden;
   padding: 6px 0 14px;
@@ -251,16 +279,16 @@ body.hb-manual-switcher-body #furo-main-content .hb-preface__block{
   box-shadow: none;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__block:last-child{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__block:last-child{
   padding-bottom: 6px;
   border-bottom: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__block::before{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__block::before{
   display: none;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__eyebrow{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__eyebrow{
   display: inline-flex;
   align-items: center;
   min-height: 0;
@@ -275,124 +303,151 @@ body.hb-manual-switcher-body #furo-main-content .hb-preface__eyebrow{
   text-transform: uppercase;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__body{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__body{
   display: grid;
   gap: 10px;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__body > p{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__body > p{
   max-width: none;
   margin: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content .hb-preface__body > p.hb-preface__note{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__body > p.hb-preface__note{
   padding-top: 10px;
   border-top: 1px solid rgba(17, 24, 39, 0.12);
   font-size: 0.95rem;
   color: #4b5563;
 }
 
-body.hb-manual-switcher-body #furo-main-content > p,
-body.hb-manual-switcher-body #furo-main-content > ul,
-body.hb-manual-switcher-body #furo-main-content > ol,
-body.hb-manual-switcher-body #furo-main-content > blockquote,
-body.hb-manual-switcher-body #furo-main-content > section > p,
-body.hb-manual-switcher-body #furo-main-content > section > ul,
-body.hb-manual-switcher-body #furo-main-content > section > ol,
-body.hb-manual-switcher-body #furo-main-content > section > blockquote,
-body.hb-manual-switcher-body #furo-main-content > section > section > p,
-body.hb-manual-switcher-body #furo-main-content > section > section > ul,
-body.hb-manual-switcher-body #furo-main-content > section > section > ol,
-body.hb-manual-switcher-body #furo-main-content > section > section > blockquote{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > p,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > ul,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > ol,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > blockquote,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > p,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > ul,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > ol,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > blockquote,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > p,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > ul,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > ol,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > blockquote{
   max-width: var(--hb-copy-width);
 }
 
-body.hb-manual-switcher-body #furo-main-content > p,
-body.hb-manual-switcher-body #furo-main-content > section > p,
-body.hb-manual-switcher-body #furo-main-content > section > section > p{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > p,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > p,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > p{
   margin: 0 0 14px;
 }
 
-body.hb-manual-switcher-body #furo-main-content > ul,
-body.hb-manual-switcher-body #furo-main-content > ol,
-body.hb-manual-switcher-body #furo-main-content > section > ul,
-body.hb-manual-switcher-body #furo-main-content > section > ol,
-body.hb-manual-switcher-body #furo-main-content > section > section > ul,
-body.hb-manual-switcher-body #furo-main-content > section > section > ol{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > ul,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > ol,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > ul,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > ol,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > ul,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > ol{
   margin: 0 0 18px;
   padding-left: 1.25rem;
 }
 
-body.hb-manual-switcher-body #furo-main-content > ul li,
-body.hb-manual-switcher-body #furo-main-content > ol li,
-body.hb-manual-switcher-body #furo-main-content > section > ul li,
-body.hb-manual-switcher-body #furo-main-content > section > ol li,
-body.hb-manual-switcher-body #furo-main-content > section > section > ul li,
-body.hb-manual-switcher-body #furo-main-content > section > section > ol li{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > ul li,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > ol li,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > ul li,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > ol li,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > ul li,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > ol li{
   margin-bottom: 0.45rem;
 }
 
-body.hb-manual-switcher-body #furo-main-content > section,
-body.hb-manual-switcher-body #furo-main-content > section > section{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section{
   margin-top: 42px;
   scroll-margin-top: 28px;
 }
 
-body.hb-manual-switcher-body #furo-main-content > section:first-child{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section:first-child{
   margin-top: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content h1:not(.hb-h1-pill),
-body.hb-manual-switcher-body #furo-main-content h2:not(.hb-subbar):not(.hb-spec-section),
-body.hb-manual-switcher-body #furo-main-content h3{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h1,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h2:not(.hb-subbar):not(.hb-spec-section),
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h3{
   max-width: var(--hb-reading-width);
   color: var(--hb-heading);
   margin-left: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content h1:not(.hb-h1-pill){
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h1{
+  display: block;
+  box-sizing: border-box;
+  width: min(100%, var(--hb-reading-width));
   margin-top: 0;
-  margin-bottom: 18px;
-  font-size: clamp(1.65rem, 2.2vw, 2.15rem);
-  line-height: 1.12;
+  margin-bottom: 20px;
+  padding: 10px 14px 9px;
+  border-radius: 0 0 10px 10px;
+  background: #343031;
+  color: #fff;
+  font-size: 1.52rem;
+  line-height: 1.2;
   font-weight: 800;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
-body.hb-manual-switcher-body #furo-main-content h1:not(.hb-h1-pill)::after{
-  content: "";
-  display: block;
-  width: 52px;
-  height: 2px;
-  margin-top: 10px;
-  border-radius: 0;
-  background: #111827;
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h1::after{
+  display: none;
 }
 
-body.hb-manual-switcher-body #furo-main-content h2:not(.hb-subbar):not(.hb-spec-section){
-  margin-top: 8px;
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h2:not(.hb-subbar):not(.hb-spec-section){
+  display: flex;
+  align-items: center;
+  gap: 0.56rem;
+  margin-top: 18px;
   margin-bottom: 12px;
-  padding-top: 18px;
-  border-top: 1px solid var(--hb-section-rule);
-  font-size: 0.92rem;
+  padding-top: 0;
+  border-top: 0;
+  font-size: 1.02rem;
   line-height: 1.25;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--hb-heading-soft);
+  color: #343031;
 }
 
-body.hb-manual-switcher-body #furo-main-content h3{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h2:not(.hb-subbar):not(.hb-spec-section)::before{
+  content: "";
+  flex: 0 0 auto;
+  width: 0.74rem;
+  height: 0.74rem;
+  border-radius: 50%;
+  background: #343031;
+}
+
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h3{
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
   margin-top: 14px;
   margin-bottom: 10px;
-  font-size: 1.08rem;
-  line-height: 1.3;
-  font-weight: 700;
+  font-size: 0.94rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: #343031;
 }
 
-body.hb-manual-switcher-body #furo-main-content > section > a.reference.internal.image-reference,
-body.hb-manual-switcher-body #furo-main-content > section > section > a.reference.internal.image-reference{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) h3::before{
+  content: "";
+  flex: 0 0 auto;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: #343031;
+}
+
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > a.reference.internal.image-reference,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > a.reference.internal.image-reference{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -406,15 +461,15 @@ body.hb-manual-switcher-body #furo-main-content > section > section > a.referenc
   text-decoration: none;
 }
 
-body.hb-manual-switcher-body #furo-main-content > section > a.reference.internal.image-reference > img,
-body.hb-manual-switcher-body #furo-main-content > section > section > a.reference.internal.image-reference > img{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > a.reference.internal.image-reference > img,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) > section > section > a.reference.internal.image-reference > img{
   display: block;
   max-width: 100%;
   height: auto !important;
   margin: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content .table-wrapper.docutils{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .table-wrapper.docutils{
   width: min(100%, var(--hb-reading-width));
   margin: 18px 0 28px;
   border: 1px solid rgba(148, 163, 184, 0.22);
@@ -424,7 +479,7 @@ body.hb-manual-switcher-body #furo-main-content .table-wrapper.docutils{
   box-shadow: none;
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils{
   width: 100%;
   margin: 0;
   border-collapse: separate;
@@ -434,41 +489,41 @@ body.hb-manual-switcher-body #furo-main-content table.docutils{
   line-height: 1.5;
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils th,
-body.hb-manual-switcher-body #furo-main-content table.docutils td{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils th,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils td{
   padding: 14px 16px;
   vertical-align: top;
   border: 0;
   border-top: 1px solid rgba(226, 232, 240, 0.95);
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils thead th,
-body.hb-manual-switcher-body #furo-main-content table.docutils tbody tr:first-child > *{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils thead th,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils tbody tr:first-child > *{
   border-top: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils th{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils th{
   background: rgba(229, 231, 235, 0.56);
   font-weight: 700;
   color: var(--hb-heading);
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils td{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils td{
   background: transparent;
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils p:last-child,
-body.hb-manual-switcher-body #furo-main-content table.docutils ul:last-child,
-body.hb-manual-switcher-body #furo-main-content table.docutils ol:last-child{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils p:last-child,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils ul:last-child,
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils ol:last-child{
   margin-bottom: 0;
 }
 
-body.hb-manual-switcher-body #furo-main-content table.docutils img{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) table.docutils img{
   display: block;
   margin: 0 auto;
 }
 
-body.hb-manual-switcher-body #furo-main-content em{
+body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) em{
   color: #475467;
 }
 
@@ -620,12 +675,12 @@ body.hb-manual-switcher-body #furo-main-content em{
     display: none;
   }
 
-  body.hb-manual-switcher-body #furo-main-content{
+  body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]){
     padding-left: 14px;
     padding-right: 14px;
   }
 
-  body.hb-manual-switcher-body #furo-main-content .hb-preface__block{
+  body.hb-manual-switcher-body :is(#furo-main-content, .body[role="main"]) .hb-preface__block{
     padding: 12px 0 16px;
     border-radius: 0;
   }

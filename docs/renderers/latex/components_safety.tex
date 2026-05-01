@@ -9,6 +9,7 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{multicol}
+\usepackage{needspace}
 
 % ==================================================
 % WARNING LOCKUP
@@ -72,24 +73,10 @@
 % SUBBAR
 % ==================================================
 
+\expandafter\providecommand\csname HBcomp_subbar_needspace\endcsname{18mm}
 \providecommand{\safetysubbar}[1]{}
 \renewcommand{\safetysubbar}[1]{%
-  \begin{tcolorbox}[
-    colback=BrandDark,
-    colframe=BrandDark,
-    arc=\csname HBcomp_subbar_arc\endcsname,
-    left=\csname HBcomp_subbar_pad_lr\endcsname,
-    right=\csname HBcomp_subbar_pad_lr\endcsname,
-    top=\csname HBcomp_subbar_pad_tb\endcsname,
-    bottom=\csname HBcomp_subbar_pad_tb\endcsname,
-    boxrule=0pt,
-    width=\csname HBcomp_subbar_width\endcsname\textwidth
-  ]
-    \HBTypeSubbar{#1}
-  \end{tcolorbox}
-  \par\noindent
-  \vspace*{\csname HBcomp_subbar_after\endcsname}%
-  \vspace*{-\csname HBcomp_subbar_tighten\endcsname}%
+  \HBTitleLevelTwoBlock{#1}%
 }
 
 % ==================================================
@@ -114,7 +101,6 @@
 
 \newenvironment{safetysinglecol}{%
   \par\noindent
-  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
   \begingroup
     \HBTypeListStart
 }{%
@@ -159,6 +145,8 @@
 
 % Capture defaults once so language switching can safely reset.
 \HBStoreBaseFromKey{comp_h1_pill_after}%
+\HBStoreBaseFromKey{comp_title_l2_before}%
+\HBStoreBaseFromKey{comp_title_l2_after}%
 \HBStoreBaseFromKey{comp_subbar_after}%
 \HBStoreBaseFromKey{comp_twocol_tighten}%
 \HBStoreBaseFromKey{comp_lead_after}%
@@ -183,6 +171,8 @@
 
   % ===== Reset to base layer defaults first =====
   \HBOverrideFromKey{comp_h1_pill_after}{base_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_title_l2_before}{base_comp_title_l2_before}%
+  \HBOverrideFromKey{comp_title_l2_after}{base_comp_title_l2_after}%
   \HBOverrideFromKey{comp_subbar_after}{base_comp_subbar_after}%
   \HBOverrideFromKey{comp_twocol_tighten}{base_comp_twocol_tighten}%
   \HBOverrideFromKey{comp_lead_after}{base_comp_lead_after}%
@@ -204,6 +194,8 @@
 
   % ===== Component layer =====
   \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%
+  \HBOverrideFromKey{comp_title_l2_before}{lang_\HB@lang_comp_title_l2_before}%
+  \HBOverrideFromKey{comp_title_l2_after}{lang_\HB@lang_comp_title_l2_after}%
   \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
   \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
   \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%

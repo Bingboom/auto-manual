@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-04-08
+Updated: 2026-05-01
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -83,7 +83,11 @@ Do not move new low-level implementation back into these files unless the behavi
 - [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)
   - config/layout validation helpers for the build tool
 - [`tools/word_bundle_docx.py`](../../tools/word_bundle_docx.py)
-  - DOCX export assembly and Word post-processing passes
+  - DOCX export assembly and Word post-processing orchestration
+- [`tools/word_bundle_docx_styles.py`](../../tools/word_bundle_docx_styles.py)
+  - DOCX heading/style remapping and outline-level normalization
+- [`tools/word_bundle_docx_images.py`](../../tools/word_bundle_docx_images.py)
+  - DOCX external image embedding and content-type updates
 - [`tools/word_bundle_docx_pandoc.py`](../../tools/word_bundle_docx_pandoc.py)
   - pandoc version guardrails for reference-template DOCX exports
 - [`tools/word_bundle_docx_xml.py`](../../tools/word_bundle_docx_xml.py)

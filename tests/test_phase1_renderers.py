@@ -426,8 +426,22 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertTrue(out.startswith("|\n\n.. only:: latex"))
+        self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n|\n\n.. only:: latex"))
         self.assertIn("\n\n.. only:: not latex\n\n   .. list-table::", out)
+
+    def test_render_symbols_page_should_seed_rst_title_hierarchy_with_page_title(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map={},
+        )
+
+        page_title = "MEANING OF SYMBOLS\n=================="
+        maintenance_title = "USER MAINTENANCE INSTRUCTIONS\n-----------------------------"
+        self.assertLess(out.index(page_title), out.index(maintenance_title))
+        self.assertNotIn(r"\section{MEANING OF SYMBOLS}", out)
 
     def test_render_symbols_page_emits_latex_notice_and_symbol_macros(self) -> None:
         out = renderers.render_symbols_page(

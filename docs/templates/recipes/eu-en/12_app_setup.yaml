@@ -18,5 +18,7 @@ field_map:
     value_role: label
 required_row_keys: []
 snippet_slots: {}
+postprocess:
+  - promote_standalone_bold_numbered_headings
 contracts:
   - 12_app_setup

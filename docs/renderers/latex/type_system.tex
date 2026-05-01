@@ -27,6 +27,41 @@
    \HBifupper{\csname HBtype_h1_force_upper\endcsname}{#1}}%
 }
 
+% Structural title level 1. Keep as an alias so existing H1 params remain stable.
+\providecommand{\HBTypeTitleLevelOne}[1]{%
+  \HBTypeHOne{#1}%
+}
+
+% Structural title level 2. Used by RST subsections, overview panels,
+% spec-section titles, and subbar-like titles.
+\expandafter\providecommand\csname HBtype_title_l2_color\endcsname{TextGray}
+\expandafter\providecommand\csname HBtype_title_l2_font_size\endcsname{8.6pt}
+\expandafter\providecommand\csname HBtype_title_l2_font_leading\endcsname{9.4pt}
+\expandafter\providecommand\csname HBtype_title_l2_force_upper\endcsname{1}
+\providecommand{\HBTypeTitleLevelTwo}[1]{%
+  {\HBFontHeavy
+   \color{\csname HBtype_title_l2_color\endcsname}%
+   \fontsize{\csname HBtype_title_l2_font_size\endcsname}
+            {\csname HBtype_title_l2_font_leading\endcsname}\selectfont
+   \RaggedRight
+   \HBifupper{\csname HBtype_title_l2_force_upper\endcsname}{#1}}%
+}
+
+% Structural title level 3. Used by RST subsubsections and lower local
+% headings.
+\expandafter\providecommand\csname HBtype_title_l3_color\endcsname{TextGray}
+\expandafter\providecommand\csname HBtype_title_l3_font_size\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_title_l3_font_leading\endcsname{8.0pt}
+\expandafter\providecommand\csname HBtype_title_l3_force_upper\endcsname{0}
+\providecommand{\HBTypeTitleLevelThree}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_title_l3_color\endcsname}%
+   \fontsize{\csname HBtype_title_l3_font_size\endcsname}
+            {\csname HBtype_title_l3_font_leading\endcsname}\selectfont
+   \RaggedRight
+   \HBifupper{\csname HBtype_title_l3_force_upper\endcsname}{#1}}%
+}
+
 % Subbar white text on dark background
 \providecommand{\HBTypeSubbar}[1]{%
   {\color{white}\HBFontSemiBold

@@ -7,6 +7,7 @@
 \usepackage{array}
 \usepackage{colortbl}
 \usepackage{graphicx}
+\usepackage{needspace}
 
 % ------------------------------
 % Raw LaTeX component helpers
@@ -318,6 +319,16 @@
 \expandafter\providecommand\csname HBtype_overview_label_font_leading\endcsname{6.5pt}
 \expandafter\providecommand\csname HBtype_overview_value_font_size\endcsname{5.7pt}
 \expandafter\providecommand\csname HBtype_overview_value_font_leading\endcsname{6.3pt}
+\expandafter\providecommand\csname HBcomp_title_l2_before\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_title_l2_after\endcsname{1.4mm}
+\expandafter\providecommand\csname HBcomp_title_l2_bullet_radius\endcsname{0.75mm}
+\expandafter\providecommand\csname HBcomp_title_l2_gap\endcsname{1.4mm}
+\expandafter\providecommand\csname HBcomp_title_l2_needspace\endcsname{10mm}
+\expandafter\providecommand\csname HBcomp_title_l3_before\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_title_l3_after\endcsname{0.6mm}
+\expandafter\providecommand\csname HBcomp_title_l3_bullet_radius\endcsname{0.28mm}
+\expandafter\providecommand\csname HBcomp_title_l3_gap\endcsname{0.9mm}
+\expandafter\providecommand\csname HBcomp_title_l3_needspace\endcsname{8mm}
 
 \providecommand{\HBTypeOverviewLabel}[1]{%
   {\HBFontSemiBold
@@ -333,6 +344,58 @@
    \fontsize{\csname HBtype_overview_value_font_size\endcsname}
             {\csname HBtype_overview_value_font_leading\endcsname}\selectfont
    \RaggedRight #1}%
+}
+
+\providecommand{\HBTitleLevelTwoMarker}{%
+  \tikz[baseline=-0.45ex]{%
+    \fill[\csname HBtype_title_l2_color\endcsname]
+      (0,0) circle[radius=\csname HBcomp_title_l2_bullet_radius\endcsname];%
+  }%
+}
+
+\providecommand{\HBTitleLevelTwo}[1]{%
+  \noindent
+  \begingroup
+    \HBTitleLevelTwoMarker
+    \hspace{\csname HBcomp_title_l2_gap\endcsname}%
+    \HBTypeTitleLevelTwo{#1}%
+    \par
+  \endgroup
+}
+
+\providecommand{\HBTitleLevelTwoBlock}[1]{%
+  \par\vspace{\csname HBcomp_title_l2_before\endcsname}%
+  \Needspace{\csname HBcomp_title_l2_needspace\endcsname}%
+  \HBTitleLevelTwo{#1}%
+  \vspace{\csname HBcomp_title_l2_after\endcsname}%
+}
+
+\providecommand{\HBLevelTwoTitle}[1]{%
+  \HBTitleLevelTwoBlock{#1}%
+}
+
+\providecommand{\HBTitleLevelThreeMarker}{%
+  \tikz[baseline=-0.45ex]{%
+    \fill[\csname HBtype_title_l3_color\endcsname]
+      (0,0) circle[radius=\csname HBcomp_title_l3_bullet_radius\endcsname];%
+  }%
+}
+
+\providecommand{\HBTitleLevelThree}[1]{%
+  \noindent
+  \begingroup
+    \HBTitleLevelThreeMarker
+    \hspace{\csname HBcomp_title_l3_gap\endcsname}%
+    \HBTypeTitleLevelThree{#1}%
+    \par
+  \endgroup
+}
+
+\providecommand{\HBTitleLevelThreeBlock}[1]{%
+  \par\vspace{\csname HBcomp_title_l3_before\endcsname}%
+  \Needspace{\csname HBcomp_title_l3_needspace\endcsname}%
+  \HBTitleLevelThree{#1}%
+  \vspace{\csname HBcomp_title_l3_after\endcsname}%
 }
 
 \providecommand{\HBOverviewCell}[2]{%
@@ -357,7 +420,7 @@
 }
 
 \newcommand{\HBOverviewPanel}[3]{%
-  \safetysubbar{#1}%
+  \HBTitleLevelTwoBlock{#1}%
   \begin{center}
     \HBImageOrPlaceholder
       {\csname HBcomp_overview_image_width\endcsname}
@@ -680,12 +743,12 @@
 \makeatother
 
 % ------------------------------
-% Shared H1 section title
+% Shared level-1 section title
 % - all rst top-level headings ("=") should pass this style path
 % ------------------------------
-\providecommand{\hbsectiontitle}[1]{#1}
+\providecommand{\HBTitleLevelOne}[1]{#1}
 
-\renewcommand{\hbsectiontitle}[1]{%
+\renewcommand{\HBTitleLevelOne}[1]{%
   \par\noindent
   \hspace*{-\leftskip}%
   \begin{tcolorbox}[
@@ -703,9 +766,13 @@
     before skip=0mm,
     after skip=\csname HBcomp_h1_pill_after\endcsname
   ]
-    \HBTypeHOne{#1}
+    \HBTypeTitleLevelOne{#1}
   \end{tcolorbox}%
   \par\noindent
+}
+
+\providecommand{\hbsectiontitle}[1]{%
+  \HBTitleLevelOne{#1}%
 }
 
 % Apply shared H1 styling to all section-level headings generated from rst.
@@ -714,30 +781,18 @@
 \setcounter{secnumdepth}{0}
 
 % ------------------------------
-% Rubric style (subsubsection*)
-% - spacing: COMPONENT
-% - font: TYPE SYSTEM
+% Shared level-2/level-3 title styles.
+% L2 backs RST subsection titles and component-local major groups.
+% L3 backs lower-level RST titles.
 % ------------------------------
-\expandafter\providecommand\csname HBcomp_subsection_before\endcsname{1.2mm}
-\expandafter\providecommand\csname HBcomp_subsection_after\endcsname{0.8mm}
-\expandafter\providecommand\csname HBtype_subsection_font_size\endcsname{10.8pt}
-\expandafter\providecommand\csname HBtype_subsection_font_leading\endcsname{11.8pt}
+\titleformat{\subsection}{\normalfont}{}{0pt}{\HBTitleLevelTwo}
+\titlespacing*{\subsection}
+  {0pt}
+  {\csname HBcomp_title_l2_before\endcsname}
+  {\csname HBcomp_title_l2_after\endcsname}
 
-\makeatletter
-\renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
-  {\csname HBcomp_subsection_before\endcsname}%
-  {\csname HBcomp_subsection_after\endcsname}%
-  {\HBFontSemiBold
-   \fontsize{\csname HBtype_subsection_font_size\endcsname}
-            {\csname HBtype_subsection_font_leading\endcsname}
-   \color{\csname HBtype_body_color\endcsname}
-   \selectfont}}%
-\renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
-  {\csname HBcomp_rubric_before\endcsname}%
-  {\csname HBcomp_rubric_after\endcsname}%
-  {\HBFontHeavy
-   \fontsize{\csname HBtype_rubric_font_size\endcsname}
-            {\csname HBtype_rubric_font_leading\endcsname}
-   \color{\csname HBtype_rubric_color\endcsname}
-   \selectfont\color{black}}}
-\makeatother
+\titleformat{\subsubsection}{\normalfont}{}{0pt}{\HBTitleLevelThree}
+\titlespacing*{\subsubsection}
+  {0pt}
+  {\csname HBcomp_title_l3_before\endcsname}
+  {\csname HBcomp_title_l3_after\endcsname}

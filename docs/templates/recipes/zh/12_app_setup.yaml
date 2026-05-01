@@ -3,5 +3,7 @@ template: templates/page_zh/12_app_setup_placeholder.rst
 field_map: {}
 required_row_keys: []
 snippet_slots: {}
+postprocess:
+  - promote_standalone_bold_numbered_headings
 contracts:
   - 12_app_setup
