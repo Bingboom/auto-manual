@@ -139,9 +139,10 @@ Phase2 snapshot note:
 
 Start Review, Build Draft Package, Publish:
 
-- `process-build-queue` no longer refreshes `data/phase2` unconditionally; it only runs `sync-data` when `Document_link.是否强制刷新数据 = true`
+- `process-build-queue` no longer refreshes `data/phase2` unconditionally; it runs `sync-data` when `Document_link.是否强制刷新数据 = true` or when the worker is launched with `--force-phase2-refresh`
 - when `是否强制刷新数据` is checked, the queue refreshes phase2 immediately before that document group, clears the checkbox afterward, and writes `data_sync=refreshed` on success or `data_sync=failed` if the refresh step itself fails
 - when `是否强制刷新数据` is left unchecked, the queue builds directly from the current local `data/phase2` snapshot plus the current review branch content and writes `data_sync=skipped`
+- GitHub's `feishu-draft-build-queue.yml` always passes `--force-phase2-refresh` so direct Build Draft Package dispatches do not reuse a stale checked-in phase2 snapshot after a previous failure clears the row checkbox
 - `process-review-start-queue` consumes rows whose `Workflow_action` maps to `Start Review`, then force-reseeds [`docs/_review/`](docs/_review) from the latest base branch and updates the review branch/PR
 - `process-build-queue --workflow-action build-draft-package` uses the current `data/phase2` snapshot plus the PR branch's current [`docs/_review/`](docs/_review) content; Build Draft Package is for documents that have already entered review
 - `process-build-queue --workflow-action publish` uses the current `data/phase2` snapshot plus `Document_link.Git_ref` when present, runs `build.py publish` and `build.py html --source review`, uploads the staged Publish PDF to `Document link`, keeps the DOCX only under `reports/releases`, and still mirrors the latest publish HTML under `reports/releases/*/*/*/latest/html/`

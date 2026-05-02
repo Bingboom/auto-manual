@@ -33,6 +33,7 @@ def run_main(
             config_path=config_path,
             data_root=resolved_data_root,
             dry_run=bool(args.dry_run),
+            force_phase2_refresh=bool(getattr(args, "force_phase2_refresh", False)),
             workflow_action=args.workflow_action,
             doc_phase=args.doc_phase,
             record_id=(args.record_id or "").strip() or None,

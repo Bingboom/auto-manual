@@ -418,6 +418,7 @@ def process_build_queue(
     config_path: Path,
     data_root: str | None,
     dry_run: bool,
+    force_phase2_refresh: bool = False,
     immediate_only: bool = False,
     workflow_action: str | None = None,
     doc_phase: str | None = None,
@@ -429,6 +430,7 @@ def process_build_queue(
         config_path=config_path,
         data_root=data_root,
         dry_run=dry_run,
+        force_phase2_refresh=force_phase2_refresh,
         immediate_only=immediate_only,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
@@ -441,6 +443,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--dry-run", action="store_true", help="List pending tasks without building or writing back")
+    ap.add_argument(
+        "--force-phase2-refresh",
+        action="store_true",
+        help="Refresh the phase2 snapshot before building every selected queue group.",
+    )
     ap.add_argument(
         "--workflow-action",
         choices=("build-draft-package", "draft", "publish"),

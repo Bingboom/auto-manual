@@ -911,12 +911,12 @@ Templates and CSV create the first draft.
 [`docs/_build/**/**/rst/**`](../docs/_build) remains the runtime publish bundle behind the final outputs.
 ## Start Review, Build Draft Package, Publish
 
-- `process-build-queue` no longer runs `sync-data` unconditionally; it now refreshes phase2 only when `Document_link.是否强制刷新数据 = true`.
+- `process-build-queue` no longer runs `sync-data` unconditionally; it now refreshes phase2 when `Document_link.是否强制刷新数据 = true` or when the worker is launched with `--force-phase2-refresh`.
 - `Document_link.data_sync` is the writeback field for that decision: `refreshed`, `skipped`, or `failed`.
 - `sync-review` now also refreshes `generated_page` placeholder files under `page/*.rst`, so forced-refresh queue builds update the final rendered page text instead of keeping stale review placeholder content.
 - `Workflow_action=Build Draft Package` and `Workflow_action=Publish` are now the primary queue actions.
 - queue routing only looks at `Workflow_action`: use `Start Review`, `Build Draft Package`, or `Publish`, and keep `Doc_phase` blank.
-- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide which review branch gets fetched and built.
+- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide which review branch gets fetched and built. The GitHub draft worker always passes `--force-phase2-refresh` so direct draft dispatches do not reuse a stale checked-in phase2 snapshot.
 - `feishu-start-review.yml` is the Start Review worker on `main`; dispatch it on `main` so review-init always uses the latest worker definition.
 - `feishu-build-queue.yml` is the Publish-stage worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide the review-branch source when present.
 - if your team uses OpenClaw as the operator entrypoint, install the repo package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) and use `/start-review`, `/build-draft`, `/publish`, and `/manual-status` instead of hand-calling the GitHub API.

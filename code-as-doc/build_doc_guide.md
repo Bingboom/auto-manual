@@ -151,7 +151,7 @@ Meaning:
 
 Start Review, Build Draft Package, Publish:
 
-- the queue worker no longer refreshes `data/phase2` unconditionally; `Document_link.是否强制刷新数据` now decides whether that document group pulls a fresh phase2 snapshot or reuses the current local one
+- the queue worker no longer refreshes `data/phase2` unconditionally; `Document_link.是否强制刷新数据` or the `--force-phase2-refresh` CLI flag decides whether that document group pulls a fresh phase2 snapshot or reuses the current local one
 - `data_sync` is the row-level writeback for that decision: `refreshed`, `skipped`, or `failed`
 - queue-driven builds treat Feishu phase2 tables as the structured-data source of truth; repo `data/phase2/*.csv` files are materialized snapshots, not the authoring source
 - use `process-build-queue --workflow-action build-draft-package` when a Build Draft Package row should be built from the current review tree
@@ -159,7 +159,7 @@ Start Review, Build Draft Package, Publish:
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
-- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
+- `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`; it always passes `--force-phase2-refresh` so direct draft dispatches build from the latest phase2 snapshot even if the row checkbox was cleared by a previous failure
 - the repo now ships one OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer); it is the supported control-layer package when you want one chat entrypoint for these three workers
 - OpenClaw dispatches still call only the `main`-owned workflows; they add `openclaw_dispatch_nonce` as a correlation input and the workflows upload `openclaw-run-metadata` as a machine-readable status artifact
 - rapid multi-language `build-draft` bursts from OpenClaw now reuse one short-lived shared draft-queue worker on `main`; the first dispatch wakes the worker, and near-simultaneous sibling language asks reuse that same worker instead of launching competing queue runs that can cancel each other before the job starts

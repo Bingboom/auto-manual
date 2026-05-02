@@ -198,6 +198,11 @@ def parse_args(
         help="For process-build-queue or process-review-start-queue: only consume one table record_id",
     )
     ap.add_argument(
+        "--force-phase2-refresh",
+        action="store_true",
+        help="For process-build-queue: refresh phase2 before every selected queue group",
+    )
+    ap.add_argument(
         "--dry-run",
         action="store_true",
         help="For sync-data, process-build-queue, or process-review-start-queue: validate/report without writing files",

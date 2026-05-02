@@ -23,6 +23,7 @@ def process_queue_record_group(
     can_write_started_at: bool,
     can_write_force_phase2_refresh: bool,
     can_write_data_sync: bool,
+    force_phase2_refresh: bool,
     can_write_document_link_dd: bool,
     has_upload_dingtalk_field: bool,
     cli_bin: str,
@@ -74,7 +75,7 @@ def process_queue_record_group(
         group_build_family = queue_group_build_family(group)
         dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
         dingtalk_operator_union_id = queue_group_operator_union_id(group)
-        force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        force_phase2_refresh = force_phase2_refresh or queue_group_force_phase2_refresh(group)
         upload_dingtalk = queue_group_upload_dingtalk(group)
         data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)

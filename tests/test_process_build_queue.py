@@ -23,6 +23,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     "--data-root",
                     "data/phase2",
                     "--dry-run",
+                    "--force-phase2-refresh",
                     "--record-id",
                     " rec_123 ",
                 ],
@@ -37,6 +38,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(root / "config.us.yaml", seen["config_path"])
         self.assertEqual(str(root / "data" / "phase2"), seen["data_root"])
         self.assertTrue(seen["dry_run"])
+        self.assertTrue(seen["force_phase2_refresh"])
         self.assertEqual("rec_123", seen["record_id"])
 
     def test_cli_main_should_return_exit_code_one_for_runtime_errors(self) -> None:
@@ -2263,6 +2265,110 @@ class TestProcessBuildQueue(unittest.TestCase):
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
         self.assertEqual("codex/review-je-1000f-us-en", build_document_mock.call_args.kwargs["git_ref"])
+
+    def test_process_build_queue_should_sync_phase2_snapshot_when_cli_force_refresh_is_set(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_1",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.DOC_PHASE_FIELD: ["Draft"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
+                },
+            }
+        ]
+        sync_mock = mock.Mock()
+        build_document_mock = mock.Mock(return_value=Path(tempfile.gettempdir()) / "manual.docx")
+
+        class FakeSource:
+            def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                return raw_records
+
+            def upsert_record(self, **_: object) -> dict[str, object]:
+                return {"ok": True}
+
+        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+            process_build_queue,
+            "resolve_document_link_binding",
+            return_value=binding,
+        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+            process_build_queue,
+            "sync_phase2_snapshot_before_queue",
+            sync_mock,
+        ), mock.patch.object(
+            process_build_queue,
+            "resolve_config_path_for_task",
+            return_value=Path("config.us-en.yaml"),
+        ), mock.patch.object(
+            process_build_queue,
+            "build_document_for_task",
+            build_document_mock,
+        ), mock.patch.object(
+            process_build_queue,
+            "upload_word_to_drive",
+            return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
+        ), mock.patch.object(
+            process_build_queue,
+            "resolve_wiki_destination",
+            return_value=process_build_queue.WikiDestination(
+                space_id="space_123",
+                parent_wiki_token="wiki_parent",
+            ),
+        ), mock.patch.object(
+            process_build_queue,
+            "move_drive_file_to_wiki",
+            return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+        ), mock.patch.object(
+            process_build_queue,
+            "_phase2_identity",
+            return_value="user",
+        ):
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("config.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                force_phase2_refresh=True,
+            )
+
+        self.assertEqual(0, exit_code)
+        sync_mock.assert_called_once_with(
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+        )
+        build_document_mock.assert_called_once()
 
     def test_process_build_queue_should_write_failed_data_sync_when_forced_refresh_fails(self) -> None:
         cfg = {

@@ -376,7 +376,15 @@ class TestBuildScript(unittest.TestCase):
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "config.ja.yaml"])
         queue_args = build_cli.parse_args(
-            ["process-build-queue", "--dry-run", "--workflow-action", "build-draft-package", "--record-id", "rec_123"]
+            [
+                "process-build-queue",
+                "--dry-run",
+                "--workflow-action",
+                "build-draft-package",
+                "--record-id",
+                "rec_123",
+                "--force-phase2-refresh",
+            ]
         )
         listener_args = build_cli.parse_args(["listen-build-queue", "--config", "config.us.yaml"])
         message_listener_args = build_cli.parse_args(["listen-message-control", "--config", "config.us.yaml"])
@@ -392,6 +400,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertTrue(queue_args.dry_run)
         self.assertEqual("build-draft-package", queue_args.workflow_action)
         self.assertEqual("rec_123", queue_args.record_id)
+        self.assertTrue(queue_args.force_phase2_refresh)
         self.assertEqual("listen-build-queue", listener_args.action)
         self.assertEqual("listen-message-control", message_listener_args.action)
         self.assertEqual("publish", publish_args.action)
@@ -599,6 +608,7 @@ class TestBuildScript(unittest.TestCase):
                 "publish",
                 "--record-id",
                 "rec_456",
+                "--force-phase2-refresh",
                 "--dry-run",
             ]
         )
@@ -612,6 +622,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("publish", cmd)
         self.assertIn("--record-id", cmd)
         self.assertIn("rec_456", cmd)
+        self.assertIn("--force-phase2-refresh", cmd)
         self.assertIn("--dry-run", cmd)
 
     def test_message_control_dry_run_command_should_forward_message_and_selector_hints(self) -> None:
