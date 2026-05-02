@@ -505,6 +505,71 @@ Congratulations on your new manual.
         self.assertIn("<strong>DANGER</strong>", out)
         self.assertIn("Indoor use only.", out)
 
+    def test_rewrite_word_friendly_fragment_should_convert_two_column_alert_tables(self) -> None:
+        fragment = (
+            "<table><colgroup><col /><col /></colgroup><tbody><tr>"
+            "<td><p><strong>CAUTION</strong></p></td>"
+            "<td><ul><li><p>Use a compliant cable.</p></li><li><p>Do not start the car.</p></li></ul></td>"
+            "</tr></tbody></table>"
+            '<p><img src="lcd_mode.png" alt="LCD display mode placeholder."></p>'
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment)
+
+        self.assertIn("manual-callout-table", out)
+        self.assertIn("manual-callout-label", out)
+        self.assertIn("<strong>CAUTION</strong>", out)
+        self.assertIn("Use a compliant cable.", out)
+        self.assertNotIn("<colgroup>", out)
+
+    def test_rewrite_word_friendly_fragment_should_convert_localized_alert_tables(self) -> None:
+        fragment = (
+            "<table><tbody><tr>"
+            "<td><p><strong>PRECAUCIÓN</strong></p></td>"
+            "<td><p>Use un cable compatible.</p></td>"
+            "</tr></tbody></table>"
+            "<table><tbody><tr>"
+            "<td><p><strong>注意</strong>：</p></td>"
+            "<td><p>请使用合规线缆。</p></td>"
+            "</tr></tbody></table>"
+            "<table><tbody><tr>"
+            "<td><p>ご注意</p></td>"
+            "<td><p>安全基準を満たすケーブルを使用してください。</p></td>"
+            "</tr></tbody></table>"
+        )
+
+        out = _rewrite_word_friendly_fragment(fragment)
+
+        self.assertEqual(3, out.count("manual-callout-table"))
+        self.assertIn("<strong>PRECAUCIÓN</strong>", out)
+        self.assertIn("<strong>注意</strong>", out)
+        self.assertIn("<strong>ご注意</strong>", out)
+
+    def test_convert_rst_fragment_to_html_should_convert_two_column_alert_list_tables(self) -> None:
+        rst = """
+DC OUTPUT
+=========
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **CAUTION**
+     -
+       - Use a compliant cable.
+       - Do not start the car while charging.
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("05_operation_guide_placeholder.rst"),
+                Path(td),
+            )
+
+        self.assertIn("manual-callout-table", html)
+        self.assertIn("<strong>CAUTION</strong>", html)
+        self.assertIn("Use a compliant cable.", html)
+
     def test_rewrite_word_friendly_fragment_should_convert_nested_alert_blocks(self) -> None:
         fragment = (
             '<div class="hb-safety">'
@@ -626,6 +691,7 @@ Congratulations on your new manual.
         self.assertIn("tip_bar.png", out)
         self.assertNotIn("old-warning.png", out)
         self.assertNotIn("<strong>WARNING</strong>", out)
+        self.assertNotIn("manual-callout-table", out)
 
 
 if __name__ == "__main__":
