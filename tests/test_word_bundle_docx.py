@@ -100,6 +100,26 @@ class TestWordBundleDocx(unittest.TestCase):
             self.assertTrue(self._paragraph_run_bold(blocks[2]))
             self.assertEqual("Compact", self._paragraph_style(blocks[3]))
             self.assertEqual("Table", self._table_style(blocks[4]))
+            self.assertEqual(("pct", "5000"), self._table_width(blocks[4]))
+            self.assertEqual("fixed", self._table_layout(blocks[4]))
+            self.assertEqual(["1267", "6653"], self._table_grid_widths(blocks[4]))
+            self.assertEqual(
+                {
+                    "top": ("single", "4", "0", "000000"),
+                    "left": ("single", "4", "0", "000000"),
+                    "bottom": ("single", "4", "0", "000000"),
+                    "right": ("single", "4", "0", "000000"),
+                    "insideH": ("single", "4", "0", "000000"),
+                    "insideV": ("single", "4", "0", "000000"),
+                },
+                self._table_borders(blocks[4]),
+            )
+            self.assertEqual([("pct", "800"), ("pct", "4200")], self._first_row_cell_widths(blocks[4]))
+            self.assertEqual(
+                {"top": "120", "left": "120", "bottom": "120", "right": "120"},
+                self._table_cell_margins(blocks[4]),
+            )
+            self.assertEqual(["top", "top"], self._first_row_cell_vertical_alignments(blocks[4]))
             self.assertEqual("FirstParagraph", self._paragraph_style(blocks[4].find(".//w:p", _NS)))
             self.assertEqual("dingding-heading2", self._paragraph_style(blocks[5]))
             self.assertEqual("28", self._paragraph_run_size(blocks[5]))
@@ -485,6 +505,14 @@ class TestWordBundleDocx(unittest.TestCase):
             )
         return borders
 
+    def _table_cell_margins(self, tbl: ET.Element) -> dict[str, str]:
+        margins = {}
+        for edge in ("top", "left", "bottom", "right"):
+            margin = tbl.find(f"w:tblPr/w:tblCellMar/w:{edge}", _NS)
+            if margin is not None:
+                margins[edge] = margin.attrib.get(f"{_W}w", "")
+        return margins
+
     def _first_row_cell_widths(self, tbl: ET.Element) -> list[tuple[str, str]]:
         first_row = tbl.find("w:tr", _NS)
         self.assertIsNotNone(first_row)
@@ -493,6 +521,15 @@ class TestWordBundleDocx(unittest.TestCase):
             tc_w = cell.find("w:tcPr/w:tcW", _NS)
             widths.append(("", "") if tc_w is None else (tc_w.attrib.get(f"{_W}type", ""), tc_w.attrib.get(f"{_W}w", "")))
         return widths
+
+    def _first_row_cell_vertical_alignments(self, tbl: ET.Element) -> list[str]:
+        first_row = tbl.find("w:tr", _NS)
+        self.assertIsNotNone(first_row)
+        alignments: list[str] = []
+        for cell in first_row.findall("w:tc", _NS):
+            valign = cell.find("w:tcPr/w:vAlign", _NS)
+            alignments.append("" if valign is None else valign.attrib.get(f"{_W}val", ""))
+        return alignments
 
     def _paragraph_run_size(self, para: ET.Element) -> str:
         size = para.find("w:r/w:rPr/w:sz", _NS)

@@ -319,7 +319,7 @@ def build_word_bundle_html(
             ".manual-two-col-table { width: 100%; border-collapse: separate; border-spacing: 12px 0; margin: 0 0 16px 0; }",
             ".manual-two-col-table td { width: 50%; border: none; padding: 0; vertical-align: top; }",
             ".manual-callout-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
-            ".manual-callout-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
+            ".manual-callout-table td { border: 1px solid #000; padding: 6px 8px; vertical-align: top; }",
             ".manual-callout-table td:first-child { width: 16%; }",
             ".manual-spec-trailer-spacer { margin: 0; line-height: 1.45; }",
             ".manual-spec-note, .manual-spec-footnote { margin: 0; }",
