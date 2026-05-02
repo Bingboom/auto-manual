@@ -49,6 +49,27 @@ def _coerce_attachment_cell(value: Any) -> str:
     return _coerce_scalar(value)
 
 
+def _coerce_choice_cell(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, list):
+        tokens: list[str] = []
+        for item in value:
+            token = _coerce_choice_cell(item).strip()
+            if token:
+                tokens.append(token)
+        return ", ".join(tokens)
+    if isinstance(value, dict):
+        for key in ("text", "name", "value"):
+            token = _coerce_choice_cell(value.get(key)).strip()
+            if token:
+                return token
+        return _coerce_scalar(value)
+    return _coerce_scalar(value)
+
+
 def _normalize_boolish(value: str, *, style: str) -> str:
     raw = (value or "").strip()
     if not raw:
@@ -88,12 +109,16 @@ def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
         return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "symbols_blocks" and column in {"Figure", "figure"}:
         return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
+    if schema.logical_name == "symbols_blocks" and column == "Market":
+        return _coerce_choice_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     value = _coerce_scalar(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "spec_master" and column == "Is_Latest":
         return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "spec_master" and column == "Slot_key":
         return _normalize_slot_key(value)
     if schema.logical_name in {"spec_footnotes", "spec_notes"} and column in {"Is_Latest", "Enabled"}:
+        return _normalize_boolish(value, style="upper_bool")
+    if schema.logical_name == "symbols_blocks" and column == "Is_Latest":
         return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "symbols_blocks" and column == "enabled":
         return _normalize_boolish(value, style="digit_bool")
@@ -172,6 +197,7 @@ def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
             _text_sort_token(row.get("Region", "")),
             _text_sort_token(row.get("Model", "")),
             _text_sort_token(row.get("Source_lang", "")),
+            _text_sort_token(row.get("Market", "")),
             _numeric_sort_token(row.get("order", "")),
             _text_sort_token(row.get("symbol_key", "")),
         )

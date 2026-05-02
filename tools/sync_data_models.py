@@ -187,6 +187,8 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "text_de",
             "text_it",
             "text_uk",
+            "Is_Latest",
+            "Market",
             "enabled",
             "block_type",
             "order",

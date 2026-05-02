@@ -595,7 +595,7 @@ class TestPhase1Renderers(unittest.TestCase):
 
     def test_render_symbols_page_filters_inactive_rows(self) -> None:
         blocks = self._symbols_blocks()
-        blocks[0]["Is_Latest"] = "False"
+        blocks[0]["Is_latest"] = "False"
         blocks[0]["text_en"] = "SHOULD_NOT_RENDER"
         blocks.append(
             {
@@ -642,6 +642,24 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertNotIn("US-only warning.", out)
         self.assertIn("Shared read manual.", out)
         self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_filters_by_space_separated_market(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Market"] = "US EU"
+        blocks[0]["text_en"] = "Shared warning."
+        blocks[1]["Market"] = "US"
+        blocks[1]["text_en"] = "SHOULD_NOT_RENDER"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map={"region": "EU"},
+        )
+
+        self.assertIn("Shared warning.", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
 
     def test_render_symbols_page_filters_by_market_json_list(self) -> None:
         blocks = self._symbols_blocks()

@@ -404,7 +404,7 @@ def _split_condition_tokens(value: str) -> list[str]:
                 if token:
                     tokens.append(token)
             return tokens
-    return [token for token in re.split(r"[,;|/銆侊紝\s]+", raw) if token]
+    return [token for token in re.split(r"[,;|/\s\u3001\uff0c]+", raw) if token]
 
 
 def _matches_market(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
