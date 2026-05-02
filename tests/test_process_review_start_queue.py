@@ -1042,3 +1042,74 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     "请检查 GitHub secrets 里的 table/view 绑定、bot 权限，以及该记录当前是否仍勾选 是否进入Review 且 Workflow_action=Start Review。",
                     payload["summary_next_step"],
                 )
+
+    def test_process_review_start_queue_should_treat_targeted_completed_record_as_success(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
+                    },
+                }
+            }
+        }
+        raw_records = [
+            {
+                "record_id": "rec_started",
+                "fields": {
+                    process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_JP_0.6",
+                    process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_JP",
+                    process_review_start_queue.BUILD_FAMILY_FIELD: ["jp-ja"],
+                    process_review_start_queue.LANG_FIELD: ["ja"],
+                    process_review_start_queue.VERSION_FIELD: ["0.6"],
+                    process_review_start_queue.WORKFLOW_ACTION_FIELD: "Start Review",
+                    process_review_start_queue.REVIEW_STATUS_FIELD: [process_review_start_queue.REVIEW_STATUS_IN_REVIEW],
+                    process_review_start_queue.REVIEW_TRIGGER_FIELD: False,
+                    process_review_start_queue.GIT_REF_FIELD: "codex/review-je-1000f-jp",
+                    process_review_start_queue.PR_URL_FIELD: "https://github.com/Bingboom/auto-manual/pull/120",
+                },
+            }
+        ]
+
+        source = mock.Mock()
+        source.fetch_records_with_ids.return_value = raw_records
+
+        with tempfile.TemporaryDirectory() as td, \
+            mock.patch.object(process_review_start_queue, "collect_review_start_preflight_errors", return_value=[]), \
+            mock.patch.object(process_review_start_queue, "resolve_review_init_binding") as mock_binding, \
+            mock.patch.object(process_review_start_queue, "_cli_bin", return_value="lark-cli"), \
+            mock.patch.object(process_review_start_queue, "_phase2_identity", return_value="bot"), \
+            mock.patch.object(process_review_start_queue, "LarkCliSource", return_value=source), \
+            mock.patch.object(process_review_start_queue, "sync_phase2_snapshot_before_review_start") as mock_sync, \
+            mock.patch.object(process_review_start_queue, "start_review_for_record") as mock_start_review:
+            mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
+                base_token_env="FEISHU_PHASE2_BASE_TOKEN",
+                table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
+                view_id_env="FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
+                base_token="app_xxx",
+                table_id="tbl_init",
+                view_id="vew_init",
+            )
+            summary_path = Path(td) / ".tmp" / "openclaw" / "feishu-start-review-failure-summary.json"
+            with mock.patch.dict(
+                process_review_start_queue.os.environ,
+                {"AUTO_MANUAL_FAILURE_SUMMARY_PATH": str(summary_path)},
+                clear=False,
+            ):
+                exit_code = process_review_start_queue.process_review_start_queue(
+                    cfg=cfg,
+                    config_path=Path(td) / "config.yaml",
+                    data_root=str(Path(td) / ".tmp" / "review-start" / "phase2"),
+                    dry_run=False,
+                    record_id="rec_started",
+                )
+
+        self.assertEqual(0, exit_code)
+        self.assertFalse(summary_path.exists())
+        mock_sync.assert_not_called()
+        mock_start_review.assert_not_called()
+        source.upsert_record.assert_not_called()
