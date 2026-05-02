@@ -8,6 +8,7 @@ It only dispatches the existing `main`-owned GitHub workflows and reports their 
 For local Phase 2 natural-language orchestration, the same package also ships a repo-local CLI:
 
 ```bash
+node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch start-review rec_xxx
 node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch build-draft rec_xxx
 node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish rec_xxx confirm
 node integrations/openclaw/auto-manual-control-layer/cli.mjs status last
@@ -39,11 +40,11 @@ Every dispatch uses:
 - `trigger_source = openclaw`
 - `openclaw_dispatch_nonce = <uuid>`
 
-Record-scoped dispatches also send:
+Publish dispatches also send:
 
 - `queue_record_id = rec_xxx`
 
-For `build-draft`, the control layer now reuses one short-lived shared GitHub queue worker when several language rows are dispatched back-to-back. The worker is still triggered on `main`, but the workflow dispatch itself is sent without one fixed `queue_record_id` so it can drain the pending Build Draft Package rows together instead of launching one competing Actions run per language.
+For `start-review` and `build-draft`, the control layer keeps the requested record id in local tracking but sends the workflow dispatch without one fixed `queue_record_id`. The worker is still triggered on `main`, and rapid sibling-target dispatches reuse one short-lived shared GitHub queue worker so it can drain pending rows together instead of launching competing Actions runs or blocking on the first matched record.
 
 ## Minimal Plugin Config
 

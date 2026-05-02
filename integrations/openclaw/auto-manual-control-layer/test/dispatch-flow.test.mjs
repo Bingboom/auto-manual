@@ -9,6 +9,12 @@ const sharedDraftCommand = {
   workflowName: "Feishu Draft Build Queue",
 };
 
+const sharedStartReviewCommand = {
+  commandName: "start-review",
+  workflowFile: "feishu-start-review.yml",
+  workflowName: "Feishu Start Review",
+};
+
 const publishCommand = {
   commandName: "publish",
   workflowFile: "feishu-build-queue.yml",
@@ -61,6 +67,50 @@ test("shared draft dispatch omits queue_record_id and keeps the requested record
   assert.equal(dispatchCalls[0].inputs.queue_record_id, "");
   assert.equal(savedRecords[0].queueRecordId, "rec_en");
   assert.match(result.text, /run_id: 321/);
+});
+
+test("shared start-review dispatch omits queue_record_id so the worker drains pending rows", async () => {
+  const dispatchCalls = [];
+  const savedRecords = [];
+  const github = {
+    async findRecentActiveRun() {
+      return null;
+    },
+    async findRecentRunByDispatch() {
+      return null;
+    },
+    async dispatchWorkflow(payload) {
+      dispatchCalls.push(payload);
+    },
+    async findDispatchedRun() {
+      return {
+        id: 654,
+        html_url: "https://example.com/runs/654",
+      };
+    },
+  };
+  const stateStore = {
+    async getLastRecordForWorkflow() {
+      return null;
+    },
+    async saveRecord(record) {
+      savedRecords.push(record);
+      return record;
+    },
+  };
+
+  const result = await dispatchCommandFlow({
+    command: sharedStartReviewCommand,
+    queueRecordId: "rec_jp",
+    github,
+    stateStore,
+    settings,
+  });
+
+  assert.equal(dispatchCalls.length, 1);
+  assert.equal(dispatchCalls[0].inputs.queue_record_id, "");
+  assert.equal(savedRecords[0].queueRecordId, "rec_jp");
+  assert.match(result.text, /run_id: 654/);
 });
 
 test("shared draft dispatch reuses a very recent tracked dispatch instead of redispatching", async () => {

@@ -103,7 +103,7 @@ export function renderDuplicateRun({ workflowName, queueRecordId, runId, runUrl,
   if (runUrl) {
     lines.push(`run: ${runUrl}`);
   }
-  lines.push("A matching run is already active, so the plugin refused a duplicate retry.");
+  lines.push("A matching queue worker is already active, so this dispatch will reuse that run.");
   return lines.join("\n");
 }
 

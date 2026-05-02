@@ -5,7 +5,7 @@ import {
   renderDuplicateRun,
 } from "./commands.mjs";
 
-const SHARED_QUEUE_COMMANDS = new Set(["build-draft"]);
+const SHARED_QUEUE_COMMANDS = new Set(["start-review", "build-draft"]);
 const SHARED_QUEUE_REUSE_WINDOW_MS = 15_000;
 
 function pluginRecordFromRun(command, queueRecordId, nonce, dispatchedAt, run) {
