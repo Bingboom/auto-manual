@@ -644,8 +644,9 @@ def _collect_selector_issues(
     langs: list[str],
     target: object,
     spec_master_csv: Path,
-) -> list[SpecMasterValidationIssue]:
+) -> tuple[list[SpecMasterValidationIssue], list[dict[str, str]]]:
     issues: list[SpecMasterValidationIssue] = []
+    matched_latest_rows: list[dict[str, str]] = []
     target_langs = [target.lang] if (target.lang or "").strip() else langs
     selectors, selector_issues = _collect_target_selectors(cfg, target=target, langs=target_langs)
     issues.extend(selector_issues)
@@ -665,6 +666,7 @@ def _collect_selector_issues(
                 value_role=selector.value_role,
                 variant_key=selector.variant_key,
             )
+            matched_latest_rows.extend(matching_rows)
             if not matching_rows:
                 issues.append(
                     _target_issue(
@@ -701,7 +703,14 @@ def _collect_selector_issues(
                 )
             )
 
-    return issues
+    seen_rows: set[int] = set()
+    deduped_rows: list[dict[str, str]] = []
+    for row in matched_latest_rows:
+        if id(row) in seen_rows:
+            continue
+        seen_rows.add(id(row))
+        deduped_rows.append(row)
+    return issues, deduped_rows
 
 
 def _collect_target_issues(
@@ -716,6 +725,7 @@ def _collect_target_issues(
     spec_footnotes_csv: Path,
     spec_notes_csv: Path,
     has_document_key_header: bool,
+    source_mode: str,
 ) -> list[SpecMasterValidationIssue]:
     issues: list[SpecMasterValidationIssue] = []
     target_rows = _rows_for_target(
@@ -725,10 +735,22 @@ def _collect_target_issues(
         target=target,
         langs=langs,
     )
+    selector_issues, selector_rows = _collect_selector_issues(
+        cfg=cfg,
+        rows=rows,
+        langs=langs,
+        target=target,
+        spec_master_csv=spec_master_csv,
+    )
+    latest_rows_for_blocking_validation = (
+        selector_rows
+        if source_mode == "review"
+        else target_rows.latest_scope_rows
+    )
 
     issues.extend(
         _collect_latest_row_issues(
-            target_rows=target_rows.latest_scope_rows,
+            target_rows=latest_rows_for_blocking_validation,
             target=target,
             spec_master_csv=spec_master_csv,
             has_document_key_header=has_document_key_header,
@@ -765,13 +787,7 @@ def _collect_target_issues(
         )
     )
     issues.extend(
-        _collect_selector_issues(
-            cfg=cfg,
-            rows=rows,
-            langs=langs,
-            target=target,
-            spec_master_csv=spec_master_csv,
-        )
+        selector_issues
     )
     return issues
 
@@ -783,7 +799,14 @@ def collect_spec_master_validation_issues(
     region: str | None,
     all_targets: bool,
     data_root: str | None = None,
+    source_mode: str = "runtime",
 ) -> list[SpecMasterValidationIssue]:
+    normalized_source_mode = (source_mode or "runtime").strip().lower()
+    if normalized_source_mode not in {"auto", "runtime", "review"}:
+        raise RuntimeError(f"Unsupported validation source mode: {source_mode}")
+    if normalized_source_mode == "auto":
+        normalized_source_mode = "runtime"
+
     cfg = load_config(cfg_path)
     snapshot_paths = resolve_data_snapshot_paths(
         cfg,
@@ -835,6 +858,7 @@ def collect_spec_master_validation_issues(
                 spec_footnotes_csv=spec_footnotes_csv,
                 spec_notes_csv=spec_notes_csv,
                 has_document_key_header=has_document_key_header,
+                source_mode=normalized_source_mode,
             )
         )
 

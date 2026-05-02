@@ -133,6 +133,7 @@ def run_validate(
     data_root: str | None = None,
     model: str | None = None,
     region: str | None = None,
+    source_mode: str = "runtime",
 ) -> None:
     run_checked(
         [
@@ -171,6 +172,8 @@ def run_validate(
                 if isinstance(data_root, str) and data_root.strip()
                 else []
             ),
+            "--source",
+            source_mode,
         ]
     )
 
@@ -188,22 +191,24 @@ def run_check(
     check_docs_command: Callable[[argparse.Namespace], list[str]],
 ) -> None:
     config_path = resolve_path_from_root(args.config)
+    current_effective_source = effective_source(args)
+    if source_override != "auto":
+        current_effective_source = source_override
     if isinstance(args.data_root, str) and args.data_root.strip():
         run_validate(
             config_path,
             data_root=args.data_root,
             model=args.model,
             region=args.region,
+            source_mode=current_effective_source,
         )
     else:
         run_validate(
             config_path,
             model=args.model,
             region=args.region,
+            source_mode=current_effective_source,
         )
-    current_effective_source = effective_source(args)
-    if source_override != "auto":
-        current_effective_source = source_override
     maybe_sync_review_before_build(args, source_override=current_effective_source)
     run_checked(build_docs_command(args, action_override="rst", source_override=current_effective_source))
     run_checked(check_docs_command(args))

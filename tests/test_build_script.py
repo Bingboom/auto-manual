@@ -461,14 +461,16 @@ class TestBuildScript(unittest.TestCase):
     def test_run_check_should_forward_explicit_review_source_to_rst_build(self) -> None:
         args = build_cli.parse_args(["check", "--config", "config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
         seen: list[list[str]] = []
+        validate_kwargs: list[dict[str, object]] = []
         with patch_module_attrs(
             build_cli,
-            run_validate=lambda *argv, **kwargs: None,
+            run_validate=lambda *argv, **kwargs: validate_kwargs.append(kwargs),
             run_checked=lambda cmd: seen.append(cmd),
             _review_sync_target_args=lambda parsed_args: [parsed_args],
         ):
             build_cli.run_check(args)
 
+        self.assertEqual("review", validate_kwargs[0]["source_mode"])
         self.assertEqual(4, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
         self.assertIn("--source", seen[0])
@@ -508,6 +510,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertIn("--source", seen[2])
+        self.assertIn("runtime", seen[2])
 
     def test_run_validate_should_forward_data_root_to_spec_master_validation(self) -> None:
         seen: list[list[str]] = []
@@ -534,6 +538,16 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("JE-1000F", seen[2])
         self.assertIn("--region", seen[2])
         self.assertIn("US", seen[2])
+
+    def test_run_validate_should_forward_review_source_to_spec_master_validation(self) -> None:
+        seen: list[list[str]] = []
+        with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
+            build_cli.run_validate(build_cli.ROOT / "config.us.yaml", source_mode="review")
+
+        self.assertEqual(3, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertIn("--source", seen[2])
+        self.assertIn("review", seen[2])
 
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(
