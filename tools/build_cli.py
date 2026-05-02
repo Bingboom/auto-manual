@@ -150,6 +150,11 @@ def parse_args(
     ap.add_argument("--git-ref-contains", default=None, help="For queue-query or queue-resolve-action: substring match against Git_ref")
     ap.add_argument("--result-contains", default=None, help="For queue-query or queue-resolve-action: substring match against 构建结果")
     ap.add_argument(
+        "--latest-per-document-key",
+        action="store_true",
+        help="For queue-query or queue-resolve-action: collapse Document_link rows to the latest version per Document_Key",
+    )
+    ap.add_argument(
         "--limit",
         type=int,
         default=10,

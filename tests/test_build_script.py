@@ -405,6 +405,12 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(["spec_master"], sync_data_args.table)
         self.assertTrue(sync_data_args.dry_run)
 
+    def test_parse_args_should_support_latest_document_link_collapse(self) -> None:
+        args = build_cli.parse_args(["queue-query", "--latest-per-document-key"])
+
+        self.assertEqual("queue-query", args.action)
+        self.assertTrue(args.latest_per_document_key)
+
     def test_review_and_check_commands_should_forward_targets_like_build_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--model", "JE-2000F", "--region", "JP"])

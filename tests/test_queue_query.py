@@ -22,6 +22,7 @@ class TestQueueQuery(unittest.TestCase):
             "query_workflow_action": None,
             "git_ref_contains": None,
             "result_contains": None,
+            "latest_per_document_key": False,
             "limit": 10,
             "json": False,
         }
@@ -154,6 +155,13 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("start-review", inferred.query_workflow_action)
         self.assertEqual("review-init", inferred.queue_scope)
 
+    def test_infer_queue_query_from_text_should_treat_built_links_as_latest_successes(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("构建好的文档链接发我")
+
+        self.assertEqual("success", inferred.result_contains)
+        self.assertTrue(inferred.latest_per_document_key)
+        self.assertEqual("document-link", inferred.queue_scope)
+
     def test_apply_inferred_queue_query_should_fill_record_id_from_text(self) -> None:
         resolved = queue_query.apply_inferred_queue_query(
             self._args(query_text="这个好了没 record_id rec_context")
@@ -181,6 +189,105 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("JE-1000F_US_0.3", resolved.document_id)
         self.assertEqual("fail", resolved.result_contains)
         self.assertEqual("document-link", resolved.queue_scope)
+
+    def test_filter_queue_query_rows_should_return_latest_success_per_document_key(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_eu_old",
+                document_id="JE-1000F_EU_1.0",
+                document_key="JE-1000F_EU",
+                build_family="eu-merged",
+                lang="",
+                version="1.0",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-old",
+                document_link="https://example.com/eu-1.0.docx",
+                document_directory="",
+                result="SUCCESS",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_eu_new",
+                document_id="JE-1000F_EU_1.1",
+                document_key="JE-1000F_EU",
+                build_family="eu-merged",
+                lang="",
+                version="1.1",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-new",
+                document_link="https://example.com/eu-1.1.docx",
+                document_directory="",
+                result="SUCCESS",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_cn_old",
+                document_id="JE-1000F_CN_1.0",
+                document_key="JE-1000F_CN",
+                build_family="cn-zh",
+                lang="zh",
+                version="1.0",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-old",
+                document_link="https://example.com/cn-1.0.docx",
+                document_directory="",
+                result="SUCCESS",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_cn_new",
+                document_id="JE-1000F_CN_1.1",
+                document_key="JE-1000F_CN",
+                build_family="cn-zh",
+                lang="zh",
+                version="1.1",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-new",
+                document_link="https://example.com/cn-1.1.docx",
+                document_directory="",
+                result="SUCCESS",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+        ]
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(query_text="构建好的文档链接发我", result_contains="success", latest_per_document_key=True),
+            rows,
+        )
+
+        self.assertEqual(["rec_eu_new", "rec_cn_new"], [row.record_id for row in filtered])
 
     def test_render_queue_query_rows_should_emit_json_payload(self) -> None:
         rows = [
