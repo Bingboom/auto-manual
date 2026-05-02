@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
+from unittest import mock
 
 from tools import queue_execute, queue_query
 
@@ -52,6 +56,31 @@ def _publish_row(record_id: str = "rec_publish") -> queue_query.QueueQueryRow:
         review_trigger_enabled=None,
         build_trigger_requested=True,
         immediate_build=True,
+        initial_result="",
+        remarks="",
+    )
+
+
+def _completed_start_review_row(record_id: str = "rec_review") -> queue_query.QueueQueryRow:
+    return queue_query.QueueQueryRow(
+        queue_scope="review-init",
+        record_id=record_id,
+        document_id="JE-1000F_JP_0.6",
+        document_key="JE-1000F_JP",
+        build_family="jp-ja",
+        lang="ja",
+        version="0.6",
+        workflow_action="Start Review",
+        normalized_workflow_action="start_review",
+        git_ref="codex/review-je-1000f-jp",
+        document_link="",
+        document_directory="",
+        result="",
+        pr_url="https://github.com/Bingboom/auto-manual/pull/120",
+        review_status="InReview",
+        review_trigger_enabled=False,
+        build_trigger_requested=None,
+        immediate_build=None,
         initial_result="",
         remarks="",
     )
@@ -115,6 +144,38 @@ class TestQueueExecute(unittest.TestCase):
 
     def test_dispatch_command_for_row_should_map_publish(self) -> None:
         self.assertEqual("publish", queue_execute.dispatch_command_for_row(_publish_row()))
+
+    def test_completed_start_review_row_should_not_require_dispatch(self) -> None:
+        row = _completed_start_review_row()
+
+        self.assertTrue(queue_execute.is_completed_start_review_row(row))
+        queue_execute.ensure_start_review_dispatchable(row)
+
+    def test_run_queue_execute_should_skip_completed_start_review_dispatch(self) -> None:
+        row = _completed_start_review_row()
+        stdout = io.StringIO()
+
+        with mock.patch.object(queue_execute, "load_config", return_value={}), \
+            mock.patch.object(queue_execute, "collect_queue_query_rows", return_value=[row]), \
+            mock.patch.object(queue_execute, "_run_control_layer_cli") as mock_cli, \
+            redirect_stdout(stdout):
+            queue_execute.run_queue_execute(
+                self._args(
+                    record_id=row.record_id,
+                    queue_scope="review-init",
+                    query_workflow_action="start-review",
+                    json=True,
+                ),
+                config_path=Path("config.us.yaml"),
+                repo_root=Path("."),
+            )
+
+        mock_cli.assert_not_called()
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual("rec_review", payload["record_id"])
+        self.assertEqual("codex/review-je-1000f-jp", payload["git_ref"])
+        self.assertEqual("InReview", payload["review_status"])
+        self.assertEqual("https://github.com/Bingboom/auto-manual/pull/120", payload["pr_url"])
 
     def test_parse_control_layer_output_should_extract_key_values(self) -> None:
         payload = queue_execute.parse_control_layer_output(

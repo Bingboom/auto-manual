@@ -46,6 +46,8 @@ Publish dispatches also send:
 
 For `start-review` and `build-draft`, the control layer keeps the requested record id in local tracking but sends the workflow dispatch without one fixed `queue_record_id`. The worker is still triggered on `main`, and rapid sibling-target dispatches reuse one short-lived shared GitHub queue worker so it can drain pending rows together instead of launching competing Actions runs or blocking on the first matched record.
 
+The repo-local `queue-execute` wrapper also treats a `Start Review` row that is already `InReview` with `Git_ref` as completed and returns it without a new dispatch. If an older caller still dispatches one explicit completed record, the GitHub worker exits successfully instead of reporting a false no-pending failure.
+
 ## Minimal Plugin Config
 
 ```json

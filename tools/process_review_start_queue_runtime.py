@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -19,6 +20,7 @@ class ReviewStartRuntimeDeps:
     source_factory: Callable[..., Any]
     collect_preflight_errors_fn: Callable[..., list[str]]
     resolve_binding_fn: Callable[[dict[str, Any]], Any]
+    parse_records_fn: Callable[[list[dict[str, Any]]], list[Any]]
     select_pending_records_fn: Callable[..., list[Any]]
     group_records_fn: Callable[[list[Any]], list[list[Any]]]
     validate_group_fn: Callable[[list[Any]], None]
@@ -71,6 +73,36 @@ def _write_failure_summary(*, root: Path, environ: dict[str, str], payload: dict
         print(f"[review-start] Unable to write failure summary {path}: {exc}", file=sys.stderr)
 
 
+def _normalized_review_status(value: Any) -> str:
+    text = str(value or "").strip().lower()
+    return re.sub(r"[^a-z0-9]+", "", text)
+
+
+def _normalized_review_action(value: Any) -> str:
+    text = str(value or "").strip().lower()
+    return re.sub(r"[^a-z0-9]+", " ", text).strip()
+
+
+def _looks_like_start_review_record(record: Any) -> bool:
+    action = _normalized_review_action(getattr(record, "workflow_action", ""))
+    return not action or action in {"start review", "seed draft", "start review seed draft"}
+
+
+def _is_completed_review_start_record(record: Any) -> bool:
+    if not _looks_like_start_review_record(record):
+        return False
+    status = _normalized_review_status(getattr(record, "review_status", ""))
+    git_ref = str(getattr(record, "git_ref", "") or "").strip()
+    return bool(git_ref) and status in {"inreview", "readyforpublish"}
+
+
+def _find_record_by_id(records: list[Any], record_id: str) -> Any | None:
+    for record in records:
+        if str(getattr(record, "record_id", "") or "").strip() == record_id:
+            return record
+    return None
+
+
 def process_review_start_queue(
     *,
     cfg: dict[str, Any],
@@ -109,6 +141,14 @@ def process_review_start_queue(
     pending_records = deps.select_pending_records_fn(raw_records, record_id=record_id)
     if not pending_records:
         if record_id:
+            existing_record = _find_record_by_id(deps.parse_records_fn(raw_records), record_id)
+            if existing_record is not None and _is_completed_review_start_record(existing_record):
+                print(
+                    "[review-start] Targeted review-start row is already in review; "
+                    f"record_id={record_id} git_ref={getattr(existing_record, 'git_ref', '')}. "
+                    "Treating duplicate dispatch as success."
+                )
+                return 0
             _write_failure_summary(
                 root=deps.root,
                 environ=deps.environ,

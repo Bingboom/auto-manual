@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import time
 from pathlib import Path
@@ -87,6 +88,34 @@ def dispatch_command_for_row(row: QueueQueryRow) -> str:
     )
 
 
+def _normalized_review_status(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", str(value or "").strip().lower())
+
+
+def is_completed_start_review_row(row: QueueQueryRow) -> bool:
+    if (row.normalized_workflow_action or "") != "start_review":
+        return False
+    if row.review_trigger_enabled is True:
+        return False
+    return bool(row.git_ref.strip()) and _normalized_review_status(row.review_status) in {
+        "inreview",
+        "readyforpublish",
+    }
+
+
+def ensure_start_review_dispatchable(row: QueueQueryRow) -> None:
+    if (row.normalized_workflow_action or "") != "start_review":
+        return
+    if row.review_trigger_enabled is True:
+        return
+    if is_completed_start_review_row(row):
+        return
+    raise RuntimeError(
+        "queue-execute resolved a Start Review row that is not pending and has not completed. "
+        f"record_id={row.record_id} review_status={row.review_status or '-'} git_ref={row.git_ref or '-'}"
+    )
+
+
 def ensure_publish_confirmation(args: argparse.Namespace, row: QueueQueryRow) -> None:
     if (row.normalized_workflow_action or "") != "publish":
         return
@@ -166,24 +195,32 @@ def build_queue_execute_failure_message(
 
 def render_queue_execute_result(row: QueueQueryRow, *, as_json: bool) -> str:
     if as_json:
-        return json.dumps(
-            {
-                "record_id": row.record_id,
-                "git_ref": row.git_ref,
-                "result": row.result,
-                "document_link": row.document_link,
-            },
-            ensure_ascii=False,
-            indent=2,
-        )
-    return "\n".join(
+        payload = {
+            "record_id": row.record_id,
+            "git_ref": row.git_ref,
+            "result": row.result,
+            "document_link": row.document_link,
+        }
+        if row.pr_url:
+            payload["pr_url"] = row.pr_url
+        if row.review_status:
+            payload["review_status"] = row.review_status
+        return json.dumps(payload, ensure_ascii=False, indent=2)
+    lines = [
+        f"record_id: {_null_text(row.record_id)}",
+        f"Git_ref: {_null_text(row.git_ref)}",
+    ]
+    if row.pr_url:
+        lines.append(f"PR_url: {row.pr_url}")
+    if row.review_status:
+        lines.append(f"Review_status: {row.review_status}")
+    lines.extend(
         [
-            f"record_id: {_null_text(row.record_id)}",
-            f"Git_ref: {_null_text(row.git_ref)}",
             f"构建结果: {_null_text(row.result)}",
             f"Document link: {_null_text(row.document_link)}",
         ]
     )
+    return "\n".join(lines)
 
 
 def _run_control_layer_cli(repo_root: Path, *cli_args: str) -> dict[str, str]:
@@ -235,6 +272,10 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
     resolved_args, row = select_unique_queue_row(args, rows)
     ensure_publish_confirmation(resolved_args, row)
     dispatch_command = dispatch_command_for_row(row)
+    if is_completed_start_review_row(row):
+        print(render_queue_execute_result(row, as_json=bool(getattr(resolved_args, "json", False))))
+        return
+    ensure_start_review_dispatchable(row)
     if dispatch_command == "publish":
         dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
     else:

@@ -443,6 +443,7 @@ def process_review_start_queue(
             source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
             collect_preflight_errors_fn=collect_review_start_preflight_errors,
             resolve_binding_fn=resolve_review_init_binding,
+            parse_records_fn=parse_review_start_records,
             select_pending_records_fn=select_pending_review_start_records,
             group_records_fn=group_review_start_records,
             validate_group_fn=validate_review_start_group,
