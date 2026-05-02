@@ -43,7 +43,7 @@ Ce produit peut être chargé à l'aide d'un chargeur de voiture 12 V. Assurez-v
    :alt: Schéma de charge en voiture.
    :width: 360px
 
-Véhicule
+| Véhicule
 | ※Le câble de chargement de voiture est vendu séparément.
 
 

@@ -86,6 +86,10 @@
 
    Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.
 
+   .. raw:: latex
+
+      \HBNoticeBlock{PELIGRO}{Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un entorno interior similar cuando lo use en exteriores, por ejemplo, hogar, RV, tiendas de campaña, cabañas, etc.).}{※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.}
+
 
 .. only:: html
 
@@ -120,4 +124,11 @@
           </div>
         </div>
         <p class="hb-lead">Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.</p>
+        <div class="hb-warning-box">
+          <div class="hb-warning-row">
+            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-text">PELIGRO</div>
+          </div>
+        </div>
+        <p class="hb-lead">Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un entorno interior similar cuando lo use en exteriores, por ejemplo, hogar, RV, tiendas de campaña, cabañas, etc.).<br>※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.</p>
       </div>

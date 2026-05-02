@@ -62,6 +62,6 @@ Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an 
 
 
 **Notfall-Lademodus**
-| 
+
 | In diesem Modus können Sie die tragbare Power Station mit der AC-Lademethode schnell aufladen. Diese Notfall-Ladefunktion kann über die Jackery-App aktiviert oder deaktiviert werden. Im Notfall-Lademodus blinkt die kreisförmige Leuchte, die den Ladezustand (SOC) anzeigt, schneller.
 | \*Um die Batterielebensdauer zu maximieren, ist das Laden mit normaler Geschwindigkeit vorzuziehen. Verwenden Sie den Notfall-Lademodus nur bei Bedarf. Für den regelmäßigen Langzeitgebrauch wird er nicht empfohlen.

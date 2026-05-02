@@ -41,6 +41,7 @@ This product can be charged using a 12V car charger. Ensure that the car charger
    :alt: Car charging connection diagram placeholder.
    :width: 360px
 
+| Vehicle
 | \*The car charging cable is sold separately.
 
 .. list-table::

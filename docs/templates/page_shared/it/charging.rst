@@ -62,6 +62,6 @@ Collegare il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una 
 
 
 **Modalita di ricarica di emergenza**
-| 
+
 | In questa modalita, e possibile ricaricare rapidamente la power station portatile utilizzando il metodo di ricarica CA. Questa funzione di ricarica di emergenza puo essere attivata o disattivata tramite l'app Jackery. Quando la modalita di ricarica di emergenza e attiva, la luce circolare che indica lo stato di carica (SOC) lampeggia piu rapidamente.
 | \*Per massimizzare la durata della batteria, e preferibile caricare a velocita normale. Utilizzare la modalita di ricarica di emergenza solo quando necessario. Non e consigliata per un uso regolare e prolungato.
