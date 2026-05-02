@@ -177,7 +177,7 @@ The manual system now has four layers, but they are used at different stages.
  - for OpenClaw Phase 2, keep `Document link` as the canonical artifact link field used by queue resolution and replies; `Document link_dd` is optional supplemental writeback for DingTalk and is not required by the control layer
   - that queue worker reuses `FEISHU_PHASE2_BASE_TOKEN`, additionally needs `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` plus `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`, auto-derives the current wiki destination from the same base when possible, and optionally accepts `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` to force a different parent wiki node
    - `page_registry.csv`, page selection/applicability, and [`data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not overridden by `--data-root`
-   - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
+   - Safety intro pages are maintained in [`docs/templates/page_*/safety_*.rst`](../docs/templates); the standalone user maintenance instructions page is maintained in shared templates such as [`docs/templates/page_shared/en/01_user_maintenance_instructions.rst`](../docs/templates/page_shared/en/01_user_maintenance_instructions.rst) and is included immediately before `symbols`; JP keeps the detailed safety warnings in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst). The old `content_blocks.csv` safety source has been removed from the active repo flow
    - `Spec_Footnotes.csv` now holds only reusable spec footnote definitions; `Footnote_order` controls the rendered superscript marker order and `Footnote_id` is referenced from `Spec_Master.csv`
    - `Spec_Footnotes.csv` and `Spec_Notes.csv` both carry a `Type` field from the Feishu source; keep it explicit as `Footnote` or `Note` so downstream renderers do not infer type from the visible text
    - `Spec_Notes.csv` holds bottom-of-spec notes that are not tied to superscript references, such as trademark statements
@@ -396,12 +396,14 @@ You may commit `_review/...` for review history because it is now the target edi
 ## 6. How Safety and Spec Pages Work
 
 Safety intro pages are now maintained as fixed RST templates and then materialized into the bundle.
+The standalone user maintenance instructions page lives in shared templates and is included before the `symbols` page.
 
 Primary inputs:
 
 - [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst)
 - [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst)
 - [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst)
+- [`docs/templates/page_shared/en/01_user_maintenance_instructions.rst`](../docs/templates/page_shared/en/01_user_maintenance_instructions.rst)
 - [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst)
 
 JP manual note:

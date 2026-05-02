@@ -80,13 +80,6 @@ SYMBOL_ASSETS: dict[str, SymbolAsset] = {
 
 LANG_COPY: dict[str, dict[str, object]] = {
     "en": {
-        "maintenance_title": "USER MAINTENANCE INSTRUCTIONS",
-        "maintenance_paragraph": (
-            "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is "
-            "expected. As the number of charge and discharge cycles increases and storage time extends, this "
-            "degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of "
-            "battery cells."
-        ),
         "page_title": "MEANING OF SYMBOLS",
         "header_symbol": "Symbol",
         "header_meaning": "Meaning",
@@ -122,13 +115,6 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "de": {
-        "maintenance_title": "ANWEISUNGEN ZUR WARTUNG DURCH DEN BENUTZER",
-        "maintenance_paragraph": (
-            "W盲hrend des Lebenszyklus von Energiespeicherprodukten ist mit einem gewissen Verlust an Kapazit盲t "
-            "und Energie zu rechnen. Mit zunehmender Anzahl von Lade- und Entladezyklen und l盲ngerer "
-            "Lagerdauer nimmt diese Degradation allm盲hlich zu. Dies ist ein normales Ph盲nomen, das der "
-            "nat眉rlichen Alterung der Batteriezellen entspricht."
-        ),
         "page_title": "BEDEUTUNG DER SYMBOLE",
         "header_symbol": "Symbol",
         "header_meaning": "Bedeutung",
@@ -164,13 +150,6 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "fr": {
-        "maintenance_title": "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR",
-        "maintenance_paragraph": (
-            "Au cours du cycle des produits de stockage d'茅nergie, une certaine d茅gradation de la capacit茅 et de "
-            "l'茅nergie se produira. 脌 mesure que le nombre de cycles d'utilisation augmente et que la dur茅e de "
-            "stockage s'allonge, cette d茅gradation s'intensifiera progressivement, ce qui est un ph茅nom猫ne normal "
-            "conforme au mod猫le de vieillissement naturel des cellules de batterie. "
-        ),
         "page_title": "SIGNIFICATION DES SYMBOLES",
         "header_symbol": "Symbole",
         "header_meaning": "Signification",
@@ -206,13 +185,6 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "es": {
-        "maintenance_title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
-        "maintenance_paragraph": (
-            "Durante el ciclo de vida de los productos de almacenamiento de energ铆a, se producir谩 cierto grado de degradaci贸n "
-            "de capacidad y energ铆a. A medida que aumenta el n煤mero de ciclos de uso y se extiende el tiempo de "
-            "almacenamiento, esta degradaci贸n se intensificar谩 gradualmente, lo cual es un fen贸meno normal acorde con el "
-            "patr贸n de envejecimiento natural de las celdas de la bater铆a. "
-        ),
         "page_title": "SIGNIFICADO DE LOS S脥MBOLOS",
         "header_symbol": "S铆mbolo",
         "header_meaning": "Significado",
@@ -248,13 +220,6 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "it": {
-        "maintenance_title": "ISTRUZIONI DI MANUTENZIONE PER L'UTENTE",
-        "maintenance_paragraph": (
-            "Durante il ciclo di vita dei prodotti per l'accumulo di energia, 猫 previsto un certo grado di degrado "
-            "della capacit脿 e dell'energia. Con l'aumentare dei cicli di carica e scarica e il prolungarsi del "
-            "tempo di immagazzinamento, tale degrado tender脿 a intensificarsi gradualmente, in linea con il "
-            "naturale invecchiamento delle celle della batteria."
-        ),
         "page_title": "SIGNIFICATO DEI SIMBOLI",
         "header_symbol": "Simbolo",
         "header_meaning": "Significato",
@@ -290,13 +255,6 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "uk": {
-        "maintenance_title": "袉袧小孝袪校袣笑袉袊 袟 袨袘小袥校袚袨袙校袙袗袧袧携 袛袥携 袣袨袪袠小孝校袙袗效袗",
-        "maintenance_paragraph": (
-            "袩褉芯褌褟谐芯屑 卸懈褌褌褦胁芯谐芯 褑懈泻谢褍 锌褉芯写褍泻褌褨胁 写谢褟 薪邪泻芯锌懈褔械薪薪褟 械薪械褉谐褨褩 芯褔褨泻褍褦褌褜褋褟 锌械胁薪懈泄 褋褌褍锌褨薪褜 写械谐褉邪写邪褑褨褩 "
-            "褦屑薪芯褋褌褨 褌邪 械薪械褉谐褨褩. 袟褨 蟹斜褨谢褜褕械薪薪褟屑 泻褨谢褜泻芯褋褌褨 褑懈泻谢褨胁 蟹邪褉褟写卸邪薪薪褟 泄 褉芯蟹褉褟写卸邪薪薪褟 褌邪 褌褉懈胁邪谢芯褋褌褨 "
-            "蟹斜械褉褨谐邪薪薪褟 褑褟 写械谐褉邪写邪褑褨褟 锌芯褋褌褍锌芯胁芯 锌芯褋懈谢褞胁邪褌懈屑械褌褜褋褟, 褖芯 褦 薪芯褉屑邪谢褜薪懈屑 褟胁懈褖械屑 褨 胁褨写锌芯胁褨写邪褦 "
-            "锌褉懈褉芯写薪芯屑褍 褋褌邪褉褨薪薪褞 邪泻褍屑褍谢褟褌芯褉薪懈褏 械谢械屑械薪褌褨胁."
-        ),
         "page_title": "袟袧袗效袝袧袧携 小袠袦袙袨袥袉袙",
         "header_symbol": "小懈屑胁芯谢",
         "header_meaning": "袟薪邪褔械薪薪褟",
@@ -607,8 +565,6 @@ def _signal_section(lang: str) -> str:
     if copy is None:
         raise ValueError(f"unsupported symbols language: {lang}")
 
-    maintenance_title = str(copy["maintenance_title"])
-    maintenance_paragraph = str(copy["maintenance_paragraph"])
     page_title = str(copy["page_title"])
     header_symbol = str(copy["header_symbol"])
     header_meaning = str(copy["header_meaning"])
@@ -618,10 +574,6 @@ def _signal_section(lang: str) -> str:
     lines.extend(_rst_heading(page_title, "="))
     lines.append("")
     lines.append("|")
-    lines.append("")
-    lines.extend(_rst_heading(maintenance_title))
-    lines.append("")
-    lines.append(rst_escape(maintenance_paragraph))
     lines.append("")
     # LaTeX component contract:
     # \HBSymbolTable{symbol header}{meaning header}{row macro calls}

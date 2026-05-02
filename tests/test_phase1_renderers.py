@@ -418,7 +418,7 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertNotIn("This device is not waterproof or dustproof.", out)
         self.assertNotIn("\n- This device is intended for indoor use only", out)
 
-    def test_render_symbols_page_should_insert_blank_line_before_maintenance_section(self) -> None:
+    def test_render_symbols_page_should_not_render_user_maintenance_section(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
@@ -427,14 +427,12 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertTrue(
-            out.startswith(
-                "MEANING OF SYMBOLS\n==================\n\n|\n\nUSER MAINTENANCE INSTRUCTIONS"
-            )
-        )
+        self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n|\n\n.. only:: latex"))
+        self.assertNotIn("USER MAINTENANCE INSTRUCTIONS", out)
+        self.assertNotIn("During the lifecycle of energy storage products", out)
         self.assertIn("\n\n.. only:: not latex\n\n   .. list-table::", out)
 
-    def test_render_symbols_page_should_seed_rst_title_hierarchy_with_page_title(self) -> None:
+    def test_render_symbols_page_should_seed_rst_title_hierarchy_with_page_title_only(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
@@ -444,8 +442,8 @@ class TestPhase1Renderers(unittest.TestCase):
         )
 
         page_title = "MEANING OF SYMBOLS\n=================="
-        maintenance_title = "USER MAINTENANCE INSTRUCTIONS\n-----------------------------"
-        self.assertLess(out.index(page_title), out.index(maintenance_title))
+        self.assertIn(page_title, out)
+        self.assertNotIn("USER MAINTENANCE INSTRUCTIONS", out)
         self.assertNotIn(r"\section{MEANING OF SYMBOLS}", out)
 
     def test_render_symbols_page_emits_latex_notice_and_symbol_macros(self) -> None:

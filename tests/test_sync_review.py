@@ -72,7 +72,7 @@ class TestSyncReview(unittest.TestCase):
                 lang="fr",
             )
 
-            self.assertEqual(Path("page") / "p20_01_fcc.rst", remapped[0].relative_path)
+            self.assertEqual(Path("page") / "p22_01_fcc.rst", remapped[0].relative_path)
             self.assertEqual(Path("page") / "01_fcc.rst", remapped[0].source_relative_path)
             self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].relative_path)
             self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].source_relative_path)
@@ -101,7 +101,7 @@ class TestSyncReview(unittest.TestCase):
                 lang="fr",
             )
 
-            self.assertEqual(Path("page") / "p18_02_whats_in_the_box.rst", remapped[0].relative_path)
+            self.assertEqual(Path("page") / "p20_02_whats_in_the_box.rst", remapped[0].relative_path)
             self.assertEqual(Path("page") / "02_whats_in_the_box.rst", remapped[0].source_relative_path)
             self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].relative_path)
             self.assertEqual(Path("generated") / "JE-1000F" / "spec_fr.rst", remapped[1].source_relative_path)
@@ -131,7 +131,7 @@ class TestSyncReview(unittest.TestCase):
             )
 
             self.assertEqual(1, len(remapped))
-            self.assertEqual(Path("page") / "p18_02_whats_in_the_box.rst", remapped[0].relative_path)
+            self.assertEqual(Path("page") / "p20_02_whats_in_the_box.rst", remapped[0].relative_path)
             self.assertEqual(Path("page") / "02_whats_in_the_box.rst", remapped[0].source_relative_path)
 
     def test_resolve_sync_plan_should_mark_placeholder_backed_pages_for_param_merge(self) -> None:

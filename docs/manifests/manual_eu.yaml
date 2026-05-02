@@ -6,6 +6,9 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_eu-en/safety_en.rst
+  - type: rst_include
+    lang: en
+    file: templates/page_shared/en/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols
@@ -67,6 +70,9 @@ pages:
   - type: rst_include
     lang: fr
     file: templates/page_eu-fr/safety_fr.rst
+  - type: rst_include
+    lang: fr
+    file: templates/page_shared/fr/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols
@@ -128,6 +134,9 @@ pages:
   - type: rst_include
     lang: es
     file: templates/page_eu-es/safety_es.rst
+  - type: rst_include
+    lang: es
+    file: templates/page_shared/es/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols
@@ -189,6 +198,9 @@ pages:
   - type: rst_include
     lang: de
     file: templates/page_eu-de/safety_de.rst
+  - type: rst_include
+    lang: de
+    file: templates/page_shared/de/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols
@@ -250,6 +262,9 @@ pages:
   - type: rst_include
     lang: it
     file: templates/page_eu-it/safety_it.rst
+  - type: rst_include
+    lang: it
+    file: templates/page_shared/it/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols
@@ -311,6 +326,9 @@ pages:
   - type: rst_include
     lang: uk
     file: templates/page_eu-uk/safety_uk.rst
+  - type: rst_include
+    lang: uk
+    file: templates/page_shared/uk/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols

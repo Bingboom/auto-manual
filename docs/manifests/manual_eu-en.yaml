@@ -6,6 +6,9 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_eu-en/safety_en.rst
+  - type: rst_include
+    lang: en
+    file: templates/page_shared/en/01_user_maintenance_instructions.rst
   - type: csv_page
     source: phase1
     page: symbols
