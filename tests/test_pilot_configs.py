@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from tools import check_docs
-from tools.config_pages import CsvPage, GeneratedPage
+from tools.config_pages import CsvPage, GeneratedPage, RstIncludePage
 from tools.page_manifest import resolve_config_pages_or_raise
 
 
@@ -56,9 +56,9 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_us_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 16),
-            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 15),
-            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 15),
+            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 17),
+            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 16),
+            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 16),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
@@ -103,11 +103,45 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertNotIn("safetysinglecol", text)
                 self.assertNotIn("hb-single-col", text)
 
+    def test_user_maintenance_page_should_precede_symbols_page_in_shared_manifests(self) -> None:
+        cases = (
+            ("config.us.yaml", "US", ("en", "fr", "es")),
+            ("config.eu.yaml", "EU", ("en", "fr", "es", "de", "it", "uk")),
+        )
+
+        for config_name, region, langs in cases:
+            with self.subTest(config_name=config_name):
+                cfg = check_docs.load_config(ROOT / config_name)
+                resolved = resolve_config_pages_or_raise(
+                    cfg,
+                    default_languages=list(langs),
+                    root=ROOT,
+                    model="JE-1000F",
+                    region=region,
+                    error_prefix="config.pages",
+                )
+
+                for lang in langs:
+                    maintenance_idx = next(
+                        idx
+                        for idx, page in enumerate(resolved.pages)
+                        if isinstance(page, RstIncludePage)
+                        and page.lang == lang
+                        and page.file == f"templates/page_shared/{lang}/01_user_maintenance_instructions.rst"
+                    )
+                    symbols_idx = next(
+                        idx
+                        for idx, page in enumerate(resolved.pages)
+                        if isinstance(page, CsvPage) and page.page == "symbols" and page.langs == (lang,)
+                    )
+
+                    self.assertLess(maintenance_idx, symbols_idx)
+
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 15),
-            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 14),
-            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 14),
+            ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 16),
+            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
+            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
@@ -222,7 +256,7 @@ class TestPilotConfigs(unittest.TestCase):
         generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
         csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-        self.assertEqual(85, len(resolved.pages))
+        self.assertEqual(91, len(resolved.pages))
         self.assertEqual(18, len(generated_pages))
         self.assertEqual(18, len(csv_pages))
         self.assertEqual({"lcd_icons", "symbols", "spec"}, {page.page for page in csv_pages})

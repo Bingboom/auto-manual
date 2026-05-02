@@ -213,7 +213,7 @@ class TestReviewSupport(unittest.TestCase):
                 encoding="utf-8",
             )
             (review_dir / "page" / "01_fcc.rst").write_text("shared english page\n", encoding="utf-8")
-            (review_dir / "page" / "p20_01_fcc.rst").write_text("shared french page\n", encoding="utf-8")
+            (review_dir / "page" / "p22_01_fcc.rst").write_text("shared french page\n", encoding="utf-8")
 
             applied_dir = overlay_review_content_onto_bundle(
                 bundle_dir=bundle_dir,
@@ -247,7 +247,7 @@ class TestReviewSupport(unittest.TestCase):
                 encoding="utf-8",
             )
             (review_dir / "page" / "02_whats_in_the_box.rst").write_text("shared english page\n", encoding="utf-8")
-            (review_dir / "page" / "p18_02_whats_in_the_box.rst").write_text("shared french page\n", encoding="utf-8")
+            (review_dir / "page" / "p20_02_whats_in_the_box.rst").write_text("shared french page\n", encoding="utf-8")
 
             applied_dir = overlay_review_content_onto_bundle(
                 bundle_dir=bundle_dir,
