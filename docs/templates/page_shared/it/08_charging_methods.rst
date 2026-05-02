@@ -41,8 +41,7 @@ Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Ass
    :alt: Segnaposto diagramma di collegamento per la ricarica in auto.
    :width: 360px
 
-Veicolo
-
+| Veicolo
 | \*Il cavo di ricarica per auto e venduto separatamente.
 
 .. list-table::

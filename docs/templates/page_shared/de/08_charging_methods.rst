@@ -42,6 +42,7 @@ Dieses Produkt kann mit einem 12-V-Autoladegerät aufgeladen werden. Stellen Sie
    :alt: Abbildung der Autoladeverbindung als Platzhalter.
    :width: 360px
 
+| Fahrzeug
 | \*Das Autoladekabel ist separat erhältlich.
 
 .. list-table::

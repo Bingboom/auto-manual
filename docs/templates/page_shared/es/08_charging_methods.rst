@@ -45,7 +45,7 @@ Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de 
    :alt: Diagrama de carga en automóvil.
    :width: 360px
 
-Vehículo
+| Vehículo
 | ※El cable de carga para automóvil se vende por separado.
 
 

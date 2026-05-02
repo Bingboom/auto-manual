@@ -7,9 +7,14 @@ Quand la recharge par prise murale CA et la recharge solaire sont effectuées en
 
 **Chargez complètement le produit avant sa première utilisation.**
 
-* - **REMARQUE**
-    - La température de charge recommandée pour le produit est de |CHARGING_TEMPERATURE_VALUE_1|, et la température de décharge est de |DISCHARGING_TEMPERATURE_VALUE_1|. Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités de charge et de décharge, voire empêcher la charge ou la décharge.
-    - La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des fluctuations de température.
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **REMARQUE**
+     - - La température de charge recommandée pour le produit est de |CHARGING_TEMPERATURE_VALUE_1|, et la température de décharge est de |DISCHARGING_TEMPERATURE_VALUE_1|.
+       - Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités de charge et de décharge, voire empêcher la charge ou la décharge.
+       - La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des fluctuations de température.
 
 .. only:: model_je_2000e
 
@@ -20,20 +25,28 @@ Quand la recharge par prise murale CA et la recharge solaire sont effectuées en
 
    .. only:: region_us
 
-      * - **ATTENTION**
-            - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
-            - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
-            - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
-            - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **ATTENTION**
+           - - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
+             - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
+             - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
+             - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
 
 
    .. only:: region_eu
 
-      * - **ATTENTION**
-            - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
-            - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 200 mm entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
-            - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
-            - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **ATTENTION**
+           - - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
+             - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 200 mm entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
+             - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
+             - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
 
 CHARGEMENT PAR PRISE MURALE CA
 ------------------------------
