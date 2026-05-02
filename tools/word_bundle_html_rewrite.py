@@ -462,7 +462,7 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
             "td",
             {
                 "class": "manual-callout-label",
-                "style": "width:16%; border:1px solid #888; padding:6px 8px; vertical-align:top; background:#f3c27b;",
+                "style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;",
             },
         )
         label_p = ET.SubElement(label_cell, "p")
@@ -475,7 +475,7 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
         {
             "class": "manual-callout-body",
             **({"colspan": "2"} if not label else {}),
-            "style": "border:1px solid #888; padding:6px 8px; vertical-align:top;",
+            "style": "border:1px solid #000; padding:6px 8px; vertical-align:top;",
         },
     )
     if not body_nodes:

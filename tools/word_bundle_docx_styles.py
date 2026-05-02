@@ -10,6 +10,7 @@ from xml.etree import ElementTree as ET
 
 from tools.word_bundle_docx_xml import serialize_xml_preserving_namespaces
 from tools.word_bundle_html import WordBundlePageMeta
+from tools.word_bundle_html_rewrite import _ALERT_LABELS, _normalize_alert_label_text
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 _W_VAL = f"{{{_W_NS}}}val"
@@ -37,6 +38,15 @@ _SPEC_TABLE_LABEL_WIDTH_PCT = "1650"
 _SPEC_TABLE_VALUE_WIDTH_PCT = "3350"
 _SPEC_TABLE_FALLBACK_GRID_WIDTH = 7920
 _SPEC_TABLE_LABEL_RATIO = 0.33
+_CALLOUT_TABLE_BORDER_COLOR = "000000"
+_CALLOUT_TABLE_BORDER_SIZE = "4"
+_CALLOUT_TABLE_WIDTH_TYPE = "pct"
+_CALLOUT_TABLE_WIDTH_VALUE = "5000"
+_CALLOUT_TABLE_LABEL_WIDTH_PCT = "800"
+_CALLOUT_TABLE_BODY_WIDTH_PCT = "4200"
+_CALLOUT_TABLE_FALLBACK_GRID_WIDTH = 7920
+_CALLOUT_TABLE_LABEL_RATIO = 0.16
+_CALLOUT_TABLE_CELL_MARGIN_DXA = "120"
 
 
 @dataclass(frozen=True)
@@ -535,6 +545,42 @@ def _set_spec_table_borders(tbl_pr: ET.Element, ns: dict[str, str]) -> bool:
     return changed
 
 
+def _set_callout_table_borders(tbl_pr: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    tbl_borders, created = _ensure_child(tbl_pr, "tblBorders")
+    if created:
+        changed = True
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        border, created = _ensure_child(tbl_borders, edge)
+        if created:
+            changed = True
+        for attr, value in (
+            ("val", "single"),
+            ("sz", _CALLOUT_TABLE_BORDER_SIZE),
+            ("space", "0"),
+            ("color", _CALLOUT_TABLE_BORDER_COLOR),
+        ):
+            if _set_w_attr(border, attr, value):
+                changed = True
+    return changed
+
+
+def _set_callout_table_cell_margins(tbl_pr: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    cell_margins, created = _ensure_child(tbl_pr, "tblCellMar")
+    if created:
+        changed = True
+    for edge in ("top", "left", "bottom", "right"):
+        margin, created = _ensure_child(cell_margins, edge)
+        if created:
+            changed = True
+        if _set_w_attr(margin, "type", "dxa"):
+            changed = True
+        if _set_w_attr(margin, "w", _CALLOUT_TABLE_CELL_MARGIN_DXA):
+            changed = True
+    return changed
+
+
 def _set_spec_table_layout(tbl: ET.Element, ns: dict[str, str]) -> bool:
     rows, max_cols = _table_dimensions(tbl, ns)
     if rows == 0 or max_cols != 2:
@@ -565,6 +611,123 @@ def _set_spec_table_layout(tbl: ET.Element, ns: dict[str, str]) -> bool:
     if _set_spec_table_grid(tbl, ns):
         changed = True
     if _set_spec_table_cell_widths(tbl, ns):
+        changed = True
+    return changed
+
+
+def _set_callout_table_grid(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    tbl_grid, created = _ensure_table_grid(tbl, ns)
+    if created:
+        changed = True
+
+    existing_widths: list[int] = []
+    for col in tbl_grid.findall("w:gridCol", ns):
+        try:
+            existing_widths.append(int(col.attrib.get(f"{{{_W_NS}}}w", "")))
+        except ValueError:
+            existing_widths = []
+            break
+    total_width = (
+        sum(existing_widths)
+        if len(existing_widths) == 2 and sum(existing_widths) > 0
+        else _CALLOUT_TABLE_FALLBACK_GRID_WIDTH
+    )
+    label_width = max(1, round(total_width * _CALLOUT_TABLE_LABEL_RATIO))
+    body_width = max(1, total_width - label_width)
+    target_widths = (str(label_width), str(body_width))
+
+    grid_cols = tbl_grid.findall("w:gridCol", ns)
+    if len(grid_cols) != 2:
+        for col in grid_cols:
+            tbl_grid.remove(col)
+        grid_cols = [
+            ET.SubElement(tbl_grid, f"{{{_W_NS}}}gridCol"),
+            ET.SubElement(tbl_grid, f"{{{_W_NS}}}gridCol"),
+        ]
+        changed = True
+
+    for col, width in zip(grid_cols, target_widths, strict=True):
+        if _set_w_attr(col, "w", width):
+            changed = True
+    return changed
+
+
+def _set_callout_table_cell_widths(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    for row in tbl.findall("w:tr", ns):
+        cells = row.findall("w:tc", ns)
+        if len(cells) != 2:
+            continue
+        if _set_cell_width(cells[0], ns, _CALLOUT_TABLE_LABEL_WIDTH_PCT):
+            changed = True
+        if _set_cell_width(cells[1], ns, _CALLOUT_TABLE_BODY_WIDTH_PCT):
+            changed = True
+    return changed
+
+
+def _set_callout_table_cell_vertical_alignment(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    changed = False
+    for cell in tbl.findall(".//w:tc", ns):
+        tc_pr, created = _ensure_cell_properties(cell, ns)
+        if created:
+            changed = True
+        valign = tc_pr.find("w:vAlign", ns)
+        if valign is None:
+            valign = ET.SubElement(tc_pr, f"{{{_W_NS}}}vAlign")
+            changed = True
+        if _set_w_attr(valign, "val", "top"):
+            changed = True
+    return changed
+
+
+def _is_alert_callout_table(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    rows = tbl.findall("w:tr", ns)
+    if len(rows) != 1:
+        return False
+
+    cells = rows[0].findall("w:tc", ns)
+    if len(cells) != 2:
+        return False
+
+    label = _normalize_alert_label_text(_normalize_docx_text("".join(cells[0].itertext())))
+    body_text = _normalize_docx_text("".join(cells[1].itertext()))
+    return label in _ALERT_LABELS and bool(body_text)
+
+
+def _set_callout_table_layout(tbl: ET.Element, ns: dict[str, str]) -> bool:
+    if not _is_alert_callout_table(tbl, ns):
+        return False
+
+    changed = False
+    tbl_pr, created = _ensure_table_properties(tbl, ns)
+    if created:
+        changed = True
+
+    tbl_w, created = _ensure_child(tbl_pr, "tblW")
+    if created:
+        changed = True
+    if _set_w_attr(tbl_w, "type", _CALLOUT_TABLE_WIDTH_TYPE):
+        changed = True
+    if _set_w_attr(tbl_w, "w", _CALLOUT_TABLE_WIDTH_VALUE):
+        changed = True
+
+    if _set_callout_table_borders(tbl_pr, ns):
+        changed = True
+    if _set_callout_table_cell_margins(tbl_pr, ns):
+        changed = True
+
+    tbl_layout, created = _ensure_child(tbl_pr, "tblLayout")
+    if created:
+        changed = True
+    if _set_w_attr(tbl_layout, "type", "fixed"):
+        changed = True
+
+    if _set_callout_table_grid(tbl, ns):
+        changed = True
+    if _set_callout_table_cell_widths(tbl, ns):
+        changed = True
+    if _set_callout_table_cell_vertical_alignment(tbl, ns):
         changed = True
     return changed
 
@@ -782,14 +945,18 @@ def remap_reference_doc_styles(docx_path: Path, page_metas: tuple[WordBundlePage
                 if _clear_paragraph_style_and_outline(block.element, ns):
                     changed = True
         elif block.kind == "tbl":
+            is_callout_table = _is_alert_callout_table(block.element, ns)
+            if is_callout_table and _set_callout_table_layout(block.element, ns):
+                changed = True
             if block_idx in preserved_blocks:
                 if block_idx in spec_blocks and _set_spec_table_layout(block.element, ns):
                     changed = True
                 continue
-            target_style = _choose_reference_table_style(block.element, ns, available_table_styles)
-            if target_style and _table_style_id(block.element, ns) != target_style:
-                if _set_table_style(block.element, ns, target_style):
-                    changed = True
+            if not is_callout_table:
+                target_style = _choose_reference_table_style(block.element, ns, available_table_styles)
+                if target_style and _table_style_id(block.element, ns) != target_style:
+                    if _set_table_style(block.element, ns, target_style):
+                        changed = True
             for para in block.element.findall(".//w:p", ns):
                 if _paragraph_style_id(para, ns) in _PANDOC_BODY_STYLE_IDS:
                     if _clear_paragraph_style_and_outline(para, ns):

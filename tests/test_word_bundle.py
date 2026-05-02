@@ -518,6 +518,8 @@ Congratulations on your new manual.
 
         self.assertIn("manual-callout-table", out)
         self.assertIn("manual-callout-label", out)
+        self.assertIn("border:1px solid #000", out)
+        self.assertNotIn("#f3c27b", out)
         self.assertIn("<strong>CAUTION</strong>", out)
         self.assertIn("Use a compliant cable.", out)
         self.assertNotIn("<colgroup>", out)
