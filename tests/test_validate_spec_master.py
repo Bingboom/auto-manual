@@ -302,6 +302,44 @@ class TestValidateSpecMaster(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertIn("MISSING_SOURCE_LANG", codes)
 
+    def test_collect_spec_master_validation_issues_should_skip_unused_rows_in_review_source_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Row_label_source,Value_source",
+                        "JE-1000F,US,en,TRUE,specifications,product_name,,,Product Name,Jackery 1000",
+                        "JE-1000F,US,en,TRUE,specifications,model_no,,,Model No.,JE-1000F",
+                        "JE-1000F,US,en,TRUE,Product overview,main_power_button,label,1,Main Power Button,Main Power Button",
+                        "JE-1000F,US,,TRUE,specifications,storage_temperature,,1,Storage Temperature,1 month: -20 C to 45 C",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            runtime_issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+                source_mode="runtime",
+            )
+            review_issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+                source_mode="review",
+            )
+
+            self.assertIn("MISSING_SOURCE_LANG", {issue.code for issue in runtime_issues})
+            self.assertNotIn("MISSING_SOURCE_LANG", {issue.code for issue in review_issues})
+
     def test_collect_spec_master_validation_issues_should_fallback_to_sibling_region_footnote(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

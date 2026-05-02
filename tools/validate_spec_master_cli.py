@@ -14,6 +14,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
+    ap.add_argument(
+        "--source",
+        choices=("auto", "runtime", "review"),
+        default="runtime",
+        help="Validation source scope. review validates only rows required by the review build contract.",
+    )
     ap.add_argument("--all-targets", action="store_true", help="Validate all build targets from the config")
     return ap.parse_args(argv)
 
@@ -31,6 +37,7 @@ def main(argv: list[str] | None = None) -> int:
             region=args.region,
             all_targets=args.all_targets,
             data_root=args.data_root,
+            source_mode=args.source,
         )
     except RuntimeError as exc:
         print(f"[validate_spec_master] ERROR: {exc}", file=sys.stderr)
