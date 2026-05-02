@@ -918,7 +918,7 @@ Templates and CSV create the first draft.
 - `process-build-queue` no longer runs `sync-data` unconditionally; it now refreshes phase2 only when `Document_link.是否强制刷新数据 = true`.
 - `Document_link.data_sync` is the writeback field for that decision: `refreshed`, `skipped`, or `failed`.
 - `sync-review` now also refreshes `generated_page` placeholder files under `page/*.rst`, so forced-refresh queue builds update the final rendered page text instead of keeping stale review placeholder content.
-- `build.py check --source review` validates the rows needed to identify the target and render generated-page recipe inputs, but retired `Spec_Master` rows that the review bundle does not consume no longer block Build Draft Package.
+- `build.py check --source review` validates the rows needed to identify the target and render generated-page recipe inputs, plus footnotes referenced by those inputs, but retired `Spec_Master` rows and unreferenced `Spec_Footnotes` definitions that the review bundle does not consume no longer block Build Draft Package.
 - `Workflow_action=Build Draft Package` and `Workflow_action=Publish` are now the primary queue actions.
 - queue routing only looks at `Workflow_action`: use `Start Review`, `Build Draft Package`, or `Publish`, and keep `Doc_phase` blank.
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide which review branch gets fetched and built.

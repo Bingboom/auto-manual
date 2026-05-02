@@ -8,8 +8,12 @@ from tools.utils.spec_master import (
     canonicalize_model_token,
     collect_matching_footnote_rows,
     collect_matching_spec_rows,
+    collect_referenced_footnote_ids_by_page,
+    collect_referenced_matching_footnote_rows,
     collect_spec_value_matches_from_rows,
+    iter_footnote_ref_ids,
     normalize_source_lang,
+    preferred_source_langs_for_rows,
     read_spec_master_rows,
 )
 from tools.validate_spec_master_shared import (
@@ -21,7 +25,6 @@ from tools.validate_spec_master_shared import (
     _collect_target_selectors,
     _effective_targets,
     _first_non_empty,
-    _parse_ref_ids,
     _pick_document_key,
     _pick_line_number,
     _pick_value,
@@ -167,29 +170,6 @@ def _rows_for_target(
             latest_scope_rows.append(row)
 
     spec_rows = [row for row in rows if _row_matches_target(row, model=target_model, region=target_region)]
-    preferred_source_langs = {
-        normalized
-        for normalized in (
-            normalize_source_lang(_first_non_empty(row, ("Source_lang", "source_lang"))) for row in spec_rows
-        )
-        if normalized
-    }
-    referenced_footnote_ids_by_page: dict[str, set[str]] = {}
-    for row in spec_rows:
-        page = _first_non_empty(row, ("Page", "page")) or "specifications"
-        refs: set[str] = set()
-        for ref_column in (
-            "Row_label_footnote_refs",
-            "row_label_footnote_refs",
-            "Param_footnote_refs",
-            "param_footnote_refs",
-            "Value_footnote_refs",
-            "value_footnote_refs",
-        ):
-            refs.update(_parse_ref_ids(_first_non_empty(row, (ref_column,))))
-        if refs:
-            referenced_footnote_ids_by_page.setdefault(page, set()).update(refs)
-
     return TargetValidationRows(
         spec_rows=spec_rows,
         latest_scope_rows=latest_scope_rows,
@@ -197,8 +177,8 @@ def _rows_for_target(
             footnote_rows,
             model=target_model,
             region=target_region,
-            referenced_ids_by_page=referenced_footnote_ids_by_page,
-            preferred_source_langs=preferred_source_langs,
+            referenced_ids_by_page=collect_referenced_footnote_ids_by_page(spec_rows),
+            preferred_source_langs=preferred_source_langs_for_rows(spec_rows),
         ),
         note_rows=[row for row in note_rows if _row_matches_target(row, model=target_model, region=target_region)],
     )
@@ -451,30 +431,22 @@ def _collect_footnote_reference_issues(
         page = _first_non_empty(row, ("Page", "page")) or "specifications"
         row_key = _first_non_empty(row, ("Row_key", "row_key"))
 
-        for ref_column in (
-            "Row_label_footnote_refs",
-            "row_label_footnote_refs",
-            "Param_footnote_refs",
-            "param_footnote_refs",
-            "Value_footnote_refs",
-            "value_footnote_refs",
-        ):
-            for footnote_id in _parse_ref_ids(_first_non_empty(row, (ref_column,))):
-                used_footnote_refs.setdefault(page, set()).add(footnote_id)
-                if footnote_id not in footnote_ids_by_page.get(page, {}):
-                    issues.append(
-                        _target_issue(
-                            code="UNKNOWN_FOOTNOTE_REF",
-                            message=(
-                                f"Spec_Master row_key '{row_key}' references missing footnote "
-                                f"'{footnote_id}' on page '{page}'"
-                            ),
-                            path=spec_master_csv,
-                            line=line_no,
-                            target=target,
-                            row_key=row_key,
-                        )
+        for footnote_id in iter_footnote_ref_ids(row):
+            used_footnote_refs.setdefault(page, set()).add(footnote_id)
+            if footnote_id not in footnote_ids_by_page.get(page, {}):
+                issues.append(
+                    _target_issue(
+                        code="UNKNOWN_FOOTNOTE_REF",
+                        message=(
+                            f"Spec_Master row_key '{row_key}' references missing footnote "
+                            f"'{footnote_id}' on page '{page}'"
+                        ),
+                        path=spec_master_csv,
+                        line=line_no,
+                        target=target,
+                        row_key=row_key,
                     )
+                )
 
         for column in ("Row_label_source", "Param_source", "Value_source"):
             value = _first_non_empty(row, (column, column.lower()))
@@ -747,6 +719,17 @@ def _collect_target_issues(
         if source_mode == "review"
         else target_rows.latest_scope_rows
     )
+    footnote_rows_for_validation = (
+        collect_referenced_matching_footnote_rows(
+            rows=footnote_rows,
+            spec_rows=selector_rows,
+            model=getattr(target, "model"),
+            region=getattr(target, "region"),
+        )
+        if source_mode == "review"
+        else target_rows.footnote_rows
+    )
+    footnote_reference_rows = selector_rows if source_mode == "review" else target_rows.spec_rows
 
     issues.extend(
         _collect_latest_row_issues(
@@ -758,7 +741,7 @@ def _collect_target_issues(
     )
 
     footnote_issues, footnote_ids_by_page = _collect_footnote_definition_issues(
-        footnote_rows=target_rows.footnote_rows,
+        footnote_rows=footnote_rows_for_validation,
         target=target,
         spec_footnotes_csv=spec_footnotes_csv,
     )
@@ -772,7 +755,7 @@ def _collect_target_issues(
     )
 
     footnote_reference_issues, used_footnote_refs = _collect_footnote_reference_issues(
-        target_rows=target_rows.spec_rows,
+        target_rows=footnote_reference_rows,
         target=target,
         spec_master_csv=spec_master_csv,
         footnote_ids_by_page=footnote_ids_by_page,

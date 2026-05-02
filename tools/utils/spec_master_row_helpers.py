@@ -86,6 +86,63 @@ def _is_truthy(value: str) -> bool:
     return token in {"1", "true", "yes", "y"}
 
 
+_FOOTNOTE_REF_COLUMNS = (
+    "Row_label_footnote_refs",
+    "row_label_footnote_refs",
+    "Param_footnote_refs",
+    "param_footnote_refs",
+    "Value_footnote_refs",
+    "value_footnote_refs",
+)
+
+
+def _parse_footnote_ref_ids(value: str) -> tuple[str, ...]:
+    refs: list[str] = []
+    for token in (value or "").split(","):
+        item = token.strip()
+        if item and item not in refs:
+            refs.append(item)
+    return tuple(refs)
+
+
+def iter_footnote_ref_ids(row: dict[str, str]) -> tuple[str, ...]:
+    refs: list[str] = []
+    for ref_column in _FOOTNOTE_REF_COLUMNS:
+        for footnote_id in _parse_footnote_ref_ids(_first_non_empty(row, [ref_column])):
+            if footnote_id not in refs:
+                refs.append(footnote_id)
+    return tuple(refs)
+
+
+def preferred_source_langs_for_rows(rows: list[dict[str, str]]) -> set[str]:
+    return {
+        normalized
+        for normalized in (normalize_source_lang(_first_non_empty(row, ["Source_lang", "source_lang"])) for row in rows)
+        if normalized
+    }
+
+
+def collect_referenced_footnote_ids_by_page(rows: list[dict[str, str]]) -> dict[str, set[str]]:
+    referenced_ids_by_page: dict[str, set[str]] = {}
+    for row in rows:
+        refs = set(iter_footnote_ref_ids(row))
+        if refs:
+            page = _first_non_empty(row, ["Page", "page"]) or "specifications"
+            referenced_ids_by_page.setdefault(page, set()).update(refs)
+    return referenced_ids_by_page
+
+
+def _footnote_row_is_referenced(row: dict[str, str], referenced_ids_by_page: Mapping[str, set[str]]) -> bool:
+    footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
+    if not footnote_id:
+        return False
+    page = _first_non_empty(row, ["Page", "page"]) or "specifications"
+    return any(
+        footnote_id in ids and page_value_matches(page, referenced_page)
+        for referenced_page, ids in referenced_ids_by_page.items()
+    )
+
+
 def _row_matches_footnote_target(
     row: dict[str, str],
     *,
@@ -185,6 +242,29 @@ def collect_matching_footnote_rows(
                 selected.append(best_rows[0])
 
     return selected
+
+
+def collect_referenced_matching_footnote_rows(
+    rows: list[dict[str, str]],
+    *,
+    spec_rows: list[dict[str, str]],
+    model: str | None,
+    region: str | None,
+) -> list[dict[str, str]]:
+    referenced_ids_by_page = collect_referenced_footnote_ids_by_page(spec_rows)
+    if not referenced_ids_by_page:
+        return []
+    return [
+        row
+        for row in collect_matching_footnote_rows(
+            rows,
+            model=model,
+            region=region,
+            referenced_ids_by_page=referenced_ids_by_page,
+            preferred_source_langs=preferred_source_langs_for_rows(spec_rows),
+        )
+        if _footnote_row_is_referenced(row, referenced_ids_by_page)
+    ]
 
 
 def _contains_east_asian_text(value: str) -> bool:
