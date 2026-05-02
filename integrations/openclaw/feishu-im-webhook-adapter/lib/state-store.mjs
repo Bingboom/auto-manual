@@ -5,6 +5,7 @@ function emptyState() {
   return {
     processedEvents: [],
     pendingPublishes: {},
+    conversationContexts: {},
   };
 }
 
@@ -19,6 +20,8 @@ async function readState(filePath) {
     return {
       processedEvents: Array.isArray(parsed?.processedEvents) ? parsed.processedEvents : [],
       pendingPublishes: parsed?.pendingPublishes && typeof parsed.pendingPublishes === "object" ? parsed.pendingPublishes : {},
+      conversationContexts:
+        parsed?.conversationContexts && typeof parsed.conversationContexts === "object" ? parsed.conversationContexts : {},
     };
   } catch (error) {
     if (error && error.code === "ENOENT") {
@@ -39,6 +42,10 @@ export function createStateStore(filePath, { now = () => Date.now(), maxProcesse
   let stateWriteChain = Promise.resolve();
 
   function confirmationKey({ chatId, senderId }) {
+    return `${chatId}:${senderId}`;
+  }
+
+  function contextKey({ chatId, senderId }) {
     return `${chatId}:${senderId}`;
   }
 
@@ -119,6 +126,53 @@ export function createStateStore(filePath, { now = () => Date.now(), maxProcesse
         for (const [key, candidate] of Object.entries(state.pendingPublishes)) {
           if (!candidate || candidate.expiresAt <= now()) {
             delete state.pendingPublishes[key];
+          }
+        }
+        return state;
+      });
+    },
+    async rememberConversationContext({ chatId, senderId, messageId, row, queryText, actionName, ttlSeconds }) {
+      if (!row || typeof row !== "object" || !row.record_id) {
+        return;
+      }
+      await withState((state) => {
+        state.conversationContexts[contextKey({ chatId, senderId })] = {
+          chatId,
+          senderId,
+          messageId,
+          row,
+          queryText,
+          actionName,
+          createdAt: now(),
+          expiresAt: now() + ttlSeconds * 1000,
+        };
+        return state;
+      });
+    },
+    async readConversationContext({ chatId, senderId }) {
+      let matched = null;
+      await withState((state) => {
+        const key = contextKey({ chatId, senderId });
+        const context = state.conversationContexts[key];
+        if (context && context.expiresAt > now()) {
+          matched = context;
+        } else if (context) {
+          delete state.conversationContexts[key];
+        }
+        for (const [candidateKey, candidate] of Object.entries(state.conversationContexts)) {
+          if (!candidate || candidate.expiresAt <= now()) {
+            delete state.conversationContexts[candidateKey];
+          }
+        }
+        return state;
+      });
+      return matched;
+    },
+    async clearExpiredConversationContexts() {
+      await withState((state) => {
+        for (const [key, candidate] of Object.entries(state.conversationContexts)) {
+          if (!candidate || candidate.expiresAt <= now()) {
+            delete state.conversationContexts[key];
           }
         }
         return state;

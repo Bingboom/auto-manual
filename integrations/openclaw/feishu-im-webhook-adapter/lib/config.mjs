@@ -1,6 +1,8 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { emptyLocalProfile, loadLocalProfile } from "./local-profile.mjs";
+
 const adapterRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const defaultRepoRoot = path.resolve(adapterRoot, "..", "..", "..");
 
@@ -29,6 +31,13 @@ function booleanEnv(name, defaultValue) {
 
 export function loadAdapterConfig() {
   const repoRoot = path.resolve(process.env.AUTO_MANUAL_REPO_ROOT || defaultRepoRoot);
+  const localProfileDir = path.resolve(
+    process.env.FEISHU_IM_LOCAL_PROFILE_DIR || process.env.OPENCLAW_LOCAL_PROFILE_DIR || path.join(repoRoot, ".openclaw")
+  );
+  const localProfileEnabled = !booleanEnv(
+    "FEISHU_IM_DISABLE_LOCAL_PROFILE",
+    booleanEnv("OPENCLAW_DISABLE_LOCAL_PROFILE", false)
+  );
   return {
     host: String(process.env.FEISHU_IM_WEBHOOK_HOST || "").trim() || "127.0.0.1",
     port: integerEnv("FEISHU_IM_WEBHOOK_PORT", 9097),
@@ -43,10 +52,15 @@ export function loadAdapterConfig() {
     pythonBin: String(process.env.AUTO_MANUAL_PYTHON || "").trim() || "python3",
     controlConfig: String(process.env.AUTO_MANUAL_CONTROL_CONFIG || "").trim() || "config.us.yaml",
     requireMention: booleanEnv("FEISHU_IM_REQUIRE_MENTION", true),
+    enableMessageReactions: booleanEnv("FEISHU_IM_ENABLE_MESSAGE_REACTIONS", booleanEnv("FEISHU_IM_ENABLE_REACTIONS", false)),
     publishConfirmTtlSeconds: integerEnv("FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS", 600),
+    conversationContextTtlSeconds: integerEnv("FEISHU_IM_CONTEXT_TTL_SECONDS", 3600),
     stateFile:
       String(process.env.FEISHU_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "feishu-im-webhook-adapter-state.json"),
+    localProfileDir,
+    localProfileEnabled,
+    localProfile: localProfileEnabled ? loadLocalProfile(localProfileDir) : emptyLocalProfile(localProfileDir),
   };
 }
 

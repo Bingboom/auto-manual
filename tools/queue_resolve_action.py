@@ -15,6 +15,44 @@ from tools.queue_query import (
 )
 
 
+_STATUS_QUERY_RE = (
+    "status",
+    "state",
+    "progress",
+    "done",
+    "finished",
+    "complete",
+    "completed",
+    "latest link",
+    "result",
+    "failure",
+    "failed",
+    "状态",
+    "进度",
+    "好了",
+    "好了吗",
+    "好了没",
+    "跑完",
+    "完成",
+    "完成了吗",
+    "结果",
+    "链接",
+    "失败",
+    "为什么",
+    "怎么回事",
+    "到哪",
+    "查",
+    "看一下",
+)
+
+
+def _is_status_query_text(raw_text: str | None) -> bool:
+    text = str(raw_text or "").strip().lower()
+    if not text:
+        return False
+    return any(token in text for token in _STATUS_QUERY_RE)
+
+
 def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
     fields = (
         "query_text",
@@ -50,6 +88,8 @@ def _action_name_from_request(resolved_args: argparse.Namespace, row: QueueQuery
         "draft": "build_draft_package",
         "publish": "publish",
     }
+    if requested and _is_status_query_text(getattr(resolved_args, "query_text", None)):
+        return "query_status"
     if requested:
         return aliases.get(requested, "query_status")
     return "query_status"

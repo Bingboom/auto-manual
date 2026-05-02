@@ -52,7 +52,32 @@ export function createFeishuClient(config, { fetchImpl = fetch } = {}) {
     return payload;
   }
 
+  async function addMessageReaction(messageId, emojiType) {
+    const token = await getTenantAccessToken();
+    const response = await fetchImpl(
+      `${config.apiBaseUrl.replace(/\/$/, "")}/im/v1/messages/${encodeURIComponent(messageId)}/reactions`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({
+          reaction_type: {
+            emoji_type: emojiType,
+          },
+        }),
+      }
+    );
+    const payload = await responseJson(response);
+    if (!response.ok || Number(payload?.code || 0) !== 0) {
+      throw new Error(`Feishu reaction failed: ${JSON.stringify(payload)}`);
+    }
+    return payload;
+  }
+
   return {
+    addMessageReaction,
     getTenantAccessToken,
     replyTextMessage,
   };

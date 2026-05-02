@@ -154,6 +154,13 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("start-review", inferred.query_workflow_action)
         self.assertEqual("review-init", inferred.queue_scope)
 
+    def test_apply_inferred_queue_query_should_fill_record_id_from_text(self) -> None:
+        resolved = queue_query.apply_inferred_queue_query(
+            self._args(query_text="这个好了没 record_id rec_context")
+        )
+
+        self.assertEqual("rec_context", resolved.record_id)
+
     def test_apply_inferred_queue_query_should_not_override_explicit_filters(self) -> None:
         resolved = queue_query.apply_inferred_queue_query(
             self._args(

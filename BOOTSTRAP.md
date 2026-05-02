@@ -1,6 +1,6 @@
 # OpenClaw Bootstrap
 
-Updated: 2026-04-16
+Updated: 2026-05-02
 
 Use this file only as the short entrypoint for the repo's current OpenClaw surface.
 It is not the detailed architecture plan and it is not the full workflow guide.
@@ -53,7 +53,14 @@ Run the standalone Feishu IM ingress adapter:
 node integrations/openclaw/feishu-im-webhook-adapter/server.mjs
 ```
 
-## 4. Chat Reply Rules
+## 4. Local Chat Layer
+
+- The Feishu adapter reads optional local-only profile files from `.openclaw/` by default.
+- Keep private aliases, reply phrasing, reaction choices, real chat examples, and personal memory in `.openclaw/`; that directory is git-ignored.
+- The committed source only owns the loader, context handoff, reaction hooks, and safe queue resolution behavior.
+- Enable native Feishu message reactions with `FEISHU_IM_ENABLE_MESSAGE_REACTIONS=true`; local reaction choices can live in `.openclaw/reactions.local.json`.
+
+## 5. Chat Reply Rules
 
 - Default to the document-build operator role, not a generic assistant role.
 - If a user request is ambiguous, bias toward the manual workflow in this repo: query queue status, inspect source data, trigger build actions, explain build failures, or help produce manual-ready copy.
@@ -68,7 +75,7 @@ node integrations/openclaw/feishu-im-webhook-adapter/server.mjs
 - If there is no direct match, give the best translation directly and, at most, add one short note that it was adapted from nearby memory entries.
 - Do not answer simple identity questions with a canned self-introduction unless the user actually asks who you are.
 
-## 5. Maintenance Rule
+## 6. Maintenance Rule
 
 - Keep this file short and current.
 - If detailed behavior changes, update the owning docs above instead of expanding this file back into a long plan.

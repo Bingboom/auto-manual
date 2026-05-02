@@ -78,6 +78,7 @@ class QueueQueryRow:
 
 @dataclass(frozen=True)
 class InferredQueueQuery:
+    record_id: str = ""
     document_id: str = ""
     document_key: str = ""
     build_family: str = ""
@@ -93,6 +94,7 @@ def _text(value: Any) -> str:
 
 
 _VERSION_TOKEN_RE = re.compile(r"^\d+(?:\.\d+)+$")
+_RECORD_ID_RE = re.compile(r"\b(rec[A-Za-z0-9_]+)\b")
 _UNDERSCORE_TOKEN_RE = re.compile(r"[A-Za-z0-9.-]+(?:_[A-Za-z0-9.-]+)+")
 _QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
 _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
@@ -189,6 +191,14 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     if not text:
         return InferredQueueQuery()
 
+    record_id = next(
+        (
+            match.group(1)
+            for match in _RECORD_ID_RE.finditer(text)
+            if match.group(1).lower() not in {"record", "records", "record_id", "recordid"}
+        ),
+        "",
+    )
     normalized_text = re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
     workflow_action = ""
     queue_scope = "all"
@@ -221,6 +231,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         build_family = _infer_build_family(text)
 
     return InferredQueueQuery(
+        record_id=record_id,
         document_id=document_id,
         document_key=document_key,
         build_family=build_family,
@@ -235,6 +246,8 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
 def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
     inferred = infer_queue_query_from_text(getattr(args, "query_text", None))
     merged = argparse.Namespace(**vars(args))
+    if not getattr(merged, "record_id", None) and inferred.record_id:
+        merged.record_id = inferred.record_id
     if not getattr(merged, "document_id", None) and inferred.document_id:
         merged.document_id = inferred.document_id
     if not getattr(merged, "document_key", None) and inferred.document_key:
