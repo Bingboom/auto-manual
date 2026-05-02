@@ -86,6 +86,7 @@ class InferredQueueQuery:
     document_version: str = ""
     query_workflow_action: str = ""
     result_contains: str = ""
+    latest_per_document_key: bool = False
     queue_scope: str = "all"
 
 
@@ -109,6 +110,60 @@ def _query_tokens(text: str) -> list[str]:
 
 def _is_probable_lang_token(token: str) -> bool:
     return token.strip().lower() in _LANG_CODES
+
+
+def _version_sort_key(version: str) -> tuple[int, tuple[int, ...], str]:
+    text = version.strip()
+    if not text:
+        return (0, (), "")
+    normalized = text[1:] if text[:1].lower() == "v" else text
+    if re.fullmatch(r"\d+(?:\.\d+)*", normalized):
+        return (1, tuple(int(part) for part in normalized.split(".")), normalized)
+    return (0, (), normalized.lower())
+
+
+def _row_version(row: QueueQueryRow) -> str:
+    if row.version:
+        return row.version
+    parts = row.document_id.split("_")
+    if parts and _VERSION_TOKEN_RE.match(parts[-1]):
+        return parts[-1]
+    return ""
+
+
+def _row_latest_group_key(row: QueueQueryRow) -> str:
+    if row.document_key:
+        return row.document_key
+    parts = row.document_id.split("_")
+    if len(parts) >= 3 and _VERSION_TOKEN_RE.match(parts[-1]):
+        return "_".join(parts[:-1])
+    return row.document_id or row.record_id
+
+
+def _prefer_row_for_latest(candidate: QueueQueryRow, current: QueueQueryRow) -> bool:
+    candidate_version = _version_sort_key(_row_version(candidate))
+    current_version = _version_sort_key(_row_version(current))
+    if candidate_version != current_version:
+        return candidate_version > current_version
+    if bool(candidate.document_link) != bool(current.document_link):
+        return bool(candidate.document_link)
+    if ("success" in candidate.result.lower()) != ("success" in current.result.lower()):
+        return "success" in candidate.result.lower()
+    return False
+
+
+def _latest_per_document_key(rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
+    selected: dict[str, QueueQueryRow] = {}
+    order: list[str] = []
+    for row in rows:
+        key = _row_latest_group_key(row)
+        if key not in selected:
+            selected[key] = row
+            order.append(key)
+            continue
+        if _prefer_row_for_latest(row, selected[key]):
+            selected[key] = row
+    return [selected[key] for key in order]
 
 
 def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
@@ -203,6 +258,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     workflow_action = ""
     queue_scope = "all"
     result_contains = ""
+    latest_per_document_key = False
 
     if any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
@@ -221,6 +277,20 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
 
     if any(needle in normalized_text for needle in ("document link", "latest link")) or "链接" in text:
         queue_scope = "document-link"
+    built_link_query = (
+        queue_scope == "document-link"
+        and (
+            "构建好" in text
+            or "构建完成" in text
+            or "build completed" in normalized_text
+            or "built document" in normalized_text
+        )
+    )
+    if built_link_query:
+        result_contains = "success"
+        latest_per_document_key = True
+    if queue_scope == "document-link" and ("最新" in text or "latest" in normalized_text):
+        latest_per_document_key = True
     if any(needle in normalized_text for needle in ("failed", "failure")) or "失败" in text:
         result_contains = "fail"
         queue_scope = "document-link"
@@ -239,6 +309,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         document_version=document_version,
         query_workflow_action=workflow_action,
         result_contains=result_contains,
+        latest_per_document_key=latest_per_document_key,
         queue_scope=queue_scope,
     )
 
@@ -262,6 +333,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.query_workflow_action = inferred.query_workflow_action
     if not getattr(merged, "result_contains", None) and inferred.result_contains:
         merged.result_contains = inferred.result_contains
+    if not getattr(merged, "latest_per_document_key", False) and inferred.latest_per_document_key:
+        merged.latest_per_document_key = inferred.latest_per_document_key
     if getattr(merged, "queue_scope", "all") == "all" and inferred.queue_scope != "all":
         merged.queue_scope = inferred.queue_scope
     return merged
@@ -408,6 +481,8 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
         if not _match_contains(row.result, getattr(args, "result_contains", None)):
             continue
         filtered.append(row)
+    if getattr(args, "latest_per_document_key", False):
+        filtered = _latest_per_document_key(filtered)
     return filtered[: max(int(getattr(args, "limit", 10) or 10), 1)]
 
 
