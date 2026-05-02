@@ -100,7 +100,7 @@
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
-            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-lockup">WARNING</div>
             <div class="hb-warning-text">INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS</div>
           </div>
         </div>
