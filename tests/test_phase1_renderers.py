@@ -399,13 +399,14 @@ class TestPhase1Renderers(unittest.TestCase):
             lang="en",
             vars_map={},
         )
-        self.assertIn("DANGER", out)
+        self.assertNotIn("DANGER", out)
+        self.assertNotIn("This device is intended for indoor use only", out)
         self.assertIn("MEANING OF SYMBOLS", out)
         self.assertIn("warning_bar.png", out)
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
 
-    def test_render_symbols_page_should_render_danger_notice_without_bullet_list(self) -> None:
+    def test_render_symbols_page_should_not_render_safety_danger_notice(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
@@ -413,11 +414,11 @@ class TestPhase1Renderers(unittest.TestCase):
             lang="en",
             vars_map={},
         )
-        self.assertIn("**DANGER**", out)
-        self.assertIn("※ This device is not waterproof or dustproof.", out)
+        self.assertNotIn("**DANGER**", out)
+        self.assertNotIn("This device is not waterproof or dustproof.", out)
         self.assertNotIn("\n- This device is intended for indoor use only", out)
 
-    def test_render_symbols_page_should_insert_blank_line_before_danger_notice(self) -> None:
+    def test_render_symbols_page_should_insert_blank_line_before_maintenance_section(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
@@ -426,7 +427,11 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n|\n\n.. only:: latex"))
+        self.assertTrue(
+            out.startswith(
+                "MEANING OF SYMBOLS\n==================\n\n|\n\nUSER MAINTENANCE INSTRUCTIONS"
+            )
+        )
         self.assertIn("\n\n.. only:: not latex\n\n   .. list-table::", out)
 
     def test_render_symbols_page_should_seed_rst_title_hierarchy_with_page_title(self) -> None:
@@ -452,7 +457,7 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertIn(r"\HBNoticeBlock{DANGER}", out)
+        self.assertNotIn(r"\HBNoticeBlock{DANGER}", out)
         self.assertIn(r"\HBSymbolTable{Symbol}{Meaning}{%", out)
         self.assertIn(r"\HBSymbolSignalRow{warning_bar.png}{}", out)
         self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
@@ -532,7 +537,7 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("Symbole", out)
         self.assertIn("Signification du symbole d'avertissement.", out)
 
-    def test_render_symbols_page_should_match_french_danger_notice_copy(self) -> None:
+    def test_render_symbols_page_should_not_render_french_danger_notice_copy(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
@@ -542,16 +547,16 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         self.assertIn("**AVERTISSEMENT**", out)
         self.assertIn("**ATTENTION**", out)
-        self.assertIn(
+        self.assertNotIn(
             "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
             out,
         )
-        self.assertIn(
+        self.assertNotIn(
             "※ Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.",
             out,
         )
 
-    def test_render_symbols_page_should_match_spanish_danger_notice_copy(self) -> None:
+    def test_render_symbols_page_should_not_render_spanish_danger_notice_copy(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
@@ -561,11 +566,11 @@ class TestPhase1Renderers(unittest.TestCase):
         )
         self.assertIn("**ADVERTENCIA**", out)
         self.assertNotIn("**PELIGRO**", out)
-        self.assertIn(
+        self.assertNotIn(
             "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
             out,
         )
-        self.assertIn(
+        self.assertNotIn(
             "※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y ambientes húmedos durante su uso.",
             out,
         )
@@ -813,7 +818,7 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertEqual(3, out.count(".. list-table::"))
+        self.assertEqual(2, out.count(".. list-table::"))
         self.assertIn("Electric shock symbol meaning.", out)
         self.assertIn("Battery disposal meaning.", out)
         self.assertIn("WEEE disposal meaning.", out)

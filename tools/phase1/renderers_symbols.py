@@ -80,11 +80,6 @@ SYMBOL_ASSETS: dict[str, SymbolAsset] = {
 
 LANG_COPY: dict[str, dict[str, object]] = {
     "en": {
-        "danger_title": "DANGER",
-        "danger_bullets": [
-            "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).",
-            "This device is not waterproof or dustproof. Keep away from rain and humid environments during use.",
-        ],
         "maintenance_title": "USER MAINTENANCE INSTRUCTIONS",
         "maintenance_paragraph": (
             "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is "
@@ -127,17 +122,12 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "de": {
-        "danger_title": get_symbols_notice_label("de"),
-        "danger_bullets": [
-            "Dieses Gerät ist nur für die Verwendung in Innenräumen bestimmt (stellen Sie das Gerät bei der Nutzung im Freien in einer vergleichbaren Innenumgebung auf, z. B. in Wohnmobilen, Zelten, Hütten usw.).",
-            "Dieses Gerät ist weder wasserdicht noch staubdicht. Halten Sie es während der Verwendung von Regen und feuchten Umgebungen fern.",
-        ],
         "maintenance_title": "ANWEISUNGEN ZUR WARTUNG DURCH DEN BENUTZER",
         "maintenance_paragraph": (
-            "Während des Lebenszyklus von Energiespeicherprodukten ist mit einem gewissen Verlust an Kapazität "
-            "und Energie zu rechnen. Mit zunehmender Anzahl von Lade- und Entladezyklen und längerer "
-            "Lagerdauer nimmt diese Degradation allmählich zu. Dies ist ein normales Phänomen, das der "
-            "natürlichen Alterung der Batteriezellen entspricht."
+            "W盲hrend des Lebenszyklus von Energiespeicherprodukten ist mit einem gewissen Verlust an Kapazit盲t "
+            "und Energie zu rechnen. Mit zunehmender Anzahl von Lade- und Entladezyklen und l盲ngerer "
+            "Lagerdauer nimmt diese Degradation allm盲hlich zu. Dies ist ein normales Ph盲nomen, das der "
+            "nat眉rlichen Alterung der Batteriezellen entspricht."
         ),
         "page_title": "BEDEUTUNG DER SYMBOLE",
         "header_symbol": "Symbol",
@@ -148,43 +138,38 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Warnsymbol.",
                 "label": get_signal_word("de", "warning"),
-                "meaning": "Gefährliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachschäden führen können.",
+                "meaning": "Gef盲hrliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachsch盲den f眉hren k枚nnen.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Vorsichtssymbol.",
                 "label": get_signal_word("de", "caution"),
-                "meaning": "Gefährliche Handlungen, die zu Personenschäden und/oder zu Sachschäden führen können.",
+                "meaning": "Gef盲hrliche Handlungen, die zu Personensch盲den und/oder zu Sachsch盲den f眉hren k枚nnen.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Hinweissymbol.",
                 "label": get_signal_word("de", "note"),
-                "meaning": "Handlungen, die zu Geräteschäden, Datenverlust, Leistungseinbußen oder unerwarteten Ergebnissen führen können.",
+                "meaning": "Handlungen, die zu Ger盲tesch盲den, Datenverlust, Leistungseinbu脽en oder unerwarteten Ergebnissen f眉hren k枚nnen.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Tippsymbol.",
                 "label": get_signal_word("de", "tips"),
-                "meaning": "Ergänzt wichtige Informationen oder Bedienhinweise im Text.",
+                "meaning": "Erg盲nzt wichtige Informationen oder Bedienhinweise im Text.",
             },
         ],
     },
     "fr": {
-        "danger_title": get_symbols_notice_label("fr"),
-        "danger_bullets": [
-            "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
-            "Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.",
-        ],
         "maintenance_title": "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR",
         "maintenance_paragraph": (
-            "Au cours du cycle des produits de stockage d'énergie, une certaine dégradation de la capacité et de "
-            "l'énergie se produira. À mesure que le nombre de cycles d'utilisation augmente et que la durée de "
-            "stockage s'allonge, cette dégradation s'intensifiera progressivement, ce qui est un phénomène normal "
-            "conforme au modèle de vieillissement naturel des cellules de batterie. "
+            "Au cours du cycle des produits de stockage d'茅nergie, une certaine d茅gradation de la capacit茅 et de "
+            "l'茅nergie se produira. 脌 mesure que le nombre de cycles d'utilisation augmente et que la dur茅e de "
+            "stockage s'allonge, cette d茅gradation s'intensifiera progressivement, ce qui est un ph茅nom猫ne normal "
+            "conforme au mod猫le de vieillissement naturel des cellules de batterie. "
         ),
         "page_title": "SIGNIFICATION DES SYMBOLES",
         "header_symbol": "Symbole",
@@ -195,89 +180,79 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Symbole d'avertissement.",
                 "label": get_signal_word("fr", "warning"),
-                "meaning": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
+                "meaning": "Pratiques dangereuses pouvant entra卯ner des blessures graves, la mort et/ou des dommages mat茅riels.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Symbole de mise en garde.",
                 "label": get_signal_word("fr", "caution"),
-                "meaning": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
+                "meaning": "Pratiques dangereuses pouvant entra卯ner des blessures corporelles et/ou des dommages mat茅riels.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Symbole de remarque.",
                 "label": get_signal_word("fr", "note"),
-                "meaning": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",
+                "meaning": "Pratiques dangereuses pouvant entra卯ner des dommages 脿 l'茅quipement, une perte de donn茅es, une d茅t茅rioration des performances ou des r茅sultats inattendus.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Symbole de conseil.",
                 "label": get_signal_word("fr", "tips"),
-                "meaning": "Complémente les informations importantes ou les conseils d'utilisation dans le texte.",
+                "meaning": "Compl茅mente les informations importantes ou les conseils d'utilisation dans le texte.",
             },
         ],
     },
     "es": {
-        "danger_title": get_symbols_notice_label("es"),
-        "danger_bullets": [
-            "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
-            "Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y ambientes húmedos durante su uso.",
-        ],
         "maintenance_title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
         "maintenance_paragraph": (
-            "Durante el ciclo de vida de los productos de almacenamiento de energía, se producirá cierto grado de degradación "
-            "de capacidad y energía. A medida que aumenta el número de ciclos de uso y se extiende el tiempo de "
-            "almacenamiento, esta degradación se intensificará gradualmente, lo cual es un fenómeno normal acorde con el "
-            "patrón de envejecimiento natural de las celdas de la batería. "
+            "Durante el ciclo de vida de los productos de almacenamiento de energ铆a, se producir谩 cierto grado de degradaci贸n "
+            "de capacidad y energ铆a. A medida que aumenta el n煤mero de ciclos de uso y se extiende el tiempo de "
+            "almacenamiento, esta degradaci贸n se intensificar谩 gradualmente, lo cual es un fen贸meno normal acorde con el "
+            "patr贸n de envejecimiento natural de las celdas de la bater铆a. "
         ),
-        "page_title": "SIGNIFICADO DE LOS SÍMBOLOS",
-        "header_symbol": "Símbolo",
+        "page_title": "SIGNIFICADO DE LOS S脥MBOLOS",
+        "header_symbol": "S铆mbolo",
         "header_meaning": "Significado",
         "signal_rows": [
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Símbolo de advertencia.",
+                "alt": "S铆mbolo de advertencia.",
                 "label": get_signal_word("es", "warning"),
-                "meaning": "Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",
+                "meaning": "Pr谩cticas peligrosas que pueden resultar en lesiones graves, muerte y/o da帽os a la propiedad.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Símbolo de precaución.",
+                "alt": "S铆mbolo de precauci贸n.",
                 "label": get_signal_word("es", "caution"),
-                "meaning": "Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.",
+                "meaning": "Pr谩cticas peligrosas que pueden resultar en lesiones personales y/o da帽os a la propiedad.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Símbolo de nota.",
+                "alt": "S铆mbolo de nota.",
                 "label": get_signal_word("es", "note"),
-                "meaning": "Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",
+                "meaning": "Pr谩cticas peligrosas que pueden resultar en da帽os en el equipo, p茅rdida de datos, deterioro del rendimiento o resultados inesperados.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Símbolo de consejo.",
+                "alt": "S铆mbolo de consejo.",
                 "label": get_signal_word("es", "tips"),
-                "meaning": "Complementa la información importante o consejos de operación en el texto.",
+                "meaning": "Complementa la informaci贸n importante o consejos de operaci贸n en el texto.",
             },
         ],
     },
     "it": {
-        "danger_title": get_symbols_notice_label("it"),
-        "danger_bullets": [
-            "Questo dispositivo è destinato esclusivamente all'uso in ambienti interni (quando lo si utilizza all'aperto, collocarlo in un ambiente simile a un interno, ad es. casa, camper, tende, cabine, ecc.).",
-            "Questo dispositivo non è impermeabile né antipolvere. Tenerlo lontano dalla pioggia e dagli ambienti umidi durante l'uso.",
-        ],
         "maintenance_title": "ISTRUZIONI DI MANUTENZIONE PER L'UTENTE",
         "maintenance_paragraph": (
-            "Durante il ciclo di vita dei prodotti per l'accumulo di energia, è previsto un certo grado di degrado "
-            "della capacità e dell'energia. Con l'aumentare dei cicli di carica e scarica e il prolungarsi del "
-            "tempo di immagazzinamento, tale degrado tenderà a intensificarsi gradualmente, in linea con il "
+            "Durante il ciclo di vita dei prodotti per l'accumulo di energia, 猫 previsto un certo grado di degrado "
+            "della capacit脿 e dell'energia. Con l'aumentare dei cicli di carica e scarica e il prolungarsi del "
+            "tempo di immagazzinamento, tale degrado tender脿 a intensificarsi gradualmente, in linea con il "
             "naturale invecchiamento delle celle della batteria."
         ),
         "page_title": "SIGNIFICATO DEI SIMBOLI",
@@ -315,49 +290,44 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "uk": {
-        "danger_title": get_symbols_notice_label("uk"),
-        "danger_bullets": [
-            "Цей пристрій призначений лише для використання в приміщенні (під час використання на вулиці розміщуйте його в подібному до приміщення середовищі, наприклад у будинку, автофургоні, наметі, кабіні тощо).",
-            "Цей пристрій не є водонепроникним і пилонепроникним. Під час використання тримайте його подалі від дощу та вологого середовища.",
-        ],
-        "maintenance_title": "ІНСТРУКЦІЇ З ОБСЛУГОВУВАННЯ ДЛЯ КОРИСТУВАЧА",
+        "maintenance_title": "袉袧小孝袪校袣笑袉袊 袟 袨袘小袥校袚袨袙校袙袗袧袧携 袛袥携 袣袨袪袠小孝校袙袗效袗",
         "maintenance_paragraph": (
-            "Протягом життєвого циклу продуктів для накопичення енергії очікується певний ступінь деградації "
-            "ємності та енергії. Зі збільшенням кількості циклів заряджання й розряджання та тривалості "
-            "зберігання ця деградація поступово посилюватиметься, що є нормальним явищем і відповідає "
-            "природному старінню акумуляторних елементів."
+            "袩褉芯褌褟谐芯屑 卸懈褌褌褦胁芯谐芯 褑懈泻谢褍 锌褉芯写褍泻褌褨胁 写谢褟 薪邪泻芯锌懈褔械薪薪褟 械薪械褉谐褨褩 芯褔褨泻褍褦褌褜褋褟 锌械胁薪懈泄 褋褌褍锌褨薪褜 写械谐褉邪写邪褑褨褩 "
+            "褦屑薪芯褋褌褨 褌邪 械薪械褉谐褨褩. 袟褨 蟹斜褨谢褜褕械薪薪褟屑 泻褨谢褜泻芯褋褌褨 褑懈泻谢褨胁 蟹邪褉褟写卸邪薪薪褟 泄 褉芯蟹褉褟写卸邪薪薪褟 褌邪 褌褉懈胁邪谢芯褋褌褨 "
+            "蟹斜械褉褨谐邪薪薪褟 褑褟 写械谐褉邪写邪褑褨褟 锌芯褋褌褍锌芯胁芯 锌芯褋懈谢褞胁邪褌懈屑械褌褜褋褟, 褖芯 褦 薪芯褉屑邪谢褜薪懈屑 褟胁懈褖械屑 褨 胁褨写锌芯胁褨写邪褦 "
+            "锌褉懈褉芯写薪芯屑褍 褋褌邪褉褨薪薪褞 邪泻褍屑褍谢褟褌芯褉薪懈褏 械谢械屑械薪褌褨胁."
         ),
-        "page_title": "ЗНАЧЕННЯ СИМВОЛІВ",
-        "header_symbol": "Символ",
-        "header_meaning": "Значення",
+        "page_title": "袟袧袗效袝袧袧携 小袠袦袙袨袥袉袙",
+        "header_symbol": "小懈屑胁芯谢",
+        "header_meaning": "袟薪邪褔械薪薪褟",
         "signal_rows": [
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Попереджувальний символ.",
+                "alt": "袩芯锌械褉械写卸褍胁邪谢褜薪懈泄 褋懈屑胁芯谢.",
                 "label": get_signal_word("uk", "warning"),
-                "meaning": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",
+                "meaning": "袧械斜械蟹锌械褔薪褨 写褨褩, 褟泻褨 屑芯卸褍褌褜 锌褉懈蟹胁械褋褌懈 写芯 褌褟卸泻懈褏 褌褉邪胁屑, 褋屑械褉褌褨 褌邪/邪斜芯 锌芯褕泻芯写卸械薪薪褟 屑邪泄薪邪.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Символ уваги.",
+                "alt": "小懈屑胁芯谢 褍胁邪谐懈.",
                 "label": get_signal_word("uk", "caution"),
-                "meaning": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",
+                "meaning": "袧械斜械蟹锌械褔薪褨 写褨褩, 褟泻褨 屑芯卸褍褌褜 锌褉懈蟹胁械褋褌懈 写芯 褌褉邪胁屑褍胁邪薪薪褟 谢褞写械泄 褌邪/邪斜芯 锌芯褕泻芯写卸械薪薪褟 屑邪泄薪邪.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Символ примітки.",
+                "alt": "小懈屑胁芯谢 锌褉懈屑褨褌泻懈.",
                 "label": get_signal_word("uk", "note"),
-                "meaning": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",
+                "meaning": "袛褨褩, 褟泻褨 屑芯卸褍褌褜 锌褉懈蟹胁械褋褌懈 写芯 锌芯褕泻芯写卸械薪薪褟 芯斜谢邪写薪邪薪薪褟, 胁褌褉邪褌懈 写邪薪懈褏, 锌芯谐褨褉褕械薪薪褟 锌褉芯写褍泻褌懈胁薪芯褋褌褨 邪斜芯 薪械芯褔褨泻褍胁邪薪懈褏 褉械蟹褍谢褜褌邪褌褨胁.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Символ поради.",
+                "alt": "小懈屑胁芯谢 锌芯褉邪写懈.",
                 "label": get_signal_word("uk", "tips"),
-                "meaning": "Доповнює важливу інформацію або поради з експлуатації в тексті.",
+                "meaning": "袛芯锌芯胁薪褞褦 胁邪卸谢懈胁褍 褨薪褎芯褉屑邪褑褨褞 邪斜芯 锌芯褉邪写懈 蟹 械泻褋锌谢褍邪褌邪褑褨褩 胁 褌械泻褋褌褨.",
             },
         ],
     },
@@ -434,7 +404,7 @@ def _split_condition_tokens(value: str) -> list[str]:
                 if token:
                     tokens.append(token)
             return tokens
-    return [token for token in re.split(r"[,;|/、，\s]+", raw) if token]
+    return [token for token in re.split(r"[,;|/銆侊紝\s]+", raw) if token]
 
 
 def _matches_market(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
@@ -520,7 +490,7 @@ def _append_notice_table(
     *,
     title: str,
     paragraphs: list[str],
-    note_prefix: str = "※ ",
+    note_prefix: str = "鈥?",
 ) -> None:
     lines.extend(
         [
@@ -570,7 +540,7 @@ def _notice_table_rst(
     *,
     title: str,
     paragraphs: list[str],
-    note_prefix: str = "※ ",
+    note_prefix: str = "鈥?",
 ) -> list[str]:
     lines: list[str] = []
     _append_notice_table(lines, title=title, paragraphs=paragraphs, note_prefix=note_prefix)
@@ -637,25 +607,17 @@ def _signal_section(lang: str) -> str:
     if copy is None:
         raise ValueError(f"unsupported symbols language: {lang}")
 
-    danger_title = str(copy["danger_title"])
     maintenance_title = str(copy["maintenance_title"])
     maintenance_paragraph = str(copy["maintenance_paragraph"])
     page_title = str(copy["page_title"])
     header_symbol = str(copy["header_symbol"])
     header_meaning = str(copy["header_meaning"])
-    danger_bullets = [str(item) for item in copy["danger_bullets"]]
     signal_rows = list(copy["signal_rows"])
 
     lines: list[str] = []
     lines.extend(_rst_heading(page_title, "="))
     lines.append("")
     lines.append("|")
-    lines.append("")
-    lines.extend(_notice_block_latex(title=danger_title, paragraphs=danger_bullets))
-    lines.append("")
-    lines.extend(
-        _only_not_latex_block(_notice_table_rst(title=danger_title, paragraphs=danger_bullets))
-    )
     lines.append("")
     lines.extend(_rst_heading(maintenance_title))
     lines.append("")
