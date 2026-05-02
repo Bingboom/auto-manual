@@ -167,6 +167,8 @@ class TestSyncData(unittest.TestCase):
                 "text_de",
                 "text_it",
                 "text_uk",
+                "Is_Latest",
+                "Market",
                 "enabled",
                 "block_type",
                 "order",
@@ -505,6 +507,8 @@ class TestSyncData(unittest.TestCase):
                                 "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                                 "symbol_key": "warning_triangle",
                                 "text_en": "Warning symbol meaning.",
+                                "Is_Latest": "false",
+                                "Market": [{"text": "US"}, {"text": "EU"}],
                                 "enabled": True,
                                 "block_type": "table_row",
                                 "order": "10",
@@ -548,6 +552,8 @@ class TestSyncData(unittest.TestCase):
             expected_path = "data/phase2/_attachments/symbols/10_warning_triangle_file_token_warning.png"
             self.assertEqual(expected_path, rows[0]["Figure"])
             self.assertEqual(expected_path, rows[0]["image_path"])
+            self.assertEqual("FALSE", rows[0]["Is_Latest"])
+            self.assertEqual("US, EU", rows[0]["Market"])
 
     def test_sync_phase2_snapshot_should_prefer_literal_table_and_view_ids(self) -> None:
         with tempfile.TemporaryDirectory() as td:
