@@ -529,6 +529,10 @@ Congratulations on your new manual.
             "<td><p>Use un cable compatible.</p></td>"
             "</tr></tbody></table>"
             "<table><tbody><tr>"
+            "<td><p><strong>PELIGRO</strong></p></td>"
+            "<td><p>Solo para uso en interiores.</p></td>"
+            "</tr></tbody></table>"
+            "<table><tbody><tr>"
             "<td><p><strong>注意</strong>：</p></td>"
             "<td><p>请使用合规线缆。</p></td>"
             "</tr></tbody></table>"
@@ -540,8 +544,9 @@ Congratulations on your new manual.
 
         out = _rewrite_word_friendly_fragment(fragment)
 
-        self.assertEqual(3, out.count("manual-callout-table"))
+        self.assertEqual(4, out.count("manual-callout-table"))
         self.assertIn("<strong>PRECAUCIÓN</strong>", out)
+        self.assertIn("<strong>PELIGRO</strong>", out)
         self.assertIn("<strong>注意</strong>", out)
         self.assertIn("<strong>ご注意</strong>", out)
 

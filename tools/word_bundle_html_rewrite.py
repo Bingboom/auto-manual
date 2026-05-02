@@ -21,6 +21,7 @@ _ALERT_LABELS = {
     "CONSEIL",
     "CONSEILS",
     "ADVERTENCIA",
+    "PELIGRO",
     "PRECAUCIÓN",
     "PRECAUCION",
     "NOTA",
