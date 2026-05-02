@@ -102,7 +102,7 @@
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
-            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-lockup">AVERTISSEMENT</div>
             <div class="hb-warning-text">INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES</div>
           </div>
         </div>
