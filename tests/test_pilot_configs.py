@@ -190,7 +190,7 @@ class TestPilotConfigs(unittest.TestCase):
     def test_eu_safety_pages_should_use_eu_safety_content(self) -> None:
         cases = (
             ("en", "SAFETY PRECAUTIONS FOR USE", "USER MAINTENANCE INSTRUCTIONS"),
-            ("fr", "PRÉCAUTIONS DE SÉCURITÉ POUR L'UTILISATION", "INSTRUCTIONS D’ENTRETIEN PAR L’UTILISATEUR"),
+            ("fr", "PRÉCAUTIONS DE SÉCURITÉ POUR L'UTILISATION", "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR"),
             ("es", "PRECAUCIONES DE SEGURIDAD PARA EL USO", "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO"),
             ("de", "SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG", "ANWEISUNGEN ZUR BENUTZERWARTUNG"),
             ("it", "PRECAUZIONI DI SICUREZZA", "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL'UTENTE"),
@@ -215,9 +215,19 @@ class TestPilotConfigs(unittest.TestCase):
             with self.subTest(lang=lang):
                 safety_path = ROOT / "docs" / "templates" / f"page_eu-{lang}" / f"safety_{lang}.rst"
                 text = safety_path.read_text(encoding="utf-8")
+                maintenance_path = (
+                    ROOT
+                    / "docs"
+                    / "templates"
+                    / "page_shared"
+                    / lang
+                    / "01_user_maintenance_instructions.rst"
+                )
+                maintenance_text = maintenance_path.read_text(encoding="utf-8")
 
                 self.assertIn(expected_title, text)
-                self.assertIn(expected_maintenance_heading, text)
+                self.assertNotIn(expected_maintenance_heading, text)
+                self.assertIn(expected_maintenance_heading, maintenance_text)
                 self.assertIn("safetysinglecol", text)
                 self.assertIn("hb-single-col", text)
                 self.assertNotIn("safetytwocol", text)

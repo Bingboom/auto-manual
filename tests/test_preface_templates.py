@@ -35,9 +35,13 @@ class PrefaceTemplateTests(unittest.TestCase):
 
     def test_eu_english_safety_should_not_use_us_only_safety_copy(self) -> None:
         text = (ROOT / "docs" / "templates" / "page_eu-en" / "safety_en.rst").read_text(encoding="utf-8")
+        maintenance_text = (
+            ROOT / "docs" / "templates" / "page_shared" / "en" / "01_user_maintenance_instructions.rst"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("SAFETY PRECAUTIONS FOR USE", text)
-        self.assertIn("USER MAINTENANCE INSTRUCTIONS", text)
+        self.assertNotIn("USER MAINTENANCE INSTRUCTIONS", text)
+        self.assertIn("USER MAINTENANCE INSTRUCTIONS", maintenance_text)
         for marker in (
             "GROUNDING INSTRUCTION",
             "18 inches",
