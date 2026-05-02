@@ -40,20 +40,6 @@
 
       \end{safetysinglecol}
 
-   .. raw:: latex
-
-      \safetysubbar{ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL'UTENTE}
-
-   .. raw:: latex
-
-      \begin{safetysinglecol}
-
-   Durante il ciclo di vita dei prodotti per l'accumulo di energia, è previsto un certo grado di degrado della capacità e dell'energia. Con l'aumentare dei cicli di carica e scarica e il prolungarsi del tempo di immagazzinamento, tale degrado tenderà a intensificarsi gradualmente. Si tratta di un fenomeno normale, coerente con il naturale invecchiamento delle celle della batteria.
-
-   .. raw:: latex
-
-      \end{safetysinglecol}
-
 
 .. only:: html
 
@@ -72,11 +58,5 @@
         <div class="hb-single-col">
           <p class="hb-lead">Seguire sempre queste precauzioni di base durante l'utilizzo di questo prodotto.</p>
           <ul class="hb-list"><li>Leggere tutte le istruzioni prima di utilizzare il prodotto.</li><li>Non consentire ai bambini di giocare con il prodotto. È necessaria una stretta supervisione quando il prodotto viene utilizzato vicino a bambini.</li><li>Il rischio di scossa elettrica può verificarsi se si utilizzano accessori non raccomandati o non venduti da produttori professionali.</li><li>Quando il prodotto non è in uso, scollegare la spina di alimentazione dalla presa del prodotto.</li><li>Non smontare il prodotto, poiché ciò può comportare rischi imprevedibili come incendi, esplosioni o scosse elettriche.</li><li>Non utilizzare il prodotto con cavi di alimentazione, spine o cavi di uscita danneggiati, poiché ciò può causare scosse elettriche.</li><li>Per garantire una corretta circolazione dell'aria, non coprire le prese d'aria del prodotto. L'area in cui si utilizza il prodotto deve essere ben ventilata, fresca e asciutta per evitare il surriscaldamento.<ul class="hb-sublist"><li>La ricarica in ambienti umidi o poco ventilati può comportare rischi per la sicurezza.</li><li>L'acqua può causare cortocircuiti o danni al caricatore, con conseguenti rischi per la sicurezza.</li></ul></li><li>Non esporre il prodotto al fuoco, ad alte temperature, alla luce solare diretta o ad ambienti molto caldi come l'interno di un veicolo parcheggiato. Tali condizioni possono causare incendi o esplosioni.</li></ul>
-        </div>
-
-        <h2 class="hb-subbar">ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL'UTENTE</h2>
-
-        <div class="hb-single-col">
-          <p>Durante il ciclo di vita dei prodotti per l'accumulo di energia, è previsto un certo grado di degrado della capacità e dell'energia. Con l'aumentare dei cicli di carica e scarica e il prolungarsi del tempo di immagazzinamento, tale degrado tenderà a intensificarsi gradualmente. Si tratta di un fenomeno normale, coerente con il naturale invecchiamento delle celle della batteria.</p>
         </div>
       </div>

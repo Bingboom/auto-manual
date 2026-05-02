@@ -40,20 +40,6 @@
 
       \end{safetysinglecol}
 
-   .. raw:: latex
-
-      \safetysubbar{INSTRUCTIONS D’ENTRETIEN PAR L’UTILISATEUR}
-
-   .. raw:: latex
-
-      \begin{safetysinglecol}
-
-   Pendant le cycle de vie des produits de stockage d’énergie, une certaine dégradation de la capacité et de l’énergie est attendue. À mesure que le nombre de cycles de charge et de décharge augmente et que la durée de stockage s’allonge, cette dégradation s’intensifie progressivement. Il s’agit d’un phénomène normal, conforme au vieillissement naturel des cellules de batterie.
-
-   .. raw:: latex
-
-      \end{safetysinglecol}
-
 
 .. only:: html
 
@@ -72,11 +58,5 @@
         <div class="hb-single-col">
           <p class="hb-lead">Respectez toujours les précautions suivantes lors de l’utilisation du produit.</p>
           <ul class="hb-list"><li>Lisez toutes les instructions avant d’utiliser ce produit.</li><li>Ne laissez pas les enfants jouer avec le produit. Une surveillance étroite est nécessaire lorsque le produit est utilisé à proximité d’enfants.</li><li>Un risque de choc électrique peut survenir si des accessoires recommandés ou vendus par des fabricants non professionnels sont utilisés.</li><li>Lorsque le produit n’est pas utilisé, débranchez la fiche d’alimentation de la prise du produit.</li><li>Ne démontez pas le produit, car cela peut entraîner des risques imprévisibles tels qu’un incendie, une explosion ou un choc électrique.</li><li>N’utilisez pas le produit avec des cordons, des fiches ou des câbles de sortie endommagés, car cela peut provoquer un choc électrique.</li><li>Pour garantir une bonne circulation de l’air, gardez les orifices de ventilation du produit dégagés. La zone où le produit est utilisé doit disposer d’une circulation d’air suffisante dans un environnement frais et sec afin d’éviter toute surchauffe.<ul class="hb-sublist"><li>La charge dans un espace humide ou mal ventilé peut présenter des risques pour la sécurité.</li><li>L’eau peut provoquer des courts-circuits ou endommager le chargeur, entraînant des risques pour la sécurité.</li></ul></li><li>N’exposez pas le produit au feu, à des températures élevées, à la lumière directe du soleil ou à des environnements chauds comme l’intérieur d’un véhicule stationné. Une telle exposition peut provoquer un incendie ou une explosion.</li></ul>
-        </div>
-
-        <h2 class="hb-subbar">INSTRUCTIONS D’ENTRETIEN PAR L’UTILISATEUR</h2>
-
-        <div class="hb-single-col">
-          <p>Pendant le cycle de vie des produits de stockage d’énergie, une certaine dégradation de la capacité et de l’énergie est attendue. À mesure que le nombre de cycles de charge et de décharge augmente et que la durée de stockage s’allonge, cette dégradation s’intensifie progressivement. Il s’agit d’un phénomène normal, conforme au vieillissement naturel des cellules de batterie.</p>
         </div>
       </div>
