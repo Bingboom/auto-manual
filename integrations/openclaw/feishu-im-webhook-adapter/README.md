@@ -47,8 +47,12 @@ Optional:
 - `FEISHU_IM_WEBHOOK_PATH`
 - `FEISHU_IM_HEALTH_PATH`
 - `FEISHU_IM_REQUIRE_MENTION`
+- `FEISHU_IM_ENABLE_MESSAGE_REACTIONS` or `FEISHU_IM_ENABLE_REACTIONS`
 - `FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS`
+- `FEISHU_IM_CONTEXT_TTL_SECONDS`
 - `FEISHU_IM_STATE_FILE`
+- `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
+- `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
 - `FEISHU_IM_ENCRYPT_KEY` or `FEISHU_ENCRYPT_KEY` when the Feishu app enables encrypted callbacks
 - `FEISHU_IM_LARK_CLI_BIN` for local long-connection mode
 - `FEISHU_IM_EVENT_IDENTITY` for local long-connection mode; defaults to `bot`
@@ -82,6 +86,56 @@ mkdir -p "$FEISHU_IM_LARK_CLI_HOME"
 HOME="$FEISHU_IM_LARK_CLI_HOME" printf '%s' "$FEISHU_IM_APP_SECRET" | lark-cli config init --app-id "$FEISHU_IM_APP_ID" --app-secret-stdin --brand feishu
 python ../../../build.py listen-message-control --config config.us.yaml
 ```
+
+## Local-only OpenClaw profile
+
+The adapter reads optional profile files from `<repo>/.openclaw/` by default.
+This directory is intentionally git-ignored, so the repo can ship the reading
+mechanism without committing private operator wording, real chat examples,
+reaction preferences, or personal memory.
+
+Supported local files:
+
+- `aliases.local.json`: private phrase expansion before `queue-resolve-action`
+- `reply-phrases.local.json`: private overrides for adapter reply headings
+- `reactions.local.json`: private Feishu emoji reaction choices by stage
+- `persona.local.md`: local note text kept in the loaded profile for future chat rendering layers
+
+Example local alias shape:
+
+```json
+{
+  "aliases": [
+    { "from": ["short private phrase"], "to": "canonical queue wording" }
+  ]
+}
+```
+
+Example reaction shape:
+
+```json
+{
+  "received": "SMILE",
+  "accepted": "OK",
+  "completed": "OK"
+}
+```
+
+Use `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR` to point at a
+different local directory. Set `FEISHU_IM_DISABLE_LOCAL_PROFILE=true` when you
+want the adapter to ignore all local profile files. Restart the adapter after
+editing local profile files because they are loaded at process startup.
+
+## Message reactions and context
+
+Native Feishu message reactions are off by default. Set
+`FEISHU_IM_ENABLE_MESSAGE_REACTIONS=true` only after the Feishu app has the
+message reaction permission. The adapter reacts best-effort; a reaction API
+failure is logged but does not block the normal thread reply.
+
+The state file also keeps short-lived conversation context per chat and sender.
+Follow-ups such as `这个好了没` can reuse the last resolved `record_id` without
+storing that context in git.
 
 ## ECS systemd
 

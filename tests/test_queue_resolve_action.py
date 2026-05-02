@@ -126,6 +126,27 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("start-review", resolution.dispatch_command)
         self.assertTrue(resolution.ready)
 
+    def test_resolve_queue_action_should_treat_draft_status_phrase_as_query(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="JE-1000F US 草稿包好了没"),
+            [_draft_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("query_status", resolution.action_name)
+        self.assertIsNone(resolution.dispatch_command)
+        self.assertEqual("rec_draft", resolution.row["record_id"])
+
+    def test_resolve_queue_action_should_keep_direct_draft_command_executable(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="帮我生成 JE-1000F US en 0.3 草稿包"),
+            [_draft_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("build_draft_package", resolution.action_name)
+        self.assertEqual("build-draft", resolution.dispatch_command)
+
     def test_resolve_queue_action_should_require_publish_confirmation(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
             self._args(document_id="JE-1000F_US_0.3", query_workflow_action="publish"),

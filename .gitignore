@@ -24,5 +24,10 @@ integrations/openclaw/auto-manual-control-layer/runtime/
 integrations/openclaw/feishu-im-webhook-adapter/node_modules/
 integrations/openclaw/feishu-im-webhook-adapter/runtime/
 
+# OpenClaw local-only operator profile and workspace notes
+.openclaw/
+HEARTBEAT.md
+TOOLS.md
+
 # Review preview packaging
 site/review-preview/dist/

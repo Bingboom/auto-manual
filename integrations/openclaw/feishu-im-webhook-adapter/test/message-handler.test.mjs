@@ -186,6 +186,154 @@ test("message handler replies with queue status for resolved query_status", asyn
   assert.match(replies[0].text, /SUCCESS/);
 });
 
+test("message handler applies local aliases before resolving actions", async () => {
+  const replies = [];
+  let resolvedMessage = "";
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      localProfile: {
+        aliases: [{ from: "private target", to: "JE-1000F US", caseSensitive: false, match: "literal" }],
+        replyPhrases: {},
+        reactions: {},
+      },
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction(payload) {
+        resolvedMessage = payload.messageText;
+        return {
+          resolution_status: "resolved",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_123",
+            document_id: "JE-1000F_US_0.3",
+            workflow_action: "Build Draft Package",
+            result: "SUCCESS",
+          },
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("查一下 private target 草稿包"));
+  await result.backgroundTask();
+
+  assert.equal(resolvedMessage, "查一下 JE-1000F US 草稿包");
+  assert.equal(replies.length, 1);
+});
+
+test("message handler can resolve pronoun follow-ups from conversation context", async () => {
+  let resolvedMessage = "";
+  const stateStore = {
+    ...createMemoryStateStore(),
+    async readConversationContext() {
+      return {
+        row: {
+          record_id: "rec_context",
+        },
+      };
+    },
+    async rememberConversationContext() {},
+    async clearExpiredConversationContexts() {},
+  };
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore,
+    repoControl: {
+      async resolveAction(payload) {
+        resolvedMessage = payload.messageText;
+        return {
+          resolution_status: "resolved",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_context",
+            document_id: "JE-1000F_US_0.3",
+            workflow_action: "Build Draft Package",
+            result: "SUCCESS",
+          },
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage() {},
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(resolvedMessage, "这个好了没 record_id rec_context");
+});
+
+test("message handler sends stage reactions when enabled", async () => {
+  const reactions = [];
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      enableMessageReactions: true,
+      localProfile: {
+        aliases: [],
+        replyPhrases: {},
+        reactions: {
+          received: "EYES",
+          completed: "OK",
+        },
+      },
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_123",
+            document_id: "JE-1000F_US_0.3",
+            workflow_action: "Build Draft Package",
+            result: "SUCCESS",
+          },
+        };
+      },
+    },
+    feishuClient: {
+      async addMessageReaction(messageId, emojiType) {
+        reactions.push({ messageId, emojiType });
+      },
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("查 JE-1000F_US_0.3"));
+  await result.backgroundTask();
+
+  assert.deepEqual(reactions, [
+    { messageId: "om_123", emojiType: "EYES" },
+    { messageId: "om_123", emojiType: "OK" },
+  ]);
+  assert.equal(replies.length, 1);
+});
+
 test("message handler stores pending publish confirmation", async () => {
   const replies = [];
   let remembered = null;

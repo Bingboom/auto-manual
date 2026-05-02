@@ -10,9 +10,15 @@ import {
   formatAcceptedReply,
   formatCompletionReply,
   formatExecutionErrorReply,
+  formatNoPendingPublishReply,
   formatPendingPublishReply,
+  formatPublishCompletedButUnreadableReply,
+  formatPublishConfirmationAcceptedReply,
   formatResolutionReply,
+  formatRunCompletedButUnreadableReply,
 } from "./reply-format.mjs";
+import { normalizeIncomingMessage } from "./message-normalizer.mjs";
+import { sendStageReaction } from "./reaction-policy.mjs";
 
 async function replyAndIgnore(feishuClient, messageId, text) {
   if (messageId) {
@@ -21,11 +27,34 @@ async function replyAndIgnore(feishuClient, messageId, text) {
 }
 
 export function createMessageHandler({ config, stateStore, repoControl, feishuClient, logger = console }) {
+  const localProfile = config?.localProfile || null;
+
+  async function react(messageId, stage) {
+    await sendStageReaction({ config, feishuClient, localProfile, logger, messageId, stage });
+  }
+
+  async function rememberConversationContext(messageEvent, { row, queryText, actionName }) {
+    if (!row || typeof stateStore.rememberConversationContext !== "function") {
+      return;
+    }
+    await stateStore.rememberConversationContext({
+      chatId: messageEvent.chatId,
+      senderId: messageEvent.senderId,
+      messageId: messageEvent.messageId,
+      row,
+      queryText,
+      actionName,
+      ttlSeconds: config.conversationContextTtlSeconds || 3600,
+    });
+  }
+
   async function processMessageEvent(messageEvent) {
     await stateStore.clearExpiredPublishes();
+    await stateStore.clearExpiredConversationContexts?.();
     if (!(await stateStore.claimProcessedEvent(messageEvent.eventId))) {
       return;
     }
+    await react(messageEvent.messageId, "received");
 
     if (isPublishConfirmationText(messageEvent.normalizedText)) {
       const pending = await stateStore.consumePendingPublish({
@@ -33,13 +62,15 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         senderId: messageEvent.senderId,
       });
       if (!pending) {
-        await replyAndIgnore(feishuClient, messageEvent.messageId, "当前没有待确认的 Publish 请求。");
+        await react(messageEvent.messageId, "needs_input");
+        await replyAndIgnore(feishuClient, messageEvent.messageId, formatNoPendingPublishReply(localProfile));
         return;
       }
       try {
+        await react(messageEvent.messageId, "accepted");
         await feishuClient.replyTextMessage(
           messageEvent.messageId,
-          `已确认发布，开始执行。\nrecord_id: ${pending.row.record_id}`
+          formatPublishConfirmationAcceptedReply(pending.row, localProfile)
         );
         await repoControl.executeResolvedAction({
           actionName: "publish",
@@ -52,26 +83,46 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           recordId: pending.row.record_id,
         });
         const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
+        if (row) {
+          await rememberConversationContext(messageEvent, {
+            row,
+            queryText: pending.queryText || messageEvent.normalizedText,
+            actionName: "publish",
+          });
+        }
+        await react(messageEvent.messageId, "completed");
         await feishuClient.replyTextMessage(
           messageEvent.messageId,
-          row ? formatCompletionReply(row) : "发布已执行，但当前未能重新读取最新队列行。"
+          row ? formatCompletionReply(row, localProfile) : formatPublishCompletedButUnreadableReply(localProfile)
         );
       } catch (error) {
         logger.error?.("publish confirmation failed", error);
-        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error));
+        await react(messageEvent.messageId, "error");
+        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
       }
       return;
     }
 
+    const conversationContext = await stateStore.readConversationContext?.({
+      chatId: messageEvent.chatId,
+      senderId: messageEvent.senderId,
+    });
+    const normalizedMessage = normalizeIncomingMessage({
+      messageText: messageEvent.normalizedText,
+      localProfile,
+      conversationContext,
+    });
+
     let resolution;
     try {
       resolution = await repoControl.resolveAction({
-        messageText: messageEvent.normalizedText,
+        messageText: normalizedMessage.normalizedText,
         confirmPublish: false,
       });
     } catch (error) {
       logger.error?.("message resolution failed", error);
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error));
+      await react(messageEvent.messageId, "error");
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
       return;
     }
 
@@ -81,25 +132,45 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         senderId: messageEvent.senderId,
         messageId: messageEvent.messageId,
         row: resolution.row,
-        queryText: messageEvent.normalizedText,
+        queryText: normalizedMessage.normalizedText,
         ttlSeconds: config.publishConfirmTtlSeconds,
       });
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatPendingPublishReply(resolution));
+      await rememberConversationContext(messageEvent, {
+        row: resolution.row,
+        queryText: normalizedMessage.normalizedText,
+        actionName: resolution.action_name,
+      });
+      await react(messageEvent.messageId, "needs_confirmation");
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatPendingPublishReply(resolution, localProfile));
       return;
     }
 
     if (resolution.resolution_status !== "resolved") {
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatResolutionReply(resolution));
+      const stage = resolution.resolution_status === "target_not_found" ? "unresolved" : "needs_input";
+      await react(messageEvent.messageId, stage);
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatResolutionReply(resolution, localProfile));
       return;
     }
 
     if (resolution.action_name === "query_status") {
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(resolution.row || {}));
+      await rememberConversationContext(messageEvent, {
+        row: resolution.row,
+        queryText: normalizedMessage.normalizedText,
+        actionName: resolution.action_name,
+      });
+      await react(messageEvent.messageId, "completed");
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(resolution.row || {}, localProfile));
       return;
     }
 
     try {
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatAcceptedReply(resolution));
+      await rememberConversationContext(messageEvent, {
+        row: resolution.row,
+        queryText: normalizedMessage.normalizedText,
+        actionName: resolution.action_name,
+      });
+      await react(messageEvent.messageId, "accepted");
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatAcceptedReply(resolution, localProfile));
       await repoControl.executeResolvedAction({
         actionName: resolution.action_name,
         queueScope: resolution.queue_scope,
@@ -111,13 +182,22 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         recordId: resolution.row.record_id,
       });
       const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
+      if (row) {
+        await rememberConversationContext(messageEvent, {
+          row,
+          queryText: normalizedMessage.normalizedText,
+          actionName: resolution.action_name,
+        });
+      }
+      await react(messageEvent.messageId, "completed");
       await feishuClient.replyTextMessage(
         messageEvent.messageId,
-        row ? formatCompletionReply(row) : "执行已结束，但当前未能重新读取最新队列行。"
+        row ? formatCompletionReply(row, localProfile) : formatRunCompletedButUnreadableReply(localProfile)
       );
     } catch (error) {
       logger.error?.("message execution failed", error);
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error));
+      await react(messageEvent.messageId, "error");
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
     }
   }
 

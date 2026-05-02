@@ -1,3 +1,5 @@
+import { localReplyPhrase } from "./local-profile.mjs";
+
 function summarizeRow(row) {
   const lines = [];
   if (row.document_id) {
@@ -35,13 +37,13 @@ function summarizeRow(row) {
   return lines.join("\n");
 }
 
-export function formatResolutionReply(resolution) {
+export function formatResolutionReply(resolution, localProfile = null) {
   const lines = [resolution.summary];
   if (resolution.next_step) {
     lines.push(resolution.next_step);
   }
   if (Array.isArray(resolution.candidates) && resolution.candidates.length) {
-    lines.push("候选行：");
+    lines.push(localReplyPhrase(localProfile, "resolutionCandidateHeader", "候选行："));
     for (const candidate of resolution.candidates) {
       lines.push(`- ${candidate.record_id} | ${candidate.document_id || candidate.document_key || "-"} | ${candidate.workflow_action || "-"}`);
     }
@@ -49,7 +51,7 @@ export function formatResolutionReply(resolution) {
   return lines.join("\n");
 }
 
-export function formatAcceptedReply(resolution) {
+export function formatAcceptedReply(resolution, localProfile = null) {
   const row = resolution.row || {};
   const actionLabel = {
     start_review: "Start Review",
@@ -57,24 +59,42 @@ export function formatAcceptedReply(resolution) {
     publish: "Publish",
     query_status: "Query Status",
   }[resolution.action_name] || resolution.action_name;
-  return [`已接受：${actionLabel}`, summarizeRow(row)].filter(Boolean).join("\n");
+  const prefix = localReplyPhrase(localProfile, "acceptedPrefix", "已接受：");
+  return [`${prefix}${actionLabel}`, summarizeRow(row)].filter(Boolean).join("\n");
 }
 
-export function formatCompletionReply(row) {
-  return [`已完成，最新状态如下：`, summarizeRow(row)].filter(Boolean).join("\n");
+export function formatCompletionReply(row, localProfile = null) {
+  return [localReplyPhrase(localProfile, "completionPrefix", "已完成，最新状态如下："), summarizeRow(row)].filter(Boolean).join("\n");
 }
 
-export function formatPendingPublishReply(resolution) {
+export function formatPendingPublishReply(resolution, localProfile = null) {
   const row = resolution.row || {};
   return [
-    "已解析到一条 Publish 任务，但发布需要显式确认。",
+    localReplyPhrase(localProfile, "pendingPublishPrefix", "已解析到一条 Publish 任务，但发布需要显式确认。"),
     summarizeRow(row),
-    "请在 10 分钟内回复 `确认发布` 或 `confirm` 继续。",
+    localReplyPhrase(localProfile, "pendingPublishInstruction", "请在 10 分钟内回复 `确认发布` 或 `confirm` 继续。"),
   ]
     .filter(Boolean)
     .join("\n");
 }
 
-export function formatExecutionErrorReply(error) {
-  return `执行失败：${String(error?.message || error).trim()}`;
+export function formatExecutionErrorReply(error, localProfile = null) {
+  return `${localReplyPhrase(localProfile, "executionErrorPrefix", "执行失败：")}${String(error?.message || error).trim()}`;
+}
+
+export function formatNoPendingPublishReply(localProfile = null) {
+  return localReplyPhrase(localProfile, "noPendingPublish", "当前没有待确认的 Publish 请求。");
+}
+
+export function formatPublishConfirmationAcceptedReply(row, localProfile = null) {
+  const prefix = localReplyPhrase(localProfile, "publishConfirmedPrefix", "已确认发布，开始执行。");
+  return [prefix, row?.record_id ? `record_id: ${row.record_id}` : ""].filter(Boolean).join("\n");
+}
+
+export function formatPublishCompletedButUnreadableReply(localProfile = null) {
+  return localReplyPhrase(localProfile, "publishCompletedButUnreadable", "发布已执行，但当前未能重新读取最新队列行。");
+}
+
+export function formatRunCompletedButUnreadableReply(localProfile = null) {
+  return localReplyPhrase(localProfile, "runCompletedButUnreadable", "执行已结束，但当前未能重新读取最新队列行。");
 }
