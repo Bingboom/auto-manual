@@ -8,14 +8,47 @@ import re
 from xml.etree import ElementTree as ET
 
 
-_ALERT_LABELS = {"WARNING", "CAUTION", "DANGER", "NOTE", "TIP", "TIPS"}
+_ALERT_LABELS = {
+    "WARNING",
+    "CAUTION",
+    "DANGER",
+    "NOTE",
+    "TIP",
+    "TIPS",
+    "AVERTISSEMENT",
+    "ATTENTION",
+    "REMARQUE",
+    "CONSEIL",
+    "CONSEILS",
+    "ADVERTENCIA",
+    "PELIGRO",
+    "PRECAUCIÓN",
+    "PRECAUCION",
+    "NOTA",
+    "CONSEJO",
+    "CONSEJOS",
+    "WARNUNG",
+    "VORSICHT",
+    "HINWEIS",
+    "TIPP",
+    "AVVERTENZA",
+    "ATTENZIONE",
+    "SUGGERIMENTO",
+    "ПОПЕРЕДЖЕННЯ",
+    "УВАГА",
+    "ПРИМІТКА",
+    "ПОРАДИ",
+    "警告",
+    "注意",
+    "ご注意",
+    "提示",
+    "说明",
+    "備考",
+    "備註",
+    "备注",
+}
 _WARNING_BOX_LABEL_TEXTS = {
     *_ALERT_LABELS,
-    "WARNUNG",
-    "AVERTISSEMENT",
-    "ADVERTENCIA",
-    "AVVERTENZA",
-    "ПОПЕРЕДЖЕННЯ",
 }
 _SIGNAL_WORD_BANNERS = {
     "WARNING": "templates/word_template/common_assets/symbols/warning_bar.png",
@@ -39,6 +72,10 @@ _SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
         ),
     ),
 )
+_HTML_VOID_TAG_RE = re.compile(
+    r"<(?P<tag>area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)(?P<attrs>(?:\s[^<>]*?)?)>",
+    re.IGNORECASE,
+)
 
 
 def _html_tag_name(element: ET.Element) -> str:
@@ -55,6 +92,25 @@ def _html_class_names(element: ET.Element) -> set[str]:
 
 def _normalize_inline_text(text: str) -> str:
     return " ".join((text or "").split()).strip()
+
+
+def _normalize_alert_label_text(text: str) -> str:
+    return _normalize_inline_text(text).rstrip(":：").upper()
+
+
+def _has_non_label_punctuation_text(text: str) -> bool:
+    normalized = _normalize_inline_text(text)
+    return bool(normalized and _normalize_alert_label_text(normalized))
+
+
+def _normalize_html_void_tags(fragment: str) -> str:
+    def replace(match: re.Match[str]) -> str:
+        raw = match.group(0)
+        if raw.rstrip().endswith("/>"):
+            return raw
+        return f"<{match.group('tag')}{match.group('attrs') or ''} />"
+
+    return _HTML_VOID_TAG_RE.sub(replace, fragment)
 
 
 def _element_text_weight(element: ET.Element) -> int:
@@ -177,7 +233,7 @@ def _match_safety_sublist_rule(text: str) -> tuple[str, ...] | None:
 
 def _extract_alert_label(element: ET.Element) -> str | None:
     tag = _html_tag_name(element)
-    text = _normalize_inline_text("".join(element.itertext())).rstrip(":").upper()
+    text = _normalize_alert_label_text("".join(element.itertext()))
     if text not in _ALERT_LABELS:
         return None
 
@@ -192,7 +248,7 @@ def _extract_alert_label(element: ET.Element) -> str | None:
     for child in element:
         if _html_tag_name(child) not in {"strong", "b"}:
             return None
-        if _normalize_inline_text(child.tail or ""):
+        if _has_non_label_punctuation_text(child.tail or ""):
             return None
     return text
 
@@ -307,6 +363,88 @@ def _rewrite_signal_word_banner_table(element: ET.Element) -> ET.Element:
     return element if changed else element
 
 
+def _table_has_header(element: ET.Element) -> bool:
+    for node in element.iter():
+        tag = _html_tag_name(node)
+        if tag in {"thead", "th"}:
+            return True
+    return False
+
+
+def _direct_table_rows(element: ET.Element) -> list[ET.Element]:
+    rows: list[ET.Element] = []
+    for child in list(element):
+        child_tag = _html_tag_name(child)
+        if child_tag == "tr":
+            rows.append(child)
+        elif child_tag == "tbody":
+            rows.extend(row for row in list(child) if _html_tag_name(row) == "tr")
+    return rows
+
+
+def _row_cells(row: ET.Element) -> list[ET.Element]:
+    return [cell for cell in list(row) if _html_tag_name(cell) in {"td", "th"}]
+
+
+def _extract_alert_cell_label(cell: ET.Element) -> str | None:
+    text = _normalize_alert_label_text("".join(cell.itertext()))
+    if text not in _ALERT_LABELS:
+        return None
+
+    direct_text = _normalize_inline_text(cell.text or "")
+    if direct_text and _normalize_alert_label_text(direct_text) != text:
+        return None
+
+    allowed_tags = {"p", "strong", "b", "span", "br"}
+    for child in cell.iter():
+        if child is cell:
+            continue
+        if _html_tag_name(child) not in allowed_tags:
+            return None
+        if _has_non_label_punctuation_text(child.tail or ""):
+            return None
+    return text
+
+
+def _cell_body_nodes(cell: ET.Element) -> list[ET.Element]:
+    body_nodes: list[ET.Element] = []
+    lead_text = _normalize_inline_text(cell.text or "")
+    if lead_text:
+        para = ET.Element("p")
+        para.text = lead_text
+        body_nodes.append(para)
+    body_nodes.extend(deepcopy(child) for child in list(cell))
+    return body_nodes
+
+
+def _rewrite_two_column_alert_table(element: ET.Element) -> ET.Element:
+    if _html_tag_name(element) != "table":
+        return element
+
+    if "manual-callout-table" in _html_class_names(element):
+        return element
+    if _table_has_header(element):
+        return element
+
+    rows = _direct_table_rows(element)
+    if len(rows) != 1:
+        return element
+
+    cells = _row_cells(rows[0])
+    if len(cells) != 2:
+        return element
+
+    label = _extract_alert_cell_label(cells[0])
+    if label is None:
+        return element
+
+    body_nodes = _cell_body_nodes(cells[1])
+    if not body_nodes and not _normalize_inline_text("".join(cells[1].itertext())):
+        return element
+
+    return _build_alert_table(label, body_nodes)
+
+
 def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
     table = ET.Element(
         "table",
@@ -388,6 +526,7 @@ def _rewrite_word_friendly_children(
             )
         rewritten_child = _rewrite_known_safety_sublists(rewritten_child)
         rewritten_child = _rewrite_signal_word_banner_table(rewritten_child)
+        rewritten_child = _rewrite_two_column_alert_table(rewritten_child)
         rewritten_child = _rewrite_safety_two_col_layout(rewritten_child)
         normalized_children.append(rewritten_child)
 
@@ -454,7 +593,8 @@ def _rewrite_word_friendly_children(
 
 
 def _rewrite_word_friendly_fragment(fragment: str, *, lang: str | None = None) -> str:
-    wrapped = f"<root>{fragment}</root>"
+    normalized_fragment = _normalize_html_void_tags(fragment)
+    wrapped = f"<root>{normalized_fragment}</root>"
     try:
         root = ET.fromstring(wrapped)
     except ET.ParseError:
@@ -465,7 +605,8 @@ def _rewrite_word_friendly_fragment(fragment: str, *, lang: str | None = None) -
 
 
 def _html_fragment_root(fragment: str) -> ET.Element | None:
-    wrapped = f"<root>{fragment}</root>"
+    normalized_fragment = _normalize_html_void_tags(fragment)
+    wrapped = f"<root>{normalized_fragment}</root>"
     try:
         return ET.fromstring(wrapped)
     except ET.ParseError:
