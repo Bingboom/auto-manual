@@ -158,7 +158,7 @@ Start Review, Build Draft Package, Publish:
 - `data_sync` is the row-level writeback for that decision: `refreshed`, `skipped`, or `failed`
 - queue-driven builds treat Feishu phase2 tables as the structured-data source of truth; repo `data/phase2/*.csv` files are materialized snapshots, not the authoring source
 - use `process-build-queue --workflow-action build-draft-package` when a Build Draft Package row should be built from the current review tree
-- review-source checks scope blocking `Spec_Master` row validation to target identity and generated-page recipe inputs, so stale or retired target rows do not block an already seeded review bundle; runtime-source checks keep strict target-row validation
+- review-source checks scope blocking `Spec_Master` row validation, plus footnote definition/reference checks, to target identity and generated-page recipe inputs, so stale or retired target rows and unreferenced footnote definitions do not block an already seeded review bundle; runtime-source checks keep strict target-row validation
 - use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`, uploaded as PDF, and staged with DOCX kept only in `reports/releases`
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition

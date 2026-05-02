@@ -340,6 +340,94 @@ class TestValidateSpecMaster(unittest.TestCase):
             self.assertIn("MISSING_SOURCE_LANG", {issue.code for issue in runtime_issues})
             self.assertNotIn("MISSING_SOURCE_LANG", {issue.code for issue in review_issues})
 
+    def test_collect_spec_master_validation_issues_should_skip_unused_footnotes_in_review_source_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Row_label_source,Value_source",
+                        "JE-1000F,US,en,TRUE,specifications,product_name,,,Product Name,Jackery 1000",
+                        "JE-1000F,US,en,TRUE,specifications,model_no,,,Model No.,JE-1000F",
+                        "JE-1000F,US,en,TRUE,Product overview,main_power_button,label,1,Main Power Button,Main Power Button",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            spec_footnotes_csv = root / "Spec_Footnotes.csv"
+            spec_footnotes_csv.write_text(
+                "\n".join(
+                    [
+                        "Footnote_id,Type,Region,Model,Source_lang,Is_Latest,Page,Footnote_order,Text_en,Enabled",
+                        "ac_bypass,Footnote,US,JE-1000F,en,TRUE,specifications,1,Shared AC bypass footnote,TRUE",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(
+                root,
+                manifest_path=manifest_path,
+                spec_master_csv=spec_master_csv,
+                spec_footnotes_csv=spec_footnotes_csv,
+            )
+
+            runtime_issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+                source_mode="runtime",
+            )
+            review_issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+                source_mode="review",
+            )
+
+            self.assertIn("UNUSED_FOOTNOTE", {issue.code for issue in runtime_issues})
+            self.assertNotIn("UNUSED_FOOTNOTE", {issue.code for issue in review_issues})
+
+    def test_collect_spec_master_validation_issues_should_keep_review_footnote_reference_checks(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        (
+                            "Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,"
+                            "Row_label_source,Row_label_footnote_refs,Value_source"
+                        ),
+                        "JE-1000F,US,en,TRUE,specifications,product_name,,,Product Name,,Jackery 1000",
+                        "JE-1000F,US,en,TRUE,specifications,model_no,,,Model No.,,JE-1000F",
+                        (
+                            "JE-1000F,US,en,TRUE,Product overview,main_power_button,label,1,"
+                            "Main Power Button,missing_ref,Main Power Button"
+                        ),
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+                source_mode="review",
+            )
+
+            self.assertIn("UNKNOWN_FOOTNOTE_REF", {issue.code for issue in issues})
+
     def test_collect_spec_master_validation_issues_should_fallback_to_sibling_region_footnote(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
