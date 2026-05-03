@@ -118,6 +118,11 @@ def parse_args(
         help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_ID filter or hint",
     )
     ap.add_argument(
+        "--task-id",
+        default=None,
+        help="For queue-query or queue-resolve-action: exact Task_id filter, usually Document_ID plus Workflow_action",
+    )
+    ap.add_argument(
         "--document-key",
         default=None,
         help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_Key filter or hint",

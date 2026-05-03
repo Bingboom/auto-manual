@@ -5,9 +5,6 @@ import {
   renderDuplicateRun,
 } from "./commands.mjs";
 
-const SHARED_QUEUE_COMMANDS = new Set(["start-review", "build-draft"]);
-const SHARED_QUEUE_REUSE_WINDOW_MS = 15_000;
-
 function pluginRecordFromRun(command, queueRecordId, nonce, dispatchedAt, run) {
   return {
     commandName: command.commandName,
@@ -19,64 +16,6 @@ function pluginRecordFromRun(command, queueRecordId, nonce, dispatchedAt, run) {
     runId: String(run.id),
     runUrl: run.html_url,
   };
-}
-
-function isSharedQueueCommand(command) {
-  return SHARED_QUEUE_COMMANDS.has(String(command?.commandName || "").trim().toLowerCase());
-}
-
-function createdAfterIso(windowMs = SHARED_QUEUE_REUSE_WINDOW_MS) {
-  return new Date(Date.now() - windowMs).toISOString();
-}
-
-function isRecentTrackedRecord(record, windowMs = SHARED_QUEUE_REUSE_WINDOW_MS) {
-  if (!record?.dispatchedAt) {
-    return false;
-  }
-  const dispatchedAtTime = Date.parse(record.dispatchedAt);
-  if (Number.isNaN(dispatchedAtTime)) {
-    return false;
-  }
-  return Date.now() - dispatchedAtTime <= windowMs;
-}
-
-async function resolveRecentTrackedSharedRun({ command, github, stateStore, settings }) {
-  const tracked = await stateStore.getLastRecordForWorkflow(command.workflowFile);
-  if (!isRecentTrackedRecord(tracked)) {
-    return null;
-  }
-  if (tracked.runId) {
-    try {
-      const run = await github.getRun(tracked.runId);
-      if (run?.status !== "completed") {
-        return { tracked, run };
-      }
-    } catch {
-      // If GitHub no longer returns the run, fall through to the nonce lookup.
-    }
-  }
-  if (tracked.openclawDispatchNonce) {
-    const run = await github.findRecentRunByDispatch({
-      workflowFile: command.workflowFile,
-      dispatchNonce: tracked.openclawDispatchNonce,
-      branch: settings.defaultBranch,
-      dispatchedAfter: tracked.dispatchedAt,
-    });
-    if (run && run.status !== "completed") {
-      const resolvedTracked = tracked.runId
-        ? tracked
-        : {
-            ...tracked,
-            runId: String(run.id),
-            runUrl: run.html_url,
-          };
-      if (!tracked.runId) {
-        await stateStore.saveRecord(resolvedTracked);
-      }
-      return { tracked: resolvedTracked, run };
-    }
-  }
-  return { tracked, run: null };
 }
 
 function duplicateDispatchResult({ command, queueRecordId, run, tracked }) {
@@ -92,52 +31,20 @@ function duplicateDispatchResult({ command, queueRecordId, run, tracked }) {
 }
 
 export async function dispatchCommandFlow({ command, queueRecordId, github, stateStore, settings }) {
-  const sharedQueueCommand = isSharedQueueCommand(command);
-  if (sharedQueueCommand) {
-    const recentTracked = await resolveRecentTrackedSharedRun({
+  const activeRun = await github.findActiveRunForRecord({
+    workflowFile: command.workflowFile,
+    queueRecordId,
+    branch: settings.defaultBranch,
+  });
+  if (activeRun) {
+    return duplicateDispatchResult({
       command,
-      github,
-      stateStore,
-      settings,
-    });
-    if (recentTracked) {
-      return duplicateDispatchResult({
-        command,
-        queueRecordId,
-        run: recentTracked.run,
-        tracked: recentTracked.tracked,
-      });
-    }
-    const recentActiveRun = await github.findRecentActiveRun({
-      workflowFile: command.workflowFile,
-      branch: settings.defaultBranch,
-      createdAfter: createdAfterIso(),
-    });
-    if (recentActiveRun) {
-      return duplicateDispatchResult({
-        command,
-        queueRecordId,
-        run: recentActiveRun,
-        tracked: null,
-      });
-    }
-  } else {
-    const activeRun = await github.findActiveRunForRecord({
-      workflowFile: command.workflowFile,
       queueRecordId,
-      branch: settings.defaultBranch,
+      run: activeRun,
+      tracked: null,
     });
-    if (activeRun) {
-      return duplicateDispatchResult({
-        command,
-        queueRecordId,
-        run: activeRun,
-        tracked: null,
-      });
-    }
   }
 
-  const dispatchQueueRecordId = sharedQueueCommand ? "" : queueRecordId;
   const nonce = randomUUID();
   const dispatchedAt = new Date().toISOString();
   await github.dispatchWorkflow({
@@ -145,7 +52,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
     ref: settings.defaultBranch,
     inputs: {
       trigger_source: "openclaw",
-      queue_record_id: dispatchQueueRecordId,
+      queue_record_id: queueRecordId,
       openclaw_dispatch_nonce: nonce,
     },
   });
@@ -162,7 +69,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
 
   const run = await github.findDispatchedRun({
     workflowFile: command.workflowFile,
-    queueRecordId: dispatchQueueRecordId,
+    queueRecordId,
     dispatchNonce: nonce,
     branch: settings.defaultBranch,
     dispatchedAfter: dispatchedAt,
@@ -232,8 +139,3 @@ export async function resolveTrackedRun({ github, stateStore, settings, requeste
   });
   return { tracked, run, metadata, artifacts };
 }
-
-export const __testOnly = {
-  SHARED_QUEUE_REUSE_WINDOW_MS,
-  isRecentTrackedRecord,
-};

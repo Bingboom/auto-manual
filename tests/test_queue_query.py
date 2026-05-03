@@ -14,6 +14,7 @@ class TestQueueQuery(unittest.TestCase):
             "query_text": None,
             "queue_scope": "all",
             "record_id": None,
+            "task_id": None,
             "document_id": None,
             "document_key": None,
             "build_family": None,
@@ -88,6 +89,61 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual(["rec_draft"], [row.record_id for row in filtered])
 
+    def test_filter_queue_query_rows_should_match_task_id(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_draft",
+                document_id="JE-1000F_US_0.3",
+                document_key="JE-1000F_US",
+                build_family="us-merged",
+                lang="en",
+                version="0.3",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-id-recvfw0zg4pzxs",
+                document_link="",
+                document_directory="",
+                result="SUCCESS",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_publish",
+                document_id="JE-1000F_US_0.3",
+                document_key="JE-1000F_US",
+                build_family="us-merged",
+                lang="en",
+                version="0.3",
+                workflow_action="Publish",
+                normalized_workflow_action="publish",
+                git_ref="codex/review-id-recvfw0zg4pzxs",
+                document_link="https://example.com/doc",
+                document_directory="/tmp/doc.docx",
+                result="SUCCESS",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=False,
+                immediate_build=False,
+                initial_result="",
+                remarks="",
+            ),
+        ]
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(task_id="JE-1000F_US_0.3_Build Draft Package"),
+            rows,
+        )
+
+        self.assertEqual(["rec_draft"], [row.record_id for row in filtered])
+
     def test_filter_queue_query_rows_should_normalize_start_review_alias(self) -> None:
         rows = [
             queue_query.QueueQueryRow(
@@ -126,10 +182,19 @@ class TestQueueQuery(unittest.TestCase):
             "请帮我查 JE-1000F_US_0.3 的 Build Draft Package 记录。先不要触发 workflow。"
         )
 
+        self.assertEqual("JE-1000F_US_0.3_Build Draft Package", inferred.task_id)
         self.assertEqual("JE-1000F_US_0.3", inferred.document_id)
         self.assertEqual("", inferred.document_key)
         self.assertEqual("build-draft-package", inferred.query_workflow_action)
         self.assertEqual("document-link", inferred.queue_scope)
+
+    def test_infer_queue_query_from_text_should_parse_explicit_task_id(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("执行 JE-1000F_US_1.0_Start Review")
+
+        self.assertEqual("JE-1000F_US_1.0_Start Review", inferred.task_id)
+        self.assertEqual("JE-1000F_US_1.0", inferred.document_id)
+        self.assertEqual("start-review", inferred.query_workflow_action)
+        self.assertEqual("review-init", inferred.queue_scope)
 
     def test_infer_queue_query_from_text_should_parse_spaced_document_id(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("帮我生成 JE-1000F US en 0.3 草稿")
