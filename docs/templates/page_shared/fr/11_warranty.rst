@@ -25,12 +25,12 @@ Période de garantie
 
      - **2 ANS Garantie prolongée**
 
-       Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à hello@jackery.com afin de prolonger la durée de la garantie standard.
+       Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à |WARRANTY_EMAIL| afin de prolonger la durée de la garantie standard.
 
 Réparation ou remplacement
 --------------------------
 
-Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.
+Jackery remplacera (aux frais de Jackery) tout produit Jackery qui ne fonctionne pas pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Un produit de remplacement bénéficie de la garantie restante du produit d'origine.
 
 Limitée à l'acheteur et consommateur d'origine
 ----------------------------------------------

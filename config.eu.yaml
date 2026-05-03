@@ -21,6 +21,7 @@ build:
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: English / French / Spanish / German / Italian / Ukrainian
+    WARRANTY_EMAIL: hello.eu@jackery.com
   open_word: false
   build_html: false
   open_html: false

@@ -13,6 +13,7 @@ build:
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: English / French / Spanish / German / Italian
+    WARRANTY_EMAIL: hello.eu@jackery.com
 
 paths:
   page_manifest: docs/manifests/manual_eu-en.yaml

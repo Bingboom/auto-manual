@@ -30,7 +30,7 @@ Periodo di garanzia
 
        **Garanzia estesa**
 
-       Per attivare l'estensione della garanzia, è necessario registrare il prodotto online, oppure contattare il nostro servizio clienti all'indirizzo **hello.eu@jackery.com** per estendere il periodo di garanzia standard.
+       Per attivare l'estensione della garanzia, è necessario registrare il prodotto online, oppure contattare il nostro servizio clienti all'indirizzo **|WARRANTY_EMAIL|** per estendere il periodo di garanzia standard.
 
 Riparazione o sostituzione
 -------------------------
