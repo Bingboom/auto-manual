@@ -31,7 +31,7 @@ Garantiezeitraum
 
        **Verlängerte Garantie**
 
-       Um die Garantieverlängerung zu aktivieren, müssen Sie Ihr Produkt online registrieren oder unser Kundendienstteam unter hello.eu@jackery.com kontaktieren, um die Standardgarantiezeit zu verlängern.
+       Um die Garantieverlängerung zu aktivieren, müssen Sie Ihr Produkt online registrieren oder unser Kundendienstteam unter |WARRANTY_EMAIL| kontaktieren, um die Standardgarantiezeit zu verlängern.
 
 Reparatur oder Ersatz
 ---------------------

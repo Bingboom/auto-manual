@@ -1,7 +1,7 @@
 WARRANTY
 ========
 
-**We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.**
+**This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.**
 
 \*Warranty period and details may vary according to local laws, regulations, and authorized dealers.
 
@@ -31,12 +31,12 @@ Warranty Period
 
        **Extended Warranty**
 
-       To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty runtime.
+       To activate the Warranty Extension, you must register your product online or contact our customer service team at |WARRANTY_EMAIL| to extend the standard warranty period.
 
 Repair or replacement
 ---------------------
 
-Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material.
+Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials.
 The repaired/replaced product assumes the remaining warranty of the original date of purchase.
 
 Limited to Original Consumer Buyer

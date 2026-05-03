@@ -11,6 +11,8 @@ build:
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
   word_title: "|PRODUCT_NAME| Посібник користувача"
+  rst_substitutions:
+    WARRANTY_EMAIL: hello.eu@jackery.com
 
 paths:
   structured_data_dir: data/phase2

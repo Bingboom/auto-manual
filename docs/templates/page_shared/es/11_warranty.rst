@@ -25,12 +25,12 @@ Período de garantía
 
      - **2 AÑOS Garantía extendida**
 
-       Para activar la extensión de garantía, debe registrar su producto en línea o ponerse en contacto con nuestro equipo de atención al cliente en hello@jackery.com para ampliar la duración de la garantía estándar.
+       Para activar la ampliación de garantía, debe registrar su producto en línea o ponerse en contacto con nuestro equipo de atención al cliente en |WARRANTY_EMAIL| para ampliar el período de garantía estándar.
 
 Reparación o sustitución
-----------------------
+------------------------
 
-Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione durante el período de garantía aplicable debido a defectos en la mano de obra o el material. El producto reparado o sustituido asumirá el período restante de la garantía desde la fecha original de compra.
+Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione, durante el período de garantía aplicable, debido a defectos de acabado o de material. Un producto de sustitución asume la garantía restante del producto original.
 
 Limitado al comprador consumidor original
 -----------------------------------------
@@ -42,7 +42,7 @@ Exclusiones
 
 La garantía de Jackery no se aplica a:
 
-- Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal del consumidor según lo autorizado en la documentación actual del producto Jackery.
+- Cualquier producto que haya sido mal utilizado, abusado, modificado, dañado por accidente, o usado para cualquier cosa distinta del uso normal del consumidor según lo autorizado en la documentación actual del producto de Jackery.
 - Intento de reparación por cualquier persona que no sea un centro autorizado.
 - Cualquier producto adquirido a través de una casa de subastas en línea.
 - La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completamente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez cada 6 meses.
