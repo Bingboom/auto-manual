@@ -573,6 +573,96 @@ class TestPhase1Renderers(unittest.TestCase):
             out,
         )
 
+    def test_render_symbols_page_uses_clean_spanish_signal_copy(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="es",
+            vars_map={},
+        )
+
+        self.assertIn("SIGNIFICADO DE LOS SÍMBOLOS", out)
+        self.assertIn("Símbolo", out)
+        self.assertIn("Prácticas peligrosas", out)
+        self.assertIn("información importante", out)
+        self.assertNotIn("S铆mbolo", out)
+        self.assertNotIn("Pr谩cticas", out)
+        self.assertNotIn("informaci贸n", out)
+
+    def test_render_symbols_page_can_source_signal_rows_from_symbols_blocks(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks.extend(
+            [
+                {
+                    "block_type": "signal_row",
+                    "symbol_key": "WARNING",
+                    "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                    "order": "1",
+                    "Region": "EU",
+                    "Model": "JE-1000F",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "Data warning.",
+                    "text_fr": "Avertissement de données.",
+                    "text_es": "Advertencia desde datos.",
+                },
+                {
+                    "block_type": "signal_row",
+                    "symbol_key": "CAUTION",
+                    "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                    "order": "2",
+                    "Region": "EU",
+                    "Model": "JE-1000F",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "Data caution.",
+                    "text_fr": "Attention de données.",
+                    "text_es": "Precaución desde datos.",
+                },
+                {
+                    "block_type": "signal_row",
+                    "symbol_key": "NOTE",
+                    "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
+                    "order": "3",
+                    "Region": "EU",
+                    "Model": "JE-1000F",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "Data note.",
+                    "text_fr": "Remarque de données.",
+                    "text_es": "Nota desde datos.",
+                },
+                {
+                    "block_type": "signal_row",
+                    "symbol_key": "TIPS",
+                    "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
+                    "order": "4",
+                    "Region": "EU",
+                    "Model": "JE-1000F",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": "Data tip.",
+                    "text_fr": "Conseil de données.",
+                    "text_es": "Consejo desde datos.",
+                },
+            ]
+        )
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="es",
+            vars_map={"model": "JE-1000F", "region": "EU"},
+        )
+
+        self.assertIn("Advertencia desde datos.", out)
+        self.assertIn("Consejo desde datos.", out)
+        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Advertencia desde datos.}", out)
+        self.assertIn("Significado del símbolo de advertencia.", out)
+        self.assertNotIn("Prácticas peligrosas que pueden resultar en lesiones graves", out)
+
     def test_render_symbols_page_filters_by_model_and_region(self) -> None:
         blocks = self._symbols_blocks()
         blocks[0]["Region"] = "US"
