@@ -77,6 +77,29 @@ SYMBOL_ASSETS: dict[str, SymbolAsset] = {
     ),
 }
 
+SIGNAL_ROW_KEYS = ("warning", "caution", "note", "tips")
+SIGNAL_KEY_ALIASES = {"tip": "tips"}
+SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
+    "warning": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/warning_triangle.png",
+        alt="Warning signal symbol.",
+    ),
+    "caution": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/warning_triangle.png",
+        alt="Caution signal symbol.",
+    ),
+    "note": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/mandatory.png",
+        alt="Note signal symbol.",
+    ),
+    "tips": SymbolAsset(
+        path="templates/word_template/common_assets/symbols/mandatory.png",
+        alt="Tip signal symbol.",
+    ),
+}
+SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png", "tip_bar.png"}
+SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
+
 
 LANG_COPY: dict[str, dict[str, object]] = {
     "en": {
@@ -124,28 +147,28 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Warnsymbol.",
                 "label": get_signal_word("de", "warning"),
-                "meaning": "Gef盲hrliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachsch盲den f眉hren k枚nnen.",
+                "meaning": "Gefährliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachschäden führen können.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Vorsichtssymbol.",
                 "label": get_signal_word("de", "caution"),
-                "meaning": "Gef盲hrliche Handlungen, die zu Personensch盲den und/oder zu Sachsch盲den f眉hren k枚nnen.",
+                "meaning": "Gefährliche Handlungen, die zu Personenschäden und/oder zu Sachschäden führen können.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Hinweissymbol.",
                 "label": get_signal_word("de", "note"),
-                "meaning": "Handlungen, die zu Ger盲tesch盲den, Datenverlust, Leistungseinbu脽en oder unerwarteten Ergebnissen f眉hren k枚nnen.",
+                "meaning": "Handlungen, die zu Geräteschäden, Datenverlust, Leistungseinbußen oder unerwarteten Ergebnissen führen können.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Tippsymbol.",
                 "label": get_signal_word("de", "tips"),
-                "meaning": "Erg盲nzt wichtige Informationen oder Bedienhinweise im Text.",
+                "meaning": "Ergänzt wichtige Informationen oder Bedienhinweise im Text.",
             },
         ],
     },
@@ -159,63 +182,63 @@ LANG_COPY: dict[str, dict[str, object]] = {
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Symbole d'avertissement.",
                 "label": get_signal_word("fr", "warning"),
-                "meaning": "Pratiques dangereuses pouvant entra卯ner des blessures graves, la mort et/ou des dommages mat茅riels.",
+                "meaning": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "alt": "Symbole de mise en garde.",
                 "label": get_signal_word("fr", "caution"),
-                "meaning": "Pratiques dangereuses pouvant entra卯ner des blessures corporelles et/ou des dommages mat茅riels.",
+                "meaning": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Symbole de remarque.",
                 "label": get_signal_word("fr", "note"),
-                "meaning": "Pratiques dangereuses pouvant entra卯ner des dommages 脿 l'茅quipement, une perte de donn茅es, une d茅t茅rioration des performances ou des r茅sultats inattendus.",
+                "meaning": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
                 "alt": "Symbole de conseil.",
                 "label": get_signal_word("fr", "tips"),
-                "meaning": "Compl茅mente les informations importantes ou les conseils d'utilisation dans le texte.",
+                "meaning": "Complète les informations importantes ou les conseils d'utilisation dans le texte.",
             },
         ],
     },
     "es": {
-        "page_title": "SIGNIFICADO DE LOS S脥MBOLOS",
-        "header_symbol": "S铆mbolo",
+        "page_title": "SIGNIFICADO DE LOS SÍMBOLOS",
+        "header_symbol": "Símbolo",
         "header_meaning": "Significado",
         "signal_rows": [
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "S铆mbolo de advertencia.",
+                "alt": "Símbolo de advertencia.",
                 "label": get_signal_word("es", "warning"),
-                "meaning": "Pr谩cticas peligrosas que pueden resultar en lesiones graves, muerte y/o da帽os a la propiedad.",
+                "meaning": "Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "S铆mbolo de precauci贸n.",
+                "alt": "Símbolo de precaución.",
                 "label": get_signal_word("es", "caution"),
-                "meaning": "Pr谩cticas peligrosas que pueden resultar en lesiones personales y/o da帽os a la propiedad.",
+                "meaning": "Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "S铆mbolo de nota.",
+                "alt": "Símbolo de nota.",
                 "label": get_signal_word("es", "note"),
-                "meaning": "Pr谩cticas peligrosas que pueden resultar en da帽os en el equipo, p茅rdida de datos, deterioro del rendimiento o resultados inesperados.",
+                "meaning": "Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "S铆mbolo de consejo.",
+                "alt": "Símbolo de consejo.",
                 "label": get_signal_word("es", "tips"),
-                "meaning": "Complementa la informaci贸n importante o consejos de operaci贸n en el texto.",
+                "meaning": "Complementa la información importante o consejos de operación en el texto.",
             },
         ],
     },
@@ -255,37 +278,37 @@ LANG_COPY: dict[str, dict[str, object]] = {
         ],
     },
     "uk": {
-        "page_title": "袟袧袗效袝袧袧携 小袠袦袙袨袥袉袙",
-        "header_symbol": "小懈屑胁芯谢",
-        "header_meaning": "袟薪邪褔械薪薪褟",
+        "page_title": "ЗНАЧЕННЯ СИМВОЛІВ",
+        "header_symbol": "Символ",
+        "header_meaning": "Значення",
         "signal_rows": [
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "袩芯锌械褉械写卸褍胁邪谢褜薪懈泄 褋懈屑胁芯谢.",
+                "alt": "Попереджувальний символ.",
                 "label": get_signal_word("uk", "warning"),
-                "meaning": "袧械斜械蟹锌械褔薪褨 写褨褩, 褟泻褨 屑芯卸褍褌褜 锌褉懈蟹胁械褋褌懈 写芯 褌褟卸泻懈褏 褌褉邪胁屑, 褋屑械褉褌褨 褌邪/邪斜芯 锌芯褕泻芯写卸械薪薪褟 屑邪泄薪邪.",
+                "meaning": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "小懈屑胁芯谢 褍胁邪谐懈.",
+                "alt": "Символ уваги.",
                 "label": get_signal_word("uk", "caution"),
-                "meaning": "袧械斜械蟹锌械褔薪褨 写褨褩, 褟泻褨 屑芯卸褍褌褜 锌褉懈蟹胁械褋褌懈 写芯 褌褉邪胁屑褍胁邪薪薪褟 谢褞写械泄 褌邪/邪斜芯 锌芯褕泻芯写卸械薪薪褟 屑邪泄薪邪.",
+                "meaning": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "小懈屑胁芯谢 锌褉懈屑褨褌泻懈.",
+                "alt": "Символ примітки.",
                 "label": get_signal_word("uk", "note"),
-                "meaning": "袛褨褩, 褟泻褨 屑芯卸褍褌褜 锌褉懈蟹胁械褋褌懈 写芯 锌芯褕泻芯写卸械薪薪褟 芯斜谢邪写薪邪薪薪褟, 胁褌褉邪褌懈 写邪薪懈褏, 锌芯谐褨褉褕械薪薪褟 锌褉芯写褍泻褌懈胁薪芯褋褌褨 邪斜芯 薪械芯褔褨泻褍胁邪薪懈褏 褉械蟹褍谢褜褌邪褌褨胁.",
+                "meaning": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",
             },
             {
                 "mode": "icon_label",
                 "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "小懈屑胁芯谢 锌芯褉邪写懈.",
+                "alt": "Символ поради.",
                 "label": get_signal_word("uk", "tips"),
-                "meaning": "袛芯锌芯胁薪褞褦 胁邪卸谢懈胁褍 褨薪褎芯褉屑邪褑褨褞 邪斜芯 锌芯褉邪写懈 蟹 械泻褋锌谢褍邪褌邪褑褨褩 胁 褌械泻褋褌褨.",
+                "meaning": "Доповнює важливу інформацію або поради з експлуатації в тексті.",
             },
         ],
     },
@@ -448,7 +471,7 @@ def _append_notice_table(
     *,
     title: str,
     paragraphs: list[str],
-    note_prefix: str = "鈥?",
+    note_prefix: str = "- ",
 ) -> None:
     lines.extend(
         [
@@ -498,7 +521,7 @@ def _notice_table_rst(
     *,
     title: str,
     paragraphs: list[str],
-    note_prefix: str = "鈥?",
+    note_prefix: str = "- ",
 ) -> list[str]:
     lines: list[str] = []
     _append_notice_table(lines, title=title, paragraphs=paragraphs, note_prefix=note_prefix)
@@ -560,7 +583,161 @@ def _figure_image_path(value: str) -> str:
     return ""
 
 
-def _signal_section(lang: str) -> str:
+def _symbol_block_type(block: dict[str, str]) -> str:
+    block_type = (block.get("block_type") or "").strip()
+    if block_type not in SUPPORTED_SYMBOL_BLOCK_TYPES:
+        raise ValueError(
+            "symbols page supports block_type='table_row' or block_type='signal_row', "
+            f"got '{block_type or '?'}'"
+        )
+    return block_type
+
+
+def _matching_symbol_blocks(
+    blocks: list[dict[str, str]],
+    *,
+    block_type: str,
+    sku_id: str,
+    vars_map: dict[str, str],
+) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    fallback_scopes: dict[tuple[str, str, str], list[dict[str, str]]] = {}
+    for block in blocks:
+        if not _enabled(block.get("enabled", "1")):
+            continue
+        if not _matches_row_conditions(block, vars_map=vars_map):
+            continue
+        if _symbol_block_type(block) != block_type:
+            continue
+        if _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
+            rows.append(block)
+            continue
+        if _matches_symbols_fallback_scope(block, vars_map=vars_map):
+            block_region = (block.get("Region") or block.get("region") or "").strip().casefold()
+            block_model = canonicalize_model_token(
+                (block.get("Model") or block.get("model") or "").strip(),
+                region=(block.get("Region") or block.get("region") or "").strip(),
+            ).casefold()
+            source_lang = (block.get("Source_lang") or block.get("source_lang") or "").strip().casefold()
+            fallback_scopes.setdefault((block_region, block_model, source_lang), []).append(block)
+
+    if rows:
+        return rows
+
+    ranked_scopes: list[tuple[tuple[int, int, str, str], list[dict[str, str]]]] = []
+    for (scope_region, scope_model, _scope_source_lang), scope_rows in fallback_scopes.items():
+        ranked_scopes.append(
+            (
+                (
+                    -len(scope_rows),
+                    0 if scope_model else 1,
+                    scope_region,
+                    scope_model,
+                ),
+                scope_rows,
+            )
+        )
+    ranked_scopes.sort(key=lambda item: item[0])
+    if not ranked_scopes:
+        return []
+
+    best_score = ranked_scopes[0][0]
+    best_matches = [scope_rows for score, scope_rows in ranked_scopes if score == best_score]
+    if len(best_matches) == 1:
+        return list(best_matches[0])
+    return []
+
+
+def _default_signal_rows(lang: str) -> list[dict[str, object]]:
+    copy = LANG_COPY.get(lang)
+    if copy is None:
+        raise ValueError(f"unsupported symbols language: {lang}")
+    rows: list[dict[str, object]] = []
+    for signal_key, row in zip(SIGNAL_ROW_KEYS, list(copy["signal_rows"])):
+        normalized = dict(row)
+        normalized.setdefault("signal_key", signal_key)
+        rows.append(normalized)
+    return rows
+
+
+def _default_signal_row(lang: str, signal_key: str) -> dict[str, object] | None:
+    for row in _default_signal_rows(lang):
+        if str(row.get("signal_key") or "").strip() == signal_key:
+            return row
+    return None
+
+
+def _normalize_signal_key(value: str) -> str:
+    raw = (value or "").strip().casefold()
+    raw = SIGNAL_KEY_ALIASES.get(raw, raw)
+    if raw not in SIGNAL_ROW_KEYS:
+        raise ValueError(f"unknown symbols signal_row symbol_key='{value or '?'}'")
+    return raw
+
+
+def _signal_uses_banner_image(image_path: str) -> bool:
+    return Path(image_path).name.casefold() in SIGNAL_BANNER_IMAGE_NAMES
+
+
+def _collect_signal_rows(
+    blocks: list[dict[str, str]],
+    *,
+    sku_id: str,
+    lang: str,
+    vars_map: dict[str, str],
+) -> list[dict[str, object]]:
+    lang_col = f"text_{lang}"
+    rows = _matching_symbol_blocks(
+        blocks,
+        block_type="signal_row",
+        sku_id=sku_id,
+        vars_map=vars_map,
+    )
+    if not rows:
+        return _default_signal_rows(lang)
+    if lang_col not in rows[0]:
+        raise ValueError(f"content csv missing language column: {lang_col}")
+    if not _has_unique_explicit_orders(rows):
+        raise ValueError(f"symbols signal rows require unique non-empty order values sku={sku_id} lang={lang}")
+
+    ordered_rows = sorted(rows, key=_sort_key)
+    signal_keys = [_normalize_signal_key(block.get("symbol_key") or "") for block in ordered_rows]
+    if len(set(signal_keys)) != len(signal_keys):
+        raise ValueError(f"symbols signal rows require unique symbol_key values sku={sku_id} lang={lang}")
+    missing_keys = [signal_key for signal_key in SIGNAL_ROW_KEYS if signal_key not in signal_keys]
+    if missing_keys:
+        missing = ", ".join(missing_keys)
+        raise ValueError(f"symbols signal rows missing required symbol_key values: {missing}")
+
+    signal_rows: list[dict[str, object]] = []
+    for block, signal_key in zip(ordered_rows, signal_keys):
+        text = apply_vars(block.get(lang_col, "") or "", vars_map)
+        if not text.strip():
+            raise ValueError(
+                f"symbols signal row missing {lang_col} text at line {(block.get('__line__') or '?').strip()}"
+            )
+
+        default_asset = SIGNAL_DEFAULT_ASSETS[signal_key]
+        image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
+        image_path = image_path or (block.get("image_path") or "").strip() or default_asset.path
+        default_row = _default_signal_row(lang, signal_key) or {}
+        is_banner = _signal_uses_banner_image(image_path)
+        signal_rows.append(
+            {
+                "mode": "banner" if is_banner else "icon_label",
+                "image": image_path,
+                "alt": str(default_row.get("alt") or default_asset.alt),
+                "width": "140px" if is_banner else default_asset.width,
+                "label": "" if is_banner else get_signal_word(lang, signal_key),
+                "meaning": text,
+                "signal_key": signal_key,
+            }
+        )
+
+    return signal_rows
+
+
+def _signal_section(lang: str, signal_rows: list[dict[str, object]] | None = None) -> str:
     copy = LANG_COPY.get(lang)
     if copy is None:
         raise ValueError(f"unsupported symbols language: {lang}")
@@ -568,7 +745,7 @@ def _signal_section(lang: str) -> str:
     page_title = str(copy["page_title"])
     header_symbol = str(copy["header_symbol"])
     header_meaning = str(copy["header_meaning"])
-    signal_rows = list(copy["signal_rows"])
+    signal_rows = signal_rows if signal_rows is not None else _default_signal_rows(lang)
 
     lines: list[str] = []
     lines.extend(_rst_heading(page_title, "="))
@@ -637,19 +814,12 @@ def _collect_icon_rows(
         raise ValueError(f"content csv missing language column: {lang_col}")
 
     rows: list[dict[str, str]] = []
-    fallback_scopes: dict[tuple[str, str, str], list[dict[str, str]]] = {}
-    for block in blocks:
-        if not _enabled(block.get("enabled", "1")):
-            continue
-        if not _matches_row_conditions(block, vars_map=vars_map):
-            continue
-
-        block_type = (block.get("block_type") or "").strip()
-        if block_type != "table_row":
-            raise ValueError(
-                f"symbols page only supports block_type='table_row', got '{block_type or '?'}'"
-            )
-
+    for block in _matching_symbol_blocks(
+        blocks,
+        block_type="table_row",
+        sku_id=sku_id,
+        vars_map=vars_map,
+    ):
         text = apply_vars(block.get(lang_col, "") or "", vars_map)
         if not text.strip():
             raise ValueError(
@@ -673,38 +843,7 @@ def _collect_icon_rows(
             "text": rst_escape(text),
             "order": (block.get("order") or "").strip(),
         }
-        if _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
-            rows.append(row)
-            continue
-        if _matches_symbols_fallback_scope(block, vars_map=vars_map):
-            block_region = (block.get("Region") or block.get("region") or "").strip().casefold()
-            block_model = canonicalize_model_token(
-                (block.get("Model") or block.get("model") or "").strip(),
-                region=(block.get("Region") or block.get("region") or "").strip(),
-            ).casefold()
-            source_lang = (block.get("Source_lang") or block.get("source_lang") or "").strip().casefold()
-            fallback_scopes.setdefault((block_region, block_model, source_lang), []).append(row)
-
-    if not rows:
-        ranked_scopes: list[tuple[tuple[int, int, str, str], list[dict[str, str]]]] = []
-        for (scope_region, scope_model, _scope_source_lang), scope_rows in fallback_scopes.items():
-            ranked_scopes.append(
-                (
-                    (
-                        -len(scope_rows),
-                        0 if scope_model else 1,
-                        scope_region,
-                        scope_model,
-                    ),
-                    scope_rows,
-                )
-            )
-        ranked_scopes.sort(key=lambda item: item[0])
-        if ranked_scopes:
-            best_score = ranked_scopes[0][0]
-            best_matches = [scope_rows for score, scope_rows in ranked_scopes if score == best_score]
-            if len(best_matches) == 1:
-                rows = list(best_matches[0])
+        rows.append(row)
 
     if not rows:
         raise ValueError(f"symbols page has no matching rows sku={sku_id} lang={lang}")
@@ -811,6 +950,7 @@ def render_symbols_page(
     vars_map: dict[str, str],
 ) -> str:
     groups = _collect_icon_rows(blocks, sku_id=sku_id, lang=lang, vars_map=vars_map)
-    rendered = template.replace(PH_SYMBOLS_SIGNAL_SECTION_RST, _signal_section(lang))
+    signal_rows = _collect_signal_rows(blocks, sku_id=sku_id, lang=lang, vars_map=vars_map)
+    rendered = template.replace(PH_SYMBOLS_SIGNAL_SECTION_RST, _signal_section(lang, signal_rows))
     rendered = rendered.replace(PH_SYMBOLS_ICON_TABLE_RST, _icon_table(lang, groups))
     return rendered
