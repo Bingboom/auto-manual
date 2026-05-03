@@ -44,3 +44,17 @@ test("normalizeIncomingMessage does not use context when the message has an expl
   assert.equal(normalized.normalizedText, "这个 JE-1000F_US_0.3 好了没");
   assert.equal(normalized.usedConversationContext, false);
 });
+
+test("normalizeIncomingMessage treats task ids as explicit targets", () => {
+  const normalized = normalizeIncomingMessage({
+    messageText: "这个 JE-1000F_US_1.0_Build Draft Package 好了没",
+    conversationContext: {
+      row: {
+        record_id: "rec_context",
+      },
+    },
+  });
+
+  assert.equal(normalized.normalizedText, "这个 JE-1000F_US_1.0_Build Draft Package 好了没");
+  assert.equal(normalized.usedConversationContext, false);
+});

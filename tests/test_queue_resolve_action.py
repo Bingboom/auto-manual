@@ -88,6 +88,7 @@ class TestQueueResolveAction(unittest.TestCase):
             "query_text": None,
             "queue_scope": "all",
             "record_id": None,
+            "task_id": None,
             "document_id": None,
             "document_key": None,
             "build_family": None,
@@ -146,6 +147,15 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("resolved", resolution.resolution_status)
         self.assertEqual("build_draft_package", resolution.action_name)
         self.assertEqual("build-draft", resolution.dispatch_command)
+
+    def test_resolve_queue_action_should_use_task_id_to_disambiguate_actions(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(task_id="JE-1000F_US_en_0.3_Build Draft Package"),
+            [_draft_row(), _publish_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("rec_draft", resolution.row["record_id"])
 
     def test_resolve_queue_action_should_require_publish_confirmation(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(

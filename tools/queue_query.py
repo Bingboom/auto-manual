@@ -51,6 +51,25 @@ from tools.process_review_start_queue import (
     resolve_review_init_binding,
 )
 
+TASK_ID_FIELD = "Task_id"
+_TASK_ACTION_LABELS = {
+    "start-review": "Start Review",
+    "start_review": "Start Review",
+    "start review": "Start Review",
+    "build-draft": "Build Draft Package",
+    "build_draft": "Build Draft Package",
+    "build draft": "Build Draft Package",
+    "build-draft-package": "Build Draft Package",
+    "build draft package": "Build Draft Package",
+    "draft": "Build Draft Package",
+    "publish": "Publish",
+}
+_ACTION_LABEL_TO_QUERY = {
+    "start review": "start-review",
+    "build draft package": "build-draft-package",
+    "publish": "publish",
+}
+
 
 @dataclass(frozen=True)
 class QueueQueryRow:
@@ -74,11 +93,13 @@ class QueueQueryRow:
     immediate_build: bool | None
     initial_result: str
     remarks: str
+    task_id: str = ""
 
 
 @dataclass(frozen=True)
 class InferredQueueQuery:
     record_id: str = ""
+    task_id: str = ""
     document_id: str = ""
     document_key: str = ""
     build_family: str = ""
@@ -96,6 +117,7 @@ def _text(value: Any) -> str:
 
 _VERSION_TOKEN_RE = re.compile(r"^\d+(?:\.\d+)+$")
 _RECORD_ID_RE = re.compile(r"\b(rec[A-Za-z0-9_]+)\b")
+_TASK_DOCUMENT_ID_RE = r"(?P<document_id>[A-Za-z0-9.-]+_[A-Za-z]{2,3}(?:_[A-Za-z]{2})?_\d+(?:\.\d+)*)"
 _UNDERSCORE_TOKEN_RE = re.compile(r"[A-Za-z0-9.-]+(?:_[A-Za-z0-9.-]+)+")
 _QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
 _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
@@ -106,6 +128,57 @@ _LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "ko"}
 
 def _query_tokens(text: str) -> list[str]:
     return _QUERY_TOKEN_RE.findall(text)
+
+
+def _normalize_task_id(value: str | None) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", _text(value).lower()).strip()
+
+
+def _action_label_pattern(label: str) -> str:
+    return r"[\s_-]+".join(re.escape(part) for part in label.split())
+
+
+def _canonical_query_action_label(value: str | None) -> str:
+    return _TASK_ACTION_LABELS.get(_text(value).lower(), "")
+
+
+def _workflow_action_for_task_label(label: str) -> str:
+    return _ACTION_LABEL_TO_QUERY.get(_normalize_task_id(label), "")
+
+
+def _infer_task_id_filters(text: str) -> tuple[str, str, str]:
+    for action_label in ("Build Draft Package", "Start Review", "Publish"):
+        pattern = re.compile(
+            _TASK_DOCUMENT_ID_RE + r"[\s_:-]+" + _action_label_pattern(action_label),
+            flags=re.IGNORECASE,
+        )
+        match = pattern.search(text)
+        if match:
+            document_id = match.group("document_id")
+            return f"{document_id}_{action_label}", document_id, _workflow_action_for_task_label(action_label)
+    return "", "", ""
+
+
+def _action_label_for_row(row: QueueQueryRow) -> str:
+    mapping = {
+        "start_review": "Start Review",
+        "draft": "Build Draft Package",
+        "publish": "Publish",
+    }
+    if row.normalized_workflow_action in mapping:
+        return mapping[row.normalized_workflow_action]
+    if row.workflow_action:
+        return workflow_action_label(row.workflow_action) or row.workflow_action
+    return ""
+
+
+def _row_task_id(row: QueueQueryRow) -> str:
+    if row.task_id:
+        return row.task_id
+    action_label = _action_label_for_row(row)
+    if row.document_id and action_label:
+        return f"{row.document_id}_{action_label}"
+    return ""
 
 
 def _is_probable_lang_token(token: str) -> bool:
@@ -246,6 +319,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     if not text:
         return InferredQueueQuery()
 
+    task_id, task_document_id, task_workflow_action = _infer_task_id_filters(text)
     record_id = next(
         (
             match.group(1)
@@ -260,7 +334,10 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     result_contains = ""
     latest_per_document_key = False
 
-    if any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
+    if task_workflow_action:
+        workflow_action = task_workflow_action
+        queue_scope = "review-init" if task_workflow_action == "start-review" else "document-link"
+    elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
     elif "publish" in normalized_text or "发布" in text:
@@ -296,12 +373,19 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         queue_scope = "document-link"
 
     document_id, document_key, lang, document_version = _infer_document_filters(text)
+    if not document_id and task_document_id:
+        document_id = task_document_id
     build_family = ""
     if not document_id and not document_key:
         build_family = _infer_build_family(text)
+    if not task_id and document_id and workflow_action:
+        action_label = _canonical_query_action_label(workflow_action)
+        if action_label:
+            task_id = f"{document_id}_{action_label}"
 
     return InferredQueueQuery(
         record_id=record_id,
+        task_id=task_id,
         document_id=document_id,
         document_key=document_key,
         build_family=build_family,
@@ -319,6 +403,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
     merged = argparse.Namespace(**vars(args))
     if not getattr(merged, "record_id", None) and inferred.record_id:
         merged.record_id = inferred.record_id
+    if not getattr(merged, "task_id", None) and inferred.task_id:
+        merged.task_id = inferred.task_id
     if not getattr(merged, "document_id", None) and inferred.document_id:
         merged.document_id = inferred.document_id
     if not getattr(merged, "document_key", None) and inferred.document_key:
@@ -394,6 +480,7 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 immediate_build=is_immediate_trigger_enabled(fields.get(IMMEDIATE_TRIGGER_FIELD)),
                 initial_result="",
                 remarks="",
+                task_id=_text(fields.get(TASK_ID_FIELD)),
             )
         )
     return rows
@@ -443,6 +530,7 @@ def _build_review_init_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 immediate_build=None,
                 initial_result=_text(fields.get(INITIAL_RESULT_FIELD)),
                 remarks=_text(fields.get(REMARKS_FIELD)),
+                task_id=_text(fields.get(TASK_ID_FIELD)),
             )
         )
     return rows
@@ -463,6 +551,8 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
     filtered: list[QueueQueryRow] = []
     for row in rows:
         if getattr(args, "record_id", None) and row.record_id != args.record_id:
+            continue
+        if getattr(args, "task_id", None) and _normalize_task_id(_row_task_id(row)) != _normalize_task_id(args.task_id):
             continue
         if not _match_exact(row.document_id, getattr(args, "document_id", None)):
             continue
@@ -512,6 +602,9 @@ def render_queue_query_rows(rows: list[QueueQueryRow], *, as_json: bool) -> str:
             _row_title(row),
             f"record_id: {row.record_id}",
         ]
+        task_id = _row_task_id(row)
+        if task_id:
+            lines.append(f"task_id: {task_id}")
         if row.document_id:
             lines.append(f"document_id: {row.document_id}")
         if row.document_key:

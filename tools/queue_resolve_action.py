@@ -58,6 +58,7 @@ def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
         "query_text",
         "queue_scope",
         "record_id",
+        "task_id",
         "document_id",
         "document_key",
         "build_family",
@@ -132,6 +133,7 @@ def _requires_confirmation(action_name: str, args: argparse.Namespace) -> bool:
 @dataclass(frozen=True)
 class QueueActionCandidate:
     record_id: str
+    task_id: str
     queue_scope: str
     document_id: str
     document_key: str
@@ -162,6 +164,7 @@ class QueueActionResolution:
 def _candidate_from_row(row: QueueQueryRow) -> QueueActionCandidate:
     return QueueActionCandidate(
         record_id=row.record_id,
+        task_id=row.task_id,
         queue_scope=row.queue_scope,
         document_id=row.document_id,
         document_key=row.document_key,
@@ -197,7 +200,7 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
             selectors=selectors,
             missing_fields=[],
             summary="No queue row matched the current selectors.",
-            next_step="Refine one exact selector such as record_id, Document_ID, Build_family, or Workflow_action.",
+            next_step="Refine one exact selector such as record_id, Task_id, Document_ID, Build_family, or Workflow_action.",
             row=None,
             candidates=[],
         )
@@ -214,7 +217,7 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
             selectors=selectors,
             missing_fields=[],
             summary="Multiple queue rows matched the current selectors.",
-            next_step="Resolve one exact record_id or narrow the request with Workflow_action, Build_family, or Git_ref.",
+            next_step="Resolve one exact record_id or narrow the request with Task_id, Workflow_action, Build_family, or Git_ref.",
             row=None,
             candidates=[_candidate_from_row(row) for row in filtered[:5]],
         )
@@ -300,6 +303,8 @@ def render_queue_action_resolution(resolution: QueueActionResolution, *, as_json
     if resolution.row:
         row = resolution.row
         lines.append(f"record_id: {row.get('record_id', '')}")
+        if row.get("task_id"):
+            lines.append(f"task_id: {row['task_id']}")
         if row.get("document_id"):
             lines.append(f"document_id: {row['document_id']}")
         if row.get("build_family"):
@@ -315,6 +320,7 @@ def render_queue_action_resolution(resolution: QueueActionResolution, *, as_json
                     part
                     for part in (
                         candidate.record_id,
+                        candidate.task_id or "-",
                         candidate.document_id or candidate.document_key or "-",
                         candidate.workflow_action or "-",
                         candidate.git_ref or "-",

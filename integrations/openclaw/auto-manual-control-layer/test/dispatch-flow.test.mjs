@@ -25,14 +25,11 @@ const settings = {
   defaultBranch: "main",
 };
 
-test("shared draft dispatch omits queue_record_id and keeps the requested record in tracking", async () => {
+test("draft dispatch sends queue_record_id and keeps the requested record in tracking", async () => {
   const dispatchCalls = [];
   const savedRecords = [];
   const github = {
-    async findRecentActiveRun() {
-      return null;
-    },
-    async findRecentRunByDispatch() {
+    async findActiveRunForRecord() {
       return null;
     },
     async dispatchWorkflow(payload) {
@@ -64,19 +61,16 @@ test("shared draft dispatch omits queue_record_id and keeps the requested record
   });
 
   assert.equal(dispatchCalls.length, 1);
-  assert.equal(dispatchCalls[0].inputs.queue_record_id, "");
+  assert.equal(dispatchCalls[0].inputs.queue_record_id, "rec_en");
   assert.equal(savedRecords[0].queueRecordId, "rec_en");
   assert.match(result.text, /run_id: 321/);
 });
 
-test("shared start-review dispatch omits queue_record_id so the worker drains pending rows", async () => {
+test("start-review dispatch sends queue_record_id so the worker targets one row", async () => {
   const dispatchCalls = [];
   const savedRecords = [];
   const github = {
-    async findRecentActiveRun() {
-      return null;
-    },
-    async findRecentRunByDispatch() {
+    async findActiveRunForRecord() {
       return null;
     },
     async dispatchWorkflow(payload) {
@@ -108,48 +102,42 @@ test("shared start-review dispatch omits queue_record_id so the worker drains pe
   });
 
   assert.equal(dispatchCalls.length, 1);
-  assert.equal(dispatchCalls[0].inputs.queue_record_id, "");
+  assert.equal(dispatchCalls[0].inputs.queue_record_id, "rec_jp");
   assert.equal(savedRecords[0].queueRecordId, "rec_jp");
   assert.match(result.text, /run_id: 654/);
 });
 
-test("shared draft dispatch reuses a very recent tracked dispatch instead of redispatching", async () => {
+test("draft dispatch reuses an active run for the same record id", async () => {
   let dispatchCount = 0;
   const github = {
-    async findRecentRunByDispatch() {
-      return null;
-    },
-    async findRecentActiveRun() {
-      return null;
+    async findActiveRunForRecord({ queueRecordId }) {
+      return {
+        id: 777,
+        html_url: `https://example.com/runs/${queueRecordId}`,
+        status: "queued",
+      };
     },
     async dispatchWorkflow() {
       dispatchCount += 1;
     },
   };
   const stateStore = {
-    async getLastRecordForWorkflow() {
-      return {
-        workflowFile: sharedDraftCommand.workflowFile,
-        queueRecordId: "rec_es",
-        openclawDispatchNonce: "nonce-123",
-        dispatchedAt: new Date().toISOString(),
-      };
-    },
     async saveRecord() {
-      throw new Error("saveRecord should not be called for duplicate shared dispatch reuse");
+      throw new Error("saveRecord should not be called for duplicate dispatch reuse");
     },
   };
 
   const result = await dispatchCommandFlow({
     command: sharedDraftCommand,
-    queueRecordId: "rec_fr",
+    queueRecordId: "rec_draft",
     github,
     stateStore,
     settings,
   });
 
   assert.equal(dispatchCount, 0);
-  assert.match(result.text, /record_id: rec_fr/);
+  assert.match(result.text, /record_id: rec_draft/);
+  assert.match(result.text, /run_id: 777/);
   assert.match(result.text, /status: queued/);
 });
 

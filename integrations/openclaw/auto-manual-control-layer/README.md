@@ -40,11 +40,11 @@ Every dispatch uses:
 - `trigger_source = openclaw`
 - `openclaw_dispatch_nonce = <uuid>`
 
-Publish dispatches also send:
+Every dispatch sends:
 
 - `queue_record_id = rec_xxx`
 
-For `start-review` and `build-draft`, the control layer keeps the requested record id in local tracking but sends the workflow dispatch without one fixed `queue_record_id`. The worker is still triggered on `main`, and rapid sibling-target dispatches reuse one short-lived shared GitHub queue worker so it can drain pending rows together instead of launching competing Actions runs or blocking on the first matched record.
+The control layer treats the selected Feishu `record_id` as the execution identity for `start-review`, `build-draft`, and `publish`. Queue lookup can also use the optional `Task_id` field, conventionally `Document_ID + "_" + Workflow_action`, to disambiguate same-document rows before dispatch.
 
 The repo-local `queue-execute` wrapper also treats a `Start Review` row that is already `InReview` with `Git_ref` as completed and returns it without a new dispatch. If an older caller still dispatches one explicit completed record, the GitHub worker exits successfully instead of reporting a false no-pending failure.
 
