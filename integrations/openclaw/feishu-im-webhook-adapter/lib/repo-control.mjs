@@ -53,7 +53,7 @@ export function createRepoControl(config) {
         "--json",
       ]);
     },
-    async executeResolvedAction({ actionName, queueScope, recordId, confirmPublish = false }) {
+    async executeResolvedAction({ actionName, queueScope, recordId, confirmPublish = false, noWait = false }) {
       const args = [
         "queue-execute",
         "--config",
@@ -70,6 +70,9 @@ export function createRepoControl(config) {
       }
       if (confirmPublish) {
         args.push("--confirm-publish");
+      }
+      if (noWait) {
+        args.push("--no-wait");
       }
       return runBuildJson(config, args);
     },

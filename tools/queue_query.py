@@ -52,6 +52,8 @@ from tools.process_review_start_queue import (
 )
 
 TASK_ID_FIELD = "Task_id"
+MARKET_GROUP_FIELD = "Market_Group"
+MARKET_FIELD = "Market"
 _TASK_ACTION_LABELS = {
     "start-review": "Start Review",
     "start_review": "Start Review",
@@ -94,12 +96,14 @@ class QueueQueryRow:
     initial_result: str
     remarks: str
     task_id: str = ""
+    market_group: str = ""
 
 
 @dataclass(frozen=True)
 class InferredQueueQuery:
     record_id: str = ""
     task_id: str = ""
+    task_id_prefix: str = ""
     document_id: str = ""
     document_key: str = ""
     build_family: str = ""
@@ -109,6 +113,8 @@ class InferredQueueQuery:
     result_contains: str = ""
     latest_per_document_key: bool = False
     queue_scope: str = "all"
+    market_group: str = ""
+    allow_multiple: bool = False
 
 
 def _text(value: Any) -> str:
@@ -124,6 +130,36 @@ _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
 _REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}$")
 _BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
 _LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "ko"}
+_MARKET_ALIASES = {
+    "欧规": "EU",
+    "欧洲": "EU",
+    "欧盟": "EU",
+    "美规": "US",
+    "美国": "US",
+    "日规": "JP",
+    "日本": "JP",
+    "中规": "CN",
+    "中国": "CN",
+}
+_LATIN_MARKET_ALIASES = {
+    "eu": "EU",
+    "us": "US",
+    "jp": "JP",
+    "ja": "JP",
+    "cn": "CN",
+}
+_BATCH_KEYWORDS = (
+    "所有",
+    "全部",
+    "全量",
+    "每个",
+    "各个",
+    "所有语言",
+    "全部语言",
+    "all",
+    "every",
+    "each",
+)
 
 
 def _query_tokens(text: str) -> list[str]:
@@ -132,6 +168,13 @@ def _query_tokens(text: str) -> list[str]:
 
 def _normalize_task_id(value: str | None) -> str:
     return re.sub(r"[^a-z0-9]+", " ", _text(value).lower()).strip()
+
+
+def _match_task_id_prefix(actual: str, prefix: str | None) -> bool:
+    normalized_prefix = _normalize_task_id(prefix)
+    if not normalized_prefix:
+        return True
+    return _normalize_task_id(actual).startswith(normalized_prefix)
 
 
 def _action_label_pattern(label: str) -> str:
@@ -278,6 +321,26 @@ def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
     return "", "", "", ""
 
 
+def _infer_model_token(text: str) -> str:
+    for token in _query_tokens(text):
+        if "_" in token:
+            continue
+        if _MODEL_TOKEN_RE.match(token):
+            return token
+    return ""
+
+
+def _infer_market_group(text: str) -> str:
+    for alias, market in _MARKET_ALIASES.items():
+        if alias in text:
+            return market
+    tokens = {token.lower() for token in _query_tokens(text)}
+    for alias, market in _LATIN_MARKET_ALIASES.items():
+        if alias in tokens:
+            return market
+    return ""
+
+
 def _infer_build_family(text: str) -> str:
     for token in _query_tokens(text):
         lowered = token.lower()
@@ -287,6 +350,11 @@ def _infer_build_family(text: str) -> str:
             continue
         return lowered
     return ""
+
+
+def _infer_allow_multiple(text: str) -> bool:
+    normalized_text = re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+    return any(keyword in text or keyword in normalized_text for keyword in _BATCH_KEYWORDS)
 
 
 def _normalize_query_workflow_action(value: str | None) -> str | None:
@@ -340,6 +408,9 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
+    elif any(token in text for token in ("输出", "生成", "构建")) or "manual copy" in normalized_text:
+        workflow_action = "build-draft-package"
+        queue_scope = "document-link"
     elif "publish" in normalized_text or "发布" in text:
         workflow_action = "publish"
         queue_scope = "document-link"
@@ -373,6 +444,14 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         queue_scope = "document-link"
 
     document_id, document_key, lang, document_version = _infer_document_filters(text)
+    market_group = _infer_market_group(text)
+    task_id_prefix = ""
+    if not document_id and not document_key:
+        model_token = _infer_model_token(text)
+        if model_token and market_group and _infer_allow_multiple(text):
+            task_id_prefix = f"{model_token}_{market_group}_"
+        elif model_token and market_group:
+            document_key = f"{model_token}_{market_group}"
     if not document_id and task_document_id:
         document_id = task_document_id
     build_family = ""
@@ -386,6 +465,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     return InferredQueueQuery(
         record_id=record_id,
         task_id=task_id,
+        task_id_prefix=task_id_prefix,
         document_id=document_id,
         document_key=document_key,
         build_family=build_family,
@@ -395,6 +475,8 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         result_contains=result_contains,
         latest_per_document_key=latest_per_document_key,
         queue_scope=queue_scope,
+        market_group=market_group,
+        allow_multiple=_infer_allow_multiple(text),
     )
 
 
@@ -405,6 +487,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.record_id = inferred.record_id
     if not getattr(merged, "task_id", None) and inferred.task_id:
         merged.task_id = inferred.task_id
+    if not getattr(merged, "task_id_prefix", None) and inferred.task_id_prefix:
+        merged.task_id_prefix = inferred.task_id_prefix
     if not getattr(merged, "document_id", None) and inferred.document_id:
         merged.document_id = inferred.document_id
     if not getattr(merged, "document_key", None) and inferred.document_key:
@@ -415,6 +499,15 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.lang = inferred.lang
     if not getattr(merged, "document_version", None) and inferred.document_version:
         merged.document_version = inferred.document_version
+    if (
+        not getattr(merged, "market_group", None)
+        and inferred.market_group
+        and not inferred.task_id_prefix
+        and not inferred.document_id
+        and not inferred.document_key
+        and not inferred.build_family
+    ):
+        merged.market_group = inferred.market_group
     if not getattr(merged, "query_workflow_action", None) and inferred.query_workflow_action:
         merged.query_workflow_action = inferred.query_workflow_action
     if not getattr(merged, "result_contains", None) and inferred.result_contains:
@@ -423,6 +516,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.latest_per_document_key = inferred.latest_per_document_key
     if getattr(merged, "queue_scope", "all") == "all" and inferred.queue_scope != "all":
         merged.queue_scope = inferred.queue_scope
+    if not getattr(merged, "allow_multiple", False) and inferred.allow_multiple:
+        merged.allow_multiple = inferred.allow_multiple
     return merged
 
 
@@ -454,6 +549,7 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
         fields_raw = raw_record.get("fields", {})
         fields = fields_raw if isinstance(fields_raw, dict) else {}
         workflow_action = _text(fields.get(WORKFLOW_ACTION_FIELD))
+        market_group = _text(fields.get(MARKET_GROUP_FIELD) or fields.get(MARKET_FIELD)).upper()
         rows.append(
             QueueQueryRow(
                 queue_scope="document-link",
@@ -481,6 +577,7 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 initial_result="",
                 remarks="",
                 task_id=_text(fields.get(TASK_ID_FIELD)),
+                market_group=market_group,
             )
         )
     return rows
@@ -531,6 +628,7 @@ def _build_review_init_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 initial_result=_text(fields.get(INITIAL_RESULT_FIELD)),
                 remarks=_text(fields.get(REMARKS_FIELD)),
                 task_id=_text(fields.get(TASK_ID_FIELD)),
+                market_group=_text(fields.get(MARKET_GROUP_FIELD) or fields.get(MARKET_FIELD)).upper(),
             )
         )
     return rows
@@ -554,6 +652,8 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
             continue
         if getattr(args, "task_id", None) and _normalize_task_id(_row_task_id(row)) != _normalize_task_id(args.task_id):
             continue
+        if not _match_task_id_prefix(_row_task_id(row), getattr(args, "task_id_prefix", None)):
+            continue
         if not _match_exact(row.document_id, getattr(args, "document_id", None)):
             continue
         if not _match_exact(row.document_key, getattr(args, "document_key", None)):
@@ -564,7 +664,15 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
             continue
         if not _match_exact(row.version, getattr(args, "document_version", None)):
             continue
+        if not _match_exact(row.market_group, getattr(args, "market_group", None)):
+            continue
         if normalized_action and row.normalized_workflow_action != normalized_action:
+            continue
+        if (
+            getattr(args, "allow_multiple", False)
+            and normalized_action in {"draft", "publish"}
+            and row.build_trigger_requested is not True
+        ):
             continue
         if not _match_contains(row.git_ref, getattr(args, "git_ref_contains", None)):
             continue
@@ -611,6 +719,8 @@ def render_queue_query_rows(rows: list[QueueQueryRow], *, as_json: bool) -> str:
             lines.append(f"document_key: {row.document_key}")
         if row.build_family:
             lines.append(f"build_family: {row.build_family}")
+        if row.market_group:
+            lines.append(f"market_group: {row.market_group}")
         if row.lang:
             lines.append(f"lang: {row.lang}")
         if row.version:

@@ -123,6 +123,11 @@ def parse_args(
         help="For queue-query or queue-resolve-action: exact Task_id filter, usually Document_ID plus Workflow_action",
     )
     ap.add_argument(
+        "--task-id-prefix",
+        default=None,
+        help="For queue-query or queue-resolve-action: Task_id prefix filter, useful for bounded batch asks such as one model/market",
+    )
+    ap.add_argument(
         "--document-key",
         default=None,
         help="For queue-query, queue-resolve-action, or message-control-dry-run: exact Document_Key filter or hint",
@@ -148,6 +153,11 @@ def parse_args(
     )
     ap.add_argument("--document-version", default=None, help="For queue-query or queue-resolve-action: exact Version filter")
     ap.add_argument(
+        "--market-group",
+        default=None,
+        help="For queue-query or queue-resolve-action: exact Market_Group/Market filter, such as EU or US",
+    )
+    ap.add_argument(
         "--query-workflow-action",
         default=None,
         help="For queue-query or queue-resolve-action: start-review | build-draft-package | publish",
@@ -158,6 +168,11 @@ def parse_args(
         "--latest-per-document-key",
         action="store_true",
         help="For queue-query or queue-resolve-action: collapse Document_link rows to the latest version per Document_Key",
+    )
+    ap.add_argument(
+        "--allow-multiple",
+        action="store_true",
+        help="For queue-resolve-action: allow natural-language batch actions when multiple queue rows match",
     )
     ap.add_argument(
         "--limit",
