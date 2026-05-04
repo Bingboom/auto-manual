@@ -282,6 +282,14 @@ def _latest_per_document_key(rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
     return [selected[key] for key in order]
 
 
+def _should_apply_latest_per_document_key(args: argparse.Namespace, normalized_action: str | None) -> bool:
+    if not getattr(args, "latest_per_document_key", False):
+        return False
+    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"}:
+        return False
+    return True
+
+
 def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
     for token in _UNDERSCORE_TOKEN_RE.findall(text):
         parts = token.split("_")
@@ -679,7 +687,7 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
         if not _match_contains(row.result, getattr(args, "result_contains", None)):
             continue
         filtered.append(row)
-    if getattr(args, "latest_per_document_key", False):
+    if _should_apply_latest_per_document_key(args, normalized_action):
         filtered = _latest_per_document_key(filtered)
     return filtered[: max(int(getattr(args, "limit", 10) or 10), 1)]
 

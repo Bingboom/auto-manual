@@ -58,3 +58,31 @@ test("normalizeIncomingMessage treats task ids as explicit targets", () => {
   assert.equal(normalized.normalizedText, "这个 JE-1000F_US_1.0_Build Draft Package 好了没");
   assert.equal(normalized.usedConversationContext, false);
 });
+
+test("normalizeIncomingMessage treats model plus chinese market alias as an explicit target", () => {
+  const normalized = normalizeIncomingMessage({
+    messageText: "构建JE-1000F的所有欧规说明书文案",
+    conversationContext: {
+      row: {
+        record_id: "rec_context",
+      },
+    },
+  });
+
+  assert.equal(normalized.normalizedText, "构建JE-1000F的所有欧规说明书文案");
+  assert.equal(normalized.usedConversationContext, false);
+});
+
+test("normalizeIncomingMessage does not append previous record ids to execution requests", () => {
+  const normalized = normalizeIncomingMessage({
+    messageText: "重新构建这个",
+    conversationContext: {
+      row: {
+        record_id: "rec_context",
+      },
+    },
+  });
+
+  assert.equal(normalized.normalizedText, "重新构建这个");
+  assert.equal(normalized.usedConversationContext, false);
+});

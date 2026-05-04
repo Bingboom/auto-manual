@@ -216,7 +216,11 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("document-link", inferred.queue_scope)
 
     def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
-        for query_text in ["输出JE-1000F的所有欧规说明书文案", "构建JE-1000F的所有欧规说明书文案"]:
+        for query_text in [
+            "输出JE-1000F的所有欧规说明书文案",
+            "构建JE-1000F的所有欧规说明书文案",
+            "构建最新符合构建要求的JE-1000F的所有欧规说明书文案",
+        ]:
             with self.subTest(query_text=query_text):
                 inferred = queue_query.infer_queue_query_from_text(query_text)
 
@@ -312,6 +316,48 @@ class TestQueueQuery(unittest.TestCase):
         )
 
         self.assertEqual(["rec_eu_en"], [row.record_id for row in filtered])
+
+    def test_filter_queue_query_rows_should_not_collapse_latest_batch_draft_by_document_key(self) -> None:
+        rows = []
+        for lang in ("fr", "es", "de", "it"):
+            rows.append(
+                queue_query.QueueQueryRow(
+                    queue_scope="document-link",
+                    record_id=f"rec_eu_{lang}",
+                    document_id=f"JE-1000F_EU_{lang}_0.7",
+                    document_key="JE-1000F_EU",
+                    build_family=f"eu-{lang}",
+                    lang=lang,
+                    version="0.7",
+                    workflow_action="Build Draft Package",
+                    normalized_workflow_action="draft",
+                    git_ref="codex/review-eu",
+                    document_link="",
+                    document_directory="",
+                    result="",
+                    pr_url="",
+                    review_status="",
+                    review_trigger_enabled=None,
+                    build_trigger_requested=True,
+                    immediate_build=True,
+                    initial_result="",
+                    remarks="",
+                    task_id=f"JE-1000F_EU_{lang}_0.7_Build Draft Package",
+                )
+            )
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(
+                query_text="构建最新符合构建要求的JE-1000F的所有欧规说明书文案",
+                task_id_prefix="JE-1000F_EU_",
+                query_workflow_action="build-draft-package",
+                allow_multiple=True,
+                latest_per_document_key=True,
+            ),
+            rows,
+        )
+
+        self.assertEqual(["rec_eu_fr", "rec_eu_es", "rec_eu_de", "rec_eu_it"], [row.record_id for row in filtered])
 
     def test_infer_queue_query_from_text_should_parse_start_review_and_build_family(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("开始 review JE-1000F us-merged")
