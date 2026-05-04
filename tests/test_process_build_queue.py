@@ -964,6 +964,31 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(["rec_draft"], [record.record_id for record in records])
 
+    def test_select_pending_queue_records_should_reject_targeted_untriggered_row(self) -> None:
+        with self.assertRaises(RuntimeError) as ctx:
+            process_build_queue.select_pending_queue_records(
+                [
+                    {
+                        "record_id": "rec_untriggered",
+                        "fields": {
+                            process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_EU_fr_0.6",
+                            process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_EU",
+                            process_build_queue.VERSION_FIELD: ["0.6"],
+                            process_build_queue.LANG_FIELD: ["fr"],
+                            process_build_queue.BUILD_FAMILY_FIELD: "eu-fr",
+                            process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                            process_build_queue.TRIGGER_FIELD: ["已构建"],
+                            process_build_queue.IMMEDIATE_TRIGGER_FIELD: False,
+                        },
+                    }
+                ],
+                workflow_action="draft",
+                record_id="rec_untriggered",
+            )
+
+        self.assertIn("rec_untriggered", str(ctx.exception))
+        self.assertIn("是否触发文档构建", str(ctx.exception))
+
     def test_select_pending_queue_records_should_match_object_style_workflow_action(self) -> None:
         records = process_build_queue.select_pending_queue_records(
             [

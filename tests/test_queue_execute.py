@@ -218,6 +218,20 @@ class TestQueueExecute(unittest.TestCase):
         self.assertIn("--confirm-publish", str(ctx.exception))
         queue_execute.ensure_publish_confirmation(self._args(confirm_publish=True), _publish_row())
 
+    def test_ensure_build_trigger_requested_should_reject_unchecked_draft_row(self) -> None:
+        row = queue_query.QueueQueryRow(
+            **{
+                **_draft_row("rec_unchecked").__dict__,
+                "build_trigger_requested": False,
+            }
+        )
+
+        with self.assertRaises(RuntimeError) as ctx:
+            queue_execute.ensure_build_trigger_requested(row)
+
+        self.assertIn("是否触发文档构建", str(ctx.exception))
+        self.assertIn("rec_unchecked", str(ctx.exception))
+
     def test_build_queue_execute_failure_message_should_prefer_structured_failure_summary(self) -> None:
         message = queue_execute.build_queue_execute_failure_message(
             row=_draft_row("rec_review"),
