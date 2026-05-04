@@ -117,7 +117,7 @@ Example reaction shape:
 
 ```json
 {
-  "received": "SMILE",
+  "received": "Get",
   "accepted": "OK",
   "completed": "OK"
 }
@@ -134,6 +134,9 @@ Native Feishu message reactions are off by default. Set
 `FEISHU_IM_ENABLE_MESSAGE_REACTIONS=true` only after the Feishu app has the
 message reaction permission. The adapter reacts best-effort; a reaction API
 failure is logged but does not block the normal thread reply.
+When enabled, the default reaction for the initial `received` stage is `Get`,
+so every accepted incoming message gets the same GET acknowledgement before
+the adapter resolves or executes the request.
 
 The state file also keeps short-lived conversation context per chat and sender.
 Follow-ups such as `这个好了没` can reuse the last resolved `record_id` without
