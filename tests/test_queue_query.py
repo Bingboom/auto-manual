@@ -15,15 +15,18 @@ class TestQueueQuery(unittest.TestCase):
             "queue_scope": "all",
             "record_id": None,
             "task_id": None,
+            "task_id_prefix": None,
             "document_id": None,
             "document_key": None,
             "build_family": None,
             "lang": None,
             "document_version": None,
+            "market_group": None,
             "query_workflow_action": None,
             "git_ref_contains": None,
             "result_contains": None,
             "latest_per_document_key": False,
+            "allow_multiple": False,
             "limit": 10,
             "json": False,
         }
@@ -211,6 +214,102 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("JE-1000F_US", inferred.document_key)
         self.assertEqual("", inferred.query_workflow_action)
         self.assertEqual("document-link", inferred.queue_scope)
+
+    def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("输出JE-1000F的所有欧规说明书文案")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("", inferred.document_key)
+        self.assertEqual("JE-1000F_EU_", inferred.task_id_prefix)
+        self.assertEqual("EU", inferred.market_group)
+        self.assertEqual("build-draft-package", inferred.query_workflow_action)
+        self.assertEqual("document-link", inferred.queue_scope)
+        self.assertTrue(inferred.allow_multiple)
+
+    def test_filter_queue_query_rows_should_match_task_id_prefix_and_triggered_draft_rows(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_eu_en",
+                document_id="JE-1000F_EU_en_0.5",
+                document_key="JE-1000F_EU",
+                build_family="eu-en",
+                lang="en",
+                version="0.5",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id="JE-1000F_EU_en_0.5_Build Draft Package",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_eu_fr_unchecked",
+                document_id="JE-1000F_EU_fr_0.5",
+                document_key="JE-1000F_EU",
+                build_family="eu-fr",
+                lang="fr",
+                version="0.5",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=False,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id="JE-1000F_EU_fr_0.5_Build Draft Package",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_us",
+                document_id="JE-1000F_US_en_0.5",
+                document_key="JE-1000F_US",
+                build_family="us-en",
+                lang="en",
+                version="0.5",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-us",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id="JE-1000F_US_en_0.5_Build Draft Package",
+            ),
+        ]
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(
+                query_text="输出JE-1000F的所有欧规说明书文案",
+                task_id_prefix="JE-1000F_EU_",
+                query_workflow_action="build-draft-package",
+                allow_multiple=True,
+            ),
+            rows,
+        )
+
+        self.assertEqual(["rec_eu_en"], [row.record_id for row in filtered])
 
     def test_infer_queue_query_from_text_should_parse_start_review_and_build_family(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("开始 review JE-1000F us-merged")

@@ -24,6 +24,7 @@ Current scope:
 - `query_status`
 - `start_review`
 - `build_draft_package`
+- batch `build_draft_package` when the message explicitly asks for all matched rows, such as `输出JE-1000F的所有欧规说明书文案`
 - `publish` with explicit confirmation
 
 Current limitations:
@@ -136,6 +137,15 @@ failure is logged but does not block the normal thread reply.
 The state file also keeps short-lived conversation context per chat and sender.
 Follow-ups such as `这个好了没` can reuse the last resolved `record_id` without
 storing that context in git.
+
+Batch Draft requests are intentionally opt-in. The resolver only returns a
+batch when the message carries a broad selector such as `所有` / `全部` / `all`
+and still narrows to a bounded queue set, for example `JE-1000F` + `欧规`.
+That phrase becomes a `Task_id` prefix such as `JE-1000F_EU_`; only rows whose
+`Task_id` maps to `Build Draft Package` and whose `是否触发文档构建` is enabled are
+launched. The adapter dispatches each matched row by `record_id` with
+`queue-execute --no-wait`, then replies with the launched row list.
+`是否强制刷新数据` remains a build-time row input read by `process-build-queue`.
 
 ## ECS systemd
 

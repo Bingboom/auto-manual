@@ -8,6 +8,8 @@ import {
 } from "./feishu-events.mjs";
 import {
   formatAcceptedReply,
+  formatBatchAcceptedReply,
+  formatBatchCompletionReply,
   formatCompletionReply,
   formatExecutionErrorReply,
   formatNoPendingPublishReply,
@@ -145,7 +147,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       return;
     }
 
-    if (resolution.resolution_status !== "resolved") {
+    if (!["resolved", "resolved_batch"].includes(resolution.resolution_status)) {
       const stage = resolution.resolution_status === "target_not_found" ? "unresolved" : "needs_input";
       await react(messageEvent.messageId, stage);
       await feishuClient.replyTextMessage(messageEvent.messageId, formatResolutionReply(resolution, localProfile));
@@ -160,6 +162,43 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       });
       await react(messageEvent.messageId, "completed");
       await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(resolution.row || {}, localProfile));
+      return;
+    }
+
+    if (resolution.resolution_status === "resolved_batch") {
+      const candidates = Array.isArray(resolution.candidates) ? resolution.candidates : [];
+      const rows = [];
+      const failures = [];
+      await react(messageEvent.messageId, "accepted");
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatBatchAcceptedReply(resolution, localProfile));
+      for (const candidate of candidates) {
+        try {
+          await repoControl.executeResolvedAction({
+            actionName: resolution.action_name,
+            queueScope: candidate.queue_scope || resolution.queue_scope,
+            recordId: candidate.record_id,
+            confirmPublish: false,
+            noWait: true,
+          });
+          const latest = await repoControl.queryRow({
+            queueScope: candidate.queue_scope || resolution.queue_scope,
+            recordId: candidate.record_id,
+          });
+          const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
+          rows.push(row || candidate);
+        } catch (error) {
+          logger.error?.("batch message execution failed", error);
+          failures.push({
+            record_id: candidate.record_id,
+            message: error?.message || String(error),
+          });
+        }
+      }
+      await react(messageEvent.messageId, failures.length ? "error" : "completed");
+      await feishuClient.replyTextMessage(
+        messageEvent.messageId,
+        formatBatchCompletionReply({ resolution, rows, failures }, localProfile)
+      );
       return;
     }
 

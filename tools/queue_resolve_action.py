@@ -59,11 +59,13 @@ def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
         "queue_scope",
         "record_id",
         "task_id",
+        "task_id_prefix",
         "document_id",
         "document_key",
         "build_family",
         "lang",
         "document_version",
+        "market_group",
         "query_workflow_action",
         "git_ref_contains",
         "result_contains",
@@ -123,6 +125,8 @@ def _missing_fields_for_action(action_name: str, row: QueueQueryRow | None) -> l
         missing.append("build_family")
     if action_name in {"build_draft_package", "publish"} and not row.git_ref:
         missing.append("git_ref")
+    if action_name in {"build_draft_package", "publish"} and row.build_trigger_requested is False:
+        missing.append("是否触发文档构建")
     return missing
 
 
@@ -142,6 +146,9 @@ class QueueActionCandidate:
     git_ref: str
     result: str
     review_status: str
+    lang: str = ""
+    version: str = ""
+    market_group: str = ""
 
 
 @dataclass(frozen=True)
@@ -164,7 +171,7 @@ class QueueActionResolution:
 def _candidate_from_row(row: QueueQueryRow) -> QueueActionCandidate:
     return QueueActionCandidate(
         record_id=row.record_id,
-        task_id=row.task_id,
+        task_id=row.task_id or f"{row.document_id}_{row.workflow_action}".strip("_"),
         queue_scope=row.queue_scope,
         document_id=row.document_id,
         document_key=row.document_key,
@@ -173,7 +180,25 @@ def _candidate_from_row(row: QueueQueryRow) -> QueueActionCandidate:
         git_ref=row.git_ref,
         result=row.result,
         review_status=row.review_status,
+        lang=row.lang,
+        version=row.version,
+        market_group=row.market_group,
     )
+
+
+def _batch_missing_fields(action_name: str, rows: list[QueueQueryRow]) -> list[str]:
+    missing: list[str] = []
+    for row in rows:
+        for field_name in _missing_fields_for_action(action_name, row):
+            missing.append(f"{row.record_id}.{field_name}")
+    return missing
+
+
+def _common_queue_scope(rows: list[QueueQueryRow], fallback: str) -> str:
+    scopes = {row.queue_scope for row in rows if row.queue_scope}
+    if len(scopes) == 1:
+        return next(iter(scopes))
+    return fallback
 
 
 def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) -> QueueActionResolution:
@@ -203,6 +228,57 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
             next_step="Refine one exact selector such as record_id, Task_id, Document_ID, Build_family, or Workflow_action.",
             row=None,
             candidates=[],
+        )
+
+    if len(filtered) > 1 and bool(getattr(resolved_args, "allow_multiple", False)) and action_name != "query_status":
+        missing_fields = _batch_missing_fields(action_name, filtered)
+        queue_scope = _common_queue_scope(filtered, str(getattr(resolved_args, "queue_scope", "all") or "all"))
+        if missing_fields:
+            return QueueActionResolution(
+                resolution_status="missing_required_field",
+                action_name=action_name,
+                queue_scope=queue_scope,
+                matched_count=len(filtered),
+                ready=False,
+                requires_confirmation=False,
+                dispatch_command=dispatch_command,
+                selectors=selectors,
+                missing_fields=missing_fields,
+                summary="Resolved multiple queue rows, but some required fields are still missing.",
+                next_step="Fill the missing queue fields and resolve again. Batch Build Draft Package rows require Git_ref and 是否触发文档构建=Y.",
+                row=None,
+                candidates=[_candidate_from_row(row) for row in filtered],
+            )
+        if _requires_confirmation(action_name, resolved_args):
+            return QueueActionResolution(
+                resolution_status="confirmation_required",
+                action_name=action_name,
+                queue_scope=queue_scope,
+                matched_count=len(filtered),
+                ready=False,
+                requires_confirmation=True,
+                dispatch_command=dispatch_command,
+                selectors=selectors,
+                missing_fields=[],
+                summary=f"Resolved {len(filtered)} Publish rows. Explicit confirmation is still required before dispatch.",
+                next_step="Re-run with --confirm-publish before dispatching a batch Publish.",
+                row=None,
+                candidates=[_candidate_from_row(row) for row in filtered],
+            )
+        return QueueActionResolution(
+            resolution_status="resolved_batch",
+            action_name=action_name,
+            queue_scope=queue_scope,
+            matched_count=len(filtered),
+            ready=True,
+            requires_confirmation=False,
+            dispatch_command=dispatch_command,
+            selectors=selectors,
+            missing_fields=[],
+            summary=f"Resolved {len(filtered)} {_action_label(action_name)} rows.",
+            next_step="This batch is ready for the OpenClaw dispatch layer.",
+            row=None,
+            candidates=[_candidate_from_row(row) for row in filtered],
         )
 
     if len(filtered) > 1:

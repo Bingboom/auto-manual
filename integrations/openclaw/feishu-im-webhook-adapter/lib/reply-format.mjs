@@ -37,6 +37,16 @@ function summarizeRow(row) {
   return lines.join("\n");
 }
 
+function summarizeCandidate(candidate) {
+  const pieces = [
+    candidate.record_id,
+    candidate.document_id || candidate.document_key || "-",
+    candidate.lang || "",
+    candidate.workflow_action || "-",
+  ].filter(Boolean);
+  return pieces.join(" | ");
+}
+
 export function formatResolutionReply(resolution, localProfile = null) {
   const lines = [resolution.summary];
   if (resolution.next_step) {
@@ -47,6 +57,25 @@ export function formatResolutionReply(resolution, localProfile = null) {
     for (const candidate of resolution.candidates) {
       lines.push(`- ${candidate.record_id} | ${candidate.document_id || candidate.document_key || "-"} | ${candidate.workflow_action || "-"}`);
     }
+  }
+  return lines.join("\n");
+}
+
+export function formatBatchAcceptedReply(resolution, localProfile = null) {
+  const actionLabel = {
+    start_review: "Start Review",
+    build_draft_package: "Build Draft Package",
+    publish: "Publish",
+    query_status: "Query Status",
+  }[resolution.action_name] || resolution.action_name;
+  const prefix = localReplyPhrase(localProfile, "acceptedPrefix", "已接受：");
+  const candidates = Array.isArray(resolution.candidates) ? resolution.candidates : [];
+  const lines = [`${prefix}${actionLabel} batch`, `matched_count: ${resolution.matched_count || candidates.length}`];
+  for (const candidate of candidates.slice(0, 10)) {
+    lines.push(`- ${summarizeCandidate(candidate)}`);
+  }
+  if (candidates.length > 10) {
+    lines.push(`... 还有 ${candidates.length - 10} 条`);
   }
   return lines.join("\n");
 }
@@ -65,6 +94,23 @@ export function formatAcceptedReply(resolution, localProfile = null) {
 
 export function formatCompletionReply(row, localProfile = null) {
   return [localReplyPhrase(localProfile, "completionPrefix", "已完成，最新状态如下："), summarizeRow(row)].filter(Boolean).join("\n");
+}
+
+export function formatBatchCompletionReply({ resolution, rows = [], failures = [] }, localProfile = null) {
+  const prefix = failures.length
+    ? localReplyPhrase(localProfile, "batchPartialPrefix", "批量任务已处理完成，部分任务失败：")
+    : localReplyPhrase(localProfile, "batchCompletionPrefix", "批量任务已发起：");
+  const lines = [prefix, `matched_count: ${resolution.matched_count || rows.length}`];
+  for (const row of rows.slice(0, 10)) {
+    lines.push(`- ${summarizeRow(row).replace(/\n/g, " | ")}`);
+  }
+  if (rows.length > 10) {
+    lines.push(`... 还有 ${rows.length - 10} 条`);
+  }
+  for (const failure of failures.slice(0, 5)) {
+    lines.push(`失败: ${failure.record_id || "-"} | ${String(failure.message || failure).trim()}`);
+  }
+  return lines.filter(Boolean).join("\n");
 }
 
 export function formatPendingPublishReply(resolution, localProfile = null) {

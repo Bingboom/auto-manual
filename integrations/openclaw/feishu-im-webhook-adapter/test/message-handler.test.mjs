@@ -409,6 +409,76 @@ test("message handler replies with resolution errors", async () => {
   assert.match(replies[0].text, /FEISHU_PHASE2_BASE_TOKEN/);
 });
 
+test("message handler dispatches resolved batch rows without waiting for completion", async () => {
+  const replies = [];
+  const executions = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved_batch",
+          action_name: "build_draft_package",
+          queue_scope: "document-link",
+          matched_count: 2,
+          candidates: [
+            {
+              record_id: "rec_eu_en",
+              queue_scope: "document-link",
+              document_id: "JE-1000F_EU_en_0.5",
+              lang: "en",
+              workflow_action: "Build Draft Package",
+            },
+            {
+              record_id: "rec_eu_fr",
+              queue_scope: "document-link",
+              document_id: "JE-1000F_EU_fr_0.5",
+              lang: "fr",
+              workflow_action: "Build Draft Package",
+            },
+          ],
+        };
+      },
+      async executeResolvedAction(payload) {
+        executions.push(payload);
+      },
+      async queryRow({ recordId }) {
+        return {
+          rows: [
+            {
+              record_id: recordId,
+              workflow_action: "Build Draft Package",
+              result: "",
+            },
+          ],
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("输出JE-1000F的所有欧规说明书文案"));
+  await result.backgroundTask();
+
+  assert.equal(executions.length, 2);
+  assert.deepEqual(
+    executions.map((payload) => [payload.recordId, payload.noWait]),
+    [["rec_eu_en", true], ["rec_eu_fr", true]]
+  );
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /matched_count: 2/);
+  assert.match(replies[1].text, /批量任务已发起/);
+});
+
 test("message handler can process a direct event payload without webhook token validation", async () => {
   const replies = [];
   const handler = createMessageHandler({

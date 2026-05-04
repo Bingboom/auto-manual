@@ -32,6 +32,32 @@ def _draft_row(record_id: str = "rec_draft", *, git_ref: str = "codex/review-id-
     )
 
 
+def _eu_draft_row(lang: str, record_id: str | None = None) -> queue_query.QueueQueryRow:
+    return queue_query.QueueQueryRow(
+        queue_scope="document-link",
+        record_id=record_id or f"rec_eu_{lang}",
+        document_id=f"JE-1000F_EU_{lang}_0.5",
+        document_key="JE-1000F_EU",
+        build_family=f"eu-{lang}",
+        lang=lang,
+        version="0.5",
+        workflow_action="Build Draft Package",
+        normalized_workflow_action="draft",
+        git_ref="codex/review-id-recvfw0zg4pzxs",
+        document_link="",
+        document_directory="",
+        result="",
+        pr_url="",
+        review_status="",
+        review_trigger_enabled=None,
+        build_trigger_requested=True,
+        immediate_build=True,
+        initial_result="",
+        remarks="",
+        market_group="EU",
+    )
+
+
 def _publish_row(record_id: str = "rec_publish", *, git_ref: str = "codex/review-id-recvfw0zg4pzxs") -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
         queue_scope="document-link",
@@ -89,17 +115,20 @@ class TestQueueResolveAction(unittest.TestCase):
             "queue_scope": "all",
             "record_id": None,
             "task_id": None,
+            "task_id_prefix": None,
             "document_id": None,
             "document_key": None,
             "build_family": None,
             "lang": None,
             "document_version": None,
+            "market_group": None,
             "query_workflow_action": None,
             "git_ref_contains": None,
             "result_contains": None,
             "limit": 10,
             "json": False,
             "confirm_publish": False,
+            "allow_multiple": False,
         }
         payload.update(overrides)
         return argparse.Namespace(**payload)
@@ -198,6 +227,56 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("ambiguous_target", resolution.resolution_status)
         self.assertEqual(2, resolution.matched_count)
         self.assertEqual(["rec_a", "rec_b"], [candidate.record_id for candidate in resolution.candidates])
+
+    def test_resolve_queue_action_should_allow_batch_draft_for_all_eu_copy(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="输出JE-1000F的所有欧规说明书文案"),
+            [_eu_draft_row("en"), _eu_draft_row("fr"), _eu_draft_row("es"), _eu_draft_row("de"), _eu_draft_row("it")],
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual("build_draft_package", resolution.action_name)
+        self.assertTrue(resolution.ready)
+        self.assertEqual(5, resolution.matched_count)
+        self.assertEqual("build-draft", resolution.dispatch_command)
+        self.assertEqual(["en", "fr", "es", "de", "it"], [candidate.lang for candidate in resolution.candidates])
+
+    def test_resolve_queue_action_should_filter_untriggered_batch_rows(self) -> None:
+        blocked = _eu_draft_row("en", "rec_blocked")
+        blocked = queue_query.QueueQueryRow(
+            **{
+                **blocked.__dict__,
+                "build_trigger_requested": False,
+            }
+        )
+
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="输出JE-1000F的所有欧规说明书文案"),
+            [blocked, _eu_draft_row("fr")],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("rec_eu_fr", resolution.row["record_id"])
+
+    def test_resolve_queue_action_should_report_untriggered_exact_draft_row(self) -> None:
+        blocked = _eu_draft_row("en", "rec_blocked")
+        blocked = queue_query.QueueQueryRow(
+            **{
+                **blocked.__dict__,
+                "build_trigger_requested": False,
+            }
+        )
+
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(
+                task_id="JE-1000F_EU_en_0.5_Build Draft Package",
+                query_workflow_action="build-draft-package",
+            ),
+            [blocked],
+        )
+
+        self.assertEqual("missing_required_field", resolution.resolution_status)
+        self.assertIn("是否触发文档构建", resolution.missing_fields)
 
     def test_resolve_queue_action_should_report_target_not_found(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
