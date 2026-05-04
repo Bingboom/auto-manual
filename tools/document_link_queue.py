@@ -231,7 +231,10 @@ def select_pending_queue_records(
         doc_phase=doc_phase,
     )
     selected: list[Any] = []
+    targeted_record = None
     for record in parse_queue_records(raw_records):
+        if record_id and record.record_id == record_id:
+            targeted_record = record
         if not is_trigger_requested(record.trigger_value):
             continue
         if immediate_only and not is_immediate_trigger_enabled(record.immediate_trigger_value):
@@ -250,6 +253,12 @@ def select_pending_queue_records(
             if resolved_action != normalized_filter_doc_phase:
                 continue
         selected.append(record)
+    if record_id and not selected and targeted_record is not None:
+        trigger_text = scalar_text(targeted_record.trigger_value).strip() or "<empty>"
+        raise RuntimeError(
+            "Targeted Document_link row is not pending because `是否触发文档构建` is not enabled. "
+            f"record_id={record_id} trigger_value={trigger_text}"
+        )
     return selected
 
 

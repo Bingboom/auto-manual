@@ -126,6 +126,17 @@ def ensure_publish_confirmation(args: argparse.Namespace, row: QueueQueryRow) ->
     )
 
 
+def ensure_build_trigger_requested(row: QueueQueryRow) -> None:
+    if (row.normalized_workflow_action or "") not in {"draft", "publish"}:
+        return
+    if row.build_trigger_requested is True:
+        return
+    raise RuntimeError(
+        "queue-execute resolved a Build Draft Package / Publish row, but `是否触发文档构建` is not enabled. "
+        f"record_id={row.record_id} document_id={row.document_id or '-'} workflow_action={row.workflow_action or '-'}"
+    )
+
+
 def parse_control_layer_output(text: str) -> dict[str, str]:
     payload: dict[str, str] = {"raw": text.strip()}
     notes: list[str] = []
@@ -270,6 +281,7 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
     cfg = load_config(config_path)
     rows = collect_queue_query_rows(cfg, queue_scope=getattr(args, "queue_scope", "all"))
     resolved_args, row = select_unique_queue_row(args, rows)
+    ensure_build_trigger_requested(row)
     ensure_publish_confirmation(resolved_args, row)
     dispatch_command = dispatch_command_for_row(row)
     if is_completed_start_review_row(row):
