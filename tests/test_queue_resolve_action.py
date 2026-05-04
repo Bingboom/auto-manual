@@ -167,9 +167,35 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertIsNone(resolution.dispatch_command)
         self.assertEqual("rec_draft", resolution.row["record_id"])
 
+    def test_resolve_queue_action_should_treat_build_result_lookup_as_query(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="查 JE-1000F_US_en_0.3 的构建结果"),
+            [_draft_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("query_status", resolution.action_name)
+        self.assertIsNone(resolution.dispatch_command)
+        self.assertEqual("rec_draft", resolution.row["record_id"])
+
     def test_resolve_queue_action_should_keep_direct_draft_command_executable(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
             self._args(query_text="帮我生成 JE-1000F US en 0.3 草稿包"),
+            [_draft_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("build_draft_package", resolution.action_name)
+        self.assertEqual("build-draft", resolution.dispatch_command)
+
+    def test_resolve_queue_action_should_keep_build_and_return_result_executable(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(
+                query_text=(
+                    "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。"
+                    "只返回 record_id、Git_ref、构建结果、Document link。"
+                )
+            ),
             [_draft_row()],
         )
 
@@ -229,7 +255,11 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual(["rec_a", "rec_b"], [candidate.record_id for candidate in resolution.candidates])
 
     def test_resolve_queue_action_should_allow_batch_draft_for_all_eu_copy(self) -> None:
-        for query_text in ["输出JE-1000F的所有欧规说明书文案", "构建JE-1000F的所有欧规说明书文案"]:
+        for query_text in [
+            "输出JE-1000F的所有欧规说明书文案",
+            "构建JE-1000F的所有欧规说明书文案",
+            "构建最新符合构建要求的JE-1000F的所有欧规说明书文案",
+        ]:
             with self.subTest(query_text=query_text):
                 resolution = queue_resolve_action.resolve_queue_action(
                     self._args(query_text=query_text),

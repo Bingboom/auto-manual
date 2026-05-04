@@ -138,6 +138,9 @@ failure is logged but does not block the normal thread reply.
 The state file also keeps short-lived conversation context per chat and sender.
 Follow-ups such as `这个好了没` can reuse the last resolved `record_id` without
 storing that context in git.
+Execution requests such as build, trigger, rerun, or batch Draft requests never
+append a previous `record_id`; they are resolved fresh from the current Feishu
+queue table.
 
 Batch Draft requests are intentionally opt-in. The resolver only returns a
 batch when the message carries a broad selector such as `所有` / `全部` / `all`
@@ -151,6 +154,8 @@ launched. The adapter dispatches each matched row by `record_id` with
 then replies with the launched row list. The GitHub draft workflow scopes its
 concurrency group by `queue_record_id`, so multiple rows from one batch do not
 cancel each other while they are pending.
+`最新` does not collapse batch Draft requests by `Document_Key`; the trigger
+checkbox remains the eligibility gate for each language row.
 `是否强制刷新数据` remains a build-time row input read by `process-build-queue`.
 
 ## ECS systemd

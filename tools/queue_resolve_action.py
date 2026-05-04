@@ -45,12 +45,92 @@ _STATUS_QUERY_RE = (
     "看一下",
 )
 
+_EXECUTION_REQUEST_RE = (
+    "build",
+    "run",
+    "trigger",
+    "start",
+    "构建",
+    "生成",
+    "输出",
+    "发起",
+    "触发",
+    "补触发",
+    "开始",
+    "重跑",
+    "重新构建",
+)
+
+_STATUS_OVERRIDE_RE = (
+    "latest link",
+    "status",
+    "state",
+    "progress",
+    "result",
+    "failure",
+    "failed",
+    "链接",
+    "状态",
+    "进度",
+    "好了",
+    "跑完",
+    "完成了吗",
+    "结果",
+    "失败",
+    "为什么",
+    "怎么回事",
+    "到哪",
+    "查",
+    "看一下",
+)
+
+_EXPLICIT_STATUS_QUERY_RE = (
+    "status",
+    "state",
+    "progress",
+    "failure",
+    "failed",
+    "状态",
+    "进度",
+    "好了",
+    "好了吗",
+    "好了没",
+    "跑完",
+    "完成了吗",
+    "失败",
+    "为什么",
+    "怎么回事",
+    "到哪",
+    "查",
+    "看一下",
+)
+
 
 def _is_status_query_text(raw_text: str | None) -> bool:
     text = str(raw_text or "").strip().lower()
     if not text:
         return False
     return any(token in text for token in _STATUS_QUERY_RE)
+
+
+def _is_execution_request_text(raw_text: str | None) -> bool:
+    text = str(raw_text or "").strip().lower()
+    if not text:
+        return False
+    return any(token in text for token in _EXECUTION_REQUEST_RE)
+
+
+def _should_status_override_requested_action(raw_text: str | None) -> bool:
+    text = str(raw_text or "").strip().lower()
+    if not text:
+        return False
+    if "构建好" in text or "构建完成" in text or "build completed" in text or "built document" in text:
+        return True
+    if any(token in text for token in _EXPLICIT_STATUS_QUERY_RE):
+        return True
+    if _is_execution_request_text(text):
+        return False
+    return any(token in text for token in _STATUS_OVERRIDE_RE)
 
 
 def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
@@ -91,7 +171,7 @@ def _action_name_from_request(resolved_args: argparse.Namespace, row: QueueQuery
         "draft": "build_draft_package",
         "publish": "publish",
     }
-    if requested and _is_status_query_text(getattr(resolved_args, "query_text", None)):
+    if requested and _should_status_override_requested_action(getattr(resolved_args, "query_text", None)):
         return "query_status"
     if requested:
         return aliases.get(requested, "query_status")
