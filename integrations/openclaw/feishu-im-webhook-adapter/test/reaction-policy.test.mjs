@@ -5,6 +5,7 @@ import { reactionEmojiForStage, sendStageReaction } from "../lib/reaction-policy
 
 test("reactionEmojiForStage prefers local reaction overrides", () => {
   assert.equal(reactionEmojiForStage("received", { reactions: { received: "EYES" } }), "EYES");
+  assert.equal(reactionEmojiForStage("received", { reactions: {} }), "Get");
   assert.equal(reactionEmojiForStage("completed", { reactions: {} }), "OK");
 });
 

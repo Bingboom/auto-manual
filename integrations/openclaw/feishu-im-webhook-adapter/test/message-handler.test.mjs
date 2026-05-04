@@ -293,7 +293,6 @@ test("message handler sends stage reactions when enabled", async () => {
         aliases: [],
         replyPhrases: {},
         reactions: {
-          received: "EYES",
           completed: "OK",
         },
       },
@@ -328,7 +327,7 @@ test("message handler sends stage reactions when enabled", async () => {
   await result.backgroundTask();
 
   assert.deepEqual(reactions, [
-    { messageId: "om_123", emojiType: "EYES" },
+    { messageId: "om_123", emojiType: "Get" },
     { messageId: "om_123", emojiType: "OK" },
   ]);
   assert.equal(replies.length, 1);

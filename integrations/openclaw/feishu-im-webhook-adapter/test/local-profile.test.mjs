@@ -99,11 +99,13 @@ test("localReplyPhrase and localReactionEmojiType fall back cleanly", () => {
   assert.equal(localReplyPhrase({ replyPhrases: { completionPrefix: "Done:" } }, "completionPrefix", "done:"), "Done:");
   assert.equal(localReplyPhrase({ replyPhrases: {} }, "completionPrefix", "done:"), "done:");
   assert.equal(localReactionEmojiType({ reactions: { received: "smile" } }, "received"), "SMILE");
+  assert.equal(localReactionEmojiType({ reactions: { received: "GET" } }, "received"), "Get");
   assert.equal(localReactionEmojiType({ reactions: {} }, "received"), "");
 });
 
 test("normalizeFeishuEmojiType accepts unicode and canonical names", () => {
   assert.equal(normalizeFeishuEmojiType("🙂"), "SMILE");
   assert.equal(normalizeFeishuEmojiType("ok"), "OK");
+  assert.equal(normalizeFeishuEmojiType("GET"), "Get");
   assert.equal(normalizeFeishuEmojiType("custom_type"), "CUSTOM_TYPE");
 });

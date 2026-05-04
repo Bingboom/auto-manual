@@ -46,9 +46,14 @@ export FEISHU_IM_WEBHOOK_PORT=9097
 export FEISHU_IM_WEBHOOK_PATH=/feishu/events
 export FEISHU_IM_HEALTH_PATH=/healthz
 export FEISHU_IM_REQUIRE_MENTION=true
+export FEISHU_IM_ENABLE_MESSAGE_REACTIONS=true
 export AUTO_MANUAL_PYTHON=/opt/auto-manual/.venv/bin/python
 export FEISHU_PHASE2_IDENTITY=bot
 ```
+
+Only enable `FEISHU_IM_ENABLE_MESSAGE_REACTIONS=true` after the Feishu app has
+message reaction permission. With reactions enabled, the adapter sends the
+default `Get` reaction as soon as it accepts an incoming message.
 
 If the adapter must resolve or execute queue rows, also set the current Feishu
 Phase 2 bindings in the same file:

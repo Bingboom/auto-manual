@@ -1,7 +1,7 @@
 import { localReactionEmojiType } from "./local-profile.mjs";
 
 const DEFAULT_STAGE_REACTIONS = {
-  received: "SMILE",
+  received: "Get",
   accepted: "OK",
   completed: "OK",
   needs_confirmation: "SMILE",

@@ -40,6 +40,9 @@ const EMOJI_TYPE_ALIASES = new Map([
   ["❤", "HEART"],
   ["❓", "QUESTION"],
   ["?", "QUESTION"],
+  ["GET", "Get"],
+  ["Get", "Get"],
+  ["get", "Get"],
 ]);
 
 function readOptionalText(filePath) {
