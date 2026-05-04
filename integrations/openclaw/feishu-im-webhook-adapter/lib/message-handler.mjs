@@ -28,6 +28,10 @@ async function replyAndIgnore(feishuClient, messageId, text) {
   }
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export function createMessageHandler({ config, stateStore, repoControl, feishuClient, logger = console }) {
   const localProfile = config?.localProfile || null;
 
@@ -169,9 +173,13 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       const candidates = Array.isArray(resolution.candidates) ? resolution.candidates : [];
       const rows = [];
       const failures = [];
+      const dispatchDelayMs = Math.max(Number(config?.batchDispatchDelayMs || 0), 0);
       await react(messageEvent.messageId, "accepted");
       await feishuClient.replyTextMessage(messageEvent.messageId, formatBatchAcceptedReply(resolution, localProfile));
-      for (const candidate of candidates) {
+      for (const [index, candidate] of candidates.entries()) {
+        if (index > 0 && dispatchDelayMs > 0) {
+          await sleep(dispatchDelayMs);
+        }
         try {
           await repoControl.executeResolvedAction({
             actionName: resolution.action_name,

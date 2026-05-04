@@ -46,7 +46,7 @@ Every dispatch sends:
 
 The control layer treats the selected Feishu `record_id` as the execution identity for `start-review`, `build-draft`, and `publish`. Queue lookup can also use the optional `Task_id` field, conventionally `Document_ID + "_" + Workflow_action`, to disambiguate same-document rows before dispatch.
 
-The Feishu IM adapter can sit above this single-record bridge for bounded batch Draft asks. For example, `输出JE-1000F的所有欧规说明书文案` resolves the matching triggered `Task_id` rows from the Base queue, then calls the same `build-draft <record_id>` dispatch path once per row.
+The Feishu IM adapter can sit above this single-record bridge for bounded batch Draft asks. For example, `输出JE-1000F的所有欧规说明书文案` or `构建JE-1000F的所有欧规说明书文案` resolves the matching triggered `Task_id` rows from the Base queue, then calls the same `build-draft <record_id>` dispatch path once per row. The GitHub draft workflow also scopes concurrency by `queue_record_id`, so different rows from the same batch are not cancelled as duplicate pending work.
 
 The repo-local `queue-execute` wrapper also treats a `Start Review` row that is already `InReview` with `Git_ref` as completed and returns it without a new dispatch. If an older caller still dispatches one explicit completed record, the GitHub worker exits successfully instead of reporting a false no-pending failure.
 

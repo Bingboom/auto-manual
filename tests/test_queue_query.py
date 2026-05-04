@@ -216,15 +216,17 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("document-link", inferred.queue_scope)
 
     def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
-        inferred = queue_query.infer_queue_query_from_text("输出JE-1000F的所有欧规说明书文案")
+        for query_text in ["输出JE-1000F的所有欧规说明书文案", "构建JE-1000F的所有欧规说明书文案"]:
+            with self.subTest(query_text=query_text):
+                inferred = queue_query.infer_queue_query_from_text(query_text)
 
-        self.assertEqual("", inferred.document_id)
-        self.assertEqual("", inferred.document_key)
-        self.assertEqual("JE-1000F_EU_", inferred.task_id_prefix)
-        self.assertEqual("EU", inferred.market_group)
-        self.assertEqual("build-draft-package", inferred.query_workflow_action)
-        self.assertEqual("document-link", inferred.queue_scope)
-        self.assertTrue(inferred.allow_multiple)
+                self.assertEqual("", inferred.document_id)
+                self.assertEqual("", inferred.document_key)
+                self.assertEqual("JE-1000F_EU_", inferred.task_id_prefix)
+                self.assertEqual("EU", inferred.market_group)
+                self.assertEqual("build-draft-package", inferred.query_workflow_action)
+                self.assertEqual("document-link", inferred.queue_scope)
+                self.assertTrue(inferred.allow_multiple)
 
     def test_filter_queue_query_rows_should_match_task_id_prefix_and_triggered_draft_rows(self) -> None:
         rows = [

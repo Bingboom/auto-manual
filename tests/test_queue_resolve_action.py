@@ -229,17 +229,25 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual(["rec_a", "rec_b"], [candidate.record_id for candidate in resolution.candidates])
 
     def test_resolve_queue_action_should_allow_batch_draft_for_all_eu_copy(self) -> None:
-        resolution = queue_resolve_action.resolve_queue_action(
-            self._args(query_text="输出JE-1000F的所有欧规说明书文案"),
-            [_eu_draft_row("en"), _eu_draft_row("fr"), _eu_draft_row("es"), _eu_draft_row("de"), _eu_draft_row("it")],
-        )
+        for query_text in ["输出JE-1000F的所有欧规说明书文案", "构建JE-1000F的所有欧规说明书文案"]:
+            with self.subTest(query_text=query_text):
+                resolution = queue_resolve_action.resolve_queue_action(
+                    self._args(query_text=query_text),
+                    [
+                        _eu_draft_row("en"),
+                        _eu_draft_row("fr"),
+                        _eu_draft_row("es"),
+                        _eu_draft_row("de"),
+                        _eu_draft_row("it"),
+                    ],
+                )
 
-        self.assertEqual("resolved_batch", resolution.resolution_status)
-        self.assertEqual("build_draft_package", resolution.action_name)
-        self.assertTrue(resolution.ready)
-        self.assertEqual(5, resolution.matched_count)
-        self.assertEqual("build-draft", resolution.dispatch_command)
-        self.assertEqual(["en", "fr", "es", "de", "it"], [candidate.lang for candidate in resolution.candidates])
+                self.assertEqual("resolved_batch", resolution.resolution_status)
+                self.assertEqual("build_draft_package", resolution.action_name)
+                self.assertTrue(resolution.ready)
+                self.assertEqual(5, resolution.matched_count)
+                self.assertEqual("build-draft", resolution.dispatch_command)
+                self.assertEqual(["en", "fr", "es", "de", "it"], [candidate.lang for candidate in resolution.candidates])
 
     def test_resolve_queue_action_should_filter_untriggered_batch_rows(self) -> None:
         blocked = _eu_draft_row("en", "rec_blocked")
