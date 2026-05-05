@@ -1,9 +1,12 @@
 # OpenClaw Integrations
 
 This directory owns the repository-facing OpenClaw control-layer assets.
+The repo-specific operator identity for these assets is **BlockClaw**.
+OpenClaw is the runtime and gateway; BlockClaw is the Auto-Manual document-build operator that understands content blocks, queue rows, review bundles, and publish artifacts.
 
 Canonical docs:
 
+- [`IDENTITY.md`](IDENTITY.md)
 - [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md)
 - [`../../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](../../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
 - [`../../code-as-doc/build_doc_guide.md`](../../code-as-doc/build_doc_guide.md)
@@ -11,16 +14,16 @@ Canonical docs:
 Current package:
 
 - [`auto-manual-control-layer/`](auto-manual-control-layer)
-  - local OpenClaw plugin package for dispatching the repo's `main`-owned GitHub workers
+  - local OpenClaw plugin package that exposes the BlockClaw operator surface for dispatching the repo's `main`-owned GitHub workers
   - registers `/start-review`, `/build-draft`, `/publish`, and `/manual-status`
 - [`feishu-im-webhook-adapter/`](feishu-im-webhook-adapter)
-  - standalone Feishu IM webhook ingress for the same control layer
+  - standalone Feishu IM webhook ingress for the same BlockClaw control layer
   - receives Feishu text messages, normalizes them, calls `build.py queue-resolve-action|queue-query|queue-execute`, and replies back into the same thread
 - [`scripts/patch_openclaw_feishu_received_reaction.mjs`](scripts/patch_openclaw_feishu_received_reaction.mjs)
   - local OpenClaw gateway patcher for adding the native Feishu `Get` reaction immediately after `im.message.receive_v1`
   - runs before gateway startup from LaunchAgent when the machine uses the upstream OpenClaw gateway instead of the repo adapter
 
-Keep OpenClaw code here, not under [`tools/`](../../tools), so the control layer stays separate from the Python execution plane.
+Keep OpenClaw / BlockClaw code here, not under [`tools/`](../../tools), so the control layer stays separate from the Python execution plane.
 
 ## Native OpenClaw gateway reaction patch
 

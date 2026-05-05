@@ -1,9 +1,10 @@
-# Auto Manual OpenClaw Control Layer
+# BlockClaw Auto Manual Control Layer
 
-This package is the OpenClaw-side bridge for the repository's Phase 1 manual-ops flow.
+This package is the OpenClaw-side bridge for BlockClaw, the repository's Auto-Manual document-build operator.
+BlockClaw is the repo-specific identity that helps operators work with content blocks, Feishu queue rows, review bundles, draft packages, and publish artifacts.
 
 It does not execute `build.py` directly.
-It only dispatches the existing `main`-owned GitHub workflows and reports their status back into OpenClaw.
+It only dispatches the existing `main`-owned GitHub workflows and reports their status back into OpenClaw as BlockClaw.
 
 For local Phase 2 natural-language orchestration, the same package also ships a repo-local CLI:
 
@@ -18,6 +19,13 @@ That CLI reuses the same GitHub dispatch/status modules as the plugin.
 Dispatch no longer hard-fails just because the local repo checkout has not run
 `npm install` for this package; metadata artifact parsing is treated as an
 optional status enrichment step instead of a dispatch-time requirement.
+
+## Identity
+
+Use **BlockClaw** as the operator-facing name for this repo integration.
+Use **OpenClaw** when referring to the underlying runtime, gateway, or plugin host.
+
+BlockClaw currently handles bounded manual operations: queue lookup, Start Review, Build Draft Package, Publish with confirmation, run-status lookup, failure explanation, and manual wording helpers that support those flows. It should not invent queue state or bypass `build.py`, Feishu phase2 tables, or the `main`-owned GitHub workers.
 
 ## Commands
 

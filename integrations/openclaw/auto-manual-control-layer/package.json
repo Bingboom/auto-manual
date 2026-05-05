@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "OpenClaw command bridge for the auto-manual repository.",
+  "description": "BlockClaw OpenClaw command bridge for the auto-manual repository.",
   "openclaw": {
     "extensions": ["./index.mjs"]
   },
