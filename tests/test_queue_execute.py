@@ -89,7 +89,7 @@ def _completed_start_review_row(record_id: str = "rec_review") -> queue_query.Qu
 def _document_key_start_review_row(
     record_id: str = "rec_eu_review",
     *,
-    document_key: str = "JE-1000F_EU",
+    document_key: str = '{"id":"recvhoZFKGg7l0"}',
     review_trigger_enabled: bool | None = True,
 ) -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
@@ -167,7 +167,8 @@ class TestQueueExecute(unittest.TestCase):
             [_document_key_start_review_row()],
         )
 
-        self.assertEqual("JE-1000F_EU", resolved_args.document_key)
+        self.assertFalse(resolved_args.document_key)
+        self.assertEqual("JE-1000F_EU_Start Review", resolved_args.task_id)
         self.assertEqual("start-review", resolved_args.query_workflow_action)
         self.assertEqual("rec_eu_review", row.record_id)
         self.assertEqual("start-review", queue_execute.dispatch_command_for_row(row))
@@ -176,7 +177,7 @@ class TestQueueExecute(unittest.TestCase):
     def test_start_review_dispatch_should_require_document_key(self) -> None:
         row = _document_key_start_review_row(document_key="")
 
-        with self.assertRaisesRegex(RuntimeError, "without a usable Document_Key"):
+        with self.assertRaisesRegex(RuntimeError, "without a Document_Key value"):
             queue_execute.ensure_start_review_dispatchable(row)
 
     def test_start_review_dispatch_should_require_review_checkbox(self) -> None:

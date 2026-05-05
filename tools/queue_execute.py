@@ -15,7 +15,6 @@ from tools.queue_query import (
     collect_queue_query_rows,
     filter_queue_query_rows,
 )
-from tools.document_link_queue import looks_like_explicit_document_key
 
 _CONTROL_LAYER_CLI = (
     "node",
@@ -107,9 +106,9 @@ def is_completed_start_review_row(row: QueueQueryRow) -> bool:
 def ensure_start_review_dispatchable(row: QueueQueryRow) -> None:
     if (row.normalized_workflow_action or "") != "start_review":
         return
-    if not looks_like_explicit_document_key(row.document_key):
+    if not str(row.document_key or "").strip():
         raise RuntimeError(
-            "queue-execute resolved a Start Review row without a usable Document_Key. "
+            "queue-execute resolved a Start Review row without a Document_Key value. "
             f"record_id={row.record_id} document_key={row.document_key or '-'}"
         )
     if row.review_trigger_enabled is True:

@@ -100,7 +100,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
     def test_select_pending_review_start_records_should_raise_for_targeted_record_without_document_key(self) -> None:
         with self.assertRaisesRegex(
             RuntimeError,
-            "Document_Key must be a non-empty '<MODEL>_<REGION>' value for review-start record rec_missing_key",
+            "Document_Key must be non-empty for review-start record rec_missing_key",
         ):
             process_review_start_queue.select_pending_review_start_records(
                 [
@@ -553,6 +553,27 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             review_trigger_value=True,
             git_ref="",
             pr_url="",
+        )
+
+        model, region = process_review_start_queue.resolve_target_for_review_start(record)
+
+        self.assertEqual("JE-1000F", model)
+        self.assertEqual("EU", region)
+        self.assertEqual("JE-1000F_EU", record.label)
+
+    def test_resolve_target_for_review_start_should_fallback_to_task_id(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_eu_review",
+            document_id="",
+            document_key='{"id":"recvhoZFKGg7l0"}',
+            build_family="eu-merged",
+            version="",
+            lang="",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+            task_id="JE-1000F_EU_Start Review",
         )
 
         model, region = process_review_start_queue.resolve_target_for_review_start(record)

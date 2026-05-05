@@ -6,7 +6,6 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 from tools.phase2_support import load_config
-from tools.document_link_queue import looks_like_explicit_document_key
 from tools.queue_execute import dispatch_command_for_row
 from tools.queue_query import (
     QueueQueryRow,
@@ -218,7 +217,7 @@ def _missing_fields_for_action(action_name: str, row: QueueQueryRow | None) -> l
         return []
     missing: list[str] = []
     if action_name == "start_review":
-        if not looks_like_explicit_document_key(row.document_key):
+        if not str(row.document_key or "").strip():
             missing.append("Document_Key")
         if row.review_trigger_enabled is not True and not _is_completed_start_review_row(row):
             missing.append("是否进入Review")

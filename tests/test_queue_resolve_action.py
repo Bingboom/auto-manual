@@ -111,7 +111,7 @@ def _review_row(record_id: str = "rec_review") -> queue_query.QueueQueryRow:
 def _document_key_review_row(
     record_id: str = "rec_eu_review",
     *,
-    document_key: str = "JE-1000F_EU",
+    document_key: str = '{"id":"recvhoZFKGg7l0"}',
     review_trigger_enabled: bool | None = True,
 ) -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
@@ -198,7 +198,8 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("start-review", resolution.dispatch_command)
         self.assertTrue(resolution.ready)
         self.assertEqual("rec_eu_review", resolution.row["record_id"])
-        self.assertEqual("JE-1000F_EU", resolution.selectors["document_key"])
+        self.assertEqual("JE-1000F_EU_Start Review", resolution.selectors["task_id"])
+        self.assertNotIn("document_key", resolution.selectors)
 
     def test_resolve_queue_action_should_require_document_key_for_start_review(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
