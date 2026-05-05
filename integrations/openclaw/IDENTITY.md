@@ -26,7 +26,7 @@ BlockClaw can currently:
 - report GitHub run status, queue row status, `Git_ref`, `PR_url`, `构建结果`, `Document link`, and structured failure summaries
 - run from OpenClaw slash commands through the control-layer plugin
 - run from Feishu IM text messages through the repo-owned webhook or local long-connection adapter
-- handle bounded batch Draft requests when the ask explicitly targets all matching triggered rows
+- handle config-scoped batch Draft requests when the ask names a model, optional market, and manual copy; phrases like `构建JE-1000F的欧规说明书文案` imply all matching EU rows, while `构建JE-1000F说明书文案` matches every triggered row for that model
 - use translation memory and manual wording helpers when that work supports manual build, review, or publish flows
 
 ## Operating Boundaries

@@ -171,6 +171,9 @@ Publish 的原料是：
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
 - 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
 - Start Review 可以只给 `Document_Key`，例如 `review JE-1000F_EU`
+- Build Draft Package 的市场文案请求按配置展开；`构建JE-1000F的欧规说明书文案` 或 `基于配置构建JE-1000F的欧规` 隐含“构建配置里的所有欧规语言行”，会解析成 `Task_id` 前缀 `JE-1000F_EU_`，并只执行 `是否触发文档构建 = Y` 的 `Build Draft Package` 行
+- 如果没说市场，例如 `构建JE-1000F说明书文案`，市场也会通配；解析器会用 `Task_id` 前缀 `JE-1000F_`，拉起所有 `JE-1000F` 且 `是否触发文档构建 = Y` 的 `Build Draft Package` 行
+- 如果要指定版本，可以说 `构建 JE-1000F_EU_1.0 的欧规说明书文案`；解析器会保留 `Task_id` 前缀并加上 `Version=1.0`，而不是去找不存在的单条 `JE-1000F_EU_1.0`
 
 当前 Phase 2 控制层仍然只把下面这个字段当主交付链接：
 
@@ -461,6 +464,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 - 真正的远端执行仍然是 `main` 上的 GitHub worker
 - OpenClaw dispatch 现在会额外带一个 `openclaw_dispatch_nonce`，worker 完成后也会上传 `openclaw-run-metadata`，这样状态查询可以稳定追踪到同一次手动触发
 - 如果同一批 `en / es / fr` Build Draft Package 行在很短时间内连续触发，OpenClaw 现在会复用一个共享 draft queue worker，而不是给每个语言各发一条会互相竞争的 GitHub queue run
+- 类似 `构建JE-1000F的欧规说明书文案` 这种没有写“所有”的市场文案请求也按批量处理；OpenClaw 会用 `Task_id` 前缀匹配配置里的欧规语言行
+- 类似 `构建JE-1000F说明书文案` 这种没有写市场的文案请求会进一步把市场也通配，按 `Task_id` 前缀 `JE-1000F_` 匹配所有已勾选构建的行
 - 插件包路径是 [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer)
 
 ## 10. 2026-04 更新

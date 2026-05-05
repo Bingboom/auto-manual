@@ -58,6 +58,36 @@ def _eu_draft_row(lang: str, record_id: str | None = None) -> queue_query.QueueQ
     )
 
 
+def _model_draft_row(market: str, *, lang: str = "", record_id: str | None = None) -> queue_query.QueueQueryRow:
+    normalized_market = market.upper()
+    document_id = f"JE-1000F_{normalized_market}_{lang}_1.0" if lang else f"JE-1000F_{normalized_market}_1.0"
+    family_suffix = lang or "merged"
+    return queue_query.QueueQueryRow(
+        queue_scope="document-link",
+        record_id=record_id or f"rec_{normalized_market.lower()}_{lang or 'merged'}",
+        document_id=document_id,
+        document_key=f"JE-1000F_{normalized_market}",
+        build_family=f"{normalized_market.lower()}-{family_suffix}",
+        lang=lang,
+        version="1.0",
+        workflow_action="Build Draft Package",
+        normalized_workflow_action="draft",
+        git_ref=f"codex/review-{normalized_market.lower()}",
+        document_link="",
+        document_directory="",
+        result="",
+        pr_url="",
+        review_status="",
+        review_trigger_enabled=None,
+        build_trigger_requested=True,
+        immediate_build=True,
+        initial_result="",
+        remarks="",
+        task_id=f"{document_id}_Build Draft Package",
+        market_group=normalized_market,
+    )
+
+
 def _publish_row(record_id: str = "rec_publish", *, git_ref: str = "codex/review-id-recvfw0zg4pzxs") -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
         queue_scope="document-link",
@@ -325,6 +355,9 @@ class TestQueueResolveAction(unittest.TestCase):
         for query_text in [
             "输出JE-1000F的所有欧规说明书文案",
             "构建JE-1000F的所有欧规说明书文案",
+            "构建JE-1000F的欧规说明书文案",
+            "创建JE-1000F的欧规文案",
+            "基于配置构建JE-1000F的欧规",
             "构建最新符合构建要求的JE-1000F的所有欧规说明书文案",
         ]:
             with self.subTest(query_text=query_text):
@@ -345,6 +378,23 @@ class TestQueueResolveAction(unittest.TestCase):
                 self.assertEqual(5, resolution.matched_count)
                 self.assertEqual("build-draft", resolution.dispatch_command)
                 self.assertEqual(["en", "fr", "es", "de", "it"], [candidate.lang for candidate in resolution.candidates])
+
+    def test_resolve_queue_action_should_allow_model_wildcard_batch_draft(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="构建JE-1000F说明书文案"),
+            [
+                _model_draft_row("EU", lang="en", record_id="rec_eu_en"),
+                _model_draft_row("EU", lang="fr", record_id="rec_eu_fr"),
+                _model_draft_row("US", record_id="rec_us"),
+            ],
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual("build_draft_package", resolution.action_name)
+        self.assertTrue(resolution.ready)
+        self.assertEqual(3, resolution.matched_count)
+        self.assertEqual("build-draft", resolution.dispatch_command)
+        self.assertEqual(["rec_eu_en", "rec_eu_fr", "rec_us"], [candidate.record_id for candidate in resolution.candidates])
 
     def test_resolve_queue_action_should_filter_untriggered_batch_rows(self) -> None:
         blocked = _eu_draft_row("en", "rec_blocked")

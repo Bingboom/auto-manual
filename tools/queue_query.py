@@ -160,6 +160,29 @@ _BATCH_KEYWORDS = (
     "every",
     "each",
 )
+_BUILD_DRAFT_INTENT_KEYWORDS = (
+    "输出",
+    "生成",
+    "构建",
+    "创建",
+    "制作",
+    "发起",
+    "触发",
+    "重跑",
+    "重新构建",
+)
+_CONFIG_BATCH_CONTENT_KEYWORDS = (
+    "说明书文案",
+    "说明书",
+    "文案",
+    "文档",
+    "手册",
+    "配置",
+    "构建要求",
+    "manual copy",
+    "manual",
+    "copy",
+)
 
 
 def _query_tokens(text: str) -> list[str]:
@@ -364,7 +387,31 @@ def _infer_build_family(text: str) -> str:
 
 def _infer_allow_multiple(text: str) -> bool:
     normalized_text = re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
-    return any(keyword in text or keyword in normalized_text for keyword in _BATCH_KEYWORDS)
+    if any(keyword in text or keyword in normalized_text for keyword in _BATCH_KEYWORDS):
+        return True
+    return _has_config_batch_draft_intent(text, normalized_text)
+
+
+def _has_config_batch_draft_intent(text: str, normalized_text: str) -> bool:
+    document_id, document_key, _lang, _version = _infer_document_filters(text)
+    has_region_version_target = bool(_split_region_version_document_id(document_id)[0])
+    has_model_market_target = bool(_infer_model_token(text) and _infer_market_group(text))
+    has_model_target = bool(_infer_model_token(text))
+    if not (has_model_market_target or has_model_target or document_key or has_region_version_target):
+        return False
+    if not any(keyword in text or keyword in normalized_text for keyword in _BUILD_DRAFT_INTENT_KEYWORDS):
+        return False
+    return any(keyword in text or keyword in normalized_text for keyword in _CONFIG_BATCH_CONTENT_KEYWORDS)
+
+
+def _split_region_version_document_id(value: str) -> tuple[str, str, str]:
+    parts = value.split("_")
+    if len(parts) != 3 or not _VERSION_TOKEN_RE.match(parts[-1]):
+        return "", "", ""
+    model, region, version = parts
+    if not _MODEL_TOKEN_RE.match(model) or not _REGION_TOKEN_RE.match(region):
+        return "", "", ""
+    return model, region.upper(), version
 
 
 def _has_start_review_intent(text: str, normalized_text: str) -> bool:
@@ -428,7 +475,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
-    elif any(token in text for token in ("输出", "生成", "构建")) or "manual copy" in normalized_text:
+    elif any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
     elif "publish" in normalized_text or "发布" in text:
@@ -461,10 +508,25 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     document_id, document_key, lang, document_version = _infer_document_filters(text)
     market_group = _infer_market_group(text)
     task_id_prefix = ""
-    if not document_id and not document_key:
+    allow_multiple = _infer_allow_multiple(text)
+    if workflow_action == "build-draft-package" and allow_multiple:
+        if document_id:
+            model_token, region, version = _split_region_version_document_id(document_id)
+            if model_token and region:
+                task_id_prefix = f"{model_token}_{region}_"
+                document_version = document_version or version
+                document_id = ""
+        if not document_id and document_key:
+            key_parts = document_key.split("_")
+            if len(key_parts) == 2 and market_group:
+                task_id_prefix = f"{document_key}_"
+                document_key = ""
+    if not document_id and not document_key and not task_id_prefix:
         model_token = _infer_model_token(text)
-        if model_token and market_group and _infer_allow_multiple(text):
+        if model_token and market_group and allow_multiple:
             task_id_prefix = f"{model_token}_{market_group}_"
+        elif model_token and workflow_action == "build-draft-package" and allow_multiple:
+            task_id_prefix = f"{model_token}_"
         elif model_token and market_group:
             document_key = f"{model_token}_{market_group}"
     if not document_id and task_document_id:
@@ -493,7 +555,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         latest_per_document_key=latest_per_document_key,
         queue_scope=queue_scope,
         market_group=market_group,
-        allow_multiple=_infer_allow_multiple(text),
+        allow_multiple=allow_multiple,
     )
 
 
@@ -702,7 +764,10 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
         filtered.append(row)
     if _should_apply_latest_per_document_key(args, normalized_action):
         filtered = _latest_per_document_key(filtered)
-    return filtered[: max(int(getattr(args, "limit", 10) or 10), 1)]
+    limit = max(int(getattr(args, "limit", 10) or 10), 1)
+    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"} and limit == 10:
+        limit = 1000
+    return filtered[:limit]
 
 
 def _row_title(row: QueueQueryRow) -> str:
