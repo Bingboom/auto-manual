@@ -18,6 +18,7 @@ REVIEW_TRIGGER_FIELD = "是否进入Review"
 REVIEW_STATUS_FIELD = "Review_status"
 GIT_REF_FIELD = "Git_ref"
 PR_URL_FIELD = "PR_url"
+TASK_ID_FIELD = "Task_id"
 
 REVIEW_STATUS_NOT_STARTED = "NotStarted"
 REVIEW_STATUS_IN_REVIEW = "InReview"
@@ -36,11 +37,15 @@ class ReviewStartRecord:
     review_trigger_value: Any = None
     git_ref: str = ""
     pr_url: str = ""
+    task_id: str = ""
 
     @property
     def label(self) -> str:
         if self.document_id:
             return self.document_id
+        task_key = document_key_from_task_id(self.task_id)
+        if task_key:
+            return task_key
         if self.document_key and self.lang:
             return f"{self.document_key}_{self.lang}"
         return self.document_key or self.record_id
@@ -126,6 +131,7 @@ def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[Review
                 review_trigger_value=fields.get(REVIEW_TRIGGER_FIELD),
                 git_ref=scalar_text(fields.get(GIT_REF_FIELD)),
                 pr_url=scalar_text(fields.get(PR_URL_FIELD)),
+                task_id=scalar_text(fields.get(TASK_ID_FIELD)),
             )
         )
     return records
@@ -142,11 +148,10 @@ def select_pending_review_start_records(
             continue
         if not is_checkbox_enabled(record.review_trigger_value):
             continue
-        if not looks_like_explicit_document_key(record.document_key):
+        if not record.document_key.strip():
             if record_id:
                 raise RuntimeError(
-                    "Document_Key must be a non-empty '<MODEL>_<REGION>' value "
-                    f"for review-start record {record.record_id}"
+                    f"Document_Key must be non-empty for review-start record {record.record_id}"
                 )
             continue
         try:
@@ -186,6 +191,21 @@ def document_key_from_document_id(*, document_id: str, lang: str, version: str) 
     return candidate.strip()
 
 
+def document_key_from_task_id(task_id: str) -> str:
+    text = scalar_text(task_id).strip()
+    if not text:
+        return ""
+    candidate = re.sub(
+        r"[\s_:-]+start[\s_-]+review$",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    ).strip(" _:-")
+    if looks_like_explicit_document_key(candidate):
+        return candidate
+    return ""
+
+
 def resolve_target_for_review_start(
     record: ReviewStartRecord,
     *,
@@ -201,6 +221,9 @@ def resolve_target_for_review_start(
     )
     if fallback_key and fallback_key not in candidates:
         candidates.append(fallback_key)
+    task_key = document_key_from_task_id(record.task_id)
+    if task_key and task_key not in candidates:
+        candidates.append(task_key)
 
     errors: list[str] = []
     for candidate in candidates:
@@ -212,6 +235,7 @@ def resolve_target_for_review_start(
     detail = (
         f"Document_ID={record.document_id!r}, "
         f"Document_Key={record.document_key!r}, "
+        f"Task_id={record.task_id!r}, "
         f"Build_family={record.build_family!r}, "
         f"Lang={record.lang!r}"
     )
@@ -230,6 +254,9 @@ def review_start_record_key(record: ReviewStartRecord) -> str:
     )
     if looks_like_explicit_document_key(fallback_key):
         return fallback_key.upper()
+    task_key = document_key_from_task_id(record.task_id)
+    if task_key:
+        return task_key.upper()
     return record.record_id
 
 

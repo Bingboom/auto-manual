@@ -47,6 +47,7 @@ Updated: 2026-04-17
 这张表触发后，系统会按 `Document_Key` 对应的 `Model + Region` 启动 review。`Start Review` 的语义现在是“强制重开并按最新模板重新 seed”：
 
 真正会启动 review 的行必须同时满足：`Document_Key` 非空、`是否进入Review` 已勾选、`Workflow_action = Start Review`。
+如果 `Document_Key` 是多维表关联字段，OpenClaw 会用 `Task_id` 稳定定位这行，再检查勾选和 `Workflow_action`。
 
 1. 同步最新 phase2 snapshot
 2. 从最新 `main` 起 review worktree

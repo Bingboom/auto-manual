@@ -508,7 +508,11 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.task_id_prefix = inferred.task_id_prefix
     if not getattr(merged, "document_id", None) and inferred.document_id:
         merged.document_id = inferred.document_id
-    if not getattr(merged, "document_key", None) and inferred.document_key:
+    if (
+        not getattr(merged, "document_key", None)
+        and inferred.document_key
+        and not (inferred.task_id and inferred.query_workflow_action == "start-review")
+    ):
         merged.document_key = inferred.document_key
     if not getattr(merged, "build_family", None) and inferred.build_family:
         merged.build_family = inferred.build_family
