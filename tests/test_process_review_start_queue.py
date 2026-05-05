@@ -73,6 +73,49 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual(["rec_pending", "rec_started"], [record.record_id for record in records])
 
+    def test_select_pending_review_start_records_should_require_document_key(self) -> None:
+        records = process_review_start_queue.select_pending_review_start_records(
+            [
+                {
+                    "record_id": "rec_missing_key",
+                    "fields": {
+                        process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_EU_0.1",
+                        process_review_start_queue.WORKFLOW_ACTION_FIELD: "Start Review",
+                        process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    },
+                },
+                {
+                    "record_id": "rec_ready",
+                    "fields": {
+                        process_review_start_queue.DOCUMENT_KEY_FIELD: "JE-1000F_EU",
+                        process_review_start_queue.WORKFLOW_ACTION_FIELD: "Start Review",
+                        process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                    },
+                },
+            ]
+        )
+
+        self.assertEqual(["rec_ready"], [record.record_id for record in records])
+
+    def test_select_pending_review_start_records_should_raise_for_targeted_record_without_document_key(self) -> None:
+        with self.assertRaisesRegex(
+            RuntimeError,
+            "Document_Key must be a non-empty '<MODEL>_<REGION>' value for review-start record rec_missing_key",
+        ):
+            process_review_start_queue.select_pending_review_start_records(
+                [
+                    {
+                        "record_id": "rec_missing_key",
+                        "fields": {
+                            process_review_start_queue.DOCUMENT_ID_FIELD: "JE-1000F_EU_0.1",
+                            process_review_start_queue.WORKFLOW_ACTION_FIELD: "Start Review",
+                            process_review_start_queue.REVIEW_TRIGGER_FIELD: True,
+                        },
+                    }
+                ],
+                record_id="rec_missing_key",
+            )
+
     def test_select_pending_review_start_records_should_raise_for_targeted_record_with_invalid_workflow_action(self) -> None:
         with self.assertRaisesRegex(
             RuntimeError,
@@ -497,6 +540,26 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual("JE-1000F", model)
         self.assertEqual("JP", region)
+
+    def test_resolve_target_for_review_start_should_use_document_key_without_document_id(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_eu_review",
+            document_id="",
+            document_key="JE-1000F_EU",
+            build_family="",
+            version="",
+            lang="",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+
+        model, region = process_review_start_queue.resolve_target_for_review_start(record)
+
+        self.assertEqual("JE-1000F", model)
+        self.assertEqual("EU", region)
+        self.assertEqual("JE-1000F_EU", record.label)
 
     def test_resolve_docs_dir_for_config_should_follow_repo_relative_path(self) -> None:
         with tempfile.TemporaryDirectory() as td:

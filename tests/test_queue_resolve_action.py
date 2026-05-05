@@ -108,6 +108,37 @@ def _review_row(record_id: str = "rec_review") -> queue_query.QueueQueryRow:
     )
 
 
+def _document_key_review_row(
+    record_id: str = "rec_eu_review",
+    *,
+    document_key: str = "JE-1000F_EU",
+    review_trigger_enabled: bool | None = True,
+) -> queue_query.QueueQueryRow:
+    return queue_query.QueueQueryRow(
+        queue_scope="review-init",
+        record_id=record_id,
+        document_id="",
+        document_key=document_key,
+        build_family="",
+        lang="",
+        version="",
+        workflow_action="Start Review",
+        normalized_workflow_action="start_review",
+        git_ref="",
+        document_link="",
+        document_directory="",
+        result="",
+        pr_url="",
+        review_status="NotStarted",
+        review_trigger_enabled=review_trigger_enabled,
+        build_trigger_requested=None,
+        immediate_build=None,
+        initial_result="",
+        remarks="",
+        task_id="JE-1000F_EU___Start Review",
+    )
+
+
 class TestQueueResolveAction(unittest.TestCase):
     def _args(self, **overrides) -> argparse.Namespace:
         payload = {
@@ -155,6 +186,41 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("start_review", resolution.action_name)
         self.assertEqual("start-review", resolution.dispatch_command)
         self.assertTrue(resolution.ready)
+
+    def test_resolve_queue_action_should_resolve_document_key_only_start_review(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="review JE-1000F_EU"),
+            [_document_key_review_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("start_review", resolution.action_name)
+        self.assertEqual("start-review", resolution.dispatch_command)
+        self.assertTrue(resolution.ready)
+        self.assertEqual("rec_eu_review", resolution.row["record_id"])
+        self.assertEqual("JE-1000F_EU", resolution.selectors["document_key"])
+
+    def test_resolve_queue_action_should_require_document_key_for_start_review(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(record_id="rec_missing_key", query_workflow_action="start-review"),
+            [_document_key_review_row("rec_missing_key", document_key="")],
+        )
+
+        self.assertEqual("missing_required_field", resolution.resolution_status)
+        self.assertEqual("start_review", resolution.action_name)
+        self.assertIn("Document_Key", resolution.missing_fields)
+        self.assertFalse(resolution.ready)
+
+    def test_resolve_queue_action_should_require_review_checkbox_for_start_review(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="review JE-1000F_EU"),
+            [_document_key_review_row(review_trigger_enabled=False)],
+        )
+
+        self.assertEqual("missing_required_field", resolution.resolution_status)
+        self.assertEqual("start_review", resolution.action_name)
+        self.assertIn("是否进入Review", resolution.missing_fields)
+        self.assertFalse(resolution.ready)
 
     def test_resolve_queue_action_should_treat_draft_status_phrase_as_query(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(

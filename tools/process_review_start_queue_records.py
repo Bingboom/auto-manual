@@ -39,7 +39,11 @@ class ReviewStartRecord:
 
     @property
     def label(self) -> str:
-        return self.document_id or f"{self.document_key}_{self.lang}"
+        if self.document_id:
+            return self.document_id
+        if self.document_key and self.lang:
+            return f"{self.document_key}_{self.lang}"
+        return self.document_key or self.record_id
 
 
 def scalar_text(value: Any) -> str:
@@ -137,6 +141,13 @@ def select_pending_review_start_records(
         if record_id and record.record_id != record_id:
             continue
         if not is_checkbox_enabled(record.review_trigger_value):
+            continue
+        if not looks_like_explicit_document_key(record.document_key):
+            if record_id:
+                raise RuntimeError(
+                    "Document_Key must be a non-empty '<MODEL>_<REGION>' value "
+                    f"for review-start record {record.record_id}"
+                )
             continue
         try:
             normalize_review_start_action(record.workflow_action)

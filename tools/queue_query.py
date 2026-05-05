@@ -221,6 +221,8 @@ def _row_task_id(row: QueueQueryRow) -> str:
     action_label = _action_label_for_row(row)
     if row.document_id and action_label:
         return f"{row.document_id}_{action_label}"
+    if row.document_key and action_label and row.normalized_workflow_action == "start_review":
+        return f"{row.document_key}_{action_label}"
     return ""
 
 
@@ -365,6 +367,16 @@ def _infer_allow_multiple(text: str) -> bool:
     return any(keyword in text or keyword in normalized_text for keyword in _BATCH_KEYWORDS)
 
 
+def _has_start_review_intent(text: str, normalized_text: str) -> bool:
+    if any(needle in normalized_text for needle in ("start review", "review init")):
+        return True
+    if re.search(r"(开始|进入|拉进)\s*review", text, flags=re.IGNORECASE):
+        return True
+    if any(needle in text for needle in ("进入review", "拉进review")):
+        return True
+    return bool(re.search(r"\breview\b", normalized_text))
+
+
 def _normalize_query_workflow_action(value: str | None) -> str | None:
     text = _text(value).lower()
     if not text:
@@ -422,12 +434,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif "publish" in normalized_text or "发布" in text:
         workflow_action = "publish"
         queue_scope = "document-link"
-    elif (
-        any(needle in normalized_text for needle in ("start review", "review init"))
-        or re.search(r"(开始|进入|拉进)\s*review", text, flags=re.IGNORECASE)
-        or "进入review" in text
-        or "拉进review" in text
-    ):
+    elif _has_start_review_intent(text, normalized_text):
         workflow_action = "start-review"
         queue_scope = "review-init"
 
@@ -465,10 +472,12 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     build_family = ""
     if not document_id and not document_key:
         build_family = _infer_build_family(text)
-    if not task_id and document_id and workflow_action:
+    if not task_id and workflow_action:
         action_label = _canonical_query_action_label(workflow_action)
-        if action_label:
+        if document_id and action_label:
             task_id = f"{document_id}_{action_label}"
+        elif document_key and workflow_action == "start-review" and action_label:
+            task_id = f"{document_key}_{action_label}"
 
     return InferredQueueQuery(
         record_id=record_id,

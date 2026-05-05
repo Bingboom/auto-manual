@@ -32,11 +32,11 @@ Updated: 2026-04-17
 
 建议字段：
 
-- `Document_ID`
-- `Document_Key`
-- `Build_family`
-- `Lang`
-- `Version`
+- `Document_Key`（必填，例如 `JE-1000F_EU`）
+- `Document_ID`（可选；Start Review 不需要版本号）
+- `Build_family`（可选；填写时作为 config 路由提示）
+- `Lang`（可选）
+- `Version`（可选）
 - `Review_status`
 - `是否进入Review`
 - `Git_ref`
@@ -45,6 +45,8 @@ Updated: 2026-04-17
 - `Remarks`
 
 这张表触发后，系统会按 `Document_Key` 对应的 `Model + Region` 启动 review。`Start Review` 的语义现在是“强制重开并按最新模板重新 seed”：
+
+真正会启动 review 的行必须同时满足：`Document_Key` 非空、`是否进入Review` 已勾选、`Workflow_action = Start Review`。
 
 1. 同步最新 phase2 snapshot
 2. 从最新 `main` 起 review worktree
@@ -167,6 +169,7 @@ Publish 的原料是：
 - 仍然以 Feishu 队列表为唯一真源
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
 - 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
+- Start Review 可以只给 `Document_Key`，例如 `review JE-1000F_EU`
 
 当前 Phase 2 控制层仍然只把下面这个字段当主交付链接：
 
