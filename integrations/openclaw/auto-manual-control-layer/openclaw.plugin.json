@@ -1,7 +1,7 @@
 {
   "id": "auto-manual-control-layer",
-  "name": "Auto Manual Control Layer",
-  "description": "Dispatches the repository's manual review/build/publish workflows from OpenClaw and reports GitHub run status.",
+  "name": "BlockClaw Auto Manual Operator",
+  "description": "Runs as BlockClaw, the Auto-Manual content-block operator that dispatches manual review/build/publish workflows from OpenClaw and reports GitHub run status.",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

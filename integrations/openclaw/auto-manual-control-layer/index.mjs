@@ -100,8 +100,8 @@ async function manualStatus(ctx, api) {
 
 const plugin = {
   id: "auto-manual-control-layer",
-  name: "Auto Manual Control Layer",
-  description: "Dispatches auto-manual GitHub workflows and reports run status.",
+  name: "BlockClaw Auto Manual Operator",
+  description: "Runs BlockClaw manual review/build/publish dispatches and reports GitHub run status.",
   register(api) {
     for (const command of COMMAND_DEFINITIONS) {
       api.registerCommand({
