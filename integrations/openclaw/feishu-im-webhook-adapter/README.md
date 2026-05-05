@@ -24,7 +24,7 @@ Current scope:
 - `query_status`
 - `start_review`
 - `build_draft_package`
-- batch `build_draft_package` when the message explicitly asks for all matched rows, such as `输出JE-1000F的所有欧规说明书文案` or `构建JE-1000F的所有欧规说明书文案`
+- batch `build_draft_package` when the message names a model, market, and manual copy or config scope, such as `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案`; if no market is named, phrases such as `构建JE-1000F说明书文案` use a model-wide `Task_id` prefix and match every triggered Build Draft Package row for that model
 - `publish` with explicit confirmation
 
 Current limitations:
