@@ -131,8 +131,22 @@ export function createStateStore(filePath, { now = () => Date.now(), maxProcesse
         return state;
       });
     },
-    async rememberConversationContext({ chatId, senderId, messageId, row, queryText, actionName, ttlSeconds }) {
-      if (!row || typeof row !== "object" || !row.record_id) {
+    async rememberConversationContext({
+      chatId,
+      senderId,
+      messageId,
+      row,
+      rows = [],
+      queryText,
+      actionName,
+      ttlSeconds,
+      acceptedAt = "",
+      requestId = "",
+    }) {
+      const cleanRows = Array.isArray(rows)
+        ? rows.filter((candidate) => candidate && typeof candidate === "object" && candidate.record_id)
+        : [];
+      if ((!row || typeof row !== "object" || !row.record_id) && !cleanRows.length) {
         return;
       }
       await withState((state) => {
@@ -140,9 +154,12 @@ export function createStateStore(filePath, { now = () => Date.now(), maxProcesse
           chatId,
           senderId,
           messageId,
-          row,
+          row: row && typeof row === "object" && row.record_id ? row : cleanRows[0],
+          rows: cleanRows,
           queryText,
           actionName,
+          acceptedAt,
+          requestId,
           createdAt: now(),
           expiresAt: now() + ttlSeconds * 1000,
         };

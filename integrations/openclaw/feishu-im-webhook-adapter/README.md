@@ -52,6 +52,8 @@ Optional:
 - `FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS`
 - `FEISHU_IM_CONTEXT_TTL_SECONDS`
 - `FEISHU_IM_BATCH_DISPATCH_DELAY_MS`; defaults to `2000` so batch Draft dispatches do not burst all GitHub workflow requests at once
+- `FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS`; defaults to `60` for deployed adapters and controls how long the adapter waits for fresh batch writeback before sending a follow-up status summary
+- `FEISHU_IM_BATCH_STATUS_POLL_SECONDS`; defaults to `5` for batch writeback polling
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
@@ -142,8 +144,10 @@ The state file also keeps short-lived conversation context per chat and sender.
 Follow-ups such as `这个好了没` can reuse the last resolved `record_id` without
 storing that context in git.
 Execution requests such as build, trigger, rerun, or batch Draft requests never
-append a previous `record_id`; they are resolved fresh from the current Feishu
-queue table.
+append a previous `record_id`; they reuse only safe target hints such as model,
+market, version, and Git_ref, then resolve fresh rows from the current Feishu
+queue table. This lets follow-ups such as `我来补跑英语和法语` target the same
+JE-1000F/EU/version context without accidentally rebuilding the old row.
 
 Batch Draft requests are intentionally opt-in. The resolver only returns a
 batch when the message carries a broad selector such as `所有` / `全部` / `all`
@@ -154,12 +158,22 @@ That phrase becomes a `Task_id` prefix such as `JE-1000F_EU_`; only rows whose
 `Task_id` maps to `Build Draft Package` and whose `是否触发文档构建` is enabled are
 launched. The adapter dispatches each matched row by `record_id` with
 `queue-execute --no-wait`, throttling each dispatch by `FEISHU_IM_BATCH_DISPATCH_DELAY_MS`,
-then replies with the launched row list. The GitHub draft workflow scopes its
+then stores a short-lived batch context containing `request_id`, `accepted_at`,
+`action_name`, `queryText`, and the launched rows. Batch status follow-ups such
+as `这个好了没` re-read each stored `record_id` with `--fresh-since accepted_at`
+and classify rows as fresh success/failure, stale result, or writeback pending.
+The GitHub draft workflow scopes its
 concurrency group by `queue_record_id`, so multiple rows from one batch do not
 cancel each other while they are pending.
 `最新` does not collapse batch Draft requests by `Document_Key`; the trigger
 checkbox remains the eligibility gate for each language row.
 `是否强制刷新数据` remains a build-time row input read by `process-build-queue`.
+
+Freshness fields come from `build.py queue-query --fresh-since ...` and are
+included in Document_link JSON rows as `freshness_status`, `result_built_at`,
+`result_is_fresh`, and `build_started_at`. When a previous failed build remains
+in `构建结果` after a new dispatch, the adapter reports `stale_result` or
+`writeback_pending` instead of presenting that old failure as the current run.
 
 ## ECS systemd
 

@@ -73,16 +73,35 @@ test("normalizeIncomingMessage treats model plus chinese market alias as an expl
   assert.equal(normalized.usedConversationContext, false);
 });
 
-test("normalizeIncomingMessage does not append previous record ids to execution requests", () => {
+test("normalizeIncomingMessage reuses safe selectors instead of record ids for execution requests", () => {
   const normalized = normalizeIncomingMessage({
-    messageText: "重新构建这个",
+    messageText: "我来补跑英语和法语",
     conversationContext: {
       row: {
         record_id: "rec_context",
+        document_id: "JE-1000F_EU_en_0.7",
       },
     },
   });
 
-  assert.equal(normalized.normalizedText, "重新构建这个");
-  assert.equal(normalized.usedConversationContext, false);
+  assert.equal(normalized.normalizedText, "我来补跑英语和法语 JE-1000F EU 0.7");
+  assert.equal(normalized.usedConversationContext, true);
+  assert.equal(normalized.usedSafeSelectorContext, true);
+  assert.equal(normalized.contextRecordId, "");
+});
+
+test("normalizeIncomingMessage uses batch context for status follow-ups", () => {
+  const normalized = normalizeIncomingMessage({
+    messageText: "这个好了没",
+    conversationContext: {
+      rows: [
+        { record_id: "rec_en", document_id: "JE-1000F_EU_en_0.7" },
+        { record_id: "rec_fr", document_id: "JE-1000F_EU_fr_0.7" },
+      ],
+    },
+  });
+
+  assert.equal(normalized.normalizedText, "这个好了没");
+  assert.equal(normalized.usedBatchContext, true);
+  assert.equal(normalized.contextRows.length, 2);
 });

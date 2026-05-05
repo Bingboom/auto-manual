@@ -56,6 +56,8 @@ export function loadAdapterConfig() {
     publishConfirmTtlSeconds: integerEnv("FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS", 600),
     conversationContextTtlSeconds: integerEnv("FEISHU_IM_CONTEXT_TTL_SECONDS", 3600),
     batchDispatchDelayMs: integerEnv("FEISHU_IM_BATCH_DISPATCH_DELAY_MS", 2000),
+    batchStatusTimeoutSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS", 60),
+    batchStatusPollSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_POLL_SECONDS", 5),
     stateFile:
       String(process.env.FEISHU_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "feishu-im-webhook-adapter-state.json"),

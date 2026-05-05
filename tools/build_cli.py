@@ -151,6 +151,16 @@ def parse_args(
         default=None,
         help="For queue-query or queue-resolve-action: raw natural-language text to parse with document_id-first resolution",
     )
+    ap.add_argument(
+        "--langs",
+        default=None,
+        help="For queue-query or queue-resolve-action: comma-separated language filters, such as en,fr",
+    )
+    ap.add_argument(
+        "--fresh-since",
+        default=None,
+        help="For queue-query, queue-resolve-action, or queue-execute: mark writeback results fresh only after this ISO time or epoch",
+    )
     ap.add_argument("--document-version", default=None, help="For queue-query or queue-resolve-action: exact Version filter")
     ap.add_argument(
         "--market-group",

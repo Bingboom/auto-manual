@@ -20,11 +20,13 @@ class TestQueueQuery(unittest.TestCase):
             "document_key": None,
             "build_family": None,
             "lang": None,
+            "langs": None,
             "document_version": None,
             "market_group": None,
             "query_workflow_action": None,
             "git_ref_contains": None,
             "result_contains": None,
+            "fresh_since": None,
             "latest_per_document_key": False,
             "allow_multiple": False,
             "limit": 10,
@@ -287,6 +289,14 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("1.0", inferred.document_version)
         self.assertEqual("build-draft-package", inferred.query_workflow_action)
         self.assertEqual("document-link", inferred.queue_scope)
+        self.assertTrue(inferred.allow_multiple)
+
+    def test_infer_queue_query_from_text_should_parse_chinese_language_batch(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("构建 JE-1000F 的英语和法语说明书文案")
+
+        self.assertEqual("JE-1000F_", inferred.task_id_prefix)
+        self.assertEqual(("en", "fr"), inferred.langs)
+        self.assertEqual("build-draft-package", inferred.query_workflow_action)
         self.assertTrue(inferred.allow_multiple)
 
     def test_infer_queue_query_from_text_should_treat_model_copy_as_market_wildcard_batch(self) -> None:
@@ -623,6 +633,138 @@ class TestQueueQuery(unittest.TestCase):
         )
 
         self.assertEqual(["rec_eu_en_1.0", "rec_eu_fr_1.0"], [row.record_id for row in filtered])
+
+    def test_filter_queue_query_rows_should_match_multi_language_selector(self) -> None:
+        rows = []
+        for lang in ("en", "fr", "es"):
+            rows.append(
+                queue_query.QueueQueryRow(
+                    queue_scope="document-link",
+                    record_id=f"rec_eu_{lang}",
+                    document_id=f"JE-1000F_EU_{lang}_1.0",
+                    document_key="JE-1000F_EU",
+                    build_family=f"eu-{lang}",
+                    lang=lang,
+                    version="1.0",
+                    workflow_action="Build Draft Package",
+                    normalized_workflow_action="draft",
+                    git_ref="codex/review-eu",
+                    document_link="",
+                    document_directory="",
+                    result="",
+                    pr_url="",
+                    review_status="",
+                    review_trigger_enabled=None,
+                    build_trigger_requested=True,
+                    immediate_build=True,
+                    initial_result="",
+                    remarks="",
+                    task_id=f"JE-1000F_EU_{lang}_1.0_Build Draft Package",
+                )
+            )
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(
+                query_workflow_action="build-draft-package",
+                task_id_prefix="JE-1000F_EU_",
+                langs="en,fr",
+                allow_multiple=True,
+            ),
+            rows,
+        )
+
+        self.assertEqual(["rec_eu_en", "rec_eu_fr"], [row.record_id for row in filtered])
+
+    def test_filter_queue_query_rows_should_mark_stale_and_fresh_results(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_old",
+                document_id="JE-1000F_EU_en_1.0",
+                document_key="JE-1000F_EU",
+                build_family="eu-en",
+                lang="en",
+                version="1.0",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="FAILED | version=1.0 | workflow_action=Build Draft Package | built_at=2026-05-04T10:00:00+00:00 | old failure",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_new",
+                document_id="JE-1000F_EU_fr_1.0",
+                document_key="JE-1000F_EU",
+                build_family="eu-fr",
+                lang="fr",
+                version="1.0",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="SUCCESS | version=1.0 | workflow_action=Build Draft Package | built_at=2026-05-04T10:05:00+00:00",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+            ),
+        ]
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(fresh_since="2026-05-04T10:02:00+00:00"),
+            rows,
+        )
+
+        self.assertEqual("stale_result", filtered[0].freshness_status)
+        self.assertFalse(filtered[0].result_is_fresh)
+        self.assertEqual("fresh_success", filtered[1].freshness_status)
+        self.assertTrue(filtered[1].result_is_fresh)
+
+    def test_filter_queue_query_rows_should_mark_writeback_pending_after_start(self) -> None:
+        row = queue_query.QueueQueryRow(
+            queue_scope="document-link",
+            record_id="rec_started",
+            document_id="JE-1000F_EU_en_1.0",
+            document_key="JE-1000F_EU",
+            build_family="eu-en",
+            lang="en",
+            version="1.0",
+            workflow_action="Build Draft Package",
+            normalized_workflow_action="draft",
+            git_ref="codex/review-eu",
+            document_link="",
+            document_directory="",
+            result="",
+            pr_url="",
+            review_status="",
+            review_trigger_enabled=None,
+            build_trigger_requested=True,
+            immediate_build=True,
+            initial_result="",
+            remarks="",
+            build_started_at="2026-05-04T10:03:00+00:00",
+        )
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(fresh_since="2026-05-04T10:02:00+00:00"),
+            [row],
+        )
+
+        self.assertEqual("writeback_pending", filtered[0].freshness_status)
+        self.assertIsNone(filtered[0].result_is_fresh)
 
     def test_infer_queue_query_from_text_should_parse_start_review_and_build_family(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("开始 review JE-1000F us-merged")

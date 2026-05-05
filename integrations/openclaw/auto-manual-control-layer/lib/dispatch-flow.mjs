@@ -26,6 +26,7 @@ function duplicateDispatchResult({ command, queueRecordId, run, tracked }) {
       runId: run?.id || tracked?.runId || "",
       runUrl: run?.html_url || tracked?.runUrl || "",
       status: run?.status || "queued",
+      acceptedAt: tracked?.dispatchedAt || "",
     }),
   };
 }
@@ -81,6 +82,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
         workflowName: command.workflowName,
         queueRecordId,
         runUrl: "",
+        acceptedAt: dispatchedAt,
         note: "Dispatch accepted. GitHub has not exposed the new run yet. Retry with `status last` after a few seconds.",
       }),
     };
@@ -94,6 +96,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
       queueRecordId,
       runUrl: run.html_url,
       runId: run.id,
+      acceptedAt: dispatchedAt,
       note: "Dispatch accepted.",
     }),
   };

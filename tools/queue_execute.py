@@ -5,6 +5,7 @@ import json
 import re
 import subprocess
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -209,14 +210,38 @@ def build_queue_execute_failure_message(
     )
 
 
-def render_queue_execute_result(row: QueueQueryRow, *, as_json: bool) -> str:
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def render_queue_execute_result(
+    row: QueueQueryRow,
+    *,
+    as_json: bool,
+    dispatch_payload: dict[str, str] | None = None,
+    accepted_at: str = "",
+) -> str:
+    dispatch_payload = dispatch_payload or {}
     if as_json:
         payload = {
             "record_id": row.record_id,
             "git_ref": row.git_ref,
             "result": row.result,
             "document_link": row.document_link,
+            "freshness_status": row.freshness_status,
         }
+        if row.result_built_at:
+            payload["result_built_at"] = row.result_built_at
+        if row.result_is_fresh is not None:
+            payload["result_is_fresh"] = row.result_is_fresh
+        if row.build_started_at:
+            payload["build_started_at"] = row.build_started_at
+        if accepted_at:
+            payload["accepted_at"] = accepted_at
+        if dispatch_payload.get("run_id"):
+            payload["run_id"] = dispatch_payload["run_id"]
+        if dispatch_payload.get("run"):
+            payload["run_url"] = dispatch_payload["run"]
         if row.pr_url:
             payload["pr_url"] = row.pr_url
         if row.review_status:
@@ -230,10 +255,17 @@ def render_queue_execute_result(row: QueueQueryRow, *, as_json: bool) -> str:
         lines.append(f"PR_url: {row.pr_url}")
     if row.review_status:
         lines.append(f"Review_status: {row.review_status}")
+    if accepted_at:
+        lines.append(f"accepted_at: {accepted_at}")
+    if dispatch_payload.get("run_id"):
+        lines.append(f"run_id: {dispatch_payload['run_id']}")
+    if dispatch_payload.get("run"):
+        lines.append(f"run: {dispatch_payload['run']}")
     lines.extend(
         [
             f"构建结果: {_null_text(row.result)}",
             f"Document link: {_null_text(row.document_link)}",
+            f"freshness_status: {_null_text(row.freshness_status)}",
         ]
     )
     return "\n".join(lines)
@@ -259,7 +291,7 @@ def _run_control_layer_cli(repo_root: Path, *cli_args: str) -> dict[str, str]:
     return parse_control_layer_output(stdout)
 
 
-def _refresh_queue_row(cfg: dict[str, Any], row: QueueQueryRow) -> QueueQueryRow:
+def _refresh_queue_row(cfg: dict[str, Any], row: QueueQueryRow, *, fresh_since: str = "") -> QueueQueryRow:
     refresh_args = argparse.Namespace(
         query_text=None,
         record_id=row.record_id,
@@ -267,10 +299,12 @@ def _refresh_queue_row(cfg: dict[str, Any], row: QueueQueryRow) -> QueueQueryRow
         document_key=None,
         build_family=None,
         lang=None,
+        langs=None,
         document_version=None,
         query_workflow_action=None,
         git_ref_contains=None,
         result_contains=None,
+        fresh_since=fresh_since or None,
         limit=1,
         json=False,
         queue_scope=row.queue_scope,
@@ -293,10 +327,13 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
         print(render_queue_execute_result(row, as_json=bool(getattr(resolved_args, "json", False))))
         return
     ensure_start_review_dispatchable(row)
+    accepted_at = str(getattr(resolved_args, "fresh_since", "") or "").strip() or _now_iso()
     if dispatch_command == "publish":
         dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
     else:
         dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id)
+    if dispatch_payload.get("accepted_at"):
+        accepted_at = dispatch_payload["accepted_at"]
     final_status_payload = {
         "status": "",
         "conclusion": "",
@@ -323,12 +360,11 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
                 )
             time.sleep(max(float(getattr(args, "status_poll_seconds", 3.0) or 3.0), 0.5))
 
-    refreshed_row = _refresh_queue_row(cfg, row)
+    refreshed_row = _refresh_queue_row(cfg, row, fresh_since=accepted_at)
     if (
         getattr(args, "wait_for_completion", True)
         and (has_structured_failure(final_status_payload) or not is_successful_status(final_status_payload))
-        and not refreshed_row.result
-        and not refreshed_row.document_link
+        and refreshed_row.result_is_fresh is not True
     ):
         raise RuntimeError(
             build_queue_execute_failure_message(
@@ -337,7 +373,14 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
                 dispatch_payload=dispatch_payload,
             )
         )
-    print(render_queue_execute_result(refreshed_row, as_json=bool(getattr(resolved_args, "json", False))))
+    print(
+        render_queue_execute_result(
+            refreshed_row,
+            as_json=bool(getattr(resolved_args, "json", False)),
+            dispatch_payload=dispatch_payload,
+            accepted_at=accepted_at,
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -41,6 +41,9 @@ _STATUS_QUERY_RE = (
     "为什么",
     "怎么回事",
     "到哪",
+    "查不到",
+    "找不到",
+    "没查到",
     "查",
     "看一下",
 )
@@ -80,6 +83,9 @@ _STATUS_OVERRIDE_RE = (
     "为什么",
     "怎么回事",
     "到哪",
+    "查不到",
+    "找不到",
+    "没查到",
     "查",
     "看一下",
 )
@@ -101,6 +107,9 @@ _EXPLICIT_STATUS_QUERY_RE = (
     "为什么",
     "怎么回事",
     "到哪",
+    "查不到",
+    "找不到",
+    "没查到",
     "查",
     "看一下",
 )
@@ -144,11 +153,13 @@ def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
         "document_key",
         "build_family",
         "lang",
+        "langs",
         "document_version",
         "market_group",
         "query_workflow_action",
         "git_ref_contains",
         "result_contains",
+        "fresh_since",
     )
     payload: dict[str, str] = {}
     for field_name in fields:
