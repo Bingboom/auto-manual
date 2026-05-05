@@ -86,6 +86,37 @@ def _completed_start_review_row(record_id: str = "rec_review") -> queue_query.Qu
     )
 
 
+def _document_key_start_review_row(
+    record_id: str = "rec_eu_review",
+    *,
+    document_key: str = "JE-1000F_EU",
+    review_trigger_enabled: bool | None = True,
+) -> queue_query.QueueQueryRow:
+    return queue_query.QueueQueryRow(
+        queue_scope="review-init",
+        record_id=record_id,
+        document_id="",
+        document_key=document_key,
+        build_family="",
+        lang="",
+        version="",
+        workflow_action="Start Review",
+        normalized_workflow_action="start_review",
+        git_ref="",
+        document_link="",
+        document_directory="",
+        result="",
+        pr_url="",
+        review_status="NotStarted",
+        review_trigger_enabled=review_trigger_enabled,
+        build_trigger_requested=None,
+        immediate_build=None,
+        initial_result="",
+        remarks="",
+        task_id="JE-1000F_EU___Start Review",
+    )
+
+
 class TestQueueExecute(unittest.TestCase):
     def _args(self, **overrides) -> argparse.Namespace:
         payload = {
@@ -129,6 +160,30 @@ class TestQueueExecute(unittest.TestCase):
         self.assertEqual("JE-1000F_US_en_0.3", resolved_args.document_id)
         self.assertEqual("build-draft-package", resolved_args.query_workflow_action)
         self.assertEqual("rec_draft", row.record_id)
+
+    def test_select_unique_queue_row_should_resolve_document_key_only_start_review(self) -> None:
+        resolved_args, row = queue_execute.select_unique_queue_row(
+            self._args(query_text="review JE-1000F_EU"),
+            [_document_key_start_review_row()],
+        )
+
+        self.assertEqual("JE-1000F_EU", resolved_args.document_key)
+        self.assertEqual("start-review", resolved_args.query_workflow_action)
+        self.assertEqual("rec_eu_review", row.record_id)
+        self.assertEqual("start-review", queue_execute.dispatch_command_for_row(row))
+        queue_execute.ensure_start_review_dispatchable(row)
+
+    def test_start_review_dispatch_should_require_document_key(self) -> None:
+        row = _document_key_start_review_row(document_key="")
+
+        with self.assertRaisesRegex(RuntimeError, "without a usable Document_Key"):
+            queue_execute.ensure_start_review_dispatchable(row)
+
+    def test_start_review_dispatch_should_require_review_checkbox(self) -> None:
+        row = _document_key_start_review_row(review_trigger_enabled=False)
+
+        with self.assertRaisesRegex(RuntimeError, "not pending"):
+            queue_execute.ensure_start_review_dispatchable(row)
 
     def test_select_unique_queue_row_should_raise_for_ambiguous_matches(self) -> None:
         with self.assertRaises(RuntimeError) as ctx:

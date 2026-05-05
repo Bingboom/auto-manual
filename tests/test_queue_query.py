@@ -180,6 +180,40 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual(["rec_review"], [row.record_id for row in filtered])
 
+    def test_filter_queue_query_rows_should_match_document_key_only_start_review_task(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="review-init",
+                record_id="rec_eu_review",
+                document_id="",
+                document_key="JE-1000F_EU",
+                build_family="",
+                lang="",
+                version="",
+                workflow_action="Start Review",
+                normalized_workflow_action="start_review",
+                git_ref="",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="NotStarted",
+                review_trigger_enabled=True,
+                build_trigger_requested=None,
+                immediate_build=None,
+                initial_result="",
+                remarks="",
+                task_id="JE-1000F_EU___Start Review",
+            )
+        ]
+
+        filtered = queue_query.filter_queue_query_rows(
+            self._args(task_id="JE-1000F_EU_Start Review", query_workflow_action="start-review"),
+            rows,
+        )
+
+        self.assertEqual(["rec_eu_review"], [row.record_id for row in filtered])
+
     def test_infer_queue_query_from_text_should_prefer_document_id(self) -> None:
         inferred = queue_query.infer_queue_query_from_text(
             "请帮我查 JE-1000F_US_0.3 的 Build Draft Package 记录。先不要触发 workflow。"
@@ -214,6 +248,15 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("JE-1000F_US", inferred.document_key)
         self.assertEqual("", inferred.query_workflow_action)
         self.assertEqual("document-link", inferred.queue_scope)
+
+    def test_infer_queue_query_from_text_should_parse_document_key_only_start_review(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("review JE-1000F_EU")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("JE-1000F_EU", inferred.document_key)
+        self.assertEqual("JE-1000F_EU_Start Review", inferred.task_id)
+        self.assertEqual("start-review", inferred.query_workflow_action)
+        self.assertEqual("review-init", inferred.queue_scope)
 
     def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
         for query_text in [

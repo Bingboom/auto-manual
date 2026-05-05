@@ -6,6 +6,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 from tools.phase2_support import load_config
+from tools.document_link_queue import looks_like_explicit_document_key
 from tools.queue_execute import dispatch_command_for_row
 from tools.queue_query import (
     QueueQueryRow,
@@ -197,11 +198,31 @@ def _dispatch_command_for_action_name(action_name: str) -> str | None:
     return mapping.get(action_name)
 
 
+def _normalized_review_status(value: str) -> str:
+    return "".join(char for char in str(value or "").strip().lower() if char.isalnum())
+
+
+def _is_completed_start_review_row(row: QueueQueryRow) -> bool:
+    if (row.normalized_workflow_action or "") != "start_review":
+        return False
+    if row.review_trigger_enabled is True:
+        return False
+    return bool(row.git_ref.strip()) and _normalized_review_status(row.review_status) in {
+        "inreview",
+        "readyforpublish",
+    }
+
+
 def _missing_fields_for_action(action_name: str, row: QueueQueryRow | None) -> list[str]:
     if row is None:
         return []
     missing: list[str] = []
-    if action_name in {"start_review", "build_draft_package", "publish"} and not row.build_family:
+    if action_name == "start_review":
+        if not looks_like_explicit_document_key(row.document_key):
+            missing.append("Document_Key")
+        if row.review_trigger_enabled is not True and not _is_completed_start_review_row(row):
+            missing.append("是否进入Review")
+    if action_name in {"build_draft_package", "publish"} and not row.build_family:
         missing.append("build_family")
     if action_name in {"build_draft_package", "publish"} and not row.git_ref:
         missing.append("git_ref")
