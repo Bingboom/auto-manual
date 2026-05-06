@@ -41,8 +41,8 @@ export function createRepoControl(config) {
       }
       return runBuildJson(config, args);
     },
-    async queryRow({ queueScope, recordId }) {
-      return runBuildJson(config, [
+    async queryRow({ queueScope, recordId, freshSince = "" }) {
+      const args = [
         "queue-query",
         "--config",
         config.controlConfig,
@@ -51,7 +51,11 @@ export function createRepoControl(config) {
         "--record-id",
         recordId,
         "--json",
-      ]);
+      ];
+      if (freshSince) {
+        args.push("--fresh-since", freshSince);
+      }
+      return runBuildJson(config, args);
     },
     async executeResolvedAction({ actionName, queueScope, recordId, confirmPublish = false, noWait = false }) {
       const args = [

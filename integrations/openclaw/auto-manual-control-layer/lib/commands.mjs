@@ -74,11 +74,14 @@ export function renderMissingConfig(missingFields) {
   ].join("\n");
 }
 
-export function renderDispatchResult({ workflowName, queueRecordId, runId, runUrl, note }) {
+export function renderDispatchResult({ workflowName, queueRecordId, runId, runUrl, acceptedAt, note }) {
   const lines = [
     `${workflowName}`,
     `record_id: ${queueRecordId}`,
   ];
+  if (acceptedAt) {
+    lines.push(`accepted_at: ${acceptedAt}`);
+  }
   if (runId) {
     lines.push(`run_id: ${runId}`);
   }
@@ -91,12 +94,15 @@ export function renderDispatchResult({ workflowName, queueRecordId, runId, runUr
   return lines.join("\n");
 }
 
-export function renderDuplicateRun({ workflowName, queueRecordId, runId, runUrl, status }) {
+export function renderDuplicateRun({ workflowName, queueRecordId, runId, runUrl, status, acceptedAt }) {
   const lines = [
     `${workflowName}`,
     `record_id: ${queueRecordId}`,
     `status: ${status || "in_progress"}`,
   ];
+  if (acceptedAt) {
+    lines.push(`accepted_at: ${acceptedAt}`);
+  }
   if (runId) {
     lines.push(`run_id: ${runId}`);
   }
@@ -111,7 +117,7 @@ export function renderNoTrackedRun() {
   return "No tracked OpenClaw-dispatched run was found yet. Trigger one command first or pass an explicit run id.";
 }
 
-export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl, status, conclusion, artifacts, metadata }) {
+export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl, status, conclusion, artifacts, metadata, acceptedAt }) {
   const lines = [
     `${workflowName}`,
     `status: ${status || "pending"}`,
@@ -122,6 +128,9 @@ export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl,
   }
   if (queueRecordId) {
     lines.push(`record_id: ${queueRecordId}`);
+  }
+  if (acceptedAt) {
+    lines.push(`accepted_at: ${acceptedAt}`);
   }
   if (runId) {
     lines.push(`run_id: ${runId}`);

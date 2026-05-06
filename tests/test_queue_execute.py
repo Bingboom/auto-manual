@@ -130,6 +130,7 @@ class TestQueueExecute(unittest.TestCase):
             "query_workflow_action": None,
             "git_ref_contains": None,
             "result_contains": None,
+            "fresh_since": None,
             "limit": 10,
             "json": False,
             "queue_scope": "all",
@@ -254,6 +255,7 @@ class TestQueueExecute(unittest.TestCase):
                 "git_ref": "codex/review-id-recvfw0zg4pzxs",
                 "result": "SUCCESS",
                 "document_link": "https://example.com/doc.docx",
+                "freshness_status": "not_requested",
             },
             payload,
         )

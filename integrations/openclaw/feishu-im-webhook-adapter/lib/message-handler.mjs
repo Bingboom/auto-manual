@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 import {
   extractMessageEvent,
   isPublishConfirmationText,
@@ -10,6 +12,7 @@ import {
   formatAcceptedReply,
   formatBatchAcceptedReply,
   formatBatchCompletionReply,
+  formatBatchStatusReply,
   formatCompletionReply,
   formatExecutionErrorReply,
   formatNoPendingPublishReply,
@@ -32,6 +35,14 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function nowIso() {
+  return new Date().toISOString();
+}
+
+function contextRows(conversationContext) {
+  return Array.isArray(conversationContext?.rows) ? conversationContext.rows : [];
+}
+
 export function createMessageHandler({ config, stateStore, repoControl, feishuClient, logger = console }) {
   const localProfile = config?.localProfile || null;
 
@@ -39,8 +50,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     await sendStageReaction({ config, feishuClient, localProfile, logger, messageId, stage });
   }
 
-  async function rememberConversationContext(messageEvent, { row, queryText, actionName }) {
-    if (!row || typeof stateStore.rememberConversationContext !== "function") {
+  async function rememberConversationContext(messageEvent, { row, rows = [], queryText, actionName, acceptedAt = "", requestId = "" }) {
+    if ((!row && !rows.length) || typeof stateStore.rememberConversationContext !== "function") {
       return;
     }
     await stateStore.rememberConversationContext({
@@ -48,10 +59,56 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       senderId: messageEvent.senderId,
       messageId: messageEvent.messageId,
       row,
+      rows,
       queryText,
       actionName,
+      acceptedAt,
+      requestId,
       ttlSeconds: config.conversationContextTtlSeconds || 3600,
     });
+  }
+
+  async function queryContextRows({ rows, freshSince }) {
+    const latestRows = [];
+    const failures = [];
+    for (const row of rows) {
+      try {
+        const latest = await repoControl.queryRow({
+          queueScope: row.queue_scope || "document-link",
+          recordId: row.record_id,
+          freshSince,
+        });
+        const latestRow = Array.isArray(latest?.rows) ? latest.rows[0] : null;
+        latestRows.push(latestRow || row);
+      } catch (error) {
+        failures.push({
+          record_id: row.record_id,
+          message: error?.message || String(error),
+        });
+      }
+    }
+    return { rows: latestRows, failures };
+  }
+
+  async function pollBatchRows({ rows, freshSince }) {
+    const timeoutSeconds = Math.max(Number(config?.batchStatusTimeoutSeconds || 0), 0);
+    if (!timeoutSeconds) {
+      return { rows, failures: [], timedOut: false, skipped: true };
+    }
+    const pollMs = Math.max(Number(config?.batchStatusPollSeconds || 5), 1) * 1000;
+    const deadline = Date.now() + timeoutSeconds * 1000;
+    let latest = { rows, failures: [] };
+    while (Date.now() <= deadline) {
+      latest = await queryContextRows({ rows, freshSince });
+      const pending = latest.rows.filter((row) =>
+        ["pending", "writeback_pending", "stale_result", "not_requested"].includes(String(row?.freshness_status || ""))
+      );
+      if (!pending.length) {
+        return { ...latest, timedOut: false, skipped: false };
+      }
+      await sleep(pollMs);
+    }
+    return { ...latest, timedOut: true, skipped: false };
   }
 
   async function processMessageEvent(messageEvent) {
@@ -78,15 +135,17 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           messageEvent.messageId,
           formatPublishConfirmationAcceptedReply(pending.row, localProfile)
         );
-        await repoControl.executeResolvedAction({
+        const executionResult = await repoControl.executeResolvedAction({
           actionName: "publish",
           queueScope: pending.row.queue_scope,
           recordId: pending.row.record_id,
           confirmPublish: true,
         });
+        const acceptedAt = executionResult?.accepted_at || nowIso();
         const latest = await repoControl.queryRow({
           queueScope: pending.row.queue_scope,
           recordId: pending.row.record_id,
+          freshSince: acceptedAt,
         });
         const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
         if (row) {
@@ -94,6 +153,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
             row,
             queryText: pending.queryText || messageEvent.normalizedText,
             actionName: "publish",
+            acceptedAt,
           });
         }
         await react(messageEvent.messageId, "completed");
@@ -118,6 +178,26 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       localProfile,
       conversationContext,
     });
+
+    if (normalizedMessage.usedBatchContext) {
+      const latest = await queryContextRows({
+        rows: normalizedMessage.contextRows,
+        freshSince: conversationContext?.acceptedAt || "",
+      });
+      await rememberConversationContext(messageEvent, {
+        rows: latest.rows,
+        queryText: normalizedMessage.normalizedText,
+        actionName: conversationContext?.actionName || "query_status",
+        acceptedAt: conversationContext?.acceptedAt || "",
+        requestId: conversationContext?.requestId || "",
+      });
+      await react(messageEvent.messageId, latest.failures.length ? "error" : "completed");
+      await feishuClient.replyTextMessage(
+        messageEvent.messageId,
+        formatBatchStatusReply(latest, localProfile)
+      );
+      return;
+    }
 
     let resolution;
     try {
@@ -159,13 +239,24 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     }
 
     if (resolution.action_name === "query_status") {
+      let row = resolution.row || {};
+      if (conversationContext?.acceptedAt && row?.record_id) {
+        const latest = await repoControl.queryRow({
+          queueScope: row.queue_scope || resolution.queue_scope,
+          recordId: row.record_id,
+          freshSince: conversationContext.acceptedAt,
+        });
+        row = Array.isArray(latest?.rows) ? latest.rows[0] || row : row;
+      }
       await rememberConversationContext(messageEvent, {
-        row: resolution.row,
+        row,
         queryText: normalizedMessage.normalizedText,
         actionName: resolution.action_name,
+        acceptedAt: conversationContext?.acceptedAt || "",
+        requestId: conversationContext?.requestId || "",
       });
       await react(messageEvent.messageId, "completed");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(resolution.row || {}, localProfile));
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(row || {}, localProfile));
       return;
     }
 
@@ -174,6 +265,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       const rows = [];
       const failures = [];
       const dispatchDelayMs = Math.max(Number(config?.batchDispatchDelayMs || 0), 0);
+      const acceptedAt = nowIso();
+      const requestId = randomUUID();
       await react(messageEvent.messageId, "accepted");
       await feishuClient.replyTextMessage(messageEvent.messageId, formatBatchAcceptedReply(resolution, localProfile));
       for (const [index, candidate] of candidates.entries()) {
@@ -181,19 +274,20 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           await sleep(dispatchDelayMs);
         }
         try {
-          await repoControl.executeResolvedAction({
+          const executionResult = await repoControl.executeResolvedAction({
             actionName: resolution.action_name,
             queueScope: candidate.queue_scope || resolution.queue_scope,
             recordId: candidate.record_id,
             confirmPublish: false,
             noWait: true,
           });
-          const latest = await repoControl.queryRow({
-            queueScope: candidate.queue_scope || resolution.queue_scope,
-            recordId: candidate.record_id,
+          rows.push({
+            ...candidate,
+            ...executionResult,
+            queue_scope: candidate.queue_scope || resolution.queue_scope,
+            record_id: candidate.record_id,
+            accepted_at: executionResult?.accepted_at || acceptedAt,
           });
-          const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
-          rows.push(row || candidate);
         } catch (error) {
           logger.error?.("batch message execution failed", error);
           failures.push({
@@ -202,11 +296,39 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           });
         }
       }
+      await rememberConversationContext(messageEvent, {
+        rows,
+        queryText: normalizedMessage.normalizedText,
+        actionName: resolution.action_name,
+        acceptedAt,
+        requestId,
+      });
       await react(messageEvent.messageId, failures.length ? "error" : "completed");
       await feishuClient.replyTextMessage(
         messageEvent.messageId,
         formatBatchCompletionReply({ resolution, rows, failures }, localProfile)
       );
+      const finalStatus = await pollBatchRows({ rows, freshSince: acceptedAt });
+      if (!finalStatus.skipped && (finalStatus.timedOut || finalStatus.rows.some((row) => !["stale_result", "writeback_pending", "pending"].includes(String(row?.freshness_status || ""))))) {
+        await rememberConversationContext(messageEvent, {
+          rows: finalStatus.rows,
+          queryText: normalizedMessage.normalizedText,
+          actionName: resolution.action_name,
+          acceptedAt,
+          requestId,
+        });
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatBatchStatusReply(
+            {
+              rows: finalStatus.rows,
+              failures: finalStatus.failures,
+              heading: finalStatus.timedOut ? "批量任务仍在执行或等待写回：" : "批量任务最新写回：",
+            },
+            localProfile
+          )
+        );
+      }
       return;
     }
 
@@ -218,15 +340,17 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       });
       await react(messageEvent.messageId, "accepted");
       await feishuClient.replyTextMessage(messageEvent.messageId, formatAcceptedReply(resolution, localProfile));
-      await repoControl.executeResolvedAction({
+      const executionResult = await repoControl.executeResolvedAction({
         actionName: resolution.action_name,
         queueScope: resolution.queue_scope,
         recordId: resolution.row.record_id,
         confirmPublish: false,
       });
+      const acceptedAt = executionResult?.accepted_at || nowIso();
       const latest = await repoControl.queryRow({
         queueScope: resolution.queue_scope,
         recordId: resolution.row.record_id,
+        freshSince: acceptedAt,
       });
       const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
       if (row) {
@@ -234,6 +358,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           row,
           queryText: normalizedMessage.normalizedText,
           actionName: resolution.action_name,
+          acceptedAt,
         });
       }
       await react(messageEvent.messageId, "completed");

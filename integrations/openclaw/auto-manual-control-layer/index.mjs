@@ -80,6 +80,7 @@ async function manualStatus(ctx, api) {
         conclusion: "",
         artifacts: [],
         metadata: metadata || {},
+        acceptedAt: tracked?.dispatchedAt || "",
       }),
     };
   }
@@ -94,6 +95,7 @@ async function manualStatus(ctx, api) {
       conclusion: run.conclusion || "",
       artifacts,
       metadata: metadata || {},
+      acceptedAt: tracked?.dispatchedAt || "",
     }),
   };
 }

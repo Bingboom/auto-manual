@@ -42,3 +42,31 @@ test("conversation context is stored per chat and sender", async () => {
   assert.equal(context.row.record_id, "rec_context");
   assert.equal(context.actionName, "query_status");
 });
+
+test("conversation context can store batch rows and accepted time", async () => {
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "feishu-im-state-"));
+  const stateFile = path.join(tempDir, "state.json");
+  const store = createStateStore(stateFile, { now: () => 1000 });
+
+  await store.rememberConversationContext({
+    chatId: "oc_123",
+    senderId: "ou_sender",
+    messageId: "om_123",
+    rows: [
+      { record_id: "rec_en", document_id: "JE-1000F_EU_en_0.7" },
+      { record_id: "rec_fr", document_id: "JE-1000F_EU_fr_0.7" },
+    ],
+    queryText: "构建 JE-1000F EU 英语和法语",
+    actionName: "build_draft_package",
+    acceptedAt: "2026-05-04T10:00:00Z",
+    requestId: "req_123",
+    ttlSeconds: 600,
+  });
+
+  const context = await store.readConversationContext({ chatId: "oc_123", senderId: "ou_sender" });
+
+  assert.equal(context.row.record_id, "rec_en");
+  assert.equal(context.rows.length, 2);
+  assert.equal(context.acceptedAt, "2026-05-04T10:00:00Z");
+  assert.equal(context.requestId, "req_123");
+});

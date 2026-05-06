@@ -100,6 +100,7 @@ async function status(rawArg) {
         conclusion: "",
         artifacts: [],
         metadata: metadata || {},
+        acceptedAt: tracked?.dispatchedAt || "",
       })
     );
     return;
@@ -115,6 +116,7 @@ async function status(rawArg) {
       conclusion: run.conclusion || "",
       artifacts,
       metadata: metadata || {},
+      acceptedAt: tracked?.dispatchedAt || "",
     })
   );
 }

@@ -280,6 +280,117 @@ test("message handler can resolve pronoun follow-ups from conversation context",
   assert.equal(resolvedMessage, "这个好了没 record_id rec_context");
 });
 
+test("message handler reuses safe selector context for execution follow-ups", async () => {
+  let resolvedMessage = "";
+  const stateStore = {
+    ...createMemoryStateStore(),
+    async readConversationContext() {
+      return {
+        row: {
+          record_id: "rec_context",
+          document_id: "JE-1000F_EU_en_0.7",
+        },
+      };
+    },
+    async rememberConversationContext() {},
+    async clearExpiredConversationContexts() {},
+  };
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore,
+    repoControl: {
+      async resolveAction(payload) {
+        resolvedMessage = payload.messageText;
+        return {
+          resolution_status: "resolved_batch",
+          action_name: "build_draft_package",
+          queue_scope: "document-link",
+          matched_count: 2,
+          candidates: [
+            { record_id: "rec_en", queue_scope: "document-link", document_id: "JE-1000F_EU_en_0.7", lang: "en" },
+            { record_id: "rec_fr", queue_scope: "document-link", document_id: "JE-1000F_EU_fr_0.7", lang: "fr" },
+          ],
+        };
+      },
+      async executeResolvedAction() {
+        return { freshness_status: "stale_result" };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage() {},
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("我来补跑英语和法语"));
+  await result.backgroundTask();
+
+  assert.equal(resolvedMessage, "我来补跑英语和法语 JE-1000F EU 0.7");
+  assert.doesNotMatch(resolvedMessage, /record_id/);
+});
+
+test("message handler answers batch status follow-ups from stored rows", async () => {
+  const replies = [];
+  const queried = [];
+  const stateStore = {
+    ...createMemoryStateStore(),
+    async readConversationContext() {
+      return {
+        actionName: "build_draft_package",
+        acceptedAt: "2026-05-04T10:00:00Z",
+        rows: [
+          { record_id: "rec_en", queue_scope: "document-link", document_id: "JE-1000F_EU_en_0.7" },
+          { record_id: "rec_fr", queue_scope: "document-link", document_id: "JE-1000F_EU_fr_0.7" },
+        ],
+      };
+    },
+    async rememberConversationContext() {},
+    async clearExpiredConversationContexts() {},
+  };
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore,
+    repoControl: {
+      async queryRow(payload) {
+        queried.push(payload);
+        return {
+          rows: [
+            {
+              record_id: payload.recordId,
+              document_id: payload.recordId === "rec_en" ? "JE-1000F_EU_en_0.7" : "JE-1000F_EU_fr_0.7",
+              workflow_action: "Build Draft Package",
+              result: "SUCCESS | built_at=2026-05-04T10:02:00+00:00",
+              freshness_status: "fresh_success",
+            },
+          ],
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(queried.length, 2);
+  assert.equal(queried[0].freshSince, "2026-05-04T10:00:00Z");
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /fresh_success/);
+});
+
 test("message handler sends stage reactions when enabled", async () => {
   const reactions = [];
   const replies = [];

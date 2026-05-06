@@ -181,11 +181,13 @@ class TestQueueResolveAction(unittest.TestCase):
             "document_key": None,
             "build_family": None,
             "lang": None,
+            "langs": None,
             "document_version": None,
             "market_group": None,
             "query_workflow_action": None,
             "git_ref_contains": None,
             "result_contains": None,
+            "fresh_since": None,
             "limit": 10,
             "json": False,
             "confirm_publish": False,
@@ -274,6 +276,16 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("query_status", resolution.action_name)
         self.assertIsNone(resolution.dispatch_command)
         self.assertEqual("rec_draft", resolution.row["record_id"])
+
+    def test_resolve_queue_action_should_treat_cannot_find_success_as_query(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="明明就构建成功了 为什么你查不到"),
+            [_draft_row()],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("query_status", resolution.action_name)
+        self.assertIsNone(resolution.dispatch_command)
 
     def test_resolve_queue_action_should_keep_direct_draft_command_executable(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
@@ -395,6 +407,20 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual(3, resolution.matched_count)
         self.assertEqual("build-draft", resolution.dispatch_command)
         self.assertEqual(["rec_eu_en", "rec_eu_fr", "rec_us"], [candidate.record_id for candidate in resolution.candidates])
+
+    def test_resolve_queue_action_should_allow_language_filtered_batch_draft(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="构建 JE-1000F 的英语和法语说明书文案"),
+            [
+                _model_draft_row("EU", lang="en", record_id="rec_eu_en"),
+                _model_draft_row("EU", lang="fr", record_id="rec_eu_fr"),
+                _model_draft_row("EU", lang="es", record_id="rec_eu_es"),
+            ],
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual(["rec_eu_en", "rec_eu_fr"], [candidate.record_id for candidate in resolution.candidates])
+        self.assertEqual("en,fr", resolution.selectors["langs"])
 
     def test_resolve_queue_action_should_filter_untriggered_batch_rows(self) -> None:
         blocked = _eu_draft_row("en", "rec_blocked")

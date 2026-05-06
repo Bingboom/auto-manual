@@ -26,7 +26,22 @@ function summarizeRow(row) {
     lines.push(`PR_url: ${row.pr_url}`);
   }
   if (row.result) {
-    lines.push(`构建结果: ${row.result}`);
+    lines.push(`${row.freshness_status === "stale_result" ? "旧构建结果" : "构建结果"}: ${row.result}`);
+  }
+  if (row.freshness_status && row.freshness_status !== "not_requested") {
+    lines.push(`freshness_status: ${row.freshness_status}`);
+  }
+  if (row.result_built_at) {
+    lines.push(`result_built_at: ${row.result_built_at}`);
+  }
+  if (row.accepted_at) {
+    lines.push(`accepted_at: ${row.accepted_at}`);
+  }
+  if (row.run_id) {
+    lines.push(`run_id: ${row.run_id}`);
+  }
+  if (row.run_url) {
+    lines.push(`run: ${row.run_url}`);
   }
   if (row.document_link) {
     lines.push(`Document link: ${row.document_link}`);
@@ -99,7 +114,7 @@ export function formatCompletionReply(row, localProfile = null) {
 export function formatBatchCompletionReply({ resolution, rows = [], failures = [] }, localProfile = null) {
   const prefix = failures.length
     ? localReplyPhrase(localProfile, "batchPartialPrefix", "批量任务已处理完成，部分任务失败：")
-    : localReplyPhrase(localProfile, "batchCompletionPrefix", "批量任务已发起：");
+    : localReplyPhrase(localProfile, "batchCompletionPrefix", "批量任务已发起，正在等待写回：");
   const lines = [prefix, `matched_count: ${resolution.matched_count || rows.length}`];
   for (const row of rows.slice(0, 10)) {
     lines.push(`- ${summarizeRow(row).replace(/\n/g, " | ")}`);
@@ -109,6 +124,23 @@ export function formatBatchCompletionReply({ resolution, rows = [], failures = [
   }
   for (const failure of failures.slice(0, 5)) {
     lines.push(`失败: ${failure.record_id || "-"} | ${String(failure.message || failure).trim()}`);
+  }
+  return lines.filter(Boolean).join("\n");
+}
+
+export function formatBatchStatusReply({ rows = [], failures = [], heading = "" }, localProfile = null) {
+  const lines = [
+    heading || localReplyPhrase(localProfile, "batchStatusPrefix", "这批任务的最新状态如下："),
+    `matched_count: ${rows.length}`,
+  ];
+  for (const row of rows.slice(0, 10)) {
+    lines.push(`- ${summarizeRow(row).replace(/\n/g, " | ")}`);
+  }
+  if (rows.length > 10) {
+    lines.push(`... 还有 ${rows.length - 10} 条`);
+  }
+  for (const failure of failures.slice(0, 5)) {
+    lines.push(`读取失败: ${failure.record_id || "-"} | ${String(failure.message || failure).trim()}`);
   }
   return lines.filter(Boolean).join("\n");
 }

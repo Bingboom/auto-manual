@@ -3,8 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import sys
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from typing import Any
 
 from tools.document_link_actions import (
@@ -23,6 +22,7 @@ from tools.phase2_support import (
 )
 from tools.process_build_queue import (
     BUILD_FAMILY_FIELD,
+    BUILD_STARTED_AT_FIELD,
     DOCUMENT_DIRECTORY_FIELD,
     DOCUMENT_ID_FIELD,
     DOCUMENT_KEY_FIELD,
@@ -36,6 +36,10 @@ from tools.process_build_queue import (
     WORKFLOW_ACTION_FIELD,
     collect_queue_preflight_errors,
     resolve_document_link_binding,
+)
+from tools.queue_freshness import (
+    compute_freshness,
+    isoformat_timestamp,
 )
 from tools.process_review_start_queue import (
     INITIAL_RESULT_FIELD,
@@ -97,6 +101,10 @@ class QueueQueryRow:
     remarks: str
     task_id: str = ""
     market_group: str = ""
+    build_started_at: str = ""
+    result_built_at: str = ""
+    result_is_fresh: bool | None = None
+    freshness_status: str = "not_requested"
 
 
 @dataclass(frozen=True)
@@ -108,6 +116,7 @@ class InferredQueueQuery:
     document_key: str = ""
     build_family: str = ""
     lang: str = ""
+    langs: tuple[str, ...] = ()
     document_version: str = ""
     query_workflow_action: str = ""
     result_contains: str = ""
@@ -129,7 +138,40 @@ _QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
 _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
 _REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}$")
 _BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
-_LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "ko"}
+_LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "ko", "uk"}
+_LANG_ALIASES = {
+    "英语": "en",
+    "英文": "en",
+    "english": "en",
+    "法语": "fr",
+    "法文": "fr",
+    "french": "fr",
+    "西语": "es",
+    "西班牙语": "es",
+    "spanish": "es",
+    "德语": "de",
+    "德文": "de",
+    "german": "de",
+    "意语": "it",
+    "意大利语": "it",
+    "italian": "it",
+    "日语": "ja",
+    "日文": "ja",
+    "japanese": "ja",
+    "中文": "zh",
+    "汉语": "zh",
+    "chinese": "zh",
+    "葡语": "pt",
+    "葡萄牙语": "pt",
+    "portuguese": "pt",
+    "韩语": "ko",
+    "韩文": "ko",
+    "korean": "ko",
+    "乌克兰语": "uk",
+    "乌语": "uk",
+    "ukrainian": "uk",
+}
+_LANG_NAME_PATTERN = re.compile("|".join(re.escape(name) for name in sorted(_LANG_ALIASES, key=len, reverse=True)), re.IGNORECASE)
 _MARKET_ALIASES = {
     "欧规": "EU",
     "欧洲": "EU",
@@ -170,6 +212,11 @@ _BUILD_DRAFT_INTENT_KEYWORDS = (
     "触发",
     "重跑",
     "重新构建",
+    "重新跑",
+    "补跑",
+    "补构建",
+    "补触发",
+    "重试",
 )
 _CONFIG_BATCH_CONTENT_KEYWORDS = (
     "说明书文案",
@@ -187,6 +234,43 @@ _CONFIG_BATCH_CONTENT_KEYWORDS = (
 
 def _query_tokens(text: str) -> list[str]:
     return _QUERY_TOKEN_RE.findall(text)
+
+
+def _normalize_langs(value: Any) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, (list, tuple, set)):
+        raw_parts = [str(item or "") for item in value]
+    else:
+        raw_parts = re.split(r"[,，/、\s]+", str(value or ""))
+    langs: list[str] = []
+    for raw_part in raw_parts:
+        part = raw_part.strip().lower()
+        if not part:
+            continue
+        normalized = _LANG_ALIASES.get(part, part)
+        if normalized == "jp":
+            normalized = "ja"
+        if normalized == "cn":
+            normalized = "zh"
+        if normalized in _LANG_CODES and normalized not in langs:
+            langs.append(normalized)
+    return tuple(langs)
+
+
+def _infer_langs(text: str) -> tuple[str, ...]:
+    langs: list[str] = []
+    for match in _LANG_NAME_PATTERN.finditer(text):
+        lang = _LANG_ALIASES.get(match.group(0).lower())
+        if lang and lang not in langs:
+            langs.append(lang)
+    tokens = {token.lower() for token in _query_tokens(text)}
+    for token in tokens:
+        if token in _LANG_CODES:
+            normalized = "ja" if token == "jp" else "zh" if token == "cn" else token
+            if normalized not in langs:
+                langs.append(normalized)
+    return tuple(langs)
 
 
 def _normalize_task_id(value: str | None) -> str:
@@ -454,6 +538,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     if not text:
         return InferredQueueQuery()
 
+    inferred_langs = _infer_langs(text)
     task_id, task_document_id, task_workflow_action = _infer_task_id_filters(text)
     record_id = next(
         (
@@ -506,6 +591,8 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         queue_scope = "document-link"
 
     document_id, document_key, lang, document_version = _infer_document_filters(text)
+    if not lang and len(inferred_langs) == 1:
+        lang = inferred_langs[0]
     market_group = _infer_market_group(text)
     task_id_prefix = ""
     allow_multiple = _infer_allow_multiple(text)
@@ -549,6 +636,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         document_key=document_key,
         build_family=build_family,
         lang=lang,
+        langs=inferred_langs,
         document_version=document_version,
         query_workflow_action=workflow_action,
         result_contains=result_contains,
@@ -580,6 +668,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.build_family = inferred.build_family
     if not getattr(merged, "lang", None) and inferred.lang:
         merged.lang = inferred.lang
+    if not getattr(merged, "langs", None) and inferred.langs:
+        merged.langs = ",".join(inferred.langs)
     if not getattr(merged, "document_version", None) and inferred.document_version:
         merged.document_version = inferred.document_version
     if (
@@ -661,6 +751,7 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 remarks="",
                 task_id=_text(fields.get(TASK_ID_FIELD)),
                 market_group=market_group,
+                build_started_at=_text(fields.get(BUILD_STARTED_AT_FIELD)),
             )
         )
     return rows
@@ -729,6 +820,7 @@ def collect_queue_query_rows(cfg: dict[str, Any], *, queue_scope: str) -> list[Q
 
 def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
     normalized_action = _normalize_query_workflow_action(getattr(args, "query_workflow_action", None))
+    lang_filters = _normalize_langs(getattr(args, "langs", None))
     filtered: list[QueueQueryRow] = []
     for row in rows:
         if getattr(args, "record_id", None) and row.record_id != args.record_id:
@@ -744,6 +836,8 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
         if not _match_exact(row.build_family, getattr(args, "build_family", None)):
             continue
         if not _match_exact(row.lang, getattr(args, "lang", None)):
+            continue
+        if lang_filters and row.lang not in lang_filters:
             continue
         if not _match_exact(row.version, getattr(args, "document_version", None)):
             continue
@@ -767,7 +861,28 @@ def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow])
     limit = max(int(getattr(args, "limit", 10) or 10), 1)
     if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"} and limit == 10:
         limit = 1000
-    return filtered[:limit]
+    return apply_freshness_to_rows(args, filtered[:limit])
+
+
+def apply_freshness_to_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
+    fresh_since = getattr(args, "fresh_since", None)
+    enriched: list[QueueQueryRow] = []
+    for row in rows:
+        freshness = compute_freshness(
+            result=row.result,
+            build_started_at=row.build_started_at,
+            fresh_since=fresh_since,
+        )
+        enriched.append(
+            replace(
+                row,
+                build_started_at=isoformat_timestamp(freshness.build_started_at),
+                result_built_at=isoformat_timestamp(freshness.result_built_at),
+                result_is_fresh=freshness.result_is_fresh,
+                freshness_status=freshness.freshness_status,
+            )
+        )
+    return enriched
 
 
 def _row_title(row: QueueQueryRow) -> str:
@@ -823,6 +938,14 @@ def render_queue_query_rows(rows: list[QueueQueryRow], *, as_json: bool) -> str:
             lines.append(f"document_directory: {row.document_directory}")
         if row.result:
             lines.append(f"result: {row.result}")
+        if row.build_started_at:
+            lines.append(f"build_started_at: {row.build_started_at}")
+        if row.result_built_at:
+            lines.append(f"result_built_at: {row.result_built_at}")
+        if row.freshness_status and row.freshness_status != "not_requested":
+            lines.append(f"freshness_status: {row.freshness_status}")
+            if row.result_is_fresh is not None:
+                lines.append(f"result_is_fresh: {str(row.result_is_fresh).lower()}")
         if row.review_status:
             lines.append(f"review_status: {row.review_status}")
         if row.review_trigger_enabled is not None:
