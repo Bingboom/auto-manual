@@ -70,3 +70,24 @@ test("conversation context can store batch rows and accepted time", async () => 
   assert.equal(context.acceptedAt, "2026-05-04T10:00:00Z");
   assert.equal(context.requestId, "req_123");
 });
+
+test("conversation context can be cleared when Feishu rows disappear", async () => {
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "feishu-im-state-"));
+  const stateFile = path.join(tempDir, "state.json");
+  const store = createStateStore(stateFile, { now: () => 1000 });
+
+  await store.rememberConversationContext({
+    chatId: "oc_123",
+    senderId: "ou_sender",
+    messageId: "om_123",
+    row: { record_id: "rec_deleted" },
+    queryText: "这个好了没",
+    actionName: "query_status",
+    ttlSeconds: 600,
+  });
+
+  await store.clearConversationContext({ chatId: "oc_123", senderId: "ou_sender" });
+  const context = await store.readConversationContext({ chatId: "oc_123", senderId: "ou_sender" });
+
+  assert.equal(context, null);
+});

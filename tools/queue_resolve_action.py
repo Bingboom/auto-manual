@@ -133,7 +133,10 @@ def _should_status_override_requested_action(raw_text: str | None) -> bool:
     text = str(raw_text or "").strip().lower()
     if not text:
         return False
-    if "构建好" in text or "构建完成" in text or "build completed" in text or "built document" in text:
+    if any(
+        needle in text
+        for needle in ("已构建", "构建好", "构建成功", "构建完成", "成功构建", "build completed", "built document")
+    ):
         return True
     if any(token in text for token in _EXPLICIT_STATUS_QUERY_RE):
         return True
@@ -260,6 +263,10 @@ class QueueActionCandidate:
     lang: str = ""
     version: str = ""
     market_group: str = ""
+    document_link: str = ""
+    document_directory: str = ""
+    freshness_status: str = ""
+    result_built_at: str = ""
 
 
 @dataclass(frozen=True)
@@ -294,6 +301,10 @@ def _candidate_from_row(row: QueueQueryRow) -> QueueActionCandidate:
         lang=row.lang,
         version=row.version,
         market_group=row.market_group,
+        document_link=row.document_link,
+        document_directory=row.document_directory,
+        freshness_status=row.freshness_status,
+        result_built_at=row.result_built_at,
     )
 
 
@@ -339,6 +350,23 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
             next_step="Refine one exact selector such as record_id, Task_id, Document_ID, Build_family, or Workflow_action.",
             row=None,
             candidates=[],
+        )
+
+    if len(filtered) > 1 and action_name == "query_status" and bool(getattr(resolved_args, "allow_multiple", False)):
+        return QueueActionResolution(
+            resolution_status="resolved_batch",
+            action_name=action_name,
+            queue_scope=str(getattr(resolved_args, "queue_scope", "all") or "all"),
+            matched_count=len(filtered),
+            ready=True,
+            requires_confirmation=False,
+            dispatch_command=None,
+            selectors=selectors,
+            missing_fields=[],
+            summary=f"Resolved {len(filtered)} Query Status rows.",
+            next_step="Read the returned writeback fields; this status query does not dispatch builds.",
+            row=None,
+            candidates=[_candidate_from_row(row) for row in filtered],
         )
 
     if len(filtered) > 1 and bool(getattr(resolved_args, "allow_multiple", False)) and action_name != "query_status":

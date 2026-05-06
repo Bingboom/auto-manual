@@ -124,6 +124,16 @@ class InferredQueueQuery:
     queue_scope: str = "all"
     market_group: str = ""
     allow_multiple: bool = False
+    recommended_limit: int = 0
+
+
+@dataclass(frozen=True)
+class QueueQueryResult:
+    rows: list[QueueQueryRow]
+    matched_count: int
+    returned_count: int
+    limit: int
+    truncated: bool
 
 
 def _text(value: Any) -> str:
@@ -230,6 +240,8 @@ _CONFIG_BATCH_CONTENT_KEYWORDS = (
     "manual",
     "copy",
 )
+_DEFAULT_QUEUE_QUERY_LIMIT = 10
+_BUILT_LINK_INVENTORY_LIMIT = 200
 
 
 def _query_tokens(text: str) -> list[str]:
@@ -488,6 +500,58 @@ def _has_config_batch_draft_intent(text: str, normalized_text: str) -> bool:
     return any(keyword in text or keyword in normalized_text for keyword in _CONFIG_BATCH_CONTENT_KEYWORDS)
 
 
+def _has_successful_document_link_query_intent(text: str, normalized_text: str) -> bool:
+    has_link_or_document = any(
+        needle in text or needle in normalized_text
+        for needle in (
+            "链接",
+            "文档",
+            "说明书",
+            "document link",
+            "doc link",
+            "document",
+            "manual",
+        )
+    )
+    has_successful_build = any(
+        needle in text or needle in normalized_text
+        for needle in (
+            "已构建",
+            "构建好",
+            "构建成功",
+            "构建完成",
+            "成功构建",
+            "built document",
+            "build completed",
+            "successfully built",
+        )
+    )
+    return has_link_or_document and has_successful_build
+
+
+def _has_inventory_query_intent(text: str, normalized_text: str) -> bool:
+    inventory_keywords = (
+        "当前所有",
+        "现在所有",
+        "所有",
+        "全部",
+        "全量",
+        "完整",
+        "清单",
+        "列表",
+        "多少",
+        "数量",
+        "库里",
+        "all",
+        "every",
+        "inventory",
+        "list",
+        "count",
+        "how many",
+    )
+    return any(keyword in text or keyword in normalized_text for keyword in inventory_keywords)
+
+
 def _split_region_version_document_id(value: str) -> tuple[str, str, str]:
     parts = value.split("_")
     if len(parts) != 3 or not _VERSION_TOKEN_RE.match(parts[-1]):
@@ -553,6 +617,9 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     queue_scope = "all"
     result_contains = ""
     latest_per_document_key = False
+    recommended_limit = 0
+    successful_link_query = _has_successful_document_link_query_intent(text, normalized_text)
+    inventory_link_query = successful_link_query and _has_inventory_query_intent(text, normalized_text)
 
     if task_workflow_action:
         workflow_action = task_workflow_action
@@ -560,7 +627,9 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
-    elif any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text:
+    elif not successful_link_query and (
+        any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text
+    ):
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
     elif "publish" in normalized_text or "发布" in text:
@@ -572,18 +641,12 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
 
     if any(needle in normalized_text for needle in ("document link", "latest link")) or "链接" in text:
         queue_scope = "document-link"
-    built_link_query = (
-        queue_scope == "document-link"
-        and (
-            "构建好" in text
-            or "构建完成" in text
-            or "build completed" in normalized_text
-            or "built document" in normalized_text
-        )
-    )
-    if built_link_query:
+    if successful_link_query:
+        queue_scope = "document-link"
         result_contains = "success"
-        latest_per_document_key = True
+        latest_per_document_key = not inventory_link_query
+        if inventory_link_query:
+            recommended_limit = _BUILT_LINK_INVENTORY_LIMIT
     if queue_scope == "document-link" and ("最新" in text or "latest" in normalized_text):
         latest_per_document_key = True
     if any(needle in normalized_text for needle in ("failed", "failure")) or "失败" in text:
@@ -644,6 +707,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         queue_scope=queue_scope,
         market_group=market_group,
         allow_multiple=allow_multiple,
+        recommended_limit=recommended_limit,
     )
 
 
@@ -691,6 +755,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         merged.queue_scope = inferred.queue_scope
     if not getattr(merged, "allow_multiple", False) and inferred.allow_multiple:
         merged.allow_multiple = inferred.allow_multiple
+    if inferred.recommended_limit and int(getattr(merged, "limit", _DEFAULT_QUEUE_QUERY_LIMIT) or 0) == _DEFAULT_QUEUE_QUERY_LIMIT:
+        merged.limit = inferred.recommended_limit
     return merged
 
 
@@ -818,50 +884,81 @@ def collect_queue_query_rows(cfg: dict[str, Any], *, queue_scope: str) -> list[Q
     raise RuntimeError(f"Unsupported queue scope: {queue_scope}")
 
 
-def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
+def _effective_queue_query_limit(args: argparse.Namespace, normalized_action: str | None) -> int:
+    limit = max(int(getattr(args, "limit", _DEFAULT_QUEUE_QUERY_LIMIT) or _DEFAULT_QUEUE_QUERY_LIMIT), 1)
+    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"} and limit == _DEFAULT_QUEUE_QUERY_LIMIT:
+        return 1000
+    return limit
+
+
+def _matches_queue_query_row(
+    args: argparse.Namespace,
+    row: QueueQueryRow,
+    *,
+    normalized_action: str | None,
+    lang_filters: tuple[str, ...],
+) -> bool:
+    if getattr(args, "record_id", None) and row.record_id != args.record_id:
+        return False
+    if getattr(args, "task_id", None) and _normalize_task_id(_row_task_id(row)) != _normalize_task_id(args.task_id):
+        return False
+    if not _match_task_id_prefix(_row_task_id(row), getattr(args, "task_id_prefix", None)):
+        return False
+    if not _match_exact(row.document_id, getattr(args, "document_id", None)):
+        return False
+    if not _match_exact(row.document_key, getattr(args, "document_key", None)):
+        return False
+    if not _match_exact(row.build_family, getattr(args, "build_family", None)):
+        return False
+    if not _match_exact(row.lang, getattr(args, "lang", None)):
+        return False
+    if lang_filters and row.lang not in lang_filters:
+        return False
+    if not _match_exact(row.version, getattr(args, "document_version", None)):
+        return False
+    if not _match_exact(row.market_group, getattr(args, "market_group", None)):
+        return False
+    if normalized_action and row.normalized_workflow_action != normalized_action:
+        return False
+    if (
+        getattr(args, "allow_multiple", False)
+        and normalized_action in {"draft", "publish"}
+        and row.build_trigger_requested is not True
+    ):
+        return False
+    if not _match_contains(row.git_ref, getattr(args, "git_ref_contains", None)):
+        return False
+    return _match_contains(row.result, getattr(args, "result_contains", None))
+
+
+def query_queue_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> QueueQueryResult:
     normalized_action = _normalize_query_workflow_action(getattr(args, "query_workflow_action", None))
     lang_filters = _normalize_langs(getattr(args, "langs", None))
-    filtered: list[QueueQueryRow] = []
-    for row in rows:
-        if getattr(args, "record_id", None) and row.record_id != args.record_id:
-            continue
-        if getattr(args, "task_id", None) and _normalize_task_id(_row_task_id(row)) != _normalize_task_id(args.task_id):
-            continue
-        if not _match_task_id_prefix(_row_task_id(row), getattr(args, "task_id_prefix", None)):
-            continue
-        if not _match_exact(row.document_id, getattr(args, "document_id", None)):
-            continue
-        if not _match_exact(row.document_key, getattr(args, "document_key", None)):
-            continue
-        if not _match_exact(row.build_family, getattr(args, "build_family", None)):
-            continue
-        if not _match_exact(row.lang, getattr(args, "lang", None)):
-            continue
-        if lang_filters and row.lang not in lang_filters:
-            continue
-        if not _match_exact(row.version, getattr(args, "document_version", None)):
-            continue
-        if not _match_exact(row.market_group, getattr(args, "market_group", None)):
-            continue
-        if normalized_action and row.normalized_workflow_action != normalized_action:
-            continue
-        if (
-            getattr(args, "allow_multiple", False)
-            and normalized_action in {"draft", "publish"}
-            and row.build_trigger_requested is not True
-        ):
-            continue
-        if not _match_contains(row.git_ref, getattr(args, "git_ref_contains", None)):
-            continue
-        if not _match_contains(row.result, getattr(args, "result_contains", None)):
-            continue
-        filtered.append(row)
+    filtered = [
+        row
+        for row in rows
+        if _matches_queue_query_row(
+            args,
+            row,
+            normalized_action=normalized_action,
+            lang_filters=lang_filters,
+        )
+    ]
     if _should_apply_latest_per_document_key(args, normalized_action):
         filtered = _latest_per_document_key(filtered)
-    limit = max(int(getattr(args, "limit", 10) or 10), 1)
-    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"} and limit == 10:
-        limit = 1000
-    return apply_freshness_to_rows(args, filtered[:limit])
+    limit = _effective_queue_query_limit(args, normalized_action)
+    limited_rows = apply_freshness_to_rows(args, filtered[:limit])
+    return QueueQueryResult(
+        rows=limited_rows,
+        matched_count=len(filtered),
+        returned_count=len(limited_rows),
+        limit=limit,
+        truncated=len(filtered) > len(limited_rows),
+    )
+
+
+def filter_queue_query_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
+    return query_queue_rows(args, rows).rows
 
 
 def apply_freshness_to_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
@@ -893,11 +990,24 @@ def _row_title(row: QueueQueryRow) -> str:
     )
 
 
-def render_queue_query_rows(rows: list[QueueQueryRow], *, as_json: bool) -> str:
+def render_queue_query_rows(
+    rows: list[QueueQueryRow],
+    *,
+    as_json: bool,
+    query_result: QueueQueryResult | None = None,
+) -> str:
+    matched_count = query_result.matched_count if query_result else len(rows)
+    returned_count = query_result.returned_count if query_result else len(rows)
+    limit = query_result.limit if query_result else len(rows)
+    truncated = query_result.truncated if query_result else False
     if as_json:
         return json.dumps(
             {
-                "count": len(rows),
+                "count": returned_count,
+                "returned_count": returned_count,
+                "matched_count": matched_count,
+                "limit": limit,
+                "truncated": truncated,
                 "rows": [asdict(row) for row in rows],
             },
             ensure_ascii=False,
@@ -906,6 +1016,11 @@ def render_queue_query_rows(rows: list[QueueQueryRow], *, as_json: bool) -> str:
     if not rows:
         return "No matching queue rows."
     blocks: list[str] = []
+    if truncated:
+        blocks.append(
+            f"Showing {returned_count} of {matched_count} matching queue rows (limit={limit}). "
+            "Increase --limit or narrow filters for a complete result."
+        )
     for row in rows:
         lines = [
             _row_title(row),
@@ -966,8 +1081,8 @@ def run_queue_query(args: argparse.Namespace, *, config_path) -> None:
     resolved_args = apply_inferred_queue_query(args)
     cfg = load_config(config_path)
     rows = collect_queue_query_rows(cfg, queue_scope=resolved_args.queue_scope)
-    filtered = filter_queue_query_rows(resolved_args, rows)
-    print(render_queue_query_rows(filtered, as_json=resolved_args.json))
+    query_result = query_queue_rows(resolved_args, rows)
+    print(render_queue_query_rows(query_result.rows, as_json=resolved_args.json, query_result=query_result))
 
 
 if __name__ == "__main__":

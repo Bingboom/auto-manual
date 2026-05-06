@@ -185,6 +185,12 @@ export function createStateStore(filePath, { now = () => Date.now(), maxProcesse
       });
       return matched;
     },
+    async clearConversationContext({ chatId, senderId }) {
+      await withState((state) => {
+        delete state.conversationContexts[contextKey({ chatId, senderId })];
+        return state;
+      });
+    },
     async clearExpiredConversationContexts() {
       await withState((state) => {
         for (const [key, candidate] of Object.entries(state.conversationContexts)) {
