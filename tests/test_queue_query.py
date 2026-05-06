@@ -18,6 +18,7 @@ class TestQueueQuery(unittest.TestCase):
             "task_id_prefix": None,
             "document_id": None,
             "document_key": None,
+            "document_keys": None,
             "build_family": None,
             "lang": None,
             "langs": None,
@@ -282,9 +283,69 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual("", inferred.document_id)
         self.assertEqual("JE-1000F_EU", inferred.document_key)
+        self.assertEqual((), inferred.document_keys)
         self.assertEqual("JE-1000F_EU_Start Review", inferred.task_id)
         self.assertEqual("start-review", inferred.query_workflow_action)
         self.assertEqual("review-init", inferred.queue_scope)
+
+    def test_infer_queue_query_from_text_should_parse_multi_document_key_start_review_batch(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text(
+            "开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU"
+        )
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("", inferred.document_key)
+        self.assertEqual("", inferred.task_id)
+        self.assertEqual(("JE-1000F_CN", "JE-1000F_US", "JE-1000F_JP", "JE-1000F_EU"), inferred.document_keys)
+        self.assertEqual("start-review", inferred.query_workflow_action)
+        self.assertEqual("review-init", inferred.queue_scope)
+        self.assertTrue(inferred.allow_multiple)
+
+    def test_filter_queue_query_rows_should_match_multi_document_key_start_review_batch(self) -> None:
+        rows = [
+            self._row(
+                f"rec_{key.rsplit('_', 1)[1].lower()}",
+                queue_scope="review-init",
+                document_id="",
+                document_key=key,
+                build_family="",
+                lang="",
+                version="",
+                workflow_action="Start Review",
+                normalized_workflow_action="start_review",
+                result="",
+                review_status="NotStarted",
+                review_trigger_enabled=True,
+                build_trigger_requested=None,
+                immediate_build=None,
+            )
+            for key in ("JE-1000F_CN", "JE-1000F_US", "JE-1000F_JP", "JE-1000F_EU")
+        ]
+        rows.append(
+            self._row(
+                "rec_other",
+                queue_scope="review-init",
+                document_id="",
+                document_key="JE-2000E_CN",
+                build_family="",
+                lang="",
+                version="",
+                workflow_action="Start Review",
+                normalized_workflow_action="start_review",
+                result="",
+                review_status="NotStarted",
+                review_trigger_enabled=True,
+                build_trigger_requested=None,
+                immediate_build=None,
+            )
+        )
+
+        resolved_args = queue_query.apply_inferred_queue_query(
+            self._args(query_text="开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU")
+        )
+        filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
+
+        self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu"], [row.record_id for row in filtered])
 
     def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
         for query_text in [
