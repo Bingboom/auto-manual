@@ -1153,6 +1153,70 @@ class TestSyncData(unittest.TestCase):
         self.assertIn("--as", seen_commands[0])
         self.assertIn("bot", seen_commands[0])
 
+    def test_lark_cli_source_should_retry_drive_download_failures(self) -> None:
+        source = sync_data.LarkCliSource(cli_bin="lark-cli", identity="bot")
+        seen_commands: list[list[str]] = []
+
+        def fake_run(cmd: list[str], **_: object) -> mock.Mock:
+            seen_commands.append(cmd)
+            if len(seen_commands) < 3:
+                raise sync_data.subprocess.CalledProcessError(
+                    returncode=1,
+                    cmd=cmd,
+                    output="temporary stdout",
+                    stderr="temporary stderr",
+                )
+            return mock.Mock(stdout="")
+
+        with tempfile.TemporaryDirectory() as td, mock.patch(
+            "tools.sync_data.shutil.which",
+            return_value="/usr/local/bin/lark-cli",
+        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run), mock.patch(
+            "tools.sync_data.time.sleep"
+        ) as mock_sleep:
+            source.download_drive_file(
+                file_token="file_token_retry",
+                output_path=Path(td) / "icon.png",
+                overwrite=True,
+            )
+
+        self.assertEqual(3, len(seen_commands))
+        self.assertEqual([mock.call(1.0), mock.call(2.0)], mock_sleep.call_args_list)
+        self.assertIn("/open-apis/drive/v1/medias/file_token_retry/download", seen_commands[0])
+
+    def test_lark_cli_source_should_report_drive_download_stderr_after_retries(self) -> None:
+        source = sync_data.LarkCliSource(cli_bin="lark-cli", identity="bot")
+        seen_commands: list[list[str]] = []
+
+        def fake_run(cmd: list[str], **_: object) -> mock.Mock:
+            seen_commands.append(cmd)
+            raise sync_data.subprocess.CalledProcessError(
+                returncode=1,
+                cmd=cmd,
+                output="download stdout",
+                stderr="download permission denied",
+            )
+
+        with tempfile.TemporaryDirectory() as td, mock.patch(
+            "tools.sync_data.shutil.which",
+            return_value="/usr/local/bin/lark-cli",
+        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run), mock.patch(
+            "tools.sync_data.time.sleep"
+        ) as mock_sleep:
+            with self.assertRaisesRegex(RuntimeError, "Drive media download failed after 4 attempt") as ctx:
+                source.download_drive_file(
+                    file_token="file_token_denied",
+                    output_path=Path(td) / "icon.png",
+                    overwrite=True,
+                )
+
+        self.assertEqual(4, len(seen_commands))
+        self.assertEqual([mock.call(1.0), mock.call(2.0), mock.call(4.0)], mock_sleep.call_args_list)
+        message = str(ctx.exception)
+        self.assertIn("file_token_denied", message)
+        self.assertIn("download stdout", message)
+        self.assertIn("download permission denied", message)
+
 
 if __name__ == "__main__":
     unittest.main()
