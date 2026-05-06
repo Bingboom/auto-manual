@@ -179,6 +179,7 @@ class TestQueueResolveAction(unittest.TestCase):
             "task_id_prefix": None,
             "document_id": None,
             "document_key": None,
+            "document_keys": None,
             "build_family": None,
             "lang": None,
             "langs": None,
@@ -232,6 +233,32 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("rec_eu_review", resolution.row["record_id"])
         self.assertEqual("JE-1000F_EU_Start Review", resolution.selectors["task_id"])
         self.assertNotIn("document_key", resolution.selectors)
+
+    def test_resolve_queue_action_should_resolve_multi_document_key_start_review_batch(self) -> None:
+        rows = [
+            _document_key_review_row(
+                record_id=f"rec_{key.rsplit('_', 1)[1].lower()}",
+                document_key=key,
+            )
+            for key in ("JE-1000F_CN", "JE-1000F_US", "JE-1000F_JP", "JE-1000F_EU")
+        ]
+        rows.append(_document_key_review_row(record_id="rec_other", document_key="JE-2000E_CN"))
+
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU"),
+            rows,
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual("start_review", resolution.action_name)
+        self.assertEqual("start-review", resolution.dispatch_command)
+        self.assertEqual(4, resolution.matched_count)
+        self.assertTrue(resolution.ready)
+        self.assertEqual(
+            "JE-1000F_CN,JE-1000F_US,JE-1000F_JP,JE-1000F_EU",
+            resolution.selectors["document_keys"],
+        )
+        self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu"], [row.record_id for row in resolution.candidates])
 
     def test_resolve_queue_action_should_require_document_key_for_start_review(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(

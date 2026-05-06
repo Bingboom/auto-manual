@@ -154,6 +154,7 @@ def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
         "task_id_prefix",
         "document_id",
         "document_key",
+        "document_keys",
         "build_family",
         "lang",
         "langs",
@@ -166,7 +167,11 @@ def _compact_selector_payload(args: argparse.Namespace) -> dict[str, str]:
     )
     payload: dict[str, str] = {}
     for field_name in fields:
-        value = str(getattr(args, field_name, "") or "").strip()
+        raw_value = getattr(args, field_name, "") or ""
+        if isinstance(raw_value, (list, tuple, set)):
+            value = ",".join(str(item).strip() for item in raw_value if str(item).strip())
+        else:
+            value = str(raw_value).strip()
         if value:
             payload[field_name] = value
     return payload

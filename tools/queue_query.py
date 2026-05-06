@@ -114,6 +114,7 @@ class InferredQueueQuery:
     task_id_prefix: str = ""
     document_id: str = ""
     document_key: str = ""
+    document_keys: tuple[str, ...] = ()
     build_family: str = ""
     lang: str = ""
     langs: tuple[str, ...] = ()
@@ -450,6 +451,23 @@ def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
     return "", "", "", ""
 
 
+def _looks_like_document_key_token(token: str) -> bool:
+    parts = token.split("_")
+    return len(parts) == 2 and _MODEL_TOKEN_RE.match(parts[0]) is not None and _REGION_TOKEN_RE.match(parts[1]) is not None
+
+
+def _infer_document_key_tokens(text: str) -> tuple[str, ...]:
+    keys: list[str] = []
+    for token in _UNDERSCORE_TOKEN_RE.findall(text):
+        if not _looks_like_document_key_token(token):
+            continue
+        model, region = token.split("_", 1)
+        key = f"{model}_{region.upper()}"
+        if key not in keys:
+            keys.append(key)
+    return tuple(keys)
+
+
 def _infer_model_token(text: str) -> str:
     for token in _query_tokens(text):
         if "_" in token:
@@ -659,6 +677,18 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     market_group = _infer_market_group(text)
     task_id_prefix = ""
     allow_multiple = _infer_allow_multiple(text)
+    document_keys: tuple[str, ...] = ()
+    if workflow_action == "start-review":
+        inferred_document_keys = _infer_document_key_tokens(text)
+        if len(inferred_document_keys) > 1:
+            document_keys = inferred_document_keys
+            document_id = ""
+            document_key = ""
+            lang = ""
+            document_version = ""
+            task_id = ""
+            task_document_id = ""
+            allow_multiple = True
     if workflow_action == "build-draft-package" and allow_multiple:
         if document_id:
             model_token, region, version = _split_region_version_document_id(document_id)
@@ -697,6 +727,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         task_id_prefix=task_id_prefix,
         document_id=document_id,
         document_key=document_key,
+        document_keys=document_keys,
         build_family=build_family,
         lang=lang,
         langs=inferred_langs,
@@ -728,6 +759,8 @@ def apply_inferred_queue_query(args: argparse.Namespace) -> argparse.Namespace:
         and not (inferred.task_id and inferred.query_workflow_action == "start-review")
     ):
         merged.document_key = inferred.document_key
+    if not getattr(merged, "document_keys", None) and inferred.document_keys:
+        merged.document_keys = ",".join(inferred.document_keys)
     if not getattr(merged, "build_family", None) and inferred.build_family:
         merged.build_family = inferred.build_family
     if not getattr(merged, "lang", None) and inferred.lang:
@@ -770,6 +803,24 @@ def _match_contains(actual: str, expected: str | None) -> bool:
     if not expected:
         return True
     return expected.strip().lower() in actual.strip().lower()
+
+
+def _normalize_document_key_filters(value: Any) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, (list, tuple, set)):
+        raw_parts = [str(item or "") for item in value]
+    else:
+        raw_parts = re.split(r"[,，/、\s]+", str(value or ""))
+    keys: list[str] = []
+    for raw_part in raw_parts:
+        part = raw_part.strip()
+        if not part:
+            continue
+        normalized = part.upper()
+        if normalized not in keys:
+            keys.append(normalized)
+    return tuple(keys)
 
 
 def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
@@ -886,7 +937,11 @@ def collect_queue_query_rows(cfg: dict[str, Any], *, queue_scope: str) -> list[Q
 
 def _effective_queue_query_limit(args: argparse.Namespace, normalized_action: str | None) -> int:
     limit = max(int(getattr(args, "limit", _DEFAULT_QUEUE_QUERY_LIMIT) or _DEFAULT_QUEUE_QUERY_LIMIT), 1)
-    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"} and limit == _DEFAULT_QUEUE_QUERY_LIMIT:
+    if (
+        getattr(args, "allow_multiple", False)
+        and normalized_action in {"draft", "publish", "start_review"}
+        and limit == _DEFAULT_QUEUE_QUERY_LIMIT
+    ):
         return 1000
     return limit
 
@@ -898,6 +953,7 @@ def _matches_queue_query_row(
     normalized_action: str | None,
     lang_filters: tuple[str, ...],
 ) -> bool:
+    document_keys = _normalize_document_key_filters(getattr(args, "document_keys", None))
     if getattr(args, "record_id", None) and row.record_id != args.record_id:
         return False
     if getattr(args, "task_id", None) and _normalize_task_id(_row_task_id(row)) != _normalize_task_id(args.task_id):
@@ -907,6 +963,8 @@ def _matches_queue_query_row(
     if not _match_exact(row.document_id, getattr(args, "document_id", None)):
         return False
     if not _match_exact(row.document_key, getattr(args, "document_key", None)):
+        return False
+    if document_keys and row.document_key.strip().upper() not in document_keys:
         return False
     if not _match_exact(row.build_family, getattr(args, "build_family", None)):
         return False
