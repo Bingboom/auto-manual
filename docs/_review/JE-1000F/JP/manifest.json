@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-05-06T15:27:43.103389+00:00",
+  "git_sha": "dd2266761f8cae80aa078b8ec1a44a5c8a7eadc3",
+  "model": "JE-1000F",
+  "region": "JP",
+  "lang": null,
+  "runtime_bundle_dir": "docs/_build/JE-1000F/JP/rst",
+  "review_dir": "docs/_review/JE-1000F/JP",
+  "index_path": "docs/_review/JE-1000F/JP/index.rst",
+  "page_files": [
+    "docs/_review/JE-1000F/JP/page/01_meaning_of_symbols.rst",
+    "docs/_review/JE-1000F/JP/page/02_whats_in_the_box.rst",
+    "docs/_review/JE-1000F/JP/page/03_product_overview_placeholder.rst",
+    "docs/_review/JE-1000F/JP/page/05_operation_guide_placeholder.rst",
+    "docs/_review/JE-1000F/JP/page/06_ups_mode.rst",
+    "docs/_review/JE-1000F/JP/page/08_charging_methods.rst",
+    "docs/_review/JE-1000F/JP/page/10_troubleshooting.rst",
+    "docs/_review/JE-1000F/JP/page/11_warranty.rst",
+    "docs/_review/JE-1000F/JP/page/12_app_setup_placeholder.rst",
+    "docs/_review/JE-1000F/JP/page/charging.rst",
+    "docs/_review/JE-1000F/JP/page/cover_jp.rst",
+    "docs/_review/JE-1000F/JP/page/lcd_icons_ja.rst",
+    "docs/_review/JE-1000F/JP/page/safety_ja.rst",
+    "docs/_review/JE-1000F/JP/page/spec_ja.rst"
+  ],
+  "generated_files": [
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/draft/03_product_overview_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/draft/05_operation_guide_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/draft/12_app_setup_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/lcd_icons_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/spec_ja.rst"
+  ],
+  "override_files": [
+    "docs/_review/JE-1000F/JP/overrides/README.md"
+  ],
+  "page_manifest": "docs/manifests/manual_jp.yaml",
+  "recipe_ids": [
+    "03_product_overview",
+    "05_operation_guide",
+    "12_app_setup"
+  ],
+  "snippet_ids": [],
+  "spec_master": {
+    "path": "data/phase2/Spec_Master.csv",
+    "sha256": "c19bd9f4bc702a0a9996a7ee2cf660a6b35b16975fa2d2f821f834cf3a120a95"
+  }
+}
