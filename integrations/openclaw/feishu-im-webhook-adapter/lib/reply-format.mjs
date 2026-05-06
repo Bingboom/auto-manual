@@ -176,3 +176,13 @@ export function formatPublishCompletedButUnreadableReply(localProfile = null) {
 export function formatRunCompletedButUnreadableReply(localProfile = null) {
   return localReplyPhrase(localProfile, "runCompletedButUnreadable", "执行已结束，但当前未能重新读取最新队列行。");
 }
+
+export function formatRecordNoLongerAvailableReply(row = {}, localProfile = null) {
+  const prefix = localReplyPhrase(
+    localProfile,
+    "recordNoLongerAvailable",
+    "我重新查了 Feishu 多维表，这条记录现在查不到；旧会话记忆已忽略。"
+  );
+  const recordLine = row?.record_id ? `record_id: ${row.record_id}` : "";
+  return [prefix, recordLine].filter(Boolean).join("\n");
+}

@@ -150,8 +150,10 @@ queue table. This lets follow-ups such as `我来补跑英语和法语` target t
 JE-1000F/EU/version context without accidentally rebuilding the old row.
 
 Batch Draft requests are intentionally opt-in. The resolver only returns a
-batch when the message carries a broad selector such as `所有` / `全部` / `all`
+build batch when the message carries a broad selector such as `所有` / `全部` / `all`
 and still narrows to a bounded queue set, for example `JE-1000F` + `欧规`.
+Multi-row status queries such as `当前所有已构建文档链接` are handled as read-only
+status batches and are never dispatched as builds.
 Both `输出JE-1000F的所有欧规说明书文案` and `构建JE-1000F的所有欧规说明书文案`
 are treated as batch draft-build requests.
 That phrase becomes a `Task_id` prefix such as `JE-1000F_EU_`; only rows whose
@@ -162,6 +164,9 @@ then stores a short-lived batch context containing `request_id`, `accepted_at`,
 `action_name`, `queryText`, and the launched rows. Batch status follow-ups such
 as `这个好了没` re-read each stored `record_id` with `--fresh-since accepted_at`
 and classify rows as fresh success/failure, stale result, or writeback pending.
+If Feishu no longer returns a remembered `record_id`, the adapter reports that
+row as not found, clears the stale context when no live rows remain, and does not
+replay the old row payload from local memory.
 The GitHub draft workflow scopes its
 concurrency group by `queue_record_id`, so multiple rows from one batch do not
 cancel each other while they are pending.
@@ -174,6 +179,9 @@ included in Document_link JSON rows as `freshness_status`, `result_built_at`,
 `result_is_fresh`, and `build_started_at`. When a previous failed build remains
 in `构建结果` after a new dispatch, the adapter reports `stale_result` or
 `writeback_pending` instead of presenting that old failure as the current run.
+The underlying `queue-query --json` response also includes `matched_count`,
+`returned_count`, `limit`, and `truncated`, so broad table reads expose whether a
+default limit hid rows that still exist in Feishu.
 
 ## ECS systemd
 

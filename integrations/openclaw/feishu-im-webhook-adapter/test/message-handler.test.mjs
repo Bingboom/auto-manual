@@ -391,6 +391,179 @@ test("message handler answers batch status follow-ups from stored rows", async (
   assert.match(replies[0].text, /fresh_success/);
 });
 
+test("message handler does not replay deleted rows from batch context", async () => {
+  const replies = [];
+  let cleared = false;
+  const stateStore = {
+    ...createMemoryStateStore(),
+    async readConversationContext() {
+      return {
+        actionName: "build_draft_package",
+        acceptedAt: "2026-05-04T10:00:00Z",
+        rows: [
+          { record_id: "rec_deleted", queue_scope: "document-link", document_id: "JE-1000F_EU_de_1.0" },
+          { record_id: "rec_deleted_2", queue_scope: "document-link", document_id: "JE-1000F_EU_it_1.0" },
+        ],
+      };
+    },
+    async rememberConversationContext() {
+      throw new Error("deleted context should not be remembered again");
+    },
+    async clearConversationContext() {
+      cleared = true;
+    },
+    async clearExpiredConversationContexts() {},
+  };
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore,
+    repoControl: {
+      async queryRow() {
+        return { rows: [] };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(cleared, true);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /matched_count: 0/);
+  assert.match(replies[0].text, /Feishu row not found/);
+  assert.doesNotMatch(replies[0].text, /JE-1000F_EU_de_1\.0/);
+});
+
+test("message handler does not fall back to a stale single row when fresh lookup is missing", async () => {
+  const replies = [];
+  let cleared = false;
+  const stateStore = {
+    ...createMemoryStateStore(),
+    async readConversationContext() {
+      return {
+        actionName: "build_draft_package",
+        acceptedAt: "2026-05-04T10:00:00Z",
+        row: { record_id: "rec_deleted", queue_scope: "document-link" },
+      };
+    },
+    async rememberConversationContext() {
+      throw new Error("missing row should not be remembered again");
+    },
+    async clearConversationContext() {
+      cleared = true;
+    },
+    async clearExpiredConversationContexts() {},
+  };
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore,
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_deleted",
+            queue_scope: "document-link",
+            document_id: "JE-1000F_EU_de_1.0",
+            result: "SUCCESS",
+          },
+        };
+      },
+      async queryRow() {
+        return { rows: [] };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(cleared, true);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /重新查了 Feishu 多维表/);
+  assert.doesNotMatch(replies[0].text, /SUCCESS/);
+});
+
+test("message handler formats multi-row query status without dispatching builds", async () => {
+  const replies = [];
+  let executed = false;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved_batch",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          matched_count: 2,
+          candidates: [
+            {
+              record_id: "rec_de",
+              queue_scope: "document-link",
+              document_id: "JE-1000F_EU_de_1.0",
+              workflow_action: "Build Draft Package",
+              result: "SUCCESS",
+              document_link: "https://example.com/de.docx",
+            },
+            {
+              record_id: "rec_it",
+              queue_scope: "document-link",
+              document_id: "JE-1000F_EU_it_1.0",
+              workflow_action: "Build Draft Package",
+              result: "SUCCESS",
+              document_link: "https://example.com/it.docx",
+            },
+          ],
+        };
+      },
+      async executeResolvedAction() {
+        executed = true;
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("当前所有已构建文档链接"));
+  await result.backgroundTask();
+
+  assert.equal(executed, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /matched_count: 2/);
+  assert.match(replies[0].text, /https:\/\/example.com\/de.docx/);
+});
+
 test("message handler sends stage reactions when enabled", async () => {
   const reactions = [];
   const replies = [];

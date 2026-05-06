@@ -35,6 +35,32 @@ class TestQueueQuery(unittest.TestCase):
         payload.update(overrides)
         return argparse.Namespace(**payload)
 
+    def _row(self, record_id: str, **overrides) -> queue_query.QueueQueryRow:
+        payload = {
+            "queue_scope": "document-link",
+            "record_id": record_id,
+            "document_id": f"JE-1000F_EU_en_1.{record_id[-1:]}",
+            "document_key": "JE-1000F_EU_en",
+            "build_family": "eu-en",
+            "lang": "en",
+            "version": "1.0",
+            "workflow_action": "Build Draft Package",
+            "normalized_workflow_action": "draft",
+            "git_ref": "codex/review",
+            "document_link": "https://example.com/doc.docx",
+            "document_directory": "",
+            "result": "SUCCESS",
+            "pr_url": "",
+            "review_status": "",
+            "review_trigger_enabled": None,
+            "build_trigger_requested": True,
+            "immediate_build": True,
+            "initial_result": "",
+            "remarks": "",
+        }
+        payload.update(overrides)
+        return queue_query.QueueQueryRow(**payload)
+
     def test_filter_queue_query_rows_should_match_document_link_filters(self) -> None:
         rows = [
             queue_query.QueueQueryRow(
@@ -780,6 +806,18 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("success", inferred.result_contains)
         self.assertTrue(inferred.latest_per_document_key)
         self.assertEqual("document-link", inferred.queue_scope)
+        self.assertEqual("", inferred.query_workflow_action)
+
+    def test_apply_inferred_queue_query_should_treat_built_link_inventory_as_full_success_list(self) -> None:
+        resolved = queue_query.apply_inferred_queue_query(
+            self._args(query_text="当前所有已构建文档链接")
+        )
+
+        self.assertEqual("document-link", resolved.queue_scope)
+        self.assertEqual("success", resolved.result_contains)
+        self.assertFalse(resolved.latest_per_document_key)
+        self.assertFalse(resolved.query_workflow_action)
+        self.assertEqual(200, resolved.limit)
 
     def test_apply_inferred_queue_query_should_fill_record_id_from_text(self) -> None:
         resolved = queue_query.apply_inferred_queue_query(
@@ -938,7 +976,24 @@ class TestQueueQuery(unittest.TestCase):
         payload = json.loads(rendered)
 
         self.assertEqual(1, payload["count"])
+        self.assertEqual(1, payload["returned_count"])
+        self.assertEqual(1, payload["matched_count"])
+        self.assertFalse(payload["truncated"])
         self.assertEqual("rec_draft", payload["rows"][0]["record_id"])
+
+    def test_query_queue_rows_should_report_truncation_metadata(self) -> None:
+        rows = [self._row(f"rec_{index}") for index in range(12)]
+
+        result = queue_query.query_queue_rows(self._args(limit=10), rows)
+        rendered = queue_query.render_queue_query_rows(result.rows, as_json=True, query_result=result)
+        payload = json.loads(rendered)
+
+        self.assertEqual(12, result.matched_count)
+        self.assertEqual(10, result.returned_count)
+        self.assertTrue(result.truncated)
+        self.assertEqual(12, payload["matched_count"])
+        self.assertEqual(10, payload["returned_count"])
+        self.assertTrue(payload["truncated"])
 
     def test_build_review_init_rows_should_skip_non_start_review_actions(self) -> None:
         cfg = {}

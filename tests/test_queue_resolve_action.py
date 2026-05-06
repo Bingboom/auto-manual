@@ -287,6 +287,18 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("query_status", resolution.action_name)
         self.assertIsNone(resolution.dispatch_command)
 
+    def test_resolve_queue_action_should_return_batch_for_built_link_inventory(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="当前所有已构建文档链接"),
+            [_draft_row(), _publish_row()],
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual("query_status", resolution.action_name)
+        self.assertEqual(2, resolution.matched_count)
+        self.assertIsNone(resolution.dispatch_command)
+        self.assertEqual("https://example.com/doc.docx", resolution.candidates[0].document_link)
+
     def test_resolve_queue_action_should_keep_direct_draft_command_executable(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
             self._args(query_text="帮我生成 JE-1000F US en 0.3 草稿包"),

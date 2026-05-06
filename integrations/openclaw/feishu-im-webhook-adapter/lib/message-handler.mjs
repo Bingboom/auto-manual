@@ -19,6 +19,7 @@ import {
   formatPendingPublishReply,
   formatPublishCompletedButUnreadableReply,
   formatPublishConfirmationAcceptedReply,
+  formatRecordNoLongerAvailableReply,
   formatResolutionReply,
   formatRunCompletedButUnreadableReply,
 } from "./reply-format.mjs";
@@ -68,6 +69,16 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     });
   }
 
+  async function forgetConversationContext(messageEvent) {
+    if (typeof stateStore.clearConversationContext !== "function") {
+      return;
+    }
+    await stateStore.clearConversationContext({
+      chatId: messageEvent.chatId,
+      senderId: messageEvent.senderId,
+    });
+  }
+
   async function queryContextRows({ rows, freshSince }) {
     const latestRows = [];
     const failures = [];
@@ -79,7 +90,14 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           freshSince,
         });
         const latestRow = Array.isArray(latest?.rows) ? latest.rows[0] : null;
-        latestRows.push(latestRow || row);
+        if (latestRow) {
+          latestRows.push(latestRow);
+          continue;
+        }
+        failures.push({
+          record_id: row.record_id,
+          message: "Feishu row not found; ignored stored context because the row may have been deleted or moved.",
+        });
       } catch (error) {
         failures.push({
           record_id: row.record_id,
@@ -184,13 +202,17 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         rows: normalizedMessage.contextRows,
         freshSince: conversationContext?.acceptedAt || "",
       });
-      await rememberConversationContext(messageEvent, {
-        rows: latest.rows,
-        queryText: normalizedMessage.normalizedText,
-        actionName: conversationContext?.actionName || "query_status",
-        acceptedAt: conversationContext?.acceptedAt || "",
-        requestId: conversationContext?.requestId || "",
-      });
+      if (latest.rows.length) {
+        await rememberConversationContext(messageEvent, {
+          rows: latest.rows,
+          queryText: normalizedMessage.normalizedText,
+          actionName: conversationContext?.actionName || "query_status",
+          acceptedAt: conversationContext?.acceptedAt || "",
+          requestId: conversationContext?.requestId || "",
+        });
+      } else {
+        await forgetConversationContext(messageEvent);
+      }
       await react(messageEvent.messageId, latest.failures.length ? "error" : "completed");
       await feishuClient.replyTextMessage(
         messageEvent.messageId,
@@ -238,6 +260,32 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       return;
     }
 
+    if (resolution.resolution_status === "resolved_batch" && resolution.action_name === "query_status") {
+      const rows = Array.isArray(resolution.candidates) ? resolution.candidates : [];
+      if (rows.length) {
+        await rememberConversationContext(messageEvent, {
+          rows,
+          queryText: normalizedMessage.normalizedText,
+          actionName: resolution.action_name,
+          acceptedAt: conversationContext?.acceptedAt || "",
+          requestId: conversationContext?.requestId || "",
+        });
+      }
+      await react(messageEvent.messageId, "completed");
+      await feishuClient.replyTextMessage(
+        messageEvent.messageId,
+        formatBatchStatusReply(
+          {
+            rows,
+            failures: [],
+            heading: "查到这些 Feishu 当前队列行：",
+          },
+          localProfile
+        )
+      );
+      return;
+    }
+
     if (resolution.action_name === "query_status") {
       let row = resolution.row || {};
       if (conversationContext?.acceptedAt && row?.record_id) {
@@ -246,7 +294,14 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           recordId: row.record_id,
           freshSince: conversationContext.acceptedAt,
         });
-        row = Array.isArray(latest?.rows) ? latest.rows[0] || row : row;
+        const latestRow = Array.isArray(latest?.rows) ? latest.rows[0] : null;
+        if (!latestRow) {
+          await forgetConversationContext(messageEvent);
+          await react(messageEvent.messageId, "unresolved");
+          await feishuClient.replyTextMessage(messageEvent.messageId, formatRecordNoLongerAvailableReply(row, localProfile));
+          return;
+        }
+        row = latestRow;
       }
       await rememberConversationContext(messageEvent, {
         row,

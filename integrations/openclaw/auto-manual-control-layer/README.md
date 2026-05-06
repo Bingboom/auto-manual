@@ -20,6 +20,9 @@ Dispatch replies include `accepted_at`, `run_id`, and `run` when GitHub exposes
 the workflow run. `queue-execute` passes that `accepted_at` back into
 `queue-query --fresh-since` so OpenClaw can tell whether the Feishu row writeback
 belongs to the current dispatch or is an older result from a previous run.
+`queue-query --json` also returns `matched_count`, `returned_count`, `limit`, and
+`truncated`, which lets BlockClaw distinguish a complete queue inventory from a
+default-limited preview.
 Dispatch no longer hard-fails just because the local repo checkout has not run
 `npm install` for this package; metadata artifact parsing is treated as an
 optional status enrichment step instead of a dispatch-time requirement.
