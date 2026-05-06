@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any, Callable
 
 from tools.document_link_queue import looks_like_explicit_document_key
@@ -260,38 +259,23 @@ def review_start_record_key(record: ReviewStartRecord) -> str:
     return record.record_id
 
 
-def queue_by_document_key(cfg: dict[str, Any]) -> bool:
-    build_cfg_raw = cfg.get("build", {})
-    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    return is_checkbox_enabled(build_cfg.get("queue_by_document_key"))
-
-
-def review_start_group_key(record: ReviewStartRecord, *, cfg: dict[str, Any]) -> str:
-    if queue_by_document_key(cfg):
-        if looks_like_explicit_document_key(record.document_key):
-            return record.document_key.strip().upper()
-        return record.record_id
+def review_start_group_key(record: ReviewStartRecord) -> str:
+    if looks_like_explicit_document_key(record.document_key):
+        return record.document_key.strip().upper()
     return record.record_id
 
 
 def group_review_start_records(
     records: list[ReviewStartRecord],
     *,
-    resolve_target_for_review_start: Callable[[ReviewStartRecord], tuple[str, str]],
-    resolve_config_path_for_task: Callable[..., Path],
-    load_config: Callable[[Path], dict[str, Any]],
+    resolve_target_for_review_start: Callable[[ReviewStartRecord], tuple[str, str]] | None = None,
+    resolve_config_path_for_task: Callable[..., Any] | None = None,
+    load_config: Callable[..., dict[str, Any]] | None = None,
 ) -> list[list[ReviewStartRecord]]:
     grouped: list[list[ReviewStartRecord]] = []
     index_by_key: dict[str, int] = {}
     for record in records:
-        _model, region = resolve_target_for_review_start(record)
-        config_path = resolve_config_path_for_task(
-            region=region,
-            lang=record.lang,
-            build_family=record.build_family,
-        )
-        cfg = load_config(config_path)
-        key = review_start_group_key(record, cfg=cfg)
+        key = review_start_group_key(record)
         existing_index = index_by_key.get(key)
         if existing_index is None:
             index_by_key[key] = len(grouped)

@@ -153,6 +153,66 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
     return _generate_review_branch_name_impl(record)
 
 
+def _resolve_review_start_region_config_path(*, region: str) -> Path | None:
+    normalized_region = str(region or "").strip().upper()
+    if not normalized_region:
+        return None
+
+    candidates: list[tuple[int, Path]] = []
+    for config_path in sorted(ROOT.glob("config*.yaml")):
+        try:
+            cfg = load_config(config_path)
+        except RuntimeError:
+            continue
+        build_cfg_raw = cfg.get("build", {})
+        build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+        default_region = str(build_cfg.get("default_region") or "").strip().upper()
+        if default_region != normalized_region:
+            continue
+        languages_raw = build_cfg.get("languages", [])
+        if isinstance(languages_raw, (list, tuple)):
+            languages = [str(item).strip().lower() for item in languages_raw if str(item).strip()]
+        else:
+            languages = [str(languages_raw).strip().lower()] if str(languages_raw).strip() else []
+        score = 0
+        if bool(build_cfg.get("queue_by_document_key")):
+            score += 100
+        if len(languages) == 1:
+            score += 10
+        if not bool(build_cfg.get("include_lang_in_output_path")):
+            score += 5
+        if normalized_region.lower() in config_path.name.lower():
+            score += 1
+        candidates.append((score, config_path))
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: (-item[0], item[1].name))
+    best_score = candidates[0][0]
+    best_paths = [path for score, path in candidates if score == best_score]
+    if len(best_paths) > 1:
+        names = ", ".join(path.name for path in best_paths)
+        raise RuntimeError(
+            f"Review-start config resolution is ambiguous for region={normalized_region!r}: {names}"
+        )
+    return candidates[0][1]
+
+
+def _fallback_review_start_config_path(
+    *,
+    region: str,
+    lang: str | None,
+    build_family: str | None,
+    exc: RuntimeError,
+) -> Path:
+    if str(lang or "").strip() or str(build_family or "").strip():
+        raise exc
+    fallback = _resolve_review_start_region_config_path(region=region)
+    if fallback is None:
+        raise exc
+    return fallback
+
+
 def _resolve_review_start_config_path(*, region: str, lang: str | None, build_family: str | None) -> Path:
     try:
         return resolve_config_path_for_task(
@@ -162,16 +222,38 @@ def _resolve_review_start_config_path(*, region: str, lang: str | None, build_fa
             build_family=build_family,
             config_loader=load_config,
         )
+    except RuntimeError as exc:
+        return _fallback_review_start_config_path(
+            region=region,
+            lang=lang,
+            build_family=build_family,
+            exc=exc,
+        )
     except TypeError as exc:
         message = str(exc)
         if not any(name in message for name in ("repo_root", "config_loader", "build_family")):
             raise
     try:
         return resolve_config_path_for_task(region=region, lang=lang, build_family=build_family)
+    except RuntimeError as exc:
+        return _fallback_review_start_config_path(
+            region=region,
+            lang=lang,
+            build_family=build_family,
+            exc=exc,
+        )
     except TypeError as exc:
         if "build_family" not in str(exc):
             raise
-        return resolve_config_path_for_task(region=region, lang=lang)
+        try:
+            return resolve_config_path_for_task(region=region, lang=lang)
+        except RuntimeError as runtime_exc:
+            return _fallback_review_start_config_path(
+                region=region,
+                lang=lang,
+                build_family=build_family,
+                exc=runtime_exc,
+            )
 
 
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
@@ -183,12 +265,7 @@ def review_start_record_key(record: ReviewStartRecord) -> str:
 
 
 def group_review_start_records(records: list[ReviewStartRecord]) -> list[list[ReviewStartRecord]]:
-    return _group_review_start_records_impl(
-        records,
-        resolve_target_for_review_start=resolve_target_for_review_start,
-        resolve_config_path_for_task=_resolve_review_start_config_path,
-        load_config=load_config,
-    )
+    return _group_review_start_records_impl(records)
 
 
 def review_start_group_build_family(records: list[ReviewStartRecord]) -> str:
