@@ -339,53 +339,49 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             branch_name="codex/review-je-1000f-jp",
         )
 
-    def test_group_review_start_records_should_collapse_same_document_key_for_merged_family(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
-            (root / "config.us.yaml").write_text("build: {}\n", encoding="utf-8")
-            cfgs = {
-                "config.us.yaml": {"build": {"queue_by_document_key": True}},
-            }
-            records = [
-                process_review_start_queue.ReviewStartRecord(
-                    record_id="rec_en",
-                    document_id="JE-1000F_US_en_0.1",
-                    document_key="JE-1000F_US",
-                    build_family="us-merged",
-                    version="0.1",
-                    lang="",
-                    review_status="NotStarted",
-                    review_trigger_value=True,
-                    git_ref="",
-                    pr_url="",
-                ),
-                process_review_start_queue.ReviewStartRecord(
-                    record_id="rec_fr",
-                    document_id="JE-1000F_US_fr_0.1",
-                    document_key="JE-1000F_US",
-                    build_family="us-merged",
-                    version="0.1",
-                    lang="",
-                    review_status="NotStarted",
-                    review_trigger_value=True,
-                    git_ref="",
-                    pr_url="",
-                ),
-            ]
+    def test_group_review_start_records_should_collapse_same_document_key_without_config_lookup(self) -> None:
+        records = [
+            process_review_start_queue.ReviewStartRecord(
+                record_id="rec_en",
+                document_id="JE-1000F_US_en_0.1",
+                document_key="JE-1000F_US",
+                build_family="us-merged",
+                version="0.1",
+                lang="",
+                review_status="NotStarted",
+                review_trigger_value=True,
+                git_ref="",
+                pr_url="",
+            ),
+            process_review_start_queue.ReviewStartRecord(
+                record_id="rec_fr",
+                document_id="JE-1000F_US_fr_0.1",
+                document_key="JE-1000F_US",
+                build_family="us-merged",
+                version="0.1",
+                lang="",
+                review_status="NotStarted",
+                review_trigger_value=True,
+                git_ref="",
+                pr_url="",
+            ),
+        ]
 
-            with mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                side_effect=lambda *, region, lang, build_family=None: root / "config.us.yaml",
-            ), mock.patch.object(
-                process_review_start_queue,
-                "load_config",
-                side_effect=lambda path: cfgs[path.name],
-            ):
-                grouped = process_review_start_queue.group_review_start_records(records)
+        with mock.patch.object(
+            process_review_start_queue,
+            "resolve_config_path_for_task",
+            side_effect=AssertionError("review-start grouping must not resolve config"),
+        ) as mock_resolve_config_path, mock.patch.object(
+            process_review_start_queue,
+            "load_config",
+            side_effect=AssertionError("review-start grouping must not load config"),
+        ) as mock_load_config:
+            grouped = process_review_start_queue.group_review_start_records(records)
 
         self.assertEqual(1, len(grouped))
         self.assertEqual(["rec_en", "rec_fr"], [record.record_id for record in grouped[0]])
+        mock_resolve_config_path.assert_not_called()
+        mock_load_config.assert_not_called()
 
     def test_review_start_record_key_should_ignore_link_style_document_key_for_display(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
@@ -404,103 +400,93 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual("JE-1000F_US", process_review_start_queue.review_start_record_key(record))
 
     def test_group_review_start_records_should_not_collapse_link_style_document_key_rows(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
-            (root / "config.us.yaml").write_text("build: {}\n", encoding="utf-8")
-            cfgs = {
-                "config.us.yaml": {"build": {"queue_by_document_key": True}},
-            }
-            records = [
-                process_review_start_queue.ReviewStartRecord(
-                    record_id="rec_en_1",
-                    document_id="JE-1000F_US_en_0.1",
-                    document_key='{"id":"recvfw0zG4PzxS"}',
-                    build_family="us-en",
-                    version="0.1",
-                    lang="en",
-                    review_status="NotStarted",
-                    review_trigger_value=True,
-                    git_ref="",
-                    pr_url="",
-                ),
-                process_review_start_queue.ReviewStartRecord(
-                    record_id="rec_en_2",
-                    document_id="JE-1000F_US_en_0.1",
-                    document_key='{"id":"recvfw0zG4PzxS"}',
-                    build_family="us-en",
-                    version="0.1",
-                    lang="en",
-                    review_status="NotStarted",
-                    review_trigger_value=True,
-                    git_ref="",
-                    pr_url="",
-                ),
-            ]
+        records = [
+            process_review_start_queue.ReviewStartRecord(
+                record_id="rec_en_1",
+                document_id="JE-1000F_US_en_0.1",
+                document_key='{"id":"recvfw0zG4PzxS"}',
+                build_family="us-en",
+                version="0.1",
+                lang="en",
+                review_status="NotStarted",
+                review_trigger_value=True,
+                git_ref="",
+                pr_url="",
+            ),
+            process_review_start_queue.ReviewStartRecord(
+                record_id="rec_en_2",
+                document_id="JE-1000F_US_en_0.1",
+                document_key='{"id":"recvfw0zG4PzxS"}',
+                build_family="us-en",
+                version="0.1",
+                lang="en",
+                review_status="NotStarted",
+                review_trigger_value=True,
+                git_ref="",
+                pr_url="",
+            ),
+        ]
 
-            with mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                side_effect=lambda *, region, lang, build_family=None: root / "config.us.yaml",
-            ), mock.patch.object(
-                process_review_start_queue,
-                "load_config",
-                side_effect=lambda path: cfgs[path.name],
-            ):
-                grouped = process_review_start_queue.group_review_start_records(records)
+        with mock.patch.object(
+            process_review_start_queue,
+            "resolve_config_path_for_task",
+            side_effect=AssertionError("review-start grouping must not resolve config"),
+        ) as mock_resolve_config_path, mock.patch.object(
+            process_review_start_queue,
+            "load_config",
+            side_effect=AssertionError("review-start grouping must not load config"),
+        ) as mock_load_config:
+            grouped = process_review_start_queue.group_review_start_records(records)
 
         self.assertEqual(2, len(grouped))
         self.assertEqual(["rec_en_1"], [record.record_id for record in grouped[0]])
         self.assertEqual(["rec_en_2"], [record.record_id for record in grouped[1]])
+        mock_resolve_config_path.assert_not_called()
+        mock_load_config.assert_not_called()
 
-    def test_group_review_start_records_should_not_collapse_same_document_key_for_single_language_family(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
-            (root / "config.us-en.yaml").write_text("build: {}\n", encoding="utf-8")
-            cfgs = {
-                "config.us-en.yaml": {"build": {"queue_by_document_key": False}},
-            }
-            records = [
-                process_review_start_queue.ReviewStartRecord(
-                    record_id="rec_en_1",
-                    document_id="JE-1000F_US_en_0.1",
-                    document_key="JE-1000F_US",
-                    build_family="",
-                    version="0.1",
-                    lang="en",
-                    review_status="NotStarted",
-                    review_trigger_value=True,
-                    git_ref="",
-                    pr_url="",
-                ),
-                process_review_start_queue.ReviewStartRecord(
-                    record_id="rec_en_2",
-                    document_id="JE-1000F_US_en_0.1",
-                    document_key="JE-1000F_US",
-                    build_family="",
-                    version="0.1",
-                    lang="en",
-                    review_status="NotStarted",
-                    review_trigger_value=True,
-                    git_ref="",
-                    pr_url="",
-                ),
-            ]
+    def test_group_review_start_records_should_collapse_same_document_key_without_queue_config(self) -> None:
+        records = [
+            process_review_start_queue.ReviewStartRecord(
+                record_id="rec_en_1",
+                document_id="JE-1000F_US_en_0.1",
+                document_key="JE-1000F_US",
+                build_family="",
+                version="0.1",
+                lang="en",
+                review_status="NotStarted",
+                review_trigger_value=True,
+                git_ref="",
+                pr_url="",
+            ),
+            process_review_start_queue.ReviewStartRecord(
+                record_id="rec_en_2",
+                document_id="JE-1000F_US_en_0.1",
+                document_key="JE-1000F_US",
+                build_family="",
+                version="0.1",
+                lang="en",
+                review_status="NotStarted",
+                review_trigger_value=True,
+                git_ref="",
+                pr_url="",
+            ),
+        ]
 
-            with mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                side_effect=lambda *, region, lang, build_family=None: root / "config.us-en.yaml",
-            ) as mock_resolve_config_path, mock.patch.object(
-                process_review_start_queue,
-                "load_config",
-                side_effect=lambda path: cfgs[path.name],
-            ):
-                grouped = process_review_start_queue.group_review_start_records(records)
+        with mock.patch.object(
+            process_review_start_queue,
+            "resolve_config_path_for_task",
+            side_effect=AssertionError("review-start grouping must not resolve config"),
+        ) as mock_resolve_config_path, mock.patch.object(
+            process_review_start_queue,
+            "load_config",
+            side_effect=AssertionError("review-start grouping must not load config"),
+        ) as mock_load_config:
+            grouped = process_review_start_queue.group_review_start_records(records)
 
-        self.assertEqual(2, len(grouped))
-        self.assertEqual(["rec_en_1"], [record.record_id for record in grouped[0]])
-        self.assertEqual(["rec_en_2"], [record.record_id for record in grouped[1]])
-        self.assertEqual("", mock_resolve_config_path.call_args.kwargs["build_family"])
+        self.assertEqual(1, len(grouped))
+        self.assertEqual(["rec_en_1", "rec_en_2"], [record.record_id for record in grouped[0]])
+        mock_resolve_config_path.assert_not_called()
+        mock_load_config.assert_not_called()
 
     def test_resolve_review_start_config_path_should_support_new_resolution_signature(self) -> None:
         expected = Path("config.us.yaml")
@@ -521,6 +507,48 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             )
 
         self.assertEqual(expected, resolved)
+
+    def test_resolve_review_start_config_path_should_fallback_to_region_config_when_lang_blank(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "config.zh.yaml").write_text("build: {}\n", encoding="utf-8")
+            (root / "config.us.yaml").write_text("build: {}\n", encoding="utf-8")
+            cfgs = {
+                "config.zh.yaml": {
+                    "build": {
+                        "family_id": "cn-zh",
+                        "languages": ["zh"],
+                        "default_region": "CN",
+                    }
+                },
+                "config.us.yaml": {
+                    "build": {
+                        "family_id": "us-merged",
+                        "languages": ["en", "fr", "es"],
+                        "default_region": "US",
+                        "queue_by_document_key": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_review_start_queue, "ROOT", root), \
+                mock.patch.object(
+                    process_review_start_queue,
+                    "resolve_config_path_for_task",
+                    side_effect=RuntimeError("No config family matches region='CN' and lang=''"),
+                ), \
+                mock.patch.object(
+                    process_review_start_queue,
+                    "load_config",
+                    side_effect=lambda path: cfgs[path.name],
+                ):
+                resolved = process_review_start_queue._resolve_review_start_config_path(
+                    region="CN",
+                    lang="",
+                    build_family="",
+                )
+
+        self.assertEqual(root / "config.zh.yaml", resolved)
 
     def test_resolve_target_for_review_start_should_fallback_to_document_id(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
