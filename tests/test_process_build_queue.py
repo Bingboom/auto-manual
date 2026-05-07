@@ -814,12 +814,21 @@ class TestProcessBuildQueue(unittest.TestCase):
     def test_build_started_fields_should_write_datetime_millis(self) -> None:
         started_at = datetime(2026, 4, 1, 14, 55, 6)
 
-        fields = process_build_queue.build_started_fields(started_at=started_at)
+        fields = process_build_queue.build_started_fields(
+            started_at=started_at,
+            version="1.0",
+            workflow_action="Build Draft Package",
+            data_sync_status="skipped",
+        )
 
         self.assertEqual(
             int(started_at.timestamp() * 1000),
             fields[process_build_queue.BUILD_STARTED_AT_FIELD],
         )
+        self.assertIn("RUNNING", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("started_at=2026-04-01T14:55:06", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("workflow_action=Build Draft Package", fields[process_build_queue.RESULT_FIELD])
+        self.assertIn("data_sync=skipped", fields[process_build_queue.RESULT_FIELD])
 
     def test_build_failure_writeback_fields_should_preserve_latest_local_outputs(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1930,6 +1939,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         started_payload = captured_upserts[0]["record"]
         self.assertIsInstance(started_payload, dict)
         self.assertIn(process_build_queue.BUILD_STARTED_AT_FIELD, started_payload)
+        self.assertIn("RUNNING", started_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("workflow_action=Build Draft Package", started_payload[process_build_queue.RESULT_FIELD])
         self.assertEqual("rec_1", captured_upserts[1]["record_id"])
         record_payload = captured_upserts[1]["record"]
         self.assertIsInstance(record_payload, dict)

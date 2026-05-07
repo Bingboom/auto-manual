@@ -418,8 +418,28 @@ def build_success_fields(
     )
 
 
-def build_started_fields(module: Any, *, started_at: datetime) -> dict[str, Any]:
-    return _build_started_fields_impl(started_at=started_at, build_started_at_field=module.BUILD_STARTED_AT_FIELD)
+def build_started_fields(
+    module: Any,
+    *,
+    started_at: datetime,
+    version: str = "",
+    workflow_action: str | None = None,
+    doc_phase: str | None = None,
+    data_sync_status: str = "",
+) -> dict[str, Any]:
+    return _build_started_fields_impl(
+        started_at=started_at,
+        version=version,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
+        normalize_workflow_action=module.normalize_workflow_action,
+        normalize_doc_phase=module.normalize_doc_phase,
+        workflow_action_label=module.workflow_action_label,
+        build_started_at_field=module.BUILD_STARTED_AT_FIELD,
+        result_field=module.RESULT_FIELD,
+        running_prefix=module.RUNNING_PREFIX,
+    )
 
 
 def build_failure_fields(
