@@ -1,0 +1,157 @@
+{
+  "snapshot_manifest": {
+    "requested_tables": [
+      "spec_master",
+      "spec_footnotes",
+      "spec_notes",
+      "spec_titles",
+      "symbols_blocks"
+    ],
+    "skipped_tables": [
+      "lcd_icons",
+      "variable_defaults",
+      "variable_lang_overrides"
+    ],
+    "tables": [
+      {"logical_name": "spec_master", "file_name": "Spec_Master.csv"},
+      {"logical_name": "spec_footnotes", "file_name": "Spec_Footnotes.csv"},
+      {"logical_name": "spec_notes", "file_name": "Spec_Notes.csv"},
+      {"logical_name": "spec_titles", "file_name": "spec_titles.csv"}
+    ],
+    "derived_files": [
+      {"logical_name": "row_key_mapping", "file_name": "row_key_mapping.csv"}
+    ]
+  },
+  "csv_headers": {
+    "spec_master": [
+      "document_key",
+      "Region",
+      "Is_Latest",
+      "Page",
+      "Section",
+      "Section_order",
+      "Row_order",
+      "Row_key",
+      "Slot_key",
+      "Row_label_source",
+      "Row_label_footnote_refs",
+      "Line_order",
+      "Param_source",
+      "Param_footnote_refs",
+      "Value_source",
+      "Value_footnote_refs",
+      "Row_label_fr",
+      "Param_fr",
+      "Value_fr",
+      "Row_label_es",
+      "Model",
+      "Param_es",
+      "Value_es",
+      "Row_label_de",
+      "Param_de",
+      "Value_de",
+      "Row_label_it",
+      "Param_it",
+      "Value_it",
+      "Row_label_uk",
+      "Param_uk",
+      "Value_uk",
+      "Source_lang"
+    ],
+    "spec_footnotes": [
+      "Footnote_id",
+      "Region",
+      "Model",
+      "Source_lang",
+      "Is_Latest",
+      "Page",
+      "Footnote_order",
+      "Type",
+      "Text_en",
+      "Text_fr",
+      "Text_es",
+      "Text_ja",
+      "Text_de",
+      "Text_it",
+      "Text_uk",
+      "Enabled"
+    ],
+    "spec_notes": [
+      "Note_id",
+      "Region",
+      "Model",
+      "Source_lang",
+      "Is_Latest",
+      "Page",
+      "Note_order",
+      "Type",
+      "Text_en",
+      "Text_fr",
+      "Text_es",
+      "Text_ja",
+      "Text_de",
+      "Text_it",
+      "Text_uk",
+      "Enabled"
+    ],
+    "spec_titles": [
+      "title_en",
+      "section_order",
+      "title_zh",
+      "title_jp",
+      "title_fr",
+      "title_es",
+      "title_de",
+      "title_it",
+      "title_uk"
+    ],
+    "symbols_blocks": [
+      "page_id",
+      "Figure",
+      "image_path",
+      "symbol_key",
+      "text_en",
+      "text_fr",
+      "text_es",
+      "text_de",
+      "text_it",
+      "text_uk",
+      "Is_Latest",
+      "Market",
+      "enabled",
+      "block_type",
+      "order",
+      "Region",
+      "Model",
+      "Source_lang"
+    ],
+    "row_key_mapping": [
+      "Row_label_source",
+      "Line_order",
+      "Row_key",
+      "Remark"
+    ]
+  },
+  "queue_fields": {
+    "document_link": {
+      "fields": [
+        {"field_name": "开始构建时间"},
+        {"field_name": "构建结果"},
+        {"field_name": "Document directory"},
+        {"field_name": "Document link"},
+        {"field_name": "data_sync"},
+        {"field_name": "是否触发文档构建"},
+        {"field_name": "是否立即构建"},
+        {"field_name": "是否强制刷新数据"}
+      ]
+    },
+    "review_init": {
+      "fields": [
+        {"field_name": "Git_ref"},
+        {"field_name": "PR_url"},
+        {"field_name": "Review_status"},
+        {"field_name": "是否进入Review"}
+      ]
+    }
+  }
+}

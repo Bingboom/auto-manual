@@ -103,10 +103,13 @@ Operationally:
 
 Current transition payload assembly lives in:
 
+- [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
 - [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
 - [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
 - [`tools/process_build_queue.py`](../../tools/process_build_queue.py)
 
-Future queue work should move start/success/failure payload construction and
-trigger-clearing rules toward one explicit transition layer, with tests covering
-`running`, `success`, `failed`, and `writeback_failed` behavior.
+Start/success/failure payload construction and trigger-clearing rules now flow
+through the explicit transition layer. Future queue work should keep transport
+and Feishu/Lark retry behavior outside that layer so `running`, `success`,
+`failed`, and `writeback_failed` behavior remains testable without network
+state.

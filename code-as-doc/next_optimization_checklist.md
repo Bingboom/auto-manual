@@ -248,11 +248,13 @@ Milestone note: closed the second stability wave by fixing diff-report regressio
 
 ## 5. Milestone C: Short-Term Contract Baseline
 
-Milestone status: `in_progress`
+Milestone status: `done`
+Milestone completed: `2026-05-08`
 Milestone target: `2026-05`
-Milestone note: stabilize the post-PR baseline around external table contracts,
-queue state writeback semantics, and the first queue-test hotspot split before
-moving on to larger transition-layer work.
+Milestone note: closed the contract baseline and midterm hardening pass by
+adding an explicit queue transition layer, offline external integration smoke
+fixtures, schema drift gates, a queue-contract CI job, and another domain split
+of the largest queue test hotspot.
 
 - [x] PR 11: Absorb short-term hardening PRs into the active baseline
   - Status: `done`
@@ -293,31 +295,51 @@ moving on to larger transition-layer work.
   - Completed: `2026-05-07`
   - Note: moved started/success/failure writeback field tests into `test_process_build_queue_writeback.py`
 
-- [ ] PR 15: Centralize queue state transitions
-  - Status: `pending`
+- [x] PR 15: Centralize queue state transitions
+  - Status: `done`
   - Target files:
+    - [`../tools/queue_transitions.py`](../tools/queue_transitions.py)
     - [`../tools/queue_writeback.py`](../tools/queue_writeback.py)
     - [`../tools/queue_group_processing.py`](../tools/queue_group_processing.py)
+    - [`../tests/test_queue_transitions.py`](../tests/test_queue_transitions.py)
   - Done when:
     - result formatting, start/success/failure writeback, trigger clearing, and `data_sync` rules are testable as transition behavior
     - tests cover running, success, failure, and writeback-failed
+  - Completed: `2026-05-08`
+  - Note: added `queue_transitions.py` as the explicit payload layer while keeping `queue_writeback.py` wrapper-compatible
 
-- [ ] PR 16: Add external integration fixture smoke tests
-  - Status: `pending`
+- [x] PR 16: Add external integration fixture smoke tests
+  - Status: `done`
   - Target files:
-    - [`../tests/`](../tests)
-    - [`../integrations/openclaw/`](../integrations/openclaw)
+    - [`../tests/test_external_integration_contracts.py`](../tests/test_external_integration_contracts.py)
+    - [`../tests/fixtures/external_integrations/`](../tests/fixtures/external_integrations)
   - Done when:
     - fixture tests cover missing fields, permission failure, duplicate dispatch, publish confirmation, and DingTalk fallback without real network access
+  - Completed: `2026-05-08`
+  - Note: added offline fixtures covering Review Init missing fields, Feishu writeback permission failure, duplicate Start Review dispatch, Publish confirmation guard, and DingTalk fallback
 
-- [ ] PR 17: Add schema drift checks
-  - Status: `pending`
+- [x] PR 17: Add schema drift checks
+  - Status: `done`
   - Target files:
-    - [`../tools/data_snapshot.py`](../tools/data_snapshot.py)
-    - [`../tools/queue_contract.py`](../tools/queue_contract.py)
+    - [`../tools/schema_drift.py`](../tools/schema_drift.py)
     - [`../tests/fixtures/`](../tests/fixtures)
+    - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
   - Done when:
     - phase2 snapshot manifest, CSV headers, and queue writable fields can be validated from fixed fixtures or dry-run payloads
+  - Completed: `2026-05-08`
+  - Note: added a local schema drift gate with fixture payload support plus a real `data/phase2` dry-run-style check in the queue-contract CI job
+
+- [x] PR 18: Split queue routing tests from the largest queue test hotspot
+  - Status: `done`
+  - Target files:
+    - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
+    - [`../tests/test_process_build_queue_routing.py`](../tests/test_process_build_queue_routing.py)
+    - [`../tests/README.md`](../tests/README.md)
+  - Done when:
+    - routing/config/grouping tests live in a domain-named test file
+    - the original queue orchestration test remains behavior-compatible
+  - Completed: `2026-05-08`
+  - Note: moved 18 routing/config/grouping tests into `test_process_build_queue_routing.py`
 
 ## 6. Deferred: Do Not Touch Yet
 

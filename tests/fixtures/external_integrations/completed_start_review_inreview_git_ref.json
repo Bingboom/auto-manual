@@ -1,0 +1,31 @@
+{
+  "description": "Start Review row already InReview with Git_ref for idempotent OpenClaw duplicate dispatch.",
+  "queue_query_row": {
+    "queue_scope": "review-init",
+    "record_id": "rec_review_completed",
+    "document_id": "JE-1000F_JP_1.0",
+    "document_key": "JE-1000F_JP",
+    "build_family": "jp-ja",
+    "lang": "ja",
+    "version": "1.0",
+    "workflow_action": "Start Review",
+    "normalized_workflow_action": "start_review",
+    "git_ref": "codex/review-je-1000f-jp",
+    "document_link": "",
+    "document_directory": "",
+    "result": "",
+    "pr_url": "https://github.com/Bingboom/auto-manual/pull/120",
+    "review_status": "InReview",
+    "review_trigger_enabled": false,
+    "build_trigger_requested": null,
+    "immediate_build": null,
+    "initial_result": "",
+    "remarks": "",
+    "task_id": "JE-1000F_JP_Start Review",
+    "market_group": "JP",
+    "build_started_at": "",
+    "result_built_at": "",
+    "result_is_fresh": null,
+    "freshness_status": "not_requested"
+  }
+}

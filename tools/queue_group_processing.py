@@ -5,6 +5,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.queue_transitions import append_writeback_failed
+
 
 @dataclass(frozen=True)
 class QueueGroupProcessingResult:
@@ -311,7 +313,7 @@ def process_queue_record_group(
                     record=failure_fields,
                 )
         except Exception as writeback_exc:
-            failure_message += f" | writeback_failed={writeback_exc}"
+            failure_message = append_writeback_failed(failure_message, writeback_exc)
             print(
                 f"[build-queue] ERROR writeback failed for {group_key}: {writeback_exc}",
                 file=stderr,

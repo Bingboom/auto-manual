@@ -160,11 +160,9 @@ Use this section for short milestone-style updates.
 
 Keep this section short and current.
 
-1. Queue result formatting and start/success/failure writeback are documented, but the transition rules are not yet centralized in one dedicated transition layer.
-2. External table contracts now have a first documentation baseline, but schema drift checks still need fixture or dry-run gates.
-3. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
-4. Multi-target conditional content is still deferred.
-5. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
+1. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
+2. Multi-target conditional content is still deferred.
+3. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
 
 ## 6. Active Workstreams
 
@@ -243,7 +241,7 @@ Status: done
 
 ### Workstream F: Feishu IM Ingress Hardening
 
-Status: active
+Status: done
 
 Why now:
 
@@ -296,10 +294,9 @@ Exit criteria:
 Re-evaluate this order whenever a workstream closes.
 
 1. Preserve the current `check` + smoke-CI baseline.
-2. Finish Workstream G follow-ups: queue transition tests, external integration fixture smoke tests, and schema drift gates.
-3. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state.
-4. Revisit remaining medium wrappers only when a concrete hotspot reappears.
-5. Start a narrow multi-target content pilot when the deferred work becomes active.
+2. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state.
+3. Revisit remaining medium wrappers only when a concrete hotspot reappears.
+4. Start a narrow multi-target content pilot when the deferred work becomes active.
 
 
 ## 9. Success Criteria

@@ -4,6 +4,15 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.queue_transitions import (
+    QueueTransitionFields,
+    build_failure_result_transition,
+    build_failure_writeback_transition,
+    build_running_transition,
+    build_success_transition,
+    format_queue_result,
+)
+
 
 def _format_queue_result(
     *,
@@ -17,19 +26,16 @@ def _format_queue_result(
     status_notes: tuple[str, ...] = (),
     message: str = "",
 ) -> str:
-    action_label = workflow_action_label(workflow_action) if workflow_action_label else None
-    return " | ".join(
-        part
-        for part in (
-            prefix,
-            f"version={version}" if version else "",
-            f"workflow_action={action_label}" if action_label else "",
-            f"{timestamp_label}={timestamp.isoformat(timespec='seconds')}" if timestamp_label and timestamp else "",
-            f"data_sync={data_sync_status}" if data_sync_status else "",
-            *[note.strip() for note in status_notes if note.strip()],
-            message.strip(),
-        )
-        if part
+    return format_queue_result(
+        prefix=prefix,
+        version=version,
+        workflow_action=workflow_action,
+        workflow_action_label=workflow_action_label,
+        timestamp_label=timestamp_label,
+        timestamp=timestamp,
+        data_sync_status=data_sync_status,
+        status_notes=status_notes,
+        message=message,
     )
 
 
@@ -58,29 +64,29 @@ def build_success_fields(
     data_sync_field: str,
     success_prefix: str,
 ) -> dict[str, Any]:
-    fields = {
-        result_field: _format_queue_result(
-            prefix=success_prefix,
-            version=version,
-            workflow_action=workflow_action,
-            workflow_action_label=workflow_action_label,
-            timestamp_label="built_at",
-            timestamp=built_at,
-            data_sync_status=data_sync_status,
-            status_notes=status_notes,
+    return build_success_transition(
+        fields=QueueTransitionFields(
+            result_field=result_field,
+            document_directory_field=document_directory_field,
+            document_link_field=document_link_field,
+            document_link_dd_field=document_link_dd_field,
+            trigger_field=trigger_field,
+            done_trigger_value=done_trigger_value,
+            immediate_trigger_field=immediate_trigger_field,
+            force_phase2_refresh_field=force_phase2_refresh_field,
+            data_sync_field=data_sync_field,
+            success_prefix=success_prefix,
         ),
-        document_directory_field: word_output_path.resolve(strict=False).as_posix(),
-        document_link_field: document_link_url.strip(),
-        trigger_field: [done_trigger_value],
-        immediate_trigger_field: False,
-    }
-    if document_link_dd_field:
-        fields[document_link_dd_field] = document_link_dd_url.strip()
-    if force_phase2_refresh_field:
-        fields[force_phase2_refresh_field] = False
-    if data_sync_field and data_sync_status:
-        fields[data_sync_field] = data_sync_status
-    return fields
+        version=version,
+        word_output_path=word_output_path,
+        document_link_url=document_link_url,
+        document_link_dd_url=document_link_dd_url,
+        built_at=built_at,
+        workflow_action=workflow_action,
+        data_sync_status=data_sync_status,
+        status_notes=status_notes,
+        workflow_action_label=workflow_action_label,
+    )
 
 
 def build_started_fields(
@@ -97,20 +103,21 @@ def build_started_fields(
     result_field: str,
     running_prefix: str,
 ) -> dict[str, Any]:
-    normalized_workflow_action = normalize_workflow_action(workflow_action)
-    normalized_doc_phase = normalize_doc_phase(doc_phase)
-    return {
-        build_started_at_field: int(started_at.timestamp() * 1000),
-        result_field: _format_queue_result(
-            prefix=running_prefix,
-            version=version,
-            workflow_action=normalized_workflow_action or normalized_doc_phase,
-            workflow_action_label=workflow_action_label,
-            timestamp_label="started_at",
-            timestamp=started_at,
-            data_sync_status=data_sync_status,
+    return build_running_transition(
+        fields=QueueTransitionFields(
+            result_field=result_field,
+            build_started_at_field=build_started_at_field,
+            running_prefix=running_prefix,
         ),
-    }
+        started_at=started_at,
+        version=version,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
+        normalize_workflow_action=normalize_workflow_action,
+        normalize_doc_phase=normalize_doc_phase,
+        workflow_action_label=workflow_action_label,
+    )
 
 
 def build_failure_fields(
@@ -126,16 +133,17 @@ def build_failure_fields(
     result_field: str,
     failed_prefix: str,
 ) -> dict[str, Any]:
-    return {
-        result_field: _format_queue_result(
-            prefix=failed_prefix,
-            version=version,
-            workflow_action=workflow_action,
-            workflow_action_label=workflow_action_label,
-            data_sync_status=data_sync_status,
-            message=message,
-        )
-    }
+    return build_failure_result_transition(
+        fields=QueueTransitionFields(
+            result_field=result_field,
+            failed_prefix=failed_prefix,
+        ),
+        version=version,
+        message=message,
+        workflow_action=workflow_action,
+        data_sync_status=data_sync_status,
+        workflow_action_label=workflow_action_label,
+    )
 
 
 def build_failure_writeback_fields(
@@ -164,16 +172,27 @@ def build_failure_writeback_fields(
         doc_phase=doc_phase,
         data_sync_status=data_sync_status,
     )
-    if word_output_path is not None:
-        fields[document_directory_field] = word_output_path.resolve(strict=False).as_posix()
+    transition_fields = QueueTransitionFields(
+        result_field=result_field,
+        document_directory_field=document_directory_field,
+        document_link_field=document_link_field,
+        document_link_dd_field=document_link_dd_field,
+        immediate_trigger_field=immediate_trigger_field,
+        force_phase2_refresh_field=force_phase2_refresh_field,
+        data_sync_field=data_sync_field,
+    )
+    transition_payload = build_failure_writeback_transition(
+        fields=transition_fields,
+        version=version,
+        message=message,
+        workflow_action=workflow_action,
+        data_sync_status=data_sync_status,
+        word_output_path=word_output_path,
+        document_link_url=document_link_url,
+        document_link_dd_url=document_link_dd_url,
+        workflow_action_label=lambda value: None,
+    )
+    transition_payload[result_field] = fields[result_field]
     if document_link_url:
-        fields[document_link_field] = document_link_url
-        fields[result_field] += " | latest_drive_link_preserved"
-    if document_link_dd_field:
-        fields[document_link_dd_field] = (document_link_dd_url or "").strip()
-    fields[immediate_trigger_field] = False
-    if force_phase2_refresh_field:
-        fields[force_phase2_refresh_field] = False
-    if data_sync_field and data_sync_status:
-        fields[data_sync_field] = data_sync_status
-    return fields
+        transition_payload[result_field] += " | latest_drive_link_preserved"
+    return transition_payload

@@ -200,6 +200,9 @@ Quality and release logic should follow concern-specific modules instead of drif
   - row writeback payload assembly
   - `pending -> running -> success/failed` payload expectations documented in
     [`queue_state_model.md`](queue_state_model.md)
+- [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
+  - explicit queue transition payload model for running, success, failure, and writeback-failed states
+  - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
 
 ## 6. Maintenance Rules
 
