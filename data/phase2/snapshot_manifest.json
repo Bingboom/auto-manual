@@ -6,25 +6,61 @@
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
   "requested_tables": [
-    "spec_master"
-  ],
-  "skipped_tables": [
     "spec_titles",
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
+    "spec_master"
+  ],
+  "skipped_tables": [
     "lcd_icons",
     "variable_defaults",
     "variable_lang_overrides"
   ],
   "tables": [
     {
+      "logical_name": "spec_titles",
+      "file_name": "spec_titles.csv",
+      "path": "data/phase2/spec_titles.csv",
+      "row_count": 5,
+      "sha256": "b93b721d522f1afacfac2cbe21a9d39c48f6ad85722e5045e6e0cc0ebc315b99",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "spec_footnotes",
+      "file_name": "Spec_Footnotes.csv",
+      "path": "data/phase2/Spec_Footnotes.csv",
+      "row_count": 3,
+      "sha256": "c5daa5452fb8377d8b390439387b99dbe4c45e1babfcd6b961254291327dff79",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "spec_notes",
+      "file_name": "Spec_Notes.csv",
+      "path": "data/phase2/Spec_Notes.csv",
+      "row_count": 2,
+      "sha256": "92cc791a9d1544f7b1c3e3f6faa55a2b40c12249dcbe303bb01725d381d556bc",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "symbols_blocks",
+      "file_name": "symbols_blocks.csv",
+      "path": "data/phase2/symbols_blocks.csv",
+      "row_count": 28,
+      "sha256": "a8955d0aa555b90c857e8f69807d98b6814cc1382ef26fca6277abd3cf35d89e",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
       "logical_name": "spec_master",
       "file_name": "Spec_Master.csv",
       "path": "data/phase2/Spec_Master.csv",
       "row_count": 373,
-      "sha256": "e769b683c17e88b987dc80e0bc41333cd13d6adaf32e5ba86e4ee211c033dead",
-      "previous_sha256": "f6f5aee06608ccf7c81f2827333377bc84b6d827e9c3a577653332f0c8b55405",
+      "sha256": "c19bd9f4bc702a0a9996a7ee2cf660a6b35b16975fa2d2f821f834cf3a120a95",
+      "previous_sha256": null,
       "changed": true
     }
   ],
@@ -34,8 +70,8 @@
       "file_name": "row_key_mapping.csv",
       "path": "data/phase2/row_key_mapping.csv",
       "row_count": 111,
-      "sha256": "996ccb992ece165f4397019119eb6a56d7bb73ba7955cc5537a22abe1eadd2f7",
-      "previous_sha256": "38d34ab8357fa3cb57cc7e6255eb77204ca6c3492bb531fa115522610fdecdec",
+      "sha256": "c8695a9534ed2fadba88f00bf7e4e4b8049e48282bd6f8daed0e01c51adf0c11",
+      "previous_sha256": null,
       "changed": true
     }
   ]

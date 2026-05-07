@@ -5,7 +5,40 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.data_snapshot import resolve_data_snapshot_paths, resolve_phase2_export_root, resolve_phase2_manifest_path
+from tools.data_snapshot import (
+    inspect_phase2_snapshot,
+    resolve_data_snapshot_paths,
+    resolve_phase2_export_root,
+    resolve_phase2_manifest_path,
+)
+
+
+def _complete_manifest() -> dict[str, object]:
+    required_tables = [
+        "spec_master",
+        "spec_footnotes",
+        "spec_notes",
+        "spec_titles",
+        "symbols_blocks",
+    ]
+    return {
+        "export_root": "data/phase2",
+        "requested_tables": required_tables,
+        "skipped_tables": [],
+        "tables": [
+            {"logical_name": table_name, "file_name": file_name}
+            for table_name, file_name in (
+                ("spec_master", "Spec_Master.csv"),
+                ("spec_footnotes", "Spec_Footnotes.csv"),
+                ("spec_notes", "Spec_Notes.csv"),
+                ("spec_titles", "spec_titles.csv"),
+                ("symbols_blocks", "symbols_blocks.csv"),
+            )
+        ],
+        "derived_files": [
+            {"logical_name": "row_key_mapping", "file_name": "row_key_mapping.csv"},
+        ],
+    }
 
 
 class TestDataSnapshotPaths(unittest.TestCase):
@@ -67,7 +100,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
             ):
                 (phase2_dir / file_name).write_text("demo\n", encoding="utf-8")
             (phase2_dir / "snapshot_manifest.json").write_text(
-                json.dumps({"export_root": "data/phase2"}, ensure_ascii=False),
+                json.dumps(_complete_manifest(), ensure_ascii=False),
                 encoding="utf-8",
             )
             cfg = {
@@ -110,6 +143,55 @@ class TestDataSnapshotPaths(unittest.TestCase):
 
             self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase1", paths.structured_data_dir)
+
+    def test_resolve_data_snapshot_paths_should_fallback_when_manifest_skips_required_table(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            phase1_dir = root / "data" / "phase1"
+            phase2_dir = root / "data" / "phase2"
+            phase1_dir.mkdir(parents=True)
+            phase2_dir.mkdir(parents=True)
+            (phase1_dir / "Spec_Master.csv").write_text("phase1\n", encoding="utf-8")
+            (phase1_dir / "page_registry.csv").write_text("page_id\nspec\n", encoding="utf-8")
+            for file_name in (
+                "Spec_Master.csv",
+                "Spec_Footnotes.csv",
+                "Spec_Notes.csv",
+                "spec_titles.csv",
+                "row_key_mapping.csv",
+                "symbols_blocks.csv",
+            ):
+                (phase2_dir / file_name).write_text("phase2\n", encoding="utf-8")
+            manifest = _complete_manifest()
+            manifest["requested_tables"] = ["spec_master"]
+            manifest["skipped_tables"] = [
+                "spec_footnotes",
+                "spec_notes",
+                "spec_titles",
+                "symbols_blocks",
+            ]
+            manifest["tables"] = [
+                {"logical_name": "spec_master", "file_name": "Spec_Master.csv"},
+            ]
+            (phase2_dir / "snapshot_manifest.json").write_text(
+                json.dumps(manifest, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            cfg = {
+                "paths": {
+                    "structured_data_dir": "data/phase1",
+                }
+            }
+
+            status = inspect_phase2_snapshot(cfg, repo_root=root)
+            paths = resolve_data_snapshot_paths(cfg, repo_root=root)
+
+            self.assertFalse(status.valid)
+            self.assertTrue(
+                any("skipped required table" in issue for issue in status.issues),
+                status.issues,
+            )
+            self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
 
     def test_phase2_export_root_should_default_to_phase2_even_when_structured_data_dir_points_to_phase1(self) -> None:
         with tempfile.TemporaryDirectory() as td:
