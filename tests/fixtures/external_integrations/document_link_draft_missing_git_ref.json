@@ -1,0 +1,31 @@
+{
+  "description": "Feishu Document_link Build Draft Package row missing Git_ref.",
+  "queue_query_row": {
+    "queue_scope": "document-link",
+    "record_id": "rec_draft_missing_git_ref",
+    "document_id": "JE-1000F_US_en_1.0",
+    "document_key": "JE-1000F_US",
+    "build_family": "us-en",
+    "lang": "en",
+    "version": "1.0",
+    "workflow_action": "Build Draft Package",
+    "normalized_workflow_action": "draft",
+    "git_ref": "",
+    "document_link": "",
+    "document_directory": "",
+    "result": "",
+    "pr_url": "",
+    "review_status": "",
+    "review_trigger_enabled": null,
+    "build_trigger_requested": true,
+    "immediate_build": true,
+    "initial_result": "",
+    "remarks": "",
+    "task_id": "JE-1000F_US_en_1.0_Build Draft Package",
+    "market_group": "US",
+    "build_started_at": "",
+    "result_built_at": "",
+    "result_is_fresh": null,
+    "freshness_status": "not_requested"
+  }
+}

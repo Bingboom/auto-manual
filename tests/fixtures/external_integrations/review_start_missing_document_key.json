@@ -1,0 +1,31 @@
+{
+  "description": "Feishu review_init row selected for Start Review but missing Document_Key.",
+  "queue_query_row": {
+    "queue_scope": "review-init",
+    "record_id": "rec_review_missing_key",
+    "document_id": "JE-1000F_US_1.0",
+    "document_key": "",
+    "build_family": "us-merged",
+    "lang": "",
+    "version": "1.0",
+    "workflow_action": "Start Review",
+    "normalized_workflow_action": "start_review",
+    "git_ref": "",
+    "document_link": "",
+    "document_directory": "",
+    "result": "",
+    "pr_url": "",
+    "review_status": "NotStarted",
+    "review_trigger_enabled": true,
+    "build_trigger_requested": null,
+    "immediate_build": null,
+    "initial_result": "",
+    "remarks": "",
+    "task_id": "JE-1000F_US_Start Review",
+    "market_group": "US",
+    "build_started_at": "",
+    "result_built_at": "",
+    "result_is_fresh": null,
+    "freshness_status": "not_requested"
+  }
+}

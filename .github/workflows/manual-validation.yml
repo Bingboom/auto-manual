@@ -61,6 +61,24 @@ jobs:
       - name: Run unit tests
         run: python -m unittest
 
+  queue-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - name: Run queue contract tests
+        run: python -m unittest tests.test_queue_transitions tests.test_process_build_queue_writeback
+      - name: Run schema drift fixture check
+        run: |
+          python tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json
+          python tools/schema_drift.py --phase2-root data/phase2 --queue-fields tests/fixtures/schema_drift/queue_fields_complete.json
+
   doctor-en:
     runs-on: ubuntu-latest
     steps:

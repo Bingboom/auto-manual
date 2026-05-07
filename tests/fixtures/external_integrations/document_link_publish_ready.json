@@ -1,0 +1,31 @@
+{
+  "description": "Publish row ready to dispatch, used to prove queue-execute requires confirmation.",
+  "queue_query_row": {
+    "queue_scope": "document-link",
+    "record_id": "rec_publish_ready",
+    "document_id": "JE-1000F_US_1.0",
+    "document_key": "JE-1000F_US",
+    "build_family": "us-merged",
+    "lang": "",
+    "version": "1.0",
+    "workflow_action": "Publish",
+    "normalized_workflow_action": "publish",
+    "git_ref": "codex/review-je-1000f-us",
+    "document_link": "https://example.com/manual.pdf",
+    "document_directory": "/tmp/manual.pdf",
+    "result": "SUCCESS",
+    "pr_url": "",
+    "review_status": "",
+    "review_trigger_enabled": null,
+    "build_trigger_requested": true,
+    "immediate_build": true,
+    "initial_result": "",
+    "remarks": "",
+    "task_id": "JE-1000F_US_1.0_Publish",
+    "market_group": "US",
+    "build_started_at": "",
+    "result_built_at": "",
+    "result_is_fresh": null,
+    "freshness_status": "not_requested"
+  }
+}

@@ -485,3 +485,19 @@ Why it mattered:
 - external table fields are now treated as explicit software contracts instead of scattered queue assumptions
 - queue operators and OpenClaw/DingTalk follow-ups can reason about running, success, failure, and writeback-failed states consistently
 - future queue transition and schema-drift work now has a documented baseline plus a smaller test surface to extend
+
+## 29. 2026-05-08: Midterm Queue Contract and Drift Gates
+
+Main outcomes:
+
+- added [`../tools/queue_transitions.py`](../tools/queue_transitions.py) as the explicit transition payload layer for running, success, failure, and writeback-failed queue states
+- added [`../tools/schema_drift.py`](../tools/schema_drift.py) so phase2 logical tables, required CSV headers, and `Document_link` writable fields can be checked from fixtures or local snapshot payloads without live Feishu access
+- added offline external integration smoke fixtures in [`../tests/fixtures/external_integrations/`](../tests/fixtures/external_integrations/) covering missing fields, writeback permission failure, duplicate Start Review dispatch, Publish confirmation, and DingTalk fallback
+- split queue routing/config/grouping tests into [`../tests/test_process_build_queue_routing.py`](../tests/test_process_build_queue_routing.py), further reducing the largest queue test hotspot without changing behavior
+- added a `queue-contract` CI job in [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml) so queue transition and schema drift failures have a distinct failure surface
+
+Why it mattered:
+
+- the queue state machine is now testable before transport, upload, or Feishu/Lark writeback code runs
+- external integration drift can fail in fixture tests instead of first appearing as a production worker surprise
+- maintainers can now distinguish lint/unit/build-smoke/queue-contract failures more quickly in CI

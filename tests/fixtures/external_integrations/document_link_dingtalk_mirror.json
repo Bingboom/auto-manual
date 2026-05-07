@@ -1,0 +1,20 @@
+{
+  "description": "Document_link row with DingTalk mirror requested while Feishu/wiki remains primary.",
+  "queue_record": {
+    "record_id": "rec_dingtalk_mirror",
+    "document_id": "JE-1000F_US_en_1.0",
+    "document_key": "JE-1000F_US",
+    "version": "1.0",
+    "lang": "en",
+    "workflow_action": "Build Draft Package",
+    "doc_phase": "",
+    "git_ref": "codex/review-je-1000f-us",
+    "trigger_value": "Y",
+    "immediate_trigger_value": true,
+    "force_phase2_refresh_value": false,
+    "upload_dingtalk_value": true,
+    "dingtalk_target_node_url": "https://alidocs.dingtalk.com/i/nodes/example-node",
+    "operator_union_id": "operator-123",
+    "build_family": "us-en"
+  }
+}
