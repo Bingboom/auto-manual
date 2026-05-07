@@ -36,7 +36,8 @@ Do not move new low-level implementation back into these files unless the behavi
 - [`tools/build_cli.py`](../../tools/build_cli.py)
   - argument parsing
 - [`tools/build_dispatch.py`](../../tools/build_dispatch.py)
-  - top-level action routing
+  - registered top-level action routing for explicit non-build actions
+  - fallback routing for standard build actions such as `rst`, `word`, `pdf`, `preview`, and `fast`
 - [`tools/build_paths.py`](../../tools/build_paths.py)
   - config loading
   - repo-root path resolution
