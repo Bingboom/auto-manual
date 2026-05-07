@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,17 @@ ROW_KEY_MAPPING_FILE = "row_key_mapping.csv"
 PAGE_REGISTRY_FILE = "page_registry.csv"
 SYMBOLS_BLOCKS_FILE = "symbols_blocks.csv"
 
+PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
+    "spec_master": SPEC_MASTER_FILE,
+    "spec_footnotes": SPEC_FOOTNOTES_FILE,
+    "spec_notes": SPEC_NOTES_FILE,
+    "spec_titles": SPEC_TITLES_FILE,
+    "symbols_blocks": SYMBOLS_BLOCKS_FILE,
+}
+PHASE2_REQUIRED_DERIVED_FILES: dict[str, str] = {
+    "row_key_mapping": ROW_KEY_MAPPING_FILE,
+}
+
 
 @dataclass(frozen=True)
 class DataSnapshotPaths:
@@ -32,6 +44,14 @@ class DataSnapshotPaths:
     spec_notes_csv: Path
     spec_titles_csv: Path
     row_key_mapping_csv: Path
+
+
+@dataclass(frozen=True)
+class Phase2SnapshotStatus:
+    valid: bool
+    export_root: Path
+    manifest_path: Path
+    issues: tuple[str, ...] = ()
 
 
 def _paths_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
@@ -137,13 +157,131 @@ def _phase2_candidate_manifest_path(
 
 
 def _phase2_snapshot_required_files(export_root: Path) -> tuple[Path, ...]:
-    return (
-        export_root / SPEC_MASTER_FILE,
-        export_root / SPEC_FOOTNOTES_FILE,
-        export_root / SPEC_NOTES_FILE,
-        export_root / SPEC_TITLES_FILE,
-        export_root / ROW_KEY_MAPPING_FILE,
-        export_root / SYMBOLS_BLOCKS_FILE,
+    return tuple(
+        export_root / file_name
+        for file_name in (
+            *PHASE2_REQUIRED_TABLE_FILES.values(),
+            *PHASE2_REQUIRED_DERIVED_FILES.values(),
+        )
+    )
+
+
+def _load_phase2_manifest(manifest_path: Path) -> tuple[dict[str, Any] | None, str | None]:
+    try:
+        payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return None, f"snapshot manifest is not valid JSON: {exc.msg}"
+    except OSError as exc:
+        return None, f"snapshot manifest cannot be read: {exc}"
+    if not isinstance(payload, dict):
+        return None, "snapshot manifest root must be a mapping"
+    return payload, None
+
+
+def _manifest_logical_names(raw_entries: Any) -> set[str]:
+    if not isinstance(raw_entries, list):
+        return set()
+    names: set[str] = set()
+    for entry in raw_entries:
+        if not isinstance(entry, dict):
+            continue
+        logical_name = str(entry.get("logical_name") or "").strip()
+        if logical_name:
+            names.add(logical_name)
+    return names
+
+
+def inspect_phase2_snapshot(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+) -> Phase2SnapshotStatus:
+    export_root = _phase2_candidate_export_root(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    )
+    manifest_path = _phase2_candidate_manifest_path(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    )
+    issues: list[str] = []
+    if not manifest_path.exists():
+        return Phase2SnapshotStatus(
+            valid=False,
+            export_root=export_root,
+            manifest_path=manifest_path,
+            issues=(f"snapshot manifest not found: {manifest_path}",),
+        )
+
+    manifest, manifest_error = _load_phase2_manifest(manifest_path)
+    if manifest_error:
+        return Phase2SnapshotStatus(
+            valid=False,
+            export_root=export_root,
+            manifest_path=manifest_path,
+            issues=(manifest_error,),
+        )
+
+    for file_name in (
+        *PHASE2_REQUIRED_TABLE_FILES.values(),
+        *PHASE2_REQUIRED_DERIVED_FILES.values(),
+    ):
+        path = export_root / file_name
+        if not path.exists():
+            issues.append(f"required snapshot file is missing: {path}")
+
+    requested_tables = {
+        str(item).strip()
+        for item in (manifest or {}).get("requested_tables", [])
+        if str(item).strip()
+    }
+    synced_tables = _manifest_logical_names((manifest or {}).get("tables"))
+    derived_files = _manifest_logical_names((manifest or {}).get("derived_files"))
+    skipped_tables = {
+        str(item).strip()
+        for item in (manifest or {}).get("skipped_tables", [])
+        if str(item).strip()
+    }
+
+    missing_requested = sorted(set(PHASE2_REQUIRED_TABLE_FILES) - requested_tables)
+    if missing_requested:
+        issues.append(
+            "snapshot manifest did not request required table(s): "
+            + ", ".join(missing_requested)
+        )
+
+    missing_synced = sorted(set(PHASE2_REQUIRED_TABLE_FILES) - synced_tables)
+    if missing_synced:
+        issues.append(
+            "snapshot manifest does not include synced result(s) for required table(s): "
+            + ", ".join(missing_synced)
+        )
+
+    skipped_required = sorted(set(PHASE2_REQUIRED_TABLE_FILES) & skipped_tables)
+    if skipped_required:
+        issues.append(
+            "snapshot manifest skipped required table(s): "
+            + ", ".join(skipped_required)
+        )
+
+    missing_derived = sorted(set(PHASE2_REQUIRED_DERIVED_FILES) - derived_files)
+    if missing_derived:
+        issues.append(
+            "snapshot manifest does not include required derived file(s): "
+            + ", ".join(missing_derived)
+        )
+
+    return Phase2SnapshotStatus(
+        valid=not issues,
+        export_root=export_root,
+        manifest_path=manifest_path,
+        issues=tuple(issues),
     )
 
 
@@ -170,21 +308,12 @@ def phase2_snapshot_is_valid(
     model: str | None = None,
     region: str | None = None,
 ) -> bool:
-    export_root = _phase2_candidate_export_root(
+    return inspect_phase2_snapshot(
         cfg,
         repo_root=repo_root,
         model=model,
         region=region,
-    )
-    manifest_path = _phase2_candidate_manifest_path(
-        cfg,
-        repo_root=repo_root,
-        model=model,
-        region=region,
-    )
-    if not manifest_path.exists():
-        return False
-    return all(path.exists() for path in _phase2_snapshot_required_files(export_root))
+    ).valid
 
 
 def resolve_active_data_root(
