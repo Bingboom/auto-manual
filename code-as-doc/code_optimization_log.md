@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-04-08
+Updated: 2026-05-07
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -469,3 +469,19 @@ Why it mattered:
 - the Feishu IM ingress no longer depends on manual `nohup` processes to survive reboots or crashes
 - server rebuilds now have one explicit source of truth for runtime env, process bootstrap, and tunnel startup expectations
 - deployment hardening moved from tribal knowledge into versioned repo assets, which lowers the risk of reconfiguration drift on the next machine
+
+## 28. 2026-05-07: Contract and Queue Baseline Hardening
+
+Main outcomes:
+
+- absorbed the four short-term optimization PRs into the maintained baseline: phase2 snapshot manifest completeness, CLI action registry, config contract validation, and queue `RUNNING` writeback
+- added [`dev/external_table_contracts.md`](dev/external_table_contracts.md) as the first explicit external table contract for phase2 snapshots, `Document_link`, and Review Init
+- added [`dev/queue_state_model.md`](dev/queue_state_model.md) to document `pending -> running -> success/failed` queue semantics and writeback-failed handling
+- split queue writeback field tests into [`../tests/test_process_build_queue_writeback.py`](../tests/test_process_build_queue_writeback.py) as the first domain-based reduction of the largest queue test hotspot
+- refreshed [`../optimization_project.md`](../optimization_project.md), [`next_optimization_checklist.md`](next_optimization_checklist.md), and [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) so roadmap, checklist, and module ownership match the current baseline
+
+Why it mattered:
+
+- external table fields are now treated as explicit software contracts instead of scattered queue assumptions
+- queue operators and OpenClaw/DingTalk follow-ups can reason about running, success, failure, and writeback-failed states consistently
+- future queue transition and schema-drift work now has a documented baseline plus a smaller test surface to extend

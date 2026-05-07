@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-04-12
+Updated: 2026-05-07
 
 ## 1. Role
 
@@ -56,7 +56,7 @@ Suggested workstream statuses:
 
 ## 3. Current Baseline
 
-As of 2026-04-11, the repo has working baselines for:
+As of 2026-05-07, the repo has working baselines for:
 
 - [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) as the primary cross-platform entrypoint
 - target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
@@ -73,6 +73,11 @@ As of 2026-04-11, the repo has working baselines for:
 - CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
 - OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
 - repo-owned OpenClaw integration packages under [`integrations/openclaw/`](integrations/openclaw)
+- phase2 snapshot completeness validation for required synced tables and derived files
+- registered `build.py` action dispatch for explicit non-build actions
+- config contract validation for phase2 table bindings and declared build languages
+- queue `RUNNING` writeback before success/failure completion
+- first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](code-as-doc/dev)
 
 ## 4. Recently Completed
 
@@ -144,14 +149,22 @@ Use this section for short milestone-style updates.
 - aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
 - added low-noise maintainability guardrails: a hotspot size check in `Manual Validation`, a refreshed anti-debt PR checklist, and synced baseline docs for the current `468`-test suite
 
+### 2026-05-07
+
+- absorbed the four short-term hardening PRs into the active baseline: phase2 snapshot manifest validation, build action dispatch registry, config contract validation, and queue `RUNNING` state writeback
+- added [`code-as-doc/dev/external_table_contracts.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/external_table_contracts.md) as the first explicit field contract for phase2 tables, `Document_link`, and Review Init
+- added [`code-as-doc/dev/queue_state_model.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/queue_state_model.md) to document `pending -> running -> success/failed` writeback semantics
+- started the test-hotspot split by moving build-queue writeback field tests into [`tests/test_process_build_queue_writeback.py`](/Users/pika/Documents/GitHub/auto-manual/tests/test_process_build_queue_writeback.py)
+
 ## 5. Open Gaps
 
 Keep this section short and current.
 
-1. A few workflow facades are still medium-sized, but the largest hotspot files are no longer blocking routine maintenance work.
-2. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
-3. Multi-target conditional content is still deferred.
-4. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
+1. Queue result formatting and start/success/failure writeback are documented, but the transition rules are not yet centralized in one dedicated transition layer.
+2. External table contracts now have a first documentation baseline, but schema drift checks still need fixture or dry-run gates.
+3. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
+4. Multi-target conditional content is still deferred.
+5. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
 
 ## 6. Active Workstreams
 
@@ -253,14 +266,40 @@ Exit criteria:
 - operator replies stay deterministic for query, review-start, draft build, and publish confirmation
 - remaining gaps are clearly documented instead of being hidden in local-only assumptions
 
+### Workstream G: Contract And Queue Baseline Hardening
+
+Status: active
+
+Why now:
+
+- phase2 data, Review Init, and `Document_link` are now core runtime contracts rather than incidental integrations
+- queue `RUNNING` writeback makes state more observable, but the transition rules should become testable as one layer
+- future OpenClaw, DingTalk, and multi-region work will be lower-risk if field drift is caught before live queue runs
+
+Scope:
+
+- keep the four merged hardening PRs as the short-term baseline
+- maintain explicit external table and queue-state docs
+- split the largest queue test hotspot by domain
+- add queue transition tests for running, success, failure, and writeback failure
+- add fixture-based smoke tests for Feishu/OpenClaw/DingTalk contract surfaces
+- introduce schema drift checks for snapshot manifests, CSV headers, and writable queue fields
+
+Exit criteria:
+
+- queue state transitions can be tested without running a live Feishu queue
+- external table field drift fails locally or in CI before breaking a production worker
+- future table/field changes have one documented update path instead of spreading through README snippets, queue code, and integration adapters
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Preserve the current `check` + smoke-CI baseline
-2. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state
-3. Revisit remaining medium wrappers only when a concrete hotspot reappears
-4. Multi-target content pilot when the deferred work becomes active
+1. Preserve the current `check` + smoke-CI baseline.
+2. Finish Workstream G follow-ups: queue transition tests, external integration fixture smoke tests, and schema drift gates.
+3. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state.
+4. Revisit remaining medium wrappers only when a concrete hotspot reappears.
+5. Start a narrow multi-target content pilot when the deferred work becomes active.
 
 
 ## 9. Success Criteria

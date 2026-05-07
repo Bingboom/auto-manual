@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-05-01
+Updated: 2026-05-07
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -10,6 +10,11 @@ For day-to-day commands, use:
 
 - [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md)
 - [`user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
+
+For external table and queue-state contracts, use:
+
+- [`code-as-doc/dev/external_table_contracts.md`](external_table_contracts.md)
+- [`code-as-doc/dev/queue_state_model.md`](queue_state_model.md)
 
 ## 1. Entrypoint Rule
 
@@ -193,6 +198,8 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
   - queue result formatting
   - row writeback payload assembly
+  - `pending -> running -> success/failed` payload expectations documented in
+    [`queue_state_model.md`](queue_state_model.md)
 
 ## 6. Maintenance Rules
 

@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-04-12
+Updated: 2026-05-07
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -55,24 +55,25 @@ Status vocabulary:
 
 ## 2. Current Baseline
 
-This checklist assumes the 2026-04-12 baseline below:
+This checklist assumes the 2026-05-07 baseline below:
 
 - repo evaluation focus: maintainability and stability
-- local repo test baseline: `.\.venv\Scripts\python.exe -m unittest` -> `468 tests OK`
+- local repo test baseline: `python3 -m unittest`
 - local quality-gate baseline:
-  - `.\.venv\Scripts\ruff.exe check build.py tools tests scripts`
-  - `.\.venv\Scripts\python.exe tools/check_maintainability_guardrails.py`
-  - `.\.venv\Scripts\python.exe build.py check --config config.us-en.yaml --model JE-1000F --region US`
-  - `.\.venv\Scripts\python.exe build.py check --config config.ja.yaml --model JE-1000F --region JP`
-- highest-leverage hotspots identified in:
-  - [`../tools/validate_spec_master_runtime.py`](../tools/validate_spec_master_runtime.py)
+  - `python3 -m ruff check build.py integrations tools tests scripts`
+  - `python3 scripts/local_build.py check --config config.us-en.yaml --model JE-1000F --region US`
+  - `python3 scripts/local_build.py check --config config.ja.yaml --model JE-1000F --region JP`
+- short-term baseline PRs already absorbed:
+  - phase2 snapshot manifest completeness validation
+  - CLI action registry
+  - config contract validation
+  - queue `RUNNING` status writeback
+- highest-leverage current hotspots identified in:
+  - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
+  - [`../tools/queue_query.py`](../tools/queue_query.py)
+  - [`../tools/word_bundle_docx_styles.py`](../tools/word_bundle_docx_styles.py)
+  - [`../tools/phase1/renderers_symbols.py`](../tools/phase1/renderers_symbols.py)
   - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
-  - [`../tools/process_docs/build_review_preview_targets.py`](../tools/process_docs/build_review_preview_targets.py)
-  - [`../tools/build_docs_export.py`](../tools/build_docs_export.py)
-  - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
-  - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml)
-  - [`.github/workflows/feishu-draft-build-queue.yml`](../.github/workflows/feishu-draft-build-queue.yml)
-  - [`.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml)
 
 ## 3. Milestone A: 2 Weeks
 
@@ -245,7 +246,80 @@ Milestone note: closed the second stability wave by fixing diff-report regressio
   - Completed: `2026-04-08`
   - Note: kept `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py` as wrapper-compatible facades while moving CLI bootstrap and build-export artifact planning/output steps into focused helpers, then added regression tests around the new bootstrap/artifact-plan surfaces
 
-## 5. Deferred: Do Not Touch Yet
+## 5. Milestone C: Short-Term Contract Baseline
+
+Milestone status: `in_progress`
+Milestone target: `2026-05`
+Milestone note: stabilize the post-PR baseline around external table contracts,
+queue state writeback semantics, and the first queue-test hotspot split before
+moving on to larger transition-layer work.
+
+- [x] PR 11: Absorb short-term hardening PRs into the active baseline
+  - Status: `done`
+  - Completed: `2026-05-07`
+  - Note: current `main` includes phase2 snapshot completeness validation, CLI action registry, config contract validation, and queue `RUNNING` state writeback
+
+- [x] PR 12: Document external table contract v1
+  - Status: `done`
+  - Target files:
+    - [`dev/external_table_contracts.md`](dev/external_table_contracts.md)
+    - [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md)
+  - Done when:
+    - phase2 tables, `Document_link`, and Review Init have explicit read/write field contracts
+    - compatible aliases and drift rules are documented
+  - Completed: `2026-05-07`
+  - Note: added the first repo-owned external table contract for snapshot, queue, and review-init fields
+
+- [x] PR 13: Document queue state model
+  - Status: `done`
+  - Target files:
+    - [`dev/queue_state_model.md`](dev/queue_state_model.md)
+    - [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md)
+  - Done when:
+    - `pending -> running -> success/failed` is documented
+    - fields written in each phase are explicit
+    - writeback-failed handling is called out
+  - Completed: `2026-05-07`
+  - Note: documented running/success/failure/writeback-failed behavior and linked it from the orchestration map
+
+- [x] PR 14: Split the first queue writeback tests out of the largest test hotspot
+  - Status: `done`
+  - Target files:
+    - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
+    - [`../tests/test_process_build_queue_writeback.py`](../tests/test_process_build_queue_writeback.py)
+  - Done when:
+    - writeback field construction tests live in a domain-named test file
+    - `tests/test_process_build_queue.py` remains behavior-compatible
+  - Completed: `2026-05-07`
+  - Note: moved started/success/failure writeback field tests into `test_process_build_queue_writeback.py`
+
+- [ ] PR 15: Centralize queue state transitions
+  - Status: `pending`
+  - Target files:
+    - [`../tools/queue_writeback.py`](../tools/queue_writeback.py)
+    - [`../tools/queue_group_processing.py`](../tools/queue_group_processing.py)
+  - Done when:
+    - result formatting, start/success/failure writeback, trigger clearing, and `data_sync` rules are testable as transition behavior
+    - tests cover running, success, failure, and writeback-failed
+
+- [ ] PR 16: Add external integration fixture smoke tests
+  - Status: `pending`
+  - Target files:
+    - [`../tests/`](../tests)
+    - [`../integrations/openclaw/`](../integrations/openclaw)
+  - Done when:
+    - fixture tests cover missing fields, permission failure, duplicate dispatch, publish confirmation, and DingTalk fallback without real network access
+
+- [ ] PR 17: Add schema drift checks
+  - Status: `pending`
+  - Target files:
+    - [`../tools/data_snapshot.py`](../tools/data_snapshot.py)
+    - [`../tools/queue_contract.py`](../tools/queue_contract.py)
+    - [`../tests/fixtures/`](../tests/fixtures)
+  - Done when:
+    - phase2 snapshot manifest, CSV headers, and queue writable fields can be validated from fixed fixtures or dry-run payloads
+
+## 6. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
   - Status: `deferred`
