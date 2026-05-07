@@ -47,6 +47,7 @@ from tools.queue_contract import (  # noqa: E402
     LEGACY_TRIGGER_FIELDS as _QC_LEGACY_TRIGGER_FIELDS,
     OPERATOR_UNION_ID_FIELD as _QC_OPERATOR_UNION_ID_FIELD,
     RESULT_FIELD as _QC_RESULT_FIELD,
+    RUNNING_PREFIX as _QC_RUNNING_PREFIX,
     SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
     TRIGGER_FIELD as _QC_TRIGGER_FIELD,
     TRIGGER_VALUES as _QC_TRIGGER_VALUES,
@@ -212,6 +213,7 @@ UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
 OPERATOR_UNION_ID_FIELD = _QC_OPERATOR_UNION_ID_FIELD
 SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
+RUNNING_PREFIX = _QC_RUNNING_PREFIX
 FAILED_PREFIX = _QC_FAILED_PREFIX
 TRIGGER_VALUES = _QC_TRIGGER_VALUES
 DONE_TRIGGER_VALUE = _QC_DONE_TRIGGER_VALUE
@@ -340,8 +342,22 @@ def build_success_fields(
     )
 
 
-def build_started_fields(*, started_at: datetime) -> dict[str, Any]:
-    return _build_started_fields_service(_service_module(), started_at=started_at)
+def build_started_fields(
+    *,
+    started_at: datetime,
+    version: str = "",
+    workflow_action: str | None = None,
+    doc_phase: str | None = None,
+    data_sync_status: str = "",
+) -> dict[str, Any]:
+    return _build_started_fields_service(
+        _service_module(),
+        started_at=started_at,
+        version=version,
+        workflow_action=workflow_action,
+        doc_phase=doc_phase,
+        data_sync_status=data_sync_status,
+    )
 
 
 def build_failure_fields(

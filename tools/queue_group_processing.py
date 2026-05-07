@@ -176,7 +176,13 @@ def process_queue_record_group(
             data_sync_status = "refreshed"
         started_at = datetime.now().astimezone()
         if can_write_started_at:
-            start_fields = build_started_fields(started_at=started_at)
+            start_fields = build_started_fields(
+                started_at=started_at,
+                version=record.version,
+                workflow_action=effective_doc_phase,
+                doc_phase=queue_record_legacy_doc_phase(record),
+                data_sync_status=data_sync_status,
+            )
             for group_record in group:
                 try:
                     source.upsert_record(
