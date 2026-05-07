@@ -70,6 +70,10 @@ def has_tokenized_value(v: Any) -> bool:
     return isinstance(v, str) and ("{" in v and "}" in v)
 
 
+def _non_empty_str(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
 def load_yaml(path: Path) -> dict:
     try:
         import yaml
@@ -314,6 +318,22 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                         f"sync.phase2.tables.{table_name}.{key} must be a non-empty string when provided",
                     )
                 )
+        if not _non_empty_str(table_cfg.get("base_token_env")) and not _non_empty_str(phase2.get("base_token_env")):
+            issues.append(
+                Issue(
+                    "ERROR",
+                    f"sync.phase2.tables.{table_name}.base_token_env is required, "
+                    "or provide sync.phase2.base_token_env",
+                )
+            )
+        if not _non_empty_str(table_cfg.get("table_id")) and not _non_empty_str(table_cfg.get("table_id_env")):
+            issues.append(
+                Issue(
+                    "ERROR",
+                    f"sync.phase2.tables.{table_name}.table_id or "
+                    f"sync.phase2.tables.{table_name}.table_id_env is required",
+                )
+            )
 
     # ---- pages ----
     try:
@@ -330,6 +350,24 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     if any(i.level == "ERROR" for i in resolved_pages.issues):
         return issues
 
+    allowed_languages = set(languages) if is_list_of_str(languages) else set()
+
+    def _validate_page_languages(idx: int, key: str, raw_languages: tuple[str, ...]) -> None:
+        if not raw_languages:
+            issues.append(Issue("ERROR", f"pages[{idx}] {key} must not be empty"))
+            return
+        if not allowed_languages:
+            return
+        unknown = sorted({lang for lang in raw_languages if lang not in allowed_languages})
+        if unknown:
+            issues.append(
+                Issue(
+                    "ERROR",
+                    f"pages[{idx}] {key} contains languages not declared in build.languages: "
+                    + ", ".join(unknown),
+                )
+            )
+
     for idx, page in enumerate(parsed_pages, start=1):
         if isinstance(page, CoverPdfPage):
             if strict_files:
@@ -345,9 +383,11 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             continue
 
         if isinstance(page, CsvPage):
+            _validate_page_languages(idx, "csv_page.langs", page.langs)
             continue
 
         if isinstance(page, GeneratedPage):
+            _validate_page_languages(idx, "generated_page.langs", page.langs)
             if strict_files:
                 for raw_path, label in ((page.recipe, "recipe"), (page.template, "template")):
                     if has_tokenized_value(raw_path):
@@ -366,6 +406,20 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             continue
 
         if isinstance(page, PdfInsertPage):
+            _validate_page_languages(idx, "pdf_insert.langs", page.langs)
+            file_map_languages = tuple(page.file_map)
+            _validate_page_languages(idx, "pdf_insert.file_map", file_map_languages)
+            missing_file_map_languages = sorted(set(page.langs) - set(page.file_map))
+            if missing_file_map_languages:
+                issues.append(
+                    Issue(
+                        "ERROR",
+                        "pages[{}] pdf_insert.file_map is missing entries for langs: {}".format(
+                            idx,
+                            ", ".join(missing_file_map_languages),
+                        ),
+                    )
+                )
             if strict_files:
                 for lang, fname in page.file_map.items():
                     if has_tokenized_value(fname):
@@ -380,6 +434,8 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             continue
 
         if isinstance(page, RstIncludePage):
+            if page.lang is not None:
+                _validate_page_languages(idx, "rst_include.lang", (page.lang,))
             continue
 
     return issues

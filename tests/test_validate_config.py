@@ -144,6 +144,31 @@ class TestValidateConfig(unittest.TestCase):
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
 
+    def test_validate_should_reject_phase2_table_without_binding(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "tables": {
+                        "spec_master": {},
+                    },
+                },
+            },
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertIn(
+            "sync.phase2.tables.spec_master.base_token_env is required, or provide sync.phase2.base_token_env",
+            errors,
+        )
+        self.assertIn(
+            "sync.phase2.tables.spec_master.table_id or sync.phase2.tables.spec_master.table_id_env is required",
+            errors,
+        )
+
     def test_validate_should_accept_phase2_snapshot_config_with_literal_table_binding(self) -> None:
         cfg = {
             "build": {"languages": ["ja"]},
@@ -186,6 +211,44 @@ class TestValidateConfig(unittest.TestCase):
         issues = validate(cfg, strict_files=False)
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertEqual([], errors)
+
+    def test_validate_should_reject_manifest_language_outside_build_languages(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "paths": {},
+            "pages": [
+                {"type": "rst_include", "lang": "fr", "file": "templates/page_shared/fr/00_preface.rst"},
+                {"type": "csv_page", "source": "phase1", "page": "spec", "langs": ["en", "fr"]},
+            ],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertIn(
+            "pages[1] rst_include.lang contains languages not declared in build.languages: fr",
+            errors,
+        )
+        self.assertIn(
+            "pages[2] csv_page.langs contains languages not declared in build.languages: fr",
+            errors,
+        )
+
+    def test_validate_should_reject_pdf_insert_missing_file_map_language(self) -> None:
+        cfg = {
+            "build": {"languages": ["en", "fr"]},
+            "paths": {},
+            "pages": [
+                {
+                    "type": "pdf_insert",
+                    "langs": ["en", "fr"],
+                    "file_map": {"en": "docs/static/en.pdf"},
+                },
+            ],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertIn("pages[1] pdf_insert.file_map is missing entries for langs: fr", errors)
 
     def test_validate_should_reject_invalid_phase2_sync_table_key(self) -> None:
         cfg = {
