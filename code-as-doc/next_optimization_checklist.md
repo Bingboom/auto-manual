@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-05-07
+Updated: 2026-05-08
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -74,6 +74,8 @@ This checklist assumes the 2026-05-07 baseline below:
   - [`../tools/word_bundle_docx_styles.py`](../tools/word_bundle_docx_styles.py)
   - [`../tools/phase1/renderers_symbols.py`](../tools/phase1/renderers_symbols.py)
   - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
+- long-term content assembly pilot preparation is fixture-backed and does not
+  replace the current HTML/PDF build path
 
 ## 3. Milestone A: 2 Weeks
 
@@ -341,13 +343,64 @@ of the largest queue test hotspot.
   - Completed: `2026-05-08`
   - Note: moved 18 routing/config/grouping tests into `test_process_build_queue_routing.py`
 
-## 6. Deferred: Do Not Touch Yet
+## 6. Milestone D: Long-Term Content Assembly Pilot Preparation
+
+Milestone status: `done`
+Milestone completed: `2026-05-08`
+Milestone target: `2026-05`
+Milestone note: completed the pre-template-splitting safety net for the
+`03_product_overview` pilot without changing the existing build path.
+
+- [x] Long-term PR 1: Document the pilot inventory and block taxonomy
+  - Status: `done`
+  - Target files:
+    - [`dev/content_assembly_pilot_plan.md`](dev/content_assembly_pilot_plan.md)
+  - Done when:
+    - `03_product_overview` templates, recipes, contract, renderer, assets, and data surfaces are inventoried
+    - the first functional block taxonomy is documented with repeatability, applicability, and missing-field policy
+  - Completed: `2026-05-08`
+  - Note: documented the pilot boundary and confirmed preparation work does not change the current HTML/PDF build path
+
+- [x] Long-term PR 2: Add multidimensional-table-style fixtures
+  - Status: `done`
+  - Target files:
+    - [`../tests/fixtures/content_assembly/`](../tests/fixtures/content_assembly)
+  - Done when:
+    - fixture tables exist for page assembly, content blocks, block fields, assets, and block rules
+    - schema drift tests catch missing fixture headers before any live Feishu integration is introduced
+  - Completed: `2026-05-08`
+  - Note: added CSV fixtures that simulate the first page assembly contract without depending on live network data
+
+- [x] Long-term PR 3: Add the assembly contract validator
+  - Status: `done`
+  - Target files:
+    - [`../tools/content_assembly_contract.py`](../tools/content_assembly_contract.py)
+    - [`../docs/templates/assembly_contracts/03_product_overview.yaml`](../docs/templates/assembly_contracts/03_product_overview.yaml)
+    - [`../tests/test_content_assembly_contract.py`](../tests/test_content_assembly_contract.py)
+  - Done when:
+    - unknown blocks, missing required fields, missing assets, and missing fallback declarations fail locally
+  - Completed: `2026-05-08`
+  - Note: added a fixture-backed validator and CLI for the pilot assembly contract
+
+- [x] Long-term PR 4: Add the no-op assembler
+  - Status: `done`
+  - Target files:
+    - [`../tools/content_assembly.py`](../tools/content_assembly.py)
+    - [`../tests/test_content_assembly.py`](../tests/test_content_assembly.py)
+  - Done when:
+    - US/en and JP/ja no-op RST can be rendered to a temporary path
+    - managed build/template output directories are rejected
+    - the existing build path remains unchanged
+  - Completed: `2026-05-08`
+  - Note: added deterministic fixture rendering for the pilot page while keeping official template rendering untouched
+
+## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
   - Status: `deferred`
   - Why deferred:
-    - the repo roadmap already treats this as deferred
-    - current maintainability wins are higher-value and lower-risk
+    - the pilot safety net is ready, but repo-wide template rewrites are still too broad
+    - the next step should be only the `03_product_overview` split behind a page-level pilot switch
 
 - [ ] Deferred 2: Word/PDF backend replacement or export-stack rewrite
   - Status: `deferred`
@@ -373,7 +426,7 @@ of the largest queue test hotspot.
     - these are the most workflow-sensitive surfaces in the repo
     - stability is currently more valuable than surface redesign
 
-## 6. Success Criteria
+## 8. Success Criteria
 
 This checklist is successful when:
 

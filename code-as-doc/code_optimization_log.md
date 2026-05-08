@@ -501,3 +501,19 @@ Why it mattered:
 - the queue state machine is now testable before transport, upload, or Feishu/Lark writeback code runs
 - external integration drift can fail in fixture tests instead of first appearing as a production worker surprise
 - maintainers can now distinguish lint/unit/build-smoke/queue-contract failures more quickly in CI
+
+## 30. 2026-05-08: Content Assembly Pilot Safety Net
+
+Main outcomes:
+
+- added [`dev/content_assembly_pilot_plan.md`](dev/content_assembly_pilot_plan.md) to freeze the `03_product_overview` dependency inventory and first functional block taxonomy before template splitting starts
+- added fixture-backed content assembly tables under [`../tests/fixtures/content_assembly/`](../tests/fixtures/content_assembly/) for `page_assembly`, `content_blocks`, `block_fields`, `asset_registry`, and `block_rules`
+- added [`../docs/templates/assembly_contracts/03_product_overview.yaml`](../docs/templates/assembly_contracts/03_product_overview.yaml) as the first declaration for the pilot page, family, region/language targets, fallback language, block types, and required fields
+- added [`../tools/content_assembly_contract.py`](../tools/content_assembly_contract.py) so schema drift, unknown blocks, missing fields, missing assets, and missing fallback declarations can fail before any template is split
+- added [`../tools/content_assembly.py`](../tools/content_assembly.py) as a no-op assembler that renders deterministic temporary RST from fixtures without replacing the existing HTML/PDF build path
+
+Why it mattered:
+
+- the first long-term content pilot now has a safety net around inputs, contracts, assets, fallback behavior, and regression samples
+- `03_product_overview` can be split in the next phase behind an explicit page-level pilot switch instead of mixing data-contract work with template rewrites
+- current PDF/HTML generation remains on the existing templates and renderer while the new assembly layer proves itself independently
