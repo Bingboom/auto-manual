@@ -533,3 +533,19 @@ Why it mattered:
 - `03_product_overview` is now the first real page connected to declaration-driven assembly without a repo-wide template rewrite
 - the default build behavior remains controlled by a page-level switch, and pilot failures stop the build clearly
 - the next expansion can add more product overview blocks or another page using the same contract/fixture/template boundary
+
+## 32. 2026-05-08: Topic Map Fixture Contract and Adapter
+
+Main outcomes:
+
+- added fixture-backed topic map tables under [`../tests/fixtures/topic_map/`](../tests/fixtures/topic_map/) for topic registry, fields, assets, rules, page topic map, manual page map, and topic content
+- added [`../tools/topic_map_contract.py`](../tools/topic_map_contract.py) so topic map exports can fail on schema drift, unknown topic types, missing linked topics, missing templates/assets, missing fallback language, invalid rules, and invalid page/manual ordering
+- added [`../tools/topic_map_adapter.py`](../tools/topic_map_adapter.py) to convert topic map fixture rows into the existing `content_assembly` CSV shape without changing the live build path
+- documented local validator and adapter commands in [`dev/topic_map_assembly_plan.md`](dev/topic_map_assembly_plan.md)
+- added tests that validate the topic-map fixture contract and prove the adapter output can still satisfy the current `03_product_overview` assembly contract
+
+Why it mattered:
+
+- topic map management can now be modeled in Feishu/Lark Base without making the PDF/HTML build depend on live Base reads
+- the first adapter preserves the existing assembly boundary while allowing topic ids, topic fields, and page topic ordering to become the future source of truth
+- future template splitting can move one page at a time from block fixtures toward topic-map fixtures with a fixture-backed drift gate

@@ -178,6 +178,7 @@ Recommended `value_role` options:
 - `body`
 - `title`
 - `alt`
+- `value`
 
 Recommended `fallback_policy` options:
 
@@ -386,7 +387,39 @@ The first implementation should add a topic-map adapter that reads the new
 tables and produces the current `content_assembly` structures. After the pilot
 is stable, the lower-level names can be migrated from block to topic.
 
-## 6. Base Setup Checklist
+## 6. Local Fixture and Adapter Commands
+
+The first implementation keeps Feishu/Lark Base offline. Exported Base rows
+are represented by CSV fixtures under:
+
+- `tests/fixtures/topic_map/`
+
+Validate the topic-map fixture contract:
+
+```bash
+python3 tools/topic_map_contract.py validate \
+  --fixtures tests/fixtures/topic_map
+```
+
+Export topic-map rows into the existing `content_assembly` fixture shape:
+
+```bash
+python3 tools/topic_map_adapter.py export-content-assembly \
+  --fixtures tests/fixtures/topic_map \
+  --page-id 03_product_overview \
+  --product-family JE-1000F \
+  --output .tmp/topic_map_content_assembly
+```
+
+The adapter intentionally writes only to caller-provided temporary output. It
+must not write under `docs/templates/`, `docs/_review/`, `docs/_build/`, or
+`reports/releases/`.
+
+For CSV export compatibility, linked-record fields from Base should be exported
+as stable id columns, for example `topic_id` and `rule_set`, rather than display
+names that may change.
+
+## 7. Base Setup Checklist
 
 When creating the Base manually:
 
@@ -400,7 +433,7 @@ When creating the Base manually:
 7. Export fixture CSVs from the Base and compare headers against local tests
    before any live build reads the Base.
 
-## 7. Guardrails
+## 8. Guardrails
 
 - Do not make a full manual depend on Base until fixture tests pass.
 - Do not replace page manifests with `manual_page_map` in the first topic-map

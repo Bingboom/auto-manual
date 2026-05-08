@@ -1,0 +1,7 @@
+topic_id,topic_type,topic_title,template_path,repeatable,owner,status,description
+product_identity,product_identity,PRODUCT_IDENTITY,docs/templates/assembly_blocks/03_product_overview/product_identity.rst,false,docs,active,Product name and model identity for the overview page
+product_overview.front_asset,asset_callout,FRONT_PRODUCT_IMAGE,docs/templates/assembly_blocks/03_product_overview/asset_callout.rst,false,docs,active,Front product image callout
+product_overview.front_features,feature_overview,FRONT_VIEW,docs/templates/assembly_blocks/03_product_overview/feature_overview.rst,false,docs,active,Front panel feature group
+product_overview.side_asset,asset_callout,RIGHT_SIDE_PORTS_IMAGE,docs/templates/assembly_blocks/03_product_overview/asset_callout.rst,false,docs,active,Right side ports image callout
+product_overview.side_features,feature_overview,RIGHT_SIDE_VIEW,docs/templates/assembly_blocks/03_product_overview/feature_overview.rst,false,docs,active,Right side feature group
+product_overview.total_output,spec_summary,FRONT_TOTAL_OUTPUT,docs/templates/assembly_blocks/03_product_overview/spec_summary.rst,false,docs,active,US front total output summary
