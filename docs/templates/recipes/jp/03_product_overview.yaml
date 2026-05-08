@@ -118,3 +118,10 @@ required_row_keys:
 snippet_slots: {}
 contracts:
   - 03_product_overview
+assembly_pilot:
+  enabled: true
+  regions: [JP]
+  langs: [ja]
+  contract: templates/assembly_contracts/03_product_overview.yaml
+  fixtures: tests/fixtures/content_assembly
+  block_template_dir: templates/assembly_blocks/03_product_overview
