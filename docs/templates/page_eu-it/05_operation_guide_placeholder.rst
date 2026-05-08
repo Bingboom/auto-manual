@@ -111,7 +111,7 @@ La luce LED ha due modalita: modalita luce e modalita SOS. In qualsiasi modalita
 Funzione di ripristino delle uscite CA e CC
 -------------------------------------------
 
-Questa funzione memorizza lo stato delle uscite e ripristina automaticamente le uscite CA e CC in determinate condizioni.
+La funzione di ripristino delle uscite CA e CC è disattivata per impostazione predefinita. Attivare questa funzione nell’App Jackery per consentire al dispositivo di memorizzare lo stato delle uscite CA e CC e ripristinare automaticamente le uscite CA e CC in condizioni definite.
 
 .. list-table::
    :header-rows: 1

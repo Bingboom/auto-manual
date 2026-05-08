@@ -105,7 +105,7 @@ La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe
 Fonction de reprise de Sortie CA et CC
 ---------------------------------------
 
-Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
+La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez cette fonction dans l’application afin que l’appareil mémorise l’état de sortie CA/CC et reprenne automatiquement les sorties CA et CC dans les conditions définies.
 
 +-----------------------------------------------------------------------+------------------------------------------------------------+
 | Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
@@ -162,10 +162,20 @@ AFFICHAGE LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
-      \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton d'alimentation principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
-      \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton d'alimentation principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.}
-      \end{HBLcdModeTable}
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en discontinu}} & Allumer & Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge. \\ \cline{3-4}
+      & & Éteindre & Appuyez sur le bouton d'alimentation principal. \\ \cline{3-4}
+      & & Arrêt automatique & L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en continu (en cours de charge ou de décharge)}} & Allumer & Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé. \\ \cline{3-4}
+      & & Éteindre & Appuyez sur le bouton d'alimentation principal. \\ \cline{3-4}
+      & & Arrêt automatique & L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité. \\ \hline
+      \end{tabular}
+      \endgroup
 
 Vous pouvez également définir le mode d'affichage de l'écran dans l'application Jackery.
 
