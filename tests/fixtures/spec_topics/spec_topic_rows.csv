@@ -1,0 +1,14 @@
+topic_row_id,topic_id,row_key,row_order,slot_key,line_order,usage_type,placement_key,value_role,variant_key,required
+spec.general_info.product_name.1,spec.general_info,product_name,1,,1,spec_value,,value,,true
+spec.general_info.model_no.1,spec.general_info,model_no,2,,1,spec_value,,value,,true
+spec.general_info.capacity.1,spec.general_info,capacity,3,,1,spec_value,,value,,true
+spec.input_ports.ac_input.1,spec.input_ports,ac_input,1,,1,spec_value,,value,charge_mode,true
+spec.input_ports.ac_input.2,spec.input_ports,ac_input,1,,2,spec_value,,value,bypass_mode,true
+spec.input_ports.dc8020_ports.1,spec.input_ports,dc8020_ports,2,,1,spec_value,,value,low_voltage,true
+spec.input_ports.dc8020_ports.2,spec.input_ports,dc8020_ports,2,,2,spec_value,,value,high_voltage,true
+spec.output_ports.ac_output.1,spec.output_ports,ac_output,1,,1,spec_value,,value,normal_temp,true
+spec.output_ports.ac_output.2,spec.output_ports,ac_output,1,,2,spec_value,,value,low_temp,true
+spec.output_ports.usb_c.1,spec.output_ports,usb_c,3,,1,spec_value,,value,low_power,true
+spec.output_ports.usb_c.2,spec.output_ports,usb_c,3,,2,spec_value,,value,high_power,true
+spec.output_ports.usb_a.1,spec.output_ports,usb_a,4,,1,spec_value,,value,,true
+spec.output_ports.dc12_port.1,spec.output_ports,dc12_port,5,,1,spec_value,,value,,true

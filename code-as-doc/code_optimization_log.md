@@ -533,3 +533,19 @@ Why it mattered:
 - `03_product_overview` is now the first real page connected to declaration-driven assembly without a repo-wide template rewrite
 - the default build behavior remains controlled by a page-level switch, and pilot failures stop the build clearly
 - the next expansion can add more product overview blocks or another page using the same contract/fixture/template boundary
+
+## 32. 2026-05-08: Spec Topic Pilot Contract
+
+Main outcomes:
+
+- added [`dev/spec_topic_pilot_plan.md`](dev/spec_topic_pilot_plan.md) to narrow the next content-infrastructure step from full page topic maps to a smaller `Spec_Master` maintenance layer
+- added fixture-backed spec topic tables under [`../tests/fixtures/spec_topics/`](../tests/fixtures/spec_topics/) for `spec_topics`, `spec_topic_rows`, and `spec_topic_values`
+- added [`../tools/spec_topic_contract.py`](../tools/spec_topic_contract.py) so spec-topic exports can fail on schema drift, duplicate ids, missing references, missing required values, duplicate selectors, and invalid ordering
+- added [`../tools/spec_topic_adapter.py`](../tools/spec_topic_adapter.py) to export spec-topic rows back into a compatible temporary `Spec_Master.csv`
+- added tests proving the exported rows still work with the existing `Spec_Master` lookup helpers
+
+Why it mattered:
+
+- the highest-friction data table now has a smaller topic-shaped pilot that does not require a broader page assembly rewrite
+- maintainers can experiment with section/topic ownership while the build continues to consume the stable `Spec_Master.csv` interface
+- the adapter creates a low-risk migration path: topic tables first, compatible export second, live build adoption only after round-trip coverage is good enough
