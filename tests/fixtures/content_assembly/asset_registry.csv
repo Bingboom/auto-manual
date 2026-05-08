@@ -1,0 +1,4 @@
+asset_key,path,alt_key,region,lang,required
+front_product,docs/templates/word_template/common_assets/overview/front_product.jpg,front_product_alt,*,*,true
+right_side_ports,docs/templates/word_template/common_assets/overview/right_side_ports.png,right_side_ports_alt,*,*,true
+front_controls,docs/templates/word_template/common_assets/overview/front_controls.png,front_controls_alt,*,*,false

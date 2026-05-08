@@ -1,0 +1,14 @@
+page_id: 03_product_overview
+product_family: JE-1000F
+regions: [US, JP]
+langs: [en, ja]
+fallback:
+  lang: en
+blocks:
+  - product_identity
+  - feature_overview
+  - spec_summary
+  - asset_callout
+required_fields:
+  - product_name
+  - model_no

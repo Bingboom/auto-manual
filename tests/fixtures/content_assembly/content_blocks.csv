@@ -1,0 +1,6 @@
+block_id,block_type,parent_block_id,title_key,asset_key,repeatable,region,lang
+identity,product_identity,,PRODUCT_IDENTITY,,false,*,*
+feature_front,feature_overview,,FRONT_VIEW,front_product,false,*,en
+feature_front,feature_overview,,FRONT_VIEW_JA,front_product,false,JP,ja
+feature_side,feature_overview,,RIGHT_SIDE_VIEW,right_side_ports,false,*,en
+spec_front_total,spec_summary,,FRONT_TOTAL_OUTPUT,,false,US,en
