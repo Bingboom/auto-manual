@@ -13,10 +13,11 @@ validated before any existing HTML/PDF build path is replaced.
 - Behavior change: none for the preparation phase
 - Build integration: deferred until the template split phase
 
-The first four preparation PRs add documentation, fixture-backed table
-contracts, a validator, and a no-op assembler. They do not change `build.py`,
-`tools/product_overview_renderer.py`, or the current RST template rendering
-path.
+The first four preparation PRs added documentation, fixture-backed table
+contracts, a validator, and a no-op assembler. PR 5 adds the first page-level
+pilot switch for `03_product_overview`: only the configured `US/en` and
+`JP/ja` targets use the assembly path, while non-matching targets keep the old
+template path.
 
 ## Current Product Overview Dependencies
 
@@ -107,6 +108,10 @@ The first no-op assembler exercises only the product overview subset:
 - `spec_summary`
 - `asset_callout`
 
+PR 5 also adds block templates for these four types under:
+
+- `docs/templates/assembly_blocks/03_product_overview/`
+
 The broader taxonomy is documented now so later page pilots do not invent
 competing block names.
 
@@ -161,13 +166,19 @@ Validation rules:
 ## Rollout Boundary
 
 The preparation phase is safe for current HTML/PDF generation because it is
-read-only relative to the current build path:
+read-only relative to the current build path. PR 5 changes only the explicit
+page-level pilot path:
 
 - no changes to `build.py`
-- no changes to existing recipes
+- recipe changes are limited to `assembly_pilot` switches on the `US/en` and
+  `JP/ja` product overview recipes
 - no changes to existing page contracts
-- no changes to `tools/product_overview_renderer.py`
-- generated assembly output goes only to a requested temporary path
+- renderer changes are limited to adding the `ja` product overview layout needed
+  by the JP pilot path
+- default generated-page rendering remains the old template path when
+  `assembly_pilot` is absent or not applicable to the target region/language
+- pilot failures raise a clear error instead of silently emitting partial pages
+- generated no-op assembly output still goes only to a requested temporary path
 
-The next phase can start splitting `03_product_overview` only after the
-validator and no-op assembler pass for both `US/en` and `JP/ja`.
+The next phase can expand the pilot only after `US/en` and `JP/ja` stay green
+through the existing `build.py check` path.

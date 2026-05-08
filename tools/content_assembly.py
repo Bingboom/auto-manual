@@ -21,6 +21,10 @@ from tools.content_assembly_contract import (  # noqa: E402
     row_applies,
     validate_content_assembly_contract,
 )
+from tools.product_overview_renderer import (  # noqa: E402
+    PRODUCT_OVERVIEW_TOKEN,
+    render_product_overview_page,
+)
 
 
 FORBIDDEN_OUTPUT_DIRS = (
@@ -133,6 +137,10 @@ def _field_rows(fixtures: ContentAssemblyFixtures, block_id: str) -> list[dict[s
     return [row for row in fixtures.block_fields if _row_value(row, "block_id") == block_id]
 
 
+def _field_keys(fixtures: ContentAssemblyFixtures, block_id: str) -> list[str]:
+    return [_row_value(row, "field_key") for row in _field_rows(fixtures, block_id) if _row_value(row, "field_key")]
+
+
 def _render_field(row: dict[str, str]) -> str:
     parts = [
         f"row_key={_row_value(row, 'row_key')}",
@@ -151,6 +159,151 @@ def _render_field(row: dict[str, str]) -> str:
     if fallback_policy:
         parts.append(f"fallback={fallback_policy}")
     return f"   - {_row_value(row, 'field_key')}: " + ", ".join(parts)
+
+
+def _substitution_candidates(field_row: dict[str, str]) -> tuple[str, ...]:
+    field_key = _row_value(field_row, "field_key")
+    row_key = _row_value(field_row, "row_key")
+    candidates = [field_key, field_key.upper(), row_key, row_key.upper()]
+    if row_key == "product_name":
+        candidates.append("PRODUCT_NAME")
+    if row_key == "model_no":
+        candidates.append("MODEL_NO")
+    return tuple(dict.fromkeys(value for value in candidates if value))
+
+
+def _missing_required_substitutions(
+    *,
+    fixtures: ContentAssemblyFixtures,
+    page_rows: list[dict[str, str]],
+    substitutions: dict[str, str],
+) -> list[str]:
+    missing: list[str] = []
+    for page_row in page_rows:
+        block_id = _row_value(page_row, "block_id")
+        for field_row in _field_rows(fixtures, block_id):
+            if not _is_truthy(field_row.get("required", "")):
+                continue
+            if any((substitutions.get(candidate) or "").strip() for candidate in _substitution_candidates(field_row)):
+                continue
+            missing.append(_row_value(field_row, "field_key"))
+    return missing
+
+
+def _template_context(
+    *,
+    block_id: str,
+    content_row: dict[str, str],
+    fixtures: ContentAssemblyFixtures,
+    emit_product_overview_token: bool,
+) -> dict[str, str]:
+    asset_key = _row_value(content_row, "asset_key")
+    asset_path = ""
+    if asset_key:
+        asset = _asset_row(fixtures, asset_key)
+        asset_path = _row_value(asset, "path") if asset is not None else ""
+    return {
+        "asset_key": asset_key,
+        "asset_path": asset_path,
+        "block_id": block_id,
+        "block_type": _row_value(content_row, "block_type"),
+        "field_keys": ", ".join(_field_keys(fixtures, block_id)),
+        "product_overview_token": PRODUCT_OVERVIEW_TOKEN if emit_product_overview_token else "",
+        "title_key": _row_value(content_row, "title_key"),
+    }
+
+
+def _render_block_template(template_text: str, context: dict[str, str]) -> str:
+    rendered = template_text
+    for key, value in context.items():
+        rendered = rendered.replace("{{ " + key + " }}", value)
+    return rendered.strip()
+
+
+def _field_marker_lines(field_keys: list[str]) -> list[str]:
+    markers = [f"|{field_key}|" for field_key in field_keys if field_key]
+    if not markers:
+        return []
+    lines = [".. product-overview-fields:"]
+    for idx in range(0, len(markers), 3):
+        prefix = "   " if idx else "   "
+        lines.append(prefix + " ".join(markers[idx : idx + 3]))
+    return lines
+
+
+def render_content_assembly_page(
+    *,
+    contract_path: Path,
+    fixtures_dir: Path,
+    block_template_dir: Path,
+    region: str,
+    lang: str,
+    substitutions: dict[str, str],
+    repo_root: Path = ROOT,
+) -> str:
+    result = validate_content_assembly_contract(
+        contract_path=contract_path,
+        fixtures_dir=fixtures_dir,
+        repo_root=repo_root,
+    )
+    if not result.valid:
+        raise RuntimeError(render_content_assembly_report(result))
+
+    contract = load_assembly_contract(contract_path)
+    fixtures = load_content_assembly_fixtures(fixtures_dir)
+    fallback_lang = _fallback_lang(contract, lang)
+    page_rows = _page_rows_for_target(fixtures, contract, region=region, lang=lang)
+    if not page_rows:
+        raise RuntimeError(f"No enabled page assembly rows apply to {contract.page_id} for {region}/{lang}")
+
+    missing = _missing_required_substitutions(fixtures=fixtures, page_rows=page_rows, substitutions=substitutions)
+    if missing:
+        raise RuntimeError(
+            f"Content assembly page '{contract.page_id}' is missing required substitution(s) for "
+            f"{region}/{lang}: {', '.join(dict.fromkeys(missing))}"
+        )
+
+    blocks: list[str] = []
+    field_keys: list[str] = []
+    product_overview_token_emitted = False
+    for page_row in page_rows:
+        block_id = _row_value(page_row, "block_id")
+        content_row = _content_row_for_block(
+            fixtures,
+            block_id,
+            region=region,
+            lang=lang,
+            fallback_lang=fallback_lang,
+        )
+        block_type = _row_value(content_row, "block_type")
+        template_path = block_template_dir / f"{block_type}.rst"
+        if not template_path.exists():
+            raise RuntimeError(f"Missing content assembly block template for {block_type}: {template_path}")
+        block_field_keys = _field_keys(fixtures, block_id)
+        field_keys.extend(block_field_keys)
+        emit_product_overview_token = block_type == "feature_overview" and not product_overview_token_emitted
+        if emit_product_overview_token:
+            product_overview_token_emitted = True
+        blocks.append(
+            _render_block_template(
+                template_path.read_text(encoding="utf-8"),
+                _template_context(
+                    block_id=block_id,
+                    content_row=content_row,
+                    fixtures=fixtures,
+                    emit_product_overview_token=emit_product_overview_token,
+                ),
+            )
+        )
+
+    if not product_overview_token_emitted:
+        raise RuntimeError(f"Content assembly page '{contract.page_id}' did not emit {PRODUCT_OVERVIEW_TOKEN}")
+
+    assembled = "\n\n".join(block for block in blocks if block).rstrip()
+    marker_lines = _field_marker_lines(field_keys)
+    if marker_lines:
+        assembled = assembled + "\n" + "\n".join(marker_lines) + "\n"
+    return render_product_overview_page(assembled, substitutions, lang=lang)
 
 
 def render_content_assembly(

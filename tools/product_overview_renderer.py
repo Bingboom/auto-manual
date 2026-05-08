@@ -171,6 +171,36 @@ _LAYOUTS: dict[str, OverviewLayout] = {
             ),
         ),
     ),
+    "ja": OverviewLayout(
+        title="各部の名称",
+        panels=(
+            OverviewPanel(
+                title="正面",
+                image="front_product.jpg",
+                alt="Front product image.",
+                rows=(
+                    _pair(_cell("MAIN_POWER_BUTTON_LABEL"), _cell("ハンドル")),
+                    _pair(_cell("FRONT_DC12_PORT_LABEL", "FRONT_DC12_PORT_SPEC"), _cell("LCDディスプレイ")),
+                    _pair(_cell("DC_USB_POWER_BUTTON_LABEL"), _cell("LEDライトボタン")),
+                    _pair(_cell("FRONT_USB_C_LOW_LABEL", "FRONT_USB_C_LOW_SPEC"), _cell("LEDライト")),
+                    _pair(_cell("FRONT_USB_C_HIGH_LABEL", "FRONT_USB_C_HIGH_SPEC"), _cell("AC_POWER_BUTTON_LABEL")),
+                    _pair(
+                        _cell("FRONT_USB_A_LABEL", "FRONT_USB_A_SPEC"),
+                        _cell("FRONT_AC_OUTPUT_LABEL", "FRONT_AC_OUTPUT_SPEC"),
+                    ),
+                ),
+            ),
+            OverviewPanel(
+                title="右側面",
+                image="right_side_ports.png",
+                alt="Right side port overview.",
+                rows=(
+                    _full(_cell("SIDE_DC_INPUT_LABEL", "SIDE_DC_INPUT_PV_SPEC", "SIDE_DC_INPUT_CAR_SPEC")),
+                    _full(_cell("SIDE_AC_INPUT_LABEL", "SIDE_AC_INPUT_SPEC")),
+                ),
+            ),
+        ),
+    ),
 }
 
 

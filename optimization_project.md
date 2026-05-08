@@ -78,7 +78,7 @@ As of 2026-05-07, the repo has working baselines for:
 - config contract validation for phase2 table bindings and declared build languages
 - queue `RUNNING` writeback before success/failure completion
 - first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](code-as-doc/dev)
-- fixture-backed long-term content assembly pilot preparation for `03_product_overview`, including an assembly contract validator and no-op assembler that do not replace the current HTML/PDF build path
+- fixture-backed long-term content assembly pilot for `03_product_overview`, including an assembly contract validator, no-op assembler, and page-level pilot switch
 
 ## 4. Recently Completed
 
@@ -160,14 +160,14 @@ Use this section for short milestone-style updates.
 ### 2026-05-08
 
 - completed the midterm queue contract hardening pass with an explicit queue transition layer, external integration fixtures, schema drift gates, a queue-contract CI surface, and another split of the queue test hotspot
-- started the long-term content direction safely by adding a `03_product_overview` assembly pilot plan, multidimensional-table-style fixtures, an assembly contract validator, and a no-op assembler without changing the existing build path
+- started the long-term content direction safely by adding a `03_product_overview` assembly pilot plan, multidimensional-table-style fixtures, an assembly contract validator, a no-op assembler, and a page-level pilot switch for `US/en` and `JP/ja`
 
 ## 5. Open Gaps
 
 Keep this section short and current.
 
 1. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
-2. Multi-target conditional content now has a narrow `03_product_overview` safety net, but real template splitting and build integration are still limited to the next pilot phase.
+2. Multi-target conditional content now has a narrow `03_product_overview` pilot, but repo-wide template splitting is still deferred until the pilot proves stable.
 3. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
 
 ## 6. Active Workstreams
@@ -295,7 +295,7 @@ Exit criteria:
 - external table field drift fails locally or in CI before breaking a production worker
 - future table/field changes have one documented update path instead of spreading through README snippets, queue code, and integration adapters
 
-### Workstream H: Content Assembly Pilot Preparation
+### Workstream H: Content Assembly Pilot
 
 Status: done
 
@@ -309,13 +309,15 @@ Scope:
 - freeze the `03_product_overview` inventory and first block taxonomy
 - add fixture-backed table contracts for page assembly, content blocks, block fields, assets, and block rules
 - add a validator for unknown blocks, missing fields, missing assets, fallback declarations, and fixture schema drift
-- add a no-op assembler that writes only requested temporary output and leaves the current HTML/PDF build path untouched
+- add a no-op assembler that writes only requested temporary output
+- connect `03_product_overview` through a page-level pilot switch for configured region/language targets while leaving non-matching targets on the old template path
 
 Exit criteria:
 
 - the pilot contract validates for `US/en` and `JP/ja`
 - missing field, missing asset, unknown block, and missing fallback cases fail in unit tests
 - no-op assembly can render deterministic RST without writing into `docs/templates`, `docs/_review`, or `docs/_build`
+- `US/en` and `JP/ja` product overview can render through assembly while other targets keep the old fallback path
 
 ## 8. Recommended Order
 

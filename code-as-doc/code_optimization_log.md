@@ -517,3 +517,19 @@ Why it mattered:
 - the first long-term content pilot now has a safety net around inputs, contracts, assets, fallback behavior, and regression samples
 - `03_product_overview` can be split in the next phase behind an explicit page-level pilot switch instead of mixing data-contract work with template rewrites
 - current PDF/HTML generation remains on the existing templates and renderer while the new assembly layer proves itself independently
+
+## 31. 2026-05-08: Product Overview Assembly Pilot Switch
+
+Main outcomes:
+
+- added block templates under [`../docs/templates/assembly_blocks/03_product_overview/`](../docs/templates/assembly_blocks/03_product_overview/) for `product_identity`, `feature_overview`, `spec_summary`, and `asset_callout`
+- wired `assembly_pilot` into the draft recipe path so only configured region/language targets use fixture-backed assembly
+- enabled the pilot for `US/en` and `JP/ja` product overview recipes while keeping non-matching targets on the old template fallback path
+- added Japanese product overview layout support to the renderer so the JP pilot path does not fall back to English headings
+- expanded tests around pilot applicability, invalid pilot failure, required substitution checks, and assembled product overview output
+
+Why it mattered:
+
+- `03_product_overview` is now the first real page connected to declaration-driven assembly without a repo-wide template rewrite
+- the default build behavior remains controlled by a page-level switch, and pilot failures stop the build clearly
+- the next expansion can add more product overview blocks or another page using the same contract/fixture/template boundary

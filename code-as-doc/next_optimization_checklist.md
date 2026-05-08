@@ -348,8 +348,9 @@ of the largest queue test hotspot.
 Milestone status: `done`
 Milestone completed: `2026-05-08`
 Milestone target: `2026-05`
-Milestone note: completed the pre-template-splitting safety net for the
-`03_product_overview` pilot without changing the existing build path.
+Milestone note: completed the pre-template-splitting safety net and the first
+page-level `03_product_overview` pilot switch without rewriting the repo-wide
+template system.
 
 - [x] Long-term PR 1: Document the pilot inventory and block taxonomy
   - Status: `done`
@@ -393,6 +394,19 @@ Milestone note: completed the pre-template-splitting safety net for the
     - the existing build path remains unchanged
   - Completed: `2026-05-08`
   - Note: added deterministic fixture rendering for the pilot page while keeping official template rendering untouched
+
+- [x] Long-term PR 5: Connect `03_product_overview` behind a page-level pilot switch
+  - Status: `done`
+  - Target files:
+    - [`../tools/draft_engine.py`](../tools/draft_engine.py)
+    - [`../tools/content_assembly.py`](../tools/content_assembly.py)
+    - [`../docs/templates/assembly_blocks/03_product_overview/`](../docs/templates/assembly_blocks/03_product_overview)
+  - Done when:
+    - configured pilot targets render through fixture-backed assembly
+    - non-configured targets keep the old template fallback path
+    - pilot failures raise clear errors instead of partial output
+  - Completed: `2026-05-08`
+  - Note: enabled the product overview pilot for `US/en` and `JP/ja`, added block templates, and kept the switch target-scoped
 
 ## 7. Deferred: Do Not Touch Yet
 
