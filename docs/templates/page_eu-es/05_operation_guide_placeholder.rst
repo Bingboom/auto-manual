@@ -112,7 +112,7 @@ La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga 
 Función de reanudación de Salida de CA y CC
 ----------------------------------------------
 
-Esta función memoriza el estado de la salida y reanuda automáticamente las salidas de CA y CC bajo condiciones definidas.
+La función de reanudación de salida de CA/CC está desactivada de forma predeterminada. Active esta función en la aplicación para que el dispositivo memorice el estado de salida de CA/CC y reanude automáticamente las salidas de CA y CC en las condiciones definidas.
 
 +-----------------------------------------------------------------------+----------------------------------------------------------+
 | Condiciones de reanudación automática                                 | Condiciones sin reanudación automática                   |
@@ -169,10 +169,20 @@ PANTALLA LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
-      \HBLcdModeFirstGroup{En breve}{Encender}{Presione el botón de encendido principal o cuando el producto se esté cargando.}{Apagar}{Presione el botón de encendido principal.}{Apagado automático}{La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.}
-      \HBLcdModeSecondGroup{Estable en (durante el estado de carga o descarga)}{Encender}{Presione dos veces el botón de encendido principal cuando el producto esté encendido.}{Apagar}{Presione el botón de encendido principal.}{Apagado automático}{La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad.}
-      \end{HBLcdModeTable}
+      \begingroup
+      \renewcommand{\arraystretch}{1.25}
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
+      \hline
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{En breve}} & Encender & Presione el botón de encendido principal o cuando el producto se esté cargando. \\ \cline{3-4}
+      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & & Apagado automático & La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad. \\ \cline{2-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Estable en (durante el estado de carga o descarga)}} & Encender & Presione dos veces el botón de encendido principal cuando el producto esté encendido. \\ \cline{3-4}
+      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & & Apagado automático & La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad. \\ \hline
+      \end{tabular}
+      \endgroup
 
 También puede configurar el modo de visualización de la pantalla en la aplicación Jackery.
 

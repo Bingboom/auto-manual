@@ -111,7 +111,7 @@ Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie i
 Wiederaufnahmefunktion für AC- und DC-Ausgänge
 ----------------------------------------------
 
-Diese Funktion speichert den Ausgangszustand und stellt die AC- und DC-Ausgänge unter bestimmten Bedingungen automatisch wieder her.
+Die Wiederaufnahmefunktion für AC- und DC-Ausgänge ist standardmäßig deaktiviert. Aktivieren Sie diese Funktion in der Jackery-App, damit das Gerät den Status der AC- und DC-Ausgänge speichert und die AC- und DC-Ausgänge unter festgelegten Bedingungen automatisch wiederherstellt.
 
 .. list-table::
    :header-rows: 1
