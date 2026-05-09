@@ -112,7 +112,7 @@ La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga 
 Función de reanudación de Salida de CA y CC
 ----------------------------------------------
 
-Esta función memoriza el estado de la salida y reanuda automáticamente las salidas de CA y CC bajo condiciones definidas.
+La función de reanudación de salida de CA/CC está desactivada de forma predeterminada. Active esta función en la aplicación para que el dispositivo memorice el estado de salida de CA/CC y reanude automáticamente las salidas de CA y CC en las condiciones definidas.
 
 +-----------------------------------------------------------------------+----------------------------------------------------------+
 | Condiciones de reanudación automática                                 | Condiciones sin reanudación automática                   |

@@ -105,7 +105,7 @@ La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe
 Fonction de reprise de Sortie CA et CC
 ---------------------------------------
 
-Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
+La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez cette fonction dans l’application afin que l’appareil mémorise l’état de sortie CA/CC et reprenne automatiquement les sorties CA et CC dans les conditions définies.
 
 +-----------------------------------------------------------------------+------------------------------------------------------------+
 | Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
