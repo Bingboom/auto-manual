@@ -113,7 +113,7 @@ The LED light has two modes: Light mode and SOS mode. In any mode, press and hol
 AC and DC Output Resume Function
 --------------------------------
 
-This function memorizes the output status and automatically resumes AC and DC outputs under defined conditions.
+The AC/DC Output Resume Function is disabled by default. Enable this function in the App to allow the device to memorize the AC/DC output status and automatically resume AC and DC outputs under defined conditions.
 
 +---------------------------------------------------------------+-----------------------------------------------+
 | Auto Resume Conditions                                        | Not Auto Resume Conditions                    |
