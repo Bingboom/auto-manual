@@ -60,6 +60,7 @@ def collect_check_issues(
     collect_generated_page_issues: Callable[..., list[Any]],
     collect_bundle_issues: Callable[..., list[Any]],
     collect_identity_drift_issues: Callable[..., list[Any]],
+    collect_duplicate_render_text_issues: Callable[..., list[Any]],
 ) -> list[Any]:
     cfg = load_config(cfg_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -122,6 +123,14 @@ def collect_check_issues(
             collect_bundle_issues(
                 bundle_dir=bundle_dir,
                 docs_dir=docs_dir,
+                model=target.model,
+                region=target.region,
+            )
+        )
+        issues.extend(
+            collect_duplicate_render_text_issues(
+                docs_dir=docs_dir,
+                bundle_dir=bundle_dir,
                 model=target.model,
                 region=target.region,
             )

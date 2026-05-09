@@ -32,6 +32,7 @@ CI note:
 - feature-branch pushes do not need a second duplicate `push` validation run
 - `Manual Validation` now includes smoke paths for `diff-report` and `release-manifest` alongside the existing `lint`, `unit`, `doctor`, and `check` jobs
 - `Manual Validation` now also runs a low-noise maintainability guardrail check so known orchestration and validation hotspots do not silently regrow past their agreed size ceilings
+- `check` also compares duplicated RST and raw HTML list text, so renderer-specific copies cannot drift from the source wording before merge
 - `Review Preview Package` is a separate non-gating workflow that packages the review-preview workspace and diff-report artifacts for sharing as a GitHub artifact
 - `Review Preview Package` now runs a stable smoke package with `--skip-word` and verifies the core packaged preview files before upload
 - the published review preview root is now a multi-model review handoff workspace: families are hidden when `_review` content is missing, models are grouped inside each family, and language switching happens inside each model group
@@ -68,6 +69,7 @@ Review sync note:
 - when a single-language build is pointed at a merged review branch that only has `docs/_review/<model>/US/` or `docs/_review/<model>/EU/`, the pre-build review sync now falls back to that merged review root instead of skipping the refresh, and remaps shared-family review pages back onto the requested single-language page stack before export
 - use `sync-review --page-file ...` or `review --refresh-review` only when you intentionally want a whole review page or bundle replaced from runtime
 - single-language US review bundles from `config.us-en.yaml` still live under `docs/_review/<model>/US/en/`; the merged US queue/review flow driven by `config.us.yaml` now uses `docs/_review/<model>/US/` and exports one combined `en + fr + es` Word under `docs/_build/<model>/US/word/`
+- when a template phrase has duplicated render branches, especially normal RST plus `.. raw:: html` or `.. raw:: latex`, treat the RST list as the source wording and keep the renderer-specific copy byte-for-byte equivalent after normal whitespace/entity decoding
 - `config.us-en.yaml`, `config.us-es.yaml`, and `config.us-fr.yaml` now inherit shared single-language defaults from [`config-bases/us-single-language-base.yaml`](config-bases/us-single-language-base.yaml) and keep their page stacks in [`docs/manifests/manual_us-single-*.yaml`](docs/manifests), so common build defaults no longer need to be edited in three places
 - `config.eu.yaml` now models the live `EU` row from the region-config Base as `Build_family = eu-merged`, keeps `JE-1000F / EU` pinned to the `JE-1000F_EU` spec-master view, and routes blank-`Lang` queue rows to the merged EU family instead of misclassifying them as English-only
 - `config.eu-en.yaml` remains the single-language English EU proofreading surface, while `config.eu-fr.yaml`, `config.eu-es.yaml`, `config.eu-de.yaml`, `config.eu-it.yaml`, and `config.eu-uk.yaml` provide explicit EU single-language entrypoints backed by the corresponding [`docs/manifests/manual_eu-single-*.yaml`](docs/manifests) stacks

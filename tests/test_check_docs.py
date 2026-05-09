@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools import check_docs
+from tools.check_docs_duplicate_text import collect_duplicate_render_text_issues
 from tests.test_helpers import temp_test_root, write_lines, write_text
 
 
@@ -664,6 +665,41 @@ class TestCheckDocs(unittest.TestCase):
             )
 
             self.assertEqual([], issues)
+
+    def test_collect_duplicate_render_text_issues_should_report_raw_html_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            template_path = docs_dir / "templates" / "page_us-en" / "safety_en.rst"
+
+            write_lines(
+                template_path,
+                [
+                    ".. only:: latex",
+                    "",
+                    "   - The plug must follow all local codes and ordinances.",
+                    "",
+                    ".. only:: html",
+                    "",
+                    "   .. raw:: html",
+                    "",
+                    "      <ul><li>The plug must follow all local codes ordinances.</li></ul>",
+                ],
+            )
+
+            issues = collect_duplicate_render_text_issues(
+                repo_root=root,
+                docs_dir=docs_dir,
+                bundle_dir=bundle_dir,
+                model="JE-1000F",
+                region="US",
+                issue_cls=check_docs.CheckIssue,
+            )
+
+            self.assertEqual(1, len(issues))
+            self.assertEqual("DUPLICATE_RENDER_TEXT_MISMATCH", issues[0].code)
+            self.assertIn("RST-only=1 HTML-only=1", issues[0].message)
 
     def test_collect_reference_issues_should_resolve_docs_relative_assets_for_generated_pages(self) -> None:
         with tempfile.TemporaryDirectory() as td:

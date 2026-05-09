@@ -45,6 +45,9 @@ from tools.check_docs_identity import (  # noqa: E402
     collect_identity_drift_issues as _collect_identity_drift_issues_impl,
     collect_target_identity_issues as _collect_target_identity_issues_impl,
 )
+from tools.check_docs_duplicate_text import (  # noqa: E402
+    collect_duplicate_render_text_issues as _collect_duplicate_render_text_issues_impl,
+)
 from tools.check_docs_runtime import (  # noqa: E402
     build_langs as _build_langs_impl,
     checks_cfg as _checks_cfg_impl,
@@ -260,6 +263,23 @@ def collect_bundle_issues(
     )
 
 
+def collect_duplicate_render_text_issues(
+    *,
+    docs_dir: Path,
+    bundle_dir: Path,
+    model: str | None,
+    region: str | None,
+) -> list[CheckIssue]:
+    return _collect_duplicate_render_text_issues_impl(
+        repo_root=ROOT,
+        docs_dir=docs_dir,
+        bundle_dir=bundle_dir,
+        model=model,
+        region=region,
+        issue_cls=CheckIssue,
+    )
+
+
 def collect_identity_drift_issues(
     cfg: dict,
     *,
@@ -430,6 +450,7 @@ def collect_check_issues(
         collect_generated_page_issues=collect_generated_page_issues,
         collect_bundle_issues=collect_bundle_issues,
         collect_identity_drift_issues=collect_identity_drift_issues,
+        collect_duplicate_render_text_issues=collect_duplicate_render_text_issues,
     )
 
 
