@@ -151,6 +151,16 @@ manual entries included in a normal toctree. This keeps RTD independent from
 Feishu and keeps Feishu import as a delivery integration, not the canonical web
 host.
 
+Implementation decision:
+
+- the target-scoped `md` directory is the MyST source directory and the RTD
+  publishing source directory
+- `build.py md` writes the manual Markdown, `index.md`, `conf.py`, and local
+  `assets/` into that same directory
+- RTD runs `build.py md` first, then points Sphinx directly at
+  `docs/_build/<model>/<region>/<lang>/md/`
+- there is no separate copied RTD assembly directory for generated manuals
+
 ### 4.2 Existing Markdown manual lane
 
 Existing Markdown manuals should be migrated into a committed MyST source area
@@ -225,14 +235,15 @@ Exit criteria:
 
 - Add a MyST-capable RTD source layout.
 - Add `myst-parser` to Python documentation dependencies.
-- Add an RTD build step that generates or assembles the MyST manual tree before
-  Sphinx builds HTML.
+- Add an RTD build step that generates the target-scoped MyST `md` directory
+  before Sphinx builds HTML from that same directory.
 - Keep the existing RTD baseline stable while the MyST tree is introduced.
 - Add a smoke build for the default hosted target.
 
 Exit criteria:
 
 - RTD can build the default generated manual from MyST Markdown.
+- The generated `md` directory can be used directly as the RTD Sphinx source.
 - The site navigation can include generated manuals and migrated Markdown manuals.
 
 ### Phase 4: Batch migration of existing Markdown manuals
@@ -278,10 +289,8 @@ changing the hosted RTD configuration.
 
 ## 8. Open Follow-Up Decisions
 
-These decisions should be made when Phase 3 begins:
+These decisions should be made when Phase 3 continues:
 
-- whether the MyST RTD source tree lives under `docs/myst/` or another dedicated
-  documentation root
 - whether generated publish Markdown should be hosted as one page per manual or
   split into one page per chapter
 - how many model / region / language targets should appear in the first public

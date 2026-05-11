@@ -120,7 +120,7 @@ Phase2 snapshot note:
 - if GitHub fetch is temporarily unavailable but the same `origin/<Git_ref>` or local branch already exists on the worker, `process-build-queue` reuses that cached ref instead of failing the build immediately
 - direct `build.py` actions still write Build Draft Package outputs to the repo [`docs/_build/`](docs/_build) tree by default; for local verification use [`scripts/local_build.py`](scripts/local_build.py), [`scripts/local_build.ps1`](scripts/local_build.ps1), or [`scripts/local_build.sh`](scripts/local_build.sh) so `check`, `diff-report`, `release-manifest`, and `publish` default to `.tmp/staging`
 - explicit `--staging-root <dir>` and `AUTO_MANUAL_STAGING_ROOT=<dir>` still override that default when you need another isolated root
-- `release-manifest` writes traceability files to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](reports/releases) by default, or to `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled; Publish queue DOCX/PDF/Markdown outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting; when the `Document_link` table exposes `HTML_link`, the remote publish worker writes the deployed Vercel URL back to that field after `vercel deploy --prebuilt`
+- `release-manifest` writes traceability files to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](reports/releases) by default, or to `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled; Publish queue DOCX/PDF/Markdown outputs are staged under [`reports/releases/<model>/<region>/<lang>/versions/<version>/`](reports/releases), Markdown sidecars such as `assets/`, `conf.py`, and `index.md` are preserved when present, and the latest publish HTML snapshot is mirrored under [`reports/releases/<model>/<region>/<lang>/latest/html/`](reports/releases) for Vercel hosting; when the `Document_link` table exposes `HTML_link`, the remote publish worker writes the deployed Vercel URL back to that field after `vercel deploy --prebuilt`
 - [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1) is the Windows-friendly queue wrapper for automation: it restores the local Node/npm path plus `FEISHU_PHASE2_*` user env vars, and if optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, then runs `build.py process-build-queue --staging-root .tmp/staging`, forwards any extra CLI args such as `--dry-run` or `--record-id`, and writes logs into [`.tmp/process-build-queue/`](.tmp/process-build-queue)
 - [`scripts/process_build_queue_feishu.ps1`](scripts/process_build_queue_feishu.ps1) is the one-click Feishu-only wrapper: it forces `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER=lark_drive` and disables the DingTalk mirror before delegating to [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1)
 - [`scripts/process_build_queue_dingtalk.ps1`](scripts/process_build_queue_dingtalk.ps1) is the one-click DingTalk sync wrapper: it keeps `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER=lark_drive`, enables `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session`, and then delegates to [`scripts/process_build_queue.ps1`](scripts/process_build_queue.ps1)
@@ -264,8 +264,9 @@ Vercel note:
 
 Read the Docs note:
 
-- [`.readthedocs.yaml`](.readthedocs.yaml) now provides a minimal RTD entrypoint for the default runtime HTML manual only: `config.us-en.yaml + JE-1000F + US + en`
-- the RTD job runs `python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then points Sphinx at [`docs/_build/JE-1000F/US/en/rst/`](docs/_build) instead of the repo-root [`docs/`](docs)
+- [`.readthedocs.yaml`](.readthedocs.yaml) now provides a minimal RTD entrypoint for the default runtime MyST manual only: `config.us-en.yaml + JE-1000F + US + en`
+- the RTD job runs `python build.py md --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then points Sphinx at [`docs/_build/JE-1000F/US/en/md/`](docs/_build) instead of a copied publishing tree
+- `build.py md` writes `conf.py`, `index.md`, the manual Markdown, and the sibling `assets/` folder into the same target-scoped `md` directory; that directory is the MyST storage location and the RTD source directory
 - RTD is for a stable public reading target only; it does not replace review-preview packaging, queue-driven Publish releases, Vercel latest-publish hosting, or Word / PDF export
 
 Windows note:
@@ -334,7 +335,7 @@ Use the document that owns the topic:
 ## 5. Key Directories
 
 - [`build.py`](build.py): top-level CLI entrypoint
-- [`.readthedocs.yaml`](.readthedocs.yaml): minimal Read the Docs build config for the default US English runtime HTML target
+- [`.readthedocs.yaml`](.readthedocs.yaml): minimal Read the Docs build config for the default US English runtime MyST target
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack

@@ -127,7 +127,7 @@ Meaning:
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
-- Publish queue DOCX/PDF/Markdown outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting; when `Document_link.HTML_link` exists, the remote publish worker writes the deployed Vercel URL back to that field after the production deploy step
+- Publish queue DOCX/PDF/Markdown outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), Markdown sidecars such as `assets/`, `conf.py`, and `index.md` are preserved when present, and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting; when `Document_link.HTML_link` exists, the remote publish worker writes the deployed Vercel URL back to that field after the production deploy step
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, and when optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, runs with `--staging-root .tmp/staging`, forwards any extra queue args such as `--dry-run` or `--record-id`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1): one-click Windows wrapper that forces Feishu/wiki-only upload before calling the shared queue wrapper
 - [`../scripts/process_build_queue_dingtalk.ps1`](../scripts/process_build_queue_dingtalk.ps1): one-click Windows wrapper that keeps Feishu/wiki as primary and enables DingTalk mirror sync before calling the shared queue wrapper
@@ -484,9 +484,9 @@ Vercel note:
 
 Read the Docs note:
 
-- [`.readthedocs.yaml`](../.readthedocs.yaml) is the minimal RTD path for one stable public runtime HTML target: `config.us-en.yaml --model JE-1000F --region US --source runtime`
-- RTD uses `python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then renders the generated bundle at [`../docs/_build/JE-1000F/US/en/rst/`](../docs/_build) with `python -m sphinx -b html`
-- do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; the root `index.rst` is a wrapper include, while RTD should render the generated bundle directory directly
+- [`.readthedocs.yaml`](../.readthedocs.yaml) is the minimal RTD path for one stable public MyST-backed HTML target: `config.us-en.yaml --model JE-1000F --region US --source runtime`
+- RTD uses `python build.py md --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then renders the generated MyST source directory at [`../docs/_build/JE-1000F/US/en/md/`](../docs/_build) with `python -m sphinx -b html`
+- do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; the generated `md` directory is both the MyST storage location and the RTD source directory
 - RTD does not publish `_review`, queue-driven Publish HTML, or Word / PDF artifacts; keep Vercel and release outputs as the formal publish path
 
 ### 3.7 Publish a Final Word Release
@@ -501,7 +501,7 @@ It requires an explicit `--model` and `--region`.
 Outputs:
 
 - direct `build.py publish`: review diff report plus final build outputs under [`../docs/_build/`](../docs/_build) by default, or under `<staging-root>/docs/_build/` when staging is enabled
-- queue-driven Publish: staged DOCX/PDF/Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases)
+- queue-driven Publish: staged DOCX/PDF/Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), with Markdown sidecars such as `assets/`, `conf.py`, and `index.md` preserved when present, plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases)
 - release manifest: [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases) by default, or `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled
 
 ## 4. Output Layout
@@ -529,7 +529,7 @@ Latest publish HTML site:
 
 Read the Docs bundle source for the current minimal public build:
 
-- [`../docs/_build/JE-1000F/US/en/rst/`](../docs/_build)
+- [`../docs/_build/JE-1000F/US/en/md/`](../docs/_build)
 
 Revision reports:
 

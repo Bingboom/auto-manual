@@ -7,6 +7,25 @@ from pathlib import Path
 from typing import Any, Callable
 
 
+def _stage_markdown_source_sidecars(*, built_md_output_path: Path, staged_md_output_path: Path) -> None:
+    source_dir = built_md_output_path.parent
+    staged_dir = staged_md_output_path.parent
+    source_assets_dir = source_dir / "assets"
+    if source_assets_dir.exists() and source_assets_dir.is_dir():
+        shutil.copytree(source_assets_dir, staged_dir / "assets", dirs_exist_ok=True)
+    for source_name in ("conf.py", "index.md"):
+        source_path = source_dir / source_name
+        if source_path.exists() and source_path.is_file():
+            target_path = staged_dir / source_name
+            shutil.copy2(source_path, target_path)
+            if source_name == "index.md" and built_md_output_path.stem != staged_md_output_path.stem:
+                text = target_path.read_text(encoding="utf-8")
+                target_path.write_text(
+                    text.replace(built_md_output_path.stem, staged_md_output_path.stem),
+                    encoding="utf-8",
+                )
+
+
 def resolve_docs_dir_for_config(
     *,
     config_path: Path,
@@ -377,6 +396,10 @@ def stage_draft_md_output_to_host_repo(
     )
     staged_output_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(built_md_output_path, staged_output_path)
+    _stage_markdown_source_sidecars(
+        built_md_output_path=built_md_output_path,
+        staged_md_output_path=staged_output_path,
+    )
     return staged_output_path
 
 
@@ -413,6 +436,10 @@ def stage_publish_assets_to_host_repo(
     shutil.copy2(built_pdf_output_path, staged_pdf_output_path)
     staged_md_output_path = version_dir / built_md_output_path.name
     shutil.copy2(built_md_output_path, staged_md_output_path)
+    _stage_markdown_source_sidecars(
+        built_md_output_path=built_md_output_path,
+        staged_md_output_path=staged_md_output_path,
+    )
     latest_html_dir = latest_dir / "html"
     copy_tree(built_html_dir, latest_html_dir)
     return staged_word_output_path, staged_pdf_output_path, staged_md_output_path, latest_html_dir

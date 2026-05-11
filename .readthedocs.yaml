@@ -10,5 +10,5 @@ build:
       - python -m pip install -r requirements.txt
     build:
       html:
-        - python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index
-        - python -m sphinx -b html docs/_build/JE-1000F/US/en/rst "$READTHEDOCS_OUTPUT/html"
+        - python build.py md --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index
+        - python -m sphinx -b html docs/_build/JE-1000F/US/en/md "$READTHEDOCS_OUTPUT/html"
