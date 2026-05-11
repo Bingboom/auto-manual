@@ -1,6 +1,6 @@
 # Architecture Documentation Map
 
-Updated: 2026-04-12
+Updated: 2026-05-11
 
 Use this directory for architecture and integration boundaries.
 Not every file here is equally current.
@@ -19,6 +19,8 @@ Not every file here is equally current.
   - future canonical content-model direction
 - [`HTML_PDF_Component_Convergence.md`](HTML_PDF_Component_Convergence.md)
   - output-convergence notes for current rendering work
+- [`MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md`](MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md)
+  - target architecture for MyST Markdown publish output, Read the Docs hosting, and Feishu cloud document import
 
 ## 2. Archived Or Superseded Plans
 
