@@ -89,12 +89,18 @@ Writeback fields:
 | `构建结果` | running/success/failure | string prefixed by `RUNNING`, `SUCCESS`, or `FAILED` |
 | `Document directory` | success/failure with latest local artifact | absolute local path |
 | `Document link` | success/failure with latest remote artifact | Feishu Drive/Wiki or DingTalk URL |
+| `飞书云文档` | optional Markdown cloud-doc import | Feishu cloud document URL produced by `lark-cli drive +import --type docx` |
 | `Document link_dd` | optional DingTalk writeback | DingTalk URL or empty string |
 | `HTML_link` | publish HTML deploy workflow | deployed Vercel URL when field exists |
 | `data_sync` | queue build attempt | `refreshed`, `skipped`, or `failed` |
 | `是否触发文档构建` | success | `已构建` |
 | `是否立即构建` | success/failure | `false` |
 | `是否强制刷新数据` | success/failure | `false` |
+
+When `飞书云文档` exists, Draft and Publish rows must also produce Markdown and
+import it as a Feishu cloud document. Import failure is a queue failure; any
+remote artifact link already obtained for `Document link` is preserved in the
+failure writeback.
 
 Compatible aliases:
 

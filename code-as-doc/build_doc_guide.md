@@ -37,10 +37,11 @@ python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
 python build.py word
 python build.py pdf
+python build.py md
 python build.py all
 python build.py diff-report
 python build.py clean
-.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf
+.\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html,word,pdf,md
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --build-action validate --languages en,fr
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 .\scripts\build_us_manuals.ps1 -Action check -Model JE-1000F -Languages en,es -DryRun
@@ -75,7 +76,7 @@ Meaning:
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`
 - when `Document_Key` is a linked Base field, the API can expose only the linked record id, so chat-driven Start Review lookup should use `Task_id` as the stable selector and then verify `是否进入Review` plus `Workflow_action=Start Review`
 - `Start Review` now means "force restart and reseed from the latest template". Existing committed `docs/_review/<model>/<region>/` content on `main` is no longer a duplicate guard, and re-checking `是否进入Review` on an `InReview` row will restart the review seed flow
-- `process-build-queue`: Build Draft Package / Publish bridge; it consumes `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, refresh `data/phase2` only when `Document_link.是否强制刷新数据 = true`, keep Build Draft Package rows on DOCX upload, switch Publish rows to `check + diff-report + word + pdf`, upload the Publish PDF to the primary Feishu/wiki sink, optionally sync that same PDF to DingTalk, write the local DOCX release path into `Document directory`, write the canonical PDF link into `Document link`, optionally write the DingTalk node URL into `Document link_dd`, write a timestamped build status into `构建结果`, write the refresh result into `data_sync`, clear `是否强制刷新数据`, and flip the trigger back to `已构建` on success
+- `process-build-queue`: Build Draft Package / Publish bridge; it consumes `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, refresh `data/phase2` only when `Document_link.是否强制刷新数据 = true`, build Draft rows as `check + word + md`, switch Publish rows to `check + diff-report + word + pdf + md`, upload the Draft DOCX or Publish PDF to the primary Feishu/wiki sink, optionally sync that same primary artifact to DingTalk, write the local DOCX release path into `Document directory`, keep `Document link` as DOCX for Draft and PDF for Publish, import Markdown into `飞书云文档` when that field exists, optionally write the DingTalk node URL into `Document link_dd`, write a timestamped build status into `构建结果`, write the refresh result into `data_sync`, clear `是否强制刷新数据`, and flip the trigger back to `已构建` on success
 - row writeback now has an explicit running stage: `process-build-queue` writes `RUNNING | ... started_at=...` to `构建结果` before build execution, then replaces it with `SUCCESS` or `FAILED`
 - if DingTalk mirror sync is enabled and the row also has `是否上传钉钉`, that checkbox becomes the row-level gate: checked rows also sync DingTalk and write `Document link_dd`, unchecked rows stay on the normal Feishu/wiki upload path for that run
 - if the table does not have `是否上传钉钉`, the worker follows the current global worker mode for that whole row
@@ -119,14 +120,14 @@ Meaning:
 - when review-init reuses the shared `Document_link` binding, the start-review worker only consumes `Workflow_action = Start Review`, while the build queue only consumes `Workflow_action = Build Draft Package` or `Workflow_action = Publish`
 - merged US/EU review-init and build-queue rows should use `Build_family = us-merged` / `eu-merged` and may leave `Lang` blank; single-language rows should use the matching single-language family such as `us-en` / `eu-en` / `us-fr` / `us-es`
 - config policy for `build.queue_by_document_key`: turn it on only for merged whole-book families that intentionally build one shared manual across languages, such as today's `us-merged`, `eu-merged`, and future `cn-merged`; leave it off for single-language families such as `us-en`, `eu-en`, `us-fr`, `us-es`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to be isolated by `record_id`
-- when the queue row carries `Version`, Build Draft Package DOCX names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx`, while Publish queue release artifact names become `manual_je1000f_us_en_publish_0.2.docx` and `manual_je1000f_us_en_publish_0.2.pdf`; only the PDF is uploaded back to `Document link`
+- when the queue row carries `Version`, Build Draft Package DOCX/Markdown names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx|md`, while Publish queue release artifact names become `manual_je1000f_us_en_publish_0.2.docx|pdf|md`; only the Draft DOCX or Publish PDF is uploaded back to `Document link`
 - `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds now seed a temporary worktree from the latest `origin/main`, then overlay only `docs/_review` from that review branch, so the queue keeps the current `main` toolchain while still rendering the selected review content instead of silently falling back to `main`
 - on a local worker, if a same-named local branch for `Git_ref` already exists, the queue uses that branch directly so local review edits can be built before they are pushed upstream
 - if that fetch hits a transient GitHub network failure but the worker already has the same `origin/<Git_ref>` or local branch cached, the queue reuses the cached ref and keeps building from the intended review content
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
-- Publish queue outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting; when `Document_link.HTML_link` exists, the remote publish worker writes the deployed Vercel URL back to that field after the production deploy step
+- Publish queue DOCX/PDF/Markdown outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), and the latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting; when `Document_link.HTML_link` exists, the remote publish worker writes the deployed Vercel URL back to that field after the production deploy step
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, and when optional DingTalk sync is enabled it also restores `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER`, `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER`, `AUTO_MANUAL_DINGTALK_SESSION_ROOT`, and `DINGTALK_DOCS_*`, runs with `--staging-root .tmp/staging`, forwards any extra queue args such as `--dry-run` or `--record-id`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1): one-click Windows wrapper that forces Feishu/wiki-only upload before calling the shared queue wrapper
 - [`../scripts/process_build_queue_dingtalk.ps1`](../scripts/process_build_queue_dingtalk.ps1): one-click Windows wrapper that keeps Feishu/wiki as primary and enables DingTalk mirror sync before calling the shared queue wrapper
@@ -146,13 +147,13 @@ Meaning:
 - for remote immediate builds after merge to `main`, pair that workflow with a Feishu automation whose condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then send a GitHub `workflow_dispatch` request to `feishu-build-queue.yml` on `main`; the queue worker still treats `是否触发文档构建 = Y` as the actual build request, while `是否立即构建` only decides whether to wake the remote workflow immediately
 - before enabling that remote worker, make sure the Feishu app/bot has read access to the phase2 source tables and write access to the `Document_link` table; without write permission the run can build and upload but cannot write back queue status
 - if you also want the uploaded Word file to be moved into wiki automatically, give that same user/bot identity edit/container permission on the destination wiki parent node; otherwise the upload still succeeds, the worker falls back to the latest Drive URL in `Document link`, and the status is marked `drive_only` with the wiki attach error
-- `publish`: run `check -> diff-report -> word -> pdf -> release-manifest` for one explicit target
+- `publish`: run `check -> diff-report -> word -> pdf -> md -> release-manifest` for one explicit target
 - `release-manifest`: write JSON / CSV release traceability for one explicit target
 - `handoff`: create a minimal explicit target design handoff package with rule-based diff outputs and traceability metadata
 - `preview`: materialize one exact page selector under a preview-only output root
 - `fast`: materialize a runtime draft only, with `prepare-only + no-clean`
-- `html`, `word`, `pdf`: prepare RST first, then export
-- `all`: export `html + word + pdf`
+- `html`, `word`, `pdf`, `md`: prepare RST first, then export; Markdown uses a native MyST writer when Pandoc provides one, otherwise a MyST-compatible CommonMark writer
+- `all`: export `html + word + pdf + md`
 - `diff-report`: export Git-based revision tables, defaulting to the resolved target review root
 - `clean`: remove [`docs/_build/`](../docs/_build), [`docs/_review/`](../docs/_review), old legacy output directories, and generated [`params.tex`](../docs/renderers/latex/params.tex)
 - `build_us_jp_manuals.ps1`: PowerShell wrapper over the shared Python matrix runner for the fixed `US/en + US/es + US/fr + JP/ja` target set; supports either `--formats` or one explicit `--build-action`
@@ -167,7 +168,7 @@ Start Review, Build Draft Package, Publish:
 - queue-driven builds treat Feishu phase2 tables as the structured-data source of truth; repo `data/phase2/*.csv` files are materialized snapshots, not the authoring source
 - use `process-build-queue --workflow-action build-draft-package` when a Build Draft Package row should be built from the current review tree
 - review-source checks scope blocking `Spec_Master` row validation, plus footnote definition/reference checks, to target identity and generated-page recipe inputs, so stale or retired target rows and unreferenced footnote definitions do not block an already seeded review bundle; runtime-source checks keep strict target-row validation
-- use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`, uploaded as PDF, and staged with DOCX kept only in `reports/releases`
+- use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`, uploaded as PDF, staged with DOCX/Markdown kept in `reports/releases`, and imported to `飞书云文档` when that field exists
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
@@ -500,7 +501,7 @@ It requires an explicit `--model` and `--region`.
 Outputs:
 
 - direct `build.py publish`: review diff report plus final build outputs under [`../docs/_build/`](../docs/_build) by default, or under `<staging-root>/docs/_build/` when staging is enabled
-- queue-driven Publish: staged DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases)
+- queue-driven Publish: staged DOCX/PDF/Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases)
 - release manifest: [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases) by default, or `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled
 
 ## 4. Output Layout
