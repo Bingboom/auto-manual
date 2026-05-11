@@ -140,6 +140,7 @@ from tools.utils.targets import (
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
 from tools.word_bundle import export_word_from_bundle  # noqa: E402
 from tools.word_bundle_common import load_config_rst_substitutions, load_rst_substitutions  # noqa: E402
+from tools.markdown_bundle import export_markdown_from_bundle  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
@@ -768,6 +769,7 @@ def build_target(
         export_word_from_bundle=export_word_from_bundle,
         export_word_from_html=export_word_from_html,
         export_word_from_latex=export_word_from_latex,
+        export_markdown_from_bundle=export_markdown_from_bundle,
         export_pdf_from_docx_via_word=export_pdf_from_docx_via_word,
         copy_file=shutil.copy2,
         open_file=open_file,

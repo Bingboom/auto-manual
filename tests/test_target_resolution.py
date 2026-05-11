@@ -99,7 +99,7 @@ class TestTargetResolution(unittest.TestCase):
 
     def test_resolve_requested_formats_should_honor_cli(self) -> None:
         cfg = {"build": {"build_word": True}}
-        self.assertEqual(["html", "word"], build_docs.resolve_requested_formats(cfg, "html,word"))
+        self.assertEqual(["html", "word", "md"], build_docs.resolve_requested_formats(cfg, "html,word,md"))
 
     def test_resolve_requested_formats_should_use_legacy_flags(self) -> None:
         cfg = {"build": {"build_word": True, "build_html": False}}
@@ -923,6 +923,7 @@ class TestTargetResolution(unittest.TestCase):
         self.assertEqual(output_base_root, plan.docs_build_root)
         self.assertEqual(output_base_root / "JE-1000F" / "US" / "_default", plan.build_root)
         self.assertEqual("html", plan.word_source)
+        self.assertEqual("manual_fr.md", plan.md_output_name)
         self.assertTrue(plan.open_html)
         self.assertTrue(plan.open_word)
         self.assertFalse(plan.open_pdf)

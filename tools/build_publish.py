@@ -78,4 +78,5 @@ def run_publish(
     run_checked(build_docs_command(args, action_override="word", source_override="review"))
     # Keep the freshly generated DOCX in place so publish can stage both DOCX and PDF.
     run_checked(build_docs_command(args, action_override="pdf", source_override="review", no_clean_override=True))
+    run_checked(build_docs_command(args, action_override="md", source_override="review", no_clean_override=True))
     run_checked(release_manifest_command(args))
