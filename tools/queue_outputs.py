@@ -103,6 +103,55 @@ def resolve_pdf_output_path_for_target(
     return resolve_output_path(build_root / "pdf", pdf_output_name)
 
 
+def resolve_md_output_path_for_target(
+    *,
+    config_path: Path,
+    model: str,
+    region: str,
+    repo_root: Path,
+    config_loader: Callable[[Path], dict[str, Any]],
+    build_languages: Callable[[dict[str, Any]], list[str]],
+    resolve_output_lang: Callable[[dict[str, Any]], str | None],
+    build_root_for_target: Callable[..., Path],
+    render_build_template: Callable[..., str],
+    resolve_output_path: Callable[[Path, str], Path],
+) -> Path:
+    cfg = config_loader(config_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    docs_dir = resolve_docs_dir_for_config(
+        config_path=config_path,
+        repo_root=repo_root,
+        cfg=cfg,
+        config_loader=config_loader,
+    )
+    primary_lang = build_languages(cfg)[0]
+    output_lang = resolve_output_lang(cfg)
+    build_root = build_root_for_target(
+        model,
+        region,
+        lang=output_lang,
+        docs_build_dir=docs_dir / "_build",
+    )
+    word_output_name = render_build_template(
+        str(build_cfg.get("word_output", "manual_demo.docx")),
+        model=model,
+        region=region,
+        lang=primary_lang,
+    )
+    md_output_template = build_cfg.get("md_output")
+    if isinstance(md_output_template, str) and md_output_template.strip():
+        md_output_name = render_build_template(
+            md_output_template,
+            model=model,
+            region=region,
+            lang=primary_lang,
+        )
+    else:
+        md_output_name = Path(word_output_name).with_suffix(".md").as_posix()
+    return resolve_output_path(build_root / "md", md_output_name)
+
+
 def resolve_html_output_dir_for_target(
     *,
     config_path: Path,
@@ -179,6 +228,23 @@ def versioned_pdf_output_path(
 ) -> Path:
     return _versioned_release_output_path(
         pdf_output_path,
+        version=version,
+        doc_phase=doc_phase,
+        normalize_release_token=normalize_release_token,
+        normalize_workflow_action=normalize_workflow_action,
+    )
+
+
+def versioned_md_output_path(
+    md_output_path: Path,
+    *,
+    version: str,
+    doc_phase: str | None,
+    normalize_release_token: Callable[[str], str],
+    normalize_workflow_action: Callable[[Any], str | None],
+) -> Path:
+    return _versioned_release_output_path(
+        md_output_path,
         version=version,
         doc_phase=doc_phase,
         normalize_release_token=normalize_release_token,
@@ -288,10 +354,37 @@ def stage_draft_word_output_to_host_repo(
     return staged_output_path
 
 
+def stage_draft_md_output_to_host_repo(
+    *,
+    built_md_output_path: Path,
+    host_config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    doc_phase: str | None,
+    resolve_md_output_path_for_target: Callable[..., Path],
+    versioned_md_output_path: Callable[..., Path],
+) -> Path:
+    host_output_path = resolve_md_output_path_for_target(
+        config_path=host_config_path,
+        model=model,
+        region=region,
+    )
+    staged_output_path = versioned_md_output_path(
+        host_output_path,
+        version=version,
+        doc_phase=doc_phase,
+    )
+    staged_output_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(built_md_output_path, staged_output_path)
+    return staged_output_path
+
+
 def stage_publish_assets_to_host_repo(
     *,
     built_word_output_path: Path,
     built_pdf_output_path: Path,
+    built_md_output_path: Path,
     built_html_dir: Path,
     host_config_path: Path,
     model: str,
@@ -300,7 +393,7 @@ def stage_publish_assets_to_host_repo(
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     copy_tree: Callable[[Path, Path], None],
-) -> tuple[Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path]:
     version_dir = publish_release_version_dir_for_target(
         config_path=host_config_path,
         model=model,
@@ -318,9 +411,11 @@ def stage_publish_assets_to_host_repo(
     shutil.copy2(built_word_output_path, staged_word_output_path)
     staged_pdf_output_path = version_dir / built_pdf_output_path.name
     shutil.copy2(built_pdf_output_path, staged_pdf_output_path)
+    staged_md_output_path = version_dir / built_md_output_path.name
+    shutil.copy2(built_md_output_path, staged_md_output_path)
     latest_html_dir = latest_dir / "html"
     copy_tree(built_html_dir, latest_html_dir)
-    return staged_word_output_path, staged_pdf_output_path, latest_html_dir
+    return staged_word_output_path, staged_pdf_output_path, staged_md_output_path, latest_html_dir
 
 
 def write_publish_release_metadata(
@@ -333,6 +428,7 @@ def write_publish_release_metadata(
     built_at: datetime,
     word_output_path: Path,
     pdf_output_path: Path,
+    md_output_path: Path | None = None,
     html_dir: Path,
     document_link_url: str,
     queue_record_ids: tuple[str, ...] = (),
@@ -362,6 +458,7 @@ def write_publish_release_metadata(
         "built_at": built_at.isoformat(timespec="seconds"),
         "word_output_path": repo_relative(word_output_path),
         "pdf_output_path": repo_relative(pdf_output_path),
+        "md_output_path": repo_relative(md_output_path) if md_output_path is not None else "",
         "html_dir": repo_relative(html_dir),
         "html_index": repo_relative(html_dir / "index.html"),
         "document_link_url": document_link_url.strip(),

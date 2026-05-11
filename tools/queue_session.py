@@ -21,6 +21,7 @@ class QueuePendingState:
     can_write_force_phase2_refresh: bool
     can_write_data_sync: bool
     can_write_document_link_dd: bool
+    can_write_feishu_cloud_doc: bool
     has_upload_dingtalk_field: bool
 
 
@@ -70,6 +71,7 @@ def load_pending_queue_state(
     force_phase2_refresh_field: str,
     data_sync_field: str,
     document_link_dd_field: str,
+    feishu_cloud_doc_field: str,
     upload_dingtalk_field: str,
 ) -> QueuePendingState | None:
     raw_records = source.fetch_records_with_ids(
@@ -94,6 +96,7 @@ def load_pending_queue_state(
         can_write_force_phase2_refresh=force_phase2_refresh_field in field_names,
         can_write_data_sync=data_sync_field in field_names,
         can_write_document_link_dd=document_link_dd_field in field_names,
+        can_write_feishu_cloud_doc=feishu_cloud_doc_field in field_names,
         has_upload_dingtalk_field=upload_dingtalk_field in field_names,
     )
 

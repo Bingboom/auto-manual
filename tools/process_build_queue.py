@@ -36,6 +36,7 @@ from tools.queue_contract import (  # noqa: E402
     DOCUMENT_ID_FIELD as _QC_DOCUMENT_ID_FIELD,
     DOCUMENT_KEY_FIELD as _QC_DOCUMENT_KEY_FIELD,
     DOCUMENT_LINK_FIELD as _QC_DOCUMENT_LINK_FIELD,
+    FEISHU_CLOUD_DOC_FIELD as _QC_FEISHU_CLOUD_DOC_FIELD,
     HTML_LINK_FIELD as _QC_HTML_LINK_FIELD,
     DOC_PHASE_FIELD as _QC_DOC_PHASE_FIELD,
     DONE_TRIGGER_VALUE as _QC_DONE_TRIGGER_VALUE,
@@ -92,6 +93,7 @@ from tools.process_build_queue_services import (  # noqa: E402
     build_started_fields as _build_started_fields_service,
     build_success_fields as _build_success_fields_service,
     ensure_dingtalk_session_ready as _ensure_dingtalk_session_ready_service,
+    import_markdown_to_cloud_doc as _import_markdown_to_cloud_doc_service,
     move_drive_file_to_wiki as _move_drive_file_to_wiki_service,
     publish_word_artifact as _publish_word_artifact_service,
     process_build_queue as _process_build_queue_service,
@@ -102,6 +104,7 @@ from tools.process_build_queue_services import (  # noqa: E402
     upload_word_to_drive as _upload_word_to_drive_service,
     wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
 )
+from tools.queue_build_execution import BuiltDocumentOutputs  # noqa: E402
 from tools.dingtalk.alidocs_session import (  # noqa: E402
     load_session_config_for_operator_union_id,
     upload_file_to_node,
@@ -119,10 +122,13 @@ from tools.queue_bound_outputs import (  # noqa: E402
     repo_relative as _repo_relative,
     resolve_docs_dir_for_config as _resolve_docs_dir_for_config,
     resolve_html_output_dir_for_target,
+    resolve_md_output_path_for_target,
     resolve_pdf_output_path_for_target,
     resolve_word_output_path_for_target,
+    stage_draft_md_output_to_host_repo as _stage_draft_md_output_to_host_repo,
     stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo,
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo,
+    versioned_md_output_path as _versioned_md_output_path,
     versioned_pdf_output_path as _versioned_pdf_output_path,
     versioned_word_output_path as _versioned_word_output_path,
     write_publish_release_metadata,
@@ -206,6 +212,7 @@ DATA_SYNC_FIELD = _QC_DATA_SYNC_FIELD
 DOCUMENT_DIRECTORY_FIELD = _QC_DOCUMENT_DIRECTORY_FIELD
 DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
 DOCUMENT_LINK_DD_FIELD = _QC_DOCUMENT_LINK_DD_FIELD
+FEISHU_CLOUD_DOC_FIELD = _QC_FEISHU_CLOUD_DOC_FIELD
 HTML_LINK_FIELD = _QC_HTML_LINK_FIELD
 DINGTALK_TARGET_NODE_URL_FIELD = _QC_DINGTALK_TARGET_NODE_URL_FIELD
 FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
@@ -245,6 +252,7 @@ ensure_dingtalk_session_ready = partial(_ensure_dingtalk_session_ready_service, 
 wait_for_wiki_move_task = partial(_wait_for_wiki_move_task_service, _service_module())
 move_drive_file_to_wiki = partial(_move_drive_file_to_wiki_service, _service_module())
 publish_word_artifact = partial(_publish_word_artifact_service, _service_module())
+import_markdown_to_cloud_doc = partial(_import_markdown_to_cloud_doc_service, _service_module())
 
 
 def _build_py_target_command(
@@ -317,6 +325,7 @@ def build_success_fields(
     document_link_url: str,
     built_at: datetime,
     document_link_dd_url: str = "",
+    feishu_cloud_doc_url: str = "",
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     data_sync_status: str = "",
@@ -324,6 +333,7 @@ def build_success_fields(
     clear_force_phase2_refresh: bool = True,
     write_data_sync: bool = True,
     write_document_link_dd: bool = False,
+    write_feishu_cloud_doc: bool = False,
 ) -> dict[str, Any]:
     return _build_success_fields_service(
         _service_module(),
@@ -331,6 +341,7 @@ def build_success_fields(
         word_output_path=word_output_path,
         document_link_url=document_link_url,
         document_link_dd_url=document_link_dd_url,
+        feishu_cloud_doc_url=feishu_cloud_doc_url,
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
@@ -339,6 +350,7 @@ def build_success_fields(
         clear_force_phase2_refresh=clear_force_phase2_refresh,
         write_data_sync=write_data_sync,
         write_document_link_dd=write_document_link_dd,
+        write_feishu_cloud_doc=write_feishu_cloud_doc,
     )
 
 
@@ -388,9 +400,11 @@ def build_failure_writeback_fields(
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
     document_link_dd_url: str | None = None,
+    feishu_cloud_doc_url: str | None = None,
     clear_force_phase2_refresh: bool = True,
     write_data_sync: bool = True,
     write_document_link_dd: bool = False,
+    write_feishu_cloud_doc: bool = False,
 ) -> dict[str, Any]:
     return _build_failure_writeback_fields_service(
         _service_module(),
@@ -402,9 +416,11 @@ def build_failure_writeback_fields(
         word_output_path=word_output_path,
         document_link_url=document_link_url,
         document_link_dd_url=document_link_dd_url,
+        feishu_cloud_doc_url=feishu_cloud_doc_url,
         clear_force_phase2_refresh=clear_force_phase2_refresh,
         write_data_sync=write_data_sync,
         write_document_link_dd=write_document_link_dd,
+        write_feishu_cloud_doc=write_feishu_cloud_doc,
     )
 
 

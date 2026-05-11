@@ -26,6 +26,7 @@ def process_queue_record_group(
     can_write_force_phase2_refresh: bool,
     can_write_data_sync: bool,
     can_write_document_link_dd: bool,
+    can_write_feishu_cloud_doc: bool,
     has_upload_dingtalk_field: bool,
     cli_bin: str,
     identity: str,
@@ -50,6 +51,7 @@ def process_queue_record_group(
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Any],
     publish_word_artifact: Callable[..., Any],
+    import_markdown_to_cloud_doc: Callable[..., tuple[str, str]],
     build_success_fields: Callable[..., dict[str, Any]],
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
     publish_release_latest_dir_for_target: Callable[..., Path],
@@ -63,9 +65,11 @@ def process_queue_record_group(
     record = group[0]
     word_output_path: Path | None = None
     pdf_output_path: Path | None = None
+    md_output_path: Path | None = None
     artifact_output_path: Path | None = None
     latest_link_url: str | None = None
     latest_document_link_dd_url: str | None = None
+    latest_feishu_cloud_doc_url: str | None = None
     group_key = queue_record_key(record)
     row_count = len(group)
     try:
@@ -218,6 +222,7 @@ def process_queue_record_group(
         else:
             word_output_path = built_outputs.word_output_path
             pdf_output_path = built_outputs.pdf_output_path
+            md_output_path = built_outputs.md_output_path
             artifact_output_path = built_outputs.upload_output_path
         artifact_result = publish_word_artifact(
             cfg=cfg,
@@ -233,20 +238,34 @@ def process_queue_record_group(
         document_link_url = artifact_result.document_link_url
         document_link_dd_url = artifact_result.document_link_dd_url
         latest_document_link_dd_url = document_link_dd_url or None
+        feishu_cloud_doc_url = ""
+        cloud_doc_status_notes: tuple[str, ...] = ()
+        if can_write_feishu_cloud_doc:
+            if md_output_path is None:
+                raise RuntimeError("Markdown output was not created for Feishu cloud doc import")
+            _cloud_doc_token, feishu_cloud_doc_url = import_markdown_to_cloud_doc(
+                cli_bin=cli_bin,
+                markdown_output_path=md_output_path,
+                identity=identity,
+            )
+            latest_feishu_cloud_doc_url = feishu_cloud_doc_url
+            cloud_doc_status_notes = ("cloud_doc=ok",)
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
             word_output_path=word_output_path,
             document_link_url=document_link_url,
             document_link_dd_url=document_link_dd_url,
+            feishu_cloud_doc_url=feishu_cloud_doc_url,
             built_at=built_at,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
             data_sync_status=data_sync_status,
-            status_notes=(*artifact_result.status_notes, *deferred_status_notes),
+            status_notes=(*artifact_result.status_notes, *cloud_doc_status_notes, *deferred_status_notes),
             clear_force_phase2_refresh=can_write_force_phase2_refresh,
             write_data_sync=can_write_data_sync,
             write_document_link_dd=can_write_document_link_dd,
+            write_feishu_cloud_doc=can_write_feishu_cloud_doc,
         )
         for group_record in group:
             source.upsert_record(
@@ -270,6 +289,7 @@ def process_queue_record_group(
                 built_at=built_at,
                 word_output_path=word_output_path,
                 pdf_output_path=pdf_output_path or artifact_output_path,
+                md_output_path=md_output_path,
                 html_dir=latest_html_dir,
                 document_link_url=document_link_url,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
@@ -301,9 +321,11 @@ def process_queue_record_group(
                 word_output_path=word_output_path,
                 document_link_url=latest_link_url,
                 document_link_dd_url=latest_document_link_dd_url,
+                feishu_cloud_doc_url=latest_feishu_cloud_doc_url,
                 clear_force_phase2_refresh=can_write_force_phase2_refresh,
                 write_data_sync=can_write_data_sync,
                 write_document_link_dd=can_write_document_link_dd,
+                write_feishu_cloud_doc=can_write_feishu_cloud_doc,
             )
             for group_record in group:
                 source.upsert_record(

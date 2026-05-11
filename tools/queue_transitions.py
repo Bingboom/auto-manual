@@ -13,6 +13,7 @@ class QueueTransitionFields:
     document_directory_field: str = ""
     document_link_field: str = ""
     document_link_dd_field: str = ""
+    feishu_cloud_doc_field: str = ""
     trigger_field: str = ""
     done_trigger_value: str = ""
     immediate_trigger_field: str = ""
@@ -87,6 +88,7 @@ def build_success_transition(
     document_link_url: str,
     built_at: datetime,
     document_link_dd_url: str = "",
+    feishu_cloud_doc_url: str = "",
     workflow_action: str | None,
     data_sync_status: str = "",
     status_notes: tuple[str, ...] = (),
@@ -110,6 +112,8 @@ def build_success_transition(
     }
     if fields.document_link_dd_field:
         payload[fields.document_link_dd_field] = document_link_dd_url.strip()
+    if fields.feishu_cloud_doc_field:
+        payload[fields.feishu_cloud_doc_field] = feishu_cloud_doc_url.strip()
     if fields.force_phase2_refresh_field:
         payload[fields.force_phase2_refresh_field] = False
     if fields.data_sync_field and data_sync_status:
@@ -148,6 +152,7 @@ def build_failure_writeback_transition(
     word_output_path: Path | None,
     document_link_url: str | None,
     document_link_dd_url: str | None,
+    feishu_cloud_doc_url: str | None = None,
     workflow_action_label: Callable[[Any], str | None],
 ) -> dict[str, Any]:
     payload = build_failure_result_transition(
@@ -165,6 +170,8 @@ def build_failure_writeback_transition(
         payload[fields.result_field] += " | latest_drive_link_preserved"
     if fields.document_link_dd_field:
         payload[fields.document_link_dd_field] = (document_link_dd_url or "").strip()
+    if fields.feishu_cloud_doc_field and feishu_cloud_doc_url:
+        payload[fields.feishu_cloud_doc_field] = feishu_cloud_doc_url.strip()
     payload[fields.immediate_trigger_field] = False
     if fields.force_phase2_refresh_field:
         payload[fields.force_phase2_refresh_field] = False
