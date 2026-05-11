@@ -59,6 +59,7 @@ GitHub note:
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
 - `Manual Validation` now also runs `python tools/check_maintainability_guardrails.py` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
+- `build.py check` also compares duplicated RST and raw HTML list text so renderer-specific copies cannot silently drift from the source wording
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
 - that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
 
@@ -82,6 +83,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`docs/templates/page_jp/*.rst`](../docs/templates/page_jp)
    - [`docs/manifests/*.yaml`](../docs/manifests)
    - Responsibility: reusable page structure, headings, shared prose, and initial draft layout
+   - Some templates intentionally duplicate prose across normal RST and renderer-specific branches such as `.. raw:: html` or `.. raw:: latex`; when changing wording, treat the RST list as the source wording and keep renderer-specific copies aligned
 
 2. Data layer
    - preferred snapshot root [`data/phase2/`](../data/phase2)

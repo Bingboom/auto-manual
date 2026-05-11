@@ -69,7 +69,7 @@ Meaning:
 - [`../tools/dingtalk/alidocs_session_upload_cli.py`](../tools/dingtalk/alidocs_session_upload_cli.py) is the current manual spike for the observed AliDocs browser-session upload chain. It needs `DINGTALK_DOCS_A_TOKEN`, `DINGTALK_DOCS_XSRF_TOKEN`, and `DINGTALK_DOCS_COOKIE`, then follows `uploadinfo -> OSS upload -> commit` and returns a node URL for the uploaded file.
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
-- `check`: run validation + prepare bundle + content checks, including stale identity scan and contract validation
+- `check`: run validation + prepare bundle + content checks, including stale identity scan, contract validation, and duplicate RST/raw HTML text consistency checks
 - `sync-review`: refresh review files affected by CSV data changes
 - `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Workflow_action` maps to `Start Review`, resolves the review target from `Document_Key` alone, uses `Build_family` / `Lang` only as optional config-routing hints, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs the latest phase2 snapshot, always reseeds `docs/_review` from the latest `origin/main` template/data state, force-updates the routed review branch when it already exists, creates or reuses the PR, then writes back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`
@@ -196,6 +196,7 @@ GitHub validation note:
 - that workflow now also runs `npm ci && npm test` in [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) so the OpenClaw command bridge stays covered in CI
 - that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`
 - that same workflow now also runs `python tools/check_maintainability_guardrails.py` so the current hotspot wrappers and validators do not quietly grow back into giant files
+- `build.py check` scans template and prepared bundle RST files for duplicated list text across normal RST and raw HTML branches; maintainers should treat the RST list as the source wording and keep renderer-specific copies aligned whenever manual prose changes
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
