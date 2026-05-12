@@ -430,6 +430,89 @@ class TestQueueResolveAction(unittest.TestCase):
                 self.assertEqual("build-draft", resolution.dispatch_command)
                 self.assertEqual(["en", "fr", "es", "de", "it"], [candidate.lang for candidate in resolution.candidates])
 
+    def test_resolve_queue_action_should_use_task_id_prefix_for_package_build(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id=f"rec_eu_{lang}",
+                document_id=f"JE-2000E_EU_{lang}_0.1",
+                document_key='{"id":"linked-document-key"}',
+                build_family=f"eu-{lang}",
+                lang=lang,
+                version="0.1",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id=f"JE-2000E_EU_{lang}_0.1",
+                market_group="EU",
+            )
+            for lang in ("en", "fr")
+        ]
+        rows.append(_model_draft_row("US", lang="en", record_id="rec_us_en"))
+
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="触发 JE-2000E_EU 欧规整包构建"),
+            rows,
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual("build_draft_package", resolution.action_name)
+        self.assertTrue(resolution.ready)
+        self.assertEqual("JE-2000E_EU_", resolution.selectors["task_id_prefix"])
+        self.assertNotIn("document_key", resolution.selectors)
+        self.assertEqual(["rec_eu_en", "rec_eu_fr"], [candidate.record_id for candidate in resolution.candidates])
+
+    def test_resolve_queue_action_should_not_clarify_all_eu_copy_request(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id=f"rec_eu_{lang}",
+                document_id=f"JE-2000E_EU_{lang}_0.1",
+                document_key='{"id":"linked-document-key"}',
+                build_family=f"eu-{lang}",
+                lang=lang,
+                version="0.1",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id=f"JE-2000E_EU_{lang}_0.1_Build Draft Package",
+                market_group="EU",
+            )
+            for lang in ("en", "fr", "es", "de", "it", "uk")
+        ]
+
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="构建JE-2000E_EU的所有欧规文案"),
+            rows,
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual("build_draft_package", resolution.action_name)
+        self.assertTrue(resolution.ready)
+        self.assertEqual(6, resolution.matched_count)
+        self.assertEqual("JE-2000E_EU_", resolution.selectors["task_id_prefix"])
+        self.assertNotIn("document_key", resolution.selectors)
+
     def test_resolve_queue_action_should_allow_model_wildcard_batch_draft(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
             self._args(query_text="构建JE-1000F说明书文案"),

@@ -355,6 +355,8 @@ class TestQueueQuery(unittest.TestCase):
             "创建JE-1000F的欧规文案",
             "基于配置构建JE-1000F的欧规",
             "构建最新符合构建要求的JE-1000F的所有欧规说明书文案",
+            "构建JE-1000F_EU的所有欧规文案",
+            "触发 JE-1000F_EU 欧规整包构建",
         ]:
             with self.subTest(query_text=query_text):
                 inferred = queue_query.infer_queue_query_from_text(query_text)
@@ -366,6 +368,17 @@ class TestQueueQuery(unittest.TestCase):
                 self.assertEqual("build-draft-package", inferred.query_workflow_action)
                 self.assertEqual("document-link", inferred.queue_scope)
                 self.assertTrue(inferred.allow_multiple)
+
+    def test_infer_queue_query_from_text_should_treat_document_key_package_as_task_prefix_batch(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("触发 JE-2000E_EU 整包构建")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("", inferred.document_key)
+        self.assertEqual("JE-2000E_EU_", inferred.task_id_prefix)
+        self.assertEqual("", inferred.market_group)
+        self.assertEqual("build-draft-package", inferred.query_workflow_action)
+        self.assertEqual("document-link", inferred.queue_scope)
+        self.assertTrue(inferred.allow_multiple)
 
     def test_infer_queue_query_from_text_should_treat_market_version_as_config_batch(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("构建 JE-1000F_EU_1.0 的欧规说明书文案")
@@ -485,6 +498,65 @@ class TestQueueQuery(unittest.TestCase):
             rows,
         )
 
+        self.assertEqual(["rec_eu_en"], [row.record_id for row in filtered])
+
+    def test_filter_queue_query_rows_should_match_package_build_by_task_id_prefix(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_eu_en",
+                document_id="JE-2000E_EU_en_0.1",
+                document_key='{"id":"linked-document-key"}',
+                build_family="eu-en",
+                lang="en",
+                version="0.1",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-eu",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id="JE-2000E_EU_en_0.1",
+            ),
+            queue_query.QueueQueryRow(
+                queue_scope="document-link",
+                record_id="rec_us_en",
+                document_id="JE-2000E_US_en_0.1",
+                document_key='{"id":"other-linked-document-key"}',
+                build_family="us-en",
+                lang="en",
+                version="0.1",
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                git_ref="codex/review-us",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="",
+                review_trigger_enabled=None,
+                build_trigger_requested=True,
+                immediate_build=True,
+                initial_result="",
+                remarks="",
+                task_id="JE-2000E_US_en_0.1",
+            ),
+        ]
+
+        resolved_args = queue_query.apply_inferred_queue_query(
+            self._args(query_text="触发 JE-2000E_EU 欧规整包构建")
+        )
+        filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
+
+        self.assertEqual("JE-2000E_EU_", resolved_args.task_id_prefix)
+        self.assertFalse(resolved_args.document_key)
         self.assertEqual(["rec_eu_en"], [row.record_id for row in filtered])
 
     def test_filter_queue_query_rows_should_not_collapse_latest_batch_draft_by_document_key(self) -> None:
