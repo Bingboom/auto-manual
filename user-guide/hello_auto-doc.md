@@ -182,7 +182,7 @@ The manual system now has four layers, but they are used at different stages.
    - if you want remote immediate builds instead of waiting for the next poll, create a Feishu workflow whose combined condition is `是否触发文档构建 = Y` and `是否立即构建 = true`, then call the GitHub `workflow_dispatch` API for `feishu-build-queue.yml` on `main`; the queue still only builds rows whose trigger field is `Y`
  - that remote bot flow requires the Feishu app/bot to have read access to the phase2 source tables and write access to the `Document_link` table; otherwise it can detect pending rows but cannot write back `开始构建时间` or `构建结果`
  - if you also want the uploaded Word file to land inside wiki automatically, give that same user/bot identity edit/container permission on the destination wiki parent node; otherwise the upload still succeeds, `Document link` falls back to the latest Drive URL, and the status is marked `drive_only` with the wiki attach error
- - `python build.py md` and queue Markdown outputs reuse the Word bundle HTML path; the exporter prefers native MyST when Pandoc provides it and otherwise emits MyST-compatible CommonMark with pipe tables. The generated `md` directory also carries `conf.py`, `index.md`, and local `assets/`, so the same MyST directory can be rendered directly by Read the Docs.
+ - `python build.py md` and queue Markdown outputs reuse the Word bundle HTML path; the exporter prefers native MyST when Pandoc provides it and otherwise emits MyST-compatible CommonMark with pipe tables. Each generated `md` directory carries `conf.py`, `index.md`, and local `assets/`; RTD then uses `tools/readthedocs_source.py` to assemble the selected target directories into one catalog source under `docs/_build/rtd/`.
  - if you also want the remote GitHub Draft/Publish workers to mirror to DingTalk, configure GitHub Secrets `DINGTALK_DOCS_A_TOKEN`, `DINGTALK_DOCS_XSRF_TOKEN`, and `DINGTALK_DOCS_COOKIE`, then explicitly set the GitHub Actions repository variable `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session`; `DINGTALK_DOCS_TARGET_NODE_URL` is optional and only acts as the remote default target
  - when DingTalk mirror sync is enabled, Feishu still remains the queue control plane and canonical writeback surface; `Document link` stays the primary returned link, and if your table also has `Document link_dd` the queue writes the mirrored DingTalk node URL there
  - when Feishu is primary and DingTalk is only the mirror, mirror target/session errors no longer abort the whole row; the queue still writes the Feishu result and records the DingTalk problem as `dingtalk_sync=failed`
@@ -241,7 +241,7 @@ Rules:
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
 - when that workspace is packaged for review sharing, let GitHub Actions build the package first and keep it as an artifact; Vercel is reserved for the latest publish HTML only
-- Read the Docs is now reserved for one minimal public runtime HTML target, `JE-1000F / US / en`, built from [`.readthedocs.yaml`](../.readthedocs.yaml); it does not replace review-preview packaging or the Vercel latest-publish flow
+- Read the Docs is reserved for the generated public manual catalog built from [`.readthedocs.yaml`](../.readthedocs.yaml), currently indexing `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`; it does not replace review-preview packaging or the Vercel latest-publish flow
 - designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
@@ -596,10 +596,10 @@ PR preview note:
 - writes to [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build)
 - does not rewrite root [`docs/index.rst`](../docs/index.rst)
 
-Minimal RTD behavior:
+RTD catalog behavior:
 
-- RTD builds the default public runtime HTML target from `config.us-en.yaml --model JE-1000F --region US --source runtime`
-- the RTD config first materializes [`docs/_build/JE-1000F/US/en/rst/`](../docs/_build) without rewriting the repo-root [`docs/index.rst`](../docs/index.rst), then renders that generated bundle with Sphinx
+- RTD installs the system `pandoc` package and builds the selected public runtime Markdown targets from `config.us.yaml`, `config.eu.yaml`, and `config.ja.yaml`
+- the RTD config first materializes target-scoped `md` directories without rewriting the repo-root [`docs/index.rst`](../docs/index.rst), then assembles [`docs/_build/rtd/`](../docs/_build) as the homepage catalog and renders that source with Sphinx
 - RTD is not the release authority for formal Publish outputs; queue-driven Publish and Vercel latest-publish remain the release-facing path
 
 `fast` behavior:
