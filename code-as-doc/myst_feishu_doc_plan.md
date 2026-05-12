@@ -16,7 +16,7 @@ phase2 数据、page manifest、materialized bundle 和 Word HTML fragment，
 - 默认文件名从 `build.myst_output` 读取，未配置时由 `word_output` 改后缀得到 `.md`。
 - `build.py all` 暂不包含 `myst`，避免改变现有 HTML/Word/PDF 行为。
 - 新增 `tools/myst_bundle.py`，复用 `materialize_bundle` 与 Word HTML fragment 转换，再导出 RTD/Sphinx 友好的 MyST-compatible Markdown。
-- 新增飞书云文档发布模块，用 `lark-cli docs +create --api-version v2 --doc-format markdown --content @<md>` 从 MyST 产物创建云文档。
+- 新增飞书云文档发布模块，用当前 `lark-cli docs +create --api-version v2 --markdown @<md>` 从 MyST 产物创建云文档。
 - 队列保留现有 `Document link` 主产物写回；新增 `飞书云文档` 字段写回云文档 URL。
 
 ## Queue Flow
@@ -43,7 +43,7 @@ phase2 数据、page manifest、materialized bundle 和 Word HTML fragment，
 
 - `python -m unittest`
 - `python build.py myst --config config.us.yaml --model JE-1000F --region US`
-- `lark-cli docs +create --api-version v2 --doc-format markdown --content @<generated.md> --parent-token <token> --dry-run`
+- `lark-cli docs +create --api-version v2 --markdown @<generated.md> --wiki-node <token> --dry-run`
 - `python build.py process-build-queue --config config.us.yaml --record-id <publish_record_id> --dry-run`
 - 单测覆盖：
   - `myst` action/format 映射

@@ -13,6 +13,7 @@ class BuiltDocumentOutputs:
     upload_output_path: Path
     pdf_output_path: Path | None = None
     html_output_dir: Path | None = None
+    myst_output_path: Path | None = None
 
 
 def build_py_target_command(
@@ -131,10 +132,12 @@ def build_document_for_task(
     build_py_target_command: Callable[..., list[str]],
     resolve_word_output_path_for_target: Callable[..., Path],
     resolve_pdf_output_path_for_target: Callable[..., Path],
+    resolve_myst_output_path_for_target: Callable[..., Path],
     versioned_pdf_output_path: Callable[..., Path],
+    versioned_myst_output_path: Callable[..., Path],
     versioned_word_output_path: Callable[..., Path],
     resolve_html_output_dir_for_target: Callable[..., Path],
-    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path]],
+    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path, Path]],
     stage_draft_word_output_to_host_repo: Callable[..., Path],
 ) -> BuiltDocumentOutputs:
     normalized_doc_phase = normalize_workflow_action(doc_phase)
@@ -217,6 +220,19 @@ def build_document_for_task(
                 ),
                 cwd=effective_repo_root,
             )
+            run_command(
+                build_py_target_command(
+                    repo_root=effective_repo_root,
+                    action="myst",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=effective_data_root,
+                    source="review",
+                    no_clean=True,
+                ),
+                cwd=effective_repo_root,
+            )
         else:
             run_command(
                 build_py_target_command(
@@ -282,11 +298,33 @@ def build_document_for_task(
             )
             if not html_output_dir.exists():
                 raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
+            myst_output_path = resolve_myst_output_path_for_target(
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+            )
+            if not myst_output_path.exists():
+                raise RuntimeError(f"MyST output was not created for publish: {myst_output_path}")
+            versioned_myst_path = versioned_myst_output_path(
+                myst_output_path,
+                version=version,
+                doc_phase=normalized_doc_phase,
+            )
+            if versioned_myst_path != myst_output_path:
+                versioned_myst_path.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(myst_output_path, versioned_myst_path)
+                myst_output_path = versioned_myst_path
             host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
-            staged_word_output_path, staged_pdf_output_path, latest_html_dir = stage_publish_assets_to_host_repo(
+            (
+                staged_word_output_path,
+                staged_pdf_output_path,
+                latest_html_dir,
+                staged_myst_output_path,
+            ) = stage_publish_assets_to_host_repo(
                 built_word_output_path=word_output_path,
                 built_pdf_output_path=pdf_output_path,
                 built_html_dir=html_output_dir,
+                built_myst_output_path=myst_output_path,
                 host_config_path=host_config_path,
                 model=model,
                 region=region,
@@ -297,6 +335,7 @@ def build_document_for_task(
                 upload_output_path=staged_pdf_output_path,
                 pdf_output_path=staged_pdf_output_path,
                 html_output_dir=latest_html_dir,
+                myst_output_path=staged_myst_output_path,
             )
         if effective_repo_root != repo_root:
             staged_word_output_path = stage_draft_word_output_to_host_repo(

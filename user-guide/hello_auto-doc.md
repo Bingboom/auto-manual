@@ -42,6 +42,7 @@ Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip insta
 
 - PDF export requires `xelatex`.
 - Word export requires `pandoc` on macOS / Linux and on non-Word-COM paths.
+- MyST Markdown export also uses the existing bundle-to-HTML path and prefers `pandoc` for HTML-to-Markdown conversion, with a conservative built-in fallback for simple fragments.
 - If the target uses a Word reference template such as the bundle flow, install `pandoc 3.9.0.2` or newer. The bundle exporter now auto-selects a compatible installed `pandoc` when multiple versions are present, and older versions can emit an invalid `/word/media/` content-type override that makes Microsoft Word repair the generated `.docx`.
 - The Python dependencies in [`requirements.txt`](../requirements.txt) include the Sphinx theme and build libraries used by the current workflow.
 
@@ -530,6 +531,7 @@ python build.py fast --config config.us-en.yaml --model JE-1000F --region US
 python build.py html
 python build.py word
 python build.py pdf
+python build.py myst
 python build.py all
 ```
 
@@ -560,6 +562,7 @@ python build.py check --config config.zh.yaml --model JE-2000E --region CN
 python build.py rst --config config.us.yaml
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config config.ja.yaml --model JE-2000F --region JP
+python build.py myst --config config.us.yaml --model JE-1000F --region US
 ```
 
 Source mode examples:
@@ -567,6 +570,7 @@ Source mode examples:
 ```powershell
 python build.py rst --config config.ja.yaml --model JE-1000F --region JP --source runtime
 python build.py word --config config.ja.yaml --model JE-1000F --region JP --source review
+python build.py myst --config config.us.yaml --model JE-1000F --region US --source review
 ```
 
 Source mode meaning:
@@ -586,7 +590,7 @@ PR preview note:
 - requires an existing `_review/<model>/<region>/`
 - exports revision reports to [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking) by default
 - writes a release manifest to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases)
-- queue-driven `Workflow_action=Publish` additionally stages the formal DOCX and PDF under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads the PDF URL back to `Document link`, mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel, and writes the deployed Vercel URL back to `HTML_link` when that field exists
+- queue-driven `Workflow_action=Publish` additionally stages the formal DOCX, PDF, and MyST Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads the PDF URL back to `Document link`, mirrors the newest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel, mirrors MyST under `latest/myst/` for RTD/Sphinx preparation, creates a Feishu cloud doc from that Markdown when `飞书云文档` exists, and writes the deployed Vercel URL back to `HTML_link` when that field exists
 
 `preview` behavior:
 
@@ -599,6 +603,7 @@ Minimal RTD behavior:
 
 - RTD builds the default public runtime HTML target from `config.us-en.yaml --model JE-1000F --region US --source runtime`
 - the RTD config first materializes [`docs/_build/JE-1000F/US/en/rst/`](../docs/_build) without rewriting the repo-root [`docs/index.rst`](../docs/index.rst), then renders that generated bundle with Sphinx
+- `myst` is the new canonical Markdown preparation path for a future MyST-backed RTD configuration. It lives beside the existing HTML/Word/PDF outputs and is not included in `build.py all`.
 - RTD is not the release authority for formal Publish outputs; queue-driven Publish and Vercel latest-publish remain the release-facing path
 
 `fast` behavior:
@@ -822,7 +827,7 @@ Then:
 - Comparing `_build` after a fresh clean without rebuilding the same target first
 - Running `review --refresh-review` without realizing it will replace the current review bundle
 - Changing parameter CSV data during review and forgetting to run `sync-review`
-- Forgetting that `check/html/word/pdf` now use review content by default once review exists
+- Forgetting that `check/html/word/pdf/myst` now use review content by default once review exists
 - Committing only `_review` when the round also changed shared template or CSV logic
 - Reading `files.html` first and missing the more useful field-level diff in `fields.html`
 
@@ -917,7 +922,7 @@ After changing templates or CSV values, verify at least the following:
 5. generated pages contain no unresolved placeholders such as `|PRODUCT_NAME|`
 6. generated pages contain no stale model names from older products
 7. safety and spec still resolve from the intended source, including the JP template-backed safety page and the remaining CSV-backed generated pages
-8. the expected `.docx`, `.html`, or `.pdf` file is generated when requested
+8. the expected `.docx`, `.html`, `.pdf`, or `.md` file is generated when requested
 9. `publish` or `release-manifest` produced a JSON / CSV record under [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases)
 
 Useful checks:
@@ -934,7 +939,7 @@ git status --short -- docs/_review/JE-1000F/US
 
 Templates and CSV create the first draft.
 [`docs/_review/**`](../docs/_review) becomes the target editing source after review starts.
-[`docs/_build/**/**/rst/**`](../docs/_build) remains the runtime publish bundle behind the final outputs.
+[`docs/_build/**/**/rst/**`](../docs/_build) remains the runtime publish bundle behind the final outputs; [`docs/_build/**/**/myst/**`](../docs/_build) is the RTD/Sphinx Markdown export.
 ## Start Review, Build Draft Package, Publish
 
 - `process-build-queue` no longer runs `sync-data` unconditionally; it now refreshes phase2 only when `Document_link.是否强制刷新数据 = true`.
@@ -943,6 +948,7 @@ Templates and CSV create the first draft.
 - `build.py check --source review` validates the rows needed to identify the target and render generated-page recipe inputs, plus footnotes referenced by those inputs, but retired `Spec_Master` rows and unreferenced `Spec_Footnotes` definitions that the review bundle does not consume no longer block Build Draft Package.
 - `Workflow_action=Build Draft Package` and `Workflow_action=Publish` are now the primary queue actions.
 - queue routing only looks at `Workflow_action`: use `Start Review`, `Build Draft Package`, or `Publish`, and keep `Doc_phase` blank.
+- Publish queue rows keep `Document link` as the PDF/DOCX main artifact link. When the table has `飞书云文档`, the worker also creates a cloud doc from the generated MyST Markdown and records `feishu_doc=ok|failed|skipped` in `构建结果`.
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide which review branch gets fetched and built.
 - `feishu-start-review.yml` is the Start Review worker on `main`; dispatch it on `main` so review-init always uses the latest worker definition.
 - `feishu-build-queue.yml` is the Publish-stage worker on `main`; dispatch it on `main`, and let `Document_link.Git_ref` decide the review-branch source when present.

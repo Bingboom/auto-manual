@@ -4,10 +4,14 @@ import tempfile
 import unittest
 from datetime import datetime
 from pathlib import Path
+from types import SimpleNamespace
 from unittest import mock
 
 from tools import process_build_queue
 from tools import process_build_queue_main
+from tools.queue_artifact_sink import ArtifactPublishResult
+from tools.queue_build_execution import BuiltDocumentOutputs
+from tools.queue_group_processing import process_queue_record_group
 from tests.test_helpers import temp_test_root
 
 
@@ -656,6 +660,9 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_pdf_path = (
                 main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "pdf" / "manual_je1000f_us_en.pdf"
             )
+            main_worktree_myst_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "myst" / "manual_je1000f_us_en.md"
+            )
             main_worktree_html_dir = main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
             main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
@@ -664,6 +671,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_word_path.write_bytes(b"docx")
             main_worktree_pdf_path.parent.mkdir(parents=True, exist_ok=True)
             main_worktree_pdf_path.write_bytes(b"pdf")
+            main_worktree_myst_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_myst_path.write_text("# Manual\n", encoding="utf-8")
             main_worktree_html_dir.mkdir(parents=True, exist_ok=True)
             (main_worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
             (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
@@ -697,6 +706,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=main_worktree_pdf_path,
             ), mock.patch.object(
                 process_build_queue,
+                "resolve_myst_output_path_for_target",
+                return_value=main_worktree_myst_path,
+            ), mock.patch.object(
+                process_build_queue,
                 "resolve_html_output_dir_for_target",
                 return_value=main_worktree_html_dir,
             ):
@@ -728,11 +741,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf",
             resolved_path.upload_output_path,
         )
-        self.assertEqual(2, len(commands))
+        self.assertEqual(3, len(commands))
         self.assertEqual("publish", commands[0][0][2])
         self.assertEqual(main_worktree, commands[0][1])
         self.assertEqual("html", commands[1][0][2])
         self.assertEqual(main_worktree, commands[1][1])
+        self.assertEqual("myst", commands[2][0][2])
+        self.assertEqual(main_worktree, commands[2][1])
         self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
 
@@ -820,12 +835,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path = root / "config.ja.yaml"
             word_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
             pdf_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "pdf" / "manual_je1000f_jp.pdf"
+            myst_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "myst" / "manual_je1000f_jp.md"
             html_dir = root / "docs" / "_build" / "JE-1000F" / "JP" / "html"
             config_path.write_text("build:\n  languages: [ja]\n", encoding="utf-8")
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
             pdf_path.parent.mkdir(parents=True, exist_ok=True)
             pdf_path.write_bytes(b"pdf")
+            myst_path.parent.mkdir(parents=True, exist_ok=True)
+            myst_path.write_text("# Manual\n", encoding="utf-8")
             html_dir.mkdir(parents=True, exist_ok=True)
             (html_dir / "index.html").write_text("<html>publish</html>\n", encoding="utf-8")
 
@@ -841,6 +859,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 process_build_queue,
                 "resolve_pdf_output_path_for_target",
                 return_value=pdf_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_myst_output_path_for_target",
+                return_value=myst_path,
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_html_output_dir_for_target",
@@ -865,9 +887,14 @@ class TestProcessBuildQueue(unittest.TestCase):
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.pdf",
             resolved_path.upload_output_path,
         )
-        self.assertEqual(2, len(commands))
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.md",
+            resolved_path.myst_output_path,
+        )
+        self.assertEqual(3, len(commands))
         self.assertEqual("publish", commands[0][2])
         self.assertEqual("html", commands[1][2])
+        self.assertEqual("myst", commands[2][2])
         self.assertIn("--data-root", commands[0])
 
     def test_write_publish_release_metadata_should_write_latest_and_version_metadata(self) -> None:
@@ -919,6 +946,91 @@ class TestProcessBuildQueue(unittest.TestCase):
             )
             self.assertEqual(["rec_publish_1", "rec_publish_2"], payload["queue_record_ids"])
 
+    def test_publish_group_should_write_feishu_doc_field_without_replacing_document_link(self) -> None:
+        record = process_build_queue.QueueRecord(
+            record_id="rec_publish",
+            document_id="JE-1000F_US_en_1.0",
+            document_key="JE-1000F_US",
+            version="1.0",
+            lang="en",
+            workflow_action="Publish",
+        )
+        upserts: list[dict[str, object]] = []
+
+        class FakeSource:
+            def upsert_record(self, **kwargs: object) -> None:
+                upserts.append(kwargs["record"])  # type: ignore[index]
+
+        result = process_queue_record_group(
+            group=[record],
+            cfg={},
+            config_path=Path("config.us.yaml"),
+            source=FakeSource(),
+            binding=SimpleNamespace(base_token="base", table_id="table"),
+            data_root=None,
+            can_write_started_at=False,
+            can_write_force_phase2_refresh=True,
+            can_write_data_sync=True,
+            can_write_document_link_dd=False,
+            can_write_feishu_doc=True,
+            has_upload_dingtalk_field=False,
+            cli_bin="lark-cli",
+            identity="user",
+            artifact_destination=process_build_queue.WikiDestination(space_id="spc", parent_wiki_token="wikcn_parent"),
+            warn_legacy_record_doc_phase=lambda _: None,
+            validate_queue_record_group=lambda _: None,
+            resolve_target_for_record=lambda _: ("JE-1000F", "US"),
+            queue_group_lang=lambda _: "en",
+            queue_group_build_family=lambda _: "us-en",
+            queue_group_dingtalk_target_node_url=lambda _: "",
+            queue_group_operator_union_id=lambda _: "",
+            queue_group_force_phase2_refresh=lambda _: False,
+            queue_group_upload_dingtalk=lambda _: False,
+            resolve_config_path_for_task=lambda **_: Path("config.us.yaml"),
+            resolve_queue_workflow_action=lambda _: "publish",
+            sync_phase2_snapshot_before_queue=lambda **_: None,
+            resolve_lark_wiki_destination=lambda **_: process_build_queue.WikiDestination(
+                space_id="spc",
+                parent_wiki_token="wikcn_parent",
+            ),
+            resolve_row_artifact_destination=lambda **_: None,
+            resolve_artifact_mirror_provider=lambda **_: None,
+            resolve_dingtalk_mirror_destination=lambda **_: None,
+            ensure_dingtalk_session_ready=lambda **_: None,
+            build_started_fields=lambda **_: {},
+            build_document_for_task=lambda **_: BuiltDocumentOutputs(
+                word_output_path=Path("manual.docx"),
+                upload_output_path=Path("manual.pdf"),
+                pdf_output_path=Path("manual.pdf"),
+                html_output_dir=Path("html"),
+                myst_output_path=Path("manual.md"),
+            ),
+            publish_word_artifact=lambda **_: ArtifactPublishResult(
+                provider="lark_drive",
+                reference_id="file_token",
+                latest_link_url="https://example.feishu.cn/file/file_token",
+                document_link_url="https://example.feishu.cn/wiki/pdf_token",
+            ),
+            create_feishu_doc_from_markdown=lambda **_: SimpleNamespace(
+                document_url="https://example.feishu.cn/wiki/doc_token",
+            ),
+            build_success_fields=process_build_queue.build_success_fields,
+            feishu_doc_field=process_build_queue.FEISHU_DOC_FIELD,
+            queue_record_legacy_doc_phase=lambda _: None,
+            publish_release_latest_dir_for_target=lambda **_: Path("reports/releases/latest"),
+            write_publish_release_metadata=lambda **_: Path("reports/releases/latest/publish_meta.json"),
+            workflow_action_label=process_build_queue.workflow_action_label,
+            queue_record_key=lambda item: item.document_key,
+            build_failure_writeback_fields=process_build_queue.build_failure_writeback_fields,
+            best_effort_queue_workflow_action=lambda _: "publish",
+            stderr=SimpleNamespace(write=lambda *_: None, flush=lambda: None),
+        )
+
+        self.assertEqual(1, result.processed_rows)
+        self.assertEqual("https://example.feishu.cn/wiki/pdf_token", upserts[-1][process_build_queue.DOCUMENT_LINK_FIELD])
+        self.assertEqual("https://example.feishu.cn/wiki/doc_token", upserts[-1][process_build_queue.FEISHU_DOC_FIELD])
+        self.assertIn("feishu_doc=ok", upserts[-1][process_build_queue.RESULT_FIELD])
+
     def test_versioned_word_output_path_should_preserve_original_when_version_missing(self) -> None:
         path = Path("docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx")
 
@@ -961,6 +1073,20 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(
             Path("docs/_build/JE-1000F/US/en/pdf/manual_je1000f_us_en_publish_0.2.pdf"),
+            resolved,
+        )
+
+    def test_versioned_myst_output_path_should_insert_publish_before_version(self) -> None:
+        path = Path("docs/_build/JE-1000F/US/en/myst/manual_je1000f_us_en.md")
+
+        resolved = process_build_queue._versioned_myst_output_path(
+            path,
+            version="0.2",
+            doc_phase="publish",
+        )
+
+        self.assertEqual(
+            Path("docs/_build/JE-1000F/US/en/myst/manual_je1000f_us_en_publish_0.2.md"),
             resolved,
         )
 

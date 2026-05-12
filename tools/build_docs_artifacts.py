@@ -14,6 +14,7 @@ class BuildArtifactPlan:
     output_pdf_name: str
     xelatex_runs: int
     word_output_name: str
+    myst_output_name: str
     word_source: str
     patch_fonts_script: str
     open_html: bool
@@ -21,6 +22,7 @@ class BuildArtifactPlan:
     open_pdf: bool
     html_out_dir: Path
     word_out_dir: Path
+    myst_out_dir: Path
     pdf_out_dir: Path
     latex_out_dir: Path
 
@@ -68,6 +70,16 @@ def resolve_build_artifact_plan(
         region=target_region,
         lang=primary_lang,
     )
+    myst_output_template = build_cfg.get("myst_output")
+    if isinstance(myst_output_template, str) and myst_output_template.strip():
+        myst_output_name = render_build_template(
+            myst_output_template,
+            model=target_model,
+            region=target_region,
+            lang=primary_lang,
+        )
+    else:
+        myst_output_name = str(Path(word_output_name).with_suffix(".md"))
 
     return BuildArtifactPlan(
         primary_lang=primary_lang,
@@ -77,6 +89,7 @@ def resolve_build_artifact_plan(
         output_pdf_name=output_pdf_name,
         xelatex_runs=int(build_cfg.get("xelatex_runs", 3)),
         word_output_name=word_output_name,
+        myst_output_name=myst_output_name,
         word_source=str(build_cfg.get("word_source", "bundle")).strip().lower(),
         patch_fonts_script=str(tools_cfg.get("patch_fonts", "tools/patch_latex_fonts.py")),
         open_html=bool(build_cfg.get("open_html", False)) and (not no_open),
@@ -84,6 +97,7 @@ def resolve_build_artifact_plan(
         open_pdf=bool(build_cfg.get("open_pdf", False)) and (not no_open),
         html_out_dir=build_root / "html",
         word_out_dir=build_root / "word",
+        myst_out_dir=build_root / "myst",
         pdf_out_dir=build_root / "pdf",
         latex_out_dir=build_root / "latex",
     )
@@ -140,6 +154,34 @@ def build_word_artifact(
     if "word" in requested_formats and plan.open_word and docx_path.exists():
         open_file(docx_path)
     return docx_path
+
+
+def build_myst_artifact(
+    *,
+    cfg: dict,
+    target_model: str | None,
+    target_region: str | None,
+    requested_formats: list[str],
+    plan: BuildArtifactPlan,
+    bundle: Any,
+    resolve_output_path: Callable[[Path, str], Path],
+    export_myst_from_bundle: Callable[..., Path],
+    printer: Callable[[str], None],
+) -> Path | None:
+    if "myst" not in requested_formats:
+        return None
+
+    myst_target_path = resolve_output_path(plan.myst_out_dir, plan.myst_output_name)
+    myst_path = export_myst_from_bundle(
+        cfg,
+        target_model,
+        target_region,
+        str(myst_target_path),
+        materialized_bundle=bundle,
+        output_dir=myst_target_path.parent,
+    )
+    printer(f"[build] Done. MyST MD: {myst_path}")
+    return myst_path
 
 
 def build_pdf_artifact(

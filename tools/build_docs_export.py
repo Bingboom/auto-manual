@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.build_docs_artifacts import (
+    build_myst_artifact,
     build_pdf_artifact,
     build_word_artifact,
     finalize_html_artifact,
@@ -39,6 +40,7 @@ def build_target(
     patch_fonts: Callable[..., None],
     compile_xelatex: Callable[..., None],
     export_word_from_bundle: Callable[..., Path],
+    export_myst_from_bundle: Callable[..., Path],
     export_word_from_html: Callable[..., Path],
     export_word_from_latex: Callable[..., Path],
     export_pdf_from_docx_via_word: Callable[[Path, Path], Path],
@@ -137,6 +139,18 @@ def build_target(
         export_word_from_html=export_word_from_html,
         export_word_from_latex=export_word_from_latex,
         open_file=open_file,
+        printer=printer,
+    )
+
+    build_myst_artifact(
+        cfg=cfg,
+        target_model=target_model,
+        target_region=target_region,
+        requested_formats=requested_formats,
+        plan=artifact_plan,
+        bundle=bundle,
+        resolve_output_path=resolve_output_path,
+        export_myst_from_bundle=export_myst_from_bundle,
         printer=printer,
     )
 

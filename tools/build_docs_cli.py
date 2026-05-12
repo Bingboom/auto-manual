@@ -10,7 +10,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--model", default=None, help="Target product model for spec filtering")
     ap.add_argument("--region", default=None, help="Target region for spec/product-name filtering")
     ap.add_argument("--all-targets", action="store_true", help="Build all targets declared in build.targets")
-    ap.add_argument("--formats", default=None, help="Comma-separated outputs: html,word,pdf")
+    ap.add_argument("--formats", default=None, help="Comma-separated outputs: html,word,pdf,myst")
     ap.add_argument("--pdf-mode", default=None, help="PDF backend: latex or word")
     ap.add_argument("--prepare-only", action="store_true", help="Only materialize target rst bundle")
     ap.add_argument("--clean", action="store_true", help="Delete docs/_build before building")

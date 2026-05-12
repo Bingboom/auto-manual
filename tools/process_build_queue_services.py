@@ -22,6 +22,7 @@ from tools.queue_lark_ops import (
     wait_for_wiki_move_task as _wait_for_wiki_move_task_impl,
     wiki_url_from_host_root as _wiki_url_from_host_root_impl,
 )
+from tools.queue_feishu_doc import create_feishu_doc_from_markdown as _create_feishu_doc_from_markdown_impl
 from tools.queue_orchestration import process_build_queue as _process_build_queue_impl
 from tools.queue_artifact_sink import (
     ArtifactDestination,
@@ -296,6 +297,28 @@ def publish_word_artifact(
         document_link_dd_url=committed.node_url,
         status_notes=status_notes,
     )
+
+
+def create_feishu_doc_from_markdown(
+    module: Any,
+    *,
+    cli_bin: str,
+    identity: str,
+    markdown_path: Path,
+    destination: Any,
+    title: str,
+) -> Any:
+    return _create_feishu_doc_from_markdown_impl(
+        cli_bin=cli_bin,
+        identity=identity,
+        markdown_path=markdown_path,
+        destination=destination,
+        title=title,
+        run_lark_cli_json=module._run_lark_cli_json,
+        cli_relative_file_arg=module._cli_relative_file_arg,
+    )
+
+
 def build_py_target_command(
     module: Any,
     *,
@@ -368,7 +391,9 @@ def build_document_for_task(
         build_py_target_command=module._build_py_target_command,
         resolve_word_output_path_for_target=module.resolve_word_output_path_for_target,
         resolve_pdf_output_path_for_target=module.resolve_pdf_output_path_for_target,
+        resolve_myst_output_path_for_target=module.resolve_myst_output_path_for_target,
         versioned_pdf_output_path=module._versioned_pdf_output_path,
+        versioned_myst_output_path=module._versioned_myst_output_path,
         versioned_word_output_path=module._versioned_word_output_path,
         resolve_html_output_dir_for_target=module.resolve_html_output_dir_for_target,
         stage_publish_assets_to_host_repo=module._stage_publish_assets_to_host_repo,
@@ -553,6 +578,7 @@ def process_build_queue(
         force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD,
         data_sync_field=module.DATA_SYNC_FIELD,
         document_link_dd_field=module.DOCUMENT_LINK_DD_FIELD,
+        feishu_doc_field=module.FEISHU_DOC_FIELD,
         upload_dingtalk_field=module.UPLOAD_DINGTALK_FIELD,
         available_field_names=module._available_field_names,
         select_pending_queue_records=module.select_pending_queue_records,
@@ -580,6 +606,7 @@ def process_build_queue(
         build_started_fields=module.build_started_fields,
         build_document_for_task=module.build_document_for_task,
         publish_word_artifact=module.publish_word_artifact,
+        create_feishu_doc_from_markdown=module.create_feishu_doc_from_markdown,
         build_success_fields=module.build_success_fields,
         publish_release_latest_dir_for_target=module._publish_release_latest_dir_for_target,
         write_publish_release_metadata=module.write_publish_release_metadata,
