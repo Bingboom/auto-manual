@@ -1,0 +1,3 @@
+rule_id,topic_id,page_id,condition_key,operator,condition_value,action,priority,enabled
+rule.product_overview.total_output.us,product_overview.total_output,03_product_overview,region,equals,US,include,10,true
+rule.product_overview.total_output.en,product_overview.total_output,03_product_overview,lang,equals,en,include,20,true

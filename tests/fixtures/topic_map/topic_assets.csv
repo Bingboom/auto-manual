@@ -1,0 +1,3 @@
+asset_binding_id,topic_id,asset_key,asset_path,alt_key,required,region,lang,status
+product_overview.front_asset.front_product,product_overview.front_asset,front_product,docs/templates/word_template/common_assets/overview/front_product.jpg,front_product_alt,true,*,*,active
+product_overview.side_asset.right_side_ports,product_overview.side_asset,right_side_ports,docs/templates/word_template/common_assets/overview/right_side_ports.png,right_side_ports_alt,true,*,*,active

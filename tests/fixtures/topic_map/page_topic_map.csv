@@ -1,0 +1,12 @@
+page_topic_id,page_id,topic_id,topic_order,slot_key,product_family,region,lang,fallback_lang,enabled,rule_set
+03_product_overview.10.product_identity.us_en,03_product_overview,product_identity,10,identity,JE-1000F,US,en,en,true,
+03_product_overview.15.front_asset.us_en,03_product_overview,product_overview.front_asset,15,front_panel,JE-1000F,US,en,en,true,
+03_product_overview.20.front_features.us_en,03_product_overview,product_overview.front_features,20,front_panel,JE-1000F,US,en,en,true,
+03_product_overview.25.side_asset.us_en,03_product_overview,product_overview.side_asset,25,side_panel,JE-1000F,US,en,en,true,
+03_product_overview.30.side_features.us_en,03_product_overview,product_overview.side_features,30,side_panel,JE-1000F,US,en,en,true,
+03_product_overview.40.total_output.us_en,03_product_overview,product_overview.total_output,40,front_panel,JE-1000F,US,en,en,true,rule.product_overview.total_output.us;rule.product_overview.total_output.en
+03_product_overview.10.product_identity.jp_ja,03_product_overview,product_identity,10,identity,JE-1000F,JP,ja,en,true,
+03_product_overview.15.front_asset.jp_ja,03_product_overview,product_overview.front_asset,15,front_panel,JE-1000F,JP,ja,en,true,
+03_product_overview.20.front_features.jp_ja,03_product_overview,product_overview.front_features,20,front_panel,JE-1000F,JP,ja,en,true,
+03_product_overview.25.side_asset.jp_ja,03_product_overview,product_overview.side_asset,25,side_panel,JE-1000F,JP,ja,en,true,
+03_product_overview.30.side_features.jp_ja,03_product_overview,product_overview.side_features,30,side_panel,JE-1000F,JP,ja,en,true,
