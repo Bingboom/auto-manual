@@ -23,8 +23,12 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                     f"# {title}\n\n```{{toctree}}\n\n{manual_name[:-3]}\n```\n",
                     encoding="utf-8",
                 )
-                source_dir.joinpath(manual_name).write_text("# Manual\n", encoding="utf-8")
-                source_dir.joinpath("assets", "demo.png").write_bytes(b"png")
+                image_path = source_dir.joinpath("assets", "demo.png")
+                image_path.write_bytes(b"png")
+                source_dir.joinpath(manual_name).write_text(
+                    f'# Manual\n\n<img src="{image_path.resolve().as_uri()}" />\n',
+                    encoding="utf-8",
+                )
 
             output_dir = build_root / "rtd"
             manuals = readthedocs_source.assemble_rtd_source(
@@ -36,12 +40,22 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertEqual(2, len(manuals))
             index_text = output_dir.joinpath("index.md").read_text(encoding="utf-8")
             self.assertIn("# Manual Library", index_text)
-            self.assertIn("JE-1000F / JP - JP Manual <JE-1000F/JP/md/index>", index_text)
-            self.assertIn("JE-1000F / US - US Manual <JE-1000F/US/md/index>", index_text)
+            self.assertIn("- [JE-1000F / JP - JP Manual](JE-1000F/JP/md/index.md)", index_text)
+            self.assertIn("- [JE-1000F / US - US Manual](JE-1000F/US/md/index.md)", index_text)
+            self.assertNotIn("```{toctree}", index_text)
+            self.assertNotIn(":hidden:", index_text)
+            self.assertNotIn(":maxdepth:", index_text)
+            self.assertNotIn(":caption: Manuals", index_text)
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").exists())
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "assets", "demo.png").exists())
             self.assertFalse(output_dir.joinpath("JE-1000F", "US", "md", "conf.py").exists())
-            self.assertIn("myst_parser", output_dir.joinpath("conf.py").read_text(encoding="utf-8"))
+            us_manual = output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").read_text(encoding="utf-8")
+            self.assertIn('src="assets/demo.png"', us_manual)
+            self.assertNotIn("file://", us_manual)
+            conf_text = output_dir.joinpath("conf.py").read_text(encoding="utf-8")
+            self.assertIn("myst_parser", conf_text)
+            self.assertIn("build-finished", conf_text)
+            self.assertIn("toc.not_included", conf_text)
 
     def test_assemble_rtd_source_should_require_output_inside_build_root(self) -> None:
         with TemporaryDirectory() as td:
