@@ -11,6 +11,7 @@ from pathlib import Path
 from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
 from ..signal_words import get_signal_word, get_symbols_notice_label
 from ..utils.spec_master import canonicalize_model_token
+from ..utils.variable_resolver import parse_model_tokens
 
 PH_SYMBOLS_SIGNAL_SECTION_RST = "{{ symbols_signal_section_rst }}"
 PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
@@ -401,11 +402,42 @@ def _matches_market(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
     return any(token.casefold() == target_region.casefold() for token in tokens)
 
 
+def _has_market_scope(block: dict[str, str]) -> bool:
+    value = block.get("Market") or block.get("market") or block.get("Markets") or block.get("markets") or ""
+    return bool(_split_condition_tokens(value))
+
+
 def _matches_row_conditions(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
     is_latest = block.get("Is_Latest") or block.get("Is_latest") or block.get("is_latest") or ""
     if not _truthy(is_latest, default=True):
         return False
     return _matches_market(block, vars_map=vars_map)
+
+
+def _matches_symbols_model(block: dict[str, str], *, target_model: str, target_region: str) -> bool:
+    model_value = block.get("Model") or block.get("model") or ""
+    tokens = parse_model_tokens(model_value)
+    if not tokens:
+        return True
+    if any(token.casefold() == "all" for token in tokens):
+        return True
+    if not target_model:
+        return False
+    normalized_target = canonicalize_model_token(target_model, region=target_region)
+    normalized_tokens = {
+        canonicalize_model_token(token, region=target_region).casefold()
+        for token in tokens
+        if token
+    }
+    return normalized_target.casefold() in normalized_tokens
+
+
+def _matches_legacy_region(block_region: str, *, target_region: str) -> bool:
+    if not block_region:
+        return True
+    if block_region.casefold() == "all":
+        return True
+    return bool(target_region) and block_region.casefold() == target_region.casefold()
 
 
 def _matches_symbols_target(
@@ -415,17 +447,18 @@ def _matches_symbols_target(
     vars_map: dict[str, str],
 ) -> bool:
     block_region = (block.get("Region") or block.get("region") or "").strip()
-    block_model = canonicalize_model_token(
-        (block.get("Model") or block.get("model") or "").strip(),
-        region=block_region,
-    )
+    target_region = _pick_target_region(vars_map)
+    target_model = _pick_target_model(vars_map)
+    has_market_scope = _has_market_scope(block)
+    model_tokens = parse_model_tokens(block.get("Model") or block.get("model") or "")
 
-    if block_region or block_model:
-        target_region = _pick_target_region(vars_map)
-        target_model = canonicalize_model_token(_pick_target_model(vars_map), region=target_region)
-        if block_region and (not target_region or block_region.casefold() != target_region.casefold()):
+    if has_market_scope:
+        return _matches_symbols_model(block, target_model=target_model, target_region=target_region)
+
+    if block_region or model_tokens:
+        if not _matches_legacy_region(block_region, target_region=target_region):
             return False
-        if block_model and (not target_model or block_model.casefold() != target_model.casefold()):
+        if not _matches_symbols_model(block, target_model=target_model, target_region=target_region):
             return False
         return True
 
@@ -433,19 +466,21 @@ def _matches_symbols_target(
 
 
 def _matches_symbols_fallback_scope(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
+    if _has_market_scope(block):
+        return False
+
     block_region = (block.get("Region") or block.get("region") or "").strip()
-    block_model = canonicalize_model_token(
-        (block.get("Model") or block.get("model") or "").strip(),
-        region=block_region,
-    )
-    if not block_region and not block_model:
+    model_tokens = parse_model_tokens(block.get("Model") or block.get("model") or "")
+    if not block_region and not model_tokens:
         return False
 
     target_region = _pick_target_region(vars_map)
-    target_model = canonicalize_model_token(_pick_target_model(vars_map), region=target_region)
+    target_model = _pick_target_model(vars_map)
+    if block_region.casefold() == "all":
+        return False
     if block_region and target_region and block_region.casefold() == target_region.casefold():
         return False
-    if block_model and (not target_model or block_model.casefold() != target_model.casefold()):
+    if not _matches_symbols_model(block, target_model=target_model, target_region=target_region):
         return False
     return True
 

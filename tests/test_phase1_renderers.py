@@ -764,6 +764,33 @@ class TestPhase1Renderers(unittest.TestCase):
 
         self.assertIn("Shared warning.", out)
 
+    def test_render_symbols_page_uses_market_and_multi_model_over_legacy_region(self) -> None:
+        blocks = self._symbols_blocks()
+        blocks[0]["Market"] = "US, EU"
+        blocks[0]["Region"] = "US"
+        blocks[0]["Model"] = "JE-1000F, JE-2000E"
+        blocks[0]["text_de"] = "Gemeinsames EU-Symbol."
+        blocks[1]["Market"] = "US"
+        blocks[1]["Region"] = "US"
+        blocks[1]["Model"] = "JE-1000F, JE-2000E"
+        blocks[1]["text_de"] = "SHOULD_NOT_RENDER"
+        blocks[2]["Market"] = "US, EU"
+        blocks[2]["Region"] = "US"
+        blocks[2]["Model"] = "JE-1000F"
+        blocks[2]["text_de"] = "JE-1000F only."
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JE-2000E",
+            lang="de",
+            vars_map={"model": "JE-2000E", "region": "EU"},
+        )
+
+        self.assertIn("Gemeinsames EU-Symbol.", out)
+        self.assertNotIn("SHOULD_NOT_RENDER", out)
+        self.assertNotIn("JE-1000F only.", out)
+
     def test_render_symbols_page_auto_distributes_unique_order_rows(self) -> None:
         blocks = self._symbols_blocks()
         rows = [
