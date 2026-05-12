@@ -265,7 +265,7 @@ Vercel note:
 Read the Docs note:
 
 - [`.readthedocs.yaml`](.readthedocs.yaml) builds a generated RTD catalog for the current public runtime manuals: `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`
-- the RTD job installs the system `pandoc` package, runs `python build.py md` for each published target, then runs [`tools/readthedocs_source.py`](tools/readthedocs_source.py) to assemble [`docs/_build/rtd/`](docs/_build) as the Sphinx source with a top-level `index.md` manual directory and publish each manual's nested `assets/` folder
+- the RTD job installs the system `pandoc` package, runs `python build.py md` for each published target, then runs [`tools/readthedocs_source.py`](tools/readthedocs_source.py) to assemble [`docs/_build/rtd/`](docs/_build) as the Sphinx source with a top-level link-only `index.md` manual directory and publish each manual's nested `assets/` folder
 - `build.py md` still writes each target-scoped manual Markdown tree with `conf.py`, `index.md`, the manual Markdown, and local `assets/`; the RTD assembler copies those generated trees under `docs/_build/rtd/` and keeps one root `conf.py`
 - RTD is for the stable public reading catalog only; it does not replace review-preview packaging, queue-driven Publish releases, Vercel latest-publish hosting, or Word / PDF export
 

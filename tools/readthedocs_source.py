@@ -119,7 +119,7 @@ def _write_conf_py(*, output_dir: Path, title: str) -> None:
                 'html_theme = "furo"',
                 'exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]',
                 "myst_heading_anchors = 3",
-                'suppress_warnings = ["myst.header"]',
+                'suppress_warnings = ["myst.header", "toc.not_included"]',
                 "",
                 "",
                 "def _copy_manual_assets(app, exception):",
@@ -147,9 +147,9 @@ def _write_conf_py(*, output_dir: Path, title: str) -> None:
 
 
 def _write_index_md(*, output_dir: Path, title: str, manuals: list[RtdManual]) -> None:
-    lines = [f"# {title}", "", "```{toctree}", ":maxdepth: 2", ":caption: Manuals", ""]
-    lines.extend(f"{manual.label} <{manual.toctree_ref}>" for manual in manuals)
-    lines.extend(["```", ""])
+    lines = [f"# {title}", ""]
+    lines.extend(f"- [{manual.label}]({manual.toctree_ref}.md)" for manual in manuals)
+    lines.append("")
     output_dir.joinpath("index.md").write_text("\n".join(lines), encoding="utf-8")
 
 
