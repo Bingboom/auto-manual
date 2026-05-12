@@ -564,6 +564,72 @@ test("message handler formats multi-row query status without dispatching builds"
   assert.match(replies[0].text, /https:\/\/example.com\/de.docx/);
 });
 
+test("message handler dispatches all EU copy package requests without clarification", async () => {
+  const replies = [];
+  const executed = [];
+  let resolvedMessage = "";
+  const candidates = ["en", "fr", "es", "de", "it", "uk"].map((lang) => ({
+    record_id: `rec_eu_${lang}`,
+    queue_scope: "document-link",
+    document_id: `JE-2000E_EU_${lang}_0.1`,
+    task_id: `JE-2000E_EU_${lang}_0.1_Build Draft Package`,
+    lang,
+    workflow_action: "Build Draft Package",
+  }));
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction(payload) {
+        resolvedMessage = payload.messageText;
+        return {
+          resolution_status: "resolved_batch",
+          action_name: "build_draft_package",
+          queue_scope: "document-link",
+          matched_count: candidates.length,
+          ready: true,
+          dispatch_command: "build-draft",
+          selectors: {
+            task_id_prefix: "JE-2000E_EU_",
+          },
+          candidates,
+        };
+      },
+      async executeResolvedAction(payload) {
+        executed.push(payload);
+        return {
+          accepted_at: "2026-05-12T14:00:00.000Z",
+          run_id: String(executed.length),
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("构建JE-2000E_EU的所有欧规文案"));
+  await result.backgroundTask();
+
+  assert.equal(resolvedMessage, "构建JE-2000E_EU的所有欧规文案");
+  assert.equal(executed.length, 6);
+  assert.deepEqual(
+    executed.map((payload) => payload.recordId),
+    candidates.map((candidate) => candidate.record_id)
+  );
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /Build Draft Package batch/);
+  assert.match(replies[0].text, /matched_count: 6/);
+  assert.doesNotMatch(replies[0].text, /确认|哪一种/);
+});
+
 test("message handler sends stage reactions when enabled", async () => {
   const reactions = [];
   const replies = [];

@@ -205,6 +205,10 @@ _BATCH_KEYWORDS = (
     "所有",
     "全部",
     "全量",
+    "整包",
+    "整套",
+    "全语种",
+    "多语言",
     "每个",
     "各个",
     "所有语言",
@@ -235,6 +239,9 @@ _CONFIG_BATCH_CONTENT_KEYWORDS = (
     "文案",
     "文档",
     "手册",
+    "整包",
+    "整套",
+    "语种",
     "配置",
     "构建要求",
     "manual copy",
@@ -698,7 +705,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
                 document_id = ""
         if not document_id and document_key:
             key_parts = document_key.split("_")
-            if len(key_parts) == 2 and market_group:
+            if len(key_parts) == 2:
                 task_id_prefix = f"{document_key}_"
                 document_key = ""
     if not document_id and not document_key and not task_id_prefix:
