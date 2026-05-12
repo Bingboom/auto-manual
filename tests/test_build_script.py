@@ -38,15 +38,20 @@ class TestBuildScript(unittest.TestCase):
 
     def test_build_docs_command_should_map_html_and_all_actions_to_formats(self) -> None:
         html_args = build_cli.parse_args(["html", "--config", "config.ja.yaml"])
+        myst_args = build_cli.parse_args(["myst", "--config", "config.us.yaml"])
         all_args = build_cli.parse_args(["all"])
 
         html_cmd = build_cli.build_docs_command(html_args)
+        myst_cmd = build_cli.build_docs_command(myst_args)
         all_cmd = build_cli.build_docs_command(all_args)
 
         self.assertIn("--formats", html_cmd)
         self.assertIn("html", html_cmd)
+        self.assertIn("--formats", myst_cmd)
+        self.assertIn("myst", myst_cmd)
         self.assertIn("--formats", all_cmd)
         self.assertIn(build_cli.ALL_OUTPUT_FORMATS, all_cmd)
+        self.assertNotIn("myst", build_cli.ALL_OUTPUT_FORMATS)
 
     def test_build_docs_command_should_switch_to_single_target_when_model_or_region_is_given(self) -> None:
         args = build_cli.parse_args(["pdf", "--model", "JE-2000F", "--region", "US", "--open", "--no-clean"])

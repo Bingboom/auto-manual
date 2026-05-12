@@ -37,6 +37,7 @@ python build.py fast --config config.ja.yaml --model JE-1000F --region JP
 python build.py html
 python build.py word
 python build.py pdf
+python build.py myst
 python build.py all
 python build.py diff-report
 python build.py clean
@@ -68,6 +69,7 @@ Meaning:
 - [`../tools/dingtalk/auth.py`](../tools/dingtalk/auth.py) now exposes the verified App-Only token helper behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and [`../tools/dingtalk/workspace.py`](../tools/dingtalk/workspace.py) can parse a target node ID from a normal DingTalk docs URL such as `https://alidocs.dingtalk.com/i/nodes/<node_id>`.
 - [`../tools/dingtalk/alidocs_session_upload_cli.py`](../tools/dingtalk/alidocs_session_upload_cli.py) is the current manual spike for the observed AliDocs browser-session upload chain. It needs `DINGTALK_DOCS_A_TOKEN`, `DINGTALK_DOCS_XSRF_TOKEN`, and `DINGTALK_DOCS_COOKIE`, then follows `uploadinfo -> OSS upload -> commit` and returns a node URL for the uploaded file.
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
+- `myst`: export a MyST-compatible Markdown artifact for Read the Docs / Sphinx preparation under [`docs/_build/<model>/<region>/myst/`](../docs/_build); `build.py all` intentionally still expands only to `html,word,pdf`
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `check`: run validation + prepare bundle + content checks, including stale identity scan, contract validation, and duplicate RST/raw HTML text consistency checks
 - `sync-review`: refresh review files affected by CSV data changes
@@ -75,7 +77,7 @@ Meaning:
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`
 - when `Document_Key` is a linked Base field, the API can expose only the linked record id, so chat-driven Start Review lookup should use `Task_id` as the stable selector and then verify `是否进入Review` plus `Workflow_action=Start Review`
 - `Start Review` now means "force restart and reseed from the latest template". Existing committed `docs/_review/<model>/<region>/` content on `main` is no longer a duplicate guard, and re-checking `是否进入Review` on an `InReview` row will restart the review seed flow
-- `process-build-queue`: Build Draft Package / Publish bridge; it consumes `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, refresh `data/phase2` only when `Document_link.是否强制刷新数据 = true`, keep Build Draft Package rows on DOCX upload, switch Publish rows to `check + diff-report + word + pdf`, upload the Publish PDF to the primary Feishu/wiki sink, optionally sync that same PDF to DingTalk, write the local DOCX release path into `Document directory`, write the canonical PDF link into `Document link`, optionally write the DingTalk node URL into `Document link_dd`, write a timestamped build status into `构建结果`, write the refresh result into `data_sync`, clear `是否强制刷新数据`, and flip the trigger back to `已构建` on success
+- `process-build-queue`: Build Draft Package / Publish bridge; it consumes `sync.phase2.document_link` rows where `是否触发文档构建 = Y`, write `开始构建时间` immediately when one row is picked up, resolve the matching config family from `Build_family` first and `Lang` second, group only the rows whose resolved config enables `build.queue_by_document_key`, refresh `data/phase2` only when `Document_link.是否强制刷新数据 = true`, keep Build Draft Package rows on DOCX upload, switch Publish rows to `check + diff-report + word + pdf`, append `myst --source review --no-clean` for the RTD/Sphinx Markdown artifact, upload the Publish PDF to the primary Feishu/wiki sink, create a Feishu cloud doc from the MyST artifact when `飞书云文档` exists, optionally sync that same PDF to DingTalk, write the local DOCX release path into `Document directory`, write the canonical PDF link into `Document link`, write the cloud-doc URL into `飞书云文档`, optionally write the DingTalk node URL into `Document link_dd`, write a timestamped build status plus `feishu_doc=ok|failed|skipped` into `构建结果`, write the refresh result into `data_sync`, clear `是否强制刷新数据`, and flip the trigger back to `已构建` on success
 - row writeback now has an explicit running stage: `process-build-queue` writes `RUNNING | ... started_at=...` to `构建结果` before build execution, then replaces it with `SUCCESS` or `FAILED`
 - if DingTalk mirror sync is enabled and the row also has `是否上传钉钉`, that checkbox becomes the row-level gate: checked rows also sync DingTalk and write `Document link_dd`, unchecked rows stay on the normal Feishu/wiki upload path for that run
 - if the table does not have `是否上传钉钉`, the worker follows the current global worker mode for that whole row
@@ -404,7 +406,7 @@ python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
 
 By default this updates data-driven files in the review bundle without resetting the entire review text.
 
-That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, and `publish` when the target already builds from review.
+That same parameter-only sync now also runs automatically before `check`, `html`, `word`, `pdf`, `myst`, and `publish` when the target already builds from review.
 Placeholder-backed RST pages keep manual review prose, while parameter-driven lines are refreshed from runtime.
 That sync now also refreshes `generated_page` placeholder files under `page/*.rst`, so final review builds do not keep stale placeholder text after runtime/generated data changes.
 When a single-language build points at a merged review branch and only `docs/_review/<model>/US/` or `docs/_review/<model>/EU/` exists, that automatic sync falls back to the merged review root instead of skipping the refresh, then remaps shared-family review pages onto the requested single-language page layout.
@@ -426,6 +428,7 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py html --config config.ja.yaml --model JE-1000F --region JP
 python build.py word --config config.ja.yaml --model JE-1000F --region JP
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+python build.py myst --config config.us.yaml --model JE-1000F --region US
 python build.py all --config config.zh.yaml --model JE-2000E --region CN
 ```
 
@@ -485,6 +488,7 @@ Read the Docs note:
 
 - [`.readthedocs.yaml`](../.readthedocs.yaml) is the minimal RTD path for one stable public runtime HTML target: `config.us-en.yaml --model JE-1000F --region US --source runtime`
 - RTD uses `python build.py rst --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then renders the generated bundle at [`../docs/_build/JE-1000F/US/en/rst/`](../docs/_build) with `python -m sphinx -b html`
+- `python build.py myst --config ... --model ... --region ...` now exports a canonical MyST-compatible Markdown file from the same materialized bundle and Word HTML fragment conversion; this is the prep path for a future MyST-backed RTD configuration, while Feishu cloud docs remain a publish-stage downstream import
 - do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; the root `index.rst` is a wrapper include, while RTD should render the generated bundle directory directly
 - RTD does not publish `_review`, queue-driven Publish HTML, or Word / PDF artifacts; keep Vercel and release outputs as the formal publish path
 
@@ -500,14 +504,14 @@ It requires an explicit `--model` and `--region`.
 Outputs:
 
 - direct `build.py publish`: review diff report plus final build outputs under [`../docs/_build/`](../docs/_build) by default, or under `<staging-root>/docs/_build/` when staging is enabled
-- queue-driven Publish: staged DOCX under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases)
+- queue-driven Publish: staged DOCX, PDF, and MyST Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases) plus latest publish HTML under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) and latest MyST Markdown under `latest/myst/`
 - release manifest: [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases) by default, or `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled
 
 ## 4. Output Layout
 
 Runtime outputs:
 
-- default: [`docs/_build/<model>/<region>/rst/`](../docs/_build), [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build), [`docs/_build/<model>/<region>/html/`](../docs/_build), [`docs/_build/<model>/<region>/word/`](../docs/_build), [`docs/_build/<model>/<region>/pdf/`](../docs/_build)
+- default: [`docs/_build/<model>/<region>/rst/`](../docs/_build), [`docs/_build/<model>/<region>/preview/<page>/rst/`](../docs/_build), [`docs/_build/<model>/<region>/html/`](../docs/_build), [`docs/_build/<model>/<region>/word/`](../docs/_build), [`docs/_build/<model>/<region>/pdf/`](../docs/_build), [`docs/_build/<model>/<region>/myst/`](../docs/_build)
 - staged verification/local queue runs: `<staging-root>/docs/_build/<model>/<region>/...`
 
 HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
@@ -547,6 +551,7 @@ Build all targets defined in one config:
 ```powershell
 python build.py rst --config config.us.yaml
 python build.py word --config config.us.yaml
+python build.py myst --config config.us.yaml --model JE-1000F --region US
 python build.py all --config config.ja.yaml
 ```
 
@@ -556,6 +561,7 @@ Build one explicit target:
 python build.py word --config config.us-en.yaml --model JE-1000F --region US
 python build.py word --config config.eu-en.yaml --model JE-1000F --region EU
 python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+python build.py myst --config config.us.yaml --model JE-1000F --region US
 ```
 
 `config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `config.eu-en.yaml`, `config.eu-fr.yaml`, and `config.eu-es.yaml` are the explicit English, French, and Spanish single-language EU surfaces when you need one language family at a time.

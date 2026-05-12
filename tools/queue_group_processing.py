@@ -26,6 +26,7 @@ def process_queue_record_group(
     can_write_force_phase2_refresh: bool,
     can_write_data_sync: bool,
     can_write_document_link_dd: bool,
+    can_write_feishu_doc: bool,
     has_upload_dingtalk_field: bool,
     cli_bin: str,
     identity: str,
@@ -50,7 +51,9 @@ def process_queue_record_group(
     build_started_fields: Callable[..., dict[str, Any]],
     build_document_for_task: Callable[..., Any],
     publish_word_artifact: Callable[..., Any],
+    create_feishu_doc_from_markdown: Callable[..., Any],
     build_success_fields: Callable[..., dict[str, Any]],
+    feishu_doc_field: str,
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
     publish_release_latest_dir_for_target: Callable[..., Path],
     write_publish_release_metadata: Callable[..., Path],
@@ -63,6 +66,7 @@ def process_queue_record_group(
     record = group[0]
     word_output_path: Path | None = None
     pdf_output_path: Path | None = None
+    myst_output_path: Path | None = None
     artifact_output_path: Path | None = None
     latest_link_url: str | None = None
     latest_document_link_dd_url: str | None = None
@@ -218,6 +222,7 @@ def process_queue_record_group(
         else:
             word_output_path = built_outputs.word_output_path
             pdf_output_path = built_outputs.pdf_output_path
+            myst_output_path = getattr(built_outputs, "myst_output_path", None)
             artifact_output_path = built_outputs.upload_output_path
         artifact_result = publish_word_artifact(
             cfg=cfg,
@@ -233,6 +238,39 @@ def process_queue_record_group(
         document_link_url = artifact_result.document_link_url
         document_link_dd_url = artifact_result.document_link_dd_url
         latest_document_link_dd_url = document_link_dd_url or None
+        feishu_doc_url = ""
+        feishu_doc_status_notes: tuple[str, ...] = ()
+        if effective_doc_phase == "publish":
+            if not can_write_feishu_doc:
+                feishu_doc_status_notes = ("feishu_doc=skipped", "feishu_doc_reason=field_missing")
+            elif myst_output_path is None:
+                feishu_doc_status_notes = ("feishu_doc=skipped", "feishu_doc_reason=myst_missing")
+            else:
+                try:
+                    feishu_destination = effective_artifact_destination
+                    if not str(getattr(feishu_destination, "parent_wiki_token", "") or "").strip():
+                        feishu_destination = resolve_lark_wiki_destination(
+                            cli_bin=cli_bin,
+                            identity=identity,
+                            binding=binding,
+                        )
+                    feishu_result = create_feishu_doc_from_markdown(
+                        cli_bin=cli_bin,
+                        identity=identity,
+                        markdown_path=myst_output_path,
+                        destination=feishu_destination,
+                        title=myst_output_path.stem,
+                    )
+                except Exception as exc:
+                    message = str(exc).strip()
+                    feishu_doc_status_notes = ("feishu_doc=failed", f"feishu_doc_error={message}")
+                    print(
+                        f"[build-queue] WARNING Feishu doc create failed for {group_key} ({row_count} row(s)): {message}",
+                        file=stderr,
+                    )
+                else:
+                    feishu_doc_url = str(getattr(feishu_result, "document_url", "") or "").strip()
+                    feishu_doc_status_notes = ("feishu_doc=ok",)
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
@@ -243,11 +281,13 @@ def process_queue_record_group(
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
             data_sync_status=data_sync_status,
-            status_notes=(*artifact_result.status_notes, *deferred_status_notes),
+            status_notes=(*artifact_result.status_notes, *deferred_status_notes, *feishu_doc_status_notes),
             clear_force_phase2_refresh=can_write_force_phase2_refresh,
             write_data_sync=can_write_data_sync,
             write_document_link_dd=can_write_document_link_dd,
         )
+        if feishu_doc_url and can_write_feishu_doc:
+            success_fields[feishu_doc_field] = feishu_doc_url
         for group_record in group:
             source.upsert_record(
                 base_token=binding.base_token,
@@ -271,6 +311,7 @@ def process_queue_record_group(
                 word_output_path=word_output_path,
                 pdf_output_path=pdf_output_path or artifact_output_path,
                 html_dir=latest_html_dir,
+                myst_output_path=myst_output_path,
                 document_link_url=document_link_url,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
             )

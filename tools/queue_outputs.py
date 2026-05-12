@@ -64,6 +64,55 @@ def resolve_word_output_path_for_target(
     return resolve_output_path(build_root / "word", word_output_name)
 
 
+def resolve_myst_output_path_for_target(
+    *,
+    config_path: Path,
+    model: str,
+    region: str,
+    repo_root: Path,
+    config_loader: Callable[[Path], dict[str, Any]],
+    build_languages: Callable[[dict[str, Any]], list[str]],
+    resolve_output_lang: Callable[[dict[str, Any]], str | None],
+    build_root_for_target: Callable[..., Path],
+    render_build_template: Callable[..., str],
+    resolve_output_path: Callable[[Path, str], Path],
+) -> Path:
+    cfg = config_loader(config_path)
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    docs_dir = resolve_docs_dir_for_config(
+        config_path=config_path,
+        repo_root=repo_root,
+        cfg=cfg,
+        config_loader=config_loader,
+    )
+    primary_lang = build_languages(cfg)[0]
+    output_lang = resolve_output_lang(cfg)
+    build_root = build_root_for_target(
+        model,
+        region,
+        lang=output_lang,
+        docs_build_dir=docs_dir / "_build",
+    )
+    myst_output_template = build_cfg.get("myst_output")
+    if isinstance(myst_output_template, str) and myst_output_template.strip():
+        myst_output_name = render_build_template(
+            myst_output_template,
+            model=model,
+            region=region,
+            lang=primary_lang,
+        )
+    else:
+        word_output_name = render_build_template(
+            str(build_cfg.get("word_output", "manual_demo.docx")),
+            model=model,
+            region=region,
+            lang=primary_lang,
+        )
+        myst_output_name = str(Path(word_output_name).with_suffix(".md"))
+    return resolve_output_path(build_root / "myst", myst_output_name)
+
+
 def resolve_pdf_output_path_for_target(
     *,
     config_path: Path,
@@ -186,6 +235,23 @@ def versioned_pdf_output_path(
     )
 
 
+def versioned_myst_output_path(
+    myst_output_path: Path,
+    *,
+    version: str,
+    doc_phase: str | None,
+    normalize_release_token: Callable[[str], str],
+    normalize_workflow_action: Callable[[Any], str | None],
+) -> Path:
+    return _versioned_release_output_path(
+        myst_output_path,
+        version=version,
+        doc_phase=doc_phase,
+        normalize_release_token=normalize_release_token,
+        normalize_workflow_action=normalize_workflow_action,
+    )
+
+
 def config_path_in_repo_root(config_path: Path, *, repo_root: Path) -> Path:
     return repo_root / config_path.name
 
@@ -293,6 +359,7 @@ def stage_publish_assets_to_host_repo(
     built_word_output_path: Path,
     built_pdf_output_path: Path,
     built_html_dir: Path,
+    built_myst_output_path: Path,
     host_config_path: Path,
     model: str,
     region: str,
@@ -300,7 +367,7 @@ def stage_publish_assets_to_host_repo(
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     copy_tree: Callable[[Path, Path], None],
-) -> tuple[Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path]:
     version_dir = publish_release_version_dir_for_target(
         config_path=host_config_path,
         model=model,
@@ -318,9 +385,14 @@ def stage_publish_assets_to_host_repo(
     shutil.copy2(built_word_output_path, staged_word_output_path)
     staged_pdf_output_path = version_dir / built_pdf_output_path.name
     shutil.copy2(built_pdf_output_path, staged_pdf_output_path)
+    staged_myst_output_path = version_dir / built_myst_output_path.name
+    shutil.copy2(built_myst_output_path, staged_myst_output_path)
     latest_html_dir = latest_dir / "html"
     copy_tree(built_html_dir, latest_html_dir)
-    return staged_word_output_path, staged_pdf_output_path, latest_html_dir
+    latest_myst_dir = latest_dir / "myst"
+    latest_myst_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(built_myst_output_path, latest_myst_dir / built_myst_output_path.name)
+    return staged_word_output_path, staged_pdf_output_path, latest_html_dir, staged_myst_output_path
 
 
 def write_publish_release_metadata(
@@ -335,6 +407,7 @@ def write_publish_release_metadata(
     pdf_output_path: Path,
     html_dir: Path,
     document_link_url: str,
+    myst_output_path: Path | None = None,
     queue_record_ids: tuple[str, ...] = (),
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
@@ -367,6 +440,8 @@ def write_publish_release_metadata(
         "document_link_url": document_link_url.strip(),
         "queue_record_ids": [record_id.strip() for record_id in queue_record_ids if record_id.strip()],
     }
+    if myst_output_path is not None:
+        payload["myst_output_path"] = repo_relative(myst_output_path)
     version_dir.mkdir(parents=True, exist_ok=True)
     latest_dir.mkdir(parents=True, exist_ok=True)
     version_meta_path = version_dir / "publish_meta.json"
