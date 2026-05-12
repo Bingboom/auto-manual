@@ -32,7 +32,7 @@ Si un seul port d’entrée DC8020 doit être connecté à deux panneaux solaire
        - Ne chargez pas le produit à la fois avec un chargeur de voiture et un panneau solaire simultanément. Cela pourrait faire sauter le fusible de la voiture ou entraîner un échec de la charge.
 
 
-Il est recommandé d’utiliser le panneau solaire Jackery pour charger le |PRODUCT_NAME|. Assurez-vous que la tension en circuit ouvert (V\ :sub:`oc`) du panneau solaire se situe dans la plage de tension d’entrée CC du Jackery Explorer 1000 (16V–60V). Jackery décline toute responsabilité pour tout dommage ou toute perte résultant de l’utilisation de panneaux solaires tiers.
+Il est recommandé d’utiliser le panneau solaire Jackery pour charger le |PRODUCT_NAME|. Assurez-vous que la tension en circuit ouvert (V\ :sub:`oc`) du panneau solaire se situe dans la plage de tension d’entrée CC du |PRODUCT_NAME| (16V–60V). Jackery décline toute responsabilité pour tout dommage ou toute perte résultant de l’utilisation de panneaux solaires tiers.
 
 CHARGEMENT PAR PRISE DE VOITURE (Vendu séparément)
 --------------------------------------------------
