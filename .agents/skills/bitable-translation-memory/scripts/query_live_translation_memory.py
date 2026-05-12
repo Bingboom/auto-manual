@@ -274,7 +274,7 @@ def resolve_base_token(*, cli: str, wiki_token: str) -> str:
 def get_table_language_fields(*, cli: str, base_token: str, table_id: str) -> list[str]:
     payload = run_lark_json([cli, "base", "+table-get", "--base-token", base_token, "--table-id", table_id])
     fields = payload["data"]["fields"]
-    return [str(field["field_name"]) for field in fields if str(field.get("type")) == "text"]
+    return [str(field.get("field_name") or field.get("name") or "") for field in fields if str(field.get("type")) == "text" and str(field.get("field_name") or field.get("name") or "")]
 
 
 def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_records: int) -> list[dict[str, object]]:
@@ -296,6 +296,8 @@ def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_
                 str(offset),
                 "--limit",
                 str(min(DEFAULT_PAGE_SIZE, max_records - offset)),
+                "--format",
+                "json",
             ]
         )
         data = payload["data"]

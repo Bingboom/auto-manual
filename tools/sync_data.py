@@ -250,17 +250,19 @@ class LarkCliSource:
             data = payload.get("data")
             if not isinstance(data, dict):
                 raise RuntimeError("Lark CLI field list response is missing data payload")
-            items = data.get("items", [])
+            items = data.get("items")
+            if items is None:
+                items = data.get("fields", [])
             if not isinstance(items, list):
                 raise RuntimeError("Lark CLI field list response has invalid items payload")
             for item in items:
                 if not isinstance(item, dict):
                     raise RuntimeError("Lark CLI field list response contains a non-object field")
-                field_id = str(item.get("field_id") or "").strip()
-                field_name = str(item.get("field_name") or "").strip()
+                field_id = str(item.get("field_id") or item.get("id") or "").strip()
+                field_name = str(item.get("field_name") or item.get("name") or "").strip()
                 if field_id and field_name:
                     field_name_map[field_id] = field_name
-            total = int(data.get("total") or len(field_name_map))
+            total = int(data.get("total") or len(items) or len(field_name_map))
             offset += len(items)
             if not items or offset >= total:
                 break
