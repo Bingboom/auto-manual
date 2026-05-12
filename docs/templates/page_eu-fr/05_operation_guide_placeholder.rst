@@ -107,17 +107,17 @@ Fonction de reprise de Sortie CA et CC
 
 La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez cette fonction dans l’application afin que l’appareil mémorise l’état de sortie CA/CC et reprenne automatiquement les sorties CA et CC dans les conditions définies.
 
-+------------------------------------------------------------------------+-------------------------------------------------------------+
-| Conditions de reprise automatique                                      | Conditions sans reprise automatique                         |
-+========================================================================+=============================================================+
-| Mise sous tension/redémarrage après arrêt ou redémarrage               | Sortie désactivée manuellement (bouton/App)                 |
-+------------------------------------------------------------------------+-------------------------------------------------------------+
-| SOC batterie ≥ limite de décharge +10% après atteinte de la limite     | Sortie désactivée en mode économie d’énergie                |
-|                                                                        +-------------------------------------------------------------+
-|                                                                        | Sortie désactivée suite à un déclenchement de protection    |
-+------------------------------------------------------------------------+-------------------------------------------------------------+
-| Mise à niveau OTA terminée                                             | Sortie désactivée par le minuteur de décharge               |
-+------------------------------------------------------------------------+-------------------------------------------------------------+
++---------------------------------------------------------------------------+-------------------------------------------------------------+
+| Conditions de reprise automatique                                         | Conditions sans reprise automatique                         |
++===========================================================================+=============================================================+
+| Mise sous tension/redémarrage après arrêt ou redémarrage                  | Sortie désactivée manuellement (bouton/App)                 |
++---------------------------------------------------------------------------+-------------------------------------------------------------+
+| SOC de la batterie ≥ limite de décharge +10 % une fois la limite atteinte | Sortie désactivée en mode économie d’énergie                |
+|                                                                           +-------------------------------------------------------------+
+|                                                                           | Sortie désactivée suite à un déclenchement de protection    |
++---------------------------------------------------------------------------+-------------------------------------------------------------+
+| Mise à niveau OTA terminée                                                | Sortie désactivée par le minuteur de décharge               |
++---------------------------------------------------------------------------+-------------------------------------------------------------+
 
 AFFICHAGE LCD
 -------------

@@ -119,7 +119,7 @@ La función de reanudación de salida de CA/CC está desactivada de forma predet
 +========================================================================+===========================================================+
 | Encendido/Reiniciar después de apagado o reinicio                      | Apagado manual de la salida (botón/App)                   |
 +------------------------------------------------------------------------+-----------------------------------------------------------+
-| SOC de batería ≥ límite de descarga +10 % tras alcanzar el límite      | Apagado de salida en modo de ahorro de energía            |
+| SOC de la batería ≥ límite de descarga +10 % tras alcanzar el límite   | Apagado de salida en modo de ahorro de energía            |
 |                                                                        +-----------------------------------------------------------+
 |                                                                        | Apagado de salida activado por protección                 |
 +------------------------------------------------------------------------+-----------------------------------------------------------+
