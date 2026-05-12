@@ -48,12 +48,24 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertNotIn(":caption: Manuals", index_text)
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").exists())
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "assets", "demo.png").exists())
+            self.assertTrue(
+                output_dir.joinpath(
+                    "_static",
+                    "manual-assets",
+                    "JE-1000F",
+                    "US",
+                    "md",
+                    "assets",
+                    "demo.png",
+                ).exists()
+            )
             self.assertFalse(output_dir.joinpath("JE-1000F", "US", "md", "conf.py").exists())
             us_manual = output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").read_text(encoding="utf-8")
-            self.assertIn('src="assets/demo.png"', us_manual)
+            self.assertIn('src="../../../_static/manual-assets/JE-1000F/US/md/assets/demo.png"', us_manual)
             self.assertNotIn("file://", us_manual)
             conf_text = output_dir.joinpath("conf.py").read_text(encoding="utf-8")
             self.assertIn("myst_parser", conf_text)
+            self.assertIn('html_static_path = ["_static"]', conf_text)
             self.assertIn("build-finished", conf_text)
             self.assertIn("toc.not_included", conf_text)
 
