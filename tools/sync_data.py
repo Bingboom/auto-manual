@@ -239,8 +239,6 @@ class LarkCliSource:
                     base_token,
                     "--table-id",
                     table_id,
-                    "--format",
-                    "json",
                     "--limit",
                     str(limit),
                     "--offset",
