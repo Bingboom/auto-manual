@@ -92,9 +92,20 @@ def build_release_manifest(
         region=region,
         lang=primary_lang,
     )
+    md_output_template = build_cfg.get("md_output")
+    if isinstance(md_output_template, str) and md_output_template.strip():
+        md_output_name = render_build_template(
+            md_output_template,
+            model=model,
+            region=region,
+            lang=primary_lang,
+        )
+    else:
+        md_output_name = Path(word_output_name).with_suffix(".md").as_posix()
 
     word_output = resolve_output_path(build_root / "word", word_output_name)
     pdf_output = resolve_output_path(build_root / "pdf", pdf_output_name)
+    md_output = resolve_output_path(build_root / "md", md_output_name)
     html_output = build_root / "html" / "index.html"
 
     built_at_value = built_at or datetime.now(timezone.utc)
@@ -142,6 +153,7 @@ def build_release_manifest(
         "tracked_review_dir": repo_relative(review_dir, repo_root=repo_root),
         "runtime_bundle_dir": repo_relative(runtime_bundle_dir, repo_root=repo_root),
         "word_output": file_info(word_output, repo_root=repo_root),
+        "md_output": file_info(md_output, repo_root=repo_root),
         "html_output": file_info(html_output, repo_root=repo_root),
         "pdf_output": file_info(pdf_output, repo_root=repo_root),
     }
@@ -164,6 +176,9 @@ def build_release_manifest(
         "word_output": manifest["word_output"]["path"] or "",
         "word_output_exists": str(manifest["word_output"]["exists"]).lower(),
         "word_output_sha256": manifest["word_output"]["sha256"] or "",
+        "md_output": manifest["md_output"]["path"] or "",
+        "md_output_exists": str(manifest["md_output"]["exists"]).lower(),
+        "md_output_sha256": manifest["md_output"]["sha256"] or "",
         "html_output": manifest["html_output"]["path"] or "",
         "html_output_exists": str(manifest["html_output"]["exists"]).lower(),
         "html_output_sha256": manifest["html_output"]["sha256"] or "",

@@ -4,7 +4,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-VALID_FORMATS = {"html", "word", "pdf"}
+VALID_FORMATS = {"html", "word", "pdf", "md"}
 VALID_PDF_MODES = {"latex", "word"}
 VALID_SOURCE_MODES = {"auto", "runtime", "review"}
 _TEMPLATE_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")

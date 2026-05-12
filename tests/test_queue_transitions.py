@@ -9,6 +9,7 @@ from tools.queue_contract import (
     BUILD_STARTED_AT_FIELD,
     DATA_SYNC_FIELD,
     DOCUMENT_DIRECTORY_FIELD,
+    FEISHU_CLOUD_DOC_FIELD,
     DOCUMENT_LINK_DD_FIELD,
     DOCUMENT_LINK_FIELD,
     DONE_TRIGGER_VALUE,
@@ -29,13 +30,14 @@ from tools.queue_transitions import (
 )
 
 
-def _fields(*, document_link_dd_field: str = "") -> QueueTransitionFields:
+def _fields(*, document_link_dd_field: str = "", feishu_cloud_doc_field: str = "") -> QueueTransitionFields:
     return QueueTransitionFields(
         result_field=RESULT_FIELD,
         build_started_at_field=BUILD_STARTED_AT_FIELD,
         document_directory_field=DOCUMENT_DIRECTORY_FIELD,
         document_link_field=DOCUMENT_LINK_FIELD,
         document_link_dd_field=document_link_dd_field,
+        feishu_cloud_doc_field=feishu_cloud_doc_field,
         trigger_field=TRIGGER_FIELD,
         done_trigger_value=DONE_TRIGGER_VALUE,
         immediate_trigger_field=IMMEDIATE_TRIGGER_FIELD,
@@ -83,6 +85,7 @@ class QueueTransitionTests(unittest.TestCase):
                 word_output_path=word_path,
                 document_link_url="https://example.com/manual.docx",
                 document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/abc",
+                feishu_cloud_doc_url="https://example.com/docx/cloud",
                 built_at=datetime(2026, 5, 8, 9, 30, 0),
                 workflow_action="draft",
                 data_sync_status="refreshed",
@@ -99,6 +102,22 @@ class QueueTransitionTests(unittest.TestCase):
         self.assertEqual("refreshed", payload[DATA_SYNC_FIELD])
         self.assertIn("SUCCESS", payload[RESULT_FIELD])
         self.assertIn("published_artifact=docx", payload[RESULT_FIELD])
+
+    def test_success_transition_can_write_feishu_cloud_doc_field(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            word_path = Path(td) / "manual.docx"
+            payload = build_success_transition(
+                fields=_fields(feishu_cloud_doc_field=FEISHU_CLOUD_DOC_FIELD),
+                version="1.0",
+                word_output_path=word_path,
+                document_link_url="https://example.com/manual.docx",
+                feishu_cloud_doc_url="https://example.com/docx/cloud",
+                built_at=datetime(2026, 5, 8, 9, 30, 0),
+                workflow_action="draft",
+                workflow_action_label=_label,
+            )
+
+        self.assertEqual("https://example.com/docx/cloud", payload[FEISHU_CLOUD_DOC_FIELD])
 
     def test_failure_transition_preserves_latest_outputs_without_marking_done(self) -> None:
         with tempfile.TemporaryDirectory() as td:

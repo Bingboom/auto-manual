@@ -15,6 +15,7 @@ from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_im
 from tools.queue_group_processing import process_queue_record_group as _process_queue_record_group_impl
 from tools.queue_lark_ops import (
     host_root_from_url as _host_root_from_url_impl,
+    import_markdown_to_cloud_doc as _import_markdown_to_cloud_doc_impl,
     move_drive_file_to_wiki as _move_drive_file_to_wiki_impl,
     move_result_entry_from_task_payload as _move_result_entry_from_task_payload_impl,
     resolve_wiki_destination as _resolve_wiki_destination_impl,
@@ -49,6 +50,23 @@ def upload_word_to_drive(module: Any, *, cli_bin: str, word_output_path: Path, i
     return _upload_word_to_drive_impl(
         cli_bin=cli_bin,
         word_output_path=word_output_path,
+        identity=identity,
+        repo_root=module.ROOT,
+        run_lark_cli_json=module._run_lark_cli_json,
+        cli_relative_file_arg=lambda *, repo_root, path: module._cli_relative_file_arg(path),
+    )
+
+
+def import_markdown_to_cloud_doc(
+    module: Any,
+    *,
+    cli_bin: str,
+    markdown_output_path: Path,
+    identity: str,
+) -> tuple[str, str]:
+    return _import_markdown_to_cloud_doc_impl(
+        cli_bin=cli_bin,
+        markdown_output_path=markdown_output_path,
         identity=identity,
         repo_root=module.ROOT,
         run_lark_cli_json=module._run_lark_cli_json,
@@ -368,11 +386,14 @@ def build_document_for_task(
         build_py_target_command=module._build_py_target_command,
         resolve_word_output_path_for_target=module.resolve_word_output_path_for_target,
         resolve_pdf_output_path_for_target=module.resolve_pdf_output_path_for_target,
+        resolve_md_output_path_for_target=module.resolve_md_output_path_for_target,
         versioned_pdf_output_path=module._versioned_pdf_output_path,
         versioned_word_output_path=module._versioned_word_output_path,
+        versioned_md_output_path=module._versioned_md_output_path,
         resolve_html_output_dir_for_target=module.resolve_html_output_dir_for_target,
         stage_publish_assets_to_host_repo=module._stage_publish_assets_to_host_repo,
         stage_draft_word_output_to_host_repo=module._stage_draft_word_output_to_host_repo,
+        stage_draft_md_output_to_host_repo=module._stage_draft_md_output_to_host_repo,
     )
 
 
@@ -384,6 +405,7 @@ def build_success_fields(
     document_link_url: str,
     built_at: datetime,
     document_link_dd_url: str = "",
+    feishu_cloud_doc_url: str = "",
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     data_sync_status: str = "",
@@ -391,12 +413,14 @@ def build_success_fields(
     clear_force_phase2_refresh: bool = True,
     write_data_sync: bool = True,
     write_document_link_dd: bool = False,
+    write_feishu_cloud_doc: bool = False,
 ) -> dict[str, Any]:
     return _build_success_fields_impl(
         version=version,
         word_output_path=word_output_path,
         document_link_url=document_link_url,
         document_link_dd_url=document_link_dd_url,
+        feishu_cloud_doc_url=feishu_cloud_doc_url,
         built_at=built_at,
         workflow_action=workflow_action,
         doc_phase=doc_phase,
@@ -409,6 +433,7 @@ def build_success_fields(
         document_directory_field=module.DOCUMENT_DIRECTORY_FIELD,
         document_link_field=module.DOCUMENT_LINK_FIELD,
         document_link_dd_field=module.DOCUMENT_LINK_DD_FIELD if write_document_link_dd else "",
+        feishu_cloud_doc_field=module.FEISHU_CLOUD_DOC_FIELD if write_feishu_cloud_doc else "",
         trigger_field=module.TRIGGER_FIELD,
         done_trigger_value=module.DONE_TRIGGER_VALUE,
         immediate_trigger_field=module.IMMEDIATE_TRIGGER_FIELD,
@@ -476,9 +501,11 @@ def build_failure_writeback_fields(
     word_output_path: Path | None = None,
     document_link_url: str | None = None,
     document_link_dd_url: str | None = None,
+    feishu_cloud_doc_url: str | None = None,
     clear_force_phase2_refresh: bool = True,
     write_data_sync: bool = True,
     write_document_link_dd: bool = False,
+    write_feishu_cloud_doc: bool = False,
 ) -> dict[str, Any]:
     return _build_failure_writeback_fields_impl(
         version=version,
@@ -489,11 +516,13 @@ def build_failure_writeback_fields(
         word_output_path=word_output_path,
         document_link_url=document_link_url,
         document_link_dd_url=document_link_dd_url,
+        feishu_cloud_doc_url=feishu_cloud_doc_url,
         build_failure_fields=module.build_failure_fields,
         result_field=module.RESULT_FIELD,
         document_directory_field=module.DOCUMENT_DIRECTORY_FIELD,
         document_link_field=module.DOCUMENT_LINK_FIELD,
         document_link_dd_field=module.DOCUMENT_LINK_DD_FIELD if write_document_link_dd else "",
+        feishu_cloud_doc_field=module.FEISHU_CLOUD_DOC_FIELD if write_feishu_cloud_doc else "",
         immediate_trigger_field=module.IMMEDIATE_TRIGGER_FIELD,
         force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD if clear_force_phase2_refresh else "",
         data_sync_field=module.DATA_SYNC_FIELD if write_data_sync else "",
@@ -553,6 +582,7 @@ def process_build_queue(
         force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD,
         data_sync_field=module.DATA_SYNC_FIELD,
         document_link_dd_field=module.DOCUMENT_LINK_DD_FIELD,
+        feishu_cloud_doc_field=module.FEISHU_CLOUD_DOC_FIELD,
         upload_dingtalk_field=module.UPLOAD_DINGTALK_FIELD,
         available_field_names=module._available_field_names,
         select_pending_queue_records=module.select_pending_queue_records,
@@ -580,6 +610,7 @@ def process_build_queue(
         build_started_fields=module.build_started_fields,
         build_document_for_task=module.build_document_for_task,
         publish_word_artifact=module.publish_word_artifact,
+        import_markdown_to_cloud_doc=module.import_markdown_to_cloud_doc,
         build_success_fields=module.build_success_fields,
         publish_release_latest_dir_for_target=module._publish_release_latest_dir_for_target,
         write_publish_release_metadata=module.write_publish_release_metadata,

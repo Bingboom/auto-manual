@@ -608,8 +608,11 @@ class TestProcessBuildQueue(unittest.TestCase):
         commands: list[list[str]] = []
         with tempfile.TemporaryDirectory() as td:
             word_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
+            md_path = Path(td) / "docs" / "_build" / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en.md"
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
+            md_path.parent.mkdir(parents=True, exist_ok=True)
+            md_path.write_text("# Manual\n", encoding="utf-8")
 
             with mock.patch.object(
                 process_build_queue,
@@ -619,6 +622,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 process_build_queue,
                 "resolve_word_output_path_for_target",
                 return_value=word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_md_output_path_for_target",
+                return_value=md_path,
             ):
                 resolved_path = process_build_queue.build_document_for_task(
                     config_path=Path("config.us-en.yaml"),
@@ -631,9 +638,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 self.assertTrue(resolved_path.word_output_path.exists())
 
         self.assertEqual(word_path.with_name("manual_je1000f_us_en_0.2.docx"), resolved_path.word_output_path)
+        self.assertEqual(md_path.with_name("manual_je1000f_us_en_0.2.md"), resolved_path.md_output_path)
         self.assertEqual(resolved_path.word_output_path, resolved_path.upload_output_path)
         self.assertIsNone(resolved_path.pdf_output_path)
-        self.assertEqual(2, len(commands))
+        self.assertEqual(3, len(commands))
         self.assertEqual("check", commands[0][2])
         self.assertIn("--source", commands[0])
         self.assertIn("review", commands[0])
@@ -641,6 +649,10 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("--source", commands[1])
         self.assertIn("review", commands[1])
         self.assertIn("--no-clean", commands[1])
+        self.assertEqual("md", commands[2][2])
+        self.assertIn("--source", commands[2])
+        self.assertIn("review", commands[2])
+        self.assertIn("--no-clean", commands[2])
 
     def test_build_document_for_task_should_build_from_main_workspace_overlay_review_content_and_stage_output_under_host_repo(self) -> None:
         commands: list[tuple[list[str], Path]] = []
@@ -656,6 +668,9 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_pdf_path = (
                 main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "pdf" / "manual_je1000f_us_en.pdf"
             )
+            main_worktree_md_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en.md"
+            )
             main_worktree_html_dir = main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
             main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
@@ -664,6 +679,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_word_path.write_bytes(b"docx")
             main_worktree_pdf_path.parent.mkdir(parents=True, exist_ok=True)
             main_worktree_pdf_path.write_bytes(b"pdf")
+            main_worktree_md_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_md_path.write_text("# Manual\n", encoding="utf-8")
             main_worktree_html_dir.mkdir(parents=True, exist_ok=True)
             (main_worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
             (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
@@ -697,6 +714,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=main_worktree_pdf_path,
             ), mock.patch.object(
                 process_build_queue,
+                "resolve_md_output_path_for_target",
+                return_value=main_worktree_md_path,
+            ), mock.patch.object(
+                process_build_queue,
                 "resolve_html_output_dir_for_target",
                 return_value=main_worktree_html_dir,
             ):
@@ -728,6 +749,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf",
             resolved_path.upload_output_path,
         )
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.md",
+            resolved_path.md_output_path,
+        )
         self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][0][2])
         self.assertEqual(main_worktree, commands[0][1])
@@ -748,12 +773,18 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_word_path = (
                 main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en.docx"
             )
+            main_worktree_md_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en.md"
+            )
             staged_word_path = root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "word" / "manual_je1000f_us_en_0.3.docx"
+            staged_md_path = root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en_0.3.md"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
             main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
             main_worktree_config_path.write_text("build: {}\n", encoding="utf-8")
             main_worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
             main_worktree_word_path.write_bytes(b"docx")
+            main_worktree_md_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_md_path.write_text("# Manual\n", encoding="utf-8")
             source_data_root.mkdir(parents=True, exist_ok=True)
             (source_data_root / "Spec_Master.csv").write_text("fresh-host-data\n", encoding="utf-8")
             (source_data_root / "_attachments" / "lcd_icons").mkdir(parents=True, exist_ok=True)
@@ -783,8 +814,16 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=main_worktree_word_path,
             ), mock.patch.object(
                 process_build_queue,
+                "resolve_md_output_path_for_target",
+                return_value=main_worktree_md_path,
+            ), mock.patch.object(
+                process_build_queue,
                 "_stage_draft_word_output_to_host_repo",
                 return_value=staged_word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "_stage_draft_md_output_to_host_repo",
+                return_value=staged_md_path,
             ):
                 resolved_path = process_build_queue.build_document_for_task(
                     config_path=host_config_path,
@@ -796,6 +835,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     git_ref="codex/review-us-en",
                 )
                 self.assertEqual(staged_word_path, resolved_path.word_output_path)
+                self.assertEqual(staged_md_path, resolved_path.md_output_path)
                 self.assertEqual(
                     "review-content\n",
                     (main_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").read_text(encoding="utf-8"),
@@ -807,7 +847,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 self.assertTrue((main_worktree / "data" / "phase2" / "_attachments" / "lcd_icons" / "1_Wi-Fi_token.png").exists())
 
         expected_data_root = str(main_worktree / "data" / "phase2")
-        self.assertEqual(2, len(commands))
+        self.assertEqual(3, len(commands))
         for command, cwd in commands:
             self.assertEqual(main_worktree, cwd)
             data_root_index = command.index("--data-root")
@@ -820,12 +860,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path = root / "config.ja.yaml"
             word_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
             pdf_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "pdf" / "manual_je1000f_jp.pdf"
+            md_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "md" / "manual_je1000f_jp.md"
             html_dir = root / "docs" / "_build" / "JE-1000F" / "JP" / "html"
             config_path.write_text("build:\n  languages: [ja]\n", encoding="utf-8")
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
             pdf_path.parent.mkdir(parents=True, exist_ok=True)
             pdf_path.write_bytes(b"pdf")
+            md_path.parent.mkdir(parents=True, exist_ok=True)
+            md_path.write_text("# Manual\n", encoding="utf-8")
             html_dir.mkdir(parents=True, exist_ok=True)
             (html_dir / "index.html").write_text("<html>publish</html>\n", encoding="utf-8")
 
@@ -841,6 +884,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 process_build_queue,
                 "resolve_pdf_output_path_for_target",
                 return_value=pdf_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_md_output_path_for_target",
+                return_value=md_path,
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_html_output_dir_for_target",
@@ -865,6 +912,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.pdf",
             resolved_path.upload_output_path,
         )
+        self.assertEqual(
+            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.md",
+            resolved_path.md_output_path,
+        )
         self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][2])
         self.assertEqual("html", commands[1][2])
@@ -877,11 +928,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path.write_text("build:\n  languages: [en]\n  include_lang_in_output_path: true\n", encoding="utf-8")
             word_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx"
             pdf_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf"
+            md_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.md"
             html_dir = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "latest" / "html"
             word_output_path.parent.mkdir(parents=True, exist_ok=True)
             html_dir.mkdir(parents=True, exist_ok=True)
             word_output_path.write_bytes(b"docx")
             pdf_output_path.write_bytes(b"pdf")
+            md_output_path.write_text("# Manual\n", encoding="utf-8")
             (html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
 
             with mock.patch.object(process_build_queue, "ROOT", root):
@@ -894,6 +947,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     built_at=datetime(2026, 4, 4, 12, 0, 0),
                     word_output_path=word_output_path,
                     pdf_output_path=pdf_output_path,
+                    md_output_path=md_output_path,
                     html_dir=html_dir,
                     document_link_url="https://example.feishu.cn/wiki/token_123",
                     queue_record_ids=("rec_publish_1", "rec_publish_2"),
@@ -912,6 +966,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             self.assertEqual(
                 "reports/releases/JE-1000F/US/en/versions/0.2/manual_je1000f_us_en_publish_0.2.pdf",
                 payload["pdf_output_path"],
+            )
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/versions/0.2/manual_je1000f_us_en_publish_0.2.md",
+                payload["md_output_path"],
             )
             self.assertEqual(
                 "reports/releases/JE-1000F/US/en/latest/html/index.html",
@@ -961,6 +1019,20 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(
             Path("docs/_build/JE-1000F/US/en/pdf/manual_je1000f_us_en_publish_0.2.pdf"),
+            resolved,
+        )
+
+    def test_versioned_md_output_path_should_insert_publish_before_version(self) -> None:
+        path = Path("docs/_build/JE-1000F/US/en/md/manual_je1000f_us_en.md")
+
+        resolved = process_build_queue._versioned_md_output_path(
+            path,
+            version="0.2",
+            doc_phase="publish",
+        )
+
+        self.assertEqual(
+            Path("docs/_build/JE-1000F/US/en/md/manual_je1000f_us_en_publish_0.2.md"),
             resolved,
         )
 
@@ -1022,6 +1094,47 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(["drive", "metas", "batch_query"], observed_args[1][:3])
         self.assertFalse(Path(observed_args[0][5]).is_absolute())
         self.assertEqual("manual_je1000f_us_en.docx", observed_args[0][7])
+
+    def test_import_markdown_to_cloud_doc_should_call_drive_import_and_parse_url(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            md_path = root / "docs" / "_build" / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en.md"
+            md_path.parent.mkdir(parents=True, exist_ok=True)
+            md_path.write_text("# Manual\n", encoding="utf-8")
+            observed_args: list[list[str]] = []
+
+            def fake_run(*, cli_bin: str, args: list[str]) -> dict[str, object]:
+                self.assertEqual("lark-cli", cli_bin)
+                observed_args.append(args)
+                return {
+                    "code": 0,
+                    "data": {
+                        "ticket": {
+                            "token": "doc_token_123",
+                            "url": "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123",
+                        }
+                    },
+                }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "_run_lark_cli_json",
+                side_effect=fake_run,
+            ):
+                token, cloud_doc_url = process_build_queue.import_markdown_to_cloud_doc(
+                    cli_bin="lark-cli",
+                    markdown_output_path=md_path,
+                    identity="bot",
+                )
+
+        self.assertEqual("doc_token_123", token)
+        self.assertEqual("https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123", cloud_doc_url)
+        self.assertEqual(1, len(observed_args))
+        self.assertEqual(["drive", "+import"], observed_args[0][:2])
+        self.assertIn("--file", observed_args[0])
+        self.assertIn("--type", observed_args[0])
+        self.assertEqual("docx", observed_args[0][observed_args[0].index("--type") + 1])
+        self.assertFalse(Path(observed_args[0][observed_args[0].index("--file") + 1]).is_absolute())
 
     def test_resolve_wiki_destination_should_default_to_parent_of_document_link_bitable(self) -> None:
         binding = process_build_queue.DocumentLinkBinding(
@@ -1253,6 +1366,238 @@ class TestProcessBuildQueue(unittest.TestCase):
             git_ref="codex/review-je-1000f-us-en",
         )
         sync_mock.assert_not_called()
+
+    def test_process_build_queue_should_import_markdown_when_cloud_doc_field_exists(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_cloud_doc",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.BUILD_STARTED_AT_FIELD: None,
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
+                    process_build_queue.FEISHU_CLOUD_DOC_FIELD: "",
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        cloud_import_calls: list[dict[str, object]] = []
+        with tempfile.TemporaryDirectory() as td:
+            word_path = Path(td) / "manual.docx"
+            md_path = Path(td) / "manual.md"
+            word_path.write_bytes(b"docx")
+            md_path.write_text("# Manual\n", encoding="utf-8")
+
+            class FakeSource:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
+                def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                    captured_upserts.append(kwargs)
+                    return {"ok": True}
+
+            def fake_import_markdown_to_cloud_doc(**kwargs: object) -> tuple[str, str]:
+                cloud_import_calls.append(kwargs)
+                return "doc_token_123", "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123"
+
+            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+                process_build_queue,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "build_document_for_task",
+                return_value=process_build_queue.BuiltDocumentOutputs(
+                    word_output_path=word_path,
+                    upload_output_path=word_path,
+                    md_output_path=md_path,
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_artifact_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "publish_word_artifact",
+                return_value=process_build_queue.ArtifactPublishResult(
+                    provider="lark_drive",
+                    reference_id="file_token_123",
+                    latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+                    document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                    status_notes=("published_artifact=docx",),
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "import_markdown_to_cloud_doc",
+                side_effect=fake_import_markdown_to_cloud_doc,
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="bot",
+            ):
+                exit_code = process_build_queue.process_build_queue(
+                    cfg=cfg,
+                    config_path=Path("config.us.yaml"),
+                    data_root="data/phase2",
+                    dry_run=False,
+                )
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(1, len(cloud_import_calls))
+        self.assertEqual(md_path, cloud_import_calls[0]["markdown_output_path"])
+        success_payload = captured_upserts[-1]["record"]
+        self.assertIsInstance(success_payload, dict)
+        self.assertEqual(
+            "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123",
+            success_payload[process_build_queue.FEISHU_CLOUD_DOC_FIELD],
+        )
+        self.assertIn("cloud_doc=ok", success_payload[process_build_queue.RESULT_FIELD])
+
+    def test_process_build_queue_should_fail_when_cloud_doc_import_fails_and_preserve_artifact_link(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+        binding = process_build_queue.DocumentLinkBinding(
+            base_token_env="BASE_TOKEN",
+            table_id_env="DOCUMENT_LINK_TABLE",
+            view_id_env="DOCUMENT_LINK_VIEW",
+            wiki_parent_token_env=None,
+            base_token="app_token",
+            table_id="tbl_document_link",
+            view_id="vew_document_link",
+            wiki_parent_token=None,
+        )
+        raw_records = [
+            {
+                "record_id": "rec_cloud_doc_failed",
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.GIT_REF_FIELD: ["codex/review-je-1000f-us-en"],
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.IMMEDIATE_TRIGGER_FIELD: True,
+                    process_build_queue.FORCE_PHASE2_REFRESH_FIELD: False,
+                    process_build_queue.DATA_SYNC_FIELD: "",
+                    process_build_queue.FEISHU_CLOUD_DOC_FIELD: "",
+                },
+            }
+        ]
+        captured_upserts: list[dict[str, object]] = []
+        with tempfile.TemporaryDirectory() as td:
+            word_path = Path(td) / "manual.docx"
+            md_path = Path(td) / "manual.md"
+            word_path.write_bytes(b"docx")
+            md_path.write_text("# Manual\n", encoding="utf-8")
+
+            class FakeSource:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
+                def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                    captured_upserts.append(kwargs)
+                    return {"ok": True}
+
+            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
+                process_build_queue,
+                "resolve_document_link_binding",
+                return_value=binding,
+            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
+                process_build_queue,
+                "build_document_for_task",
+                return_value=process_build_queue.BuiltDocumentOutputs(
+                    word_output_path=word_path,
+                    upload_output_path=word_path,
+                    md_output_path=md_path,
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_artifact_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "publish_word_artifact",
+                return_value=process_build_queue.ArtifactPublishResult(
+                    provider="lark_drive",
+                    reference_id="file_token_123",
+                    latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+                    document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                    status_notes=("published_artifact=docx",),
+                ),
+            ), mock.patch.object(
+                process_build_queue,
+                "import_markdown_to_cloud_doc",
+                side_effect=RuntimeError("cloud import failed"),
+            ), mock.patch.object(
+                process_build_queue,
+                "_phase2_identity",
+                return_value="bot",
+            ):
+                exit_code = process_build_queue.process_build_queue(
+                    cfg=cfg,
+                    config_path=Path("config.us.yaml"),
+                    data_root="data/phase2",
+                    dry_run=False,
+                )
+
+        self.assertEqual(1, exit_code)
+        failure_payload = captured_upserts[-1]["record"]
+        self.assertIsInstance(failure_payload, dict)
+        self.assertIn("FAILED", failure_payload[process_build_queue.RESULT_FIELD])
+        self.assertIn("cloud import failed", failure_payload[process_build_queue.RESULT_FIELD])
+        self.assertEqual(
+            "https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+            failure_payload[process_build_queue.DOCUMENT_LINK_FIELD],
+        )
+        self.assertIn("latest_drive_link_preserved", failure_payload[process_build_queue.RESULT_FIELD])
 
     def test_process_build_queue_should_preserve_drive_link_when_wiki_move_fails(self) -> None:
         cfg = {

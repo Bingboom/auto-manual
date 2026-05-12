@@ -96,8 +96,8 @@ from tools.build_runtime import (
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = "config.us.yaml"
-BUILD_ACTIONS = ("rst", "word", "html", "pdf", "all")
-ALL_OUTPUT_FORMATS = "html,word,pdf"
+BUILD_ACTIONS = ("rst", "word", "html", "pdf", "md", "all")
+ALL_OUTPUT_FORMATS = "html,word,pdf,md"
 VALID_PDF_MODES = {"latex", "word"}
 STAGING_ROOT_ENV = "AUTO_MANUAL_STAGING_ROOT"
 

@@ -105,6 +105,8 @@ def fetch_field_id_map(
                 base_token,
                 "--table-id",
                 table_id,
+                "--format",
+                "json",
                 "--limit",
                 str(limit),
                 "--offset",

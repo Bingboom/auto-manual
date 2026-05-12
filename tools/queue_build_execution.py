@@ -11,6 +11,7 @@ from typing import Callable
 class BuiltDocumentOutputs:
     word_output_path: Path
     upload_output_path: Path
+    md_output_path: Path | None = None
     pdf_output_path: Path | None = None
     html_output_dir: Path | None = None
 
@@ -131,11 +132,14 @@ def build_document_for_task(
     build_py_target_command: Callable[..., list[str]],
     resolve_word_output_path_for_target: Callable[..., Path],
     resolve_pdf_output_path_for_target: Callable[..., Path],
+    resolve_md_output_path_for_target: Callable[..., Path],
     versioned_pdf_output_path: Callable[..., Path],
     versioned_word_output_path: Callable[..., Path],
+    versioned_md_output_path: Callable[..., Path],
     resolve_html_output_dir_for_target: Callable[..., Path],
-    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path]],
+    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path, Path]],
     stage_draft_word_output_to_host_repo: Callable[..., Path],
+    stage_draft_md_output_to_host_repo: Callable[..., Path],
 ) -> BuiltDocumentOutputs:
     normalized_doc_phase = normalize_workflow_action(doc_phase)
     effective_repo_root = repo_root
@@ -183,6 +187,19 @@ def build_document_for_task(
                 build_py_target_command(
                     repo_root=effective_repo_root,
                     action="word",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    data_root=effective_data_root,
+                    source="review",
+                    no_clean=True,
+                ),
+                cwd=effective_repo_root,
+            )
+            run_command(
+                build_py_target_command(
+                    repo_root=effective_repo_root,
+                    action="md",
                     config_path=effective_config_path,
                     model=model,
                     region=region,
@@ -258,6 +275,24 @@ def build_document_for_task(
             versioned_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(word_output_path, versioned_path)
             word_output_path = versioned_path
+        md_output_path: Path | None = None
+        if normalized_doc_phase in {"draft", "publish"}:
+            md_output_path = resolve_md_output_path_for_target(
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+            )
+            if not md_output_path.exists():
+                raise RuntimeError(f"Markdown output was not created: {md_output_path}")
+            versioned_md_path = versioned_md_output_path(
+                md_output_path,
+                version=version,
+                doc_phase=normalized_doc_phase,
+            )
+            if versioned_md_path != md_output_path:
+                versioned_md_path.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(md_output_path, versioned_md_path)
+                md_output_path = versioned_md_path
         if normalized_doc_phase == "publish":
             pdf_output_path = resolve_pdf_output_path_for_target(
                 config_path=effective_config_path,
@@ -283,9 +318,12 @@ def build_document_for_task(
             if not html_output_dir.exists():
                 raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
             host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
-            staged_word_output_path, staged_pdf_output_path, latest_html_dir = stage_publish_assets_to_host_repo(
+            if md_output_path is None:
+                raise RuntimeError("Markdown output was not created for publish")
+            staged_word_output_path, staged_pdf_output_path, staged_md_output_path, latest_html_dir = stage_publish_assets_to_host_repo(
                 built_word_output_path=word_output_path,
                 built_pdf_output_path=pdf_output_path,
+                built_md_output_path=md_output_path,
                 built_html_dir=html_output_dir,
                 host_config_path=host_config_path,
                 model=model,
@@ -295,6 +333,7 @@ def build_document_for_task(
             return BuiltDocumentOutputs(
                 word_output_path=staged_word_output_path,
                 upload_output_path=staged_pdf_output_path,
+                md_output_path=staged_md_output_path,
                 pdf_output_path=staged_pdf_output_path,
                 html_output_dir=latest_html_dir,
             )
@@ -307,13 +346,27 @@ def build_document_for_task(
                 version=version,
                 doc_phase=normalized_doc_phase,
             )
+            staged_md_output_path = (
+                stage_draft_md_output_to_host_repo(
+                    built_md_output_path=md_output_path,
+                    host_config_path=config_path_in_repo_root(config_path, repo_root=repo_root),
+                    model=model,
+                    region=region,
+                    version=version,
+                    doc_phase=normalized_doc_phase,
+                )
+                if md_output_path is not None
+                else None
+            )
             return BuiltDocumentOutputs(
                 word_output_path=staged_word_output_path,
                 upload_output_path=staged_word_output_path,
+                md_output_path=staged_md_output_path,
             )
         return BuiltDocumentOutputs(
             word_output_path=word_output_path,
             upload_output_path=word_output_path,
+            md_output_path=md_output_path,
         )
     finally:
         cleaned_paths: set[Path] = set()

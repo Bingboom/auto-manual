@@ -12,6 +12,7 @@ class BuildArtifactPlan:
     build_root: Path
     main_tex: str
     output_pdf_name: str
+    md_output_name: str
     xelatex_runs: int
     word_output_name: str
     word_source: str
@@ -19,9 +20,11 @@ class BuildArtifactPlan:
     open_html: bool
     open_word: bool
     open_pdf: bool
+    open_md: bool
     html_out_dir: Path
     word_out_dir: Path
     pdf_out_dir: Path
+    md_out_dir: Path
     latex_out_dir: Path
 
 
@@ -68,6 +71,16 @@ def resolve_build_artifact_plan(
         region=target_region,
         lang=primary_lang,
     )
+    md_output_template = build_cfg.get("md_output")
+    if isinstance(md_output_template, str) and md_output_template.strip():
+        md_output_name = render_build_template(
+            md_output_template,
+            model=target_model,
+            region=target_region,
+            lang=primary_lang,
+        )
+    else:
+        md_output_name = Path(word_output_name).with_suffix(".md").as_posix()
 
     return BuildArtifactPlan(
         primary_lang=primary_lang,
@@ -75,6 +88,7 @@ def resolve_build_artifact_plan(
         build_root=build_root,
         main_tex=main_tex,
         output_pdf_name=output_pdf_name,
+        md_output_name=md_output_name,
         xelatex_runs=int(build_cfg.get("xelatex_runs", 3)),
         word_output_name=word_output_name,
         word_source=str(build_cfg.get("word_source", "bundle")).strip().lower(),
@@ -82,9 +96,11 @@ def resolve_build_artifact_plan(
         open_html=bool(build_cfg.get("open_html", False)) and (not no_open),
         open_word=bool(build_cfg.get("open_word", False)) and (not no_open),
         open_pdf=bool(build_cfg.get("open_pdf", False)) and (not no_open),
+        open_md=bool(build_cfg.get("open_md", False)) and (not no_open),
         html_out_dir=build_root / "html",
         word_out_dir=build_root / "word",
         pdf_out_dir=build_root / "pdf",
+        md_out_dir=build_root / "md",
         latex_out_dir=build_root / "latex",
     )
 
@@ -140,6 +156,37 @@ def build_word_artifact(
     if "word" in requested_formats and plan.open_word and docx_path.exists():
         open_file(docx_path)
     return docx_path
+
+
+def build_markdown_artifact(
+    *,
+    cfg: dict,
+    target_model: str | None,
+    target_region: str | None,
+    requested_formats: list[str],
+    plan: BuildArtifactPlan,
+    bundle: Any,
+    resolve_output_path: Callable[[Path, str], Path],
+    export_markdown_from_bundle: Callable[..., Path],
+    open_file: Callable[[Path], None],
+    printer: Callable[[str], None],
+) -> Path | None:
+    if "md" not in requested_formats:
+        return None
+
+    md_target_path = resolve_output_path(plan.md_out_dir, plan.md_output_name)
+    md_path = export_markdown_from_bundle(
+        cfg,
+        target_model,
+        target_region,
+        str(md_target_path),
+        materialized_bundle=bundle,
+        output_dir=md_target_path.parent,
+    )
+    printer(f"[build] Done. Markdown: {md_path}")
+    if plan.open_md and md_path.exists():
+        open_file(md_path)
+    return md_path
 
 
 def build_pdf_artifact(

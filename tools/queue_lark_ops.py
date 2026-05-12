@@ -115,6 +115,61 @@ def upload_word_to_drive(
     return file_token, drive_url
 
 
+def _first_nested_string(payload: Any, keys: set[str], *, url_only: bool = False) -> str:
+    if isinstance(payload, dict):
+        for key, value in payload.items():
+            if str(key).strip().lower() in keys and isinstance(value, str):
+                text = value.strip()
+                if text and (not url_only or text.startswith(("http://", "https://"))):
+                    return text
+        for value in payload.values():
+            found = _first_nested_string(value, keys, url_only=url_only)
+            if found:
+                return found
+    elif isinstance(payload, list):
+        for item in payload:
+            found = _first_nested_string(item, keys, url_only=url_only)
+            if found:
+                return found
+    return ""
+
+
+def import_markdown_to_cloud_doc(
+    *,
+    cli_bin: str,
+    markdown_output_path: Path,
+    identity: str,
+    repo_root: Path,
+    run_lark_cli_json: Callable[..., dict[str, Any]],
+    cli_relative_file_arg: Callable[..., str],
+) -> tuple[str, str]:
+    if not markdown_output_path.exists():
+        raise RuntimeError(f"Markdown output was not created: {markdown_output_path}")
+
+    payload = run_lark_cli_json(
+        cli_bin=cli_bin,
+        args=[
+            "drive",
+            "+import",
+            "--as",
+            identity,
+            "--file",
+            cli_relative_file_arg(repo_root=repo_root, path=markdown_output_path),
+            "--name",
+            markdown_output_path.stem,
+            "--type",
+            "docx",
+        ],
+    )
+    url_keys = {"url", "file_url", "doc_url", "document_url", "cloud_doc_url"}
+    cloud_doc_url = _first_nested_string(payload, url_keys, url_only=True)
+    if not cloud_doc_url:
+        raise RuntimeError("Markdown import response is missing cloud document url")
+    token_keys = {"token", "doc_token", "document_token", "obj_token", "file_token"}
+    cloud_doc_token = _first_nested_string(payload, token_keys)
+    return cloud_doc_token, cloud_doc_url
+
+
 def wiki_node_from_payload(payload: dict[str, Any]) -> dict[str, Any]:
     data = payload.get("data")
     if not isinstance(data, dict):

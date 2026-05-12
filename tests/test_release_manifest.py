@@ -21,10 +21,12 @@ class TestReleaseManifest(unittest.TestCase):
             (build_root / "html").mkdir(parents=True)
             (build_root / "word").mkdir(parents=True)
             (build_root / "pdf").mkdir(parents=True)
+            (build_root / "md").mkdir(parents=True)
             (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
             (build_root / "word" / "manual_je1000f_us.docx").write_text("docx\n", encoding="utf-8")
             (build_root / "pdf" / "manual_je1000f_us.pdf").write_text("pdf\n", encoding="utf-8")
+            (build_root / "md" / "manual_je1000f_us.md").write_text("# Manual\n", encoding="utf-8")
 
             data_dir = root / "data" / "phase1"
             data_dir.mkdir(parents=True)
@@ -91,11 +93,16 @@ class TestReleaseManifest(unittest.TestCase):
                 json_path.relative_to(root).as_posix(),
             )
             self.assertTrue(manifest["word_output"]["exists"])
+            self.assertTrue(manifest["md_output"]["exists"])
             self.assertTrue(manifest["html_output"]["exists"])
             self.assertTrue(manifest["pdf_output"]["exists"])
             self.assertEqual(
                 hashlib.sha256((build_root / "word" / "manual_je1000f_us.docx").read_bytes()).hexdigest(),
                 manifest["word_output"]["sha256"],
+            )
+            self.assertEqual(
+                hashlib.sha256((build_root / "md" / "manual_je1000f_us.md").read_bytes()).hexdigest(),
+                manifest["md_output"]["sha256"],
             )
 
     def test_build_release_manifest_should_honor_data_root_override(self) -> None:
@@ -107,6 +114,7 @@ class TestReleaseManifest(unittest.TestCase):
             (build_root / "html").mkdir(parents=True)
             (build_root / "word").mkdir(parents=True)
             (build_root / "pdf").mkdir(parents=True)
+            (build_root / "md").mkdir(parents=True)
             (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
 
@@ -170,6 +178,7 @@ class TestReleaseManifest(unittest.TestCase):
             (build_root / "html").mkdir(parents=True)
             (build_root / "word").mkdir(parents=True)
             (build_root / "pdf").mkdir(parents=True)
+            (build_root / "md").mkdir(parents=True)
             (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
 
