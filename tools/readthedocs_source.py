@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import posixpath
 import re
 import shutil
 from dataclasses import dataclass
@@ -12,6 +13,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 _FILE_URI_RE = re.compile(r"file:///[^\s\"')<>]+")
+_HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -102,6 +104,67 @@ def _rewrite_markdown_file_uris(*, source_dir: Path, destination_dir: Path) -> N
             markdown_path.write_text(rewritten, encoding="utf-8")
 
 
+def _copy_manual_assets_to_static(*, output_dir: Path, destination_dir: Path, manual_relative: Path) -> None:
+    static_root = output_dir / "_static" / "manual-assets" / manual_relative
+    for assets_dir in destination_dir.glob("**/assets"):
+        assets_relative = assets_dir.relative_to(destination_dir)
+        target_dir = static_root / assets_relative
+        if target_dir.exists():
+            shutil.rmtree(target_dir)
+        target_dir.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(assets_dir, target_dir)
+
+
+def _static_src_for_manual_asset(
+    *,
+    src: str,
+    markdown_path: Path,
+    output_dir: Path,
+    destination_dir: Path,
+    manual_relative: Path,
+) -> str:
+    parsed = urlparse(src)
+    if parsed.scheme or parsed.netloc or parsed.path.startswith("/"):
+        return src
+
+    local_asset = (markdown_path.parent / unquote(parsed.path)).resolve(strict=False)
+    if not _is_relative_to(local_asset, destination_dir):
+        return src
+
+    asset_relative = local_asset.relative_to(destination_dir.resolve(strict=False))
+    if "assets" not in asset_relative.parts:
+        return src
+
+    static_asset = Path("_static") / "manual-assets" / manual_relative / asset_relative
+    markdown_parent = markdown_path.parent.relative_to(output_dir).as_posix()
+    rewritten = posixpath.relpath(static_asset.as_posix(), start=markdown_parent or ".")
+    if parsed.query:
+        rewritten = f"{rewritten}?{parsed.query}"
+    if parsed.fragment:
+        rewritten = f"{rewritten}#{parsed.fragment}"
+    return rewritten
+
+
+def _rewrite_markdown_asset_sources(*, output_dir: Path, destination_dir: Path, manual_relative: Path) -> None:
+    for markdown_path in destination_dir.rglob("*.md"):
+        text = markdown_path.read_text(encoding="utf-8")
+
+        def replace(match: re.Match[str]) -> str:
+            prefix, quote, src, _ = match.groups()
+            rewritten_src = _static_src_for_manual_asset(
+                src=src,
+                markdown_path=markdown_path,
+                output_dir=output_dir,
+                destination_dir=destination_dir,
+                manual_relative=manual_relative,
+            )
+            return f"{prefix}{quote}{rewritten_src}{quote}"
+
+        rewritten = _HTML_IMG_SRC_RE.sub(replace, text)
+        if rewritten != text:
+            markdown_path.write_text(rewritten, encoding="utf-8")
+
+
 def _write_conf_py(*, output_dir: Path, title: str) -> None:
     output_dir.joinpath("conf.py").write_text(
         "\n".join(
@@ -117,6 +180,7 @@ def _write_conf_py(*, output_dir: Path, title: str) -> None:
                 'root_doc = "index"',
                 'master_doc = "index"',
                 'html_theme = "furo"',
+                'html_static_path = ["_static"]',
                 'exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]',
                 "myst_heading_anchors = 3",
                 'suppress_warnings = ["myst.header", "toc.not_included"]',
@@ -129,7 +193,7 @@ def _write_conf_py(*, output_dir: Path, title: str) -> None:
                 "    outdir = Path(app.outdir)",
                 "    for assets_dir in srcdir.glob('**/assets'):",
                 "        relative = assets_dir.relative_to(srcdir)",
-                "        if '_build' in relative.parts:",
+                "        if '_build' in relative.parts or '_static' in relative.parts:",
                 "            continue",
                 "        target_dir = outdir / relative",
                 "        if target_dir.exists():",
@@ -166,6 +230,7 @@ def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> li
     if output_dir.exists():
         shutil.rmtree(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.joinpath("_static", "manual-assets").mkdir(parents=True, exist_ok=True)
 
     manuals: list[RtdManual] = []
     for source_dir in source_dirs:
@@ -173,6 +238,8 @@ def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> li
         destination_dir = output_dir / relative
         shutil.copytree(source_dir, destination_dir, ignore=shutil.ignore_patterns("conf.py", "_build"))
         _rewrite_markdown_file_uris(source_dir=source_dir, destination_dir=destination_dir)
+        _copy_manual_assets_to_static(output_dir=output_dir, destination_dir=destination_dir, manual_relative=relative)
+        _rewrite_markdown_asset_sources(output_dir=output_dir, destination_dir=destination_dir, manual_relative=relative)
         manuals.append(
             RtdManual(
                 source_dir=source_dir,
