@@ -58,6 +58,7 @@ GitHub note:
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
+- the remote Draft/Publish queue workers refresh phase2 from the row's resolved family config before building, and configs can bind `spec_master` plus `Document_link` directly to the online Feishu tables instead of depending on stale committed snapshots
 - `Manual Validation` now also runs `python tools/check_maintainability_guardrails.py` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
 - `build.py check` also compares duplicated RST and raw HTML list text so renderer-specific copies cannot silently drift from the source wording
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design

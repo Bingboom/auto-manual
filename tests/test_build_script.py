@@ -617,6 +617,7 @@ class TestBuildScript(unittest.TestCase):
                 "data/phase2",
                 "--workflow-action",
                 "publish",
+                "--refresh-data",
                 "--record-id",
                 "rec_456",
                 "--dry-run",
@@ -630,6 +631,7 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("data/phase2", cmd)
         self.assertIn("--workflow-action", cmd)
         self.assertIn("publish", cmd)
+        self.assertIn("--refresh-data", cmd)
         self.assertIn("--record-id", cmd)
         self.assertIn("rec_456", cmd)
         self.assertIn("--dry-run", cmd)

@@ -237,4 +237,9 @@ def parse_args(
         action="store_true",
         help="For sync-data, process-build-queue, or process-review-start-queue: validate/report without writing files",
     )
+    ap.add_argument(
+        "--refresh-data",
+        action="store_true",
+        help="For process-build-queue: sync the latest phase2 snapshot before building each queue group",
+    )
     return ap.parse_args(argv)

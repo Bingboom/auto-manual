@@ -12,7 +12,7 @@ import {
 } from "./lib/commands.mjs";
 import { resolveCliSettings } from "./lib/cli-settings.mjs";
 import { COMMAND_DEFINITIONS } from "./lib/constants.mjs";
-import { dispatchCommandFlow, resolveTrackedRun } from "./lib/dispatch-flow.mjs";
+import { dispatchBatchCommandFlow, dispatchCommandFlow, resolveTrackedRun } from "./lib/dispatch-flow.mjs";
 import { createGitHubClient } from "./lib/github-client.mjs";
 import { createStateStore } from "./lib/state-store.mjs";
 
@@ -56,12 +56,14 @@ async function dispatch(commandName, rawArgs) {
     throw new Error(`Unknown dispatch command: ${commandName}\n${usage()}`);
   }
 
-  const { queueRecordId } = ensureDispatchArgs(commandName, rawArgs);
+  const dispatchArgs = ensureDispatchArgs(commandName, rawArgs);
   const github = createGitHubClient(settings);
   const stateStore = createStateStore(settings.stateFile);
-  const result = await dispatchCommandFlow({
+  const flow = dispatchArgs.queueRecordIds.length > 1 ? dispatchBatchCommandFlow : dispatchCommandFlow;
+  const result = await flow({
     command,
-    queueRecordId,
+    queueRecordId: dispatchArgs.queueRecordId,
+    queueRecordIds: dispatchArgs.queueRecordIds,
     github,
     stateStore,
     settings,

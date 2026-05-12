@@ -74,6 +74,25 @@ def select_unique_queue_row(args: argparse.Namespace, rows: list[QueueQueryRow])
     return resolved_args, filtered[0]
 
 
+def select_queue_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> tuple[argparse.Namespace, list[QueueQueryRow]]:
+    resolved_args = apply_inferred_queue_query(args)
+    selection_args = _namespace_with(
+        resolved_args,
+        limit=max(int(getattr(resolved_args, "limit", 10) or 10), 50),
+    )
+    filtered = filter_queue_query_rows(selection_args, rows)
+    if not filtered:
+        request_text = str(getattr(args, "query_text", "") or "").strip()
+        details = f" for request `{request_text}`" if request_text else ""
+        raise RuntimeError(f"queue-execute could not resolve one queue row{details}.")
+    if len(filtered) > 1 and not bool(getattr(resolved_args, "allow_multiple", False)):
+        preview = "\n".join(f"- {_row_brief(row)}" for row in filtered[:5])
+        raise RuntimeError(
+            "queue-execute found multiple matching queue rows. Narrow the request first:\n" + preview
+        )
+    return resolved_args, filtered
+
+
 def dispatch_command_for_row(row: QueueQueryRow) -> str:
     mapping = {
         "start_review": "start-review",
@@ -162,6 +181,31 @@ def parse_control_layer_output(text: str) -> dict[str, str]:
     if notes:
         payload["notes"] = " ".join(notes)
     return payload
+
+
+def parse_batch_control_layer_output(text: str) -> dict[str, dict[str, str]]:
+    records: dict[str, dict[str, str]] = {}
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line.startswith("- "):
+            continue
+        parts = [part.strip() for part in line[2:].split("|")]
+        if not parts:
+            continue
+        record_id = parts[0]
+        if not record_id:
+            continue
+        payload: dict[str, str] = {"record_id": record_id}
+        if len(parts) > 1:
+            payload["dispatch_status"] = parts[1]
+        for part in parts[2:]:
+            if "=" not in part:
+                continue
+            key, value = part.split("=", 1)
+            normalized_key = key.strip().lower().replace(" ", "_")
+            payload[normalized_key] = value.strip()
+        records[record_id] = payload
+    return records
 
 
 def is_terminal_status(status_payload: dict[str, str]) -> bool:
@@ -271,6 +315,53 @@ def render_queue_execute_result(
     return "\n".join(lines)
 
 
+def render_queue_execute_batch_result(
+    rows: list[QueueQueryRow],
+    *,
+    as_json: bool,
+    dispatch_payloads: dict[str, dict[str, str]],
+    accepted_at: str = "",
+) -> str:
+    if as_json:
+        payload = {
+            "matched_count": len(rows),
+            "accepted_at": accepted_at,
+            "rows": [
+                {
+                    "record_id": row.record_id,
+                    "document_id": row.document_id,
+                    "git_ref": row.git_ref,
+                    "run_id": dispatch_payloads.get(row.record_id, {}).get("run_id", ""),
+                    "run_url": dispatch_payloads.get(row.record_id, {}).get("run", ""),
+                    "dispatch_status": dispatch_payloads.get(row.record_id, {}).get("dispatch_status", ""),
+                }
+                for row in rows
+            ],
+        }
+        return json.dumps(payload, ensure_ascii=False, indent=2)
+    lines = [
+        "queue-execute dispatched batch",
+        f"matched_count: {len(rows)}",
+    ]
+    if accepted_at:
+        lines.append(f"accepted_at: {accepted_at}")
+    for row in rows:
+        dispatch_payload = dispatch_payloads.get(row.record_id, {})
+        pieces = [
+            row.record_id,
+            row.document_id or row.document_key or "-",
+            dispatch_payload.get("dispatch_status", "accepted") or "accepted",
+        ]
+        if dispatch_payload.get("run_id"):
+            pieces.append(f"run_id={dispatch_payload['run_id']}")
+        if dispatch_payload.get("run"):
+            pieces.append(f"run={dispatch_payload['run']}")
+        if dispatch_payload.get("error"):
+            pieces.append(f"error={dispatch_payload['error']}")
+        lines.append("- " + " | ".join(pieces))
+    return "\n".join(lines)
+
+
 def _run_control_layer_cli(repo_root: Path, *cli_args: str) -> dict[str, str]:
     completed = subprocess.run(
         [*_CONTROL_LAYER_CLI, *cli_args],
@@ -319,7 +410,40 @@ def _refresh_queue_row(cfg: dict[str, Any], row: QueueQueryRow, *, fresh_since: 
 def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root: Path) -> None:
     cfg = load_config(config_path)
     rows = collect_queue_query_rows(cfg, queue_scope=getattr(args, "queue_scope", "all"))
-    resolved_args, row = select_unique_queue_row(args, rows)
+    resolved_args, selected_rows = select_queue_rows(args, rows)
+    if len(selected_rows) > 1:
+        for selected_row in selected_rows:
+            ensure_build_trigger_requested(selected_row)
+            ensure_publish_confirmation(resolved_args, selected_row)
+            ensure_start_review_dispatchable(selected_row)
+            if dispatch_command_for_row(selected_row) == "publish":
+                raise RuntimeError("queue-execute does not support batch Publish dispatch.")
+        commands = {dispatch_command_for_row(selected_row) for selected_row in selected_rows}
+        if len(commands) != 1:
+            preview = "\n".join(f"- {_row_brief(row)}" for row in selected_rows[:5])
+            raise RuntimeError("queue-execute batch rows must share one dispatch command:\n" + preview)
+        dispatch_command = next(iter(commands))
+        accepted_at = str(getattr(resolved_args, "fresh_since", "") or "").strip() or _now_iso()
+        dispatch_payload = _run_control_layer_cli(
+            repo_root,
+            "dispatch",
+            dispatch_command,
+            " ".join(row.record_id for row in selected_rows),
+        )
+        if dispatch_payload.get("accepted_at"):
+            accepted_at = dispatch_payload["accepted_at"]
+        dispatch_payloads = parse_batch_control_layer_output(dispatch_payload.get("raw", ""))
+        print(
+            render_queue_execute_batch_result(
+                selected_rows,
+                as_json=bool(getattr(resolved_args, "json", False)),
+                dispatch_payloads=dispatch_payloads,
+                accepted_at=accepted_at,
+            )
+        )
+        return
+
+    row = selected_rows[0]
     ensure_build_trigger_requested(row)
     ensure_publish_confirmation(resolved_args, row)
     dispatch_command = dispatch_command_for_row(row)

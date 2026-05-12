@@ -17,6 +17,7 @@ test("ensureRecordId validates rec ids", () => {
 test("ensureDispatchArgs requires explicit publish confirmation", () => {
   assert.deepEqual(ensureDispatchArgs("publish", "recABC123 confirm"), {
     queueRecordId: "recABC123",
+    queueRecordIds: ["recABC123"],
     publishConfirmed: true,
   });
   assert.throws(
@@ -25,15 +26,21 @@ test("ensureDispatchArgs requires explicit publish confirmation", () => {
   );
 });
 
-test("ensureDispatchArgs keeps start-review on one record id only", () => {
+test("ensureDispatchArgs accepts multiple non-publish record ids", () => {
   assert.deepEqual(ensureDispatchArgs("start-review", "recABC123"), {
     queueRecordId: "recABC123",
+    queueRecordIds: ["recABC123"],
     publishConfirmed: false,
   });
-  assert.throws(
-    () => ensureDispatchArgs("start-review", "recABC123 extra"),
-    /Provide one record id/
-  );
+  assert.deepEqual(ensureDispatchArgs("build-draft", "recABC123 recDEF456,recGHI789"), {
+    queueRecordId: "recABC123",
+    queueRecordIds: ["recABC123", "recDEF456", "recGHI789"],
+    publishConfirmed: false,
+  });
+});
+
+test("ensureDispatchArgs keeps publish on one record id only", () => {
+  assert.throws(() => ensureDispatchArgs("publish", "recABC123 recDEF456 confirm"), /Provide only one record id/);
 });
 
 test("ensureStatusArg accepts last or numeric run ids", () => {

@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 import {
+  renderBatchDispatchResult,
   renderDispatchResult,
   renderDuplicateRun,
 } from "./commands.mjs";
@@ -98,6 +99,46 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
       runId: run.id,
       acceptedAt: dispatchedAt,
       note: "Dispatch accepted.",
+    }),
+  };
+}
+
+function fieldFromText(text, fieldName) {
+  const pattern = new RegExp(`^${fieldName}:\\s*(.+)$`, "m");
+  const match = String(text || "").match(pattern);
+  return match ? match[1].trim() : "";
+}
+
+export async function dispatchBatchCommandFlow({ command, queueRecordIds, github, stateStore, settings }) {
+  const ids = Array.isArray(queueRecordIds) ? queueRecordIds.filter(Boolean) : [];
+  const results = [];
+  for (const queueRecordId of ids) {
+    try {
+      const result = await dispatchCommandFlow({
+        command,
+        queueRecordId,
+        github,
+        stateStore,
+        settings,
+      });
+      const text = result?.text || "";
+      results.push({
+        queueRecordId,
+        runId: fieldFromText(text, "run_id"),
+        runUrl: fieldFromText(text, "run"),
+        reused: text.includes("reuse that run"),
+      });
+    } catch (error) {
+      results.push({
+        queueRecordId,
+        error: String(error?.message || error).trim(),
+      });
+    }
+  }
+  return {
+    text: renderBatchDispatchResult({
+      workflowName: command.workflowName,
+      results,
     }),
   };
 }

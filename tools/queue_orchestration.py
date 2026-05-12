@@ -13,6 +13,7 @@ def process_build_queue(
     workflow_action: str | None,
     doc_phase: str | None,
     record_id: str | None,
+    refresh_data: bool,
     bootstrap_queue_session: Callable[..., Any],
     load_pending_queue_state: Callable[..., Any],
     print_no_pending_message: Callable[..., None],
@@ -161,6 +162,7 @@ def process_build_queue(
             build_failure_writeback_fields=build_failure_writeback_fields,
             best_effort_queue_workflow_action=best_effort_queue_workflow_action,
             stderr=stderr,
+            always_refresh_data=refresh_data,
         )
         processed += result.processed_rows
         if result.failure_message:

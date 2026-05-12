@@ -36,6 +36,7 @@ def run_main(
             workflow_action=args.workflow_action,
             doc_phase=args.doc_phase,
             record_id=(args.record_id or "").strip() or None,
+            refresh_data=bool(getattr(args, "refresh_data", False)),
         )
     except RuntimeError as exc:
         print(f"[build-queue] ERROR: {exc}", file=sys.stderr)

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { dispatchCommandFlow } from "../lib/dispatch-flow.mjs";
+import { dispatchBatchCommandFlow, dispatchCommandFlow } from "../lib/dispatch-flow.mjs";
 
 const sharedDraftCommand = {
   commandName: "build-draft",
@@ -175,4 +175,87 @@ test("record-scoped commands still dedupe on the same record id", async () => {
   assert.equal(dispatchCount, 0);
   assert.match(result.text, /record_id: rec_publish/);
   assert.match(result.text, /run_id: 888/);
+});
+
+test("batch dispatch sends each queue record id independently", async () => {
+  const dispatchCalls = [];
+  const savedRecords = [];
+  const github = {
+    async findActiveRunForRecord() {
+      return null;
+    },
+    async dispatchWorkflow(payload) {
+      dispatchCalls.push(payload);
+    },
+    async findDispatchedRun({ queueRecordId }) {
+      return {
+        id: queueRecordId === "rec_en" ? 101 : 102,
+        html_url: `https://example.com/runs/${queueRecordId}`,
+      };
+    },
+  };
+  const stateStore = {
+    async saveRecord(record) {
+      savedRecords.push(record);
+      return record;
+    },
+  };
+
+  const result = await dispatchBatchCommandFlow({
+    command: sharedDraftCommand,
+    queueRecordIds: ["rec_en", "rec_fr"],
+    github,
+    stateStore,
+    settings,
+  });
+
+  assert.equal(dispatchCalls.length, 2);
+  assert.deepEqual(dispatchCalls.map((call) => call.inputs.queue_record_id), ["rec_en", "rec_fr"]);
+  assert.deepEqual(savedRecords.map((record) => record.queueRecordId), ["rec_en", "rec_en", "rec_fr", "rec_fr"]);
+  assert.match(result.text, /Feishu Draft Build Queue batch/);
+  assert.match(result.text, /matched_count: 2/);
+  assert.match(result.text, /rec_en \| accepted \| run_id=101/);
+  assert.match(result.text, /rec_fr \| accepted \| run_id=102/);
+});
+
+test("batch dispatch reuses active runs per row", async () => {
+  let dispatchCount = 0;
+  const github = {
+    async findActiveRunForRecord({ queueRecordId }) {
+      if (queueRecordId === "rec_en") {
+        return {
+          id: 201,
+          html_url: "https://example.com/runs/active",
+          status: "queued",
+        };
+      }
+      return null;
+    },
+    async dispatchWorkflow() {
+      dispatchCount += 1;
+    },
+    async findDispatchedRun() {
+      return {
+        id: 202,
+        html_url: "https://example.com/runs/new",
+      };
+    },
+  };
+  const stateStore = {
+    async saveRecord(record) {
+      return record;
+    },
+  };
+
+  const result = await dispatchBatchCommandFlow({
+    command: sharedDraftCommand,
+    queueRecordIds: ["rec_en", "rec_fr"],
+    github,
+    stateStore,
+    settings,
+  });
+
+  assert.equal(dispatchCount, 1);
+  assert.match(result.text, /rec_en \| reused \| run_id=201/);
+  assert.match(result.text, /rec_fr \| accepted \| run_id=202/);
 });

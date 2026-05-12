@@ -304,6 +304,8 @@ def process_build_queue_command(
         cmd += ["--workflow-action", "publish"]
     if isinstance(args.record_id, str) and args.record_id.strip():
         cmd += ["--record-id", args.record_id.strip()]
+    if getattr(args, "refresh_data", False):
+        cmd.append("--refresh-data")
     if args.dry_run:
         cmd.append("--dry-run")
     return cmd

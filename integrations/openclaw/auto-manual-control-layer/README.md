@@ -11,6 +11,7 @@ For local Phase 2 natural-language orchestration, the same package also ships a 
 ```bash
 node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch start-review rec_xxx
 node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch build-draft rec_xxx
+node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch build-draft "rec_en rec_fr rec_es"
 node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish rec_xxx confirm
 node integrations/openclaw/auto-manual-control-layer/cli.mjs status last
 ```
@@ -36,8 +37,8 @@ BlockClaw currently handles bounded manual operations: queue lookup, Start Revie
 
 ## Commands
 
-- `/start-review <review_init_record_id>`
-- `/build-draft <document_link_record_id>`
+- `/start-review <review_init_record_id> [more_record_ids...]`
+- `/build-draft <document_link_record_id> [more_record_ids...]`
 - `/publish <document_link_record_id> confirm`
 - `/manual-status [run_id|last]`
 
@@ -55,9 +56,11 @@ Every dispatch uses:
 - `trigger_source = openclaw`
 - `openclaw_dispatch_nonce = <uuid>`
 
-Every dispatch sends:
+Every single-row dispatch sends:
 
 - `queue_record_id = rec_xxx`
+
+Batch `start-review` and `build-draft` commands accept multiple record ids and dispatch the same workflow once per row. `Publish` intentionally stays single-row and confirmation-gated.
 
 The control layer treats the selected Feishu `record_id` as the execution identity for `start-review`, `build-draft`, and `publish`. Queue lookup can also use the optional `Task_id` field, conventionally `Document_ID + "_" + Workflow_action`, to disambiguate same-document rows before dispatch.
 For status freshness, the repo-local queue layer records the dispatch acceptance
@@ -66,7 +69,7 @@ has completed but Feishu still shows a pre-dispatch `FAILED` or `SUCCESS`, the
 reply should surface `stale_result` or `writeback_pending` instead of treating
 the old value as the current run result.
 
-The Feishu IM adapter can sit above this single-record bridge for config-scoped batch Draft asks. For example, `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案` resolves the matching triggered `Task_id` rows from the Base queue, then calls the same `build-draft <record_id>` dispatch path once per row. When no market is named, asks such as `构建JE-1000F说明书文案` use the broader `Task_id` prefix `JE-1000F_`, so every triggered Build Draft Package row for that model is eligible across markets. Versioned market-level asks such as `构建 JE-1000F_EU_1.0 的欧规说明书文案` add `Version=1.0` while still matching each configured language row. The GitHub draft workflow also scopes concurrency by `queue_record_id`, so different rows from the same batch are not cancelled as duplicate pending work.
+The Feishu IM adapter and OpenClaw plugin can sit above this record-id bridge for config-scoped batch Draft asks. For example, `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案` resolves the matching triggered `Task_id` rows from the Base queue, then calls the same `build-draft` dispatch path for each row. When no market is named, asks such as `构建JE-1000F说明书文案` use the broader `Task_id` prefix `JE-1000F_`, so every triggered Build Draft Package row for that model is eligible across markets. Versioned market-level asks such as `构建 JE-1000F_EU_1.0 的欧规说明书文案` add `Version=1.0` while still matching each configured language row. The GitHub draft workflow also scopes concurrency by `queue_record_id`, so different rows from the same batch are not cancelled as duplicate pending work.
 
 The repo-local `queue-execute` wrapper also treats a `Start Review` row that is already `InReview` with `Git_ref` as completed and returns it without a new dispatch. If an older caller still dispatches one explicit completed record, the GitHub worker exits successfully instead of reporting a false no-pending failure.
 

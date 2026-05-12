@@ -48,6 +48,20 @@ def review_init_env_names(
     return base_token_env, table_id_env, view_id_env
 
 
+def review_init_binding_values(
+    cfg: dict[str, Any],
+    *,
+    sync_phase2_cfg: Callable[[dict[str, Any]], dict[str, Any]],
+) -> tuple[str | None, str | None]:
+    review_cfg = review_init_cfg(cfg, sync_phase2_cfg=sync_phase2_cfg)
+    doc_link_cfg = document_link_cfg(cfg, sync_phase2_cfg=sync_phase2_cfg)
+    document_link_table_id = str(doc_link_cfg.get("table_id") or "").strip() or None
+    document_link_view_id = str(doc_link_cfg.get("view_id") or "").strip() or None
+    review_table_id = str(review_cfg.get("table_id") or "").strip() or None
+    review_view_id = str(review_cfg.get("view_id") or "").strip() or None
+    return document_link_table_id or review_table_id, document_link_view_id or review_view_id
+
+
 def collect_review_start_preflight_errors(
     cfg: dict[str, Any],
     *,
@@ -72,15 +86,26 @@ def collect_review_start_preflight_errors(
         errors.append(f"sync.phase2.cli_bin executable is not available: {command}")
 
     base_token_env, table_id_env, view_id_env = review_init_env_names(cfg)
+    sync_raw = cfg.get("sync", {})
+    phase2_raw = sync_raw.get("phase2", {}) if isinstance(sync_raw, dict) else {}
+    phase2_cfg = phase2_raw if isinstance(phase2_raw, dict) else {}
+    table_id, view_id = review_init_binding_values(
+        cfg,
+        sync_phase2_cfg=lambda _cfg: phase2_cfg,
+    )
     missing_env_names = [
         env_name
-        for env_name in (base_token_env, table_id_env, view_id_env or "")
+        for env_name in (
+            base_token_env,
+            "" if table_id else table_id_env,
+            "" if view_id is not None else (view_id_env or ""),
+        )
         if env_name and not str(environ.get(env_name, "")).strip()
     ]
     if not base_token_env:
         errors.append("sync.phase2.base_token_env is required")
-    if not table_id_env:
-        errors.append("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
+    if not table_id and not table_id_env:
+        errors.append("sync.phase2.document_link.table_id or sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
     if missing_env_names:
         errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
 
@@ -98,15 +123,21 @@ def resolve_review_init_binding(
     env_value: Callable[[str], str],
 ) -> ReviewInitBinding:
     base_token_env, table_id_env, view_id_env = review_init_env_names(cfg)
+    phase2_raw = cfg.get("sync", {})
+    phase2_cfg = phase2_raw.get("phase2", {}) if isinstance(phase2_raw, dict) else {}
+    table_id, view_id = review_init_binding_values(
+        cfg,
+        sync_phase2_cfg=lambda _cfg: phase2_cfg if isinstance(phase2_cfg, dict) else {},
+    )
     if not base_token_env:
         raise RuntimeError("sync.phase2.base_token_env is required")
-    if not table_id_env:
-        raise RuntimeError("sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
+    if not table_id and not table_id_env:
+        raise RuntimeError("sync.phase2.document_link.table_id or sync.phase2.document_link.table_id_env is required because review-init reuses the Document_link binding")
     return ReviewInitBinding(
         base_token_env=base_token_env,
         table_id_env=table_id_env,
         view_id_env=view_id_env,
         base_token=env_value(base_token_env),
-        table_id=env_value(table_id_env),
-        view_id=env_value(view_id_env) if view_id_env else None,
+        table_id=table_id if table_id is not None else env_value(table_id_env),
+        view_id=view_id if view_id is not None else (env_value(view_id_env) if view_id_env else None),
     )

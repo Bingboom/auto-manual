@@ -561,6 +561,7 @@ def process_build_queue(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     record_id: str | None = None,
+    refresh_data: bool = False,
 ) -> int:
     return _process_build_queue_impl(
         cfg=cfg,
@@ -571,6 +572,7 @@ def process_build_queue(
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         record_id=record_id,
+        refresh_data=refresh_data,
         bootstrap_queue_session=lambda **kwargs: _bootstrap_queue_session(module, **kwargs),
         load_pending_queue_state=_load_pending_queue_state_impl,
         print_no_pending_message=_print_no_pending_message_impl,

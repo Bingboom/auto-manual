@@ -71,6 +71,17 @@ def document_link_env_names(
     return base_token_env, table_id_env, view_id_env
 
 
+def document_link_binding_values(
+    cfg: dict[str, Any],
+    *,
+    sync_phase2_cfg: Callable[[dict[str, Any]], dict[str, Any]],
+) -> tuple[str | None, str | None]:
+    current_cfg = document_link_cfg(cfg, sync_phase2_cfg=sync_phase2_cfg)
+    table_id = str(current_cfg.get("table_id") or "").strip() or None
+    view_id = str(current_cfg.get("view_id") or "").strip() or None
+    return table_id, view_id
+
+
 def document_link_wiki_parent_token_env(
     cfg: dict[str, Any],
     *,
@@ -103,15 +114,20 @@ def collect_queue_preflight_errors(
         errors.append(f"sync.phase2.cli_bin executable is not available: {command}")
 
     base_token_env, table_id_env, view_id_env = document_link_env_names(cfg, sync_phase2_cfg=sync_phase2_cfg)
+    table_id, view_id = document_link_binding_values(cfg, sync_phase2_cfg=sync_phase2_cfg)
     missing_env_names = [
         env_name
-        for env_name in (base_token_env, table_id_env, view_id_env or "")
+        for env_name in (
+            base_token_env,
+            "" if table_id else table_id_env,
+            "" if view_id is not None else (view_id_env or ""),
+        )
         if env_name and not str(environ.get(env_name, "")).strip()
     ]
     if not base_token_env:
         errors.append("sync.phase2.document_link.base_token_env is required, or provide sync.phase2.base_token_env")
-    if not table_id_env:
-        errors.append("sync.phase2.document_link.table_id_env is required")
+    if not table_id and not table_id_env:
+        errors.append("sync.phase2.document_link.table_id or sync.phase2.document_link.table_id_env is required")
     if missing_env_names:
         errors.append("Required environment variables are not set: " + ", ".join(missing_env_names))
     return errors
@@ -126,19 +142,20 @@ def resolve_document_link_binding(
     environ: dict[str, str] | os._Environ[str],
 ) -> Any:
     base_token_env, table_id_env, view_id_env = document_link_env_names(cfg, sync_phase2_cfg=sync_phase2_cfg)
+    table_id, view_id = document_link_binding_values(cfg, sync_phase2_cfg=sync_phase2_cfg)
     wiki_parent_token_env = document_link_wiki_parent_token_env(cfg, sync_phase2_cfg=sync_phase2_cfg)
     if not base_token_env:
         raise RuntimeError("sync.phase2.document_link.base_token_env is required, or provide sync.phase2.base_token_env")
-    if not table_id_env:
-        raise RuntimeError("sync.phase2.document_link.table_id_env is required")
+    if not table_id and not table_id_env:
+        raise RuntimeError("sync.phase2.document_link.table_id or sync.phase2.document_link.table_id_env is required")
     return binding_factory(
         base_token_env=base_token_env,
         table_id_env=table_id_env,
         view_id_env=view_id_env,
         wiki_parent_token_env=wiki_parent_token_env,
         base_token=env_value(base_token_env),
-        table_id=env_value(table_id_env),
-        view_id=env_value(view_id_env) if view_id_env else None,
+        table_id=table_id if table_id is not None else env_value(table_id_env),
+        view_id=view_id if view_id is not None else (env_value(view_id_env) if view_id_env else None),
         wiki_parent_token=env_value(wiki_parent_token_env) if wiki_parent_token_env and str(environ.get(wiki_parent_token_env, "")).strip() else None,
     )
 

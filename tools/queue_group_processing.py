@@ -61,6 +61,7 @@ def process_queue_record_group(
     build_failure_writeback_fields: Callable[..., dict[str, Any]],
     best_effort_queue_workflow_action: Callable[[Any], str | None],
     stderr: Any,
+    always_refresh_data: bool = False,
 ) -> QueueGroupProcessingResult:
     record = group[0]
     word_output_path: Path | None = None
@@ -80,7 +81,7 @@ def process_queue_record_group(
         group_build_family = queue_group_build_family(group)
         dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
         dingtalk_operator_union_id = queue_group_operator_union_id(group)
-        force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        force_phase2_refresh = bool(always_refresh_data) or queue_group_force_phase2_refresh(group)
         upload_dingtalk = queue_group_upload_dingtalk(group)
         data_sync_status = "skipped"
         effective_doc_phase = resolve_queue_workflow_action(record)
@@ -173,7 +174,7 @@ def process_queue_record_group(
             )
             try:
                 sync_phase2_snapshot_before_queue(
-                    config_path=config_path,
+                    config_path=resolved_config_path,
                     data_root=data_root,
                 )
             except Exception:

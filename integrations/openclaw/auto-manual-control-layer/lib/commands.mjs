@@ -6,6 +6,10 @@ function dispatchUsageExample(commandName) {
   return commandName === "publish" ? "/publish rec_xxx confirm" : `/${commandName || "build-draft"} rec_xxx`;
 }
 
+function dispatchUsageNoun(commandName) {
+  return commandName === "publish" ? "one record id" : "one or more record ids";
+}
+
 export function ensureRecordId(rawArgs) {
   const value = (rawArgs || "").trim();
   if (!value) {
@@ -32,20 +36,22 @@ export function ensureDispatchArgs(commandName, rawArgs) {
   const normalizedCommand = String(commandName || "").trim().toLowerCase();
   const tokens = String(rawArgs || "")
     .trim()
-    .split(/\s+/)
+    .split(/[\s,，、]+/)
     .filter(Boolean);
   if (!tokens.length) {
-    throw new Error(`Provide one record id, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
+    throw new Error(`Provide ${dispatchUsageNoun(normalizedCommand)}, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
   }
 
-  let queueRecordId = "";
+  const queueRecordIds = [];
   let publishConfirmed = false;
   for (const token of tokens) {
     if (RECORD_ID_PATTERN.test(token)) {
-      if (queueRecordId) {
+      if (normalizedCommand === "publish" && queueRecordIds.length) {
         throw new Error("Provide only one record id per dispatch.");
       }
-      queueRecordId = token;
+      if (!queueRecordIds.includes(token)) {
+        queueRecordIds.push(token);
+      }
       continue;
     }
     if (normalizedCommand === "publish" && PUBLISH_CONFIRMATION_TOKENS.has(token.toLowerCase())) {
@@ -55,16 +61,16 @@ export function ensureDispatchArgs(commandName, rawArgs) {
     if (normalizedCommand === "publish") {
       throw new Error("Publish requires `/publish rec_xxx confirm`.");
     }
-    throw new Error("Provide one record id, for example `/build-draft rec_xxx`.");
+    throw new Error(`Provide ${dispatchUsageNoun(normalizedCommand)}, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
   }
 
-  if (!queueRecordId) {
-    throw new Error(`Provide one record id, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
+  if (!queueRecordIds.length) {
+    throw new Error(`Provide ${dispatchUsageNoun(normalizedCommand)}, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
   }
   if (normalizedCommand === "publish" && !publishConfirmed) {
     throw new Error("Publish requires explicit confirmation. Use `/publish rec_xxx confirm`.");
   }
-  return { queueRecordId, publishConfirmed };
+  return { queueRecordId: queueRecordIds[0], queueRecordIds, publishConfirmed };
 }
 
 export function renderMissingConfig(missingFields) {
@@ -110,6 +116,26 @@ export function renderDuplicateRun({ workflowName, queueRecordId, runId, runUrl,
     lines.push(`run: ${runUrl}`);
   }
   lines.push("A matching queue worker is already active, so this dispatch will reuse that run.");
+  return lines.join("\n");
+}
+
+export function renderBatchDispatchResult({ workflowName, results }) {
+  const rows = Array.isArray(results) ? results : [];
+  const lines = [
+    `${workflowName} batch`,
+    `matched_count: ${rows.length}`,
+  ];
+  for (const row of rows) {
+    const status = row.error ? "failed" : row.reused ? "reused" : "accepted";
+    const pieces = [
+      row.queueRecordId,
+      status,
+      row.runId ? `run_id=${row.runId}` : "",
+      row.runUrl ? `run=${row.runUrl}` : "",
+      row.error ? `error=${row.error}` : "",
+    ].filter(Boolean);
+    lines.push(`- ${pieces.join(" | ")}`);
+  }
   return lines.join("\n");
 }
 

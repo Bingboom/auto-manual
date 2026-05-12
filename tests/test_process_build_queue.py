@@ -1172,6 +1172,27 @@ class TestProcessBuildQueue(unittest.TestCase):
             obj_type="bitable",
         )
 
+    def test_resolve_document_link_binding_should_accept_literal_table_and_view_ids(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "base_token_env": "BASE_TOKEN",
+                    "document_link": {
+                        "table_id": "tblRYqehyCLXbani",
+                        "view_id": "veweL1pCUs",
+                        "table_id_env": "DOCUMENT_LINK_TABLE",
+                        "view_id_env": "DOCUMENT_LINK_VIEW",
+                    },
+                }
+            }
+        }
+
+        with mock.patch.dict(process_build_queue.os.environ, {"BASE_TOKEN": "app_token"}, clear=True):
+            binding = process_build_queue.resolve_document_link_binding(cfg)
+
+        self.assertEqual("tblRYqehyCLXbani", binding.table_id)
+        self.assertEqual("veweL1pCUs", binding.view_id)
+
     def test_move_drive_file_to_wiki_should_return_wiki_url_from_async_task(self) -> None:
         observed_args: list[list[str]] = []
 
@@ -1922,7 +1943,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(0, exit_code)
         sync_mock.assert_called_once_with(
-            config_path=Path("config.yaml"),
+            config_path=Path("config.us-en.yaml"),
             data_root="data/phase2",
         )
         self.assertEqual(1, len(fetch_calls))
@@ -1994,6 +2015,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             sync_mock,
         ), mock.patch.object(
             process_build_queue,
+            "resolve_config_path_for_task",
+            return_value=Path("config.us-en.yaml"),
+        ), mock.patch.object(
+            process_build_queue,
             "resolve_wiki_destination",
             return_value=process_build_queue.WikiDestination(
                 space_id="space_123",
@@ -2013,7 +2038,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(1, exit_code)
         sync_mock.assert_called_once_with(
-            config_path=Path("config.yaml"),
+            config_path=Path("config.us-en.yaml"),
             data_root="data/phase2",
         )
         self.assertEqual(1, len(captured_upserts))

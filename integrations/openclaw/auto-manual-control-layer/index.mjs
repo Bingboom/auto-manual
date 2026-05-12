@@ -7,7 +7,7 @@ import {
 } from "./lib/commands.mjs";
 import { COMMAND_DEFINITIONS } from "./lib/constants.mjs";
 import { loadSettings, missingSettings } from "./lib/config.mjs";
-import { dispatchCommandFlow, resolveTrackedRun } from "./lib/dispatch-flow.mjs";
+import { dispatchBatchCommandFlow, dispatchCommandFlow, resolveTrackedRun } from "./lib/dispatch-flow.mjs";
 import { createGitHubClient } from "./lib/github-client.mjs";
 import { createStateStore } from "./lib/state-store.mjs";
 
@@ -18,18 +18,20 @@ async function dispatchCommand(ctx, api, command) {
     return { text: renderMissingConfig(missing) };
   }
 
-  let queueRecordId;
+  let dispatchArgs;
   try {
-    queueRecordId = ensureDispatchArgs(command.commandName, ctx.args).queueRecordId;
+    dispatchArgs = ensureDispatchArgs(command.commandName, ctx.args);
   } catch (error) {
     return { text: error.message };
   }
 
   const github = createGitHubClient(settings);
   const stateStore = createStateStore(settings.stateFile);
-  const result = await dispatchCommandFlow({
+  const flow = dispatchArgs.queueRecordIds.length > 1 ? dispatchBatchCommandFlow : dispatchCommandFlow;
+  const result = await flow({
     command,
-    queueRecordId,
+    queueRecordId: dispatchArgs.queueRecordId,
+    queueRecordIds: dispatchArgs.queueRecordIds,
     github,
     stateStore,
     settings,
@@ -39,7 +41,7 @@ async function dispatchCommand(ctx, api, command) {
       .split("\n")
       .find((line) => line.startsWith("run_id:"));
     const runId = runIdLine ? runIdLine.split(":")[1].trim() : "";
-    api.logger?.info?.(`Dispatched ${command.workflowFile} for ${queueRecordId} -> run ${runId}`);
+    api.logger?.info?.(`Dispatched ${command.workflowFile} for ${dispatchArgs.queueRecordId} -> run ${runId}`);
   }
   return result;
 }
