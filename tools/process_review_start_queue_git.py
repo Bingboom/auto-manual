@@ -225,6 +225,7 @@ def ensure_review_bundle_on_branch(
             config_path=worktree_config_path,
             model=model,
             region=region,
+            data_root=data_root,
             refresh_review=True,
         ),
         root=root,

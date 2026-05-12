@@ -217,6 +217,25 @@ class TestSyncData(unittest.TestCase):
             sync_data.TABLE_SCHEMAS["variable_lang_overrides"].columns,
         )
 
+    def test_symbols_blocks_should_normalize_model_multiselect_cells(self) -> None:
+        rows = sync_data.normalize_records(
+            sync_data.TABLE_SCHEMAS["symbols_blocks"],
+            [
+                {
+                    "fields": {
+                        "page_id": "symbols",
+                        "Market": [{"text": "US"}, {"text": "EU"}],
+                        "Model": [{"text": "JE-1000F"}, {"text": "JE-2000E"}],
+                        "block_type": "table_row",
+                        "order": 1,
+                    }
+                }
+            ],
+        )
+
+        self.assertEqual("US, EU", rows[0]["Market"])
+        self.assertEqual("JE-1000F, JE-2000E", rows[0]["Model"])
+
     def test_collect_sync_preflight_errors_should_report_missing_cli_and_envs_together(self) -> None:
         cfg = {
             "sync": {
