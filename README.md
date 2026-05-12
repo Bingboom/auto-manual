@@ -1,7 +1,3 @@
-![GitHub last commit](https://github.com/Bingboom/auto-manual)
-![GitHub repo size](https://github.com/Bingboom/auto-manual)
-
-
 # Auto-Manual Tool
 
 Updated: 2026-04-27
