@@ -113,20 +113,17 @@ Funzione di ripristino delle uscite CA e CC
 
 La funzione di ripristino delle uscite CA e CC è disattivata per impostazione predefinita. Attivare questa funzione nell’App Jackery per consentire al dispositivo di memorizzare lo stato delle uscite CA e CC e ripristinare automaticamente le uscite CA e CC in condizioni definite.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 50 50
-
-   * - Condizioni di ripristino automatico
-     - Condizioni senza ripristino automatico
-   * - Accensione/Riavvio dopo lo spegnimento o il riavvio
-     - Spegnimento manuale delle uscite (pulsante/App)
-   * - SOC della batteria ≥ limite di scarica +10% dopo aver raggiunto il limite
-     - Spegnimento delle uscite in modalità risparmio energetico
-   * -
-     - Spegnimento delle uscite attivato da protezione
-   * - Aggiornamento OTA completato
-     - Spegnimento delle uscite attivato dal timer di scarica
++------------------------------------------------------------------------+------------------------------------------------------------------+
+| Condizioni di ripristino automatico                                    | Condizioni senza ripristino automatico                           |
++========================================================================+==================================================================+
+| Accensione/Riavvio dopo lo spegnimento o il riavvio                    | Spegnimento manuale delle uscite (pulsante/App)                  |
++------------------------------------------------------------------------+------------------------------------------------------------------+
+| SOC batteria ≥ limite di scarica +10% al raggiungimento del limite     | Spegnimento delle uscite in modalità risparmio energetico        |
+|                                                                        +------------------------------------------------------------------+
+|                                                                        | Spegnimento delle uscite attivato da protezione                  |
++------------------------------------------------------------------------+------------------------------------------------------------------+
+| Aggiornamento OTA completato                                           | Spegnimento delle uscite attivato dal timer di scarica           |
++------------------------------------------------------------------------+------------------------------------------------------------------+
 
 SCHERMO LCD
 -----------

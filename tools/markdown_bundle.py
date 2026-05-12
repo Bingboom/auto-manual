@@ -41,12 +41,19 @@ def _rewrite_local_file_uris_to_relative(markdown_path: Path) -> None:
     base_dir = markdown_path.parent.resolve()
     text = markdown_path.read_text(encoding="utf-8")
 
+    def local_path_from_uri(raw_uri: str) -> Path:
+        parsed = urlparse(raw_uri)
+        path_text = unquote(parsed.path)
+        if os.name == "nt" and re.match(r"^/[A-Za-z]:", path_text):
+            path_text = path_text[1:]
+        return Path(path_text).resolve()
+
     def replace(match: re.Match[str]) -> str:
         raw_uri = match.group(0)
         parsed = urlparse(raw_uri)
         if parsed.scheme.lower() != "file":
             return raw_uri
-        local_path = Path(unquote(parsed.path)).resolve()
+        local_path = local_path_from_uri(raw_uri)
         try:
             relative_path = local_path.relative_to(base_dir)
         except ValueError:

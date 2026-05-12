@@ -139,7 +139,7 @@ For structured manuals, the RTD build should generate Markdown from the same
 target bundle used by publish:
 
 ```text
-RTD build job -> build.py md -> generated MyST source tree -> Sphinx/MyST HTML
+RTD build job -> build.py md target(s) -> RTD catalog assembly -> Sphinx/MyST HTML
 ```
 
 The initial hosted target can stay narrow, such as the default US English runtime
@@ -153,13 +153,15 @@ host.
 
 Implementation decision:
 
-- the target-scoped `md` directory is the MyST source directory and the RTD
-  publishing source directory
+- the target-scoped `md` directory remains the generated MyST source directory
+  for one manual
 - `build.py md` writes the manual Markdown, `index.md`, `conf.py`, and local
   `assets/` into that same directory
-- RTD runs `build.py md` first, then points Sphinx directly at
-  `docs/_build/<model>/<region>/<lang>/md/`
-- there is no separate copied RTD assembly directory for generated manuals
+- RTD runs `build.py md` for each published target, then uses
+  `tools/readthedocs_source.py` to copy those generated manual trees under
+  `docs/_build/rtd/`, write one homepage `index.md`, and keep one root `conf.py`
+- Sphinx points at `docs/_build/rtd/` so the hosted site can index multiple
+  generated manuals from one homepage
 
 ### 4.2 Existing Markdown manual lane
 
@@ -235,15 +237,15 @@ Exit criteria:
 
 - Add a MyST-capable RTD source layout.
 - Add `myst-parser` to Python documentation dependencies.
-- Add an RTD build step that generates the target-scoped MyST `md` directory
-  before Sphinx builds HTML from that same directory.
+- Add an RTD build step that generates target-scoped MyST `md` directories,
+  assembles them into one RTD catalog source, then builds HTML from that source.
 - Keep the existing RTD baseline stable while the MyST tree is introduced.
 - Add a smoke build for the default hosted target.
 
 Exit criteria:
 
 - RTD can build the default generated manual from MyST Markdown.
-- The generated `md` directory can be used directly as the RTD Sphinx source.
+- The generated `md` directories can be collected into one RTD Sphinx source.
 - The site navigation can include generated manuals and migrated Markdown manuals.
 
 ### Phase 4: Batch migration of existing Markdown manuals
@@ -293,8 +295,8 @@ These decisions should be made when Phase 3 continues:
 
 - whether generated publish Markdown should be hosted as one page per manual or
   split into one page per chapter
-- how many model / region / language targets should appear in the first public
-  RTD navigation
+- the long-term model / region / language navigation beyond the initial generated
+  RTD catalog
 - whether legacy Markdown migration should preserve original file names or use
   normalized slugs immediately
 

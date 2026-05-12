@@ -3,21 +3,36 @@
    ANSCHLUSS AN BATTERIEPACK(S) (SEPARAT ERHÄLTLICH)
    ================================================
 
-   Dieses Produkt unterstützt bis zu 5 Batteriepacks, um einen hohen Leistungsbedarf zu decken. Weitere Informationen zur Verwendung finden Sie im *Jackery Battery Pack 2000 Benutzerhandbuch*.
+   Dieses Produkt unterstützt bis zu 5 Batteriepacks, um den Bedarf an großer Energiekapazität zu decken. Weitere Informationen zur Verwendung finden Sie im *Jackery Battery Pack 2000 Benutzerhandbuch*.
 
    .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
       :alt: Abbildung der Batteriepack-Verbindung als Platzhalter.
       :width: 360px
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 12 88
+   .. only:: region_us
 
-      * - **VORSICHT**
-        - - Stellen Sie sicher, dass alle Produkte ausgeschaltet sind, bevor Sie den HomePower 2000 Plus mit dem Jackery Battery Pack 2000 verbinden.
-          - Um einen ordnungsgemäßen Betrieb des Produkts sicherzustellen, müssen die Lufteinlass- und Luftauslassöffnungen auf beiden Seiten frei bleiben. Lassen Sie mindestens 200 mm Abstand zwischen den Öffnungen und anderen Gegenständen, damit eine ausreichende Wärmeableitung gewährleistet ist.
-          - Wenn das Produkt mit angeschlossenen Batteriepacks verwendet wird, beträgt die Standard-Maximalanzahl der gestapelten Batteriepacks 3, und das Produkt muss auf einer ebenen, stabilen und ausreichend tragfähigen Oberfläche stehen.
-          - Wenn 4 oder mehr Batteriepacks gestapelt werden müssen, muss das Produkt an einem stabilen, an der Wand anliegenden Ort aufgestellt und vor äußeren Einwirkungen geschützt werden, und es müssen die erforderlichen Kipp-Sicherungsmaßnahmen getroffen werden.
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **VORSICHT**
+           - - Stellen Sie sicher, dass alle Produkte ausgeschaltet sind, bevor Sie den HomePower 2000 Plus mit dem Jackery Battery Pack 2000 verbinden.
+             - Um einen ordnungsgemäßen Betrieb des Produkts sicherzustellen, müssen die Lufteinlass- und Luftauslassöffnungen auf beiden Seiten frei bleiben. Lassen Sie mindestens 0,66 ft (etwa 200 mm) Abstand zwischen den Öffnungen und anderen Gegenständen, damit eine ausreichende Wärmeableitung gewährleistet ist.
+             - Wenn das Produkt mit angeschlossenen Batteriepacks verwendet wird, beträgt die Standard-Maximalanzahl der gestapelten Batteriepacks 3, und das Produkt muss auf einer ebenen, stabilen und ausreichend tragfähigen Oberfläche stehen.
+             - Wenn 4 oder mehr Batteriepacks gestapelt werden müssen, muss das Produkt an einem stabilen, an der Wand anliegenden Ort aufgestellt und vor äußeren Einwirkungen geschützt werden, und es müssen die erforderlichen Kipp-Sicherungsmaßnahmen getroffen werden.
+
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **VORSICHT**
+           - - Stellen Sie sicher, dass alle Produkte ausgeschaltet sind, bevor Sie den HomePower 2000 Plus mit dem Jackery Battery Pack 2000 verbinden.
+             - Um einen ordnungsgemäßen Betrieb des Produkts sicherzustellen, müssen die Lufteinlass- und Luftauslassöffnungen auf beiden Seiten frei bleiben. Lassen Sie mindestens 200 mm Abstand zwischen den Öffnungen und anderen Gegenständen, damit eine ausreichende Wärmeableitung gewährleistet ist.
+             - Wenn das Produkt mit angeschlossenen Batteriepacks verwendet wird, beträgt die Standard-Maximalanzahl der gestapelten Batteriepacks 3, und das Produkt muss auf einer ebenen, stabilen und ausreichend tragfähigen Oberfläche stehen.
+             - Wenn 4 oder mehr Batteriepacks gestapelt werden müssen, muss das Produkt an einem stabilen, an der Wand anliegenden Ort aufgestellt und vor äußeren Einwirkungen geschützt werden, und es müssen die erforderlichen Kipp-Sicherungsmaßnahmen getroffen werden.
 
    .. list-table::
       :header-rows: 0

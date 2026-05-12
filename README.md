@@ -264,10 +264,10 @@ Vercel note:
 
 Read the Docs note:
 
-- [`.readthedocs.yaml`](.readthedocs.yaml) now provides a minimal RTD entrypoint for the default runtime MyST manual only: `config.us-en.yaml + JE-1000F + US + en`
-- the RTD job runs `python build.py md --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then points Sphinx at [`docs/_build/JE-1000F/US/en/md/`](docs/_build) instead of a copied publishing tree
-- `build.py md` writes `conf.py`, `index.md`, the manual Markdown, and the sibling `assets/` folder into the same target-scoped `md` directory; that directory is the MyST storage location and the RTD source directory
-- RTD is for a stable public reading target only; it does not replace review-preview packaging, queue-driven Publish releases, Vercel latest-publish hosting, or Word / PDF export
+- [`.readthedocs.yaml`](.readthedocs.yaml) builds a generated RTD catalog for the current public runtime manuals: `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`
+- the RTD job installs the system `pandoc` package, runs `python build.py md` for each published target, then runs [`tools/readthedocs_source.py`](tools/readthedocs_source.py) to assemble [`docs/_build/rtd/`](docs/_build) as the Sphinx source with a top-level link-only `index.md` manual directory and publish each manual's nested `assets/` folder
+- `build.py md` still writes each target-scoped manual Markdown tree with `conf.py`, `index.md`, the manual Markdown, and local `assets/`; the RTD assembler copies those generated trees under `docs/_build/rtd/` and keeps one root `conf.py`
+- RTD is for the stable public reading catalog only; it does not replace review-preview packaging, queue-driven Publish releases, Vercel latest-publish hosting, or Word / PDF export
 
 Windows note:
 
@@ -335,7 +335,7 @@ Use the document that owns the topic:
 ## 5. Key Directories
 
 - [`build.py`](build.py): top-level CLI entrypoint
-- [`.readthedocs.yaml`](.readthedocs.yaml): minimal Read the Docs build config for the default US English runtime MyST target
+- [`.readthedocs.yaml`](.readthedocs.yaml): Read the Docs build config for the generated MyST manual catalog
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack

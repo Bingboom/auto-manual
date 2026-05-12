@@ -484,9 +484,9 @@ Vercel note:
 
 Read the Docs note:
 
-- [`.readthedocs.yaml`](../.readthedocs.yaml) is the minimal RTD path for one stable public MyST-backed HTML target: `config.us-en.yaml --model JE-1000F --region US --source runtime`
-- RTD uses `python build.py md --config config.us-en.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index`, then renders the generated MyST source directory at [`../docs/_build/JE-1000F/US/en/md/`](../docs/_build) with `python -m sphinx -b html`
-- do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; the generated `md` directory is both the MyST storage location and the RTD source directory
+- [`.readthedocs.yaml`](../.readthedocs.yaml) is the RTD catalog path for the current generated public manuals: `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`
+- RTD installs the system `pandoc` package, runs `python build.py md` for each catalog target, then runs [`../tools/readthedocs_source.py`](../tools/readthedocs_source.py) to assemble [`../docs/_build/rtd/`](../docs/_build) with one link-only root `index.md` that lists the generated manual entries and publishes each manual's nested `assets/` folder
+- do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; `docs/_build/rtd/` is the generated Sphinx source for the catalog, and each target-scoped `md` directory remains the generated MyST source for one manual
 - RTD does not publish `_review`, queue-driven Publish HTML, or Word / PDF artifacts; keep Vercel and release outputs as the formal publish path
 
 ### 3.7 Publish a Final Word Release
@@ -527,9 +527,10 @@ Latest publish HTML site:
 
 - [`../site/publish-latest/dist/`](../site/publish-latest/dist)
 
-Read the Docs bundle source for the current minimal public build:
+Read the Docs bundle source for the generated public catalog:
 
-- [`../docs/_build/JE-1000F/US/en/md/`](../docs/_build)
+- [`../docs/_build/rtd/`](../docs/_build)
+- per-manual entries under `../docs/_build/rtd/<model>/<region>/md/`
 
 Revision reports:
 

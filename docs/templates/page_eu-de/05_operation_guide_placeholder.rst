@@ -113,20 +113,17 @@ Wiederaufnahmefunktion für AC- und DC-Ausgänge
 
 Die Wiederaufnahmefunktion für AC- und DC-Ausgänge ist standardmäßig deaktiviert. Aktivieren Sie diese Funktion in der Jackery-App, damit das Gerät den Status der AC- und DC-Ausgänge speichert und die AC- und DC-Ausgänge unter festgelegten Bedingungen automatisch wiederherstellt.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 50 50
-
-   * - Bedingungen für automatische Wiederherstellung
-     - Bedingungen ohne automatische Wiederherstellung
-   * - Einschalten/Neustart nach Abschalten oder Neustart
-     - Manuelles Ausschalten der Ausgänge (Taste/App)
-   * - Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze
-     - Ausgang im Energiesparmodus deaktiviert
-   * -
-     - Schutzbedingter Ausgang deaktiviert
-   * - OTA-Update abgeschlossen
-     - Durch Entlade-Timer gesteuerter Ausgang deaktiviert
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Bedingungen für automatische Wiederherstellung                    | Bedingungen ohne automatische Wiederherstellung             |
++===================================================================+=============================================================+
+| Einschalten/Neustart nach Abschalten oder Neustart                | Manuelles Ausschalten der Ausgänge (Taste/App)              |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze       | Ausgang im Energiesparmodus deaktiviert                     |
+|                                                                   +-------------------------------------------------------------+
+|                                                                   | Schutzbedingter Ausgang deaktiviert                         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
 
 LCD-ANZEIGE
 -----------
