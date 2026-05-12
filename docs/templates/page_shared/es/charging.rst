@@ -1,3 +1,47 @@
+.. only:: model_je_2000e
+
+   CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS (SE VENDEN POR SEPARADO)
+   ================================================================
+
+   Este producto puede soportar hasta 5 paquetes de baterías para satisfacer la necesidad de una gran capacidad de energía. Para detalles sobre su uso, consulte el *manual de usuario del Jackery Battery Pack 2000*.
+
+   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      :alt: Diagrama de conexión del paquete de baterías.
+      :width: 360px
+
+   .. only:: region_us
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **PRECAUCIÓN**
+           - - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
+             - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
+             - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
+             - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
+
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **PRECAUCIÓN**
+           - - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
+             - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 200 mm de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
+             - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
+             - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 34 33 33
+
+      * - **Jackery Battery Pack 2000**
+        - **Cable de expansión**
+        - **Documentos**
+
 CARGANDO
 ========
 
@@ -16,33 +60,6 @@ Cuando la carga en la pared de CA y la carga solar están activadas al mismo tie
      - - La temperatura de carga recomendada para el producto es de |CHARGING_TEMPERATURE_VALUE_1|, y la temperatura de descarga es de |DISCHARGING_TEMPERATURE_VALUE_1|.
        - Operar el producto fuera de este rango de temperatura puede limitar sus capacidades de carga y descarga, e incluso impedir la carga o descarga.
        - La potencia de carga y la capacidad de la batería del producto pueden variar debido a las fluctuaciones de temperatura.
-
-
-.. only:: model_je_2000e
-
-   CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS (SE VENDEN POR SEPARADO)
-   ----------------------------------------------------------------
-
-   Este producto puede soportar hasta 5 paquetes de baterías para satisfacer la necesidad de una gran capacidad de energía. Para detalles sobre su uso, consulte el manual de usuario del Jackery Battery Pack 2000.
-
-   .. only:: region_us
-
-      **PRECAUCIÓN**
-
-      - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
-      - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
-      - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
-      - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
-
-
-   .. only:: region_eu
-
-      **PRECAUCIÓN**
-
-      - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
-      - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 200 mm de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
-      - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
-      - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
 
 CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED ALTERNA
 -----------------------------------------------------

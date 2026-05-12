@@ -9,15 +9,30 @@
       :alt: Segnaposto diagramma di collegamento al battery pack.
       :width: 360px
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 12 88
+   .. only:: region_us
 
-      * - **ATTENZIONE**
-        - - Assicurarsi che tutti i prodotti siano spenti prima di collegare HomePower 2000 Plus a Jackery Battery Pack 2000.
-          - Per garantire il corretto funzionamento del prodotto, assicurarsi che le aperture di ingresso e uscita dell'aria su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le aperture e qualsiasi oggetto per consentire una corretta dissipazione del calore.
-          - Quando il prodotto viene utilizzato con battery pack collegati, il numero massimo predefinito di battery pack impilati e 3, e il prodotto deve essere collocato su una superficie piana e stabile con sufficiente capacita di carico.
-          - Se occorre impilare 4 o piu battery pack, il prodotto deve essere collocato in un'area stabile contro una parete e protetto dagli urti esterni, adottando le necessarie misure di fissaggio antiribaltamento.
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **ATTENZIONE**
+           - - Assicurarsi che tutti i prodotti siano spenti prima di collegare HomePower 2000 Plus a Jackery Battery Pack 2000.
+             - Per garantire il corretto funzionamento del prodotto, assicurarsi che le aperture di ingresso e uscita dell'aria su entrambi i lati non siano ostruite. Lasciare almeno 0,66 piedi (circa 200 mm) di spazio tra le aperture e qualsiasi oggetto per consentire una corretta dissipazione del calore.
+             - Quando il prodotto viene utilizzato con battery pack collegati, il numero massimo predefinito di battery pack impilati e 3, e il prodotto deve essere collocato su una superficie piana e stabile con sufficiente capacita di carico.
+             - Se occorre impilare 4 o piu battery pack, il prodotto deve essere collocato in un'area stabile contro una parete e protetto dagli urti esterni, adottando le necessarie misure di fissaggio antiribaltamento.
+
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 12 88
+
+         * - **ATTENZIONE**
+           - - Assicurarsi che tutti i prodotti siano spenti prima di collegare HomePower 2000 Plus a Jackery Battery Pack 2000.
+             - Per garantire il corretto funzionamento del prodotto, assicurarsi che le aperture di ingresso e uscita dell'aria su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le aperture e qualsiasi oggetto per consentire una corretta dissipazione del calore.
+             - Quando il prodotto viene utilizzato con battery pack collegati, il numero massimo predefinito di battery pack impilati e 3, e il prodotto deve essere collocato su una superficie piana e stabile con sufficiente capacita di carico.
+             - Se occorre impilare 4 o piu battery pack, il prodotto deve essere collocato in un'area stabile contro una parete e protetto dagli urti esterni, adottando le necessarie misure di fissaggio antiribaltamento.
 
    .. list-table::
       :header-rows: 0
