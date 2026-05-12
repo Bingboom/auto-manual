@@ -161,17 +161,12 @@ def import_markdown_to_cloud_doc(
             "docx",
         ],
     )
-    cloud_doc_url = _first_nested_string(
-        payload,
-        {"url", "file_url", "doc_url", "document_url", "cloud_doc_url"},
-        url_only=True,
-    )
+    url_keys = {"url", "file_url", "doc_url", "document_url", "cloud_doc_url"}
+    cloud_doc_url = _first_nested_string(payload, url_keys, url_only=True)
     if not cloud_doc_url:
         raise RuntimeError("Markdown import response is missing cloud document url")
-    cloud_doc_token = _first_nested_string(
-        payload,
-        {"token", "doc_token", "document_token", "obj_token", "file_token"},
-    )
+    token_keys = {"token", "doc_token", "document_token", "obj_token", "file_token"}
+    cloud_doc_token = _first_nested_string(payload, token_keys)
     return cloud_doc_token, cloud_doc_url
 
 
