@@ -1,0 +1,4 @@
+topic_id,topic_type,page,section,section_order,product_family,status,description
+spec.general_info,spec_section,specifications,GENERAL INFO,1,JE-1000F,active,Identity and general battery information
+spec.input_ports,spec_section,specifications,INPUT PORTS,2,JE-1000F,active,Charging and DC input rows
+spec.output_ports,spec_section,specifications,OUTPUT PORTS,3,JE-1000F,active,AC USB and DC output rows
