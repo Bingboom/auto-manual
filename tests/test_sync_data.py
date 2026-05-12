@@ -2,6 +2,7 @@
 
 import csv
 import json
+import subprocess
 import tempfile
 import unittest
 from datetime import datetime, timezone
@@ -996,8 +997,29 @@ class TestSyncData(unittest.TestCase):
         self.assertIn("tbl_titles", seen_commands[1])
         self.assertIn("--view-id", seen_commands[1])
         self.assertIn("view_titles", seen_commands[1])
+        limit_index = seen_commands[1].index("--limit")
+        self.assertEqual("200", seen_commands[1][limit_index + 1])
         self.assertIn("--offset", seen_commands[2])
         self.assertIn("1", seen_commands[2])
+
+    def test_lark_cli_source_should_include_cli_output_when_command_fails(self) -> None:
+        source = sync_data.LarkCliSource(cli_bin="lark-cli")
+
+        def fake_run(*_: object, **__: object) -> mock.Mock:
+            raise subprocess.CalledProcessError(
+                2,
+                ["lark-cli", "base", "+record-list"],
+                output="api stdout",
+                stderr="api stderr",
+            )
+
+        with mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+            with self.assertRaisesRegex(RuntimeError, "exit code 2") as exc_info:
+                source._run_base_command(args=["+record-list"])
+
+        message = str(exc_info.exception)
+        self.assertIn("stdout=api stdout", message)
+        self.assertIn("stderr=api stderr", message)
 
     def test_lark_cli_source_should_expand_truncated_field_names_via_field_ids(self) -> None:
         source = sync_data.LarkCliSource(cli_bin="lark-cli")

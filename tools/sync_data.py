@@ -205,14 +205,23 @@ class LarkCliSource:
             "base",
             *args,
         ]
-        proc = subprocess.run(
-            cmd,
-            cwd=str(ROOT),
-            check=True,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-        )
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=str(ROOT),
+                check=True,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+        except subprocess.CalledProcessError as exc:
+            details = []
+            if exc.stdout:
+                details.append(f"stdout={exc.stdout.strip()}")
+            if exc.stderr:
+                details.append(f"stderr={exc.stderr.strip()}")
+            suffix = "; " + "; ".join(details) if details else ""
+            raise RuntimeError(f"Lark CLI base command failed with exit code {exc.returncode}{suffix}") from exc
         payload = _parse_json_payload(proc.stdout)
         code = payload.get("code")
         if code not in (None, 0):
@@ -370,7 +379,7 @@ class LarkCliSource:
     ) -> list[dict[str, Any]]:
         records: list[dict[str, Any]] = []
         offset = 0
-        limit = 500
+        limit = 200
         field_name_map = self._field_name_map(base_token=base_token, table_id=table_id)
         while True:
             payload = self._run_record_list(
