@@ -114,17 +114,17 @@ Función de reanudación de Salida de CA y CC
 
 La función de reanudación de salida de CA/CC está desactivada de forma predeterminada. Active esta función en la aplicación para que el dispositivo memorice el estado de salida de CA/CC y reanude automáticamente las salidas de CA y CC en las condiciones definidas.
 
-+-----------------------------------------------------------------------+----------------------------------------------------------+
-| Condiciones de reanudación automática                                 | Condiciones sin reanudación automática                   |
-+=======================================================================+==========================================================+
-| Encendido/Reiniciar después de apagado o reinicio                     | Apagado manual de la salida (botón/App)                  |
-+-----------------------------------------------------------------------+----------------------------------------------------------+
-| SOC de la batería ≥ límite de descarga +10 % después de alcanzar      | Apagado de salida en modo de ahorro de energía           |
-| el límite                                                             +----------------------------------------------------------+
-|                                                                       | Apagado de salida activado por protección                |
-+-----------------------------------------------------------------------+----------------------------------------------------------+
-| Actualización OTA completada                                          | Apagado de salida activado por temporizador de descarga  |
-+-----------------------------------------------------------------------+----------------------------------------------------------+
++------------------------------------------------------------------------+-----------------------------------------------------------+
+| Condiciones de reanudación automática                                  | Condiciones sin reanudación automática                    |
++========================================================================+===========================================================+
+| Encendido/Reiniciar después de apagado o reinicio                      | Apagado manual de la salida (botón/App)                   |
++------------------------------------------------------------------------+-----------------------------------------------------------+
+| SOC de la batería ≥ límite de descarga +10 % tras alcanzar el límite   | Apagado de salida en modo de ahorro de energía            |
+|                                                                        +-----------------------------------------------------------+
+|                                                                        | Apagado de salida activado por protección                 |
++------------------------------------------------------------------------+-----------------------------------------------------------+
+| Actualización OTA completada                                           | Apagado de salida activado por temporizador de descarga   |
++------------------------------------------------------------------------+-----------------------------------------------------------+
 
 PANTALLA LCD
 ------------

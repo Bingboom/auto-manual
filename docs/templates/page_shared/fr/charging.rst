@@ -1,27 +1,13 @@
-CHARGE
-======
-
-**L'énergie verte d'abord :** nous préconisons l'utilisation de l'énergie verte en premier. Ce produit prend en charge deux modes de recharge simultanés : la recharge solaire et la recharge par prise murale CA.
-
-Quand la recharge par prise murale CA et la recharge solaire sont effectuées en même temps, le produit privilégie la recharge solaire. Les deux méthodes sont utilisées pour charger la batterie à la puissance maximalement autorisée.
-
-**Chargez complètement le produit avant sa première utilisation.**
-
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
-
-   * - **REMARQUE**
-     - - La température de charge recommandée pour le produit est de |CHARGING_TEMPERATURE_VALUE_1|, et la température de décharge est de |DISCHARGING_TEMPERATURE_VALUE_1|.
-       - Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités de charge et de décharge, voire empêcher la charge ou la décharge.
-       - La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des fluctuations de température.
-
 .. only:: model_je_2000e
 
    CONNECTER AU(X) PACK(S) BATTERIE (VENDU SÉPARÉMENT)
-   ---------------------------------------------------
+   ===================================================
 
-   Ce produit peut prendre en charge jusqu'à 5 packs batterie pour répondre aux besoins d'une grande capacité énergétique. Pour les détails sur son utilisation, veuillez vous référer au manuel d'utilisation du Jackery Battery Pack 2000.
+   Ce produit peut prendre en charge jusqu'à 5 packs batterie pour répondre aux besoins d'une grande capacité énergétique. Pour les détails sur son utilisation, veuillez vous référer au *manuel d'utilisation du Jackery Battery Pack 2000*.
+
+   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      :alt: Schéma de connexion du pack batterie.
+      :width: 360px
 
    .. only:: region_us
 
@@ -47,6 +33,32 @@ Quand la recharge par prise murale CA et la recharge solaire sont effectuées en
              - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 200 mm entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
              - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
              - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 34 33 33
+
+      * - **Jackery Battery Pack 2000**
+        - **Câble de rallonge**
+        - **Documents**
+
+CHARGE
+======
+
+**L'énergie verte d'abord :** nous préconisons l'utilisation de l'énergie verte en premier. Ce produit prend en charge deux modes de recharge simultanés : la recharge solaire et la recharge par prise murale CA.
+
+Quand la recharge par prise murale CA et la recharge solaire sont effectuées en même temps, le produit privilégie la recharge solaire. Les deux méthodes sont utilisées pour charger la batterie à la puissance maximalement autorisée.
+
+**Chargez complètement le produit avant sa première utilisation.**
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **REMARQUE**
+     - - La température de charge recommandée pour le produit est de |CHARGING_TEMPERATURE_VALUE_1|, et la température de décharge est de |DISCHARGING_TEMPERATURE_VALUE_1|.
+       - Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités de charge et de décharge, voire empêcher la charge ou la décharge.
+       - La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des fluctuations de température.
 
 CHARGEMENT PAR PRISE MURALE CA
 ------------------------------

@@ -121,7 +121,7 @@ The AC/DC Output Resume Function is disabled by default. Enable this function in
 | Power-on/Restart after shutdown or restart                    | Manual output off (button/App)                |
 +---------------------------------------------------------------+-----------------------------------------------+
 | Battery SOC ≥ discharge limit +10% after reaching limit       | Energy Saving mode output off                 |
-+---------------------------------------------------------------+-----------------------------------------------+
+|                                                               +-----------------------------------------------+
 |                                                               | Protection-triggered output off               |
 +---------------------------------------------------------------+-----------------------------------------------+
 | OTA upgrade completed                                         | Discharge timer-triggered output off          |
