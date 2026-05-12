@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
@@ -20,6 +21,9 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+DRIVE_DOWNLOAD_MAX_ATTEMPTS = 4
+DRIVE_DOWNLOAD_RETRY_DELAYS_SECONDS = (1.0, 2.0, 4.0)
 
 from tools.config_loader import load_config_mapping
 from tools.sync_data_config import (  # noqa: E402
@@ -189,6 +193,34 @@ def _parse_json_payload(raw: str) -> dict[str, Any]:
     return payload
 
 
+def _format_command(cmd: list[str]) -> str:
+    return subprocess.list2cmdline([str(part) for part in cmd])
+
+
+def _captured_text(label: str, value: str | None) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    return f"\n{label}:\n{text}"
+
+
+def _drive_download_failure_message(
+    *,
+    cmd: list[str],
+    file_token: str,
+    output_arg: str,
+    attempts: int,
+    exc: subprocess.CalledProcessError,
+) -> str:
+    return (
+        "Drive media download failed "
+        f"after {attempts} attempt(s): file_token={file_token} output={output_arg} "
+        f"exit={exc.returncode} cmd={_format_command(cmd)}"
+        + _captured_text("stdout", exc.stdout)
+        + _captured_text("stderr", exc.stderr)
+    )
+
+
 class LarkCliSource:
     def __init__(self, *, cli_bin: str, identity: str = "user"):
         self.cli_bin = cli_bin
@@ -351,14 +383,33 @@ class LarkCliSource:
         ]
         if output_path.exists() and not overwrite:
             return
-        subprocess.run(
-            cmd,
-            cwd=str(ROOT),
-            check=True,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-        )
+        last_exc: subprocess.CalledProcessError | None = None
+        for attempt in range(1, DRIVE_DOWNLOAD_MAX_ATTEMPTS + 1):
+            try:
+                subprocess.run(
+                    cmd,
+                    cwd=str(ROOT),
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                )
+                return
+            except subprocess.CalledProcessError as exc:
+                last_exc = exc
+                if attempt >= DRIVE_DOWNLOAD_MAX_ATTEMPTS:
+                    break
+                time.sleep(DRIVE_DOWNLOAD_RETRY_DELAYS_SECONDS[attempt - 1])
+        assert last_exc is not None
+        raise RuntimeError(
+            _drive_download_failure_message(
+                cmd=cmd,
+                file_token=token,
+                output_arg=output_arg,
+                attempts=DRIVE_DOWNLOAD_MAX_ATTEMPTS,
+                exc=last_exc,
+            )
+        ) from last_exc
 
     def _fetch_records(
         self,
