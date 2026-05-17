@@ -62,7 +62,7 @@ Alternatively, scan the QR code below to download and install the App.
    :widths: 12 88
 
    * - **CAUTION**
-     - The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
+     - The Jackery App can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
 
 
 **3. Unbind the device**

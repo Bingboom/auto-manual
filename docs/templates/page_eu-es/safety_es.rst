@@ -6,7 +6,7 @@
 
    .. raw:: latex
 
-      \section{PRECAUCIONES DE SEGURIDAD PARA EL USO}
+      \section{INFORMACIÓN IMPORTANTE DE SEGURIDAD}
 
    .. raw:: latex
 
@@ -46,7 +46,7 @@
    .. raw:: html
 
       <div class="hb-safety">
-        <h1 class="hb-h1-pill">PRECAUCIONES DE SEGURIDAD PARA EL USO</h1>
+        <h1 class="hb-h1-pill">INFORMACIÓN IMPORTANTE DE SEGURIDAD</h1>
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
