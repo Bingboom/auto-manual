@@ -274,7 +274,11 @@ def resolve_base_token(*, cli: str, wiki_token: str) -> str:
 def get_table_language_fields(*, cli: str, base_token: str, table_id: str) -> list[str]:
     payload = run_lark_json([cli, "base", "+table-get", "--base-token", base_token, "--table-id", table_id])
     fields = payload["data"]["fields"]
-    return [str(field.get("field_name") or field.get("name") or "") for field in fields if str(field.get("type")) == "text" and str(field.get("field_name") or field.get("name") or "")]
+    return [
+        str(field.get("field_name") or field.get("name") or "")
+        for field in fields
+        if str(field.get("type")) == "text" and str(field.get("field_name") or field.get("name") or "")
+    ]
 
 
 def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_records: int) -> list[dict[str, object]]:
@@ -322,7 +326,7 @@ def build_sentence_pair_entries(rows: list[dict[str, object]], *, language_field
         for field_name in language_fields:
             value = str(row.get(field_name) or "").strip()
             if value:
-                translations[field_name] = value
+                translations[normalize_language(field_name) or field_name] = value
         if not translations:
             continue
         source_lang = "en" if translations.get("en") else next(iter(translations.keys()))
