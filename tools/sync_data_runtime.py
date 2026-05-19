@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -269,13 +270,91 @@ def _extension_from_attachment(item: dict[str, Any]) -> str:
     }.get(mime_type, ".png")
 
 
+def _attachment_file_token(item: dict[str, Any]) -> str:
+    return str(item.get("file_token") or item.get("token") or "").strip()
+
+
+def _cached_attachment_path(target_path: Path, file_token: str) -> Path | None:
+    if target_path.exists():
+        return target_path
+
+    token_part = _safe_filename_part(file_token, fallback="file")
+    token_suffix = f"_{token_part}"
+    if not target_path.stem.endswith(token_suffix):
+        return None
+
+    prefix = target_path.stem[: -len(token_suffix)]
+    if not prefix:
+        return None
+
+    candidates = sorted(
+        candidate
+        for candidate in target_path.parent.glob(f"{prefix}_*")
+        if candidate.is_file() and candidate != target_path
+    )
+    return candidates[0] if candidates else None
+
+
+def _materialized_attachment_display_path(
+    *,
+    label: str,
+    item: dict[str, Any],
+    target_path: Path,
+    repo_root: Path,
+    source: _RecordSourceLike,
+    dry_run: bool,
+    missing_downloader_message: str,
+) -> str:
+    file_token = _attachment_file_token(item)
+    cached_path = _cached_attachment_path(target_path, file_token)
+    if dry_run:
+        return _display_path(cached_path or target_path, repo_root=repo_root)
+
+    if cached_path == target_path:
+        return _display_path(target_path, repo_root=repo_root)
+
+    downloader = _drive_file_downloader(source)
+    if downloader is None:
+        if cached_path is not None:
+            return _display_path(cached_path, repo_root=repo_root)
+        raise RuntimeError(missing_downloader_message)
+
+    try:
+        downloader.download_drive_file(
+            file_token=file_token,
+            output_path=target_path,
+            overwrite=False,
+        )
+    except Exception as exc:
+        target_display_path = _display_path(target_path, repo_root=repo_root)
+        if cached_path is not None:
+            cached_display_path = _display_path(cached_path, repo_root=repo_root)
+            print(
+                f"[sync-data] WARNING: Failed to download {label} attachment "
+                f"{file_token} to {target_display_path}: {exc}. "
+                f"Using cached attachment {cached_display_path}.",
+                file=sys.stderr,
+            )
+            return cached_display_path
+
+        print(
+            f"[sync-data] WARNING: Failed to download {label} attachment "
+            f"{file_token} to {target_display_path}: {exc}. "
+            "Clearing optional image reference for this row.",
+            file=sys.stderr,
+        )
+        return ""
+
+    return _display_path(target_path, repo_root=repo_root)
+
+
 def _lcd_icon_attachment_path(
     row: dict[str, str],
     item: dict[str, Any],
     *,
     export_root: Path,
 ) -> Path | None:
-    file_token = str(item.get("file_token") or item.get("token") or "").strip()
+    file_token = _attachment_file_token(item)
     if not file_token:
         return None
     no_part = _safe_filename_part(row.get("No.") or row.get("No") or "", fallback="row")
@@ -290,7 +369,7 @@ def _symbols_attachment_path(
     *,
     export_root: Path,
 ) -> Path | None:
-    file_token = str(item.get("file_token") or item.get("token") or "").strip()
+    file_token = _attachment_file_token(item)
     if not file_token:
         return None
     order_part = _safe_filename_part(row.get("order") or "", fallback="row")
@@ -307,8 +386,6 @@ def _materialize_lcd_icon_attachments(
     source: _RecordSourceLike,
     dry_run: bool,
 ) -> None:
-    downloader = _drive_file_downloader(source)
-
     for row in rows:
         items = _attachment_items_from_cell(row.get("figure", ""))
         if not items:
@@ -316,15 +393,14 @@ def _materialize_lcd_icon_attachments(
         target_path = _lcd_icon_attachment_path(row, items[0], export_root=export_root)
         if target_path is None:
             continue
-        row["figure"] = _display_path(target_path, repo_root=repo_root)
-        if dry_run:
-            continue
-        if downloader is None:
-            raise RuntimeError("lcd_icons figure attachments require the sync source to support drive file downloads")
-        downloader.download_drive_file(
-            file_token=str(items[0].get("file_token") or items[0].get("token") or "").strip(),
-            output_path=target_path,
-            overwrite=True,
+        row["figure"] = _materialized_attachment_display_path(
+            label="lcd_icons figure",
+            item=items[0],
+            target_path=target_path,
+            repo_root=repo_root,
+            source=source,
+            dry_run=dry_run,
+            missing_downloader_message="lcd_icons figure attachments require the sync source to support drive file downloads",
         )
 
 
@@ -336,8 +412,6 @@ def _materialize_symbols_attachments(
     source: _RecordSourceLike,
     dry_run: bool,
 ) -> None:
-    downloader = _drive_file_downloader(source)
-
     for row in rows:
         items = _attachment_items_from_cell(row.get("Figure") or row.get("figure") or "")
         if not items:
@@ -345,18 +419,17 @@ def _materialize_symbols_attachments(
         target_path = _symbols_attachment_path(row, items[0], export_root=export_root)
         if target_path is None:
             continue
-        display_path = _display_path(target_path, repo_root=repo_root)
+        display_path = _materialized_attachment_display_path(
+            label="symbols_blocks Figure",
+            item=items[0],
+            target_path=target_path,
+            repo_root=repo_root,
+            source=source,
+            dry_run=dry_run,
+            missing_downloader_message="symbols_blocks Figure attachments require the sync source to support drive file downloads",
+        )
         row["Figure"] = display_path
         row["image_path"] = display_path
-        if dry_run:
-            continue
-        if downloader is None:
-            raise RuntimeError("symbols_blocks Figure attachments require the sync source to support drive file downloads")
-        downloader.download_drive_file(
-            file_token=str(items[0].get("file_token") or items[0].get("token") or "").strip(),
-            output_path=target_path,
-            overwrite=True,
-        )
 
 
 def sync_phase2_snapshot(
