@@ -55,7 +55,7 @@ DC 12V/USB OUTPUT ON/OFF
    * - **CAUTION**
      -
        - **USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
-       - Only connect the Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
+       - Only connect |PRODUCT_NAME| to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
        - To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
 

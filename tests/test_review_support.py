@@ -476,6 +476,52 @@ class TestReviewSupport(unittest.TestCase):
                 (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8"),
             )
 
+    def test_sync_review_paths_should_refresh_product_identity_placeholder_lines(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-2000E" / "EU" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-2000E" / "EU"
+            template_path = docs_dir / "templates" / "page_eu-en" / "05_operation_guide_placeholder.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            template_path.write_text(
+                "CAUTION\nOnly connect |PRODUCT_NAME| to compatible accessories.\nTail\n",
+                encoding="utf-8",
+            )
+            (runtime_dir / "page" / "05_operation_guide_placeholder.rst").write_text(
+                "CAUTION\nOnly connect Jackery HomePower 2000 Plus to compatible accessories.\nTail\n",
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "05_operation_guide_placeholder.rst").write_text(
+                "CAUTION\nOnly connect the Jackery Explorer 1000 to compatible accessories.\nTail\n",
+                encoding="utf-8",
+            )
+
+            copied = sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+                plan=(
+                    SyncPlanEntry(
+                        relative_path=Path("page") / "05_operation_guide_placeholder.rst",
+                        mode="merge_params",
+                        template_path=template_path,
+                    ),
+                ),
+            )
+
+            self.assertEqual(1, len(copied))
+            self.assertEqual(
+                "CAUTION\nOnly connect Jackery HomePower 2000 Plus to compatible accessories.\nTail\n",
+                (review_dir / "page" / "05_operation_guide_placeholder.rst").read_text(encoding="utf-8"),
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
