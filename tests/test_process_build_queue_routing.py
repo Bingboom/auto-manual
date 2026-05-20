@@ -206,6 +206,40 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
 
         self.assertEqual(root / "config.eu.yaml", config_path)
 
+    def test_resolve_config_path_for_task_should_allow_blank_lang_for_pt_br_merged_config(self) -> None:
+        with temp_test_root() as root:
+            for name in ("config.pt-br.yaml", "config.pt-br-single.yaml"):
+                write_text(root / name, "build: {}\n")
+
+            configs = {
+                "config.pt-br.yaml": {
+                    "build": {
+                        "family_id": "pt-br",
+                        "default_region": "pt-BR",
+                        "languages": ["en", "pt-BR"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                },
+                "config.pt-br-single.yaml": {
+                    "build": {
+                        "family_id": "pt-br-single",
+                        "default_region": "pt-BR",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                config_path = process_build_queue.resolve_config_path_for_task(region="pt-BR", lang="")
+
+        self.assertEqual(root / "config.pt-br.yaml", config_path)
+
     def test_resolve_config_path_for_task_should_reject_blank_lang_without_merged_region_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.eu-en.yaml", "config.eu-fr.yaml"):
