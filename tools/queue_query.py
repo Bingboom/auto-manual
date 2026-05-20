@@ -14,7 +14,7 @@ from tools.document_link_queue import (
     is_immediate_trigger_enabled,
     scalar_text,
 )
-from tools.language_aliases import normalize_language
+from tools.language_aliases import normalize_language, normalize_region
 from tools.phase2_support import (
     LarkCliSource,
     cli_bin,
@@ -144,11 +144,11 @@ def _text(value: Any) -> str:
 
 _VERSION_TOKEN_RE = re.compile(r"^\d+(?:\.\d+)+$")
 _RECORD_ID_RE = re.compile(r"\b(rec[A-Za-z0-9_]+)\b")
-_TASK_DOCUMENT_ID_RE = r"(?P<document_id>[A-Za-z0-9.-]+_[A-Za-z]{2,3}(?:_[A-Za-z]{2})?_\d+(?:\.\d+)*)"
+_TASK_DOCUMENT_ID_RE = r"(?P<document_id>[A-Za-z0-9.-]+_[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?(?:_[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?)?_\d+(?:\.\d+)*)"
 _UNDERSCORE_TOKEN_RE = re.compile(r"[A-Za-z0-9.-]+(?:_[A-Za-z0-9.-]+)+")
 _QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
 _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
-_REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}$")
+_REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?$")
 _BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
 _LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "br", "pt-br", "ko", "uk"}
 _LANG_ALIASES = {
@@ -288,6 +288,12 @@ def _normalize_langs(value: Any) -> tuple[str, ...]:
 def _infer_langs(text: str) -> tuple[str, ...]:
     langs: list[str] = []
     for match in _LANG_NAME_PATTERN.finditer(text):
+        before = text[match.start() - 1] if match.start() > 0 else ""
+        after = text[match.end()] if match.end() < len(text) else ""
+        if before and re.match(r"[A-Za-z0-9_-]", before):
+            continue
+        if after and re.match(r"[A-Za-z0-9_-]", after):
+            continue
         lang = _LANG_ALIASES.get(match.group(0).lower())
         if lang and lang not in langs:
             langs.append(lang)
@@ -435,8 +441,9 @@ def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
             return token, "", "", ""
     for token in _UNDERSCORE_TOKEN_RE.findall(text):
         parts = token.split("_")
-        if len(parts) == 2:
-            return "", token, "", ""
+        if len(parts) == 2 and _looks_like_document_key_token(token):
+            model, region = parts
+            return "", f"{model}_{normalize_region(region)}", "", ""
 
     tokens = _query_tokens(text)
     for index, token in enumerate(tokens):
@@ -447,7 +454,7 @@ def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
         region_token = tokens[index + 1]
         if not _REGION_TOKEN_RE.match(region_token):
             continue
-        region = region_token.upper()
+        region = normalize_region(region_token)
         lang = ""
         version = ""
         if index + 2 < len(tokens):
@@ -478,7 +485,7 @@ def _infer_document_key_tokens(text: str) -> tuple[str, ...]:
         if not _looks_like_document_key_token(token):
             continue
         model, region = token.split("_", 1)
-        key = f"{model}_{region.upper()}"
+        key = f"{model}_{normalize_region(region)}"
         if key not in keys:
             keys.append(key)
     return tuple(keys)
@@ -593,7 +600,7 @@ def _split_region_version_document_id(value: str) -> tuple[str, str, str]:
     model, region, version = parts
     if not _MODEL_TOKEN_RE.match(model) or not _REGION_TOKEN_RE.match(region):
         return "", "", ""
-    return model, region.upper(), version
+    return model, normalize_region(region), version
 
 
 def _has_start_review_intent(text: str, normalized_text: str) -> bool:

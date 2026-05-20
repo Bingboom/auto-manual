@@ -288,6 +288,15 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("start-review", inferred.query_workflow_action)
         self.assertEqual("review-init", inferred.queue_scope)
 
+    def test_infer_queue_query_from_text_should_parse_pt_br_document_key_start_review(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("开始review JE-1500D_pt-BR")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("JE-1500D_pt-BR", inferred.document_key)
+        self.assertEqual("JE-1500D_pt-BR_Start Review", inferred.task_id)
+        self.assertEqual("start-review", inferred.query_workflow_action)
+        self.assertEqual("review-init", inferred.queue_scope)
+
     def test_infer_queue_query_from_text_should_parse_multi_document_key_start_review_batch(self) -> None:
         inferred = queue_query.infer_queue_query_from_text(
             "开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU"
@@ -346,6 +355,33 @@ class TestQueueQuery(unittest.TestCase):
         filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
 
         self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu"], [row.record_id for row in filtered])
+
+    def test_filter_queue_query_rows_should_match_pt_br_start_review_document_key(self) -> None:
+        rows = [
+            self._row(
+                "recvkaCD74mZ4z",
+                queue_scope="review-init",
+                document_id="JE-1500D_pt-BR",
+                document_key="JE-1500D_pt-BR",
+                build_family="",
+                lang="",
+                version="",
+                workflow_action="Start Review",
+                normalized_workflow_action="start_review",
+                result="",
+                review_status="NotStarted",
+                review_trigger_enabled=True,
+                build_trigger_requested=None,
+                immediate_build=None,
+            )
+        ]
+
+        resolved_args = queue_query.apply_inferred_queue_query(
+            self._args(query_text="开始review JE-1500D_pt-BR")
+        )
+        filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
+
+        self.assertEqual(["recvkaCD74mZ4z"], [row.record_id for row in filtered])
 
     def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
         for query_text in [

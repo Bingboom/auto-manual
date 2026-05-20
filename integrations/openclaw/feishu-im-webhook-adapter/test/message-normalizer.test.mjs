@@ -59,6 +59,20 @@ test("normalizeIncomingMessage treats task ids as explicit targets", () => {
   assert.equal(normalized.usedConversationContext, false);
 });
 
+test("normalizeIncomingMessage treats pt-BR document keys as explicit targets", () => {
+  const normalized = normalizeIncomingMessage({
+    messageText: "开始review JE-1500D_pt-BR",
+    conversationContext: {
+      row: {
+        record_id: "rec_context",
+      },
+    },
+  });
+
+  assert.equal(normalized.normalizedText, "开始review JE-1500D_pt-BR");
+  assert.equal(normalized.usedConversationContext, false);
+});
+
 test("normalizeIncomingMessage treats model plus chinese market alias as an explicit target", () => {
   const normalized = normalizeIncomingMessage({
     messageText: "构建JE-1000F的所有欧规说明书文案",
