@@ -288,34 +288,6 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("start-review", inferred.query_workflow_action)
         self.assertEqual("review-init", inferred.queue_scope)
 
-    def test_filter_queue_query_rows_should_match_brazil_document_key_alias_start_review(self) -> None:
-        rows = [
-            self._row(
-                "rec_ptbr_review",
-                queue_scope="review-init",
-                document_id="",
-                document_key="JE-1500D_pt-BR",
-                build_family="pt-br",
-                lang="",
-                version="",
-                workflow_action="Start Review",
-                normalized_workflow_action="start_review",
-                result="",
-                review_status="NotStarted",
-                review_trigger_enabled=True,
-                build_trigger_requested=None,
-                immediate_build=None,
-                task_id="",
-            )
-        ]
-
-        filtered = queue_query.filter_queue_query_rows(
-            self._args(query_text="开始review JE-1500D_Brazil"),
-            rows,
-        )
-
-        self.assertEqual(["rec_ptbr_review"], [row.record_id for row in filtered])
-
     def test_infer_queue_query_from_text_should_parse_multi_document_key_start_review_batch(self) -> None:
         inferred = queue_query.infer_queue_query_from_text(
             "开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU"

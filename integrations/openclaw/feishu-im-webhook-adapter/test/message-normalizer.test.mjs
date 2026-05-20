@@ -73,34 +73,6 @@ test("normalizeIncomingMessage treats model plus chinese market alias as an expl
   assert.equal(normalized.usedConversationContext, false);
 });
 
-test("normalizeIncomingMessage treats pt-BR document keys as explicit targets", () => {
-  const normalized = normalizeIncomingMessage({
-    messageText: "开始review JE-1500D_pt-BR",
-    conversationContext: {
-      row: {
-        record_id: "rec_context",
-      },
-    },
-  });
-
-  assert.equal(normalized.normalizedText, "开始review JE-1500D_pt-BR");
-  assert.equal(normalized.usedConversationContext, false);
-});
-
-test("normalizeIncomingMessage treats Brazil document keys as explicit targets", () => {
-  const normalized = normalizeIncomingMessage({
-    messageText: "开始review JE-1500D_Brazil",
-    conversationContext: {
-      row: {
-        record_id: "rec_context",
-      },
-    },
-  });
-
-  assert.equal(normalized.normalizedText, "开始review JE-1500D_Brazil");
-  assert.equal(normalized.usedConversationContext, false);
-});
-
 test("normalizeIncomingMessage reuses safe selectors instead of record ids for execution requests", () => {
   const normalized = normalizeIncomingMessage({
     messageText: "我来补跑英语和法语",

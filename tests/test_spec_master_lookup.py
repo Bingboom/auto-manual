@@ -104,33 +104,6 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("Jackery HomePower 2000 Plus JP", match.product_name)
         self.assertEqual("JP", match.region)
 
-    def test_lookup_product_name_should_accept_region_aliases(self) -> None:
-        rows = [
-            {
-                "document_key": "JE-1500D_pt-BR",
-                "Model": "JE-1500D",
-                "Region": "pt-BR",
-                "Source_lang": "en",
-                "Is_Latest": "TRUE",
-                "Page": "specifications",
-                "Row_key": "product_name",
-                "Value_source": "Jackery Explorer 1500",
-            }
-        ]
-
-        for region in ("pt-BR", "pt-br", "BR", "Brazil"):
-            with self.subTest(region=region):
-                match = resolve_product_name_from_rows(
-                    rows,
-                    model="JE-1500D",
-                    region=region,
-                    lang="en",
-                )
-
-                self.assertIsNotNone(match)
-                assert match is not None
-                self.assertEqual("Jackery Explorer 1500", match.product_name)
-
     def test_template_substitutions_should_include_derived_and_custom_values(self) -> None:
         substitutions = resolve_template_substitutions_from_rows(
             self._rows(),

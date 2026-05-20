@@ -3,8 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-from tools.region_aliases import canonical_document_key_region
-
 
 def build_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     build_cfg_raw = cfg.get("build", {})
@@ -29,17 +27,6 @@ def build_languages(cfg: dict[str, Any]) -> list[str]:
     return [str(item).strip().lower() for item in langs if str(item).strip()] or ["en"]
 
 
-def lang_matches_supported_language(lang: str, languages: list[str]) -> bool:
-    normalized_lang = str(lang or "").strip().lower()
-    if not normalized_lang:
-        return True
-    candidates = {normalized_lang}
-    canonical_region_lang = canonical_document_key_region(normalized_lang).lower()
-    if canonical_region_lang:
-        candidates.add(canonical_region_lang)
-    return bool(candidates & set(languages))
-
-
 def queue_by_document_key(cfg: dict[str, Any]) -> bool:
     return bool(build_cfg(cfg).get("queue_by_document_key"))
 
@@ -49,7 +36,7 @@ def config_family_id(cfg: dict[str, Any]) -> str:
 
 
 def config_default_region(cfg: dict[str, Any]) -> str:
-    return canonical_document_key_region(str(build_cfg(cfg).get("default_region") or "").strip())
+    return str(build_cfg(cfg).get("default_region") or "").strip().upper()
 
 
 def validate_family_config_request(
@@ -62,7 +49,7 @@ def validate_family_config_request(
     workflow_action: str | None = None,
 ) -> None:
     family_id = config_family_id(cfg)
-    normalized_region = canonical_document_key_region(str(region or "").strip())
+    normalized_region = str(region or "").strip().upper()
     normalized_lang = str(lang or "").strip().lower()
     normalized_action = normalize_queue_workflow_action(workflow_action)
     current_build_cfg = build_cfg(cfg)
@@ -80,7 +67,6 @@ def validate_family_config_request(
 
     languages = build_languages(cfg)
     primary_lang = languages[0] if languages else ""
-    document_key_package_family = queue_by_document_key(cfg) and not include_lang_in_output_path
     if normalized_action == "publish":
         if normalized_lang:
             raise RuntimeError("Publish queue rows must leave Lang blank")
@@ -89,20 +75,14 @@ def validate_family_config_request(
                 "Publish queue rows must use a whole-book Build_family, not a single-language family"
             )
     if normalized_action == "draft" and normalized_lang:
-        if document_key_package_family:
-            if not lang_matches_supported_language(normalized_lang, languages):
-                raise RuntimeError(
-                    f"Build_family {build_family!r} does not include Lang={normalized_lang!r}; supported={languages}"
-                )
-            return
-        if len(languages) != 1 or not lang_matches_supported_language(normalized_lang, [primary_lang]):
+        if len(languages) != 1 or primary_lang != normalized_lang:
             raise RuntimeError(
                 "Build Draft Package rows with Lang must use a single-language Build_family"
             )
     if not normalized_lang:
         return
     if queue_by_document_key(cfg):
-        if not lang_matches_supported_language(normalized_lang, languages):
+        if normalized_lang not in languages:
             raise RuntimeError(
                 f"Build_family {build_family!r} does not include Lang={normalized_lang!r}; supported={languages}"
             )
@@ -115,12 +95,11 @@ def validate_family_config_request(
 
 def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
     current_build_cfg = build_cfg(cfg)
-    default_region = canonical_document_key_region(str(current_build_cfg.get("default_region") or "").strip())
+    default_region = str(current_build_cfg.get("default_region") or "").strip().upper()
     languages = build_languages(cfg)
     primary_lang = languages[0] if languages else ""
     normalized_lang = str(lang or "").strip().lower()
-    normalized_region = canonical_document_key_region(region)
-    if default_region != normalized_region:
+    if default_region != region.upper():
         return None
     if queue_by_document_key(cfg):
         if normalized_lang:
@@ -135,7 +114,7 @@ def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, l
         score = 100
 
     file_name = config_path.name.lower()
-    if normalized_region.lower() in file_name:
+    if region.lower() in file_name:
         score += 4
     if normalized_lang in file_name:
         score += 4
