@@ -89,6 +89,13 @@ def _remove_path(path: Path) -> None:
 def _replace_path(src: Path, dst: Path) -> bool:
     if not src.exists():
         return False
+    if dst.exists():
+        try:
+            if src.samefile(dst):
+                return True
+        except OSError:
+            if src.resolve(strict=False) == dst.resolve(strict=False):
+                return True
     _remove_path(dst)
     dst.parent.mkdir(parents=True, exist_ok=True)
     if src.is_dir():
