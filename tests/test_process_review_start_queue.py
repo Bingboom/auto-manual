@@ -211,7 +211,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         record = process_review_start_queue.ReviewStartRecord(
             record_id="rec_1",
             document_id="JE-1500D_pt-BR",
-            document_key='{"id":"recviOy1QyZBJJ"}',
+            document_key='{"id":"recLinkedDocumentKey"}',
             build_family="pt-br",
             version="",
             lang="",
