@@ -77,7 +77,8 @@ def review_sync_target_args(
         cfg,
         arg_model=args.model,
         arg_region=args.region,
-        all_targets=not (args.model or args.region),
+        arg_lang=getattr(args, "lang", None),
+        all_targets=not (args.model or args.region or getattr(args, "lang", None)),
     )
 
     seen: set[tuple[str, str]] = set()
@@ -133,6 +134,7 @@ def run_validate(
     data_root: str | None = None,
     model: str | None = None,
     region: str | None = None,
+    lang: str | None = None,
     source_mode: str = "runtime",
 ) -> None:
     run_checked(
@@ -168,6 +170,11 @@ def run_validate(
                 else []
             ),
             *(
+                ["--lang", lang.strip()]
+                if isinstance(lang, str) and lang.strip()
+                else []
+            ),
+            *(
                 ["--data-root", data_root.strip()]
                 if isinstance(data_root, str) and data_root.strip()
                 else []
@@ -200,6 +207,7 @@ def run_check(
             data_root=args.data_root,
             model=args.model,
             region=args.region,
+            lang=getattr(args, "lang", None),
             source_mode=current_effective_source,
         )
     else:
@@ -207,6 +215,7 @@ def run_check(
             config_path,
             model=args.model,
             region=args.region,
+            lang=getattr(args, "lang", None),
             source_mode=current_effective_source,
         )
     maybe_sync_review_before_build(args, source_override=current_effective_source)

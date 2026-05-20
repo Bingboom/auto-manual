@@ -28,7 +28,9 @@ def append_target_args(cmd: list[str], args: argparse.Namespace) -> list[str]:
         cmd += ["--model", args.model]
     if args.region:
         cmd += ["--region", args.region]
-    if not (args.model or args.region):
+    if getattr(args, "lang", None):
+        cmd += ["--lang", args.lang]
+    if not (args.model or args.region or getattr(args, "lang", None)):
         cmd.append("--all-targets")
     return cmd
 

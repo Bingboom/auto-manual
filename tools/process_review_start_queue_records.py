@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Any, Callable
 
 from tools.document_link_queue import looks_like_explicit_document_key
+from tools.language_aliases import normalize_language
 
 DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
@@ -124,7 +125,7 @@ def parse_review_start_records(raw_records: list[dict[str, Any]]) -> list[Review
                 document_key=scalar_text(fields.get(DOCUMENT_KEY_FIELD)),
                 build_family=normalized_build_family(fields.get(BUILD_FAMILY_FIELD)),
                 version=scalar_text(fields.get(VERSION_FIELD)),
-                lang=scalar_text(fields.get(LANG_FIELD)).lower(),
+                lang=normalize_language(scalar_text(fields.get(LANG_FIELD))),
                 workflow_action=scalar_text(fields.get(WORKFLOW_ACTION_FIELD)),
                 review_status=scalar_text(fields.get(REVIEW_STATUS_FIELD)),
                 review_trigger_value=fields.get(REVIEW_TRIGGER_FIELD),
@@ -182,11 +183,16 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
 def document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
     candidate = document_id.strip()
     version_text = version.strip()
-    lang_text = lang.strip().lower()
+    lang_text = normalize_language(lang)
     if version_text and candidate.endswith("_" + version_text):
         candidate = candidate[: -(len(version_text) + 1)]
-    if lang_text and candidate.lower().endswith("_" + lang_text):
-        candidate = candidate[: -(len(lang_text) + 1)]
+    lang_suffixes = {lang_text.casefold()}
+    if lang_text.casefold() == "pt-br":
+        lang_suffixes.add("br")
+    for lang_suffix in sorted(lang_suffixes, key=len, reverse=True):
+        if lang_suffix and candidate.casefold().endswith("_" + lang_suffix):
+            candidate = candidate[: -(len(lang_suffix) + 1)]
+            break
     return candidate.strip()
 
 
@@ -296,7 +302,7 @@ def review_start_group_build_family(records: list[ReviewStartRecord]) -> str:
 def review_start_group_lang(records: list[ReviewStartRecord]) -> str:
     for record in records:
         if record.lang.strip():
-            return record.lang.strip().lower()
+            return normalize_language(record.lang)
     return ""
 
 

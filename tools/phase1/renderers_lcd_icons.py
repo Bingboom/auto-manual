@@ -26,6 +26,9 @@ _LANG_SUFFIX = {
     "jp": "jp",
     "uk": "ukr",
     "ukr": "ukr",
+    "pt-br": "pt-BR",
+    "pt_br": "pt-BR",
+    "br": "pt-BR",
 }
 
 _LANG_COPY = {
@@ -65,6 +68,13 @@ def _truthy(value: str, *, default: bool = True) -> bool:
 def _lang_suffix(lang: str) -> str:
     raw = (lang or "").strip().casefold()
     return _LANG_SUFFIX.get(raw, raw)
+
+
+def _first_existing(headers: set[str], candidates: list[str]) -> str:
+    for candidate in candidates:
+        if candidate in headers:
+            return candidate
+    return candidates[0]
 
 
 def _pick_target_model(vars_map: dict[str, str]) -> str:
@@ -191,44 +201,68 @@ def _collect_rows(
     vars_map: dict[str, str],
 ) -> list[dict[str, str]]:
     suffix = _lang_suffix(lang)
-    name_col = f"icon_{suffix}"
-    desc_col = f"icon_desc_{suffix}"
     if not blocks:
         raise ValueError(f"lcd_icons page has no rows for lang={lang}")
     headers = set(blocks[0].keys())
+    name_col = _first_existing(
+        headers,
+        [
+            f"icon_{suffix}",
+            f"icon_{str(suffix).casefold()}",
+            f"icon_{str(suffix).replace('-', '_')}",
+            "icon_en",
+        ],
+    )
+    desc_col = _first_existing(
+        headers,
+        [
+            f"icon_desc_{suffix}",
+            f"icon_desc_{str(suffix).casefold()}",
+            f"icon_desc_{str(suffix).replace('-', '_')}",
+            "icon_desc_en",
+        ],
+    )
     if desc_col not in headers:
         raise ValueError(f"lcd_icons csv missing language description column: {desc_col}")
 
     target_model = _pick_target_model(vars_map)
     target_region = _pick_target_region(vars_map)
     rows: list[dict[str, str]] = []
-    for row in blocks:
-        if not _truthy(row.get("Is_latest") or row.get("Is_Latest") or row.get("is_latest"), default=True):
-            continue
-        if not _matches_model(row, target_model=target_model, target_region=target_region):
-            continue
-        name = (row.get(name_col) or row.get("icon_en") or "").strip()
-        description = (row.get(desc_col) or "").strip()
-        if not name or not description:
-            continue
-        row_vars = _resolve_row_vars(
-            row,
-            name=name,
-            description=description,
-            target_model=target_model,
-            lang=lang,
-            vars_map=vars_map,
-        )
-        rows.append(
-            {
-                "no": (row.get("No.") or row.get("No") or "").strip(),
-                "figure": _figure_image_path(row.get("figure") or row.get("Figure") or ""),
-                "name": apply_vars(name, row_vars),
-                "description": apply_vars(description, row_vars),
-                "sort_no": row.get("No.") or row.get("No") or "",
-                "sort_name": row.get("icon_en") or name,
-            }
-        )
+
+    def collect(*, allow_model_fallback: bool) -> list[dict[str, str]]:
+        collected: list[dict[str, str]] = []
+        for row in blocks:
+            if not _truthy(row.get("Is_latest") or row.get("Is_Latest") or row.get("is_latest"), default=True):
+                continue
+            if not allow_model_fallback and not _matches_model(row, target_model=target_model, target_region=target_region):
+                continue
+            name = (row.get(name_col) or row.get("icon_en") or "").strip()
+            description = (row.get(desc_col) or row.get("icon_desc_en") or "").strip()
+            if not name or not description:
+                continue
+            row_vars = _resolve_row_vars(
+                row,
+                name=name,
+                description=description,
+                target_model=target_model,
+                lang=lang,
+                vars_map=vars_map,
+            )
+            collected.append(
+                {
+                    "no": (row.get("No.") or row.get("No") or "").strip(),
+                    "figure": _figure_image_path(row.get("figure") or row.get("Figure") or ""),
+                    "name": apply_vars(name, row_vars),
+                    "description": apply_vars(description, row_vars),
+                    "sort_no": row.get("No.") or row.get("No") or "",
+                    "sort_name": row.get("icon_en") or name,
+                }
+            )
+        return collected
+
+    rows = collect(allow_model_fallback=False)
+    if not rows:
+        rows = collect(allow_model_fallback=True)
 
     rows.sort(key=lambda row: _sort_key({"No.": row["sort_no"], "icon_en": row["sort_name"]}))
     if not rows:

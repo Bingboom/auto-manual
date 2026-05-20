@@ -6,6 +6,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.language_aliases import normalize_language
+
 
 def _stage_markdown_source_sidecars(*, built_md_output_path: Path, staged_md_output_path: Path) -> None:
     source_dir = built_md_output_path.parent
@@ -49,6 +51,7 @@ def resolve_word_output_path_for_target(
     config_path: Path,
     model: str,
     region: str,
+    lang: str | None = None,
     repo_root: Path,
     config_loader: Callable[[Path], dict[str, Any]],
     build_languages: Callable[[dict[str, Any]], list[str]],
@@ -66,8 +69,10 @@ def resolve_word_output_path_for_target(
         cfg=cfg,
         config_loader=config_loader,
     )
-    primary_lang = build_languages(cfg)[0]
-    output_lang = resolve_output_lang(cfg)
+    supported_langs = build_languages(cfg)
+    selected_lang = normalize_language(lang, supported=supported_langs) if (lang or "").strip() else ""
+    primary_lang = selected_lang or supported_langs[0]
+    output_lang = selected_lang or resolve_output_lang(cfg)
     build_root = build_root_for_target(
         model,
         region,
@@ -88,6 +93,7 @@ def resolve_pdf_output_path_for_target(
     config_path: Path,
     model: str,
     region: str,
+    lang: str | None = None,
     repo_root: Path,
     config_loader: Callable[[Path], dict[str, Any]],
     build_languages: Callable[[dict[str, Any]], list[str]],
@@ -105,8 +111,10 @@ def resolve_pdf_output_path_for_target(
         cfg=cfg,
         config_loader=config_loader,
     )
-    primary_lang = build_languages(cfg)[0]
-    output_lang = resolve_output_lang(cfg)
+    supported_langs = build_languages(cfg)
+    selected_lang = normalize_language(lang, supported=supported_langs) if (lang or "").strip() else ""
+    primary_lang = selected_lang or supported_langs[0]
+    output_lang = selected_lang or resolve_output_lang(cfg)
     build_root = build_root_for_target(
         model,
         region,
@@ -127,6 +135,7 @@ def resolve_md_output_path_for_target(
     config_path: Path,
     model: str,
     region: str,
+    lang: str | None = None,
     repo_root: Path,
     config_loader: Callable[[Path], dict[str, Any]],
     build_languages: Callable[[dict[str, Any]], list[str]],
@@ -144,8 +153,10 @@ def resolve_md_output_path_for_target(
         cfg=cfg,
         config_loader=config_loader,
     )
-    primary_lang = build_languages(cfg)[0]
-    output_lang = resolve_output_lang(cfg)
+    supported_langs = build_languages(cfg)
+    selected_lang = normalize_language(lang, supported=supported_langs) if (lang or "").strip() else ""
+    primary_lang = selected_lang or supported_langs[0]
+    output_lang = selected_lang or resolve_output_lang(cfg)
     build_root = build_root_for_target(
         model,
         region,
@@ -176,8 +187,10 @@ def resolve_html_output_dir_for_target(
     config_path: Path,
     model: str,
     region: str,
+    lang: str | None = None,
     repo_root: Path,
     config_loader: Callable[[Path], dict[str, Any]],
+    build_languages: Callable[[dict[str, Any]], list[str]],
     resolve_output_lang: Callable[[dict[str, Any]], str | None],
     build_root_for_target: Callable[..., Path],
 ) -> Path:
@@ -188,7 +201,9 @@ def resolve_html_output_dir_for_target(
         cfg=cfg,
         config_loader=config_loader,
     )
-    output_lang = resolve_output_lang(cfg)
+    supported_langs = build_languages(cfg)
+    selected_lang = normalize_language(lang, supported=supported_langs) if (lang or "").strip() else ""
+    output_lang = selected_lang or resolve_output_lang(cfg)
     build_root = build_root_for_target(
         model,
         region,
@@ -355,6 +370,7 @@ def stage_draft_word_output_to_host_repo(
     region: str,
     version: str,
     doc_phase: str | None,
+    lang: str | None = None,
     resolve_word_output_path_for_target: Callable[..., Path],
     versioned_word_output_path: Callable[..., Path],
 ) -> Path:
@@ -362,6 +378,7 @@ def stage_draft_word_output_to_host_repo(
         config_path=host_config_path,
         model=model,
         region=region,
+        lang=lang,
     )
     staged_output_path = versioned_word_output_path(
         host_output_path,
@@ -381,6 +398,7 @@ def stage_draft_md_output_to_host_repo(
     region: str,
     version: str,
     doc_phase: str | None,
+    lang: str | None = None,
     resolve_md_output_path_for_target: Callable[..., Path],
     versioned_md_output_path: Callable[..., Path],
 ) -> Path:
@@ -388,6 +406,7 @@ def stage_draft_md_output_to_host_repo(
         config_path=host_config_path,
         model=model,
         region=region,
+        lang=lang,
     )
     staged_output_path = versioned_md_output_path(
         host_output_path,

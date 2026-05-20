@@ -15,6 +15,7 @@ from tools.document_link_actions import (
     workflow_action_source as _workflow_action_source,
     workflow_action_uses_legacy_doc_phase as _workflow_action_uses_legacy_doc_phase,
 )
+from tools.language_aliases import normalize_language
 from tools.document_link_queue import (
     is_force_phase2_refresh_enabled as _is_force_phase2_refresh_enabled_impl,
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled_impl,
@@ -175,11 +176,16 @@ def select_pending_queue_records(
 def document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
     candidate = document_id.strip()
     version_text = version.strip()
-    lang_text = lang.strip().lower()
+    lang_text = normalize_language(lang)
     if version_text and candidate.endswith("_" + version_text):
         candidate = candidate[: -(len(version_text) + 1)]
-    if lang_text and candidate.lower().endswith("_" + lang_text):
-        candidate = candidate[: -(len(lang_text) + 1)]
+    lang_suffixes = {lang_text.casefold()}
+    if lang_text.casefold() == "pt-br":
+        lang_suffixes.add("br")
+    for lang_suffix in sorted(lang_suffixes, key=len, reverse=True):
+        if lang_suffix and candidate.casefold().endswith("_" + lang_suffix):
+            candidate = candidate[: -(len(lang_suffix) + 1)]
+            break
     return candidate.strip()
 
 

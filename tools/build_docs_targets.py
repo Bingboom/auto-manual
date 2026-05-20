@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+from tools.language_aliases import language_key, normalize_language
+
 
 def config_uses_model_token(
     cfg: dict,
@@ -44,6 +46,7 @@ def configured_build_targets(
     resolve_build_model: Callable[[dict, str | None], str | None],
     resolve_build_region: Callable[[dict, str | None], str | None],
     resolve_output_lang: Callable[[dict], str | None],
+    arg_lang: str | None = None,
 ) -> list[Any]:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
@@ -55,7 +58,9 @@ def configured_build_targets(
 
     default_model = resolve_build_model(cfg, None)
     default_region = resolve_build_region(cfg, None)
-    output_lang = resolve_output_lang(cfg)
+    languages = build_cfg.get("languages", [])
+    supported_langs = [str(item).strip() for item in languages if str(item).strip()] if isinstance(languages, list) else []
+    output_lang = normalize_language(arg_lang, supported=supported_langs) if (arg_lang or "").strip() else resolve_output_lang(cfg)
     targets: list[Any] = []
     seen: set[tuple[str | None, str | None, str | None]] = set()
 
@@ -87,6 +92,7 @@ def resolve_build_targets(
     *,
     arg_model: str | None,
     arg_region: str | None,
+    arg_lang: str | None = None,
     all_targets: bool,
     build_target_cls: type[Any],
     configured_build_targets: Callable[[dict], list[Any]],
@@ -94,18 +100,28 @@ def resolve_build_targets(
     resolve_build_region: Callable[[dict, str | None], str | None],
     resolve_output_lang: Callable[[dict], str | None],
 ) -> list[Any]:
-    if all_targets and ((arg_model or "").strip() or (arg_region or "").strip()):
-        raise RuntimeError("Cannot combine --all-targets with --model or --region")
+    if all_targets and ((arg_model or "").strip() or (arg_region or "").strip() or (arg_lang or "").strip()):
+        raise RuntimeError("Cannot combine --all-targets with --model, --region, or --lang")
 
     if all_targets:
         targets = configured_build_targets(cfg)
         if targets:
             return targets
 
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    raw_languages = build_cfg.get("languages", [])
+    supported_langs = [str(item).strip() for item in raw_languages if str(item).strip()] if isinstance(raw_languages, list) else []
+    output_lang = normalize_language(arg_lang, supported=supported_langs) if (arg_lang or "").strip() else resolve_output_lang(cfg)
+    if output_lang and supported_langs and language_key(output_lang) not in {language_key(item) for item in supported_langs}:
+        raise RuntimeError(
+            f"Requested --lang {arg_lang!r} is not declared in build.languages: {supported_langs}"
+        )
+
     return [
         build_target_cls(
             model=resolve_build_model(cfg, arg_model),
             region=resolve_build_region(cfg, arg_region),
-            lang=resolve_output_lang(cfg),
+            lang=output_lang,
         )
     ]

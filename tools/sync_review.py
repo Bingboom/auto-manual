@@ -36,6 +36,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
+    ap.add_argument("--lang", default=None, help="Optional language selector for multi-language configs")
     ap.add_argument("--all-targets", action="store_true", help="Use build.targets from config")
     ap.add_argument(
         "--sync-scope",
@@ -88,6 +89,7 @@ def resolve_sync_plan(
     runtime_bundle_dir: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
     scope: str,
     page_files: tuple[str, ...],
 ) -> tuple[SyncPlanEntry, ...]:
@@ -95,7 +97,12 @@ def resolve_sync_plan(
         raise RuntimeError(f"Unsupported sync scope: {scope}")
 
     sync_plan: dict[Path, SyncPlanEntry] = {}
-    planned_pages = plan_materialized_pages(cfg, model=model, region=region)
+    planned_pages = plan_materialized_pages(
+        cfg,
+        model=model,
+        region=region,
+        langs=[lang] if (lang or "").strip() else None,
+    )
     generated_dir = runtime_bundle_dir / "generated"
     if generated_dir.exists():
         for path in generated_dir.rglob("*.rst"):
@@ -236,6 +243,7 @@ def main(argv: list[str] | None = None) -> int:
             cfg,
             arg_model=args.model,
             arg_region=args.region,
+            arg_lang=args.lang,
             all_targets=args.all_targets,
         )
         for target in targets:
@@ -265,6 +273,7 @@ def main(argv: list[str] | None = None) -> int:
                 runtime_bundle_dir=runtime_bundle_dir,
                 model=target.model,
                 region=target.region,
+                lang=target.lang,
                 scope=args.sync_scope,
                 page_files=tuple(args.page_file),
             )

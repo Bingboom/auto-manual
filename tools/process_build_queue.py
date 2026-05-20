@@ -263,6 +263,7 @@ def _build_py_target_command(
     model: str,
     region: str,
     data_root: str | None,
+    lang: str | None = None,
     source: str | None = None,
     no_clean: bool = False,
 ) -> list[str]:
@@ -274,6 +275,7 @@ def _build_py_target_command(
         model=model,
         region=region,
         data_root=data_root,
+        lang=lang,
         source=source,
         no_clean=no_clean,
     )
@@ -303,6 +305,7 @@ def build_document_for_task(
     region: str,
     data_root: str | None,
     doc_phase: str | None,
+    lang: str | None = None,
     version: str = "",
     git_ref: str = "",
 ) -> Any:
@@ -313,6 +316,7 @@ def build_document_for_task(
         region=region,
         data_root=data_root,
         doc_phase=doc_phase,
+        lang=lang,
         version=version,
         git_ref=git_ref,
     )

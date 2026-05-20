@@ -66,6 +66,7 @@ def plan_materialized_pages(
     model: str | None = None,
     region: str | None = None,
     *,
+    langs: list[str] | None = None,
     root: Path,
     build_langs: Callable[[dict], list[str]],
     resolve_config_pages_or_raise: Callable[..., Any],
@@ -79,10 +80,10 @@ def plan_materialized_pages(
     base_file_name_for_plan: Callable[..., str],
     ensure_unique_name: Callable[[str, set[str], int], str],
 ) -> list[Any]:
-    langs = build_langs(cfg)
+    selected_langs = list(langs) if langs is not None else build_langs(cfg)
     pages = resolve_config_pages_or_raise(
         cfg,
-        default_languages=langs,
+        default_languages=selected_langs,
         root=root,
         model=model,
         region=region,
@@ -105,7 +106,7 @@ def plan_materialized_pages(
             continue
 
         if isinstance(page, pdf_insert_page_cls):
-            page_langs = list(page.langs) or langs
+            page_langs = [lang for lang in (list(page.langs) or selected_langs) if lang in selected_langs]
             for lang in page_langs:
                 if lang not in page.file_map:
                     raise RuntimeError(f"pdf_insert.file_map missing lang '{lang}'")
@@ -120,7 +121,7 @@ def plan_materialized_pages(
             continue
 
         if isinstance(page, csv_page_cls):
-            page_langs = list(page.langs) or langs
+            page_langs = [lang for lang in (list(page.langs) or selected_langs) if lang in selected_langs]
             if page.include_dir:
                 format_tokenized(page.include_dir, model, region)
             for lang in page_langs:
@@ -135,7 +136,7 @@ def plan_materialized_pages(
             continue
 
         if isinstance(page, generated_page_cls):
-            page_langs = list(page.langs) or langs
+            page_langs = [lang for lang in (list(page.langs) or selected_langs) if lang in selected_langs]
             format_tokenized(page.recipe, model, region)
             format_tokenized(page.template, model, region)
             if page.include_dir:
@@ -152,6 +153,8 @@ def plan_materialized_pages(
             continue
 
         if isinstance(page, rst_include_page_cls):
+            if page.lang is not None and page.lang not in selected_langs:
+                continue
             base_name = base_file_name_for_plan(page, lang=page.lang, model=model, region=region)
             planned.append(
                 planned_page_cls(
@@ -172,6 +175,7 @@ def build_index_from_pages(
     model: str | None = None,
     region: str | None = None,
     *,
+    langs: list[str] | None = None,
     root: Path,
     plan_materialized_pages: Callable[..., list[Any]],
 ) -> str:
@@ -187,7 +191,7 @@ def build_index_from_pages(
         "   =============",
         "",
     ]
-    for planned in plan_materialized_pages(cfg, model=model, region=region, root=root):
+    for planned in plan_materialized_pages(cfg, model=model, region=region, langs=langs, root=root):
         lines.extend([f".. include:: page/{planned.file_name}", ""])
     return "\n".join(lines) + "\n"
 

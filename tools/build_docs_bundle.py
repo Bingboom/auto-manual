@@ -44,6 +44,7 @@ def prepare_manual_bundle(
         cfg,
         model=model,
         region=region,
+        lang=lang,
         data_root=data_root,
         ensure_csv_pages=True,
         page_selector=page_selector,

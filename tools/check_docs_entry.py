@@ -32,6 +32,7 @@ def run_check_entry(
             cfg_path=cfg_path,
             model=args.model,
             region=args.region,
+            lang=getattr(args, "lang", None),
             all_targets=args.all_targets,
             data_root=args.data_root,
             docs_build_dir=docs_build_dir,

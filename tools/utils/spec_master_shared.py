@@ -395,7 +395,11 @@ _SOURCE_LANGUAGE_NORMALIZATION = {
     "法文": "fr",
     "es": "es",
     "spanish": "es",
+    "br": "pt-br",
+    "pt": "pt-br",
+    "pt-br": "pt-br",
+    "pt_br": "pt-br",
+    "portuguese": "pt-br",
     "西语": "es",
     "西班牙语": "es",
 }
-

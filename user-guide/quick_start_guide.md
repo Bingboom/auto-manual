@@ -476,9 +476,10 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 
 ## 10. 2026-04 更新
 
-- `Review Init` 和 `Document_link` 现在都是先按 `Build_family` 路由，再决定是否按 `Document_Key` 合并；只有像 `us-merged` 这类启用了 `queue_by_document_key` 的 family，才会把同一个 `Document_Key` 的多行合成一次 review / build。
+- `Review Init` 和 `Document_link` 现在都是先按 `Build_family` 路由，再决定是否按 `Document_Key` 合并；像 `us-merged` 这种启用了 `queue_by_document_key` 的 family 会把空 `Lang` 的同一个 `Document_Key` 合成一次 review / build，而 `Build Draft Package` 行只要填写了 `Lang`，就会按 `Document_Key + 规范化 Lang` 拆成独立构建。
+- `Lang=br` / `pt-br` 会规范化为 `pt-BR`，所以 `JE-1500D_pt-BR` 可以用一条 Start Review 创建 review，再用 `Lang=en` 和 `Lang=br` 两条 Build Draft Package 分别产出英文对照稿和葡语稿。
 - US 的 `config.us.yaml` 现在是合并多语言入口，会产出一个合并 `en + fr + es` 的 Word：`docs/_build/<model>/US/word/manual_<model>_us.docx`。
 - 队列表建议直接填写 `Build_family`：`us-merged` / `us-en` / `us-es` / `us-fr` / `jp-ja` / `cn-zh`；`Lang` 现在只保留为兼容字段，不再是主路由字段。
-- 合并 US 流程请填 `Build_family = us-merged`，`Lang` 可以留空；单语言流程请填对应单语言 family，`Lang` 只填一个语言值即可。
+- 合并 US 流程请填 `Build_family = us-merged`，`Lang` 可以留空；`pt-br` 这类源语+目标语成对 review 流程可以共用一个 `Document_Key`，Draft 阶段再按 `Lang` 拆包；单语言流程请填对应单语言 family，`Lang` 只填一个语言值即可。
 - 这条合并 US 流程不再要求法语、西语分别先创一份独立初稿 review bundle。
 - `Spec_Master` 里由 `Source_lang` 定义 source language；`*_source` 内容必须有，其他语言列在 CSV 驱动内容里可以为空，系统会自动回退到 source language 文本。

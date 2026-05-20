@@ -57,11 +57,12 @@ def resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = 
     )
 
 
-def resolve_word_output_path_for_target(*, config_path: Path, model: str, region: str) -> Path:
+def resolve_word_output_path_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
     return _resolve_word_output_path_for_target_impl(
         config_path=config_path,
         model=model,
         region=region,
+        lang=lang,
         repo_root=_repo_root(),
         config_loader=load_config,
         build_languages=_build_languages,
@@ -72,11 +73,12 @@ def resolve_word_output_path_for_target(*, config_path: Path, model: str, region
     )
 
 
-def resolve_pdf_output_path_for_target(*, config_path: Path, model: str, region: str) -> Path:
+def resolve_pdf_output_path_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
     return _resolve_pdf_output_path_for_target_impl(
         config_path=config_path,
         model=model,
         region=region,
+        lang=lang,
         repo_root=_repo_root(),
         config_loader=load_config,
         build_languages=_build_languages,
@@ -87,11 +89,12 @@ def resolve_pdf_output_path_for_target(*, config_path: Path, model: str, region:
     )
 
 
-def resolve_md_output_path_for_target(*, config_path: Path, model: str, region: str) -> Path:
+def resolve_md_output_path_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
     return _resolve_md_output_path_for_target_impl(
         config_path=config_path,
         model=model,
         region=region,
+        lang=lang,
         repo_root=_repo_root(),
         config_loader=load_config,
         build_languages=_build_languages,
@@ -102,13 +105,15 @@ def resolve_md_output_path_for_target(*, config_path: Path, model: str, region: 
     )
 
 
-def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
+def resolve_html_output_dir_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
     return _resolve_html_output_dir_for_target_impl(
         config_path=config_path,
         model=model,
         region=region,
+        lang=lang,
         repo_root=_repo_root(),
         config_loader=load_config,
+        build_languages=_build_languages,
         resolve_output_lang=resolve_output_lang,
         build_root_for_target=build_root_for_target,
     )
@@ -190,12 +195,14 @@ def stage_draft_word_output_to_host_repo(
     region: str,
     version: str,
     doc_phase: str | None,
+    lang: str | None = None,
 ) -> Path:
     return _stage_draft_word_output_to_host_repo_impl(
         built_word_output_path=built_word_output_path,
         host_config_path=host_config_path,
         model=model,
         region=region,
+        lang=lang,
         version=version,
         doc_phase=doc_phase,
         resolve_word_output_path_for_target=resolve_word_output_path_for_target,
@@ -211,12 +218,14 @@ def stage_draft_md_output_to_host_repo(
     region: str,
     version: str,
     doc_phase: str | None,
+    lang: str | None = None,
 ) -> Path:
     return _stage_draft_md_output_to_host_repo_impl(
         built_md_output_path=built_md_output_path,
         host_config_path=host_config_path,
         model=model,
         region=region,
+        lang=lang,
         version=version,
         doc_phase=doc_phase,
         resolve_md_output_path_for_target=resolve_md_output_path_for_target,

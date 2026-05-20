@@ -780,6 +780,7 @@ def collect_spec_master_validation_issues(
     cfg_path: Path,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
     all_targets: bool,
     data_root: str | None = None,
     source_mode: str = "runtime",
@@ -809,6 +810,7 @@ def collect_spec_master_validation_issues(
         cfg,
         model=model,
         region=region,
+        lang=lang,
         all_targets=all_targets,
     )
 

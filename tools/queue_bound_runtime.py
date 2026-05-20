@@ -68,6 +68,7 @@ def build_py_target_command(
     model: str,
     region: str,
     data_root: str | None,
+    lang: str | None = None,
     source: str | None = None,
     no_clean: bool = False,
     repo_root: Path | None = None,
@@ -79,6 +80,7 @@ def build_py_target_command(
         model=model,
         region=region,
         data_root=data_root,
+        lang=lang,
         source=source,
         no_clean=no_clean,
     )

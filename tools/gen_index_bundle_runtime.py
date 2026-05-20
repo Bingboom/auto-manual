@@ -35,6 +35,7 @@ def resolve_bundle_materialization_context(
     *,
     model: str | None,
     region: str | None,
+    lang: str | None,
     data_root: str | None,
     docs_dir: Path,
     repo_root: Path,
@@ -60,9 +61,19 @@ def resolve_bundle_materialization_context(
 ) -> BundleMaterializationContext:
     target_model = resolve_build_model(cfg, model)
     target_region = resolve_build_region(cfg, region)
-    resolved_langs = tuple(build_langs(cfg))
+    configured_langs = tuple(build_langs(cfg))
+    requested_lang = ""
+    if (lang or "").strip():
+        from tools.language_aliases import normalize_language
+
+        requested_lang = normalize_language(lang, supported=configured_langs)
+        if requested_lang not in configured_langs:
+            raise RuntimeError(
+                f"Requested lang {lang!r} is not declared in build.languages: {list(configured_langs)}"
+            )
+    resolved_langs = (requested_lang,) if requested_lang else configured_langs
     primary_lang = str(resolved_langs[0]) if resolved_langs else "en"
-    output_lang = resolve_output_lang(cfg)
+    output_lang = requested_lang or resolve_output_lang(cfg)
 
     resolved_page_source = resolve_config_pages_or_raise(
         cfg,
@@ -75,7 +86,13 @@ def resolve_bundle_materialization_context(
     page_manifest_path = resolved_page_source.manifest_path
     planned_pages = tuple(
         select_planned_pages(
-            plan_materialized_pages(cfg, model=target_model, region=target_region, root=repo_root),
+            plan_materialized_pages(
+                cfg,
+                model=target_model,
+                region=target_region,
+                langs=list(resolved_langs),
+                root=repo_root,
+            ),
             page_selector,
         )
     )
@@ -191,7 +208,13 @@ def prepare_bundle_workspace(
             phase1_output_dir=context.generated_dir,
             data_root=data_root,
         )
-        ensure_csv_page_rsts(cfg, builder, context.target_model, context.target_region)
+        ensure_csv_page_rsts(
+            cfg,
+            builder,
+            context.target_model,
+            context.target_region,
+            langs=context.build_langs,
+        )
 
     context.page_dir.mkdir(parents=True, exist_ok=True)
     copy_bundle_support_assets(docs_dir=context.docs_dir, bundle_dir=context.bundle_dir)
@@ -256,6 +279,7 @@ def write_bundle_outputs(
         cfg,
         model=context.target_model,
         region=context.target_region,
+        langs=list(context.build_langs),
         root=context.repo_root,
     )
     context.index_path.write_text(index_text, encoding="utf-8")

@@ -14,6 +14,7 @@ from tools.document_link_queue import (
     is_immediate_trigger_enabled,
     scalar_text,
 )
+from tools.language_aliases import normalize_language
 from tools.phase2_support import (
     LarkCliSource,
     cli_bin,
@@ -149,7 +150,7 @@ _QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
 _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
 _REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}$")
 _BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
-_LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "ko", "uk"}
+_LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "br", "pt-br", "ko", "uk"}
 _LANG_ALIASES = {
     "英语": "en",
     "英文": "en",
@@ -174,7 +175,11 @@ _LANG_ALIASES = {
     "chinese": "zh",
     "葡语": "pt",
     "葡萄牙语": "pt",
-    "portuguese": "pt",
+    "portuguese": "pt-BR",
+    "brazilian portuguese": "pt-BR",
+    "pt-br": "pt-BR",
+    "pt_br": "pt-BR",
+    "br": "pt-BR",
     "韩语": "ko",
     "韩文": "ko",
     "korean": "ko",
@@ -273,7 +278,9 @@ def _normalize_langs(value: Any) -> tuple[str, ...]:
             normalized = "ja"
         if normalized == "cn":
             normalized = "zh"
-        if normalized in _LANG_CODES and normalized not in langs:
+        if normalized in {"pt", "br", "pt-br"}:
+            normalized = "pt-BR"
+        if (normalized in _LANG_CODES or normalized == "pt-BR") and normalized not in langs:
             langs.append(normalized)
     return tuple(langs)
 
@@ -288,6 +295,8 @@ def _infer_langs(text: str) -> tuple[str, ...]:
     for token in tokens:
         if token in _LANG_CODES:
             normalized = "ja" if token == "jp" else "zh" if token == "cn" else token
+            if normalized in {"pt", "br", "pt-br"}:
+                normalized = "pt-BR"
             if normalized not in langs:
                 langs.append(normalized)
     return tuple(langs)
@@ -854,7 +863,7 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 document_id=_text(fields.get(DOCUMENT_ID_FIELD)),
                 document_key=_text(fields.get(DOCUMENT_KEY_FIELD)),
                 build_family=_text(fields.get(BUILD_FAMILY_FIELD)).lower(),
-                lang=_text(fields.get(LANG_FIELD)).lower(),
+                lang=normalize_language(_text(fields.get(LANG_FIELD))),
                 version=_text(fields.get(VERSION_FIELD)),
                 workflow_action=workflow_action,
                 normalized_workflow_action=best_effort_queue_workflow_action(
@@ -975,7 +984,8 @@ def _matches_queue_query_row(
         return False
     if not _match_exact(row.build_family, getattr(args, "build_family", None)):
         return False
-    if not _match_exact(row.lang, getattr(args, "lang", None)):
+    requested_lang = normalize_language(getattr(args, "lang", None))
+    if requested_lang and row.lang.casefold() != requested_lang.casefold():
         return False
     if lang_filters and row.lang not in lang_filters:
         return False

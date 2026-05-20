@@ -192,13 +192,15 @@ def _effective_targets(
     *,
     model: str | None,
     region: str | None,
+    lang: str | None = None,
     all_targets: bool,
 ) -> list[BuildTarget]:
-    explicit_target = (model or "").strip() or (region or "").strip()
+    explicit_target = (model or "").strip() or (region or "").strip() or (lang or "").strip()
     return resolve_build_targets(
         cfg,
         arg_model=model,
         arg_region=region,
+        arg_lang=lang,
         all_targets=all_targets or not bool(explicit_target),
     )
 

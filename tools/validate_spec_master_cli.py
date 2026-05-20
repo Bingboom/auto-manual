@@ -14,6 +14,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--model", default=None, help="Single target model override")
     ap.add_argument("--region", default=None, help="Single target region override")
+    ap.add_argument("--lang", default=None, help="Optional language selector for multi-language configs")
     ap.add_argument(
         "--source",
         choices=("auto", "runtime", "review"),
@@ -35,6 +36,7 @@ def main(argv: list[str] | None = None) -> int:
             cfg_path=cfg_path,
             model=args.model,
             region=args.region,
+            lang=args.lang,
             all_targets=args.all_targets,
             data_root=args.data_root,
             source_mode=args.source,

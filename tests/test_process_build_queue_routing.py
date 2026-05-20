@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
+from tools import document_link_queue
 from tools import process_build_queue
 from tests.test_helpers import temp_test_root, write_text
 
@@ -15,6 +16,21 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
 
         self.assertEqual("JE-1000F", model)
         self.assertEqual("US", region)
+
+    def test_parse_document_key_should_preserve_pt_br_region_alias(self) -> None:
+        model, region = process_build_queue.parse_document_key("JE-1500D_pt-BR")
+
+        self.assertEqual("JE-1500D", model)
+        self.assertEqual("pt-BR", region)
+
+    def test_document_key_from_document_id_should_strip_br_alias(self) -> None:
+        document_key = document_link_queue.document_key_from_document_id(
+            document_id="JE-1500D_pt-BR_br_0.2",
+            lang="br",
+            version="0.2",
+        )
+
+        self.assertEqual("JE-1500D_pt-BR", document_key)
 
     def test_resolve_target_for_record_should_fallback_to_document_id(self) -> None:
         record = process_build_queue.QueueRecord(
@@ -400,17 +416,17 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                         workflow_action="publish",
                     )
 
-    def test_resolve_config_path_for_task_should_reject_draft_lang_against_merged_family(self) -> None:
+    def test_resolve_config_path_for_task_should_allow_draft_lang_against_document_key_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            config_path = root / "config.us.yaml"
+            config_path = root / "config.pt-br.yaml"
             config_path.write_text("build: {}\n", encoding="utf-8")
             configs = {
-                "config.us.yaml": {
+                "config.pt-br.yaml": {
                     "build": {
-                        "family_id": "us-merged",
-                        "default_region": "US",
-                        "languages": ["en", "fr", "es"],
+                        "family_id": "pt-br",
+                        "default_region": "pt-BR",
+                        "languages": ["en", "pt-BR"],
                         "include_lang_in_output_path": False,
                         "queue_by_document_key": True,
                     }
@@ -422,13 +438,14 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 "load_config",
                 side_effect=lambda path: configs[path.name],
             ):
-                with self.assertRaisesRegex(RuntimeError, "single-language Build_family"):
-                    process_build_queue.resolve_config_path_for_task(
-                        region="US",
-                        lang="en",
-                        build_family="us-merged",
-                        workflow_action="draft",
-                    )
+                config_path = process_build_queue.resolve_config_path_for_task(
+                    region="pt-br",
+                    lang="br",
+                    build_family="pt-br",
+                    workflow_action="draft",
+                )
+
+        self.assertEqual(root / "config.pt-br.yaml", config_path)
 
     def test_group_pending_queue_records_should_merge_document_key_rows_when_config_requests_it(self) -> None:
         records = [
@@ -514,6 +531,74 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
 
         self.assertEqual(
             [["rec_us_en"], ["rec_us_fr"]],
+            [[record.record_id for record in group] for group in grouped],
+        )
+
+    def test_group_pending_queue_records_should_split_document_key_drafts_by_lang(self) -> None:
+        records = [
+            process_build_queue.QueueRecord(
+                record_id="rec_ptbr_en",
+                document_id="JE-1500D_pt-BR_en_0.2",
+                document_key="JE-1500D_pt-BR",
+                version="0.2",
+                lang="en",
+                workflow_action="Build Draft Package",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1500d-pt-br",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+                build_family="pt-br",
+            ),
+            process_build_queue.QueueRecord(
+                record_id="rec_ptbr_br",
+                document_id="JE-1500D_pt-BR_br_0.2",
+                document_key="JE-1500D_pt-BR",
+                version="0.2",
+                lang="br",
+                workflow_action="Build Draft Package",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1500d-pt-br",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+                build_family="pt-br",
+            ),
+            process_build_queue.QueueRecord(
+                record_id="rec_ptbr_alias",
+                document_id="JE-1500D_pt-BR_pt-BR_0.2",
+                document_key="JE-1500D_pt-BR",
+                version="0.2",
+                lang="pt-BR",
+                workflow_action="Build Draft Package",
+                doc_phase="Draft",
+                git_ref="codex/review-je-1500d-pt-br",
+                trigger_value="Y",
+                immediate_trigger_value=True,
+                build_family="pt-br",
+            ),
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "config.pt-br.yaml").write_text("build: {}\n", encoding="utf-8")
+            configs = {
+                "config.pt-br.yaml": {
+                    "build": {
+                        "family_id": "pt-br",
+                        "default_region": "pt-BR",
+                        "languages": ["en", "pt-BR"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                }
+            }
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                grouped = process_build_queue.group_pending_queue_records(records)
+
+        self.assertEqual(
+            [["rec_ptbr_en"], ["rec_ptbr_br", "rec_ptbr_alias"]],
             [[record.record_id for record in group] for group in grouped],
         )
 
