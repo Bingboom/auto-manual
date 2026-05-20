@@ -1,0 +1,23 @@
+page_id: 05_operation_guide
+template: templates/page_us-pt-br/05_operation_guide_placeholder.rst
+field_map:
+  DEFAULT_STANDBY_DURATION:
+    row_key: default_standby_duration
+    pages: [operation_guide]
+    usage_type: page_value
+  ENERGY_SAVING_AUTO_OFF_DURATION:
+    row_key: energy_saving_auto_off_duration
+    pages: [operation_guide]
+    usage_type: page_value
+  ENERGY_SAVING_AC_THRESHOLD:
+    row_key: energy_saving_ac_threshold
+    pages: [operation_guide]
+    usage_type: page_value
+  ENERGY_SAVING_DC_THRESHOLD:
+    row_key: energy_saving_dc_threshold
+    pages: [operation_guide]
+    usage_type: page_value
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 05_operation_guide

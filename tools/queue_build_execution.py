@@ -24,6 +24,7 @@ def build_py_target_command(
     model: str,
     region: str,
     data_root: str | None,
+    lang: str | None = None,
     source: str | None = None,
     no_clean: bool = False,
 ) -> list[str]:
@@ -38,6 +39,8 @@ def build_py_target_command(
         "--region",
         region,
     ]
+    if lang:
+        cmd += ["--lang", lang]
     if source:
         cmd += ["--source", source]
     if no_clean:
@@ -122,6 +125,7 @@ def build_document_for_task(
     region: str,
     data_root: str | None,
     doc_phase: str | None,
+    lang: str | None = None,
     version: str = "",
     git_ref: str = "",
     normalize_workflow_action: Callable[[str | None], str | None],
@@ -178,6 +182,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                     source="review",
                 ),
@@ -190,6 +195,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                     source="review",
                     no_clean=True,
@@ -203,6 +209,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                     source="review",
                     no_clean=True,
@@ -217,6 +224,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                 ),
                 cwd=effective_repo_root,
@@ -228,6 +236,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                     source="review",
                     no_clean=True,
@@ -242,6 +251,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                 ),
                 cwd=effective_repo_root,
@@ -253,6 +263,7 @@ def build_document_for_task(
                     config_path=effective_config_path,
                     model=model,
                     region=region,
+                    lang=lang,
                     data_root=effective_data_root,
                     no_clean=True,
                 ),
@@ -263,6 +274,7 @@ def build_document_for_task(
             config_path=effective_config_path,
             model=model,
             region=region,
+            lang=lang,
         )
         if not word_output_path.exists():
             raise RuntimeError(f"Word output was not created: {word_output_path}")
@@ -281,6 +293,7 @@ def build_document_for_task(
                 config_path=effective_config_path,
                 model=model,
                 region=region,
+                lang=lang,
             )
             if not md_output_path.exists():
                 raise RuntimeError(f"Markdown output was not created: {md_output_path}")
@@ -298,6 +311,7 @@ def build_document_for_task(
                 config_path=effective_config_path,
                 model=model,
                 region=region,
+                lang=lang,
             )
             if not pdf_output_path.exists():
                 raise RuntimeError(f"PDF output was not created for publish: {pdf_output_path}")
@@ -314,6 +328,7 @@ def build_document_for_task(
                 config_path=effective_config_path,
                 model=model,
                 region=region,
+                lang=lang,
             )
             if not html_output_dir.exists():
                 raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
@@ -343,6 +358,7 @@ def build_document_for_task(
                 host_config_path=config_path_in_repo_root(config_path, repo_root=repo_root),
                 model=model,
                 region=region,
+                lang=lang,
                 version=version,
                 doc_phase=normalized_doc_phase,
             )
@@ -352,6 +368,7 @@ def build_document_for_task(
                     host_config_path=config_path_in_repo_root(config_path, repo_root=repo_root),
                     model=model,
                     region=region,
+                    lang=lang,
                     version=version,
                     doc_phase=normalized_doc_phase,
                 )

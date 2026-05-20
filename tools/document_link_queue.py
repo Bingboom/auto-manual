@@ -5,6 +5,8 @@ import os
 import re
 from typing import Any, Callable
 
+from tools.language_aliases import normalize_language, normalize_region
+
 _EXPLICIT_DOCUMENT_KEY_RE = re.compile(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+")
 
 
@@ -176,7 +178,7 @@ def parse_queue_records(
                 document_id=scalar_text(fields.get(document_id_field)),
                 document_key=scalar_text(fields.get(document_key_field)),
                 version=scalar_text(fields.get(version_field)),
-                lang=scalar_text(fields.get(lang_field)).lower(),
+                lang=normalize_language(scalar_text(fields.get(lang_field))),
                 build_family=scalar_text(fields.get(build_family_field)).lower(),
                 workflow_action=scalar_text(fields.get(workflow_action_field)),
                 doc_phase=scalar_text(fields.get(doc_phase_field)),
@@ -269,17 +271,22 @@ def parse_document_key(document_key: str) -> tuple[str, str]:
             "Document_Key must use '<MODEL>_<REGION>' so the build target is unambiguous: "
             + document_key
         )
-    return model.strip(), region.strip().upper()
+    return model.strip(), normalize_region(region)
 
 
 def document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
     candidate = document_id.strip()
     version_text = version.strip()
-    lang_text = lang.strip().lower()
+    lang_text = normalize_language(lang)
     if version_text and candidate.endswith("_" + version_text):
         candidate = candidate[: -(len(version_text) + 1)]
-    if lang_text and candidate.lower().endswith("_" + lang_text):
-        candidate = candidate[: -(len(lang_text) + 1)]
+    lang_suffixes = {lang_text.casefold()}
+    if lang_text.casefold() == "pt-br":
+        lang_suffixes.add("br")
+    for lang_suffix in sorted(lang_suffixes, key=len, reverse=True):
+        if lang_suffix and candidate.casefold().endswith("_" + lang_suffix):
+            candidate = candidate[: -(len(lang_suffix) + 1)]
+            break
     return candidate.strip()
 
 
@@ -347,7 +354,7 @@ def queue_record_group_key(record: Any) -> str:
 def queue_group_lang(records: list[Any]) -> str:
     for record in records:
         if record.lang.strip():
-            return record.lang.strip().lower()
+            return normalize_language(record.lang)
     return ""
 
 

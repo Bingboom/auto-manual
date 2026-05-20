@@ -145,12 +145,14 @@ def plan_materialized_pages(
     model: str | None = None,
     region: str | None = None,
     *,
+    langs: list[str] | None = None,
     root: Path | None = None,
 ) -> list[PlannedPage]:
     return _plan_materialized_pages_impl(
         cfg,
         model=model,
         region=region,
+        langs=langs,
         root=root or paths.root,
         build_langs=_build_langs,
         resolve_config_pages_or_raise=resolve_config_pages_or_raise,
@@ -171,12 +173,14 @@ def build_index_from_pages(
     model: str | None = None,
     region: str | None = None,
     *,
+    langs: list[str] | None = None,
     root: Path | None = None,
 ) -> str:
     return _build_index_from_pages_impl(
         cfg,
         model=model,
         region=region,
+        langs=langs,
         root=root or paths.root,
         plan_materialized_pages=plan_materialized_pages,
     )
@@ -395,6 +399,7 @@ def materialize_bundle(
     model: str | None = None,
     region: str | None = None,
     *,
+    lang: str | None = None,
     data_root: str | None = None,
     docs_dir: Path | None = None,
     repo_root: Path | None = None,
@@ -407,6 +412,7 @@ def materialize_bundle(
         cfg,
         model=model,
         region=region,
+        lang=lang,
         data_root=data_root,
         docs_dir=docs_dir or paths.docs_dir,
         repo_root=repo_root or paths.root,

@@ -27,6 +27,7 @@ def run_bundle_entry(
         cfg,
         model=args.model,
         region=args.region,
+        lang=getattr(args, "lang", None),
         data_root=args.data_root,
     )
     printer(f"[gen_index_bundle] Wrote bundle index: {bundle.index_path}")

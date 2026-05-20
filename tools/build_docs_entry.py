@@ -57,6 +57,7 @@ def run_build(
         cfg,
         arg_model=args.model,
         arg_region=args.region,
+        arg_lang=args.lang,
         all_targets=args.all_targets,
     )
     if config_uses_model_token(cfg) and any(not target.model for target in targets):

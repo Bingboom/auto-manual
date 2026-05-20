@@ -316,6 +316,27 @@ LANG_COPY: dict[str, dict[str, object]] = {
 }
 
 
+def _copy_for_lang(lang: str) -> dict[str, object]:
+    return LANG_COPY.get(lang) or LANG_COPY.get((lang or "").strip().casefold()) or LANG_COPY["en"]
+
+
+def _text_column_for_lang(row: dict[str, str], lang: str) -> str:
+    raw = (lang or "").strip()
+    source_lang = (row.get("Source_lang") or row.get("source_lang") or "").strip()
+    candidates = [
+        f"text_{raw}",
+        f"text_{raw.casefold()}",
+        f"text_{raw.replace('-', '_')}",
+        f"text_{source_lang}",
+        f"text_{source_lang.casefold()}",
+        "text_en",
+    ]
+    for candidate in candidates:
+        if candidate in row:
+            return candidate
+    return f"text_{raw}"
+
+
 def _sort_key(row: dict[str, str]) -> float:
     try:
         return float(row.get("order") or "0")
@@ -466,21 +487,12 @@ def _matches_symbols_target(
 
 
 def _matches_symbols_fallback_scope(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
-    if _has_market_scope(block):
-        return False
-
     block_region = (block.get("Region") or block.get("region") or "").strip()
     model_tokens = parse_model_tokens(block.get("Model") or block.get("model") or "")
-    if not block_region and not model_tokens:
+    if not _has_market_scope(block) and not block_region and not model_tokens:
         return False
 
-    target_region = _pick_target_region(vars_map)
-    target_model = _pick_target_model(vars_map)
     if block_region.casefold() == "all":
-        return False
-    if block_region and target_region and block_region.casefold() == target_region.casefold():
-        return False
-    if not _matches_symbols_model(block, target_model=target_model, target_region=target_region):
         return False
     return True
 
@@ -640,11 +652,12 @@ def _matching_symbol_blocks(
     for block in blocks:
         if not _enabled(block.get("enabled", "1")):
             continue
-        if not _matches_row_conditions(block, vars_map=vars_map):
+        is_latest = block.get("Is_Latest") or block.get("Is_latest") or block.get("is_latest") or ""
+        if not _truthy(is_latest, default=True):
             continue
         if _symbol_block_type(block) != block_type:
             continue
-        if _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
+        if _matches_market(block, vars_map=vars_map) and _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
             rows.append(block)
             continue
         if _matches_symbols_fallback_scope(block, vars_map=vars_map):
@@ -684,9 +697,7 @@ def _matching_symbol_blocks(
 
 
 def _default_signal_rows(lang: str) -> list[dict[str, object]]:
-    copy = LANG_COPY.get(lang)
-    if copy is None:
-        raise ValueError(f"unsupported symbols language: {lang}")
+    copy = _copy_for_lang(lang)
     rows: list[dict[str, object]] = []
     for signal_key, row in zip(SIGNAL_ROW_KEYS, list(copy["signal_rows"])):
         normalized = dict(row)
@@ -721,7 +732,6 @@ def _collect_signal_rows(
     lang: str,
     vars_map: dict[str, str],
 ) -> list[dict[str, object]]:
-    lang_col = f"text_{lang}"
     rows = _matching_symbol_blocks(
         blocks,
         block_type="signal_row",
@@ -730,6 +740,7 @@ def _collect_signal_rows(
     )
     if not rows:
         return _default_signal_rows(lang)
+    lang_col = _text_column_for_lang(rows[0], lang)
     if lang_col not in rows[0]:
         raise ValueError(f"content csv missing language column: {lang_col}")
     if not _has_unique_explicit_orders(rows):
@@ -773,9 +784,7 @@ def _collect_signal_rows(
 
 
 def _signal_section(lang: str, signal_rows: list[dict[str, object]] | None = None) -> str:
-    copy = LANG_COPY.get(lang)
-    if copy is None:
-        raise ValueError(f"unsupported symbols language: {lang}")
+    copy = _copy_for_lang(lang)
 
     page_title = str(copy["page_title"])
     header_symbol = str(copy["header_symbol"])
@@ -842,9 +851,9 @@ def _collect_icon_rows(
     lang: str,
     vars_map: dict[str, str],
 ) -> dict[str, list[dict[str, str]]]:
-    lang_col = f"text_{lang}"
     if not blocks:
         raise ValueError(f"symbols page has no blocks for sku={sku_id} lang={lang}")
+    lang_col = _text_column_for_lang(blocks[0], lang)
     if lang_col not in blocks[0]:
         raise ValueError(f"content csv missing language column: {lang_col}")
 
@@ -890,9 +899,7 @@ def _collect_icon_rows(
 
 
 def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
-    copy = LANG_COPY.get(lang)
-    if copy is None:
-        raise ValueError(f"unsupported symbols language: {lang}")
+    copy = _copy_for_lang(lang)
 
     header_symbol = str(copy["header_symbol"])
     header_meaning = str(copy["header_meaning"])

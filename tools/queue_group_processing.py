@@ -212,6 +212,7 @@ def process_queue_record_group(
             region=region,
             data_root=data_root,
             doc_phase=effective_doc_phase,
+            lang=group_lang,
             version=record.version,
             git_ref=record.git_ref,
         )

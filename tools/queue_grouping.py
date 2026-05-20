@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+from tools.language_aliases import normalize_language
+
 
 def group_pending_queue_records(
     records: list[Any],
@@ -24,8 +26,11 @@ def group_pending_queue_records(
             workflow_action=resolve_queue_workflow_action(record),
         )
         cfg = config_loader(config_path)
+        workflow_action = resolve_queue_workflow_action(record)
         if queue_by_document_key(cfg):
             key = queue_record_group_key(record)
+            if workflow_action == "draft" and str(getattr(record, "lang", "") or "").strip():
+                key = f"{key}::{normalize_language(record.lang).casefold()}"
         else:
             key = record.record_id
         existing_index = index_by_key.get(key)

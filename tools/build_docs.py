@@ -291,12 +291,14 @@ def resolve_build_targets(
     *,
     arg_model: str | None,
     arg_region: str | None,
+    arg_lang: str | None = None,
     all_targets: bool,
 ) -> list[BuildTarget]:
     return _resolve_build_targets_impl(
         cfg,
         arg_model=arg_model,
         arg_region=arg_region,
+        arg_lang=arg_lang,
         all_targets=all_targets,
         build_target_cls=BuildTarget,
         configured_build_targets=_configured_build_targets,

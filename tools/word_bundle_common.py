@@ -8,6 +8,7 @@ from pathlib import Path
 
 from tools.config_pages import CsvPage
 from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.language_aliases import language_key, normalize_language
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
 from tools.phase1.renderers import apply_vars
@@ -199,10 +200,21 @@ def ensure_csv_page_rsts(
     builder: Phase1Builder,
     model: str | None,
     region: str | None,
+    *,
+    langs: list[str] | tuple[str, ...] | None = None,
 ) -> None:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    build_langs = list(build_cfg.get("languages", ["en"]))
+    configured_langs = list(build_cfg.get("languages", ["en"]))
+    if langs is None:
+        build_langs = [normalize_language(lang) for lang in configured_langs if str(lang).strip()] or ["en"]
+    else:
+        build_langs = [
+            normalize_language(lang, supported=configured_langs)
+            for lang in langs
+            if str(lang).strip()
+        ] or ["en"]
+    selected_lang_keys = {language_key(lang) for lang in build_langs}
     pages_cfg = resolve_config_pages_or_raise(
         cfg,
         default_languages=build_langs,
@@ -219,7 +231,10 @@ def ensure_csv_page_rsts(
             continue
         page_ids.add(page.page)
         for lang in page.langs:
-            langs.add(str(lang))
+            normalized_lang = normalize_language(lang, supported=build_langs)
+            if selected_lang_keys and language_key(normalized_lang) not in selected_lang_keys:
+                continue
+            langs.add(normalized_lang)
 
     if not page_ids:
         return

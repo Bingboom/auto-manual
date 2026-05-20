@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from tools import check_docs
-from tools.config_pages import CsvPage, GeneratedPage, RstIncludePage
+from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, RstIncludePage
 from tools.page_manifest import resolve_config_pages_or_raise
 
 
@@ -102,6 +102,130 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertIn("hb-two-col", text)
                 self.assertNotIn("safetysinglecol", text)
                 self.assertNotIn("hb-single-col", text)
+
+    def test_pt_br_templates_should_mirror_us_source_template_layout(self) -> None:
+        us_specific_files = {
+            "safety_pt-BR.rst",
+            "01_fcc.rst",
+            "03_product_overview_placeholder.rst",
+            "05_operation_guide_placeholder.rst",
+        }
+        shared_files = {
+            "00_preface.rst",
+            "01_user_maintenance_instructions.rst",
+            "02_whats_in_the_box.rst",
+            "06_ups_mode.rst",
+            "charging.rst",
+            "08_charging_methods.rst",
+            "09_storage_and_maintenance.rst",
+            "10_troubleshooting.rst",
+            "11_warranty.rst",
+            "12_app_setup_placeholder.rst",
+        }
+
+        for file_name in us_specific_files:
+            with self.subTest(file_name=file_name):
+                path = ROOT / "docs" / "templates" / "page_us-pt-br" / file_name
+                self.assertTrue(path.exists(), path)
+                self.assertTrue(path.read_text(encoding="utf-8").strip())
+
+        for file_name in shared_files:
+            with self.subTest(file_name=file_name):
+                path = ROOT / "docs" / "templates" / "page_shared" / "pt-BR" / file_name
+                self.assertTrue(path.exists(), path)
+                self.assertTrue(path.read_text(encoding="utf-8").strip())
+
+        charging_text = (ROOT / "docs" / "templates" / "page_shared" / "pt-BR" / "charging.rst").read_text(encoding="utf-8")
+        methods_text = (
+            ROOT / "docs" / "templates" / "page_shared" / "pt-BR" / "08_charging_methods.rst"
+        ).read_text(encoding="utf-8")
+        self.assertIn("CARREGAMENTO VIA TOMADA DA REDE ELÉTRICA CA", charging_text)
+        self.assertNotIn("CARREGAMENTO VIA PAINÉIS SOLARES", charging_text)
+        self.assertIn("CARREGAMENTO VIA PAINÉIS SOLARES", methods_text)
+        product_overview_text = (
+            ROOT / "docs" / "templates" / "page_us-pt-br" / "03_product_overview_placeholder.rst"
+        ).read_text(encoding="utf-8")
+        operation_text = (
+            ROOT / "docs" / "templates" / "page_us-pt-br" / "05_operation_guide_placeholder.rst"
+        ).read_text(encoding="utf-8")
+        app_text = (
+            ROOT / "docs" / "templates" / "page_shared" / "pt-BR" / "12_app_setup_placeholder.rst"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{{ product_overview }}", product_overview_text)
+        self.assertNotIn("JE-1500D", product_overview_text)
+        self.assertIn("|DEFAULT_STANDBY_DURATION|", operation_text)
+        self.assertIn("|ENERGY_SAVING_AUTO_OFF_DURATION|", operation_text)
+        self.assertIn("|ADD_DEVICE_STEP|", app_text)
+        self.assertIn("|MAIN_POWER_BUTTON_LABEL|", app_text)
+
+    def test_pt_br_config_should_preserve_us_source_pages_and_append_pt_br_templates(self) -> None:
+        cfg = check_docs.load_config(ROOT / "config.pt-br.yaml")
+        self.assertEqual("pt-br", cfg.get("build", {}).get("family_id"))
+        self.assertEqual("JE-1500D", cfg.get("build", {}).get("default_model"))
+        self.assertEqual("pt-BR", cfg.get("build", {}).get("default_region"))
+        self.assertEqual([{"model": "JE-1500D", "region": "pt-BR"}], cfg.get("build", {}).get("targets"))
+        self.assertEqual(["en", "pt-BR"], cfg.get("build", {}).get("languages"))
+        self.assertFalse(cfg.get("build", {}).get("include_lang_in_output_path"))
+        self.assertTrue(cfg.get("build", {}).get("queue_by_document_key"))
+        self.assertEqual("docs/manifests/manual_pt-br.yaml", cfg.get("paths", {}).get("page_manifest"))
+
+        source_pages = resolve_config_pages_or_raise(
+            {"paths": {"page_manifest": "docs/manifests/manual_us-en.yaml"}},
+            default_languages=["en"],
+            root=ROOT,
+            model="JE-1500D",
+            region="pt-BR",
+            error_prefix="config.pages",
+        ).pages
+        resolved = resolve_config_pages_or_raise(
+            cfg,
+            default_languages=["en", "pt-BR"],
+            root=ROOT,
+            model="JE-1500D",
+            region="pt-BR",
+            error_prefix="config.pages",
+        )
+
+        self.assertEqual(source_pages, resolved.pages[: len(source_pages)])
+        pt_br_pages = resolved.pages[len(source_pages) :]
+        self.assertEqual(17, len(pt_br_pages))
+        self.assertTrue(all(not isinstance(page, CoverPdfPage) for page in pt_br_pages))
+
+        for page in pt_br_pages:
+            with self.subTest(page=page):
+                if isinstance(page, RstIncludePage):
+                    self.assertEqual("pt-BR", page.lang)
+                    self.assertNotIn("templates/page_us-en/", page.file)
+                    self.assertNotIn("templates/page_shared/en/", page.file)
+                elif isinstance(page, CsvPage):
+                    self.assertEqual(("pt-BR",), page.langs)
+                elif isinstance(page, GeneratedPage):
+                    self.assertEqual(("pt-BR",), page.langs)
+
+        generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
+        self.assertEqual(
+            {
+                ("03_product_overview", ("en",), "templates/page_us-en/03_product_overview_placeholder.rst"),
+                ("05_operation_guide", ("en",), "templates/page_us-en/05_operation_guide_placeholder.rst"),
+                ("12_app_setup", ("en",), "templates/page_shared/en/12_app_setup_placeholder.rst"),
+                ("03_product_overview", ("pt-BR",), "templates/page_us-pt-br/03_product_overview_placeholder.rst"),
+                ("05_operation_guide", ("pt-BR",), "templates/page_us-pt-br/05_operation_guide_placeholder.rst"),
+                ("12_app_setup", ("pt-BR",), "templates/page_shared/pt-BR/12_app_setup_placeholder.rst"),
+            },
+            {(page.page, page.langs, page.template) for page in generated_pages},
+        )
+        csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
+        self.assertEqual(
+            {
+                ("symbols", ("en",)),
+                ("lcd_icons", ("en",)),
+                ("spec", ("en",)),
+                ("symbols", ("pt-BR",)),
+                ("lcd_icons", ("pt-BR",)),
+                ("spec", ("pt-BR",)),
+            },
+            {(page.page, page.langs) for page in csv_pages},
+        )
 
     def test_user_maintenance_page_should_precede_symbols_page_in_shared_manifests(self) -> None:
         cases = (

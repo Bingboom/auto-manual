@@ -171,6 +171,40 @@ _LAYOUTS: dict[str, OverviewLayout] = {
             ),
         ),
     ),
+    "pt-br": OverviewLayout(
+        title="VISÃO GERAL DO PRODUTO",
+        panels=(
+            OverviewPanel(
+                title="VISTA FRONTAL",
+                image="front_product.jpg",
+                alt="Diagrama da vista frontal.",
+                rows=(
+                    _pair(_cell("MAIN_POWER_BUTTON_LABEL"), _cell("LCD")),
+                    _pair(_cell("FRONT_DC12_PORT_LABEL", "FRONT_DC12_PORT_SPEC"), _cell("Botão da luz LED")),
+                    _pair(_cell("DC_USB_POWER_BUTTON_LABEL"), _cell("Luz LED")),
+                    _pair(_cell("FRONT_USB_C_LOW_LABEL", "FRONT_USB_C_LOW_SPEC"), _cell("AC_POWER_BUTTON_LABEL")),
+                    _pair(_cell("FRONT_USB_C_HIGH_LABEL", "FRONT_USB_C_HIGH_SPEC"), _cell()),
+                    _pair(
+                        _cell("FRONT_USB_A_LABEL", "FRONT_USB_A_SPEC"),
+                        _cell("FRONT_AC_OUTPUT_LABEL", "FRONT_AC_OUTPUT_SPEC"),
+                    ),
+                    _full(_cell("FRONT_TOTAL_OUTPUT_LABEL", "FRONT_TOTAL_OUTPUT_SPEC")),
+                ),
+            ),
+            OverviewPanel(
+                title="VISTA LATERAL DIREITA",
+                image="right_side_ports.png",
+                alt="Diagrama da vista lateral direita.",
+                rows=(
+                    _pair(_cell("Alça"), _cell()),
+                    _pair(
+                        _cell("SIDE_AC_INPUT_LABEL", "SIDE_AC_INPUT_SPEC"),
+                        _cell("SIDE_DC_INPUT_LABEL", "SIDE_DC_INPUT_PV_SPEC", "SIDE_DC_INPUT_CAR_SPEC"),
+                    ),
+                ),
+            ),
+        ),
+    ),
     "ja": OverviewLayout(
         title="各部の名称",
         panels=(

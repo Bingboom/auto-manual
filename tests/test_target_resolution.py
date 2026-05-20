@@ -86,6 +86,29 @@ class TestTargetResolution(unittest.TestCase):
             targets,
         )
 
+    def test_resolve_build_targets_should_accept_br_alias_for_pt_br_language(self) -> None:
+        cfg = {
+            "build": {
+                "default_model": "JE-1500D",
+                "default_region": "pt-BR",
+                "languages": ["en", "pt-BR"],
+                "include_lang_in_output_path": False,
+            }
+        }
+
+        targets = build_docs.resolve_build_targets(
+            cfg,
+            arg_model=None,
+            arg_region=None,
+            arg_lang="br",
+            all_targets=False,
+        )
+
+        self.assertEqual(
+            [build_docs.BuildTarget(model="JE-1500D", region="pt-BR", lang="pt-BR")],
+            targets,
+        )
+
     def test_resolve_build_targets_should_reject_explicit_target_with_all_targets(self) -> None:
         cfg = {"build": {"targets": [{"model": "JE-2000F", "region": "US"}]}}
 
@@ -124,6 +147,39 @@ class TestTargetResolution(unittest.TestCase):
 
         self.assertTrue(text.startswith(".. only:: latex\n\n   =============\n   Manual Bundle\n   =============\n\n"))
         self.assertIn(".. include:: page/spec_en.rst", text)
+
+    def test_gen_index_should_filter_materialized_pages_to_requested_language(self) -> None:
+        cfg = {
+            "build": {"languages": ["en", "pt-BR"]},
+            "pages": [
+                {
+                    "type": "rst_include",
+                    "file": "templates/page_shared/en/01_preface.rst",
+                    "lang": "en",
+                },
+                {
+                    "type": "rst_include",
+                    "file": "templates/page_shared/pt-BR/01_preface.rst",
+                    "lang": "pt-BR",
+                },
+                {
+                    "type": "csv_page",
+                    "page": "spec",
+                    "langs": ["en", "pt-BR"],
+                },
+            ],
+        }
+
+        text = gen_index_bundle.build_index_from_pages(
+            cfg,
+            model="JE-1500D",
+            region="pt-BR",
+            langs=["pt-BR"],
+        )
+
+        self.assertIn(".. include:: page/01_preface.rst", text)
+        self.assertIn(".. include:: page/spec_pt-BR.rst", text)
+        self.assertNotIn("spec_en.rst", text)
 
     def test_gen_index_should_reject_unsupported_sku_token(self) -> None:
         cfg = self._tokenized_cfg()

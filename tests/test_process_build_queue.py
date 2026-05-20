@@ -622,17 +622,18 @@ class TestProcessBuildQueue(unittest.TestCase):
                 process_build_queue,
                 "resolve_word_output_path_for_target",
                 return_value=word_path,
-            ), mock.patch.object(
+            ) as resolve_word_mock, mock.patch.object(
                 process_build_queue,
                 "resolve_md_output_path_for_target",
                 return_value=md_path,
-            ):
+            ) as resolve_md_mock:
                 resolved_path = process_build_queue.build_document_for_task(
                     config_path=Path("config.us-en.yaml"),
                     model="JE-1000F",
                     region="US",
                     data_root="data/phase2",
                     doc_phase="Draft",
+                    lang="en",
                     version="0.2",
                 )
                 self.assertTrue(resolved_path.word_output_path.exists())
@@ -643,16 +644,34 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIsNone(resolved_path.pdf_output_path)
         self.assertEqual(3, len(commands))
         self.assertEqual("check", commands[0][2])
+        self.assertIn("--lang", commands[0])
+        self.assertEqual("en", commands[0][commands[0].index("--lang") + 1])
         self.assertIn("--source", commands[0])
         self.assertIn("review", commands[0])
         self.assertEqual("word", commands[1][2])
+        self.assertIn("--lang", commands[1])
+        self.assertEqual("en", commands[1][commands[1].index("--lang") + 1])
         self.assertIn("--source", commands[1])
         self.assertIn("review", commands[1])
         self.assertIn("--no-clean", commands[1])
         self.assertEqual("md", commands[2][2])
+        self.assertIn("--lang", commands[2])
+        self.assertEqual("en", commands[2][commands[2].index("--lang") + 1])
         self.assertIn("--source", commands[2])
         self.assertIn("review", commands[2])
         self.assertIn("--no-clean", commands[2])
+        resolve_word_mock.assert_called_once_with(
+            config_path=Path("config.us-en.yaml"),
+            model="JE-1000F",
+            region="US",
+            lang="en",
+        )
+        resolve_md_mock.assert_called_once_with(
+            config_path=Path("config.us-en.yaml"),
+            model="JE-1000F",
+            region="US",
+            lang="en",
+        )
 
     def test_build_document_for_task_should_build_from_main_workspace_overlay_review_content_and_stage_output_under_host_repo(self) -> None:
         commands: list[tuple[list[str], Path]] = []
@@ -1362,6 +1381,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             region="US",
             data_root="data/phase2",
             doc_phase="draft",
+            lang="en",
             version="1.0",
             git_ref="codex/review-je-1000f-us-en",
         )
@@ -2144,6 +2164,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             region="US",
             data_root="data/phase2",
             doc_phase="draft",
+            lang="",
             version="1.0",
             git_ref="codex/review-je-1000f-us",
         )

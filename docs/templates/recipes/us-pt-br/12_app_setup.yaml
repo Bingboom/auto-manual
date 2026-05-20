@@ -1,0 +1,27 @@
+page_id: 12_app_setup
+template: templates/page_shared/pt-BR/12_app_setup_placeholder.rst
+field_map:
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: main_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  AC_POWER_BUTTON_LABEL:
+    row_key: ac_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  DC_USB_POWER_BUTTON_LABEL:
+    row_key: dc_usb_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  ADD_DEVICE_STEP:
+    row_key: app_add_device_step
+    default: 2.1 Clique no botão **+** para adicionar seu dispositivo.
+required_row_keys: []
+snippet_slots: {}
+postprocess:
+  - promote_standalone_bold_numbered_headings
+contracts:
+  - 12_app_setup

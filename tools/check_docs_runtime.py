@@ -44,6 +44,7 @@ def collect_check_issues(
     cfg_path: Path,
     model: str | None,
     region: str | None,
+    lang: str | None,
     all_targets: bool,
     data_root: str | None,
     docs_build_dir: Path | None,
@@ -70,6 +71,7 @@ def collect_check_issues(
         cfg,
         arg_model=model,
         arg_region=region,
+        arg_lang=lang,
         all_targets=all_targets,
     )
 
@@ -140,7 +142,7 @@ def collect_check_issues(
                 cfg,
                 bundle_dir=bundle_dir,
                 target=target,
-                langs=langs,
+                langs=target_langs,
                 data_root=data_root,
             )
         )
