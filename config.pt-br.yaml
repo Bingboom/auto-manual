@@ -1,0 +1,11 @@
+extends: config.pt-br-en.yaml
+
+build:
+  family_id: pt-br
+  languages: [pt-BR]
+  word_title: "|PRODUCT_NAME| Manual do usuário"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: PT-BR
+
+paths:
+  page_manifest: docs/manifests/manual_pt-br.yaml

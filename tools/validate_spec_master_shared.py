@@ -19,6 +19,7 @@ from tools.config_pages import GeneratedPage  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
+from tools.region_aliases import document_key_region_tokens  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     canonicalize_model_token,
     normalize_source_lang,
@@ -144,9 +145,11 @@ def _accepted_document_keys(row: dict[str, str]) -> tuple[str, ...]:
     source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
     if not model or not region:
         return ()
-    accepted = [f"{model}_{region}"]
-    if source_lang:
-        accepted.append(f"{model}_{region}_{source_lang}")
+    accepted: list[str] = []
+    for region_token in document_key_region_tokens(region):
+        accepted.append(f"{model}_{region_token}")
+        if source_lang:
+            accepted.append(f"{model}_{region_token}_{source_lang}")
     return tuple(dict.fromkeys(accepted))
 
 

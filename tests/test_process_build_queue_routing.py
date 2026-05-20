@@ -16,6 +16,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
         self.assertEqual("JE-1000F", model)
         self.assertEqual("US", region)
 
+    def test_parse_document_key_should_normalize_brazil_region_alias(self) -> None:
+        model, region = process_build_queue.parse_document_key("JE-1500D_Brazil")
+
+        self.assertEqual("JE-1500D", model)
+        self.assertEqual("pt-BR", region)
+
     def test_resolve_target_for_record_should_fallback_to_document_id(self) -> None:
         record = process_build_queue.QueueRecord(
             record_id="rec_1",
