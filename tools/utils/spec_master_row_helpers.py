@@ -10,7 +10,6 @@ import csv
 from pathlib import Path
 import re
 
-from tools.region_aliases import canonical_document_key_region
 from tools.utils.spec_master_shared import (
     PageValueBinding,
     _LEGACY_PAGE_VALUE_BINDINGS,
@@ -160,9 +159,9 @@ def _row_matches_footnote_target(
     if page and not page_value_matches(_first_non_empty(row, ["Page", "page"]), page):
         return False
 
-    target_region = _canonical_region_token(region)
+    target_region = (region or "").strip()
     target_model = canonicalize_model_token(model or "", region=target_region)
-    row_region = _canonical_region_token(_first_non_empty(row, ["Region", "region"]))
+    row_region = _first_non_empty(row, ["Region", "region"])
     row_model = canonicalize_model_token(
         _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
         region=row_region or target_region,
@@ -172,59 +171,6 @@ def _row_matches_footnote_target(
     if target_region and row_region and row_region.casefold() != target_region.casefold():
         return False
     return True
-
-
-def _row_is_usable_footnote_definition(
-    row: dict[str, str],
-    *,
-    page: str | None = None,
-    footnote_id: str | None = None,
-) -> bool:
-    if not _is_truthy(_first_non_empty(row, ["Enabled", "enabled"])):
-        return False
-    if not _is_truthy(_first_non_empty(row, ["Is_Latest", "is_latest"])):
-        return False
-    if footnote_id and _first_non_empty(row, ["Footnote_id", "footnote_id"]) != footnote_id:
-        return False
-    if page and not page_value_matches(_first_non_empty(row, ["Page", "page"]), page):
-        return False
-    return bool(_first_non_empty(row, ["Footnote_id", "footnote_id"]))
-
-
-def _fallback_footnote_rows(
-    rows: list[dict[str, str]],
-    *,
-    model: str | None,
-    region: str | None,
-    page: str,
-    footnote_id: str,
-    preferred_langs: set[str],
-) -> list[dict[str, str]]:
-    target_region = _canonical_region_token(region)
-    target_model = canonicalize_model_token(model or "", region=target_region)
-    scored: list[tuple[tuple[int, int, int, int], dict[str, str]]] = []
-    for idx, row in enumerate(rows):
-        if not _row_is_usable_footnote_definition(row, page=page, footnote_id=footnote_id):
-            continue
-
-        row_region = _canonical_region_token(_first_non_empty(row, ["Region", "region"]))
-        row_model = canonicalize_model_token(
-            _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
-            region=row_region or target_region,
-        )
-        source_lang = source_language_for_row(row)
-        score = (
-            0 if target_model and row_model.casefold() == target_model.casefold() else 1,
-            0 if target_region and row_region.casefold() == target_region.casefold() else 1,
-            0 if not preferred_langs or source_lang in preferred_langs else 1,
-            _row_line_num(row, idx),
-        )
-        scored.append((score, row))
-
-    if not scored:
-        return []
-    scored.sort(key=lambda item: item[0])
-    return [scored[0][1]]
 
 
 def collect_matching_footnote_rows(
@@ -254,7 +200,7 @@ def collect_matching_footnote_rows(
                 return True
         return False
 
-    target_region = _canonical_region_token(region)
+    target_region = (region or "").strip()
     target_model = canonicalize_model_token(model or "", region=target_region)
 
     for raw_page, raw_ids in referenced_ids_by_page.items():
@@ -271,7 +217,7 @@ def collect_matching_footnote_rows(
                 if _first_non_empty(row, ["Footnote_id", "footnote_id"]) != footnote_id:
                     continue
 
-                row_region = _canonical_region_token(_first_non_empty(row, ["Region", "region"]))
+                row_region = _first_non_empty(row, ["Region", "region"])
                 row_model = canonicalize_model_token(
                     _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
                     region=row_region or target_region,
@@ -294,18 +240,6 @@ def collect_matching_footnote_rows(
 
             if len(best_rows) == 1:
                 selected.append(best_rows[0])
-                continue
-
-            fallback_rows = _fallback_footnote_rows(
-                rows,
-                model=target_model,
-                region=target_region,
-                page=page,
-                footnote_id=footnote_id,
-                preferred_langs=preferred_langs,
-            )
-            if len(fallback_rows) == 1:
-                selected.append(fallback_rows[0])
 
     return selected
 
@@ -434,13 +368,6 @@ def _pick_row_model(row: dict[str, str]) -> str:
 
 def _pick_row_region(row: dict[str, str]) -> str:
     return _first_non_empty(row, ["Region", "region"])
-
-
-def _canonical_region_token(value: str | None) -> str:
-    text = (value or "").strip()
-    if not text:
-        return ""
-    return canonical_document_key_region(text)
 
 
 def canonicalize_model_token(value: str, *, region: str | None = None) -> str:
@@ -737,14 +664,14 @@ def _row_matches_target(
     if not page_value_matches(_first_non_empty(row, ["Page", "page"]), pages):
         return False
 
-    target_region = _canonical_region_token(region)
+    target_region = (region or "").strip()
     target_model = canonicalize_model_token(model or "", region=target_region)
-    row_region = _canonical_region_token(_pick_row_region(row))
+    row_region = _pick_row_region(row)
     row_model = canonicalize_model_token(_pick_row_model(row), region=row_region or target_region)
     if target_model and row_model and row_model.casefold() != target_model.casefold():
         return False
 
-    if target_region and row_region and row_region.casefold() != target_region.casefold():
+    if target_region and row_region and row_region != target_region:
         return False
 
     if line_order is not None:
@@ -775,15 +702,15 @@ def _score_row(
     region: str | None,
     lang: str,
 ) -> int:
-    target_region = _canonical_region_token(region)
+    target_region = (region or "").strip()
     target_model = canonicalize_model_token(model or "", region=target_region)
-    row_region = _canonical_region_token(_pick_row_region(row))
-    row_model = canonicalize_model_token(_pick_row_model(row), region=row_region or target_region)
+    row_model = canonicalize_model_token(_pick_row_model(row), region=_pick_row_region(row) or target_region)
+    row_region = _pick_row_region(row)
 
     score = 0
     if row_model and target_model and row_model.casefold() == target_model.casefold():
         score += 8
-    if row_region and target_region and row_region.casefold() == target_region.casefold():
+    if row_region and target_region and row_region == target_region:
         score += 8
     if not target_region and not row_region:
         score += 2

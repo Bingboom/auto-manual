@@ -18,7 +18,6 @@ from tools.message_control_contract import (
     MessageTargetSelector,
 )
 from tools.queue_config_resolution import config_family_id, normalize_build_family
-from tools.region_aliases import canonical_document_key_region
 
 
 def normalize_message_text(raw_message: str) -> str:
@@ -148,29 +147,15 @@ def _extract_first_group(patterns: tuple[str, ...], raw_message: str, *, flags: 
     return ""
 
 
-def _normalize_selector_region(value: str) -> str:
-    text = str(value or "").strip()
-    return canonical_document_key_region(text) if text else ""
-
-
-def _build_family_from_region(region: str, known_families: tuple[str, ...]) -> str:
-    normalized_region = _normalize_selector_region(region).lower()
-    if normalized_region in known_families:
-        return normalized_region
-    return ""
-
-
 def extract_selector_from_message(raw_message: str, known_families: tuple[str, ...]) -> MessageTargetSelector:
     record_id = _extract_first_group((r"\b(rec[a-z0-9]+)\b",), raw_message, flags=re.IGNORECASE).lower()
     document_key = _extract_first_group(
-        (r"\b([A-Za-z]{1,6}-\d{3,5}[A-Za-z]?_[A-Za-z]{2,10}(?:-[A-Za-z]{2})?(?:_[A-Za-z]{2})?)\b",),
+        (r"\b([A-Za-z]{1,6}-\d{3,5}[A-Za-z]?_[A-Za-z]{2}(?:_[A-Za-z]{2})?)\b",),
         raw_message,
         flags=re.IGNORECASE,
     )
     model = _extract_first_group((r"\b([A-Za-z]{1,6}-\d{3,5}[A-Za-z]?)\b",), raw_message, flags=re.IGNORECASE)
-    region = _normalize_selector_region(
-        _extract_first_group((r"\b(US|JP|CN|EU|BR|Brazil|pt-BR)\b",), raw_message, flags=re.IGNORECASE)
-    )
+    region = _extract_first_group((r"\b(US|JP|CN|EU)\b",), raw_message, flags=re.IGNORECASE).upper()
     document_id = _extract_first_group(
         (
             r"\bdocument(?:_id)?\s+([A-Za-z0-9._/-]+)\b",
@@ -205,11 +190,9 @@ def extract_selector_from_message(raw_message: str, known_families: tuple[str, .
         parts = document_key.split("_")
         if len(parts) >= 2:
             model = model or parts[0]
-            region = region or _normalize_selector_region(parts[1])
+            region = region or parts[1].upper()
         if len(parts) >= 3:
             lang = parts[2].lower()
-    if not build_family:
-        build_family = _build_family_from_region(region, known_families)
     return MessageTargetSelector(
         record_id=record_id,
         document_id=document_id,
@@ -251,7 +234,7 @@ def merge_selector(
         document_id=pick("document_id", extracted.document_id, document_id.strip()),
         document_key=pick("document_key", extracted.document_key, document_key.strip()),
         model=pick("model", extracted.model, model.strip()),
-        region=pick("region", extracted.region, _normalize_selector_region(region)),
+        region=pick("region", extracted.region, region.strip().upper()),
         lang=pick("lang", extracted.lang, lang.strip().lower()),
         build_family=pick("build_family", extracted.build_family, normalize_build_family(build_family)),
         git_ref=pick("git_ref", extracted.git_ref, git_ref.strip()),
@@ -260,15 +243,14 @@ def merge_selector(
     if merged.document_key and (not merged.model or not merged.region or not merged.lang):
         parts = merged.document_key.split("_")
         if len(parts) >= 2:
-            resolved_region = merged.region or _normalize_selector_region(parts[1])
             merged = MessageTargetSelector(
                 record_id=merged.record_id,
                 document_id=merged.document_id,
                 document_key=merged.document_key,
                 model=merged.model or parts[0],
-                region=resolved_region,
+                region=merged.region or parts[1].upper(),
                 lang=merged.lang or (parts[2].lower() if len(parts) >= 3 else ""),
-                build_family=merged.build_family or _build_family_from_region(resolved_region, ()),
+                build_family=merged.build_family,
                 git_ref=merged.git_ref,
                 version=merged.version,
             )
@@ -368,19 +350,6 @@ def resolve_message_control(
         git_ref=git_ref,
         version=version,
     )
-    inferred_build_family = _build_family_from_region(selector.region, known_families)
-    if inferred_build_family and not selector.build_family:
-        selector = MessageTargetSelector(
-            record_id=selector.record_id,
-            document_id=selector.document_id,
-            document_key=selector.document_key,
-            model=selector.model,
-            region=selector.region,
-            lang=selector.lang,
-            build_family=inferred_build_family,
-            git_ref=selector.git_ref,
-            version=selector.version,
-        )
 
     if not action:
         return MessageControlResolution(

@@ -5,8 +5,6 @@ import os
 import re
 from typing import Any, Callable
 
-from tools.region_aliases import canonical_document_key_region
-
 _EXPLICIT_DOCUMENT_KEY_RE = re.compile(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+")
 
 
@@ -271,7 +269,7 @@ def parse_document_key(document_key: str) -> tuple[str, str]:
             "Document_Key must use '<MODEL>_<REGION>' so the build target is unambiguous: "
             + document_key
         )
-    return model.strip(), canonical_document_key_region(region)
+    return model.strip(), region.strip().upper()
 
 
 def document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:

@@ -76,24 +76,6 @@ class TestMessageControlDryRun(unittest.TestCase):
         self.assertEqual(STATUS_READY, result.status)
         self.assertEqual("JE-1000F", result.selector.model)
 
-    def test_start_review_should_infer_pt_br_family_from_brazil_document_key(self) -> None:
-        with temp_test_root() as root:
-            write_text(root / "config.pt-br.yaml", "build:\n  family_id: pt-br\n  default_region: pt-BR\n")
-
-            result = resolve_message_control(
-                raw_message="开始review JE-1500D_Brazil",
-                repo_root=root,
-                config_loader=load_config,
-            )
-
-        self.assertEqual(ACTION_START_REVIEW, result.action)
-        self.assertEqual(STATUS_READY, result.status)
-        self.assertEqual("JE-1500D_Brazil", result.selector.document_key)
-        self.assertEqual("JE-1500D", result.selector.model)
-        self.assertEqual("pt-BR", result.selector.region)
-        self.assertEqual("pt-br", result.selector.build_family)
-        self.assertEqual("config.pt-br.yaml", result.resolved_config_path)
-
     def test_query_status_should_parse_document_id(self) -> None:
         with temp_test_root() as root:
             write_text(root / "config.us.yaml", "build:\n  family_id: us-merged\n  default_region: US\n")

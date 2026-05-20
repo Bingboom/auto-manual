@@ -475,51 +475,6 @@ class TestValidateSpecMaster(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertNotIn("UNKNOWN_FOOTNOTE_REF", codes)
 
-    def test_collect_spec_master_validation_issues_should_fallback_to_shared_english_footnote(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
-            manifest_path = self._write_generated_page_fixture(root)
-            spec_master_csv = root / "Spec_Master.csv"
-            spec_master_csv.write_text(
-                "\n".join(
-                    [
-                        "document_key,Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Row_label_source,Param_source,Param_footnote_refs,Value_source",
-                        "JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,specifications,product_name,,,Product Name,,,Jackery Explorer 1500",
-                        "JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,specifications,model_no,,,Model No.,,,JE-1500D",
-                        "JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,Product overview,main_power_button,label,1,Main Power Button,,,Main POWER Button",
-                        'JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,specifications,ac_input,,1,AC Input,Bypass Mode,ac_bypass,"100-120 V~ 60 Hz, 12 A max."',
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            spec_footnotes_csv = root / "Spec_Footnotes.csv"
-            spec_footnotes_csv.write_text(
-                "\n".join(
-                    [
-                        "Footnote_id,Type,Region,Model,Source_lang,Is_Latest,Page,Footnote_order,Text_en,Enabled",
-                        "ac_bypass,Footnote,US,JE-1000F,en,TRUE,specifications,1,Shared AC bypass footnote,TRUE",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            config_path = self._write_config(
-                root,
-                manifest_path=manifest_path,
-                spec_master_csv=spec_master_csv,
-                spec_footnotes_csv=spec_footnotes_csv,
-            )
-
-            issues = validate_spec_master.collect_spec_master_validation_issues(
-                cfg_path=config_path,
-                model="JE-1500D",
-                region="pt-BR",
-                all_targets=False,
-            )
-
-            self.assertNotIn("UNKNOWN_FOOTNOTE_REF", {issue.code for issue in issues})
-
     def test_collect_spec_master_validation_issues_should_accept_family_scoped_document_key(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -573,36 +528,6 @@ class TestValidateSpecMaster(unittest.TestCase):
                 cfg_path=config_path,
                 model="JE-1000F",
                 region="US",
-                all_targets=False,
-            )
-
-            codes = {issue.code for issue in issues}
-            self.assertNotIn("INVALID_DOCUMENT_KEY", codes)
-            self.assertNotIn("MISSING_DOCUMENT_KEY", codes)
-
-    def test_collect_spec_master_validation_issues_should_accept_brazil_document_key_alias(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
-            manifest_path = self._write_generated_page_fixture(root)
-            spec_master_csv = root / "Spec_Master.csv"
-            spec_master_csv.write_text(
-                "\n".join(
-                    [
-                        "document_key,Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Row_label_source,Value_source",
-                        "JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,specifications,product_name,,,Product Name,Jackery Explorer 1500",
-                        "JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,specifications,model_no,,,Model No.,JE-1500D",
-                        "JE-1500D_Brazil,JE-1500D,pt-BR,en,TRUE,Product overview,main_power_button,label,1,Main Power Button,Main POWER Button",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            config_path = self._write_config(root, manifest_path=manifest_path, spec_master_csv=spec_master_csv)
-
-            issues = validate_spec_master.collect_spec_master_validation_issues(
-                cfg_path=config_path,
-                model="JE-1500D",
-                region="pt-BR",
                 all_targets=False,
             )
 

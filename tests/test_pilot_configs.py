@@ -279,35 +279,6 @@ class TestPilotConfigs(unittest.TestCase):
         )
         self.assertEqual([], issues)
 
-    def test_pt_br_merged_config_should_resolve_english_and_portuguese_pages(self) -> None:
-        cfg = check_docs.load_config(ROOT / "config.pt-br.yaml")
-        langs = ["en", "pt-BR"]
-        self.assertEqual("pt-br", cfg.get("build", {}).get("family_id"))
-        self.assertEqual("JE-1500D", cfg.get("build", {}).get("default_model"))
-        self.assertEqual("pt-BR", cfg.get("build", {}).get("default_region"))
-        self.assertEqual([{"model": "JE-1500D", "region": "pt-BR"}], cfg.get("build", {}).get("targets"))
-        self.assertEqual(langs, cfg.get("build", {}).get("languages"))
-        self.assertFalse(cfg.get("build", {}).get("include_lang_in_output_path"))
-        self.assertTrue(cfg.get("build", {}).get("queue_by_document_key"))
-        self.assertEqual("docs/manifests/manual_pt-br.yaml", cfg.get("paths", {}).get("page_manifest"))
-
-        resolved = resolve_config_pages_or_raise(
-            cfg,
-            default_languages=langs,
-            root=ROOT,
-            model="JE-1500D",
-            region="pt-BR",
-            error_prefix="config.pages",
-        )
-        generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
-        csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
-        rst_langs = {page.lang for page in resolved.pages if isinstance(page, RstIncludePage)}
-
-        self.assertEqual(30, len(resolved.pages))
-        self.assertEqual({"03_product_overview", "05_operation_guide", "12_app_setup"}, {page.page for page in generated_pages})
-        self.assertEqual({"spec"}, {page.page for page in csv_pages})
-        self.assertEqual({"en", "pt-BR"}, rst_langs)
-
 
 if __name__ == "__main__":
     unittest.main()

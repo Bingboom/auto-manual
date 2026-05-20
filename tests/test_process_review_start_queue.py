@@ -207,25 +207,6 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertTrue(branch_name.startswith("codex/review-"))
         self.assertIn("je-1000f-jp", branch_name)
 
-    def test_generate_review_branch_name_should_ignore_link_style_document_key(self) -> None:
-        record = process_review_start_queue.ReviewStartRecord(
-            record_id="rec_1",
-            document_id="JE-1500D_pt-BR",
-            document_key='{"id":"recLinkedDocumentKey"}',
-            build_family="pt-br",
-            version="",
-            lang="",
-            review_status="NotStarted",
-            review_trigger_value=True,
-            git_ref="",
-            pr_url="",
-            task_id="JE-1500D_pt-BR_Start Review",
-        )
-
-        branch_name = process_review_start_queue.generate_review_branch_name(record)
-
-        self.assertEqual("codex/review-je-1500d-pt-br", branch_name)
-
     def test_prepare_branch_worktree_should_always_seed_from_latest_base_ref(self) -> None:
         with tempfile.TemporaryDirectory() as td, mock.patch.object(
             process_review_start_queue_git,
@@ -668,30 +649,6 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual("FEISHU_PHASE2_BASE_TOKEN", base_token_env)
         self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", table_id_env)
         self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID", view_id_env)
-
-    def test_review_init_env_names_should_not_reuse_document_link_build_view(self) -> None:
-        cfg = {
-            "sync": {
-                "phase2": {
-                    "provider": "lark_cli",
-                    "base_token_env": "FEISHU_PHASE2_BASE_TOKEN",
-                    "document_link": {
-                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
-                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
-                    },
-                    "review_init": {
-                        "table_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
-                        "view_id_env": "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
-                    },
-                }
-            }
-        }
-
-        base_token_env, table_id_env, view_id_env = process_review_start_queue._review_init_env_names(cfg)
-
-        self.assertEqual("FEISHU_PHASE2_BASE_TOKEN", base_token_env)
-        self.assertEqual("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", table_id_env)
-        self.assertIsNone(view_id_env)
 
     def test_process_review_start_queue_should_write_back_git_ref_and_pr_url(self) -> None:
         cfg = {
