@@ -207,6 +207,25 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertTrue(branch_name.startswith("codex/review-"))
         self.assertIn("je-1000f-jp", branch_name)
 
+    def test_generate_review_branch_name_should_ignore_link_style_document_key(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1500D_pt-BR",
+            document_key='{"id":"recviOy1QyZBJJ"}',
+            build_family="pt-br",
+            version="",
+            lang="",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+            task_id="JE-1500D_pt-BR_Start Review",
+        )
+
+        branch_name = process_review_start_queue.generate_review_branch_name(record)
+
+        self.assertEqual("codex/review-je-1500d-pt-br", branch_name)
+
     def test_prepare_branch_worktree_should_always_seed_from_latest_base_ref(self) -> None:
         with tempfile.TemporaryDirectory() as td, mock.patch.object(
             process_review_start_queue_git,

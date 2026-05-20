@@ -174,7 +174,9 @@ def slug_branch_token(value: str) -> str:
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
     if record.git_ref.strip():
         return record.git_ref.strip()
-    source = record.document_key or record.document_id or f"{record.lang}_{record.version}"
+    source = review_start_record_key(record)
+    if source == record.record_id and (record.lang or record.version):
+        source = f"{record.lang}_{record.version}"
     slug = slug_branch_token(source)[:72]
     return f"codex/review-{slug}"
 
