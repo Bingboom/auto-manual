@@ -14,6 +14,10 @@ from tools.document_link_queue import (
     is_immediate_trigger_enabled,
     scalar_text,
 )
+from tools.region_aliases import (
+    canonical_document_key_region,
+    document_key_region_tokens,
+)
 from tools.phase2_support import (
     LarkCliSource,
     cli_bin,
@@ -297,11 +301,93 @@ def _normalize_task_id(value: str | None) -> str:
     return re.sub(r"[^a-z0-9]+", " ", _text(value).lower()).strip()
 
 
+def _is_region_token(value: str) -> bool:
+    text = (value or "").strip()
+    if not text:
+        return False
+    return bool(_REGION_TOKEN_RE.match(text)) or canonical_document_key_region(text) != text.upper()
+
+
+def _document_key_aliases(value: str | None) -> tuple[str, ...]:
+    text = _text(value)
+    if not text:
+        return ()
+    parts = text.split("_")
+    aliases: list[str] = []
+    if len(parts) == 2 and _MODEL_TOKEN_RE.match(parts[0]) and _is_region_token(parts[1]):
+        model, region = parts
+        aliases = [f"{model}_{region_token}" for region_token in document_key_region_tokens(region)]
+    elif (
+        len(parts) == 3
+        and _MODEL_TOKEN_RE.match(parts[0])
+        and _is_region_token(parts[1])
+        and _is_probable_lang_token(parts[2])
+    ):
+        model, region, lang = parts
+        aliases = [f"{model}_{region_token}_{lang.lower()}" for region_token in document_key_region_tokens(region)]
+    else:
+        aliases = [text]
+
+    normalized: list[str] = []
+    for alias in aliases:
+        key = alias.strip().upper()
+        if key and key not in normalized:
+            normalized.append(key)
+    return tuple(normalized)
+
+
+def _match_document_key(actual: str, expected: str | None) -> bool:
+    if not expected:
+        return True
+    actual_aliases = set(_document_key_aliases(actual))
+    expected_aliases = set(_document_key_aliases(expected))
+    if not actual_aliases or not expected_aliases:
+        return _match_exact(actual, expected)
+    return bool(actual_aliases & expected_aliases)
+
+
+def _task_id_aliases(value: str | None) -> tuple[str, ...]:
+    text = _text(value)
+    if not text:
+        return ()
+    for action_label in _TASK_ACTION_LABELS.values():
+        pattern = re.compile(
+            r"(.+?)[\s_:-]+" + _action_label_pattern(action_label) + r"$",
+            flags=re.IGNORECASE,
+        )
+        match = pattern.match(text)
+        if not match:
+            continue
+        target = str(match.group(1) or "").strip(" _:-")
+        aliases = _document_key_aliases(target) or (target,)
+        normalized_aliases: list[str] = []
+        for alias in aliases:
+            normalized = _normalize_task_id(f"{alias}_{action_label}")
+            if normalized and normalized not in normalized_aliases:
+                normalized_aliases.append(normalized)
+        return tuple(normalized_aliases)
+    return (_normalize_task_id(text),)
+
+
+def _match_task_id(actual: str, expected: str | None) -> bool:
+    if not expected:
+        return True
+    return bool(set(_task_id_aliases(actual)) & set(_task_id_aliases(expected)))
+
+
 def _match_task_id_prefix(actual: str, prefix: str | None) -> bool:
     normalized_prefix = _normalize_task_id(prefix)
     if not normalized_prefix:
         return True
-    return _normalize_task_id(actual).startswith(normalized_prefix)
+    normalized_actual = _normalize_task_id(actual)
+    if normalized_actual.startswith(normalized_prefix):
+        return True
+    prefix_target = _text(prefix).strip(" _:-")
+    for alias in _document_key_aliases(prefix_target):
+        alias_prefix = _normalize_task_id(alias)
+        if alias_prefix and normalized_actual.startswith(alias_prefix):
+            return True
+    return False
 
 
 def _action_label_pattern(label: str) -> str:
@@ -436,9 +522,9 @@ def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
         if index + 1 >= len(tokens):
             continue
         region_token = tokens[index + 1]
-        if not _REGION_TOKEN_RE.match(region_token):
+        if not _is_region_token(region_token):
             continue
-        region = region_token.upper()
+        region = canonical_document_key_region(region_token)
         lang = ""
         version = ""
         if index + 2 < len(tokens):
@@ -460,7 +546,7 @@ def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
 
 def _looks_like_document_key_token(token: str) -> bool:
     parts = token.split("_")
-    return len(parts) == 2 and _MODEL_TOKEN_RE.match(parts[0]) is not None and _REGION_TOKEN_RE.match(parts[1]) is not None
+    return len(parts) == 2 and _MODEL_TOKEN_RE.match(parts[0]) is not None and _is_region_token(parts[1])
 
 
 def _infer_document_key_tokens(text: str) -> tuple[str, ...]:
@@ -469,7 +555,7 @@ def _infer_document_key_tokens(text: str) -> tuple[str, ...]:
         if not _looks_like_document_key_token(token):
             continue
         model, region = token.split("_", 1)
-        key = f"{model}_{region.upper()}"
+        key = f"{model}_{canonical_document_key_region(region)}"
         if key not in keys:
             keys.append(key)
     return tuple(keys)
@@ -582,9 +668,9 @@ def _split_region_version_document_id(value: str) -> tuple[str, str, str]:
     if len(parts) != 3 or not _VERSION_TOKEN_RE.match(parts[-1]):
         return "", "", ""
     model, region, version = parts
-    if not _MODEL_TOKEN_RE.match(model) or not _REGION_TOKEN_RE.match(region):
+    if not _MODEL_TOKEN_RE.match(model) or not _is_region_token(region):
         return "", "", ""
-    return model, region.upper(), version
+    return model, canonical_document_key_region(region), version
 
 
 def _has_start_review_intent(text: str, normalized_text: str) -> bool:
@@ -824,9 +910,9 @@ def _normalize_document_key_filters(value: Any) -> tuple[str, ...]:
         part = raw_part.strip()
         if not part:
             continue
-        normalized = part.upper()
-        if normalized not in keys:
-            keys.append(normalized)
+        for normalized in _document_key_aliases(part):
+            if normalized not in keys:
+                keys.append(normalized)
     return tuple(keys)
 
 
@@ -963,15 +1049,15 @@ def _matches_queue_query_row(
     document_keys = _normalize_document_key_filters(getattr(args, "document_keys", None))
     if getattr(args, "record_id", None) and row.record_id != args.record_id:
         return False
-    if getattr(args, "task_id", None) and _normalize_task_id(_row_task_id(row)) != _normalize_task_id(args.task_id):
+    if getattr(args, "task_id", None) and not _match_task_id(_row_task_id(row), args.task_id):
         return False
     if not _match_task_id_prefix(_row_task_id(row), getattr(args, "task_id_prefix", None)):
         return False
     if not _match_exact(row.document_id, getattr(args, "document_id", None)):
         return False
-    if not _match_exact(row.document_key, getattr(args, "document_key", None)):
+    if not _match_document_key(row.document_key, getattr(args, "document_key", None)):
         return False
-    if document_keys and row.document_key.strip().upper() not in document_keys:
+    if document_keys and not set(_document_key_aliases(row.document_key)) & set(document_keys):
         return False
     if not _match_exact(row.build_family, getattr(args, "build_family", None)):
         return False
