@@ -43,8 +43,14 @@ def review_init_env_names(
     document_link_view_id_env = str(doc_link_cfg.get("view_id_env") or "").strip() or None
     review_table_id_env = str(review_cfg.get("table_id_env") or "").strip()
     review_view_id_env = str(review_cfg.get("view_id_env") or "").strip() or None
-    table_id_env = document_link_table_id_env or review_table_id_env
-    view_id_env = document_link_view_id_env or review_view_id_env
+    if review_table_id_env:
+        table_id_env = review_table_id_env
+        view_id_env = review_view_id_env
+        if view_id_env == document_link_view_id_env:
+            view_id_env = None
+    else:
+        table_id_env = document_link_table_id_env
+        view_id_env = document_link_view_id_env
     return base_token_env, table_id_env, view_id_env
 
 
