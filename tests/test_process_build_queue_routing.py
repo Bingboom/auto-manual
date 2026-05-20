@@ -240,6 +240,37 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
 
         self.assertEqual(root / "config.pt-br.yaml", config_path)
 
+    def test_resolve_config_path_for_task_should_accept_pt_br_region_aliases(self) -> None:
+        with temp_test_root() as root:
+            write_text(root / "config.pt-br.yaml", "build: {}\n")
+
+            configs = {
+                "config.pt-br.yaml": {
+                    "build": {
+                        "family_id": "pt-br",
+                        "default_region": "pt-BR",
+                        "languages": ["en", "pt-BR"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                br_config_path = process_build_queue.resolve_config_path_for_task(region="BR", lang="")
+                brazil_config_path = process_build_queue.resolve_config_path_for_task(
+                    region="Brazil",
+                    lang="",
+                    build_family="pt-br",
+                )
+
+        self.assertEqual(root / "config.pt-br.yaml", br_config_path)
+        self.assertEqual(root / "config.pt-br.yaml", brazil_config_path)
+
     def test_resolve_config_path_for_task_should_reject_blank_lang_without_merged_region_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.eu-en.yaml", "config.eu-fr.yaml"):
@@ -440,7 +471,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                         workflow_action="publish",
                     )
 
-    def test_resolve_config_path_for_task_should_reject_draft_lang_against_merged_family(self) -> None:
+    def test_resolve_config_path_for_task_should_allow_draft_lang_for_document_key_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             config_path = root / "config.us.yaml"
@@ -462,10 +493,72 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 "load_config",
                 side_effect=lambda path: configs[path.name],
             ):
-                with self.assertRaisesRegex(RuntimeError, "single-language Build_family"):
+                resolved = process_build_queue.resolve_config_path_for_task(
+                    region="US",
+                    lang="en",
+                    build_family="us-merged",
+                    workflow_action="draft",
+                )
+
+        self.assertEqual(config_path, resolved)
+
+    def test_resolve_config_path_for_task_should_accept_document_key_family_lang_alias(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            config_path = root / "config.pt-br.yaml"
+            config_path.write_text("build: {}\n", encoding="utf-8")
+            configs = {
+                "config.pt-br.yaml": {
+                    "build": {
+                        "family_id": "pt-br",
+                        "default_region": "pt-BR",
+                        "languages": ["en", "pt-BR"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                }
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                resolved = process_build_queue.resolve_config_path_for_task(
+                    region="BR",
+                    lang="br",
+                    build_family="pt-br",
+                    workflow_action="draft",
+                )
+
+        self.assertEqual(config_path, resolved)
+
+    def test_resolve_config_path_for_task_should_reject_unknown_lang_for_document_key_family(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            config_path = root / "config.us.yaml"
+            config_path.write_text("build: {}\n", encoding="utf-8")
+            configs = {
+                "config.us.yaml": {
+                    "build": {
+                        "family_id": "us-merged",
+                        "default_region": "US",
+                        "languages": ["en", "fr", "es"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                }
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                with self.assertRaisesRegex(RuntimeError, "does not include Lang"):
                     process_build_queue.resolve_config_path_for_task(
                         region="US",
-                        lang="en",
+                        lang="de",
                         build_family="us-merged",
                         workflow_action="draft",
                     )

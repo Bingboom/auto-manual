@@ -76,6 +76,7 @@ from tools.process_review_start_queue_runtime import (  # noqa: E402
     process_review_start_queue as _process_review_start_queue_impl,
 )
 from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
+from tools.region_aliases import canonical_document_key_region  # noqa: E402
 from tools.review_start_failure_summary import (  # noqa: E402
     build_review_start_failure_report as _build_review_start_failure_report_impl,
     build_review_start_failure_summary as _build_review_start_failure_summary_impl,
@@ -154,7 +155,7 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
 
 
 def _resolve_review_start_region_config_path(*, region: str) -> Path | None:
-    normalized_region = str(region or "").strip().upper()
+    normalized_region = canonical_document_key_region(str(region or "").strip())
     if not normalized_region:
         return None
 
@@ -166,7 +167,7 @@ def _resolve_review_start_region_config_path(*, region: str) -> Path | None:
             continue
         build_cfg_raw = cfg.get("build", {})
         build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-        default_region = str(build_cfg.get("default_region") or "").strip().upper()
+        default_region = canonical_document_key_region(str(build_cfg.get("default_region") or "").strip())
         if default_region != normalized_region:
             continue
         languages_raw = build_cfg.get("languages", [])
