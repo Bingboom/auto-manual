@@ -16,6 +16,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
         self.assertEqual("JE-1000F", model)
         self.assertEqual("US", region)
 
+    def test_parse_document_key_should_normalize_brazil_region_alias(self) -> None:
+        model, region = process_build_queue.parse_document_key("JE-1500D_Brazil")
+
+        self.assertEqual("JE-1500D", model)
+        self.assertEqual("pt-BR", region)
+
     def test_resolve_target_for_record_should_fallback_to_document_id(self) -> None:
         record = process_build_queue.QueueRecord(
             record_id="rec_1",
@@ -199,6 +205,40 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 config_path = process_build_queue.resolve_config_path_for_task(region="EU", lang="")
 
         self.assertEqual(root / "config.eu.yaml", config_path)
+
+    def test_resolve_config_path_for_task_should_allow_blank_lang_for_pt_br_merged_config(self) -> None:
+        with temp_test_root() as root:
+            for name in ("config.pt-br.yaml", "config.pt-br-single.yaml"):
+                write_text(root / name, "build: {}\n")
+
+            configs = {
+                "config.pt-br.yaml": {
+                    "build": {
+                        "family_id": "pt-br",
+                        "default_region": "pt-BR",
+                        "languages": ["en", "pt-BR"],
+                        "include_lang_in_output_path": False,
+                        "queue_by_document_key": True,
+                    }
+                },
+                "config.pt-br-single.yaml": {
+                    "build": {
+                        "family_id": "pt-br-single",
+                        "default_region": "pt-BR",
+                        "languages": ["en"],
+                        "include_lang_in_output_path": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "load_config",
+                side_effect=lambda path: configs[path.name],
+            ):
+                config_path = process_build_queue.resolve_config_path_for_task(region="pt-BR", lang="")
+
+        self.assertEqual(root / "config.pt-br.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_reject_blank_lang_without_merged_region_config(self) -> None:
         with temp_test_root() as root:

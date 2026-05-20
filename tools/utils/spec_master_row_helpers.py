@@ -173,6 +173,59 @@ def _row_matches_footnote_target(
     return True
 
 
+def _row_is_usable_footnote_definition(
+    row: dict[str, str],
+    *,
+    page: str | None = None,
+    footnote_id: str | None = None,
+) -> bool:
+    if not _is_truthy(_first_non_empty(row, ["Enabled", "enabled"])):
+        return False
+    if not _is_truthy(_first_non_empty(row, ["Is_Latest", "is_latest"])):
+        return False
+    if footnote_id and _first_non_empty(row, ["Footnote_id", "footnote_id"]) != footnote_id:
+        return False
+    if page and not page_value_matches(_first_non_empty(row, ["Page", "page"]), page):
+        return False
+    return bool(_first_non_empty(row, ["Footnote_id", "footnote_id"]))
+
+
+def _fallback_footnote_rows(
+    rows: list[dict[str, str]],
+    *,
+    model: str | None,
+    region: str | None,
+    page: str,
+    footnote_id: str,
+    preferred_langs: set[str],
+) -> list[dict[str, str]]:
+    target_region = (region or "").strip()
+    target_model = canonicalize_model_token(model or "", region=target_region)
+    scored: list[tuple[tuple[int, int, int, int], dict[str, str]]] = []
+    for idx, row in enumerate(rows):
+        if not _row_is_usable_footnote_definition(row, page=page, footnote_id=footnote_id):
+            continue
+
+        row_region = _first_non_empty(row, ["Region", "region"])
+        row_model = canonicalize_model_token(
+            _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
+            region=row_region or target_region,
+        )
+        source_lang = source_language_for_row(row)
+        score = (
+            0 if target_model and row_model.casefold() == target_model.casefold() else 1,
+            0 if target_region and row_region.casefold() == target_region.casefold() else 1,
+            0 if not preferred_langs or source_lang in preferred_langs else 1,
+            _row_line_num(row, idx),
+        )
+        scored.append((score, row))
+
+    if not scored:
+        return []
+    scored.sort(key=lambda item: item[0])
+    return [scored[0][1]]
+
+
 def collect_matching_footnote_rows(
     rows: list[dict[str, str]],
     *,
@@ -240,6 +293,18 @@ def collect_matching_footnote_rows(
 
             if len(best_rows) == 1:
                 selected.append(best_rows[0])
+                continue
+
+            fallback_rows = _fallback_footnote_rows(
+                rows,
+                model=target_model,
+                region=target_region,
+                page=page,
+                footnote_id=footnote_id,
+                preferred_langs=preferred_langs,
+            )
+            if len(fallback_rows) == 1:
+                selected.append(fallback_rows[0])
 
     return selected
 
