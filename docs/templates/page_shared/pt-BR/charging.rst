@@ -9,7 +9,7 @@
       :alt: Diagrama de conexão do módulo de bateria.
       :width: 360px
 
-   .. only:: region_us
+   .. only:: region_us or region_pt_br
 
       .. list-table::
          :header-rows: 0

@@ -1,4 +1,4 @@
-extends: config.us.yaml
+extends: config-bases/us-single-language-base.yaml
 
 build:
   family_id: pt-br
@@ -7,13 +7,12 @@ build:
   targets:
     - model: JE-1500D
       region: pt-BR
-  languages: [en, pt-BR]
-  include_lang_in_output_path: false
-  output_pdf: manual_{model_slug}_{region_slug}_{lang_slug}.pdf
-  word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
-  word_title: "|PRODUCT_NAME| User Manual / Manual do usuário"
+  languages: [pt-BR]
+  include_lang_in_output_path: true
+  word_reference_doc: docs/templates/word_template/template.docx
+  word_title: "|PRODUCT_NAME| Manual do usuário"
   rst_substitutions:
-    MANUAL_LANGUAGE_SCOPE: English / Portuguese (Brazil)
+    MANUAL_LANGUAGE_SCOPE: Português (Brasil)
 
 paths:
   page_manifest: docs/manifests/manual_pt-br.yaml
