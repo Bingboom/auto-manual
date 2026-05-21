@@ -86,23 +86,39 @@ def _pick_spec_lang_text(
     lang: str,
     default_keys: list[str] | None = None,
 ) -> str:
+    def lang_suffix_candidates(raw_lang: str) -> list[str]:
+        raw = (raw_lang or "").strip()
+        candidates = [
+            raw,
+            raw.casefold(),
+            raw.upper(),
+            raw.replace("-", "_"),
+            raw.casefold().replace("-", "_"),
+        ]
+        if raw.casefold() in {"br", "pt-br", "pt_br"}:
+            candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
+        return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+    def normalized_lang_key(raw_lang: str) -> str:
+        raw = (raw_lang or "").strip().casefold()
+        if raw in {"br", "pt-br", "pt_br"}:
+            return "pt-br"
+        return raw
+
     source_lang = source_language_for_row(row)
-    normalized_lang = (lang or "").strip().lower()
-    if base in {"Row_label", "Param", "Value"} and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+    normalized_lang = normalized_lang_key(lang)
+    normalized_source_lang = normalized_lang_key(source_lang)
+    if base in {"Row_label", "Param", "Value"} and (
+        normalized_lang == "en" or (normalized_source_lang and normalized_lang == normalized_source_lang)
+    ):
         keys = [
             f"{base}_source",
             f"{base.lower()}_source",
             base,
         ]
     else:
-        keys = [
-            f"{base}_{lang}",
-            f"{base}_{lang.lower()}",
-            f"{base}_{lang.upper()}",
-            f"{base}_source",
-            f"{base.lower()}_source",
-            base,
-        ]
+        keys = [f"{base}_{suffix}" for suffix in lang_suffix_candidates(lang)]
+        keys.extend([f"{base}_source", f"{base.lower()}_source", base])
     if default_keys:
         keys.extend(default_keys)
     return _first_non_empty(row, keys)
@@ -135,6 +151,8 @@ def _pick_title_lang(lang: str, vars_map: dict[str, str]) -> str:
         return "uk"
     if value.startswith("zh"):
         return "zh"
+    if value in {"br"} or value.startswith("pt"):
+        return "pt-BR"
     return "en"
 
 

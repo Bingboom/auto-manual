@@ -145,9 +145,13 @@ def derive_short_product_name(name: str) -> str:
 def derive_label_lower(value: str) -> str:
     tokens = value.split()
     lowered: list[str] = []
+    has_localized_word = any(any(ord(char) > 127 for char in token) for token in tokens)
     for token in tokens:
         if token.upper() == "BUTTON":
             lowered.append("button")
+            continue
+        if has_localized_word and token == "Power":
+            lowered.append(token)
             continue
         if token.isupper():
             lowered.append(token)

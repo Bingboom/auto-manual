@@ -334,20 +334,40 @@ def _is_truthy(value: str) -> bool:
     return text in {"1", "true", "yes", "y"}
 
 
+def _lang_suffix_candidates(lang: str) -> tuple[str, ...]:
+    raw = (lang or "").strip()
+    if not raw:
+        return ()
+    candidates = [
+        raw,
+        raw.lower(),
+        raw.upper(),
+        raw.replace("-", "_"),
+        raw.lower().replace("-", "_"),
+    ]
+    if raw.casefold() in {"br", "pt-br", "pt_br"}:
+        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
+    return tuple(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _normalized_lang_key(lang: str) -> str:
+    raw = (lang or "").strip().casefold()
+    if raw in {"br", "pt-br", "pt_br"}:
+        return "pt-br"
+    return raw
+
+
 def _pick_lang_value(row: dict[str, str], base: str, lang: str) -> str:
-    normalized_lang = (lang or "").strip().lower()
+    normalized_lang = _normalized_lang_key(lang)
     source_lang = source_language_for_row(row)
+    normalized_source_lang = _normalized_lang_key(source_lang)
     keys: list[str] = []
-    if base in _SOURCE_SHARED_BASES and (normalized_lang == "en" or (source_lang and normalized_lang == source_lang)):
+    if base in _SOURCE_SHARED_BASES and (
+        normalized_lang == "en" or (normalized_source_lang and normalized_lang == normalized_source_lang)
+    ):
         keys.extend(_source_column_names(base))
     else:
-        keys.extend(
-            [
-                f"{base}_{lang}",
-                f"{base}_{lang.lower()}",
-                f"{base}_{lang.upper()}",
-            ]
-        )
+        keys.extend(f"{base}_{suffix}" for suffix in _lang_suffix_candidates(lang))
         if base in _SOURCE_SHARED_BASES:
             keys.extend(_source_column_names(base))
     keys.extend([base, "Spec_Value"])

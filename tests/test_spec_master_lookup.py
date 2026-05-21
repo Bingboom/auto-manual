@@ -224,6 +224,83 @@ class TestSpecMasterLookup(unittest.TestCase):
         assert match is not None
         self.assertEqual("DC/USB-Ein/Ausschaltknopf", match.value)
 
+    def test_lookup_should_use_br_columns_for_pt_br_language(self) -> None:
+        rows = [
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Row_key": "main_power_button",
+                "Slot_key": "label",
+                "Source_lang": "en",
+                "Row_label_source": "Main Power Button",
+                "Row_label_br": "Botão Power Principal",
+                "Value_source": "Main Power Button",
+                "Value_br": "Botão Power Principal",
+                "Model": "JE-1000F",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "Product overview",
+                "Row_key": "ac_power_button",
+                "Slot_key": "label",
+                "Source_lang": "en",
+                "Row_label_source": "AC Power Button",
+                "Row_label_br": "Botão CA",
+                "Value_source": "AC Power Button",
+                "Value_br": "Botão CA",
+                "Model": "JE-1000F",
+            },
+            {
+                "Region": "US",
+                "Is_Latest": "TRUE",
+                "Page": "operation_guide",
+                "Row_key": "energy_saving_auto_off_duration",
+                "Slot_key": "value",
+                "Source_lang": "en",
+                "Value_source": "12 hours",
+                "Value_br": "12 horas",
+                "Model": "JE-1000F",
+            },
+        ]
+
+        label = resolve_spec_value_from_rows(
+            rows,
+            model="JE-1000F",
+            region="US",
+            lang="pt-BR",
+            row_key="ac_power_button",
+            pages=("Product overview",),
+            usage_type="page_value",
+            value_role="label",
+        )
+        duration = resolve_spec_value_from_rows(
+            rows,
+            model="JE-1000F",
+            region="US",
+            lang="pt-BR",
+            row_key="energy_saving_auto_off_duration",
+            pages=("operation_guide",),
+            usage_type="page_value",
+        )
+
+        self.assertIsNotNone(label)
+        self.assertIsNotNone(duration)
+        assert label is not None
+        assert duration is not None
+        self.assertEqual("Botão CA", label.value)
+        self.assertEqual("12 horas", duration.value)
+
+        substitutions = resolve_template_substitutions_from_rows(
+            rows,
+            model="JE-1000F",
+            region="US",
+            lang="pt-BR",
+        )
+        self.assertEqual("Botão Power Principal", substitutions["MAIN_POWER_BUTTON_LABEL"])
+        self.assertEqual("botão Power principal", substitutions["MAIN_POWER_BUTTON_LABEL_LOWER"])
+
     def test_lookup_should_match_comma_separated_page_values(self) -> None:
         rows = [
             {

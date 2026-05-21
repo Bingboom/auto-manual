@@ -370,9 +370,13 @@ def resolve_snippet_file_path(
 def _derive_label_lower(value: str) -> str:
     tokens = value.split()
     lowered: list[str] = []
+    has_localized_word = any(any(ord(char) > 127 for char in token) for token in tokens)
     for token in tokens:
         if token.upper() == "BUTTON":
             lowered.append("button")
+            continue
+        if has_localized_word and token == "Power":
+            lowered.append(token)
             continue
         if token.isupper():
             lowered.append(token)

@@ -95,7 +95,7 @@ pages:
   - type: generated_page
     page: 03_product_overview
     engine: draft_v1
-    recipe: templates/recipes/us-en/03_product_overview.yaml
+    recipe: templates/recipes/us-pt-br/03_product_overview.yaml
     template: templates/page_us-pt-br/03_product_overview_placeholder.rst
     langs: [pt-BR]
     include_dir: generated/{model}/draft
