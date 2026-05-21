@@ -4,7 +4,7 @@ SOLUÇÃO DE PROBLEMAS
 Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema.
 Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.
 
-.. only:: region_us
+.. only:: region_us or region_pt_br
 
    .. list-table::
       :header-rows: 1

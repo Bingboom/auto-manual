@@ -1,3 +1,5 @@
+|MANUAL_LANGUAGE_SCOPE|
+
 **PT-BR IMPORTANTE**
 
 | Parabéns pelo seu novo |PRODUCT_NAME|. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consulta frequente.
