@@ -673,6 +673,36 @@ class TestProcessBuildQueue(unittest.TestCase):
             lang="en",
         )
 
+    def test_resolve_word_output_path_should_preserve_pt_br_language_component(self) -> None:
+        with temp_test_root() as root:
+            config_path = root / "config.pt-br.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  default_region: pt-BR",
+                        "  languages: [en, pt-BR]",
+                        "  include_lang_in_output_path: false",
+                        "  word_output: manual_{model_slug}_{region_slug}.docx",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(process_build_queue, "ROOT", root):
+                word_path = process_build_queue.resolve_word_output_path_for_target(
+                    config_path=config_path,
+                    model="JE-1500D",
+                    region="pt-BR",
+                    lang="br",
+                )
+
+        self.assertEqual(
+            root / "docs" / "_build" / "JE-1500D" / "pt-BR" / "pt-BR" / "word" / "manual_je1500d_ptbr.docx",
+            word_path,
+        )
+
     def test_build_document_for_task_should_build_from_main_workspace_overlay_review_content_and_stage_output_under_host_repo(self) -> None:
         commands: list[tuple[list[str], Path]] = []
         with tempfile.TemporaryDirectory() as td:
