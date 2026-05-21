@@ -23,13 +23,14 @@ def normalize_language(value: object, *, supported: Iterable[str] = ()) -> str:
     if not token:
         return ""
 
-    aliased = _LANGUAGE_ALIASES.get(token.casefold(), token)
+    alias_key = token.casefold()
+    aliased = _LANGUAGE_ALIASES.get(alias_key, token)
     supported_langs = tuple(_clean(item) for item in supported if _clean(item))
     for supported_lang in supported_langs:
         if supported_lang.casefold() in {token.casefold(), aliased.casefold()}:
             return supported_lang
 
-    return aliased if aliased != token else token.lower()
+    return aliased if alias_key in _LANGUAGE_ALIASES else token.lower()
 
 
 def language_key(value: object) -> str:
