@@ -161,14 +161,27 @@ def _resolve_local_reference(
 
 def _pick_spec_value(row: dict[str, str], lang: str) -> str:
     source_lang = source_language_for_row(row)
-    normalized_lang = (lang or "").strip().lower()
+    raw_lang = (lang or "").strip()
+    normalized_lang = raw_lang.casefold()
+    normalized_source_lang = (source_lang or "").strip().casefold()
+    if normalized_lang in {"br", "pt-br", "pt_br"}:
+        normalized_lang = "pt-br"
+    if normalized_source_lang in {"br", "pt-br", "pt_br"}:
+        normalized_source_lang = "pt-br"
+    lang_suffixes = [
+        raw_lang,
+        raw_lang.lower(),
+        raw_lang.upper(),
+        raw_lang.replace("-", "_"),
+        raw_lang.lower().replace("-", "_"),
+    ]
+    if normalized_lang == "pt-br":
+        lang_suffixes.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
     keys = (
         ("Value_source", "value_source", "Value", "Spec_Value")
-        if normalized_lang == "en" or (source_lang and normalized_lang == source_lang)
+        if normalized_lang == "en" or (normalized_source_lang and normalized_lang == normalized_source_lang)
         else (
-            f"Value_{lang}",
-            f"Value_{lang.lower()}",
-            f"Value_{lang.upper()}",
+            *(f"Value_{suffix}" for suffix in dict.fromkeys(suffix for suffix in lang_suffixes if suffix)),
             "Value_source",
             "value_source",
             "Value",

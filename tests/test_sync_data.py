@@ -72,7 +72,7 @@ class _FakeSourceWithFailingDownloads(_FakeSource):
 
 
 class TestSyncData(unittest.TestCase):
-    def test_phase2_table_schemas_should_include_eu_de_it_uk_columns(self) -> None:
+    def test_phase2_table_schemas_should_include_eu_and_pt_br_columns(self) -> None:
         self.assertEqual(
             (
                 "document_key",
@@ -98,6 +98,9 @@ class TestSyncData(unittest.TestCase):
                 "Model",
                 "Param_es",
                 "Value_es",
+                "Row_label_br",
+                "Param_br",
+                "Value_br",
                 "Row_label_de",
                 "Param_de",
                 "Value_de",
@@ -124,6 +127,8 @@ class TestSyncData(unittest.TestCase):
                 "Text_en",
                 "Text_fr",
                 "Text_es",
+                "Text_pt-BR",
+                "pt-BR",
                 "Text_ja",
                 "Text_de",
                 "Text_it",
@@ -145,6 +150,7 @@ class TestSyncData(unittest.TestCase):
                 "Text_en",
                 "Text_fr",
                 "Text_es",
+                "Text_pt-BR",
                 "Text_ja",
                 "Text_de",
                 "Text_it",
@@ -176,6 +182,7 @@ class TestSyncData(unittest.TestCase):
                 "text_en",
                 "text_fr",
                 "text_es",
+                "text_pt-BR",
                 "text_de",
                 "text_it",
                 "text_uk",
@@ -201,6 +208,8 @@ class TestSyncData(unittest.TestCase):
                 "icon_jp",
                 "icon_fr",
                 "icon_es",
+                "icon_pt-BR",
+                "icon_br",
                 "icon_de",
                 "icon_it",
                 "icon_ukr",
@@ -209,6 +218,8 @@ class TestSyncData(unittest.TestCase):
                 "icon_desc_jp",
                 "icon_desc_fr",
                 "icon_desc_es",
+                "icon_desc_pt-BR",
+                "icon_desc_br",
                 "icon_desc_de",
                 "icon_desc_it",
                 "icon_desc_ukr",
@@ -246,6 +257,22 @@ class TestSyncData(unittest.TestCase):
 
         self.assertEqual("US, EU", rows[0]["Market"])
         self.assertEqual("JE-1000F, JE-2000E", rows[0]["Model"])
+
+    def test_spec_footnotes_should_alias_pt_br_field_name(self) -> None:
+        rows = sync_data.normalize_records(
+            sync_data.TABLE_SCHEMAS["spec_footnotes"],
+            [
+                {
+                    "fields": {
+                        "Footnote_id": "fn1",
+                        "Text_en": "English footnote.",
+                        "pt-BR": "Nota em portugues.",
+                    }
+                }
+            ],
+        )
+
+        self.assertEqual("Nota em portugues.", rows[0]["Text_pt-BR"])
 
     def test_collect_sync_preflight_errors_should_report_missing_cli_and_envs_together(self) -> None:
         cfg = {
@@ -419,7 +446,7 @@ class TestSyncData(unittest.TestCase):
 
             master_lines = (root / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8").splitlines()
             self.assertEqual(
-                "document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Model,Param_es,Value_es,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk,Source_lang",
+                "document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Model,Param_es,Value_es,Row_label_br,Param_br,Value_br,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk,Source_lang",
                 master_lines[0],
             )
             self.assertIn("TRUE", master_lines[1])

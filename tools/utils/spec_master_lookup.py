@@ -29,13 +29,18 @@ def _pick_lang_specific_value(row: dict[str, str], base: str, lang: str) -> str:
     normalized_lang = (lang or "").strip()
     if not normalized_lang:
         return ""
+    candidates = [
+        normalized_lang,
+        normalized_lang.lower(),
+        normalized_lang.upper(),
+        normalized_lang.replace("-", "_"),
+        normalized_lang.lower().replace("-", "_"),
+    ]
+    if normalized_lang.casefold() in {"br", "pt-br", "pt_br"}:
+        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
     return _first_non_empty(
         row,
-        [
-            f"{base}_{normalized_lang}",
-            f"{base}_{normalized_lang.lower()}",
-            f"{base}_{normalized_lang.upper()}",
-        ],
+        [f"{base}_{suffix}" for suffix in dict.fromkeys(candidate for candidate in candidates if candidate)],
     )
 
 
@@ -197,9 +202,13 @@ def _derive_short_product_name(name: str) -> str:
 def _derive_label_lower(value: str) -> str:
     tokens = value.split()
     lowered: list[str] = []
+    has_localized_word = any(any(ord(char) > 127 for char in token) for token in tokens)
     for token in tokens:
         if token.upper() == "BUTTON":
             lowered.append("button")
+            continue
+        if has_localized_word and token == "Power":
+            lowered.append(token)
             continue
         if token.isupper():
             lowered.append(token)

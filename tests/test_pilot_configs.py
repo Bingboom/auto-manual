@@ -214,6 +214,10 @@ class TestPilotConfigs(unittest.TestCase):
             },
             {(page.page, page.langs, page.template) for page in generated_pages},
         )
+        self.assertIn(
+            ("03_product_overview", ("pt-BR",), "templates/recipes/us-pt-br/03_product_overview.yaml"),
+            {(page.page, page.langs, page.recipe) for page in generated_pages},
+        )
         csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
         self.assertEqual(
             {

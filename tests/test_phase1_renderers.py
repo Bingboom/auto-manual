@@ -1266,6 +1266,69 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("ЕКРАН LCD", uk_out)
         self.assertIn("Заглушка схеми значків LCD.", uk_out)
 
+    def test_render_lcd_icons_page_supports_pt_br_columns_and_br_variable_overrides(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            defaults = Path(td) / "Variable_Defaults.csv"
+            overrides = Path(td) / "Variable_Lang_Overrides.csv"
+            defaults.write_text(
+                "Variable_key,Model,Value,is_default\n"
+                "AC_POWER_BUTTON_LABEL,JE-1000F,AC,FALSE\n"
+                "DC_USB_POWER_BUTTON_LABEL,,DC/USB,TRUE\n",
+                encoding="utf-8",
+            )
+            overrides.write_text(
+                "Variable_key,lang,source_value,Value\n"
+                "AC_POWER_BUTTON_LABEL,br,AC,CA\n"
+                "DC_USB_POWER_BUTTON_LABEL,pt-BR,DC/USB,CC/USB\n",
+                encoding="utf-8",
+            )
+            blocks = [
+                {
+                    "No.": "4",
+                    "Model": "JE-1000F",
+                    "Is_latest": "TRUE",
+                    "icon_en": "Charging Plan",
+                    "icon_pt-BR": "test",
+                    "icon_desc_en": "Customizes the charging time of the {{PRODUCT_NAME}}.",
+                    "icon_desc_pt-BR": "test",
+                    "variable_keys": "PRODUCT_NAME",
+                },
+                {
+                    "No.": "22",
+                    "Model": "JE-1000F",
+                    "Is_latest": "TRUE",
+                    "icon_en": "Energy Saving Mode",
+                    "icon_pt-BR": "Modo de economia de energia",
+                    "icon_desc_en": "When the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} output is on.",
+                    "icon_desc_pt-BR": (
+                        "Quando a saída {{AC_POWER_BUTTON_LABEL}} ou {{DC_USB_POWER_BUTTON_LABEL}} estiver ligada:\n"
+                        "Ligado: Modo de economia de energia ativado.\n"
+                        "Desligado: Modo de economia de energia desativado."
+                    ),
+                    "variable_keys": "AC_POWER_BUTTON_LABEL, DC_USB_POWER_BUTTON_LABEL",
+                }
+            ]
+
+            out = renderers.render_lcd_icons_page(
+                template=self._lcd_template(),
+                blocks=blocks,
+                sku_id="",
+                lang="pt-BR",
+                vars_map={
+                    "model": "JE-1000F",
+                    "product_name": "Jackery Explorer 1500",
+                    "variable_defaults_csv": str(defaults),
+                    "variable_lang_overrides_csv": str(overrides),
+                },
+            )
+
+        self.assertIn("TELA LCD", out)
+        self.assertIn("Mapa de ícones da tela LCD.", out)
+        self.assertIn("Modo de economia de energia", out)
+        self.assertIn("Quando a saída CA ou CC/USB estiver ligada:", out)
+        self.assertIn("| **Ligado:** Modo de economia de energia ativado.", out)
+        self.assertIn("| **Desligado:** Modo de economia de energia desativado.", out)
+
     def test_collect_spec_content_supports_spec_master_schema(self) -> None:
         data = renderers.collect_spec_content(
             blocks=self._spec_master_blocks(),

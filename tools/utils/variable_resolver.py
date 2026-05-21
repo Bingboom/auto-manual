@@ -13,6 +13,9 @@ _LANG_ALIASES = {
     "jp": ("jp", "ja"),
     "uk": ("uk", "ukr"),
     "ukr": ("ukr", "uk"),
+    "br": ("br", "pt-br", "pt_br"),
+    "pt-br": ("pt-br", "pt_br", "br"),
+    "pt_br": ("pt_br", "pt-br", "br"),
 }
 _MODEL_SPLIT_RE = re.compile(r"[,;|]")
 

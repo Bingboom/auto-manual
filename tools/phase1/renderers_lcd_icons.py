@@ -40,6 +40,7 @@ _LANG_COPY = {
     "uk": {"title": "ЕКРАН LCD", "alt": "Заглушка схеми значків LCD."},
     "ja": {"title": "液晶画面", "alt": "LCDアイコンマップ。"},
     "zh": {"title": "显示屏界面", "alt": "LCD 图标示意图。"},
+    "pt-BR": {"title": "TELA LCD", "alt": "Mapa de ícones da tela LCD."},
 }
 
 
@@ -68,6 +69,19 @@ def _truthy(value: str, *, default: bool = True) -> bool:
 def _lang_suffix(lang: str) -> str:
     raw = (lang or "").strip().casefold()
     return _LANG_SUFFIX.get(raw, raw)
+
+
+def _lang_suffix_candidates(lang: str) -> list[str]:
+    suffix = _lang_suffix(lang)
+    candidates = [
+        suffix,
+        str(suffix).casefold(),
+        str(suffix).replace("-", "_"),
+        str(suffix).casefold().replace("-", "_"),
+    ]
+    if (lang or "").strip().casefold() in {"br", "pt-br", "pt_br"}:
+        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
+    return list(dict.fromkeys(candidate for candidate in candidates if candidate))
 
 
 def _first_existing(headers: set[str], candidates: list[str]) -> str:
@@ -153,13 +167,23 @@ def _resolve_row_vars(
     placeholder_keys = _placeholder_keys(name, description)
 
     render_var_aliases = {key.casefold(): value for key, value in vars_map.items()}
-    table_candidate_keys: list[str] = list(declared_keys)
-    for key in placeholder_keys:
+    table_candidate_keys: list[str] = []
+
+    def resolve_from_render_vars(key: str) -> bool:
         if key in resolved:
-            continue
+            return True
         alias_value = render_var_aliases.get(key.casefold())
         if alias_value is not None:
             resolved[key] = alias_value
+            return True
+        return False
+
+    for key in declared_keys:
+        if resolve_from_render_vars(key):
+            continue
+        table_candidate_keys.append(key)
+    for key in placeholder_keys:
+        if resolve_from_render_vars(key):
             continue
         if key not in table_candidate_keys:
             table_candidate_keys.append(key)
@@ -200,27 +224,16 @@ def _collect_rows(
     lang: str,
     vars_map: dict[str, str],
 ) -> list[dict[str, str]]:
-    suffix = _lang_suffix(lang)
     if not blocks:
         raise ValueError(f"lcd_icons page has no rows for lang={lang}")
     headers = set(blocks[0].keys())
     name_col = _first_existing(
         headers,
-        [
-            f"icon_{suffix}",
-            f"icon_{str(suffix).casefold()}",
-            f"icon_{str(suffix).replace('-', '_')}",
-            "icon_en",
-        ],
+        [*(f"icon_{suffix}" for suffix in _lang_suffix_candidates(lang)), "icon_en"],
     )
     desc_col = _first_existing(
         headers,
-        [
-            f"icon_desc_{suffix}",
-            f"icon_desc_{str(suffix).casefold()}",
-            f"icon_desc_{str(suffix).replace('-', '_')}",
-            "icon_desc_en",
-        ],
+        [*(f"icon_desc_{suffix}" for suffix in _lang_suffix_candidates(lang)), "icon_desc_en"],
     )
     if desc_col not in headers:
         raise ValueError(f"lcd_icons csv missing language description column: {desc_col}")
@@ -271,7 +284,7 @@ def _collect_rows(
 
 
 def _format_description_line(line: str) -> str:
-    for label in ("On", "Off", "Blink", "点亮", "熄灭", "闪烁"):
+    for label in ("On", "Off", "Blink", "Ligado", "Desligado", "Piscando", "点亮", "熄灭", "闪烁"):
         for separator in (":", "："):
             prefix = f"{label}{separator}"
             if line.startswith(prefix):
@@ -446,7 +459,7 @@ def render_lcd_icons_page(
     vars_map: dict[str, str],
 ) -> str:
     del sku_id
-    copy = _LANG_COPY.get(lang, _LANG_COPY["en"])
+    copy = _LANG_COPY.get(lang) or _LANG_COPY.get(_lang_suffix(lang)) or _LANG_COPY["en"]
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(copy["title"]))
     rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(copy["alt"]))

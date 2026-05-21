@@ -139,10 +139,16 @@ def _record_values(record: dict[str, Any]) -> dict[str, Any]:
     return values
 
 
+def _apply_field_aliases(schema: _SchemaLike, values: dict[str, Any]) -> dict[str, Any]:
+    if schema.logical_name == "spec_footnotes" and "Text_pt-BR" not in values and "pt-BR" in values:
+        values["Text_pt-BR"] = values["pt-BR"]
+    return values
+
+
 def normalize_records(schema: _SchemaLike, raw_records: list[dict[str, Any]]) -> list[dict[str, str]]:
     normalized: list[dict[str, str]] = []
     for record in raw_records:
-        values = _record_values(record)
+        values = _apply_field_aliases(schema, _record_values(record))
         normalized.append(
             {
                 column: _normalized_cell(schema, column, values.get(column))

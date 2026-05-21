@@ -3,6 +3,7 @@ source_files:
   - templates/page_us-en/12_app_setup_placeholder.rst
   - templates/page_us-es/12_app_setup_placeholder.rst
   - templates/page_us-fr/12_app_setup_placeholder.rst
+  - templates/page_shared/pt-BR/12_app_setup_placeholder.rst
   - templates/page_eu-en/12_app_setup_placeholder.rst
   - templates/page_jp/12_app_setup_placeholder.rst
   - templates/page_zh/12_app_setup_placeholder.rst
@@ -20,6 +21,10 @@ required_placeholders:
     - AC_POWER_BUTTON_LABEL_LOWER
     - DC_USB_POWER_BUTTON_LABEL_LOWER
   fr:
+    - MAIN_POWER_BUTTON_LABEL_LOWER
+    - AC_POWER_BUTTON_LABEL_LOWER
+    - DC_USB_POWER_BUTTON_LABEL_LOWER
+  pt-BR:
     - MAIN_POWER_BUTTON_LABEL_LOWER
     - AC_POWER_BUTTON_LABEL_LOWER
     - DC_USB_POWER_BUTTON_LABEL_LOWER
