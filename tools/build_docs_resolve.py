@@ -152,6 +152,13 @@ def slug_token(value: str | None) -> str:
     return re.sub(r"[^a-z0-9]+", "", text)
 
 
+def language_slug_token(value: str | None) -> str:
+    text = (value or "").strip().casefold().replace("_", "-")
+    if text in {"br", "pt-br"}:
+        return "br"
+    return slug_token(value)
+
+
 def render_build_template(
     template: str,
     *,
@@ -167,7 +174,7 @@ def render_build_template(
         "lang": (lang or "").strip(),
         "model_slug": slug_token(model),
         "region_slug": slug_token(region),
-        "lang_slug": slug_token(lang),
+        "lang_slug": language_slug_token(lang),
     }
     required_tokens = {match.group(1) for match in template_token_re.finditer(template)}
     unknown = sorted(token for token in required_tokens if token not in values)
