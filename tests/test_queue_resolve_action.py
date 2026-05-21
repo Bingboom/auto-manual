@@ -143,6 +143,7 @@ def _document_key_review_row(
     *,
     document_key: str = '{"id":"recvhoZFKGg7l0"}',
     review_trigger_enabled: bool | None = True,
+    task_id: str | None = None,
 ) -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
         queue_scope="review-init",
@@ -165,7 +166,7 @@ def _document_key_review_row(
         immediate_build=None,
         initial_result="",
         remarks="",
-        task_id="JE-1000F_EU___Start Review",
+        task_id="JE-1000F_EU___Start Review" if task_id is None else task_id,
     )
 
 
@@ -233,6 +234,25 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("rec_eu_review", resolution.row["record_id"])
         self.assertEqual("JE-1000F_EU_Start Review", resolution.selectors["task_id"])
         self.assertNotIn("document_key", resolution.selectors)
+
+    def test_resolve_queue_action_should_resolve_pt_br_document_key_start_review(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="开始review JE-1500D_pt-BR"),
+            [
+                _document_key_review_row(
+                    record_id="recvkaCD74mZ4z",
+                    document_key="JE-1500D_pt-BR",
+                    task_id="",
+                )
+            ],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("start_review", resolution.action_name)
+        self.assertEqual("start-review", resolution.dispatch_command)
+        self.assertTrue(resolution.ready)
+        self.assertEqual("recvkaCD74mZ4z", resolution.row["record_id"])
+        self.assertEqual("JE-1500D_pt-BR_Start Review", resolution.selectors["task_id"])
 
     def test_resolve_queue_action_should_resolve_multi_document_key_start_review_batch(self) -> None:
         rows = [

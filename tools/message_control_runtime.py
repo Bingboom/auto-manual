@@ -17,6 +17,7 @@ from tools.message_control_contract import (
     MessageControlRoute,
     MessageTargetSelector,
 )
+from tools.language_aliases import normalize_language, normalize_region
 from tools.queue_config_resolution import config_family_id, normalize_build_family
 
 
@@ -50,6 +51,9 @@ def detect_action(raw_message: str) -> str:
                 r"\bstart\s+review\b",
                 r"\bcreate\s+review\b",
                 r"\benter\s+review\b",
+                r"\u5f00\u59cb\s*review",
+                r"\u53d1\u8d77\s*review",
+                r"\u8fdb\u5165\s*review",
                 r"进入\s*review",
                 r"开始\s*review",
                 r"发起\s*review",
@@ -150,12 +154,12 @@ def _extract_first_group(patterns: tuple[str, ...], raw_message: str, *, flags: 
 def extract_selector_from_message(raw_message: str, known_families: tuple[str, ...]) -> MessageTargetSelector:
     record_id = _extract_first_group((r"\b(rec[a-z0-9]+)\b",), raw_message, flags=re.IGNORECASE).lower()
     document_key = _extract_first_group(
-        (r"\b([A-Za-z]{1,6}-\d{3,5}[A-Za-z]?_[A-Za-z]{2}(?:_[A-Za-z]{2})?)\b",),
+        (r"\b([A-Za-z]{1,6}-\d{3,5}[A-Za-z]?_[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?(?:_[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?)?)\b",),
         raw_message,
         flags=re.IGNORECASE,
     )
     model = _extract_first_group((r"\b([A-Za-z]{1,6}-\d{3,5}[A-Za-z]?)\b",), raw_message, flags=re.IGNORECASE)
-    region = _extract_first_group((r"\b(US|JP|CN|EU)\b",), raw_message, flags=re.IGNORECASE).upper()
+    region = normalize_region(_extract_first_group((r"\b(US|JP|CN|EU|pt-BR)\b",), raw_message, flags=re.IGNORECASE))
     document_id = _extract_first_group(
         (
             r"\bdocument(?:_id)?\s+([A-Za-z0-9._/-]+)\b",
@@ -190,9 +194,9 @@ def extract_selector_from_message(raw_message: str, known_families: tuple[str, .
         parts = document_key.split("_")
         if len(parts) >= 2:
             model = model or parts[0]
-            region = region or parts[1].upper()
+            region = region or normalize_region(parts[1])
         if len(parts) >= 3:
-            lang = parts[2].lower()
+            lang = normalize_language(parts[2])
     return MessageTargetSelector(
         record_id=record_id,
         document_id=document_id,
@@ -234,8 +238,8 @@ def merge_selector(
         document_id=pick("document_id", extracted.document_id, document_id.strip()),
         document_key=pick("document_key", extracted.document_key, document_key.strip()),
         model=pick("model", extracted.model, model.strip()),
-        region=pick("region", extracted.region, region.strip().upper()),
-        lang=pick("lang", extracted.lang, lang.strip().lower()),
+        region=pick("region", extracted.region, normalize_region(region)),
+        lang=pick("lang", extracted.lang, normalize_language(lang)),
         build_family=pick("build_family", extracted.build_family, normalize_build_family(build_family)),
         git_ref=pick("git_ref", extracted.git_ref, git_ref.strip()),
         version=pick("version", extracted.version, version.strip()),
@@ -248,8 +252,8 @@ def merge_selector(
                 document_id=merged.document_id,
                 document_key=merged.document_key,
                 model=merged.model or parts[0],
-                region=merged.region or parts[1].upper(),
-                lang=merged.lang or (parts[2].lower() if len(parts) >= 3 else ""),
+                region=merged.region or normalize_region(parts[1]),
+                lang=merged.lang or (normalize_language(parts[2]) if len(parts) >= 3 else ""),
                 build_family=merged.build_family,
                 git_ref=merged.git_ref,
                 version=merged.version,
@@ -309,7 +313,7 @@ def resolve_required_fields(
         missing.append("selector")
     if selector.build_family and selector.build_family not in known_families:
         warnings.append(f"unknown_build_family:{selector.build_family}")
-    if action in {ACTION_START_REVIEW, ACTION_BUILD_DRAFT_PACKAGE, ACTION_PUBLISH}:
+    if action in {ACTION_BUILD_DRAFT_PACKAGE, ACTION_PUBLISH}:
         if not selector.build_family or selector.build_family not in known_families:
             missing.append("build_family")
     if action in {ACTION_BUILD_DRAFT_PACKAGE, ACTION_PUBLISH} and not selector.git_ref:
