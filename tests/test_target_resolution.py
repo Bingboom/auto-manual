@@ -212,6 +212,16 @@ class TestTargetResolution(unittest.TestCase):
 
         self.assertEqual("manual_je1000f_jp.docx", rendered)
 
+    def test_render_build_template_should_use_short_pt_br_language_slug(self) -> None:
+        rendered = build_docs.render_build_template(
+            "manual_{model_slug}_{region_slug}_{lang_slug}.docx",
+            model="JE-1500D",
+            region="pt-BR",
+            lang="pt-BR",
+        )
+
+        self.assertEqual("manual_je1500d_ptbr_br.docx", rendered)
+
     def test_render_build_template_should_reject_missing_required_token_values(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "requires value"):
             build_docs.render_build_template(

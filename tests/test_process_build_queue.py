@@ -683,7 +683,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                         "  default_region: pt-BR",
                         "  languages: [en, pt-BR]",
                         "  include_lang_in_output_path: false",
-                        "  word_output: manual_{model_slug}_{region_slug}.docx",
+                        "  word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx",
                     ]
                 )
                 + "\n",
@@ -697,10 +697,20 @@ class TestProcessBuildQueue(unittest.TestCase):
                     region="pt-BR",
                     lang="br",
                 )
+                english_word_path = process_build_queue.resolve_word_output_path_for_target(
+                    config_path=config_path,
+                    model="JE-1500D",
+                    region="pt-BR",
+                    lang="en",
+                )
 
         self.assertEqual(
-            root / "docs" / "_build" / "JE-1500D" / "pt-BR" / "pt-BR" / "word" / "manual_je1500d_ptbr.docx",
+            root / "docs" / "_build" / "JE-1500D" / "pt-BR" / "pt-BR" / "word" / "manual_je1500d_ptbr_br.docx",
             word_path,
+        )
+        self.assertEqual(
+            root / "docs" / "_build" / "JE-1500D" / "pt-BR" / "en" / "word" / "manual_je1500d_ptbr_en.docx",
+            english_word_path,
         )
 
     def test_build_document_for_task_should_build_from_main_workspace_overlay_review_content_and_stage_output_under_host_repo(self) -> None:
