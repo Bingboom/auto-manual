@@ -8,6 +8,7 @@ import json
 import shutil
 import sys
 from dataclasses import dataclass
+from functools import partial
 from pathlib import Path
 
 from tools.build_paths import (
@@ -302,20 +303,8 @@ def maybe_sync_review_before_build(args: argparse.Namespace, *, source_override:
     )
 
 
-def sync_data_command(args: argparse.Namespace) -> list[str]:
-    return _sync_data_command_impl(
-        args,
-        repo_root=ROOT,
-        resolve_path_from_root=resolve_path_from_root,
-    )
-
-
-def spec_master_rebuild_command(args: argparse.Namespace) -> list[str]:
-    return _spec_master_rebuild_command_impl(
-        args,
-        repo_root=ROOT,
-        resolve_path_from_root=resolve_path_from_root,
-    )
+sync_data_command = partial(_sync_data_command_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root)
+spec_master_rebuild_command = partial(_spec_master_rebuild_command_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root)
 
 
 def _emit_text(text: str) -> None:
