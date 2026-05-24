@@ -280,6 +280,46 @@ class TestQueueResolveAction(unittest.TestCase):
         )
         self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu"], [row.record_id for row in resolution.candidates])
 
+    def test_resolve_queue_action_should_resolve_multi_start_review_document_ids(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                queue_scope="review-init",
+                record_id=f"rec_{key.rsplit('_', 1)[1].lower()}",
+                document_id=key,
+                document_key='{"id":"recLinkedDocument"}',
+                build_family="",
+                lang="",
+                version="",
+                workflow_action="Start Review",
+                normalized_workflow_action="start_review",
+                git_ref="",
+                document_link="",
+                document_directory="",
+                result="",
+                pr_url="",
+                review_status="NotStarted",
+                review_trigger_enabled=True,
+                build_trigger_requested=None,
+                immediate_build=None,
+                initial_result="",
+                remarks="",
+                task_id=f"{key}_Start Review",
+            )
+            for key in ("JE-1000F_CN", "JE-1000F_US", "JE-1000F_JP", "JE-1000F_EU", "JE-1000F_pt-BR")
+        ]
+
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU\nJE-1000F_pt-BR"),
+            rows,
+        )
+
+        self.assertEqual("resolved_batch", resolution.resolution_status)
+        self.assertEqual(5, resolution.matched_count)
+        self.assertEqual(
+            ["rec_cn", "rec_us", "rec_jp", "rec_eu", "rec_pt-br"],
+            [row.record_id for row in resolution.candidates],
+        )
+
     def test_resolve_queue_action_should_require_document_key_for_start_review(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
             self._args(record_id="rec_missing_key", query_workflow_action="start-review"),

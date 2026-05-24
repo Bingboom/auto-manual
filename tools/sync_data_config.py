@@ -6,6 +6,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable, Mapping
 
+from tools.spec_master_sources import has_source_table_ids
+
 
 def sync_phase2_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     sync_cfg_raw = cfg.get("sync", {})
@@ -168,6 +170,7 @@ def collect_sync_preflight_errors(
     for logical_name in selected:
         base_token_env, table_id_env, view_id_env = table_env_names_fn(cfg, logical_name)
         table_id, view_id = table_binding_values(cfg, logical_name)
+        spec_master_uses_sources = logical_name == "spec_master" and has_source_table_ids(cfg, environ=environ)
         if not base_token_env:
             errors.append(
                 f"sync.phase2.tables.{logical_name}.base_token_env is required, "
@@ -177,14 +180,14 @@ def collect_sync_preflight_errors(
             seen_env_names.add(base_token_env)
             required_env_names.append(base_token_env)
         if not table_id and not table_id_env:
-            errors.append(
-                f"sync.phase2.tables.{logical_name}.table_id or "
-                f"sync.phase2.tables.{logical_name}.table_id_env is required"
-            )
-        elif table_id_env not in seen_env_names:
-            if table_id is None:
-                seen_env_names.add(table_id_env)
-                required_env_names.append(table_id_env)
+            if not spec_master_uses_sources:
+                errors.append(
+                    f"sync.phase2.tables.{logical_name}.table_id or "
+                    f"sync.phase2.tables.{logical_name}.table_id_env is required"
+                )
+        elif table_id is None and table_id_env not in seen_env_names:
+            seen_env_names.add(table_id_env)
+            required_env_names.append(table_id_env)
         if view_id is None and view_id_env and view_id_env not in seen_env_names:
             seen_env_names.add(view_id_env)
             required_env_names.append(view_id_env)

@@ -208,6 +208,40 @@ def sync_data_command(
     return cmd
 
 
+def spec_master_rebuild_command(
+    args: argparse.Namespace,
+    *,
+    repo_root: Path,
+    resolve_path_from_root: Callable[[str], Path],
+) -> list[str]:
+    config_path = resolve_path_from_root(args.config)
+    cmd = [
+        sys.executable,
+        str(repo_root / "tools" / "spec_master_rebuild.py"),
+        "--config",
+        str(config_path),
+    ]
+    append_data_root_arg(cmd, args)
+    for attr, option in (
+        ("spec_rows_table_id", "--spec-rows-table-id"),
+        ("page_placeholders_table_id", "--page-placeholders-table-id"),
+        ("expect_spec_rows", "--expect-spec-rows"),
+        ("expect_placeholder_rows", "--expect-placeholder-rows"),
+    ):
+        value = getattr(args, attr, None)
+        if value is not None and str(value).strip():
+            cmd += [option, str(value).strip()]
+    if getattr(args, "bootstrap_source_tables", False):
+        cmd.append("--bootstrap-source-tables")
+    if getattr(args, "force_reseed", False):
+        cmd.append("--force-reseed")
+    if getattr(args, "write_back", False):
+        cmd.append("--write-back")
+    if args.dry_run:
+        cmd.append("--dry-run")
+    return cmd
+
+
 def message_control_dry_run_command(
     args: argparse.Namespace,
     *,

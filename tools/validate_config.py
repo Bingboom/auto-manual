@@ -37,6 +37,7 @@ from tools.config_pages import (
     RstIncludePage,
 )
 from tools.page_manifest import resolve_config_pages, resolve_page_manifest_path
+from tools.spec_master_sources import has_source_table_ids
 
 SYNC_PHASE2_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
 SYNC_PHASE2_TABLES = {
@@ -286,6 +287,16 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
         if value is not None and (not isinstance(value, str) or not value.strip()):
             issues.append(Issue("ERROR", f"sync.phase2.{key} must be a non-empty string when provided"))
 
+    spec_master_sources = phase2.get("spec_master_sources")
+    if spec_master_sources is not None:
+        if not isinstance(spec_master_sources, dict):
+            issues.append(Issue("ERROR", "sync.phase2.spec_master_sources must be a mapping when provided"))
+            spec_master_sources = {}
+        for key in ("spec_rows_source_table_id", "page_placeholders_source_table_id"):
+            value = spec_master_sources.get(key) if isinstance(spec_master_sources, dict) else None
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                issues.append(Issue("ERROR", f"sync.phase2.spec_master_sources.{key} must be a non-empty string when provided"))
+
     tables_raw = phase2.get("tables", {})
     if tables_raw is not None and not isinstance(tables_raw, dict):
         issues.append(Issue("ERROR", "sync.phase2.tables must be a mapping when provided"))
@@ -326,7 +337,11 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                     "or provide sync.phase2.base_token_env",
                 )
             )
-        if not _non_empty_str(table_cfg.get("table_id")) and not _non_empty_str(table_cfg.get("table_id_env")):
+        if (
+            not _non_empty_str(table_cfg.get("table_id"))
+            and not _non_empty_str(table_cfg.get("table_id_env"))
+            and not (table_name == "spec_master" and has_source_table_ids(cfg))
+        ):
             issues.append(
                 Issue(
                     "ERROR",

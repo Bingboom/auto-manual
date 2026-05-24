@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-05-02
+Updated: 2026-05-24
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -101,8 +101,10 @@ The manual system now has four layers, but they are used at different stages.
    - When a valid phase2 snapshot exists, build/review/publish flows default to `data/phase2`; explicit `--data-root` still overrides that default.
    - A phase2 snapshot is valid for automatic default use only when `snapshot_manifest.json` records the complete core table set from one sync run: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, and `symbols_blocks`, plus the derived `row_key_mapping`. Partial `sync-data --table ...` refreshes are still useful for focused checks, but use explicit `--data-root` when building from them.
    - For queue-driven builds, Feishu phase2 tables remain the structured-data source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
+   - For spec data authoring, edit `规格参数明细` for `Page=specifications` rows and `页面占位参数` for non-spec page placeholders. `sync-data --table spec_master` now reads those two source tables directly and writes the local `Spec_Master.csv` read model.
+   - After changing either spec source table, run `python build.py sync-data --config config.us.yaml --data-root data/phase2 --table spec_master` for the normal snapshot refresh, or `python build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222` for a focused rebuild; add `--write-back` only when the merged source data should update the legacy Feishu total table.
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2` refreshes the frozen snapshot from Feishu/Lark using the local `lark-cli` login and the CLI's `base` record listing flow
-   - `config.eu.yaml` now represents the live `EU` region-family row as `Build_family = eu-merged`, keeps `JE-1000F / EU` pinned to the `JE-1000F_EU` spec-master view, and is the config that blank-`Lang` queue rows should resolve to
+   - `config.eu.yaml` now represents the live `EU` region-family row as `Build_family = eu-merged`, reads `JE-1000F / EU` specs from the shared split spec source tables, and is the config that blank-`Lang` queue rows should resolve to
    - `config.eu-en.yaml`, `config.eu-fr.yaml`, and `config.eu-es.yaml` are the explicit English, French, and Spanish EU single-language surfaces when you want one language family at a time; `config.pt-br.yaml` follows the same single-language pattern for Brazil Portuguese
    - when one family must always read from one known Base view, `sync.phase2.tables.<name>` can pin `table_id` and `view_id` directly in config; those literal bindings override the corresponding `*_env` values for that table
    - `python build.py validate --config ...` now catches missing phase2 table base-token/table-id bindings and page-manifest languages that are not listed in `build.languages`
@@ -113,7 +115,7 @@ The manual system now has four layers, but they are used at different stages.
    - `python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de --use-feishu-term-source -o output.de.md` is the batch rewrite path when a full Markdown page or manual must follow TM wording, keep headings, tables, lists, and image links stable, and preserve unmatched source text as `==...==` instead of silently paraphrasing it
    - during that refresh, `Spec_Master.csv Slot_key` is normalized back to plain tokens like `front.label` when the source table stores markdown-link wrappers
    - the sync also resolves full field names through Base field metadata, so long columns like `Row_label_footnote_refs` do not disappear when the CLI view output abbreviates them
-   - when `spec_master` and `spec_footnotes` are refreshed together, linked-record style footnote refs like `{"id":"rec..."}` are converted to `Footnote_id` values before `Spec_Master.csv` is written
+   - when `spec_master` is refreshed from the split source tables, linked-record style footnote refs like `{"id":"rec..."}` are converted to `Footnote_id` values before `Spec_Master.csv` is written
    - when one target references a `Footnote_id` that is missing only in its own region but exists as one unambiguous sibling-region row for the same model, validation and rendering now reuse that fallback definition instead of stopping the build immediately
    - the sync does not auto-fix bad `Is_Latest` data; if a latest row is wrong, keep it wrong in the snapshot and let validation stop the build
    - `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` is the recommended first check on a new machine; it reports missing `lark-cli` and missing `FEISHU_PHASE2_*` bindings together before any API fetch
@@ -204,7 +206,9 @@ The manual system now has four layers, but they are used at different stages.
    - `Spec_Footnotes.csv` and `Spec_Notes.csv` now match rows by `Region` + `Model`; `project_code` / `项目代码` is no longer used there either
    - when one spec page renders both bottom notes and bottom footnotes, the final output order follows [`docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
+   - `Spec_Master.csv` now starts with `spec_row_key`; `document_key` is still the target dimension, but not the unique row key
    - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
+   - `Line_order` is required for spec rebuilds: use `1` for one-line rows and `1`, `2`, `3`, ... for multi-line values
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
@@ -465,7 +469,8 @@ Generated bundle output:
 - [`docs/_build/<model>/<region>/rst/generated/<model>/spec_<lang>.rst`](../docs/_build)
 - materialized page include: [`docs/_build/<model>/<region>/rst/page/spec_<lang>.rst`](../docs/_build)
 
-[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main source of truth for spec sections, rows, and page-value placeholder records.
+[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the build-time read model for spec sections, rows, and page-value placeholder records.
+In Feishu, maintain those rows through `规格参数明细` and `页面占位参数`, then refresh the local snapshot with `sync-data --table spec_master` or a focused `spec-master-rebuild`.
 
 ---
 
@@ -494,6 +499,7 @@ Resolution source:
 - `Source_lang` should store the normalized source-language code for the row, such as `en`, `ja`, or `zh`; do not expect code to infer it from `Region`
 - `document_key` should be either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
 - `Row_order` is now the explicit row order inside each `document_key + Page + Section`; `Line_order` only controls the order of multiple lines inside one logical row
+- `Line_order` is required; single-line rows use `1`
 - `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer used in `Spec_Master.csv`; choose rows by `Region` + `Model`
 - when a build target is passed in document-key style such as `JE-1000F_JP` or `JE-1000F-JP`, the spec lookup normalizes it back to the base model `JE-1000F` and still uses the explicit `Region`, so a `JP` target continues to read `JP` rows

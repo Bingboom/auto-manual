@@ -45,12 +45,11 @@ sync:
     export_root: data/phase2
     manifest_path: data/phase2/snapshot_manifest.json
     base_token_env: FEISHU_PHASE2_BASE_TOKEN
+    spec_master_sources:
+      spec_rows_source_table_id: tblTw54UzV4ry5VD
+      page_placeholders_source_table_id: tblhckTT7PfVBsuG
     tables:
-      spec_master:
-        table_id: tbl7Kxyq8AaDKwsn
-        view_id: vewbjo4Zfz
-        table_id_env: FEISHU_PHASE2_SPEC_MASTER_TABLE_ID
-        view_id_env: FEISHU_PHASE2_SPEC_MASTER_VIEW_ID
+      spec_master: {}
       spec_footnotes:
         table_id_env: FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID
         view_id_env: FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID

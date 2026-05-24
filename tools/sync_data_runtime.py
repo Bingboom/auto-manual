@@ -9,7 +9,14 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Protocol
+from types import SimpleNamespace
+from typing import Any, Callable, Mapping, Protocol
+
+from tools.spec_master_sources import (
+    collect_footnote_record_id_refs,
+    normalize_spec_master_source_rows,
+    source_table_ids_from_cfg,
+)
 
 
 class _SchemaLike(Protocol):
@@ -70,6 +77,7 @@ class _TableSyncResultLike(Protocol):
 class SyncRuntimeDeps:
     repo_root: Path
     table_order: tuple[str, ...]
+    table_schemas: Mapping[str, Any]
     row_key_mapping_fieldnames: tuple[str, ...]
     provider_name: Callable[..., str]
     cli_bin: Callable[..., str]
@@ -77,6 +85,7 @@ class SyncRuntimeDeps:
     collect_sync_preflight_errors: Callable[..., list[str]]
     resolve_phase2_export_root: Callable[..., Path]
     resolve_phase2_manifest_path: Callable[..., Path]
+    phase2_base_token: Callable[..., str]
     phase2_identity: Callable[..., str]
     source_factory: Callable[..., _RecordSourceLike]
     resolve_table_binding: Callable[..., _BindingLike]
@@ -471,9 +480,39 @@ def sync_phase2_snapshot(
     normalized_rows_by_table: dict[str, list[dict[str, str]]] = {}
 
     for logical_name in selected_tables:
+        source_with_ids = _record_source_with_ids(resolved_source)
+        spec_rows_source_table_id, placeholders_source_table_id = (
+            source_table_ids_from_cfg(cfg) if logical_name == "spec_master" else ("", "")
+        )
+        if logical_name == "spec_master" and spec_rows_source_table_id and placeholders_source_table_id:
+            base_token = deps.phase2_base_token(cfg)
+            raw_records = [
+                *resolved_source.fetch_records(
+                    base_token=base_token,
+                    table_id=spec_rows_source_table_id,
+                    view_id=None,
+                ),
+                *resolved_source.fetch_records(
+                    base_token=base_token,
+                    table_id=placeholders_source_table_id,
+                    view_id=None,
+                ),
+            ]
+            bindings_by_table[logical_name] = SimpleNamespace(
+                logical_name=logical_name,
+                schema=deps.table_schemas[logical_name],
+                base_token=base_token,
+                table_id="",
+                view_id=None,
+            )
+            raw_records_by_table[logical_name] = raw_records
+            normalized_rows = deps.normalize_records(deps.table_schemas[logical_name], raw_records)
+            normalize_spec_master_source_rows(normalized_rows)
+            normalized_rows_by_table[logical_name] = normalized_rows
+            continue
+
         binding = deps.resolve_table_binding(cfg, logical_name)
         bindings_by_table[logical_name] = binding
-        source_with_ids = _record_source_with_ids(resolved_source)
         if logical_name == "spec_footnotes" and source_with_ids is not None:
             raw_records = source_with_ids.fetch_records_with_ids(
                 base_token=binding.base_token,
@@ -491,10 +530,35 @@ def sync_phase2_snapshot(
         normalized_rows_by_table[logical_name] = normalized_rows
 
     if "spec_master" in normalized_rows_by_table:
-        if "spec_footnotes" in raw_records_by_table:
+        footnote_records = raw_records_by_table.get("spec_footnotes")
+        unresolved_record_refs = collect_footnote_record_id_refs(normalized_rows_by_table["spec_master"])
+        if unresolved_record_refs and footnote_records is None:
+            source_with_ids = _record_source_with_ids(resolved_source)
+            if source_with_ids is None:
+                raise RuntimeError("spec_master contains Feishu linked-record footnote refs but record ids are unavailable")
+            try:
+                footnote_binding = deps.resolve_table_binding(cfg, "spec_footnotes")
+            except RuntimeError as exc:
+                raise RuntimeError(
+                    "spec_master contains Feishu linked-record footnote refs; "
+                    "configure sync.phase2.tables.spec_footnotes so sync-data can map them to Footnote_id values"
+                ) from exc
+            footnote_records = source_with_ids.fetch_records_with_ids(
+                base_token=footnote_binding.base_token,
+                table_id=footnote_binding.table_id,
+                view_id=footnote_binding.view_id,
+            )
+            raw_records_by_table["spec_footnotes"] = footnote_records
+        if footnote_records is not None:
             _normalize_spec_master_footnote_refs(
                 normalized_rows_by_table["spec_master"],
-                footnote_record_id_map=_footnote_record_id_to_id_map(raw_records_by_table["spec_footnotes"]),
+                footnote_record_id_map=_footnote_record_id_to_id_map(footnote_records),
+            )
+        unresolved_record_refs = collect_footnote_record_id_refs(normalized_rows_by_table["spec_master"])
+        if unresolved_record_refs:
+            raise RuntimeError(
+                "Could not resolve Feishu linked-record footnote refs to Footnote_id values: "
+                + ", ".join(unresolved_record_refs[:10])
             )
 
     if "lcd_icons" in normalized_rows_by_table:

@@ -1,8 +1,8 @@
 # Spec Master User Guide
 
-Updated: 2026-03-27
+Updated: 2026-05-24
 
-This file explains the current phase1 data layer, with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as the center.
+This file explains the current phase1/phase2 spec data layer, with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as the build-time read model.
 It is meant to serve two audiences at the same time:
 
 - editors who need to know where to put data in the CSVs
@@ -11,6 +11,49 @@ It is meant to serve two audiences at the same time:
 For the future canonical data model and CMS-direction schema boundary, see [`architecture/Content_Data_Model.md`](architecture/Content_Data_Model.md).
 For current JP / US family differences and what must remain family-specific, see [`manual_family_guide.md`](manual_family_guide.md).
 
+## 0. Current Feishu Maintenance Model
+
+In Feishu phase2, do not maintain `规格参数表/spec_master` as the human editing table.
+It is now a legacy compatibility table; normal `sync-data --table spec_master` reads the split source tables and writes the local read-model CSV directly.
+
+Human editors should use these source tables:
+
+- `规格参数明细` (`tblTw54UzV4ry5VD`): only rows where `Page=specifications`
+- `页面占位参数` (`tblhckTT7PfVBsuG`): `Product overview`, `operation_guide`, `storage`, and `ups_mode` placeholder rows
+- `参数名`: row-key dictionary; create new `Row_key` values here before selecting or copying them into source rows
+- `Document_key`: target dimension table; add the target document key here before copying rows for a new model/market
+
+In both source tables, editors maintain `Row_key_link`.
+The visible `Row_key` column is a lookup from `参数名.Row_key`, so it updates from the dictionary and should not be typed by hand.
+The source tables do not carry separate `Model` or `Region` fields; the rebuild step derives them from `document_key` for the compatible read model.
+
+The generated `Spec_Master.csv` exposes `spec_row_key` as the first visible read key, followed by `document_key`.
+`document_key` remains the target dimension field but is no longer the unique row key.
+The generated key is:
+
+```text
+document_key + "__v" + Version + "__" + Page + "__s" + Section_order + "__r" + Row_order + "__" + Row_key + "__" + Slot_key/default("main") + "__l" + Line_order
+```
+
+Example:
+
+```text
+JE-1000F_US__v1.0__specifications__s01__r03__capacity__main__l01
+JE-1000F_US__v1.0__Product_overview__s03__r02__usb_c__front_high_spec__l01
+```
+
+`Line_order` is required. Single-line rows use `1`; multi-line rows use `1`, `2`, `3`, ... in display order.
+Both source tables use `source_row_key` itself as a formula-generated primary key, so editors should not type or paste this key by hand.
+
+When source tables change, rebuild the read model snapshot with:
+
+```bash
+python3 build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222
+```
+
+The command reads `sync.phase2.spec_master_sources` from config, merges the two source tables, resolves Feishu linked-record footnote refs to stable `Footnote_id` values, validates row counts and unique `spec_row_key`, and writes a `Spec_Master.csv` compatible with the existing renderer and sync flow.
+Normal `sync-data --table spec_master` now uses the same two source tables directly, so the old Feishu `spec_master` total table is no longer required for snapshot sync. To push source-table values back into that legacy table for compatibility, add `--write-back`.
+
 ## 1. Which File To Edit For Which Data
 
 Use this section first.
@@ -18,10 +61,10 @@ It answers the practical question: "I have a piece of manual data. Which file an
 
 | Data type | File | Where to fill it | Current rule |
 | --- | --- | --- | --- |
-| Product name | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=product_name`, fill `Value_*` | Use the row that belongs to the target `Model` + `Region` |
-| Model number | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=model_no`, fill `Value_*` | Same placement rule as `product_name` |
-| Visible spec rows | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, choose visible `Section`, fill `Row_key`, `Row_label_*`, `Param_*`, `Value_*` | Use this for rows that should appear in the spec table |
-| Product overview labels or per-model UI text | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview`, `Row_key=<concept_key>`, `Slot_key=<slot>` | Use this for placeholders consumed by templates |
+| Product name | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=product_name`, fill `Value_*` | Use the row that belongs to the target `Model` + `Region` |
+| Model number | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=model_no`, fill `Value_*` | Same placement rule as `product_name` |
+| Visible spec rows | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, choose visible `Section`, fill `Row_key`, `Row_label_*`, `Param_*`, `Value_*` | Use this for rows that should appear in the spec table |
+| Product overview labels or per-model UI text | Feishu `页面占位参数`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview`, `Row_key=<concept_key>`, `Slot_key=<slot>` | Use this for placeholders consumed by templates |
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
 | Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
 | Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
@@ -70,10 +113,10 @@ This section is the editor-facing filling guide.
 | `Value_footnote_refs` | footnote refs attached to the `Value_*` text | Fill comma-separated `Footnote_id` values when the main value text needs superscript markers |
 | `Line_order` | order of multiple lines under the same row | Use `1`, `2`, `3`, ... when the same `Row_key` spans multiple lines |
 | `Slot_key` | page-value slot marker | Leave blank for visible spec rows. Use values such as `label`, `text`, `value`, `front.label`, `front.low.spec`, `side.pv.spec` for template-fed rows |
-| `Model` | target model | Must match the intended target build |
-| `Region` | target region | Must match the intended target build |
+| `Model` | target model | Read-model column derived from `document_key`; do not maintain it in the source tables |
+| `Region` | target region | Read-model column derived from `document_key`; do not maintain it in the source tables |
 | `Source_lang` | source-language code | Store the row's source manual language as a normalized code such as `en`, `ja`, or `zh` |
-| `document_key` | derived document key | Must equal `[Model]_[Region]_[Source_lang]` |
+| `document_key` | target document key | Must identify the target as `[Model]_[Region]`; source language stays in `Source_lang` |
 | `Is_Latest` | active row flag | Keep active rows as `TRUE` |
 
 Current schema note:
@@ -367,7 +410,7 @@ Current reality:
 - the sheet now uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-text columns
 - these source columns hold the row's actual source-manual text
 - `Source_lang` stores that source language explicitly as a normalized code such as `en`, `ja`, or `zh`
-- `document_key` must be the derived helper value `[Model]_[Region]_[Source_lang]`
+- `document_key` identifies the target as `[Model]_[Region]`; source language stays in `Source_lang`
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer accepted; rename them to `*_source`
 
 Current practical rule:
@@ -377,7 +420,7 @@ Current practical rule:
 - source-language text must not stay in `*_en`; move it into `*_source`
 - keep `Source_lang` aligned with the real source columns; for example, if `Value_source` holds Japanese source text then `Source_lang` should be `ja`
 - `Source_lang` is now the explicit source-language declaration for the row; code no longer infers source language from `Region`
-- keep `document_key` aligned with the row identity as `[Model]_[Region]_[Source_lang]`
+- keep `document_key` aligned with the row identity as `[Model]_[Region]`
 - `*_source` must be populated for the language declared by `Source_lang`
 - keep the visible text correct first, and trust the row's explicit `Source_lang` workflow more than any legacy header alias
 - current audit expectation depends on `Source_lang`; `ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT` only applies to rows whose declared source language is English

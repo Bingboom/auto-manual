@@ -384,6 +384,17 @@ class TestBuildScript(unittest.TestCase):
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
         sync_data_args = build_cli.parse_args(["sync-data", "--table", "spec_master", "--dry-run"])
+        spec_rebuild_args = build_cli.parse_args(
+            [
+                "spec-master-rebuild",
+                "--bootstrap-source-tables",
+                "--expect-spec-rows",
+                "157",
+                "--expect-placeholder-rows",
+                "222",
+                "--dry-run",
+            ]
+        )
 
         self.assertEqual("review", review_args.action)
         self.assertEqual("check", check_args.action)
@@ -404,6 +415,11 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("sync-data", sync_data_args.action)
         self.assertEqual(["spec_master"], sync_data_args.table)
         self.assertTrue(sync_data_args.dry_run)
+        self.assertEqual("spec-master-rebuild", spec_rebuild_args.action)
+        self.assertTrue(spec_rebuild_args.bootstrap_source_tables)
+        self.assertEqual(157, spec_rebuild_args.expect_spec_rows)
+        self.assertEqual(222, spec_rebuild_args.expect_placeholder_rows)
+        self.assertTrue(spec_rebuild_args.dry_run)
 
     def test_parse_args_should_support_latest_document_link_collapse(self) -> None:
         args = build_cli.parse_args(["queue-query", "--latest-per-document-key"])
@@ -606,6 +622,47 @@ class TestBuildScript(unittest.TestCase):
 
         with self.assertRaisesRegex(RuntimeError, "sync-data does not accept --model or --region"):
             build_cli.sync_data_command(args)
+
+    def test_spec_master_rebuild_command_should_forward_source_options(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "spec-master-rebuild",
+                "--config",
+                "config.ja.yaml",
+                "--data-root",
+                ".tmp/spec-master-rebuild",
+                "--spec-rows-table-id",
+                "tbl_spec",
+                "--page-placeholders-table-id",
+                "tbl_placeholder",
+                "--expect-spec-rows",
+                "157",
+                "--expect-placeholder-rows",
+                "222",
+                "--bootstrap-source-tables",
+                "--force-reseed",
+                "--write-back",
+                "--dry-run",
+            ]
+        )
+
+        cmd = build_cli.spec_master_rebuild_command(args)
+
+        self.assertEqual(str(build_cli.ROOT / "tools" / "spec_master_rebuild.py"), cmd[1])
+        self.assertIn("--data-root", cmd)
+        self.assertIn(".tmp/spec-master-rebuild", cmd)
+        self.assertIn("--spec-rows-table-id", cmd)
+        self.assertIn("tbl_spec", cmd)
+        self.assertIn("--page-placeholders-table-id", cmd)
+        self.assertIn("tbl_placeholder", cmd)
+        self.assertIn("--expect-spec-rows", cmd)
+        self.assertIn("157", cmd)
+        self.assertIn("--expect-placeholder-rows", cmd)
+        self.assertIn("222", cmd)
+        self.assertIn("--bootstrap-source-tables", cmd)
+        self.assertIn("--force-reseed", cmd)
+        self.assertIn("--write-back", cmd)
+        self.assertIn("--dry-run", cmd)
 
     def test_process_build_queue_command_should_forward_data_root_and_dry_run(self) -> None:
         args = build_cli.parse_args(

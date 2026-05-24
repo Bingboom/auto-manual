@@ -987,7 +987,11 @@ def _matches_queue_query_row(
         return False
     if not _match_exact(row.document_key, getattr(args, "document_key", None)):
         return False
-    if document_keys and row.document_key.strip().upper() not in document_keys:
+    if (
+        document_keys
+        and row.document_key.strip().upper() not in document_keys
+        and row.document_id.strip().upper() not in document_keys
+    ):
         return False
     if not _match_exact(row.build_family, getattr(args, "build_family", None)):
         return False

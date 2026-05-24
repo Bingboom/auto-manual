@@ -18,6 +18,7 @@ class DispatchContext:
     run_check: Callable[[argparse.Namespace], None]
     sync_review_command: Callable[[argparse.Namespace], list[str]]
     sync_data_command: Callable[[argparse.Namespace], list[str]]
+    spec_master_rebuild_command: Callable[[argparse.Namespace], list[str]]
     run_translation_memory: Callable[[argparse.Namespace], None]
     run_message_control_dry_run: Callable[[argparse.Namespace], None]
     run_queue_query: Callable[[argparse.Namespace], None]
@@ -66,6 +67,10 @@ def _dispatch_sync_review_action(args: argparse.Namespace, context: DispatchCont
 
 def _dispatch_sync_data_action(args: argparse.Namespace, context: DispatchContext) -> None:
     context.run_checked(context.sync_data_command(args))
+
+
+def _dispatch_spec_master_rebuild_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    context.run_checked(context.spec_master_rebuild_command(args))
 
 
 def _dispatch_translation_memory_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -132,6 +137,7 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "check": _dispatch_check_action,
     "sync-review": _dispatch_sync_review_action,
     "sync-data": _dispatch_sync_data_action,
+    "spec-master-rebuild": _dispatch_spec_master_rebuild_action,
     "translation-memory": _dispatch_translation_memory_action,
     "message-control-dry-run": _dispatch_message_control_dry_run_action,
     "queue-query": _dispatch_queue_query_action,
@@ -165,6 +171,7 @@ def dispatch_action(
     run_check: Callable[[argparse.Namespace], None],
     sync_review_command: Callable[[argparse.Namespace], list[str]],
     sync_data_command: Callable[[argparse.Namespace], list[str]],
+    spec_master_rebuild_command: Callable[[argparse.Namespace], list[str]],
     run_translation_memory: Callable[[argparse.Namespace], None],
     run_message_control_dry_run: Callable[[argparse.Namespace], None],
     run_queue_query: Callable[[argparse.Namespace], None],
@@ -191,6 +198,7 @@ def dispatch_action(
         run_check=run_check,
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
+        spec_master_rebuild_command=spec_master_rebuild_command,
         run_translation_memory=run_translation_memory,
         run_message_control_dry_run=run_message_control_dry_run,
         run_queue_query=run_queue_query,

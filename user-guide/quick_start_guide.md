@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-04-17
+Updated: 2026-05-24
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -15,13 +15,31 @@ Updated: 2026-04-17
 
 这些表是结构化数据真源：
 
-- `Spec_Master`
+- `规格参数明细`: 只维护 `Page=specifications` 的规格行
+- `页面占位参数`: 维护 `Product overview / operation_guide / storage / ups_mode` 的页面占位行
+- `Spec_Master`: 本地构建读取用 read model，由 `sync-data --table spec_master` 或 `spec-master-rebuild` 从上面两张源表生成，不作为人工维护的第三张源表
 - `Spec_Footnotes`
 - `Spec_Notes`
 - `spec_titles`
 - `symbols_blocks`
 
-你要改参数、规格、注脚、标题顺序、symbols，就改这些表。
+你要改参数、规格、页面占位值、注脚、标题顺序、symbols，就改对应源表。
+改完两张 spec 源表后，常规刷新运行：
+
+```bash
+python3 build.py sync-data --config config.us.yaml --data-root data/phase2 --table spec_master
+```
+
+只想重建 `Spec_Master.csv` 时，运行：
+
+```bash
+python3 build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222
+```
+
+需要把源表合并结果写回旧 Feishu 总表时，才加 `--write-back`。
+两张源表里的 `source_row_key` 是公式主键列，维护行内容和顺序字段即可，不要手填 key。
+`Row_key` 也是 lookup 列，来自 `参数名.Row_key`；新增或更换参数概念时，先维护/选择 `Row_key_link`。
+两张源表不再维护 `Model` / `Region`；rebuild 会从 `document_key` 自动生成给本地 read model 使用。
 
 不要把 [`data/phase2/`](../data/phase2) 当成主编辑面。
 只有当 `Document_link.是否强制刷新数据 = 勾选` 时，队列才会在这次构建前执行 `sync-data`；不勾时会直接复用当前本地 snapshot。
@@ -348,7 +366,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 
 去改 Feishu phase2 源表：
 
-- `Spec_Master`
+- `规格参数明细`
+- `页面占位参数`
 - `Spec_Footnotes`
 - `Spec_Notes`
 - `spec_titles`
@@ -483,3 +502,4 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 - 合并 US 流程请填 `Build_family = us-merged`，`Lang` 可以留空；单语言流程请填对应单语言 family，例如 `us-en`、`us-es`、`us-fr` 或 `pt-br`，`Lang` 只填一个语言值即可。
 - 这条合并 US 流程不再要求法语、西语分别先创一份独立初稿 review bundle。
 - `Spec_Master` 里由 `Source_lang` 定义 source language；`*_source` 内容必须有，其他语言列在 CSV 驱动内容里可以为空，系统会自动回退到 source language 文本。
+- `Spec_Master` 现在是本地读取快照；人工维护规格参数时先改 `规格参数明细` / `页面占位参数`，再用 `sync-data --table spec_master` 或 `spec-master-rebuild` 生成。

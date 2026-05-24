@@ -100,6 +100,16 @@ def _phase2_identity() -> str:
     return _phase2_identity_impl(os.environ, supported_identities=SUPPORTED_IDENTITIES)
 
 
+def _phase2_base_token(cfg: dict[str, Any]) -> str:
+    phase2_cfg = _sync_phase2_cfg(cfg)
+    env_name = str(phase2_cfg.get("base_token_env") or "").strip()
+    if not env_name:
+        raise RuntimeError(
+            "sync.phase2.base_token_env is required when spec_master is sourced from split source tables"
+        )
+    return _env_value(env_name)
+
+
 def _selected_tables(raw_tables: list[str]) -> tuple[str, ...]:
     return _selected_tables_impl(raw_tables, table_order=TABLE_ORDER, table_schemas=TABLE_SCHEMAS)
 
@@ -544,6 +554,7 @@ def sync_phase2_snapshot(
         deps=SyncRuntimeDeps(
             repo_root=ROOT,
             table_order=TABLE_ORDER,
+            table_schemas=TABLE_SCHEMAS,
             row_key_mapping_fieldnames=ROW_KEY_MAPPING_FIELDNAMES,
             provider_name=_provider_name,
             cli_bin=_cli_bin,
@@ -551,6 +562,7 @@ def sync_phase2_snapshot(
             collect_sync_preflight_errors=collect_sync_preflight_errors,
             resolve_phase2_export_root=resolve_phase2_export_root,
             resolve_phase2_manifest_path=resolve_phase2_manifest_path,
+            phase2_base_token=_phase2_base_token,
             phase2_identity=_phase2_identity,
             source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
             resolve_table_binding=resolve_table_binding,
