@@ -79,8 +79,12 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
         logical_name="spec_master",
         file_name="Spec_Master.csv",
         columns=(
+            "spec_row_key",
             "document_key",
+            "Model",
             "Region",
+            "Source_lang",
+            "Version",
             "Is_Latest",
             "Page",
             "Section",
@@ -99,7 +103,6 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Param_fr",
             "Value_fr",
             "Row_label_es",
-            "Model",
             "Param_es",
             "Value_es",
             "Row_label_br",
@@ -114,7 +117,6 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Row_label_uk",
             "Param_uk",
             "Value_uk",
-            "Source_lang",
         ),
     ),
     "spec_footnotes": TableSchema(

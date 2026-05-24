@@ -169,6 +169,29 @@ class TestValidateConfig(unittest.TestCase):
             errors,
         )
 
+    def test_validate_should_accept_spec_master_source_tables_without_total_binding(self) -> None:
+        cfg = {
+            "build": {"languages": ["en"]},
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "base_token_env": "FEISHU_BASE_TOKEN",
+                    "spec_master_sources": {
+                        "spec_rows_source_table_id": "tbl_spec_rows",
+                        "page_placeholders_source_table_id": "tbl_placeholders",
+                    },
+                    "tables": {
+                        "spec_master": {},
+                    },
+                },
+            },
+            "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
+        }
+
+        issues = validate(cfg, strict_files=False)
+        errors = [issue.msg for issue in issues if issue.level == "ERROR"]
+        self.assertEqual([], errors)
+
     def test_validate_should_accept_phase2_snapshot_config_with_literal_table_binding(self) -> None:
         cfg = {
             "build": {"languages": ["ja"]},

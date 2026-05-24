@@ -56,13 +56,15 @@ Local PDF font override:
 Meaning:
 
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
-- `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood
+- `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood; when `sync.phase2.spec_master_sources` is configured, `sync-data --table spec_master` reads the two split source tables instead of the legacy total table
+- `spec-master-rebuild`: merge the Feishu source tables `规格参数明细` and `页面占位参数` into the read-model shape of `Spec_Master.csv`; it validates `spec_row_key` uniqueness, resolves Feishu linked-record footnote refs to stable `Footnote_id` values, and keeps `--write-back` only as a legacy bridge back to the old total table
 - `sync.phase2.tables.<name>` may now pin `table_id` and `view_id` directly in config; when present, those literal bindings take precedence over `table_id_env` / `view_id_env`, which is the safest way to keep one family on one known Base view
+- `sync.phase2.spec_master_sources` pins the two human-maintained source tables used by `spec-master-rebuild` and by `sync-data --table spec_master`; `sync.phase2.tables.spec_master` no longer needs a legacy total-table binding unless you intentionally use `spec-master-rebuild --write-back`
 - `lcd_icons`, `symbols_blocks`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv` and renders downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, the symbols renderer uses downloaded `Figure` attachments from `data/phase2/_attachments/symbols/` when present, `symbols_blocks` can also maintain the signal-word table with `block_type=signal_row`, and LCD variables resolve from `Variable_Defaults.csv` plus `Variable_Lang_Overrides.csv`
 - if the Base keeps `Model` as a linked-record field, maintain a text `Model_key` column for variable defaults so exact model matching stays independent of Feishu record ids
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
-- when `spec_master` and `spec_footnotes` are synced in the same run, `sync-data` rewrites Feishu linked-record footnote refs in `Spec_Master.csv` to stable `Footnote_id` values
+- when `spec_master` is synced from the split source tables, `sync-data` reads `spec_footnotes` as needed and rewrites Feishu linked-record footnote refs in `Spec_Master.csv` to stable `Footnote_id` values
 - when one target references a `Footnote_id` that is missing only in its own region but exists as one unambiguous sibling-region row for the same model, validation and rendering now reuse that fallback definition instead of stopping the build immediately
 - `sync-data` does not repair bad `Is_Latest` flags; leave those source-table problems visible so `check` and publish validation can fail loudly
 - [`../tools/dingtalk/spike_cli.py`](../tools/dingtalk/spike_cli.py) is the manual Phase 0 smoke helper for future app-only DingTalk provider research; it defaults to the official App-Only token flow and lets maintainers inject product-specific list/update/upload endpoints without changing the current queue runtime. A minimal smoke run looks like `python tools\dingtalk\spike_cli.py all --record-id <stable_row_id> --update-set smoke_checked=true --upload-file .tmp\phase0-smoke.docx`.
@@ -368,6 +370,8 @@ Parallel-language template note:
 
 `Spec_Master.csv` note:
 
+- in Feishu, maintain `Page=specifications` rows in `规格参数明细` and maintain non-spec page placeholders in `页面占位参数`; `sync-data --table spec_master` reads those two source tables and writes the local read-model CSV
+- `spec_row_key` is the first read-model key and `document_key` remains the target dimension field
 - the `Page` column may now hold a comma-separated page list
 - use `Product overview` for Product overview-only page-value rows
 - use `Product overview, specifications,` when a row is intentionally shared by both pages
@@ -375,6 +379,7 @@ Parallel-language template note:
 - `Source_lang` stores that source-language code explicitly; use values such as `en`, `ja`, and `zh`, and do not rely on `Region` to infer it
 - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
 - `Row_order` is now the explicit row order inside each `document_key + Page + Section`, while `Line_order` controls the line order inside one logical row
+- `Line_order` is required for rebuilds; use `1` for single-line rows and `1`, `2`, `3`, ... for multi-line rows under the same logical parameter
 - `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer part of `Spec_Master.csv`; target rows by `Region` + `Model`
 - if a CLI/build target passes a document-key style model such as `JE-1000F_JP` or `JE-1000F-JP`, spec lookup first normalizes it back to the base model `JE-1000F` and still chooses rows by the explicit `Region`, so `JP` targets stay on `JP` spec rows

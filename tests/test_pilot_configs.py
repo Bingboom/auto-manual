@@ -268,14 +268,15 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
                 self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
                 self.assertEqual(["占位符"], cfg.get("checks", {}).get("allowed_foreign_identity_literals"))
+                phase2 = cfg.get("sync", {}).get("phase2", {})
                 self.assertEqual(
-                    "tbl7Kxyq8AaDKwsn",
-                    cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
+                    {
+                        "spec_rows_source_table_id": "tblTw54UzV4ry5VD",
+                        "page_placeholders_source_table_id": "tblhckTT7PfVBsuG",
+                    },
+                    phase2.get("spec_master_sources"),
                 )
-                self.assertEqual(
-                    "vewbjo4Zfz",
-                    cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("view_id"),
-                )
+                self.assertEqual({}, phase2.get("tables", {}).get("spec_master"))
 
                 resolved = resolve_config_pages_or_raise(
                     cfg,
@@ -359,14 +360,15 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertTrue(cfg.get("build", {}).get("queue_by_document_key"))
         self.assertEqual("docs/manifests/manual_eu.yaml", cfg.get("paths", {}).get("page_manifest"))
         self.assertEqual(["占位符"], cfg.get("checks", {}).get("allowed_foreign_identity_literals"))
+        phase2 = cfg.get("sync", {}).get("phase2", {})
         self.assertEqual(
-            "tbl7Kxyq8AaDKwsn",
-            cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("table_id"),
+            {
+                "spec_rows_source_table_id": "tblTw54UzV4ry5VD",
+                "page_placeholders_source_table_id": "tblhckTT7PfVBsuG",
+            },
+            phase2.get("spec_master_sources"),
         )
-        self.assertEqual(
-            "vewbjo4Zfz",
-            cfg.get("sync", {}).get("phase2", {}).get("tables", {}).get("spec_master", {}).get("view_id"),
-        )
+        self.assertEqual({}, phase2.get("tables", {}).get("spec_master"))
 
         resolved = resolve_config_pages_or_raise(
             cfg,

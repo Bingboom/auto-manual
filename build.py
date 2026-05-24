@@ -37,6 +37,7 @@ from tools.build_entry_commands import (
     process_review_start_queue_command as _process_review_start_queue_command_impl,
     release_manifest_command as _release_manifest_command_impl,
     review_bundle_command as _review_bundle_command_impl,
+    spec_master_rebuild_command as _spec_master_rebuild_command_impl,
     sync_data_command as _sync_data_command_impl,
     sync_review_command as _sync_review_command_impl,
 )
@@ -303,6 +304,14 @@ def maybe_sync_review_before_build(args: argparse.Namespace, *, source_override:
 
 def sync_data_command(args: argparse.Namespace) -> list[str]:
     return _sync_data_command_impl(
+        args,
+        repo_root=ROOT,
+        resolve_path_from_root=resolve_path_from_root,
+    )
+
+
+def spec_master_rebuild_command(args: argparse.Namespace) -> list[str]:
+    return _spec_master_rebuild_command_impl(
         args,
         repo_root=ROOT,
         resolve_path_from_root=resolve_path_from_root,
@@ -729,6 +738,7 @@ def main(argv: list[str] | None = None) -> int:
         run_check=run_check,
         sync_review_command=sync_review_command,
         sync_data_command=sync_data_command,
+        spec_master_rebuild_command=spec_master_rebuild_command,
         run_translation_memory=run_translation_memory,
         run_message_control_dry_run=run_message_control_dry_run,
         run_queue_query=run_queue_query,

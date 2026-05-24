@@ -75,8 +75,12 @@ class TestSyncData(unittest.TestCase):
     def test_phase2_table_schemas_should_include_eu_and_pt_br_columns(self) -> None:
         self.assertEqual(
             (
+                "spec_row_key",
                 "document_key",
+                "Model",
                 "Region",
+                "Source_lang",
+                "Version",
                 "Is_Latest",
                 "Page",
                 "Section",
@@ -95,7 +99,6 @@ class TestSyncData(unittest.TestCase):
                 "Param_fr",
                 "Value_fr",
                 "Row_label_es",
-                "Model",
                 "Param_es",
                 "Value_es",
                 "Row_label_br",
@@ -110,7 +113,6 @@ class TestSyncData(unittest.TestCase):
                 "Row_label_uk",
                 "Param_uk",
                 "Value_uk",
-                "Source_lang",
             ),
             sync_data.TABLE_SCHEMAS["spec_master"].columns,
         )
@@ -334,6 +336,33 @@ class TestSyncData(unittest.TestCase):
 
         self.assertEqual([], errors)
 
+    def test_collect_sync_preflight_errors_should_allow_spec_master_source_tables_without_total_binding(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "spec_master_sources": {
+                        "spec_rows_source_table_id": "tbl_spec_rows",
+                        "page_placeholders_source_table_id": "tbl_placeholders",
+                    },
+                    "tables": {
+                        "spec_master": {},
+                    },
+                }
+            }
+        }
+
+        errors = sync_data.collect_sync_preflight_errors(
+            cfg,
+            table_names=["spec_master"],
+            environ={"BASE_TOKEN": "app_token"},
+            require_cli=False,
+        )
+
+        self.assertEqual([], errors)
+
     def test_sync_phase2_snapshot_should_write_csvs_and_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -446,7 +475,7 @@ class TestSyncData(unittest.TestCase):
 
             master_lines = (root / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8").splitlines()
             self.assertEqual(
-                "document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Model,Param_es,Value_es,Row_label_br,Param_br,Value_br,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk,Source_lang",
+                "spec_row_key,document_key,Model,Region,Source_lang,Version,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Param_es,Value_es,Row_label_br,Param_br,Value_br,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk",
                 master_lines[0],
             )
             self.assertIn("TRUE", master_lines[1])
@@ -465,6 +494,131 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual(2, len(manifest["tables"]))
             self.assertEqual(1, len(manifest["derived_files"]))
             self.assertEqual("row_key_mapping", manifest["derived_files"][0]["logical_name"])
+
+    def test_sync_phase2_snapshot_should_merge_spec_master_source_tables_without_total_table(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "spec_master_sources": {
+                            "spec_rows_source_table_id": "tbl_spec_rows",
+                            "page_placeholders_source_table_id": "tbl_placeholders",
+                        },
+                        "tables": {
+                            "spec_master": {},
+                            "spec_footnotes": {
+                                "table_id_env": "SPEC_FOOTNOTES_TABLE",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+
+            footnote_fields = {
+                "Footnote_id": "ac_bypass",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "Is_Latest": True,
+                "Page": "specifications",
+                "Footnote_order": 1,
+                "Text_en": "Bypass footnote",
+                "Enabled": True,
+            }
+            fake_source = _FakeSourceWithIds(
+                records_by_table={
+                    "tbl_spec_rows": [
+                        {
+                            "fields": {
+                                "document_key": "JE-1000F_US",
+                                "Source_lang": "en",
+                                "Version": "1.0",
+                                "Is_Latest": True,
+                                "Page": "specifications",
+                                "Section": "INPUT PORTS",
+                                "Section_order": 2,
+                                "Row_order": 1,
+                                "Row_key": "ac_input",
+                                "Line_order": 2,
+                                "Row_label_source": "1 x AC Input",
+                                "Param_source": "Bypass Mode",
+                                "Param_footnote_refs": {"id": "rec_ac_bypass"},
+                                "Value_source": "100V-120V~60Hz, 12A Max",
+                            }
+                        },
+                    ],
+                    "tbl_placeholders": [
+                        {
+                            "fields": {
+                                "document_key": "JE-1000F_US",
+                                "Source_lang": "en",
+                                "Version": "1.0",
+                                "Is_Latest": True,
+                                "Page": "Product overview",
+                                "Section": "INPUT PORTS",
+                                "Section_order": 2,
+                                "Row_order": 2,
+                                "Row_key": "ac_input",
+                                "Slot_key": "[side.label](side.label)",
+                                "Line_order": 1,
+                                "Value_source": "AC Input",
+                            }
+                        },
+                    ],
+                    "tbl_footnotes": [{"fields": footnote_fields}],
+                },
+                records_with_ids_by_table={
+                    "tbl_footnotes": [{"record_id": "rec_ac_bypass", "fields": footnote_fields}],
+                },
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "SPEC_FOOTNOTES_TABLE": "tbl_footnotes",
+                },
+                clear=False,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                result = sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["spec_master"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            with (root / "data" / "phase2" / "Spec_Master.csv").open("r", encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+
+            self.assertEqual(
+                [
+                    ("app_token", "tbl_spec_rows", None),
+                    ("app_token", "tbl_placeholders", None),
+                ],
+                fake_source.calls,
+            )
+            self.assertEqual([("app_token", "tbl_footnotes", None)], fake_source.calls_with_ids)
+            self.assertEqual(2, len(rows))
+            spec_row = next(row for row in rows if row["Page"] == "specifications")
+            self.assertEqual("JE-1000F", spec_row["Model"])
+            self.assertEqual("US", spec_row["Region"])
+            self.assertEqual("ac_bypass", spec_row["Param_footnote_refs"])
+            self.assertEqual(
+                "JE-1000F_US__v1.0__specifications__s02__r01__ac_input__main__l02",
+                spec_row["spec_row_key"],
+            )
+            placeholder_row = next(row for row in rows if row["Page"] == "Product overview")
+            self.assertEqual("side.label", placeholder_row["Slot_key"])
+            self.assertEqual("spec_master", result.synced_tables[0].logical_name)
+            self.assertEqual(2, result.synced_tables[0].row_count)
 
     def test_sync_phase2_snapshot_should_download_lcd_icon_figure_attachments(self) -> None:
         with tempfile.TemporaryDirectory() as td:

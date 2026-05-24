@@ -62,8 +62,8 @@ Stop condition:
 The current shared config expects these environment variables:
 
 - `FEISHU_PHASE2_BASE_TOKEN`
-- `FEISHU_PHASE2_SPEC_MASTER_TABLE_ID`
-- `FEISHU_PHASE2_SPEC_MASTER_VIEW_ID`
+- `FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID`
+- `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID`
 - `FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID`
 - `FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID`
 - `FEISHU_PHASE2_SPEC_NOTES_TABLE_ID`
@@ -75,7 +75,7 @@ The current shared config expects these environment variables:
 
 Execution steps:
 
-1. Collect the Base token plus the 5 table IDs and 5 view IDs from Feishu.
+1. Collect the Base token plus the split spec source table IDs and the remaining table/view IDs from Feishu.
 2. Export them in the shell profile used on the new machine.
 3. Open a new shell and verify:
 

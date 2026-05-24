@@ -23,6 +23,7 @@ def parse_args(
             "check",
             "sync-review",
             "sync-data",
+            "spec-master-rebuild",
             "translation-memory",
             "queue-query",
             "queue-resolve-action",
@@ -109,6 +110,43 @@ def parse_args(
         help="Output directory for diff-report CSV/HTML",
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data or translation-memory: logical table id")
+    ap.add_argument(
+        "--spec-rows-table-id",
+        default=None,
+        help="For spec-master-rebuild: Feishu table id for the split specifications source table",
+    )
+    ap.add_argument(
+        "--page-placeholders-table-id",
+        default=None,
+        help="For spec-master-rebuild: Feishu table id for the split page placeholder source table",
+    )
+    ap.add_argument(
+        "--expect-spec-rows",
+        type=int,
+        default=None,
+        help="For spec-master-rebuild: expected Page=specifications source row count",
+    )
+    ap.add_argument(
+        "--expect-placeholder-rows",
+        type=int,
+        default=None,
+        help="For spec-master-rebuild: expected non-specifications source row count",
+    )
+    ap.add_argument(
+        "--bootstrap-source-tables",
+        action="store_true",
+        help="For spec-master-rebuild: create/seed the split source tables from the current spec_master view",
+    )
+    ap.add_argument(
+        "--force-reseed",
+        action="store_true",
+        help="For spec-master-rebuild: delete and recreate source-table records before seeding",
+    )
+    ap.add_argument(
+        "--write-back",
+        action="store_true",
+        help="For spec-master-rebuild: update/create total spec_master rows from the split source tables",
+    )
     ap.add_argument("--section", default=None, help="For translation-memory: exact section/title filter")
     ap.add_argument("--row-key", default=None, help="For translation-memory: exact Row_key filter")
     ap.add_argument("--message", default=None, help="For message-control-dry-run: raw incoming user message")
@@ -235,6 +273,6 @@ def parse_args(
     ap.add_argument(
         "--dry-run",
         action="store_true",
-        help="For sync-data, process-build-queue, or process-review-start-queue: validate/report without writing files",
+        help="For sync-data, spec-master-rebuild, process-build-queue, or process-review-start-queue: validate/report without writing files",
     )
     return ap.parse_args(argv)

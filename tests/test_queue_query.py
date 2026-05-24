@@ -356,6 +356,34 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu"], [row.record_id for row in filtered])
 
+    def test_filter_queue_query_rows_should_match_multi_start_review_document_ids(self) -> None:
+        rows = [
+            self._row(
+                f"rec_{key.rsplit('_', 1)[1].lower()}",
+                queue_scope="review-init",
+                document_id=key,
+                document_key='{"id":"recLinkedDocument"}',
+                build_family="",
+                lang="",
+                version="",
+                workflow_action="Start Review",
+                normalized_workflow_action="start_review",
+                result="",
+                review_status="NotStarted",
+                review_trigger_enabled=True,
+                build_trigger_requested=None,
+                immediate_build=None,
+            )
+            for key in ("JE-1000F_CN", "JE-1000F_US", "JE-1000F_JP", "JE-1000F_EU", "JE-1000F_pt-BR")
+        ]
+
+        resolved_args = queue_query.apply_inferred_queue_query(
+            self._args(query_text="开始review JE-1000F_CN\nJE-1000F_US\nJE-1000F_JP\nJE-1000F_EU\nJE-1000F_pt-BR")
+        )
+        filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
+
+        self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu", "rec_pt-br"], [row.record_id for row in filtered])
+
     def test_filter_queue_query_rows_should_match_pt_br_start_review_document_key(self) -> None:
         rows = [
             self._row(

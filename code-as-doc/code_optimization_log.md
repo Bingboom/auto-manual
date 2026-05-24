@@ -533,3 +533,21 @@ Why it mattered:
 - `03_product_overview` is now the first real page connected to declaration-driven assembly without a repo-wide template rewrite
 - the default build behavior remains controlled by a page-level switch, and pilot failures stop the build clearly
 - the next expansion can add more product overview blocks or another page using the same contract/fixture/template boundary
+
+## 32. 2026-05-24: Spec Master Source Split and Read Model
+
+Main outcomes:
+
+- split Feishu spec authoring into `规格参数明细` for `Page=specifications` rows and `页面占位参数` for non-spec placeholder rows while keeping the original `spec_master` table ID as the read model for existing sync/build code
+- added `spec_row_key` as the first read key, with `document_key` retained as the target dimension field
+- added [`../tools/spec_master_rebuild.py`](../tools/spec_master_rebuild.py) and the `python build.py spec-master-rebuild` action to merge source tables, validate row counts, enforce unique keys, and optionally write merged rows back to the Feishu total table
+- made source-table `source_row_key` a formula primary key and source-table `Row_key` a lookup from `参数名.Row_key`, leaving `Row_key_link` as the human-maintained dictionary selector
+- removed source-table `Model` and `Region`; the rebuild step derives them from `document_key` while preserving the compatible read-model columns
+- pinned the source table IDs in [`../config.ja.yaml`](../config.ja.yaml) and [`../config.us.yaml`](../config.us.yaml) under `sync.phase2.spec_master_sources`
+- updated maintainer and user docs so humans edit the source tables and treat `spec_master` as a read model
+
+Why it mattered:
+
+- maintainers no longer have to edit target identity, page placeholders, visible spec rows, row keys, and ordering in one mixed table
+- new-model onboarding can follow a copy-and-edit SOP across two source tables plus the existing dimension dictionaries
+- downstream renderers and `sync-data` keep reading a compatible `Spec_Master.csv` shape while the human authoring surface becomes smaller and less error-prone
