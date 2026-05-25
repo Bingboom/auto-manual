@@ -8,7 +8,7 @@ WARRANTY
 Limited Warranty
 ----------------
 
-Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.
+|LEGAL_COMPANY_NAME| warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.
 
 This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.
 
@@ -33,11 +33,20 @@ Warranty Period
 
        To activate the Warranty Extension, you must register your product online or contact our customer service team at |WARRANTY_EMAIL| to extend the standard warranty period.
 
-Repair or replacement
----------------------
+.. only:: region_us
 
-Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials.
-The repaired/replaced product assumes the remaining warranty of the original date of purchase.
+   Repair or replacement
+   ---------------------
+
+   Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials.
+   The repaired/replaced product assumes the remaining warranty of the original date of purchase.
+
+.. only:: region_eu
+
+   Exchange
+   --------
+
+   Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.
 
 Limited to Original Consumer Buyer
 ----------------------------------

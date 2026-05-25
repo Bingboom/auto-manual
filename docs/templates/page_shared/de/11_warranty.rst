@@ -8,7 +8,7 @@ GARANTIE
 Eingeschränkte Garantie
 -----------------------
 
-Jackery Inc. garantiert dem ursprünglichen Käufer, dass das Jackery-Produkt während der unten im Abschnitt „Garantiezeitraum“ angegebenen Garantiezeit bei normalem Gebrauch frei von Material- und Verarbeitungsfehlern ist, vorbehaltlich der unten aufgeführten Ausschlüsse.
+|LEGAL_COMPANY_NAME| garantiert dem ursprünglichen Käufer, dass das Jackery-Produkt während der unten im Abschnitt „Garantiezeitraum“ angegebenen Garantiezeit bei normalem Gebrauch frei von Material- und Verarbeitungsfehlern ist, vorbehaltlich der unten aufgeführten Ausschlüsse.
 
 Diese Garantieerklärung legt Jackerys gesamte und ausschließliche Garantieverpflichtung fest. Wir übernehmen keine weitere Haftung und autorisieren auch keine andere Person, eine solche Haftung in unserem Namen im Zusammenhang mit dem Verkauf unserer Produkte zu übernehmen.
 
@@ -33,11 +33,10 @@ Garantiezeitraum
 
        Um die Garantieverlängerung zu aktivieren, müssen Sie Ihr Produkt online registrieren oder unser Kundendienstteam unter |WARRANTY_EMAIL| kontaktieren, um die Standardgarantiezeit zu verlängern.
 
-Reparatur oder Ersatz
----------------------
+Umtausch
+--------
 
-Jackery wird jedes Jackery-Produkt auf eigene Kosten reparieren oder ersetzen, das während der geltenden Garantiezeit aufgrund eines Material- oder Verarbeitungsfehlers nicht funktioniert.
-Das reparierte/ersetzte Produkt übernimmt die verbleibende Garantie des ursprünglichen Kaufdatums.
+Jackery tauscht (auf Kosten von Jackery) jedes Jackery Produkt aus, das während der geltenden Garantiezeit aufgrund eines Verarbeitungs- oder Materialfehlers nicht mehr funktioniert. Ein Ersatzprodukt übernimmt die Restgarantie des Originalprodukts.
 
 Beschränkt auf den ursprünglichen Käufer
 ----------------------------------------

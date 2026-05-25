@@ -13,6 +13,7 @@ build:
   word_title: "|PRODUCT_NAME| Manual do usuário"
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: Português (Brasil)
+    LEGAL_COMPANY_NAME: Jackery
 
 paths:
   page_manifest: docs/manifests/manual_pt-br.yaml

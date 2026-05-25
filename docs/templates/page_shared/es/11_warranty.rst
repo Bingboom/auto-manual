@@ -8,7 +8,7 @@ GARANTÍA
 Garantía limitada
 -----------------
 
-Jackery Inc. garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de garantía aplicable identificado en la sección "Período de garantía" que figura a continuación, sujeto a las exclusiones que se establecen a continuación.
+|LEGAL_COMPANY_NAME| garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de garantía aplicable identificado en la sección "Período de garantía" que figura a continuación, sujeto a las exclusiones que se establecen a continuación.
 
 Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en relación con la venta de nuestros productos.
 
@@ -27,10 +27,19 @@ Período de garantía
 
        Para activar la ampliación de garantía, debe registrar su producto en línea o ponerse en contacto con nuestro equipo de atención al cliente en |WARRANTY_EMAIL| para ampliar el período de garantía estándar.
 
-Reparación o sustitución
-------------------------
+.. only:: region_us
 
-Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione, durante el período de garantía aplicable, debido a defectos de acabado o de material. Un producto de sustitución asume la garantía restante del producto original.
+   Reparación o sustitución
+   ------------------------
+
+   Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione, durante el período de garantía aplicable, debido a defectos de acabado o de material. Un producto de sustitución asume la garantía restante del producto original.
+
+.. only:: region_eu
+
+   Cambio
+   ------
+
+   Jackery sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione, durante el período de garantía aplicable, debido a defectos de acabado o de material. Un producto de sustitución asume la garantía restante del producto original.
 
 Limitado al comprador consumidor original
 -----------------------------------------
