@@ -3,7 +3,7 @@
    .. raw:: latex
 
       \section{CONTENUTO DELLA CONFEZIONE}
-      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Cavo di ricarica CA}{manual_icon1.png}{Documenti}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Cavo di ricarica CA}{manual_icon1.png}{Manuale utente}
       \HBTipBlock{SUGGERIMENTO}{Il cavo di ricarica per auto non e incluso, ma e disponibile per l'acquisto separato sul nostro sito web. Per assistenza, contatta il servizio clienti Jackery.}
 
 .. only:: not latex
@@ -30,7 +30,7 @@
              :alt: Segnaposto immagine del manuale utente.
              :width: 120px
 
-          Documenti
+          Manuale utente
 
    .. list-table::
       :header-rows: 0
