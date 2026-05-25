@@ -76,3 +76,13 @@ Si aparece alguno de los siguientes códigos de falla, siga las acciones correct
         - Retire la carga conectada a los puertos USB del producto. Espere hasta que la falla desaparezca.
       * - FE
         - Contacte con atención al cliente de Jackery.
+
+.. only:: model_je_2000e
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 14 86
+
+      * - FC
+        - | 1. Reinicie los paquetes de baterías y |PRODUCT_NAME| respectivamente.
+          | 2. Si la falla persiste, desconecte el paquete de baterías de |PRODUCT_NAME| y reconéctelos.

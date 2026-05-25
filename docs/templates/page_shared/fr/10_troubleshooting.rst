@@ -76,3 +76,13 @@ Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives in
         - Retirez la charge connectée aux ports USB du produit. Attendez que l'erreur disparaisse.
       * - FE
         - Contacter le service à la clientèle de Jackery.
+
+.. only:: model_je_2000e
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 14 86
+
+      * - FC
+        - | 1. Redémarrez respectivement les batteries et |PRODUCT_NAME|.
+          | 2. Si l'erreur persiste, déconnectez la batterie de |PRODUCT_NAME| et reconnectez-les.

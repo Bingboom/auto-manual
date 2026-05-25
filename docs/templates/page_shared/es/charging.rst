@@ -16,7 +16,7 @@
          :widths: 12 88
 
          * - **PRECAUCIÓN**
-           - - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
+           - - Asegúrese de que todos los productos estén apagados antes de conectar |PRODUCT_NAME| al Jackery Battery Pack 2000.
              - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
              - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
              - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
@@ -29,18 +29,30 @@
          :widths: 12 88
 
          * - **PRECAUCIÓN**
-           - - Asegúrese de que todos los productos estén apagados antes de conectar el HomePower 2000 Plus al Jackery Battery Pack 2000.
+           - - Asegúrese de que todos los productos estén apagados antes de conectar |PRODUCT_NAME| al Jackery Battery Pack 2000.
              - Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 200 mm de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.
              - Cuando el producto se utilice con baterías adicionales conectadas, el número máximo predeterminado de baterías adicionales apiladas es de 3, y el producto debe colocarse sobre una superficie plana, estable y con suficiente capacidad de carga.
              - Si es necesario apilar 4 o más baterías adicionales, el producto debe colocarse en una zona estable, apoyado contra una pared y protegido contra impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
+   .. only:: region_us
 
-      * - **Jackery Battery Pack 2000**
-        - **Cable de expansión**
-        - **Documentos**
+      .. list-table::
+         :header-rows: 0
+         :widths: 34 33 33
+
+         * - **Jackery Battery Pack 2000**
+           - **Cable de expansión**
+           - **Manual del usuario**
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 34 33 33
+
+         * - **Jackery Battery Pack 2000**
+           - **Cable de expansión**
+           - **Manual del usuario**
 
 CARGANDO
 ========

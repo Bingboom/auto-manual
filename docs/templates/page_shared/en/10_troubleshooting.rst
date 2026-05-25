@@ -77,3 +77,13 @@ If the fault persists, please contact Jackery Customer Support.
         - Remove the load connected to the USB ports of the product. Wait until the fault disappears.
       * - FE
         - Contact Jackery Customer Support.
+
+.. only:: model_je_2000e
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 14 86
+
+      * - FC
+        - | 1. Restart the battery packs and |PRODUCT_NAME|, respectively.
+          | 2. If the fault persists, disconnect the battery pack from |PRODUCT_NAME| and connect them again.
