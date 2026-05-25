@@ -47,9 +47,9 @@ Interpretation rule:
 Until the future table-driven model is ready, treat these as explicit family-owned surfaces:
 
 1. Spec data
-   - [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-   - [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-   - [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+   - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+   - [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
+   - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 
 2. Certification and compliance wording
    - spec rows

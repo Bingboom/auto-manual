@@ -26,7 +26,7 @@ class TestReviewBundle(unittest.TestCase):
                         "page_manifest": "docs/manifests/manual_us-en.yaml",
                         "recipe_ids": ["03_product_overview"],
                         "snippet_ids": ["wireless_reset_buttons"],
-                        "spec_master": {"path": "data/phase1/Spec_Master.csv", "sha256": "abc"},
+                        "spec_master": {"path": "data/phase2/Spec_Master.csv", "sha256": "abc"},
                     },
                     ensure_ascii=False,
                     indent=2,

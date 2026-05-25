@@ -2,7 +2,7 @@
 
 ## Intake boundary
 
-- Before review starts, edit `docs/templates/**` and `data/phase1/**`.
+- Before review starts, edit `docs/templates/**` and `data/phase2/**`.
 - After review starts, edit `docs/_review/<model>/<region>/**` for target-local copy changes unless the user explicitly wants to change the shared seed layer.
 - Never treat `docs/_build/**` as the authoring source.
 - Do not hand-edit `docs/index.rst` unless the task is about index generation.
@@ -15,14 +15,14 @@
 - Safety:
   route to `safety_*.rst`.
 - Symbols:
-  route to `data/phase1/symbols_blocks.csv` for CSV-backed families.
+  route to `data/phase2/symbols_blocks.csv` for CSV-backed families.
   JP keeps detailed symbols content in `docs/templates/page_jp/01_meaning_of_symbols.rst`.
 - In the box:
   route to `02_whats_in_the_box.rst`.
 - Product overview:
   route to `03_product_overview_placeholder.rst`.
 - LCD:
-  route to `data/phase1/lcd_icons_blocks.csv` or the active phase2 snapshot. Current manifests generate it through `csv_page` page `lcd_icons`.
+  route to `data/phase2/lcd_icons_blocks.csv` or the active phase2 snapshot. Current manifests generate it through `csv_page` page `lcd_icons`.
 - Operation guide:
   route to `05_operation_guide_placeholder.rst`.
 - UPS:
@@ -36,7 +36,7 @@
 - Troubleshooting:
   route US/EU en/fr/es to `templates/page_shared/<lang>/10_troubleshooting.rst`; route other families to their local `10_troubleshooting.rst`.
 - Specs:
-  route to `data/phase1/Spec_Master.csv`, `Spec_Footnotes.csv`, and `Spec_Notes.csv`.
+  route to `data/phase2/Spec_Master.csv`, `Spec_Footnotes.csv`, and `Spec_Notes.csv`.
 - Warranty:
   route to `11_warranty.rst`.
 - App setup:
@@ -63,7 +63,7 @@
   use `docs/manifests/manual_zh.yaml` and `config.zh.yaml` with region `CN`.
 - `eu-en`:
   the family lives under `config.eu-en.yaml` and `docs/manifests/manual_eu-en.yaml`.
-  The current page-value path resolves through `JE-2000E` with region `US`; keep `spec` and `symbols` in `data/phase1/**`.
+  The current page-value path resolves through `JE-2000E` with region `US`; keep `spec` and `symbols` in `data/phase2/**`.
 
 ## Validation
 

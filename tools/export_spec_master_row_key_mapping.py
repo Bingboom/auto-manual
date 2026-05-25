@@ -19,6 +19,11 @@ from tools.utils.spec_master import (  # noqa: E402
     build_row_label_row_key_mapping_rows,
     read_spec_master_rows,
 )
+from tools.data_snapshot import (
+    ROW_KEY_MAPPING_FILE,
+    SPEC_MASTER_FILE,
+    STRUCTURED_DATA_DEFAULT_DIR,
+)  # noqa: E402
 
 ROW_KEY_MAPPING_FIELDNAMES = ("Row_label_source", "Line_order", "Row_key", "Remark")
 
@@ -27,12 +32,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser("export Spec_Master Row_label_source to Row_key mapping")
     parser.add_argument(
         "--csv",
-        default="data/phase1/Spec_Master.csv",
+        default=f"{STRUCTURED_DATA_DEFAULT_DIR}/{SPEC_MASTER_FILE}",
         help="path to source Spec_Master.csv",
     )
     parser.add_argument(
         "--out",
-        default="data/phase1/row_key_mapping.csv",
+        default=f"{STRUCTURED_DATA_DEFAULT_DIR}/{ROW_KEY_MAPPING_FILE}",
         help="path for generated mapping CSV",
     )
     parser.add_argument(

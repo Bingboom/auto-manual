@@ -1,6 +1,6 @@
 ---
 name: markdown-rst-template-intake
-description: Convert external Markdown manuals or Markdown-based instructions into this repo's reusable RST template layer. Use when Codex needs to map `.md` manual content into `docs/templates/page_*/*.rst`, preserve or introduce page-value placeholders, update `docs/templates/recipes/*/*.yaml` for placeholder-backed pages, or route spec and symbols content into `data/phase1` before review starts.
+description: Convert external Markdown manuals or Markdown-based instructions into this repo's reusable RST template layer. Use when Codex needs to map `.md` manual content into `docs/templates/page_*/*.rst`, preserve or introduce page-value placeholders, update `docs/templates/recipes/*/*.yaml` for placeholder-backed pages, or route spec and symbols content into `data/phase2` before review starts.
 ---
 
 # Markdown RST Template Intake
@@ -20,13 +20,13 @@ Do not use it for routine post-review wording edits inside `docs/_review/**` unl
 4. Edit the shared authoring layer before review starts:
    - reusable prose/layout pages -> `docs/templates/page_*/...`
    - placeholder-backed pages -> template `.rst` plus any required recipe updates
-   - generated spec/symbol content -> `data/phase1/*.csv`, not hand-authored RST
+   - generated spec/symbol content -> `data/phase2/*.csv`, not hand-authored RST
 5. Validate with `python build.py check --config ... --model <MODEL> --region <REGION>`.
 6. For changed placeholder pages, spot-check with `python build.py preview --config ... --model <MODEL> --region <REGION> --page <page-stem>`.
 
 ## Route content to the correct layer
 
-- Edit `docs/templates/**` and `data/phase1/**` before review starts.
+- Edit `docs/templates/**` and `data/phase2/**` before review starts.
 - Edit `docs/_review/<model>/<region>/**` after review starts when the request is target-local copy only.
 - Never treat `docs/_build/**` as the authoring surface.
 - Do not hand-edit `docs/index.rst` unless the task is explicitly about index generation.
@@ -40,13 +40,13 @@ Do not use it for routine post-review wording edits inside `docs/_review/**` unl
 - Safety:
   route to `safety_*.rst`. JP keeps the detailed warning-symbol page in `docs/templates/page_jp/01_meaning_of_symbols.rst`.
 - Symbols:
-  route to `data/phase1/symbols_blocks.csv` for CSV-backed families. For JP, keep detailed symbols content in `01_meaning_of_symbols.rst`.
+  route to `data/phase2/symbols_blocks.csv` for CSV-backed families. For JP, keep detailed symbols content in `01_meaning_of_symbols.rst`.
 - Specs:
-  route to `data/phase1/Spec_Master.csv`, `Spec_Footnotes.csv`, and `Spec_Notes.csv`.
+  route to `data/phase2/Spec_Master.csv`, `Spec_Footnotes.csv`, and `Spec_Notes.csv`.
 - Product overview, operation guide, app setup:
   treat `03_product_overview`, `05_operation_guide`, and `12_app_setup` as placeholder-backed pages. Preserve intentional `|PLACEHOLDER|` tokens and sync the matching recipe path when needed.
 - LCD display:
-  route to `data/phase1/lcd_icons_blocks.csv` or the active phase2 snapshot. Current manifests generate it through `csv_page` page `lcd_icons`.
+  route to `data/phase2/lcd_icons_blocks.csv` or the active phase2 snapshot. Current manifests generate it through `csv_page` page `lcd_icons`.
 - Static prose pages such as in-the-box and UPS:
   edit the family page template directly. For US/EU shared en/fr/es prose pages such as charging, charging methods, storage, troubleshooting, and warranty, prefer the matching `templates/page_shared/<lang>/` source.
 

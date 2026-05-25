@@ -10,8 +10,8 @@ from tools.config_pages import CsvPage
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.language_aliases import language_key, normalize_language
 from tools.page_manifest import resolve_config_pages_or_raise
-from tools.phase1.builder import BuildPaths, BuildSelector, Phase1Builder
-from tools.phase1.renderers import apply_vars
+from tools.csv_pages.builder import BuildPaths, BuildSelector, CsvPageBuilder
+from tools.csv_pages.renderers import apply_vars
 from tools.utils.path_utils import get_paths
 from tools.utils.spec_master import (
     resolve_product_name_from_spec_master,
@@ -169,9 +169,9 @@ def load_word_context(
     model: str | None,
     region: str | None,
     *,
-    phase1_output_dir: Path | None = None,
+    csv_page_output_dir: Path | None = None,
     data_root: str | None = None,
-) -> Phase1Builder:
+) -> CsvPageBuilder:
     base_paths = BuildPaths.from_root(paths.root)
     snapshot_paths = resolve_data_snapshot_paths(
         cfg,
@@ -186,18 +186,18 @@ def load_word_context(
         page_registry=snapshot_paths.page_registry_csv,
         page_blocks_dir=snapshot_paths.page_blocks_dir,
         template_dir=base_paths.template_dir,
-        output_dir=phase1_output_dir or base_paths.output_dir,
+        output_dir=csv_page_output_dir or base_paths.output_dir,
         spec_master_csv=snapshot_paths.spec_master_csv,
         spec_footnotes_csv=snapshot_paths.spec_footnotes_csv,
         spec_notes_csv=snapshot_paths.spec_notes_csv,
         spec_titles_csv=snapshot_paths.spec_titles_csv,
     )
-    return Phase1Builder(build_paths)
+    return CsvPageBuilder(build_paths)
 
 
 def ensure_csv_page_rsts(
     cfg: dict,
-    builder: Phase1Builder,
+    builder: CsvPageBuilder,
     model: str | None,
     region: str | None,
     *,

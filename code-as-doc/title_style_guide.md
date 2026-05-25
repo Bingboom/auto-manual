@@ -11,7 +11,7 @@ Heading semantics must come from content structure, not from ad hoc hard-coded t
 That means:
 
 - page structure lives in RST templates
-- spec section title localization lives in [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- spec section title localization lives in [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 - visual style lives in CSS, LaTeX components, or the shared Word DOCX style remapper
 - Word document title comes from config plus placeholder substitution
 
@@ -28,7 +28,7 @@ These files define normal page heading structure and placeholder-bearing page te
 
 ### 2.2 Spec Title Localization
 
-- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 
 Use this file for spec section title mapping across languages.
 
@@ -135,7 +135,7 @@ Do not edit shared templates for one-off target review wording.
 
 If the change is specifically a localized spec title:
 
-- edit [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- edit [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 
 ### 3.5 Do Not Encode Semantics in Exporter Text Matching
 
@@ -166,7 +166,7 @@ python build.py check --config config.ja.yaml --model JE-1000F --region JP
 python build.py word --config config.ja.yaml --model JE-1000F --region JP
 ```
 
-If the change is spec-title-specific, also validate that the relevant section titles render as expected after `phase1` generation.
+If the change is spec-title-specific, also validate that the relevant section titles render as expected after CSV page generation from `data/phase2`.
 
 ## 6. Typical Change Routing
 
@@ -180,8 +180,8 @@ Change the visual gap or typography of headings:
 Change the actual heading text:
 
 - [`docs/templates/page_*/*.rst`](../docs/templates)
-- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
-- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv) for data-driven placeholder content
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) for data-driven placeholder content
 
 Change the document title shown in Word:
 

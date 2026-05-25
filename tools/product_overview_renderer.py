@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import re
 
-from tools.phase1.renderers_common import latex_arg_escape, rst_escape, spec_latex_cell, split_spec_lines
+from tools.csv_pages.renderers_common import latex_arg_escape, rst_escape, spec_latex_cell, split_spec_lines
 
 
 PRODUCT_OVERVIEW_TOKEN = "{{ product_overview }}"

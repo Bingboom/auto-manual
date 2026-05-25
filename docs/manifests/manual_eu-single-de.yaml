@@ -7,7 +7,7 @@ pages:
     lang: de
     file: templates/page_shared/de/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [de]
     include_dir: generated/{model}
@@ -22,7 +22,7 @@ pages:
     langs: [de]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [de]
     include_dir: generated/{model}
@@ -49,7 +49,7 @@ pages:
     lang: de
     file: templates/page_shared/de/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [de]
     include_dir: generated/{model}

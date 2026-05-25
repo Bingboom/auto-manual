@@ -17,7 +17,7 @@ pages:
     langs: [zh]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [zh]
     include_dir: generated/{model}
@@ -44,7 +44,7 @@ pages:
     lang: zh
     file: templates/page_zh/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [zh]
     include_dir: generated/{model}

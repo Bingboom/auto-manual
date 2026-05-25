@@ -12,7 +12,7 @@ pages:
     lang: en
     file: templates/page_shared/en/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [en]
     include_dir: generated/{model}
@@ -30,7 +30,7 @@ pages:
     langs: [en]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [en]
     include_dir: generated/{model}
@@ -57,7 +57,7 @@ pages:
     lang: en
     file: templates/page_shared/en/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [en]
     include_dir: generated/{model}

@@ -440,7 +440,7 @@ class TestSyncData(unittest.TestCase):
                     "SPEC_TITLES_VIEW": "view_titles",
                     "SPEC_MASTER_TABLE": "tbl_master",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 result = sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -583,7 +583,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "SPEC_FOOTNOTES_TABLE": "tbl_footnotes",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 result = sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -663,7 +663,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "LCD_TABLE": "tbl_lcd",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -743,7 +743,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "LCD_TABLE": "tbl_lcd",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root), mock.patch("sys.stderr", new=stderr):
                 sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -813,7 +813,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "LCD_TABLE": "tbl_lcd",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root), mock.patch("sys.stderr", new=stderr):
                 sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -883,7 +883,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "SYMBOLS_TABLE": "tbl_symbols",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -964,7 +964,7 @@ class TestSyncData(unittest.TestCase):
                     "SPEC_MASTER_TABLE": "tbl_master_wrong",
                     "SPEC_MASTER_VIEW": "view_master_wrong",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -1005,7 +1005,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "SPEC_TITLES_TABLE": "tbl_titles",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 result = sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -1021,7 +1021,7 @@ class TestSyncData(unittest.TestCase):
             self.assertFalse((root / "data" / "phase2" / "row_key_mapping.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "snapshot_manifest.json").exists())
 
-    def test_sync_phase2_snapshot_should_seed_phase2_row_key_mapping_from_phase1_mapping(self) -> None:
+    def test_sync_phase2_snapshot_should_preserve_existing_phase2_row_key_mapping(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             cfg = {
@@ -1039,9 +1039,9 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
-            phase1_dir = root / "data" / "phase1"
-            phase1_dir.mkdir(parents=True, exist_ok=True)
-            (phase1_dir / "row_key_mapping.csv").write_text(
+            phase2_dir = root / "data" / "phase2"
+            phase2_dir.mkdir(parents=True, exist_ok=True)
+            (phase2_dir / "row_key_mapping.csv").write_text(
                 "Row_label_source,Line_order,Row_key,Remark\n"
                 "Product Name,1,product_name,keep existing remark\n",
                 encoding="utf-8-sig",
@@ -1077,7 +1077,7 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "SPEC_MASTER_TABLE": "tbl_master",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 result = sync_data.sync_phase2_snapshot(
                     cfg=cfg,
@@ -1201,7 +1201,7 @@ class TestSyncData(unittest.TestCase):
                     "SPEC_FOOTNOTES_TABLE": "tbl_footnotes",
                     "SPEC_MASTER_TABLE": "tbl_master",
                 },
-                clear=False,
+                clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
                 sync_data.sync_phase2_snapshot(
                     cfg=cfg,

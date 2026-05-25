@@ -236,8 +236,10 @@ Follow-up on 2026-04-01:
 
 ## 7. Decision Rule
 
-Do not switch any default config from `phase1` to `phase2` yet.
-Only make that change after:
+This parity plan is historical. The default structured-data source has now moved to `phase2`.
+Do not use the old phase1 parity baseline as an active build, review, or publish source.
+
+The original switch criteria were:
 
 1. `sync-data` is reproducible on the new machine
 2. one target parity run is clean

@@ -104,7 +104,6 @@ class TestDiffReport(unittest.TestCase):
     def test_resolve_spec_paths_should_honor_data_root_override(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = Path(td)
-            (repo / "data" / "phase1").mkdir(parents=True)
             phase2_dir = repo / "data" / "phase2"
             phase2_dir.mkdir(parents=True)
             (phase2_dir / "Spec_Master.csv").write_text("header\n", encoding="utf-8")
@@ -204,13 +203,13 @@ class TestDiffReport(unittest.TestCase):
             tracked_root = repo / "docs" / "_review" / "JE-1000F"
             target_file = tracked_root / "US" / "generated" / "JE-1000F" / "spec_en.rst"
             target_file.parent.mkdir(parents=True)
-            data_dir = repo / "data" / "phase1"
+            data_dir = repo / "data" / "phase2"
             data_dir.mkdir(parents=True)
             (repo / "config.yaml").write_text(
                 "\n".join(
                     [
                         "paths:",
-                        "  spec_master_csv: data/phase1/Spec_Master.csv",
+                        "  spec_master_csv: data/phase2/Spec_Master.csv",
                     ]
                 )
                 + "\n",

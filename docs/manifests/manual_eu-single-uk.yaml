@@ -7,7 +7,7 @@ pages:
     lang: uk
     file: templates/page_shared/uk/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [uk]
     include_dir: generated/{model}
@@ -22,7 +22,7 @@ pages:
     langs: [uk]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [uk]
     include_dir: generated/{model}
@@ -49,7 +49,7 @@ pages:
     lang: uk
     file: templates/page_shared/uk/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [uk]
     include_dir: generated/{model}

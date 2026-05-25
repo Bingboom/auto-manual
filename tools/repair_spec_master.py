@@ -19,6 +19,7 @@ from tools.utils.spec_master import (  # noqa: E402
     read_spec_master_rows,
     repair_known_spec_master_values,
 )
+from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR, SPEC_MASTER_FILE  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -27,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--csv",
-        default="data/phase1/Spec_Master.csv",
+        default=f"{STRUCTURED_DATA_DEFAULT_DIR}/{SPEC_MASTER_FILE}",
         help="path to source Spec_Master.csv",
     )
     parser.add_argument(

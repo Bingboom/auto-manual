@@ -23,9 +23,9 @@ build:
 paths:
   docs_dir: docs
   layout_params_csv: data/layout_params.csv
-  spec_master_csv: data/phase1/Spec_Master.csv
-  spec_footnotes_csv: data/phase1/Spec_Footnotes.csv
-  spec_titles_csv: data/phase1/spec_titles.csv
+  spec_master_csv: data/phase2/Spec_Master.csv
+  spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
+  spec_titles_csv: data/phase2/spec_titles.csv
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
