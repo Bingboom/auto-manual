@@ -3,7 +3,7 @@
    .. raw:: latex
 
       \section{LIEFERUMFANG}
-      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{AC-Ladekabel}{manual_icon1.png}{Dokumente}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{AC-Ladekabel}{manual_icon1.png}{Benutzerhandbuch}
       \HBTipBlock{TIPP}{Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden. Bei Fragen wenden Sie sich bitte an den Jackery-Kundendienst.}
 
 .. only:: not latex
@@ -30,7 +30,7 @@
              :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
              :width: 120px
 
-          Dokumente
+          Benutzerhandbuch
 
    .. list-table::
       :header-rows: 0

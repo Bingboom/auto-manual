@@ -3,7 +3,7 @@
    .. raw:: latex
 
       \section{CONTEÚDO DA EMBALAGEM}
-      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Cabo de carregamento CA}{manual_icon1.png}{Documentos}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Cabo de carregamento CA}{manual_icon1.png}{Manual do usuário}
       \HBTipBlock{DICA}{O cabo de carregamento veicular não está incluído, mas está disponível para compra separadamente em nosso site. Para obter assistência, entre em contato com o Suporte ao Cliente da Jackery.}
 
 .. only:: not latex
@@ -30,7 +30,7 @@
              :alt: Ícone dos documentos.
              :width: 120px
 
-          Documentos
+          Manual do usuário
 
    .. list-table::
       :header-rows: 0

@@ -3,7 +3,7 @@
    .. raw:: latex
 
       \section{ЩО В КОРОБЦІ}
-      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Кабель для заряджання AC}{manual_icon1.png}{Документація}
+      \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Кабель для заряджання AC}{manual_icon1.png}{Посібник користувача}
       \HBTipBlock{ПОРАДИ}{Кабель для заряджання від автомобіля не входить до комплекту, але його можна придбати окремо на нашому вебсайті. Для отримання допомоги зверніться до служби підтримки Jackery.}
 
 .. only:: not latex
@@ -30,7 +30,7 @@
              :alt: Заглушка зображення посібника користувача.
              :width: 120px
 
-          Документація
+          Посібник користувача
 
    .. list-table::
       :header-rows: 0
