@@ -15,7 +15,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 |ADD_DEVICE_STEP|
 
-2.2 Appuyez sur le |MAIN_POWER_BUTTON_LABEL| de l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton «icône qui clignotante» et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
+2.2 Appuyez sur le |MAIN_POWER_BUTTON_LABEL| de l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton « Icône qui clignote » et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
@@ -25,7 +25,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 | |DC_USB_POWER_BUTTON_LABEL|
 | |AC_POWER_BUTTON_LABEL|
 
-| 2.3 Une fois que vous avez appuyé sur l'icône de recherche d'appareils, l'appareil est automatiquement associé à l'application via le Bluetooth.
+| 2.3 Après avoir appuyé sur l’icône de l’appareil détecté, l’application se connecte automatiquement à l’appareil via Bluetooth.
 
 
 .. list-table::
@@ -39,7 +39,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
        - Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil et l'associer de nouveau.
 
 
-| 2.4 Une fois l'appairage réalisé avec succès, vous devrez saisir le nom et le mot de passe du Wi-Fi pour que l'appareil se connecte automatiquement au réseau Wi-Fi.
+| 2.4 Une fois l’appareil connecté avec succès, saisissez votre mot de passe Wi-Fi, puis appuyez sur le bouton **OK**.
 
 .. list-table::
    :header-rows: 0

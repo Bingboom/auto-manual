@@ -38,3 +38,13 @@ Se l'errore persiste, contatta l'Assistenza clienti Jackery.
      - Rimuovi il carico collegato alle porte USB del prodotto. Attendi che il guasto scompaia.
    * - FE
      - Contatta l'Assistenza clienti Jackery.
+
+.. only:: model_je_2000e
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 14 86
+
+      * - FC
+        - | 1. Riavviare rispettivamente i pacchi batteria e |PRODUCT_NAME|.
+          | 2. Se il guasto persiste, scollegare il pacco batteria da |PRODUCT_NAME| e ricollegarlo.

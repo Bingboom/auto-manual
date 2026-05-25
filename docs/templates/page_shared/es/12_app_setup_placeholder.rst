@@ -38,7 +38,7 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
        - Mantenga pulsados el |MAIN_POWER_BUTTON_LABEL_LOWER| y |DC_USB_POWER_BUTTON_LABEL_LOWER| durante 3 segundos para reiniciar el Wi‑Fi y el Bluetooth del dispositivo y, a continuación, vuelva a vincularlo.
 
 |
-| 2.4 Una vez que el dispositivo se haya conectado correctamente, es necesario introducir el nombre y la contraseña de la red Wi-Fi a la que se conectará el dispositivo. Una vez introducidos, el dispositivo se conectará automáticamente a la red Wi-Fi.
+| 2.4 Una vez que el dispositivo se haya conectado correctamente, introduzca la contraseña de su red Wi-Fi y toque el botón **OK**.
 
 .. list-table::
    :header-rows: 0
