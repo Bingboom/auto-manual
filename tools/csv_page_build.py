@@ -15,13 +15,14 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.data_snapshot import (
+    STRUCTURED_DATA_DEFAULT_DIR,
     PAGE_REGISTRY_FILE,
     SPEC_FOOTNOTES_FILE,
     SPEC_MASTER_FILE,
     SPEC_NOTES_FILE,
     SPEC_TITLES_FILE,
 )
-from tools.phase1 import BuildPaths, BuildSelector, Phase1Builder  # noqa: E402
+from tools.csv_pages import BuildPaths, BuildSelector, CsvPageBuilder  # noqa: E402
 
 
 def _display_path(path: Path) -> str:
@@ -29,7 +30,7 @@ def _display_path(path: Path) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    ap = argparse.ArgumentParser("phase1 builder")
+    ap = argparse.ArgumentParser("CSV page builder")
     ap.add_argument("--model", default=None, help="comma-separated product models")
     ap.add_argument("--region", default=None, help="comma-separated regions")
     ap.add_argument("--page", default=None, help="comma-separated page ids")
@@ -67,10 +68,10 @@ def parse_args() -> argparse.Namespace:
     )
     args = ap.parse_args()
     data_root = ((args.data_root or "").strip() if isinstance(args.data_root, str) else "")
-    default_data_root = Path(data_root) if data_root else (Path("data") / "phase1")
+    default_data_root = Path(data_root) if data_root else Path(STRUCTURED_DATA_DEFAULT_DIR)
 
     if args.page_registry is None:
-        args.page_registry = _display_path(Path("data") / "phase1" / PAGE_REGISTRY_FILE)
+        args.page_registry = _display_path(default_data_root / PAGE_REGISTRY_FILE)
     if args.page_blocks_dir is None:
         args.page_blocks_dir = _display_path(default_data_root)
     if args.spec_master_csv is None:
@@ -117,15 +118,15 @@ def main() -> None:
         pages=args.page,
         langs=args.lang,
     )
-    result = Phase1Builder(paths).build(selector, strict_renderer=not args.no_strict_renderer)
+    result = CsvPageBuilder(paths).build(selector, strict_renderer=not args.no_strict_renderer)
 
     for out_path in result.written_files:
-        print(f"[phase1_build] Wrote: {out_path}")
+        print(f"[csv_page_build] Wrote: {out_path}")
     for reason in result.skipped_pages:
-        print(f"[phase1_build] Skipped: {reason}")
+        print(f"[csv_page_build] Skipped: {reason}")
 
     print(
-        f"[phase1_build] Done. files={result.write_count}, "
+        f"[csv_page_build] Done. files={result.write_count}, "
         f"skipped={len(result.skipped_pages)}"
     )
 

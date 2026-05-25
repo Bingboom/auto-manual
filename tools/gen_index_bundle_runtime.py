@@ -205,7 +205,7 @@ def prepare_bundle_workspace(
             cfg,
             context.target_model,
             context.target_region,
-            phase1_output_dir=context.generated_dir,
+            csv_page_output_dir=context.generated_dir,
             data_root=data_root,
         )
         ensure_csv_page_rsts(

@@ -63,8 +63,8 @@ Estimated effort: 5-8 days.
 
 - [x] Add or extend shared compact table components in `docs/renderers/latex/`.
 - [x] Add or extend notice, caution, note, and tip components in `docs/renderers/latex/`.
-- [x] Update `tools/phase1/renderers_symbols.py` to emit LaTeX through shared macros instead of relying mainly on Sphinx `list-table`.
-- [x] Update `tools/phase1/renderers_lcd_icons.py` to emit a compact LaTeX LCD icon table through shared macros.
+- [x] Update `tools/csv_pages/renderers_symbols.py` to emit LaTeX through shared macros instead of relying mainly on Sphinx `list-table`.
+- [x] Update `tools/csv_pages/renderers_lcd_icons.py` to emit a compact LaTeX LCD icon table through shared macros.
 - [x] Add tests for symbols renderer LaTeX output.
 - [x] Add tests for LCD icons renderer LaTeX output.
 - [x] Add a LaTeX-specific `WHAT'S IN THE BOX` layout that calls shared macros and avoids duplicated language layout logic.
@@ -117,7 +117,7 @@ Phase 2 completion notes:
   - p004-p005: product overview now uses shared compact panels; source overview artwork and annotation density still differ from the reference.
   - p006-p010: operation pages now use the shared LCD mode macro, but long prose, caution list-tables, and resume-condition tables still create overfull/underfull LaTeX warnings.
   - p011-p016: later early-book sections inherit the Phase 1 typography, but pagination and long translated headings still need Phase 3 multilingual tuning.
-- Validation run: `python3 -m py_compile tools/phase1/renderers_symbols.py tools/phase1/renderers_lcd_icons.py`.
+- Validation run: `python3 -m py_compile tools/csv_pages/renderers_symbols.py tools/csv_pages/renderers_lcd_icons.py`.
 - Validation run: `python3 -m unittest`.
 - Validation run: `python3 build.py pdf --config config.eu-en.yaml --model JE-1000F --region EU --no-clean`.
 - Validation run: `python3 build.py pdf --config config.eu.yaml --model JE-1000F --region EU --no-clean`.

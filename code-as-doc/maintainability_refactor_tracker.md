@@ -187,8 +187,8 @@ Milestone status: `done`
     - [`../tests/test_spec_master_lookup.py`](../tests/test_spec_master_lookup.py)
     - [`../tests/test_spec_master_audit.py`](../tests/test_spec_master_audit.py)
     - [`../tests/test_spec_master_repairs.py`](../tests/test_spec_master_repairs.py)
-    - [`../tests/test_phase1_builder.py`](../tests/test_phase1_builder.py)
-    - [`../tests/test_phase1_renderers.py`](../tests/test_phase1_renderers.py)
+    - [`../tests/test_csv_page_builder.py`](../tests/test_csv_page_builder.py)
+    - [`../tests/test_csv_page_renderers.py`](../tests/test_csv_page_renderers.py)
   - Done when:
     - lookup, normalize, audit, repair, and legacy bindings are separated
     - downstream build/report behavior is unchanged

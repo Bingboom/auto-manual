@@ -16,7 +16,7 @@ Current test coverage includes:
 - target resolution
 - config validation
 - layout param validation
-- phase1 rendering
+- CSV page rendering from `data/phase2`
 - review bundle flow
 - sync-review
 - diff-report
@@ -90,4 +90,3 @@ python build.py fast --config config.us.yaml --model JE-1000F --region US
 - Historical test reports under [`code-as-doc/tests/`](../tests) are archive material, not the current source of truth.
 - Prefer [`build.py`](../../build.py) for smoke checks instead of calling old low-level scripts directly.
 - CI baseline lives in [`.github/workflows/manual-validation.yml`](../../.github/workflows/manual-validation.yml) and currently runs `unit`, `doctor-en`, `check-en`, and `check-jp`.
-

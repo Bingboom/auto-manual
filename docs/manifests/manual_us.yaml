@@ -13,7 +13,7 @@ pages:
     lang: en
     file: templates/page_shared/en/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [en]
     include_dir: generated/{model}
@@ -31,7 +31,7 @@ pages:
     langs: [en]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [en]
     include_dir: generated/{model}
@@ -58,7 +58,7 @@ pages:
     lang: en
     file: templates/page_shared/en/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [en]
     include_dir: generated/{model}
@@ -80,7 +80,7 @@ pages:
     lang: fr
     file: templates/page_shared/fr/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [fr]
     include_dir: generated/{model}
@@ -98,7 +98,7 @@ pages:
     langs: [fr]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [fr]
     include_dir: generated/{model}
@@ -125,7 +125,7 @@ pages:
     lang: fr
     file: templates/page_shared/fr/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [fr]
     include_dir: generated/{model}
@@ -147,7 +147,7 @@ pages:
     lang: es
     file: templates/page_shared/es/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [es]
     include_dir: generated/{model}
@@ -165,7 +165,7 @@ pages:
     langs: [es]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [es]
     include_dir: generated/{model}
@@ -192,7 +192,7 @@ pages:
     lang: es
     file: templates/page_shared/es/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [es]
     include_dir: generated/{model}

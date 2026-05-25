@@ -78,9 +78,9 @@ Must update:
 
 Examples:
 
-- [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) field semantics
+- [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) field semantics
 - new `tpl_*` placeholders
-- safety template or [`spec_titles.csv`](../data/phase1/spec_titles.csv) usage changes
+- safety template or [`spec_titles.csv`](../data/phase2/spec_titles.csv) usage changes
 - sync-review behavior after CSV edits
 
 Must update:
@@ -195,4 +195,3 @@ Before merging, check:
 - Did we document new data assumptions?
 - Did we preserve history while keeping normative docs current?
 - Can another maintainer follow the updated commands without reading the code first?
-

@@ -21,13 +21,14 @@ from tools.utils.spec_master import (  # noqa: E402
     SpecMasterSectionSummary,
     audit_spec_master_csv,
 )
+from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR, SPEC_MASTER_FILE  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser("audit Spec_Master.csv quality and section consistency")
     parser.add_argument(
         "--csv",
-        default="data/phase1/Spec_Master.csv",
+        default=f"{STRUCTURED_DATA_DEFAULT_DIR}/{SPEC_MASTER_FILE}",
         help="path to Spec_Master.csv",
     )
     parser.add_argument(

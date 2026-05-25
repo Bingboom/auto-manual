@@ -26,7 +26,7 @@ Current rule:
 
 Why this repo uses this model:
 
-- the repo tracks shared templates, phase1 CSV data, target review bundles, and Git-visible generated RST
+- the repo tracks shared templates, phase2 CSV data, target review bundles, and Git-visible generated RST
 - long-lived branches make `_review` and Git-visible generated files drift quickly
 - merge cost rises fast when shared logic and target review content move on separate long-running branches
 
@@ -82,7 +82,7 @@ Examples:
 
 ## 3. Which Branch To Use
 
-Use `feat/*`, `fix/*`, or `refactor/*` when the change belongs to shared code, templates, config families, phase1 CSV rules, review tooling, validation, or release tooling.
+Use `feat/*`, `fix/*`, or `refactor/*` when the change belongs to shared code, templates, config families, phase2 CSV rules, review tooling, validation, or release tooling.
 
 Use `review/<MODEL>-<REGION>-<topic>` when the change is mainly target-specific content under [`docs/_review/<model>/<region>/`](../../docs/_review) or a tightly related target-specific output refresh.
 

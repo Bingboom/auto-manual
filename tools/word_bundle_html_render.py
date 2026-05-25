@@ -6,7 +6,7 @@ from __future__ import annotations
 import html
 from html.parser import HTMLParser
 
-from tools.phase1.renderers import rst_escape
+from tools.csv_pages.renderers import rst_escape
 
 
 def _render_cover_html(title: str) -> str:

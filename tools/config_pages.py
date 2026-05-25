@@ -100,8 +100,8 @@ def parse_config_pages(
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] csv_page requires page"))
                 continue
 
-            source = str(raw.get("source", "phase1")).strip().lower()
-            if source != "phase1":
+            source = str(raw.get("source", "phase2")).strip().lower()
+            if source != "phase2":
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] csv_page.source invalid: {source}"))
                 continue
 
@@ -270,4 +270,3 @@ def parse_config_pages_or_raise(
     if error_prefix:
         raise RuntimeError(f"{error_prefix}: {first}")
     raise RuntimeError(first)
-

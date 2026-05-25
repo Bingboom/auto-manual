@@ -12,7 +12,7 @@ from tests.test_helpers import temp_test_root, write_lines, write_text
 class TestCheckDocs(unittest.TestCase):
     def test_resolve_spec_master_csv_path_should_honor_data_root_override(self) -> None:
         with temp_test_root() as root:
-            cfg = {"paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"}}
+            cfg = {"paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"}}
 
             path = check_docs.resolve_spec_master_csv_path(cfg, data_root=(root / "data" / "phase2").as_posix())
 

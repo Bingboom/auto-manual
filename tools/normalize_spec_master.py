@@ -16,13 +16,14 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.utils.spec_master import normalize_spec_master_csv  # noqa: E402
+from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR, SPEC_MASTER_FILE  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser("normalize Spec_Master.csv into derived outputs")
     parser.add_argument(
         "--csv",
-        default="data/phase1/Spec_Master.csv",
+        default=f"{STRUCTURED_DATA_DEFAULT_DIR}/{SPEC_MASTER_FILE}",
         help="path to Spec_Master.csv",
     )
     parser.add_argument(

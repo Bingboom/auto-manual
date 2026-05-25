@@ -2,7 +2,7 @@
 
 Updated: 2026-05-24
 
-This file explains the current phase1/phase2 spec data layer, with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) as the build-time read model.
+This file explains the current phase2 spec data layer, with [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) as the build-time read model.
 It is meant to serve two audiences at the same time:
 
 - editors who need to know where to put data in the CSVs
@@ -61,38 +61,38 @@ It answers the practical question: "I have a piece of manual data. Which file an
 
 | Data type | File | Where to fill it | Current rule |
 | --- | --- | --- | --- |
-| Product name | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=product_name`, fill `Value_*` | Use the row that belongs to the target `Model` + `Region` |
-| Model number | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=model_no`, fill `Value_*` | Same placement rule as `product_name` |
-| Visible spec rows | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=specifications`, choose visible `Section`, fill `Row_key`, `Row_label_*`, `Param_*`, `Value_*` | Use this for rows that should appear in the spec table |
-| Product overview labels or per-model UI text | Feishu `页面占位参数`, exported to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview`, `Row_key=<concept_key>`, `Slot_key=<slot>` | Use this for placeholders consumed by templates |
-| One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
-| Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
-| Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
-| Spec page title and section metadata | [`spec_titles.csv`](../data/phase1/spec_titles.csv) | one row per visible spec title/section | Use this for visible spec title localization and default section ordering |
+| Product name | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=product_name`, fill `Value_*` | Use the row that belongs to the target `Model` + `Region` |
+| Model number | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) | `Page=specifications`, `Section=GENERAL INFO`, `Row_key=model_no`, fill `Value_*` | Same placement rule as `product_name` |
+| Visible spec rows | Feishu `规格参数明细`, exported to [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) | `Page=specifications`, choose visible `Section`, fill `Row_key`, `Row_label_*`, `Param_*`, `Value_*` | Use this for rows that should appear in the spec table |
+| Product overview labels or per-model UI text | Feishu `页面占位参数`, exported to [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) | `Page=Product overview`, `Row_key=<concept_key>`, `Slot_key=<slot>` | Use this for placeholders consumed by templates |
+| One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
+| Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
+| Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase2/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
+| Spec page title and section metadata | [`spec_titles.csv`](../data/phase2/spec_titles.csv) | one row per visible spec title/section | Use this for visible spec title localization and default section ordering |
 | Safety intro prose | [`docs/templates/page_*/safety_*.rst`](../docs/templates) | family safety templates | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
 
-## 2. Current Phase1 CSV Files
+## 2. Current phase2 CSV Files
 
 The current manual data layer uses these files:
 
-- [`data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
   - main product parameters
   - visible spec rows
   - `product_name`
   - `model_no`
 - page-value placeholder rows
-- [`data/phase1/Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
   - superscript footnote definitions
-- [`data/phase1/Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
+- [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
   - bottom-of-spec notes that are not referenced by superscripts
-- [`data/phase1/spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
   - localized visible title mapping for the spec page
-- [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv)
-  - page registry used by the remaining phase1 csv-page flow
+- [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv)
+  - page registry used by the remaining phase2 CSV-page flow
 
-[`Spec_Master.csv`](../data/phase1/Spec_Master.csv) remains the main structured source for product identity, spec rows, and template substitution.
+[`Spec_Master.csv`](../data/phase2/Spec_Master.csv) remains the main structured source for product identity, spec rows, and template substitution.
 
-## 3. How To Fill A Row In [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+## 3. How To Fill A Row In [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 
 This section is the editor-facing filling guide.
 
@@ -102,7 +102,7 @@ This section is the editor-facing filling guide.
 | --- | --- | --- |
 | `Page` | visible page ownership | Use `specifications`, `Product overview`, or `Product overview, specifications,` |
 | `Section` | logical group | Use the visible spec section for spec rows; use internal container sections for page-value rows |
-| `Section_order` | section order | Optional. If filled in `Spec_Master.csv`, it is the highest-priority section order; if blank, the renderer can fall back to [`spec_titles.csv`](../data/phase1/spec_titles.csv) |
+| `Section_order` | section order | Optional. If filled in `Spec_Master.csv`, it is the highest-priority section order; if blank, the renderer can fall back to [`spec_titles.csv`](../data/phase2/spec_titles.csv) |
 | `Row_order` | row order inside a section | Use `1`, `2`, `3`, ... inside the same `document_key + Page + Section`; keep the same value across all lines of one logical row |
 | `Row_key` | stable machine key | Same concept should use the same `Row_key` across regions; do not treat `Row_key` alone as a unique row ID |
 | `Row_label_*` | visible row label | Fill the visible label that should appear in the final output |
@@ -130,7 +130,7 @@ Use this rule of thumb:
 
 - if the text should appear as a visible row in the spec table, add a normal spec row
 - if the text should fill a template placeholder such as a button label, add a row with a non-empty `Slot_key`
-- if the text is a footnote, use [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+- if the text is a footnote, use [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
 - if the text is long safety prose, edit the family's `docs/templates/page_*/safety_*.rst`
 
 ### 3.3 Example: Product Identity Row
@@ -171,7 +171,7 @@ Current footnote rule:
 
 - do not type `①②③` into `Row_label_*`, `Param_*`, or `Value_*`
 - fill `Row_label_footnote_refs`, `Param_footnote_refs`, or `Value_footnote_refs` with comma-separated `Footnote_id` values instead
-- the renderer derives the visible superscript marker from [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) `Footnote_order`
+- the renderer derives the visible superscript marker from [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv) `Footnote_order`
 
 ### 3.5 Example: Multi-Line Spec Row
 
@@ -220,7 +220,7 @@ These fields are useful when you need to maintain parser behavior rather than ju
 | `section_title_*` | can override the visible section title before `spec_titles.csv` is applied |
 | `line_text_*` | direct rendered row text; bypasses `Param_* + Value_*` assembly |
 | `param_value_sep` | overrides the default `: ` separator between `Param_*` and `Value_*` |
-| `note_text_*` / `footnote_text_*` | legacy inline note fields; prefer [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) and [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) instead |
+| `note_text_*` / `footnote_text_*` | legacy inline note fields; prefer [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv) and [`Spec_Notes.csv`](../data/phase2/Spec_Notes.csv) instead |
 
 ## 4. Current Editing Conventions
 
@@ -429,13 +429,13 @@ Current practical rule:
 
 This section is for people maintaining the code path, not just editing the CSV.
 
-### 5.1 Where [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) Is Used
+### 5.1 Where [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) Is Used
 
 Current flow:
 
 1. [`build.py`](../build.py) or [`tools/build_docs.py`](../tools/build_docs.py) resolves target `model` and `region`
-2. product identity and template substitutions are resolved from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-3. [`tools/phase1_build.py`](../tools/phase1_build.py) renders CSV-driven content
+2. product identity and template substitutions are resolved from [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+3. [`tools/csv_page_build.py`](../tools/csv_page_build.py) renders CSV-driven content
 4. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes runtime pages
 5. `_review` can then be seeded or synced from that runtime output
 6. `word`, `html`, `pdf`, `publish`, and `release-manifest` consume the prepared bundle or its outputs
@@ -494,7 +494,7 @@ Current code-level consequence:
 
 ### 5.4 Current Spec Page Extraction
 
-Current spec parsing lives mainly in [`tools/phase1/renderers_spec_parser.py`](../tools/phase1/renderers_spec_parser.py).
+Current spec parsing lives mainly in [`tools/csv_pages/renderers_spec_parser.py`](../tools/csv_pages/renderers_spec_parser.py).
 
 The parser treats the input as `Spec_Master`-style data when:
 
@@ -517,7 +517,7 @@ Current row assembly rule:
 Current title rule:
 
 - page title and section title can come from row fields when present
-- [`spec_titles.csv`](../data/phase1/spec_titles.csv) is then applied as a visible title map
+- [`spec_titles.csv`](../data/phase2/spec_titles.csv) is then applied as a visible title map
 - missing mapped titles fall back to the source section title
 
 ### 5.5 Current Placeholder Resolution
@@ -555,13 +555,13 @@ Current rule:
 - diff-report filters spec rows by `Page=spec` / `specifications`
 - it skips rows with non-empty `Slot_key`
 - it skips `Section=TEMPLATE VARS`
-- it uses [`spec_titles.csv`](../data/phase1/spec_titles.csv) to render localized visible section titles
+- it uses [`spec_titles.csv`](../data/phase2/spec_titles.csv) to render localized visible section titles
 
 That means a title-map change can affect diff-report output even when the visible spec table still builds correctly.
 
-## 6. [`spec_titles.csv`](../data/phase1/spec_titles.csv) Rule
+## 6. [`spec_titles.csv`](../data/phase2/spec_titles.csv) Rule
 
-[`spec_titles.csv`](../data/phase1/spec_titles.csv) is the visible spec title and section-metadata table.
+[`spec_titles.csv`](../data/phase2/spec_titles.csv) is the visible spec title and section-metadata table.
 
 Current typical fields:
 
@@ -583,10 +583,10 @@ Current recommended scope:
 Current order rule:
 
 - use `section_order` here as the default order for visible spec sections
-- if a row in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) already has `Section_order`, that explicit value wins
-- if `Section_order` is blank in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), the renderer may fall back to `spec_titles.csv section_order`
+- if a row in [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) already has `Section_order`, that explicit value wins
+- if `Section_order` is blank in [`Spec_Master.csv`](../data/phase2/Spec_Master.csv), the renderer may fall back to `spec_titles.csv section_order`
 
-Do not use [`spec_titles.csv`](../data/phase1/spec_titles.csv) for:
+Do not use [`spec_titles.csv`](../data/phase2/spec_titles.csv) for:
 
 - internal placeholder sections such as `CONTROLS`, `SETTINGS`, `ACCESSORIES`, or `TEMPLATE VARS`
 - general product parameter storage
@@ -594,16 +594,16 @@ Do not use [`spec_titles.csv`](../data/phase1/spec_titles.csv) for:
 
 Current fallback rule:
 
-- if a title is missing from [`spec_titles.csv`](../data/phase1/spec_titles.csv), current renderers fall back to the source section title
+- if a title is missing from [`spec_titles.csv`](../data/phase2/spec_titles.csv), current renderers fall back to the source section title
 
 ## 7. Spec Footnotes And Notes
 
 Keep spec-table content, superscript footnotes, and standalone notes separate.
 This makes the spec page easier to validate and keeps superscript numbering deterministic.
 
-### 7.1 [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
+### 7.1 [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
 
-Use [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) for:
+Use [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv) for:
 
 - footnotes that are referenced by superscripts in the spec table
 - one reusable definition row per `Footnote_id`
@@ -630,13 +630,13 @@ Current rule:
 - do not store `①②③` or `*` in the footnote text cells
 - use `Footnote_order` to control the rendered marker order
 - keep `Type=Footnote` for explicit trailer classification coming from the Feishu source
-- `Footnote_id` must be stable enough to be referenced from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- `Footnote_id` must be stable enough to be referenced from [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - `Spec_Footnotes.csv` no longer has a `project_code` / `项目代码` column
 - target matching is based on `Region` + `Model`
 
-### 7.2 [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
+### 7.2 [`Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
 
-Use [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv) for:
+Use [`Spec_Notes.csv`](../data/phase2/Spec_Notes.csv) for:
 
 - bottom-of-spec notes that are not referenced by a superscript
 - standalone statements such as trademark or standards notes
@@ -665,9 +665,9 @@ Current rule:
 - `Spec_Notes.csv` is not referenced from spec cells and does not generate superscript markers
 - when one rendered spec page contains both notes and footnotes at the bottom, their final display order follows [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
 
-### 7.3 How [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) References Footnotes
+### 7.3 How [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) References Footnotes
 
-Use these columns in [`Spec_Master.csv`](../data/phase1/Spec_Master.csv):
+Use these columns in [`Spec_Master.csv`](../data/phase2/Spec_Master.csv):
 
 - `Row_label_footnote_refs`
 - `Param_footnote_refs`
@@ -677,7 +677,7 @@ Current rule:
 
 - each cell holds zero, one, or more comma-separated `Footnote_id` values
 - do not handwrite `①②③` into `Row_label_*`, `Param_*`, or `Value_*`
-- every referenced `Footnote_id` must exist in [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv) for the same target
+- every referenced `Footnote_id` must exist in [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv) for the same target
 
 Example:
 
@@ -697,15 +697,15 @@ Current validation checks now enforce:
 - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` must only reference existing `Footnote_id` values
 - hardcoded superscript markers such as `①②③` in visible spec text are treated as legacy input and should be removed
 
-## 8. Safety Templates and [`page_registry.csv`](../data/phase1/page_registry.csv)
+## 8. Safety Templates and [`page_registry.csv`](../data/phase2/page_registry.csv)
 
-Safety intro pages are now maintained as fixed RST templates. [`page_registry.csv`](../data/phase1/page_registry.csv) remains only for the csv-page flow that is still active.
+Safety intro pages are now maintained as fixed RST templates. [`page_registry.csv`](../data/phase2/page_registry.csv) remains only for the csv-page flow that is still active.
 
 Current rule:
 
 - use `docs/templates/page_*/safety_*.rst` for safety intro content
-- use [`page_registry.csv`](../data/phase1/page_registry.csv) for block/page structure
-- do not push safety prose into [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) unless it is really a parameterized row
+- use [`page_registry.csv`](../data/phase2/page_registry.csv) for block/page structure
+- do not push safety prose into [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) unless it is really a parameterized row
 
 ## 9. Safe Edit Workflow
 
@@ -722,10 +722,10 @@ Do not create one config per model just because the model changed.
 
 When you change:
 
-- [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-- [`Spec_Footnotes.csv`](../data/phase1/Spec_Footnotes.csv)
-- [`Spec_Notes.csv`](../data/phase1/Spec_Notes.csv)
-- [`spec_titles.csv`](../data/phase1/spec_titles.csv)
+- [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
+- [`Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
+- [`spec_titles.csv`](../data/phase2/spec_titles.csv)
 follow this order:
 
 1. run `check`
@@ -751,16 +751,16 @@ python tools/export_spec_master_row_key_mapping.py
 
 Current output:
 
-- [`data/phase1/row_key_mapping.csv`](../data/phase1/row_key_mapping.csv)
+- [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv)
 - [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) after `python build.py sync-data --config config.us.yaml --data-root data/phase2`
 - [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
 - `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source + Line_order -> Row_key`
 - the CSV keeps `Row_label_source`, `Line_order`, `Row_key`, and `Remark`
 - the first column stays `Row_label_source`, so the sheet can still be imported into external tools for label-first lookup or bi-directional reference
-- `Line_order` is the second lookup key and must stay aligned with [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-- rerunning the export script syncs the latest `Row_label_source + Line_order` set from [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) while preserving any existing manual `Row_key` and `Remark`
+- `Line_order` is the second lookup key and must stay aligned with [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- rerunning the export script syncs the latest `Row_label_source + Line_order` set from [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) while preserving any existing manual `Row_key` and `Remark`
 - keep `Row_key` in snake_case canonical form, for example `Product Name -> product_name`
-- when you reconcile [`Spec_Master.csv`](../data/phase1/Spec_Master.csv), align each `Row_key` to the matching `Row_label_source + Line_order` entry from this mapping table
+- when you reconcile [`Spec_Master.csv`](../data/phase2/Spec_Master.csv), align each `Row_key` to the matching `Row_label_source + Line_order` entry from this mapping table
 
 Review sync:
 
@@ -852,7 +852,7 @@ Symptom:
 
 Check:
 
-- [`spec_titles.csv`](../data/phase1/spec_titles.csv) contains the visible section title, not an internal container section
+- [`spec_titles.csv`](../data/phase2/spec_titles.csv) contains the visible section title, not an internal container section
 - the target language column exists
 - the section title in the CSV matches the rendered source section title
 

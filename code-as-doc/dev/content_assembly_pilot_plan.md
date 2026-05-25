@@ -60,7 +60,7 @@ Assets:
 
 Data surfaces:
 
-- `data/phase1/Spec_Master.csv`
+- `data/phase2/Spec_Master.csv`
 - `data/phase2/Spec_Master.csv`
 - recipe `field_map` selectors using `row_key`, `pages`, `usage_type`,
   `placement_key`, `value_role`, and `variant_key`

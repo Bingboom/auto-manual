@@ -156,7 +156,7 @@ class TestProductOverviewRenderer(unittest.TestCase):
                 docs_dir=repo_root / "docs",
                 recipe_path=recipe_path,
                 template_path=repo_root / "docs" / "templates" / "page_us-en" / "03_product_overview_placeholder.rst",
-                spec_master_csv=repo_root / "data" / "phase1" / "Spec_Master.csv",
+                spec_master_csv=repo_root / "data" / "phase2" / "Spec_Master.csv",
                 registry_path=repo_root / "docs" / "templates" / "snippets" / "registry.yaml",
                 vars_map={},
                 base_substitutions=self._substitutions()
@@ -168,7 +168,7 @@ class TestProductOverviewRenderer(unittest.TestCase):
 
         self.assertNotIn(PRODUCT_OVERVIEW_TOKEN, result.text)
         self.assertIn(r"\HBOverviewPanel{FRONT VIEW}{front_product.jpg}{%", result.text)
-        self.assertIn("USB-A 18W Output", result.text)
+        self.assertIn("USB-A 18 W Output", result.text)
 
     def test_draft_engine_should_keep_template_fallback_when_pilot_not_applicable(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
@@ -209,7 +209,7 @@ class TestProductOverviewRenderer(unittest.TestCase):
                 docs_dir=docs_dir,
                 recipe_path=recipe_path,
                 template_path=template_path,
-                spec_master_csv=repo_root / "data" / "phase1" / "Spec_Master.csv",
+                spec_master_csv=repo_root / "data" / "phase2" / "Spec_Master.csv",
                 registry_path=registry_path,
                 vars_map={},
                 base_substitutions=self._substitutions(),
@@ -253,7 +253,7 @@ class TestProductOverviewRenderer(unittest.TestCase):
                     docs_dir=repo_root / "docs",
                     recipe_path=recipe_path,
                     template_path=repo_root / "docs" / "templates" / "page_us-en" / "03_product_overview_placeholder.rst",
-                    spec_master_csv=repo_root / "data" / "phase1" / "Spec_Master.csv",
+                    spec_master_csv=repo_root / "data" / "phase2" / "Spec_Master.csv",
                     registry_path=repo_root / "docs" / "templates" / "snippets" / "registry.yaml",
                     vars_map={},
                     base_substitutions=self._substitutions(),

@@ -239,7 +239,7 @@ Pass target differences through:
 - `--model`
 - `--region`
 - `build.targets`
-- [`data/phase1/*.csv`](../data/phase1)
+- [`data/phase2/*.csv`](../data/phase2)
 
 Phase2 snapshot rule:
 
@@ -251,7 +251,7 @@ Phase2 snapshot rule:
 - for the review-init worker, use an isolated snapshot root such as `.tmp/review-start/phase2`; the worker syncs fresh data there before it seeds `docs/_review`
 - `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`
 - `review` still writes the real repo `docs/_review` tree and does not accept `--staging-root`, so it is intentionally excluded from `local_build.py`
-- [`../data/phase1/page_registry.csv`](../data/phase1/page_registry.csv), page selection/applicability, and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
+- [`../data/phase2/page_registry.csv`](../data/phase2/page_registry.csv), page selection/applicability, and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
 
 Only create a new config when one of these really changes:
 
@@ -364,10 +364,10 @@ Parallel-language template note:
 - when the phase2 authoring Base provides a `Figure` attachment, `sync-data` downloads it into `data/phase2/_attachments/symbols/` and writes that local file back to `image_path`
 - use `block_type=table_row` for the normal symbol/meaning grid, and `block_type=signal_row` for the warning/caution/note/tip table at the top of the symbols page
 - signal rows must include the four uppercase `symbol_key` values `WARNING`, `CAUTION`, `NOTE`, and `TIPS`; the renderer localizes the visible label through `tools/signal_words.py`
-- `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
-- `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase1/Spec_Master.csv)
+- `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - leave `Region` / `Model` blank when one symbols row is shared across manuals
-- `sku_scope` is no longer used in [`symbols_blocks.csv`](../data/phase1/symbols_blocks.csv)
+- `sku_scope` is no longer used in [`symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
 
 `Spec_Master.csv` note:
 
@@ -643,7 +643,7 @@ Field pairing now prefers stable source back-mapping before falling back to rend
 
 `Failed to resolve Product Name from Spec_Master.csv`
 
-- Check [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) for `Row_key=product_name`
+- Check [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) for `Row_key=product_name`
 - Check model / region / language coverage
 - Run `python build.py check --config ... --model ... --region ...`
 

@@ -19,9 +19,10 @@ ROOT = bootstrap_repo_root(__file__, parent_count=2)
 try:
     from .renderers import get_renderer
 except ImportError:  # pragma: no cover - direct script execution fallback
-    from tools.phase1.renderers import get_renderer
+    from tools.csv_pages.renderers import get_renderer
 
 from tools.utils.spec_master import resolve_product_name_from_spec_master
+from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -72,16 +73,17 @@ class BuildPaths:
 
     @classmethod
     def from_root(cls, root: Path) -> "BuildPaths":
+        data_root = root / STRUCTURED_DATA_DEFAULT_DIR
         return cls(
             root=root,
-            page_registry=root / "data" / "phase1" / "page_registry.csv",
-            page_blocks_dir=root / "data" / "phase1",
+            page_registry=data_root / "page_registry.csv",
+            page_blocks_dir=data_root,
             template_dir=root / "docs" / "templates",
             output_dir=root / "docs" / "generated",
-            spec_master_csv=root / "data" / "phase1" / "Spec_Master.csv",
-            spec_footnotes_csv=root / "data" / "phase1" / "Spec_Footnotes.csv",
-            spec_notes_csv=root / "data" / "phase1" / "Spec_Notes.csv",
-            spec_titles_csv=root / "data" / "phase1" / "spec_titles.csv",
+            spec_master_csv=data_root / "Spec_Master.csv",
+            spec_footnotes_csv=data_root / "Spec_Footnotes.csv",
+            spec_notes_csv=data_root / "Spec_Notes.csv",
+            spec_titles_csv=data_root / "spec_titles.csv",
         )
 
 
@@ -129,7 +131,7 @@ class PageSpec:
     enabled: bool
 
 
-class Phase1Builder:
+class CsvPageBuilder:
     def __init__(self, paths: BuildPaths):
         self.paths = paths
 
@@ -206,7 +208,7 @@ class Phase1Builder:
     def _trailer_text_fields(row: dict[str, str], *, kind: str) -> dict[str, str]:
         fields: dict[str, str] = {}
         for suffix in ("en", "fr", "es", "ja", "jp", "de", "it", "uk", "pt-BR", "br"):
-            text = Phase1Builder._localized_text_value(row, suffix)
+            text = CsvPageBuilder._localized_text_value(row, suffix)
             if not text:
                 continue
             fields[f"{kind}_text_{suffix}"] = text
@@ -225,7 +227,7 @@ class Phase1Builder:
         normalized: list[dict[str, str]] = []
         for row in rows:
             order = (row.get("Footnote_order") or row.get("footnote_order") or "").strip()
-            trailer_kind = Phase1Builder._normalize_spec_trailer_kind(
+            trailer_kind = CsvPageBuilder._normalize_spec_trailer_kind(
                 (row.get("Type") or row.get("type") or "").strip(),
                 default="footnote",
             )
@@ -244,7 +246,7 @@ class Phase1Builder:
                 "type": (row.get("Type") or row.get("type") or "").strip(),
                 "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
             }
-            normalized_row.update(Phase1Builder._trailer_text_fields(row, kind="footnote"))
+            normalized_row.update(CsvPageBuilder._trailer_text_fields(row, kind="footnote"))
             normalized.append(normalized_row)
         return normalized
 
@@ -256,7 +258,7 @@ class Phase1Builder:
         normalized: list[dict[str, str]] = []
         for row in rows:
             order = (row.get("Note_order") or row.get("note_order") or "").strip()
-            trailer_kind = Phase1Builder._normalize_spec_trailer_kind(
+            trailer_kind = CsvPageBuilder._normalize_spec_trailer_kind(
                 (row.get("Type") or row.get("type") or "").strip(),
                 default="note",
             )
@@ -275,7 +277,7 @@ class Phase1Builder:
                 "type": (row.get("Type") or row.get("type") or "").strip(),
                 "enabled": (row.get("Enabled") or row.get("enabled") or "TRUE").strip(),
             }
-            normalized_row.update(Phase1Builder._trailer_text_fields(row, kind="note"))
+            normalized_row.update(CsvPageBuilder._trailer_text_fields(row, kind="note"))
             normalized.append(normalized_row)
         return normalized
 
@@ -496,8 +498,8 @@ class Phase1Builder:
 
 def _main() -> None:
     raise SystemExit(
-        "tools/phase1/builder.py is a library module. "
-        "Use: python tools/phase1_build.py [--model ...] [--region ...] [--page ...] [--lang ...]"
+        "tools/csv_pages/builder.py is a library module. "
+        "Use: python tools/csv_page_build.py [--model ...] [--region ...] [--page ...] [--lang ...]"
     )
 
 

@@ -10,7 +10,7 @@ pages:
     lang: en
     file: templates/page_shared/en/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [en]
     include_dir: generated/{model}
@@ -25,7 +25,7 @@ pages:
     langs: [en]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [en]
     include_dir: generated/{model}
@@ -52,7 +52,7 @@ pages:
     lang: en
     file: templates/page_shared/en/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [en]
     include_dir: generated/{model}
@@ -74,7 +74,7 @@ pages:
     lang: fr
     file: templates/page_shared/fr/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [fr]
     include_dir: generated/{model}
@@ -89,7 +89,7 @@ pages:
     langs: [fr]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [fr]
     include_dir: generated/{model}
@@ -116,7 +116,7 @@ pages:
     lang: fr
     file: templates/page_shared/fr/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [fr]
     include_dir: generated/{model}
@@ -138,7 +138,7 @@ pages:
     lang: es
     file: templates/page_shared/es/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [es]
     include_dir: generated/{model}
@@ -153,7 +153,7 @@ pages:
     langs: [es]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [es]
     include_dir: generated/{model}
@@ -180,7 +180,7 @@ pages:
     lang: es
     file: templates/page_shared/es/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [es]
     include_dir: generated/{model}
@@ -202,7 +202,7 @@ pages:
     lang: de
     file: templates/page_shared/de/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [de]
     include_dir: generated/{model}
@@ -217,7 +217,7 @@ pages:
     langs: [de]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [de]
     include_dir: generated/{model}
@@ -244,7 +244,7 @@ pages:
     lang: de
     file: templates/page_shared/de/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [de]
     include_dir: generated/{model}
@@ -266,7 +266,7 @@ pages:
     lang: it
     file: templates/page_shared/it/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [it]
     include_dir: generated/{model}
@@ -281,7 +281,7 @@ pages:
     langs: [it]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [it]
     include_dir: generated/{model}
@@ -308,7 +308,7 @@ pages:
     lang: it
     file: templates/page_shared/it/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [it]
     include_dir: generated/{model}
@@ -330,7 +330,7 @@ pages:
     lang: uk
     file: templates/page_shared/uk/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [uk]
     include_dir: generated/{model}
@@ -345,7 +345,7 @@ pages:
     langs: [uk]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [uk]
     include_dir: generated/{model}
@@ -372,7 +372,7 @@ pages:
     lang: uk
     file: templates/page_shared/uk/10_troubleshooting.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [uk]
     include_dir: generated/{model}

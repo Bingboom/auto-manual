@@ -48,7 +48,7 @@ FAMILY_INFO = {
         "notes": [
             "This family is intended for the HomePower 2000 Plus single-language English workflow.",
             "The current live phase2 rows resolve through JE-2000E / US data for JHP-2000A.",
-            "Keep spec and symbols pages data-driven under data/phase1 for this family.",
+            "Keep spec and symbols pages data-driven under data/phase2 for this family.",
         ],
     },
     "us-fr": {
@@ -101,11 +101,11 @@ RECIPE_BACKED_PAGES = {
 
 CSV_BACKED_PAGES = {
     "spec": [
-        "data/phase1/Spec_Master.csv",
-        "data/phase1/Spec_Footnotes.csv",
-        "data/phase1/Spec_Notes.csv",
+        "data/phase2/Spec_Master.csv",
+        "data/phase2/Spec_Footnotes.csv",
+        "data/phase2/Spec_Notes.csv",
     ],
-    "symbols": ["data/phase1/symbols_blocks.csv"],
+    "symbols": ["data/phase2/symbols_blocks.csv"],
 }
 
 ALIASES = {
@@ -300,7 +300,7 @@ def build_page_surface(family: str, page_key: str) -> dict[str, object]:
     elif lookup_key == "04_lcd_display":
         notes.append("This page has placeholder text but no dedicated recipe file in the current repo.")
     elif lookup_key == "01_meaning_of_symbols" and family == "jp":
-        notes.append("JP keeps detailed symbols content in this template page instead of data/phase1/symbols_blocks.csv.")
+        notes.append("JP keeps detailed symbols content in this template page instead of data/phase2/symbols_blocks.csv.")
 
     surface = {
         "page_key": page_key,
