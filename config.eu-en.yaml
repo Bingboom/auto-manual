@@ -14,6 +14,7 @@ build:
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: English / French / Spanish / German / Italian
     WARRANTY_EMAIL: hello.eu@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
 
 paths:
   page_manifest: docs/manifests/manual_eu-en.yaml

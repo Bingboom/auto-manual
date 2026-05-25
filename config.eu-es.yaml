@@ -13,6 +13,7 @@ build:
   word_title: "|PRODUCT_NAME| Manual de usuario"
   rst_substitutions:
     WARRANTY_EMAIL: hello.eu@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-es.yaml

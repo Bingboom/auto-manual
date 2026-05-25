@@ -8,7 +8,7 @@ GARANTIE
 Garantie limitée
 ----------------
 
-Jackery Inc. garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous.
+|LEGAL_COMPANY_NAME| garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous.
 
 Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits.
 
@@ -27,10 +27,19 @@ Période de garantie
 
        Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à |WARRANTY_EMAIL| afin de prolonger la durée de la garantie standard.
 
-Réparation ou remplacement
---------------------------
+.. only:: region_us
 
-Jackery remplacera (aux frais de Jackery) tout produit Jackery qui ne fonctionne pas pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Un produit de remplacement bénéficie de la garantie restante du produit d'origine.
+   Réparation ou remplacement
+   --------------------------
+
+   Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui ne fonctionne pas pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé/remplacé bénéficie de la garantie restante à compter de la date d'achat initiale.
+
+.. only:: region_eu
+
+   Échanger
+   --------
+
+   Jackery remplacera (aux frais de Jackery) tout produit Jackery qui ne fonctionne pas pendant la période de garantie applicable en raison d’un défaut de fabrication ou de matériau. Un produit de remplacement bénéficie de la garantie restante du produit d’origine.
 
 Limitée à l'acheteur et consommateur d'origine
 ----------------------------------------------
@@ -50,4 +59,4 @@ La garantie de Jackery ne s'applique pas à :
 Droits d'interprétation
 -----------------------
 
-Jackery Inc. se réserve le droit d'interpréter de manière définitive la politique après-vente des clients ci-dessus.
+|LEGAL_COMPANY_NAME| se réserve le droit d'interpréter de manière définitive la politique après-vente des clients ci-dessus.

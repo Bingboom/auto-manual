@@ -15,6 +15,7 @@ build:
   word_source: bundle
   rst_substitutions:
     WARRANTY_EMAIL: hello@jackery.com
+    LEGAL_COMPANY_NAME: Jackery Inc.
   open_word: false
   build_html: false
   open_html: false

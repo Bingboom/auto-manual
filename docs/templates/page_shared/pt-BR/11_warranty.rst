@@ -8,7 +8,7 @@ GARANTIA
 Garantia Limitada
 -----------------
 
-A Jackery Inc. garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal pelo consumidor durante o período de garantia aplicável identificado na seção "Período de Garantia" abaixo, sujeito às exclusões estabelecidas abaixo.
+A |LEGAL_COMPANY_NAME| garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal pelo consumidor durante o período de garantia aplicável identificado na seção "Período de Garantia" abaixo, sujeito às exclusões estabelecidas abaixo.
 
 Esta declaração de garantia estabelece a obrigação total e exclusiva de garantia da Jackery. Não assumiremos nem autorizaremos qualquer pessoa a assumir por nós qualquer outra responsabilidade relacionada à venda de nossos produtos.
 
@@ -33,11 +33,10 @@ Período de Garantia
 
        Para ativar a Extensão de Garantia, você deve registrar seu produto online ou entrar em contato com nossa equipe de atendimento ao cliente pelo e-mail |WARRANTY_EMAIL| para estender o período de garantia padrão.
 
-Reparo ou substituição
-----------------------
+Troca
+-----
 
-A Jackery reparará ou substituirá (às custas da Jackery) qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material.
-O produto reparado/substituído assume o período de garantia remanescente a partir da data original de compra.
+A Jackery substituirá (às custas da Jackery) qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. Um produto de substituição assume o período de garantia restante do produto original.
 
 Limitada ao comprador consumidor original
 -----------------------------------------

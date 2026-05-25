@@ -26,6 +26,7 @@ build:
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: English / French / Spanish
     WARRANTY_EMAIL: hello@jackery.com
+    LEGAL_COMPANY_NAME: Jackery Inc.
   open_word: false
   build_html: false
   open_html: false
