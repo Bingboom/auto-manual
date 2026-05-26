@@ -427,7 +427,8 @@ class TestPhase1Renderers(unittest.TestCase):
             vars_map={},
         )
 
-        self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n|\n\n.. only:: latex"))
+        self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n.. only:: latex"))
+        self.assertNotIn("\n|\n\n.. only:: latex", out)
         self.assertNotIn("USER MAINTENANCE INSTRUCTIONS", out)
         self.assertNotIn("During the lifecycle of energy storage products", out)
         self.assertIn("\n\n.. only:: not latex\n\n   .. list-table::", out)

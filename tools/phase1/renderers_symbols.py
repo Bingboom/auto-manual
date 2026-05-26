@@ -794,8 +794,6 @@ def _signal_section(lang: str, signal_rows: list[dict[str, object]] | None = Non
     lines: list[str] = []
     lines.extend(_rst_heading(page_title, "="))
     lines.append("")
-    lines.append("|")
-    lines.append("")
     # LaTeX component contract:
     # \HBSymbolTable{symbol header}{meaning header}{row macro calls}
     # \HBSymbolSignalRow{image basename}{optional signal label}{meaning}
