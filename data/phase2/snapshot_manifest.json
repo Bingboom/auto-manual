@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-05-25T09:36:11.773999+00:00",
+  "generated_at": "2026-05-26T10:35:27.220683Z",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -50,8 +50,8 @@
       "logical_name": "symbols_blocks",
       "file_name": "symbols_blocks.csv",
       "path": "data/phase2/symbols_blocks.csv",
-      "row_count": 28,
-      "sha256": "a8955d0aa555b90c857e8f69807d98b6814cc1382ef26fca6277abd3cf35d89e",
+      "row_count": 43,
+      "sha256": "2316ef53fedcb78df206b08b27b3fc0951be83d9a9cf23ec75cd8f0c9f074bb4",
       "previous_sha256": null,
       "changed": true
     },
@@ -75,6 +75,15 @@
     }
   ],
   "derived_files": [
+    {
+      "logical_name": "page_copy",
+      "file_name": "page_copy.csv",
+      "path": "data/phase2/page_copy.csv",
+      "row_count": 246,
+      "sha256": "b77964bbf0aa2ba26adf2ba3d857397685f214790c74b986b551eff121536a60",
+      "previous_sha256": null,
+      "changed": true
+    },
     {
       "logical_name": "row_key_mapping",
       "file_name": "row_key_mapping.csv",

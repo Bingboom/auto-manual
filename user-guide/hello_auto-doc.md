@@ -59,6 +59,7 @@ GitHub note:
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
 - `Manual Validation` now also runs `python tools/check_maintainability_guardrails.py` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
+- the same guardrail also protects the content-source boundary: visible manual copy should not move back into Python or YAML config
 - `build.py check` also compares duplicated RST and raw HTML list text so renderer-specific copies cannot silently drift from the source wording
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
 - that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
@@ -94,12 +95,14 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
    - [`data/phase2/lcd_icons_blocks.csv`](../data/phase2/lcd_icons_blocks.csv)
    - [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
+   - [`data/phase2/page_copy.csv`](../data/phase2/page_copy.csv)
    - [`data/phase2/Variable_Defaults.csv`](../data/phase2/Variable_Defaults.csv)
    - [`data/phase2/Variable_Lang_Overrides.csv`](../data/phase2/Variable_Lang_Overrides.csv)
    - [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv)
    - Responsibility: model-specific parameters, spec content, symbols content, troubleshooting content, and placeholder values
+   - Content-source boundary: manual body text, titles, table headers, prompts, image alt text, default placeholder copy, and output titles must live in RST templates/review RST or phase2/Feishu Base sources. Python and YAML config may keep field names, enum values, paths, rendering logic, error messages, and CLI help, but not visible manual copy.
    - When a valid phase2 snapshot exists, build/review/publish flows default to `data/phase2`; explicit `--data-root` still overrides that default.
-   - A phase2 snapshot is valid for automatic default use only when `snapshot_manifest.json` records the complete core table set from one sync run: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, `symbols_blocks`, and `troubleshooting`, plus the derived `row_key_mapping`. Partial `sync-data --table ...` refreshes are still useful for focused checks, but use explicit `--data-root` when building from them.
+   - A phase2 snapshot is valid for automatic default use only when `snapshot_manifest.json` records the complete core table set from one sync run: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, `symbols_blocks`, and `troubleshooting`, plus the derived `page_copy` and `row_key_mapping`. Partial `sync-data --table ...` refreshes are still useful for focused checks, but use explicit `--data-root` when building from them.
    - For queue-driven builds, Feishu phase2 tables remain the structured-data source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
    - For spec data authoring, edit `规格参数明细` for `Page=specifications` rows and `页面占位参数` for non-spec page placeholders. `sync-data --table spec_master` now reads those two source tables directly and writes the local `Spec_Master.csv` read model.
    - After changing either spec source table, run `python build.py sync-data --config config.us.yaml --data-root data/phase2 --table spec_master` for the normal snapshot refresh, or `python build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222` for a focused rebuild; add `--write-back` only when the merged source data should update the legacy Feishu total table.
@@ -108,7 +111,7 @@ The manual system now has four layers, but they are used at different stages.
    - `config.eu-en.yaml`, `config.eu-fr.yaml`, and `config.eu-es.yaml` are the explicit English, French, and Spanish EU single-language surfaces when you want one language family at a time; `config.pt-br.yaml` follows the same single-language pattern for Brazil Portuguese
    - when one family must always read from one known Base view, `sync.phase2.tables.<name>` can pin `table_id` and `view_id` directly in config; those literal bindings override the corresponding `*_env` values for that table
    - `python build.py validate --config ...` now catches missing phase2 table base-token/table-id bindings and page-manifest languages that are not listed in `build.languages`
-   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `figure` attachments sync into `data/phase2/_attachments/lcd_icons/` and render as the LCD table image column, while symbols `Figure` attachments sync into `data/phase2/_attachments/symbols/` and render through `symbols_blocks.csv`; troubleshooting error-code rows render from `troubleshooting_blocks.csv`; the signal-word symbols table can also live in `symbols_blocks.csv` as `block_type=signal_row`; LCD `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
+   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `figure` attachments sync into `data/phase2/_attachments/lcd_icons/` and render as the LCD table image column, while symbols `Figure` attachments sync into `data/phase2/_attachments/symbols/` and render through `symbols_blocks.csv`; troubleshooting error-code rows render from `troubleshooting_blocks.csv`; shared page copy comes from derived `page_copy.csv` with fixed fields `page_id`, `lang`, `copy_key`, `text`, `enabled`, and `order`; the signal-word symbols table can live in `symbols_blocks.csv` as `block_type=signal_row`, and symbols page title/header/alt/signal copy can live there as `block_type=copy_row`; LCD `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
    - for variable defaults, keep `Model_key` as the text model selector when the Base `Model` field is a linked record; linked model fields can export as record ids and are not stable enough for build matching
    - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` reads the same snapshot as a compact multilingual memory lookup, which is useful when OpenClaw or a maintainer needs terminology grounded in the current Base content before translating copy
    - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` is the higher-priority sentence-pair lookup when you already maintain a dedicated translation memory table in Feishu Base; on chat surfaces, treat it as background wording memory and answer with the translation itself instead of a narrated lookup step. The script keeps a short local cache for repeat lookups; use `--no-cache` only when you need a forced refresh.
@@ -214,7 +217,7 @@ The manual system now has four layers, but they are used at different stages.
    - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row; phase2 sync fills it from the Base `Figure` attachment when present
    - `symbols_blocks.csv` can also use `Is_Latest` and `Market` as row conditions: rows marked false are skipped, and `Market` must include the current build region such as `US` or `EU`
-   - use `block_type=table_row` for the normal symbol/meaning grid; use `block_type=signal_row` for the top warning/caution/note/tip table, with uppercase `symbol_key` values `WARNING`, `CAUTION`, `NOTE`, and `TIPS`
+   - use `block_type=table_row` for the normal symbol/meaning grid; use `block_type=signal_row` for the top warning/caution/note/tips table, with `symbol_key` values `WARNING`, `CAUTION`, `NOTE`, and `TIPS`; use `block_type=copy_row` for symbols page copy, where `symbol_key` is a copy key such as `page_title` or `signal_label.tips`
    - `order` values must be unique within each symbols table section; normal symbols rows are sorted and split evenly into two columns, so `column_group` is no longer needed
 
 3. Review working layer
@@ -451,7 +454,7 @@ Symbols content is generated from:
 `symbols_blocks.csv` notes:
 
 - use one `table_row` per symbols-table entry
-- use four `signal_row` entries if the warning/caution/note/tip signal-word table should come from the data table instead of renderer defaults
+- use four `signal_row` entries if the warning/caution/note/tips signal-word table should come from the data table instead of renderer defaults
 - use `Region` and `Model` to target the same way as `Spec_Master.csv`
 - use `Source_lang` for the row's source-language code, for example `en` or `ja`
 - leave `Region` / `Model` blank when one row should be shared
@@ -918,11 +921,11 @@ If a foreign model mention is intentional, add it to `checks.allowed_foreign_ide
 
 ### 11.4 Hard-coded title in config
 
-If `build.word_title` is fixed to an old model name, the generated Word title will stay wrong even if `PRODUCT_NAME` is correct.
-Prefer a placeholder-based title such as:
+If `build.word_title` is fixed to visible copy, the generated Word title can drift away from the table source.
+Keep the title text in the RST or phase2 source that feeds the derived `page_copy.csv` snapshot, and reference only the copy key from config:
 
 ```yaml
-word_title: "|PRODUCT_NAME| User Manual"
+word_title_copy_key: word_title
 ```
 
 ---

@@ -276,7 +276,7 @@ def _collect_target_selectors(
                 )
             )
         for placeholder, binding in recipe.field_map.items():
-            if binding.default is not None:
+            if binding.default is not None or getattr(binding, "page_copy_key", None) is not None:
                 continue
             selectors.append(
                 SpecSelector(

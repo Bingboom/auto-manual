@@ -10,10 +10,10 @@ build:
   languages: [de]
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: "|PRODUCT_NAME| Benutzerhandbuch"
-  rst_substitutions:
-    WARRANTY_EMAIL: hello.eu@jackery.com
-    LEGAL_COMPANY_NAME: Jackery
+  word_title_copy_key: word_title
+  rst_substitution_copy_keys:
+    WARRANTY_EMAIL: warranty_email_eu
+    LEGAL_COMPANY_NAME: legal_company_name_eu
 
 paths:
   structured_data_dir: data/phase2

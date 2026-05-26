@@ -164,8 +164,24 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertNotIn("JE-1500D", product_overview_text)
         self.assertIn("|DEFAULT_STANDBY_DURATION|", operation_text)
         self.assertIn("|ENERGY_SAVING_AUTO_OFF_DURATION|", operation_text)
-        self.assertIn("|ADD_DEVICE_STEP|", app_text)
+        self.assertIn("2.1 Clique no botão **+** para adicionar seu dispositivo.", app_text)
+        self.assertNotIn("|ADD_DEVICE_STEP|", app_text)
         self.assertIn("|MAIN_POWER_BUTTON_LABEL|", app_text)
+
+    def test_app_setup_add_device_step_copy_should_live_in_shared_rst(self) -> None:
+        expected_by_lang = {
+            "en": "2.1 Click the **+** button to add your device.",
+            "fr": "2.1 Cliquez sur le bouton **+** pour ajouter un appareil.",
+            "es": "2.1 Haga clic en el botón **+** para añadir el dispositivo.",
+            "pt-BR": "2.1 Clique no botão **+** para adicionar seu dispositivo.",
+        }
+        for lang, expected in expected_by_lang.items():
+            with self.subTest(lang=lang):
+                text = (
+                    ROOT / "docs" / "templates" / "page_shared" / lang / "12_app_setup_placeholder.rst"
+                ).read_text(encoding="utf-8")
+                self.assertIn(expected, text)
+                self.assertNotIn("|ADD_DEVICE_STEP|", text)
 
     def test_pt_br_config_should_use_us_single_language_build_logic(self) -> None:
         cfg = check_docs.load_config(ROOT / "config.pt-br.yaml")

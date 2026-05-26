@@ -10,10 +10,10 @@ build:
   languages: [pt-BR]
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: "|PRODUCT_NAME| Manual do usuário"
-  rst_substitutions:
-    MANUAL_LANGUAGE_SCOPE: Português (Brasil)
-    LEGAL_COMPANY_NAME: Jackery
+  word_title_copy_key: word_title
+  rst_substitution_copy_keys:
+    MANUAL_LANGUAGE_SCOPE: manual_language_scope_pt_br
+    LEGAL_COMPANY_NAME: legal_company_name_pt_br
 
 paths:
   page_manifest: docs/manifests/manual_pt-br.yaml

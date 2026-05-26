@@ -182,6 +182,18 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "title_uk",
         ),
     ),
+    "page_copy": TableSchema(
+        logical_name="page_copy",
+        file_name="page_copy.csv",
+        columns=(
+            "page_id",
+            "lang",
+            "copy_key",
+            "text",
+            "enabled",
+            "order",
+        ),
+    ),
     "symbols_blocks": TableSchema(
         logical_name="symbols_blocks",
         file_name="symbols_blocks.csv",

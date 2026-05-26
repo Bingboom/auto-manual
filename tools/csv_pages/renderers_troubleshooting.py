@@ -7,6 +7,7 @@ import re
 import unicodedata
 
 from .renderers_common import apply_vars, rst_escape
+from ..page_copy import require_page_copy
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
 
@@ -27,104 +28,14 @@ _LANG_SUFFIX = {
     "br": "pt-BR",
 }
 
-_LANG_COPY = {
-    "en": {
-        "title": "TROUBLESHOOTING",
-        "intro": (
-            "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. "
-            "If the fault persists, please contact Jackery Customer Support."
-        ),
-        "code_header": "Error Code",
-        "measures_header": "Corrective Measures",
-        "header_rows": "1",
-        "widths": "14 86",
-    },
-    "fr": {
-        "title": "DÉPANNAGE",
-        "intro": (
-            "Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème. "
-            "Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery."
-        ),
-        "code_header": "Code d'erreur",
-        "measures_header": "Mesures correctives",
-        "header_rows": "1",
-        "widths": "14 86",
-    },
-    "es": {
-        "title": "RESOLUCIÓN DE PROBLEMAS",
-        "intro": (
-            "Si aparece alguno de los siguientes códigos de falla, siga las acciones correctivas listadas para resolver el problema. "
-            "Si la falla persiste, por favor contacte con atención al cliente de Jackery."
-        ),
-        "code_header": "Código de error",
-        "measures_header": "Medidas correctivas",
-        "header_rows": "0",
-        "widths": "14 86",
-    },
-    "de": {
-        "title": "FEHLERSUCHE",
-        "intro": (
-            "Wenn einer der folgenden Fehlercodes angezeigt wird, befolgen Sie die aufgeführten Korrekturmaßnahmen, "
-            "um das Problem zu beheben. Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Jackery-Kundendienst."
-        ),
-        "code_header": "Fehlercode",
-        "measures_header": "Korrekturmaßnahmen",
-        "header_rows": "1",
-        "widths": "14 86",
-    },
-    "it": {
-        "title": "RISOLUZIONE DEI PROBLEMI",
-        "intro": (
-            "Se viene visualizzato uno dei seguenti codici di errore, segui le azioni correttive elencate per risolvere il problema. "
-            "Se l'errore persiste, contatta l'Assistenza clienti Jackery."
-        ),
-        "code_header": "Codice errore",
-        "measures_header": "Misure correttive",
-        "header_rows": "1",
-        "widths": "14 86",
-    },
-    "uk": {
-        "title": "УСУНЕННЯ НЕСПРАВНОСТЕЙ",
-        "intro": (
-            "Якщо з'являється будь-який із наведених нижче кодів помилки, виконайте вказані дії для усунення проблеми. "
-            "Якщо несправність не зникає, зверніться до служби підтримки Jackery."
-        ),
-        "code_header": "Код помилки",
-        "measures_header": "Способи усунення",
-        "header_rows": "1",
-        "widths": "14 86",
-    },
-    "pt-BR": {
-        "title": "SOLUÇÃO DE PROBLEMAS",
-        "intro": (
-            "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. "
-            "Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery."
-        ),
-        "code_header": "Código de erro",
-        "measures_header": "Medidas corretivas",
-        "header_rows": "1",
-        "widths": "14 86",
-    },
-    "ja": {
-        "title": "トラブルシューティング",
-        "intro": (
-            "次のいずれかのエラーコードが表示された場合は、記載されている対処方法に従って問題を解決してください。"
-            "問題が解決しない場合は、Jackeryカスタマーサポートまでご連絡ください。"
-        ),
-        "code_header": "エラーコード",
-        "measures_header": "対処方法",
-        "header_rows": "0",
-        "widths": "14 86",
-    },
-    "zh": {
-        "title": "故障处理",
-        "intro": "如果出现以下任一故障代码，请按照所列的处理方法进行处理。如故障仍然存在，请联系电小二客户支持。",
-        "code_header": "故障代码",
-        "measures_header": "处理方法",
-        "header_rows": "1",
-        "widths": "16 84",
-    },
-}
+TROUBLESHOOTING_COPY_KEYS = (
+    "title",
+    "intro",
+    "code_header",
+    "measures_header",
+    "header_rows",
+    "widths",
+)
 
 
 def _truthy(value: str, *, default: bool = True) -> bool:
@@ -154,6 +65,15 @@ def _lang_suffix_candidates(lang: str) -> list[str]:
     if (lang or "").strip().casefold() in {"br", "pt-br", "pt_br"}:
         candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
     return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _copy_for_lang(lang: str, vars_map: dict[str, str]) -> dict[str, str]:
+    return require_page_copy(
+        "troubleshooting",
+        lang,
+        TROUBLESHOOTING_COPY_KEYS,
+        csv_path=vars_map.get("page_copy_csv"),
+    )
 
 
 def _first_existing(headers: set[str], candidates: list[str]) -> str:
@@ -328,7 +248,7 @@ def render_troubleshooting_page(
     vars_map: dict[str, str],
 ) -> str:
     del sku_id
-    copy = _LANG_COPY.get(lang) or _LANG_COPY.get(_lang_suffix(lang)) or _LANG_COPY["en"]
+    copy = _copy_for_lang(lang, vars_map)
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_TROUBLESHOOTING_HEADING_RST, _heading(copy["title"]))
     rendered = rendered.replace(PH_TROUBLESHOOTING_INTRO_RST, rst_escape(copy["intro"]))

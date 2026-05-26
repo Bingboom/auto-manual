@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
+from tools.word_bundle_common import load_config_rst_substitutions
 from tools.word_bundle_html import (
     _build_word_only_tags,
     _convert_rst_fragment_to_html,
@@ -49,6 +50,49 @@ class TestWordBundle(unittest.TestCase):
             {},
         )
         self.assertEqual("HomePower 2000 Plus Guide", title)
+
+    def test_derive_word_title_resolves_page_copy_key(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            page_copy = Path(td) / "page_copy.csv"
+            page_copy.write_text(
+                "page_id,lang,copy_key,text,enabled,order\n"
+                "manual_meta,en,word_title,|PRODUCT_NAME| Guide,TRUE,1\n",
+                encoding="utf-8",
+            )
+
+            title = derive_word_title(
+                {"word_title_copy_key": "word_title"},
+                None,
+                {"PRODUCT_NAME": "HomePower 2000 Plus"},
+                {},
+                lang="en",
+                page_copy_csv=page_copy,
+            )
+
+            self.assertEqual("HomePower 2000 Plus Guide", title)
+
+    def test_load_config_rst_substitutions_resolves_page_copy_keys(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            page_copy = Path(td) / "page_copy.csv"
+            page_copy.write_text(
+                "page_id,lang,copy_key,text,enabled,order\n"
+                "manual_meta,en,manual_language_scope,English / Spanish,TRUE,1\n",
+                encoding="utf-8",
+            )
+
+            substitutions = load_config_rst_substitutions(
+                {
+                    "build": {
+                        "rst_substitution_copy_keys": {
+                            "MANUAL_LANGUAGE_SCOPE": "manual_language_scope",
+                        }
+                    }
+                },
+                lang="en",
+                page_copy_csv=page_copy,
+            )
+
+            self.assertEqual("English / Spanish", substitutions["MANUAL_LANGUAGE_SCOPE"])
 
     def test_render_safety_word_html_outputs_headings_and_lists(self) -> None:
         html = render_safety_word_html(
@@ -630,16 +674,20 @@ DC OUTPUT
             out.index("After setup, the Wi-Fi icon stays on."),
         )
 
-    def test_rewrite_word_friendly_fragment_should_nest_known_safety_subitems(self) -> None:
+    def test_rewrite_word_friendly_fragment_should_preserve_explicit_safety_sublists(self) -> None:
         fragment = (
             '<div class="hb-two-col">'
             '<ul class="hb-list">'
-            '<li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product\'s specified operating temperature ranges:</li>'
+            '<li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product\'s specified operating temperature ranges:'
+            '<ul class="hb-sublist">'
             '<li>Charging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
             '<li>Discharging temperature: -4°F to 113°F (-20°C to 45°C)</li>'
-            '<li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.</li>'
+            '</ul></li>'
+            '<li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.'
+            '<ul class="hb-sublist">'
             '<li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li>'
             '<li>Water can cause short circuits or damage to the charger, leading to safety risks.</li>'
+            '</ul></li>'
             '<li>Unplug the power cord from a power outlet during a storm.</li>'
             '</ul>'
             '</div>'

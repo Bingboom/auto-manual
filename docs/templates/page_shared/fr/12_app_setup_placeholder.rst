@@ -13,7 +13,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 **2. Ajouter un appareil**
 
-|ADD_DEVICE_STEP|
+2.1 Cliquez sur le bouton **+** pour ajouter un appareil.
 
 2.2 Appuyez sur le |MAIN_POWER_BUTTON_LABEL| de l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton « Icône qui clignote » et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 

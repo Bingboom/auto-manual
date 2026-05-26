@@ -113,6 +113,7 @@ def resolve_bundle_materialization_context(
         model=target_model,
         region=target_region,
     )
+    page_copy_csv = spec_master_csv.parent / "page_copy.csv"
     base_vars_map = pick_vars_map(target_model, target_region)
     title_vars = fill_product_name_from_spec_master(
         base_vars_map,
@@ -123,7 +124,7 @@ def resolve_bundle_materialization_context(
     )
     base_substitutions = {
         **load_rst_substitutions(docs_dir / "conf_base.py"),
-        **load_config_rst_substitutions(cfg),
+        **load_config_rst_substitutions(cfg, lang=primary_lang, page_copy_csv=page_copy_csv),
     }
     title_substitutions = {
         **base_substitutions,
@@ -137,7 +138,14 @@ def resolve_bundle_materialization_context(
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     reference_doc = resolve_reference_doc(build_cfg.get("word_reference_doc"), root=repo_root)
-    title = derive_word_title(build_cfg, reference_doc, title_substitutions, title_vars)
+    title = derive_word_title(
+        build_cfg,
+        reference_doc,
+        title_substitutions,
+        title_vars,
+        lang=primary_lang,
+        page_copy_csv=page_copy_csv,
+    )
 
     bundle_dir = bundle_dir_override or bundle_dir_for_target(
         docs_dir=docs_dir,

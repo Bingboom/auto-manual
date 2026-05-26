@@ -974,6 +974,130 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual("FALSE", rows[0]["Is_Latest"])
             self.assertEqual("US, EU", rows[0]["Market"])
 
+    def test_sync_phase2_snapshot_should_derive_symbols_page_copy_from_symbols_blocks(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "symbols_blocks": {
+                                "table_id_env": "SYMBOLS_TABLE",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+            phase2_dir = root / "data" / "phase2"
+            phase2_dir.mkdir(parents=True, exist_ok=True)
+            (phase2_dir / "page_copy.csv").write_text(
+                "page_id,lang,copy_key,text,enabled,order\n"
+                "symbols,,page_title,OLD TITLE,1,10\n"
+                "manual_meta,,word_title,Existing Manual,1,10\n",
+                encoding="utf-8",
+            )
+
+            fake_source = _FakeSource(
+                {
+                    "tbl_symbols": [
+                        {
+                            "fields": {
+                                "page_id": "symbols",
+                                "symbol_key": "page_title",
+                                "text_en": "MEANING OF SYMBOLS",
+                                "text_fr": "SIGNIFICATION DES SYMBOLES",
+                                "enabled": True,
+                                "block_type": "copy_row",
+                                "order": "10",
+                                "Source_lang": "en",
+                            }
+                        },
+                        {
+                            "fields": {
+                                "page_id": "symbols",
+                                "symbol_key": "signal_label.tip",
+                                "text_en": "TIP",
+                                "enabled": True,
+                                "block_type": "copy_row",
+                                "order": "20",
+                                "Source_lang": "en",
+                            }
+                        },
+                    ],
+                }
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "SYMBOLS_TABLE": "tbl_symbols",
+                },
+                clear=True,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                result = sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["symbols_blocks"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            with (phase2_dir / "page_copy.csv").open("r", encoding="utf-8-sig", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertNotIn("OLD TITLE", {row["text"] for row in rows})
+            self.assertIn(
+                {
+                    "page_id": "symbols",
+                    "lang": "",
+                    "copy_key": "page_title",
+                    "text": "MEANING OF SYMBOLS",
+                    "enabled": "1",
+                    "order": "10",
+                },
+                rows,
+            )
+            self.assertIn(
+                {
+                    "page_id": "symbols",
+                    "lang": "fr",
+                    "copy_key": "page_title",
+                    "text": "SIGNIFICATION DES SYMBOLES",
+                    "enabled": "1",
+                    "order": "10",
+                },
+                rows,
+            )
+            self.assertIn(
+                {
+                    "page_id": "symbols",
+                    "lang": "",
+                    "copy_key": "signal_label.tips",
+                    "text": "TIP",
+                    "enabled": "1",
+                    "order": "20",
+                },
+                rows,
+            )
+            self.assertIn(
+                {
+                    "page_id": "manual_meta",
+                    "lang": "",
+                    "copy_key": "word_title",
+                    "text": "Existing Manual",
+                    "enabled": "1",
+                    "order": "10",
+                },
+                rows,
+            )
+            self.assertIn("page_copy", {item.logical_name for item in result.derived_files})
+
     def test_sync_phase2_snapshot_should_prefer_literal_table_and_view_ids(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

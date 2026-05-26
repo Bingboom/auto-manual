@@ -16,7 +16,7 @@ build:
   word_output: manual_{model_slug}_{region_slug}.docx
   word_source: bundle
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: "|PRODUCT_NAME| 用户指南"
+  word_title_copy_key: word_title
   open_word: false
   build_html: false
   open_html: false

@@ -34,6 +34,7 @@ Required derived files:
 
 | Derived file | Purpose |
 | --- | --- |
+| `page_copy.csv` | shared page copy snapshot such as titles, table headers, prompts, alt text, default placeholder copy, and output titles |
 | `row_key_mapping.csv` | stable mapping from source rows to generated-page row keys |
 
 Optional synced tables currently accepted by config validation:
@@ -48,13 +49,43 @@ Snapshot compatibility rules:
 
 - `snapshot_manifest.json` must be valid JSON with table entries that include
   the logical names for required tables.
-- A required table is valid only when the manifest says it was synced/requested
-  and the corresponding CSV exists.
+- A required synced table is valid only when the manifest says it was
+  synced/requested and the corresponding CSV exists. Required derived files must
+  appear in `derived_files` and exist in the snapshot root.
 - Required tables must not be silently skipped. If an upstream table is
   intentionally removed, update the code contract, fixtures, and this document
   in the same change.
 - `page_registry.csv` and `data/layout_params.csv` remain repo-maintained inputs
   outside the phase2 sync flow.
+
+Content-source boundary:
+
+- Manual body text, titles, table headers, prompts, image alt text, default
+  placeholder copy, and output titles are content. They must be authored in RST
+  or in phase2/Feishu Base sources, not in Python or YAML config.
+- Python and YAML config may keep field names, enum values, paths, rendering
+  logic, error messages, and CLI help.
+
+`page_copy.csv` fixed fields:
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `page_id` | yes | stable page/renderer id such as `symbols` or `troubleshooting` |
+| `lang` | yes | normalized language code for the visible copy |
+| `copy_key` | yes | stable semantic key consumed by the renderer |
+| `text` | yes | visible copy value |
+| `enabled` | yes | false/unchecked rows are ignored |
+| `order` | yes | deterministic order when a page consumes multiple copy rows |
+
+Renderer rule:
+
+- A renderer that requires `page_copy` rows must fail fast when any required
+  `copy_key` is missing for the target page/language, instead of falling back to
+  Python literals or silently generating a partial page.
+- Symbols page copy is authored in the `symbols_blocks` live table as
+  `block_type=copy_row`; the row's `symbol_key` is the copy key, such as
+  `page_title`, `header_symbol`, or `signal_label.tips`. `sync-data` expands
+  those rows into the derived `page_copy.csv` snapshot.
 
 ## 2. Document_link
 

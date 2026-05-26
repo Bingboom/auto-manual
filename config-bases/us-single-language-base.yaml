@@ -13,9 +13,9 @@ build:
   build_word: true
   word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
   word_source: bundle
-  rst_substitutions:
-    WARRANTY_EMAIL: hello@jackery.com
-    LEGAL_COMPANY_NAME: Jackery Inc.
+  rst_substitution_copy_keys:
+    WARRANTY_EMAIL: warranty_email_us
+    LEGAL_COMPANY_NAME: legal_company_name_us
   open_word: false
   build_html: false
   open_html: false

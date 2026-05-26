@@ -1,0 +1,247 @@
+page_id,lang,copy_key,text,enabled,order
+symbols,,page_title,MEANING OF SYMBOLS,1,10
+symbols,fr,page_title,SIGNIFICATION DES SYMBOLES,1,10
+symbols,es,page_title,SIGNIFICADO DE LOS SÍMBOLOS,1,10
+symbols,de,page_title,BEDEUTUNG DER SYMBOLE,1,10
+symbols,it,page_title,SIGNIFICATO DEI SIMBOLI,1,10
+symbols,uk,page_title,ЗНАЧЕННЯ СИМВОЛІВ,1,10
+symbols,,header_symbol,Symbol,1,20
+symbols,fr,header_symbol,Symbole,1,20
+symbols,es,header_symbol,Símbolo,1,20
+symbols,de,header_symbol,Symbol,1,20
+symbols,it,header_symbol,Simbolo,1,20
+symbols,uk,header_symbol,Символ,1,20
+symbols,,header_meaning,Meaning,1,30
+symbols,fr,header_meaning,Signification,1,30
+symbols,es,header_meaning,Significado,1,30
+symbols,de,header_meaning,Bedeutung,1,30
+symbols,it,header_meaning,Significato,1,30
+symbols,uk,header_meaning,Значення,1,30
+symbols,,signal_label.warning,WARNING,1,40
+symbols,fr,signal_label.warning,AVERTISSEMENT,1,40
+symbols,es,signal_label.warning,ADVERTENCIA,1,40
+symbols,de,signal_label.warning,WARNUNG,1,40
+symbols,it,signal_label.warning,AVVERTENZA,1,40
+symbols,uk,signal_label.warning,ПОПЕРЕДЖЕННЯ,1,40
+symbols,,signal_label.caution,CAUTION,1,50
+symbols,fr,signal_label.caution,ATTENTION,1,50
+symbols,es,signal_label.caution,PRECAUCIÓN,1,50
+symbols,de,signal_label.caution,VORSICHT,1,50
+symbols,it,signal_label.caution,ATTENZIONE,1,50
+symbols,uk,signal_label.caution,УВАГА,1,50
+symbols,,signal_label.note,NOTE,1,60
+symbols,fr,signal_label.note,REMARQUE,1,60
+symbols,es,signal_label.note,NOTA,1,60
+symbols,de,signal_label.note,HINWEIS,1,60
+symbols,it,signal_label.note,NOTA,1,60
+symbols,uk,signal_label.note,ПРИМІТКА,1,60
+symbols,,signal_label.tips,TIP,1,70
+symbols,fr,signal_label.tips,CONSEILS,1,70
+symbols,es,signal_label.tips,CONSEJOS,1,70
+symbols,de,signal_label.tips,TIPP,1,70
+symbols,it,signal_label.tips,SUGGERIMENTO,1,70
+symbols,uk,signal_label.tips,ПОРАДА,1,70
+symbols,,signal_meaning.warning,"Hazardous practices that may result in severe injury, death, and/or property damage.",1,80
+symbols,fr,signal_meaning.warning,"Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",1,80
+symbols,es,signal_meaning.warning,"Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",1,80
+symbols,pt-BR,signal_meaning.warning,"Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais.",1,80
+symbols,de,signal_meaning.warning,"Gefährliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachschäden führen können.",1,80
+symbols,it,signal_meaning.warning,"Pratiche pericolose che possono causare lesioni gravi, morte e/o danni materiali.",1,80
+symbols,uk,signal_meaning.warning,"Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",1,80
+symbols,,signal_meaning.caution,Hazardous practices that may result in personal injury and/or property damage.,1,90
+symbols,fr,signal_meaning.caution,Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.,1,90
+symbols,es,signal_meaning.caution,Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.,1,90
+symbols,pt-BR,signal_meaning.caution,Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais.,1,90
+symbols,de,signal_meaning.caution,"Gefährliche Handlungen, die zu Personenschäden und/oder zu Sachschäden führen können.",1,90
+symbols,it,signal_meaning.caution,Pratiche pericolose che possono causare lesioni personali e/o danni materiali.,1,90
+symbols,uk,signal_meaning.caution,"Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",1,90
+symbols,,signal_meaning.note,"Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",1,100
+symbols,fr,signal_meaning.note,"Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",1,100
+symbols,es,signal_meaning.note,"Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",1,100
+symbols,pt-BR,signal_meaning.note,"Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados inesperados.",1,100
+symbols,de,signal_meaning.note,"Handlungen, die zu Geräteschäden, Datenverlust, Leistungseinbußen oder unerwarteten Ergebnissen führen können.",1,100
+symbols,it,signal_meaning.note,"Pratiche che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti.",1,100
+symbols,uk,signal_meaning.note,"Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",1,100
+symbols,,signal_meaning.tips,Supplements the important information or operation tips in the text.,1,110
+symbols,fr,signal_meaning.tips,Complète les informations importantes ou les conseils d'utilisation dans le texte.,1,110
+symbols,es,signal_meaning.tips,Complementa la información importante o consejos de operación en el texto.,1,110
+symbols,pt-BR,signal_meaning.tips,Complementa informações importantes ou dicas de operação no texto.,1,110
+symbols,de,signal_meaning.tips,Ergänzt wichtige Informationen oder Bedienhinweise im Text.,1,110
+symbols,it,signal_meaning.tips,Integra le informazioni importanti o i consigli operativi nel testo.,1,110
+symbols,uk,signal_meaning.tips,Доповнює важливу інформацію або поради з експлуатації в тексті.,1,110
+symbols,,alt.signal.warning,Warning signal marker.,1,120
+symbols,,alt.signal.caution,Caution signal marker.,1,130
+symbols,,alt.signal.note,Note signal marker.,1,140
+symbols,,alt.signal.tips,Tip signal marker.,1,150
+symbols,,alt.symbol.warning_triangle,Warning triangle symbol.,1,160
+symbols,,alt.symbol.read_manual,Read manual symbol.,1,170
+symbols,,alt.symbol.electric_shock,Electric shock symbol.,1,180
+symbols,,alt.symbol.battery_charging,Battery charging symbol.,1,190
+symbols,,alt.symbol.explosive_material,Explosive material symbol.,1,200
+symbols,,alt.symbol.heavy_object,Heavy object symbol.,1,210
+symbols,,alt.symbol.do_not_dismantle,Do not dismantle symbol.,1,220
+symbols,,alt.symbol.no_open_flame,No open flame symbol.,1,230
+symbols,,alt.symbol.keep_away_from_children,Keep away from children symbol.,1,240
+symbols,,alt.symbol.li_ion,Lithium-ion battery symbol.,1,250
+symbols,,alt.symbol.weee,WEEE disposal symbol.,1,260
+symbols,,alt.symbol.weee2,Battery disposal symbol.,1,270
+alert_labels,,warning,WARNING,1,10
+alert_labels,,caution,CAUTION,1,20
+alert_labels,,danger,DANGER,1,30
+alert_labels,,note,NOTE,1,40
+alert_labels,,tip,TIP,1,50
+alert_labels,,tips,TIPS,1,60
+alert_labels,fr,warning,AVERTISSEMENT,1,10
+alert_labels,fr,caution,ATTENTION,1,20
+alert_labels,fr,note,REMARQUE,1,30
+alert_labels,fr,tip,CONSEIL,1,40
+alert_labels,fr,tips,CONSEILS,1,50
+alert_labels,es,warning,ADVERTENCIA,1,10
+alert_labels,es,danger,PELIGRO,1,20
+alert_labels,es,caution,PRECAUCIÓN,1,30
+alert_labels,es,caution_ascii,PRECAUCION,1,40
+alert_labels,es,note,NOTA,1,50
+alert_labels,es,tip,CONSEJO,1,60
+alert_labels,es,tips,CONSEJOS,1,70
+alert_labels,de,warning,WARNUNG,1,10
+alert_labels,de,caution,VORSICHT,1,20
+alert_labels,de,note,HINWEIS,1,30
+alert_labels,de,tip,TIPP,1,40
+alert_labels,it,warning,AVVERTENZA,1,10
+alert_labels,it,caution,ATTENZIONE,1,20
+alert_labels,it,danger,PERICOLO,1,30
+alert_labels,it,note,NOTA,1,40
+alert_labels,it,tips,SUGGERIMENTO,1,50
+alert_labels,uk,warning,ПОПЕРЕДЖЕННЯ,1,10
+alert_labels,uk,danger,НЕБЕЗПЕКА,1,20
+alert_labels,uk,caution,УВАГА,1,30
+alert_labels,uk,note,ПРИМІТКА,1,40
+alert_labels,uk,tips,ПОРАДА,1,50
+alert_labels,zh,warning,警告,1,10
+alert_labels,zh,caution,注意,1,20
+alert_labels,zh,note,说明,1,30
+alert_labels,zh,remark,备注,1,40
+alert_labels,ja,warning,警告,1,10
+alert_labels,ja,caution,注意,1,20
+alert_labels,ja,note,ご注意,1,30
+alert_labels,ja,tip,提示,1,40
+signal_words,,safety_warning,WARNING,1,10
+signal_words,,symbols_notice,DANGER,1,20
+signal_words,,warning,WARNING,1,30
+signal_words,,danger,DANGER,1,40
+signal_words,,caution,CAUTION,1,50
+signal_words,,note,NOTE,1,60
+signal_words,,tips,TIP,1,70
+signal_words,fr,safety_warning,AVERTISSEMENT,1,10
+signal_words,fr,symbols_notice,AVERTISSEMENT,1,20
+signal_words,fr,warning,AVERTISSEMENT,1,30
+signal_words,fr,danger,ATTENTION,1,40
+signal_words,fr,caution,ATTENTION,1,50
+signal_words,fr,note,REMARQUE,1,60
+signal_words,fr,tips,CONSEILS,1,70
+signal_words,es,safety_warning,ADVERTENCIA,1,10
+signal_words,es,symbols_notice,ADVERTENCIA,1,20
+signal_words,es,warning,ADVERTENCIA,1,30
+signal_words,es,danger,PELIGRO,1,40
+signal_words,es,caution,PRECAUCIÓN,1,50
+signal_words,es,note,NOTA,1,60
+signal_words,es,tips,CONSEJOS,1,70
+signal_words,de,safety_warning,WARNUNG,1,10
+signal_words,de,symbols_notice,WARNUNG,1,20
+signal_words,de,warning,WARNUNG,1,30
+signal_words,de,danger,GEFAHR,1,40
+signal_words,de,caution,VORSICHT,1,50
+signal_words,de,note,HINWEIS,1,60
+signal_words,de,tips,TIPP,1,70
+signal_words,it,safety_warning,AVVERTENZA,1,10
+signal_words,it,symbols_notice,AVVERTENZA,1,20
+signal_words,it,warning,AVVERTENZA,1,30
+signal_words,it,danger,PERICOLO,1,40
+signal_words,it,caution,ATTENZIONE,1,50
+signal_words,it,note,NOTA,1,60
+signal_words,it,tips,SUGGERIMENTO,1,70
+signal_words,uk,safety_warning,ПОПЕРЕДЖЕННЯ,1,10
+signal_words,uk,symbols_notice,ПОПЕРЕДЖЕННЯ,1,20
+signal_words,uk,warning,ПОПЕРЕДЖЕННЯ,1,30
+signal_words,uk,danger,НЕБЕЗПЕКА,1,40
+signal_words,uk,caution,УВАГА,1,50
+signal_words,uk,note,ПРИМІТКА,1,60
+signal_words,uk,tips,ПОРАДА,1,70
+troubleshooting,,title,TROUBLESHOOTING,1,10
+troubleshooting,,intro,"If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, please contact Jackery Customer Support.",1,20
+troubleshooting,,code_header,Error Code,1,30
+troubleshooting,,measures_header,Corrective Measures,1,40
+troubleshooting,,header_rows,1,1,50
+troubleshooting,,widths,14 86,1,60
+troubleshooting,fr,title,DÉPANNAGE,1,10
+troubleshooting,fr,intro,"Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème. Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery.",1,20
+troubleshooting,fr,code_header,Code d'erreur,1,30
+troubleshooting,fr,measures_header,Mesures correctives,1,40
+troubleshooting,es,title,RESOLUCIÓN DE PROBLEMAS,1,10
+troubleshooting,es,intro,"Si aparece alguno de los siguientes códigos de falla, siga las acciones correctivas listadas para resolver el problema. Si la falla persiste, por favor contacte con atención al cliente de Jackery.",1,20
+troubleshooting,es,code_header,Código de error,1,30
+troubleshooting,es,measures_header,Medidas correctivas,1,40
+troubleshooting,es,header_rows,0,1,50
+troubleshooting,de,title,FEHLERSUCHE,1,10
+troubleshooting,de,intro,"Wenn einer der folgenden Fehlercodes angezeigt wird, befolgen Sie die aufgeführten Korrekturmaßnahmen, um das Problem zu beheben. Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Jackery-Kundendienst.",1,20
+troubleshooting,de,code_header,Fehlercode,1,30
+troubleshooting,de,measures_header,Korrekturmaßnahmen,1,40
+troubleshooting,it,title,RISOLUZIONE DEI PROBLEMI,1,10
+troubleshooting,it,intro,"Se viene visualizzato uno dei seguenti codici di errore, segui le azioni correttive elencate per risolvere il problema. Se l'errore persiste, contatta l'Assistenza clienti Jackery.",1,20
+troubleshooting,it,code_header,Codice errore,1,30
+troubleshooting,it,measures_header,Misure correttive,1,40
+troubleshooting,uk,title,УСУНЕННЯ НЕСПРАВНОСТЕЙ,1,10
+troubleshooting,uk,intro,"Якщо з'являється будь-який із наведених нижче кодів помилки, виконайте вказані дії для усунення проблеми. Якщо несправність не зникає, зверніться до служби підтримки Jackery.",1,20
+troubleshooting,uk,code_header,Код помилки,1,30
+troubleshooting,uk,measures_header,Способи усунення,1,40
+troubleshooting,pt-BR,title,SOLUÇÃO DE PROBLEMAS,1,10
+troubleshooting,pt-BR,intro,"Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.",1,20
+troubleshooting,pt-BR,code_header,Código de erro,1,30
+troubleshooting,pt-BR,measures_header,Medidas corretivas,1,40
+troubleshooting,ja,title,トラブルシューティング,1,10
+troubleshooting,ja,intro,次のいずれかのエラーコードが表示された場合は、記載された対処方法に従って問題を解決してください。問題が解決しない場合は、Jackeryカスタマーサポートにお問い合わせください。,1,20
+troubleshooting,ja,code_header,エラーコード,1,30
+troubleshooting,ja,measures_header,対処方法,1,40
+troubleshooting,ja,header_rows,0,1,50
+troubleshooting,zh,title,故障处理,1,10
+troubleshooting,zh,intro,如果出现以下任一故障代码，请按照所列的处理方法进行处理。如故障仍然存在，请联系电小二客户支持。,1,20
+troubleshooting,zh,code_header,故障代码,1,30
+troubleshooting,zh,measures_header,处理方法,1,40
+troubleshooting,zh,widths,16 84,1,60
+lcd_icons,,title,LCD DISPLAY,1,10
+lcd_icons,,image_alt,LCD icon map placeholder.,1,20
+lcd_icons,fr,title,AFFICHAGE LCD,1,10
+lcd_icons,fr,image_alt,Carte des icônes de l'écran LCD.,1,20
+lcd_icons,es,title,PANTALLA LCD,1,10
+lcd_icons,es,image_alt,Mapa de iconos de la pantalla LCD.,1,20
+lcd_icons,de,title,LCD-ANZEIGE,1,10
+lcd_icons,de,image_alt,Abbildung der LCD-Symbole als Platzhalter.,1,20
+lcd_icons,it,title,DISPLAY LCD,1,10
+lcd_icons,it,image_alt,Segnaposto mappa icone LCD.,1,20
+lcd_icons,uk,title,ЕКРАН LCD,1,10
+lcd_icons,uk,image_alt,Заповнювач схеми значків LCD.,1,20
+lcd_icons,ja,title,液晶画面,1,10
+lcd_icons,ja,image_alt,LCDアイコンマップ。,1,20
+lcd_icons,zh,title,显示屏界面,1,10
+lcd_icons,zh,image_alt,LCD 图标示意图。,1,20
+lcd_icons,pt-BR,title,TELA LCD,1,10
+lcd_icons,pt-BR,image_alt,Mapa de ícones da tela LCD.,1,20
+manual_meta,,word_title,|PRODUCT_NAME| User Manual,1,10
+manual_meta,,manual_language_scope,English / French / Spanish,1,20
+manual_meta,,manual_language_scope_us,English / French / Spanish,1,21
+manual_meta,,manual_language_scope_eu,English / French / Spanish / German / Italian / Ukrainian,1,22
+manual_meta,,warranty_email_us,hello@jackery.com,1,30
+manual_meta,,warranty_email_eu,hello.eu@jackery.com,1,31
+manual_meta,,legal_company_name_us,Jackery Inc.,1,40
+manual_meta,,legal_company_name_eu,Jackery,1,41
+manual_meta,fr,word_title,|PRODUCT_NAME| Manuel d'utilisation,1,10
+manual_meta,es,word_title,|PRODUCT_NAME| Manual de usuario,1,10
+manual_meta,de,word_title,|PRODUCT_NAME| Benutzerhandbuch,1,10
+manual_meta,it,word_title,|PRODUCT_NAME| Manuale utente,1,10
+manual_meta,uk,word_title,|PRODUCT_NAME| Посібник користувача,1,10
+manual_meta,ja,word_title,|PRODUCT_NAME| 取扱説明書,1,10
+manual_meta,zh,word_title,|PRODUCT_NAME| 用户指南,1,10
+manual_meta,pt-BR,word_title,|PRODUCT_NAME| Manual do usuário,1,10
+manual_meta,pt-BR,manual_language_scope,Português (Brasil),1,20
+manual_meta,pt-BR,manual_language_scope_pt_br,Português (Brasil),1,21
+manual_meta,pt-BR,legal_company_name_pt_br,Jackery,1,40

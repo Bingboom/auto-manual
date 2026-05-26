@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import csv
 import json
 import re
 import sys
@@ -17,6 +18,7 @@ from tools.spec_master_sources import (
     normalize_spec_master_source_rows,
     source_table_ids_from_cfg,
 )
+from tools.page_copy import PAGE_COPY_FIELDNAMES, merge_symbols_copy_rows
 
 
 class _SchemaLike(Protocol):
@@ -441,6 +443,16 @@ def _materialize_symbols_attachments(
         row["image_path"] = display_path
 
 
+def _read_page_copy_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        return [
+            {column: row.get(column, "") for column in PAGE_COPY_FIELDNAMES}
+            for row in csv.DictReader(handle)
+        ]
+
+
 def sync_phase2_snapshot(
     *,
     cfg: dict[str, Any],
@@ -578,6 +590,27 @@ def sync_phase2_snapshot(
             source=resolved_source,
             dry_run=dry_run,
         )
+        page_copy_schema = deps.table_schemas["page_copy"]
+        page_copy_path = export_root / page_copy_schema.file_name
+        page_copy_rows = merge_symbols_copy_rows(
+            _read_page_copy_rows(page_copy_path),
+            normalized_rows_by_table["symbols_blocks"],
+        )
+        page_copy_csv_text = deps.dict_rows_csv_text(PAGE_COPY_FIELDNAMES, page_copy_rows)
+        page_copy_sha256 = deps.sha256_text(page_copy_csv_text)
+        previous_page_copy_sha256 = deps.sha256_file(page_copy_path)
+        derived_results.append(
+            deps.table_sync_result_cls(
+                logical_name="page_copy",
+                file_name=page_copy_path.name,
+                target_path=page_copy_path,
+                row_count=len(page_copy_rows),
+                sha256=page_copy_sha256,
+                previous_sha256=previous_page_copy_sha256,
+                changed=page_copy_sha256 != previous_page_copy_sha256,
+            )
+        )
+        written_files.append((page_copy_path, page_copy_csv_text))
 
     for logical_name in selected_tables:
         binding = bindings_by_table[logical_name]

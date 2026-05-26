@@ -22,11 +22,11 @@ build:
   word_output: manual_{model_slug}_{region_slug}.docx
   word_source: bundle
   word_reference_doc: docs/templates/word_template/reference_en.docx
-  word_title: "|PRODUCT_NAME| User Manual"
-  rst_substitutions:
-    MANUAL_LANGUAGE_SCOPE: English / French / Spanish
-    WARRANTY_EMAIL: hello@jackery.com
-    LEGAL_COMPANY_NAME: Jackery Inc.
+  word_title_copy_key: word_title
+  rst_substitution_copy_keys:
+    MANUAL_LANGUAGE_SCOPE: manual_language_scope_us
+    WARRANTY_EMAIL: warranty_email_us
+    LEGAL_COMPANY_NAME: legal_company_name_us
   open_word: false
   build_html: false
   open_html: false
