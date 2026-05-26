@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.csv_pages.builder import BuildPaths, BuildSelector, CsvPageBuilder
+from tools.csv_pages.builder import BuildPaths, BuildSelector, CsvPageBuilder, PageSpec
 
 
 class TestCsvPageBuilderNormalization(unittest.TestCase):
@@ -17,6 +17,33 @@ class TestCsvPageBuilderNormalization(unittest.TestCase):
             self.assertEqual(root / "data" / "phase2" / "Spec_Notes.csv", paths.spec_notes_csv)
             self.assertEqual(root / "data" / "phase2" / "spec_titles.csv", paths.spec_titles_csv)
             self.assertEqual(root / "data" / "phase2", paths.page_blocks_dir)
+
+    def test_resolve_template_supports_language_template_dir_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            builder = CsvPageBuilder(BuildPaths.from_root(root))
+            page = PageSpec(
+                page_id="troubleshooting",
+                page_type="csv_page",
+                order=17,
+                sku_scope="ALL",
+                langs=["en", "ja", "zh"],
+                template="docs/templates/{template_lang_dir}/10_troubleshooting.rst",
+                enabled=True,
+            )
+
+            self.assertEqual(
+                root / "docs" / "templates" / "page_shared" / "en" / "10_troubleshooting.rst",
+                builder._resolve_template(page, lang="en"),
+            )
+            self.assertEqual(
+                root / "docs" / "templates" / "page_jp" / "10_troubleshooting.rst",
+                builder._resolve_template(page, lang="ja"),
+            )
+            self.assertEqual(
+                root / "docs" / "templates" / "page_zh" / "10_troubleshooting.rst",
+                builder._resolve_template(page, lang="zh"),
+            )
 
     def test_spec_master_rows_can_be_detected(self) -> None:
         rows = [

@@ -461,14 +461,14 @@ Symbols content is generated from:
 Troubleshooting content is generated from:
 
 - [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
-- [`docs/templates/troubleshooting_template.rst`](../docs/templates/troubleshooting_template.rst)
+- [`docs/templates/**/10_troubleshooting.rst`](../docs/templates/page_shared/en/10_troubleshooting.rst)
 
 `troubleshooting_blocks.csv` notes:
 
 - maintain the online TROUBLESHOOTING Base table, then run `python build.py sync-data --config config.us.yaml --table troubleshooting --data-root data/phase2`
 - use `Region`, `Model`, and `Is_latest` to select active rows; blank placeholder records are ignored
-- keep page title, intro, table headers, widths, and header-row settings in the renderer, not in Base
-- keep legacy `docs/templates/**/10_troubleshooting.rst` files only as reference/rollback; active manifests now use `csv_page: troubleshooting`
+- keep page title, intro, table headers, widths, and header-row settings in each language's `10_troubleshooting.rst`
+- keep error-code rows and corrective-measure copy in the TROUBLESHOOTING Base table; the RST template exposes `{{ troubleshooting_rows_rst }}` where those rows are inserted
 
 Spec content is generated from:
 
