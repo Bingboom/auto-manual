@@ -98,6 +98,7 @@ def materialize_planned_page(
     resolve_config_path: Callable[..., Path],
     apply_rst_substitutions: Callable[[str, dict[str, str], dict[str, str]], str],
     rewrite_rst_asset_paths: Callable[..., str],
+    normalize_rst_empty_line_blocks: Callable[[str], str],
     prepend_latex_lang: Callable[[str, str | None], str],
 ) -> tuple[str, Any | None]:
     page = planned.page
@@ -203,7 +204,7 @@ def materialize_planned_page(
         docs_dir=docs_dir,
         repo_root=repo_root,
     )
-    final_text = prepend_latex_lang(rst_text, planned.lang)
+    final_text = normalize_rst_empty_line_blocks(prepend_latex_lang(rst_text, planned.lang))
     if generated_render is not None and generated_render.rendered_source_path is not None:
         generated_render.rendered_source_path.parent.mkdir(parents=True, exist_ok=True)
         generated_render.rendered_source_path.write_text(final_text, encoding="utf-8")

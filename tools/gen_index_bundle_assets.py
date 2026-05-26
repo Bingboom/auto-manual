@@ -10,6 +10,7 @@ _RST_ASSET_DIRECTIVE_RE = re.compile(
     re.MULTILINE,
 )
 _HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
+_EMPTY_TOP_LEVEL_LINE_BLOCK_RE = re.compile(r"(?m)^\|[ \t]*(\r?\n|$)")
 
 
 def is_external_path(value: str) -> bool:
@@ -170,3 +171,7 @@ def rewrite_rst_asset_paths(
 
     out = _RST_ASSET_DIRECTIVE_RE.sub(replace_directive, text)
     return _HTML_SRC_RE.sub(replace_html_src, out)
+
+
+def normalize_rst_empty_line_blocks(text: str) -> str:
+    return _EMPTY_TOP_LEVEL_LINE_BLOCK_RE.sub(lambda match: match.group(1), text)

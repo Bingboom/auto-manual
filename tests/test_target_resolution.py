@@ -431,6 +431,51 @@ class TestTargetResolution(unittest.TestCase):
             wrapper_text = bundle.wrapper_index_path.read_text(encoding="utf-8")
             self.assertIn(".. include:: _build/M1/US/rst/index", wrapper_text)
 
+    def test_materialize_bundle_should_remove_empty_line_block_markers(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            template_dir = docs_dir / "templates" / "page_us-en"
+            data_dir = root / "data" / "phase1"
+            template_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+
+            (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
+            (template_dir / "demo.rst").write_text(
+                "Controls\n========\n\n| On\n|\n| Off\n| \n\nDone\n",
+                encoding="utf-8",
+            )
+            (data_dir / "Spec_Master.csv").write_text(
+                "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
+                "GENERAL INFO,product_name,1,specifications,M1,US,1,1,Demo Product\n",
+                encoding="utf-8",
+            )
+
+            cfg = {
+                "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
+                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "pages": [
+                    {
+                        "type": "rst_include",
+                        "lang": "en",
+                        "file": "templates/page_us-en/demo.rst",
+                    }
+                ],
+            }
+
+            bundle = gen_index_bundle.materialize_bundle(
+                cfg,
+                docs_dir=docs_dir,
+                repo_root=root,
+            )
+
+            page_text = (bundle.page_dir / "demo.rst").read_text(encoding="utf-8")
+            self.assertNotIn("\n|\n", page_text)
+            self.assertNotIn("\n| \n", page_text)
+            self.assertIn("| On", page_text)
+            self.assertIn("| Off", page_text)
+            self.assertIn("Done", page_text)
+
     def test_materialize_bundle_should_support_page_manifest_and_generated_page(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
