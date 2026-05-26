@@ -1332,11 +1332,15 @@ class TestCsvPageRenderers(unittest.TestCase):
 
     def _troubleshooting_template(self) -> str:
         return (
-            renderers.PH_TROUBLESHOOTING_HEADING_RST
-            + "\n\n"
-            + renderers.PH_TROUBLESHOOTING_INTRO_RST
-            + "\n\n"
-            + renderers.PH_TROUBLESHOOTING_TABLE_RST
+            "TROUBLESHOOTING\n"
+            "===============\n\n"
+            "Intro text owned by the RST template.\n\n"
+            ".. list-table::\n"
+            "   :header-rows: 1\n"
+            "   :widths: 14 86\n\n"
+            "   * - Error Code\n"
+            "     - Corrective Measures\n"
+            + renderers.PH_TROUBLESHOOTING_ROWS_RST
         )
 
     def test_render_troubleshooting_page_filters_region_and_preserves_multiline_rst(self) -> None:

@@ -374,8 +374,8 @@ Parallel-language template note:
 
 - maintain the online TROUBLESHOOTING Base table as the source, then refresh with `python build.py sync-data --config config.us.yaml --table troubleshooting --data-root data/phase2`
 - use `Region`, `Model`, and `Is_latest` to select rows for the target manual; blank placeholder rows are ignored by the renderer
-- keep title, intro, headers, widths, and header-row settings in `tools/csv_pages/renderers_troubleshooting.py`, not in the Base table
-- legacy `docs/templates/**/10_troubleshooting.rst` files remain for rollback/reference, but active manifests render `csv_page: troubleshooting`
+- keep title, intro, headers, widths, and header-row settings in the active language RST template: `docs/templates/**/10_troubleshooting.rst`
+- keep error-code rows and localized corrective measures in the TROUBLESHOOTING Base table; the RST template exposes `{{ troubleshooting_rows_rst }}` where those rows are inserted
 
 `Spec_Master.csv` note:
 

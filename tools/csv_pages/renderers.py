@@ -37,9 +37,7 @@ from .renderers_symbols import (
     render_symbols_page,
 )
 from .renderers_troubleshooting import (
-    PH_TROUBLESHOOTING_HEADING_RST,
-    PH_TROUBLESHOOTING_INTRO_RST,
-    PH_TROUBLESHOOTING_TABLE_RST,
+    PH_TROUBLESHOOTING_ROWS_RST,
     render_troubleshooting_page,
 )
 

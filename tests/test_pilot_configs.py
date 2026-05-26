@@ -149,7 +149,8 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertIn("CARREGAMENTO VIA TOMADA DA REDE ELÉTRICA CA", charging_text)
         self.assertNotIn("CARREGAMENTO VIA PAINÉIS SOLARES", charging_text)
         self.assertIn("region_us or region_pt_br", charging_text)
-        self.assertIn("region_us or region_pt_br", troubleshooting_text)
+        self.assertIn("{{ troubleshooting_rows_rst }}", troubleshooting_text)
+        self.assertNotIn("* - F0", troubleshooting_text)
         self.assertIn("CARREGAMENTO VIA PAINÉIS SOLARES", methods_text)
         product_overview_text = (
             ROOT / "docs" / "templates" / "page_us-pt-br" / "03_product_overview_placeholder.rst"

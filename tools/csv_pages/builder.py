@@ -165,6 +165,15 @@ class CsvPageBuilder:
         return text.replace("/", "_").replace("\\", "_")
 
     @staticmethod
+    def _template_lang_dir(lang: str) -> str:
+        normalized = (lang or "").strip()
+        if normalized.casefold() in {"ja", "jp"}:
+            return "page_jp"
+        if normalized.casefold() == "zh":
+            return "page_zh"
+        return f"page_shared/{normalized}"
+
+    @staticmethod
     def _looks_like_spec_master_rows(rows: list[dict[str, str]]) -> bool:
         if not rows:
             return False
@@ -347,8 +356,11 @@ class CsvPageBuilder:
         if match.region and not region_value:
             render_vars["region"] = match.region
 
-    def _resolve_template(self, page: PageSpec) -> Path:
+    def _resolve_template(self, page: PageSpec, *, lang: str | None = None) -> Path:
         raw = page.template or f"{page.page_id}_template.rst"
+        if lang:
+            raw = raw.replace("{lang}", lang)
+            raw = raw.replace("{template_lang_dir}", self._template_lang_dir(lang))
         candidate = Path(raw)
         if candidate.is_absolute():
             return candidate
@@ -443,11 +455,6 @@ class CsvPageBuilder:
                 skipped.append(msg)
                 continue
 
-            template_path = self._resolve_template(page)
-            if not template_path.exists():
-                raise FileNotFoundError(f"Missing template for page '{page.page_id}': {template_path}")
-            template = template_path.read_text(encoding="utf-8")
-
             page_blocks = self._load_page_blocks(page.page_id)
             if not page_blocks:
                 raise RuntimeError(f"No content blocks for page_id='{page.page_id}'")
@@ -472,6 +479,10 @@ class CsvPageBuilder:
                 for lang in page.langs:
                     if selector.langs and lang not in selector.langs:
                         continue
+                    template_path = self._resolve_template(page, lang=lang)
+                    if not template_path.exists():
+                        raise FileNotFoundError(f"Missing template for page '{page.page_id}' lang='{lang}': {template_path}")
+                    template = template_path.read_text(encoding="utf-8")
                     render_vars = dict(sku_vars)
                     if model_value and not self._pick_model_from_vars(render_vars):
                         render_vars["model"] = model_value
