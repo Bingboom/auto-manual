@@ -56,5 +56,5 @@ Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de 
    * - **PRECAUCIÓN**
      -
        - Por favor, encienda el vehículo antes de cargar su estación de energía.
-       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar que se queme debido a una mala conexión. La empresa no se responsabiliza por pérdidas causadas por un uso incorrecto.
+       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar un funcionamiento no conforme. La empresa no se responsabilizará por ninguna pérdida causada por un funcionamiento no conforme.
        - La carga en vehículo solo es aplicable a vehículos con 12 V CC, no a 24 V CC. Por favor, no cargue este producto en vehículos de 24 V para evitar lesiones personales y daños materiales.

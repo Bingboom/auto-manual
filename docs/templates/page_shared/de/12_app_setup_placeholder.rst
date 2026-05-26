@@ -14,7 +14,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
 
 2.1 Klicken Sie auf die Schaltfläche **+**, um Ihr Gerät hinzuzufügen.
 
-2.2 Drücken Sie |MAIN_POWER_BUTTON_LABEL| am Gerät, um es einzuschalten. Die WLAN- und Bluetooth-Symbole auf dem Gerät blinken, um anzuzeigen, dass das Gerät in den Netzwerkkonfigurationsmodus gewechselt ist. Tippen Sie auf die Schaltfläche "**Icon Flashed**" und erlauben Sie der App, sich mit Geräten in der Nähe zu verbinden und auf Bluetooth zuzugreifen.
+2.2 Drücken Sie |MAIN_POWER_BUTTON_LABEL| am Gerät, um es einzuschalten. Die WLAN- und Bluetooth-Symbole auf dem Gerät blinken, um anzuzeigen, dass das Gerät in den Netzwerkkonfigurationsmodus gewechselt ist. Tippen Sie auf die Schaltfläche "**Symbol blinkt**" und erlauben Sie der App, sich mit Geräten in der Nähe zu verbinden und auf Bluetooth zuzugreifen.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Platzhalter für den Schritt „Gerät hinzufügen“.

@@ -4,10 +4,10 @@ import unittest
 from pathlib import Path
 import tempfile
 
-from tools.phase1 import renderers
+from tools.csv_pages import renderers
 
 
-class TestPhase1Renderers(unittest.TestCase):
+class TestCsvPageRenderers(unittest.TestCase):
     def test_latex_escape_should_escape_common_special_chars(self) -> None:
         text = r"50%_off #1 & more $x$ \\macro ~^"
         escaped = renderers.latex_arg_escape(text)

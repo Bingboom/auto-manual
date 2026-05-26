@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import tempfile
@@ -65,7 +65,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
             self.assertEqual(root / "data" / "phase2" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
             self.assertEqual(root / "data" / "phase2" / "row_key_mapping.csv", paths.row_key_mapping_csv)
             self.assertEqual(root / "data" / "phase2", paths.page_blocks_dir)
-            self.assertEqual(root / "custom" / "page_registry.csv", paths.page_registry_csv)
+            self.assertEqual(root / "data" / "phase2" / "page_registry.csv", paths.page_registry_csv)
 
     def test_resolve_data_snapshot_paths_should_use_configured_dirs_without_data_root(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -82,9 +82,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
             self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase2" / "row_key_mapping.csv", paths.row_key_mapping_csv)
             self.assertEqual(root / "data" / "page-blocks", paths.page_blocks_dir)
-            self.assertEqual(root / "data" / "phase1" / "page_registry.csv", paths.page_registry_csv)
+            self.assertEqual(root / "data" / "phase2" / "page_registry.csv", paths.page_registry_csv)
 
-    def test_resolve_data_snapshot_paths_should_prefer_valid_phase2_snapshot_without_data_root(self) -> None:
+    def test_resolve_data_snapshot_paths_should_redirect_legacy_phase1_config_to_phase2(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             phase1_dir = root / "data" / "phase1"
@@ -117,9 +117,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
             self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase2", paths.structured_data_dir)
             self.assertEqual(root / "data" / "phase2", paths.page_blocks_dir)
-            self.assertEqual(root / "data" / "phase1" / "page_registry.csv", paths.page_registry_csv)
+            self.assertEqual(root / "data" / "phase2" / "page_registry.csv", paths.page_registry_csv)
 
-    def test_resolve_data_snapshot_paths_should_fallback_when_phase2_snapshot_is_incomplete(self) -> None:
+    def test_resolve_data_snapshot_paths_should_not_fallback_when_phase2_snapshot_is_incomplete(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             phase1_dir = root / "data" / "phase1"
@@ -138,16 +138,17 @@ class TestDataSnapshotPaths(unittest.TestCase):
             )
             cfg = {
                 "paths": {
-                    "structured_data_dir": "data/phase1",
+                    "structured_data_dir": "data/phase2",
                 }
             }
 
             paths = resolve_data_snapshot_paths(cfg, repo_root=root)
 
-            self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
-            self.assertEqual(root / "data" / "phase1", paths.structured_data_dir)
+            self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
+            self.assertEqual(root / "data" / "phase2", paths.structured_data_dir)
+            self.assertEqual(root / "data" / "phase2" / "page_registry.csv", paths.page_registry_csv)
 
-    def test_resolve_data_snapshot_paths_should_fallback_when_manifest_skips_required_table(self) -> None:
+    def test_resolve_data_snapshot_paths_should_not_fallback_when_manifest_skips_required_table(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             phase1_dir = root / "data" / "phase1"
@@ -184,7 +185,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
             )
             cfg = {
                 "paths": {
-                    "structured_data_dir": "data/phase1",
+                    "structured_data_dir": "data/phase2",
                 }
             }
 
@@ -196,7 +197,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 any("skipped required table" in issue for issue in status.issues),
                 status.issues,
             )
-            self.assertEqual(root / "data" / "phase1" / "Spec_Master.csv", paths.spec_master_csv)
+            self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
 
     def test_phase2_export_root_should_default_to_phase2_even_when_structured_data_dir_points_to_phase1(self) -> None:
         with tempfile.TemporaryDirectory() as td:

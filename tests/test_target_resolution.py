@@ -343,7 +343,7 @@ class TestTargetResolution(unittest.TestCase):
             self.assertEqual("Jackery ポータブル電源 2000 New", ja_name)
 
     def test_resolve_product_name_for_build_should_return_none_without_model(self) -> None:
-        cfg = {"paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"}}
+        cfg = {"paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"}}
         self.assertIsNone(build_docs.resolve_product_name_for_build(cfg, model=None, region="US", lang="en"))
 
     def test_resolve_rst_substitutions_for_build_should_include_custom_template_vars(self) -> None:
@@ -377,7 +377,7 @@ class TestTargetResolution(unittest.TestCase):
             docs_dir = root / "docs"
             template_dir = docs_dir / "templates" / "page_us-en"
             static_dir = docs_dir / "_static"
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             template_dir.mkdir(parents=True)
             static_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
@@ -399,7 +399,7 @@ class TestTargetResolution(unittest.TestCase):
 
             cfg = {
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {
                         "type": "rst_include",
@@ -485,7 +485,7 @@ class TestTargetResolution(unittest.TestCase):
             (docs_dir / "templates" / "recipes").mkdir(parents=True)
             (docs_dir / "templates" / "snippets" / "en").mkdir(parents=True)
             (docs_dir / "templates" / "word_template" / "common_assets" / "overview").mkdir(parents=True)
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             data_dir.mkdir(parents=True)
 
             (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
@@ -567,7 +567,7 @@ class TestTargetResolution(unittest.TestCase):
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
                 "paths": {
                     "page_manifest": str(manifest_path),
-                    "spec_master_csv": "data/phase1/Spec_Master.csv",
+                    "spec_master_csv": "data/phase2/Spec_Master.csv",
                 },
             }
 
@@ -594,7 +594,7 @@ class TestTargetResolution(unittest.TestCase):
             docs_dir = root / "docs"
             template_dir = docs_dir / "templates" / "page_us-en"
             common_assets_dir = docs_dir / "templates" / "word_template" / "common_assets" / "symbols"
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             template_dir.mkdir(parents=True)
             common_assets_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
@@ -613,7 +613,7 @@ class TestTargetResolution(unittest.TestCase):
 
             cfg = {
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {
                         "type": "rst_include",
@@ -648,7 +648,7 @@ class TestTargetResolution(unittest.TestCase):
             docs_dir = root / "docs"
             template_dir = docs_dir / "templates" / "page_us-es"
             static_dir = docs_dir / "_static"
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             template_dir.mkdir(parents=True)
             static_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
@@ -675,7 +675,7 @@ class TestTargetResolution(unittest.TestCase):
                     "default_model": "M1",
                     "default_region": "US",
                 },
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {
                         "type": "rst_include",
@@ -701,7 +701,7 @@ class TestTargetResolution(unittest.TestCase):
             docs_dir = root / "docs"
             docs_dir.mkdir(parents=True)
             (docs_dir / "conf_base.py").write_text("", encoding="utf-8")
-            spec_master = root / "data" / "phase1" / "Spec_Master.csv"
+            spec_master = root / "data" / "phase2" / "Spec_Master.csv"
             spec_master.parent.mkdir(parents=True)
             spec_master.write_text(
                 "Section,Row_key,Line_order,Page,Model,Region,Is_Latest,enabled,Value_source\n"
@@ -711,12 +711,12 @@ class TestTargetResolution(unittest.TestCase):
 
             cfg = {
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {
                         "type": "csv_page",
                         "page": "spec",
-                        "source": "phase1",
+                        "source": "phase2",
                         "langs": ["en"],
                         "include_dir": "generated/{model}",
                     }
@@ -750,7 +750,7 @@ class TestTargetResolution(unittest.TestCase):
             docs_dir = root / "docs"
             template_dir = docs_dir / "templates" / "page_en"
             contracts_dir = docs_dir / "templates" / "contracts"
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             template_dir.mkdir(parents=True)
             contracts_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
@@ -779,7 +779,7 @@ class TestTargetResolution(unittest.TestCase):
 
             cfg = {
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {
                         "type": "rst_include",
@@ -801,7 +801,7 @@ class TestTargetResolution(unittest.TestCase):
             root = Path(td)
             docs_dir = root / "docs"
             template_dir = docs_dir / "templates" / "page_en"
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             template_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
 
@@ -817,7 +817,7 @@ class TestTargetResolution(unittest.TestCase):
 
             cfg = {
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {"type": "rst_include", "lang": "en", "file": "templates/page_en/alpha.rst"},
                     {"type": "rst_include", "lang": "en", "file": "templates/page_en/beta.rst"},
@@ -846,7 +846,7 @@ class TestTargetResolution(unittest.TestCase):
             legacy_bundle_dir = docs_dir / "M1" / "US"
             legacy_generated_dir = docs_dir / "generated" / "M1"
             template_dir = docs_dir / "templates" / "page_us-en"
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
 
             legacy_bundle_dir.mkdir(parents=True)
             legacy_generated_dir.mkdir(parents=True)
@@ -865,7 +865,7 @@ class TestTargetResolution(unittest.TestCase):
 
             cfg = {
                 "build": {"languages": ["en"], "default_model": "M1", "default_region": "US"},
-                "paths": {"spec_master_csv": "data/phase1/Spec_Master.csv"},
+                "paths": {"spec_master_csv": "data/phase2/Spec_Master.csv"},
                 "pages": [
                     {
                         "type": "rst_include",

@@ -23,7 +23,8 @@ Periodo di garanzia
 
        **Garanzia standard**
 
-       Il periodo di garanzia standard per |PRODUCT_NAME| è misurato a partire dalla data di acquisto da parte dell'acquirente consumatore originario.
+       Il periodo di garanzia standard per |PRODUCT_NAME| è di 36 mesi.
+       In ogni caso, il periodo di garanzia è misurato a partire dalla data di acquisto da parte dell'acquirente consumatore originario.
        Per stabilire la data di inizio del periodo di garanzia è necessaria la ricevuta del primo acquisto da parte del consumatore, o altra prova documentale ragionevole.
 
      - **2 ANNI**

@@ -152,7 +152,7 @@ class TestSyncReview(unittest.TestCase):
                 "pages": [
                     {"type": "rst_include", "lang": "en", "file": "templates/page_us-en/plain.rst"},
                     {"type": "rst_include", "lang": "en", "file": "templates/page_us-en/product.rst"},
-                    {"type": "csv_page", "source": "phase1", "page": "spec", "langs": ["en"], "include_dir": "generated/{model}"},
+                    {"type": "csv_page", "source": "phase2", "page": "spec", "langs": ["en"], "include_dir": "generated/{model}"},
                 ],
             }
 
@@ -194,7 +194,7 @@ class TestSyncReview(unittest.TestCase):
                     {"type": "rst_include", "lang": "ja", "file": "templates/page_jp/plain.rst"},
                     {"type": "rst_include", "lang": "ja", "file": "templates/page_jp/product.rst"},
                     {"type": "rst_include", "lang": "ja", "file": "templates/page_jp/ups.rst"},
-                    {"type": "csv_page", "source": "phase1", "page": "spec", "langs": ["ja"], "include_dir": "generated/{model}"},
+                    {"type": "csv_page", "source": "phase2", "page": "spec", "langs": ["ja"], "include_dir": "generated/{model}"},
                 ],
             }
 
@@ -301,7 +301,7 @@ class TestSyncReview(unittest.TestCase):
                 "build": {"languages": ["en"]},
                 "pages": [
                     {"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"},
-                    {"type": "csv_page", "source": "phase1", "page": "spec", "langs": ["en"], "include_dir": "generated/{model}"},
+                    {"type": "csv_page", "source": "phase2", "page": "spec", "langs": ["en"], "include_dir": "generated/{model}"},
                 ],
             }
 

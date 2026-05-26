@@ -20,7 +20,7 @@ pages:
     langs: [ja]
     include_dir: generated/{model}/draft
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [ja]
     include_dir: generated/{model}
@@ -41,12 +41,12 @@ pages:
     lang: ja
     file: templates/page_jp/08_charging_methods.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: troubleshooting
     langs: [ja]
     include_dir: generated/{model}
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [ja]
     include_dir: generated/{model}

@@ -10,7 +10,7 @@ Checks:
 - Detect duplicate YAML keys (fail-fast)
 - Required sections exist
 - pages DSL structure valid
-- csv_page source check (phase1-only)
+- csv_page source check (phase2-only)
 - Optional file existence checks
 """
 

@@ -10,8 +10,9 @@ from typing import Any
 
 from tools.utils.targets import format_tokenized
 
-STRUCTURED_DATA_DEFAULT_DIR = "data/phase1"
-PHASE2_DEFAULT_EXPORT_DIR = "data/phase2"
+STRUCTURED_DATA_DEFAULT_DIR = "data/phase2"
+LEGACY_STRUCTURED_DATA_DIR = "data/phase1"
+PHASE2_DEFAULT_EXPORT_DIR = STRUCTURED_DATA_DEFAULT_DIR
 SNAPSHOT_MANIFEST_FILE = "snapshot_manifest.json"
 
 SPEC_MASTER_FILE = "Spec_Master.csv"
@@ -287,20 +288,22 @@ def inspect_phase2_snapshot(
     )
 
 
-def _repo_phase1_root(repo_root: Path) -> Path:
-    return (repo_root / STRUCTURED_DATA_DEFAULT_DIR).resolve(strict=False)
+def _repo_legacy_phase1_root(repo_root: Path) -> Path:
+    return (repo_root / LEGACY_STRUCTURED_DATA_DIR).resolve(strict=False)
 
 
-def _should_prefer_phase2_root(*, configured: Path | None, repo_root: Path) -> bool:
+def _should_use_active_snapshot_root(*, configured: Path | None, repo_root: Path) -> bool:
     if configured is None:
         return True
-    return configured.resolve(strict=False) == _repo_phase1_root(repo_root)
+    return configured.resolve(strict=False) == _repo_legacy_phase1_root(repo_root)
 
 
-def _should_prefer_phase2_file(*, configured: Path | None, repo_root: Path, default_file_name: str) -> bool:
+def _should_use_active_snapshot_file(*, configured: Path | None, repo_root: Path, default_file_name: str) -> bool:
     if configured is None:
         return True
-    return configured.resolve(strict=False) == (_repo_phase1_root(repo_root) / default_file_name).resolve(strict=False)
+    return configured.resolve(strict=False) == (
+        _repo_legacy_phase1_root(repo_root) / default_file_name
+    ).resolve(strict=False)
 
 
 def phase2_snapshot_is_valid(
@@ -338,12 +341,7 @@ def resolve_active_data_root(
         region=region,
     )
 
-    if phase2_snapshot_is_valid(
-        cfg,
-        repo_root=repo_root,
-        model=model,
-        region=region,
-    ) and _should_prefer_phase2_root(configured=configured, repo_root=repo_root):
+    if _should_use_active_snapshot_root(configured=configured, repo_root=repo_root):
         return _phase2_candidate_export_root(
             cfg,
             repo_root=repo_root,
@@ -376,19 +374,19 @@ def resolve_page_registry_csv(
     cfg: dict[str, Any],
     *,
     repo_root: Path,
+    data_root: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> Path:
-    paths_cfg = _paths_cfg(cfg)
-    configured = resolve_optional_repo_path(
-        repo_root,
-        paths_cfg.get("page_registry_csv"),
+    return _resolve_structured_file_path(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+        config_key="page_registry_csv",
+        default_file_name=PAGE_REGISTRY_FILE,
         model=model,
         region=region,
     )
-    if configured is not None:
-        return configured
-    return repo_root / STRUCTURED_DATA_DEFAULT_DIR / PAGE_REGISTRY_FILE
 
 
 def resolve_page_blocks_dir(
@@ -411,12 +409,7 @@ def resolve_page_blocks_dir(
         region=region,
     )
 
-    if phase2_snapshot_is_valid(
-        cfg,
-        repo_root=repo_root,
-        model=model,
-        region=region,
-    ) and _should_prefer_phase2_root(configured=configured, repo_root=repo_root):
+    if _should_use_active_snapshot_root(configured=configured, repo_root=repo_root):
         return resolve_active_data_root(
             cfg,
             repo_root=repo_root,
@@ -457,12 +450,7 @@ def _resolve_structured_file_path(
         region=region,
     )
 
-    if phase2_snapshot_is_valid(
-        cfg,
-        repo_root=repo_root,
-        model=model,
-        region=region,
-    ) and _should_prefer_phase2_file(
+    if _should_use_active_snapshot_file(
         configured=configured,
         repo_root=repo_root,
         default_file_name=default_file_name,
@@ -507,6 +495,7 @@ def resolve_data_snapshot_paths(
         page_registry_csv=resolve_page_registry_csv(
             cfg,
             repo_root=repo_root,
+            data_root=data_root,
             model=model,
             region=region,
         ),

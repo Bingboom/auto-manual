@@ -38,3 +38,13 @@ Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Jackery-Kundendi
      - Entfernen Sie die an die USB-Anschlüsse des Produkts angeschlossene Last. Warten Sie, bis der Fehler verschwindet.
    * - FE
      - Wenden Sie sich an den Jackery-Kundendienst.
+
+.. only:: model_je_2000e
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 14 86
+
+      * - FC
+        - | 1. Starten Sie die Batteriepacks sowie |PRODUCT_NAME| jeweils neu.
+          | 2. Besteht der Fehler weiterhin, trennen Sie das Batteriepack von |PRODUCT_NAME| und schließen Sie es erneut an.

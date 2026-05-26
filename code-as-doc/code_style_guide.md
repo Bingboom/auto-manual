@@ -43,12 +43,12 @@ Responsibilities:
 
 ### 2.3 Structured Rendering
 
-- [`../tools/phase1_build.py`](../tools/phase1_build.py)
-- [`../tools/phase1/`](../tools/phase1)
+- [`../tools/csv_page_build.py`](../tools/csv_page_build.py)
+- [`../tools/csv_pages/`](../tools/csv_pages)
 
 Responsibilities:
 
-- read phase1 CSV snapshots
+- read phase2 CSV snapshots
 - render CSV-driven pages
 - keep data rendering separate from bundle assembly
 

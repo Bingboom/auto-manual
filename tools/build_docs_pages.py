@@ -36,8 +36,8 @@ def render_csv_pages(
         region=region,
     )
 
-    phase1_pages: set[str] = set()
-    phase1_langs: set[str] = set()
+    csv_pages: set[str] = set()
+    csv_langs: set[str] = set()
 
     for page in pages:
         if not isinstance(page, csv_page_cls):
@@ -45,19 +45,19 @@ def render_csv_pages(
 
         page_name = page.page
         source = page.source
-        if source != "phase1":
-            raise RuntimeError(f"Unsupported csv_page source='{source}' for page='{page_name}' (phase1-only)")
+        if source != "phase2":
+            raise RuntimeError(f"Unsupported csv_page source='{source}' for page='{page_name}' (phase2-only)")
 
-        phase1_pages.add(page_name)
+        csv_pages.add(page_name)
         langs = list(page.langs) or build_langs
         for lang in langs:
-            phase1_langs.add(str(lang))
+            csv_langs.add(str(lang))
 
-    if phase1_pages:
-        cmd = [sys.executable, "tools/phase1_build.py"]
-        cmd += ["--page", ",".join(sorted(phase1_pages))]
-        if phase1_langs:
-            cmd += ["--lang", ",".join(sorted(phase1_langs))]
+    if csv_pages:
+        cmd = [sys.executable, "tools/csv_page_build.py"]
+        cmd += ["--page", ",".join(sorted(csv_pages))]
+        if csv_langs:
+            cmd += ["--lang", ",".join(sorted(csv_langs))]
         if model:
             cmd += ["--model", model]
         if region:

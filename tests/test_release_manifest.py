@@ -28,7 +28,7 @@ class TestReleaseManifest(unittest.TestCase):
             (build_root / "pdf" / "manual_je1000f_us.pdf").write_text("pdf\n", encoding="utf-8")
             (build_root / "md" / "manual_je1000f_us.md").write_text("# Manual\n", encoding="utf-8")
 
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             data_dir.mkdir(parents=True)
             (data_dir / "Spec_Master.csv").write_text(
                 "\n".join(
@@ -87,7 +87,7 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertEqual("docs/_review/JE-1000F/US/en", manifest["tracked_review_dir"])
             self.assertEqual("docs/_build/JE-1000F/US/en/rst", manifest["runtime_bundle_dir"])
             self.assertEqual("Jackery Explorer 1000 Pro", manifest["product_name"])
-            self.assertEqual("data/phase1/Spec_Notes.csv", manifest["spec_notes_csv"])
+            self.assertEqual("data/phase2/Spec_Notes.csv", manifest["spec_notes_csv"])
             self.assertEqual(
                 "reports/releases/JE-1000F/US/en/manifests/20260315T100000Z.json",
                 json_path.relative_to(root).as_posix(),
@@ -118,12 +118,12 @@ class TestReleaseManifest(unittest.TestCase):
             (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
 
-            phase1_dir = root / "data" / "phase1"
+            configured_dir = root / "data" / "configured"
             phase2_dir = root / "data" / "phase2"
-            phase1_dir.mkdir(parents=True)
+            configured_dir.mkdir(parents=True)
             phase2_dir.mkdir(parents=True)
-            (phase1_dir / "Spec_Master.csv").write_text("Model,Region,Is_Latest,Page,Row_key,Value_source\n", encoding="utf-8")
-            for data_dir, title in ((phase1_dir, "phase1"), (phase2_dir, "phase2")):
+            (configured_dir / "Spec_Master.csv").write_text("Model,Region,Is_Latest,Page,Row_key,Value_source\n", encoding="utf-8")
+            for data_dir, title in ((configured_dir, "configured"), (phase2_dir, "phase2")):
                 (data_dir / "Spec_Footnotes.csv").write_text("id,note\n", encoding="utf-8")
                 (data_dir / "Spec_Notes.csv").write_text("id,note\n", encoding="utf-8")
                 (data_dir / "spec_titles.csv").write_text(f"title_en\n{title}\n", encoding="utf-8")
@@ -147,7 +147,7 @@ class TestReleaseManifest(unittest.TestCase):
                         "  include_lang_in_output_path: true",
                         "paths:",
                         f"  docs_dir: {docs_dir.as_posix()}",
-                        f"  spec_master_csv: {(phase1_dir / 'Spec_Master.csv').as_posix()}",
+                        f"  spec_master_csv: {(configured_dir / 'Spec_Master.csv').as_posix()}",
                     ]
                 )
                 + "\n",
@@ -182,7 +182,7 @@ class TestReleaseManifest(unittest.TestCase):
             (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
 
-            data_dir = root / "data" / "phase1"
+            data_dir = root / "data" / "phase2"
             data_dir.mkdir(parents=True)
             (data_dir / "Spec_Master.csv").write_text(
                 "Model,Region,Is_Latest,Page,Row_key,Value_source\nJE-1000F,US,TRUE,specifications,product_name,Stage Product\n",

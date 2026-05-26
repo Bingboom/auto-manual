@@ -16,7 +16,7 @@
          :widths: 12 88
 
          * - **ATTENTION**
-           - - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
+           - - Assurez-vous que tous les produits sont éteints avant de connecter |PRODUCT_NAME| au(x) Jackery Battery Pack 2000.
              - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
              - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
              - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
@@ -29,18 +29,30 @@
          :widths: 12 88
 
          * - **ATTENTION**
-           - - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
+           - - Assurez-vous que tous les produits sont éteints avant de connecter |PRODUCT_NAME| au(x) Jackery Battery Pack 2000.
              - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 200 mm entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
              - Lorsque le produit est utilisé avec des batteries d'extension connectées, le nombre maximal de batteries d'extension empilées est de 3 par défaut, et le produit doit être placé sur une surface plane, stable et suffisamment résistante.
              - Si 4 batteries d'extension ou plus doivent être empilées, le produit doit être placé dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
+   .. only:: region_us
 
-      * - **Jackery Battery Pack 2000**
-        - **Câble de rallonge**
-        - **Documents**
+      .. list-table::
+         :header-rows: 0
+         :widths: 34 33 33
+
+         * - **Jackery Battery Pack 2000**
+           - **Câble de rallonge**
+           - **Manuel d’utilisation**
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 34 33 33
+
+         * - **Jackery Battery Pack 2000**
+           - **Câble de rallonge**
+           - **Manuel d’utilisation**
 
 CHARGE
 ======

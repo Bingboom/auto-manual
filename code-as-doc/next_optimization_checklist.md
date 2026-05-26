@@ -72,7 +72,7 @@ This checklist assumes the 2026-05-07 baseline below:
   - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
   - [`../tools/queue_query.py`](../tools/queue_query.py)
   - [`../tools/word_bundle_docx_styles.py`](../tools/word_bundle_docx_styles.py)
-  - [`../tools/phase1/renderers_symbols.py`](../tools/phase1/renderers_symbols.py)
+  - [`../tools/csv_pages/renderers_symbols.py`](../tools/csv_pages/renderers_symbols.py)
   - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
 - long-term content assembly pilot preparation is fixture-backed and does not
   replace the current HTML/PDF build path

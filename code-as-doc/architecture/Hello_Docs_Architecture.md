@@ -50,11 +50,11 @@ Current responsibility:
 
 ### 2.3 Structured Content Layer
 
-- [`../../data/phase1/Spec_Master.csv`](../../data/phase1/Spec_Master.csv)
-- [`../../data/phase1/Spec_Footnotes.csv`](../../data/phase1/Spec_Footnotes.csv)
-- [`../../data/phase1/spec_titles.csv`](../../data/phase1/spec_titles.csv)
-- [`../../data/phase1/content_blocks.csv`](../../data/phase1/content_blocks.csv)
-- [`../../data/phase1/page_registry.csv`](../../data/phase1/page_registry.csv)
+- [`../../data/phase2/Spec_Master.csv`](../../data/phase2/Spec_Master.csv)
+- [`../../data/phase2/Spec_Footnotes.csv`](../../data/phase2/Spec_Footnotes.csv)
+- [`../../data/phase2/spec_titles.csv`](../../data/phase2/spec_titles.csv)
+- [`../../data/phase2/content_blocks.csv`](../../data/phase2/content_blocks.csv)
+- [`../../data/phase2/page_registry.csv`](../../data/phase2/page_registry.csv)
 
 Current responsibility:
 
@@ -66,8 +66,8 @@ Current responsibility:
 ### 2.4 Shared Seed Layer
 
 - [`../../docs/templates/`](../../docs/templates)
-- [`../../tools/phase1_build.py`](../../tools/phase1_build.py)
-- [`../../tools/phase1/`](../../tools/phase1)
+- [`../../tools/csv_page_build.py`](../../tools/csv_page_build.py)
+- [`../../tools/csv_pages/`](../../tools/csv_pages)
 
 Current responsibility:
 

@@ -10,7 +10,7 @@ on:
       - "docs/_review/**"
       - "docs/templates/**"
       - "docs/manifests/**"
-      - "data/phase1/**"
+      - "data/phase2/**"
       - "build.py"
       - "tools/**"
       - "config.us.yaml"

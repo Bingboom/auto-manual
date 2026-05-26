@@ -18,7 +18,7 @@ class TestConfigPages(unittest.TestCase):
         pages, issues = parse_config_pages(
             [
                 {"type": "cover_pdf", "file": "cover.pdf"},
-                {"type": "csv_page", "page": "safety", "source": "phase1", "langs": ["en"]},
+                {"type": "csv_page", "page": "safety", "source": "phase2", "langs": ["en"]},
                 {
                     "type": "generated_page",
                     "page": "03_product_overview",
@@ -44,7 +44,7 @@ class TestConfigPages(unittest.TestCase):
     def test_parse_config_pages_should_apply_default_languages(self) -> None:
         pages, issues = parse_config_pages(
             [
-                {"type": "csv_page", "page": "spec", "source": "phase1"},
+                {"type": "csv_page", "page": "spec", "source": "phase2"},
                 {"type": "pdf_insert", "file_map": {"en": "a.pdf", "fr": "b.pdf"}},
             ],
             default_languages=["en", "fr"],
@@ -78,5 +78,3 @@ class TestConfigPages(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-

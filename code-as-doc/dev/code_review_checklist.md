@@ -6,7 +6,7 @@ Use this checklist when reviewing changes to code, config, data, or review workf
 
 ## 1. Source of Truth
 
-- [ ] Is it clear whether this change belongs in templates, phase1 CSV data, `_review`, or runtime `_build` output?
+- [ ] Is it clear whether this change belongs in templates, phase2 CSV data, `_review`, or runtime `_build` output?
 - [ ] If review has already started for a target, are target-specific text changes being made in [`docs/_review/<model>/<region>/`](../../docs/_review) instead of shared templates?
 - [ ] If the change affects many manuals, is it being implemented in templates or shared data rather than copied into one review bundle?
 
@@ -26,10 +26,10 @@ Use this checklist when reviewing changes to code, config, data, or review workf
 
 ## 4. Data Contract
 
-- [ ] If [`Spec_Master.csv`](../../data/phase1/Spec_Master.csv) semantics changed, was [`code-as-doc/spec_master_user_guide.md`](../spec_master_user_guide.md) updated?
+- [ ] If [`Spec_Master.csv`](../../data/phase2/Spec_Master.csv) semantics changed, was [`code-as-doc/spec_master_user_guide.md`](../spec_master_user_guide.md) updated?
 - [ ] If new page-value bindings were introduced, are the affected templates, recipes, and contracts aligned?
 - [ ] If contracts changed, are `required_spec_keys`, `required_page_values`, `required_assets`, and `allowed_*` scopes still correct?
-- [ ] If safety/spec data behavior changed, are [`Spec_Footnotes.csv`](../../data/phase1/Spec_Footnotes.csv), [`spec_titles.csv`](../../data/phase1/spec_titles.csv), and [`content_blocks.csv`](../../data/phase1/content_blocks.csv) interactions still correct?
+- [ ] If safety/spec data behavior changed, are [`Spec_Footnotes.csv`](../../data/phase2/Spec_Footnotes.csv), [`spec_titles.csv`](../../data/phase2/spec_titles.csv), and [`content_blocks.csv`](../../data/phase2/content_blocks.csv) interactions still correct?
 
 ## 5. Review Workflow
 

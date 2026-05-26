@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-05-07
+Updated: 2026-05-25
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -551,3 +551,17 @@ Why it mattered:
 - maintainers no longer have to edit target identity, page placeholders, visible spec rows, row keys, and ordering in one mixed table
 - new-model onboarding can follow a copy-and-edit SOP across two source tables plus the existing dimension dictionaries
 - downstream renderers and `sync-data` keep reading a compatible `Spec_Master.csv` shape while the human authoring surface becomes smaller and less error-prone
+
+## 33. 2026-05-25: Phase2-Only Structured Data Cutover
+
+Main outcomes:
+
+- made [`data/phase2/`](../data/phase2) the only active structured-data root for configs, manifests, docs, review preview, release traceability, and low-level spec-maintenance scripts
+- renamed the active CSV page renderer package from `tools.phase1` / `tools/phase1_build.py` to [`tools.csv_pages`](../tools/csv_pages) / [`tools/csv_page_build.py`](../tools/csv_page_build.py)
+- rejected `csv_page.source` values other than `phase2`
+- kept old configured `data/phase1` paths only as a legacy redirect guard inside `tools/data_snapshot.py`
+
+Why it mattered:
+
+- new build, review, publish, and queue paths cannot silently fall back to the retired snapshot
+- current docs and tests now speak in phase2 terms, with phase1 limited to historical notes and explicit legacy-redirect coverage

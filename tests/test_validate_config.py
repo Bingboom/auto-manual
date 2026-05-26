@@ -107,7 +107,7 @@ class TestValidateConfig(unittest.TestCase):
     def test_validate_should_accept_spec_notes_csv_path(self) -> None:
         cfg = {
             "build": {"languages": ["en"]},
-            "paths": {"spec_notes_csv": "data/phase1/Spec_Notes.csv"},
+            "paths": {"spec_notes_csv": "data/phase2/Spec_Notes.csv"},
             "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
         }
 
@@ -119,9 +119,9 @@ class TestValidateConfig(unittest.TestCase):
         cfg = {
             "build": {"languages": ["en"]},
             "paths": {
-                "structured_data_dir": "data/phase1",
-                "page_registry_csv": "data/phase1/page_registry.csv",
-                "page_blocks_dir": "data/phase1",
+                "structured_data_dir": "data/phase2",
+                "page_registry_csv": "data/phase2/page_registry.csv",
+                "page_blocks_dir": "data/phase2",
             },
             "sync": {
                 "phase2": {
@@ -159,14 +159,7 @@ class TestValidateConfig(unittest.TestCase):
             "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
         }
 
-        with mock.patch.dict(
-            "os.environ",
-            {
-                "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
-                "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
-            },
-            clear=False,
-        ):
+        with mock.patch.dict("os.environ", {}, clear=True):
             issues = validate(cfg, strict_files=False)
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertIn(
@@ -238,7 +231,7 @@ class TestValidateConfig(unittest.TestCase):
                     },
                 },
             },
-            "pages": [{"type": "csv_page", "source": "phase1", "page": "lcd_icons", "langs": ["en"]}],
+            "pages": [{"type": "csv_page", "source": "phase2", "page": "lcd_icons", "langs": ["en"]}],
         }
 
         issues = validate(cfg, strict_files=False)
@@ -251,7 +244,7 @@ class TestValidateConfig(unittest.TestCase):
             "paths": {},
             "pages": [
                 {"type": "rst_include", "lang": "fr", "file": "templates/page_shared/fr/00_preface.rst"},
-                {"type": "csv_page", "source": "phase1", "page": "spec", "langs": ["en", "fr"]},
+                {"type": "csv_page", "source": "phase2", "page": "spec", "langs": ["en", "fr"]},
             ],
         }
 

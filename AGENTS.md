@@ -29,7 +29,7 @@ For current human workflows, read:
 
 ## 2. Editing Surface
 
-- Shared changes: [`docs/templates/`](/Users/pika/Documents/GitHub/auto-manual/docs/templates), [`data/phase1/`](/Users/pika/Documents/GitHub/auto-manual/data/phase1)
+- Shared changes: [`docs/templates/`](/Users/pika/Documents/GitHub/auto-manual/docs/templates), [`data/phase2/`](/Users/pika/Documents/GitHub/auto-manual/data/phase2)
 - Target review changes after review starts: [`docs/_review/`](/Users/pika/Documents/GitHub/auto-manual/docs/_review)
 - Generated output only: [`docs/_build/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
 - Do not hand-edit [`docs/index.rst`](/Users/pika/Documents/GitHub/auto-manual/docs/index.rst) unless the task is about index generation.

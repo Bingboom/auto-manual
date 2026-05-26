@@ -10,7 +10,7 @@ pages:
     lang: pt-BR
     file: templates/page_shared/pt-BR/01_user_maintenance_instructions.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: symbols
     langs: [pt-BR]
     include_dir: generated/{model}
@@ -24,7 +24,7 @@ pages:
     lang: pt-BR
     file: templates/page_us-pt-br/03_product_overview_placeholder.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: lcd_icons
     langs: [pt-BR]
     include_dir: generated/{model}
@@ -44,12 +44,12 @@ pages:
     lang: pt-BR
     file: templates/page_shared/pt-BR/09_storage_and_maintenance.rst
   - type: csv_page
-    source: phase1
+    source: phase2
     page: troubleshooting
     langs: [pt-BR]
     include_dir: generated/{model}
   - type: csv_page
-    source: phase1
+    source: phase2
     page: spec
     langs: [pt-BR]
     include_dir: generated/{model}

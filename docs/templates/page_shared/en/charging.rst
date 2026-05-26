@@ -16,7 +16,7 @@
          :widths: 12 88
 
          * - **CAUTION**
-           - - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+           - - Ensure all products are powered off before connecting |PRODUCT_NAME| to the Jackery Battery Pack 2000.
              - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (about 200 mm) of space between the vents and any objects to allow for proper heat dissipation.
              - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
              - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
@@ -29,18 +29,30 @@
          :widths: 12 88
 
          * - **CAUTION**
-           - - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+           - - Ensure all products are powered off before connecting |PRODUCT_NAME| to the Jackery Battery Pack 2000.
              - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.
              - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
              - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
+   .. only:: region_us
 
-      * - **Jackery Battery Pack 2000**
-        - **Expansion Cable**
-        - **Documents**
+      .. list-table::
+         :header-rows: 0
+         :widths: 34 33 33
+
+         * - **Jackery Battery Pack 2000**
+           - **Expansion Cable**
+           - **User Manual**
+
+   .. only:: region_eu
+
+      .. list-table::
+         :header-rows: 0
+         :widths: 34 33 33
+
+         * - **Jackery Battery Pack 2000**
+           - **Expansion Cable**
+           - **User Manual**
 
 CHARGING
 ========
@@ -78,5 +90,5 @@ Connect the AC charging cable to the AC input port of the product and a wall out
 
 **Emergency Charging Mode**
 
-| Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
+| Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery App. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
 | \*To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.
