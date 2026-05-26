@@ -40,9 +40,11 @@ pages:
   - type: rst_include
     lang: ja
     file: templates/page_jp/08_charging_methods.rst
-  - type: rst_include
-    lang: ja
-    file: templates/page_jp/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [ja]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec

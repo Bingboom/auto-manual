@@ -155,6 +155,29 @@ class TestCsvPageBuilderNormalization(unittest.TestCase):
 
         self.assertEqual("Energy Saving Mode", rows[0]["icon_en"])
 
+    def test_load_troubleshooting_allows_table_schema_without_block_type(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            data_dir = root / "data" / "phase2"
+            data_dir.mkdir(parents=True, exist_ok=True)
+            (data_dir / "troubleshooting_blocks.csv").write_text(
+                "No.,Model,Region,Is_latest,error_code,corrective_measures_en\n"
+                "1,ALL,US,TRUE,F0,Restart the product.\n",
+                encoding="utf-8",
+            )
+
+            paths = BuildPaths(
+                root=root,
+                page_registry=root / "dummy_registry.csv",
+                page_blocks_dir=data_dir,
+                template_dir=root / "docs" / "templates",
+                output_dir=root / "docs" / "generated",
+                spec_master_csv=root / "data" / "phase2" / "Spec_Master.csv",
+            )
+            rows = CsvPageBuilder(paths)._load_page_blocks("troubleshooting")
+
+        self.assertEqual("F0", rows[0]["error_code"])
+
     def test_select_targets_supports_model_and_region_filters(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

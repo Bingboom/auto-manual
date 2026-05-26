@@ -1,0 +1,140 @@
+No.,Model,Region,Is_latest,Version,error_code,corrective_measures_en,corrective_measures_fr,corrective_measures_es,corrective_measures_pt-BR,corrective_measures_br,corrective_measures_de,corrective_measures_it,corrective_measures_ukr,corrective_measures_jp,corrective_measures_zh,render_preview_en
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+1,ALL,CN,TRUE,V1.0,F0,,,,,,,,,,重启产品。,
+2,ALL,CN,TRUE,V1.0,F1,,,,,,,,,,重启产品。,
+3,ALL,CN,TRUE,V1.0,F2,,,,,,,,,,重启产品。,
+4,ALL,CN,TRUE,V1.0,F3,,,,,,,,,,重启产品。,
+5,ALL,CN,TRUE,V1.0,F4,,,,,,,,,,将产品连接负载，放电直至故障消失。,
+6,ALL,CN,TRUE,V1.0,F5,,,,,,,,,,通过太阳能板或交流墙充为产品充电，直至故障消失。,
+7,ALL,CN,TRUE,V1.0,F6,,,,,,,,,,"1. 待电网恢复正常后再通过交流墙插为产品充电。
+2. 检查进风口和出风口是否堵塞；确保产品两侧有 20 厘米的间隙。
+3. 将产品放置在避免阳光直射、环境温度低于45℃的地方。
+4. 断开产品连接的所有负载，保持产品空闲待机，等待故障消失。检查负载的启动功率是否超出本产品的输出范围。
+5. 重启产品。",
+8,ALL,CN,TRUE,V1.0,F7,,,,,,,,,,"1. 移除连接到产品的所有太阳能板。
+2. 检查连接到产品的太阳能板的开路电压（V\ :sub:`oc`）。产品允许的最大直流输入电压为 60V。
+3. 重启产品，保持产品空闲待机，等待故障消失。",
+9,ALL,CN,TRUE,V1.0,F8,,,,,,,,,,请联系经销商或电小二客户支持。,
+10,ALL,CN,TRUE,V1.0,F9,,,,,,,,,,移除连接到产品 USB 端口的负载，等待故障消失。,
+11,ALL,CN,TRUE,V1.0,FE,,,,,,,,,,请联系经销商或电小二客户支持。,
+1,ALL,EU,TRUE,V1.0,F0,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,Starten Sie das Produkt neu.,Riavviare il prodotto.,Перезапустіть пристрій.,,,F0: Restart the product.
+2,ALL,EU,TRUE,V1.0,F1,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,Starten Sie das Produkt neu.,Riavviare il prodotto.,Перезапустіть пристрій.,,,F1: Restart the product.
+3,ALL,EU,TRUE,V1.0,F2,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,Starten Sie das Produkt neu.,Riavviare il prodotto.,Перезапустіть пристрій.,,,F2: Restart the product.
+4,ALL,EU,TRUE,V1.0,F3,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,Starten Sie das Produkt neu.,Riavviare il prodotto.,Перезапустіть пристрій.,,,F3: Restart the product.
+5,ALL,EU,TRUE,V1.0,F4,Connect the product to loads to discharge its battery until the fault disappears.,Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.,Conecte el producto a cargas para descargar la batería hasta que la falla desaparezca.,Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.,Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.,"Schließen Sie das Produkt an Lasten an, um die Batterie zu entladen, bis der Fehler verschwindet.",Collega il prodotto ai carichi per scaricare la batteria fino a quando il guasto scompare.,"Підключіть до пристрою навантаження, щоб розрядити батарею, доки несправність не зникне.",,,F4: Connect the product to loads to discharge its battery until the fault disappears.
+6,ALL,EU,TRUE,V1.0,F5,Charge the product via solar panels or an AC wall outlet until the fault disappears.,Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.,Cargue el producto mediante paneles solares o una toma de corriente CA hasta que la falla desaparezca.,Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.,Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.,"Laden Sie das Produkt über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",Caricare il prodotto tramite pannelli solari o una presa a muro CA fino a quando l'errore non scompare.,"Заряджайте пристрій через сонячні панелі або настінну розетку AC, доки несправність не зникне.",,,F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.
+7,ALL,EU,TRUE,V1.0,F6,"1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both sides of the product.
+3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.
+4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
+5. Restart the product.","1. Attendez que le réseau se normalise avant de charger le produit via une prise murale CA.
+2. Vérifiez si les entrées et sorties d'air sont obstruées; assurez un espace de 20 cm de chaque côté du produit.
+3. Placez le produit dans un endroit qui n'est pas exposé à la lumière directe du soleil ou à des températures ambiantes élevées.
+4. Déconnectez toutes les charges du produit. Laissez le produit inactif et attendez que l'erreur disparaisse.
+5. Redémarrez le produit.","1. Espere a que la red eléctrica se normalice antes de cargar el producto a través de una toma de corriente CA.
+2. Verifique si las rejillas de entrada y salida de aire están obstruidas; asegure un espacio libre de 20 cm a ambos lados del producto.
+3. Coloque el producto en un lugar que no esté expuesto a la luz solar directa ni a altas temperaturas ambientales.
+4. Desconecte todas las cargas del producto. Mantenga el producto inactivo y espere hasta que la falla desaparezca.
+5. Reinicie el producto.","1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.
+2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 20 cm de espaço livre em ambos os lados do produto.
+3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.
+4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.
+5. Reinicie o produto.","1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.
+2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 20 cm de espaço livre em ambos os lados do produto.
+3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.
+4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.
+5. Reinicie o produto.","1. Warten Sie, bis sich das Stromnetz normalisiert hat, bevor Sie das Produkt über eine AC-Wandsteckdose aufladen.
+2. Prüfen Sie, ob die Lufteinlass- und Luftauslassöffnungen blockiert sind; stellen Sie auf beiden Seiten des Produkts einen Abstand von 20 cm sicher.
+3. Platzieren Sie das Produkt an einem Ort, der keinem direkten Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist.
+4. Trennen Sie alle Lasten vom Produkt. Lassen Sie das Produkt im Leerlauf und warten Sie, bis der Fehler verschwindet.
+5. Starten Sie das Produkt neu.","1. Attendi che la rete torni alla normalita prima di caricare il prodotto tramite una presa a muro CA.
+2. Verifica che le prese d'aria di ingresso e di scarico non siano ostruite; assicurati che ci siano 20 cm di spazio libero su entrambi i lati del prodotto.
+3. Posiziona il prodotto in un luogo non esposto alla luce solare diretta o a temperature ambientali elevate.
+4. Scollega tutti i carichi dal prodotto. Lascialo inattivo e attendi che il guasto scompaia.
+5. Riavvia il prodotto.","1. Дочекайтеся, поки мережа стабілізується, перш ніж заряджати пристрій через настінну розетку AC.
+2. Перевірте, чи не заблоковані вентиляційні отвори для забору та викиду повітря; забезпечте зазор 20 см з обох боків пристрою.
+3. Розташуйте пристрій у місці, не відкритому для прямого сонячного світла або високої температури навколишнього середовища.
+4. Від'єднайте від пристрою всі навантаження. Залиште пристрій без роботи та дочекайтеся, поки несправність не зникне.
+5. Перезапустіть пристрій.",,,F6: 1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+8,ALL,EU,TRUE,V1.0,F7,"1. Remove all DC inputs from the product.
+2. Check the open-circuit voltage (V\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.
+3. Restart the product and keep it idle. Wait until the fault disappears.","1. Retirez toutes les entrées CC du produit.
+2. Vérifiez la tension en circuit ouvert (V\ :sub:`oc`) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60V.
+3. Redémarrez le produit et laissez-le inactif. Attendez que l'erreur disparaisse.","1. Retire todas las entradas de CC del producto.
+2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (V\ :sub:`oc`) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.
+3. Reinicie el producto y déjelo inactivo. Espere hasta que la falla desaparezca.","1. Remova todas as entradas CC do produto.
+2. Verifique a tensão de circuito aberto (V\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.
+3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.","1. Remova todas as entradas CC do produto.
+2. Verifique a tensão de circuito aberto (V\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.
+3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.","1. Trennen Sie alle DC-Eingänge vom Produkt.
+2. Prüfen Sie die Leerlaufspannung (V\ :sub:`oc`) der angeschlossenen Solarmodule. Das Produkt erlaubt eine maximale DC-Eingangsspannung von 60 V.
+3. Starten Sie das Produkt neu und lassen Sie es im Leerlauf. Warten Sie, bis der Fehler verschwindet.","1. Rimuovi tutti gli ingressi CC dal prodotto.
+2. Verifica la tensione a circuito aperto (V\ :sub:`oc`) dei pannelli solari collegati. Il prodotto consente una tensione di ingresso CC massima di 60 V.
+3. Riavvia il prodotto e lascialo inattivo. Attendi che il guasto scompaia.","1. Від'єднайте від пристрою всі входи DC.
+2. Перевірте напругу холостого ходу (V\ :sub:`oc`) підключених сонячних панелей. Пристрій допускає максимальну вхідну напругу DC 60V.
+3. Перезапустіть пристрій і залиште його без роботи. Дочекайтеся, поки несправність не зникне.",,,F7: 1. Remove all DC inputs from the product.
+9,ALL,EU,TRUE,V1.0,F8,Contact Jackery Customer Support.,Contacter le service à la clientèle de Jackery.,Contacte con atención al cliente de Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,Wenden Sie sich an den Jackery-Kundendienst.,Contatta l'Assistenza clienti Jackery.,Зверніться до служби підтримки Jackery.,,,F8: Contact Jackery Customer Support.
+10,ALL,EU,TRUE,V1.0,F9,Remove the load connected to the USB ports of the product. Wait until the fault disappears.,Retirez la charge connectée aux ports USB du produit. Attendez que l'erreur disparaisse.,Retire la carga conectada a los puertos USB del producto. Espere hasta que la falla desaparezca.,Remova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.,Remova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.,"Entfernen Sie die an die USB-Anschlüsse des Produkts angeschlossene Last. Warten Sie, bis der Fehler verschwindet.",Rimuovi il carico collegato alle porte USB del prodotto. Attendi che il guasto scompaia.,"Від'єднайте навантаження, підключене до USB-портів пристрою. Дочекайтеся, поки несправність не зникне.",,,F9: Remove the load connected to the USB ports of the product. Wait until the fault disappears.
+11,ALL,EU,TRUE,V1.0,FE,Contact Jackery Customer Support.,Contacter le service à la clientèle de Jackery.,Contacte con atención al cliente de Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,Wenden Sie sich an den Jackery-Kundendienst.,Contatta l'Assistenza clienti Jackery.,Зверніться до служби підтримки Jackery.,,,FE: Contact Jackery Customer Support.
+1,ALL,JP,TRUE,V1.0,F0,,,,,,,,,製品を再起動してください。,,
+2,ALL,JP,TRUE,V1.0,F1,,,,,,,,,製品を再起動してください。,,
+3,ALL,JP,TRUE,V1.0,F2,,,,,,,,,製品を再起動してください。,,
+4,ALL,JP,TRUE,V1.0,F3,,,,,,,,,製品を再起動してください。,,
+5,ALL,JP,TRUE,V1.0,F4,,,,,,,,,製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。,,
+6,ALL,JP,TRUE,V1.0,F5,,,,,,,,,ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。,,
+7,ALL,JP,TRUE,V1.0,F6,,,,,,,,,"1. AC電源コンセントから充電する前に、電源供給が安定するのを待ってください。
+2. 吸気口および排気口が塞がれていないか確認し、製品の両側に20cmのスペースを確保してください。
+3. 製品は日陰で通気の良い場所に設置し、周囲温度が45℃未満であることを確認してください。
+4. 製品からすべての負荷を取り外し、アイドル状態にして、エラーが消えるまで待ってください。ご使用の機器の起動時消費電力が本製品の出力範囲を超えていないかをご確認ください。
+5. 製品を再起動してください。",,
+8,ALL,JP,TRUE,V1.0,F7,,,,,,,,,"1. 製品からすべてのDC入力を取り外してください。
+2. ソーラーパネルで充電する場合は、接続されたソーラーパネルの開放電圧（V\ :sub:`oc`）を確認してください。本製品の最大DC入力電圧は60Vです。
+3. 製品を再起動し、アイドル状態を保ってください。エラーが消えるまで待ってください。",,
+9,ALL,JP,TRUE,V1.0,F8,,,,,,,,,販売店またはJackeryカスタマーサポートにお問い合わせください。,,
+10,ALL,JP,TRUE,V1.0,F9,,,,,,,,,製品のDC/USBポートに接続されている負荷を取り外してください。故障が消えるまで待機してください。,,
+11,ALL,JP,TRUE,V1.0,FE,,,,,,,,,販売店またはJackeryカスタマーサポートにお問い合わせください。,,
+1,ALL,"US, pt-BR",TRUE,V1.0,F0,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,,,,,,F0: Restart the product.
+2,ALL,"US, pt-BR",TRUE,V1.0,F1,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,,,,,,F1: Restart the product.
+3,ALL,"US, pt-BR",TRUE,V1.0,F2,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,,,,,,F2: Restart the product.
+4,ALL,"US, pt-BR",TRUE,V1.0,F3,Restart the product.,Redémarrez le produit.,Reiniciar el producto.,Reinicie o produto.,Reinicie o produto.,,,,,,F3: Restart the product.
+5,ALL,"US, pt-BR",TRUE,V1.0,F4,Connect the product to loads to discharge its battery until the fault disappears.,Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.,Conecte el producto a cargas para descargar la batería hasta que la falla desaparezca.,Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.,Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.,,,,,,F4: Connect the product to loads to discharge its battery until the fault disappears.
+6,ALL,"US, pt-BR",TRUE,V1.0,F5,Charge the product via solar panels or an AC wall outlet until the fault disappears.,Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.,Cargue el producto mediante paneles solares o una toma de corriente CA hasta que la falla desaparezca.,Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.,Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.,,,,,,F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.
+7,ALL,"US, pt-BR",TRUE,V1.0,F6,"1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product.
+3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.
+4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
+5. Restart the product.","1. Attendez que le réseau se normalise avant de charger le produit via une prise murale CA.
+2. Vérifiez si les entrées et sorties d'air sont obstruées; assurez un espace de 0,66 pied (20 cm) de chaque côté du produit.
+3. Placez le produit dans un endroit qui n'est pas exposé à la lumière directe du soleil ou à des températures ambiantes élevées.
+4. Déconnectez toutes les charges du produit. Laissez le produit inactif et attendez que l'erreur disparaisse.
+5. Redémarrez le produit.","1. Espere a que la red eléctrica se normalice antes de cargar el producto a través de una toma de corriente CA.
+2. Verifique si las rejillas de entrada y salida de aire están obstruidas; asegure un espacio libre de 0,66 pies (20 cm) a ambos lados del producto.
+3. Coloque el producto en un lugar que no esté expuesto a la luz solar directa ni a altas temperaturas ambientales.
+4. Desconecte todas las cargas del producto. Mantenga el producto inactivo y espere hasta que la falla desaparezca.
+5. Reinicie el producto.","1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.
+2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 0,66 ft (20 cm) de espaço livre em ambos os lados do produto.
+3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.
+4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.
+5. Reinicie o produto.","1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.
+2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 0,66 ft (20 cm) de espaço livre em ambos os lados do produto.
+3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.
+4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.
+5. Reinicie o produto.",,,,,,F6: 1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+8,ALL,"US, pt-BR",TRUE,V1.0,F7,"1. Remove all DC inputs from the product.
+2. Check the open-circuit voltage (V\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.
+3. Restart the product and keep it idle. Wait until the fault disappears.","1. Retirez toutes les entrées CC du produit.
+2. Vérifiez la tension en circuit ouvert (V\ :sub:`oc`) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60V.
+3. Redémarrez le produit et laissez-le inactif. Attendez que l'erreur disparaisse.","1. Retire todas las entradas de CC del producto.
+2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (V\ :sub:`oc`) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.
+3. Reinicie el producto y déjelo inactivo. Espere hasta que la falla desaparezca.","1. Remova todas as entradas CC do produto.
+2. Verifique a tensão de circuito aberto (V\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.
+3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.","1. Remova todas as entradas CC do produto.
+2. Verifique a tensão de circuito aberto (V\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.
+3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.",,,,,,F7: 1. Remove all DC inputs from the product.
+9,ALL,"US, pt-BR",TRUE,V1.0,F8,Contact Jackery Customer Support.,Contacter le service à la clientèle de Jackery.,Contacte con atención al cliente de Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,,,,,,F8: Contact Jackery Customer Support.
+10,ALL,"US, pt-BR",TRUE,V1.0,F9,Remove the load connected to the USB ports of the product. Wait until the fault disappears.,Retirez la charge connectée aux ports USB du produit. Attendez que l'erreur disparaisse.,Retire la carga conectada a los puertos USB del producto. Espere hasta que la falla desaparezca.,Remova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.,Remova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.,,,,,,F9: Remove the load connected to the USB ports of the product. Wait until the fault disappears.
+11,ALL,"US, pt-BR",TRUE,V1.0,FE,Contact Jackery Customer Support.,Contacter le service à la clientèle de Jackery.,Contacte con atención al cliente de Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,Entre em contato com o Suporte ao Cliente da Jackery.,,,,,,FE: Contact Jackery Customer Support.

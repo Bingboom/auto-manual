@@ -2,8 +2,8 @@
 
 import tempfile
 import unittest
-from unittest import mock
 from pathlib import Path
+from unittest import mock
 
 from tools.validate_config import validate
 
@@ -225,6 +225,7 @@ class TestValidateConfig(unittest.TestCase):
                     "base_token_env": "FEISHU_BASE_TOKEN",
                     "tables": {
                         "lcd_icons": {"table_id": "tblDII3oyqFhQYHn", "view_id": "vewerElnZ3"},
+                        "troubleshooting": {"table_id": "tblUSuk3Q5BKTdTh", "view_id": "vewZne4CUk"},
                         "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
                         "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
                     },

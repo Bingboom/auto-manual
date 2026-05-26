@@ -36,6 +36,12 @@ from .renderers_symbols import (
     PH_SYMBOLS_SIGNAL_SECTION_RST,
     render_symbols_page,
 )
+from .renderers_troubleshooting import (
+    PH_TROUBLESHOOTING_HEADING_RST,
+    PH_TROUBLESHOOTING_INTRO_RST,
+    PH_TROUBLESHOOTING_TABLE_RST,
+    render_troubleshooting_page,
+)
 
 Renderer = Callable[[str, list[dict[str, str]], str, str, dict[str, str]], str]
 
@@ -43,6 +49,7 @@ PAGE_RENDERERS: dict[str, Renderer] = {
     "spec": render_spec_page,
     "symbols": render_symbols_page,
     "lcd_icons": render_lcd_icons_page,
+    "troubleshooting": render_troubleshooting_page,
 }
 
 

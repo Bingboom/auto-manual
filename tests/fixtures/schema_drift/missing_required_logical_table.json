@@ -5,7 +5,8 @@
       "spec_footnotes",
       "spec_notes",
       "spec_titles",
-      "symbols_blocks"
+      "symbols_blocks",
+      "troubleshooting"
     ],
     "skipped_tables": [
       "lcd_icons",
@@ -16,7 +17,8 @@
       {"logical_name": "spec_master", "file_name": "Spec_Master.csv"},
       {"logical_name": "spec_footnotes", "file_name": "Spec_Footnotes.csv"},
       {"logical_name": "spec_notes", "file_name": "Spec_Notes.csv"},
-      {"logical_name": "spec_titles", "file_name": "spec_titles.csv"}
+      {"logical_name": "spec_titles", "file_name": "spec_titles.csv"},
+      {"logical_name": "troubleshooting", "file_name": "troubleshooting_blocks.csv"}
     ],
     "derived_files": [
       {"logical_name": "row_key_mapping", "file_name": "row_key_mapping.csv"}
@@ -124,6 +126,25 @@
       "Region",
       "Model",
       "Source_lang"
+    ],
+    "troubleshooting": [
+      "No.",
+      "Model",
+      "Region",
+      "Is_latest",
+      "Version",
+      "error_code",
+      "corrective_measures_en",
+      "corrective_measures_fr",
+      "corrective_measures_es",
+      "corrective_measures_pt-BR",
+      "corrective_measures_br",
+      "corrective_measures_de",
+      "corrective_measures_it",
+      "corrective_measures_ukr",
+      "corrective_measures_jp",
+      "corrective_measures_zh",
+      "render_preview_en"
     ],
     "row_key_mapping": [
       "Row_label_source",

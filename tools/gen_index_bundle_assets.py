@@ -6,10 +6,11 @@ import shutil
 from pathlib import Path
 
 _RST_ASSET_DIRECTIVE_RE = re.compile(
-    r"^(\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:image|figure)::\s+)(\S+)(\s*)$",
+    r"^(\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:\|[^|]+\|\s+)?(?:image|figure)::\s+)(\S+)(\s*)$",
     re.MULTILINE,
 )
 _HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
+_EMPTY_TOP_LEVEL_LINE_BLOCK_RE = re.compile(r"(?m)^\|[ \t]*(\r?\n|$)")
 
 
 def is_external_path(value: str) -> bool:
@@ -35,6 +36,7 @@ def resolve_rst_asset_path(
     probe_paths = [
         source_path.parent / raw_path,
         docs_dir / raw_path,
+        repo_root / "docs" / raw_path,
         repo_root / raw_path,
     ]
 
@@ -54,6 +56,7 @@ def bundle_asset_target_path(
     resolved_path = resolved.resolve(strict=False)
     docs_static_dir = (docs_dir / "_static").resolve(strict=False)
     docs_root = docs_dir.resolve(strict=False)
+    repo_docs_root = (repo_root / "docs").resolve(strict=False)
     repo_root_resolved = repo_root.resolve(strict=False)
 
     try:
@@ -64,6 +67,12 @@ def bundle_asset_target_path(
 
     try:
         rel = resolved_path.relative_to(docs_root)
+        return bundle_dir / "_assets" / rel
+    except ValueError:
+        pass
+
+    try:
+        rel = resolved_path.relative_to(repo_docs_root)
         return bundle_dir / "_assets" / rel
     except ValueError:
         pass
@@ -162,3 +171,7 @@ def rewrite_rst_asset_paths(
 
     out = _RST_ASSET_DIRECTIVE_RE.sub(replace_directive, text)
     return _HTML_SRC_RE.sub(replace_html_src, out)
+
+
+def normalize_rst_empty_line_blocks(text: str) -> str:
+    return _EMPTY_TOP_LEVEL_LINE_BLOCK_RE.sub(lambda match: match.group(1), text)

@@ -233,6 +233,28 @@ class TestSyncData(unittest.TestCase):
             sync_data.TABLE_SCHEMAS["lcd_icons"].columns,
         )
         self.assertEqual(
+            (
+                "No.",
+                "Model",
+                "Region",
+                "Is_latest",
+                "Version",
+                "error_code",
+                "corrective_measures_en",
+                "corrective_measures_fr",
+                "corrective_measures_es",
+                "corrective_measures_pt-BR",
+                "corrective_measures_br",
+                "corrective_measures_de",
+                "corrective_measures_it",
+                "corrective_measures_ukr",
+                "corrective_measures_jp",
+                "corrective_measures_zh",
+                "render_preview_en",
+            ),
+            sync_data.TABLE_SCHEMAS["troubleshooting"].columns,
+        )
+        self.assertEqual(
             ("Variable_key", "Model_key", "Model", "Value", "is_default"),
             sync_data.TABLE_SCHEMAS["variable_defaults"].columns,
         )
@@ -259,6 +281,45 @@ class TestSyncData(unittest.TestCase):
 
         self.assertEqual("US, EU", rows[0]["Market"])
         self.assertEqual("JE-1000F, JE-2000E", rows[0]["Model"])
+
+    def test_troubleshooting_should_normalize_latest_flag_and_sort_by_region_model_no(self) -> None:
+        rows = sync_data.normalize_records(
+            sync_data.TABLE_SCHEMAS["troubleshooting"],
+            [
+                {
+                    "fields": {
+                        "No.": "10",
+                        "Model": "JE-1000F",
+                        "Region": "US",
+                        "Is_latest": False,
+                        "error_code": "FE",
+                    }
+                },
+                {
+                    "fields": {
+                        "No.": "2",
+                        "Model": "JE-1000F",
+                        "Region": "EU",
+                        "Is_latest": "yes",
+                        "error_code": "F2",
+                    }
+                },
+                {
+                    "fields": {
+                        "No.": "1",
+                        "Model": "ALL",
+                        "Region": "EU",
+                        "Is_latest": True,
+                        "error_code": "F1",
+                    }
+                },
+            ],
+        )
+
+        self.assertEqual(
+            [("EU", "ALL", "1", "TRUE"), ("EU", "JE-1000F", "2", "TRUE"), ("US", "JE-1000F", "10", "FALSE")],
+            [(row["Region"], row["Model"], row["No."], row["Is_latest"]) for row in rows],
+        )
 
     def test_spec_footnotes_should_alias_pt_br_field_name(self) -> None:
         rows = sync_data.normalize_records(
@@ -439,6 +500,8 @@ class TestSyncData(unittest.TestCase):
                     "SPEC_TITLES_TABLE": "tbl_titles",
                     "SPEC_TITLES_VIEW": "view_titles",
                     "SPEC_MASTER_TABLE": "tbl_master",
+                    "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
+                    "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
                 },
                 clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
@@ -963,6 +1026,8 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "SPEC_MASTER_TABLE": "tbl_master_wrong",
                     "SPEC_MASTER_VIEW": "view_master_wrong",
+                    "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
+                    "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
                 },
                 clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
@@ -1076,6 +1141,8 @@ class TestSyncData(unittest.TestCase):
                 {
                     "BASE_TOKEN": "app_token",
                     "SPEC_MASTER_TABLE": "tbl_master",
+                    "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
+                    "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
                 },
                 clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
@@ -1200,6 +1267,8 @@ class TestSyncData(unittest.TestCase):
                     "BASE_TOKEN": "app_token",
                     "SPEC_FOOTNOTES_TABLE": "tbl_footnotes",
                     "SPEC_MASTER_TABLE": "tbl_master",
+                    "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
+                    "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
                 },
                 clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):

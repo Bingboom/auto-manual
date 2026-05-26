@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-04-30T03:23:44.625194+00:00",
+  "generated_at": "2026-05-25T09:36:11.773999+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -10,6 +10,7 @@
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
+    "troubleshooting",
     "spec_master"
   ],
   "skipped_tables": [
@@ -51,6 +52,15 @@
       "path": "data/phase2/symbols_blocks.csv",
       "row_count": 28,
       "sha256": "a8955d0aa555b90c857e8f69807d98b6814cc1382ef26fca6277abd3cf35d89e",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "troubleshooting",
+      "file_name": "troubleshooting_blocks.csv",
+      "path": "data/phase2/troubleshooting_blocks.csv",
+      "row_count": 49,
+      "sha256": "199bab665b38dcc9eb872e8d599aa5b558c7abbf283dec01b4eda206c29beb3d",
       "previous_sha256": null,
       "changed": true
     },

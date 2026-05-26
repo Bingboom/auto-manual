@@ -54,9 +54,11 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: en
-    file: templates/page_shared/en/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [en]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -121,9 +123,11 @@ pages:
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: fr
-    file: templates/page_shared/fr/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [fr]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -188,9 +192,11 @@ pages:
   - type: rst_include
     lang: es
     file: templates/page_shared/es/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: es
-    file: templates/page_shared/es/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [es]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec

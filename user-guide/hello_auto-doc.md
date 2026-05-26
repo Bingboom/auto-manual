@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-05-24
+Updated: 2026-05-25
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -93,12 +93,13 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
    - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
    - [`data/phase2/lcd_icons_blocks.csv`](../data/phase2/lcd_icons_blocks.csv)
+   - [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
    - [`data/phase2/Variable_Defaults.csv`](../data/phase2/Variable_Defaults.csv)
    - [`data/phase2/Variable_Lang_Overrides.csv`](../data/phase2/Variable_Lang_Overrides.csv)
-- [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv)
-   - Responsibility: model-specific parameters, spec content, symbols content, and placeholder values
+   - [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv)
+   - Responsibility: model-specific parameters, spec content, symbols content, troubleshooting content, and placeholder values
    - When a valid phase2 snapshot exists, build/review/publish flows default to `data/phase2`; explicit `--data-root` still overrides that default.
-   - A phase2 snapshot is valid for automatic default use only when `snapshot_manifest.json` records the complete core table set from one sync run: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, and `symbols_blocks`, plus the derived `row_key_mapping`. Partial `sync-data --table ...` refreshes are still useful for focused checks, but use explicit `--data-root` when building from them.
+   - A phase2 snapshot is valid for automatic default use only when `snapshot_manifest.json` records the complete core table set from one sync run: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, `symbols_blocks`, and `troubleshooting`, plus the derived `row_key_mapping`. Partial `sync-data --table ...` refreshes are still useful for focused checks, but use explicit `--data-root` when building from them.
    - For queue-driven builds, Feishu phase2 tables remain the structured-data source of truth. `data/phase2` is the materialized snapshot refreshed before build, not the daily authoring surface.
    - For spec data authoring, edit `规格参数明细` for `Page=specifications` rows and `页面占位参数` for non-spec page placeholders. `sync-data --table spec_master` now reads those two source tables directly and writes the local `Spec_Master.csv` read model.
    - After changing either spec source table, run `python build.py sync-data --config config.us.yaml --data-root data/phase2 --table spec_master` for the normal snapshot refresh, or `python build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222` for a focused rebuild; add `--write-back` only when the merged source data should update the legacy Feishu total table.
@@ -107,7 +108,7 @@ The manual system now has four layers, but they are used at different stages.
    - `config.eu-en.yaml`, `config.eu-fr.yaml`, and `config.eu-es.yaml` are the explicit English, French, and Spanish EU single-language surfaces when you want one language family at a time; `config.pt-br.yaml` follows the same single-language pattern for Brazil Portuguese
    - when one family must always read from one known Base view, `sync.phase2.tables.<name>` can pin `table_id` and `view_id` directly in config; those literal bindings override the corresponding `*_env` values for that table
    - `python build.py validate --config ...` now catches missing phase2 table base-token/table-id bindings and page-manifest languages that are not listed in `build.languages`
-   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `figure` attachments sync into `data/phase2/_attachments/lcd_icons/` and render as the LCD table image column, while symbols `Figure` attachments sync into `data/phase2/_attachments/symbols/` and render through `symbols_blocks.csv`; the signal-word symbols table can also live in `symbols_blocks.csv` as `block_type=signal_row`; LCD `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
+   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `figure` attachments sync into `data/phase2/_attachments/lcd_icons/` and render as the LCD table image column, while symbols `Figure` attachments sync into `data/phase2/_attachments/symbols/` and render through `symbols_blocks.csv`; troubleshooting error-code rows render from `troubleshooting_blocks.csv`; the signal-word symbols table can also live in `symbols_blocks.csv` as `block_type=signal_row`; LCD `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
    - for variable defaults, keep `Model_key` as the text model selector when the Base `Model` field is a linked record; linked model fields can export as record ids and are not stable enough for build matching
    - `python build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` reads the same snapshot as a compact multilingual memory lookup, which is useful when OpenClaw or a maintainer needs terminology grounded in the current Base content before translating copy
    - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` is the higher-priority sentence-pair lookup when you already maintain a dedicated translation memory table in Feishu Base; on chat surfaces, treat it as background wording memory and answer with the translation itself instead of a narrated lookup step. The script keeps a short local cache for repeat lookups; use `--no-cache` only when you need a forced refresh.
@@ -456,6 +457,18 @@ Symbols content is generated from:
 - leave `Region` / `Model` blank when one row should be shared
 - `image_path` stores the RST image reference path for that icon
 - keep `symbol_key` stable so renderer alt text and layout metadata still resolve correctly
+
+Troubleshooting content is generated from:
+
+- [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
+- [`docs/templates/troubleshooting_template.rst`](../docs/templates/troubleshooting_template.rst)
+
+`troubleshooting_blocks.csv` notes:
+
+- maintain the online TROUBLESHOOTING Base table, then run `python build.py sync-data --config config.us.yaml --table troubleshooting --data-root data/phase2`
+- use `Region`, `Model`, and `Is_latest` to select active rows; blank placeholder records are ignored
+- keep page title, intro, table headers, widths, and header-row settings in the renderer, not in Base
+- keep legacy `docs/templates/**/10_troubleshooting.rst` files only as reference/rollback; active manifests now use `csv_page: troubleshooting`
 
 Spec content is generated from:
 

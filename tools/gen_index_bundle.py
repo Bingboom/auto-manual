@@ -32,6 +32,7 @@ from tools.draft_engine import (
 from tools.gen_index_bundle_assets import (
     bundle_asset_target_path as _bundle_asset_target_path_impl,
     is_external_path as _is_external_path_impl,
+    normalize_rst_empty_line_blocks as _normalize_rst_empty_line_blocks_impl,
     resolve_rst_asset_path as _resolve_rst_asset_path_impl,
     rewrite_rst_asset_paths as _rewrite_rst_asset_paths_impl,
     rewrite_single_asset_path as _rewrite_single_asset_path_impl,
@@ -215,6 +216,9 @@ _rewrite_single_asset_path = _rewrite_single_asset_path_impl
 rewrite_rst_asset_paths = _rewrite_rst_asset_paths_impl
 
 
+normalize_rst_empty_line_blocks = _normalize_rst_empty_line_blocks_impl
+
+
 def _prepend_latex_lang(text: str, lang: str | None) -> str:
     return _prepend_latex_lang_impl(
         text,
@@ -390,6 +394,7 @@ def _materialize_planned_page(
         resolve_config_path=resolve_config_path,
         apply_rst_substitutions=apply_rst_substitutions,
         rewrite_rst_asset_paths=rewrite_rst_asset_paths,
+        normalize_rst_empty_line_blocks=normalize_rst_empty_line_blocks,
         prepend_latex_lang=_prepend_latex_lang,
     )
 

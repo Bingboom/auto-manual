@@ -40,9 +40,11 @@ pages:
   - type: rst_include
     lang: zh
     file: templates/page_zh/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: zh
-    file: templates/page_zh/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [zh]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec

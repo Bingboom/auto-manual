@@ -20,6 +20,7 @@ def _complete_manifest() -> dict[str, object]:
         "spec_notes",
         "spec_titles",
         "symbols_blocks",
+        "troubleshooting",
     ]
     return {
         "export_root": "data/phase2",
@@ -33,6 +34,7 @@ def _complete_manifest() -> dict[str, object]:
                 ("spec_notes", "Spec_Notes.csv"),
                 ("spec_titles", "spec_titles.csv"),
                 ("symbols_blocks", "symbols_blocks.csv"),
+                ("troubleshooting", "troubleshooting_blocks.csv"),
             )
         ],
         "derived_files": [
@@ -97,6 +99,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "spec_titles.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
+                "troubleshooting_blocks.csv",
             ):
                 (phase2_dir / file_name).write_text("demo\n", encoding="utf-8")
             (phase2_dir / "snapshot_manifest.json").write_text(
@@ -161,6 +164,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "spec_titles.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
+                "troubleshooting_blocks.csv",
             ):
                 (phase2_dir / file_name).write_text("phase2\n", encoding="utf-8")
             manifest = _complete_manifest()
@@ -170,6 +174,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "spec_notes",
                 "spec_titles",
                 "symbols_blocks",
+                "troubleshooting",
             ]
             manifest["tables"] = [
                 {"logical_name": "spec_master", "file_name": "Spec_Master.csv"},

@@ -48,9 +48,11 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: en
-    file: templates/page_shared/en/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [en]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -112,9 +114,11 @@ pages:
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: fr
-    file: templates/page_shared/fr/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [fr]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -176,9 +180,11 @@ pages:
   - type: rst_include
     lang: es
     file: templates/page_shared/es/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: es
-    file: templates/page_shared/es/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [es]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -240,9 +246,11 @@ pages:
   - type: rst_include
     lang: de
     file: templates/page_shared/de/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: de
-    file: templates/page_shared/de/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [de]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -304,9 +312,11 @@ pages:
   - type: rst_include
     lang: it
     file: templates/page_shared/it/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: it
-    file: templates/page_shared/it/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [it]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec
@@ -368,9 +378,11 @@ pages:
   - type: rst_include
     lang: uk
     file: templates/page_shared/uk/09_storage_and_maintenance.rst
-  - type: rst_include
-    lang: uk
-    file: templates/page_shared/uk/10_troubleshooting.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [uk]
+    include_dir: generated/{model}
   - type: csv_page
     source: phase2
     page: spec

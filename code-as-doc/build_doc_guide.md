@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-04-27
+Updated: 2026-05-25
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -60,7 +60,7 @@ Meaning:
 - `spec-master-rebuild`: merge the Feishu source tables `规格参数明细` and `页面占位参数` into the read-model shape of `Spec_Master.csv`; it validates `spec_row_key` uniqueness, resolves Feishu linked-record footnote refs to stable `Footnote_id` values, and keeps `--write-back` only as a legacy bridge back to the old total table
 - `sync.phase2.tables.<name>` may now pin `table_id` and `view_id` directly in config; when present, those literal bindings take precedence over `table_id_env` / `view_id_env`, which is the safest way to keep one family on one known Base view
 - `sync.phase2.spec_master_sources` pins the two human-maintained source tables used by `spec-master-rebuild` and by `sync-data --table spec_master`; `sync.phase2.tables.spec_master` no longer needs a legacy total-table binding unless you intentionally use `spec-master-rebuild --write-back`
-- `lcd_icons`, `symbols_blocks`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv` and renders downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, the symbols renderer uses downloaded `Figure` attachments from `data/phase2/_attachments/symbols/` when present, `symbols_blocks` can also maintain the signal-word table with `block_type=signal_row`, and LCD variables resolve from `Variable_Defaults.csv` plus `Variable_Lang_Overrides.csv`
+- `lcd_icons`, `troubleshooting`, `symbols_blocks`, `variable_defaults`, and `variable_lang_overrides` may be synced as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv` and renders downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, the troubleshooting renderer reads `troubleshooting_blocks.csv`, the symbols renderer uses downloaded `Figure` attachments from `data/phase2/_attachments/symbols/` when present, `symbols_blocks` can also maintain the signal-word table with `block_type=signal_row`, and LCD variables resolve from `Variable_Defaults.csv` plus `Variable_Lang_Overrides.csv`
 - if the Base keeps `Model` as a linked-record field, maintain a text `Model_key` column for variable defaults so exact model matching stays independent of Feishu record ids
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
@@ -244,7 +244,7 @@ Pass target differences through:
 Phase2 snapshot rule:
 
 - keep the shared config families, but use a valid [`../data/phase2/`](../data/phase2) snapshot as the default build/review/publish source when it exists
-- the automatic phase2 default requires a complete manifest-backed core snapshot: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, and `symbols_blocks` must all appear as requested/synced tables in `snapshot_manifest.json`, and the derived `row_key_mapping` must be recorded as well; partial `sync-data --table ...` runs are allowed, but they are treated as explicit experiment snapshots unless you pass them through `--data-root`
+- the automatic phase2 default requires a complete manifest-backed core snapshot: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, `symbols_blocks`, and `troubleshooting` must all appear as requested/synced tables in `snapshot_manifest.json`, and the derived `row_key_mapping` must be recorded as well; partial `sync-data --table ...` runs are allowed, but they are treated as explicit experiment snapshots unless you pass them through `--data-root`
 - explicit `--data-root` still overrides the default, so you can point `rst`, `check`, `diff-report`, `release-manifest`, `publish`, and `process-build-queue` at a different root when needed
 - `python build.py sync-data --config config.us.yaml --data-root data/phase2` is still the explicit refresh step for the phase2 snapshot
 - static legal/support placeholders such as `WARRANTY_EMAIL` and `LEGAL_COMPANY_NAME` are injected from `build.rst_substitutions` in the active config; keep US values in US configs and override EU / pt-BR values there instead of hardcoding region-specific names in shared templates
@@ -341,6 +341,7 @@ If you update any of these:
 - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
 - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
+- [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
 
 Safety page note:
 
@@ -368,6 +369,13 @@ Parallel-language template note:
 - `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - leave `Region` / `Model` blank when one symbols row is shared across manuals
 - `sku_scope` is no longer used in [`symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
+
+`troubleshooting_blocks.csv` note:
+
+- maintain the online TROUBLESHOOTING Base table as the source, then refresh with `python build.py sync-data --config config.us.yaml --table troubleshooting --data-root data/phase2`
+- use `Region`, `Model`, and `Is_latest` to select rows for the target manual; blank placeholder rows are ignored by the renderer
+- keep title, intro, headers, widths, and header-row settings in `tools/csv_pages/renderers_troubleshooting.py`, not in the Base table
+- legacy `docs/templates/**/10_troubleshooting.rst` files remain for rollback/reference, but active manifests render `csv_page: troubleshooting`
 
 `Spec_Master.csv` note:
 

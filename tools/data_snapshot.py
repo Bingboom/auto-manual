@@ -22,6 +22,7 @@ SPEC_TITLES_FILE = "spec_titles.csv"
 ROW_KEY_MAPPING_FILE = "row_key_mapping.csv"
 PAGE_REGISTRY_FILE = "page_registry.csv"
 SYMBOLS_BLOCKS_FILE = "symbols_blocks.csv"
+TROUBLESHOOTING_BLOCKS_FILE = "troubleshooting_blocks.csv"
 
 PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "spec_master": SPEC_MASTER_FILE,
@@ -29,6 +30,7 @@ PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "spec_notes": SPEC_NOTES_FILE,
     "spec_titles": SPEC_TITLES_FILE,
     "symbols_blocks": SYMBOLS_BLOCKS_FILE,
+    "troubleshooting": TROUBLESHOOTING_BLOCKS_FILE,
 }
 PHASE2_REQUIRED_DERIVED_FILES: dict[str, str] = {
     "row_key_mapping": ROW_KEY_MAPPING_FILE,

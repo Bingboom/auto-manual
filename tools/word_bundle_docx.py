@@ -6,6 +6,7 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
+import time
 import zipfile
 from pathlib import Path
 
@@ -20,8 +21,54 @@ from tools.word_bundle_docx_styles import (
 from tools.word_bundle_html import build_word_bundle_html
 
 
+class WordComExportError(RuntimeError):
+    """Raised when the Windows Word COM export path fails before producing DOCX."""
+
+
 def _ps_quote(value: str) -> str:
     return value.replace("'", "''")
+
+
+def _word_com_timeout_seconds(env: dict[str, str] | None = None) -> float | None:
+    raw = (env or os.environ).get("AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS", "120").strip()
+    if raw.lower() in {"", "0", "false", "none", "off"}:
+        return None
+    try:
+        timeout = float(raw)
+    except ValueError as exc:
+        raise RuntimeError("AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS must be a positive number, 0, or 'off'") from exc
+    if timeout <= 0:
+        return None
+    return timeout
+
+
+def _cleanup_timed_out_word_processes(started_at: float) -> None:
+    if not sys.platform.startswith("win"):
+        return
+    cutoff_epoch = max(0, int(started_at) - 5)
+    script = f"""
+$cutoff = [DateTimeOffset]::FromUnixTimeSeconds({cutoff_epoch}).LocalDateTime
+Get-CimInstance Win32_Process |
+  Where-Object {{
+    $_.Name -eq 'WINWORD.EXE' -and
+    $_.CreationDate -ge $cutoff -and
+    ($_.CommandLine -match '/Automation|-Embedding')
+  }} |
+  ForEach-Object {{ Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }}
+"""
+    subprocess.run(
+        [
+            "powershell",
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command",
+            script,
+        ],
+        check=False,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
 
 
 def _export_docx_via_pandoc(bundle_html: Path, out_path: Path, reference_doc: Path | None) -> None:
@@ -117,18 +164,28 @@ try {{
     }}
 }}
 """
-    subprocess.run(
-        [
-            "powershell",
-            "-NoProfile",
-            "-ExecutionPolicy",
-            "Bypass",
-            "-Command",
-            script,
-        ],
-        check=True,
-        cwd=str(paths.root),
-    )
+    cmd = [
+        "powershell",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        script,
+    ]
+    started_at = time.time()
+    timeout = _word_com_timeout_seconds()
+    try:
+        subprocess.run(
+            cmd,
+            check=True,
+            cwd=str(paths.root),
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        _cleanup_timed_out_word_processes(started_at)
+        raise WordComExportError(f"Word COM export timed out after {timeout:g}s") from exc
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise WordComExportError(f"Word COM export failed: {exc}") from exc
 
 
 def _docx_is_valid(docx_path: Path) -> bool:
@@ -158,7 +215,11 @@ def export_word_from_bundle(
         out_root = bundle_output_dir or (paths.docs_build_dir / "word")
         out_path = out_root / out_path
 
-    _export_docx_via_word(bundle_html, out_path, reference_doc)
+    try:
+        _export_docx_via_word(bundle_html, out_path, reference_doc)
+    except WordComExportError as exc:
+        print(f"[word_bundle_docx] {exc}; retrying with pandoc: {out_path}")
+        _export_docx_via_pandoc(bundle_html, out_path, reference_doc)
     if not _docx_is_valid(out_path):
         print(f"[word_bundle_docx] Word COM produced an invalid DOCX, retrying with pandoc: {out_path}")
         _export_docx_via_pandoc(bundle_html, out_path, reference_doc)
