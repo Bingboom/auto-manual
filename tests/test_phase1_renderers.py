@@ -1329,6 +1329,105 @@ class TestPhase1Renderers(unittest.TestCase):
         self.assertIn("| **Ligado:** Modo de economia de energia ativado.", out)
         self.assertIn("| **Desligado:** Modo de economia de energia desativado.", out)
 
+    def _troubleshooting_template(self) -> str:
+        return (
+            renderers.PH_TROUBLESHOOTING_HEADING_RST
+            + "\n\n"
+            + renderers.PH_TROUBLESHOOTING_INTRO_RST
+            + "\n\n"
+            + renderers.PH_TROUBLESHOOTING_TABLE_RST
+        )
+
+    def test_render_troubleshooting_page_filters_region_and_preserves_multiline_rst(self) -> None:
+        blocks = [
+            {
+                "No.": "",
+                "Model": "",
+                "Region": "",
+                "Is_latest": "TRUE",
+                "error_code": "",
+                "corrective_measures_en": "",
+            },
+            {
+                "No.": "2",
+                "Model": "ALL",
+                "Region": "US",
+                "Is_latest": "TRUE",
+                "error_code": "F7",
+                "corrective_measures_en": (
+                    "1. Remove all DC inputs from the product.\n"
+                    "2. Check the open-circuit voltage (V\\ :sub:`oc`) of the connected solar panels."
+                ),
+            },
+            {
+                "No.": "1",
+                "Model": "ALL",
+                "Region": "US",
+                "Is_latest": "TRUE",
+                "error_code": "F0",
+                "corrective_measures_en": "Restart the product.",
+            },
+            {
+                "No.": "3",
+                "Model": "ALL",
+                "Region": "EU",
+                "Is_latest": "TRUE",
+                "error_code": "F8",
+                "corrective_measures_en": "EU-only row.",
+            },
+            {
+                "No.": "4",
+                "Model": "ALL",
+                "Region": "US",
+                "Is_latest": "FALSE",
+                "error_code": "FE",
+                "corrective_measures_en": "Old row.",
+            },
+        ]
+
+        out = renderers.render_troubleshooting_page(
+            template=self._troubleshooting_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "JE-1000F", "region": "US"},
+        )
+
+        self.assertIn("TROUBLESHOOTING\n===============", out)
+        self.assertIn("   :header-rows: 1", out)
+        self.assertLess(out.index("F0"), out.index("F7"))
+        self.assertIn("     - | 1. Remove all DC inputs from the product.", out)
+        self.assertIn("       | 2. Check the open-circuit voltage (V\\ :sub:`oc`) of the connected solar panels.", out)
+        self.assertNotIn("EU-only row.", out)
+        self.assertNotIn("Old row.", out)
+
+    def test_render_troubleshooting_page_supports_pt_br_columns_and_region_alias(self) -> None:
+        blocks = [
+            {
+                "No.": "1",
+                "Model": "ALL",
+                "Region": "br",
+                "Is_latest": "TRUE",
+                "error_code": "F0",
+                "corrective_measures_en": "English fallback.",
+                "corrective_measures_pt-BR": "Medida PT-BR.",
+                "corrective_measures_br": "Medida BR.",
+            }
+        ]
+
+        out = renderers.render_troubleshooting_page(
+            template=self._troubleshooting_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="pt-BR",
+            vars_map={"model": "JE-1000F", "region": "pt-BR"},
+        )
+
+        self.assertIn("F0", out)
+        self.assertIn("Medida PT-BR.", out)
+        self.assertNotIn("English fallback.", out)
+        self.assertNotIn("Medida BR.", out)
+
     def test_collect_spec_content_supports_spec_master_schema(self) -> None:
         data = renderers.collect_spec_content(
             blocks=self._spec_master_blocks(),

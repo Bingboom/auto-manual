@@ -394,7 +394,7 @@ class Phase1Builder:
         if not rows:
             return []
 
-        if page_id == "lcd_icons":
+        if page_id in {"lcd_icons", "troubleshooting"}:
             return rows
 
         headers = set(rows[0].keys())

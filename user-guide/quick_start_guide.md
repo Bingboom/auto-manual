@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-05-24
+Updated: 2026-05-25
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -22,6 +22,7 @@ Updated: 2026-05-24
 - `Spec_Notes`
 - `spec_titles`
 - `symbols_blocks`
+- `TROUBLESHOOTING` / `troubleshooting_blocks`
 
 你要改参数、规格、页面占位值、注脚、标题顺序、symbols，就改对应源表。
 改完两张 spec 源表后，常规刷新运行：

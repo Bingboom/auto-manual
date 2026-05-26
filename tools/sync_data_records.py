@@ -124,6 +124,8 @@ def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
         return _normalize_boolish(value, style="digit_bool")
     if schema.logical_name == "lcd_icons" and column in {"Is_latest", "has_variables"}:
         return _normalize_boolish(value, style="upper_bool")
+    if schema.logical_name == "troubleshooting" and column == "Is_latest":
+        return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "variable_defaults" and column == "is_default":
         return _normalize_boolish(value, style="upper_bool")
     return value
@@ -211,6 +213,13 @@ def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
         return (
             _numeric_sort_token(row.get("No.", "")),
             _text_sort_token(row.get("icon_en", "")),
+        )
+    if schema.logical_name == "troubleshooting":
+        return (
+            _text_sort_token(row.get("Region", "")),
+            _text_sort_token(row.get("Model", "")),
+            _numeric_sort_token(row.get("No.", "")),
+            _text_sort_token(row.get("error_code", "")),
         )
     if schema.logical_name == "variable_defaults":
         return (

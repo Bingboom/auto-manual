@@ -3,6 +3,7 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from tools.validate_config import validate
 
@@ -158,7 +159,15 @@ class TestValidateConfig(unittest.TestCase):
             "pages": [{"type": "rst_include", "lang": "en", "file": "templates/page_us-en/00_preface.rst"}],
         }
 
-        issues = validate(cfg, strict_files=False)
+        with mock.patch.dict(
+            "os.environ",
+            {
+                "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
+                "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
+            },
+            clear=False,
+        ):
+            issues = validate(cfg, strict_files=False)
         errors = [issue.msg for issue in issues if issue.level == "ERROR"]
         self.assertIn(
             "sync.phase2.tables.spec_master.base_token_env is required, or provide sync.phase2.base_token_env",
@@ -223,6 +232,7 @@ class TestValidateConfig(unittest.TestCase):
                     "base_token_env": "FEISHU_BASE_TOKEN",
                     "tables": {
                         "lcd_icons": {"table_id": "tblDII3oyqFhQYHn", "view_id": "vewerElnZ3"},
+                        "troubleshooting": {"table_id": "tblUSuk3Q5BKTdTh", "view_id": "vewZne4CUk"},
                         "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
                         "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
                     },

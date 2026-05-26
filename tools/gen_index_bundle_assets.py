@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 
 _RST_ASSET_DIRECTIVE_RE = re.compile(
-    r"^(\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:image|figure)::\s+)(\S+)(\s*)$",
+    r"^(\s*(?:[-*]\s+)?(?:-\s+)?\.\.\s+(?:\|[^|]+\|\s+)?(?:image|figure)::\s+)(\S+)(\s*)$",
     re.MULTILINE,
 )
 _HTML_SRC_RE = re.compile(r'(\bsrc=")([^"]+)(")', re.IGNORECASE)
@@ -35,6 +35,7 @@ def resolve_rst_asset_path(
     probe_paths = [
         source_path.parent / raw_path,
         docs_dir / raw_path,
+        repo_root / "docs" / raw_path,
         repo_root / raw_path,
     ]
 
@@ -54,6 +55,7 @@ def bundle_asset_target_path(
     resolved_path = resolved.resolve(strict=False)
     docs_static_dir = (docs_dir / "_static").resolve(strict=False)
     docs_root = docs_dir.resolve(strict=False)
+    repo_docs_root = (repo_root / "docs").resolve(strict=False)
     repo_root_resolved = repo_root.resolve(strict=False)
 
     try:
@@ -64,6 +66,12 @@ def bundle_asset_target_path(
 
     try:
         rel = resolved_path.relative_to(docs_root)
+        return bundle_dir / "_assets" / rel
+    except ValueError:
+        pass
+
+    try:
+        rel = resolved_path.relative_to(repo_docs_root)
         return bundle_dir / "_assets" / rel
     except ValueError:
         pass

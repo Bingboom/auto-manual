@@ -8,10 +8,44 @@ from unittest import mock
 from tools import build_docs
 from tools import build_docs_artifacts
 from tools import gen_index_bundle
+from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
 from tests.test_helpers import temp_test_root, write_text
 
 
 class TestTargetResolution(unittest.TestCase):
+    def test_rewrite_rst_asset_paths_should_handle_substitution_image_directives(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            repo_docs_dir = root / "docs"
+            review_dir = repo_docs_dir / "_review" / "M1" / "JP"
+            source_dir = review_dir / "page"
+            asset_dir = repo_docs_dir / "templates" / "word_template" / "common_assets" / "operation"
+            bundle_dir = repo_docs_dir / "_build" / "M1" / "JP" / "rst"
+            source_dir.mkdir(parents=True)
+            asset_dir.mkdir(parents=True)
+            bundle_dir.mkdir(parents=True)
+            source_path = source_dir / "demo.rst"
+            target_path = bundle_dir / "page" / "demo.rst"
+            source_path.write_text("demo", encoding="utf-8")
+            (asset_dir / "energy_saving_12h.svg").write_text("<svg />", encoding="utf-8")
+
+            out = rewrite_rst_asset_paths(
+                ".. |energy_saving| image:: templates/word_template/common_assets/operation/energy_saving_12h.svg\n",
+                source_path=source_path,
+                target_path=target_path,
+                bundle_dir=bundle_dir,
+                docs_dir=review_dir,
+                repo_root=root,
+            )
+
+            self.assertIn(
+                ".. |energy_saving| image:: _assets/templates/word_template/common_assets/operation/energy_saving_12h.svg",
+                out,
+            )
+            self.assertTrue(
+                (bundle_dir / "_assets" / "templates" / "word_template" / "common_assets" / "operation" / "energy_saving_12h.svg").exists()
+            )
+
     def _tokenized_cfg(self) -> dict:
         return {
             "build": {},

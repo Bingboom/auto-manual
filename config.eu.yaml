@@ -66,6 +66,9 @@ sync:
       lcd_icons:
         table_id: tblDII3oyqFhQYHn
         view_id: vewerElnZ3
+      troubleshooting:
+        table_id: tblUSuk3Q5BKTdTh
+        view_id: vewZne4CUk
       variable_defaults:
         table_id: tblRyRdqRg2MGVgH
         view_id: vew5jbxqLj

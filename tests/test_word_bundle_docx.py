@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import os
 import subprocess
 import tempfile
 import unittest
@@ -9,9 +10,13 @@ from unittest.mock import patch
 from xml.etree import ElementTree as ET
 
 from tools.word_bundle_docx import (
+    WordComExportError,
+    _export_docx_via_word,
     _embed_external_docx_images,
     _enforce_docx_outline_levels,
     _remap_reference_doc_styles,
+    _word_com_timeout_seconds,
+    export_word_from_bundle,
 )
 from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc, resolve_pandoc_binary
 from tools.word_bundle_html import WordBundlePageMeta
@@ -29,6 +34,48 @@ _WP14_NS = "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
 
 
 class TestWordBundleDocx(unittest.TestCase):
+    def test_word_com_timeout_seconds_should_parse_env_override(self) -> None:
+        with patch.dict(os.environ, {"AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS": "45"}, clear=False):
+            self.assertEqual(45, _word_com_timeout_seconds())
+        with patch.dict(os.environ, {"AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS": "off"}, clear=False):
+            self.assertIsNone(_word_com_timeout_seconds())
+
+    def test_export_docx_via_word_should_cleanup_and_raise_on_timeout(self) -> None:
+        with patch("tools.word_bundle_docx.sys.platform", "win32"), \
+            patch.dict(os.environ, {"AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS": "12"}, clear=False), \
+            patch("tools.word_bundle_docx.subprocess.run") as run_mock, \
+            patch("tools.word_bundle_docx._cleanup_timed_out_word_processes") as cleanup_mock:
+            run_mock.side_effect = subprocess.TimeoutExpired(cmd=["powershell"], timeout=12)
+
+            with self.assertRaisesRegex(WordComExportError, "timed out after 12s"):
+                _export_docx_via_word(Path("bundle.html"), Path("out.docx"), None)
+
+            self.assertEqual(12, run_mock.call_args.kwargs["timeout"])
+            cleanup_mock.assert_called_once()
+
+    def test_export_word_from_bundle_should_retry_with_pandoc_when_word_com_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_html = root / "manual_bundle.html"
+            bundle_html.write_text("<html><body>demo</body></html>", encoding="utf-8")
+            out_path = root / "manual.docx"
+
+            with patch("tools.word_bundle_docx.build_word_bundle_html", return_value=(bundle_html, None, ())), \
+                patch("tools.word_bundle_docx._export_docx_via_word", side_effect=WordComExportError("boom")) as word_mock, \
+                patch("tools.word_bundle_docx._export_docx_via_pandoc") as pandoc_mock, \
+                patch("tools.word_bundle_docx._docx_is_valid", return_value=True), \
+                patch("tools.word_bundle_docx._embed_external_docx_images") as images_mock, \
+                patch("tools.word_bundle_docx._remap_reference_doc_styles") as styles_mock, \
+                patch("tools.word_bundle_docx._enforce_docx_outline_levels") as outline_mock:
+                result = export_word_from_bundle({}, "JE-1000F", "JP", str(out_path), output_dir=root)
+
+            self.assertEqual(out_path, result)
+            word_mock.assert_called_once()
+            pandoc_mock.assert_called_once_with(bundle_html, out_path, None)
+            images_mock.assert_called_once_with(out_path)
+            styles_mock.assert_called_once_with(out_path, ())
+            outline_mock.assert_called_once_with(out_path)
+
     def test_embed_external_docx_images_should_promote_internalized_links_to_embeds(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

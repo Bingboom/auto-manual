@@ -12,6 +12,8 @@ import json
 from pathlib import Path
 import re
 
+from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
@@ -404,6 +406,23 @@ def _copy_relative_file(
     return dst_path
 
 
+def _rewrite_review_rst_asset_paths(path: Path, *, review_dir: Path) -> Path:
+    if path.suffix.lower() != ".rst" or not path.exists():
+        return path
+    text = path.read_text(encoding="utf-8")
+    rewritten = rewrite_rst_asset_paths(
+        text,
+        source_path=path,
+        target_path=path,
+        bundle_dir=review_dir,
+        docs_dir=ROOT / "docs",
+        repo_root=ROOT,
+    )
+    if rewritten != text:
+        path.write_text(rewritten, encoding="utf-8")
+    return path
+
+
 def _map_source_to_target_lines(source_lines: list[str], target_lines: list[str]) -> dict[int, int | None]:
     mapping: dict[int, int | None] = {}
     matcher = SequenceMatcher(a=source_lines, b=target_lines, autojunk=False)
@@ -596,18 +615,26 @@ def sync_review_paths(
         dst_path = review_dir / entry.relative_path
         if entry.mode == "copy":
             copied.append(
-                _copy_relative_file(
-                    runtime_bundle_dir,
-                    review_dir,
-                    src_relative_path=src_relative_path,
-                    dst_relative_path=entry.relative_path,
+                _rewrite_review_rst_asset_paths(
+                    _copy_relative_file(
+                        runtime_bundle_dir,
+                        review_dir,
+                        src_relative_path=src_relative_path,
+                        dst_relative_path=entry.relative_path,
+                    ),
+                    review_dir=review_dir,
                 )
             )
             continue
         if entry.mode == "merge_params":
             if entry.template_path is None:
                 raise RuntimeError(f"Missing template path for merge_params sync: {entry.relative_path}")
-            copied.append(_merge_parameter_lines(template_path=entry.template_path, src_path=src_path, dst_path=dst_path))
+            copied.append(
+                _rewrite_review_rst_asset_paths(
+                    _merge_parameter_lines(template_path=entry.template_path, src_path=src_path, dst_path=dst_path),
+                    review_dir=review_dir,
+                )
+            )
             continue
         raise RuntimeError(f"Unsupported sync mode: {entry.mode}")
 

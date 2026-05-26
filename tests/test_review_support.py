@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from tools.review_support import (
     SyncPlanEntry,
@@ -474,6 +475,41 @@ class TestReviewSupport(unittest.TestCase):
                 "**Jackery Explorer 1000**\n"
                 ".. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging.png\n",
                 (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8"),
+            )
+
+    def test_sync_review_paths_should_rewrite_substitution_asset_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "JP" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "JP"
+            asset_dir = docs_dir / "templates" / "word_template" / "common_assets" / "operation"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            asset_dir.mkdir(parents=True)
+            (asset_dir / "energy_saving_12h.svg").write_text("<svg />", encoding="utf-8")
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (runtime_dir / "page" / "05_operation_guide_placeholder.rst").write_text(
+                ".. |energy_saving| image:: templates/word_template/common_assets/operation/energy_saving_12h.svg\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch("tools.review_support.ROOT", root):
+                copied = sync_review_paths(
+                    runtime_bundle_dir=runtime_dir,
+                    review_dir=review_dir,
+                    scope="params",
+                    plan=(SyncPlanEntry(relative_path=Path("page") / "05_operation_guide_placeholder.rst"),),
+                )
+
+            self.assertEqual(1, len(copied))
+            self.assertIn(
+                ".. |energy_saving| image:: _assets/templates/word_template/common_assets/operation/energy_saving_12h.svg",
+                (review_dir / "page" / "05_operation_guide_placeholder.rst").read_text(encoding="utf-8"),
+            )
+            self.assertTrue(
+                (review_dir / "_assets" / "templates" / "word_template" / "common_assets" / "operation" / "energy_saving_12h.svg").exists()
             )
 
     def test_sync_review_paths_should_refresh_product_identity_placeholder_lines(self) -> None:
