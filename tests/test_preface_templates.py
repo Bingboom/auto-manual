@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
+from tools.page_copy import load_page_copy_map
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -20,9 +22,14 @@ class PrefaceTemplateTests(unittest.TestCase):
         text = (ROOT / "docs" / "templates" / "page_eu" / "00_preface.rst").read_text(encoding="utf-8")
         config_text = (ROOT / "config.eu.yaml").read_text(encoding="utf-8")
         manifest_text = (ROOT / "docs" / "manifests" / "manual_eu.yaml").read_text(encoding="utf-8")
+        copy = load_page_copy_map("manual_meta", "", csv_path=str(ROOT / "data" / "phase2" / "page_copy.csv"))
 
         self.assertIn("templates/page_eu/00_preface.rst", manifest_text)
-        self.assertIn("English / French / Spanish / German / Italian / Ukrainian", config_text)
+        self.assertIn("manual_language_scope_eu", config_text)
+        self.assertEqual(
+            "English / French / Spanish / German / Italian / Ukrainian",
+            copy["manual_language_scope_eu"],
+        )
         for marker in (
             "**IMPORTANT**",
             "**FR IMPORTANT**",

@@ -5,7 +5,7 @@ build:
   languages: [es]
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: "|PRODUCT_NAME| Manual de usuario"
+  word_title_copy_key: word_title
 
 paths:
   page_manifest: docs/manifests/manual_us-single-es.yaml

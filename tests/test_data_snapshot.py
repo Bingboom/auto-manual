@@ -19,6 +19,7 @@ def _complete_manifest() -> dict[str, object]:
         "spec_footnotes",
         "spec_notes",
         "spec_titles",
+        "page_copy",
         "symbols_blocks",
         "troubleshooting",
     ]
@@ -33,6 +34,7 @@ def _complete_manifest() -> dict[str, object]:
                 ("spec_footnotes", "Spec_Footnotes.csv"),
                 ("spec_notes", "Spec_Notes.csv"),
                 ("spec_titles", "spec_titles.csv"),
+                ("page_copy", "page_copy.csv"),
                 ("symbols_blocks", "symbols_blocks.csv"),
                 ("troubleshooting", "troubleshooting_blocks.csv"),
             )
@@ -97,6 +99,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "Spec_Footnotes.csv",
                 "Spec_Notes.csv",
                 "spec_titles.csv",
+                "page_copy.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
                 "troubleshooting_blocks.csv",
@@ -162,6 +165,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "Spec_Footnotes.csv",
                 "Spec_Notes.csv",
                 "spec_titles.csv",
+                "page_copy.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
                 "troubleshooting_blocks.csv",
@@ -173,6 +177,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "spec_footnotes",
                 "spec_notes",
                 "spec_titles",
+                "page_copy",
                 "symbols_blocks",
                 "troubleshooting",
             ]

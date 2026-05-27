@@ -45,6 +45,7 @@ SYNC_PHASE2_TABLES = {
     "spec_footnotes",
     "spec_notes",
     "spec_titles",
+    "page_copy",
     "symbols_blocks",
     "lcd_icons",
     "troubleshooting",

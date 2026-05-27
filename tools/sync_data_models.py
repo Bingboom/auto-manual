@@ -62,6 +62,7 @@ class SyncRunResult:
 
 TABLE_ORDER = (
     "spec_titles",
+    "page_copy",
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
@@ -180,6 +181,18 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "title_de",
             "title_it",
             "title_uk",
+        ),
+    ),
+    "page_copy": TableSchema(
+        logical_name="page_copy",
+        file_name="page_copy.csv",
+        columns=(
+            "page_id",
+            "lang",
+            "copy_key",
+            "text",
+            "enabled",
+            "order",
         ),
     ),
     "symbols_blocks": TableSchema(

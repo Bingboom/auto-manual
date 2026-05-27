@@ -1,4 +1,4 @@
 Variable_key,Model_key,Model,Value,is_default
-AC_POWER_BUTTON_LABEL,JE-1000F,"{""id"":""recvg5TQhZWVVm""}",AC,FALSE
+AC_POWER_BUTTON_LABEL,"JE-1000F,JE-2000F","{""id"":""recvg5TQhZWVVm""}, {""id"":""recvg5TQhZouQT""}",AC,FALSE
 AC_POWER_BUTTON_LABEL,,,AC1/2,TRUE
 DC_USB_POWER_BUTTON_LABEL,,,DC/USB,TRUE

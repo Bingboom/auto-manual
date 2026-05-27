@@ -10,6 +10,7 @@ import unicodedata
 from pathlib import Path
 
 from .renderers_common import apply_vars, latex_arg_escape, rst_escape
+from ..page_copy import require_page_copy
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens, resolve_variable_value
 
@@ -31,17 +32,10 @@ _LANG_SUFFIX = {
     "br": "pt-BR",
 }
 
-_LANG_COPY = {
-    "en": {"title": "LCD DISPLAY", "alt": "LCD icon map placeholder."},
-    "fr": {"title": "AFFICHAGE LCD", "alt": "Carte des icônes de l'écran LCD."},
-    "es": {"title": "PANTALLA LCD", "alt": "Mapa de iconos de la pantalla LCD."},
-    "de": {"title": "LCD-ANZEIGE", "alt": "Abbildung der LCD-Symbole als Platzhalter."},
-    "it": {"title": "DISPLAY LCD", "alt": "Segnaposto mappa icone LCD."},
-    "uk": {"title": "ЕКРАН LCD", "alt": "Заглушка схеми значків LCD."},
-    "ja": {"title": "液晶画面", "alt": "LCDアイコンマップ。"},
-    "zh": {"title": "显示屏界面", "alt": "LCD 图标示意图。"},
-    "pt-BR": {"title": "TELA LCD", "alt": "Mapa de ícones da tela LCD."},
-}
+LCD_ICONS_COPY_KEYS = (
+    "title",
+    "image_alt",
+)
 
 
 def _read_csv(path: str) -> list[dict[str, str]]:
@@ -82,6 +76,15 @@ def _lang_suffix_candidates(lang: str) -> list[str]:
     if (lang or "").strip().casefold() in {"br", "pt-br", "pt_br"}:
         candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
     return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _copy_for_lang(lang: str, vars_map: dict[str, str]) -> dict[str, str]:
+    return require_page_copy(
+        "lcd_icons",
+        lang,
+        LCD_ICONS_COPY_KEYS,
+        csv_path=vars_map.get("page_copy_csv"),
+    )
 
 
 def _first_existing(headers: set[str], candidates: list[str]) -> str:
@@ -283,14 +286,10 @@ def _collect_rows(
     return rows
 
 
+_LEADING_BOLD_RE = re.compile(r"^\*\*(?P<label>.+?)\*\*(?P<rest>.*)$")
+
+
 def _format_description_line(line: str) -> str:
-    for label in ("On", "Off", "Blink", "Ligado", "Desligado", "Piscando", "点亮", "熄灭", "闪烁"):
-        for separator in (":", "："):
-            prefix = f"{label}{separator}"
-            if line.startswith(prefix):
-                remainder = line[len(prefix):]
-                spacer = "" if not remainder or remainder.startswith(" ") else " "
-                return f"**{prefix}**{spacer}{remainder}"
     return line
 
 
@@ -326,7 +325,7 @@ def _append_image_cell(lines: list[str], prefix: str, path: str, *, alt: str) ->
         lines.append(prefix.rstrip())
         return
     option_prefix = " " * (len(prefix) + 3)
-    alt_text = " ".join((alt or "").replace("\\n", "\n").split()) or "LCD icon"
+    alt_text = " ".join((alt or "").replace("\\n", "\n").split())
     lines.append(prefix + f".. image:: {raw_path}")
     lines.append(option_prefix + f":alt: {rst_escape(alt_text)}")
     lines.append(option_prefix + ":width: 42px")
@@ -391,14 +390,12 @@ def _latex_lines_arg(text: str) -> str:
 
 
 def _latex_description_line(line: str) -> str:
-    for label in ("On", "Off", "Blink", "点亮", "熄灭", "闪烁"):
-        for separator in (":", "："):
-            prefix = f"{label}{separator}"
-            if line.startswith(prefix):
-                remainder = line[len(prefix):]
-                remainder = remainder.strip()
-                spacer = " " if remainder else ""
-                return rf"\textbf{{{latex_arg_escape(prefix)}}}{spacer}{latex_arg_escape(remainder)}"
+    match = _LEADING_BOLD_RE.match(line.strip())
+    if match:
+        label = match.group("label")
+        remainder = match.group("rest").strip()
+        spacer = " " if remainder else ""
+        return rf"\textbf{{{latex_arg_escape(label)}}}{spacer}{latex_arg_escape(remainder)}"
     return latex_arg_escape(line)
 
 
@@ -459,9 +456,9 @@ def render_lcd_icons_page(
     vars_map: dict[str, str],
 ) -> str:
     del sku_id
-    copy = _LANG_COPY.get(lang) or _LANG_COPY.get(_lang_suffix(lang)) or _LANG_COPY["en"]
+    copy = _copy_for_lang(lang, vars_map)
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(copy["title"]))
-    rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(copy["alt"]))
+    rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(copy["image_alt"]))
     rendered = rendered.replace(PH_LCD_ICONS_TABLE_RST, _table(rows))
     return rendered

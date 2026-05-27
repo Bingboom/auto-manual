@@ -974,6 +974,123 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual("FALSE", rows[0]["Is_Latest"])
             self.assertEqual("US, EU", rows[0]["Market"])
 
+    def test_sync_phase2_snapshot_should_sync_page_copy_from_live_table(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "page_copy": {
+                                "table_id_env": "PAGE_COPY_TABLE",
+                                "view_id_env": "PAGE_COPY_VIEW",
+                            },
+                        },
+                    }
+                }
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+            phase2_dir = root / "data" / "phase2"
+            phase2_dir.mkdir(parents=True, exist_ok=True)
+
+            fake_source = _FakeSource(
+                {
+                    "tbl_page_copy": [
+                        {
+                            "fields": {
+                                "page_id": "symbols",
+                                "lang": "",
+                                "copy_key": "page_title",
+                                "text": "MEANING OF SYMBOLS",
+                                "enabled": True,
+                                "order": "10",
+                            }
+                        },
+                        {
+                            "fields": {
+                                "page_id": "symbols",
+                                "lang": "fr",
+                                "copy_key": "page_title",
+                                "text": "SIGNIFICATION DES SYMBOLES",
+                                "enabled": True,
+                                "order": "10",
+                            }
+                        },
+                        {
+                            "fields": {
+                                "page_id": "symbols",
+                                "lang": "",
+                                "copy_key": "signal_label.tips",
+                                "text": "TIP",
+                                "enabled": True,
+                                "order": "20",
+                            }
+                        },
+                    ],
+                }
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "PAGE_COPY_TABLE": "tbl_page_copy",
+                    "PAGE_COPY_VIEW": "view_page_copy",
+                },
+                clear=True,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                result = sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["page_copy"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            with (phase2_dir / "page_copy.csv").open("r", encoding="utf-8-sig", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertEqual([("app_token", "tbl_page_copy", "view_page_copy")], fake_source.calls)
+            self.assertIn(
+                {
+                    "page_id": "symbols",
+                    "lang": "",
+                    "copy_key": "page_title",
+                    "text": "MEANING OF SYMBOLS",
+                    "enabled": "1",
+                    "order": "10",
+                },
+                rows,
+            )
+            self.assertIn(
+                {
+                    "page_id": "symbols",
+                    "lang": "fr",
+                    "copy_key": "page_title",
+                    "text": "SIGNIFICATION DES SYMBOLES",
+                    "enabled": "1",
+                    "order": "10",
+                },
+                rows,
+            )
+            self.assertIn(
+                {
+                    "page_id": "symbols",
+                    "lang": "",
+                    "copy_key": "signal_label.tips",
+                    "text": "TIP",
+                    "enabled": "1",
+                    "order": "20",
+                },
+                rows,
+            )
+            self.assertEqual(["page_copy"], [item.logical_name for item in result.synced_tables])
+            self.assertEqual((), result.derived_files)
+
     def test_sync_phase2_snapshot_should_prefer_literal_table_and_view_ids(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

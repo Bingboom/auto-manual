@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import unittest
 from pathlib import Path
 import tempfile
@@ -391,6 +392,78 @@ class TestCsvPageRenderers(unittest.TestCase):
             },
         ]
 
+    def _symbols_legacy_copy_rows(self) -> list[dict[str, str]]:
+        values = {
+            "page_title": ("BLOCK SYMBOL TITLE", "TÍTULO DE SÍMBOLOS"),
+            "header_symbol": ("Block Symbol", "Símbolo de bloque"),
+            "header_meaning": ("Block Meaning", "Significado de bloque"),
+            "signal_label.warning": ("WARNING", "ADVERTENCIA DE BLOQUE"),
+            "signal_label.caution": ("CAUTION", "PRECAUCIÓN DE BLOQUE"),
+            "signal_label.note": ("NOTE", "NOTA DE BLOQUE"),
+            "signal_label.tips": ("TIP", "CONSEJOS DE BLOQUE"),
+            "signal_meaning.warning": ("Block warning meaning.", "Advertencia desde page_copy."),
+            "signal_meaning.caution": ("Block caution meaning.", "Precaución desde page_copy."),
+            "signal_meaning.note": ("Block note meaning.", "Nota desde page_copy."),
+            "signal_meaning.tips": ("Block tips meaning.", "Consejos desde page_copy."),
+            "alt.signal.warning": ("Warning signal marker.", ""),
+            "alt.signal.caution": ("Caution signal marker.", ""),
+            "alt.signal.note": ("Note signal marker.", ""),
+            "alt.signal.tips": ("Tip signal marker.", ""),
+        }
+        for alt_key in (
+            "alt.symbol.warning_triangle",
+            "alt.symbol.read_manual",
+            "alt.symbol.electric_shock",
+            "alt.symbol.battery_charging",
+            "alt.symbol.explosive_material",
+            "alt.symbol.heavy_object",
+            "alt.symbol.do_not_dismantle",
+            "alt.symbol.no_open_flame",
+            "alt.symbol.keep_away_from_children",
+            "alt.symbol.li_ion",
+            "alt.symbol.weee",
+            "alt.symbol.weee2",
+        ):
+            values[alt_key] = (f"{alt_key} alt.", "")
+
+        rows: list[dict[str, str]] = []
+        for idx, (copy_key, (text_en, text_es)) in enumerate(values.items(), start=1):
+            rows.append(
+                {
+                    "page_id": "symbols",
+                    "block_type": "copy_row",
+                    "symbol_key": copy_key,
+                    "order": str(idx * 10),
+                    "Region": "",
+                    "Model": "",
+                    "Source_lang": "en",
+                    "enabled": "1",
+                    "text_en": text_en,
+                    "text_es": text_es,
+                }
+            )
+        return rows
+
+    def _write_symbols_page_copy(self, path: Path) -> None:
+        page_rows: list[dict[str, str]] = []
+        for legacy_row in self._symbols_legacy_copy_rows():
+            base = {
+                "page_id": "symbols",
+                "copy_key": legacy_row["symbol_key"],
+                "enabled": legacy_row["enabled"],
+                "order": legacy_row["order"],
+            }
+            page_rows.append({**base, "lang": "", "text": legacy_row.get("text_en", "")})
+            if legacy_row.get("text_es"):
+                page_rows.append({**base, "lang": "es", "text": legacy_row["text_es"]})
+        with path.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(
+                handle,
+                fieldnames=("page_id", "lang", "copy_key", "text", "enabled", "order"),
+            )
+            writer.writeheader()
+            writer.writerows(page_rows)
+
     def test_render_symbols_page_happy_path(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
@@ -405,6 +478,25 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("warning_bar.png", out)
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
+
+    def test_render_symbols_page_should_source_copy_from_page_copy(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            page_copy_csv = Path(td) / "page_copy.csv"
+            self._write_symbols_page_copy(page_copy_csv)
+
+            out = renderers.render_symbols_page(
+                template=self._symbols_template(),
+                blocks=[*self._symbols_blocks(), *self._symbols_legacy_copy_rows()],
+                sku_id="JB1000",
+                lang="es",
+                vars_map={"page_copy_csv": str(page_copy_csv)},
+            )
+
+        self.assertIn("TÍTULO DE SÍMBOLOS", out)
+        self.assertIn(r"\HBSymbolTable{Símbolo de bloque}{Significado de bloque}{%", out)
+        self.assertIn("Advertencia desde page_copy.", out)
+        self.assertIn("CONSEJOS DE BLOQUE", out)
+        self.assertNotIn("MEANING OF SYMBOLS", out)
 
     def test_render_symbols_page_should_not_render_safety_danger_notice(self) -> None:
         out = renderers.render_symbols_page(
@@ -1043,8 +1135,8 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("Energy Saving Mode", out)
         self.assertIn("When the AC or DC/USB output is on:", out)
         self.assertIn("     - | When the AC or DC/USB output is on:", out)
-        self.assertIn("       | **On:** Enabled.", out)
-        self.assertIn("       | **Off:** Disabled.", out)
+        self.assertIn("       | On: Enabled.", out)
+        self.assertIn("       | Off: Disabled.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
 
     def test_render_lcd_icons_page_emits_latex_macro_table_with_basename_images(self) -> None:
@@ -1054,7 +1146,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "Model": "JE-1000F",
                 "Is_latest": "TRUE",
                 "icon_en": "Battery 50% & AC",
-                "icon_desc_en": "On: Charge_#1 & ready.\nOff: 0% $idle$.",
+                "icon_desc_en": "**On:** Charge_#1 & ready.\n**Off:** 0% $idle$.",
                 "figure": "data/phase2/_attachments/lcd_icons/7_Battery_AC.png",
             }
         ]
@@ -1176,9 +1268,9 @@ class TestCsvPageRenderers(unittest.TestCase):
             vars_map={"model": "JE-1000F"},
         )
 
-        self.assertIn("     - | **On:** Wi-Fi connected.", out)
-        self.assertIn("       | **Blink:** Ready to connect to Wi-Fi.", out)
-        self.assertIn("       | **Off:** Wi-Fi disconnected.", out)
+        self.assertIn("     - | On: Wi-Fi connected.", out)
+        self.assertIn("       | Blink: Ready to connect to Wi-Fi.", out)
+        self.assertIn("       | Off: Wi-Fi disconnected.", out)
 
     def test_render_lcd_icons_page_supports_zh_columns(self) -> None:
         blocks = [
@@ -1203,9 +1295,9 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("显示屏界面", out)
         self.assertIn("LCD 图标示意图。", out)
-        self.assertIn("     - | **点亮：** Wi-Fi 已连接。", out)
-        self.assertIn("       | **闪烁：** 准备连接 Wi-Fi。", out)
-        self.assertIn("       | **熄灭：** Wi-Fi 未连接。", out)
+        self.assertIn("     - | 点亮：Wi-Fi 已连接。", out)
+        self.assertIn("       | 闪烁：准备连接 Wi-Fi。", out)
+        self.assertIn("       | 熄灭：Wi-Fi 未连接。", out)
 
     def test_render_lcd_icons_page_applies_language_overrides_and_aliases(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1265,7 +1357,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("LCDアイコンマップ。", ja_out)
         self.assertIn("AC_UKR / DC_UKR", uk_out)
         self.assertIn("ЕКРАН LCD", uk_out)
-        self.assertIn("Заглушка схеми значків LCD.", uk_out)
+        self.assertIn("Заповнювач схеми значків LCD.", uk_out)
 
     def test_render_lcd_icons_page_supports_pt_br_columns_and_br_variable_overrides(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1327,8 +1419,8 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("Mapa de ícones da tela LCD.", out)
         self.assertIn("Modo de economia de energia", out)
         self.assertIn("Quando a saída CA ou CC/USB estiver ligada:", out)
-        self.assertIn("| **Ligado:** Modo de economia de energia ativado.", out)
-        self.assertIn("| **Desligado:** Modo de economia de energia desativado.", out)
+        self.assertIn("| Ligado: Modo de economia de energia ativado.", out)
+        self.assertIn("| Desligado: Modo de economia de energia desativado.", out)
 
     def _troubleshooting_template(self) -> str:
         return (

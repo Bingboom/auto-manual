@@ -18,11 +18,11 @@ build:
   word_output: manual_{model_slug}_{region_slug}.docx
   word_source: bundle
   word_reference_doc: docs/templates/word_template/reference_en.docx
-  word_title: "|PRODUCT_NAME| User Manual"
-  rst_substitutions:
-    MANUAL_LANGUAGE_SCOPE: English / French / Spanish / German / Italian / Ukrainian
-    WARRANTY_EMAIL: hello.eu@jackery.com
-    LEGAL_COMPANY_NAME: Jackery
+  word_title_copy_key: word_title
+  rst_substitution_copy_keys:
+    MANUAL_LANGUAGE_SCOPE: manual_language_scope_eu
+    WARRANTY_EMAIL: warranty_email_eu
+    LEGAL_COMPANY_NAME: legal_company_name_eu
   open_word: false
   build_html: false
   open_html: false
@@ -60,6 +60,9 @@ sync:
       spec_titles:
         table_id_env: FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
         view_id_env: FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
+      page_copy:
+        table_id: tbly6InLMOeTgloV
+        view_id: vewMA88Pbw
       symbols_blocks:
         table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
         view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
