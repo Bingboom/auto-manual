@@ -208,8 +208,6 @@ troubleshooting,,title,TROUBLESHOOTING,1,10
 troubleshooting,,intro,"If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, please contact Jackery Customer Support.",1,20
 troubleshooting,,code_header,Error Code,1,30
 troubleshooting,,measures_header,Corrective Measures,1,40
-troubleshooting,,header_rows,1,1,50
-troubleshooting,,widths,14 86,1,60
 troubleshooting,de,title,FEHLERSUCHE,1,10
 troubleshooting,de,intro,"Wenn einer der folgenden Fehlercodes angezeigt wird, befolgen Sie die aufgeführten Korrekturmaßnahmen, um das Problem zu beheben. Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Jackery-Kundendienst.",1,20
 troubleshooting,de,code_header,Fehlercode,1,30
@@ -218,7 +216,6 @@ troubleshooting,es,title,RESOLUCIÓN DE PROBLEMAS,1,10
 troubleshooting,es,intro,"Si aparece alguno de los siguientes códigos de falla, siga las acciones correctivas listadas para resolver el problema. Si la falla persiste, por favor contacte con atención al cliente de Jackery.",1,20
 troubleshooting,es,code_header,Código de error,1,30
 troubleshooting,es,measures_header,Medidas correctivas,1,40
-troubleshooting,es,header_rows,0,1,50
 troubleshooting,fr,title,DÉPANNAGE,1,10
 troubleshooting,fr,intro,"Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème. Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery.",1,20
 troubleshooting,fr,code_header,Code d'erreur,1,30
@@ -231,7 +228,6 @@ troubleshooting,ja,title,トラブルシューティング,1,10
 troubleshooting,ja,intro,次のいずれかのエラーコードが表示された場合は、記載された対処方法に従って問題を解決してください。問題が解決しない場合は、Jackeryカスタマーサポートにお問い合わせください。,1,20
 troubleshooting,ja,code_header,エラーコード,1,30
 troubleshooting,ja,measures_header,対処方法,1,40
-troubleshooting,ja,header_rows,0,1,50
 troubleshooting,pt-BR,title,SOLUÇÃO DE PROBLEMAS,1,10
 troubleshooting,pt-BR,intro,"Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.",1,20
 troubleshooting,pt-BR,code_header,Código de erro,1,30
@@ -244,4 +240,3 @@ troubleshooting,zh,title,故障处理,1,10
 troubleshooting,zh,intro,如果出现以下任一故障代码，请按照所列的处理方法进行处理。如故障仍然存在，请联系电小二客户支持。,1,20
 troubleshooting,zh,code_header,故障代码,1,30
 troubleshooting,zh,measures_header,处理方法,1,40
-troubleshooting,zh,widths,16 84,1,60
