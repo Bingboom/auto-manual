@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-05-28T06:30:44.000159+00:00",
+  "generated_at": "2026-05-28T08:51:17.539939+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -9,6 +9,7 @@
     "spec_titles",
     "page_copy",
     "symbols_page_copy",
+    "signal_words",
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
@@ -33,9 +34,9 @@
       "logical_name": "page_copy",
       "file_name": "page_copy.csv",
       "path": "data/phase2/page_copy.csv",
-      "row_count": 174,
-      "sha256": "3f35da6deb32e61bc345381c836990b5ac2f5d070ddd27b05b29538b808bd338",
-      "previous_sha256": "3f35da6deb32e61bc345381c836990b5ac2f5d070ddd27b05b29538b808bd338",
+      "row_count": 132,
+      "sha256": "4c07062fe572a47135a83e7cea7f5ec733f9b8f3d795cfa809b6a473e8235359",
+      "previous_sha256": "4c07062fe572a47135a83e7cea7f5ec733f9b8f3d795cfa809b6a473e8235359",
       "changed": false
     },
     {
@@ -45,6 +46,15 @@
       "row_count": 6,
       "sha256": "fd7aac5f634fb432b37ac318947f7fb75ff02d6cdf681a2151d655ed16dafda2",
       "previous_sha256": "fd7aac5f634fb432b37ac318947f7fb75ff02d6cdf681a2151d655ed16dafda2",
+      "changed": false
+    },
+    {
+      "logical_name": "signal_words",
+      "file_name": "signal_words.csv",
+      "path": "data/phase2/signal_words.csv",
+      "row_count": 7,
+      "sha256": "3ee44405df32bad4f87193ce68c53fcdaa0ac8db8e3d4801922e350f55518bab",
+      "previous_sha256": "3ee44405df32bad4f87193ce68c53fcdaa0ac8db8e3d4801922e350f55518bab",
       "changed": false
     },
     {

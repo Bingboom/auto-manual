@@ -102,6 +102,11 @@ def _read_page_copy_rows(path_text: str) -> tuple[dict[str, str], ...]:
                 f"page_copy row {index} uses forbidden symbols copy_key={copy_key!r}; "
                 "keep symbols headers and signal labels in symbols_page_copy"
             )
+        if page_id == "signal_words":
+            raise ValueError(
+                f"page_copy row {index} uses forbidden page_id='signal_words'; "
+                "keep signal words in signal_words"
+            )
     return rows
 
 

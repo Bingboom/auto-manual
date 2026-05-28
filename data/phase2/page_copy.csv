@@ -73,48 +73,6 @@ manual_meta,pt-BR,manual_language_scope_pt_br,Português (Brasil),1,21
 manual_meta,pt-BR,legal_company_name_pt_br,Jackery,1,40
 manual_meta,uk,word_title,|PRODUCT_NAME| Посібник користувача,1,10
 manual_meta,zh,word_title,|PRODUCT_NAME| 用户指南,1,10
-signal_words,,safety_warning,WARNING,1,10
-signal_words,,symbols_notice,DANGER,1,20
-signal_words,,warning,WARNING,1,30
-signal_words,,danger,DANGER,1,40
-signal_words,,caution,CAUTION,1,50
-signal_words,,note,NOTE,1,60
-signal_words,,tips,TIP,1,70
-signal_words,de,safety_warning,WARNUNG,1,10
-signal_words,de,symbols_notice,WARNUNG,1,20
-signal_words,de,warning,WARNUNG,1,30
-signal_words,de,danger,GEFAHR,1,40
-signal_words,de,caution,VORSICHT,1,50
-signal_words,de,note,HINWEIS,1,60
-signal_words,de,tips,TIPP,1,70
-signal_words,es,safety_warning,ADVERTENCIA,1,10
-signal_words,es,symbols_notice,ADVERTENCIA,1,20
-signal_words,es,warning,ADVERTENCIA,1,30
-signal_words,es,danger,PELIGRO,1,40
-signal_words,es,caution,PRECAUCIÓN,1,50
-signal_words,es,note,NOTA,1,60
-signal_words,es,tips,CONSEJOS,1,70
-signal_words,fr,safety_warning,AVERTISSEMENT,1,10
-signal_words,fr,symbols_notice,AVERTISSEMENT,1,20
-signal_words,fr,warning,AVERTISSEMENT,1,30
-signal_words,fr,danger,ATTENTION,1,40
-signal_words,fr,caution,ATTENTION,1,50
-signal_words,fr,note,REMARQUE,1,60
-signal_words,fr,tips,CONSEILS,1,70
-signal_words,it,safety_warning,AVVERTENZA,1,10
-signal_words,it,symbols_notice,AVVERTENZA,1,20
-signal_words,it,warning,AVVERTENZA,1,30
-signal_words,it,danger,PERICOLO,1,40
-signal_words,it,caution,ATTENZIONE,1,50
-signal_words,it,note,NOTA,1,60
-signal_words,it,tips,SUGGERIMENTO,1,70
-signal_words,uk,safety_warning,ПОПЕРЕДЖЕННЯ,1,10
-signal_words,uk,symbols_notice,ПОПЕРЕДЖЕННЯ,1,20
-signal_words,uk,warning,ПОПЕРЕДЖЕННЯ,1,30
-signal_words,uk,danger,НЕБЕЗПЕКА,1,40
-signal_words,uk,caution,УВАГА,1,50
-signal_words,uk,note,ПРИМІТКА,1,60
-signal_words,uk,tips,ПОРАДА,1,70
 symbols,,page_title,MEANING OF SYMBOLS,1,10
 symbols,,alt.signal.warning,Warning signal marker.,1,120
 symbols,,alt.signal.caution,Caution signal marker.,1,130

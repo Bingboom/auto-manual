@@ -39,6 +39,7 @@ REQUIRED_CSV_HEADERS: dict[str, tuple[str, ...]] = {
     "spec_titles": ("title_en", "section_order"),
     "page_copy": ("page_id", "lang", "copy_key", "text", "enabled", "order"),
     "symbols_page_copy": ("copy_key", "en", "fr", "es", "de", "it", "uk"),
+    "signal_words": ("copy_key", "en", "fr", "es", "pt-BR", "ja", "zh", "de", "it", "uk"),
     "symbols_blocks": ("page_id", "symbol_key", "text_en", "enabled"),
     "troubleshooting": ("No.", "Region", "Model", "error_code", "corrective_measures_en"),
     "row_key_mapping": ("Row_label_source", "Line_order", "Row_key"),

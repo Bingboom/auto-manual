@@ -30,6 +30,7 @@ Required synced tables:
 | `spec_titles` | `spec_titles.csv` | localized spec title labels |
 | `page_copy` | `page_copy.csv` | shared page copy such as titles, table headers, prompts, alt text, default placeholder copy, and output titles |
 | `symbols_page_copy` | `symbols_page_copy.csv` | symbols-page table headers and signal-label copy in wide multilingual form |
+| `signal_words` | `signal_words.csv` | reusable signal-word labels in wide multilingual form |
 | `symbols_blocks` | `symbols_blocks.csv` | symbol-block source rows |
 
 Required derived files:
@@ -90,6 +91,21 @@ Content-source boundary:
 | `it` | yes | Italian visible copy |
 | `uk` | yes | Ukrainian visible copy |
 
+`signal_words.csv` fixed fields:
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `copy_key` | yes | stable semantic key such as `warning`, `danger`, or `tips` |
+| `en` | yes | English/default visible copy |
+| `fr` | yes | French visible copy |
+| `es` | yes | Spanish visible copy |
+| `pt-BR` | yes | Brazilian Portuguese visible copy; blank cells fall back to `en` |
+| `ja` | yes | Japanese visible copy; blank cells fall back to `en` |
+| `zh` | yes | Chinese visible copy; blank cells fall back to `en` |
+| `de` | yes | German visible copy |
+| `it` | yes | Italian visible copy |
+| `uk` | yes | Ukrainian visible copy |
+
 Renderer rule:
 
 - A renderer that requires `page_copy` rows must fail fast when any required
@@ -99,6 +115,9 @@ Renderer rule:
   `symbols_page_copy` table. The first column is `copy_key`, with language
   columns after it. Use keys such as `header_symbol` or `signal_label.tips`;
   the key is `tips`, not `tip`.
+- Reusable signal-word labels are authored in the live `signal_words` table.
+  It uses the same wide shape: first column `copy_key`, then language columns.
+  Do not put `page_id=signal_words` rows in `page_copy`.
 - Symbols page title and image alt text stay in the live `page_copy` table.
 - Symbols signal meanings are not `page_copy` rows. Keep
   `warning`/`caution`/`note`/`tips` meaning text in `symbols_blocks`
