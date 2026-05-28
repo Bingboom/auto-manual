@@ -71,6 +71,17 @@ class _FakeSourceWithFailingDownloads(_FakeSource):
         raise RuntimeError("download failed")
 
 
+def _write_page_registry(root: Path, relative_path: str = "data/phase2/page_registry.csv") -> Path:
+    path = root / relative_path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "page_id,order,page_type,sku_scope,langs,template,content_query,asset_ref,enabled\n"
+        "spec,20,csv_page,ALL,en,spec_template.rst,page_id=spec,,1\n",
+        encoding="utf-8",
+    )
+    return path
+
+
 class TestSyncData(unittest.TestCase):
     def test_phase2_table_schemas_should_include_eu_and_pt_br_columns(self) -> None:
         self.assertEqual(
@@ -428,6 +439,9 @@ class TestSyncData(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             cfg = {
+                "paths": {
+                    "page_registry_csv": "fixtures/page_registry.csv",
+                },
                 "sync": {
                     "phase2": {
                         "provider": "lark_cli",
@@ -446,6 +460,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root, "fixtures/page_registry.csv")
 
             fake_source = _FakeSource(
                 {
@@ -518,6 +533,7 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual(root / "data" / "phase2", result.export_root)
             self.assertTrue((root / "data" / "phase2" / "spec_titles.csv").exists())
             self.assertTrue((root / "data" / "phase2" / "Spec_Master.csv").exists())
+            self.assertTrue((root / "data" / "phase2" / "page_registry.csv").exists())
             self.assertTrue((root / "data" / "phase2" / "row_key_mapping.csv").exists())
             self.assertTrue((root / "data" / "phase2" / "snapshot_manifest.json").exists())
             self.assertEqual(
@@ -555,13 +571,18 @@ class TestSyncData(unittest.TestCase):
             self.assertEqual(["spec_titles", "spec_master"], manifest["requested_tables"])
             self.assertIn("spec_footnotes", manifest["skipped_tables"])
             self.assertEqual(2, len(manifest["tables"]))
-            self.assertEqual(1, len(manifest["derived_files"]))
-            self.assertEqual("row_key_mapping", manifest["derived_files"][0]["logical_name"])
+            self.assertEqual(
+                ["page_registry", "row_key_mapping"],
+                [entry["logical_name"] for entry in manifest["derived_files"]],
+            )
 
     def test_sync_phase2_snapshot_should_merge_spec_master_source_tables_without_total_table(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             cfg = {
+                "paths": {
+                    "page_registry_csv": "fixtures/page_registry.csv",
+                },
                 "sync": {
                     "phase2": {
                         "provider": "lark_cli",
@@ -581,6 +602,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root, "fixtures/page_registry.csv")
 
             footnote_fields = {
                 "Footnote_id": "ac_bypass",
@@ -687,6 +709,9 @@ class TestSyncData(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             cfg = {
+                "paths": {
+                    "page_registry_csv": "fixtures/page_registry.csv",
+                },
                 "sync": {
                     "phase2": {
                         "provider": "lark_cli",
@@ -701,6 +726,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root, "fixtures/page_registry.csv")
 
             fake_source = _FakeSourceWithDownloads(
                 {
@@ -771,6 +797,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root)
             fallback_asset = (
                 root
                 / "data"
@@ -851,6 +878,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root)
             fake_source = _FakeSourceWithFailingDownloads(
                 {
                     "tbl_lcd": [
@@ -915,6 +943,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root)
 
             fake_source = _FakeSourceWithDownloads(
                 {
@@ -995,6 +1024,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root)
 
             fake_source = _FakeSource(
                 {
@@ -1050,6 +1080,9 @@ class TestSyncData(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             cfg = {
+                "paths": {
+                    "page_registry_csv": "fixtures/page_registry.csv",
+                },
                 "sync": {
                     "phase2": {
                         "provider": "lark_cli",
@@ -1062,6 +1095,7 @@ class TestSyncData(unittest.TestCase):
                     }
                 }
             }
+            _write_page_registry(root, "fixtures/page_registry.csv")
             fake_source = _FakeSource({"tbl_titles": [{"fields": {"title_en": "SPECIFICATIONS"}}]})
 
             with mock.patch.dict(
@@ -1083,6 +1117,7 @@ class TestSyncData(unittest.TestCase):
 
             self.assertTrue(result.dry_run)
             self.assertFalse((root / "data" / "phase2" / "spec_titles.csv").exists())
+            self.assertFalse((root / "data" / "phase2" / "page_registry.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "row_key_mapping.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "snapshot_manifest.json").exists())
 
@@ -1106,6 +1141,7 @@ class TestSyncData(unittest.TestCase):
             config_path.write_text("sync: {}\n", encoding="utf-8")
             phase2_dir = root / "data" / "phase2"
             phase2_dir.mkdir(parents=True, exist_ok=True)
+            _write_page_registry(root)
             (phase2_dir / "row_key_mapping.csv").write_text(
                 "Row_label_source,Line_order,Row_key,Remark\n"
                 "Product Name,1,product_name,keep existing remark\n",
@@ -1158,8 +1194,10 @@ class TestSyncData(unittest.TestCase):
 
             mapping_text = (root / "data" / "phase2" / "row_key_mapping.csv").read_text(encoding="utf-8-sig")
             self.assertIn("Product Name,1,product_name,keep existing remark", mapping_text)
-            self.assertEqual(1, len(result.derived_files))
-            self.assertEqual("row_key_mapping", result.derived_files[0].logical_name)
+            self.assertEqual(
+                ["page_registry", "row_key_mapping"],
+                [entry.logical_name for entry in result.derived_files],
+            )
 
     def test_sync_phase2_snapshot_should_normalize_feishu_link_refs_without_changing_latest_rows(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1182,6 +1220,7 @@ class TestSyncData(unittest.TestCase):
             }
             config_path = root / "config.yaml"
             config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root)
 
             footnote_fields = {
                 "Footnote_id": "ac_bypass",

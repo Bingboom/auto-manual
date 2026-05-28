@@ -38,6 +38,7 @@ def _complete_manifest() -> dict[str, object]:
             )
         ],
         "derived_files": [
+            {"logical_name": "page_registry", "file_name": "page_registry.csv"},
             {"logical_name": "row_key_mapping", "file_name": "row_key_mapping.csv"},
         ],
     }
@@ -97,6 +98,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "Spec_Footnotes.csv",
                 "Spec_Notes.csv",
                 "spec_titles.csv",
+                "page_registry.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
                 "troubleshooting_blocks.csv",
@@ -162,6 +164,7 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "Spec_Footnotes.csv",
                 "Spec_Notes.csv",
                 "spec_titles.csv",
+                "page_registry.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
                 "troubleshooting_blocks.csv",

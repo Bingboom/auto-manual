@@ -76,6 +76,15 @@
   ],
   "derived_files": [
     {
+      "logical_name": "page_registry",
+      "file_name": "page_registry.csv",
+      "path": "data/phase2/page_registry.csv",
+      "row_count": 4,
+      "sha256": "3ac4be2059daa18caa605a8084f7c417b8d648ca724c848deeee6363ecc80bc7",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
       "logical_name": "row_key_mapping",
       "file_name": "row_key_mapping.csv",
       "path": "data/phase2/row_key_mapping.csv",

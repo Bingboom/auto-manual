@@ -33,6 +33,7 @@ PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "troubleshooting": TROUBLESHOOTING_BLOCKS_FILE,
 }
 PHASE2_REQUIRED_DERIVED_FILES: dict[str, str] = {
+    "page_registry": PAGE_REGISTRY_FILE,
     "row_key_mapping": ROW_KEY_MAPPING_FILE,
 }
 
