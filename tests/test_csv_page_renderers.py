@@ -349,8 +349,8 @@ class TestCsvPageRenderers(unittest.TestCase):
             + "\n"
         )
 
-    def _symbols_blocks(self) -> list[dict[str, str]]:
-        return [
+    def _symbols_blocks(self, *, include_signal_rows: bool = True) -> list[dict[str, str]]:
+        rows = [
             {
                 "block_type": "table_row",
                 "symbol_key": "warning_triangle",
@@ -391,6 +391,65 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "text_es": "No desarme.",
             },
         ]
+        if include_signal_rows:
+            rows = [*rows, *self._symbols_signal_rows()]
+        return rows
+
+    def _symbols_signal_rows(self) -> list[dict[str, str]]:
+        return [
+            {
+                "block_type": "signal_row",
+                "symbol_key": "WARNING",
+                "image_path": "",
+                "order": "1",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+                "text_fr": "Avertissement depuis symbols_blocks.",
+                "text_es": "Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",
+            },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "CAUTION",
+                "image_path": "",
+                "order": "2",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Hazardous practices that may result in personal injury and/or property damage.",
+                "text_fr": "Attention depuis symbols_blocks.",
+                "text_es": "Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.",
+            },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "NOTE",
+                "image_path": "",
+                "order": "3",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+                "text_fr": "Remarque depuis symbols_blocks.",
+                "text_es": "Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",
+            },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "TIPS",
+                "image_path": "",
+                "order": "4",
+                "Region": "",
+                "Model": "",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Supplements the important information or operation tips in the text.",
+                "text_fr": "Conseils depuis symbols_blocks.",
+                "text_es": "Complementa la información importante o consejos de operación en el texto.",
+            },
+        ]
 
     def _symbols_legacy_copy_rows(self) -> list[dict[str, str]]:
         values = {
@@ -401,10 +460,6 @@ class TestCsvPageRenderers(unittest.TestCase):
             "signal_label.caution": ("CAUTION", "PRECAUCIÓN DE BLOQUE"),
             "signal_label.note": ("NOTE", "NOTA DE BLOQUE"),
             "signal_label.tips": ("TIP", "CONSEJOS DE BLOQUE"),
-            "signal_meaning.warning": ("Block warning meaning.", "Advertencia desde page_copy."),
-            "signal_meaning.caution": ("Block caution meaning.", "Precaución desde page_copy."),
-            "signal_meaning.note": ("Block note meaning.", "Nota desde page_copy."),
-            "signal_meaning.tips": ("Block tips meaning.", "Consejos desde page_copy."),
             "alt.signal.warning": ("Warning signal marker.", ""),
             "alt.signal.caution": ("Caution signal marker.", ""),
             "alt.signal.note": ("Note signal marker.", ""),
@@ -494,9 +549,19 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("TÍTULO DE SÍMBOLOS", out)
         self.assertIn(r"\HBSymbolTable{Símbolo de bloque}{Significado de bloque}{%", out)
-        self.assertIn("Advertencia desde page_copy.", out)
+        self.assertIn("Prácticas peligrosas", out)
         self.assertIn("CONSEJOS DE BLOQUE", out)
         self.assertNotIn("MEANING OF SYMBOLS", out)
+
+    def test_render_symbols_page_requires_signal_meanings_from_symbols_blocks(self) -> None:
+        with self.assertRaisesRegex(ValueError, "signal meanings must come from symbols_blocks"):
+            renderers.render_symbols_page(
+                template=self._symbols_template(),
+                blocks=self._symbols_blocks(include_signal_rows=False),
+                sku_id="JB1000",
+                lang="en",
+                vars_map={},
+            )
 
     def test_render_symbols_page_should_not_render_safety_danger_notice(self) -> None:
         out = renderers.render_symbols_page(
@@ -684,7 +749,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn("informaci贸n", out)
 
     def test_render_symbols_page_can_source_signal_rows_from_symbols_blocks(self) -> None:
-        blocks = self._symbols_blocks()
+        blocks = self._symbols_blocks(include_signal_rows=False)
         blocks.extend(
             [
                 {
@@ -885,7 +950,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn("JE-1000F only.", out)
 
     def test_render_symbols_page_auto_distributes_unique_order_rows(self) -> None:
-        blocks = self._symbols_blocks()
+        blocks = self._symbols_blocks(include_signal_rows=False)
         rows = [
             ("warning_triangle", "1", "Order 1."),
             ("read_manual", "2", "Order 2."),
@@ -913,6 +978,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "text_es": text,
                 }
             )
+        blocks.extend(self._symbols_signal_rows())
 
         out = renderers.render_symbols_page(
             template=self._symbols_template(),

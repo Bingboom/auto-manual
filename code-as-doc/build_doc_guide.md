@@ -364,8 +364,8 @@ Parallel-language template note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon
 - when the phase2 authoring Base provides a `Figure` attachment, `sync-data` downloads it into `data/phase2/_attachments/symbols/` and writes that local file back to `image_path`
-- use `block_type=table_row` for the normal symbol/meaning grid and `block_type=signal_row` for the warning/caution/note/tips table at the top of the symbols page; keep symbols page title, table headers, signal labels, signal meanings, and image alt text in `page_copy`
-- signal rows must include the four `symbol_key` values `WARNING`, `CAUTION`, `NOTE`, and `TIPS`; copy rows use `symbol_key` as the copy key, for example `page_title` or `signal_label.tips`
+- use `block_type=table_row` for the normal symbol/meaning grid and `block_type=signal_row` for the warning/caution/note/tips table at the top of the symbols page; keep signal-row meaning text in `symbols_blocks` `text_*` columns, not `page_copy`
+- signal rows must include the four `symbol_key` values `WARNING`, `CAUTION`, `NOTE`, and `TIPS`; keep symbols page title, table headers, signal labels, and image alt text in `page_copy` with copy keys such as `page_title` or `signal_label.tips`
 - `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - leave `Region` / `Model` blank when one symbols row is shared across manuals

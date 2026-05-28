@@ -85,6 +85,9 @@ Renderer rule:
 - Symbols page copy is authored in the live `page_copy` table. Use keys such as
   `page_title`, `header_symbol`, or `signal_label.tips`; the key is `tips`, not
   `tip`.
+- Symbols signal meanings are not `page_copy` rows. Keep
+  `warning`/`caution`/`note`/`tips` meaning text in `symbols_blocks`
+  `block_type=signal_row` rows, using each language's `text_*` column.
 
 ## 2. Document_link
 

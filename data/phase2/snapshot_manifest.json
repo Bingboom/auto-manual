@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-05-28T03:55:14.993801+00:00",
+  "generated_at": "2026-05-28T05:41:20.649535+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -32,9 +32,9 @@
       "logical_name": "page_copy",
       "file_name": "page_copy.csv",
       "path": "data/phase2/page_copy.csv",
-      "row_count": 238,
-      "sha256": "1598435a26f8c737e7d5a8ab4d032ea50f954d433fd579838e869adc5874ba6f",
-      "previous_sha256": "1598435a26f8c737e7d5a8ab4d032ea50f954d433fd579838e869adc5874ba6f",
+      "row_count": 210,
+      "sha256": "b73731f71dd973ef13f0a44228c7ef91c7a14abfcfc1b3555825c161cc20cfd8",
+      "previous_sha256": "b73731f71dd973ef13f0a44228c7ef91c7a14abfcfc1b3555825c161cc20cfd8",
       "changed": false
     },
     {

@@ -131,7 +131,6 @@ _SIGNAL_COPY_KEYS = tuple(
     for signal_key in SIGNAL_ROW_KEYS
     for key in (
         f"signal_label.{signal_key}",
-        f"signal_meaning.{signal_key}",
         f"alt.signal.{signal_key}",
     )
 )
@@ -536,32 +535,6 @@ def _matching_symbol_blocks(
     return []
 
 
-def _default_signal_rows(lang: str, copy: dict[str, str]) -> list[dict[str, object]]:
-    rows: list[dict[str, object]] = []
-    for signal_key in SIGNAL_ROW_KEYS:
-        asset = _default_signal_asset(lang, signal_key)
-        is_banner = _signal_uses_banner_image(asset.path)
-        rows.append(
-            {
-                "mode": "banner" if is_banner else "icon_label",
-                "image": asset.path,
-                "alt": copy[asset.alt_key],
-                "width": asset.width,
-                "label": "" if is_banner else copy[f"signal_label.{signal_key}"],
-                "meaning": copy[f"signal_meaning.{signal_key}"],
-                "signal_key": signal_key,
-            }
-        )
-    return rows
-
-
-def _default_signal_row(lang: str, copy: dict[str, str], signal_key: str) -> dict[str, object] | None:
-    for row in _default_signal_rows(lang, copy):
-        if str(row.get("signal_key") or "").strip() == signal_key:
-            return row
-    return None
-
-
 def _normalize_signal_key(value: str) -> str:
     raw = (value or "").strip().casefold()
     if raw not in SIGNAL_ROW_KEYS:
@@ -588,7 +561,10 @@ def _collect_signal_rows(
         vars_map=vars_map,
     )
     if not rows:
-        return _default_signal_rows(lang, copy)
+        raise ValueError(
+            "symbols signal meanings must come from symbols_blocks "
+            f"block_type='signal_row'; no matching rows sku={sku_id} lang={lang}"
+        )
     lang_col = _text_column_for_lang(rows[0], lang)
     if lang_col not in rows[0]:
         raise ValueError(f"content csv missing language column: {lang_col}")
@@ -615,13 +591,12 @@ def _collect_signal_rows(
         default_asset = _default_signal_asset(lang, signal_key)
         image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
         image_path = image_path or (block.get("image_path") or "").strip() or default_asset.path
-        default_row = _default_signal_row(lang, copy, signal_key) or {}
         is_banner = _signal_uses_banner_image(image_path)
         signal_rows.append(
             {
                 "mode": "banner" if is_banner else "icon_label",
                 "image": image_path,
-                "alt": str(default_row.get("alt") or copy[default_asset.alt_key]),
+                "alt": copy[default_asset.alt_key],
                 "width": "140px" if is_banner else default_asset.width,
                 "label": "" if is_banner else copy[f"signal_label.{signal_key}"],
                 "meaning": text,
@@ -635,12 +610,11 @@ def _collect_signal_rows(
 def _signal_section(
     lang: str,
     copy: dict[str, str],
-    signal_rows: list[dict[str, object]] | None = None,
+    signal_rows: list[dict[str, object]],
 ) -> str:
     page_title = str(copy["page_title"])
     header_symbol = str(copy["header_symbol"])
     header_meaning = str(copy["header_meaning"])
-    signal_rows = signal_rows if signal_rows is not None else _default_signal_rows(lang, copy)
 
     lines: list[str] = []
     lines.extend(_rst_heading(page_title, "="))
