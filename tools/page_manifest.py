@@ -53,7 +53,7 @@ def resolve_page_manifest_path(
 
 def _load_yaml(path: Path) -> Any:
     try:
-        import yaml  # type: ignore
+        import yaml
     except ImportError as exc:
         raise RuntimeError("PyYAML not installed. Please run: pip install pyyaml") from exc
 

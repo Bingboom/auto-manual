@@ -11,3 +11,16 @@ extend-exclude = [
 
 [tool.ruff.lint]
 select = ["E722", "F821", "F841"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+# Default permissive across the codebase. Narrow strict scope below as
+# modules become ready.
+
+[[tool.mypy.overrides]]
+module = "tools.utils.*"
+disallow_untyped_defs = true
+warn_return_any = true
