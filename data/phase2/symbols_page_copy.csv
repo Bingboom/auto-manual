@@ -1,0 +1,7 @@
+copy_key,en,fr,es,de,it,uk
+header_symbol,Symbol,Symbole,Símbolo,Symbol,Simbolo,Символ
+header_meaning,Meaning,Signification,Significado,Bedeutung,Significato,Значення
+signal_label.warning,WARNING,AVERTISSEMENT,ADVERTENCIA,WARNUNG,AVVERTENZA,ПОПЕРЕДЖЕННЯ
+signal_label.caution,CAUTION,ATTENTION,PRECAUCIÓN,VORSICHT,ATTENZIONE,УВАГА
+signal_label.note,NOTE,REMARQUE,NOTA,HINWEIS,NOTA,ПРИМІТКА
+signal_label.tips,TIP,CONSEILS,CONSEJOS,TIPP,SUGGERIMENTO,ПОРАДА

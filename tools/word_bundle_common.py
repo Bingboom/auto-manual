@@ -259,6 +259,7 @@ def load_word_context(
         spec_notes_csv=snapshot_paths.spec_notes_csv,
         spec_titles_csv=snapshot_paths.spec_titles_csv,
         page_copy_csv=snapshot_paths.page_copy_csv,
+        symbols_page_copy_csv=snapshot_paths.symbols_page_copy_csv,
     )
     return CsvPageBuilder(build_paths)
 

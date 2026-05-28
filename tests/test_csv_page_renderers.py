@@ -454,12 +454,6 @@ class TestCsvPageRenderers(unittest.TestCase):
     def _symbols_legacy_copy_rows(self) -> list[dict[str, str]]:
         values = {
             "page_title": ("BLOCK SYMBOL TITLE", "TÍTULO DE SÍMBOLOS"),
-            "header_symbol": ("Block Symbol", "Símbolo de bloque"),
-            "header_meaning": ("Block Meaning", "Significado de bloque"),
-            "signal_label.warning": ("WARNING", "ADVERTENCIA DE BLOQUE"),
-            "signal_label.caution": ("CAUTION", "PRECAUCIÓN DE BLOQUE"),
-            "signal_label.note": ("NOTE", "NOTA DE BLOQUE"),
-            "signal_label.tips": ("TIP", "CONSEJOS DE BLOQUE"),
             "alt.signal.warning": ("Warning signal marker.", ""),
             "alt.signal.caution": ("Caution signal marker.", ""),
             "alt.signal.note": ("Note signal marker.", ""),
@@ -519,6 +513,46 @@ class TestCsvPageRenderers(unittest.TestCase):
             writer.writeheader()
             writer.writerows(page_rows)
 
+    def _write_symbols_wide_copy(self, path: Path) -> None:
+        rows = [
+            {
+                "copy_key": "header_symbol",
+                "en": "Block Symbol",
+                "es": "Símbolo de bloque",
+            },
+            {
+                "copy_key": "header_meaning",
+                "en": "Block Meaning",
+                "es": "Significado de bloque",
+            },
+            {
+                "copy_key": "signal_label.warning",
+                "en": "WARNING",
+                "es": "ADVERTENCIA DE BLOQUE",
+            },
+            {
+                "copy_key": "signal_label.caution",
+                "en": "CAUTION",
+                "es": "PRECAUCIÓN DE BLOQUE",
+            },
+            {
+                "copy_key": "signal_label.note",
+                "en": "NOTE",
+                "es": "NOTA DE BLOQUE",
+            },
+            {
+                "copy_key": "signal_label.tips",
+                "en": "TIP",
+                "es": "CONSEJOS DE BLOQUE",
+            },
+        ]
+        fieldnames = ("copy_key", "en", "fr", "es", "de", "it", "uk")
+        with path.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow({field: row.get(field, "") for field in fieldnames})
+
     def test_render_symbols_page_happy_path(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
@@ -537,14 +571,19 @@ class TestCsvPageRenderers(unittest.TestCase):
     def test_render_symbols_page_should_source_copy_from_page_copy(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             page_copy_csv = Path(td) / "page_copy.csv"
+            symbols_page_copy_csv = Path(td) / "symbols_page_copy.csv"
             self._write_symbols_page_copy(page_copy_csv)
+            self._write_symbols_wide_copy(symbols_page_copy_csv)
 
             out = renderers.render_symbols_page(
                 template=self._symbols_template(),
                 blocks=[*self._symbols_blocks(), *self._symbols_legacy_copy_rows()],
                 sku_id="JB1000",
                 lang="es",
-                vars_map={"page_copy_csv": str(page_copy_csv)},
+                vars_map={
+                    "page_copy_csv": str(page_copy_csv),
+                    "symbols_page_copy_csv": str(symbols_page_copy_csv),
+                },
             )
 
         self.assertIn("TÍTULO DE SÍMBOLOS", out)

@@ -10,6 +10,7 @@ from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
 from ..page_copy import require_page_copy
+from ..symbols_page_copy import require_symbols_page_copy
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
 
@@ -125,14 +126,14 @@ SIGNAL_BANNER_ASSETS: dict[str, SymbolAsset] = {
 }
 
 _SYMBOL_PAGE_ID = "symbols"
-_SYMBOL_TEXT_COPY_KEYS = ("page_title", "header_symbol", "header_meaning")
+_SYMBOL_TEXT_COPY_KEYS = ("page_title",)
+_SYMBOL_WIDE_COPY_KEYS = ("header_symbol", "header_meaning") + tuple(
+    f"signal_label.{signal_key}" for signal_key in SIGNAL_ROW_KEYS
+)
 _SIGNAL_COPY_KEYS = tuple(
     key
     for signal_key in SIGNAL_ROW_KEYS
-    for key in (
-        f"signal_label.{signal_key}",
-        f"alt.signal.{signal_key}",
-    )
+    for key in (f"alt.signal.{signal_key}",)
 )
 _SYMBOL_ALT_COPY_KEYS = tuple(asset.alt_key for asset in SYMBOL_ASSETS.values())
 _SYMBOL_COPY_KEYS = _SYMBOL_TEXT_COPY_KEYS + _SIGNAL_COPY_KEYS + _SYMBOL_ALT_COPY_KEYS
@@ -150,7 +151,13 @@ def _copy_for_symbols(
         _SYMBOL_COPY_KEYS,
         csv_path=vars_map.get("page_copy_csv"),
     )
-    return {key: apply_vars(value, vars_map) for key, value in copy.items()}
+    wide_copy = require_symbols_page_copy(
+        lang,
+        _SYMBOL_WIDE_COPY_KEYS,
+        csv_path=vars_map.get("symbols_page_copy_csv"),
+    )
+    merged = {**copy, **wide_copy}
+    return {key: apply_vars(value, vars_map) for key, value in merged.items()}
 
 
 def _default_signal_asset(lang: str, signal_key: str) -> SymbolAsset:

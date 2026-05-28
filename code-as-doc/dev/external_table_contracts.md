@@ -1,6 +1,6 @@
 # External Table Contracts
 
-Updated: 2026-05-07
+Updated: 2026-05-28
 
 This file records the first repo-owned contract for external Feishu/Lark Base tables.
 It is the stability boundary between external content governance and the local build,
@@ -29,6 +29,7 @@ Required synced tables:
 | `spec_notes` | `Spec_Notes.csv` | note text and selectors |
 | `spec_titles` | `spec_titles.csv` | localized spec title labels |
 | `page_copy` | `page_copy.csv` | shared page copy such as titles, table headers, prompts, alt text, default placeholder copy, and output titles |
+| `symbols_page_copy` | `symbols_page_copy.csv` | symbols-page table headers and signal-label copy in wide multilingual form |
 | `symbols_blocks` | `symbols_blocks.csv` | symbol-block source rows |
 
 Required derived files:
@@ -77,14 +78,28 @@ Content-source boundary:
 | `enabled` | yes | false/unchecked rows are ignored |
 | `order` | yes | deterministic order when a page consumes multiple copy rows |
 
+`symbols_page_copy.csv` fixed fields:
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `copy_key` | yes | stable semantic key such as `header_symbol` or `signal_label.tips` |
+| `en` | yes | English/default visible copy |
+| `fr` | yes | French visible copy |
+| `es` | yes | Spanish visible copy |
+| `de` | yes | German visible copy |
+| `it` | yes | Italian visible copy |
+| `uk` | yes | Ukrainian visible copy |
+
 Renderer rule:
 
 - A renderer that requires `page_copy` rows must fail fast when any required
   `copy_key` is missing for the target page/language, instead of falling back to
   Python literals or silently generating a partial page.
-- Symbols page copy is authored in the live `page_copy` table. Use keys such as
-  `page_title`, `header_symbol`, or `signal_label.tips`; the key is `tips`, not
-  `tip`.
+- Symbols table headers and signal labels are authored in the live
+  `symbols_page_copy` table. The first column is `copy_key`, with language
+  columns after it. Use keys such as `header_symbol` or `signal_label.tips`;
+  the key is `tips`, not `tip`.
+- Symbols page title and image alt text stay in the live `page_copy` table.
 - Symbols signal meanings are not `page_copy` rows. Keep
   `warning`/`caution`/`note`/`tips` meaning text in `symbols_blocks`
   `block_type=signal_row` rows, using each language's `text_*` column.

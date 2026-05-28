@@ -8,7 +8,8 @@ import re
 from xml.etree import ElementTree as ET
 
 
-from tools.page_copy import load_all_copy_values, load_page_copy_map
+from tools.page_copy import load_all_copy_values
+from tools.symbols_page_copy import load_symbols_page_copy_map
 
 
 _ALERT_LABELS = frozenset(
@@ -51,7 +52,7 @@ def _normalize_alert_label_text(text: str) -> str:
 
 
 def _signal_word_banner_sources() -> dict[str, str]:
-    copy = load_page_copy_map("symbols", "")
+    copy = load_symbols_page_copy_map("")
     sources: dict[str, str] = {}
     for copy_key, image_path in _SIGNAL_WORD_BANNERS.items():
         label = _normalize_alert_label_text(copy.get(copy_key, ""))

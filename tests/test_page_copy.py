@@ -58,6 +58,23 @@ class PageCopyTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "keep signal meanings in symbols_blocks"):
                 load_page_copy_map("symbols", "", csv_path=str(page_copy))
 
+    def test_load_page_copy_map_rejects_symbols_wide_copy_keys(self) -> None:
+        with TemporaryDirectory() as td:
+            page_copy = Path(td) / "page_copy.csv"
+            page_copy.write_text(
+                "\n".join(
+                    [
+                        "page_id,lang,copy_key,text,enabled,order",
+                        "symbols,,signal_label.tips,TIP,1,70",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "symbols_page_copy"):
+                load_page_copy_map("symbols", "", csv_path=str(page_copy))
+
 
 if __name__ == "__main__":
     unittest.main()

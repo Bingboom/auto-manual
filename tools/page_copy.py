@@ -17,6 +17,14 @@ PAGE_COPY_FIELDNAMES = ("page_id", "lang", "copy_key", "text", "enabled", "order
 
 _TRUE_VALUES = {"1", "true", "yes", "y", "on"}
 _FORBIDDEN_COPY_KEYS = {"tip"}
+_FORBIDDEN_SYMBOL_COPY_KEYS = {
+    "header_symbol",
+    "header_meaning",
+    "signal_label.warning",
+    "signal_label.caution",
+    "signal_label.note",
+    "signal_label.tips",
+}
 _FORBIDDEN_SYMBOL_PREFIXES = ("signal_meaning.",)
 _LANG_ALIASES = {
     "jp": "ja",
@@ -88,6 +96,11 @@ def _read_page_copy_rows(path_text: str) -> tuple[dict[str, str], ...]:
             raise ValueError(
                 f"page_copy row {index} uses forbidden symbols copy_key={copy_key!r}; "
                 "keep signal meanings in symbols_blocks signal_row records"
+            )
+        if page_id == "symbols" and copy_key in _FORBIDDEN_SYMBOL_COPY_KEYS:
+            raise ValueError(
+                f"page_copy row {index} uses forbidden symbols copy_key={copy_key!r}; "
+                "keep symbols headers and signal labels in symbols_page_copy"
             )
     return rows
 

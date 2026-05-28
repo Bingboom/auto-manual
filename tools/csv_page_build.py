@@ -17,10 +17,12 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools.data_snapshot import (
     STRUCTURED_DATA_DEFAULT_DIR,
     PAGE_REGISTRY_FILE,
+    PAGE_COPY_FILE,
     SPEC_FOOTNOTES_FILE,
     SPEC_MASTER_FILE,
     SPEC_NOTES_FILE,
     SPEC_TITLES_FILE,
+    SYMBOLS_PAGE_COPY_FILE,
 )
 from tools.csv_pages import BuildPaths, BuildSelector, CsvPageBuilder  # noqa: E402
 
@@ -66,6 +68,8 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="optional source for spec page/section multilingual title overrides (pass empty to disable)",
     )
+    ap.add_argument("--page-copy-csv", default=None, help="optional source for page copy rows")
+    ap.add_argument("--symbols-page-copy-csv", default=None, help="optional source for symbols page copy rows")
     args = ap.parse_args()
     data_root = ((args.data_root or "").strip() if isinstance(args.data_root, str) else "")
     default_data_root = Path(data_root) if data_root else Path(STRUCTURED_DATA_DEFAULT_DIR)
@@ -82,6 +86,10 @@ def parse_args() -> argparse.Namespace:
         args.spec_notes_csv = _display_path(default_data_root / SPEC_NOTES_FILE)
     if args.spec_titles_csv is None:
         args.spec_titles_csv = _display_path(default_data_root / SPEC_TITLES_FILE)
+    if args.page_copy_csv is None:
+        args.page_copy_csv = _display_path(default_data_root / PAGE_COPY_FILE)
+    if args.symbols_page_copy_csv is None:
+        args.symbols_page_copy_csv = _display_path(default_data_root / SYMBOLS_PAGE_COPY_FILE)
     return args
 
 
@@ -110,6 +118,8 @@ def main() -> None:
         spec_footnotes_csv=as_optional_path(args.spec_footnotes_csv),
         spec_notes_csv=as_optional_path(args.spec_notes_csv),
         spec_titles_csv=as_optional_path(args.spec_titles_csv),
+        page_copy_csv=as_optional_path(args.page_copy_csv),
+        symbols_page_copy_csv=as_optional_path(args.symbols_page_copy_csv),
     )
 
     selector = BuildSelector.from_args(

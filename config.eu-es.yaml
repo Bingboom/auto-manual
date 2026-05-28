@@ -46,6 +46,9 @@ sync:
       page_copy:
         table_id: tbly6InLMOeTgloV
         view_id: vewMA88Pbw
+      symbols_page_copy:
+        table_id: tbl9bxNptt0YLO0q
+        view_id: vewtSjIvzO
       symbols_blocks:
         table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
         view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID

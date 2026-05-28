@@ -116,12 +116,6 @@ signal_words,uk,caution,УВАГА,1,50
 signal_words,uk,note,ПРИМІТКА,1,60
 signal_words,uk,tips,ПОРАДА,1,70
 symbols,,page_title,MEANING OF SYMBOLS,1,10
-symbols,,header_symbol,Symbol,1,20
-symbols,,header_meaning,Meaning,1,30
-symbols,,signal_label.warning,WARNING,1,40
-symbols,,signal_label.caution,CAUTION,1,50
-symbols,,signal_label.note,NOTE,1,60
-symbols,,signal_label.tips,TIP,1,70
 symbols,,alt.signal.warning,Warning signal marker.,1,120
 symbols,,alt.signal.caution,Caution signal marker.,1,130
 symbols,,alt.signal.note,Note signal marker.,1,140
@@ -139,40 +133,10 @@ symbols,,alt.symbol.li_ion,Lithium-ion battery symbol.,1,250
 symbols,,alt.symbol.weee,WEEE disposal symbol.,1,260
 symbols,,alt.symbol.weee2,Battery disposal symbol.,1,270
 symbols,de,page_title,BEDEUTUNG DER SYMBOLE,1,10
-symbols,de,header_symbol,Symbol,1,20
-symbols,de,header_meaning,Bedeutung,1,30
-symbols,de,signal_label.warning,WARNUNG,1,40
-symbols,de,signal_label.caution,VORSICHT,1,50
-symbols,de,signal_label.note,HINWEIS,1,60
-symbols,de,signal_label.tips,TIPP,1,70
 symbols,es,page_title,SIGNIFICADO DE LOS SÍMBOLOS,1,10
-symbols,es,header_symbol,Símbolo,1,20
-symbols,es,header_meaning,Significado,1,30
-symbols,es,signal_label.warning,ADVERTENCIA,1,40
-symbols,es,signal_label.caution,PRECAUCIÓN,1,50
-symbols,es,signal_label.note,NOTA,1,60
-symbols,es,signal_label.tips,CONSEJOS,1,70
 symbols,fr,page_title,SIGNIFICATION DES SYMBOLES,1,10
-symbols,fr,header_symbol,Symbole,1,20
-symbols,fr,header_meaning,Signification,1,30
-symbols,fr,signal_label.warning,AVERTISSEMENT,1,40
-symbols,fr,signal_label.caution,ATTENTION,1,50
-symbols,fr,signal_label.note,REMARQUE,1,60
-symbols,fr,signal_label.tips,CONSEILS,1,70
 symbols,it,page_title,SIGNIFICATO DEI SIMBOLI,1,10
-symbols,it,header_symbol,Simbolo,1,20
-symbols,it,header_meaning,Significato,1,30
-symbols,it,signal_label.warning,AVVERTENZA,1,40
-symbols,it,signal_label.caution,ATTENZIONE,1,50
-symbols,it,signal_label.note,NOTA,1,60
-symbols,it,signal_label.tips,SUGGERIMENTO,1,70
 symbols,uk,page_title,ЗНАЧЕННЯ СИМВОЛІВ,1,10
-symbols,uk,header_symbol,Символ,1,20
-symbols,uk,header_meaning,Значення,1,30
-symbols,uk,signal_label.warning,ПОПЕРЕДЖЕННЯ,1,40
-symbols,uk,signal_label.caution,УВАГА,1,50
-symbols,uk,signal_label.note,ПРИМІТКА,1,60
-symbols,uk,signal_label.tips,ПОРАДА,1,70
 troubleshooting,,title,TROUBLESHOOTING,1,10
 troubleshooting,,intro,"If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, please contact Jackery Customer Support.",1,20
 troubleshooting,,code_header,Error Code,1,30
