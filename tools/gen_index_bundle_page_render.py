@@ -180,6 +180,7 @@ def materialize_planned_page(
             region=region,
             lang=planned.lang,
             rendered_source_path=generated_source_path,
+            page_copy_csv=spec_master_csv.parent / "page_copy.csv",
         )
         source_path = generated_render.template_path
         rst_text = generated_render.text

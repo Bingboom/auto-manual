@@ -1,9 +1,4 @@
 No.,Model,Region,Is_latest,Version,error_code,corrective_measures_en,corrective_measures_fr,corrective_measures_es,corrective_measures_pt-BR,corrective_measures_br,corrective_measures_de,corrective_measures_it,corrective_measures_ukr,corrective_measures_jp,corrective_measures_zh,render_preview_en
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
 1,ALL,CN,TRUE,V1.0,F0,,,,,,,,,,重启产品。,
 2,ALL,CN,TRUE,V1.0,F1,,,,,,,,,,重启产品。,
 3,ALL,CN,TRUE,V1.0,F2,,,,,,,,,,重启产品。,

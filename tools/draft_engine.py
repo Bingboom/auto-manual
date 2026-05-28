@@ -14,6 +14,7 @@ from tools.utils.spec_master import (
     resolve_template_substitutions_from_rows,
 )
 from tools.content_assembly import render_content_assembly_page
+from tools.page_copy import require_page_copy
 from tools.product_overview_renderer import render_product_overview_page
 from tools.word_bundle_common import apply_rst_substitutions, resolve_config_path
 
@@ -35,6 +36,9 @@ class DraftFieldBinding:
     value_role: str | None = None
     variant_key: str | None = None
     default: str | None = None
+    page_copy_page_id: str | None = None
+    page_copy_lang: str | None = None
+    page_copy_key: str | None = None
 
 
 @dataclass(frozen=True)
@@ -162,6 +166,20 @@ def _normalize_field_binding(raw: object, *, placeholder: str) -> DraftFieldBind
     variant_key = str(variant_key_raw).strip().lower() if variant_key_raw is not None and str(variant_key_raw).strip() else None
     default_raw = raw.get("default")
     default = str(default_raw) if default_raw is not None else None
+    page_copy_page_id_raw = raw.get("page_copy_page_id")
+    page_copy_page_id = (
+        str(page_copy_page_id_raw).strip()
+        if page_copy_page_id_raw is not None and str(page_copy_page_id_raw).strip()
+        else None
+    )
+    page_copy_lang_raw = raw.get("page_copy_lang")
+    page_copy_lang = (
+        str(page_copy_lang_raw).strip()
+        if page_copy_lang_raw is not None and str(page_copy_lang_raw).strip()
+        else None
+    )
+    page_copy_key_raw = raw.get("page_copy_key")
+    page_copy_key = str(page_copy_key_raw).strip() if page_copy_key_raw is not None else None
 
     return DraftFieldBinding(
         row_key=row_key,
@@ -172,6 +190,9 @@ def _normalize_field_binding(raw: object, *, placeholder: str) -> DraftFieldBind
         value_role=value_role,
         variant_key=variant_key,
         default=default,
+        page_copy_page_id=page_copy_page_id,
+        page_copy_lang=page_copy_lang,
+        page_copy_key=page_copy_key,
     )
 
 
@@ -403,6 +424,7 @@ def resolve_recipe_substitutions(
     model: str | None,
     region: str | None,
     lang: str,
+    page_copy_csv: str | Path | None = None,
 ) -> dict[str, str]:
     substitutions = resolve_template_substitutions_from_rows(
         spec_rows,
@@ -427,6 +449,15 @@ def resolve_recipe_substitutions(
         if match is not None:
             substitutions[placeholder] = match.value
             continue
+        if binding.page_copy_key is not None:
+            copy = require_page_copy(
+                binding.page_copy_page_id or recipe.page_id,
+                binding.page_copy_lang or lang,
+                [binding.page_copy_key],
+                csv_path=str(page_copy_csv) if page_copy_csv is not None else None,
+            )
+            substitutions[placeholder] = copy[binding.page_copy_key]
+            continue
         if binding.default is not None:
             substitutions[placeholder] = binding.default
     return _with_derived_bindings(substitutions)
@@ -440,6 +471,7 @@ def missing_required_row_keys(
     region: str | None,
     lang: str,
     include_field_map: bool = True,
+    page_copy_csv: str | Path | None = None,
 ) -> list[str]:
     missing: list[str] = []
     for row_key in recipe.required_row_keys:
@@ -457,6 +489,14 @@ def missing_required_row_keys(
         return missing
     for placeholder, binding in recipe.field_map.items():
         if binding.default is not None:
+            continue
+        if binding.page_copy_key is not None:
+            require_page_copy(
+                binding.page_copy_page_id or recipe.page_id,
+                binding.page_copy_lang or lang,
+                [binding.page_copy_key],
+                csv_path=str(page_copy_csv) if page_copy_csv is not None else None,
+            )
             continue
         match = resolve_spec_value_from_rows(
             spec_rows,
@@ -544,6 +584,7 @@ def render_generated_page(
     region: str | None,
     lang: str,
     rendered_source_path: Path | None = None,
+    page_copy_csv: str | Path | None = None,
 ) -> GeneratedPageRender:
     recipe = load_draft_recipe(recipe_path)
     spec_rows = read_spec_master_rows(spec_master_csv)
@@ -555,6 +596,7 @@ def render_generated_page(
             model=model,
             region=region,
             lang=lang,
+            page_copy_csv=page_copy_csv,
         ),
     }
 
@@ -564,6 +606,7 @@ def render_generated_page(
         model=model,
         region=region,
         lang=lang,
+        page_copy_csv=page_copy_csv,
     )
     if missing_row_keys:
         raise RuntimeError(

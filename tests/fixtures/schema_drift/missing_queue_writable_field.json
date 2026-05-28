@@ -5,6 +5,9 @@
       "spec_footnotes",
       "spec_notes",
       "spec_titles",
+      "page_copy",
+      "symbols_page_copy",
+      "signal_words",
       "symbols_blocks",
       "troubleshooting"
     ],
@@ -14,6 +17,9 @@
       {"logical_name": "spec_footnotes", "file_name": "Spec_Footnotes.csv"},
       {"logical_name": "spec_notes", "file_name": "Spec_Notes.csv"},
       {"logical_name": "spec_titles", "file_name": "spec_titles.csv"},
+      {"logical_name": "page_copy", "file_name": "page_copy.csv"},
+      {"logical_name": "symbols_page_copy", "file_name": "symbols_page_copy.csv"},
+      {"logical_name": "signal_words", "file_name": "signal_words.csv"},
       {"logical_name": "symbols_blocks", "file_name": "symbols_blocks.csv"},
       {"logical_name": "troubleshooting", "file_name": "troubleshooting_blocks.csv"}
     ],
@@ -103,6 +109,35 @@
       "title_de",
       "title_it",
       "title_uk"
+    ],
+    "page_copy": [
+      "page_id",
+      "lang",
+      "copy_key",
+      "text",
+      "enabled",
+      "order"
+    ],
+    "symbols_page_copy": [
+      "copy_key",
+      "en",
+      "fr",
+      "es",
+      "de",
+      "it",
+      "uk"
+    ],
+    "signal_words": [
+      "copy_key",
+      "en",
+      "fr",
+      "es",
+      "pt-BR",
+      "ja",
+      "zh",
+      "de",
+      "it",
+      "uk"
     ],
     "symbols_blocks": [
       "page_id",

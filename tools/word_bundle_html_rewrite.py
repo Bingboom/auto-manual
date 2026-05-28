@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
@@ -8,70 +8,23 @@ import re
 from xml.etree import ElementTree as ET
 
 
-_ALERT_LABELS = {
-    "WARNING",
-    "CAUTION",
-    "DANGER",
-    "NOTE",
-    "TIP",
-    "TIPS",
-    "AVERTISSEMENT",
-    "ATTENTION",
-    "REMARQUE",
-    "CONSEIL",
-    "CONSEILS",
-    "ADVERTENCIA",
-    "PELIGRO",
-    "PRECAUCIÓN",
-    "PRECAUCION",
-    "NOTA",
-    "CONSEJO",
-    "CONSEJOS",
-    "WARNUNG",
-    "VORSICHT",
-    "HINWEIS",
-    "TIPP",
-    "AVVERTENZA",
-    "ATTENZIONE",
-    "SUGGERIMENTO",
-    "ПОПЕРЕДЖЕННЯ",
-    "УВАГА",
-    "ПРИМІТКА",
-    "ПОРАДИ",
-    "警告",
-    "注意",
-    "ご注意",
-    "提示",
-    "说明",
-    "備考",
-    "備註",
-    "备注",
-}
-_WARNING_BOX_LABEL_TEXTS = {
-    *_ALERT_LABELS,
-}
-_SIGNAL_WORD_BANNERS = {
-    "WARNING": "templates/word_template/common_assets/symbols/warning_bar.png",
-    "CAUTION": "templates/word_template/common_assets/symbols/caution_bar.png",
-    "NOTE": "templates/word_template/common_assets/symbols/note_bar.png",
-    "TIP": "templates/word_template/common_assets/symbols/tip_bar.png",
-}
-_SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
-    (
-        "Do not charge the battery in extremely hot or cold environments",
-        (
-            "Charging temperature:",
-            "Discharging temperature:",
-        ),
-    ),
-    (
-        "To ensure proper air circulation",
-        (
-            "Charging in damp or poorly ventilated spaces",
-            "Water can cause short circuits",
-        ),
-    ),
+from tools.page_copy import load_all_copy_values
+from tools.symbols_page_copy import load_symbols_page_copy_map
+
+
+_ALERT_LABELS = frozenset(
+    row["text"].strip().upper()
+    for row in load_all_copy_values()
+    if (row.get("page_id") or "").strip() == "alert_labels" and (row.get("text") or "").strip()
 )
+_WARNING_BOX_LABEL_TEXTS = _ALERT_LABELS
+_SIGNAL_WORD_BANNERS = {
+    "signal_label.warning": "templates/word_template/common_assets/symbols/warning_bar.png",
+    "signal_label.caution": "templates/word_template/common_assets/symbols/caution_bar.png",
+    "signal_label.note": "templates/word_template/common_assets/symbols/note_bar.png",
+    "signal_label.tips": "templates/word_template/common_assets/symbols/tip_bar.png",
+}
+
 _HTML_VOID_TAG_RE = re.compile(
     r"<(?P<tag>area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)(?P<attrs>(?:\s[^<>]*?)?)>",
     re.IGNORECASE,
@@ -96,6 +49,16 @@ def _normalize_inline_text(text: str) -> str:
 
 def _normalize_alert_label_text(text: str) -> str:
     return _normalize_inline_text(text).rstrip(":：").upper()
+
+
+def _signal_word_banner_sources() -> dict[str, str]:
+    copy = load_symbols_page_copy_map("")
+    sources: dict[str, str] = {}
+    for copy_key, image_path in _SIGNAL_WORD_BANNERS.items():
+        label = _normalize_alert_label_text(copy.get(copy_key, ""))
+        if label:
+            sources[label] = image_path
+    return sources
 
 
 def _has_non_label_punctuation_text(text: str) -> bool:
@@ -224,10 +187,7 @@ def _rewrite_safety_two_col_layout(element: ET.Element) -> ET.Element:
 
 
 def _match_safety_sublist_rule(text: str) -> tuple[str, ...] | None:
-    normalized = _normalize_inline_text(text)
-    for parent_prefix, child_prefixes in _SAFETY_SUBLIST_RULES:
-        if normalized.startswith(parent_prefix):
-            return child_prefixes
+    del text
     return None
 
 
@@ -344,14 +304,14 @@ def _rewrite_signal_word_banner_table(element: ET.Element) -> ET.Element:
             continue
         first_cell = cells[0]
         label = _normalize_inline_text("".join(first_cell.itertext())).upper()
-        banner_src = _SIGNAL_WORD_BANNERS.get(label)
+        banner_src = _signal_word_banner_sources().get(label)
         if not banner_src:
             continue
 
         image = ET.Element(
             "img",
             {
-                "alt": f"{label} banner placeholder.",
+                "alt": label,
                 "src": banner_src,
                 "style": "width: 140px;",
             },

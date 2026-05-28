@@ -5,9 +5,9 @@ build:
   languages: [en]
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/reference_en.docx
-  word_title: "|PRODUCT_NAME| User Manual"
-  rst_substitutions:
-    MANUAL_LANGUAGE_SCOPE: English / French / Spanish
+  word_title_copy_key: word_title
+  rst_substitution_copy_keys:
+    MANUAL_LANGUAGE_SCOPE: manual_language_scope_us
 
 paths:
   page_manifest: docs/manifests/manual_us-single-en.yaml

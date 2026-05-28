@@ -10,10 +10,10 @@ build:
   languages: [es]
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: "|PRODUCT_NAME| Manual de usuario"
-  rst_substitutions:
-    WARRANTY_EMAIL: hello.eu@jackery.com
-    LEGAL_COMPANY_NAME: Jackery
+  word_title_copy_key: word_title
+  rst_substitution_copy_keys:
+    WARRANTY_EMAIL: warranty_email_eu
+    LEGAL_COMPANY_NAME: legal_company_name_eu
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-es.yaml
@@ -43,6 +43,15 @@ sync:
       spec_titles:
         table_id_env: FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
         view_id_env: FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
+      page_copy:
+        table_id: tbly6InLMOeTgloV
+        view_id: vewMA88Pbw
+      symbols_page_copy:
+        table_id: tbl9bxNptt0YLO0q
+        view_id: vewtSjIvzO
+      signal_words:
+        table_id: tblu7o0TtPT5ytXm
+        view_id: vewCuDSpUW
       symbols_blocks:
         table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
         view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID

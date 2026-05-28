@@ -19,6 +19,9 @@ def _complete_manifest() -> dict[str, object]:
         "spec_footnotes",
         "spec_notes",
         "spec_titles",
+        "page_copy",
+        "symbols_page_copy",
+        "signal_words",
         "symbols_blocks",
         "troubleshooting",
     ]
@@ -33,6 +36,9 @@ def _complete_manifest() -> dict[str, object]:
                 ("spec_footnotes", "Spec_Footnotes.csv"),
                 ("spec_notes", "Spec_Notes.csv"),
                 ("spec_titles", "spec_titles.csv"),
+                ("page_copy", "page_copy.csv"),
+                ("symbols_page_copy", "symbols_page_copy.csv"),
+                ("signal_words", "signal_words.csv"),
                 ("symbols_blocks", "symbols_blocks.csv"),
                 ("troubleshooting", "troubleshooting_blocks.csv"),
             )
@@ -64,6 +70,8 @@ class TestDataSnapshotPaths(unittest.TestCase):
             self.assertEqual(root / "data" / "phase2" / "Spec_Master.csv", paths.spec_master_csv)
             self.assertEqual(root / "data" / "phase2" / "Spec_Footnotes.csv", paths.spec_footnotes_csv)
             self.assertEqual(root / "data" / "phase2" / "row_key_mapping.csv", paths.row_key_mapping_csv)
+            self.assertEqual(root / "data" / "phase2" / "symbols_page_copy.csv", paths.symbols_page_copy_csv)
+            self.assertEqual(root / "data" / "phase2" / "signal_words.csv", paths.signal_words_csv)
             self.assertEqual(root / "data" / "phase2", paths.page_blocks_dir)
             self.assertEqual(root / "data" / "phase2" / "page_registry.csv", paths.page_registry_csv)
 
@@ -97,6 +105,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "Spec_Footnotes.csv",
                 "Spec_Notes.csv",
                 "spec_titles.csv",
+                "page_copy.csv",
+                "symbols_page_copy.csv",
+                "signal_words.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
                 "troubleshooting_blocks.csv",
@@ -162,6 +173,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "Spec_Footnotes.csv",
                 "Spec_Notes.csv",
                 "spec_titles.csv",
+                "page_copy.csv",
+                "symbols_page_copy.csv",
+                "signal_words.csv",
                 "row_key_mapping.csv",
                 "symbols_blocks.csv",
                 "troubleshooting_blocks.csv",
@@ -173,6 +187,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "spec_footnotes",
                 "spec_notes",
                 "spec_titles",
+                "page_copy",
+                "symbols_page_copy",
+                "signal_words",
                 "symbols_blocks",
                 "troubleshooting",
             ]

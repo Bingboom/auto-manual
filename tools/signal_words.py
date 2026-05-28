@@ -3,77 +3,53 @@
 
 from __future__ import annotations
 
-_SIGNAL_WORDS: dict[str, dict[str, str]] = {
-    "en": {
-        "safety_warning": "WARNING",
-        "symbols_notice": "DANGER",
-        "warning": "WARNING",
-        "danger": "DANGER",
-        "caution": "CAUTION",
-        "note": "NOTE",
-        "tips": "TIP",
-    },
-    "de": {
-        "safety_warning": "WARNUNG",
-        "symbols_notice": "WARNUNG",
-        "warning": "WARNUNG",
-        "danger": "GEFAHR",
-        "caution": "VORSICHT",
-        "note": "HINWEIS",
-        "tips": "TIPP",
-    },
-    "fr": {
-        "safety_warning": "AVERTISSEMENT",
-        "symbols_notice": "AVERTISSEMENT",
-        "warning": "AVERTISSEMENT",
-        "danger": "ATTENTION",
-        "caution": "ATTENTION",
-        "note": "REMARQUE",
-        "tips": "CONSEILS",
-    },
-    "es": {
-        "safety_warning": "ADVERTENCIA",
-        "symbols_notice": "ADVERTENCIA",
-        "warning": "ADVERTENCIA",
-        "danger": "PELIGRO",
-        "caution": "PRECAUCIÓN",
-        "note": "NOTA",
-        "tips": "CONSEJOS",
-    },
-    "it": {
-        "safety_warning": "AVVERTENZA",
-        "symbols_notice": "AVVERTENZA",
-        "warning": "AVVERTENZA",
-        "danger": "PERICOLO",
-        "caution": "ATTENZIONE",
-        "note": "NOTA",
-        "tips": "SUGGERIMENTO",
-    },
-    "uk": {
-        "safety_warning": "ПОПЕРЕДЖЕННЯ",
-        "symbols_notice": "ПОПЕРЕДЖЕННЯ",
-        "warning": "ПОПЕРЕДЖЕННЯ",
-        "danger": "НЕБЕЗПЕКА",
-        "caution": "УВАГА",
-        "note": "ПРИМІТКА",
-        "tips": "ПОРАДА",
-    },
-}
+from typing import Iterable
+
+from tools.script_bootstrap import bootstrap_repo_root
+from tools.wide_copy import load_wide_copy_map, require_wide_copy, resolve_wide_copy_csv_path
 
 
-def _resolve_lang(lang: str | None) -> str:
-    normalized = (lang or "").strip().lower()
-    if normalized in _SIGNAL_WORDS:
-        return normalized
-    return "en"
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+DEFAULT_SIGNAL_WORDS_CSV = ROOT / "data" / "phase2" / "signal_words.csv"
+SIGNAL_WORDS_FIELDNAMES = ("copy_key", "en", "fr", "es", "pt-BR", "ja", "zh", "de", "it", "uk")
 
 
-def get_signal_word(lang: str | None, key: str) -> str:
-    resolved_lang = _resolve_lang(lang)
-    labels = _SIGNAL_WORDS[resolved_lang]
-    if key not in labels:
-        raise ValueError(f"unsupported signal word key: {key}")
-    return labels[key]
+def load_signal_words_map(
+    lang: str | None,
+    *,
+    csv_path: str | None = None,
+) -> dict[str, str]:
+    path = resolve_wide_copy_csv_path(ROOT, DEFAULT_SIGNAL_WORDS_CSV, csv_path)
+    return load_wide_copy_map(
+        lang,
+        csv_path=str(path),
+        table_name="signal_words",
+        fieldnames=SIGNAL_WORDS_FIELDNAMES,
+    )
+
+
+def require_signal_words(
+    lang: str | None,
+    required_keys: Iterable[str],
+    *,
+    csv_path: str | None = None,
+) -> dict[str, str]:
+    path = resolve_wide_copy_csv_path(ROOT, DEFAULT_SIGNAL_WORDS_CSV, csv_path)
+    return require_wide_copy(
+        lang,
+        required_keys,
+        csv_path=str(path),
+        table_name="signal_words",
+        fieldnames=SIGNAL_WORDS_FIELDNAMES,
+    )
+
+
+def get_signal_word(lang: str | None, key: str, *, csv_path: str | None = None) -> str:
+    normalized_key = (key or "").strip()
+    if not normalized_key:
+        raise ValueError("unsupported signal word key: ?")
+    copy = require_signal_words(lang or "", [normalized_key], csv_path=csv_path)
+    return copy[normalized_key]
 
 
 def get_safety_warning_label(lang: str | None) -> str:

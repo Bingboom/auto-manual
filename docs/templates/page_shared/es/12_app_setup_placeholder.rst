@@ -12,7 +12,7 @@ Alternativamente, escanee el código QR a continuación para descargar e instala
 
 **2. Añadir un dispositivo**
 
-|ADD_DEVICE_STEP|
+2.1 Haga clic en el botón **+** para añadir el dispositivo.
 
 2.2 Presione una vez el |MAIN_POWER_BUTTON_LABEL| del dispositivo para encenderlo.
 Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red. A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.

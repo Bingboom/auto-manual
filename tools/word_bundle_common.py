@@ -9,6 +9,7 @@ from pathlib import Path
 from tools.config_pages import CsvPage
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.language_aliases import language_key, normalize_language
+from tools.page_copy import require_page_copy
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.csv_pages.builder import BuildPaths, BuildSelector, CsvPageBuilder
 from tools.csv_pages.renderers import apply_vars
@@ -89,7 +90,27 @@ def load_rst_substitutions(conf_base_path: Path) -> dict[str, str]:
     return substitutions
 
 
-def load_config_rst_substitutions(cfg: dict) -> dict[str, str]:
+def _normalize_page_copy_binding(raw: object, *, field_name: str) -> tuple[str, str]:
+    if isinstance(raw, str):
+        copy_key = raw.strip()
+        if not copy_key:
+            raise RuntimeError(f"{field_name} must be a non-empty string")
+        return "manual_meta", copy_key
+    if not isinstance(raw, dict):
+        raise RuntimeError(f"{field_name} must be a string or mapping")
+    page_id = str(raw.get("page_id", "manual_meta")).strip()
+    copy_key = str(raw.get("copy_key", "")).strip()
+    if not page_id or not copy_key:
+        raise RuntimeError(f"{field_name} must include page_id and copy_key")
+    return page_id, copy_key
+
+
+def load_config_rst_substitutions(
+    cfg: dict,
+    *,
+    lang: str | None = None,
+    page_copy_csv: str | Path | None = None,
+) -> dict[str, str]:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     raw = build_cfg.get("rst_substitutions", cfg.get("rst_substitutions", {}))
@@ -104,6 +125,33 @@ def load_config_rst_substitutions(cfg: dict) -> dict[str, str]:
         if not key:
             raise RuntimeError("build.rst_substitutions contains an empty key")
         substitutions[key] = str(value_raw).strip()
+
+    copy_keys_raw = build_cfg.get("rst_substitution_copy_keys", cfg.get("rst_substitution_copy_keys", {}))
+    if copy_keys_raw is None:
+        return substitutions
+    if not isinstance(copy_keys_raw, dict):
+        raise RuntimeError("build.rst_substitution_copy_keys must be a mapping")
+    if copy_keys_raw and not (lang or "").strip():
+        raise RuntimeError("build.rst_substitution_copy_keys requires a build language")
+    grouped: dict[str, dict[str, str]] = {}
+    for key_raw, binding_raw in copy_keys_raw.items():
+        key = str(key_raw).strip().strip("|")
+        if not key:
+            raise RuntimeError("build.rst_substitution_copy_keys contains an empty key")
+        page_id, copy_key = _normalize_page_copy_binding(
+            binding_raw,
+            field_name=f"build.rst_substitution_copy_keys.{key}",
+        )
+        grouped.setdefault(page_id, {})[key] = copy_key
+    for page_id, bindings in grouped.items():
+        copy = require_page_copy(
+            page_id,
+            str(lang),
+            bindings.values(),
+            csv_path=str(page_copy_csv) if page_copy_csv is not None else None,
+        )
+        for key, copy_key in bindings.items():
+            substitutions[key] = copy[copy_key]
     return substitutions
 
 
@@ -150,7 +198,26 @@ def derive_word_title(
     reference_doc: Path | None,
     substitutions: dict[str, str],
     vars_map: dict[str, str],
+    *,
+    lang: str | None = None,
+    page_copy_csv: str | Path | None = None,
 ) -> str:
+    copy_key_raw = build_cfg.get("word_title_copy_key")
+    if copy_key_raw is not None:
+        page_id, copy_key = _normalize_page_copy_binding(
+            copy_key_raw,
+            field_name="build.word_title_copy_key",
+        )
+        if not (lang or "").strip():
+            raise RuntimeError("build.word_title_copy_key requires a build language")
+        copy = require_page_copy(
+            page_id,
+            str(lang),
+            [copy_key],
+            csv_path=str(page_copy_csv) if page_copy_csv is not None else None,
+        )
+        return apply_rst_substitutions(copy[copy_key], substitutions, vars_map).replace("\xa0", " ")
+
     configured = (build_cfg.get("word_title") or "").strip()
     if configured:
         return apply_rst_substitutions(configured, substitutions, vars_map).replace("\xa0", " ")
@@ -191,6 +258,8 @@ def load_word_context(
         spec_footnotes_csv=snapshot_paths.spec_footnotes_csv,
         spec_notes_csv=snapshot_paths.spec_notes_csv,
         spec_titles_csv=snapshot_paths.spec_titles_csv,
+        page_copy_csv=snapshot_paths.page_copy_csv,
+        symbols_page_copy_csv=snapshot_paths.symbols_page_copy_csv,
     )
     return CsvPageBuilder(build_paths)
 

@@ -33,6 +33,8 @@ For current human workflows, read:
 - Target review changes after review starts: [`docs/_review/`](/Users/pika/Documents/GitHub/auto-manual/docs/_review)
 - Generated output only: [`docs/_build/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
 - Do not hand-edit [`docs/index.rst`](/Users/pika/Documents/GitHub/auto-manual/docs/index.rst) unless the task is about index generation.
+- Content-source boundary: manual body text, titles, table headers, prompts, image alt text, default placeholder copy, and output titles must come only from RST templates/review RST or from phase2/Feishu Base sources.
+- Python and YAML config may keep field names, enum values, paths, rendering logic, error messages, and CLI help; do not maintain visible manual copy there.
 
 ## 3. Workflow Rules
 
@@ -45,6 +47,7 @@ For current human workflows, read:
 ## 4. Validation
 
 - Logic changes: `python3 -m unittest`
+- Content-source boundary changes: `python3 tools/check_maintainability_guardrails.py`
 - Build or quality-gate changes: `python3 build.py check --config config.us.yaml --model JE-1000F --region US`
 - JP review or publish changes: `python3 build.py publish --config config.ja.yaml --model JE-1000F --region JP`
 - Diff-report changes: `python3 build.py diff-report --config config.us.yaml --model JE-1000F --region US`

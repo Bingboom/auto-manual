@@ -240,6 +240,66 @@ class TestDraftEngine(unittest.TestCase):
 
             self.assertIn("Main Power Button", result.text)
 
+    def test_render_generated_page_should_resolve_field_map_page_copy_key(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            (docs_dir / "templates" / "recipes").mkdir(parents=True)
+            (docs_dir / "templates" / "snippets").mkdir(parents=True)
+            (docs_dir / "templates" / "page_shared" / "en").mkdir(parents=True)
+
+            recipe_path = docs_dir / "templates" / "recipes" / "copy_demo.yaml"
+            recipe_path.write_text(
+                "\n".join(
+                    [
+                        "page_id: copy_demo",
+                        "template: templates/page_shared/en/copy_demo.rst",
+                        "field_map:",
+                        "  INTRO_COPY:",
+                        "    row_key: intro_copy",
+                        "    page_copy_page_id: copy_demo",
+                        "    page_copy_lang: en",
+                        "    page_copy_key: intro",
+                        "required_row_keys: []",
+                        "snippet_slots: {}",
+                        "contracts: []",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            template_path = docs_dir / "templates" / "page_shared" / "en" / "copy_demo.rst"
+            template_path.write_text("COPY DEMO\n=========\n\n|INTRO_COPY|\n", encoding="utf-8")
+            registry_path = docs_dir / "templates" / "snippets" / "registry.yaml"
+            registry_path.write_text("snippets: []\n", encoding="utf-8")
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_source\n",
+                encoding="utf-8",
+            )
+            page_copy = root / "page_copy.csv"
+            page_copy.write_text(
+                "page_id,lang,copy_key,text,enabled,order\n"
+                "copy_demo,en,intro,Intro from copy.,TRUE,1\n",
+                encoding="utf-8",
+            )
+
+            result = render_generated_page(
+                docs_dir=docs_dir,
+                recipe_path=recipe_path,
+                template_path=template_path,
+                spec_master_csv=spec_master_csv,
+                registry_path=registry_path,
+                vars_map={},
+                base_substitutions={},
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                page_copy_csv=page_copy,
+            )
+
+            self.assertIn("Intro from copy.", result.text)
+
     def test_render_generated_page_should_promote_configured_numbered_steps_to_headings(self) -> None:
         text = self._render_numbered_heading_fixture(
             recipe_extra_lines=[

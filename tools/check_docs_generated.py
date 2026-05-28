@@ -11,6 +11,7 @@ SNIPPET_SLOT_RE = re.compile(r"\{\{snippet:([a-zA-Z0-9_.-]+)\}\}")
 @dataclass(frozen=True)
 class GeneratedPageRuntime:
     spec_rows: list[dict[str, str]]
+    page_copy_csv: Path
     registry_path: Path
     registry_entries: list[Any]
     registry_error: RuntimeError | None
@@ -93,6 +94,7 @@ def _load_generated_runtime(
     contracts = load_page_contracts(resolve_contracts_dir(docs_dir=docs_dir))
     return GeneratedPageRuntime(
         spec_rows=spec_rows,
+        page_copy_csv=spec_master_csv.parent / "page_copy.csv",
         registry_path=registry_path,
         registry_entries=registry_entries,
         registry_error=registry_error,
@@ -239,6 +241,7 @@ def _field_map_missing_row_issues(
         )
         is None
         and binding.default is None
+        and getattr(binding, "page_copy_key", None) is None
     ]
     if not field_binding_misses:
         return []
@@ -466,6 +469,7 @@ def _snippet_issues(
         model=target.model,
         region=target.region,
         lang=lang,
+        page_copy_csv=runtime.page_copy_csv,
     )
     available_placeholders = {**runtime.base_substitutions, **substitutions}
     if runtime.registry_error is not None:

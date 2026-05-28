@@ -62,17 +62,18 @@ def resolve_rst_substitutions_for_build(
     resolve_spec_master_csv_path: Callable[..., Path],
     resolve_template_substitutions_from_spec_master: Callable[..., dict[str, str]],
 ) -> dict[str, str]:
-    base_substitutions = {
-        **load_rst_substitutions(docs_dir / "conf_base.py"),
-        **load_config_rst_substitutions(cfg),
-    }
-    if not (model or "").strip():
-        return base_substitutions
     spec_master_csv = resolve_spec_master_csv_path(
         cfg,
         data_root=data_root,
         repo_root=repo_root,
     )
+    page_copy_csv = spec_master_csv.parent / "page_copy.csv"
+    base_substitutions = {
+        **load_rst_substitutions(docs_dir / "conf_base.py"),
+        **load_config_rst_substitutions(cfg, lang=lang, page_copy_csv=page_copy_csv),
+    }
+    if not (model or "").strip():
+        return base_substitutions
     return {
         **base_substitutions,
         **resolve_template_substitutions_from_spec_master(

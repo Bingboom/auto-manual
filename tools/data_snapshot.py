@@ -23,12 +23,18 @@ ROW_KEY_MAPPING_FILE = "row_key_mapping.csv"
 PAGE_REGISTRY_FILE = "page_registry.csv"
 SYMBOLS_BLOCKS_FILE = "symbols_blocks.csv"
 TROUBLESHOOTING_BLOCKS_FILE = "troubleshooting_blocks.csv"
+PAGE_COPY_FILE = "page_copy.csv"
+SYMBOLS_PAGE_COPY_FILE = "symbols_page_copy.csv"
+SIGNAL_WORDS_FILE = "signal_words.csv"
 
 PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "spec_master": SPEC_MASTER_FILE,
     "spec_footnotes": SPEC_FOOTNOTES_FILE,
     "spec_notes": SPEC_NOTES_FILE,
     "spec_titles": SPEC_TITLES_FILE,
+    "page_copy": PAGE_COPY_FILE,
+    "symbols_page_copy": SYMBOLS_PAGE_COPY_FILE,
+    "signal_words": SIGNAL_WORDS_FILE,
     "symbols_blocks": SYMBOLS_BLOCKS_FILE,
     "troubleshooting": TROUBLESHOOTING_BLOCKS_FILE,
 }
@@ -46,6 +52,9 @@ class DataSnapshotPaths:
     spec_footnotes_csv: Path
     spec_notes_csv: Path
     spec_titles_csv: Path
+    page_copy_csv: Path
+    symbols_page_copy_csv: Path
+    signal_words_csv: Path
     row_key_mapping_csv: Path
 
 
@@ -539,6 +548,33 @@ def resolve_data_snapshot_paths(
             data_root=data_root,
             config_key="spec_titles_csv",
             default_file_name=SPEC_TITLES_FILE,
+            model=model,
+            region=region,
+        ),
+        page_copy_csv=_resolve_structured_file_path(
+            cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            config_key="page_copy_csv",
+            default_file_name=PAGE_COPY_FILE,
+            model=model,
+            region=region,
+        ),
+        symbols_page_copy_csv=_resolve_structured_file_path(
+            cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            config_key="symbols_page_copy_csv",
+            default_file_name=SYMBOLS_PAGE_COPY_FILE,
+            model=model,
+            region=region,
+        ),
+        signal_words_csv=_resolve_structured_file_path(
+            cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            config_key="signal_words_csv",
+            default_file_name=SIGNAL_WORDS_FILE,
             model=model,
             region=region,
         ),
