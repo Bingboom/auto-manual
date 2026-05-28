@@ -101,10 +101,10 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
     seen_rows: dict[tuple[tuple[str, str], ...], int] = {}
     for idx, row in enumerate(rows):
         line_number = _row_line_num(row, idx)
-        region = _pick_row_region(row) or None
-        section = _pick_section(row) or None
-        row_key = _pick_row_key(row) or None
-        model = _pick_row_model(row) or None
+        region_opt: str | None = _pick_row_region(row) or None
+        section_opt: str | None = _pick_section(row) or None
+        row_key_opt: str | None = _pick_row_key(row) or None
+        model_opt: str | None = _pick_row_model(row) or None
 
         source_label = _pick_row_label_source(row)
         if (
@@ -117,14 +117,14 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
                     code="ROW_LABEL_SOURCE_CONTAINS_EAST_ASIAN_TEXT",
                     message=(
                         "`Row_label_source` contains East Asian text for row "
-                        f"(region `{(region or '').strip().upper()}`) whose declared source language is "
+                        f"(region `{(region_opt or '').strip().upper()}`) whose declared source language is "
                         f"`{source_language_for_row(row) or 'unknown'}`: {source_label}"
                     ),
                     line=line_number,
-                    model=model,
-                    region=region,
-                    section=section,
-                    row_key=row_key,
+                    model=model_opt,
+                    region=region_opt,
+                    section=section_opt,
+                    row_key=row_key_opt,
                 )
             )
 
@@ -138,24 +138,24 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
                         f"`placement.variant.role`: {raw_slot_key}"
                     ),
                     line=line_number,
-                    model=model,
-                    region=region,
-                    section=section,
-                    row_key=row_key,
+                    model=model_opt,
+                    region=region_opt,
+                    section=section_opt,
+                    row_key=row_key_opt,
                 )
             )
 
         source_value = _pick_source_value(row, "Value")
-        if _is_template_row(row_key, section, row) and "?" in source_value:
+        if _is_template_row(row_key_opt or "", section_opt or "", row) and "?" in source_value:
             issues.append(
                 SpecMasterAuditIssue(
                     code="SUSPECT_TEMPLATE_VALUE",
                     message=f"Template value contains literal `?`: {source_value}",
                     line=line_number,
-                    model=model,
-                    region=region,
-                    section=section,
-                    row_key=row_key,
+                    model=model_opt,
+                    region=region_opt,
+                    section=section_opt,
+                    row_key=row_key_opt,
                 )
             )
 
@@ -167,10 +167,10 @@ def audit_spec_master_rows(rows: list[dict[str, str]]) -> SpecMasterAuditResult:
                     code="EXACT_DUPLICATE_ROW",
                     message=f"Row duplicates line {previous_line}",
                     line=line_number,
-                    model=model,
-                    region=region,
-                    section=section,
-                    row_key=row_key,
+                    model=model_opt,
+                    region=region_opt,
+                    section=section_opt,
+                    row_key=row_key_opt,
                 )
             )
         else:

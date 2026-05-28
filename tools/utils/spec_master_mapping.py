@@ -47,7 +47,7 @@ def build_template_row_key_mapping_rows(
             continue
 
         usage_row = usage[resolve_legacy_page_value_key(raw_row) or row_key]
-        usage_row["count"] = int(usage_row["count"]) + 1
+        usage_row["count"] = cast(int, usage_row["count"]) + 1
 
         model = (_pick_row_model(raw_row) or "").strip()
         if model:
@@ -77,7 +77,7 @@ def build_template_row_key_mapping_rows(
         sections = sorted(cast(set[str], observed["sections"])) if observed else []
         section_orders = sorted(cast(set[str], observed["section_orders"])) if observed else []
         row_labels = sorted(cast(set[str], observed["row_labels"])) if observed else []
-        usage_count = str(int(observed["count"])) if observed else "0"
+        usage_count = str(cast(int, observed["count"])) if observed else "0"
 
         mapping_rows.append(
             {

@@ -53,7 +53,8 @@ Current responsibility:
 - [`../../data/phase2/Spec_Master.csv`](../../data/phase2/Spec_Master.csv)
 - [`../../data/phase2/Spec_Footnotes.csv`](../../data/phase2/Spec_Footnotes.csv)
 - [`../../data/phase2/spec_titles.csv`](../../data/phase2/spec_titles.csv)
-- [`../../data/phase2/content_blocks.csv`](../../data/phase2/content_blocks.csv)
+- [`../../data/phase2/symbols_blocks.csv`](../../data/phase2/symbols_blocks.csv)
+- [`../../data/phase2/troubleshooting_blocks.csv`](../../data/phase2/troubleshooting_blocks.csv)
 - [`../../data/phase2/page_registry.csv`](../../data/phase2/page_registry.csv)
 
 Current responsibility:

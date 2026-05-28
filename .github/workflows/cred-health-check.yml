@@ -1,0 +1,122 @@
+name: Cred Health Check
+
+on:
+  schedule:
+    - cron: "0 7 * * *"  # daily 07:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: cred-health-check
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_IDENTITY: bot
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID }}
+      FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_TITLES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_TITLES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_TITLES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_TITLES_VIEW_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID }}
+      FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
+      FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
+      DINGTALK_CLIENT_ID: ${{ secrets.DINGTALK_CLIENT_ID }}
+      DINGTALK_CLIENT_SECRET: ${{ secrets.DINGTALK_CLIENT_SECRET }}
+      DINGTALK_CORP_ID: ${{ secrets.DINGTALK_CORP_ID }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/feishu-common-setup
+
+      - name: Run cred health-check probes
+        id: probe
+        continue-on-error: true
+        run: python tools/cred_health_check.py --config config.us.yaml --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update tracking issue on failure
+        if: steps.probe.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Cred health check failing';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `Latest failure: ${runUrl}`,
+              '',
+              'See the workflow run\\'s Job Summary for the probe table.',
+              '',
+              'This issue will be closed automatically when the next scheduled or manual run succeeds.',
+            ].join('\n');
+            const search = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'cred-health-check',
+              per_page: 10,
+            });
+            const existing = search.data.find(issue => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Still failing as of ${new Date().toISOString()}. ${runUrl}`,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['cred-health-check'],
+              });
+            }
+
+      - name: Close tracking issue on recovery
+        if: steps.probe.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Cred health check failing';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const search = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'cred-health-check',
+              per_page: 10,
+            });
+            const existing = search.data.find(issue => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Recovered at ${new Date().toISOString()}. ${runUrl}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                state: 'closed',
+              });
+            }
+
+      - name: Fail the job when any probe failed
+        if: steps.probe.outcome == 'failure'
+        run: exit 1

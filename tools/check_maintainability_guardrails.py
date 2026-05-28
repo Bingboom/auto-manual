@@ -7,6 +7,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+# Thresholds are set ~25-100 lines above the current size of files that have
+# either grown past ~700 LOC or caused recent maintenance incidents. They are a
+# regrowth alarm, not a hard architectural limit. When a file legitimately
+# needs to grow past its threshold, raise the threshold in the same PR and
+# explain why in the PR description.
 HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "build.py": 750,
     "tools/build_docs.py": 860,
@@ -14,6 +19,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/validate_spec_master_runtime.py": 880,
     "tools/check_docs_generated.py": 880,
     "tools/word_bundle_docx.py": 740,
+    "tools/word_bundle_docx_styles.py": 1080,
+    "tools/queue_query.py": 1200,
+    "tools/spec_master_rebuild.py": 1150,
     "tools/process_docs/build_review_preview_targets.py": 430,
     "tools/queue_lark_ops.py": 360,
 }

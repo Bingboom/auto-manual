@@ -327,13 +327,6 @@ def _normalize_section_summary(section: str) -> tuple[str, str, str]:
     return suggested_section, category, note
 
 
-def _is_truthy(value: str) -> bool:
-    text = (value or "").strip().lower()
-    if not text:
-        return True
-    return text in {"1", "true", "yes", "y"}
-
-
 def _lang_suffix_candidates(lang: str) -> tuple[str, ...]:
     raw = (lang or "").strip()
     if not raw:
