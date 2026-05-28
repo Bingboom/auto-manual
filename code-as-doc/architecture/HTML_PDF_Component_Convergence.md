@@ -47,7 +47,7 @@ In practical terms:
 
 Current useful reference pages:
 
-- [`../../docs/templates/safety_template.rst`](../../docs/templates/safety_template.rst)
+- [`../../docs/templates/page_us-en/safety_en.rst`](../../docs/templates/page_us-en/safety_en.rst) (representative per-language safety template; siblings live under `docs/templates/page_*/safety_*.rst`)
 - [`../../docs/templates/spec_template.rst`](../../docs/templates/spec_template.rst)
 
 Current PDF component implementations:

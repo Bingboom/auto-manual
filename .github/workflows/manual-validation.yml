@@ -33,6 +33,16 @@ jobs:
       - name: Check maintainability guardrails
         run: python tools/check_maintainability_guardrails.py
 
+  doc-link-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check code-as-doc and user-guide link integrity
+        run: python tools/check_doc_link_integrity.py
+
   openclaw-plugin:
     runs-on: ubuntu-latest
     steps:

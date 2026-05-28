@@ -18,12 +18,12 @@ Do not use this file as the repo task list or optimization backlog.
 
 For repo-level execution planning, use:
 
-- [`optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/optimization_project.md)
+- [`optimization_project.md`](../../optimization_project.md)
 
 For current workflows, use:
 
-- [`code-as-doc/build_doc_guide.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/build_doc_guide.md)
-- [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md)
+- [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md)
+- [`user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
 
 ## 2. Stability Rules
 
@@ -201,9 +201,9 @@ These are the boundaries that should not be casually broken.
 ## 8. Relationship To Other Documents
 
 - This file defines long-term direction and stable architecture boundaries.
-- [`optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/optimization_project.md) tracks repo-level execution and current optimization priorities.
-- [`code-as-doc/build_doc_guide.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/build_doc_guide.md) describes current maintainer behavior.
-- [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md) describes the current user workflow.
+- [`optimization_project.md`](../../optimization_project.md) tracks repo-level execution and current optimization priorities.
+- [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md) describes current maintainer behavior.
+- [`user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md) describes the current user workflow.
 
 ## 9. Next Review Trigger
 
