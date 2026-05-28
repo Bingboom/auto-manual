@@ -251,7 +251,8 @@ Phase2 snapshot rule:
 - for the review-init worker, use an isolated snapshot root such as `.tmp/review-start/phase2`; the worker syncs fresh data there before it seeds `docs/_review`
 - `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`
 - `review` still writes the real repo `docs/_review` tree and does not accept `--staging-root`, so it is intentionally excluded from `local_build.py`
-- [`../data/phase2/page_registry.csv`](../data/phase2/page_registry.csv), page selection/applicability, and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained and are not changed by `--data-root`
+- [`../data/phase2/page_registry.csv`](../data/phase2/page_registry.csv) remains repo-maintained; `sync-data` copies it into isolated `--data-root` snapshots such as `.tmp/review-start/phase2` so runtime builds use the same page registry there
+- page selection/applicability and [`../data/layout_params.csv`](../data/layout_params.csv) remain repo-maintained inputs
 
 Only create a new config when one of these really changes:
 

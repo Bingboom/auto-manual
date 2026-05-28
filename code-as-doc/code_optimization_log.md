@@ -96,7 +96,7 @@ Main outcomes:
 - introduced `build.py diff-report`
 - added file, page, and field level report exports
 - added HTML report pages and report index pages
-- added source tracing back to [`Spec_Master.csv`](../data/phase1/Spec_Master.csv) rows where possible
+- added source tracing back to `Spec_Master.csv` rows where possible; the original phase1 CSV baseline has since been retired
 - added first-baseline detection and `--ignore-initial-adds`
 
 Why it mattered:
@@ -161,7 +161,7 @@ Main outcomes:
 - introduced [`tools/data_snapshot.py`](../tools/data_snapshot.py) to centralize structured-data path resolution
 - added `--data-root` support across build, check, diff-report, and release-manifest entrypoints
 - added [`data/phase2/`](../data/phase2) as the preferred frozen snapshot root while keeping [`data/phase1/`](../data/phase1) as the legacy baseline
-- kept [`data/phase1/page_registry.csv`](../data/phase1/page_registry.csv) and [`data/layout_params.csv`](../data/layout_params.csv) as repo-maintained inputs outside the Feishu sync flow
+- kept page registry metadata and [`data/layout_params.csv`](../data/layout_params.csv) as repo-maintained inputs outside the Feishu sync flow; the active page registry now lives at [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv)
 
 Why it mattered:
 
@@ -565,3 +565,16 @@ Why it mattered:
 
 - new build, review, publish, and queue paths cannot silently fall back to the retired snapshot
 - current docs and tests now speak in phase2 terms, with phase1 limited to historical notes and explicit legacy-redirect coverage
+
+## 34. 2026-05-28: Runtime Page Registry Snapshot Copy and Phase1 CSV Removal
+
+Main outcomes:
+
+- removed the stale tracked `data/phase1/*.csv` copies so structured CSV data has a single active phase2 home
+- made `sync-data` copy [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv) into isolated `--data-root` snapshot roots such as `.tmp/review-start/phase2`
+- recorded `page_registry` as a required derived file in `snapshot_manifest.json` alongside `row_key_mapping`
+
+Why it mattered:
+
+- review-start workers can now build from freshly synced temporary phase2 roots without missing `page_registry.csv`
+- page order and CSV-page enablement remain repo-owned while runtime snapshots stay self-contained

@@ -208,10 +208,10 @@ Observed result for target `config.us.yaml + JE-1000F + US`:
 
 RST comparison summary:
 
-- expected traceability difference: [`bundle_manifest.json`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/bundle_manifest.json) points to `data/phase2/Spec_Master.csv` with the synced snapshot SHA instead of `data/phase1/Spec_Master.csv`
+- expected traceability difference: [`bundle_manifest.json`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/bundle_manifest.json) points to `data/phase2/Spec_Master.csv` with the synced snapshot SHA instead of the retired historical `data/phase1/Spec_Master.csv`
 - one real content delta remains in [`spec_en.rst`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/generated/JE-1000F/spec_en.rst) and [`spec_en.rst`](../../auto-manual-parity/.tmp/parity_real_sync_20260401T110943/phase2_build/rst/page/spec_en.rst)
 - concrete difference: `AC Output in Bypass Mode` with the footnote marker in phase1 became plain `AC Output in Bypass Mode` in phase2
-- initial observed source difference: [`../data/phase1/Spec_Master.csv`](../data/phase1/Spec_Master.csv) keeps `Row_label_footnote_refs=ac_bypass` on the `JE-1000F_US_en + ac_output_bypass` row, while the first synced [`../data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) copy left that field empty
+- initial observed source difference: the retired historical `data/phase1/Spec_Master.csv` kept `Row_label_footnote_refs=ac_bypass` on the `JE-1000F_US_en + ac_output_bypass` row, while the first synced [`../data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) copy left that field empty
 
 Interpretation:
 

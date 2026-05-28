@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 import re
 import sys
@@ -236,6 +238,11 @@ def _normalize_spec_master_footnote_refs(
                 str(row.get(column) or ""),
                 footnote_record_id_map,
             )
+
+
+def _csv_data_row_count(csv_text: str) -> int:
+    rows = list(csv.reader(io.StringIO(csv_text)))
+    return max(len(rows) - 1, 0) if rows else 0
 
 
 def _drive_file_downloader(source: _RecordSourceLike) -> _DriveFileDownloaderLike | None:
@@ -599,12 +606,39 @@ def sync_phase2_snapshot(
         )
         written_files.append((target_path, csv_text))
 
-    if "spec_master" in normalized_rows_by_table:
-        snapshot_paths = deps.resolve_data_snapshot_paths(
-            cfg,
-            repo_root=deps.repo_root,
-            data_root=str(export_root),
+    snapshot_paths = deps.resolve_data_snapshot_paths(
+        cfg,
+        repo_root=deps.repo_root,
+        data_root=str(export_root),
+    )
+    page_registry_source_path = deps.resolve_data_snapshot_paths(
+        cfg,
+        repo_root=deps.repo_root,
+        data_root=None,
+    ).page_registry_csv
+    page_registry_path = snapshot_paths.page_registry_csv
+    if not page_registry_source_path.exists():
+        raise FileNotFoundError(
+            "Missing repo-maintained page registry CSV: "
+            + _display_path(page_registry_source_path, repo_root=deps.repo_root)
         )
+    page_registry_text = page_registry_source_path.read_text(encoding="utf-8")
+    page_registry_sha256 = deps.sha256_text(page_registry_text)
+    previous_page_registry_sha256 = deps.sha256_file(page_registry_path)
+    derived_results.append(
+        deps.table_sync_result_cls(
+            logical_name="page_registry",
+            file_name=page_registry_path.name,
+            target_path=page_registry_path,
+            row_count=_csv_data_row_count(page_registry_text),
+            sha256=page_registry_sha256,
+            previous_sha256=previous_page_registry_sha256,
+            changed=page_registry_sha256 != previous_page_registry_sha256,
+        )
+    )
+    written_files.append((page_registry_path, page_registry_text))
+
+    if "spec_master" in normalized_rows_by_table:
         row_key_mapping_path = snapshot_paths.row_key_mapping_csv
         existing_mapping_path = resolve_existing_row_key_mapping_path(
             cfg,
