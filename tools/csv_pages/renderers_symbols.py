@@ -79,7 +79,6 @@ SYMBOL_ASSETS: dict[str, SymbolAsset] = {
 }
 
 SIGNAL_ROW_KEYS = ("warning", "caution", "note", "tips")
-SIGNAL_KEY_ALIASES = {"tip": "tips"}
 SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
     "warning": SymbolAsset(
         path="templates/word_template/common_assets/symbols/warning_triangle.png",
@@ -565,7 +564,6 @@ def _default_signal_row(lang: str, copy: dict[str, str], signal_key: str) -> dic
 
 def _normalize_signal_key(value: str) -> str:
     raw = (value or "").strip().casefold()
-    raw = SIGNAL_KEY_ALIASES.get(raw, raw)
     if raw not in SIGNAL_ROW_KEYS:
         raise ValueError(f"unknown symbols signal_row symbol_key='{value or '?'}'")
     return raw

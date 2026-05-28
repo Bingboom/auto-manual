@@ -16,6 +16,7 @@ DEFAULT_PAGE_COPY_CSV = ROOT / "data" / "phase2" / "page_copy.csv"
 PAGE_COPY_FIELDNAMES = ("page_id", "lang", "copy_key", "text", "enabled", "order")
 
 _TRUE_VALUES = {"1", "true", "yes", "y", "on"}
+_FORBIDDEN_COPY_KEYS = {"tip"}
 _LANG_ALIASES = {
     "jp": "ja",
     "pt_br": "pt-BR",
@@ -73,7 +74,15 @@ def _read_page_copy_rows(path_text: str) -> tuple[dict[str, str], ...]:
     if not path.exists():
         raise FileNotFoundError(f"Missing page copy CSV: {path}")
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
-        return tuple(dict(row) for row in csv.DictReader(handle))
+        rows = tuple(dict(row) for row in csv.DictReader(handle))
+    for index, row in enumerate(rows, start=2):
+        copy_key = (row.get("copy_key") or "").strip().casefold()
+        if copy_key in _FORBIDDEN_COPY_KEYS:
+            raise ValueError(
+                f"page_copy row {index} uses forbidden copy_key={copy_key!r}; "
+                "use copy_key='tips'"
+            )
+    return rows
 
 
 def load_page_copy_map(
