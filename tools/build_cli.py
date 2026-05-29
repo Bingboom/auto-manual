@@ -220,7 +220,8 @@ def parse_args(
     ap.add_argument(
         "--allow-multiple",
         action="store_true",
-        help="For queue-resolve-action: allow natural-language batch actions when multiple queue rows match",
+        help="For queue-resolve-action or queue-execute: allow batch actions across every matching queue row "
+        "(queue-execute dispatches each eligible row in one call and reports a per-record result)",
     )
     ap.add_argument(
         "--limit",

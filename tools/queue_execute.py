@@ -74,6 +74,24 @@ def select_unique_queue_row(args: argparse.Namespace, rows: list[QueueQueryRow])
     return resolved_args, filtered[0]
 
 
+def select_queue_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> tuple[argparse.Namespace, list[QueueQueryRow]]:
+    """Resolve every matching queue row for a `--allow-multiple` batch dispatch.
+
+    Unlike `select_unique_queue_row` this does not require a unique match and
+    does not pre-filter by the trigger flag, so the caller can dispatch the
+    eligible rows and still report the already-built / not-triggered ones as
+    skipped instead of silently dropping them.
+    """
+    resolved_args = apply_inferred_queue_query(args)
+    selection_args = _namespace_with(resolved_args, allow_multiple=False, limit=1000)
+    filtered = filter_queue_query_rows(selection_args, rows)
+    if not filtered:
+        request_text = str(getattr(args, "query_text", "") or "").strip()
+        details = f" for request `{request_text}`" if request_text else ""
+        raise RuntimeError(f"queue-execute could not resolve any queue row{details}.")
+    return resolved_args, filtered
+
+
 def dispatch_command_for_row(row: QueueQueryRow) -> str:
     mapping = {
         "start_review": "start-review",
@@ -331,9 +349,130 @@ def _refresh_queue_row(cfg: dict[str, Any], row: QueueQueryRow, *, fresh_since: 
     return filtered[0]
 
 
+def _first_line(text: str) -> str:
+    return str(text or "").strip().splitlines()[0] if str(text or "").strip() else ""
+
+
+def _dispatch_one_row(
+    resolved_args: argparse.Namespace,
+    row: QueueQueryRow,
+    *,
+    repo_root: Path,
+    accepted_at: str,
+) -> dict[str, Any]:
+    """Dispatch one row for a batch run, never raising.
+
+    Eligibility problems (trigger off / already built / already in review /
+    publish without confirmation) become a `skipped` result with a reason; a
+    real control-layer error becomes an `error` result. Only an actually
+    accepted dispatch is reported as `dispatched`, so the caller never has to
+    infer "已进队" from the trigger flag.
+    """
+    result: dict[str, Any] = {
+        "record_id": row.record_id,
+        "document_id": row.document_id or row.document_key or "",
+        "workflow_action": row.workflow_action,
+        "git_ref": row.git_ref,
+        "dispatched": False,
+        "status": "skipped",
+        "reason": "",
+        "accepted_at": accepted_at,
+    }
+    if is_completed_start_review_row(row):
+        result["reason"] = f"already in review (review_status={row.review_status or '-'})"
+        result["review_status"] = row.review_status
+        return result
+    try:
+        ensure_build_trigger_requested(row)
+        ensure_publish_confirmation(resolved_args, row)
+        ensure_start_review_dispatchable(row)
+        dispatch_command = dispatch_command_for_row(row)
+    except RuntimeError as exc:
+        result["reason"] = _first_line(str(exc))
+        return result
+    try:
+        if dispatch_command == "publish":
+            payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
+        else:
+            payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id)
+    except RuntimeError as exc:
+        result["status"] = "error"
+        result["reason"] = _first_line(str(exc))
+        return result
+    result["dispatched"] = True
+    result["status"] = "dispatched"
+    if payload.get("run_id"):
+        result["run_id"] = payload["run_id"]
+    if payload.get("run"):
+        result["run_url"] = payload["run"]
+    if payload.get("accepted_at"):
+        result["accepted_at"] = payload["accepted_at"]
+    return result
+
+
+def render_queue_execute_batch_result(
+    results: list[dict[str, Any]],
+    *,
+    as_json: bool,
+) -> str:
+    dispatched = sum(1 for r in results if r.get("status") == "dispatched")
+    skipped = sum(1 for r in results if r.get("status") == "skipped")
+    errored = sum(1 for r in results if r.get("status") == "error")
+    if as_json:
+        return json.dumps(
+            {
+                "matched_count": len(results),
+                "dispatched_count": dispatched,
+                "skipped_count": skipped,
+                "error_count": errored,
+                "results": results,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    lines = [
+        f"batch: matched {len(results)} | dispatched {dispatched} | skipped {skipped} | error {errored}",
+    ]
+    for r in results:
+        head = f"[{r.get('status')}] {r.get('document_id') or '-'} ({r.get('record_id')})"
+        if r.get("status") == "dispatched":
+            extra = f" run_id={r['run_id']}" if r.get("run_id") else ""
+            lines.append(head + extra)
+        else:
+            lines.append(head + (f": {r['reason']}" if r.get("reason") else ""))
+    return "\n".join(lines)
+
+
+def run_queue_execute_batch(
+    resolved_args: argparse.Namespace,
+    rows: list[QueueQueryRow],
+    *,
+    repo_root: Path,
+) -> None:
+    """Dispatch every matching row in one call (no per-row completion wait).
+
+    A batch never blocks on GitHub completion: it fires each eligible row and
+    returns one accurate per-record report. The operator re-queries status
+    afterwards (the lifecycle is accept-first).
+    """
+    accepted_at = str(getattr(resolved_args, "fresh_since", "") or "").strip() or _now_iso()
+    results = [
+        _dispatch_one_row(resolved_args, row, repo_root=repo_root, accepted_at=accepted_at)
+        for row in rows
+    ]
+    print(render_queue_execute_batch_result(results, as_json=bool(getattr(resolved_args, "json", False))))
+
+
 def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root: Path) -> None:
     cfg = load_config(config_path)
     rows = collect_queue_query_rows(cfg, queue_scope=getattr(args, "queue_scope", "all"))
+    if getattr(args, "allow_multiple", False):
+        # Multi-target batch: fire every eligible matching row in one call so a
+        # multi-target ask cannot fire only the first target or be left half-done
+        # by an interrupted per-target loop.
+        resolved_args, matched = select_queue_rows(args, rows)
+        run_queue_execute_batch(resolved_args, matched, repo_root=repo_root)
+        return
     resolved_args, row = select_unique_queue_row(args, rows)
     ensure_build_trigger_requested(row)
     ensure_publish_confirmation(resolved_args, row)
