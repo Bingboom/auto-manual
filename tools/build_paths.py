@@ -5,6 +5,15 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.config_loader import load_config_mapping
+from tools.utils.path_utils import (
+    Paths,
+    PathSegments,
+    docs_build_dir_of,
+    paths_for_docs_dir,
+    releases_of,
+    review_dir_of,
+    version_tracking_of,
+)
 
 
 def resolve_path_from_root(repo_root: Path, raw_path: str) -> Path:
@@ -37,7 +46,7 @@ def staging_docs_build_dir(
     staging_root = resolve_staging_root(repo_root=repo_root, args=args, env_var=env_var)
     if staging_root is None:
         return None
-    return staging_root / "docs" / "_build"
+    return docs_build_dir_of(staging_root / PathSegments.DOCS)
 
 
 def staging_version_tracking_root(
@@ -49,7 +58,7 @@ def staging_version_tracking_root(
     staging_root = resolve_staging_root(repo_root=repo_root, args=args, env_var=env_var)
     if staging_root is None:
         return None
-    return staging_root / "reports" / "version_tracking"
+    return version_tracking_of(staging_root)
 
 
 def staging_releases_root(
@@ -61,7 +70,7 @@ def staging_releases_root(
     staging_root = resolve_staging_root(repo_root=repo_root, args=args, env_var=env_var)
     if staging_root is None:
         return None
-    return staging_root / "reports" / "releases"
+    return releases_of(staging_root)
 
 
 def load_config(config_path: Path) -> dict[str, Any]:
@@ -80,7 +89,7 @@ def resolve_layout_params_csv(
         raw = paths_cfg.get("layout_params_csv")
         if isinstance(raw, str) and raw.strip():
             return resolve_path_from_root(repo_root, raw.strip())
-    return repo_root / "data" / "layout_params.csv"
+    return Paths(root=repo_root).layout_params_csv
 
 
 def resolve_docs_dir(
@@ -92,14 +101,14 @@ def resolve_docs_dir(
     try:
         cfg = config_loader(config_path)
     except RuntimeError:
-        return repo_root / "docs"
+        return Paths(root=repo_root).docs_dir
 
     paths_cfg = cfg.get("paths", {})
     if isinstance(paths_cfg, dict):
         raw = paths_cfg.get("docs_dir")
         if isinstance(raw, str) and raw.strip():
             return resolve_path_from_root(repo_root, raw.strip())
-    return repo_root / "docs"
+    return Paths(root=repo_root).docs_dir
 
 
 def clean_targets_for_config(
@@ -109,7 +118,7 @@ def clean_targets_for_config(
     config_loader: Callable[[Path], dict[str, Any]] = load_config,
 ) -> tuple[Path, Path]:
     docs_dir = resolve_docs_dir(config_path, repo_root=repo_root, config_loader=config_loader)
-    return docs_dir / "_build", docs_dir / "renderers" / "latex" / "params.tex"
+    return paths_for_docs_dir(repo_root, docs_dir).clean_targets()
 
 
 def review_root_for_config(
@@ -119,9 +128,9 @@ def review_root_for_config(
     config_loader: Callable[[Path], dict[str, Any]] = load_config,
 ) -> Path:
     docs_dir = resolve_docs_dir(config_path, repo_root=repo_root, config_loader=config_loader)
-    return docs_dir / "_review"
+    return review_dir_of(docs_dir)
 
 
 def version_tracking_root(*, repo_root: Path, base_root: Path | None = None) -> Path:
     actual_base_root = base_root or repo_root
-    return actual_base_root / "reports" / "version_tracking"
+    return version_tracking_of(actual_base_root)
