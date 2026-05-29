@@ -72,6 +72,14 @@ def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: se
                 )
                 if normalized:
                     out.extend(normalized.split("\n"))
+                    # The "\n".join(...)/splitlines() round-trip above drops the
+                    # block's own trailing blank line. Restore the separator so a
+                    # construct that immediately follows the inlined only-block
+                    # (e.g. a section title) is not absorbed into the block's last
+                    # paragraph, which would otherwise leak its "----" title
+                    # underline into the body as literal text.
+                    if out[-1].strip():
+                        out.append("")
                 else:
                     out.append("")
             continue

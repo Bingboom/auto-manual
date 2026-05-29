@@ -378,6 +378,50 @@ TROUBLESHOOTING
         self.assertIn("Keep html block.", html)
         self.assertNotIn("Drop model mismatch.", html)
 
+    def test_convert_rst_fragment_to_html_should_keep_heading_after_only_block(self) -> None:
+        rst = """
+WARRANTY
+========
+
+.. only:: region_us
+
+   Repair or replacement
+   ---------------------
+
+   The repaired product assumes the remaining warranty of the original date of purchase.
+
+.. only:: region_eu
+
+   Exchange
+   --------
+
+   A replacement product assumes the remaining warranty of the original product.
+
+Limited to Original Consumer Buyer
+----------------------------------
+
+The warranty is limited to the original consumer purchaser.
+"""
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                Path("11_warranty.rst"),
+                Path(td),
+                active_tags=_build_word_only_tags(model="JE-1000F", region="US", lang="en"),
+            )
+
+        # The section title following the kept only-block must stay a heading,
+        # not get absorbed into the block's last paragraph with its underline
+        # leaking through as literal dashes.
+        self.assertIn("<h2>Limited to Original Consumer Buyer</h2>", html)
+        self.assertNotIn("----", html)
+        self.assertIn("Repair or replacement", html)
+        self.assertNotIn("A replacement product", html)
+        self.assertLess(
+            html.index("original date of purchase."),
+            html.index("Limited to Original Consumer Buyer"),
+        )
+
     def test_convert_rst_fragment_to_html_should_keep_preface_important_as_bold_paragraph(self) -> None:
         rst = """
 **IMPORTANT**
