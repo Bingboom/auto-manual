@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 from typing import Callable
 
+from tools.utils.path_utils import PathSegments, review_dir_of
+
 
 @dataclass(frozen=True)
 class BuiltDocumentOutputs:
@@ -112,7 +114,7 @@ def _worktree_data_root(
         try:
             relative_data_root = data_root_path.resolve(strict=False).relative_to(repo_root.resolve(strict=False))
         except ValueError:
-            relative_data_root = Path("data") / data_root_path.name
+            relative_data_root = Path(PathSegments.DATA) / data_root_path.name
         return data_root_path, build_workspace / relative_data_root
     return repo_root / data_root_path, build_workspace / data_root_path
 
@@ -156,8 +158,8 @@ def build_document_for_task(
         review_ref = git_ref.strip()
         review_workspace = build_workspace if review_ref == "main" else prepare_git_ref_worktree(review_ref)
         if not _replace_path(
-            review_workspace / "docs" / "_review",
-            build_workspace / "docs" / "_review",
+            review_dir_of(review_workspace / "docs"),
+            review_dir_of(build_workspace / "docs"),
         ):
             raise RuntimeError(
                 f"Git_ref {review_ref} does not contain docs/_review; queue builds must render review content from the review branch."

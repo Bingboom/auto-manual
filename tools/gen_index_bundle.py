@@ -95,7 +95,7 @@ from tools.gen_index_bundle_paths import (
     source_path_for_contract as _source_path_for_contract,
 )
 from tools.page_manifest import resolve_config_pages_or_raise
-from tools.utils.path_utils import get_paths  # noqa: E402
+from tools.utils.path_utils import get_paths, word_common_assets_of  # noqa: E402
 from tools.utils.targets import (
     resolve_output_lang,
 )
@@ -338,7 +338,7 @@ def _copy_bundle_support_assets(
     # shared template asset tree up front so those references remain valid
     # even when the current target bundle would not otherwise materialize
     # every referenced template asset during runtime generation.
-    common_assets_src = docs_dir / "templates" / "word_template" / "common_assets"
+    common_assets_src = word_common_assets_of(docs_dir)
     if common_assets_src.exists():
         _copytree_replace(
             common_assets_src,

@@ -8,6 +8,7 @@ from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 
+from tools.utils.path_utils import version_tracking_of
 from tools.process_docs.build_review_preview_data import (
     build_change_workbook,
     build_downloads_metadata,
@@ -137,7 +138,7 @@ def assemble_family_payloads(
             except subprocess.CalledProcessError as exc:
                 raise RuntimeError(f"Review preview failed to build the diff-report set for {model}/{family}.") from exc
 
-        report_root = root / "reports" / "version_tracking" / model / family
+        report_root = version_tracking_of(root) / model / family
         prefix = latest_report_prefix(report_root)
         model_changes_dir = changes_root / family / model
         model_downloads_dir = downloads_root / family / model

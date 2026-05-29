@@ -5,6 +5,7 @@ import re
 from typing import Any, Callable
 
 from tools.page_contracts import contract_applies_to, find_contract_for_source, load_page_contracts, required_assets_for_lang
+from tools.utils.path_utils import contracts_dir_of, latex_renderer_of, static_dir_of, word_common_assets_of
 
 _CONTRACT_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 
@@ -69,7 +70,7 @@ def preflight_contract_assets(
     source_path_for_contract: Callable[..., Path | None],
     resolve_contract_asset_path: Callable[..., Path] = resolve_contract_asset_path,
 ) -> None:
-    contracts = load_page_contracts(docs_dir / "templates" / "contracts")
+    contracts = load_page_contracts(contracts_dir_of(docs_dir))
     if not contracts:
         return
 
@@ -171,15 +172,15 @@ def copy_bundle_support_assets(
     bundle_dir: Path,
     copytree_replace: Callable[[Path, Path], None],
 ) -> None:
-    static_src = docs_dir / "_static"
+    static_src = static_dir_of(docs_dir)
     if static_src.exists():
-        copytree_replace(static_src, bundle_dir / "_static")
+        copytree_replace(static_src, static_dir_of(bundle_dir))
 
-    latex_src = docs_dir / "renderers" / "latex"
+    latex_src = latex_renderer_of(docs_dir)
     if latex_src.exists():
-        copytree_replace(latex_src, bundle_dir / "renderers" / "latex")
+        copytree_replace(latex_src, latex_renderer_of(bundle_dir))
 
-    common_assets_src = docs_dir / "templates" / "word_template" / "common_assets"
+    common_assets_src = word_common_assets_of(docs_dir)
     if common_assets_src.exists():
         copytree_replace(
             common_assets_src,
