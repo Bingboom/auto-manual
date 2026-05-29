@@ -18,6 +18,7 @@ from tools.gen_index_bundle import bundle_dir_for_target
 from tools.release_contract import release_manifests_dir_for_target
 from tools.review_bundle import resolve_docs_dir
 from tools.review_support import review_dir_for_target
+from tools.utils.path_utils import docs_build_dir_of
 from tools.utils.targets import resolve_output_lang
 
 
@@ -64,7 +65,7 @@ def build_release_manifest(
     cfg = load_config(config_path)
     docs_dir = resolve_docs_dir(cfg)
     output_lang = resolve_output_lang(cfg)
-    actual_docs_build_dir = docs_build_dir or (docs_dir / "_build")
+    actual_docs_build_dir = docs_build_dir or docs_build_dir_of(docs_dir)
     build_root = build_root_for_target(model, region, output_lang, docs_build_dir=actual_docs_build_dir)
     runtime_bundle_dir = bundle_dir_for_target(
         docs_dir=docs_dir,

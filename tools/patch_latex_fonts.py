@@ -15,11 +15,15 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
-DOCS = ROOT / "docs"
-BUILD = DOCS / "_build" / "latex"
 
-FONTS_SRC = DOCS / "renderers" / "latex" / "fonts.tex"
-FONTS_DST = BUILD / "fonts.tex"
+from tools.utils.path_utils import Paths, PathSegments
+
+_PATHS = Paths(root=ROOT)
+DOCS = _PATHS.docs_dir
+BUILD = _PATHS.latex_build_dir
+
+FONTS_SRC = _PATHS.fonts_tex
+FONTS_DST = BUILD / PathSegments.FONTS_TEX
 
 FRAGILE_UNICODE_REPLACEMENTS = (
     ("\u2393", " DC "),

@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.utils.path_utils import docs_build_dir_of
+
 
 def is_retryable_cleanup_error(exc: OSError, *, os_name: str) -> bool:
     if getattr(exc, "winerror", None) == 32:
@@ -64,7 +66,7 @@ def clean_build_targets(
     remove_tree_with_retries: Callable[[Path], None],
     printer: Callable[[str], None] = print,
 ) -> None:
-    actual_docs_build_dir = docs_dir / "_build"
+    actual_docs_build_dir = docs_build_dir_of(docs_dir)
 
     for target in targets:
         target_build_root = build_root_for_target(
