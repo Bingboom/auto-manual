@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from tools.utils.path_utils import docs_build_dir_of
+
 
 def target_component(value: str | None, fallback: str) -> str:
     text = (value or "").strip() or fallback
@@ -14,7 +16,7 @@ def discover_existing_bundle_targets(
     docs_dir: Path,
     build_target_cls: type[Any],
 ) -> list[Any]:
-    build_root = docs_dir / "_build"
+    build_root = docs_build_dir_of(docs_dir)
     if not build_root.exists():
         return []
 

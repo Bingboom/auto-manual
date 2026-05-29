@@ -10,6 +10,7 @@ from pathlib import Path
 from tools.build_docs import load_config
 from tools.review_support import review_content_exists
 from tools.script_bootstrap import bootstrap_repo_root
+from tools.utils.path_utils import Paths
 from tools.target_defaults import (
     FAMILY_DEFAULT_CONFIGS,
     REVIEW_WORKSPACE_TARGET_CONFIGS,
@@ -17,6 +18,7 @@ from tools.target_defaults import (
 
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
+_PATHS = Paths(root=ROOT)
 FAMILY_ORDER = ("US", "JP", "CN")
 
 
@@ -133,7 +135,7 @@ def resolved_primary_config_path(args: argparse.Namespace) -> Path:
 
 
 def output_root_for_target(model: str, target: WorkspaceTarget) -> Path:
-    root = ROOT / "docs" / "_build" / model / target.family
+    root = _PATHS.docs_build_dir / model / target.family
     if target.include_lang_in_output_path:
         root = root / target.language
     return root
@@ -150,7 +152,7 @@ def word_root_for_target(model: str, target: WorkspaceTarget) -> Path:
 def tracked_root_for_target(args: argparse.Namespace, target: WorkspaceTarget) -> Path:
     if args.tracked_root and target.family == args.region and target.model == args.model:
         return resolve_path(args.tracked_root)
-    return (ROOT / "docs" / "_review" / target.model / target.family).resolve()
+    return (_PATHS.review_dir / target.model / target.family).resolve()
 
 
 def diff_config_for_family(args: argparse.Namespace, family: str) -> Path:
@@ -179,7 +181,7 @@ def target_sort_key(target: WorkspaceTarget) -> tuple[int, str, str]:
 
 
 def review_models() -> list[str]:
-    review_root = ROOT / "docs" / "_review"
+    review_root = _PATHS.review_dir
     if not review_root.exists():
         return []
     return sorted(path.name for path in review_root.iterdir() if path.is_dir())
@@ -253,7 +255,7 @@ def target_has_review_bundle(
     docs_dir: Path | None = None,
 ) -> bool:
     if review_availability is None:
-        actual_docs_dir = docs_dir or (ROOT / "docs")
+        actual_docs_dir = docs_dir or _PATHS.docs_dir
         review_availability = collect_review_availability(docs_dir=actual_docs_dir, targets=[target])
     return any(key in review_availability for key in _review_availability_keys_for_target(target))
 
@@ -370,7 +372,7 @@ def discover_workspace_targets(
 ) -> list[WorkspaceTarget]:
     actual_requested_target = requested_target or requested_workspace_target(args)
     target_candidates = collect_workspace_target_candidates(args, requested_target=actual_requested_target)
-    actual_docs_dir = docs_dir or (ROOT / "docs")
+    actual_docs_dir = docs_dir or _PATHS.docs_dir
     actual_review_availability = review_availability
     if actual_review_availability is None:
         actual_review_availability = collect_review_availability(

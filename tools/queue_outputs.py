@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.language_aliases import normalize_language
+from tools.utils.path_utils import PathSegments, docs_build_dir_of
 
 
 def _stage_markdown_source_sidecars(*, built_md_output_path: Path, staged_md_output_path: Path) -> None:
@@ -43,7 +44,7 @@ def resolve_docs_dir_for_config(
     if isinstance(raw, str) and raw.strip():
         candidate = Path(raw.strip())
         return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
-    return resolved_config_path.parent / "docs"
+    return resolved_config_path.parent / PathSegments.DOCS
 
 
 def resolve_word_output_path_for_target(
@@ -77,7 +78,7 @@ def resolve_word_output_path_for_target(
         model,
         region,
         lang=output_lang,
-        docs_build_dir=docs_dir / "_build",
+        docs_build_dir=docs_build_dir_of(docs_dir),
     )
     word_output_name = render_build_template(
         str(build_cfg.get("word_output", "manual_demo.docx")),
@@ -119,7 +120,7 @@ def resolve_pdf_output_path_for_target(
         model,
         region,
         lang=output_lang,
-        docs_build_dir=docs_dir / "_build",
+        docs_build_dir=docs_build_dir_of(docs_dir),
     )
     pdf_output_name = render_build_template(
         str(build_cfg.get("output_pdf", "manual_demo.pdf")),
@@ -161,7 +162,7 @@ def resolve_md_output_path_for_target(
         model,
         region,
         lang=output_lang,
-        docs_build_dir=docs_dir / "_build",
+        docs_build_dir=docs_build_dir_of(docs_dir),
     )
     word_output_name = render_build_template(
         str(build_cfg.get("word_output", "manual_demo.docx")),
@@ -208,7 +209,7 @@ def resolve_html_output_dir_for_target(
         model,
         region,
         lang=output_lang,
-        docs_build_dir=docs_dir / "_build",
+        docs_build_dir=docs_build_dir_of(docs_dir),
     )
     return build_root / "html"
 

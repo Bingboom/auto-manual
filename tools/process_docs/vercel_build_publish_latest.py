@@ -13,11 +13,12 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.process_docs.build_publish_latest_site import build_site
+from tools.utils.path_utils import Paths
 
 
 VENV_DIR = ROOT / ".vercel-python"
 DIST_DIR = ROOT / "site" / "publish-latest" / "dist"
-RELEASES_ROOT = ROOT / "reports" / "releases"
+RELEASES_ROOT = Paths(root=ROOT).releases_dir
 
 
 def run(cmd: list[str]) -> None:

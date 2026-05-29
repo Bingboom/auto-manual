@@ -33,8 +33,12 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
-CSV_PATH = ROOT / "data" / "layout_params.csv"
-OUT_TEX = ROOT / "docs" / "renderers" / "latex" / "params.tex"
+
+from tools.utils.path_utils import Paths
+
+_PATHS = Paths(root=ROOT)
+CSV_PATH = _PATHS.layout_params_csv
+OUT_TEX = _PATHS.params_tex
 
 
 def fmt_value(value: str, unit: str) -> str:

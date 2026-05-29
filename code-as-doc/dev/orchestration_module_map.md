@@ -45,9 +45,14 @@ Do not move new low-level implementation back into these files unless the behavi
   - fallback routing for standard build actions such as `rst`, `word`, `pdf`, `preview`, and `fast`
 - [`tools/build_paths.py`](../../tools/build_paths.py)
   - config loading
-  - repo-root path resolution
-  - staging-root resolution
+  - config-driven docs_dir / layout-params resolution
+  - staging-root resolution (CLI arg / env coupling)
   - review/build/release root selection
+  - thin adapter: delegates all path-segment construction to [`tools/utils/path_utils.py`](../../tools/utils/path_utils.py)
+- [`tools/utils/path_utils.py`](../../tools/utils/path_utils.py)
+  - single source of truth for repo-relative path segments (`PathSegments`)
+  - repo-root-anchored and config-anchored `Paths`, plus `*_of(base)` suffix helpers
+  - consumed by `build_paths.py` and path-building sites across `tools/`
 - [`tools/build_entry_commands.py`](../../tools/build_entry_commands.py)
   - CLI command assembly for build/check/review/sync/release/queue entrypoints
 - [`tools/build_runtime.py`](../../tools/build_runtime.py)

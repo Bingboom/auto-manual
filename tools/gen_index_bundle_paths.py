@@ -7,6 +7,7 @@ from pathlib import Path
 from tools.config_loader import load_config_mapping
 from tools.config_pages import ConfigPage, CoverPdfPage, CsvPage, GeneratedPage, PdfInsertPage, RstIncludePage
 from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.utils.path_utils import docs_build_dir_of
 from tools.utils.targets import (
     format_tokenized,
     resolve_build_languages,
@@ -86,7 +87,7 @@ def bundle_dir_for_target(
     region: str | None,
     lang: str | None = None,
 ) -> Path:
-    actual_docs_build_dir = docs_build_dir or (docs_dir / "_build")
+    actual_docs_build_dir = docs_build_dir or docs_build_dir_of(docs_dir)
     target_root = actual_docs_build_dir / bundle_component(model, "_shared") / bundle_component(region, "_default")
     if (lang or "").strip():
         target_root = target_root / bundle_component(lang, "_default")

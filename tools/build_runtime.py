@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.utils.path_utils import PathSegments, docs_build_dir_of
+
 
 def path_component(value: str) -> str:
     text = value.strip()
@@ -22,7 +24,7 @@ def preview_output_root(
     docs_build_dir: Path | None = None,
     resolve_docs_dir: Callable[[Path], Path],
 ) -> Path:
-    actual_docs_build_dir = docs_build_dir or (resolve_docs_dir(config_path) / "_build")
+    actual_docs_build_dir = docs_build_dir or docs_build_dir_of(resolve_docs_dir(config_path))
     return actual_docs_build_dir / path_component(model) / path_component(region) / "preview" / path_component(page)
 
 
@@ -39,7 +41,13 @@ def collect_legacy_docs_output_dirs(docs_dir: Path) -> list[Path]:
     if generated_dir.exists():
         legacy_dirs.append(generated_dir)
 
-    reserved = {"_build", "_static", "renderers", "templates", "__pycache__"}
+    reserved = {
+        PathSegments.BUILD,
+        PathSegments.STATIC,
+        PathSegments.RENDERERS,
+        PathSegments.TEMPLATES,
+        "__pycache__",
+    }
     for child in docs_dir.iterdir():
         if not child.is_dir() or child.name in reserved or child == generated_dir:
             continue

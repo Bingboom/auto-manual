@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.utils.path_utils import Paths
+
 
 def resolve_docs_dir(
     cfg: dict,
@@ -15,7 +17,7 @@ def resolve_docs_dir(
     if isinstance(raw, str) and raw.strip():
         path = Path(raw.strip())
         return path if path.is_absolute() else (repo_root / path)
-    return repo_root / "docs"
+    return Paths(root=repo_root).docs_dir
 
 
 def build_langs(cfg: dict) -> list[str]:

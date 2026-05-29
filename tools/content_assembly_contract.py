@@ -15,6 +15,8 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+from tools.utils.path_utils import Paths
+
 
 ALLOWED_BLOCK_TYPES: tuple[str, ...] = (
     "product_identity",
@@ -273,7 +275,7 @@ def load_assembly_contract(contract_path: Path) -> AssemblyContract:
 
 
 def _recipe_row_keys(repo_root: Path, page_id: str) -> set[str]:
-    recipe_root = repo_root / "docs" / "templates" / "recipes"
+    recipe_root = Paths(root=repo_root).recipes_dir
     if not recipe_root.exists():
         return set()
 

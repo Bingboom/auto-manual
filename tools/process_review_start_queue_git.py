@@ -12,6 +12,7 @@ from urllib import parse as urllib_parse
 from urllib import request as urllib_request
 
 from tools.review_support import review_dir_for_target
+from tools.utils.path_utils import PathSegments
 from tools.utils.targets import resolve_output_lang
 
 
@@ -105,7 +106,7 @@ def resolve_docs_dir_for_config(
     if isinstance(raw, str) and raw.strip():
         candidate = Path(raw.strip())
         return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
-    return resolved_config_path.parent / "docs"
+    return resolved_config_path.parent / PathSegments.DOCS
 
 
 def review_dir_for_target_config(

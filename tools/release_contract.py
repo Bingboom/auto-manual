@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.build_docs import load_config
+from tools.utils.path_utils import releases_of
 
 
 def normalize_release_token(value: str) -> str:
@@ -38,7 +39,7 @@ def release_root_for_target(
     releases_root: Path | None = None,
 ) -> Path:
     lang = release_lang_for_config(config_path, cfg)
-    base_root = releases_root or (repo_root / "reports" / "releases")
+    base_root = releases_root or releases_of(repo_root)
     return base_root / model / region / lang
 
 

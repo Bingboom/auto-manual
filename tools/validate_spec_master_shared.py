@@ -19,6 +19,7 @@ from tools.config_pages import GeneratedPage  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
+from tools.utils.path_utils import Paths  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     canonicalize_model_token,
     normalize_source_lang,
@@ -83,7 +84,7 @@ def resolve_docs_dir(cfg: dict) -> Path:
     if isinstance(raw, str) and raw.strip():
         path = Path(raw.strip())
         return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "docs"
+    return Paths(root=ROOT).docs_dir
 
 
 def _first_non_empty(row: dict[str, str], keys: tuple[str, ...]) -> str:

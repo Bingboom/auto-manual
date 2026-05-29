@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-05-25
+Updated: 2026-05-30
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -578,3 +578,18 @@ Why it mattered:
 
 - review-start workers can now build from freshly synced temporary phase2 roots without missing `page_registry.csv`
 - page order and CSV-page enablement remain repo-owned while runtime snapshots stay self-contained
+
+## 35. 2026-05-30: Central Path Management Through path_utils
+
+Main outcomes:
+
+- made [`tools/utils/path_utils.py`](../tools/utils/path_utils.py) the single source of truth for repo-relative path segments via a `PathSegments` constant class, plus `*_of(base)` suffix helpers (`docs_build_dir_of`, `review_dir_of`, `static_dir_of`, `latex_renderer_of`, `contracts_dir_of`, `word_common_assets_of`, `version_tracking_of`, `releases_of`) and new `Paths` members (`review_dir`, `static_dir`, `contracts_dir`, `recipes_dir`, `params_tex`, `fonts_tex`, `version_tracking_dir`, `releases_dir`, `clean_targets`)
+- added a config-aware docs anchor (`Paths.from_docs_dir` / `paths_for_docs_dir`) so a resolved `docs_dir` threads through every derived path without changing the default `root/"docs"` behavior
+- rewired [`tools/build_paths.py`](../tools/build_paths.py) to delegate every join to `path_utils` while keeping its public signatures unchanged, so [`build.py`](../build.py) and its importers were untouched
+- migrated ~25 scattered consumers (the `_build`, `_review`, `reports/version_tracking`, `reports/releases`, `docs`, `templates/{recipes,contracts,word_template}`, `renderers/latex`, `params.tex`, `fonts.tex`, `layout_params.csv` joins) off hand-built literals onto the central helpers, preserving each site's existing base (repo-root, config-parent-relative, worktree, or injected `docs_dir`)
+
+Why it mattered:
+
+- a path-segment rename now lands in one place instead of across two parallel modules plus ~40 ad-hoc joins
+- the central module is config-aware, so a non-default `docs_dir` flows through consistently rather than being silently re-anchored
+- follow-ups remain scoped and explicit: centralize the `generated` segment (~18 sites) and dedup the ~6 per-module `resolve_docs_dir` config-readers that disagree on repo-root vs config-parent base

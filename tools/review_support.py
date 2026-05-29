@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
+from tools.utils.path_utils import Paths, review_dir_of
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,7 +35,7 @@ def _target_component(value: str | None, fallback: str) -> str:
 
 
 def review_dir_for_target(*, docs_dir: Path, model: str | None, region: str | None, lang: str | None = None) -> Path:
-    target_root = docs_dir / "_review" / _target_component(model, "_shared") / _target_component(region, "_default")
+    target_root = review_dir_of(docs_dir) / _target_component(model, "_shared") / _target_component(region, "_default")
     if (lang or "").strip():
         return target_root / _target_component(lang, "_default")
     return target_root
@@ -415,7 +416,7 @@ def _rewrite_review_rst_asset_paths(path: Path, *, review_dir: Path) -> Path:
         source_path=path,
         target_path=path,
         bundle_dir=review_dir,
-        docs_dir=ROOT / "docs",
+        docs_dir=Paths(root=ROOT).docs_dir,
         repo_root=ROOT,
     )
     if rewritten != text:
