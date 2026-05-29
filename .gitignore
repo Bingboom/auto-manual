@@ -31,3 +31,6 @@ TOOLS.md
 
 # Review preview packaging
 site/review-preview/dist/
+
+# AI assistant local config (each operator owns their own permissions and profile)
+.claude/settings.local.json
