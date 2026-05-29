@@ -115,7 +115,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
       runUrl: run.html_url,
       runId: run.id,
       acceptedAt: dispatchedAt,
-      note: "Dispatch accepted.",
+      note: "Dispatch accepted. The task is now processing — check the result later with `status last`; no need to wait synchronously.",
     }),
   };
 }

@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  deriveTaskState,
   ensureDispatchArgs,
   ensureRecordId,
   ensureStatusArg,
@@ -91,4 +92,42 @@ test("renderStatusResult includes structured failure summary fields when present
   assert.match(text, /failure_message: 缺少 JE-1000F_CN 的规格数据，无法进入 review。/);
   assert.match(text, /failure_next_step: 请先补齐 JE-1000F_CN 在 Spec_Master 中的规格数据，再重试。/);
   assert.match(text, /failure_target: JE-1000F_CN/);
+});
+
+test("deriveTaskState collapses run status/conclusion into one lifecycle token", () => {
+  assert.equal(deriveTaskState({ status: "in_progress", runId: "346" }), "processing");
+  assert.equal(deriveTaskState({ status: "queued", runId: "346" }), "processing");
+  assert.equal(deriveTaskState({ status: "pending", runId: "" }), "accepted");
+  assert.equal(deriveTaskState({ status: "completed", conclusion: "success" }), "completed");
+  assert.equal(deriveTaskState({ status: "completed", conclusion: "neutral" }), "completed");
+  assert.equal(deriveTaskState({ status: "completed", conclusion: "failure" }), "failed");
+  assert.equal(deriveTaskState({ status: "completed", conclusion: "" }), "completed");
+});
+
+test("renderStatusResult surfaces a processing state with a check-back hint", () => {
+  const text = renderStatusResult({
+    workflowName: "Feishu Draft Build Queue",
+    queueRecordId: "rec_eu_08",
+    runId: "346",
+    runUrl: "https://github.com/example/actions/runs/346",
+    status: "in_progress",
+    conclusion: "",
+    artifacts: [],
+    metadata: {},
+  });
+  assert.match(text, /state: processing/);
+  assert.match(text, /status last/);
+});
+
+test("renderStatusResult marks a successful completed run as state completed", () => {
+  const text = renderStatusResult({
+    workflowName: "Feishu Draft Build Queue",
+    queueRecordId: "rec_eu_08",
+    runId: "346",
+    status: "completed",
+    conclusion: "success",
+    artifacts: [],
+    metadata: {},
+  });
+  assert.match(text, /state: completed/);
 });

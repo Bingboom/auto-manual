@@ -17,6 +17,7 @@ import {
   formatExecutionErrorReply,
   formatNoPendingPublishReply,
   formatPendingPublishReply,
+  formatProcessingReply,
   formatPublishCompletedButUnreadableReply,
   formatPublishConfirmationAcceptedReply,
   formatRecordNoLongerAvailableReply,
@@ -42,6 +43,14 @@ function nowIso() {
 
 function contextRows(conversationContext) {
   return Array.isArray(conversationContext?.rows) ? conversationContext.rows : [];
+}
+
+// Freshness values that mean "the dispatch fired but the authoritative Feishu
+// writeback is not the current run's final result yet" — i.e. still processing.
+const PENDING_FRESHNESS_STATUSES = ["pending", "writeback_pending", "stale_result", "not_requested"];
+
+function isRowStillProcessing(row) {
+  return PENDING_FRESHNESS_STATUSES.includes(String(row?.freshness_status || ""));
 }
 
 export function createMessageHandler({ config, stateStore, repoControl, feishuClient, logger = console }) {
@@ -118,9 +127,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     let latest = { rows, failures: [] };
     while (Date.now() <= deadline) {
       latest = await queryContextRows({ rows, freshSince });
-      const pending = latest.rows.filter((row) =>
-        ["pending", "writeback_pending", "stale_result", "not_requested"].includes(String(row?.freshness_status || ""))
-      );
+      const pending = latest.rows.filter((row) => isRowStillProcessing(row));
       if (!pending.length) {
         return { ...latest, timedOut: false, skipped: false };
       }
@@ -387,44 +394,73 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       return;
     }
 
+    // Accept-and-poll, never block the chat turn on completion. The dispatch is
+    // fired with noWait so the local command returns immediately (发起即受理);
+    // a background poll then reports the result when it lands (完成回查/回调),
+    // and an unfinished run is reported as "任务正在处理中", not a failure.
+    const acceptedAt0 = nowIso();
+    await rememberConversationContext(messageEvent, {
+      row: resolution.row,
+      queryText: normalizedMessage.normalizedText,
+      actionName: resolution.action_name,
+      acceptedAt: acceptedAt0,
+    });
+    await react(messageEvent.messageId, "accepted");
+    await feishuClient.replyTextMessage(messageEvent.messageId, formatAcceptedReply(resolution, localProfile));
+
+    let executionResult;
     try {
-      await rememberConversationContext(messageEvent, {
-        row: resolution.row,
-        queryText: normalizedMessage.normalizedText,
-        actionName: resolution.action_name,
-      });
-      await react(messageEvent.messageId, "accepted");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatAcceptedReply(resolution, localProfile));
-      const executionResult = await repoControl.executeResolvedAction({
+      executionResult = await repoControl.executeResolvedAction({
         actionName: resolution.action_name,
         queueScope: resolution.queue_scope,
         recordId: resolution.row.record_id,
         confirmPublish: false,
+        noWait: true,
       });
-      const acceptedAt = executionResult?.accepted_at || nowIso();
-      const latest = await repoControl.queryRow({
-        queueScope: resolution.queue_scope,
-        recordId: resolution.row.record_id,
-        freshSince: acceptedAt,
-      });
-      const row = Array.isArray(latest?.rows) ? latest.rows[0] : null;
-      if (row) {
-        await rememberConversationContext(messageEvent, {
-          row,
-          queryText: normalizedMessage.normalizedText,
-          actionName: resolution.action_name,
-          acceptedAt,
-        });
-      }
-      await react(messageEvent.messageId, "completed");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
-        row ? formatCompletionReply(row, localProfile) : formatRunCompletedButUnreadableReply(localProfile)
-      );
     } catch (error) {
       logger.error?.("message execution failed", error);
       await react(messageEvent.messageId, "error");
       await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+      return;
+    }
+
+    const acceptedAt = executionResult?.accepted_at || acceptedAt0;
+    const seedRow = {
+      ...resolution.row,
+      ...executionResult,
+      queue_scope: resolution.queue_scope,
+      record_id: resolution.row.record_id,
+      accepted_at: acceptedAt,
+    };
+    await rememberConversationContext(messageEvent, {
+      row: seedRow,
+      queryText: normalizedMessage.normalizedText,
+      actionName: resolution.action_name,
+      acceptedAt,
+    });
+
+    // The accepted reply already told the operator it is processing. If polling
+    // is disabled we stop here and let them re-ask "这个好了没" for the result.
+    const settled = await pollBatchRows({ rows: [seedRow], freshSince: acceptedAt });
+    if (settled.skipped) {
+      return;
+    }
+
+    const finalRow = (Array.isArray(settled.rows) && settled.rows[0]) || seedRow;
+    await rememberConversationContext(messageEvent, {
+      row: finalRow,
+      queryText: normalizedMessage.normalizedText,
+      actionName: resolution.action_name,
+      acceptedAt,
+    });
+    if (settled.timedOut || isRowStillProcessing(finalRow)) {
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatProcessingReply(finalRow, localProfile));
+    } else {
+      await react(messageEvent.messageId, "completed");
+      await feishuClient.replyTextMessage(
+        messageEvent.messageId,
+        finalRow ? formatCompletionReply(finalRow, localProfile) : formatRunCompletedButUnreadableReply(localProfile)
+      );
     }
   }
 

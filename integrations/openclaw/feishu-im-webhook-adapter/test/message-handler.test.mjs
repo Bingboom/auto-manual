@@ -1029,3 +1029,118 @@ test("message handler allows publish confirmation without mention in group chats
 
   assert.equal(replies.length, 2);
 });
+
+test("single-record dispatch accepts immediately, then reports completion from the background poll", async () => {
+  const replies = [];
+  const executions = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+      batchStatusTimeoutSeconds: 1,
+      batchStatusPollSeconds: 1,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved",
+          action_name: "build_draft_package",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_eu_08",
+            queue_scope: "document-link",
+            document_id: "JE-1000F_EU_0.8",
+            workflow_action: "Build Draft Package",
+          },
+        };
+      },
+      async executeResolvedAction(payload) {
+        executions.push(payload);
+        return { accepted_at: "2026-05-29T11:46:00.000Z", run_id: "346", freshness_status: "writeback_pending" };
+      },
+      async queryRow({ recordId }) {
+        return {
+          rows: [
+            {
+              record_id: recordId,
+              workflow_action: "Build Draft Package",
+              result: "SUCCESS",
+              freshness_status: "fresh_success",
+              document_link: "https://example.com/eu08.docx",
+            },
+          ],
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("构建JE-1000F_EU_0.8文案"));
+  await result.backgroundTask();
+
+  // Dispatch fired exactly once and did NOT block on completion.
+  assert.equal(executions.length, 1);
+  assert.equal(executions[0].noWait, true);
+  // Two replies: 发起即受理(处理中) then 完成回查.
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /处理中/);
+  assert.match(replies[1].text, /已完成/);
+  assert.match(replies[1].text, /SUCCESS/);
+});
+
+test("single-record dispatch returns after the accept reply when status polling is disabled", async () => {
+  const replies = [];
+  const executions = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+      // no batchStatusTimeoutSeconds -> polling disabled -> accept reply only
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved",
+          action_name: "build_draft_package",
+          queue_scope: "document-link",
+          row: {
+            record_id: "rec_eu_08",
+            queue_scope: "document-link",
+            document_id: "JE-1000F_EU_0.8",
+            workflow_action: "Build Draft Package",
+          },
+        };
+      },
+      async executeResolvedAction(payload) {
+        executions.push(payload);
+        return { accepted_at: "2026-05-29T11:46:00.000Z", run_id: "346" };
+      },
+      async queryRow() {
+        throw new Error("queryRow must not be called when status polling is disabled");
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("构建JE-1000F_EU_0.8文案"));
+  await result.backgroundTask();
+
+  assert.equal(executions.length, 1);
+  assert.equal(executions[0].noWait, true);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /处理中/);
+});
