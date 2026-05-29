@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path, PurePosixPath
 
 from tools.diff_report_models import DiffRow
+from tools.utils.path_utils import PathSegments
 
 
 def sanitize_token(value: str) -> str:
@@ -99,14 +100,14 @@ def extract_bundle_fields(path_text: str) -> tuple[str, str, str, str, str, str]
     pure = PurePosixPath(path_text)
     parts = pure.parts
     try:
-        if "_build" in parts:
-            root_idx = parts.index("_build")
+        if PathSegments.BUILD in parts:
+            root_idx = parts.index(PathSegments.BUILD)
             model = parts[root_idx + 1]
             region = parts[root_idx + 2]
             artifact = parts[root_idx + 3]
             tail = parts[root_idx + 4 :]
-        elif "_review" in parts:
-            root_idx = parts.index("_review")
+        elif PathSegments.REVIEW in parts:
+            root_idx = parts.index(PathSegments.REVIEW)
             model = parts[root_idx + 1]
             region = parts[root_idx + 2]
             artifact = "review"
