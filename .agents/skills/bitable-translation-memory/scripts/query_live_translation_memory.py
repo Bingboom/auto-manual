@@ -24,8 +24,12 @@ from tools.translation_memory import (  # noqa: E402
     split_translation_units,
 )
 
-DEFAULT_WIKI_TOKEN = "JKVAwNWlbilFiXkFc99cmRMPnhd"
-DEFAULT_TABLE_ID = "tblnst8YURfRB1gY"
+# Live sentence-pair table lives in the dedicated "多维表CAT" base (wiki node
+# X3O8wCpXPifqGKkP2sYccyxznQb). The previous default (wiki JKVAwNWlbilFiXkFc99cmRMPnhd /
+# table tblnst8YURfRB1gY) pointed at the phase2 data base where that table no
+# longer exists, so the live lookup returned not_found.
+DEFAULT_WIKI_TOKEN = "X3O8wCpXPifqGKkP2sYccyxznQb"
+DEFAULT_TABLE_ID = "tbl6gKPJPTvOcTWv"
 DEFAULT_VIEW_ID = "veweqW2fQv"
 DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
