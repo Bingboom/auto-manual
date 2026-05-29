@@ -43,6 +43,8 @@ For current human workflows, read:
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
 - Review overrides must stay under `overrides/_assets/`, `overrides/_static/`, or `overrides/renderers/`.
 - Avoid hardcoded model defaults such as `JE-1000F` in CLI behavior, report paths, or release paths.
+- Build repo-relative paths through [`tools/utils/path_utils.py`](/Users/pika/Documents/GitHub/auto-manual/tools/utils/path_utils.py) — its `PathSegments` constants, `Paths` members, and `*_of(base)` helpers — instead of hardcoding segments such as `docs/_build`, `_review`, `reports/version_tracking`, or `renderers/latex`. When a site already holds a base (repo root, a worktree, a config-resolved `docs_dir`), pass that base to the `*_of(base)` helpers rather than re-anchoring at repo root.
+- Keep config-driven `docs_dir` / `layout_params_csv` / staging resolution in [`tools/build_paths.py`](/Users/pika/Documents/GitHub/auto-manual/tools/build_paths.py); it is a thin adapter that delegates path construction to `path_utils`. Do not add a parallel path-segment helper module.
 
 ## 4. Validation
 
