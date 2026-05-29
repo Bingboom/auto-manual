@@ -452,6 +452,86 @@ class TestQueueExecute(unittest.TestCase):
         payload = json.loads(output)
         self.assertTrue(payload["result_is_fresh"])
 
+    def test_select_queue_rows_returns_all_matching_including_untriggered(self) -> None:
+        rows = [
+            _draft_row("rec_a"),
+            queue_query.QueueQueryRow(**{**_draft_row("rec_b").__dict__, "build_trigger_requested": False}),
+        ]
+        _resolved, matched = queue_execute.select_queue_rows(
+            self._args(query_workflow_action="build-draft-package", allow_multiple=True),
+            rows,
+        )
+        # Batch selection keeps the non-triggered row too, so it can be reported
+        # as skipped rather than silently dropped.
+        self.assertEqual({"rec_a", "rec_b"}, {r.record_id for r in matched})
+
+    def test_dispatch_one_row_skips_untriggered_draft_without_calling_dispatch(self) -> None:
+        row = queue_query.QueueQueryRow(**{**_draft_row("rec_us").__dict__, "build_trigger_requested": False})
+        with mock.patch.object(queue_execute, "_run_control_layer_cli") as mock_cli:
+            result = queue_execute._dispatch_one_row(self._args(), row, repo_root=Path("."), accepted_at="t0")
+        mock_cli.assert_not_called()
+        self.assertEqual("skipped", result["status"])
+        self.assertFalse(result["dispatched"])
+        self.assertIn("是否触发文档构建", result["reason"])
+
+    def test_dispatch_one_row_dispatches_triggered_draft(self) -> None:
+        with mock.patch.object(
+            queue_execute,
+            "_run_control_layer_cli",
+            return_value={"run_id": "501", "run": "https://example.com/runs/501", "accepted_at": "t1"},
+        ) as mock_cli:
+            result = queue_execute._dispatch_one_row(self._args(), _draft_row("rec_cn"), repo_root=Path("."), accepted_at="t0")
+        mock_cli.assert_called_once()
+        self.assertEqual(("dispatch", "build-draft", "rec_cn"), mock_cli.call_args.args[1:])
+        self.assertEqual("dispatched", result["status"])
+        self.assertTrue(result["dispatched"])
+        self.assertEqual("501", result["run_id"])
+
+    def test_run_queue_execute_batch_dispatches_triggered_and_skips_others(self) -> None:
+        triggered = queue_query.QueueQueryRow(
+            **{**_draft_row("rec_cn").__dict__, "document_id": "JE-1000F_CN_1.3", "build_family": "cn-zh", "build_trigger_requested": True}
+        )
+        untriggered = queue_query.QueueQueryRow(
+            **{**_draft_row("rec_us").__dict__, "document_id": "JE-1000F_US_1.3", "build_family": "us-merged", "build_trigger_requested": False}
+        )
+        dispatch_calls = []
+
+        def fake_cli(repo_root, *cli_args):
+            dispatch_calls.append(cli_args)
+            if cli_args and cli_args[0] == "dispatch":
+                return {"run_id": "501", "run": "https://example.com/runs/501", "accepted_at": "2026-05-29T11:46:00+00:00"}
+            raise AssertionError(f"unexpected control-layer args: {cli_args}")
+
+        stdout = io.StringIO()
+        with mock.patch.object(queue_execute, "load_config", return_value={}), \
+            mock.patch.object(queue_execute, "collect_queue_query_rows", return_value=[triggered, untriggered]), \
+            mock.patch.object(queue_execute, "_run_control_layer_cli", side_effect=fake_cli), \
+            redirect_stdout(stdout):
+            queue_execute.run_queue_execute(
+                self._args(
+                    allow_multiple=True,
+                    json=True,
+                    queue_scope="document-link",
+                    query_workflow_action="build-draft-package",
+                ),
+                config_path=Path("config.us.yaml"),
+                repo_root=Path("."),
+            )
+
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(2, payload["matched_count"])
+        self.assertEqual(1, payload["dispatched_count"])
+        self.assertEqual(1, payload["skipped_count"])
+        self.assertEqual(0, payload["error_count"])
+        # Only the triggered row reaches a real dispatch.
+        self.assertEqual([("dispatch", "build-draft", "rec_cn")], dispatch_calls)
+        by_id = {r["record_id"]: r for r in payload["results"]}
+        self.assertEqual("dispatched", by_id["rec_cn"]["status"])
+        self.assertEqual("501", by_id["rec_cn"]["run_id"])
+        self.assertEqual("skipped", by_id["rec_us"]["status"])
+        self.assertFalse(by_id["rec_us"]["dispatched"])
+        self.assertIn("是否触发文档构建", by_id["rec_us"]["reason"])
+
 
 if __name__ == "__main__":
     unittest.main()
