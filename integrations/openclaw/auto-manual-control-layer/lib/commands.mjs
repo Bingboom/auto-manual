@@ -131,11 +131,40 @@ export function appendObservationNote(text, observationError) {
   ].join("\n");
 }
 
+const SUCCESS_CONCLUSIONS = new Set(["success", "neutral", "skipped"]);
+
+const STATE_HINTS = {
+  accepted: "Task accepted — the run id is not confirmed locally yet. The remote run is unaffected; check progress with `status last`.",
+  processing: "Task is still processing. Check back for the result with `status last`; no need to wait synchronously.",
+};
+
+// Collapse the GitHub run status/conclusion into one lifecycle token the chat
+// can relay verbatim: accepted (dispatched, run id not yet seen) -> processing
+// (queued/in_progress) -> completed | failed. This is the signal that lets
+// BlockClaw answer "任务正在处理中" for an in-flight run instead of treating an
+// unfinished build as a failure.
+export function deriveTaskState({ status, conclusion, runId } = {}) {
+  const normalizedStatus = String(status || "").trim().toLowerCase();
+  const normalizedConclusion = String(conclusion || "").trim().toLowerCase();
+  if (normalizedStatus === "completed") {
+    if (!normalizedConclusion) {
+      return "completed";
+    }
+    return SUCCESS_CONCLUSIONS.has(normalizedConclusion) ? "completed" : "failed";
+  }
+  return runId ? "processing" : "accepted";
+}
+
 export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl, status, conclusion, artifacts, metadata, acceptedAt }) {
+  const state = deriveTaskState({ status, conclusion, runId });
   const lines = [
     `${workflowName}`,
     `status: ${status || "pending"}`,
+    `state: ${state}`,
   ];
+  if (STATE_HINTS[state]) {
+    lines.push(`note: ${STATE_HINTS[state]}`);
+  }
   const failureSummary = metadata?.failure_summary && typeof metadata.failure_summary === "object" ? metadata.failure_summary : null;
   if (conclusion) {
     lines.push(`conclusion: ${conclusion}`);

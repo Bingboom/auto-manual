@@ -89,6 +89,33 @@ This is why a Base row showing `SUCCESS` is the source of truth even when the
 local command logged `fetch failed` or an interrupted wait: the remote action
 already ran.
 
+## Accept First, Report Later (Task Lifecycle)
+
+A build/review run takes minutes, so the control layer never blocks a chat turn
+waiting for it. The lifecycle is **accept → process → settle**, surfaced as one
+relayable token so the chat can answer "任务正在处理中" for an in-flight run
+instead of treating an unfinished build as a failure:
+
+- **accepted** — the dispatch fired; the run id is not confirmed locally yet.
+- **processing** — the run is `queued`/`in_progress` (任务正在处理中).
+- **completed** / **failed** — the run reached a terminal conclusion.
+
+`/manual-status` and the dispatch reply emit `state: <token>` plus a
+`note:` that points back to `status last` for the result, so no synchronous wait
+is needed. On the Feishu IM adapter a single-record build replies "已受理（处理中）"
+immediately and dispatches with `--no-wait`; it does **not** poll. The progress is
+delivered **on demand**: when the operator re-asks "这个好了没", the adapter reads
+the authoritative state at that moment and answers 处理中 / 已完成 / 失败 —
+
+- if the Base row already has a fresh writeback, that wins (a fresh result means
+  the deliverable is ready → `已完成`, or `失败` if it wrote back a failure);
+- otherwise it reads the live GitHub run once (the remembered `run_id`): still
+  running → `处理中`; the run failed before any writeback → `失败` (so a
+  GitHub-level failure is not hidden as perpetual processing); run finished but
+  the result has not landed yet → still `处理中`.
+
+This is a single read per question, not polling.
+
 The Feishu IM adapter can sit above this single-record bridge for config-scoped batch Draft asks. For example, `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案` resolves the matching triggered `Task_id` rows from the Base queue, then calls the same `build-draft <record_id>` dispatch path once per row. When no market is named, asks such as `构建JE-1000F说明书文案` use the broader `Task_id` prefix `JE-1000F_`, so every triggered Build Draft Package row for that model is eligible across markets. Versioned market-level asks such as `构建 JE-1000F_EU_1.0 的欧规说明书文案` add `Version=1.0` while still matching each configured language row. The GitHub draft workflow also scopes concurrency by `queue_record_id`, so different rows from the same batch are not cancelled as duplicate pending work.
 
 The repo-local `queue-execute` wrapper also treats a `Start Review` row that is already `InReview` with `Git_ref` as completed and returns it without a new dispatch. If an older caller still dispatches one explicit completed record, the GitHub worker exits successfully instead of reporting a false no-pending failure.

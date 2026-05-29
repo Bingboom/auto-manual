@@ -8,11 +8,14 @@ const PERSONA_FILE = "persona.local.md";
 
 const REPLY_PHRASE_KEYS = new Set([
   "acceptedPrefix",
+  "acceptedProcessingNote",
   "completionPrefix",
   "executionErrorPrefix",
+  "failedPrefix",
   "noPendingPublish",
   "pendingPublishInstruction",
   "pendingPublishPrefix",
+  "processingPrefix",
   "publishConfirmedPrefix",
   "publishCompletedButUnreadable",
   "resolutionCandidateHeader",

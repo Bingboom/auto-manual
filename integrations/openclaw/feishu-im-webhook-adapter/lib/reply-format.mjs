@@ -104,7 +104,40 @@ export function formatAcceptedReply(resolution, localProfile = null) {
     query_status: "Query Status",
   }[resolution.action_name] || resolution.action_name;
   const prefix = localReplyPhrase(localProfile, "acceptedPrefix", "已接受：");
-  return [`${prefix}${actionLabel}`, summarizeRow(row)].filter(Boolean).join("\n");
+  const processingNote = localReplyPhrase(
+    localProfile,
+    "acceptedProcessingNote",
+    "任务正在处理中，远端开始执行了。完成后我会再更新，你也可以随时问我「这个好了没」。"
+  );
+  return [`${prefix}${actionLabel}`, summarizeRow(row), processingNote].filter(Boolean).join("\n");
+}
+
+export function formatProcessingReply(row, localProfile = null) {
+  return [
+    localReplyPhrase(localProfile, "processingPrefix", "任务正在处理中，最新状态如下："),
+    summarizeRow(row),
+    "（远端仍在执行或等待写回；完成后再问我「这个好了没」即可拿到结果。）",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatFailedReply(row, runStatus = null, localProfile = null) {
+  const reason =
+    String(runStatus?.failure_message || "").trim() ||
+    String(runStatus?.failure_detail || "").trim() ||
+    String(runStatus?.conclusion || "").trim() ||
+    String(row?.result || "").trim();
+  const lines = [localReplyPhrase(localProfile, "failedPrefix", "任务失败，最新状态如下：")];
+  if (reason) {
+    lines.push(`原因: ${reason}`);
+  }
+  const nextStep = String(runStatus?.failure_next_step || "").trim();
+  if (nextStep) {
+    lines.push(`建议: ${nextStep}`);
+  }
+  lines.push(summarizeRow(row));
+  return lines.filter(Boolean).join("\n");
 }
 
 export function formatCompletionReply(row, localProfile = null) {
