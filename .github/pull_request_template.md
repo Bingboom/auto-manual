@@ -1,6 +1,12 @@
-# PR Title
-
-[Feature/Fix/Refactor] short summary
+<!--
+Title format: Conventional Commits with a repo scope, ≤72 chars.
+Examples:
+  feat(build): add manifest-based draft generation
+  fix(check): catch stale foreign model names
+  refactor(targets): split target resolution helpers
+  docs(branching): refresh worktree examples
+See AGENTS.md §8.3 and code-as-doc/dev/git_branching_guide.md §6.
+-->
 
 ---
 
