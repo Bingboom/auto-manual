@@ -13,7 +13,7 @@ from pathlib import Path
 import re
 
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
-from tools.utils.path_utils import review_dir_of
+from tools.utils.path_utils import Paths, review_dir_of
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -416,7 +416,7 @@ def _rewrite_review_rst_asset_paths(path: Path, *, review_dir: Path) -> Path:
         source_path=path,
         target_path=path,
         bundle_dir=review_dir,
-        docs_dir=ROOT / "docs",
+        docs_dir=Paths(root=ROOT).docs_dir,
         repo_root=ROOT,
     )
     if rewritten != text:

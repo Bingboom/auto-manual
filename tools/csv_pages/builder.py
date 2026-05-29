@@ -22,6 +22,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from tools.csv_pages.renderers import get_renderer
 
 from tools.utils.spec_master import resolve_product_name_from_spec_master
+from tools.utils.path_utils import Paths
 from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR
 
 
@@ -74,12 +75,13 @@ class BuildPaths:
     @classmethod
     def from_root(cls, root: Path) -> "BuildPaths":
         data_root = root / STRUCTURED_DATA_DEFAULT_DIR
+        paths = Paths(root=root)
         return cls(
             root=root,
             page_registry=data_root / "page_registry.csv",
             page_blocks_dir=data_root,
-            template_dir=root / "docs" / "templates",
-            output_dir=root / "docs" / "generated",
+            template_dir=paths.templates_dir,
+            output_dir=paths.docs_dir / "generated",
             spec_master_csv=data_root / "Spec_Master.csv",
             spec_footnotes_csv=data_root / "Spec_Footnotes.csv",
             spec_notes_csv=data_root / "Spec_Notes.csv",

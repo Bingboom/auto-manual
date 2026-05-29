@@ -255,7 +255,7 @@ def target_has_review_bundle(
     docs_dir: Path | None = None,
 ) -> bool:
     if review_availability is None:
-        actual_docs_dir = docs_dir or (ROOT / "docs")
+        actual_docs_dir = docs_dir or _PATHS.docs_dir
         review_availability = collect_review_availability(docs_dir=actual_docs_dir, targets=[target])
     return any(key in review_availability for key in _review_availability_keys_for_target(target))
 
@@ -372,7 +372,7 @@ def discover_workspace_targets(
 ) -> list[WorkspaceTarget]:
     actual_requested_target = requested_target or requested_workspace_target(args)
     target_candidates = collect_workspace_target_candidates(args, requested_target=actual_requested_target)
-    actual_docs_dir = docs_dir or (ROOT / "docs")
+    actual_docs_dir = docs_dir or _PATHS.docs_dir
     actual_review_availability = review_availability
     if actual_review_availability is None:
         actual_review_availability = collect_review_availability(

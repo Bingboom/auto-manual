@@ -22,6 +22,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools.build_docs import BuildTarget, build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.review_support import review_dir_for_target  # noqa: E402
+from tools.utils.path_utils import Paths  # noqa: E402
 
 
 @dataclass(frozen=True)
@@ -44,7 +45,7 @@ def resolve_docs_dir(cfg: dict) -> Path:
     if isinstance(raw, str) and raw.strip():
         path = Path(raw.strip())
         return path if path.is_absolute() else (ROOT / path)
-    return ROOT / "docs"
+    return Paths(root=ROOT).docs_dir
 
 def _repo_relative(path: Path) -> str:
     try:

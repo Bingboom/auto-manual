@@ -14,11 +14,12 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.process_docs.build_review_preview import assert_preview_output_contract, read_json_if_exists
+from tools.utils.path_utils import Paths
 
 
 VENV_DIR = ROOT / ".vercel-python"
 DIST_DIR = ROOT / "site" / "review-preview" / "dist"
-REVIEW_ROOT = ROOT / "docs" / "_review"
+REVIEW_ROOT = Paths(root=ROOT).review_dir
 DEFAULT_PREVIEW_CONFIGS = {
     "US": "config.us.yaml",
     "JP": "config.ja.yaml",

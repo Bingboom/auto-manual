@@ -29,6 +29,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+from tools.utils.path_utils import Paths  # noqa: E402
 from tools.config_pages import (
     CoverPdfPage,
     CsvPage,
@@ -113,7 +114,7 @@ def load_yaml(path: Path) -> dict:
 
 def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     issues: list[Issue] = []
-    docs_dir_value = ROOT / "docs"
+    docs_dir_value = Paths(root=ROOT).docs_dir
 
     def _validate_optional_path(
         value: Any,

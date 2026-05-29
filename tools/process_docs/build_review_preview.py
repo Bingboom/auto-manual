@@ -15,6 +15,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
+from tools.utils.path_utils import Paths
 from tools.process_docs.build_review_preview_data import (
     build_change_workbook,
     build_downloads_metadata,
@@ -325,14 +326,14 @@ def main() -> int:
     requested_target = requested_workspace_target(args)
     workspace_target_candidates = collect_workspace_target_candidates(args, requested_target=requested_target)
     review_availability = collect_review_availability(
-        docs_dir=ROOT / "docs",
+        docs_dir=Paths(root=ROOT).docs_dir,
         targets=workspace_target_candidates,
     )
     workspace_targets = discover_workspace_targets(
         args,
         requested_target=requested_target,
         review_availability=review_availability,
-        docs_dir=ROOT / "docs",
+        docs_dir=Paths(root=ROOT).docs_dir,
     )
 
     if not workspace_targets:
@@ -356,7 +357,7 @@ def main() -> int:
         workspace_targets,
         requested_target=requested_target,
         review_availability=review_availability,
-        docs_dir=ROOT / "docs",
+        docs_dir=Paths(root=ROOT).docs_dir,
     )
     export_workspace_targets(
         args,

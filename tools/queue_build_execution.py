@@ -158,8 +158,8 @@ def build_document_for_task(
         review_ref = git_ref.strip()
         review_workspace = build_workspace if review_ref == "main" else prepare_git_ref_worktree(review_ref)
         if not _replace_path(
-            review_dir_of(review_workspace / "docs"),
-            review_dir_of(build_workspace / "docs"),
+            review_dir_of(review_workspace / PathSegments.DOCS),
+            review_dir_of(build_workspace / PathSegments.DOCS),
         ):
             raise RuntimeError(
                 f"Git_ref {review_ref} does not contain docs/_review; queue builds must render review content from the review branch."
