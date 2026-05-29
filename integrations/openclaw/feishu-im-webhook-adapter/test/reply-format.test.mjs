@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { formatAcceptedReply, formatProcessingReply } from "../lib/reply-format.mjs";
+import { formatAcceptedReply, formatFailedReply, formatProcessingReply } from "../lib/reply-format.mjs";
 
 test("formatAcceptedReply tells the operator the task was accepted and is processing", () => {
   const text = formatAcceptedReply({
@@ -26,4 +26,15 @@ test("formatProcessingReply reports an in-flight task as 处理中, not done or 
   assert.match(text, /record_id: rec_eu_08/);
   assert.match(text, /这个好了没/);
   assert.doesNotMatch(text, /已完成/);
+});
+
+test("formatFailedReply reports failure with the run's reason and next step", () => {
+  const text = formatFailedReply(
+    { record_id: "rec_eu_08", document_id: "JE-1000F_EU_0.8" },
+    { conclusion: "failure", failure_message: "缺少 JE-1000F_CN 的规格数据", failure_next_step: "先补齐规格数据再重试" }
+  );
+  assert.match(text, /失败/);
+  assert.match(text, /缺少 JE-1000F_CN 的规格数据/);
+  assert.match(text, /先补齐规格数据再重试/);
+  assert.match(text, /record_id: rec_eu_08/);
 });

@@ -1030,81 +1030,17 @@ test("message handler allows publish confirmation without mention in group chats
   assert.equal(replies.length, 2);
 });
 
-test("single-record dispatch accepts immediately, then reports completion from the background poll", async () => {
+test("single-record dispatch accepts immediately without blocking or polling", async () => {
   const replies = [];
   const executions = [];
+  let queried = 0;
   const handler = createMessageHandler({
     config: {
       verificationToken: "verify_token",
       requireMention: true,
       publishConfirmTtlSeconds: 600,
       conversationContextTtlSeconds: 3600,
-      batchStatusTimeoutSeconds: 1,
-      batchStatusPollSeconds: 1,
-    },
-    stateStore: createMemoryStateStore(),
-    repoControl: {
-      async resolveAction() {
-        return {
-          resolution_status: "resolved",
-          action_name: "build_draft_package",
-          queue_scope: "document-link",
-          row: {
-            record_id: "rec_eu_08",
-            queue_scope: "document-link",
-            document_id: "JE-1000F_EU_0.8",
-            workflow_action: "Build Draft Package",
-          },
-        };
-      },
-      async executeResolvedAction(payload) {
-        executions.push(payload);
-        return { accepted_at: "2026-05-29T11:46:00.000Z", run_id: "346", freshness_status: "writeback_pending" };
-      },
-      async queryRow({ recordId }) {
-        return {
-          rows: [
-            {
-              record_id: recordId,
-              workflow_action: "Build Draft Package",
-              result: "SUCCESS",
-              freshness_status: "fresh_success",
-              document_link: "https://example.com/eu08.docx",
-            },
-          ],
-        };
-      },
-    },
-    feishuClient: {
-      async replyTextMessage(messageId, text) {
-        replies.push({ messageId, text });
-      },
-    },
-  });
-
-  const result = await handler.handleHttpRequest(basePayload("构建JE-1000F_EU_0.8文案"));
-  await result.backgroundTask();
-
-  // Dispatch fired exactly once and did NOT block on completion.
-  assert.equal(executions.length, 1);
-  assert.equal(executions[0].noWait, true);
-  // Two replies: 发起即受理(处理中) then 完成回查.
-  assert.equal(replies.length, 2);
-  assert.match(replies[0].text, /处理中/);
-  assert.match(replies[1].text, /已完成/);
-  assert.match(replies[1].text, /SUCCESS/);
-});
-
-test("single-record dispatch returns after the accept reply when status polling is disabled", async () => {
-  const replies = [];
-  const executions = [];
-  const handler = createMessageHandler({
-    config: {
-      verificationToken: "verify_token",
-      requireMention: true,
-      publishConfirmTtlSeconds: 600,
-      conversationContextTtlSeconds: 3600,
-      // no batchStatusTimeoutSeconds -> polling disabled -> accept reply only
+      batchStatusTimeoutSeconds: 5,
     },
     stateStore: createMemoryStateStore(),
     repoControl: {
@@ -1126,7 +1062,11 @@ test("single-record dispatch returns after the accept reply when status polling 
         return { accepted_at: "2026-05-29T11:46:00.000Z", run_id: "346" };
       },
       async queryRow() {
-        throw new Error("queryRow must not be called when status polling is disabled");
+        queried += 1;
+        return { rows: [] };
+      },
+      async runStatus() {
+        return {};
       },
     },
     feishuClient: {
@@ -1139,8 +1079,113 @@ test("single-record dispatch returns after the accept reply when status polling 
   const result = await handler.handleHttpRequest(basePayload("构建JE-1000F_EU_0.8文案"));
   await result.backgroundTask();
 
+  // Dispatch fired once with noWait; only the accept reply is sent (no poll).
   assert.equal(executions.length, 1);
   assert.equal(executions[0].noWait, true);
   assert.equal(replies.length, 1);
   assert.match(replies[0].text, /处理中/);
+  assert.equal(queried, 0);
+});
+
+function queryStatusHandler({ row, runStatus, onRunStatus = () => {} }) {
+  const replies = [];
+  const stateStore = {
+    ...createMemoryStateStore(),
+    async readConversationContext() {
+      return { row: { record_id: "rec_eu_08", run_id: "346" }, acceptedAt: "2026-05-29T11:46:00.000Z" };
+    },
+    async rememberConversationContext() {},
+    async clearConversationContext() {},
+    async clearExpiredConversationContexts() {},
+  };
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      conversationContextTtlSeconds: 3600,
+    },
+    stateStore,
+    repoControl: {
+      async resolveAction() {
+        return {
+          resolution_status: "resolved",
+          action_name: "query_status",
+          queue_scope: "document-link",
+          row: { record_id: "rec_eu_08", queue_scope: "document-link", document_id: "JE-1000F_EU_0.8" },
+        };
+      },
+      async queryRow() {
+        return { rows: [row] };
+      },
+      async runStatus(payload) {
+        onRunStatus(payload);
+        return runStatus;
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+  return { handler, replies };
+}
+
+test("query reports 处理中 when the Base row is not fresh and the run is still running", async () => {
+  let runStatusRunId = "";
+  const { handler, replies } = queryStatusHandler({
+    row: { record_id: "rec_eu_08", result: "", result_is_fresh: false, freshness_status: "writeback_pending" },
+    runStatus: { state: "processing", status: "in_progress", conclusion: "" },
+    onRunStatus: ({ runId }) => {
+      runStatusRunId = runId;
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(runStatusRunId, "346");
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /处理中/);
+  assert.doesNotMatch(replies[0].text, /已完成/);
+});
+
+test("query reports 已完成 from a fresh successful Base row without reading the run", async () => {
+  let runStatusCalls = 0;
+  const { handler, replies } = queryStatusHandler({
+    row: {
+      record_id: "rec_eu_08",
+      result: "SUCCESS",
+      result_is_fresh: true,
+      freshness_status: "fresh_success",
+      document_link: "https://example.com/eu08.docx",
+    },
+    runStatus: {},
+    onRunStatus: () => {
+      runStatusCalls += 1;
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(runStatusCalls, 0);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /已完成/);
+  assert.match(replies[0].text, /SUCCESS/);
+});
+
+test("query reports 失败 when the live run failed before any Base writeback", async () => {
+  const { handler, replies } = queryStatusHandler({
+    row: { record_id: "rec_eu_08", result: "", result_is_fresh: false, freshness_status: "writeback_pending" },
+    runStatus: { state: "failed", status: "completed", conclusion: "failure", failure_message: "缺少 JE-1000F_CN 的规格数据" },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  await result.backgroundTask();
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /失败/);
+  assert.match(replies[0].text, /缺少 JE-1000F_CN 的规格数据/);
 });

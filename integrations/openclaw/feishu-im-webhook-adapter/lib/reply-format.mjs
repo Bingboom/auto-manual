@@ -122,6 +122,24 @@ export function formatProcessingReply(row, localProfile = null) {
     .join("\n");
 }
 
+export function formatFailedReply(row, runStatus = null, localProfile = null) {
+  const reason =
+    String(runStatus?.failure_message || "").trim() ||
+    String(runStatus?.failure_detail || "").trim() ||
+    String(runStatus?.conclusion || "").trim() ||
+    String(row?.result || "").trim();
+  const lines = [localReplyPhrase(localProfile, "failedPrefix", "任务失败，最新状态如下：")];
+  if (reason) {
+    lines.push(`原因: ${reason}`);
+  }
+  const nextStep = String(runStatus?.failure_next_step || "").trim();
+  if (nextStep) {
+    lines.push(`建议: ${nextStep}`);
+  }
+  lines.push(summarizeRow(row));
+  return lines.filter(Boolean).join("\n");
+}
+
 export function formatCompletionReply(row, localProfile = null) {
   return [localReplyPhrase(localProfile, "completionPrefix", "已完成，最新状态如下："), summarizeRow(row)].filter(Boolean).join("\n");
 }

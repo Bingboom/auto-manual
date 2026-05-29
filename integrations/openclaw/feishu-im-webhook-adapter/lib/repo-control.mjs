@@ -3,6 +3,27 @@ import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
+const CONTROL_LAYER_CLI = "integrations/openclaw/auto-manual-control-layer/cli.mjs";
+
+// The control-layer `status` command prints `key: value` lines (workflow name,
+// `status`, `state`, `conclusion`, `run`, failure_* ...). Parse them into an
+// object so the adapter can read the live GitHub run state on demand.
+function parseControlLayerStatus(stdout) {
+  const result = { raw: String(stdout || "").trim() };
+  for (const rawLine of result.raw.split("\n")) {
+    const line = rawLine.trim();
+    const separator = line.indexOf(":");
+    if (separator <= 0) {
+      continue;
+    }
+    const key = line.slice(0, separator).trim().toLowerCase().replace(/\s+/g, "_");
+    if (!(key in result)) {
+      result[key] = line.slice(separator + 1).trim();
+    }
+  }
+  return result;
+}
+
 function workflowActionArg(actionName) {
   if (actionName === "start_review") {
     return "start-review";
@@ -79,6 +100,15 @@ export function createRepoControl(config) {
         args.push("--no-wait");
       }
       return runBuildJson(config, args);
+    },
+    async runStatus({ runId = "" } = {}) {
+      const target = String(runId || "").trim() || "last";
+      const { stdout } = await execFileAsync(config.nodeBin || "node", [CONTROL_LAYER_CLI, "status", target], {
+        cwd: config.repoRoot,
+        env: process.env,
+        maxBuffer: 1024 * 1024 * 8,
+      });
+      return parseControlLayerStatus(stdout);
     },
   };
 }

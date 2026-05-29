@@ -15,6 +15,7 @@ import {
   formatBatchStatusReply,
   formatCompletionReply,
   formatExecutionErrorReply,
+  formatFailedReply,
   formatNoPendingPublishReply,
   formatPendingPublishReply,
   formatProcessingReply,
@@ -22,8 +23,8 @@ import {
   formatPublishConfirmationAcceptedReply,
   formatRecordNoLongerAvailableReply,
   formatResolutionReply,
-  formatRunCompletedButUnreadableReply,
 } from "./reply-format.mjs";
+import { classifyTaskState, rowLooksFreshFailure, rowLooksFreshSuccess } from "./status-classify.mjs";
 import { normalizeIncomingMessage } from "./message-normalizer.mjs";
 import { sendStageReaction } from "./reaction-policy.mjs";
 
@@ -134,6 +135,43 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       await sleep(pollMs);
     }
     return { ...latest, timedOut: true, skipped: false };
+  }
+
+  // Answer a status query accurately at ask time: trust a fresh Base writeback
+  // first, otherwise read the live GitHub run (no polling) to tell processing
+  // from failed. runIdHint comes from the dispatch we remembered for this row.
+  async function resolveAccurateRowState(row, { runIdHint = "" } = {}) {
+    if (rowLooksFreshSuccess(row)) {
+      return { state: "completed", runStatus: null };
+    }
+    if (rowLooksFreshFailure(row)) {
+      return { state: "failed", runStatus: null };
+    }
+    const runId = String(runIdHint || row?.run_id || "").trim();
+    let runStatus = null;
+    if (runId && typeof repoControl.runStatus === "function") {
+      try {
+        runStatus = await repoControl.runStatus({ runId });
+      } catch (error) {
+        // A run-read blip must not break the query; fall back to the row state.
+        logger.error?.("runStatus read failed", error);
+        runStatus = null;
+      }
+    }
+    return { state: classifyTaskState({ row, runStatus }), runStatus };
+  }
+
+  async function replyForRowState(messageEvent, { state, row, runStatus }) {
+    await react(messageEvent.messageId, state === "failed" ? "error" : "completed");
+    if (state === "completed") {
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(row, localProfile));
+      return;
+    }
+    if (state === "failed") {
+      await feishuClient.replyTextMessage(messageEvent.messageId, formatFailedReply(row, runStatus, localProfile));
+      return;
+    }
+    await feishuClient.replyTextMessage(messageEvent.messageId, formatProcessingReply(row, localProfile));
   }
 
   async function processMessageEvent(messageEvent) {
@@ -295,6 +333,9 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
 
     if (resolution.action_name === "query_status") {
       let row = resolution.row || {};
+      // The dispatched run id lives in the remembered context, not in the
+      // freshly re-read Base row, so capture it before `row` is reassigned.
+      const runIdHint = conversationContext?.row?.run_id || row.run_id || "";
       if (conversationContext?.acceptedAt && row?.record_id) {
         const latest = await repoControl.queryRow({
           queueScope: row.queue_scope || resolution.queue_scope,
@@ -310,15 +351,15 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         }
         row = latestRow;
       }
+      const { state, runStatus } = await resolveAccurateRowState(row, { runIdHint });
       await rememberConversationContext(messageEvent, {
-        row,
+        row: { ...row, run_id: row.run_id || runIdHint || "" },
         queryText: normalizedMessage.normalizedText,
         actionName: resolution.action_name,
         acceptedAt: conversationContext?.acceptedAt || "",
         requestId: conversationContext?.requestId || "",
       });
-      await react(messageEvent.messageId, "completed");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(row || {}, localProfile));
+      await replyForRowState(messageEvent, { state, row, runStatus });
       return;
     }
 
@@ -394,10 +435,10 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       return;
     }
 
-    // Accept-and-poll, never block the chat turn on completion. The dispatch is
-    // fired with noWait so the local command returns immediately (发起即受理);
-    // a background poll then reports the result when it lands (完成回查/回调),
-    // and an unfinished run is reported as "任务正在处理中", not a failure.
+    // Accept first, report later — never block the chat turn on completion.
+    // The dispatch fires with noWait so the local command returns immediately
+    // (发起即受理), and the run id is remembered so a later "这个好了没" can read
+    // the live run state and answer 处理中 / 已完成 / 失败 accurately. No polling.
     const acceptedAt0 = nowIso();
     await rememberConversationContext(messageEvent, {
       row: resolution.row,
@@ -425,43 +466,18 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     }
 
     const acceptedAt = executionResult?.accepted_at || acceptedAt0;
-    const seedRow = {
-      ...resolution.row,
-      ...executionResult,
-      queue_scope: resolution.queue_scope,
-      record_id: resolution.row.record_id,
-      accepted_at: acceptedAt,
-    };
     await rememberConversationContext(messageEvent, {
-      row: seedRow,
+      row: {
+        ...resolution.row,
+        ...executionResult,
+        queue_scope: resolution.queue_scope,
+        record_id: resolution.row.record_id,
+        accepted_at: acceptedAt,
+      },
       queryText: normalizedMessage.normalizedText,
       actionName: resolution.action_name,
       acceptedAt,
     });
-
-    // The accepted reply already told the operator it is processing. If polling
-    // is disabled we stop here and let them re-ask "这个好了没" for the result.
-    const settled = await pollBatchRows({ rows: [seedRow], freshSince: acceptedAt });
-    if (settled.skipped) {
-      return;
-    }
-
-    const finalRow = (Array.isArray(settled.rows) && settled.rows[0]) || seedRow;
-    await rememberConversationContext(messageEvent, {
-      row: finalRow,
-      queryText: normalizedMessage.normalizedText,
-      actionName: resolution.action_name,
-      acceptedAt,
-    });
-    if (settled.timedOut || isRowStillProcessing(finalRow)) {
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatProcessingReply(finalRow, localProfile));
-    } else {
-      await react(messageEvent.messageId, "completed");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
-        finalRow ? formatCompletionReply(finalRow, localProfile) : formatRunCompletedButUnreadableReply(localProfile)
-      );
-    }
   }
 
   async function handleEventPayload(payload, { skipVerification = false } = {}) {

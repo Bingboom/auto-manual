@@ -11,6 +11,7 @@ const REPLY_PHRASE_KEYS = new Set([
   "acceptedProcessingNote",
   "completionPrefix",
   "executionErrorPrefix",
+  "failedPrefix",
   "noPendingPublish",
   "pendingPublishInstruction",
   "pendingPublishPrefix",
