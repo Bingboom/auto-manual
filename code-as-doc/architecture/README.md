@@ -1,6 +1,6 @@
 # Architecture Documentation Map
 
-Updated: 2026-05-11
+Updated: 2026-05-29
 
 Use this directory for architecture and integration boundaries.
 Not every file here is equally current.
@@ -13,6 +13,8 @@ Not every file here is equally current.
   - current repository component map and ownership split
 - [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)
   - active OpenClaw control-layer architecture and current repo status
+- [`Financial_Services_Reference_Design.md`](Financial_Services_Reference_Design.md)
+  - lessons drawn from the `Bingboom/financial-services` reference repo, mapped to the planned `doc-builder`, `corpus-qa`, and `bridge-cdh` agents
 - [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md)
   - active DingTalk artifact-sink plan while Feishu remains the source and queue system
 - [`Content_Data_Model.md`](Content_Data_Model.md)
