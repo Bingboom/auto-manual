@@ -1,4 +1,5 @@
 import {
+  appendObservationNote,
   ensureDispatchArgs,
   ensureStatusArg,
   renderMissingConfig,
@@ -60,7 +61,7 @@ async function manualStatus(ctx, api) {
 
   const github = createGitHubClient(settings);
   const stateStore = createStateStore(settings.stateFile);
-  const { tracked, run, metadata, artifacts } = await resolveTrackedRun({
+  const { tracked, run, metadata, artifacts, observationError } = await resolveTrackedRun({
     github,
     stateStore,
     settings,
@@ -71,32 +72,38 @@ async function manualStatus(ctx, api) {
   }
   if (!run) {
     return {
-      text: renderStatusResult({
-        workflowName: tracked?.workflowName || "Tracked workflow",
-        queueRecordId: tracked?.queueRecordId || "",
-        runId: requestedRunId || tracked?.runId || "",
-        runUrl: tracked?.runUrl || "",
-        status: "pending",
-        conclusion: "",
-        artifacts: [],
-        metadata: metadata || {},
-        acceptedAt: tracked?.dispatchedAt || "",
-      }),
+      text: appendObservationNote(
+        renderStatusResult({
+          workflowName: tracked?.workflowName || "Tracked workflow",
+          queueRecordId: tracked?.queueRecordId || "",
+          runId: requestedRunId || tracked?.runId || "",
+          runUrl: tracked?.runUrl || "",
+          status: "pending",
+          conclusion: "",
+          artifacts: [],
+          metadata: metadata || {},
+          acceptedAt: tracked?.dispatchedAt || "",
+        }),
+        observationError
+      ),
     };
   }
 
   return {
-    text: renderStatusResult({
-      workflowName: tracked?.workflowName || run.name || "GitHub workflow",
-      queueRecordId: metadata?.queue_record_id || tracked?.queueRecordId || "",
-      runId: String(run.id),
-      runUrl: run.html_url,
-      status: run.status,
-      conclusion: run.conclusion || "",
-      artifacts,
-      metadata: metadata || {},
-      acceptedAt: tracked?.dispatchedAt || "",
-    }),
+    text: appendObservationNote(
+      renderStatusResult({
+        workflowName: tracked?.workflowName || run.name || "GitHub workflow",
+        queueRecordId: metadata?.queue_record_id || tracked?.queueRecordId || "",
+        runId: String(run.id),
+        runUrl: run.html_url,
+        status: run.status,
+        conclusion: run.conclusion || "",
+        artifacts,
+        metadata: metadata || {},
+        acceptedAt: tracked?.dispatchedAt || "",
+      }),
+      observationError
+    ),
   };
 }
 

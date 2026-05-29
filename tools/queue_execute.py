@@ -181,6 +181,21 @@ def has_structured_failure(status_payload: dict[str, str]) -> bool:
     return bool(str(status_payload.get("failure_message", "")).strip())
 
 
+def is_terminal_failure(status_payload: dict[str, str]) -> bool:
+    """Distinguish a real failure from "not confirmed yet".
+
+    A failure means GitHub reached a terminal state that is not success, or the
+    worker reported a structured failure. A still-running, unknown, or
+    observation-gap status (e.g. the status read timed out or the wait deadline
+    elapsed before a terminal state) is NOT a failure: it means the local poller
+    could not confirm the result, so the verdict defers to the authoritative
+    Base row instead of declaring the dispatch failed.
+    """
+    if has_structured_failure(status_payload):
+        return True
+    return is_terminal_status(status_payload) and not is_successful_status(status_payload)
+
+
 def build_queue_execute_failure_message(
     *,
     row: QueueQueryRow,
@@ -345,25 +360,32 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
         deadline = time.monotonic() + max(int(getattr(args, "wait_timeout_seconds", 420) or 420), 1)
         status_target = str(dispatch_payload.get("run_id", "") or "last")
         while True:
-            status_payload = _run_control_layer_cli(repo_root, "status", status_target)
-            final_status_payload = status_payload
-            resolved_run_id = str(status_payload.get("run_id", "")).strip()
-            if resolved_run_id:
-                status_target = resolved_run_id
-            if is_terminal_status(status_payload):
-                break
+            try:
+                status_payload = _run_control_layer_cli(repo_root, "status", status_target)
+                final_status_payload = status_payload
+                resolved_run_id = str(status_payload.get("run_id", "")).strip()
+                if resolved_run_id:
+                    status_target = resolved_run_id
+                if is_terminal_status(status_payload):
+                    break
+            except RuntimeError:
+                # A status read failure is a local observation gap, not a workflow
+                # failure. The dispatch is already running on GitHub, so keep
+                # waiting until the deadline and then reconcile against the
+                # authoritative Base row instead of failing the whole command.
+                pass
             if time.monotonic() >= deadline:
-                run_url = status_payload.get("run", "") or dispatch_payload.get("run", "")
-                raise RuntimeError(
-                    "queue-execute timed out before the GitHub workflow reached a terminal state."
-                    + (f" run={run_url}" if run_url else "")
-                )
+                # Deadline reached without a terminal state. This is "not
+                # confirmed yet", not "failed": fall through to the Base-row
+                # reconciliation below, which decides success/pending/failure
+                # from the authoritative writeback.
+                break
             time.sleep(max(float(getattr(args, "status_poll_seconds", 3.0) or 3.0), 0.5))
 
     refreshed_row = _refresh_queue_row(cfg, row, fresh_since=accepted_at)
     if (
         getattr(args, "wait_for_completion", True)
-        and (has_structured_failure(final_status_payload) or not is_successful_status(final_status_payload))
+        and is_terminal_failure(final_status_payload)
         and refreshed_row.result_is_fresh is not True
     ):
         raise RuntimeError(

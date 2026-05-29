@@ -4,6 +4,13 @@ import {
   renderDispatchResult,
   renderDuplicateRun,
 } from "./commands.mjs";
+import { isTransientError } from "./transient.mjs";
+
+const DISPATCH_UNCONFIRMED_NOTE =
+  "Dispatch accepted. The workflow has been triggered on GitHub, but the run id " +
+  "could not be confirmed locally yet (GitHub was slow or briefly unreachable). " +
+  "This is a local read gap, not a failure — check progress with `status last`; " +
+  "the remote run is unaffected.";
 
 function pluginRecordFromRun(command, queueRecordId, nonce, dispatchedAt, run) {
   return {
@@ -68,13 +75,24 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
   };
   await stateStore.saveRecord(pendingRecord);
 
-  const run = await github.findDispatchedRun({
-    workflowFile: command.workflowFile,
-    queueRecordId,
-    dispatchNonce: nonce,
-    branch: settings.defaultBranch,
-    dispatchedAfter: dispatchedAt,
-  });
+  // The dispatch POST above already succeeded, so the action is committed.
+  // Everything from here on is best-effort observation: discovering the run id
+  // is convenience, not confirmation. A failure or timeout while looking it up
+  // must never be reported as a dispatch failure — at worst we say "accepted,
+  // run id not confirmed yet". The pending record (with the nonce) lets a later
+  // `status` reconcile the run id.
+  let run = null;
+  try {
+    run = await github.findDispatchedRun({
+      workflowFile: command.workflowFile,
+      queueRecordId,
+      dispatchNonce: nonce,
+      branch: settings.defaultBranch,
+      dispatchedAfter: dispatchedAt,
+    });
+  } catch {
+    run = null;
+  }
 
   if (!run) {
     return {
@@ -83,7 +101,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
         queueRecordId,
         runUrl: "",
         acceptedAt: dispatchedAt,
-        note: "Dispatch accepted. GitHub has not exposed the new run yet. Retry with `status last` after a few seconds.",
+        note: DISPATCH_UNCONFIRMED_NOTE,
       }),
     };
   }
@@ -105,40 +123,70 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
 export async function resolveTrackedRun({ github, stateStore, settings, requestedRunId }) {
   const tracked = requestedRunId ? await stateStore.getRecordByRunId(String(requestedRunId)) : await stateStore.getLastRecord();
   if (!tracked) {
-    return { tracked: null, run: null, metadata: null, artifacts: [] };
+    return { tracked: null, run: null, metadata: null, artifacts: [], observationError: null };
   }
 
   let runId = requestedRunId ? String(requestedRunId) : tracked.runId;
   if (!runId && tracked.openclawDispatchNonce && tracked.workflowFile) {
-    const run = await github.findDispatchedRun({
-      workflowFile: tracked.workflowFile,
-      queueRecordId: tracked.queueRecordId,
-      dispatchNonce: tracked.openclawDispatchNonce,
-      branch: settings.defaultBranch,
-      dispatchedAfter: tracked.dispatchedAt,
-    });
-    if (run) {
-      runId = String(run.id);
-      await stateStore.saveRecord({
-        ...tracked,
-        runId,
-        runUrl: run.html_url,
+    try {
+      const run = await github.findDispatchedRun({
+        workflowFile: tracked.workflowFile,
+        queueRecordId: tracked.queueRecordId,
+        dispatchNonce: tracked.openclawDispatchNonce,
+        branch: settings.defaultBranch,
+        dispatchedAfter: tracked.dispatchedAt,
       });
+      if (run) {
+        runId = String(run.id);
+        await stateStore.saveRecord({
+          ...tracked,
+          runId,
+          runUrl: run.html_url,
+        });
+      }
+    } catch (error) {
+      // Status is a read, not an action. A transient gap means "can't confirm
+      // right now", not "failed" — surface the last known state instead.
+      if (!isTransientError(error)) {
+        throw error;
+      }
+      return { tracked, run: null, metadata: null, artifacts: [], observationError: error.message };
     }
   }
 
   if (!runId) {
-    return { tracked, run: null, metadata: null, artifacts: [] };
+    return { tracked, run: null, metadata: null, artifacts: [], observationError: null };
   }
 
-  const run = await github.getRun(runId);
-  const artifacts = await github.listArtifacts(runId);
-  const metadata = await github.readMetadataArtifact(artifacts);
+  let run = null;
+  try {
+    run = await github.getRun(runId);
+  } catch (error) {
+    if (!isTransientError(error)) {
+      throw error;
+    }
+    return { tracked, run: null, metadata: null, artifacts: [], observationError: error.message };
+  }
+
+  let artifacts = [];
+  let metadata = null;
+  let observationError = null;
+  try {
+    artifacts = await github.listArtifacts(runId);
+    metadata = await github.readMetadataArtifact(artifacts);
+  } catch (error) {
+    if (!isTransientError(error)) {
+      throw error;
+    }
+    // The run itself was read; only the artifact/metadata enrichment was missed.
+    observationError = error.message;
+  }
+
   await stateStore.saveRecord({
     ...tracked,
     runId,
-    runUrl: run.html_url,
+    runUrl: run?.html_url || tracked.runUrl,
     queueRecordId: metadata?.queue_record_id || tracked.queueRecordId,
   });
-  return { tracked, run, metadata, artifacts };
+  return { tracked, run, metadata, artifacts, observationError };
 }

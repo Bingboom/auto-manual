@@ -117,6 +117,20 @@ export function renderNoTrackedRun() {
   return "No tracked OpenClaw-dispatched run was found yet. Trigger one command first or pass an explicit run id.";
 }
 
+// A status read that hit a transient gap (GitHub slow/unreachable) returns the
+// last known state plus this marker, so BlockClaw reports "could not confirm",
+// never "failed". The remote run keeps going regardless.
+export function appendObservationNote(text, observationError) {
+  if (!observationError) {
+    return text;
+  }
+  return [
+    text,
+    `observation_error: ${String(observationError).replace(/\s+/g, " ").trim()}`,
+    "GitHub was briefly unreachable, so this is a local read gap, not a workflow failure. The remote run is unaffected — retry `status last` shortly.",
+  ].join("\n");
+}
+
 export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl, status, conclusion, artifacts, metadata, acceptedAt }) {
   const lines = [
     `${workflowName}`,
