@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { dispatchCommandFlow } from "../lib/dispatch-flow.mjs";
+import { dispatchCommandFlow, resolveTrackedRun } from "../lib/dispatch-flow.mjs";
 
 const sharedDraftCommand = {
   commandName: "build-draft",
@@ -175,4 +175,160 @@ test("record-scoped commands still dedupe on the same record id", async () => {
   assert.equal(dispatchCount, 0);
   assert.match(result.text, /record_id: rec_publish/);
   assert.match(result.text, /run_id: 888/);
+});
+
+test("dispatch reports accepted (not failure) when post-dispatch discovery throws", async () => {
+  const dispatchCalls = [];
+  const savedRecords = [];
+  const github = {
+    async findActiveRunForRecord() {
+      return null;
+    },
+    async dispatchWorkflow(payload) {
+      dispatchCalls.push(payload);
+    },
+    async findDispatchedRun() {
+      const error = new TypeError("fetch failed");
+      error.cause = { code: "ECONNRESET" };
+      throw error;
+    },
+  };
+  const stateStore = {
+    async saveRecord(record) {
+      savedRecords.push(record);
+      return record;
+    },
+  };
+
+  const result = await dispatchCommandFlow({
+    command: sharedDraftCommand,
+    queueRecordId: "rec_en",
+    github,
+    stateStore,
+    settings,
+  });
+
+  // The dispatch POST succeeded, so a failed run-id lookup must not be reported
+  // as a failure: the workflow is still triggered exactly once.
+  assert.equal(dispatchCalls.length, 1);
+  assert.match(result.text, /Dispatch accepted/);
+  assert.doesNotMatch(result.text, /run_id:/);
+  // The pending record (with the nonce) is persisted so a later status reconciles.
+  assert.equal(savedRecords.length, 1);
+  assert.equal(savedRecords[0].queueRecordId, "rec_en");
+  assert.equal(savedRecords[0].runId, undefined);
+});
+
+test("dispatch reports accepted-pending when the run is not exposed yet", async () => {
+  const github = {
+    async findActiveRunForRecord() {
+      return null;
+    },
+    async dispatchWorkflow() {},
+    async findDispatchedRun() {
+      return null;
+    },
+  };
+  const stateStore = {
+    async saveRecord(record) {
+      return record;
+    },
+  };
+
+  const result = await dispatchCommandFlow({
+    command: sharedStartReviewCommand,
+    queueRecordId: "rec_jp",
+    github,
+    stateStore,
+    settings,
+  });
+
+  assert.match(result.text, /Dispatch accepted/);
+  assert.doesNotMatch(result.text, /run_id:/);
+});
+
+test("resolveTrackedRun degrades to last-known state on a transient getRun error", async () => {
+  const tracked = {
+    workflowName: "Feishu Draft Build Queue",
+    workflowFile: "feishu-draft-build-queue.yml",
+    queueRecordId: "rec_en",
+    runId: "321",
+    runUrl: "https://example.com/runs/321",
+    dispatchedAt: "2026-05-29T10:00:00.000Z",
+  };
+  const github = {
+    async getRun() {
+      const error = new TypeError("fetch failed");
+      error.cause = { code: "ETIMEDOUT" };
+      throw error;
+    },
+  };
+  const stateStore = {
+    async getLastRecord() {
+      return tracked;
+    },
+  };
+
+  const resolved = await resolveTrackedRun({ github, stateStore, settings, requestedRunId: null });
+  assert.equal(resolved.run, null);
+  assert.equal(resolved.tracked.runId, "321");
+  assert.match(resolved.observationError, /fetch failed/);
+});
+
+test("resolveTrackedRun rethrows a definitive (non-transient) getRun error", async () => {
+  const tracked = { runId: "321", queueRecordId: "rec_en" };
+  const github = {
+    async getRun() {
+      const error = new Error("GitHub API 404: not found");
+      error.httpStatus = 404;
+      throw error;
+    },
+  };
+  const stateStore = {
+    async getLastRecord() {
+      return tracked;
+    },
+  };
+
+  await assert.rejects(
+    resolveTrackedRun({ github, stateStore, settings, requestedRunId: null }),
+    /GitHub API 404/
+  );
+});
+
+test("resolveTrackedRun keeps the run but flags observationError when the artifacts read transiently fails", async () => {
+  const tracked = { runId: "321", queueRecordId: "rec_en", runUrl: "" };
+  const savedRecords = [];
+  const github = {
+    async getRun() {
+      return {
+        id: 321,
+        html_url: "https://example.com/runs/321",
+        status: "completed",
+        conclusion: "success",
+      };
+    },
+    async listArtifacts() {
+      throw new Error("GitHub API 502: bad gateway");
+    },
+    async readMetadataArtifact() {
+      return null;
+    },
+  };
+  const stateStore = {
+    async getLastRecord() {
+      return tracked;
+    },
+    async saveRecord(record) {
+      savedRecords.push(record);
+      return record;
+    },
+  };
+
+  const resolved = await resolveTrackedRun({ github, stateStore, settings, requestedRunId: null });
+  assert.equal(resolved.run.id, 321);
+  assert.equal(resolved.run.conclusion, "success");
+  assert.deepEqual(resolved.artifacts, []);
+  assert.match(resolved.observationError, /502/);
+  assert.equal(savedRecords.length, 1);
 });

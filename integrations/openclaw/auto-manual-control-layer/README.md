@@ -66,6 +66,29 @@ has completed but Feishu still shows a pre-dispatch `FAILED` or `SUCCESS`, the
 reply should surface `stale_result` or `writeback_pending` instead of treating
 the old value as the current run result.
 
+## Observation Failures Are Not Action Failures
+
+A dispatch is committed the moment GitHub accepts the `workflow_dispatch` POST.
+Everything after that — discovering the run id, polling `status`, reading the
+metadata artifact — is best-effort *observation*. A transient blip (`fetch
+failed`, a 5xx, a slow GitHub edge, an interrupted local wait, or a wait-deadline
+timeout) must never be reported as a dispatch failure:
+
+- Dispatch downgrades an unconfirmed run id to `Dispatch accepted` with a
+  "run id not confirmed yet" note; it never throws once the POST has succeeded.
+- Idempotent GitHub reads retry through transient errors; the non-idempotent
+  dispatch POST is never retried, so a workflow can never be double-triggered.
+- `/manual-status` returns the last known run state plus an `observation_error`
+  line instead of erroring out.
+- `queue-execute` treats a `status` read error or a wait timeout as "not
+  confirmed yet" and reconciles against the authoritative Feishu/Base writeback
+  (`freshness_status`). It reports a failure only when GitHub reaches a genuine
+  terminal failure **and** the row is still not fresh.
+
+This is why a Base row showing `SUCCESS` is the source of truth even when the
+local command logged `fetch failed` or an interrupted wait: the remote action
+already ran.
+
 The Feishu IM adapter can sit above this single-record bridge for config-scoped batch Draft asks. For example, `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案` resolves the matching triggered `Task_id` rows from the Base queue, then calls the same `build-draft <record_id>` dispatch path once per row. When no market is named, asks such as `构建JE-1000F说明书文案` use the broader `Task_id` prefix `JE-1000F_`, so every triggered Build Draft Package row for that model is eligible across markets. Versioned market-level asks such as `构建 JE-1000F_EU_1.0 的欧规说明书文案` add `Version=1.0` while still matching each configured language row. The GitHub draft workflow also scopes concurrency by `queue_record_id`, so different rows from the same batch are not cancelled as duplicate pending work.
 
 The repo-local `queue-execute` wrapper also treats a `Start Review` row that is already `InReview` with `Git_ref` as completed and returns it without a new dispatch. If an older caller still dispatches one explicit completed record, the GitHub worker exits successfully instead of reporting a false no-pending failure.

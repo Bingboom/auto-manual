@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
+  appendObservationNote,
   ensureDispatchArgs,
   ensureStatusArg,
   renderMissingConfig,
@@ -79,7 +80,7 @@ async function status(rawArg) {
   const requestedRunId = ensureStatusArg(rawArg);
   const github = createGitHubClient(settings);
   const stateStore = createStateStore(settings.stateFile);
-  const { tracked, run, metadata, artifacts } = await resolveTrackedRun({
+  const { tracked, run, metadata, artifacts, observationError } = await resolveTrackedRun({
     github,
     stateStore,
     settings,
@@ -91,33 +92,39 @@ async function status(rawArg) {
   }
   if (!run) {
     console.log(
-      renderStatusResult({
-        workflowName: tracked?.workflowName || "Tracked workflow",
-        queueRecordId: tracked?.queueRecordId || "",
-        runId: requestedRunId || tracked?.runId || "",
-        runUrl: tracked?.runUrl || "",
-        status: "pending",
-        conclusion: "",
-        artifacts: [],
-        metadata: metadata || {},
-        acceptedAt: tracked?.dispatchedAt || "",
-      })
+      appendObservationNote(
+        renderStatusResult({
+          workflowName: tracked?.workflowName || "Tracked workflow",
+          queueRecordId: tracked?.queueRecordId || "",
+          runId: requestedRunId || tracked?.runId || "",
+          runUrl: tracked?.runUrl || "",
+          status: "pending",
+          conclusion: "",
+          artifacts: [],
+          metadata: metadata || {},
+          acceptedAt: tracked?.dispatchedAt || "",
+        }),
+        observationError
+      )
     );
     return;
   }
 
   console.log(
-    renderStatusResult({
-      workflowName: tracked?.workflowName || run.name || "GitHub workflow",
-      queueRecordId: metadata?.queue_record_id || tracked?.queueRecordId || "",
-      runId: String(run.id),
-      runUrl: run.html_url,
-      status: run.status,
-      conclusion: run.conclusion || "",
-      artifacts,
-      metadata: metadata || {},
-      acceptedAt: tracked?.dispatchedAt || "",
-    })
+    appendObservationNote(
+      renderStatusResult({
+        workflowName: tracked?.workflowName || run.name || "GitHub workflow",
+        queueRecordId: metadata?.queue_record_id || tracked?.queueRecordId || "",
+        runId: String(run.id),
+        runUrl: run.html_url,
+        status: run.status,
+        conclusion: run.conclusion || "",
+        artifacts,
+        metadata: metadata || {},
+        acceptedAt: tracked?.dispatchedAt || "",
+      }),
+      observationError
+    )
   );
 }
 

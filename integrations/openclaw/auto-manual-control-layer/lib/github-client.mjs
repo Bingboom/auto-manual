@@ -1,4 +1,5 @@
 import { findActiveRunForRecord, findRecentActiveRun, findRunByDispatch } from "./run-matching.mjs";
+import { isTransientError, withRetry } from "./transient.mjs";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -51,7 +52,9 @@ export function createGitHubClient(settings) {
     });
     if (!response.ok) {
       const body = await response.text();
-      throw new Error(`GitHub API ${response.status}: ${body || response.statusText}`);
+      const error = new Error(`GitHub API ${response.status}: ${body || response.statusText}`);
+      error.httpStatus = response.status;
+      throw error;
     }
     return response;
   }
@@ -60,11 +63,17 @@ export function createGitHubClient(settings) {
     return requestUrl(`${repoBase}${path}`, init);
   }
 
+  // GET reads are idempotent: a transient blip should retry, not fail the
+  // command. The dispatch POST below is deliberately left unwrapped so a
+  // retry can never double-trigger a workflow.
+  async function getJson(path) {
+    return withRetry(async () => readJson(await request(path)));
+  }
+
   async function listWorkflowRuns(workflowFile, branch) {
-    const response = await request(
+    const payload = await getJson(
       `/actions/workflows/${encodeURIComponent(workflowFile)}/runs?branch=${encodeURIComponent(branch)}&per_page=20`
     );
-    const payload = await readJson(response);
     return payload?.workflow_runs || [];
   }
 
@@ -97,26 +106,33 @@ export function createGitHubClient(settings) {
       const timeoutMs = settings.dispatchTimeoutSeconds * 1000;
       const deadline = Date.now() + timeoutMs;
       while (Date.now() < deadline) {
-        const runs = await listWorkflowRuns(workflowFile, branch);
-        const matched = findRunByDispatch(runs, {
-          queueRecordId,
-          dispatchNonce,
-          dispatchedAfter,
-        });
-        if (matched) {
-          return matched;
+        try {
+          const runs = await listWorkflowRuns(workflowFile, branch);
+          const matched = findRunByDispatch(runs, {
+            queueRecordId,
+            dispatchNonce,
+            dispatchedAfter,
+          });
+          if (matched) {
+            return matched;
+          }
+        } catch (error) {
+          // A transient blip mid-poll must not abort discovery: the dispatch is
+          // already running, so keep trying until the deadline. A definitive
+          // error (bad workflow file, auth) still surfaces to the caller.
+          if (!isTransientError(error)) {
+            throw error;
+          }
         }
         await sleep(2000);
       }
       return null;
     },
     async getRun(runId) {
-      const response = await request(`/actions/runs/${encodeURIComponent(runId)}`);
-      return readJson(response);
+      return getJson(`/actions/runs/${encodeURIComponent(runId)}`);
     },
     async listArtifacts(runId) {
-      const response = await request(`/actions/runs/${encodeURIComponent(runId)}/artifacts?per_page=20`);
-      const payload = await readJson(response);
+      const payload = await getJson(`/actions/runs/${encodeURIComponent(runId)}/artifacts?per_page=20`);
       return payload?.artifacts || [];
     },
     async readMetadataArtifact(artifacts) {
@@ -124,8 +140,10 @@ export function createGitHubClient(settings) {
       if (!artifact?.archive_download_url) {
         return null;
       }
-      const response = await requestUrl(artifact.archive_download_url);
-      const arrayBuffer = await response.arrayBuffer();
+      const arrayBuffer = await withRetry(async () => {
+        const response = await requestUrl(artifact.archive_download_url);
+        return response.arrayBuffer();
+      });
       return extractMetadataFromArtifactBuffer(Buffer.from(arrayBuffer));
     },
   };

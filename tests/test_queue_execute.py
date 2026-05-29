@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import io
+import itertools
 import json
 import unittest
 from contextlib import redirect_stdout
@@ -9,6 +10,42 @@ from pathlib import Path
 from unittest import mock
 
 from tools import queue_execute, queue_query
+
+
+def _control_layer_side_effect(*, dispatch_payload, status_outcomes):
+    """Fake `_run_control_layer_cli`: dispatch returns a fixed payload; each
+    status call yields the next entry from `status_outcomes` (a dict is
+    returned, an Exception is raised), repeating the last entry once exhausted.
+    """
+    outcomes = list(status_outcomes)
+    state = {"i": 0}
+
+    def _side_effect(repo_root, *cli_args):
+        action = cli_args[0] if cli_args else ""
+        if action == "dispatch":
+            return dict(dispatch_payload)
+        if action == "status":
+            index = min(state["i"], len(outcomes) - 1)
+            state["i"] += 1
+            outcome = outcomes[index]
+            if isinstance(outcome, Exception):
+                raise outcome
+            return dict(outcome)
+        raise AssertionError(f"unexpected control-layer args: {cli_args}")
+
+    return _side_effect
+
+
+def _refreshed_draft_row(*, result_is_fresh, freshness_status, result="SUCCESS"):
+    base = _draft_row()
+    return queue_query.QueueQueryRow(
+        **{
+            **base.__dict__,
+            "result": result,
+            "result_is_fresh": result_is_fresh,
+            "freshness_status": freshness_status,
+        }
+    )
 
 
 def _draft_row(record_id: str = "rec_draft") -> queue_query.QueueQueryRow:
@@ -307,6 +344,113 @@ class TestQueueExecute(unittest.TestCase):
         self.assertIn("请先补齐 JE-1000F_CN 在 Spec_Master 中的规格数据，再重试。", message)
         self.assertIn("record_id=rec_review", message)
         self.assertIn("run_id=1001", message)
+
+    def test_is_terminal_failure_should_detect_terminal_non_success(self) -> None:
+        self.assertTrue(queue_execute.is_terminal_failure({"status": "completed", "conclusion": "failure"}))
+        self.assertTrue(queue_execute.is_terminal_failure({"failure_message": "缺少规格数据"}))
+
+    def test_is_terminal_failure_should_ignore_pending_or_unknown_status(self) -> None:
+        self.assertFalse(queue_execute.is_terminal_failure({"status": "in_progress", "conclusion": ""}))
+        self.assertFalse(queue_execute.is_terminal_failure({"status": "", "conclusion": ""}))
+        self.assertFalse(queue_execute.is_terminal_failure({"status": "completed", "conclusion": "success"}))
+
+    def _run_queue_execute_with_mocks(
+        self,
+        *,
+        refreshed_row: queue_query.QueueQueryRow,
+        dispatch_payload: dict,
+        status_outcomes: list,
+        json_output: bool = False,
+    ) -> str:
+        stdout = io.StringIO()
+        side_effect = _control_layer_side_effect(
+            dispatch_payload=dispatch_payload,
+            status_outcomes=status_outcomes,
+        )
+        with mock.patch.object(queue_execute, "load_config", return_value={}), \
+            mock.patch.object(queue_execute, "collect_queue_query_rows", return_value=[_draft_row()]), \
+            mock.patch.object(queue_execute, "_refresh_queue_row", return_value=refreshed_row), \
+            mock.patch.object(queue_execute, "_run_control_layer_cli", side_effect=side_effect), \
+            mock.patch.object(queue_execute.time, "sleep", return_value=None), \
+            mock.patch.object(queue_execute.time, "monotonic", side_effect=itertools.count(0, 1000)), \
+            redirect_stdout(stdout):
+            queue_execute.run_queue_execute(
+                self._args(
+                    record_id="rec_draft",
+                    queue_scope="document-link",
+                    wait_timeout_seconds=1,
+                    status_poll_seconds=0.5,
+                    json=json_output,
+                ),
+                config_path=Path("config.us.yaml"),
+                repo_root=Path("."),
+            )
+        return stdout.getvalue()
+
+    def test_run_queue_execute_should_not_fail_when_status_read_errors_but_base_is_fresh(self) -> None:
+        # JE-1000F_EU symptom: the status read fetch-fails, but the Base row
+        # already shows a fresh SUCCESS. queue-execute must trust the Base
+        # writeback, not the local read error.
+        output = self._run_queue_execute_with_mocks(
+            refreshed_row=_refreshed_draft_row(result_is_fresh=True, freshness_status="fresh"),
+            dispatch_payload={
+                "run_id": "321",
+                "run": "https://example.com/run",
+                "accepted_at": "2026-05-29T10:00:00+00:00",
+            },
+            status_outcomes=[RuntimeError("queue-execute control-layer command failed: fetch failed")],
+            json_output=True,
+        )
+
+        payload = json.loads(output)
+        self.assertEqual("rec_draft", payload["record_id"])
+        self.assertTrue(payload["result_is_fresh"])
+
+    def test_run_queue_execute_should_not_fail_on_timeout_when_run_still_pending(self) -> None:
+        # The wait deadline elapses before a terminal state and the Base row is
+        # not fresh yet. This is "still running", not a failure: print the row
+        # with its pending freshness instead of raising.
+        output = self._run_queue_execute_with_mocks(
+            refreshed_row=_refreshed_draft_row(
+                result_is_fresh=None,
+                freshness_status="writeback_pending",
+                result="",
+            ),
+            dispatch_payload={"run_id": "321", "run": "https://example.com/run"},
+            status_outcomes=[{"status": "in_progress", "conclusion": "", "run_id": "321"}],
+            json_output=True,
+        )
+
+        payload = json.loads(output)
+        self.assertEqual("rec_draft", payload["record_id"])
+        self.assertEqual("writeback_pending", payload["freshness_status"])
+
+    def test_run_queue_execute_should_fail_on_terminal_failure_when_base_not_fresh(self) -> None:
+        with self.assertRaises(RuntimeError) as ctx:
+            self._run_queue_execute_with_mocks(
+                refreshed_row=_refreshed_draft_row(
+                    result_is_fresh=False,
+                    freshness_status="stale_result",
+                    result="FAILED",
+                ),
+                dispatch_payload={"run_id": "321", "run": "https://example.com/run"},
+                status_outcomes=[{"status": "completed", "conclusion": "failure", "run_id": "321"}],
+            )
+
+        self.assertIn("record_id=rec_draft", str(ctx.exception))
+
+    def test_run_queue_execute_should_trust_fresh_base_over_terminal_failure_status(self) -> None:
+        # A terminal failure status must not override a fresh Base SUCCESS (e.g.
+        # a prior failed attempt's status lingering while the row is now fresh).
+        output = self._run_queue_execute_with_mocks(
+            refreshed_row=_refreshed_draft_row(result_is_fresh=True, freshness_status="fresh"),
+            dispatch_payload={"run_id": "321", "run": "https://example.com/run"},
+            status_outcomes=[{"status": "completed", "conclusion": "failure", "run_id": "321"}],
+            json_output=True,
+        )
+
+        payload = json.loads(output)
+        self.assertTrue(payload["result_is_fresh"])
 
 
 if __name__ == "__main__":
