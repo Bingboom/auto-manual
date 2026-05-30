@@ -15,7 +15,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
-from tools.utils.path_utils import Paths
+from tools.utils.path_utils import Paths, PathSegments
 from tools.process_docs.build_review_preview_data import (
     build_change_workbook,
     build_downloads_metadata,
@@ -247,7 +247,7 @@ def collect_changed_files(from_ref: str, to_ref: str) -> list[str]:
 
 
 def classify_changes(changed_files: list[str], model: str, region: str) -> list[dict[str, object]]:
-    review_prefix = f"docs/_review/{model}/{region}/"
+    review_prefix = f"{PathSegments.DOCS}/{PathSegments.REVIEW}/{model}/{region}/"
     groups = [
         ("Review Bundle", lambda p: p.startswith(review_prefix)),
         ("Shared Templates", lambda p: p.startswith("docs/templates/")),
@@ -269,7 +269,7 @@ def classify_changes(changed_files: list[str], model: str, region: str) -> list[
 
 
 def review_pages_for_family(changed_files: list[str], model: str, family: str) -> list[str]:
-    prefix = f"docs/_review/{model}/{family}/"
+    prefix = f"{PathSegments.DOCS}/{PathSegments.REVIEW}/{model}/{family}/"
     return [
         path.removeprefix(prefix)
         for path in changed_files
