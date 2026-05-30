@@ -217,7 +217,7 @@ When adding or moving logic in this area:
 2. If a new helper module is introduced, update this file in the same change.
 3. If a major boundary changes, also update:
    - [`code-as-doc/code_optimization_log.md`](../code_optimization_log.md)
-   - [`optimization_project.md`](../../optimization_project.md)
+   - [`optimization_project.md`](../optimization_project.md)
 4. Keep wrapper names stable in entry files when tests or external scripts patch them directly.
 5. If a wrapper stops being needed, remove it only after tests and call sites are updated together.
 6. When encoded field names are normalized, prefer unicode-escaped canonical constants in helper modules before deleting old literals from entry files.

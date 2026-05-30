@@ -15,7 +15,7 @@ Do not use this file as:
 Use these documents for those topics:
 
 - [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
-- [`../optimization_project.md`](../optimization_project.md)
+- [`../optimization_project.md`](optimization_project.md)
 - [`code_optimization_log.md`](code_optimization_log.md)
 - [`maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
 - [`build_doc_guide.md`](build_doc_guide.md)
@@ -43,7 +43,7 @@ When one item is finished:
 When a whole milestone is finished:
 
 - append a short historical entry to [`code_optimization_log.md`](code_optimization_log.md)
-- update [`../optimization_project.md`](../optimization_project.md) if the active workstream status changed materially
+- update [`../optimization_project.md`](optimization_project.md) if the active workstream status changed materially
 
 Status vocabulary:
 

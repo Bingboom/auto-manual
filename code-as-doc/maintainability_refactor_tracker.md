@@ -15,7 +15,7 @@ Use these documents for those topics:
 
 - [`next_optimization_checklist.md`](next_optimization_checklist.md)
 - [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
-- [`../optimization_project.md`](../optimization_project.md)
+- [`../optimization_project.md`](optimization_project.md)
 - [`code_optimization_log.md`](code_optimization_log.md)
 
 ## 1. Update Rules
@@ -34,7 +34,7 @@ When one refactor item is finished:
 When a whole milestone is finished:
 
 - append a short historical entry to [`code_optimization_log.md`](code_optimization_log.md)
-- update [`../optimization_project.md`](../optimization_project.md) if the workstream status changed materially
+- update [`../optimization_project.md`](optimization_project.md) if the workstream status changed materially
 
 Status vocabulary:
 

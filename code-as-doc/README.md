@@ -69,7 +69,7 @@ Use these together; do not split operator guidance across older phase plans.
 
 ## 4. Roadmap And Execution
 
-- [`../optimization_project.md`](../optimization_project.md)
+- [`../optimization_project.md`](optimization_project.md)
   - current repo roadmap and active workstreams
 - [`next_optimization_checklist.md`](next_optimization_checklist.md)
   - active optimization checklist
