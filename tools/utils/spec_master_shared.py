@@ -359,6 +359,12 @@ _DERIVED_MULTILINE_PLACEHOLDERS: dict[str, tuple[str, tuple[str, ...] | None]] =
     "storage_temperature": ("STORAGE_TEMPERATURE", ("storage",)),
 }
 _SLOT_KEY_VALUE_ALIASES = {"", "value", "default", "name"}
+# Repair map for CORRUPTED source row-labels (NOT typos to "fix"). Some Feishu/Lark
+# exports mangled the Chinese label "额定容量" (Rated Capacity): "棰濆畾瀹归噺" is its UTF-8
+# bytes misread as GBK, "??????" is the charset-loss form. Both normalize back to the
+# English canonical. Tested in tests/test_spec_master_repairs.py — rewriting these keys
+# to clean text would stop them matching the corrupted data they exist to repair.
+# (Dormant safety net: current data/ no longer contains these labels.)
 _KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
     "??????": "Rated Capacity",
     "棰濆畾瀹归噺": "Rated Capacity",
