@@ -60,7 +60,7 @@ These files describe the repo behavior that should be maintained today.
 
 Use these together; do not split operator guidance across older phase plans.
 
-- [`../BOOTSTRAP.md`](../BOOTSTRAP.md)
+- [`../BOOTSTRAP.md`](../agent/BOOTSTRAP.md)
   - short operator bootstrap for repo-local natural-language control
 - [`../integrations/openclaw/README.md`](../integrations/openclaw/README.md)
   - current package map and ownership boundary

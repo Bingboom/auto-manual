@@ -6,7 +6,7 @@ Superseded note:
 
 - this plan predates the repo-local Feishu IM webhook adapter and the consolidated OpenClaw control-layer doc
 - keep it only as implementation history
-- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
+- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../agent/BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
 
 ## 1. Role
 

@@ -21,7 +21,7 @@ The goal is to simplify operator entry and status visibility without changing th
 
 Current operator and implementation references live in:
 
-- [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md)
+- [`../../BOOTSTRAP.md`](../../agent/BOOTSTRAP.md)
 - [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md)
 
 Current repo package:

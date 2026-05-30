@@ -6,7 +6,7 @@ Superseded note:
 
 - the repo now implements the Phase 2 surface described here
 - keep this file as rollout history, not as the current architecture owner
-- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
+- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../agent/BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
 
 ## 1. Goal
 

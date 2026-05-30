@@ -607,3 +607,16 @@ Why it mattered:
 
 - the repo root no longer carries 14 loose config files; all build configuration lives under one `configs/` tree
 - config discovery and defaults resolve from the new location, and the `extends:` inheritance graph survived the move untouched
+
+## 37. 2026-05-30: Move Chat-Persona Docs Into `agent/`
+
+Main outcomes:
+
+- moved the four BlockClaw chat-persona docs (`BOOTSTRAP.md`, `IDENTITY.md`, `SOUL.md`, `USER.md`) from the repo root into [`agent/`](../agent)
+- kept [`CLAUDE.md`](../CLAUDE.md) and [`AGENTS.md`](../AGENTS.md) at the root because Claude Code and Codex auto-discover them there (and CLAUDE.md `@AGENTS.md`-imports), then repointed their links plus the AGENTS.md §8.4 protected-files list at `agent/`
+- updated all inbound links (README, code-as-doc architecture/openclaw docs, integrations/openclaw README) and re-based `BOOTSTRAP.md`'s own outbound links by one level; left the openclaw-local `integrations/openclaw/IDENTITY.md` reference untouched (distinct file)
+
+Why it mattered:
+
+- the repo root is now limited to the two auto-discovered agent entrypoints; persona/identity docs live together under `agent/`
+- no in-repo code loads the persona files by path, so the move is link-only — but the external OpenClaw runtime must read them from `agent/` (operator-confirmed)

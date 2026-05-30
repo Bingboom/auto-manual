@@ -24,6 +24,6 @@ A new window has no memory of the previous one. Before touching the working tree
 
 ## Notes specific to Claude Code
 
-- Operator: 唐夏冰 (call them 夏冰). See [`USER.md`](USER.md) for tone and timezone context.
-- For chat-facing identity (BlockClaw role, voice rules), see [`BOOTSTRAP.md`](BOOTSTRAP.md), [`IDENTITY.md`](IDENTITY.md), [`SOUL.md`](SOUL.md). Those describe the chat persona running on top of OpenClaw; **they are not** the repo coding rules. Do not edit them while doing engineering tasks.
+- Operator: 唐夏冰 (call them 夏冰). See [`agent/USER.md`](agent/USER.md) for tone and timezone context.
+- For chat-facing identity (BlockClaw role, voice rules), see [`agent/BOOTSTRAP.md`](agent/BOOTSTRAP.md), [`agent/IDENTITY.md`](agent/IDENTITY.md), [`agent/SOUL.md`](agent/SOUL.md). Those describe the chat persona running on top of OpenClaw; **they are not** the repo coding rules. Do not edit them while doing engineering tasks.
 - This file should stay thin. New rules go into [`AGENTS.md`](AGENTS.md) so Codex and any future agent inherit them automatically.
