@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
+from ..localized_copy import LocalizedCopyResolver
 from ..signal_words import get_signal_word, get_symbols_notice_label
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
@@ -102,16 +103,9 @@ SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png
 SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
 
 
-# Source-of-truth note: at render time the signal-word descriptions come from
-# the `symbols_blocks` data table (page_registry content_query=page_id=symbols;
-# see _collect_signal_rows -> block text_<lang>). The `meaning` values below are
-# a NO-DATA FALLBACK only — used by _default_signal_rows when a SKU has no
-# signal_row data; for configured manuals the table text wins, so they are not
-# emitted. They are currently byte-identical to symbols_blocks (verified). If a
-# description changes, edit the TABLE, not this fallback — editing only here
-# silently diverges and surfaces solely on the (currently unused) no-data path.
-# By contrast page_title / header_symbol / header_meaning ARE live page chrome
-# (no data-table column exists for them yet) and are always used.
+# Legacy copy retained for narrow compatibility helpers only. Live Symbols page
+# chrome resolves from Localized_Copy.csv, and signal-word descriptions must be
+# present as `symbols_blocks` rows.
 LANG_COPY: dict[str, dict[str, object]] = {
     "en": {
         "page_title": "MEANING OF SYMBOLS",
@@ -328,6 +322,30 @@ LANG_COPY: dict[str, dict[str, object]] = {
 
 def _copy_for_lang(lang: str) -> dict[str, object]:
     return LANG_COPY.get(lang) or LANG_COPY.get((lang or "").strip().casefold()) or LANG_COPY["en"]
+
+
+def _localized_copy_resolver(vars_map: dict[str, str]) -> LocalizedCopyResolver:
+    path = (vars_map.get("localized_copy_csv") or "").strip()
+    if not path:
+        raise ValueError("symbols renderer requires localized_copy_csv")
+    return LocalizedCopyResolver.from_csv(path)
+
+
+def _copy_text(vars_map: dict[str, str], key: str, *, lang: str) -> str:
+    return _localized_copy_resolver(vars_map).resolve(
+        key,
+        lang=lang,
+        model=_pick_target_model(vars_map) or None,
+        region=_pick_target_region(vars_map) or None,
+    )
+
+
+def _symbol_alt(vars_map: dict[str, str], symbol_key: str, *, lang: str) -> str:
+    return _copy_text(vars_map, f"symbols.symbol.{symbol_key}.alt", lang=lang)
+
+
+def _signal_alt(vars_map: dict[str, str], signal_key: str, *, lang: str) -> str:
+    return _copy_text(vars_map, f"symbols.signal.{signal_key}.alt", lang=lang)
 
 
 def _text_column_for_lang(row: dict[str, str], lang: str) -> str:
@@ -749,7 +767,7 @@ def _collect_signal_rows(
         vars_map=vars_map,
     )
     if not rows:
-        return _default_signal_rows(lang)
+        raise ValueError(f"symbols page has no matching signal_row data sku={sku_id} lang={lang}")
     lang_col = _text_column_for_lang(rows[0], lang)
     if lang_col not in rows[0]:
         raise ValueError(f"content csv missing language column: {lang_col}")
@@ -776,13 +794,12 @@ def _collect_signal_rows(
         default_asset = SIGNAL_DEFAULT_ASSETS[signal_key]
         image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
         image_path = image_path or (block.get("image_path") or "").strip() or default_asset.path
-        default_row = _default_signal_row(lang, signal_key) or {}
         is_banner = _signal_uses_banner_image(image_path)
         signal_rows.append(
             {
                 "mode": "banner" if is_banner else "icon_label",
                 "image": image_path,
-                "alt": str(default_row.get("alt") or default_asset.alt),
+                "alt": _signal_alt(vars_map, signal_key, lang=lang),
                 "width": "140px" if is_banner else default_asset.width,
                 "label": "" if is_banner else get_signal_word(lang, signal_key),
                 "meaning": text,
@@ -793,13 +810,14 @@ def _collect_signal_rows(
     return signal_rows
 
 
-def _signal_section(lang: str, signal_rows: list[dict[str, object]] | None = None) -> str:
-    copy = _copy_for_lang(lang)
-
-    page_title = str(copy["page_title"])
-    header_symbol = str(copy["header_symbol"])
-    header_meaning = str(copy["header_meaning"])
-    signal_rows = signal_rows if signal_rows is not None else _default_signal_rows(lang)
+def _signal_section(
+    lang: str,
+    vars_map: dict[str, str],
+    signal_rows: list[dict[str, object]],
+) -> str:
+    page_title = _copy_text(vars_map, "symbols.page_title", lang=lang)
+    header_symbol = _copy_text(vars_map, "symbols.header_symbol", lang=lang)
+    header_meaning = _copy_text(vars_map, "symbols.header_meaning", lang=lang)
 
     lines: list[str] = []
     lines.extend(_rst_heading(page_title, "="))
@@ -906,11 +924,9 @@ def _collect_icon_rows(
     return groups
 
 
-def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
-    copy = _copy_for_lang(lang)
-
-    header_symbol = str(copy["header_symbol"])
-    header_meaning = str(copy["header_meaning"])
+def _icon_table(lang: str, vars_map: dict[str, str], groups: dict[str, list[dict[str, str]]]) -> str:
+    header_symbol = _copy_text(vars_map, "symbols.header_symbol", lang=lang)
+    header_meaning = _copy_text(vars_map, "symbols.header_meaning", lang=lang)
     left_rows = groups["left"]
     right_rows = groups["right"]
     max_rows = max(len(left_rows), len(right_rows))
@@ -965,7 +981,7 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
                 table_lines,
                 "   * - ",
                 image_path=str(left["image_path"]),
-                alt=left_asset.alt,
+                alt=_symbol_alt(vars_map, left["symbol_key"], lang=lang),
                 width=left_asset.width,
             )
             _append_text_cell(table_lines, "     - ", left["text"])
@@ -979,7 +995,7 @@ def _icon_table(lang: str, groups: dict[str, list[dict[str, str]]]) -> str:
                 table_lines,
                 "     - ",
                 image_path=str(right["image_path"]),
-                alt=right_asset.alt,
+                alt=_symbol_alt(vars_map, right["symbol_key"], lang=lang),
                 width=right_asset.width,
             )
             _append_text_cell(table_lines, "     - ", right["text"])
@@ -1001,6 +1017,6 @@ def render_symbols_page(
 ) -> str:
     groups = _collect_icon_rows(blocks, sku_id=sku_id, lang=lang, vars_map=vars_map)
     signal_rows = _collect_signal_rows(blocks, sku_id=sku_id, lang=lang, vars_map=vars_map)
-    rendered = template.replace(PH_SYMBOLS_SIGNAL_SECTION_RST, _signal_section(lang, signal_rows))
-    rendered = rendered.replace(PH_SYMBOLS_ICON_TABLE_RST, _icon_table(lang, groups))
+    rendered = template.replace(PH_SYMBOLS_SIGNAL_SECTION_RST, _signal_section(lang, vars_map, signal_rows))
+    rendered = rendered.replace(PH_SYMBOLS_ICON_TABLE_RST, _icon_table(lang, vars_map, groups))
     return rendered

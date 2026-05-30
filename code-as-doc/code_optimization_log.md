@@ -1,6 +1,6 @@
 # Code Optimization Log
 
-Updated: 2026-05-30
+Updated: 2026-05-31
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -633,3 +633,19 @@ Why it mattered:
 
 - the remaining root files are now limited to tooling-pinned entrypoints/configs (`build.py`, `pyproject.toml`, `requirements.txt`, `vercel.json`, `.readthedocs.yaml`, `Makefile`, `CLAUDE.md`, `AGENTS.md`, dotfiles) plus the Codex `config.toml`
 - planning/roadmap docs now live together under `code-as-doc/`
+
+## 39. 2026-05-31: Consolidate Short Copy Into `localized_copy`
+
+Main outcomes:
+
+- introduced [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv) as the phase2 short-copy snapshot for page titles, table headers, state words, alt text, and Product overview labels
+- wired `localized_copy` into sync/schema/snapshot validation alongside `lcd_icons`, `variable_defaults`, and `variable_lang_overrides`
+- added `{{ copy:<copy_key> }}` resolution so RST templates keep layout while short copy comes from data
+- moved live LCD / Symbols renderer chrome and representative Product overview labels for US/en, JP/ja, and ZH out of Python/RST literals
+- recorded the Operation guide / App setup block-migration assessment in [`code-as-doc/dev/content_block_migration_assessment.md`](dev/content_block_migration_assessment.md)
+
+Why it mattered:
+
+- short copy now has one operational source instead of being repeated across renderer constants and per-language templates
+- missing copy fails during rendering/check instead of silently falling back to Python literals
+- long-form procedural pages have an explicit migration boundary before any risky prose block move

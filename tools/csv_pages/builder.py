@@ -71,6 +71,7 @@ class BuildPaths:
     spec_footnotes_csv: Path | None = None
     spec_notes_csv: Path | None = None
     spec_titles_csv: Path | None = None
+    localized_copy_csv: Path | None = None
 
     @classmethod
     def from_root(cls, root: Path) -> "BuildPaths":
@@ -86,6 +87,7 @@ class BuildPaths:
             spec_footnotes_csv=data_root / "Spec_Footnotes.csv",
             spec_notes_csv=data_root / "Spec_Notes.csv",
             spec_titles_csv=data_root / "spec_titles.csv",
+            localized_copy_csv=data_root / "Localized_Copy.csv",
         )
 
 
@@ -490,6 +492,10 @@ class CsvPageBuilder:
                         render_vars["model"] = model_value
                     if region_value and not self._pick_region_from_vars(render_vars):
                         render_vars["region"] = region_value
+                    render_vars["lang"] = lang
+                    render_vars["localized_copy_csv"] = str(
+                        self.paths.localized_copy_csv or self.paths.page_blocks_dir / "Localized_Copy.csv"
+                    )
                     if page.page_id == "spec" and self.paths.spec_titles_csv is not None:
                         render_vars["spec_titles_csv"] = str(self.paths.spec_titles_csv)
                     if page.page_id == "lcd_icons":

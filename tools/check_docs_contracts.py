@@ -68,11 +68,14 @@ def collect_page_contract_issues(
     find_contract_for_source: Callable[..., Any | None],
     contract_applies_to: Callable[..., bool],
     required_placeholders_for_lang: Callable[..., tuple[str, ...]],
+    required_copy_keys_for_lang: Callable[..., tuple[str, ...]],
     required_spec_keys_for_lang: Callable[..., tuple[str, ...]],
     required_page_values_for_lang: Callable[..., tuple[Any, ...]],
     required_assets_for_lang: Callable[..., tuple[str, ...]],
     resolve_template_substitutions_from_spec_master: Callable[..., dict[str, str]],
     resolve_spec_master_csv_path: Callable[..., Path],
+    resolve_localized_copy_csv_path: Callable[..., Path],
+    localized_copy_resolver_cls: type[Any],
     read_spec_master_rows: Callable[[Path], list[dict[str, str]]],
     resolve_spec_value_from_rows: Callable[..., Any | None],
     describe_page_value_selector: Callable[[Any], str],
@@ -93,6 +96,7 @@ def collect_page_contract_issues(
     spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}
+    localized_copy_resolver: Any | None = None
     issues: list[Any] = []
 
     for page in pages:
@@ -136,6 +140,35 @@ def collect_page_contract_issues(
                         message=(
                             f"Page contract '{contract.page_id}' is missing required placeholders "
                             f"for lang '{lang}': {', '.join(missing_placeholders)}"
+                        ),
+                        model=target.model,
+                        region=target.region,
+                        path=source_path,
+                        lang=lang,
+                    )
+                )
+            missing_copy_keys: list[str] = []
+            for copy_key in required_copy_keys_for_lang(contract, lang):
+                if localized_copy_resolver is None:
+                    localized_copy_resolver = localized_copy_resolver_cls.from_csv(
+                        resolve_localized_copy_csv_path(cfg, data_root=data_root)
+                    )
+                try:
+                    localized_copy_resolver.resolve(
+                        copy_key,
+                        lang=lang,
+                        model=target.model,
+                        region=target.region,
+                    )
+                except (FileNotFoundError, KeyError) as exc:
+                    missing_copy_keys.append(f"{copy_key} ({exc})")
+            if missing_copy_keys:
+                issues.append(
+                    issue_cls(
+                        code="CONTRACT_MISSING_COPY",
+                        message=(
+                            f"Page contract '{contract.page_id}' is missing required localized copy "
+                            f"for lang '{lang}': {', '.join(missing_copy_keys)}"
                         ),
                         model=target.model,
                         region=target.region,

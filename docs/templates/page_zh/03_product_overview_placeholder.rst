@@ -1,65 +1,68 @@
-产品外观
-========
+{{ copy:product_overview.page_title }}
+=====================================
+
+{{ copy:product_overview.front_view }}
+-------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: 产品正视图示意图。
+   :alt: {{ copy:product_overview.front_image_alt }}
    :width: 420px
 
 .. list-table::
    :header-rows: 0
    :widths: 50 50
 
-   * - **总电源开关键**
-     - **LCD 显示屏**
-   * - **DC 12V点烟口**
+   * - **|MAIN_POWER_BUTTON_LABEL|**
+     - **{{ copy:product_overview.part.lcd }}**
+   * - **|FRONT_DC12_PORT_LABEL|**
 
-       12V⎓ 最大10A
-     - **LED 灯按键**
-   * - **DC/USB 输出按键**
-     - **LED灯**
-   * - **USB-C 30W 输出端口**
+       |FRONT_DC12_PORT_SPEC|
+     - **{{ copy:product_overview.part.led_light_button }}**
+   * - **|DC_USB_POWER_BUTTON_LABEL|**
+     - **{{ copy:product_overview.part.led_light }}**
+   * - **|FRONT_USB_C_LOW_LABEL|**
 
-       5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A，最大30W
-     - **AC输出按键**
-   * - **USB-C 100W 输出端口**
+       |FRONT_USB_C_LOW_SPEC|
+     - **|AC_POWER_BUTTON_LABEL|**
+   * - **|FRONT_USB_C_HIGH_LABEL|**
 
-       5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A，最大100W
+       |FRONT_USB_C_HIGH_SPEC|
      -
-   * - **USB-A 18W 输出端口**
+   * - **|FRONT_USB_A_LABEL|**
 
-       5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A，最大18W
-     - **AC输出端口**
+       |FRONT_USB_A_SPEC|
+     - **|FRONT_AC_OUTPUT_LABEL|**
 
-       220V ~ 50Hz，12.5A，额定1500W
+       |FRONT_AC_OUTPUT_SPEC|
 
 .. list-table::
    :header-rows: 0
    :widths: 100
 
-   * - **AC总输出**
+   * - **|FRONT_TOTAL_OUTPUT_LABEL|**
 
-       2口合计1500W (瞬时最大3000W)
+       |FRONT_TOTAL_OUTPUT_SPEC|
 
-右视图
-------
+{{ copy:product_overview.right_side_view }}
+------------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: 产品右视图示意图。
+   :alt: {{ copy:product_overview.right_image_alt }}
    :width: 420px
 
 .. list-table::
    :header-rows: 0
    :widths: 50 50
 
-   * - **把手**
+   * - **{{ copy:product_overview.part.handle }}**
      -
-   * - **AC输入端口**
+   * - **|SIDE_AC_INPUT_LABEL|**
 
-       220V-240V~ 50Hz，最大10A
+       |SIDE_AC_INPUT_SPEC|
      -
-   * - **DC输入端口（2×DC8020 口）**
+   * - **|SIDE_DC_INPUT_LABEL|**
 
-       光伏：16V-60V⎓12A，双路最大21A/最大400W
+       |SIDE_DC_INPUT_PV_SPEC|
 
-       车充：11V-16V⎓最大8A，双路最大8A
+       |SIDE_DC_INPUT_CAR_SPEC|
      -

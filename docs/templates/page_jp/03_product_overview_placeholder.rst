@@ -1,11 +1,11 @@
-各部の名称
-==========
+{{ copy:product_overview.page_title }}
+=====================================
 
-正面
-----
+{{ copy:product_overview.front_view }}
+-------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: Front product image.
+   :alt: {{ copy:product_overview.front_image_alt }}
    :width: 360px
 
 .. list-table::
@@ -13,17 +13,17 @@
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **ハンドル**
+     - **{{ copy:product_overview.part.handle }}**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
-     - **LCDディスプレイ**
+     - **{{ copy:product_overview.part.lcd }}**
    * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **LEDライトボタン**
+     - **{{ copy:product_overview.part.led_light_button }}**
    * - **|FRONT_USB_C_LOW_LABEL|**
 
        |FRONT_USB_C_LOW_SPEC|
-     - **LEDライト**
+     - **{{ copy:product_overview.part.led_light }}**
    * - **|FRONT_USB_C_HIGH_LABEL|**
 
        |FRONT_USB_C_HIGH_SPEC|
@@ -35,11 +35,11 @@
 
        |FRONT_AC_OUTPUT_SPEC|
 
-右側面
-------
+{{ copy:product_overview.right_side_view }}
+------------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: Right side port overview.
+   :alt: {{ copy:product_overview.right_image_alt }}
    :width: 420px
 
 .. list-table::

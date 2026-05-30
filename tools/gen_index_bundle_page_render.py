@@ -123,6 +123,7 @@ def materialize_planned_page(
         region=region,
         lang=page_lang,
     )
+    page_vars["lang"] = page_lang
     page_substitutions = {
         **base_substitutions,
         **resolve_spec_master_substitutions(

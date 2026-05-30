@@ -10,14 +10,14 @@
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
+    "lcd_icons",
     "troubleshooting",
+    "variable_defaults",
+    "variable_lang_overrides",
+    "localized_copy",
     "spec_master"
   ],
-  "skipped_tables": [
-    "lcd_icons",
-    "variable_defaults",
-    "variable_lang_overrides"
-  ],
+  "skipped_tables": [],
   "tables": [
     {
       "logical_name": "spec_titles",
@@ -56,11 +56,47 @@
       "changed": true
     },
     {
+      "logical_name": "lcd_icons",
+      "file_name": "lcd_icons_blocks.csv",
+      "path": "data/phase2/lcd_icons_blocks.csv",
+      "row_count": 27,
+      "sha256": "59ef8726fa4516dec62d1e6520b1d9ab62e140ef8de1f70035e7a610d72f084d",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
       "logical_name": "troubleshooting",
       "file_name": "troubleshooting_blocks.csv",
       "path": "data/phase2/troubleshooting_blocks.csv",
       "row_count": 49,
       "sha256": "199bab665b38dcc9eb872e8d599aa5b558c7abbf283dec01b4eda206c29beb3d",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "variable_defaults",
+      "file_name": "Variable_Defaults.csv",
+      "path": "data/phase2/Variable_Defaults.csv",
+      "row_count": 3,
+      "sha256": "45d4e52b1ad8b4e9c93548f8617b89ef36c40173882dbc1ceff14c3d61a86be5",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "variable_lang_overrides",
+      "file_name": "Variable_Lang_Overrides.csv",
+      "path": "data/phase2/Variable_Lang_Overrides.csv",
+      "row_count": 9,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "localized_copy",
+      "file_name": "Localized_Copy.csv",
+      "path": "data/phase2/Localized_Copy.csv",
+      "row_count": 33,
+      "sha256": "25a3d9ebdd42b6a8208a788569b2deb5d283ca51e8e5272c18f941412b41f017",
       "previous_sha256": null,
       "changed": true
     },

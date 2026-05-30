@@ -157,6 +157,23 @@ def resolve_spec_master_csv_path(
     ).spec_master_csv
 
 
+def resolve_localized_copy_csv_path(
+    cfg: dict,
+    *,
+    repo_root: Path,
+    data_root: str | None,
+    model: str | None,
+    region: str | None,
+) -> Path:
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+        model=model,
+        region=region,
+    ).localized_copy_csv
+
+
 def resolve_csv_rst_path(
     *,
     source_root: Path,

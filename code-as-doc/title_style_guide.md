@@ -12,6 +12,7 @@ That means:
 
 - page structure lives in RST templates
 - spec section title localization lives in [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- reusable short copy such as CSV-page titles, table headers, alt text, state words, and Product overview labels lives in [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
 - visual style lives in CSS, LaTeX components, or the shared Word DOCX style remapper
 - Word document title comes from config plus placeholder substitution
 
@@ -32,13 +33,19 @@ These files define normal page heading structure and placeholder-bearing page te
 
 Use this file for spec section title mapping across languages.
 
-### 2.3 HTML Style
+### 2.3 Short Copy Localization
+
+- [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
+
+Use this file for reusable short text that should be translated and maintained with the phase2 content source, including LCD / Symbols page titles, table headers, state words, alt text, and Product overview labels. RST templates can reference this table with `{{ copy:<copy_key> }}`; missing copy is a build/check error.
+
+### 2.4 HTML Style
 
 - [`docs/_static/hb_manual.css`](../docs/_static/hb_manual.css)
 
 This controls shared HTML presentation for headings and title-like components.
 
-### 2.4 PDF / LaTeX Style
+### 2.5 PDF / LaTeX Style
 
 Main files:
 
@@ -50,7 +57,7 @@ Main files:
 [`layout_params.csv`](../data/layout_params.csv) is the editable source.
 Do not hand-edit [`params.tex`](../docs/renderers/latex/params.tex).
 
-### 2.5 Word Title
+### 2.6 Word Title
 
 Current Word title comes from config:
 
@@ -98,7 +105,7 @@ Generated app setup pages opt into a recipe postprocess step,
 `**1. ...**` becomes level 2, and dotted substeps such as `**4.1 ...**` become level 3.
 Keep those labels easy to maintain in the source template; the recipe owns whether this semantic promotion runs.
 
-Product overview pages are authored directly as plain RST list-tables in each language's `page_<lang>/03_product_overview_placeholder.rst` template: part-name words are literal text and spec values are `|TOKEN|` substitutions resolved from Spec_Master. There is no overview-layout renderer or `{{ product_overview }}` marker — edit the per-language template to change the overview's structure or labels.
+Product overview pages are authored directly as plain RST list-tables in each language's `page_<lang>/03_product_overview_placeholder.rst` template: layout, image placement, and table structure stay in RST, short labels resolve from `Localized_Copy.csv` through `{{ copy:<copy_key> }}`, and spec values remain `|TOKEN|` substitutions resolved from Spec_Master. There is no overview-layout renderer or `{{ product_overview }}` marker; edit the per-language template to change the overview's structure, and edit `Localized_Copy.csv` to change shared labels.
 
 HTML entrypoints:
 
@@ -177,7 +184,8 @@ Change the visual gap or typography of headings:
 
 Change the actual heading text:
 
-- [`docs/templates/page_*/*.rst`](../docs/templates)
+- [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv) for shared short copy used by `{{ copy:<copy_key> }}`
+- [`docs/templates/page_*/*.rst`](../docs/templates) for stable template prose and page structure
 - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) for data-driven placeholder content
 

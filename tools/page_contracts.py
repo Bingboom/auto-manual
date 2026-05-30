@@ -24,6 +24,7 @@ class PageContract:
     page_id: str
     source_files: tuple[str, ...]
     required_placeholders: dict[str, tuple[str, ...]]
+    required_copy_keys: dict[str, tuple[str, ...]]
     required_spec_keys: dict[str, tuple[str, ...]]
     required_page_values: dict[str, tuple[PageValueSelector, ...]]
     required_assets: dict[str, tuple[str, ...]]
@@ -171,6 +172,7 @@ def load_page_contracts(contracts_dir: Path) -> list[PageContract]:
             raise RuntimeError(f"source_files must contain at least one non-empty entry in contract: {path}")
 
         placeholders = _normalize_requirement_map(data.get("required_placeholders", []), field_name="required_placeholders")
+        required_copy_keys = _normalize_requirement_map(data.get("required_copy_keys", []), field_name="required_copy_keys")
         required_spec_keys = _normalize_requirement_map(data.get("required_spec_keys", []), field_name="required_spec_keys")
         required_page_values = _normalize_page_value_map(
             data.get("required_page_values", data.get("required_page_value_keys", data.get("required_tpl_keys", []))),
@@ -185,6 +187,7 @@ def load_page_contracts(contracts_dir: Path) -> list[PageContract]:
                 page_id=page_id,
                 source_files=source_files,
                 required_placeholders=placeholders,
+                required_copy_keys=required_copy_keys,
                 required_spec_keys=required_spec_keys,
                 required_page_values=required_page_values,
                 required_assets=required_assets,
@@ -221,6 +224,10 @@ def _requirements_for_lang(requirements: dict[str, tuple[T, ...]], lang: str | N
 
 def required_placeholders_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
     return _requirements_for_lang(contract.required_placeholders, lang)
+
+
+def required_copy_keys_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+    return _requirements_for_lang(contract.required_copy_keys, lang)
 
 
 def required_spec_keys_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:

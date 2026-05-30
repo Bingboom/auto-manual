@@ -381,6 +381,85 @@ class TestCheckDocs(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertIn("CONTRACT_MISSING_PLACEHOLDERS", codes)
 
+    def test_collect_check_issues_should_report_contract_missing_copy(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
+            (docs_dir / "templates" / "contracts").mkdir(parents=True)
+
+            (bundle_dir / "index.rst").write_text(".. include:: page/03_product_overview_placeholder.rst\n", encoding="utf-8")
+            (bundle_dir / "page" / "03_product_overview_placeholder.rst").write_text("Ready\n", encoding="utf-8")
+            (docs_dir / "templates" / "page_us-en" / "03_product_overview_placeholder.rst").write_text(
+                "{{ copy:product_overview.page_title }}\n",
+                encoding="utf-8",
+            )
+            (docs_dir / "templates" / "contracts" / "03_product_overview.yaml").write_text(
+                "\n".join(
+                    [
+                        "page_id: 03_product_overview",
+                        "source_files:",
+                        "  - templates/page_us-en/03_product_overview_placeholder.rst",
+                        "required_copy_keys:",
+                        "  en:",
+                        "    - product_overview.page_title",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            spec_master = root / "Spec_Master.csv"
+            spec_master.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Is_Latest,Page,Row_key,Usage_type,Value_role,Value_source",
+                        "JE-1000F,US,TRUE,specifications,product_name,,,Jackery 1000",
+                        "JE-1000F,US,TRUE,specifications,model_no,,,JE-1000F",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            localized_copy = root / "Localized_Copy.csv"
+            localized_copy.write_text(
+                "copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en\n",
+                encoding="utf-8",
+            )
+
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  spec_master_csv: {spec_master.as_posix()}",
+                        f"  localized_copy_csv: {localized_copy.as_posix()}",
+                        "pages:",
+                        "  - type: rst_include",
+                        "    lang: en",
+                        "    file: templates/page_us-en/03_product_overview_placeholder.rst",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            issues = check_docs.collect_check_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+            )
+
+            messages = [issue.message for issue in issues if issue.code == "CONTRACT_MISSING_COPY"]
+            self.assertTrue(messages)
+            self.assertTrue(any("product_overview.page_title" in message for message in messages))
+
     def test_collect_check_issues_should_report_contract_v2_missing_spec_page_values_and_assets(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

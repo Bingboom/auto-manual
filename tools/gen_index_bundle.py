@@ -91,6 +91,7 @@ from tools.gen_index_bundle_paths import (
     resolve_generated_recipe_path as _resolve_generated_recipe_path,
     resolve_generated_source_path as _resolve_generated_source_path,
     resolve_generated_template_path as _resolve_generated_template_path,
+    resolve_localized_copy_csv_path as _resolve_localized_copy_csv_path,
     resolve_spec_master_csv_path as _resolve_spec_master_csv_path,
     source_path_for_contract as _source_path_for_contract,
 )
@@ -432,6 +433,7 @@ def materialize_bundle(
         plan_materialized_pages=plan_materialized_pages,
         preflight_contract_assets=_preflight_contract_assets,
         resolve_spec_master_csv_path=_resolve_spec_master_csv_path,
+        resolve_localized_copy_csv_path=_resolve_localized_copy_csv_path,
         pick_vars_map=pick_vars_map,
         fill_product_name_from_spec_master=fill_product_name_from_spec_master,
         load_rst_substitutions=load_rst_substitutions,

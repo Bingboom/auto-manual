@@ -23,6 +23,10 @@ ROW_KEY_MAPPING_FILE = "row_key_mapping.csv"
 PAGE_REGISTRY_FILE = "page_registry.csv"
 SYMBOLS_BLOCKS_FILE = "symbols_blocks.csv"
 TROUBLESHOOTING_BLOCKS_FILE = "troubleshooting_blocks.csv"
+LCD_ICONS_BLOCKS_FILE = "lcd_icons_blocks.csv"
+VARIABLE_DEFAULTS_FILE = "Variable_Defaults.csv"
+VARIABLE_LANG_OVERRIDES_FILE = "Variable_Lang_Overrides.csv"
+LOCALIZED_COPY_FILE = "Localized_Copy.csv"
 
 PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "spec_master": SPEC_MASTER_FILE,
@@ -30,7 +34,11 @@ PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "spec_notes": SPEC_NOTES_FILE,
     "spec_titles": SPEC_TITLES_FILE,
     "symbols_blocks": SYMBOLS_BLOCKS_FILE,
+    "lcd_icons": LCD_ICONS_BLOCKS_FILE,
     "troubleshooting": TROUBLESHOOTING_BLOCKS_FILE,
+    "variable_defaults": VARIABLE_DEFAULTS_FILE,
+    "variable_lang_overrides": VARIABLE_LANG_OVERRIDES_FILE,
+    "localized_copy": LOCALIZED_COPY_FILE,
 }
 PHASE2_REQUIRED_DERIVED_FILES: dict[str, str] = {
     "page_registry": PAGE_REGISTRY_FILE,
@@ -48,6 +56,7 @@ class DataSnapshotPaths:
     spec_notes_csv: Path
     spec_titles_csv: Path
     row_key_mapping_csv: Path
+    localized_copy_csv: Path
 
 
 @dataclass(frozen=True)
@@ -549,6 +558,15 @@ def resolve_data_snapshot_paths(
             data_root=data_root,
             config_key="row_key_mapping_csv",
             default_file_name=ROW_KEY_MAPPING_FILE,
+            model=model,
+            region=region,
+        ),
+        localized_copy_csv=_resolve_structured_file_path(
+            cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            config_key="localized_copy_csv",
+            default_file_name=LOCALIZED_COPY_FILE,
             model=model,
             region=region,
         ),
