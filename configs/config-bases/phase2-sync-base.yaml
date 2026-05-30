@@ -1,29 +1,6 @@
-extends: us-single-language-base.yaml
-
-build:
-  default_model: JE-1000F
-  default_region: EU
-  targets:
-    - model: JE-1000F
-      region: EU
-  include_lang_in_output_path: true
-  word_reference_doc: docs/templates/word_template/template.docx
-  rst_substitutions:
-    WARRANTY_EMAIL: hello.eu@jackery.com
-    LEGAL_COMPANY_NAME: Jackery
-
-paths:
-  structured_data_dir: data/phase2
-  page_registry_csv: data/phase2/page_registry.csv
-
-checks:
-  allowed_foreign_identity_literals:
-    - 占位符
-
-# NOTE: sync stays inline here (not extracted to phase2-sync-base.yaml): this
-# file already `extends: us-single-language-base.yaml`, and config_loader
-# supports only a single `extends`. Deduping would require restructuring the
-# US/EU base chain — tracked as follow-up.
+# Shared phase2 (Feishu/Lark) sync block.
+# Extended by the merged-family + JP configs that pull data from the same
+# Bitable. Override individual keys downstream if a market diverges.
 sync:
   phase2:
     provider: lark_cli
