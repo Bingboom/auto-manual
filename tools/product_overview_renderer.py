@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import re
 
 from tools.csv_pages.renderers_common import latex_arg_escape, rst_escape, spec_latex_cell, split_spec_lines
+from tools.language_aliases import normalize_language
 
 
 PRODUCT_OVERVIEW_TOKEN = "{{ product_overview }}"
@@ -171,7 +172,7 @@ _LAYOUTS: dict[str, OverviewLayout] = {
             ),
         ),
     ),
-    "pt-br": OverviewLayout(
+    "pt-BR": OverviewLayout(
         title="VISÃO GERAL DO PRODUTO",
         panels=(
             OverviewPanel(
@@ -239,7 +240,7 @@ _LAYOUTS: dict[str, OverviewLayout] = {
 
 
 def _layout_for_lang(lang: str) -> OverviewLayout:
-    return _LAYOUTS.get((lang or "").strip().lower(), _LAYOUTS["en"])
+    return _LAYOUTS.get(normalize_language(lang), _LAYOUTS["en"])
 
 
 def _resolve_text(token: str, substitutions: dict[str, str]) -> str:
