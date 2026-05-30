@@ -6,7 +6,7 @@ Archived note:
 
 - this rollout checklist is kept for implementation history only
 - the repo now has the Phase 1 command surface and the later Phase 2 natural-language surface
-- use [`../BOOTSTRAP.md`](../BOOTSTRAP.md), [`../integrations/openclaw/README.md`](../integrations/openclaw/README.md), and [`architecture/OpenClaw_Control_Layer_Plan.md`](architecture/OpenClaw_Control_Layer_Plan.md) for current behavior
+- use [`../BOOTSTRAP.md`](../agent/BOOTSTRAP.md), [`../integrations/openclaw/README.md`](../integrations/openclaw/README.md), and [`architecture/OpenClaw_Control_Layer_Plan.md`](architecture/OpenClaw_Control_Layer_Plan.md) for current behavior
 
 ## 1. Role
 

@@ -27,11 +27,11 @@ The execution plane stays unchanged:
 
 Read these docs for the current implementation:
 
-- [`integrations/openclaw/IDENTITY.md`](integrations/openclaw/IDENTITY.md)
-- [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
-- [`code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
-- [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
-- [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
+- [`integrations/openclaw/IDENTITY.md`](../integrations/openclaw/IDENTITY.md)
+- [`integrations/openclaw/README.md`](../integrations/openclaw/README.md)
+- [`code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
+- [`code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md)
+- [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 
 ## 3. Minimal Commands
 

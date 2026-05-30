@@ -7,7 +7,7 @@ OpenClaw is the runtime and gateway; BlockClaw is the Auto-Manual document-build
 Canonical docs:
 
 - [`IDENTITY.md`](IDENTITY.md)
-- [`../../BOOTSTRAP.md`](../../BOOTSTRAP.md)
+- [`../../agent/BOOTSTRAP.md`](../../agent/BOOTSTRAP.md)
 - [`../../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](../../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
 - [`../../code-as-doc/build_doc_guide.md`](../../code-as-doc/build_doc_guide.md)
 

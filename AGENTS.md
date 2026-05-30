@@ -130,7 +130,7 @@ These rules exist so two windows working in parallel do not quietly clobber each
 
 - Before any edit, run `git status` and confirm you are on the branch you intended, with no foreign in-progress changes.
 - Do not touch files outside your task scope. The only exception is a small autofix (formatter, import sort, ruff fix) — call it out explicitly in the PR body.
-- Do not modify the following unless the task is *about* them: `.git/**`, `.githooks/**`, `.github/workflows/**`, `.github/pull_request_template.md`, `AGENTS.md`, `CLAUDE.md`, `code-as-doc/dev/git_branching_guide.md`, `code-as-doc/dev/git_worktree_guide.md`, other `.agents/skills/**/SKILL.md`, `BOOTSTRAP.md`, `IDENTITY.md`, `SOUL.md`, `USER.md`.
+- Do not modify the following unless the task is *about* them: `.git/**`, `.githooks/**`, `.github/workflows/**`, `.github/pull_request_template.md`, `AGENTS.md`, `CLAUDE.md`, `code-as-doc/dev/git_branching_guide.md`, `code-as-doc/dev/git_worktree_guide.md`, other `.agents/skills/**/SKILL.md`, `agent/BOOTSTRAP.md`, `agent/IDENTITY.md`, `agent/SOUL.md`, `agent/USER.md`.
 - Do not delete or rename files another window might be editing. If you are unsure who owns a file, stop and ask the operator.
 - Honour §6 working-tree safety: `_build/`, `reports/version_tracking/`, and `reports/releases/` may hold another window's verification artifacts — do not clean them unless the task is cleanup.
 - If your task is a refactor that renames or moves a hotspot module (anything listed in `code_style_guide.md` §2), confirm with the operator before pushing — other windows may have open branches against the old path.
