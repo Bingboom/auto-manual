@@ -198,6 +198,8 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "text_de",
             "text_it",
             "text_uk",
+            "text_jp",
+            "text_zh",
             "Is_Latest",
             "Market",
             "enabled",
@@ -206,6 +208,7 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Region",
             "Model",
             "Source_lang",
+            "column_group",
         ),
     ),
     "lcd_icons": TableSchema(

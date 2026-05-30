@@ -366,7 +366,7 @@ Parallel-language template note:
 - `image_path` stores the RST image reference path for each symbols-table icon
 - when the phase2 authoring Base provides a `Figure` attachment, `sync-data` downloads it into `data/phase2/_attachments/symbols/` and writes that local file back to `image_path`
 - use `block_type=table_row` for the normal symbol/meaning grid, and `block_type=signal_row` for the warning/caution/note/tip table at the top of the symbols page
-- signal rows must include the four uppercase `symbol_key` values `WARNING`, `CAUTION`, `NOTE`, and `TIPS`; the renderer localizes the visible label through `tools/signal_words.py`
+- signal rows must include the four `symbol_key` values `warning`, `caution`, `note`, and `tips`; those rows own the visible signal token and the localized meaning text, so do not duplicate signal-word content in `Localized_Copy.csv` or Python constants
 - `Region` and `Model` now match the target-selection field names used by [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - `Source_lang` stores the row's source-language code, using the same naming rule as [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - leave `Region` / `Model` blank when one symbols row is shared across manuals

@@ -37,7 +37,7 @@ Use this file for spec section title mapping across languages.
 
 - [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
 
-Use this file for reusable short text that should be translated and maintained with the phase2 content source, including LCD / Symbols page titles, table headers, state words, alt text, and Product overview labels. RST templates can reference this table with `{{ copy:<copy_key> }}`; missing copy is a build/check error.
+Use this file for reusable short text that should be translated and maintained with the phase2 content source, including LCD / Symbols page titles, table headers, state words, alt text, and Product overview labels. RST templates can reference this table with `{{ copy:<copy_key> }}`; missing copy is a build/check error. Symbols signal-word rows stay in `symbols_blocks.csv`.
 
 ### 2.4 HTML Style
 
