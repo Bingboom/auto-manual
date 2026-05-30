@@ -102,6 +102,16 @@ SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png
 SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
 
 
+# Source-of-truth note: at render time the signal-word descriptions come from
+# the `symbols_blocks` data table (page_registry content_query=page_id=symbols;
+# see _collect_signal_rows -> block text_<lang>). The `meaning` values below are
+# a NO-DATA FALLBACK only — used by _default_signal_rows when a SKU has no
+# signal_row data; for configured manuals the table text wins, so they are not
+# emitted. They are currently byte-identical to symbols_blocks (verified). If a
+# description changes, edit the TABLE, not this fallback — editing only here
+# silently diverges and surfaces solely on the (currently unused) no-data path.
+# By contrast page_title / header_symbol / header_meaning ARE live page chrome
+# (no data-table column exists for them yet) and are always used.
 LANG_COPY: dict[str, dict[str, object]] = {
     "en": {
         "page_title": "MEANING OF SYMBOLS",
