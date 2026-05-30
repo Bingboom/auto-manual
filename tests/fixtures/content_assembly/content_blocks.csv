@@ -1,8 +1,0 @@
-block_id,block_type,parent_block_id,title_key,asset_key,repeatable,region,lang
-identity,product_identity,,PRODUCT_IDENTITY,,false,*,*
-asset_front,asset_callout,,FRONT_PRODUCT_IMAGE,front_product,false,*,*
-feature_front,feature_overview,,FRONT_VIEW,,false,*,en
-feature_front,feature_overview,,FRONT_VIEW_JA,,false,JP,ja
-asset_side,asset_callout,,RIGHT_SIDE_PORTS_IMAGE,right_side_ports,false,*,*
-feature_side,feature_overview,,RIGHT_SIDE_VIEW,,false,*,en
-spec_front_total,spec_summary,,FRONT_TOTAL_OUTPUT,,false,US,en

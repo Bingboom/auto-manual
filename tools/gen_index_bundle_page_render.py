@@ -4,8 +4,6 @@ import html
 from pathlib import Path
 from typing import Any, Callable
 
-from tools.product_overview_renderer import render_product_overview_page
-
 
 def prepend_latex_lang(
     text: str,
@@ -194,7 +192,6 @@ def materialize_planned_page(
 
     if not isinstance(page, generated_page_cls):
         rst_text = source_path.read_text(encoding="utf-8")
-        rst_text = render_product_overview_page(rst_text, page_substitutions, lang=page_lang)
         rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
     rst_text = rewrite_rst_asset_paths(
         rst_text,

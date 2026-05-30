@@ -98,9 +98,7 @@ Generated app setup pages opt into a recipe postprocess step,
 `**1. ...**` becomes level 2, and dotted substeps such as `**4.1 ...**` become level 3.
 Keep those labels easy to maintain in the source template; the recipe owns whether this semantic promotion runs.
 
-Product overview pages use the `{{ product_overview }}` marker and [`tools/product_overview_renderer.py`](../tools/product_overview_renderer.py).
-That renderer owns the shared overview structure and emits both LaTeX `\HBOverviewPanel` blocks and not-LaTeX RST from one layout definition.
-Do not duplicate raw LaTeX and RST overview tables in page templates.
+Product overview pages are authored directly as plain RST list-tables in each language's `page_<lang>/03_product_overview_placeholder.rst` template: part-name words are literal text and spec values are `|TOKEN|` substitutions resolved from Spec_Master. There is no overview-layout renderer or `{{ product_overview }}` marker — edit the per-language template to change the overview's structure or labels.
 
 HTML entrypoints:
 

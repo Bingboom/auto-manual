@@ -352,6 +352,8 @@ Milestone note: completed the pre-template-splitting safety net and the first
 page-level `03_product_overview` pilot switch without rewriting the repo-wide
 template system.
 
+> **Rolled back (2026-05-30, option B):** this content-assembly pilot was reverted to a pure template-driven overview. The `assembly_pilot` switch, the `content_assembly` / `content_assembly_contract` / `product_overview_renderer` modules, `assembly_blocks/` / `assembly_contracts/`, and their fixtures/tests were removed (PR #295 disabled the pilot + authored the US templates; PR #296 deleted the dead code). The file references below are historical — those paths no longer exist. Overview part names now live only in `page_<lang>/03_product_overview_placeholder.rst`.
+
 - [x] Long-term PR 1: Document the pilot inventory and block taxonomy
   - Status: `done`
   - Target files:
@@ -365,7 +367,7 @@ template system.
 - [x] Long-term PR 2: Add multidimensional-table-style fixtures
   - Status: `done`
   - Target files:
-    - [`../tests/fixtures/content_assembly/`](../tests/fixtures/content_assembly)
+    - `../tests/fixtures/content_assembly/`
   - Done when:
     - fixture tables exist for page assembly, content blocks, block fields, assets, and block rules
     - schema drift tests catch missing fixture headers before any live Feishu integration is introduced
@@ -375,9 +377,9 @@ template system.
 - [x] Long-term PR 3: Add the assembly contract validator
   - Status: `done`
   - Target files:
-    - [`../tools/content_assembly_contract.py`](../tools/content_assembly_contract.py)
-    - [`../docs/templates/assembly_contracts/03_product_overview.yaml`](../docs/templates/assembly_contracts/03_product_overview.yaml)
-    - [`../tests/test_content_assembly_contract.py`](../tests/test_content_assembly_contract.py)
+    - `../tools/content_assembly_contract.py`
+    - `../docs/templates/assembly_contracts/03_product_overview.yaml`
+    - `../tests/test_content_assembly_contract.py`
   - Done when:
     - unknown blocks, missing required fields, missing assets, and missing fallback declarations fail locally
   - Completed: `2026-05-08`
@@ -386,8 +388,8 @@ template system.
 - [x] Long-term PR 4: Add the no-op assembler
   - Status: `done`
   - Target files:
-    - [`../tools/content_assembly.py`](../tools/content_assembly.py)
-    - [`../tests/test_content_assembly.py`](../tests/test_content_assembly.py)
+    - `../tools/content_assembly.py`
+    - `../tests/test_content_assembly.py`
   - Done when:
     - US/en and JP/ja no-op RST can be rendered to a temporary path
     - managed build/template output directories are rejected
@@ -399,8 +401,8 @@ template system.
   - Status: `done`
   - Target files:
     - [`../tools/draft_engine.py`](../tools/draft_engine.py)
-    - [`../tools/content_assembly.py`](../tools/content_assembly.py)
-    - [`../docs/templates/assembly_blocks/03_product_overview/`](../docs/templates/assembly_blocks/03_product_overview)
+    - `../tools/content_assembly.py`
+    - `../docs/templates/assembly_blocks/03_product_overview/`
   - Done when:
     - configured pilot targets render through fixture-backed assembly
     - non-configured targets keep the old template fallback path

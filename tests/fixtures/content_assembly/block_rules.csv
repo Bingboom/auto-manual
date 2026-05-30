@@ -1,3 +1,0 @@
-block_id,condition_key,operator,condition_value,action
-spec_front_total,region,equals,US,include
-spec_front_total,lang,equals,en,include
