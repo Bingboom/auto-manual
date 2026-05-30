@@ -17,17 +17,17 @@ Use it to track:
 
 The active execution checklist for the current optimization wave lives in:
 
-- [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md)
+- [`code-as-doc/next_optimization_checklist.md`](next_optimization_checklist.md)
 
 The completed execution tracker for the earlier maintainability refactor campaign remains here:
 
-- [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md)
+- [`code-as-doc/maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md)
 
 Do not use this file as the long-term architecture document.
 
 For long-term direction and stable architecture boundaries, use:
 
-- [`code-as-doc/architecture/System Evolution Strategy.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/architecture/System%20Evolution%20Strategy.md)
+- [`code-as-doc/architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
 
 ## 2. Maintenance Rules
 
@@ -58,9 +58,9 @@ Suggested workstream statuses:
 
 As of 2026-05-07, the repo has working baselines for:
 
-- [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) as the primary cross-platform entrypoint
-- target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
-- review bundles under [`docs/_review/<model>/<region>/`](/Users/pika/Documents/GitHub/auto-manual/docs/_review)
+- [`build.py`](../build.py) as the primary cross-platform entrypoint
+- target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](../docs/_build)
+- review bundles under [`docs/_review/<model>/<region>/`](../docs/_review)
 - `sync-data`
 - `check`
 - page contracts
@@ -104,19 +104,19 @@ Use this section for short milestone-style updates.
 - normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
 - added staging-first local validation wrappers and cross-platform branch freshness guardrails
 - started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
-- added [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
-- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_outputs.py)
-- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_lark_ops.py)
-- continued the same queue workstream with [`tools/queue_bound_binding.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](/Users/pika/Documents/GitHub/auto-manual/tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+- added [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](../tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](../tools/queue_bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](../tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py)
+- continued the same queue workstream with [`tools/queue_bound_binding.py`](../tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](../tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
 - completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
 - started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
 
 ### 2026-04-06
 
 - completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
-- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](/Users/pika/Documents/GitHub/auto-manual/tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
-- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
-- collapsed [`scripts/build_us_manuals.ps1`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_manuals.ps1) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](/Users/pika/Documents/GitHub/auto-manual/scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
+- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
+- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](../scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
+- collapsed [`scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
 - updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
 
 ### 2026-04-06
@@ -126,17 +126,17 @@ Use this section for short milestone-style updates.
 - reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
 - split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
 - split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
-- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
+- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
 - finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
 
 ### 2026-04-07
 
-- completed Milestone A in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by removing preview-target import side effects, splitting the Spec_Master/runtime/generated-page quality hotspots, adding a minimal Ruff gate, and introducing shared orchestration-test helpers
+- completed Milestone A in [`code-as-doc/next_optimization_checklist.md`](next_optimization_checklist.md) by removing preview-target import side effects, splitting the Spec_Master/runtime/generated-page quality hotspots, adding a minimal Ruff gate, and introducing shared orchestration-test helpers
 - kept Workstream C active, but moved its baseline forward so the local/CI quality gate now includes a deliberate low-noise static check before the heavier unit/build validation layers run
 
 ### 2026-04-08
 
-- completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
+- completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
 
 ### 2026-04-11
 
@@ -153,9 +153,9 @@ Use this section for short milestone-style updates.
 ### 2026-05-07
 
 - absorbed the four short-term hardening PRs into the active baseline: phase2 snapshot manifest validation, build action dispatch registry, config contract validation, and queue `RUNNING` state writeback
-- added [`code-as-doc/dev/external_table_contracts.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/external_table_contracts.md) as the first explicit field contract for phase2 tables, `Document_link`, and Review Init
-- added [`code-as-doc/dev/queue_state_model.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/queue_state_model.md) to document `pending -> running -> success/failed` writeback semantics
-- started the test-hotspot split by moving build-queue writeback field tests into [`tests/test_process_build_queue_writeback.py`](/Users/pika/Documents/GitHub/auto-manual/tests/test_process_build_queue_writeback.py)
+- added [`code-as-doc/dev/external_table_contracts.md`](dev/external_table_contracts.md) as the first explicit field contract for phase2 tables, `Document_link`, and Review Init
+- added [`code-as-doc/dev/queue_state_model.md`](dev/queue_state_model.md) to document `pending -> running -> success/failed` writeback semantics
+- started the test-hotspot split by moving build-queue writeback field tests into [`tests/test_process_build_queue_writeback.py`](../tests/test_process_build_queue_writeback.py)
 
 ### 2026-05-08
 
@@ -184,7 +184,7 @@ Why now:
 Scope:
 
 - remove hardcoded target defaults from low-level tools
-- align path-resolution and default-output rules with [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py)
+- align path-resolution and default-output rules with [`build.py`](../build.py)
 - reduce duplicated CLI semantics between entrypoint code and `tools/*.py`
 
 Exit criteria:
@@ -203,14 +203,14 @@ Why now:
 Scope:
 
 - split responsibilities inside:
-  - [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py)
-  - [`tools/build_docs.py`](/Users/pika/Documents/GitHub/auto-manual/tools/build_docs.py)
-  - [`tools/gen_index_bundle.py`](/Users/pika/Documents/GitHub/auto-manual/tools/gen_index_bundle.py)
-  - [`tools/diff_report.py`](/Users/pika/Documents/GitHub/auto-manual/tools/diff_report.py)
+  - [`build.py`](../build.py)
+  - [`tools/build_docs.py`](../tools/build_docs.py)
+  - [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
+  - [`tools/diff_report.py`](../tools/diff_report.py)
 - improve ownership boundaries for routing, bundle assembly, reporting, and export flow
 - keep public wrappers stable while moving implementation into dedicated modules
-- record each completed decomposition milestone in [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md)
-- keep [`code-as-doc/dev/orchestration_module_map.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/dev/orchestration_module_map.md) aligned with the extracted module boundaries
+- record each completed decomposition milestone in [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
+- keep [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) aligned with the extracted module boundaries
 
 Exit criteria:
 
@@ -334,7 +334,7 @@ Re-evaluate this order whenever a workstream closes.
 
 This roadmap is successful when:
 
-1. [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py) and low-level tools no longer disagree on target defaults and output paths.
+1. [`build.py`](../build.py) and low-level tools no longer disagree on target defaults and output paths.
 2. Core workflow code is easier to change without touching thousand-line files.
 3. `check` remains the clear pre-export quality gate.
 4. Diff and release outputs are trustworthy enough for review and audit use.

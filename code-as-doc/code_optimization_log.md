@@ -626,7 +626,8 @@ Why it mattered:
 Main outcomes:
 
 - moved the repo-optimization roadmap from the repo root into [`code-as-doc/optimization_project.md`](optimization_project.md), beside its sibling planning docs (`next_optimization_checklist.md`, `maintainability_refactor_tracker.md`)
-- re-based ~14 inbound links across `AGENTS.md`, `README.md`, and `code-as-doc/**` (siblings drop a `../`; deeper `code-as-doc/{dev,architecture}` docs drop one `../`); the moved file's own relative links were re-based by one level (its absolute-path links are location-invariant)
+- re-based ~14 inbound links across `AGENTS.md`, `README.md`, and `code-as-doc/**` (siblings drop a `../`; deeper `code-as-doc/{dev,architecture}` docs drop one `../`)
+- normalized the moved file's own ~34 links from machine-specific `/Users/...` absolute paths to repo-relative ones: once the file entered the doc-link checker's `code-as-doc/` scope, those absolute paths (which only resolved on one machine) failed CI, so they were rewritten relative to `code-as-doc/`
 
 Why it mattered:
 
