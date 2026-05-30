@@ -620,11 +620,9 @@ def _parse_spec_master_sections(
 
     if title_candidates:
         title_main = sorted(title_candidates, key=lambda t: t[0])[0][1]
-    elif lang == "fr":
-        title_main = "SPÉCIFICATIONS"
-    elif lang in {"ja", "jp"}:
-        title_main = "主な仕様"
     else:
+        # Canonical key only; localized per-language via spec_titles
+        # (_apply_spec_title_map below). Do not hardcode localized titles here.
         title_main = "SPECIFICATIONS"
 
     if title_map:
