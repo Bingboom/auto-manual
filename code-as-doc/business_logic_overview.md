@@ -210,7 +210,7 @@ Important current rule:
 - `Start Review` now means force restart and reseed from the latest template/data state
 - existing review content on `main` is not used as a duplicate guard
 - for merged families such as `JE-1000F_US`, `Start Review` seeds one shared family review bundle under `docs/_review/<model>/<region>/`
-- the languages contained by that shared family review bundle come from the family config, for example `config.us.yaml build.languages`, not from separate per-language review-init tasks
+- the languages contained by that shared family review bundle come from the family config, for example `configs/config.us.yaml build.languages`, not from separate per-language review-init tasks
 
 ### 4.4 Review Editing
 
@@ -337,7 +337,7 @@ Business meaning:
 
 - a merged family represents one shared manual across languages
 - a single-language family represents one language-specific manual job
-- for review-stage US manuals, `JE-1000F_US` is the family document key and its included languages are defined by `config.us.yaml`, so downstream ES/FR builds are contained by that family review scope rather than starting separate family review bundles
+- for review-stage US manuals, `JE-1000F_US` is the family document key and its included languages are defined by `configs/config.us.yaml`, so downstream ES/FR builds are contained by that family review scope rather than starting separate family review bundles
 
 ### 5.4 Forced Snapshot Refresh
 

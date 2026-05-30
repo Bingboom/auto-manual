@@ -21,7 +21,7 @@ from tools.word_bundle_html import render_safety_word_html, render_spec_word_htm
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="config.us.yaml", help="Path to config yaml")
+    ap.add_argument("--config", default="configs/config.us.yaml", help="Path to config yaml")
     ap.add_argument("--model", default=None, help="Optional model for spec filtering")
     ap.add_argument("--region", default=None, help="Optional region for spec filtering")
     ap.add_argument("--output", default="manual_bundle.docx", help="Output docx path")

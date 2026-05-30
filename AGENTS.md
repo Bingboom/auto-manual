@@ -39,7 +39,7 @@ For current human workflows, read:
 ## 3. Workflow Rules
 
 - Do not create one config per model just because the model changed.
-- Keep the shared family config pattern with [`config.us.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.us.yaml) and [`config.ja.yaml`](/Users/pika/Documents/GitHub/auto-manual/config.ja.yaml).
+- Keep the shared family config pattern with [`configs/config.us.yaml`](/Users/pika/Documents/GitHub/auto-manual/configs/config.us.yaml) and [`configs/config.ja.yaml`](/Users/pika/Documents/GitHub/auto-manual/configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
 - Review overrides must stay under `overrides/_assets/`, `overrides/_static/`, or `overrides/renderers/`.
 - Avoid hardcoded model defaults such as `JE-1000F` in CLI behavior, report paths, or release paths.
@@ -49,10 +49,10 @@ For current human workflows, read:
 ## 4. Validation
 
 - Logic changes: `python3 -m unittest`
-- Build or quality-gate changes: `python3 build.py check --config config.us.yaml --model JE-1000F --region US`
-- JP review or publish changes: `python3 build.py publish --config config.ja.yaml --model JE-1000F --region JP`
-- Diff-report changes: `python3 build.py diff-report --config config.us.yaml --model JE-1000F --region US`
-- Release traceability changes: `python3 build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
+- Build or quality-gate changes: `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`
+- JP review or publish changes: `python3 build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP`
+- Diff-report changes: `python3 build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US`
+- Release traceability changes: `python3 build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP`
 
 ## 5. Documentation
 
@@ -146,10 +146,10 @@ The PR cannot be opened until the validation set that matches the change passes 
 | `tools/utils/**` types | `python -m mypy tools/utils` |
 | `tools/` boundary, `build.py`, `tools/build_docs.py`, `tools/process_build_queue.py` | `python tools/check_maintainability_guardrails.py` |
 | any `code-as-doc/**` or `user-guide/**` docs | `python tools/check_doc_link_integrity.py` |
-| build / quality-gate behaviour | `python build.py check --config config.us-en.yaml --model JE-1000F --region US` |
-| JP review or publish behaviour | `python build.py check --config config.ja.yaml --model JE-1000F --region JP` |
-| diff-report behaviour | `python build.py diff-report --config config.us.yaml --model JE-1000F --region US` |
-| release traceability | `python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP` |
+| build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US` |
+| JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP` |
+| diff-report behaviour | `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US` |
+| release traceability | `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP` |
 
 If any check fails, do not open the PR. Report which check failed and the last command output to the operator.
 

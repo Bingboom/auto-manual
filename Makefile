@@ -1,5 +1,5 @@
 PY ?= python
-CONFIG ?= config.us.yaml
+CONFIG ?= configs/config.us.yaml
 OPEN_FLAG :=
 NO_CLEAN_FLAG :=
 

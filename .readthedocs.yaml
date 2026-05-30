@@ -12,8 +12,8 @@ build:
       - python -m pip install -r requirements.txt
     build:
       html:
-        - python build.py md --config config.us.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index
-        - python build.py md --config config.eu.yaml --model JE-1000F --region EU --source runtime --no-clean --skip-root-index
-        - python build.py md --config config.ja.yaml --model JE-1000F --region JP --source runtime --no-clean --skip-root-index
+        - python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index
+        - python build.py md --config configs/config.eu.yaml --model JE-1000F --region EU --source runtime --no-clean --skip-root-index
+        - python build.py md --config configs/config.ja.yaml --model JE-1000F --region JP --source runtime --no-clean --skip-root-index
         - python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
         - python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"

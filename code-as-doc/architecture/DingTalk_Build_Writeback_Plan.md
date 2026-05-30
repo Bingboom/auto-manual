@@ -404,7 +404,7 @@ sync:
 
 Notes:
 
-- keep `config.us.yaml` and `config.ja.yaml` shared
+- keep `configs/config.us.yaml` and `configs/config.ja.yaml` shared
 - do not create one config per model
 - do not hardcode DingTalk IDs into tracked config files
 

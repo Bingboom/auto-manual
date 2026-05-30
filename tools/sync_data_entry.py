@@ -9,7 +9,7 @@ from typing import Any, Callable
 
 def parse_args(argv: list[str] | None = None, *, table_choices: list[str]) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Sync structured content snapshot CSVs from Feishu/Lark base tables.")
-    ap.add_argument("--config", default="config.us.yaml", help="Config YAML path")
+    ap.add_argument("--config", default="configs/config.us.yaml", help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override phase2 export root")
     ap.add_argument(
         "--table",

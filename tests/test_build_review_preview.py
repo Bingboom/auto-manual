@@ -25,34 +25,34 @@ class TestBuildReviewPreview(unittest.TestCase):
     def test_workspace_target_templates_should_derive_family_metadata_from_config(self) -> None:
         templates = {template.config: template for template in build_review_preview.WORKSPACE_TARGET_TEMPLATES}
 
-        self.assertEqual("US", templates["config.us-en.yaml"].family)
-        self.assertEqual("en", templates["config.us-en.yaml"].language)
-        self.assertTrue(templates["config.us-en.yaml"].include_lang_in_output_path)
+        self.assertEqual("US", templates["configs/config.us-en.yaml"].family)
+        self.assertEqual("en", templates["configs/config.us-en.yaml"].language)
+        self.assertTrue(templates["configs/config.us-en.yaml"].include_lang_in_output_path)
 
-        self.assertEqual("JP", templates["config.ja.yaml"].family)
-        self.assertEqual("ja", templates["config.ja.yaml"].language)
-        self.assertFalse(templates["config.ja.yaml"].include_lang_in_output_path)
+        self.assertEqual("JP", templates["configs/config.ja.yaml"].family)
+        self.assertEqual("ja", templates["configs/config.ja.yaml"].language)
+        self.assertFalse(templates["configs/config.ja.yaml"].include_lang_in_output_path)
 
     def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
         current = build_review_preview.WorkspaceTarget(
             model="JE-1000F",
             family="US",
             language="en",
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             include_lang_in_output_path=True,
         )
         es_target = build_review_preview.WorkspaceTarget(
             model="JE-1000F",
             family="US",
             language="es",
-            config="config.us-es.yaml",
+            config="configs/config.us-es.yaml",
             include_lang_in_output_path=True,
         )
         jp_target = build_review_preview.WorkspaceTarget(
             model="JE-1000F",
             family="JP",
             language="ja",
-            config="config.ja.yaml",
+            config="configs/config.ja.yaml",
             include_lang_in_output_path=False,
         )
         html = """
@@ -100,7 +100,7 @@ class TestBuildReviewPreview(unittest.TestCase):
 
     def test_build_spec_for_target_should_keep_us_en_on_lang_specific_config_in_review_mode(self) -> None:
         args = argparse.Namespace(
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             model="JE-1000F",
             region="US",
             source="review",
@@ -118,7 +118,7 @@ class TestBuildReviewPreview(unittest.TestCase):
             model="JE-1000F",
             family="US",
             language="en",
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             include_lang_in_output_path=True,
         )
 
@@ -129,14 +129,14 @@ class TestBuildReviewPreview(unittest.TestCase):
             review_availability={("JE-1000F", "US", "en")},
         )
 
-        self.assertEqual(build_review_preview.resolve_path("config.us-en.yaml"), spec["config_path"])
+        self.assertEqual(build_review_preview.resolve_path("configs/config.us-en.yaml"), spec["config_path"])
         self.assertEqual("review", spec["source_mode"])
         self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
 
     def test_build_spec_for_target_should_fallback_to_runtime_for_requested_target_without_review_bundle(self) -> None:
         args = argparse.Namespace(
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             model="JE-1000F",
             region="US",
             source="review",
@@ -154,7 +154,7 @@ class TestBuildReviewPreview(unittest.TestCase):
             model="JE-1000F",
             family="US",
             language="en",
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             include_lang_in_output_path=True,
         )
 
@@ -170,7 +170,7 @@ class TestBuildReviewPreview(unittest.TestCase):
 
     def test_build_spec_for_target_should_use_review_for_existing_secondary_language_bundles(self) -> None:
         args = argparse.Namespace(
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             model="JE-1000F",
             region="US",
             source="review",
@@ -188,7 +188,7 @@ class TestBuildReviewPreview(unittest.TestCase):
             model="JE-1000F",
             family="US",
             language="es",
-            config="config.us-es.yaml",
+            config="configs/config.us-es.yaml",
             include_lang_in_output_path=True,
         )
 
@@ -199,14 +199,14 @@ class TestBuildReviewPreview(unittest.TestCase):
             review_availability={("JE-1000F", "US", "es")},
         )
 
-        self.assertEqual(build_review_preview.resolve_path("config.us-es.yaml"), spec["config_path"])
+        self.assertEqual(build_review_preview.resolve_path("configs/config.us-es.yaml"), spec["config_path"])
         self.assertEqual("review", spec["source_mode"])
         self.assertEqual("review", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
 
     def test_build_spec_for_target_should_fallback_to_runtime_for_secondary_language_without_review_baseline(self) -> None:
         args = argparse.Namespace(
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             model="JE-1000F",
             region="US",
             source="review",
@@ -224,7 +224,7 @@ class TestBuildReviewPreview(unittest.TestCase):
             model="JE-1000F",
             family="US",
             language="fr",
-            config="config.us-fr.yaml",
+            config="configs/config.us-fr.yaml",
             include_lang_in_output_path=True,
         )
 
@@ -243,7 +243,7 @@ class TestBuildReviewPreview(unittest.TestCase):
             model="JE-1000F",
             family="US",
             language="fr",
-            config="config.us-fr.yaml",
+            config="configs/config.us-fr.yaml",
             include_lang_in_output_path=True,
         )
 
@@ -256,7 +256,7 @@ class TestBuildReviewPreview(unittest.TestCase):
 
     def test_discover_workspace_targets_should_keep_requested_target_when_review_is_empty(self) -> None:
         args = argparse.Namespace(
-            config="config.us-en.yaml",
+            config="configs/config.us-en.yaml",
             model="JE-1000F",
             region="US",
             source="review",
@@ -282,7 +282,7 @@ class TestBuildReviewPreview(unittest.TestCase):
 
     def test_diff_config_for_family_should_use_us_en_config_for_us_family(self) -> None:
         args = argparse.Namespace(
-            config="config.ja.yaml",
+            config="configs/config.ja.yaml",
             model="JE-1000F",
             region="JP",
             source="review",
@@ -297,7 +297,7 @@ class TestBuildReviewPreview(unittest.TestCase):
         )
 
         self.assertEqual(
-            build_review_preview.resolve_path("config.us.yaml"),
+            build_review_preview.resolve_path("configs/config.us.yaml"),
             build_review_preview.diff_config_for_family(args, "US"),
         )
 
@@ -322,7 +322,7 @@ class TestBuildReviewPreview(unittest.TestCase):
 
         self.assertEqual("JP", target.family)
         self.assertEqual("ja", target.language)
-        self.assertEqual("config.ja.yaml", target.config)
+        self.assertEqual("configs/config.ja.yaml", target.config)
         self.assertFalse(target.include_lang_in_output_path)
 
     def test_copy_report_assets_should_return_stable_relative_paths(self) -> None:

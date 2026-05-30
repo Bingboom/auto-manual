@@ -210,9 +210,9 @@ The hosted electronic edition becomes the continuity layer during this migration
 
 Exit criteria:
 
-- `python3 build.py md --config config.us.yaml --model JE-1000F --region US`
+- `python3 build.py md --config configs/config.us.yaml --model JE-1000F --region US`
   writes a target-scoped Markdown file.
-- `python3 build.py publish --config config.ja.yaml --model JE-1000F --region JP`
+- `python3 build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP`
   produces Word, PDF, Markdown, and release manifest metadata.
 
 ### Phase 2: Queue import to Feishu cloud docs
@@ -269,9 +269,9 @@ Required validation for implementation work:
 
 ```bash
 python3 -m unittest
-python3 build.py check --config config.us.yaml --model JE-1000F --region US
-python3 build.py md --config config.us.yaml --model JE-1000F --region US
-python3 build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US
+python3 build.py md --config configs/config.us.yaml --model JE-1000F --region US
+python3 build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 Queue validation should cover one Draft row and one Publish row with the

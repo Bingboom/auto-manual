@@ -110,8 +110,8 @@ Main outcomes:
 
 - stopped normalizing around one config per model
 - consolidated to shared family configs:
-  - [`config.us.yaml`](../config.us.yaml)
-  - [`config.ja.yaml`](../config.ja.yaml)
+  - [`configs/config.us.yaml`](../configs/config.us.yaml)
+  - [`configs/config.ja.yaml`](../configs/config.ja.yaml)
 - active family configs are now centered on US / JP shared configs instead of per-model files
 - moved per-target differences to CLI target selection and phase1 data
 
@@ -351,7 +351,7 @@ Main outcomes:
 - reduced [`tools/build_docs.py`](../tools/build_docs.py) from the earlier 1400+ line range down to a thinner orchestration facade
 - split [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) into planning, materialization, asset, page-render, and runtime helper modules
 - split [`tools/check_docs.py`](../tools/check_docs.py) into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules
-- added config `extends` support and moved shared US single-language defaults into [`config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml) so `config.us-en/es/fr.yaml` became thin overrides with manifest-owned page stacks
+- added config `extends` support and moved shared US single-language defaults into [`configs/config-bases/us-single-language-base.yaml`](../configs/config-bases/us-single-language-base.yaml) so `config.us-en/es/fr.yaml` became thin overrides with manifest-owned page stacks
 
 Why it mattered:
 
@@ -543,7 +543,7 @@ Main outcomes:
 - added [`../tools/spec_master_rebuild.py`](../tools/spec_master_rebuild.py) and the `python build.py spec-master-rebuild` action to merge source tables, validate row counts, enforce unique keys, and optionally write merged rows back to the Feishu total table
 - made source-table `source_row_key` a formula primary key and source-table `Row_key` a lookup from `参数名.Row_key`, leaving `Row_key_link` as the human-maintained dictionary selector
 - removed source-table `Model` and `Region`; the rebuild step derives them from `document_key` while preserving the compatible read-model columns
-- pinned the source table IDs in [`../config.ja.yaml`](../config.ja.yaml) and [`../config.us.yaml`](../config.us.yaml) under `sync.phase2.spec_master_sources`
+- pinned the source table IDs in [`../configs/config.ja.yaml`](../configs/config.ja.yaml) and [`../configs/config.us.yaml`](../configs/config.us.yaml) under `sync.phase2.spec_master_sources`
 - updated maintainer and user docs so humans edit the source tables and treat `spec_master` as a read model
 
 Why it mattered:
@@ -593,3 +593,17 @@ Why it mattered:
 - a path-segment rename now lands in one place instead of across two parallel modules plus ~40 ad-hoc joins
 - the central module is config-aware, so a non-default `docs_dir` flows through consistently rather than being silently re-anchored
 - follow-ups remain scoped and explicit: centralize the `generated` segment (~18 sites) and dedup the ~6 per-module `resolve_docs_dir` config-readers that disagree on repo-root vs config-parent base
+
+## 36. 2026-05-30: Relocate Family Configs Into `configs/`
+
+Main outcomes:
+
+- moved the 14 root `config.*.yaml` family configs and the `config-bases/` overrides into [`configs/`](../configs) (with `config-bases/` now at [`configs/config-bases/`](../configs/config-bases)), so config-dir-relative `extends:` chains keep resolving with zero content edits
+- added `PathSegments.CONFIGS` plus `Paths.configs_dir` / `Paths.config_file(name)` and repointed `Paths.config_yaml` at `configs/`, per the §3 rule that repo paths go through `path_utils`
+- updated every reference (~55 files): `build.py` default, all CLI `--config` defaults, `target_defaults`, the review-preview config map, the config-discovery globs in [`tools/queue_config_resolution.py`](../tools/queue_config_resolution.py) (now `configs/config*.yaml`), the 6 CI workflows, docs, and `AGENTS.md` validation commands
+- updated tests for the new layout: real-config refs prefixed with `configs/`, discovery-fixture writes redirected under `<tmpdir>/configs/`, while tmpdir temp configs and basename (`config_path.name`) comparisons were deliberately left unchanged
+
+Why it mattered:
+
+- the repo root no longer carries 14 loose config files; all build configuration lives under one `configs/` tree
+- config discovery and defaults resolve from the new location, and the `extends:` inheritance graph survived the move untouched

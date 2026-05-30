@@ -28,13 +28,13 @@ Updated: 2026-05-25
 改完两张 spec 源表后，常规刷新运行：
 
 ```bash
-python3 build.py sync-data --config config.us.yaml --data-root data/phase2 --table spec_master
+python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master
 ```
 
 只想重建 `Spec_Master.csv` 时，运行：
 
 ```bash
-python3 build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222
+python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222
 ```
 
 需要把源表合并结果写回旧 Feishu 总表时，才加 `--write-back`。
@@ -165,16 +165,16 @@ Publish 的原料是：
 如果你要让 OpenClaw 在飞书里按自然语言去操作这套流程，推荐固定成两个确定性入口：
 
 1. 查状态或查记录时，先查表定位唯一目标行：
-   - `python build.py queue-query --config config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json`
-   - 如果要先让 OpenClaw 看结构化 dry-run 结果，再走下一步：`python build.py queue-resolve-action --config config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json`
+   - `python build.py queue-query --config configs/config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json`
+   - 如果要先让 OpenClaw 看结构化 dry-run 结果，再走下一步：`python build.py queue-resolve-action --config configs/config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json`
 2. 要真正执行时，直接走一条确定性命令：
-   - `python build.py queue-execute --config config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
+   - `python build.py queue-execute --config configs/config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
    - 如果这条命令最终会命中 `Workflow_action = Publish`，要额外带上 `--confirm-publish`
 3. 只有在排查问题或需要人工拆步骤时，再手动触发控制层：
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft> <record_id>`
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch publish <record_id> confirm`
 4. 如果要直接接飞书 IM 消息入口，而不是通过 OpenClaw 命令面板：
-   - 本机直连、不要服务器中转时：启动 `python build.py listen-message-control --config config.us.yaml`
+   - 本机直连、不要服务器中转时：启动 `python build.py listen-message-control --config configs/config.us.yaml`
    - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
    - 如果同一台机器还要保留旧 app 的本地 `lark-cli` 配置，先设置 `FEISHU_IM_LARK_CLI_HOME=单独目录`，再在那个目录下初始化新 app 的 `lark-cli` 配置
    - 它仍然只处理这套文档控制层支持的动作和状态问题，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`
@@ -497,8 +497,8 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 ## 10. 2026-04 更新
 
 - `Review Init` 和 `Document_link` 现在都是先按 `Build_family` 路由，再决定是否按 `Document_Key` 合并；像 `us-merged` 这种启用了 `queue_by_document_key` 的 family 会把空 `Lang` 的同一个 `Document_Key` 合成一次 review / build，而 `Build Draft Package` 行只要填写了 `Lang`，就会按 `Document_Key + 规范化 Lang` 拆成独立构建。
-- `Lang=br` / `pt-br` 会规范化为 `pt-BR`；`config.pt-br.yaml` 现在按单语言入口构建巴西葡语文档，队列表用 `Build_family = pt-br` 加 `Lang=br` 或 `Lang=pt-BR`，不要再额外配一条英文对照稿。
-- US 的 `config.us.yaml` 现在是合并多语言入口，会产出一个合并 `en + fr + es` 的 Word：`docs/_build/<model>/US/word/manual_<model>_us.docx`。
+- `Lang=br` / `pt-br` 会规范化为 `pt-BR`；`configs/config.pt-br.yaml` 现在按单语言入口构建巴西葡语文档，队列表用 `Build_family = pt-br` 加 `Lang=br` 或 `Lang=pt-BR`，不要再额外配一条英文对照稿。
+- US 的 `configs/config.us.yaml` 现在是合并多语言入口，会产出一个合并 `en + fr + es` 的 Word：`docs/_build/<model>/US/word/manual_<model>_us.docx`。
 - 队列表建议直接填写 `Build_family`：`us-merged` / `us-en` / `us-es` / `us-fr` / `pt-br` / `jp-ja` / `cn-zh`；`Lang` 现在只保留为兼容字段，不再是主路由字段。
 - 合并 US 流程请填 `Build_family = us-merged`，`Lang` 可以留空；单语言流程请填对应单语言 family，例如 `us-en`、`us-es`、`us-fr` 或 `pt-br`，`Lang` 只填一个语言值即可。
 - 这条合并 US 流程不再要求法语、西语分别先创一份独立初稿 review bundle。

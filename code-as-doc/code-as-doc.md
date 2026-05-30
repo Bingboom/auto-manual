@@ -158,32 +158,32 @@ Run the smallest check set that matches the change.
 Recommended baseline:
 
 ```powershell
-python build.py validate --config config.us.yaml
+python build.py validate --config configs/config.us.yaml
 python -m unittest
 ```
 
 If build flow changed:
 
 ```powershell
-python build.py check --config config.us.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 If JP review flow changed:
 
 ```powershell
-python build.py publish --config config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 If diff-report changed:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
+python build.py diff-report --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 If release traceability changed:
 
 ```powershell
-python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 ## 6. Review Questions

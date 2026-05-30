@@ -628,7 +628,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 return_value=md_path,
             ) as resolve_md_mock:
                 resolved_path = process_build_queue.build_document_for_task(
-                    config_path=Path("config.us-en.yaml"),
+                    config_path=Path("configs/config.us-en.yaml"),
                     model="JE-1000F",
                     region="US",
                     data_root="data/phase2",
@@ -661,13 +661,13 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("review", commands[2])
         self.assertIn("--no-clean", commands[2])
         resolve_word_mock.assert_called_once_with(
-            config_path=Path("config.us-en.yaml"),
+            config_path=Path("configs/config.us-en.yaml"),
             model="JE-1000F",
             region="US",
             lang="en",
         )
         resolve_md_mock.assert_called_once_with(
-            config_path=Path("config.us-en.yaml"),
+            config_path=Path("configs/config.us-en.yaml"),
             model="JE-1000F",
             region="US",
             lang="en",
@@ -1358,7 +1358,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_config_path_for_task",
-                return_value=Path("config.us-en.yaml"),
+                return_value=Path("configs/config.us-en.yaml"),
             ), mock.patch.object(
                 process_build_queue,
                 "build_document_for_task",
@@ -1416,7 +1416,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("data_sync=skipped", record_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("workflow_action=Build Draft Package", record_payload[process_build_queue.RESULT_FIELD])
         build_document_mock.assert_called_once_with(
-            config_path=Path("config.us-en.yaml"),
+            config_path=Path("configs/config.us-en.yaml"),
             model="JE-1000F",
             region="US",
             data_root="data/phase2",
@@ -1530,7 +1530,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -1643,7 +1643,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -1726,7 +1726,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_config_path_for_task",
-                return_value=Path("config.ja.yaml"),
+                return_value=Path("configs/config.ja.yaml"),
             ), mock.patch.object(
                 process_build_queue,
                 "build_document_for_task",
@@ -1753,7 +1753,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.ja.yaml"),
+                    config_path=Path("configs/config.ja.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -1845,7 +1845,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         ), mock.patch.object(
             process_build_queue,
             "resolve_config_path_for_task",
-            return_value=Path("config.ja.yaml"),
+            return_value=Path("configs/config.ja.yaml"),
         ), mock.patch.object(
             process_build_queue,
             "build_document_for_task",
@@ -1948,7 +1948,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         ), mock.patch.object(
             process_build_queue,
             "resolve_config_path_for_task",
-            return_value=Path("config.us-en.yaml"),
+            return_value=Path("configs/config.us-en.yaml"),
         ), mock.patch.object(
             process_build_queue,
             "build_document_for_task",
@@ -2187,7 +2187,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -2199,7 +2199,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             [entry["record_id"] for entry in captured_upserts],
         )
         build_document_mock.assert_called_once_with(
-            config_path=(process_build_queue.ROOT / "config.us.yaml"),
+            config_path=(process_build_queue.ROOT / "configs/config.us.yaml"),
             model="JE-1000F",
             region="US",
             data_root="data/phase2",
@@ -2481,7 +2481,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -2624,7 +2624,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -2754,7 +2754,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -2873,7 +2873,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -2990,7 +2990,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -3137,7 +3137,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -3273,7 +3273,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -3409,7 +3409,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )
@@ -3537,7 +3537,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
-                    config_path=Path("config.us.yaml"),
+                    config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
                 )

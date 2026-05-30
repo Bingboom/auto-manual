@@ -137,8 +137,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="External credential health check.")
     parser.add_argument(
         "--config",
-        default="config.us.yaml",
-        help="Config file passed to build.py sync-data --dry-run (default: config.us.yaml).",
+        default="configs/config.us.yaml",
+        help="Config file passed to build.py sync-data --dry-run (default: configs/config.us.yaml).",
     )
     parser.add_argument(
         "--summary",

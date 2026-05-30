@@ -58,8 +58,8 @@ Current Word title comes from config:
 
 Current examples:
 
-- [`config.us.yaml`](../config.us.yaml): `|PRODUCT_NAME| User Manual`
-- [`config.ja.yaml`](../config.ja.yaml): `|PRODUCT_NAME| 取扱説明書`
+- [`configs/config.us.yaml`](../configs/config.us.yaml): `|PRODUCT_NAME| User Manual`
+- [`configs/config.ja.yaml`](../configs/config.ja.yaml): `|PRODUCT_NAME| 取扱説明書`
 
 This title is resolved by placeholder substitution before Word export.
 
@@ -160,10 +160,10 @@ If you changed title behavior, verify at least one target from the affected fami
 Examples:
 
 ```powershell
-python build.py check --config config.us.yaml --model JE-1000F --region US
-python build.py word --config config.us.yaml --model JE-1000F --region US
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
-python build.py word --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config configs/config.us.yaml --model JE-1000F --region US
+python build.py word --config configs/config.us.yaml --model JE-1000F --region US
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py word --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 If the change is spec-title-specific, also validate that the relevant section titles render as expected after CSV page generation from `data/phase2`.
@@ -185,7 +185,7 @@ Change the actual heading text:
 
 Change the document title shown in Word:
 
-- [`config.us.yaml`](../config.us.yaml) or [`config.ja.yaml`](../config.ja.yaml)
+- [`configs/config.us.yaml`](../configs/config.us.yaml) or [`configs/config.ja.yaml`](../configs/config.ja.yaml)
 - usually via `build.word_title`
 
 ## 7. Common Mistakes

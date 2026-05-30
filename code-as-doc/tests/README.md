@@ -31,16 +31,16 @@ Current test coverage includes:
 ### 2.1 EN / US family
 
 ```powershell
-python build.py check --config config.us.yaml --model JE-1000F --region US
-python build.py word --config config.us.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us.yaml --model JE-1000F --region US
+python build.py word --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 ### 2.2 JP family
 
 ```powershell
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
-python build.py publish --config config.ja.yaml --model JE-1000F --region JP
-python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 ## 3. Review-Specific Smoke Checks
@@ -48,26 +48,26 @@ python build.py release-manifest --config config.ja.yaml --model JE-1000F --regi
 Seed review once:
 
 ```powershell
-python build.py review --config config.ja.yaml --model JE-1000F --region JP
+python build.py review --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 Refresh data-driven review content:
 
 ```powershell
-python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
+python build.py sync-review --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 Export review revision report:
 
 ```powershell
-python build.py diff-report --config config.ja.yaml --model JE-1000F --region JP
+python build.py diff-report --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 Preview one page and prepare a fast runtime draft:
 
 ```powershell
-python build.py preview --config config.us.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
-python build.py fast --config config.us.yaml --model JE-1000F --region US
+python build.py preview --config configs/config.us.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
+python build.py fast --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 ## 4. Expected Output Examples

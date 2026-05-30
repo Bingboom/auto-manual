@@ -27,9 +27,9 @@ That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`]
 The primary entrypoint is [`build.py`](build.py). A minimal US/EN smoke check:
 
 ```bash
-python build.py doctor --config config.us-en.yaml --model JE-1000F --region US
-python build.py check  --config config.us-en.yaml --model JE-1000F --region US
-python build.py review --config config.us-en.yaml --model JE-1000F --region US
+python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 ```
 
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md).

@@ -12,7 +12,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(
         description="Phase 0 dry-run resolver for Feishu message plus OpenClaw control actions."
     )
-    ap.add_argument("--config", default="config.us.yaml", help="Config YAML path, used for repo context only")
+    ap.add_argument("--config", default="configs/config.us.yaml", help="Config YAML path, used for repo context only")
     ap.add_argument("--message", required=True, help="Raw Feishu or OpenClaw user message to resolve")
     ap.add_argument("--record-id", default=None, help="Optional stable queue record_id hint")
     ap.add_argument("--document-id", default=None, help="Optional Document_ID hint")

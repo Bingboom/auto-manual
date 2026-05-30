@@ -48,8 +48,8 @@ Use this checklist when reviewing changes to code, config, data, or review workf
 
 - [ ] Was `python -m unittest` run if logic changed?
 - [ ] Was at least one relevant smoke build run for the affected family?
-- [ ] If JP review/publish flow changed, was `python build.py publish --config config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
-- [ ] If release traceability changed, was `python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
+- [ ] If JP review/publish flow changed, was `python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
+- [ ] If release traceability changed, was `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
 
 ## 8. Documentation and History
 

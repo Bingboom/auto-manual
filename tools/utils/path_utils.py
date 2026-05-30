@@ -23,6 +23,7 @@ class PathSegments:
     DATA = "data"
     TOOLS = "tools"
     REPORTS = "reports"
+    CONFIGS = "configs"
 
     BUILD = "_build"
     REVIEW = "_review"
@@ -100,8 +101,15 @@ class Paths:
     _docs_dir: Path | None = None
 
     @property
+    def configs_dir(self) -> Path:
+        return self.root / PathSegments.CONFIGS
+
+    @property
     def config_yaml(self) -> Path:
-        return self.root / PathSegments.DEFAULT_CONFIG_US
+        return self.configs_dir / PathSegments.DEFAULT_CONFIG_US
+
+    def config_file(self, name: str) -> Path:
+        return self.configs_dir / name
 
     @property
     def docs_dir(self) -> Path:

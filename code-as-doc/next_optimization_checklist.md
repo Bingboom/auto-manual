@@ -61,8 +61,8 @@ This checklist assumes the 2026-05-07 baseline below:
 - local repo test baseline: `python3 -m unittest`
 - local quality-gate baseline:
   - `python3 -m ruff check build.py integrations tools tests scripts`
-  - `python3 scripts/local_build.py check --config config.us-en.yaml --model JE-1000F --region US`
-  - `python3 scripts/local_build.py check --config config.ja.yaml --model JE-1000F --region JP`
+  - `python3 scripts/local_build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
+  - `python3 scripts/local_build.py check --config configs/config.ja.yaml --model JE-1000F --region JP`
 - short-term baseline PRs already absorbed:
   - phase2 snapshot manifest completeness validation
   - CLI action registry

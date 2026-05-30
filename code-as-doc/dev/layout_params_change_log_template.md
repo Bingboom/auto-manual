@@ -13,8 +13,8 @@ Use this template to record each meaningful [`data/layout_params.csv`](../../dat
 - Branch:
 - Related task:
 - Affected family:
-  - [`config.us.yaml`](../../config.us.yaml)
-  - [`config.ja.yaml`](../../config.ja.yaml)
+  - [`configs/config.us.yaml`](../../configs/config.us.yaml)
+  - [`configs/config.ja.yaml`](../../configs/config.ja.yaml)
 - Affected target examples:
   - `JE-1000F / US`
   - `JE-1000F / JP`
@@ -43,21 +43,21 @@ Only fill this section if `.tex` or Python files also changed.
 ## 4. Verification Commands
 
 ```powershell
-python build.py validate --config config.us.yaml
-python build.py pdf --config config.us.yaml --model JE-1000F --region US
+python build.py validate --config configs/config.us.yaml
+python build.py pdf --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 If JP is affected:
 
 ```powershell
-python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+python build.py pdf --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 Optional clean rebuild:
 
 ```powershell
-python build.py clean --config config.us.yaml
-python build.py pdf --config config.us.yaml --model JE-1000F --region US
+python build.py clean --config configs/config.us.yaml
+python build.py pdf --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 ---

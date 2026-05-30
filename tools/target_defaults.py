@@ -1,24 +1,24 @@
 from __future__ import annotations
 
 US_SINGLE_LANGUAGE_TARGET_CONFIGS: dict[str, str] = {
-    "en": "config.us-en.yaml",
-    "es": "config.us-es.yaml",
-    "fr": "config.us-fr.yaml",
+    "en": "configs/config.us-en.yaml",
+    "es": "configs/config.us-es.yaml",
+    "fr": "configs/config.us-fr.yaml",
 }
 
 LANGUAGE_BATCH_TARGET_CONFIGS: dict[str, str] = {
     **US_SINGLE_LANGUAGE_TARGET_CONFIGS,
-    "ja": "config.ja.yaml",
+    "ja": "configs/config.ja.yaml",
 }
 
 REVIEW_WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = (
     *LANGUAGE_BATCH_TARGET_CONFIGS.values(),
-    "config.zh.yaml",
+    "configs/config.zh.yaml",
 )
 
 FAMILY_DEFAULT_CONFIGS: dict[str, str] = {
-    "US": "config.us.yaml",
-    "EU": "config.eu.yaml",
-    "JP": "config.ja.yaml",
-    "CN": "config.zh.yaml",
+    "US": "configs/config.us.yaml",
+    "EU": "configs/config.eu.yaml",
+    "JP": "configs/config.ja.yaml",
+    "CN": "configs/config.zh.yaml",
 }
