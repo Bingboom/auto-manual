@@ -13,8 +13,6 @@ from tools.utils.spec_master import (
     resolve_spec_value_from_rows,
     resolve_template_substitutions_from_rows,
 )
-from tools.content_assembly import render_content_assembly_page
-from tools.product_overview_renderer import render_product_overview_page
 from tools.word_bundle_common import apply_rst_substitutions, resolve_config_path
 
 
@@ -38,16 +36,6 @@ class DraftFieldBinding:
 
 
 @dataclass(frozen=True)
-class AssemblyPilotConfig:
-    enabled: bool = False
-    contract: str = ""
-    fixtures: str = ""
-    block_template_dir: str = ""
-    regions: tuple[str, ...] = ()
-    langs: tuple[str, ...] = ()
-
-
-@dataclass(frozen=True)
 class DraftRecipe:
     page_id: str
     template: str
@@ -56,7 +44,6 @@ class DraftRecipe:
     snippet_slots: dict[str, str]
     contracts: tuple[str, ...]
     postprocess: tuple[str, ...]
-    assembly_pilot: AssemblyPilotConfig
 
 
 @dataclass(frozen=True)
@@ -175,40 +162,6 @@ def _normalize_field_binding(raw: object, *, placeholder: str) -> DraftFieldBind
     )
 
 
-def _normalize_assembly_pilot(raw: object, *, recipe_path: Path) -> AssemblyPilotConfig:
-    if raw is None:
-        return AssemblyPilotConfig()
-    if not isinstance(raw, dict):
-        raise RuntimeError(f"assembly_pilot must be a mapping in draft recipe: {recipe_path}")
-    enabled = _normalize_bool(raw.get("enabled"))
-    contract = str(raw.get("contract", "")).strip()
-    fixtures = str(raw.get("fixtures", "")).strip()
-    block_template_dir = str(raw.get("block_template_dir", "")).strip()
-    if enabled:
-        missing = [
-            name
-            for name, value in (
-                ("contract", contract),
-                ("fixtures", fixtures),
-                ("block_template_dir", block_template_dir),
-            )
-            if not value
-        ]
-        if missing:
-            raise RuntimeError(
-                f"assembly_pilot is enabled but missing required field(s) in {recipe_path}: "
-                f"{', '.join(missing)}"
-            )
-    return AssemblyPilotConfig(
-        enabled=enabled,
-        contract=contract,
-        fixtures=fixtures,
-        block_template_dir=block_template_dir,
-        regions=_normalize_csv_or_list(raw.get("regions"), field_name="assembly_pilot.regions"),
-        langs=tuple(value.lower() for value in _normalize_csv_or_list(raw.get("langs"), field_name="assembly_pilot.langs")),
-    )
-
-
 def load_draft_recipe(path: Path) -> DraftRecipe:
     data = _load_yaml(path)
     if not isinstance(data, dict):
@@ -256,7 +209,6 @@ def load_draft_recipe(path: Path) -> DraftRecipe:
         snippet_slots=snippet_slots,
         contracts=contracts,
         postprocess=postprocess,
-        assembly_pilot=_normalize_assembly_pilot(data.get("assembly_pilot"), recipe_path=path),
     )
 
 
@@ -511,26 +463,6 @@ def _apply_recipe_postprocess(text: str, recipe: DraftRecipe) -> str:
     return rendered
 
 
-def _assembly_path(*, docs_dir: Path, repo_root: Path, raw_path: str) -> Path:
-    candidate = Path(raw_path)
-    if candidate.is_absolute():
-        return candidate
-    docs_candidate = resolve_config_path(docs_dir, raw_path, None, None)
-    if docs_candidate.exists():
-        return docs_candidate
-    return repo_root / raw_path
-
-
-def _assembly_pilot_applies(config: AssemblyPilotConfig, *, region: str | None, lang: str) -> bool:
-    if not config.enabled:
-        return False
-    if config.regions and (region or "").strip() not in config.regions:
-        return False
-    if config.langs and lang.lower() not in config.langs:
-        return False
-    return True
-
-
 def render_generated_page(
     *,
     docs_dir: Path,
@@ -571,49 +503,6 @@ def render_generated_page(
             f"{', '.join(missing_row_keys)}"
         )
 
-    if _assembly_pilot_applies(recipe.assembly_pilot, region=region, lang=lang):
-        repo_root = docs_dir.parent
-        try:
-            rendered = render_content_assembly_page(
-                contract_path=_assembly_path(
-                    docs_dir=docs_dir,
-                    repo_root=repo_root,
-                    raw_path=recipe.assembly_pilot.contract,
-                ),
-                fixtures_dir=_assembly_path(
-                    docs_dir=docs_dir,
-                    repo_root=repo_root,
-                    raw_path=recipe.assembly_pilot.fixtures,
-                ),
-                block_template_dir=_assembly_path(
-                    docs_dir=docs_dir,
-                    repo_root=repo_root,
-                    raw_path=recipe.assembly_pilot.block_template_dir,
-                ),
-                region=region or "",
-                lang=lang,
-                substitutions=substitutions,
-                repo_root=repo_root,
-            )
-        except RuntimeError as exc:
-            raise RuntimeError(
-                f"Assembly pilot failed for draft recipe '{recipe.page_id}' "
-                f"lang '{lang}' region '{region or ''}': {exc}"
-            ) from exc
-        rendered = apply_rst_substitutions(rendered, substitutions, vars_map)
-        rendered = _apply_recipe_postprocess(rendered, recipe)
-        if rendered_source_path is not None:
-            rendered_source_path.parent.mkdir(parents=True, exist_ok=True)
-            rendered_source_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")
-        return GeneratedPageRender(
-            text=rendered,
-            template_path=template_path,
-            recipe_path=recipe_path,
-            recipe=recipe,
-            used_snippet_ids=(),
-            rendered_source_path=rendered_source_path,
-        )
-
     registry_entries = load_snippet_registry(registry_path)
     template_text = template_path.read_text(encoding="utf-8")
     used_snippet_ids: list[str] = []
@@ -652,7 +541,6 @@ def render_generated_page(
         template_text = template_text.replace(token, snippet_text.rstrip("\n"))
         used_snippet_ids.append(snippet_id)
 
-    template_text = render_product_overview_page(template_text, substitutions, lang=lang)
     rendered = apply_rst_substitutions(template_text, substitutions, vars_map)
     rendered = _apply_recipe_postprocess(rendered, recipe)
     if rendered_source_path is not None:
