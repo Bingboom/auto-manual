@@ -25,12 +25,13 @@ from tools.product_overview_renderer import (  # noqa: E402
     PRODUCT_OVERVIEW_TOKEN,
     render_product_overview_page,
 )
+from tools.utils.path_utils import PathSegments  # noqa: E402
 
 
 FORBIDDEN_OUTPUT_DIRS = (
-    Path("docs/templates"),
-    Path("docs/_review"),
-    Path("docs/_build"),
+    Path(PathSegments.DOCS) / PathSegments.TEMPLATES,
+    Path(PathSegments.DOCS) / PathSegments.REVIEW,
+    Path(PathSegments.DOCS) / PathSegments.BUILD,
 )
 
 

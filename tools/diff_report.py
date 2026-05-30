@@ -16,6 +16,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.build_paths import review_root_for_config as _review_root_for_config, version_tracking_root as _version_tracking_root  # noqa: E402
+from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.diff_report_fields import (  # noqa: E402
     collect_field_diff_rows,
     collect_page_diff_rows,
@@ -72,7 +73,7 @@ def default_output_dir_for_tracked_root(
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Export git diff under a tracked docs subtree to CSV/HTML.")
-    ap.add_argument("--tracked-root", default="docs/_review", help="Tracked subtree root")
+    ap.add_argument("--tracked-root", default=f"{PathSegments.DOCS}/{PathSegments.REVIEW}", help="Tracked subtree root")
     ap.add_argument("--config", default="configs/config.us.yaml", help="Config YAML path for resolving source CSV metadata")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref")
