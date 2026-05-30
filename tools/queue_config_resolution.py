@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.language_aliases import language_key, normalize_language, normalize_region
+from tools.utils.path_utils import PathSegments
 
 
 def build_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
@@ -139,7 +140,7 @@ def resolve_config_path_for_task(
     normalized_build_family = normalize_build_family(build_family)
     if normalized_build_family:
         family_candidates: list[tuple[Path, dict[str, Any]]] = []
-        for config_path in sorted(repo_root.glob("config*.yaml")):
+        for config_path in sorted((repo_root / PathSegments.CONFIGS).glob("config*.yaml")):
             try:
                 cfg = config_loader(config_path)
             except RuntimeError:
@@ -167,7 +168,7 @@ def resolve_config_path_for_task(
         return config_path
 
     candidates: list[tuple[int, Path]] = []
-    for config_path in sorted(repo_root.glob("config*.yaml")):
+    for config_path in sorted((repo_root / PathSegments.CONFIGS).glob("config*.yaml")):
         try:
             cfg = config_loader(config_path)
         except RuntimeError:

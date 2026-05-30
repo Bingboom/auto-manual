@@ -109,7 +109,7 @@ jobs:
       - name: Process Feishu build queue
         shell: bash
         run: |
-          cmd=(python build.py process-build-queue --config config.us.yaml --data-root data/phase2 --workflow-action publish)
+          cmd=(python build.py process-build-queue --config configs/config.us.yaml --data-root data/phase2 --workflow-action publish)
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi
@@ -155,7 +155,7 @@ jobs:
         run: |
           cmd=(
             python tools/write_publish_html_link.py
-            --config config.us.yaml
+            --config configs/config.us.yaml
             --publish-url "${{ steps.deploy.outputs.publish_url }}"
           )
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then

@@ -54,8 +54,8 @@ If the user wants a whole Markdown page or manual rewritten, wants headings and 
 - OpenClaw-ready paragraph prompt:
   `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product. Read all the instructions before using the product." --source-lang en --target-lang fr --format prompt`
 - Exact term lookup:
-  `python3 build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master`
+  `python3 build.py translation-memory --config configs/config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master`
 - Section context:
-  `python3 build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "charging power" --lang es --page operation_guide --section "OUTPUT PORTS"`
+  `python3 build.py translation-memory --config configs/config.us.yaml --model JE-1000F --region US --query-text "charging power" --lang es --page operation_guide --section "OUTPUT PORTS"`
 - Symbol copy:
-  `python3 build.py translation-memory --config config.us.yaml --model JE-1000F --region US --query-text "Warning and Caution Symbols" --lang fr --table symbols-blocks`
+  `python3 build.py translation-memory --config configs/config.us.yaml --model JE-1000F --region US --query-text "Warning and Caution Symbols" --lang fr --table symbols-blocks`

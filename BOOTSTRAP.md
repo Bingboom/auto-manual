@@ -38,19 +38,19 @@ Read these docs for the current implementation:
 Query one target row from natural language:
 
 ```powershell
-python build.py queue-query --config config.us.yaml --query-text "<user request>" --json
+python build.py queue-query --config configs/config.us.yaml --query-text "<user request>" --json
 ```
 
 Resolve one natural-language ask into a bounded action contract:
 
 ```powershell
-python build.py queue-resolve-action --config config.us.yaml --query-text "<user request>" --json
+python build.py queue-resolve-action --config configs/config.us.yaml --query-text "<user request>" --json
 ```
 
 Dispatch one natural-language execution ask:
 
 ```powershell
-python build.py queue-execute --config config.us.yaml --query-text "<user request>"
+python build.py queue-execute --config configs/config.us.yaml --query-text "<user request>"
 ```
 
 Run the standalone Feishu IM ingress adapter:

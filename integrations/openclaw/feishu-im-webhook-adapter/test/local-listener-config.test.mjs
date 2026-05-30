@@ -11,7 +11,7 @@ import {
 test("parseLocalListenerArgs supports lark-cli-home", () => {
   const parsed = parseLocalListenerArgs([
     "--control-config",
-    "config.us.yaml",
+    "configs/config.us.yaml",
     "--lark-cli-bin",
     "custom-lark-cli",
     "--event-identity",
@@ -20,7 +20,7 @@ test("parseLocalListenerArgs supports lark-cli-home", () => {
     ".tmp/lark-home",
   ]);
 
-  assert.equal(parsed.controlConfig, "config.us.yaml");
+  assert.equal(parsed.controlConfig, "configs/config.us.yaml");
   assert.equal(parsed.larkCliBin, "custom-lark-cli");
   assert.equal(parsed.eventIdentity, "user");
   assert.match(parsed.larkCliHome, /\.tmp\/lark-home$/);
@@ -28,9 +28,9 @@ test("parseLocalListenerArgs supports lark-cli-home", () => {
 
 test("buildLocalListenerConfig prefers args over env", () => {
   const config = buildLocalListenerConfig(
-    { controlConfig: "config.us.yaml" },
+    { controlConfig: "configs/config.us.yaml" },
     {
-      controlConfig: "config.ja.yaml",
+      controlConfig: "configs/config.ja.yaml",
       larkCliBin: "arg-cli",
       eventIdentity: "user",
       larkCliHome: "/tmp/arg-home",
@@ -42,7 +42,7 @@ test("buildLocalListenerConfig prefers args over env", () => {
     }
   );
 
-  assert.equal(config.controlConfig, "config.ja.yaml");
+  assert.equal(config.controlConfig, "configs/config.ja.yaml");
   assert.equal(config.larkCliBin, "arg-cli");
   assert.equal(config.eventIdentity, "user");
   assert.equal(config.larkCliHome, "/tmp/arg-home");

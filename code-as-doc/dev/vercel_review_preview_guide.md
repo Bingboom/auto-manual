@@ -44,7 +44,7 @@ Current Publish worker:
 
 After a successful queue-driven Publish row, it now:
 
-1. runs `python build.py process-build-queue --config config.us.yaml --workflow-action publish`
+1. runs `python build.py process-build-queue --config configs/config.us.yaml --workflow-action publish`
 2. stages the DOCX and latest HTML snapshot under `reports/releases/...`
 3. builds `site/publish-latest/dist/`
 4. runs `vercel pull`

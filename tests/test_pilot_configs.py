@@ -42,23 +42,23 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_us_pilot_config_should_resolve_generated_pages_without_issues(self) -> None:
         self._assert_pilot_config_ready(
-            config_name="config.us.yaml",
+            config_name="configs/config.us.yaml",
             model="JE-1000F",
             region="US",
         )
 
     def test_jp_pilot_config_should_resolve_generated_pages_without_issues(self) -> None:
         self._assert_pilot_config_ready(
-            config_name="config.ja.yaml",
+            config_name="configs/config.ja.yaml",
             model="JE-1000F",
             region="JP",
         )
 
     def test_us_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 17),
-            ("config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 16),
-            ("config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 16),
+            ("configs/config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 17),
+            ("configs/config.us-es.yaml", "es", "us-es", "docs/manifests/manual_us-single-es.yaml", 16),
+            ("configs/config.us-fr.yaml", "fr", "us-fr", "docs/manifests/manual_us-single-fr.yaml", 16),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
@@ -169,7 +169,7 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertIn("|MAIN_POWER_BUTTON_LABEL|", app_text)
 
     def test_pt_br_config_should_use_us_single_language_build_logic(self) -> None:
-        cfg = check_docs.load_config(ROOT / "config.pt-br.yaml")
+        cfg = check_docs.load_config(ROOT / "configs/config.pt-br.yaml")
         self.assertEqual("pt-br", cfg.get("build", {}).get("family_id"))
         self.assertEqual("JE-1500D", cfg.get("build", {}).get("default_model"))
         self.assertEqual("pt-BR", cfg.get("build", {}).get("default_region"))
@@ -220,8 +220,8 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_user_maintenance_page_should_precede_symbols_page_in_shared_manifests(self) -> None:
         cases = (
-            ("config.us.yaml", "US", ("en", "fr", "es")),
-            ("config.eu.yaml", "EU", ("en", "fr", "es", "de", "it", "uk")),
+            ("configs/config.us.yaml", "US", ("en", "fr", "es")),
+            ("configs/config.eu.yaml", "EU", ("en", "fr", "es", "de", "it", "uk")),
         )
 
         for config_name, region, langs in cases:
@@ -254,9 +254,9 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 16),
-            ("config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
-            ("config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
+            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 16),
+            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
+            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
@@ -352,7 +352,7 @@ class TestPilotConfigs(unittest.TestCase):
                     self.assertNotIn(marker, text)
 
     def test_eu_merged_config_should_resolve_manifest_backed_pages_without_issues(self) -> None:
-        cfg = check_docs.load_config(ROOT / "config.eu.yaml")
+        cfg = check_docs.load_config(ROOT / "configs/config.eu.yaml")
         self.assertEqual("eu-merged", cfg.get("build", {}).get("family_id"))
         self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
         self.assertEqual("EU", cfg.get("build", {}).get("default_region"))

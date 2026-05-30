@@ -71,19 +71,19 @@ python tools\validate_layout_params.py --csv data\layout_params.csv
 or:
 
 ```powershell
-python build.py validate --config config.us.yaml
+python build.py validate --config configs/config.us.yaml
 ```
 
 ### 4.3 Regenerate and Build PDF
 
 ```powershell
-python build.py pdf --config config.us.yaml --model JE-1000F --region US
+python build.py pdf --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 If JP is the affected family:
 
 ```powershell
-python build.py pdf --config config.ja.yaml --model JE-1000F --region JP
+python build.py pdf --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 ### 4.4 Compare Results

@@ -68,7 +68,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
     def test_resolve_config_path_for_task_should_prefer_lang_specific_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                write_text(root / name, "build: {}\n")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.yaml": {
@@ -101,12 +101,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
             ):
                 config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="en")
 
-        self.assertEqual(root / "config.us-en.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.us-en.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_use_document_key_config_as_lang_fallback(self) -> None:
         with temp_test_root() as root:
             for name in ("config.yaml", "config.us-en.yaml"):
-                write_text(root / name, "build: {}\n")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.yaml": {
@@ -133,12 +133,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
             ):
                 config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="fr")
 
-        self.assertEqual(root / "config.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_allow_blank_lang_for_document_key_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                write_text(root / name, "build: {}\n")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -172,12 +172,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
             ):
                 config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="")
 
-        self.assertEqual(root / "config.us.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.us.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_allow_blank_lang_for_merged_eu_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.us.yaml", "config.eu.yaml", "config.eu-en.yaml"):
-                write_text(root / name, "build: {}\n")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -214,12 +214,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
             ):
                 config_path = process_build_queue.resolve_config_path_for_task(region="EU", lang="")
 
-        self.assertEqual(root / "config.eu.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.eu.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_reject_blank_lang_without_merged_region_config(self) -> None:
         with temp_test_root() as root:
             for name in ("config.eu-en.yaml", "config.eu-fr.yaml"):
-                write_text(root / name, "build: {}\n")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.eu-en.yaml": {
@@ -253,7 +253,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
     def test_resolve_config_path_for_task_should_prefer_build_family_when_present(self) -> None:
         with temp_test_root() as root:
             for name in ("config.us.yaml", "config.us-en.yaml", "config.us-fr.yaml"):
-                write_text(root / name, "build: {}\n")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -294,13 +294,13 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                     build_family="us-merged",
                 )
 
-        self.assertEqual(root / "config.us.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.us.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_fallback_to_lang_when_build_family_missing(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             for name in ("config.us.yaml", "config.us-en.yaml"):
-                (root / name).write_text("build: {}\n", encoding="utf-8")
+                write_text(root / "configs" / name, "build: {}\n")
 
             configs = {
                 "config.us.yaml": {
@@ -329,13 +329,13 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
             ):
                 config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="en")
 
-        self.assertEqual(root / "config.us-en.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.us-en.yaml", config_path)
 
     def test_resolve_config_path_for_task_should_reject_conflicting_build_family_and_lang(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            config_path = root / "config.us-en.yaml"
-            config_path.write_text("build: {}\n", encoding="utf-8")
+            config_path = root / "configs" / "config.us-en.yaml"
+            write_text(config_path, "build: {}\n")
             configs = {
                 "config.us-en.yaml": {
                     "build": {
@@ -362,8 +362,8 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
     def test_resolve_config_path_for_task_should_reject_conflicting_build_family_and_region(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            config_path = root / "config.us-en.yaml"
-            config_path.write_text("build: {}\n", encoding="utf-8")
+            config_path = root / "configs" / "config.us-en.yaml"
+            write_text(config_path, "build: {}\n")
             configs = {
                 "config.us-en.yaml": {
                     "build": {
@@ -390,8 +390,8 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
     def test_resolve_config_path_for_task_should_reject_publish_single_language_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            config_path = root / "config.us-en.yaml"
-            config_path.write_text("build: {}\n", encoding="utf-8")
+            config_path = root / "configs" / "config.us-en.yaml"
+            write_text(config_path, "build: {}\n")
             configs = {
                 "config.us-en.yaml": {
                     "build": {
@@ -419,8 +419,8 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
     def test_resolve_config_path_for_task_should_allow_draft_lang_against_document_key_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            config_path = root / "config.pt-br.yaml"
-            config_path.write_text("build: {}\n", encoding="utf-8")
+            config_path = root / "configs" / "config.pt-br.yaml"
+            write_text(config_path, "build: {}\n")
             configs = {
                 "config.pt-br.yaml": {
                     "build": {
@@ -445,7 +445,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                     workflow_action="draft",
                 )
 
-        self.assertEqual(root / "config.pt-br.yaml", config_path)
+        self.assertEqual(root / "configs" / "config.pt-br.yaml", config_path)
 
     def test_group_pending_queue_records_should_merge_document_key_rows_when_config_requests_it(self) -> None:
         records = [
@@ -578,7 +578,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
         ]
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            (root / "config.pt-br.yaml").write_text("build: {}\n", encoding="utf-8")
+            write_text(root / "configs" / "config.pt-br.yaml", "build: {}\n")
             configs = {
                 "config.pt-br.yaml": {
                     "build": {
@@ -715,11 +715,11 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
         ) as sync_mock, mock.patch.object(
             process_build_queue,
             "resolve_config_path_for_task",
-            return_value=Path("config.us.yaml"),
+            return_value=Path("configs/config.us.yaml"),
         ) as resolve_mock:
             exit_code = process_build_queue.process_build_queue(
                 cfg=cfg,
-                config_path=Path("config.us.yaml"),
+                config_path=Path("configs/config.us.yaml"),
                 data_root="data/phase2",
                 dry_run=True,
             )

@@ -121,7 +121,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run doctor (EN/US)
-        run: python build.py doctor --config config.us-en.yaml --model JE-1000F --region US
+        run: python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
 
   check-en:
     runs-on: ubuntu-latest
@@ -135,7 +135,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run check (EN/US)
-        run: python build.py check --config config.us-en.yaml --model JE-1000F --region US
+        run: python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
 
   check-jp:
     runs-on: ubuntu-latest
@@ -149,7 +149,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run check (JP)
-        run: python build.py check --config config.ja.yaml --model JE-1000F --region JP
+        run: python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
 
   workflow-smoke:
     runs-on: ubuntu-latest
@@ -165,6 +165,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run diff-report smoke
-        run: python build.py diff-report --config config.us.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
+        run: python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
       - name: Run release-manifest smoke
-        run: python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+        run: python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP

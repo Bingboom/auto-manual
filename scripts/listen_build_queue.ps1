@@ -52,7 +52,7 @@ $command = @(
     (Join-Path $repoRoot "build.py"),
     "listen-build-queue",
     "--config",
-    "config.us.yaml",
+    "configs/config.us.yaml",
     "--data-root",
     "data/phase2",
     "--staging-root",

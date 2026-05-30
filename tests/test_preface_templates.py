@@ -18,7 +18,7 @@ class PrefaceTemplateTests(unittest.TestCase):
 
     def test_eu_preface_should_cover_all_merged_languages(self) -> None:
         text = (ROOT / "docs" / "templates" / "page_eu" / "00_preface.rst").read_text(encoding="utf-8")
-        config_text = (ROOT / "config.eu.yaml").read_text(encoding="utf-8")
+        config_text = (ROOT / "configs/config.eu.yaml").read_text(encoding="utf-8")
         manifest_text = (ROOT / "docs" / "manifests" / "manual_eu.yaml").read_text(encoding="utf-8")
 
         self.assertIn("templates/page_eu/00_preface.rst", manifest_text)

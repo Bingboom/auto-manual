@@ -60,9 +60,9 @@
 - `jp`:
   use `docs/manifests/manual_jp.yaml` and keep `01_meaning_of_symbols.rst` as the detailed symbols page.
 - `zh`:
-  use `docs/manifests/manual_zh.yaml` and `config.zh.yaml` with region `CN`.
+  use `docs/manifests/manual_zh.yaml` and `configs/config.zh.yaml` with region `CN`.
 - `eu-en`:
-  the family lives under `config.eu-en.yaml` and `docs/manifests/manual_eu-en.yaml`.
+  the family lives under `configs/config.eu-en.yaml` and `docs/manifests/manual_eu-en.yaml`.
   The current page-value path resolves through `JE-2000E` with region `US`; keep `spec` and `symbols` in `data/phase2/**`.
 
 ## Validation

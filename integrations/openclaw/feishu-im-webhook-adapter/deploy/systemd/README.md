@@ -40,7 +40,7 @@ Minimum adapter runtime:
 export FEISHU_IM_VERIFICATION_TOKEN=your_verification_token
 export FEISHU_APP_ID=cli_xxx
 export FEISHU_APP_SECRET=xxx
-export AUTO_MANUAL_CONTROL_CONFIG=config.us.yaml
+export AUTO_MANUAL_CONTROL_CONFIG=configs/config.us.yaml
 export FEISHU_IM_WEBHOOK_HOST=127.0.0.1
 export FEISHU_IM_WEBHOOK_PORT=9097
 export FEISHU_IM_WEBHOOK_PATH=/feishu/events

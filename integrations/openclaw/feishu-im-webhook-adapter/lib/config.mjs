@@ -50,7 +50,7 @@ export function loadAdapterConfig() {
     apiBaseUrl: String(process.env.FEISHU_IM_API_BASE_URL || "").trim() || "https://open.feishu.cn/open-apis",
     repoRoot,
     pythonBin: String(process.env.AUTO_MANUAL_PYTHON || "").trim() || "python3",
-    controlConfig: String(process.env.AUTO_MANUAL_CONTROL_CONFIG || "").trim() || "config.us.yaml",
+    controlConfig: String(process.env.AUTO_MANUAL_CONTROL_CONFIG || "").trim() || "configs/config.us.yaml",
     requireMention: booleanEnv("FEISHU_IM_REQUIRE_MENTION", true),
     enableMessageReactions: booleanEnv("FEISHU_IM_ENABLE_MESSAGE_REACTIONS", booleanEnv("FEISHU_IM_ENABLE_REACTIONS", false)),
     publishConfirmTtlSeconds: integerEnv("FEISHU_IM_PUBLISH_CONFIRM_TTL_SECONDS", 600),

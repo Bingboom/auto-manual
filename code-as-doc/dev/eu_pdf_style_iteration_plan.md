@@ -31,9 +31,9 @@ Estimated effort: 2-3 days.
 - [x] Regenerate `docs/renderers/latex/params.tex`.
 - [x] Tune shared H1, subsection, list, and base table behavior in `docs/renderers/latex/components_base.tex`.
 - [x] Tune warning and safety component typography and spacing in `docs/renderers/latex/components_safety.tex`.
-- [x] Build JE-1000F EU PDF from `config.eu.yaml`.
+- [x] Build JE-1000F EU PDF from `configs/config.eu.yaml`.
 - [x] Compare the first 10 pages against the reference and note remaining style gaps.
-- [x] Run `python3 build.py doctor --config config.eu.yaml --model JE-1000F --region EU`.
+- [x] Run `python3 build.py doctor --config configs/config.eu.yaml --model JE-1000F --region EU`.
 - [x] Run `python3 -m unittest` if renderer code changed.
 
 Acceptance criteria:
@@ -50,9 +50,9 @@ Phase 1 completion notes:
 - Before screenshots and after screenshots were generated under `.tmp/pdf_style_phase1/`.
 - JE-1000F EU PDF page count changed from 170 pages to 110 pages after the compact typography pass.
 - Remaining visual gaps are concentrated in symbols tables, LCD tables, product/operation page structure, and long-table pagination. These are Phase 2 and Phase 3 concerns.
-- Validation run: `python3 build.py doctor --config config.eu.yaml --model JE-1000F --region EU`.
-- Validation run: `python3 build.py pdf --config config.eu.yaml --model JE-1000F --region EU`.
-- Validation run: `python3 build.py check --config config.us.yaml --model JE-1000F --region US`.
+- Validation run: `python3 build.py doctor --config configs/config.eu.yaml --model JE-1000F --region EU`.
+- Validation run: `python3 build.py pdf --config configs/config.eu.yaml --model JE-1000F --region EU`.
+- Validation run: `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`.
 - Validation run: `python3 -m unittest`.
 
 ## Phase 2: First Pages And High-Impact Components
@@ -119,9 +119,9 @@ Phase 2 completion notes:
   - p011-p016: later early-book sections inherit the Phase 1 typography, but pagination and long translated headings still need Phase 3 multilingual tuning.
 - Validation run: `python3 -m py_compile tools/csv_pages/renderers_symbols.py tools/csv_pages/renderers_lcd_icons.py`.
 - Validation run: `python3 -m unittest`.
-- Validation run: `python3 build.py pdf --config config.eu-en.yaml --model JE-1000F --region EU --no-clean`.
-- Validation run: `python3 build.py pdf --config config.eu.yaml --model JE-1000F --region EU --no-clean`.
-- Validation run: `python3 build.py check --config config.us.yaml --model JE-1000F --region US`.
+- Validation run: `python3 build.py pdf --config configs/config.eu-en.yaml --model JE-1000F --region EU --no-clean`.
+- Validation run: `python3 build.py pdf --config configs/config.eu.yaml --model JE-1000F --region EU --no-clean`.
+- Validation run: `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`.
 - Build outputs:
   - `docs/_build/JE-1000F/EU/en/pdf/manual_je1000f_eu_en.pdf`
   - `docs/_build/JE-1000F/EU/pdf/manual_je1000f_eu.pdf`
@@ -147,7 +147,7 @@ Estimated effort: 2-3 weeks.
 - [ ] Document the style/component boundaries so future contributors know where to change layout.
 - [ ] Document the rule against scattering raw LaTeX through language templates.
 - [ ] Run `python3 -m unittest`.
-- [ ] Run `python3 build.py check --config config.eu.yaml --model JE-1000F --region EU` or the closest available quality gate.
+- [ ] Run `python3 build.py check --config configs/config.eu.yaml --model JE-1000F --region EU` or the closest available quality gate.
 - [ ] Produce a before/after comparison package.
 - [ ] Record residual gaps and lower-priority follow-up items.
 

@@ -1029,7 +1029,7 @@ def _bootstrap_sources(args: argparse.Namespace, cfg: dict[str, Any], source: La
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Rebuild spec_master from split source tables.")
-    parser.add_argument("--config", default="config.ja.yaml")
+    parser.add_argument("--config", default="configs/config.ja.yaml")
     parser.add_argument("--data-root", default=None)
     parser.add_argument("--spec-rows-table-id", default=None)
     parser.add_argument("--page-placeholders-table-id", default=None)

@@ -23,8 +23,8 @@ Reference:
 
 Exit criteria:
 
-1. `python3 build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` succeeds on the new machine.
-2. `python3 build.py sync-data --config config.us.yaml --data-root data/phase2` succeeds and refreshes [`data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json).
+1. `python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run` succeeds on the new machine.
+2. `python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2` succeeds and refreshes [`data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json).
 3. One explicit target parity run proves that `phase1` and `phase2` produce identical or expected-difference outputs.
 4. The parity run keeps generated `docs/_build/`, `reports/version_tracking/`, and `reports/releases/` under an isolated staging root instead of polluting the main working copy.
 
@@ -86,13 +86,13 @@ printenv | rg '^FEISHU_PHASE2_'
 4. Run the repo-level smoke test:
 
 ```bash
-python3 build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run
+python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run
 ```
 
 5. If the dry-run passes, run the real sync:
 
 ```bash
-python3 build.py sync-data --config config.us.yaml --data-root data/phase2
+python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2
 ```
 
 6. Confirm these outputs changed as expected:
@@ -117,7 +117,7 @@ Use the main repo checkout, but redirect generated `docs/_build`, `reports/versi
 
 Recommended target:
 
-- config: [`config.us.yaml`](../config.us.yaml)
+- config: [`configs/config.us.yaml`](../configs/config.us.yaml)
 - model: `JE-1000F`
 - region: `US`
 
@@ -138,17 +138,17 @@ mkdir -p .tmp/parity
 3. Capture the `phase1` baseline:
 
 ```bash
-python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase1 --staging-root .tmp/parity/phase1
-python3 build.py check --config config.us.yaml --model JE-1000F --region US --data-root data/phase1 --staging-root .tmp/parity/phase1
-python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US --data-root data/phase1 --staging-root .tmp/parity/phase1
+python3 build.py rst --config configs/config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase1 --staging-root .tmp/parity/phase1
+python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US --data-root data/phase1 --staging-root .tmp/parity/phase1
+python3 build.py release-manifest --config configs/config.us.yaml --model JE-1000F --region US --data-root data/phase1 --staging-root .tmp/parity/phase1
 ```
 
 4. Capture the `phase2` build:
 
 ```bash
-python3 build.py rst --config config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase2 --staging-root .tmp/parity/phase2
-python3 build.py check --config config.us.yaml --model JE-1000F --region US --data-root data/phase2 --staging-root .tmp/parity/phase2
-python3 build.py release-manifest --config config.us.yaml --model JE-1000F --region US --data-root data/phase2 --staging-root .tmp/parity/phase2
+python3 build.py rst --config configs/config.us.yaml --model JE-1000F --region US --source runtime --data-root data/phase2 --staging-root .tmp/parity/phase2
+python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US --data-root data/phase2 --staging-root .tmp/parity/phase2
+python3 build.py release-manifest --config configs/config.us.yaml --model JE-1000F --region US --data-root data/phase2 --staging-root .tmp/parity/phase2
 ```
 
 5. Compare the outputs:
@@ -192,14 +192,14 @@ git worktree remove ../auto-manual-parity
 Status on this machine:
 
 1. Part A completed: local `Node.js`, `npm`, and `lark-cli` are installed, configured, and authenticated.
-2. Part B completed: `FEISHU_PHASE2_*` is wired, `python build.py sync-data --config config.us.yaml --data-root data/phase2 --dry-run` succeeds, and the real sync refreshed [`../data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json).
+2. Part B completed: `FEISHU_PHASE2_*` is wired, `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run` succeeds, and the real sync refreshed [`../data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json).
 3. Part C completed in the disposable worktree `C:/Users/tangxb/Documents/GitHub/auto-manual-parity`.
 
 Captured parity artifacts for the real synced snapshot are kept under:
 
 - `C:/Users/tangxb/Documents/GitHub/auto-manual-parity/.tmp/parity_real_sync_20260401T110943/`
 
-Observed result for target `config.us.yaml + JE-1000F + US`:
+Observed result for target `configs/config.us.yaml + JE-1000F + US`:
 
 - `phase1` and `phase2` both passed `rst`
 - `phase1` and `phase2` both passed `check`
@@ -222,7 +222,7 @@ Interpretation:
 Initial next action that was investigated:
 
 1. restore `Row_label_footnote_refs=ac_bypass` for the `JE-1000F_US_en / ac_output_bypass` row in the Feishu source table
-2. rerun `python build.py sync-data --config config.us.yaml --data-root data/phase2`
+2. rerun `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2`
 3. rerun this disposable parity check and confirm the remaining `spec_en.rst` delta disappears
 
 Follow-up on 2026-04-01:

@@ -88,7 +88,7 @@ jobs:
       - name: Process Feishu draft queue
         shell: bash
         run: |
-          cmd=(python build.py process-build-queue --config config.us.yaml --data-root data/phase2 --workflow-action build-draft-package)
+          cmd=(python build.py process-build-queue --config configs/config.us.yaml --data-root data/phase2 --workflow-action build-draft-package)
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi

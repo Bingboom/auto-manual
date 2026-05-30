@@ -119,12 +119,12 @@ Expected runtime meaning:
 | Phase | Objective | Primary scope | Main deliverables | Validation | Exit rule |
 |------|-----------|---------------|-------------------|------------|-----------|
 | 0 | Freeze the migration contract | inventory and rules only | page inventory, family-difference map, first profile schema, risk register | `python3 -m unittest` | we can classify every active page as source-owned, market-owned, or derived-only |
-| 1 | Add composition support without moving content | manifest and resolver layer | manifest/profile composition design, loader hooks, compatibility tests | `python3 -m unittest` and `python3 build.py check --config config.us.yaml --model JE-1000F --region US` | old manifests still build unchanged while new composition paths can be introduced behind flags |
-| 2 | Remove derived-language page duplication inside US | US `en/fr/es` family | one US source-structure owner, derived prose asset format, US FR/ES built from shared structure | `python3 -m unittest` and `python3 build.py check --config config.us.yaml --model JE-1000F --region US` and `python3 build.py diff-report --config config.us.yaml --model JE-1000F --region US` | `page_us-fr` and `page_us-es` are no longer structure owners |
-| 3 | Extract market-specific English deltas | US vs EU English | profile flags, unit formatter, compliance snippets, page-level include switches | `python3 -m unittest` and `python3 build.py check --config config.eu-en.yaml --model JE-2000E --region US` and US check | FCC, unit style, and market-only prose no longer require separate full-page English folders |
+| 1 | Add composition support without moving content | manifest and resolver layer | manifest/profile composition design, loader hooks, compatibility tests | `python3 -m unittest` and `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US` | old manifests still build unchanged while new composition paths can be introduced behind flags |
+| 2 | Remove derived-language page duplication inside US | US `en/fr/es` family | one US source-structure owner, derived prose asset format, US FR/ES built from shared structure | `python3 -m unittest` and `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US` and `python3 build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US` | `page_us-fr` and `page_us-es` are no longer structure owners |
+| 3 | Extract market-specific English deltas | US vs EU English | profile flags, unit formatter, compliance snippets, page-level include switches | `python3 -m unittest` and `python3 build.py check --config configs/config.eu-en.yaml --model JE-2000E --region US` and US check | FCC, unit style, and market-only prose no longer require separate full-page English folders |
 | 4 | Merge US/EU English structure into shared English source templates | `page_us-en` and `page_eu-en` | `page_en` source templates plus `us` and `eu` profile wiring | same checks as Phase 3 plus review-preview smoke if affected | `page_us-en` and `page_eu-en` become compatibility wrappers or are fully retired |
 | 5 | Generalize for future EU derived languages | EU family expansion | `fr/de/it/...` derived flow from English source plus EU profile | `python3 -m unittest` plus EU target checks for all enabled languages | future EU languages do not require new full-page template trees |
-| 6 | Re-evaluate JP and ZH after EN family is stable | JP and CN source families | keep, simplify, or partially profile-ize JP/ZH based on evidence | `python3 -m unittest`, `python3 build.py check --config config.ja.yaml --model JE-1000F --region JP`, `python3 build.py check --config config.zh.yaml --model JE-2000E --region CN` when applicable | JP/ZH are either intentionally retained as source families or migrated by explicit follow-up decision |
+| 6 | Re-evaluate JP and ZH after EN family is stable | JP and CN source families | keep, simplify, or partially profile-ize JP/ZH based on evidence | `python3 -m unittest`, `python3 build.py check --config configs/config.ja.yaml --model JE-1000F --region JP`, `python3 build.py check --config configs/config.zh.yaml --model JE-2000E --region CN` when applicable | JP/ZH are either intentionally retained as source families or migrated by explicit follow-up decision |
 
 ## 6. Detailed Work By Phase
 
@@ -378,14 +378,14 @@ Run these commands at the relevant phases:
 - logic and loader changes:
   - `python3 -m unittest`
 - US migration checks:
-  - `python3 build.py check --config config.us.yaml --model JE-1000F --region US`
-  - `python3 build.py diff-report --config config.us.yaml --model JE-1000F --region US`
+  - `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`
+  - `python3 build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US`
 - EU migration checks:
-  - `python3 build.py check --config config.eu-en.yaml --model JE-2000E --region US`
+  - `python3 build.py check --config configs/config.eu-en.yaml --model JE-2000E --region US`
 - JP stability checks when shared loader logic changes:
-  - `python3 build.py check --config config.ja.yaml --model JE-1000F --region JP`
+  - `python3 build.py check --config configs/config.ja.yaml --model JE-1000F --region JP`
 - release traceability checks when publish paths are affected:
-  - `python3 build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP`
+  - `python3 build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP`
 
 Extra parity rule for every cutover PR:
 

@@ -128,10 +128,10 @@ Milestone status: `done`
 - [x] PR 5: Reduce config-family duplication
   - Status: `done`
   - Target files:
-    - [`../config.us.yaml`](../config.us.yaml)
-    - [`../config.us-en.yaml`](../config.us-en.yaml)
-    - [`../config.us-es.yaml`](../config.us-es.yaml)
-    - [`../config.us-fr.yaml`](../config.us-fr.yaml)
+    - [`../configs/config.us.yaml`](../configs/config.us.yaml)
+    - [`../configs/config.us-en.yaml`](../configs/config.us-en.yaml)
+    - [`../configs/config.us-es.yaml`](../configs/config.us-es.yaml)
+    - [`../configs/config.us-fr.yaml`](../configs/config.us-fr.yaml)
   - Guard tests:
     - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
     - [`../tests/test_pilot_configs.py`](../tests/test_pilot_configs.py)
@@ -140,7 +140,7 @@ Milestone status: `done`
     - family-level behavior stays stable
     - language-specific config duplication is reduced without changing command semantics
   - Completed: `2026-04-05`
-  - Note: added config `extends` support in [`../tools/config_loader.py`](../tools/config_loader.py), moved shared US single-language defaults into [`../config-bases/us-single-language-base.yaml`](../config-bases/us-single-language-base.yaml), converted `config.us-en/es/fr.yaml` into thin overrides, and shifted their page stacks into dedicated `docs/manifests/manual_us-single-*.yaml` files while preserving existing config filenames and command semantics
+  - Note: added config `extends` support in [`../tools/config_loader.py`](../tools/config_loader.py), moved shared US single-language defaults into [`../configs/config-bases/us-single-language-base.yaml`](../configs/config-bases/us-single-language-base.yaml), converted `config.us-en/es/fr.yaml` into thin overrides, and shifted their page stacks into dedicated `docs/manifests/manual_us-single-*.yaml` files while preserving existing config filenames and command semantics
 
 ## 5. Milestone 3: Reporting, Queue Flow, And Domain Split
 

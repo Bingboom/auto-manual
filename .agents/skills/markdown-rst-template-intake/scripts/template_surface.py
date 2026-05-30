@@ -10,7 +10,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 
 FAMILY_INFO = {
     "us-merged": {
-        "config": "config.us.yaml",
+        "config": "configs/config.us.yaml",
         "region": "US",
         "manifest": "docs/manifests/manual_us.yaml",
         "template_dirs": [
@@ -30,7 +30,7 @@ FAMILY_INFO = {
         ],
     },
     "us-en": {
-        "config": "config.us-en.yaml",
+        "config": "configs/config.us-en.yaml",
         "region": "US",
         "manifest": "docs/manifests/manual_us-single-en.yaml",
         "template_dirs": ["docs/templates/page_us-en"],
@@ -39,7 +39,7 @@ FAMILY_INFO = {
         "notes": [],
     },
     "eu-en": {
-        "config": "config.eu-en.yaml",
+        "config": "configs/config.eu-en.yaml",
         "region": "US",
         "manifest": "docs/manifests/manual_eu-en.yaml",
         "template_dirs": ["docs/templates/page_eu-en"],
@@ -52,7 +52,7 @@ FAMILY_INFO = {
         ],
     },
     "us-fr": {
-        "config": "config.us-fr.yaml",
+        "config": "configs/config.us-fr.yaml",
         "region": "US",
         "manifest": "docs/manifests/manual_us-single-fr.yaml",
         "template_dirs": ["docs/templates/page_us-fr"],
@@ -63,7 +63,7 @@ FAMILY_INFO = {
         ],
     },
     "us-es": {
-        "config": "config.us-es.yaml",
+        "config": "configs/config.us-es.yaml",
         "region": "US",
         "manifest": "docs/manifests/manual_us-single-es.yaml",
         "template_dirs": ["docs/templates/page_us-es"],
@@ -74,7 +74,7 @@ FAMILY_INFO = {
         ],
     },
     "jp": {
-        "config": "config.ja.yaml",
+        "config": "configs/config.ja.yaml",
         "region": "JP",
         "manifest": "docs/manifests/manual_jp.yaml",
         "template_dirs": ["docs/templates/page_jp"],
@@ -83,7 +83,7 @@ FAMILY_INFO = {
         "notes": [],
     },
     "zh": {
-        "config": "config.zh.yaml",
+        "config": "configs/config.zh.yaml",
         "region": "CN",
         "manifest": "docs/manifests/manual_zh.yaml",
         "template_dirs": ["docs/templates/page_zh"],

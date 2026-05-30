@@ -13,12 +13,12 @@ on:
       - "data/phase2/**"
       - "build.py"
       - "tools/**"
-      - "config.us.yaml"
-      - "config.us-en.yaml"
-      - "config.us-es.yaml"
-      - "config.us-fr.yaml"
-      - "config.ja.yaml"
-      - "config.zh.yaml"
+      - "configs/config.us.yaml"
+      - "configs/config.us-en.yaml"
+      - "configs/config.us-es.yaml"
+      - "configs/config.us-fr.yaml"
+      - "configs/config.ja.yaml"
+      - "configs/config.zh.yaml"
       - "README.md"
       - "code-as-doc/**"
       - "user-guide/**"
@@ -75,14 +75,14 @@ jobs:
         id: preview-target
         shell: bash
         run: |
-          config="config.us-en.yaml"
+          config="configs/config.us-en.yaml"
           model="JE-1000F"
           region="US"
           source="review"
 
           changed_files="$(git diff --name-only "$FROM_REF" "$TO_REF")"
           if printf '%s\n' "$changed_files" | grep -Eq '^(config\.zh\.yaml|docs/manifests/manual_zh\.yaml|docs/templates/page_zh/|docs/templates/recipes/zh/)'; then
-            config="config.zh.yaml"
+            config="configs/config.zh.yaml"
             model="JE-2000E"
             region="CN"
             source="runtime"

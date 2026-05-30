@@ -48,7 +48,7 @@ Both source tables use `source_row_key` itself as a formula-generated primary ke
 When source tables change, rebuild the read model snapshot with:
 
 ```bash
-python3 build.py spec-master-rebuild --config config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222
+python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-spec-rows 157 --expect-placeholder-rows 222
 ```
 
 The command reads `sync.phase2.spec_master_sources` from config, merges the two source tables, resolves Feishu linked-record footnote refs to stable `Footnote_id` values, validates row counts and unique `spec_row_key`, and writes a `Spec_Master.csv` compatible with the existing renderer and sync flow.
@@ -713,8 +713,8 @@ Current rule:
 
 Use the shared family configs:
 
-- `config.us.yaml` for US family flow
-- `config.ja.yaml` for JP family flow
+- `configs/config.us.yaml` for US family flow
+- `configs/config.ja.yaml` for JP family flow
 
 Do not create one config per model just because the model changed.
 
@@ -739,8 +739,8 @@ Logic or data validation:
 
 ```powershell
 python -m unittest
-python build.py check --config config.us.yaml --model JE-1000F --region US
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config configs/config.us.yaml --model JE-1000F --region US
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 Mapping export:
@@ -752,7 +752,7 @@ python tools/export_spec_master_row_key_mapping.py
 Current output:
 
 - [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv)
-- [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) after `python build.py sync-data --config config.us.yaml --data-root data/phase2`
+- [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) after `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2`
 - [`reports/spec_master/row_key_mapping.md`](../reports/spec_master/row_key_mapping.md)
 - `row_key_mapping.csv` is the human-maintained source of truth for `Row_label_source + Line_order -> Row_key`
 - the CSV keeps `Row_label_source`, `Line_order`, `Row_key`, and `Remark`
@@ -765,15 +765,15 @@ Current output:
 Review sync:
 
 ```powershell
-python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
-python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --sync-scope generated
-python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP --page-file 02_whats_in_the_box.rst
+python build.py sync-review --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py sync-review --config configs/config.ja.yaml --model JE-1000F --region JP --sync-scope generated
+python build.py sync-review --config configs/config.ja.yaml --model JE-1000F --region JP --page-file 02_whats_in_the_box.rst
 ```
 
 Diff report:
 
 ```powershell
-python build.py diff-report --config config.us.yaml --model JE-1000F --region US
+python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 Use `review --refresh-review` only if you intentionally want to reseed the whole review bundle.
@@ -861,10 +861,10 @@ Check:
 For `JE-1000F / JP`, a common data-change flow is:
 
 ```powershell
-python build.py check --config config.ja.yaml --model JE-1000F --region JP
-python build.py sync-review --config config.ja.yaml --model JE-1000F --region JP
-python build.py publish --config config.ja.yaml --model JE-1000F --region JP
-python build.py release-manifest --config config.ja.yaml --model JE-1000F --region JP
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py sync-review --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
 This is the current maintainable path:

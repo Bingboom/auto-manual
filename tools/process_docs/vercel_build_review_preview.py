@@ -21,9 +21,9 @@ VENV_DIR = ROOT / ".vercel-python"
 DIST_DIR = ROOT / "site" / "review-preview" / "dist"
 REVIEW_ROOT = Paths(root=ROOT).review_dir
 DEFAULT_PREVIEW_CONFIGS = {
-    "US": "config.us.yaml",
-    "JP": "config.ja.yaml",
-    "CN": "config.zh.yaml",
+    "US": "configs/config.us.yaml",
+    "JP": "configs/config.ja.yaml",
+    "CN": "configs/config.zh.yaml",
 }
 
 

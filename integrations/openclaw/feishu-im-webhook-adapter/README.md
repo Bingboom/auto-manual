@@ -73,8 +73,8 @@ node server.mjs
 Local no-server mode:
 
 ```bash
-node local-listener.mjs --control-config ../../../config.us.yaml
-python ../../../build.py listen-message-control --config config.us.yaml
+node local-listener.mjs --control-config ../../../configs/config.us.yaml
+python ../../../build.py listen-message-control --config configs/config.us.yaml
 ```
 
 Local mode uses `lark-cli event +subscribe` for `im.message.receive_v1`, so it
@@ -88,7 +88,7 @@ point the new app listener at an isolated `lark-cli` home:
 export FEISHU_IM_LARK_CLI_HOME="$HOME/.feishu-im-newapp"
 mkdir -p "$FEISHU_IM_LARK_CLI_HOME"
 HOME="$FEISHU_IM_LARK_CLI_HOME" printf '%s' "$FEISHU_IM_APP_SECRET" | lark-cli config init --app-id "$FEISHU_IM_APP_ID" --app-secret-stdin --brand feishu
-python ../../../build.py listen-message-control --config config.us.yaml
+python ../../../build.py listen-message-control --config configs/config.us.yaml
 ```
 
 ## Local-only OpenClaw profile
