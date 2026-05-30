@@ -125,7 +125,7 @@ When a code change alters behavior, update the document that owns that behavior 
 - command behavior: [`build_doc_guide.md`](build_doc_guide.md)
 - user workflow: [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 - data semantics: [`spec_master_user_guide.md`](spec_master_user_guide.md)
-- repo roadmap: [`../optimization_project.md`](../optimization_project.md)
+- repo roadmap: [`../optimization_project.md`](optimization_project.md)
 - completed optimization phases or workstreams: [`code_optimization_log.md`](code_optimization_log.md)
 
 ## 6. Testing Expectations

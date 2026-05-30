@@ -72,12 +72,12 @@ As of 2026-05-07, the repo has working baselines for:
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
 - CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
 - OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
-- repo-owned OpenClaw integration packages under [`integrations/openclaw/`](integrations/openclaw)
+- repo-owned OpenClaw integration packages under [`integrations/openclaw/`](../integrations/openclaw)
 - phase2 snapshot completeness validation for required synced tables and derived files
 - registered `build.py` action dispatch for explicit non-build actions
 - config contract validation for phase2 table bindings and declared build languages
 - queue `RUNNING` writeback before success/failure completion
-- first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](code-as-doc/dev)
+- first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](dev)
 - fixture-backed long-term content assembly pilot for `03_product_overview`, including an assembly contract validator, no-op assembler, and page-level pilot switch
 
 ## 4. Recently Completed
@@ -145,7 +145,7 @@ Use this section for short milestone-style updates.
 
 ### 2026-04-12
 
-- added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
+- added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
 - hardened the adapter with explicit publish-confirmation state, event-id dedupe, same-thread Feishu replies, encrypted callback support, and ECS-oriented deployment assets
 - aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
 - added low-noise maintainability guardrails: a hotspot size check in `Manual Validation`, a refreshed anti-debt PR checklist, and synced baseline docs for the current `468`-test suite

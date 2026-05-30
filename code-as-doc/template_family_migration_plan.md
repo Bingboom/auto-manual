@@ -10,7 +10,7 @@ Use these files for the adjacent topics:
 
 - [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
 - [`manual_family_guide.md`](manual_family_guide.md)
-- [`../optimization_project.md`](../optimization_project.md)
+- [`../optimization_project.md`](optimization_project.md)
 
 ## 1. Goal
 

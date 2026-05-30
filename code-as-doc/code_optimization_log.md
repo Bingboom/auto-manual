@@ -431,7 +431,7 @@ Main outcomes:
 - tightened [`.github/workflows/review-preview.yml`](../.github/workflows/review-preview.yml) into a stable smoke package path with `--skip-word` plus explicit packaged-artifact checks before upload
 - centralized GitHub-hosted Feishu worker bootstrap in [`.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml) and [`scripts/validate_required_env.sh`](../scripts/validate_required_env.sh)
 - extracted [`tools/build_main.py`](../tools/build_main.py), [`tools/build_docs_main.py`](../tools/build_docs_main.py), [`tools/process_build_queue_main.py`](../tools/process_build_queue_main.py), and [`tools/build_docs_artifacts.py`](../tools/build_docs_artifacts.py) so entry files stay facade-first while export planning/output steps live in dedicated helpers
-- updated [`next_optimization_checklist.md`](next_optimization_checklist.md), [`optimization_project.md`](../optimization_project.md), [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md), and [`architecture/Hello_Docs_Architecture.md`](architecture/Hello_Docs_Architecture.md) to match the closed milestone
+- updated [`next_optimization_checklist.md`](next_optimization_checklist.md), [`optimization_project.md`](optimization_project.md), [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md), and [`architecture/Hello_Docs_Architecture.md`](architecture/Hello_Docs_Architecture.md) to match the closed milestone
 
 Why it mattered:
 
@@ -478,7 +478,7 @@ Main outcomes:
 - added [`dev/external_table_contracts.md`](dev/external_table_contracts.md) as the first explicit external table contract for phase2 snapshots, `Document_link`, and Review Init
 - added [`dev/queue_state_model.md`](dev/queue_state_model.md) to document `pending -> running -> success/failed` queue semantics and writeback-failed handling
 - split queue writeback field tests into [`../tests/test_process_build_queue_writeback.py`](../tests/test_process_build_queue_writeback.py) as the first domain-based reduction of the largest queue test hotspot
-- refreshed [`../optimization_project.md`](../optimization_project.md), [`next_optimization_checklist.md`](next_optimization_checklist.md), and [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) so roadmap, checklist, and module ownership match the current baseline
+- refreshed [`../optimization_project.md`](optimization_project.md), [`next_optimization_checklist.md`](next_optimization_checklist.md), and [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) so roadmap, checklist, and module ownership match the current baseline
 
 Why it mattered:
 
@@ -620,3 +620,15 @@ Why it mattered:
 
 - the repo root is now limited to the two auto-discovered agent entrypoints; persona/identity docs live together under `agent/`
 - no in-repo code loads the persona files by path, so the move is link-only — but the external OpenClaw runtime must read them from `agent/` (operator-confirmed)
+
+## 38. 2026-05-30: Move `optimization_project.md` Into `code-as-doc/`
+
+Main outcomes:
+
+- moved the repo-optimization roadmap from the repo root into [`code-as-doc/optimization_project.md`](optimization_project.md), beside its sibling planning docs (`next_optimization_checklist.md`, `maintainability_refactor_tracker.md`)
+- re-based ~14 inbound links across `AGENTS.md`, `README.md`, and `code-as-doc/**` (siblings drop a `../`; deeper `code-as-doc/{dev,architecture}` docs drop one `../`); the moved file's own relative links were re-based by one level (its absolute-path links are location-invariant)
+
+Why it mattered:
+
+- the remaining root files are now limited to tooling-pinned entrypoints/configs (`build.py`, `pyproject.toml`, `requirements.txt`, `vercel.json`, `.readthedocs.yaml`, `Makefile`, `CLAUDE.md`, `AGENTS.md`, dotfiles) plus the Codex `config.toml`
+- planning/roadmap docs now live together under `code-as-doc/`

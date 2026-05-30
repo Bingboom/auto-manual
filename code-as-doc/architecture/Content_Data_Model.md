@@ -146,7 +146,7 @@ Expected direction:
 - current CSV semantics: [`../spec_master_user_guide.md`](../spec_master_user_guide.md)
 - current repository component map: [`Hello_Docs_Architecture.md`](Hello_Docs_Architecture.md)
 - long-term platform direction: [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
-- current repo roadmap: [`../../optimization_project.md`](../../optimization_project.md)
+- current repo roadmap: [`../../optimization_project.md`](../optimization_project.md)
 
 ## 8. Next Review Trigger
 

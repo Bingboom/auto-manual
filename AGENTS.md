@@ -9,7 +9,7 @@ Document boundary:
 
 - `AGENTS.md`: how an agent should operate in this repo today
 - `System Evolution Strategy.md`: long-term system direction and stable architecture boundaries
-- `optimization_project.md`: repo-level execution roadmap and next optimization priorities
+- `code-as-doc/optimization_project.md`: repo-level execution roadmap and next optimization priorities
 
 For long-term direction, read:
 
@@ -17,7 +17,7 @@ For long-term direction, read:
 
 For repo optimization priorities, read:
 
-- [`optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/optimization_project.md)
+- [`code-as-doc/optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/optimization_project.md)
 
 For current human workflows, read:
 
@@ -60,7 +60,7 @@ For current human workflows, read:
 - Minimum set: [`README.md`](/Users/pika/Documents/GitHub/auto-manual/README.md), [`code-as-doc/build_doc_guide.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/build_doc_guide.md), [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md)
 - If a code change affects the current workflow, editing surface, environment setup, or release flow, update [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md) in the same change.
 - If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update [`user-guide/quick_start_guide.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/quick_start_guide.md) in the same change.
-- When a phase or workstream from [`optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/optimization_project.md) is completed, add a matching maintenance record to [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md).
+- When a phase or workstream from [`code-as-doc/optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/optimization_project.md) is completed, add a matching maintenance record to [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md).
 
 ## 6. Working Tree Safety
 
