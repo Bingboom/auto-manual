@@ -161,7 +161,12 @@ class TestPilotConfigs(unittest.TestCase):
         app_text = (
             ROOT / "docs" / "templates" / "page_shared" / "pt-BR" / "12_app_setup_placeholder.rst"
         ).read_text(encoding="utf-8")
-        self.assertIn("{{ product_overview }}", product_overview_text)
+        # Overview is now authored directly in the per-language template as a
+        # plain list-table (assembly_pilot disabled); part-name words live here,
+        # spec values resolve from |TOKEN| substitutions. No {{ product_overview }}.
+        self.assertNotIn("{{ product_overview }}", product_overview_text)
+        self.assertIn(".. list-table::", product_overview_text)
+        self.assertIn("|MAIN_POWER_BUTTON_LABEL|", product_overview_text)
         self.assertNotIn("JE-1500D", product_overview_text)
         self.assertIn("|DEFAULT_STANDBY_DURATION|", operation_text)
         self.assertIn("|ENERGY_SAVING_AUTO_OFF_DURATION|", operation_text)
