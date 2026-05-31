@@ -14,9 +14,9 @@ class TestSignalWords(unittest.TestCase):
             path.write_text(
                 "\n".join(
                     [
-                        "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_fr,label_de,label_zh,aliases_es",
-                        "symbols,warning,signal_row,1,ALL,ALL,en,TRUE,AVERTISSEMENT_BASE,WARNUNG_BASE,警告,ADVERTENCIA;AVISO",
-                        "symbols,tips,signal_row,2,ALL,ALL,en,TRUE,CONSEILS_BASE,TIPP_BASE,提示,CONSEJO;CONSEJOS",
+                        "symbol_key,block_type,order,Market,Model,Source_lang,Is_Latest,label_fr,label_de,label_zh,label_es",
+                        "warning,signal_row,1,ALL,ALL,en,TRUE,AVERTISSEMENT_BASE,WARNUNG_BASE,警告,ADVERTENCIA",
+                        "tips,signal_row,2,ALL,ALL,en,TRUE,CONSEILS_BASE,TIPP_BASE,提示,CONSEJO",
                     ]
                 )
                 + "\n",
@@ -32,14 +32,14 @@ class TestSignalWords(unittest.TestCase):
                 {(entry.key, entry.label) for entry in signal_label_entries(symbols_blocks_csv=path, lang="es")},
             )
 
-    def test_signal_words_should_resolve_alert_label_rows(self) -> None:
+    def test_signal_words_should_resolve_danger_signal_row(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "symbols_blocks.csv"
             path.write_text(
                 "\n".join(
                     [
-                        "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_en,label_es",
-                        "symbols,danger,alert_label_row,5,ALL,ALL,en,TRUE,DANGER,PELIGRO",
+                        "symbol_key,block_type,order,Market,Model,Source_lang,Is_Latest,label_en,label_es",
+                        "danger,signal_row,5,ALL,ALL,en,TRUE,DANGER,PELIGRO",
                     ]
                 )
                 + "\n",
@@ -56,7 +56,7 @@ class TestSignalWords(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "symbols_blocks.csv"
             path.write_text(
-                "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest\n",
+                "symbol_key,block_type,order,Market,Model,Source_lang,Is_Latest\n",
                 encoding="utf-8",
             )
 
@@ -67,7 +67,7 @@ class TestSignalWords(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "symbols_blocks.csv"
             path.write_text(
-                "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest\n",
+                "symbol_key,block_type,order,Market,Model,Source_lang,Is_Latest\n",
                 encoding="utf-8",
             )
 
