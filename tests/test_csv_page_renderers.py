@@ -479,6 +479,10 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("Data warning.", out)
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
+        self.assertIn(":alt: WARNING", out)
+        self.assertIn(":alt: warning_triangle", out)
+        self.assertNotIn("Warning signal symbol.", out)
+        self.assertNotIn("Warning symbol.", out)
 
     def test_render_symbols_page_should_not_render_safety_danger_notice(self) -> None:
         out = renderers.render_symbols_page(
