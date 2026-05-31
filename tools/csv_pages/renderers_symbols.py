@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
 from ..localized_copy import LocalizedCopyResolver
-from ..signal_words import get_signal_word, get_symbols_notice_label
+from ..signal_words import label_from_signal_row
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
 
@@ -24,58 +24,45 @@ _FALSE_VALUES = {"0", "false", "no", "n"}
 @dataclass(frozen=True)
 class SymbolAsset:
     path: str
-    alt: str
     width: str = "40px"
 
 
 SYMBOL_ASSETS: dict[str, SymbolAsset] = {
     "warning_triangle": SymbolAsset(
         path="templates/word_template/common_assets/symbols/warning_triangle.png",
-        alt="Warning symbol.",
     ),
     "read_manual": SymbolAsset(
         path="templates/word_template/common_assets/symbols/read_manual_operator.png",
-        alt="Read manual symbol.",
     ),
     "electric_shock": SymbolAsset(
         path="templates/word_template/common_assets/symbols/electric_shock.png",
-        alt="Electric shock symbol.",
     ),
     "battery_charging": SymbolAsset(
         path="templates/word_template/common_assets/symbols/battery_charging.png",
-        alt="Battery charging symbol.",
     ),
     "explosive_material": SymbolAsset(
         path="templates/word_template/common_assets/symbols/explosive_material.png",
-        alt="Explosive material symbol.",
     ),
     "heavy_object": SymbolAsset(
         path="templates/word_template/common_assets/symbols/heavy_object.png",
-        alt="Heavy object symbol.",
     ),
     "do_not_dismantle": SymbolAsset(
         path="templates/word_template/common_assets/symbols/do_not_dismantle.png",
-        alt="Do not dismantle symbol.",
     ),
     "no_open_flame": SymbolAsset(
         path="templates/word_template/common_assets/symbols/no_open_flame.png",
-        alt="No open flame symbol.",
     ),
     "keep_away_from_children": SymbolAsset(
         path="templates/word_template/common_assets/symbols/keep_away_from_children.png",
-        alt="Keep away from children symbol.",
     ),
     "li_ion": SymbolAsset(
         path="templates/word_template/common_assets/symbols/li_ion.png",
-        alt="Li-ion battery symbol.",
     ),
     "weee": SymbolAsset(
         path="templates/word_template/common_assets/symbols/weee.png",
-        alt="WEEE disposal symbol.",
     ),
     "weee2": SymbolAsset(
         path="templates/word_template/common_assets/symbols/weee2.png",
-        alt="Battery disposal symbol.",
     ),
 }
 
@@ -84,244 +71,19 @@ SIGNAL_KEY_ALIASES = {"tip": "tips"}
 SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
     "warning": SymbolAsset(
         path="templates/word_template/common_assets/symbols/warning_triangle.png",
-        alt="Warning signal symbol.",
     ),
     "caution": SymbolAsset(
         path="templates/word_template/common_assets/symbols/warning_triangle.png",
-        alt="Caution signal symbol.",
     ),
     "note": SymbolAsset(
         path="templates/word_template/common_assets/symbols/mandatory.png",
-        alt="Note signal symbol.",
     ),
     "tips": SymbolAsset(
         path="templates/word_template/common_assets/symbols/mandatory.png",
-        alt="Tip signal symbol.",
     ),
 }
 SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png", "tip_bar.png"}
 SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
-
-
-# Legacy copy retained for narrow compatibility helpers only. Live Symbols page
-# chrome resolves from Localized_Copy.csv, and signal-word descriptions must be
-# present as `symbols_blocks` rows.
-LANG_COPY: dict[str, dict[str, object]] = {
-    "en": {
-        "page_title": "MEANING OF SYMBOLS",
-        "header_symbol": "Symbol",
-        "header_meaning": "Meaning",
-        "signal_rows": [
-            {
-                "mode": "banner",
-                "image": "templates/word_template/common_assets/symbols/warning_bar.png",
-                "alt": "WARNING banner placeholder.",
-                "width": "140px",
-                "meaning": "Hazardous practices that may result in severe injury, death, and/or property damage.",
-            },
-            {
-                "mode": "banner",
-                "image": "templates/word_template/common_assets/symbols/caution_bar.png",
-                "alt": "CAUTION banner placeholder.",
-                "width": "140px",
-                "meaning": "Hazardous practices that may result in personal injury and/or property damage.",
-            },
-            {
-                "mode": "banner",
-                "image": "templates/word_template/common_assets/symbols/note_bar.png",
-                "alt": "NOTE banner placeholder.",
-                "width": "140px",
-                "meaning": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
-            },
-            {
-                "mode": "banner",
-                "image": "templates/word_template/common_assets/symbols/tip_bar.png",
-                "alt": "TIP banner placeholder.",
-                "width": "140px",
-                "meaning": "Supplements the important information or operation tips in the text.",
-            },
-        ],
-    },
-    "de": {
-        "page_title": "BEDEUTUNG DER SYMBOLE",
-        "header_symbol": "Symbol",
-        "header_meaning": "Bedeutung",
-        "signal_rows": [
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Warnsymbol.",
-                "label": get_signal_word("de", "warning"),
-                "meaning": "Gefährliche Handlungen, die zu schweren Verletzungen, zum Tod und/oder zu Sachschäden führen können.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Vorsichtssymbol.",
-                "label": get_signal_word("de", "caution"),
-                "meaning": "Gefährliche Handlungen, die zu Personenschäden und/oder zu Sachschäden führen können.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Hinweissymbol.",
-                "label": get_signal_word("de", "note"),
-                "meaning": "Handlungen, die zu Geräteschäden, Datenverlust, Leistungseinbußen oder unerwarteten Ergebnissen führen können.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Tippsymbol.",
-                "label": get_signal_word("de", "tips"),
-                "meaning": "Ergänzt wichtige Informationen oder Bedienhinweise im Text.",
-            },
-        ],
-    },
-    "fr": {
-        "page_title": "SIGNIFICATION DES SYMBOLES",
-        "header_symbol": "Symbole",
-        "header_meaning": "Signification",
-        "signal_rows": [
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Symbole d'avertissement.",
-                "label": get_signal_word("fr", "warning"),
-                "meaning": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Symbole de mise en garde.",
-                "label": get_signal_word("fr", "caution"),
-                "meaning": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Symbole de remarque.",
-                "label": get_signal_word("fr", "note"),
-                "meaning": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Symbole de conseil.",
-                "label": get_signal_word("fr", "tips"),
-                "meaning": "Complète les informations importantes ou les conseils d'utilisation dans le texte.",
-            },
-        ],
-    },
-    "es": {
-        "page_title": "SIGNIFICADO DE LOS SÍMBOLOS",
-        "header_symbol": "Símbolo",
-        "header_meaning": "Significado",
-        "signal_rows": [
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Símbolo de advertencia.",
-                "label": get_signal_word("es", "warning"),
-                "meaning": "Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Símbolo de precaución.",
-                "label": get_signal_word("es", "caution"),
-                "meaning": "Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Símbolo de nota.",
-                "label": get_signal_word("es", "note"),
-                "meaning": "Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Símbolo de consejo.",
-                "label": get_signal_word("es", "tips"),
-                "meaning": "Complementa la información importante o consejos de operación en el texto.",
-            },
-        ],
-    },
-    "it": {
-        "page_title": "SIGNIFICATO DEI SIMBOLI",
-        "header_symbol": "Simbolo",
-        "header_meaning": "Significato",
-        "signal_rows": [
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Simbolo di avvertenza.",
-                "label": get_signal_word("it", "warning"),
-                "meaning": "Pratiche pericolose che possono causare lesioni gravi, morte e/o danni materiali.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Simbolo di attenzione.",
-                "label": get_signal_word("it", "caution"),
-                "meaning": "Pratiche pericolose che possono causare lesioni personali e/o danni materiali.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Simbolo di nota.",
-                "label": get_signal_word("it", "note"),
-                "meaning": "Pratiche che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Simbolo di suggerimento.",
-                "label": get_signal_word("it", "tips"),
-                "meaning": "Integra le informazioni importanti o i consigli operativi nel testo.",
-            },
-        ],
-    },
-    "uk": {
-        "page_title": "ЗНАЧЕННЯ СИМВОЛІВ",
-        "header_symbol": "Символ",
-        "header_meaning": "Значення",
-        "signal_rows": [
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Попереджувальний символ.",
-                "label": get_signal_word("uk", "warning"),
-                "meaning": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/warning_triangle.png",
-                "alt": "Символ уваги.",
-                "label": get_signal_word("uk", "caution"),
-                "meaning": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Символ примітки.",
-                "label": get_signal_word("uk", "note"),
-                "meaning": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",
-            },
-            {
-                "mode": "icon_label",
-                "image": "templates/word_template/common_assets/symbols/mandatory.png",
-                "alt": "Символ поради.",
-                "label": get_signal_word("uk", "tips"),
-                "meaning": "Доповнює важливу інформацію або поради з експлуатації в тексті.",
-            },
-        ],
-    },
-}
-
-
-def _copy_for_lang(lang: str) -> dict[str, object]:
-    return LANG_COPY.get(lang) or LANG_COPY.get((lang or "").strip().casefold()) or LANG_COPY["en"]
 
 
 def _localized_copy_resolver(vars_map: dict[str, str]) -> LocalizedCopyResolver:
@@ -350,10 +112,19 @@ def _signal_alt(vars_map: dict[str, str], signal_key: str, *, lang: str) -> str:
 
 def _text_column_for_lang(row: dict[str, str], lang: str) -> str:
     raw = (lang or "").strip()
+    normalized = raw.casefold()
     source_lang = (row.get("Source_lang") or row.get("source_lang") or "").strip()
+    aliases = {
+        "ja": ("ja", "jp"),
+        "jp": ("jp", "ja"),
+        "pt-br": ("pt-BR", "br", "pt_br"),
+        "pt_br": ("pt_BR", "pt-BR", "br"),
+        "br": ("br", "pt-BR", "pt_br"),
+        "uk": ("uk", "ukr"),
+        "ukr": ("ukr", "uk"),
+    }.get(normalized, (raw, normalized))
     candidates = [
-        f"text_{raw}",
-        f"text_{raw.casefold()}",
+        *(f"text_{token}" for token in aliases if token),
         f"text_{raw.replace('-', '_')}",
         f"text_{source_lang}",
         f"text_{source_lang.casefold()}",
@@ -724,23 +495,6 @@ def _matching_symbol_blocks(
     return []
 
 
-def _default_signal_rows(lang: str) -> list[dict[str, object]]:
-    copy = _copy_for_lang(lang)
-    rows: list[dict[str, object]] = []
-    for signal_key, row in zip(SIGNAL_ROW_KEYS, list(copy["signal_rows"])):
-        normalized = dict(row)
-        normalized.setdefault("signal_key", signal_key)
-        rows.append(normalized)
-    return rows
-
-
-def _default_signal_row(lang: str, signal_key: str) -> dict[str, object] | None:
-    for row in _default_signal_rows(lang):
-        if str(row.get("signal_key") or "").strip() == signal_key:
-            return row
-    return None
-
-
 def _normalize_signal_key(value: str) -> str:
     raw = (value or "").strip().casefold()
     raw = SIGNAL_KEY_ALIASES.get(raw, raw)
@@ -801,7 +555,7 @@ def _collect_signal_rows(
                 "image": image_path,
                 "alt": _signal_alt(vars_map, signal_key, lang=lang),
                 "width": "140px" if is_banner else default_asset.width,
-                "label": "" if is_banner else get_signal_word(lang, signal_key),
+                "label": "" if is_banner else label_from_signal_row(block, key=signal_key, lang=lang),
                 "meaning": text,
                 "signal_key": signal_key,
             }
