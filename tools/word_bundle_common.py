@@ -9,6 +9,7 @@ from pathlib import Path
 from tools.config_pages import CsvPage
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.language_aliases import language_key, normalize_language
+from tools.localized_copy import COPY_TOKEN_RE, apply_localized_copy_tokens
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.csv_pages.builder import BuildPaths, BuildSelector, CsvPageBuilder
 from tools.csv_pages.renderers import apply_vars
@@ -115,6 +116,23 @@ def apply_rst_substitutions(
     out = apply_vars(text, vars_map)
     for key, value in substitutions.items():
         out = out.replace(f"|{key}|", value)
+    if COPY_TOKEN_RE.search(out):
+        localized_copy_csv = (vars_map.get("localized_copy_csv") or "").strip()
+        lang = (vars_map.get("lang") or vars_map.get("language") or "").strip()
+        if not localized_copy_csv:
+            raise RuntimeError("RST uses {{ copy:<key> }} but localized_copy_csv is not configured")
+        if not lang:
+            raise RuntimeError("RST uses {{ copy:<key> }} but render lang is not configured")
+        try:
+            out = apply_localized_copy_tokens(
+                out,
+                localized_copy_csv=localized_copy_csv,
+                lang=lang,
+                model=_pick_model_from_vars(vars_map) or None,
+                region=_pick_region_from_vars(vars_map) or None,
+            )
+        except (FileNotFoundError, KeyError) as exc:
+            raise RuntimeError(str(exc)) from exc
     return out
 
 
@@ -191,6 +209,7 @@ def load_word_context(
         spec_footnotes_csv=snapshot_paths.spec_footnotes_csv,
         spec_notes_csv=snapshot_paths.spec_notes_csv,
         spec_titles_csv=snapshot_paths.spec_titles_csv,
+        localized_copy_csv=snapshot_paths.localized_copy_csv,
     )
     return CsvPageBuilder(build_paths)
 

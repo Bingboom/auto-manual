@@ -228,6 +228,7 @@ class TestValidateConfig(unittest.TestCase):
                         "troubleshooting": {"table_id": "tblUSuk3Q5BKTdTh", "view_id": "vewZne4CUk"},
                         "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
                         "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
+                        "localized_copy": {"table_id_env": "FEISHU_PHASE2_LOCALIZED_COPY_TABLE_ID"},
                     },
                 },
             },

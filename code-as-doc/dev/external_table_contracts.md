@@ -29,20 +29,17 @@ Required synced tables:
 | `spec_notes` | `Spec_Notes.csv` | note text and selectors |
 | `spec_titles` | `spec_titles.csv` | localized spec title labels |
 | `symbols_blocks` | `symbols_blocks.csv` | symbol-block source rows |
+| `troubleshooting` | `troubleshooting_blocks.csv` | troubleshooting error-code rows |
+| `lcd_icons` | `lcd_icons_blocks.csv` | LCD icon row content, images, and variable markers |
+| `variable_defaults` | `Variable_Defaults.csv` | default values for LCD description variables |
+| `variable_lang_overrides` | `Variable_Lang_Overrides.csv` | language-specific LCD variable overrides |
+| `localized_copy` | `Localized_Copy.csv` | shared short copy for page titles, headers, alt text, state words, and labels |
 
 Required derived files:
 
 | Derived file | Purpose |
 | --- | --- |
 | `row_key_mapping.csv` | stable mapping from source rows to generated-page row keys |
-
-Optional synced tables currently accepted by config validation:
-
-| Logical table | Purpose |
-| --- | --- |
-| `lcd_icons` | icon/image metadata for LCD-related output |
-| `variable_defaults` | default variable values |
-| `variable_lang_overrides` | language-specific variable overrides |
 
 Snapshot compatibility rules:
 

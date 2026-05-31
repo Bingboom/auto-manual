@@ -5,23 +5,56 @@
       "spec_footnotes",
       "spec_notes",
       "spec_titles",
-      "symbols_blocks",
-      "troubleshooting"
-    ],
-    "skipped_tables": [
       "lcd_icons",
+      "troubleshooting",
       "variable_defaults",
-      "variable_lang_overrides"
+      "variable_lang_overrides",
+      "localized_copy"
     ],
+    "skipped_tables": [],
     "tables": [
-      {"logical_name": "spec_master", "file_name": "Spec_Master.csv"},
-      {"logical_name": "spec_footnotes", "file_name": "Spec_Footnotes.csv"},
-      {"logical_name": "spec_notes", "file_name": "Spec_Notes.csv"},
-      {"logical_name": "spec_titles", "file_name": "spec_titles.csv"},
-      {"logical_name": "troubleshooting", "file_name": "troubleshooting_blocks.csv"}
+      {
+        "logical_name": "spec_master",
+        "file_name": "Spec_Master.csv"
+      },
+      {
+        "logical_name": "spec_footnotes",
+        "file_name": "Spec_Footnotes.csv"
+      },
+      {
+        "logical_name": "spec_notes",
+        "file_name": "Spec_Notes.csv"
+      },
+      {
+        "logical_name": "spec_titles",
+        "file_name": "spec_titles.csv"
+      },
+      {
+        "logical_name": "lcd_icons",
+        "file_name": "lcd_icons_blocks.csv"
+      },
+      {
+        "logical_name": "troubleshooting",
+        "file_name": "troubleshooting_blocks.csv"
+      },
+      {
+        "logical_name": "variable_defaults",
+        "file_name": "Variable_Defaults.csv"
+      },
+      {
+        "logical_name": "variable_lang_overrides",
+        "file_name": "Variable_Lang_Overrides.csv"
+      },
+      {
+        "logical_name": "localized_copy",
+        "file_name": "Localized_Copy.csv"
+      }
     ],
     "derived_files": [
-      {"logical_name": "row_key_mapping", "file_name": "row_key_mapping.csv"}
+      {
+        "logical_name": "row_key_mapping",
+        "file_name": "row_key_mapping.csv"
+      }
     ]
   },
   "csv_headers": {
@@ -151,27 +184,95 @@
       "Line_order",
       "Row_key",
       "Remark"
+    ],
+    "lcd_icons": [
+      "No.",
+      "Model",
+      "Is_latest",
+      "Version",
+      "icon_en",
+      "icon_desc_en",
+      "figure"
+    ],
+    "variable_defaults": [
+      "Variable_key",
+      "Model_key",
+      "Model",
+      "Value",
+      "is_default"
+    ],
+    "variable_lang_overrides": [
+      "Variable_key",
+      "lang",
+      "source_value",
+      "Value",
+      "from_prefix",
+      "to_prefix"
+    ],
+    "localized_copy": [
+      "copy_key",
+      "page_id",
+      "copy_type",
+      "Region",
+      "Model",
+      "Source_lang",
+      "Is_Latest",
+      "Version",
+      "text_en",
+      "text_zh",
+      "text_ja",
+      "text_fr",
+      "text_es",
+      "text_pt-BR",
+      "text_de",
+      "text_it",
+      "text_uk",
+      "notes"
     ]
   },
   "queue_fields": {
     "document_link": {
       "fields": [
-        {"field_name": "开始构建时间"},
-        {"field_name": "构建结果"},
-        {"field_name": "Document directory"},
-        {"field_name": "Document link"},
-        {"field_name": "data_sync"},
-        {"field_name": "是否触发文档构建"},
-        {"field_name": "是否立即构建"},
-        {"field_name": "是否强制刷新数据"}
+        {
+          "field_name": "开始构建时间"
+        },
+        {
+          "field_name": "构建结果"
+        },
+        {
+          "field_name": "Document directory"
+        },
+        {
+          "field_name": "Document link"
+        },
+        {
+          "field_name": "data_sync"
+        },
+        {
+          "field_name": "是否触发文档构建"
+        },
+        {
+          "field_name": "是否立即构建"
+        },
+        {
+          "field_name": "是否强制刷新数据"
+        }
       ]
     },
     "review_init": {
       "fields": [
-        {"field_name": "Git_ref"},
-        {"field_name": "PR_url"},
-        {"field_name": "Review_status"},
-        {"field_name": "是否进入Review"}
+        {
+          "field_name": "Git_ref"
+        },
+        {
+          "field_name": "PR_url"
+        },
+        {
+          "field_name": "Review_status"
+        },
+        {
+          "field_name": "是否进入Review"
+        }
       ]
     }
   }

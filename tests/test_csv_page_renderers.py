@@ -91,7 +91,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._spec_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("SPECIFICATIONS", out)
         self.assertIn("GENERAL INFO", out)
@@ -116,7 +116,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=blocks,
                 sku_id="JB1000",
                 lang="en",
-                vars_map={},
+                vars_map=self._localized_copy_vars(),
             )
 
     def _spec_master_blocks(self) -> list[dict[str, str]]:
@@ -251,7 +251,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._spec_master_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("SPECIFICATIONS", out)
         self.assertIn("GENERAL INFO", out)
@@ -303,7 +303,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=[jp_row],
             sku_id="JB1000",
             lang="ja",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertIn("AC入力", out)
@@ -321,7 +321,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=[jp_row],
             sku_id="JB1000",
             lang="ja",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertIn("AC入力", out)
@@ -337,7 +337,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=blocks,
                 sku_id="JB1000",
                 lang="en",
-                vars_map={},
+                vars_map=self._localized_copy_vars(),
             )
 
     def _symbols_template(self) -> str:
@@ -347,6 +347,13 @@ class TestCsvPageRenderers(unittest.TestCase):
             + renderers.PH_SYMBOLS_ICON_TABLE_RST
             + "\n"
         )
+
+    def _localized_copy_vars(self, **values: str) -> dict[str, str]:
+        out = {
+            "localized_copy_csv": str(Path(__file__).resolve().parents[1] / "data/phase2/Localized_Copy.csv")
+        }
+        out.update(values)
+        return out
 
     def _symbols_blocks(self) -> list[dict[str, str]]:
         return [
@@ -389,6 +396,62 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "text_fr": "Ne démontez pas.",
                 "text_es": "No desarme.",
             },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "WARNING",
+                "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "order": "101",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Data warning.",
+                "text_fr": "Avertissement de données.",
+                "text_es": "Advertencia desde datos.",
+                "text_de": "Datenwarnung.",
+            },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "CAUTION",
+                "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
+                "order": "102",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Data caution.",
+                "text_fr": "Attention de données.",
+                "text_es": "Precaución desde datos.",
+                "text_de": "Datenvorsicht.",
+            },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "NOTE",
+                "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
+                "order": "103",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Data note.",
+                "text_fr": "Remarque de données.",
+                "text_es": "Nota desde datos.",
+                "text_de": "Datenhinweis.",
+            },
+            {
+                "block_type": "signal_row",
+                "symbol_key": "TIPS",
+                "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
+                "order": "104",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "enabled": "1",
+                "text_en": "Data tip.",
+                "text_fr": "Conseil de données.",
+                "text_es": "Consejo desde datos.",
+                "text_de": "Datentipp.",
+            },
         ]
 
     def test_render_symbols_page_happy_path(self) -> None:
@@ -397,12 +460,12 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertNotIn("DANGER", out)
         self.assertNotIn("This device is intended for indoor use only", out)
         self.assertIn("MEANING OF SYMBOLS", out)
-        self.assertIn("warning_bar.png", out)
+        self.assertIn("Data warning.", out)
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
 
@@ -412,7 +475,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertNotIn("**DANGER**", out)
         self.assertNotIn("This device is not waterproof or dustproof.", out)
@@ -424,7 +487,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertTrue(out.startswith("MEANING OF SYMBOLS\n==================\n\n.. only:: latex"))
@@ -439,7 +502,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         page_title = "MEANING OF SYMBOLS\n=================="
@@ -453,12 +516,12 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertNotIn(r"\HBNoticeBlock{DANGER}", out)
         self.assertIn(r"\HBSymbolTable{Symbol}{Meaning}{%", out)
-        self.assertIn(r"\HBSymbolSignalRow{warning_bar.png}{}", out)
+        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
         self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
         self.assertIn(".. only:: not latex", out)
         self.assertIn(".. image:: templates/word_template/common_assets/symbols/warning_triangle.png", out)
@@ -473,7 +536,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertIn(r"\HBSymbolIconRow{10_warning_triangle.png}{Warning symbol meaning.}", out)
@@ -489,7 +552,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("custom/symbols/warning_triangle.png", out)
 
@@ -503,11 +566,11 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertIn("data/phase2/_attachments/symbols/10_warning_triangle.png", out)
-        self.assertNotIn("templates/word_template/common_assets/symbols/warning_triangle.png", out)
+        self.assertNotIn(r"\HBSymbolIconRow{warning_triangle.png}", out)
 
     def test_render_symbols_page_resolves_figure_attachment_json(self) -> None:
         blocks = self._symbols_blocks()
@@ -519,7 +582,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertIn(".. image:: data/phase2/_attachments/symbols/warning_token.svg", out)
@@ -530,7 +593,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="fr",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("SIGNIFICATION DES SYMBOLES", out)
         self.assertIn("Symbole", out)
@@ -542,7 +605,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="fr",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("**AVERTISSEMENT**", out)
         self.assertIn("**ATTENTION**", out)
@@ -561,7 +624,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="es",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("**ADVERTENCIA**", out)
         self.assertNotIn("**PELIGRO**", out)
@@ -580,13 +643,13 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._symbols_blocks(),
             sku_id="JB1000",
             lang="es",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertIn("SIGNIFICADO DE LOS SÍMBOLOS", out)
         self.assertIn("Símbolo", out)
-        self.assertIn("Prácticas peligrosas", out)
-        self.assertIn("información importante", out)
+        self.assertIn("Advertencia desde datos.", out)
+        self.assertIn("Consejo desde datos.", out)
         self.assertNotIn("S铆mbolo", out)
         self.assertNotIn("Pr谩cticas", out)
         self.assertNotIn("informaci贸n", out)
@@ -655,7 +718,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="es",
-            vars_map={"model": "JE-1000F", "region": "EU"},
+            vars_map=self._localized_copy_vars(model="JE-1000F", region="EU"),
         )
 
         self.assertIn("Advertencia desde datos.", out)
@@ -677,7 +740,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"model": "JE-1000F", "region": "US"},
+            vars_map=self._localized_copy_vars(model="JE-1000F", region="US"),
         )
         self.assertIn("US JE-1000F warning.", out)
         self.assertNotIn("SHOULD_NOT_RENDER", out)
@@ -707,7 +770,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertNotIn("SHOULD_NOT_RENDER", out)
@@ -725,7 +788,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"region": "EU"},
+            vars_map=self._localized_copy_vars(region="EU"),
         )
 
         self.assertNotIn("US-only warning.", out)
@@ -744,7 +807,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"region": "EU"},
+            vars_map=self._localized_copy_vars(region="EU"),
         )
 
         self.assertIn("Shared warning.", out)
@@ -760,7 +823,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"region": "EU"},
+            vars_map=self._localized_copy_vars(region="EU"),
         )
 
         self.assertIn("Shared warning.", out)
@@ -785,7 +848,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JE-2000E",
             lang="de",
-            vars_map={"model": "JE-2000E", "region": "EU"},
+            vars_map=self._localized_copy_vars(model="JE-2000E", region="EU"),
         )
 
         self.assertIn("Gemeinsames EU-Symbol.", out)
@@ -801,11 +864,12 @@ class TestCsvPageRenderers(unittest.TestCase):
             ("do_not_dismantle", "4", "Order 4."),
             ("weee", "5", "Order 5."),
         ]
-        for block, (symbol_key, order, text) in zip(blocks, rows):
+        table_blocks = [block for block in blocks if block.get("block_type") == "table_row"]
+        for block, (symbol_key, order, text) in zip(table_blocks, rows):
             block["symbol_key"] = symbol_key
             block["order"] = order
             block["text_en"] = text
-        for symbol_key, order, text in rows[len(blocks) :]:
+        for symbol_key, order, text in rows[len(table_blocks) :]:
             blocks.append(
                 {
                     "block_type": "table_row",
@@ -827,7 +891,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         order_positions = [out.index(f"Order {idx}.") for idx in range(1, 6)]
@@ -847,7 +911,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"model": "JE-1000F", "region": "EU"},
+            vars_map=self._localized_copy_vars(model="JE-1000F", region="EU"),
         )
 
         self.assertIn("Warning symbol meaning.", out)
@@ -864,7 +928,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"model": "JE-1000F_US", "region": "US"},
+            vars_map=self._localized_copy_vars(model="JE-1000F_US", region="US"),
         )
 
         self.assertIn("Warning symbol meaning.", out)
@@ -893,7 +957,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertIn("weee2.png", out)
         self.assertIn("Battery disposal meaning.", out)
@@ -949,7 +1013,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
 
         self.assertEqual(2, out.count(".. list-table::"))
@@ -967,7 +1031,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=blocks,
                 sku_id="JB1000",
                 lang="en",
-                vars_map={},
+                vars_map=self._localized_copy_vars(),
             )
 
     def _lcd_template(self) -> str:
@@ -1028,11 +1092,11 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=self._lcd_blocks(),
                 sku_id="",
                 lang="en",
-                vars_map={
-                    "model": "JE-1000F",
-                    "variable_defaults_csv": str(defaults),
-                    "variable_lang_overrides_csv": str(overrides),
-                },
+                vars_map=self._localized_copy_vars(
+                    model="JE-1000F",
+                    variable_defaults_csv=str(defaults),
+                    variable_lang_overrides_csv=str(overrides),
+                ),
             )
 
         self.assertIn("LCD DISPLAY", out)
@@ -1064,7 +1128,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="",
             lang="en",
-            vars_map={"model": "JE-1000F"},
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
         )
 
         row_line = next(line for line in out.splitlines() if r"\HBLcdIconRow" in line)
@@ -1099,12 +1163,12 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=self._lcd_blocks(),
                 sku_id="",
                 lang="en",
-                vars_map={
-                    "model": "JE-1000F_US",
-                    "region": "US",
-                    "variable_defaults_csv": str(defaults),
-                    "variable_lang_overrides_csv": str(overrides),
-                },
+                vars_map=self._localized_copy_vars(
+                    model="JE-1000F_US",
+                    region="US",
+                    variable_defaults_csv=str(defaults),
+                    variable_lang_overrides_csv=str(overrides),
+                ),
             )
 
         self.assertIn("Energy Saving Mode", out)
@@ -1127,7 +1191,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="",
             lang="en",
-            vars_map={"model": "JE-1000F"},
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
         )
 
         self.assertIn(".. image:: data/phase2/_attachments/lcd_icons/wifi_token.svg", out)
@@ -1149,7 +1213,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="",
             lang="ja",
-            vars_map={"model": "JE-1000F"},
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
         )
 
         self.assertIn("液晶画面\n========", out)
@@ -1173,7 +1237,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="",
             lang="en",
-            vars_map={"model": "JE-1000F"},
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
         )
 
         self.assertIn("     - | **On:** Wi-Fi connected.", out)
@@ -1198,7 +1262,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="",
             lang="zh",
-            vars_map={"model": "JE-1000F"},
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
         )
 
         self.assertIn("显示屏界面", out)
@@ -1231,33 +1295,33 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=self._lcd_blocks(),
                 sku_id="",
                 lang="fr",
-                vars_map={
-                    "model": "JE-1000F",
-                    "variable_defaults_csv": str(defaults),
-                    "variable_lang_overrides_csv": str(overrides),
-                },
+                vars_map=self._localized_copy_vars(
+                    model="JE-1000F",
+                    variable_defaults_csv=str(defaults),
+                    variable_lang_overrides_csv=str(overrides),
+                ),
             )
             ja_out = renderers.render_lcd_icons_page(
                 template=self._lcd_template(),
                 blocks=self._lcd_blocks(),
                 sku_id="",
                 lang="ja",
-                vars_map={
-                    "model": "JE-1000F",
-                    "variable_defaults_csv": str(defaults),
-                    "variable_lang_overrides_csv": str(overrides),
-                },
+                vars_map=self._localized_copy_vars(
+                    model="JE-1000F",
+                    variable_defaults_csv=str(defaults),
+                    variable_lang_overrides_csv=str(overrides),
+                ),
             )
             uk_out = renderers.render_lcd_icons_page(
                 template=self._lcd_template(),
                 blocks=self._lcd_blocks(),
                 sku_id="",
                 lang="uk",
-                vars_map={
-                    "model": "JE-1000F",
-                    "variable_defaults_csv": str(defaults),
-                    "variable_lang_overrides_csv": str(overrides),
-                },
+                vars_map=self._localized_copy_vars(
+                    model="JE-1000F",
+                    variable_defaults_csv=str(defaults),
+                    variable_lang_overrides_csv=str(overrides),
+                ),
             )
 
         self.assertIn("When the CA or CC/USB output is on:", fr_out)
@@ -1315,12 +1379,12 @@ class TestCsvPageRenderers(unittest.TestCase):
                 blocks=blocks,
                 sku_id="",
                 lang="pt-BR",
-                vars_map={
-                    "model": "JE-1000F",
-                    "product_name": "Jackery Explorer 1500",
-                    "variable_defaults_csv": str(defaults),
-                    "variable_lang_overrides_csv": str(overrides),
-                },
+                vars_map=self._localized_copy_vars(
+                    model="JE-1000F",
+                    product_name="Jackery Explorer 1500",
+                    variable_defaults_csv=str(defaults),
+                    variable_lang_overrides_csv=str(overrides),
+                ),
             )
 
         self.assertIn("TELA LCD", out)
@@ -1438,7 +1502,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=self._spec_master_blocks(),
             sku_id="JB1000",
             lang="en",
-            vars_map={},
+            vars_map=self._localized_copy_vars(),
         )
         self.assertEqual("SPECIFICATIONS", data["title_main"])
         self.assertEqual("GENERAL INFO", data["sections"][0]["title"])
@@ -1471,7 +1535,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             blocks=blocks,
             sku_id="JB1000",
             lang="en",
-            vars_map={"model": "JHP-2000A"},
+            vars_map=self._localized_copy_vars(model="JHP-2000A"),
         )
         joined = "\n".join("\n".join(str(x) for x in sec["rows"]) for sec in data["sections"])
         self.assertNotIn("SHOULD_NOT_BE_RENDERED", joined)

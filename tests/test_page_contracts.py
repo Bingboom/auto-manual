@@ -37,6 +37,7 @@ class TestPageContracts(unittest.TestCase):
                 ("MAIN_POWER_BUTTON_LABEL", "FRONT_TOTAL_OUTPUT_LABEL"),
                 page_contracts.required_placeholders_for_lang(contract, "en"),
             )
+            self.assertEqual((), page_contracts.required_copy_keys_for_lang(contract, "en"))
             self.assertEqual(
                 ("MAIN_POWER_BUTTON_LABEL",),
                 page_contracts.required_placeholders_for_lang(contract, "ja"),
@@ -47,6 +48,7 @@ class TestPageContracts(unittest.TestCase):
             page_id="03_product_overview",
             source_files=("templates/page_us-en/03_product_overview_placeholder.rst",),
             required_placeholders={"default": ("MAIN_POWER_BUTTON_LABEL",)},
+            required_copy_keys={},
             required_spec_keys={},
             required_page_values={},
             required_assets={},
@@ -64,11 +66,11 @@ class TestPageContracts(unittest.TestCase):
         assert matched is not None
         self.assertEqual("03_product_overview", matched.page_id)
 
-    def test_product_overview_contract_should_not_apply_to_hardcoded_zh_template(self) -> None:
+    def test_product_overview_contract_should_apply_to_zh_template(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
         contracts = page_contracts.load_page_contracts(repo_root / "docs" / "templates" / "contracts")
 
-        self.assertIsNone(
+        self.assertIsNotNone(
             page_contracts.find_contract_for_source(
                 "templates/page_zh/03_product_overview_placeholder.rst",
                 contracts,
@@ -79,6 +81,15 @@ class TestPageContracts(unittest.TestCase):
                 "templates/page_jp/03_product_overview_placeholder.rst",
                 contracts,
             )
+        )
+        contract = page_contracts.find_contract_for_source(
+            "templates/page_zh/03_product_overview_placeholder.rst",
+            contracts,
+        )
+        assert contract is not None
+        self.assertIn(
+            "product_overview.page_title",
+            page_contracts.required_copy_keys_for_lang(contract, "zh"),
         )
 
     def test_load_page_contracts_should_parse_page_value_selectors_and_scope(self) -> None:
@@ -93,6 +104,9 @@ class TestPageContracts(unittest.TestCase):
                         "required_placeholders:",
                         "  default:",
                         "    - PRODUCT_NAME",
+                        "required_copy_keys:",
+                        "  en:",
+                        "    - operation_guide.page_title",
                         "required_spec_keys:",
                         "  default:",
                         "    - product_name",
@@ -119,6 +133,7 @@ class TestPageContracts(unittest.TestCase):
             self.assertEqual(1, len(contracts))
             contract = contracts[0]
             self.assertEqual(("product_name",), page_contracts.required_spec_keys_for_lang(contract, "en"))
+            self.assertEqual(("operation_guide.page_title",), page_contracts.required_copy_keys_for_lang(contract, "en"))
             page_values = page_contracts.required_page_values_for_lang(contract, "en")
             self.assertEqual(1, len(page_values))
             self.assertEqual("main_power_button", page_values[0].row_key)

@@ -76,10 +76,12 @@ from tools.page_contracts import (  # noqa: E402
     find_contract_for_source,
     load_page_contracts,
     required_assets_for_lang,
+    required_copy_keys_for_lang,
     required_page_values_for_lang,
     required_placeholders_for_lang,
     required_spec_keys_for_lang,
 )
+from tools.localized_copy import LocalizedCopyResolver  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     collect_matching_spec_rows,
     collect_spec_value_matches_from_rows,
@@ -122,6 +124,14 @@ def resolve_spec_master_csv_path(cfg: dict, *, data_root: str | None = None) -> 
         repo_root=ROOT,
         data_root=data_root,
     ).spec_master_csv
+
+
+def resolve_localized_copy_csv_path(cfg: dict, *, data_root: str | None = None) -> Path:
+    return resolve_data_snapshot_paths(
+        cfg,
+        repo_root=ROOT,
+        data_root=data_root,
+    ).localized_copy_csv
 
 
 def resolve_contracts_dir(*, docs_dir: Path) -> Path:
@@ -340,11 +350,14 @@ def collect_page_contract_issues(
         find_contract_for_source=find_contract_for_source,
         contract_applies_to=contract_applies_to,
         required_placeholders_for_lang=required_placeholders_for_lang,
+        required_copy_keys_for_lang=required_copy_keys_for_lang,
         required_spec_keys_for_lang=required_spec_keys_for_lang,
         required_page_values_for_lang=required_page_values_for_lang,
         required_assets_for_lang=required_assets_for_lang,
         resolve_template_substitutions_from_spec_master=resolve_template_substitutions_from_spec_master,
         resolve_spec_master_csv_path=resolve_spec_master_csv_path,
+        resolve_localized_copy_csv_path=resolve_localized_copy_csv_path,
+        localized_copy_resolver_cls=LocalizedCopyResolver,
         read_spec_master_rows=read_spec_master_rows,
         resolve_spec_value_from_rows=resolve_spec_value_from_rows,
         describe_page_value_selector=describe_page_value_selector,

@@ -273,6 +273,29 @@ class TestSyncData(unittest.TestCase):
             ("Variable_key", "lang", "source_value", "Value", "from_prefix", "to_prefix"),
             sync_data.TABLE_SCHEMAS["variable_lang_overrides"].columns,
         )
+        self.assertEqual(
+            (
+                "copy_key",
+                "page_id",
+                "copy_type",
+                "Region",
+                "Model",
+                "Source_lang",
+                "Is_Latest",
+                "Version",
+                "text_en",
+                "text_zh",
+                "text_ja",
+                "text_fr",
+                "text_es",
+                "text_pt-BR",
+                "text_de",
+                "text_it",
+                "text_uk",
+                "notes",
+            ),
+            sync_data.TABLE_SCHEMAS["localized_copy"].columns,
+        )
 
     def test_symbols_blocks_should_normalize_model_multiselect_cells(self) -> None:
         rows = sync_data.normalize_records(

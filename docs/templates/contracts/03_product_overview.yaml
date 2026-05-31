@@ -6,6 +6,7 @@ source_files:
   - templates/page_us-pt-br/03_product_overview_placeholder.rst
   - templates/page_eu-en/03_product_overview_placeholder.rst
   - templates/page_jp/03_product_overview_placeholder.rst
+  - templates/page_zh/03_product_overview_placeholder.rst
 required_placeholders:
   default:
     - MAIN_POWER_BUTTON_LABEL
@@ -38,3 +39,37 @@ required_placeholders:
   pt-BR:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
+  zh:
+    - FRONT_TOTAL_OUTPUT_LABEL
+    - FRONT_TOTAL_OUTPUT_SPEC
+required_copy_keys:
+  en:
+    - product_overview.page_title
+    - product_overview.front_view
+    - product_overview.right_side_view
+    - product_overview.front_image_alt
+    - product_overview.right_image_alt
+    - product_overview.part.handle
+    - product_overview.part.lcd
+    - product_overview.part.led_light_button
+    - product_overview.part.led_light
+  ja:
+    - product_overview.page_title
+    - product_overview.front_view
+    - product_overview.right_side_view
+    - product_overview.front_image_alt
+    - product_overview.right_image_alt
+    - product_overview.part.handle
+    - product_overview.part.lcd
+    - product_overview.part.led_light_button
+    - product_overview.part.led_light
+  zh:
+    - product_overview.page_title
+    - product_overview.front_view
+    - product_overview.right_side_view
+    - product_overview.front_image_alt
+    - product_overview.right_image_alt
+    - product_overview.part.handle
+    - product_overview.part.lcd
+    - product_overview.part.led_light_button
+    - product_overview.part.led_light

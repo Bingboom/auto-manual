@@ -233,6 +233,13 @@ def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
             _text_sort_token(row.get("lang", "")),
             _text_sort_token(row.get("source_value", "") or row.get("from_prefix", "")),
         )
+    if schema.logical_name == "localized_copy":
+        return (
+            _text_sort_token(row.get("page_id", "")),
+            _text_sort_token(row.get("copy_key", "")),
+            _text_sort_token(row.get("Region", "")),
+            _text_sort_token(row.get("Model", "")),
+        )
     return (
         _text_sort_token(row.get("document_key", "")),
         _text_sort_token(row.get("Page", "")),

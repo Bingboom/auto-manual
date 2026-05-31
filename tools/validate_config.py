@@ -51,6 +51,7 @@ SYNC_PHASE2_TABLES = {
     "troubleshooting",
     "variable_defaults",
     "variable_lang_overrides",
+    "localized_copy",
 }
 
 

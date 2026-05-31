@@ -69,6 +69,7 @@ TABLE_ORDER = (
     "troubleshooting",
     "variable_defaults",
     "variable_lang_overrides",
+    "localized_copy",
     "spec_master",
 )
 SUPPORTED_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
@@ -285,6 +286,30 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Value",
             "from_prefix",
             "to_prefix",
+        ),
+    ),
+    "localized_copy": TableSchema(
+        logical_name="localized_copy",
+        file_name="Localized_Copy.csv",
+        columns=(
+            "copy_key",
+            "page_id",
+            "copy_type",
+            "Region",
+            "Model",
+            "Source_lang",
+            "Is_Latest",
+            "Version",
+            "text_en",
+            "text_zh",
+            "text_ja",
+            "text_fr",
+            "text_es",
+            "text_pt-BR",
+            "text_de",
+            "text_it",
+            "text_uk",
+            "notes",
         ),
     ),
 }

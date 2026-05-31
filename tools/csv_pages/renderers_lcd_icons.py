@@ -10,6 +10,7 @@ import unicodedata
 from pathlib import Path
 
 from .renderers_common import apply_vars, latex_arg_escape, rst_escape
+from ..localized_copy import LocalizedCopyResolver
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens, resolve_variable_value
 
@@ -30,19 +31,6 @@ _LANG_SUFFIX = {
     "pt_br": "pt-BR",
     "br": "pt-BR",
 }
-
-_LANG_COPY = {
-    "en": {"title": "LCD DISPLAY", "alt": "LCD icon map placeholder."},
-    "fr": {"title": "AFFICHAGE LCD", "alt": "Carte des icônes de l'écran LCD."},
-    "es": {"title": "PANTALLA LCD", "alt": "Mapa de iconos de la pantalla LCD."},
-    "de": {"title": "LCD-ANZEIGE", "alt": "Abbildung der LCD-Symbole als Platzhalter."},
-    "it": {"title": "DISPLAY LCD", "alt": "Segnaposto mappa icone LCD."},
-    "uk": {"title": "ЕКРАН LCD", "alt": "Заглушка схеми значків LCD."},
-    "ja": {"title": "液晶画面", "alt": "LCDアイコンマップ。"},
-    "zh": {"title": "显示屏界面", "alt": "LCD 图标示意图。"},
-    "pt-BR": {"title": "TELA LCD", "alt": "Mapa de ícones da tela LCD."},
-}
-
 
 def _read_csv(path: str) -> list[dict[str, str]]:
     raw = (path or "").strip()
@@ -283,8 +271,54 @@ def _collect_rows(
     return rows
 
 
-def _format_description_line(line: str) -> str:
-    for label in ("On", "Off", "Blink", "Ligado", "Desligado", "Piscando", "点亮", "熄灭", "闪烁"):
+def _localized_copy_resolver(vars_map: dict[str, str]) -> LocalizedCopyResolver:
+    path = (vars_map.get("localized_copy_csv") or "").strip()
+    if not path:
+        raise ValueError("lcd_icons renderer requires localized_copy_csv")
+    return LocalizedCopyResolver.from_csv(path)
+
+
+def _copy_text(
+    vars_map: dict[str, str],
+    key: str,
+    *,
+    lang: str,
+    target_model: str,
+    target_region: str,
+) -> str:
+    return _localized_copy_resolver(vars_map).resolve(
+        key,
+        lang=lang,
+        model=target_model or None,
+        region=target_region or None,
+    )
+
+
+def _status_labels(
+    vars_map: dict[str, str],
+    *,
+    lang: str,
+    target_model: str,
+    target_region: str,
+) -> tuple[str, ...]:
+    return tuple(
+        _copy_text(
+            vars_map,
+            key,
+            lang=lang,
+            target_model=target_model,
+            target_region=target_region,
+        )
+        for key in (
+            "lcd_icons.status.on",
+            "lcd_icons.status.off",
+            "lcd_icons.status.blink",
+        )
+    )
+
+
+def _format_description_line(line: str, *, status_labels: tuple[str, ...]) -> str:
+    for label in status_labels:
         for separator in (":", "："):
             prefix = f"{label}{separator}"
             if line.startswith(prefix):
@@ -332,7 +366,14 @@ def _append_image_cell(lines: list[str], prefix: str, path: str, *, alt: str) ->
     lines.append(option_prefix + ":width: 42px")
 
 
-def _append_text_cell(lines: list[str], prefix: str, text: str, *, format_status: bool = False) -> None:
+def _append_text_cell(
+    lines: list[str],
+    prefix: str,
+    text: str,
+    *,
+    format_status: bool = False,
+    status_labels: tuple[str, ...] = (),
+) -> None:
     raw_text = (text or "").replace("\\n", "\n")
     raw_lines = raw_text.splitlines()
     if not raw_lines:
@@ -342,7 +383,7 @@ def _append_text_cell(lines: list[str], prefix: str, text: str, *, format_status
     def format_line(raw_line: str) -> str:
         line = rst_escape(raw_line)
         if format_status:
-            line = _format_description_line(line)
+            line = _format_description_line(line, status_labels=status_labels)
         return line
 
     if len(raw_lines) == 1:
@@ -357,7 +398,7 @@ def _append_text_cell(lines: list[str], prefix: str, text: str, *, format_status
         lines.append(continuation + (f"| {line}" if line else "|"))
 
 
-def _rst_table(rows: list[dict[str, str]]) -> str:
+def _rst_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
     lines: list[str] = [
         ".. list-table::",
         "   :header-rows: 0",
@@ -368,7 +409,13 @@ def _rst_table(rows: list[dict[str, str]]) -> str:
         _append_text_cell(lines, "   * - ", row["no"])
         _append_image_cell(lines, "     - ", row["figure"], alt=row["name"])
         _append_text_cell(lines, "     - ", row["name"])
-        _append_text_cell(lines, "     - ", row["description"], format_status=True)
+        _append_text_cell(
+            lines,
+            "     - ",
+            row["description"],
+            format_status=True,
+            status_labels=status_labels,
+        )
     return "\n".join(lines) + "\n"
 
 
@@ -390,8 +437,8 @@ def _latex_lines_arg(text: str) -> str:
     return r" \newline ".join(latex_arg_escape(part) for part in parts)
 
 
-def _latex_description_line(line: str) -> str:
-    for label in ("On", "Off", "Blink", "点亮", "熄灭", "闪烁"):
+def _latex_description_line(line: str, *, status_labels: tuple[str, ...]) -> str:
+    for label in status_labels:
         for separator in (":", "："):
             prefix = f"{label}{separator}"
             if line.startswith(prefix):
@@ -402,13 +449,13 @@ def _latex_description_line(line: str) -> str:
     return latex_arg_escape(line)
 
 
-def _latex_description_arg(text: str) -> str:
+def _latex_description_arg(text: str, *, status_labels: tuple[str, ...]) -> str:
     raw = (text or "").replace("\\n", "\n")
     parts = [part.strip() for part in raw.splitlines() if part.strip()]
-    return r" \newline ".join(_latex_description_line(part) for part in parts)
+    return r" \newline ".join(_latex_description_line(part, status_labels=status_labels) for part in parts)
 
 
-def _latex_table(rows: list[dict[str, str]]) -> str:
+def _latex_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
     # Worker A owns the macro definitions. Keep this renderer limited to calling
     # the shared LCD table interface with escaped text and basename image args.
     lines: list[str] = [
@@ -420,15 +467,15 @@ def _latex_table(rows: list[dict[str, str]]) -> str:
             f"{{{latex_arg_escape(row['no'])}}}"
             f"{{{_latex_image_arg(row['figure'])}}}"
             f"{{{_latex_lines_arg(row['name'])}}}"
-            f"{{{_latex_description_arg(row['description'])}}}"
+            f"{{{_latex_description_arg(row['description'], status_labels=status_labels)}}}"
         )
     lines.append(r"\end{HBLcdIconTable}")
     return "\n".join(lines)
 
 
-def _table(rows: list[dict[str, str]]) -> str:
-    rst_table = _rst_table(rows)
-    latex_table = _latex_table(rows)
+def _table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
+    rst_table = _rst_table(rows, status_labels=status_labels)
+    latex_table = _latex_table(rows, status_labels=status_labels)
     return "\n".join(
         [
             ".. only:: not latex",
@@ -459,9 +506,30 @@ def render_lcd_icons_page(
     vars_map: dict[str, str],
 ) -> str:
     del sku_id
-    copy = _LANG_COPY.get(lang) or _LANG_COPY.get(_lang_suffix(lang)) or _LANG_COPY["en"]
+    target_model = _pick_target_model(vars_map)
+    target_region = _pick_target_region(vars_map)
+    title = _copy_text(
+        vars_map,
+        "lcd_icons.page_title",
+        lang=lang,
+        target_model=target_model,
+        target_region=target_region,
+    )
+    alt = _copy_text(
+        vars_map,
+        "lcd_icons.image_alt",
+        lang=lang,
+        target_model=target_model,
+        target_region=target_region,
+    )
+    status_labels = _status_labels(
+        vars_map,
+        lang=lang,
+        target_model=target_model,
+        target_region=target_region,
+    )
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
-    rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(copy["title"]))
-    rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(copy["alt"]))
-    rendered = rendered.replace(PH_LCD_ICONS_TABLE_RST, _table(rows))
+    rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(title))
+    rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(alt))
+    rendered = rendered.replace(PH_LCD_ICONS_TABLE_RST, _table(rows, status_labels=status_labels))
     return rendered

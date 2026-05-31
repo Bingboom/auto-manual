@@ -50,6 +50,7 @@ def resolve_bundle_materialization_context(
     plan_materialized_pages: Callable[..., list[Any]],
     preflight_contract_assets: Callable[..., None],
     resolve_spec_master_csv_path: Callable[..., Path],
+    resolve_localized_copy_csv_path: Callable[..., Path],
     pick_vars_map: Callable[[str | None, str | None], dict[str, str]],
     fill_product_name_from_spec_master: Callable[..., dict[str, str]],
     load_rst_substitutions: Callable[[Path], dict[str, str]],
@@ -113,7 +114,15 @@ def resolve_bundle_materialization_context(
         model=target_model,
         region=target_region,
     )
+    localized_copy_csv = resolve_localized_copy_csv_path(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+        model=target_model,
+        region=target_region,
+    )
     base_vars_map = pick_vars_map(target_model, target_region)
+    base_vars_map["localized_copy_csv"] = str(localized_copy_csv)
     title_vars = fill_product_name_from_spec_master(
         base_vars_map,
         spec_master_csv=spec_master_csv,

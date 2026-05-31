@@ -37,6 +37,9 @@ sync:
       variable_lang_overrides:
         table_id: tblkcXujDMGXnHMo
         view_id: vewODokxUs
+      localized_copy:
+        table_id_env: FEISHU_PHASE2_LOCALIZED_COPY_TABLE_ID
+        view_id_env: FEISHU_PHASE2_LOCALIZED_COPY_VIEW_ID
     document_link:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID

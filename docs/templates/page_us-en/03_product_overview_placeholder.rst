@@ -1,11 +1,11 @@
-PRODUCT OVERVIEW
-================
+{{ copy:product_overview.page_title }}
+=====================================
 
-FRONT VIEW
-----------
+{{ copy:product_overview.front_view }}
+-------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: Front view diagram placeholder.
+   :alt: {{ copy:product_overview.front_image_alt }}
    :width: 420px
 
 .. list-table::
@@ -13,17 +13,17 @@ FRONT VIEW
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **Handle**
+     - **{{ copy:product_overview.part.handle }}**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
-     - **LCD**
+     - **{{ copy:product_overview.part.lcd }}**
    * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **LED Light Button**
+     - **{{ copy:product_overview.part.led_light_button }}**
    * - **|FRONT_USB_C_LOW_LABEL|**
 
        |FRONT_USB_C_LOW_SPEC|
-     - **LED Light**
+     - **{{ copy:product_overview.part.led_light }}**
    * - **|FRONT_USB_C_HIGH_LABEL|**
 
        |FRONT_USB_C_HIGH_SPEC|
@@ -43,18 +43,18 @@ FRONT VIEW
 
        |FRONT_TOTAL_OUTPUT_SPEC|
 
-RIGHT SIDE VIEW
----------------
+{{ copy:product_overview.right_side_view }}
+------------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: Right side view diagram placeholder.
+   :alt: {{ copy:product_overview.right_image_alt }}
    :width: 420px
 
 .. list-table::
    :header-rows: 0
    :widths: 50 50
 
-   * - **Handle**
+   * - **{{ copy:product_overview.part.handle }}**
      - **|SIDE_AC_INPUT_LABEL|**
 
        |SIDE_AC_INPUT_SPEC|
