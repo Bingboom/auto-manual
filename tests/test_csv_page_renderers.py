@@ -607,8 +607,8 @@ class TestCsvPageRenderers(unittest.TestCase):
             lang="fr",
             vars_map=self._localized_copy_vars(),
         )
-        self.assertIn("**AVERTISSEMENT**", out)
-        self.assertIn("**ATTENTION**", out)
+        self.assertIn("**WARNING**", out)
+        self.assertIn("**CAUTION**", out)
         self.assertNotIn(
             "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
             out,
@@ -626,8 +626,8 @@ class TestCsvPageRenderers(unittest.TestCase):
             lang="es",
             vars_map=self._localized_copy_vars(),
         )
-        self.assertIn("**ADVERTENCIA**", out)
-        self.assertNotIn("**PELIGRO**", out)
+        self.assertIn("**WARNING**", out)
+        self.assertNotIn("**DANGER**", out)
         self.assertNotIn(
             "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
             out,
@@ -723,9 +723,27 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("Advertencia desde datos.", out)
         self.assertIn("Consejo desde datos.", out)
-        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Advertencia desde datos.}", out)
+        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Advertencia desde datos.}", out)
         self.assertIn("Significado del símbolo de advertencia.", out)
         self.assertNotIn("Prácticas peligrosas que pueden resultar en lesiones graves", out)
+
+    def test_render_symbols_page_resolves_signal_labels_from_signal_rows(self) -> None:
+        blocks = self._symbols_blocks()
+        for block in blocks:
+            if block.get("block_type") == "signal_row":
+                block["label_en"] = f"ROW_{block['symbol_key']}"
+
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{ROW\_WARNING}{Data warning.}", out)
+        self.assertIn("**ROW_CAUTION**", out)
+        self.assertNotIn("**WARNING**", out)
 
     def test_render_symbols_page_filters_by_model_and_region(self) -> None:
         blocks = self._symbols_blocks()

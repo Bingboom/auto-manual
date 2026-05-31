@@ -199,6 +199,8 @@ class TestSyncData(unittest.TestCase):
                 "text_de",
                 "text_it",
                 "text_uk",
+                "text_jp",
+                "text_zh",
                 "Is_Latest",
                 "Market",
                 "enabled",
@@ -207,6 +209,7 @@ class TestSyncData(unittest.TestCase):
                 "Region",
                 "Model",
                 "Source_lang",
+                "column_group",
             ),
             sync_data.TABLE_SCHEMAS["symbols_blocks"].columns,
         )
