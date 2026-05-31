@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.signal_words import get_safety_warning_label, get_signal_word, get_symbols_notice_label
+from tools.signal_words import get_safety_warning_label, get_signal_word, get_symbols_notice_label, signal_label_entries
 
 
 class TestSignalWords(unittest.TestCase):
@@ -14,9 +14,9 @@ class TestSignalWords(unittest.TestCase):
             path.write_text(
                 "\n".join(
                     [
-                        "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_fr,label_de,label_zh",
-                        "symbols,warning,signal_row,1,ALL,ALL,en,TRUE,AVERTISSEMENT_BASE,WARNUNG_BASE,警告",
-                        "symbols,tips,signal_row,2,ALL,ALL,en,TRUE,CONSEILS_BASE,TIPP_BASE,提示",
+                        "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_fr,label_de,label_zh,aliases_es",
+                        "symbols,warning,signal_row,1,ALL,ALL,en,TRUE,AVERTISSEMENT_BASE,WARNUNG_BASE,警告,ADVERTENCIA;AVISO",
+                        "symbols,tips,signal_row,2,ALL,ALL,en,TRUE,CONSEILS_BASE,TIPP_BASE,提示,CONSEJO;CONSEJOS",
                     ]
                 )
                 + "\n",
@@ -27,6 +27,30 @@ class TestSignalWords(unittest.TestCase):
             self.assertEqual("TIPP_BASE", get_signal_word("de", "tip", symbols_blocks_csv=path))
             self.assertEqual("WARNING", get_signal_word("unknown", "warning", symbols_blocks_csv=path))
             self.assertEqual("警告", get_safety_warning_label("zh", symbols_blocks_csv=path))
+            self.assertIn(
+                ("warning", "ADVERTENCIA"),
+                {(entry.key, entry.label) for entry in signal_label_entries(symbols_blocks_csv=path, lang="es")},
+            )
+
+    def test_signal_words_should_resolve_alert_label_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "symbols_blocks.csv"
+            path.write_text(
+                "\n".join(
+                    [
+                        "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_en,label_es",
+                        "symbols,danger,alert_label_row,5,ALL,ALL,en,TRUE,DANGER,PELIGRO",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual("DANGER", get_symbols_notice_label("en", symbols_blocks_csv=path))
+            self.assertIn(
+                ("danger", "PELIGRO"),
+                {(entry.key, entry.label) for entry in signal_label_entries(symbols_blocks_csv=path, lang="es")},
+            )
 
     def test_signal_words_should_fail_when_signal_row_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as td:

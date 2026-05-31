@@ -83,7 +83,7 @@ SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
     ),
 }
 SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png", "tip_bar.png"}
-SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
+SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row", "alert_label_row"}
 
 
 def _localized_copy_resolver(vars_map: dict[str, str]) -> LocalizedCopyResolver:
@@ -433,7 +433,8 @@ def _symbol_block_type(block: dict[str, str]) -> str:
     block_type = (block.get("block_type") or "").strip()
     if block_type not in SUPPORTED_SYMBOL_BLOCK_TYPES:
         raise ValueError(
-            "symbols page supports block_type='table_row' or block_type='signal_row', "
+            "symbols page supports block_type='table_row', block_type='signal_row', "
+            "or block_type='alert_label_row', "
             f"got '{block_type or '?'}'"
         )
     return block_type

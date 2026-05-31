@@ -5,56 +5,16 @@ from __future__ import annotations
 
 from copy import deepcopy
 import re
+from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from tools.signal_words import SignalLabel, signal_label_entries
 
-_ALERT_LABELS = {
-    "WARNING",
-    "CAUTION",
-    "DANGER",
-    "NOTE",
-    "TIP",
-    "TIPS",
-    "AVERTISSEMENT",
-    "ATTENTION",
-    "REMARQUE",
-    "CONSEIL",
-    "CONSEILS",
-    "ADVERTENCIA",
-    "PELIGRO",
-    "PRECAUCIÓN",
-    "PRECAUCION",
-    "NOTA",
-    "CONSEJO",
-    "CONSEJOS",
-    "WARNUNG",
-    "VORSICHT",
-    "HINWEIS",
-    "TIPP",
-    "AVVERTENZA",
-    "ATTENZIONE",
-    "SUGGERIMENTO",
-    "ПОПЕРЕДЖЕННЯ",
-    "УВАГА",
-    "ПРИМІТКА",
-    "ПОРАДИ",
-    "警告",
-    "注意",
-    "ご注意",
-    "提示",
-    "说明",
-    "備考",
-    "備註",
-    "备注",
-}
-_WARNING_BOX_LABEL_TEXTS = {
-    *_ALERT_LABELS,
-}
 _SIGNAL_WORD_BANNERS = {
-    "WARNING": "templates/word_template/common_assets/symbols/warning_bar.png",
-    "CAUTION": "templates/word_template/common_assets/symbols/caution_bar.png",
-    "NOTE": "templates/word_template/common_assets/symbols/note_bar.png",
-    "TIP": "templates/word_template/common_assets/symbols/tip_bar.png",
+    "warning": "templates/word_template/common_assets/symbols/warning_bar.png",
+    "caution": "templates/word_template/common_assets/symbols/caution_bar.png",
+    "note": "templates/word_template/common_assets/symbols/note_bar.png",
+    "tips": "templates/word_template/common_assets/symbols/tip_bar.png",
 }
 _SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
@@ -96,6 +56,33 @@ def _normalize_inline_text(text: str) -> str:
 
 def _normalize_alert_label_text(text: str) -> str:
     return _normalize_inline_text(text).rstrip(":：").upper()
+
+
+def _alert_label_map(
+    *,
+    lang: str | None = None,
+    symbols_blocks_csv: str | Path | None = None,
+) -> dict[str, SignalLabel]:
+    labels: dict[str, SignalLabel] = {}
+    for entry in signal_label_entries(symbols_blocks_csv=symbols_blocks_csv, lang=lang):
+        normalized = _normalize_alert_label_text(entry.label)
+        if normalized:
+            labels.setdefault(normalized, entry)
+    return labels
+
+
+def _is_alert_label_text(
+    text: str,
+    *,
+    lang: str | None = None,
+    symbols_blocks_csv: str | Path | None = None,
+    alert_labels: dict[str, SignalLabel] | None = None,
+) -> bool:
+    labels = alert_labels if alert_labels is not None else _alert_label_map(
+        lang=lang,
+        symbols_blocks_csv=symbols_blocks_csv,
+    )
+    return _normalize_alert_label_text(text) in labels
 
 
 def _has_non_label_punctuation_text(text: str) -> bool:
@@ -231,10 +218,10 @@ def _match_safety_sublist_rule(text: str) -> tuple[str, ...] | None:
     return None
 
 
-def _extract_alert_label(element: ET.Element) -> str | None:
+def _extract_alert_label(element: ET.Element, alert_labels: dict[str, SignalLabel]) -> str | None:
     tag = _html_tag_name(element)
     text = _normalize_alert_label_text("".join(element.itertext()))
-    if text not in _ALERT_LABELS:
+    if text not in alert_labels:
         return None
 
     if tag in {"h1", "h2", "h3"}:
@@ -324,7 +311,10 @@ def _rewrite_known_safety_sublists(element: ET.Element) -> ET.Element:
     return _set_element_children(element, rewritten)
 
 
-def _rewrite_signal_word_banner_table(element: ET.Element) -> ET.Element:
+def _rewrite_signal_word_banner_table(
+    element: ET.Element,
+    alert_labels: dict[str, SignalLabel],
+) -> ET.Element:
     if _html_tag_name(element) != "table":
         return element
 
@@ -344,7 +334,8 @@ def _rewrite_signal_word_banner_table(element: ET.Element) -> ET.Element:
             continue
         first_cell = cells[0]
         label = _normalize_inline_text("".join(first_cell.itertext())).upper()
-        banner_src = _SIGNAL_WORD_BANNERS.get(label)
+        signal_label = alert_labels.get(_normalize_alert_label_text(label))
+        banner_src = _SIGNAL_WORD_BANNERS.get(signal_label.key if signal_label else "")
         if not banner_src:
             continue
 
@@ -386,9 +377,9 @@ def _row_cells(row: ET.Element) -> list[ET.Element]:
     return [cell for cell in list(row) if _html_tag_name(cell) in {"td", "th"}]
 
 
-def _extract_alert_cell_label(cell: ET.Element) -> str | None:
+def _extract_alert_cell_label(cell: ET.Element, alert_labels: dict[str, SignalLabel]) -> str | None:
     text = _normalize_alert_label_text("".join(cell.itertext()))
-    if text not in _ALERT_LABELS:
+    if text not in alert_labels:
         return None
 
     direct_text = _normalize_inline_text(cell.text or "")
@@ -417,7 +408,10 @@ def _cell_body_nodes(cell: ET.Element) -> list[ET.Element]:
     return body_nodes
 
 
-def _rewrite_two_column_alert_table(element: ET.Element) -> ET.Element:
+def _rewrite_two_column_alert_table(
+    element: ET.Element,
+    alert_labels: dict[str, SignalLabel],
+) -> ET.Element:
     if _html_tag_name(element) != "table":
         return element
 
@@ -434,7 +428,7 @@ def _rewrite_two_column_alert_table(element: ET.Element) -> ET.Element:
     if len(cells) != 2:
         return element
 
-    label = _extract_alert_cell_label(cells[0])
+    label = _extract_alert_cell_label(cells[0], alert_labels)
     if label is None:
         return element
 
@@ -487,7 +481,10 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
     return table
 
 
-def _warning_box_table_parts(element: ET.Element) -> tuple[str, list[ET.Element]]:
+def _warning_box_table_parts(
+    element: ET.Element,
+    alert_labels: dict[str, SignalLabel],
+) -> tuple[str, list[ET.Element]]:
     lockup_text = ""
     warning_text = ""
     for node in element.iter():
@@ -499,7 +496,7 @@ def _warning_box_table_parts(element: ET.Element) -> tuple[str, list[ET.Element]
 
     label = lockup_text
     body_text = warning_text
-    if not label and warning_text.upper() in _WARNING_BOX_LABEL_TEXTS:
+    if not label and _is_alert_label_text(warning_text, alert_labels=alert_labels):
         label = warning_text
         body_text = ""
 
@@ -515,6 +512,7 @@ def _rewrite_word_friendly_children(
     children: list[ET.Element],
     *,
     lang: str | None = None,
+    alert_labels: dict[str, SignalLabel],
 ) -> list[ET.Element]:
     normalized_children: list[ET.Element] = []
     for child in children:
@@ -522,11 +520,15 @@ def _rewrite_word_friendly_children(
         if list(rewritten_child):
             _set_element_children(
                 rewritten_child,
-                _rewrite_word_friendly_children(list(rewritten_child), lang=lang),
+                _rewrite_word_friendly_children(
+                    list(rewritten_child),
+                    lang=lang,
+                    alert_labels=alert_labels,
+                ),
             )
         rewritten_child = _rewrite_known_safety_sublists(rewritten_child)
-        rewritten_child = _rewrite_signal_word_banner_table(rewritten_child)
-        rewritten_child = _rewrite_two_column_alert_table(rewritten_child)
+        rewritten_child = _rewrite_signal_word_banner_table(rewritten_child, alert_labels)
+        rewritten_child = _rewrite_two_column_alert_table(rewritten_child, alert_labels)
         rewritten_child = _rewrite_safety_two_col_layout(rewritten_child)
         normalized_children.append(rewritten_child)
 
@@ -547,12 +549,12 @@ def _rewrite_word_friendly_children(
             continue
 
         if child_tag == "div" and "hb-warning-box" in child_classes:
-            label, body_nodes = _warning_box_table_parts(child)
+            label, body_nodes = _warning_box_table_parts(child, alert_labels)
             rewritten.append(_build_alert_table(label, body_nodes))
             index += 1
             continue
 
-        alert_label = _extract_alert_label(child)
+        alert_label = _extract_alert_label(child, alert_labels)
         if alert_label is not None:
             body_nodes: list[ET.Element] = []
             next_index = index + 1
@@ -562,7 +564,7 @@ def _rewrite_word_friendly_children(
                 next_tag = _html_tag_name(next_child)
                 if next_tag == "div" and "manual-page-break" in _html_class_names(next_child):
                     break
-                if _extract_alert_label(next_child) is not None:
+                if _extract_alert_label(next_child, alert_labels) is not None:
                     break
                 if next_tag in {"h1", "h2", "h3", "section"}:
                     break
@@ -592,7 +594,12 @@ def _rewrite_word_friendly_children(
     return rewritten
 
 
-def _rewrite_word_friendly_fragment(fragment: str, *, lang: str | None = None) -> str:
+def _rewrite_word_friendly_fragment(
+    fragment: str,
+    *,
+    lang: str | None = None,
+    symbols_blocks_csv: str | Path | None = None,
+) -> str:
     normalized_fragment = _normalize_html_void_tags(fragment)
     wrapped = f"<root>{normalized_fragment}</root>"
     try:
@@ -600,7 +607,8 @@ def _rewrite_word_friendly_fragment(fragment: str, *, lang: str | None = None) -
     except ET.ParseError:
         return fragment
 
-    rewritten = _rewrite_word_friendly_children(list(root), lang=lang)
+    alert_labels = _alert_label_map(lang=lang, symbols_blocks_csv=symbols_blocks_csv)
+    rewritten = _rewrite_word_friendly_children(list(root), lang=lang, alert_labels=alert_labels)
     return "".join(ET.tostring(node, encoding="unicode", method="html") for node in rewritten)
 
 

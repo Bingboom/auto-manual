@@ -10,7 +10,7 @@ from xml.etree import ElementTree as ET
 
 from tools.word_bundle_docx_xml import serialize_xml_preserving_namespaces
 from tools.word_bundle_html import WordBundlePageMeta
-from tools.word_bundle_html_rewrite import _ALERT_LABELS, _normalize_alert_label_text
+from tools.word_bundle_html_rewrite import _is_alert_label_text, _normalize_alert_label_text
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 _W_VAL = f"{{{_W_NS}}}val"
@@ -692,7 +692,7 @@ def _is_alert_callout_table(tbl: ET.Element, ns: dict[str, str]) -> bool:
 
     label = _normalize_alert_label_text(_normalize_docx_text("".join(cells[0].itertext())))
     body_text = _normalize_docx_text("".join(cells[1].itertext()))
-    return label in _ALERT_LABELS and bool(body_text)
+    return _is_alert_label_text(label) and bool(body_text)
 
 
 def _set_callout_table_layout(tbl: ET.Element, ns: dict[str, str]) -> bool:
