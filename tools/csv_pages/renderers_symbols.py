@@ -19,6 +19,7 @@ PH_SYMBOLS_ICON_TABLE_RST = "{{ symbols_icon_table_rst }}"
 
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n"}
+_GLOBAL_MARKET_TOKENS = {"all", "global"}
 
 
 @dataclass(frozen=True)
@@ -66,7 +67,8 @@ SYMBOL_ASSETS: dict[str, SymbolAsset] = {
     ),
 }
 
-SIGNAL_ROW_KEYS = ("warning", "caution", "note", "tips")
+DISPLAY_SIGNAL_ROW_KEYS = ("warning", "caution", "note", "tips")
+SIGNAL_ROW_KEYS = (*DISPLAY_SIGNAL_ROW_KEYS, "danger")
 SIGNAL_KEY_ALIASES = {"tip": "tips"}
 SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
     "warning": SymbolAsset(
@@ -83,7 +85,7 @@ SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
     ),
 }
 SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png", "tip_bar.png"}
-SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row", "alert_label_row"}
+SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
 
 
 def _localized_copy_resolver(vars_map: dict[str, str]) -> LocalizedCopyResolver:
@@ -213,25 +215,13 @@ def _matches_market(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
     value = block.get("Market") or block.get("market") or block.get("Markets") or block.get("markets") or ""
     tokens = _split_condition_tokens(value)
     if not tokens:
-        return True
-    if any(token.casefold() == "all" for token in tokens):
+        return False
+    if any(token.casefold() in _GLOBAL_MARKET_TOKENS for token in tokens):
         return True
     target_region = _pick_target_region(vars_map)
     if not target_region:
         return False
     return any(token.casefold() == target_region.casefold() for token in tokens)
-
-
-def _has_market_scope(block: dict[str, str]) -> bool:
-    value = block.get("Market") or block.get("market") or block.get("Markets") or block.get("markets") or ""
-    return bool(_split_condition_tokens(value))
-
-
-def _matches_row_conditions(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
-    is_latest = block.get("Is_Latest") or block.get("Is_latest") or block.get("is_latest") or ""
-    if not _truthy(is_latest, default=True):
-        return False
-    return _matches_market(block, vars_map=vars_map)
 
 
 def _matches_symbols_model(block: dict[str, str], *, target_model: str, target_region: str) -> bool:
@@ -252,48 +242,20 @@ def _matches_symbols_model(block: dict[str, str], *, target_model: str, target_r
     return normalized_target.casefold() in normalized_tokens
 
 
-def _matches_legacy_region(block_region: str, *, target_region: str) -> bool:
-    if not block_region:
-        return True
-    if block_region.casefold() == "all":
-        return True
-    return bool(target_region) and block_region.casefold() == target_region.casefold()
-
-
 def _matches_symbols_target(
     block: dict[str, str],
     *,
     sku_id: str,
     vars_map: dict[str, str],
 ) -> bool:
-    block_region = (block.get("Region") or block.get("region") or "").strip()
     target_region = _pick_target_region(vars_map)
     target_model = _pick_target_model(vars_map)
-    has_market_scope = _has_market_scope(block)
     model_tokens = parse_model_tokens(block.get("Model") or block.get("model") or "")
 
-    if has_market_scope:
+    if model_tokens:
         return _matches_symbols_model(block, target_model=target_model, target_region=target_region)
 
-    if block_region or model_tokens:
-        if not _matches_legacy_region(block_region, target_region=target_region):
-            return False
-        if not _matches_symbols_model(block, target_model=target_model, target_region=target_region):
-            return False
-        return True
-
     return _scope_allows(block.get("sku_scope", "ALL"), sku_id)
-
-
-def _matches_symbols_fallback_scope(block: dict[str, str], *, vars_map: dict[str, str]) -> bool:
-    block_region = (block.get("Region") or block.get("region") or "").strip()
-    model_tokens = parse_model_tokens(block.get("Model") or block.get("model") or "")
-    if not _has_market_scope(block) and not block_region and not model_tokens:
-        return False
-
-    if block_region.casefold() == "all":
-        return False
-    return True
 
 
 def _rst_heading(title: str, underline: str = "-") -> list[str]:
@@ -433,8 +395,7 @@ def _symbol_block_type(block: dict[str, str]) -> str:
     block_type = (block.get("block_type") or "").strip()
     if block_type not in SUPPORTED_SYMBOL_BLOCK_TYPES:
         raise ValueError(
-            "symbols page supports block_type='table_row', block_type='signal_row', "
-            "or block_type='alert_label_row', "
+            "symbols page supports block_type='table_row' or block_type='signal_row', "
             f"got '{block_type or '?'}'"
         )
     return block_type
@@ -448,7 +409,6 @@ def _matching_symbol_blocks(
     vars_map: dict[str, str],
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
-    fallback_scopes: dict[tuple[str, str, str], list[dict[str, str]]] = {}
     for block in blocks:
         if not _enabled(block.get("enabled", "1")):
             continue
@@ -459,41 +419,7 @@ def _matching_symbol_blocks(
             continue
         if _matches_market(block, vars_map=vars_map) and _matches_symbols_target(block, sku_id=sku_id, vars_map=vars_map):
             rows.append(block)
-            continue
-        if _matches_symbols_fallback_scope(block, vars_map=vars_map):
-            block_region = (block.get("Region") or block.get("region") or "").strip().casefold()
-            block_model = canonicalize_model_token(
-                (block.get("Model") or block.get("model") or "").strip(),
-                region=(block.get("Region") or block.get("region") or "").strip(),
-            ).casefold()
-            source_lang = (block.get("Source_lang") or block.get("source_lang") or "").strip().casefold()
-            fallback_scopes.setdefault((block_region, block_model, source_lang), []).append(block)
-
-    if rows:
-        return rows
-
-    ranked_scopes: list[tuple[tuple[int, int, str, str], list[dict[str, str]]]] = []
-    for (scope_region, scope_model, _scope_source_lang), scope_rows in fallback_scopes.items():
-        ranked_scopes.append(
-            (
-                (
-                    -len(scope_rows),
-                    0 if scope_model else 1,
-                    scope_region,
-                    scope_model,
-                ),
-                scope_rows,
-            )
-        )
-    ranked_scopes.sort(key=lambda item: item[0])
-    if not ranked_scopes:
-        return []
-
-    best_score = ranked_scopes[0][0]
-    best_matches = [scope_rows for score, scope_rows in ranked_scopes if score == best_score]
-    if len(best_matches) == 1:
-        return list(best_matches[0])
-    return []
+    return rows
 
 
 def _normalize_signal_key(value: str) -> str:
@@ -530,16 +456,22 @@ def _collect_signal_rows(
         raise ValueError(f"symbols signal rows require unique non-empty order values sku={sku_id} lang={lang}")
 
     ordered_rows = sorted(rows, key=_sort_key)
-    signal_keys = [_normalize_signal_key(block.get("symbol_key") or "") for block in ordered_rows]
+    keyed_rows = [(block, _normalize_signal_key(block.get("symbol_key") or "")) for block in ordered_rows]
+    display_rows = [
+        (block, signal_key)
+        for block, signal_key in keyed_rows
+        if signal_key in DISPLAY_SIGNAL_ROW_KEYS
+    ]
+    signal_keys = [signal_key for _block, signal_key in display_rows]
     if len(set(signal_keys)) != len(signal_keys):
         raise ValueError(f"symbols signal rows require unique symbol_key values sku={sku_id} lang={lang}")
-    missing_keys = [signal_key for signal_key in SIGNAL_ROW_KEYS if signal_key not in signal_keys]
+    missing_keys = [signal_key for signal_key in DISPLAY_SIGNAL_ROW_KEYS if signal_key not in signal_keys]
     if missing_keys:
         missing = ", ".join(missing_keys)
         raise ValueError(f"symbols signal rows missing required symbol_key values: {missing}")
 
     signal_rows: list[dict[str, object]] = []
-    for block, signal_key in zip(ordered_rows, signal_keys):
+    for block, signal_key in display_rows:
         text = apply_vars(block.get(lang_col, "") or "", vars_map)
         if not text.strip():
             raise ValueError(

@@ -21,12 +21,12 @@ class TestWordBundle(unittest.TestCase):
         path.write_text(
             "\n".join(
                 [
-                    "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_en,aliases_en,label_fr,aliases_es,aliases_de,aliases_it,aliases_uk,aliases_jp,aliases_zh",
-                    "symbols,warning,signal_row,1,all,,en,TRUE,WARNING,,AVERTISSEMENT,ADVERTENCIA,WARNUNG,AVVERTENZA,ПОПЕРЕДЖЕННЯ,警告,警告",
-                    "symbols,danger,alert_label_row,2,all,,en,TRUE,DANGER,,DANGER,PELIGRO,GEFAHR,PERICOLO,НЕБЕЗПЕКА,危険,危险",
-                    "symbols,caution,signal_row,3,all,,en,TRUE,CAUTION,,ATTENTION,PRECAUCIÓN,VORSICHT,ATTENZIONE,УВАГА,ご注意,注意",
-                    "symbols,note,signal_row,4,all,,en,TRUE,NOTE,,REMARQUE,NOTA,HINWEIS,NOTA,ПРИМІТКА,備考,提示;说明;备注;備註",
-                    "symbols,tips,signal_row,5,all,,en,TRUE,TIP,TIPS,CONSEIL;CONSEILS,CONSEJO;CONSEJOS,TIPP,SUGGERIMENTO,ПОРАДИ,,",
+                    "symbol_key,block_type,order,Market,Model,Source_lang,Is_Latest,label_en,aliases_en,label_fr,aliases_fr,label_es,aliases_es,label_de,aliases_de,label_it,aliases_it,label_uk,aliases_uk,label_jp,aliases_jp,label_zh,aliases_zh",
+                    "warning,signal_row,1,all,,en,TRUE,WARNING,WARNING,AVERTISSEMENT,AVERTISSEMENT,ADVERTENCIA,ADVERTENCIA,WARNUNG,WARNUNG,AVVERTENZA,AVVERTENZA,ПОПЕРЕДЖЕННЯ,ПОПЕРЕДЖЕННЯ,警告,警告,警告,警告",
+                    "danger,signal_row,2,all,,en,TRUE,DANGER,DANGER,DANGER,DANGER,PELIGRO,PELIGRO,GEFAHR,GEFAHR,PERICOLO,PERICOLO,НЕБЕЗПЕКА,НЕБЕЗПЕКА,危険,危険,危险,危险",
+                    "caution,signal_row,3,all,,en,TRUE,CAUTION,CAUTION,ATTENTION,ATTENTION,PRECAUCIÓN,PRECAUCIÓN,VORSICHT,VORSICHT,ATTENZIONE,ATTENZIONE,УВАГА,УВАГА,ご注意,ご注意,注意,注意",
+                    "note,signal_row,4,all,,en,TRUE,NOTE,NOTE,REMARQUE,REMARQUE,NOTA,NOTA,HINWEIS,HINWEIS,NOTA,NOTA,ПРИМІТКА,ПРИМІТКА,備考,備考,提示,提示",
+                    "tips,signal_row,5,all,,en,TRUE,TIP,TIP,CONSEIL,CONSEIL,CONSEJO,CONSEJO,TIPP,TIPP,SUGGERIMENTO,SUGGERIMENTO,ПОРАДА,ПОРАДА,ヒント,ヒント,小贴士,小贴士",
                 ]
             )
             + "\n",

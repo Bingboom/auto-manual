@@ -188,10 +188,9 @@ class TestSyncData(unittest.TestCase):
         )
         self.assertEqual(
             (
-                "page_id",
+                "symbol_key",
                 "Figure",
                 "image_path",
-                "symbol_key",
                 "label_en",
                 "aliases_en",
                 "text_en",
@@ -221,13 +220,11 @@ class TestSyncData(unittest.TestCase):
                 "text_zh",
                 "Is_Latest",
                 "Market",
-                "enabled",
                 "block_type",
                 "order",
-                "Region",
                 "Model",
                 "Source_lang",
-                "column_group",
+                "notes",
             ),
             sync_data.TABLE_SCHEMAS["symbols_blocks"].columns,
         )
