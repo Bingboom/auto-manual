@@ -19,12 +19,11 @@ _SIGNAL_WORD_KEYS = {"warning", "danger", "caution", "note", "tips"}
 _SIGNAL_WORD_ALIASES = {"tip": "tips", "safety_warning": "warning", "symbols_notice": "danger"}
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n", "outdated"}
-_SIGNAL_LABEL_BLOCK_TYPES = {"signal_row", "alert_label_row"}
+_GLOBAL_MARKET_TOKENS = {"all", "global"}
+_SIGNAL_LABEL_BLOCK_TYPES = {"signal_row"}
 _LABEL_COLUMN_PREFIXES = (
     "label",
     "labels",
-    "alias",
-    "aliases",
     "alert_label",
     "alert_labels",
     "signal_word",
@@ -98,16 +97,12 @@ def _row_enabled(row: dict[str, str]) -> bool:
     return _truthy(row.get("Is_Latest") or row.get("Is_latest") or row.get("is_latest") or "", default=True)
 
 
-def _row_matches_region(row: dict[str, str], region: str | None) -> bool:
+def _row_matches_market(row: dict[str, str], region: str | None) -> bool:
     target = (region or "").strip().casefold()
     market_tokens = _split_tokens(row.get("Market") or row.get("market") or "")
-    if market_tokens:
-        return any(token.casefold() == "all" or token.casefold() == target for token in market_tokens)
-
-    row_region = (row.get("Region") or row.get("region") or "").strip().casefold()
-    if not row_region or row_region == "all":
-        return True
-    return bool(target) and row_region == target
+    if not market_tokens:
+        return False
+    return any(token.casefold() in _GLOBAL_MARKET_TOKENS or token.casefold() == target for token in market_tokens)
 
 
 def _row_matches_model(row: dict[str, str], model: str | None, region: str | None) -> bool:
@@ -271,9 +266,11 @@ def get_signal_word(
     scoped_rows = [
         row
         for row in rows
-        if _row_matches_region(row, region) and _row_matches_model(row, model, region)
+        if _row_matches_market(row, region) and _row_matches_model(row, model, region)
     ]
-    selected = sorted(scoped_rows or rows, key=_sort_order)[0]
+    if not scoped_rows:
+        raise KeyError(f"symbols_blocks signal_row has no matching Market/Model for symbol_key={signal_key}")
+    selected = sorted(scoped_rows, key=_sort_order)[0]
     return label_from_signal_row(selected, key=signal_key, lang=lang)
 
 

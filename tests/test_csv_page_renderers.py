@@ -362,7 +362,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "warning_triangle",
                 "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "order": "1",
-                "Region": "",
+                "Market": "Global",
                 "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
@@ -375,7 +375,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "read_manual",
                 "image_path": "templates/word_template/common_assets/symbols/read_manual_operator.png",
                 "order": "2",
-                "Region": "",
+                "Market": "Global",
                 "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
@@ -388,7 +388,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "do_not_dismantle",
                 "image_path": "templates/word_template/common_assets/symbols/do_not_dismantle.png",
                 "order": "3",
-                "Region": "",
+                "Market": "Global",
                 "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
@@ -401,8 +401,8 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "WARNING",
                 "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "order": "101",
-                "Region": "US",
-                "Model": "JE-1000F",
+                "Market": "Global",
+                "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Data warning.",
@@ -415,8 +415,8 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "CAUTION",
                 "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                 "order": "102",
-                "Region": "US",
-                "Model": "JE-1000F",
+                "Market": "Global",
+                "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Data caution.",
@@ -429,8 +429,8 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "NOTE",
                 "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
                 "order": "103",
-                "Region": "US",
-                "Model": "JE-1000F",
+                "Market": "Global",
+                "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Data note.",
@@ -443,8 +443,8 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "TIPS",
                 "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
                 "order": "104",
-                "Region": "US",
-                "Model": "JE-1000F",
+                "Market": "Global",
+                "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
                 "text_en": "Data tip.",
@@ -453,11 +453,11 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "text_de": "Datentipp.",
             },
             {
-                "block_type": "alert_label_row",
+                "block_type": "signal_row",
                 "symbol_key": "DANGER",
                 "order": "105",
-                "Region": "US",
-                "Model": "JE-1000F",
+                "Market": "Global",
+                "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
                 "label_en": "DANGER",
@@ -666,7 +666,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn("informaci贸n", out)
 
     def test_render_symbols_page_can_source_signal_rows_from_symbols_blocks(self) -> None:
-        blocks = self._symbols_blocks()
+        blocks = [block for block in self._symbols_blocks() if block.get("block_type") != "signal_row"]
         blocks.extend(
             [
                 {
@@ -674,7 +674,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "WARNING",
                     "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                     "order": "1",
-                    "Region": "EU",
+                    "Market": "EU",
                     "Model": "JE-1000F",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -687,7 +687,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "CAUTION",
                     "image_path": "templates/word_template/common_assets/symbols/warning_triangle.png",
                     "order": "2",
-                    "Region": "EU",
+                    "Market": "EU",
                     "Model": "JE-1000F",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -700,7 +700,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "NOTE",
                     "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
                     "order": "3",
-                    "Region": "EU",
+                    "Market": "EU",
                     "Model": "JE-1000F",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -713,7 +713,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "TIPS",
                     "image_path": "templates/word_template/common_assets/symbols/mandatory.png",
                     "order": "4",
-                    "Region": "EU",
+                    "Market": "EU",
                     "Model": "JE-1000F",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -756,12 +756,12 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("**ROW_CAUTION**", out)
         self.assertNotIn("**WARNING**", out)
 
-    def test_render_symbols_page_filters_by_model_and_region(self) -> None:
+    def test_render_symbols_page_filters_by_market_and_model(self) -> None:
         blocks = self._symbols_blocks()
-        blocks[0]["Region"] = "US"
+        blocks[0]["Market"] = "US"
         blocks[0]["Model"] = "JE-1000F"
         blocks[0]["text_en"] = "US JE-1000F warning."
-        blocks[1]["Region"] = "JP"
+        blocks[1]["Market"] = "JP"
         blocks[1]["Model"] = "JE-9999X"
         blocks[1]["text_en"] = "SHOULD_NOT_RENDER"
         out = renderers.render_symbols_page(
@@ -784,7 +784,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "electric_shock",
                 "image_path": "templates/word_template/common_assets/symbols/electric_shock.png",
                 "order": "30",
-                "Region": "",
+                "Market": "Global",
                 "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
@@ -857,18 +857,15 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("Shared warning.", out)
 
-    def test_render_symbols_page_uses_market_and_multi_model_over_legacy_region(self) -> None:
+    def test_render_symbols_page_uses_market_and_multi_model(self) -> None:
         blocks = self._symbols_blocks()
         blocks[0]["Market"] = "US, EU"
-        blocks[0]["Region"] = "US"
         blocks[0]["Model"] = "JE-1000F, JE-2000E"
         blocks[0]["text_de"] = "Gemeinsames EU-Symbol."
         blocks[1]["Market"] = "US"
-        blocks[1]["Region"] = "US"
         blocks[1]["Model"] = "JE-1000F, JE-2000E"
         blocks[1]["text_de"] = "SHOULD_NOT_RENDER"
         blocks[2]["Market"] = "US, EU"
-        blocks[2]["Region"] = "US"
         blocks[2]["Model"] = "JE-1000F"
         blocks[2]["text_de"] = "JE-1000F only."
 
@@ -905,7 +902,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": symbol_key,
                     "image_path": f"templates/word_template/common_assets/symbols/{symbol_key}.png",
                     "order": order,
-                    "Region": "",
+                    "Market": "Global",
                     "Model": "",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -929,10 +926,10 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertLess(order_positions[1], order_positions[4])
         self.assertLess(order_positions[4], order_positions[2])
 
-    def test_render_symbols_page_should_fallback_to_sibling_region_rows(self) -> None:
+    def test_render_symbols_page_should_use_market_field(self) -> None:
         blocks = self._symbols_blocks()
         for block in blocks:
-            block["Region"] = "US"
+            block["Market"] = "EU"
             block["Model"] = "JE-1000F"
 
         out = renderers.render_symbols_page(
@@ -949,7 +946,7 @@ class TestCsvPageRenderers(unittest.TestCase):
     def test_render_symbols_page_should_normalize_document_key_style_target_model(self) -> None:
         blocks = self._symbols_blocks()
         for block in blocks:
-            block["Region"] = "US"
+            block["Market"] = "US"
             block["Model"] = "JE-1000F"
 
         out = renderers.render_symbols_page(
@@ -971,7 +968,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "symbol_key": "weee2",
                 "image_path": "templates/word_template/common_assets/symbols/weee2.png",
                 "order": "4",
-                "Region": "",
+                "Market": "Global",
                 "Model": "",
                 "Source_lang": "en",
                 "enabled": "1",
@@ -1000,7 +997,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "electric_shock",
                     "image_path": "templates/word_template/common_assets/symbols/electric_shock.png",
                     "order": "4",
-                    "Region": "",
+                    "Market": "Global",
                     "Model": "",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -1013,7 +1010,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "weee2",
                     "image_path": "templates/word_template/common_assets/symbols/weee2.png",
                     "order": "5",
-                    "Region": "",
+                    "Market": "Global",
                     "Model": "",
                     "Source_lang": "en",
                     "enabled": "1",
@@ -1026,7 +1023,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                     "symbol_key": "weee",
                     "image_path": "templates/word_template/common_assets/symbols/weee.png",
                     "order": "6",
-                    "Region": "",
+                    "Market": "Global",
                     "Model": "",
                     "Source_lang": "en",
                     "enabled": "1",

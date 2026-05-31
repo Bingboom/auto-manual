@@ -109,7 +109,7 @@ The manual system now has four layers, but they are used at different stages.
    - `configs/config.eu-en.yaml`, `configs/config.eu-fr.yaml`, and `configs/config.eu-es.yaml` are the explicit English, French, and Spanish EU single-language surfaces when you want one language family at a time; `configs/config.pt-br.yaml` follows the same single-language pattern for Brazil Portuguese
    - when one family must always read from one known Base view, `sync.phase2.tables.<name>` can pin `table_id` and `view_id` directly in config; those literal bindings override the corresponding `*_env` values for that table
    - `python build.py validate --config ...` now catches missing phase2 table base-token/table-id bindings and page-manifest languages that are not listed in `build.languages`
-   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `figure` attachments sync into `data/phase2/_attachments/lcd_icons/` and render as the LCD table image column, while symbols `Figure` attachments sync into `data/phase2/_attachments/symbols/` and render through `symbols_blocks.csv`; troubleshooting error-code rows render from `troubleshooting_blocks.csv`; the signal-word symbols table lives in `symbols_blocks.csv` as `block_type=signal_row`, with rewrite-only alert labels in `block_type=alert_label_row`; reusable short copy such as LCD / Symbols page titles, table headers, state words, image alt text, and Product overview labels lives in `Localized_Copy.csv`; LCD `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
+   - the LCD icons page is table-driven from `lcd_icons_blocks.csv`; `figure` attachments sync into `data/phase2/_attachments/lcd_icons/` and render as the LCD table image column, while symbols `Figure` attachments sync into `data/phase2/_attachments/symbols/` and render through `symbols_blocks.csv`; symbol signal metadata lives in `symbols_blocks.csv` as `block_type=signal_row`; reusable short copy such as LCD / Symbols page titles, table headers, state words, image alt text, and Product overview labels lives in `Localized_Copy.csv`; LCD `{{VARIABLE_KEY}}` placeholders resolve through `Variable_Defaults.csv`, then language-specific substitutions come from `Variable_Lang_Overrides.csv`
    - for variable defaults, keep `Model_key` as the text model selector when the Base `Model` field is a linked record; linked model fields can export as record ids and are not stable enough for build matching
    - `python build.py translation-memory --config configs/config.us.yaml --model JE-1000F --region US --query-text "USB-C 100W Port" --lang fr --table spec-master` reads the same snapshot as a compact multilingual memory lookup, which is useful when OpenClaw or a maintainer needs terminology grounded in the current Base content before translating copy
    - `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --format prompt` is the higher-priority sentence-pair lookup when you already maintain a dedicated translation memory table in Feishu Base; on chat surfaces, treat it as background wording memory and answer with the translation itself instead of a narrated lookup step. The script keeps a short local cache for repeat lookups; use `--no-cache` only when you need a forced refresh.
@@ -216,11 +216,11 @@ The manual system now has four layers, but they are used at different stages.
    - `Line_order` is required for spec rebuilds: use `1` for one-line rows and `1`, `2`, `3`, ... for multi-line values
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
-   - `symbols_blocks.csv` uses `Region`, `Model`, and `Source_lang` with the same naming as `Spec_Master.csv`; leave `Region` / `Model` blank when one symbols row is shared
+   - `symbols_blocks.csv` uses `Market`, `Model`, and `Source_lang`; it does not use `Region`; use `Market=Global` when one symbols row is shared across markets
    - `symbols_blocks.csv` uses `image_path` for the icon asset referenced by each symbols-table row; phase2 sync fills it from the Base `Figure` attachment when present
    - `symbols_blocks.csv` can also use `Is_Latest` and `Market` as row conditions: rows marked false are skipped, and `Market` must include the current build region such as `US` or `EU`
-   - use `block_type=table_row` for the normal symbol/meaning grid; use `block_type=signal_row` for the top warning/caution/note/tip table, with `symbol_key` values `warning`, `caution`, `note`, and `tips`; use `block_type=alert_label_row` for labels such as `danger` that Word/HTML rewrite should recognize without rendering another Symbols-page table row
-   - `order` values must be unique within each symbols table section; normal symbols rows are sorted and split evenly into two columns, so `column_group` is no longer needed
+   - use `block_type=table_row` for the normal symbol/meaning grid; use `block_type=signal_row` for signal metadata, with rendered `symbol_key` values `warning`, `caution`, `note`, and `tips`, plus labels such as `danger` that Word/HTML rewrite should recognize
+   - `order` values must be unique within each symbols table section; normal symbols rows are sorted and split evenly into two columns, so the old `column_group` field has been removed
 
 3. Review working layer
    - [`docs/_review/<model>/<region>/index.rst`](../docs/_review)
@@ -456,10 +456,10 @@ Symbols content is generated from:
 `symbols_blocks.csv` notes:
 
 - use one `table_row` per symbols-table entry
-- use four `signal_row` entries for the warning/caution/note/tip signal-word table; use `alert_label_row` for rewrite-only labels such as danger; the signal token (`symbol_key`), optional `label_*` / `aliases_*` alert labels for Word/HTML rewrite detection, and localized meaning text are maintained in `symbols_blocks.csv`, not duplicated in `Localized_Copy.csv`
-- use `Region` and `Model` to target the same way as `Spec_Master.csv`
+- use `signal_row` entries for warning/caution/danger/note/tip signal metadata; the signal token (`symbol_key`), one maintained `label_*` value per language, and localized meaning text are maintained in `symbols_blocks.csv`, not duplicated in `Localized_Copy.csv`; `aliases_*` columns are compatibility mirrors of `label_*`, and old variants or editorial context should live in `notes`
+- use `Market` and `Model` to target symbols rows; `symbols_blocks.csv` does not use `Region`
 - use `Source_lang` for the row's source-language code, for example `en` or `ja`
-- leave `Region` / `Model` blank when one row should be shared
+- use `Market=Global` when one row should be shared across markets
 - `image_path` stores the RST image reference path for that icon
 - keep `symbol_key` stable so renderer alt text and layout metadata still resolve correctly
 

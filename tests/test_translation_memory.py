@@ -72,8 +72,8 @@ def _write_phase2_fixture(root: Path) -> Path:
     write_lines(
         phase2_dir / "symbols_blocks.csv",
         [
-            "page_id,image_path,symbol_key,text_en,text_fr,text_es,enabled,block_type,column_group,order,Region,Model,Source_lang",
-            "symbols,templates/symbols/warning_triangle.png,warning_triangle,Warning and Caution Symbols.,Symboles d'avertissement et de prudence.,Símbolos de advertencia y precaución.,TRUE,table_row,left,10,US,JE-1000F,en",
+            "symbol_key,image_path,text_en,text_fr,text_es,block_type,order,Market,Model,Source_lang",
+            "warning_triangle,templates/symbols/warning_triangle.png,Warning and Caution Symbols.,Symboles d'avertissement et de prudence.,Símbolos de advertencia y precaución.,table_row,10,US,JE-1000F,en",
         ],
     )
     return config_path

@@ -109,7 +109,7 @@ def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
         return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "symbols_blocks" and column in {"Figure", "figure"}:
         return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
-    if schema.logical_name == "symbols_blocks" and column in {"Market", "Model", "column_group"}:
+    if schema.logical_name == "symbols_blocks" and column in {"Market", "Model"}:
         return _coerce_choice_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     value = _coerce_scalar(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "spec_master" and column == "Is_Latest":
@@ -120,8 +120,6 @@ def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
         return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "symbols_blocks" and column == "Is_Latest":
         return _normalize_boolish(value, style="upper_bool")
-    if schema.logical_name == "symbols_blocks" and column == "enabled":
-        return _normalize_boolish(value, style="digit_bool")
     if schema.logical_name == "lcd_icons" and column in {"Is_latest", "has_variables"}:
         return _normalize_boolish(value, style="upper_bool")
     if schema.logical_name == "troubleshooting" and column == "Is_latest":
