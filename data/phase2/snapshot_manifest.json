@@ -1,12 +1,11 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-05-31T05:43:08.456160+00:00",
+  "generated_at": "2026-05-31T16:37:33.435469+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
   "requested_tables": [
-    "spec_titles",
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
@@ -14,20 +13,11 @@
     "troubleshooting",
     "variable_defaults",
     "variable_lang_overrides",
-    "localized_copy",
+    "manual_copy_source",
     "spec_master"
   ],
   "skipped_tables": [],
   "tables": [
-    {
-      "logical_name": "spec_titles",
-      "file_name": "spec_titles.csv",
-      "path": "data/phase2/spec_titles.csv",
-      "row_count": 5,
-      "sha256": "b93b721d522f1afacfac2cbe21a9d39c48f6ad85722e5045e6e0cc0ebc315b99",
-      "previous_sha256": null,
-      "changed": true
-    },
     {
       "logical_name": "spec_footnotes",
       "file_name": "Spec_Footnotes.csv",
@@ -92,11 +82,11 @@
       "changed": true
     },
     {
-      "logical_name": "localized_copy",
-      "file_name": "Localized_Copy.csv",
-      "path": "data/phase2/Localized_Copy.csv",
-      "row_count": 11,
-      "sha256": "9677c7bd514e37515b1fcbeb35d953209b24cdcca45da51b575292d00222655a",
+      "logical_name": "manual_copy_source",
+      "file_name": "Manual_Copy_Source.csv",
+      "path": "data/phase2/Manual_Copy_Source.csv",
+      "row_count": 16,
+      "sha256": "a8a1346ce525dde8adcd37c9446f5c63c0d3541188f0b2af186c193ea9095d02",
       "previous_sha256": null,
       "changed": true
     },
@@ -130,11 +120,29 @@
       "changed": true
     },
     {
+      "logical_name": "spec_titles",
+      "file_name": "spec_titles.csv",
+      "path": "data/phase2/spec_titles.csv",
+      "row_count": 5,
+      "sha256": "492ca05d3311d1377130c4b1849473df7e6cbc4de0d8c2a247aefbdaf589e9cc",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "localized_copy",
+      "file_name": "Localized_Copy.csv",
+      "path": "data/phase2/Localized_Copy.csv",
+      "row_count": 16,
+      "sha256": "9fa7de76c16fc19f0314f3f3aa402acb28606477470146007122c312c4d65e66",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
       "logical_name": "status_words",
       "file_name": "Status_Words.csv",
       "path": "data/phase2/Status_Words.csv",
       "row_count": 3,
-      "sha256": "ae2eeb8409acb701ae51e43b334ae149773f72b7a1c27b7f4b2662febf21e145",
+      "sha256": "daa44ec1deadd992b3774576c7ee95990c0fbce9e4687069f8436244c31f58fe",
       "previous_sha256": null,
       "changed": true
     }

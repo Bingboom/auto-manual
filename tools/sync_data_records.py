@@ -109,7 +109,9 @@ def _normalized_cell(schema: _SchemaLike, column: str, raw_value: Any) -> str:
         return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "symbols_blocks" and column in {"Figure", "figure"}:
         return _coerce_attachment_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
-    if schema.logical_name == "symbols_blocks" and column in {"Market", "Model"}:
+    if schema.logical_name in {"symbols_blocks", "manual_copy_source"} and column in {"Market", "Model"}:
+        return _coerce_choice_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
+    if schema.logical_name == "translation_memory" and column in {"用途标签", "是否为 status word"}:
         return _coerce_choice_cell(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     value = _coerce_scalar(raw_value).replace("\r\n", "\n").replace("\r", "\n")
     if schema.logical_name == "spec_master" and column == "Is_Latest":
@@ -174,11 +176,6 @@ def _text_sort_token(value: str) -> str:
 
 
 def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
-    if schema.logical_name == "spec_titles":
-        return (
-            _numeric_sort_token(row.get("section_order", "")),
-            _text_sort_token(row.get("title_en", "")),
-        )
     if schema.logical_name == "spec_footnotes":
         return (
             _text_sort_token(row.get("Region", "")),
@@ -231,11 +228,11 @@ def _row_sort_key(schema: _SchemaLike, row: dict[str, str]) -> tuple[Any, ...]:
             _text_sort_token(row.get("lang", "")),
             _text_sort_token(row.get("source_value", "") or row.get("from_prefix", "")),
         )
-    if schema.logical_name == "localized_copy":
+    if schema.logical_name == "manual_copy_source":
         return (
             _text_sort_token(row.get("page_id", "")),
             _text_sort_token(row.get("copy_key", "")),
-            _text_sort_token(row.get("Region", "")),
+            _text_sort_token(row.get("Market", "")),
             _text_sort_token(row.get("Model", "")),
         )
     return (

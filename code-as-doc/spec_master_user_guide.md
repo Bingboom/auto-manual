@@ -68,7 +68,7 @@ It answers the practical question: "I have a piece of manual data. Which file an
 | One value reused by Product overview and spec page | [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) | `Page=Product overview, specifications,` | Use only when the same visible value is truly shared |
 | Spec footnotes referenced by superscripts | [`Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv) | one row per `Footnote_id` | Put the visible body text here and reference it from `Spec_Master.csv` |
 | Bottom-of-spec notes without superscripts | [`Spec_Notes.csv`](../data/phase2/Spec_Notes.csv) | one row per `Note_id` | Use this for standalone notes such as trademark statements |
-| Spec page title and section metadata | [`spec_titles.csv`](../data/phase2/spec_titles.csv) | one row per visible spec title/section | Use this for visible spec title localization and default section ordering |
+| Spec page title and section metadata | [`Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv), exported to [`spec_titles.csv`](../data/phase2/spec_titles.csv) | one source row per visible spec title/section plus `manual_copy` Translation Memory rows | Use this for visible spec title localization and default section ordering |
 | Safety intro prose | [`docs/templates/page_*/safety_*.rst`](../docs/templates) | family safety templates | Do not put long prose into `Spec_Master.csv` unless it is truly parameterized |
 
 ## 2. Current phase2 CSV Files
@@ -561,7 +561,7 @@ That means a title-map change can affect diff-report output even when the visibl
 
 ## 6. [`spec_titles.csv`](../data/phase2/spec_titles.csv) Rule
 
-[`spec_titles.csv`](../data/phase2/spec_titles.csv) is the visible spec title and section-metadata table.
+[`spec_titles.csv`](../data/phase2/spec_titles.csv) is the generated visible spec title and section-metadata table. Do not hand-edit it; maintain the source-language rows in [`Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv) with `page_id=specifications`, then maintain the corresponding Translation Memory row with `用途标签=manual_copy`.
 
 Current typical fields:
 

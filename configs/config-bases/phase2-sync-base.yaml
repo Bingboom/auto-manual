@@ -19,9 +19,6 @@ sync:
       spec_notes:
         table_id_env: FEISHU_PHASE2_SPEC_NOTES_TABLE_ID
         view_id_env: FEISHU_PHASE2_SPEC_NOTES_VIEW_ID
-      spec_titles:
-        table_id_env: FEISHU_PHASE2_SPEC_TITLES_TABLE_ID
-        view_id_env: FEISHU_PHASE2_SPEC_TITLES_VIEW_ID
       symbols_blocks:
         table_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID
         view_id_env: FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID
@@ -37,9 +34,12 @@ sync:
       variable_lang_overrides:
         table_id: tblkcXujDMGXnHMo
         view_id: vewODokxUs
-      localized_copy:
-        table_id_env: FEISHU_PHASE2_LOCALIZED_COPY_TABLE_ID
-        view_id_env: FEISHU_PHASE2_LOCALIZED_COPY_VIEW_ID
+      manual_copy_source:
+        table_id_env: FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID
+      translation_memory:
+        base_token_env: FEISHU_TRANSLATION_MEMORY_BASE_TOKEN
+        table_id: tbl6gKPJPTvOcTWv
+        view_id: veweqW2fQv
     document_link:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID

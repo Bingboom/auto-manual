@@ -1,12 +1,17 @@
 copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en,text_zh,text_ja,text_fr,text_es,text_pt-BR,text_de,text_it,text_uk,notes
+product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,正视图,正面,VUE DE FACE,VISTA FRONTAL,VISTA FRONTAL,PRODUKTDARSTELLUNG,Aspetto del prodotto,FRONT VIEW,
+product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,产品外观,各部の名称,APERÇU DU PRODUIT,DESCRIPCIÓN GENERAL DEL PRODUCTO,VISÃO GERAL DO PRODUTO,PRODUKTÜBERSICHT,PANORAMICA DEL PRODOTTO,PRODUCT OVERVIEW,
+product_overview.part.handle,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,Handle,把手,ハンドル,Poignée,Asa,Alça,Ausziehgriff,Maniglia,Handle,
+product_overview.part.lcd,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LCD,LCD 显示屏,LCDディスプレイ,LCD,LCD,LCD,LCD,LCD,LCD,
+product_overview.part.led_light,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light,LED灯,LEDライト,Lumière LED,Luz LED,Luz LED,LED-Licht,Luce LED,LED Light,
+product_overview.part.led_light_button,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light Button,LED 灯按键,LEDライトボタン,Bouton lumière LED,Botón de luz LED,Botão da luz LED,LED-Lichttaste,Pulsante luce LED,LED Light Button,
+product_overview.right_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,RIGHT SIDE VIEW,右视图,右側面,VUE LATÉRALE DROITE,VISTA LATERAL DERECHA,VISTA LATERAL DIREITA,RECHTE SEITENANSICHT,VISTA LATERALE DESTRA,RIGHT SIDE VIEW,
 lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,显示屏界面,液晶画面,AFFICHAGE LCD,PANTALLA LCD,TELA LCD,LCD-ANZEIGE,DISPLAY LCD,ЕКРАН LCD,
-symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,符号含义,記号の意味,SIGNIFICATION DES SYMBOLES,SIGNIFICADO DE LOS SÍMBOLOS,SIGNIFICADO DOS SÍMBOLOS,BEDEUTUNG DER SYMBOLE,SIGNIFICATO DEI SIMBOLI,ЗНАЧЕННЯ СИМВОЛІВ,
-symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,符号,記号,Symbole,Símbolo,Símbolo,Symbol,Simbolo,Символ,
+spec.page_title,specifications,page_title,ALL,ALL,en,TRUE,V1.0,SPECIFICATIONS,主要规格,主な仕様,SPÉCIFICATIONS,ESPECIFICACIONES,ESPECIFICAÇÕES,Spezifikationen,SPECIFICHE,Специфікації,migrated from 03_内容源_多语言标题
+spec.section.environmental_operating_temperature,specifications,section_title,ALL,ALL,en,TRUE,V1.0,ENVIRONMENTAL OPERATING TEMPERATURE,温度范围,温度範囲,TEMPÉRATURE DE FONCTIONNEMENT,TEMPERATURA DE FUNCIONAMIENTO,TEMPERATURA AMBIENTE DE OPERAÇÃO,UMGEBUNGSAUFBETRIEBSTEMPERATUR,TEMPERATURA OPERATIVA AMBIENTALE,ОПЕРАТИВНА ТЕМПЕРАТУРА ОКРЕЖЕННЯ,migrated from 03_内容源_多语言标题
+spec.section.general_info,specifications,section_title,ALL,ALL,en,TRUE,V1.0,GENERAL INFO,基本信息,基本情報,INFORMATIONS GÉNÉRALES,INFORMACIÓN GENERAL,INFORMAÇÕES GERAIS,ALLGEMEINE INFORMATIONEN,INFO GENERALI,ЗАГАЛЬНА ІНФОРМАЦІЯ,migrated from 03_内容源_多语言标题
+spec.section.input_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT PORTS,输入端口,入力ポート,PORTS D’ENTRÉE,PUERTOS DE ENTRADA,PORTAS DE ENTRADA,EINGANGSPORTS,PORTE DI INPUT,ВХІДНІ ПОРТИ,migrated from 03_内容源_多语言标题
+spec.section.output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,OUTPUT PORTS,输出端口,出力ポート,PORTS DE SORTIE,PUERTOS DE SALIDA,PORTAS DE SAÍDA,AUSGANGSPORTE,PORTE DI USCITA,ВИХІДНІ ПОРТИ,migrated from 03_内容源_多语言标题
 symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,含义,意味,Signification,Significado,Significado,Bedeutung,Significato,Значення,
-product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,产品外观,各部の名称,,,,,,,
-product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,正视图,正面,,,,,,,
-product_overview.right_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,RIGHT SIDE VIEW,右视图,右側面,,,,,,,
-product_overview.part.handle,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,Handle,把手,ハンドル,,,,,,,
-product_overview.part.lcd,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LCD,LCD 显示屏,LCDディスプレイ,,,,,,,
-product_overview.part.led_light_button,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light Button,LED 灯按键,LEDライトボタン,,,,,,,
-product_overview.part.led_light,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light,LED灯,LEDライト,,,,,,,
+symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,符号,記号,Symbole,Símbolo,Símbolo,Symbol,Simbolo,Символ,
+symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,符号含义,記号の意味,SIGNIFICATION DES SYMBOLES,SIGNIFICADO DE LOS SÍMBOLOS,SIGNIFICADO DOS SÍMBOLOS,BEDEUTUNG DER SYMBOLE,SIGNIFICATO DEI SIMBOLI,ЗНАЧЕННЯ СИМВОЛІВ,

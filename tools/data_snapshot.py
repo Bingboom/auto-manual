@@ -26,23 +26,27 @@ TROUBLESHOOTING_BLOCKS_FILE = "troubleshooting_blocks.csv"
 LCD_ICONS_BLOCKS_FILE = "lcd_icons_blocks.csv"
 VARIABLE_DEFAULTS_FILE = "Variable_Defaults.csv"
 VARIABLE_LANG_OVERRIDES_FILE = "Variable_Lang_Overrides.csv"
+MANUAL_COPY_SOURCE_FILE = "Manual_Copy_Source.csv"
 LOCALIZED_COPY_FILE = "Localized_Copy.csv"
+STATUS_WORDS_FILE = "Status_Words.csv"
 
 PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
     "spec_master": SPEC_MASTER_FILE,
     "spec_footnotes": SPEC_FOOTNOTES_FILE,
     "spec_notes": SPEC_NOTES_FILE,
-    "spec_titles": SPEC_TITLES_FILE,
     "symbols_blocks": SYMBOLS_BLOCKS_FILE,
     "lcd_icons": LCD_ICONS_BLOCKS_FILE,
     "troubleshooting": TROUBLESHOOTING_BLOCKS_FILE,
     "variable_defaults": VARIABLE_DEFAULTS_FILE,
     "variable_lang_overrides": VARIABLE_LANG_OVERRIDES_FILE,
-    "localized_copy": LOCALIZED_COPY_FILE,
+    "manual_copy_source": MANUAL_COPY_SOURCE_FILE,
 }
 PHASE2_REQUIRED_DERIVED_FILES: dict[str, str] = {
     "page_registry": PAGE_REGISTRY_FILE,
     "row_key_mapping": ROW_KEY_MAPPING_FILE,
+    "spec_titles": SPEC_TITLES_FILE,
+    "localized_copy": LOCALIZED_COPY_FILE,
+    "status_words": STATUS_WORDS_FILE,
 }
 
 

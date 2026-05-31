@@ -1,0 +1,17 @@
+copy_key,page_id,copy_type,Market,Model,Source_lang,Is_Latest,Version,source_text,section_order,notes
+product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,,
+product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,,
+product_overview.part.handle,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,Handle,,
+product_overview.part.lcd,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LCD,,
+product_overview.part.led_light,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light,,
+product_overview.part.led_light_button,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light Button,,
+product_overview.right_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,RIGHT SIDE VIEW,,
+lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,,
+spec.page_title,specifications,page_title,ALL,ALL,en,TRUE,V1.0,SPECIFICATIONS,,migrated from 03_内容源_多语言标题
+spec.section.environmental_operating_temperature,specifications,section_title,ALL,ALL,en,TRUE,V1.0,ENVIRONMENTAL OPERATING TEMPERATURE,4,migrated from 03_内容源_多语言标题
+spec.section.general_info,specifications,section_title,ALL,ALL,en,TRUE,V1.0,GENERAL INFO,1,migrated from 03_内容源_多语言标题
+spec.section.input_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT PORTS,2,migrated from 03_内容源_多语言标题
+spec.section.output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,OUTPUT PORTS,3,migrated from 03_内容源_多语言标题
+symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,,
+symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,,
+symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,,

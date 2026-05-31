@@ -42,7 +42,9 @@ REQUIRED_CSV_HEADERS: dict[str, tuple[str, ...]] = {
     "troubleshooting": ("No.", "Region", "Model", "error_code", "corrective_measures_en"),
     "variable_defaults": ("Variable_key", "Value", "is_default"),
     "variable_lang_overrides": ("Variable_key", "lang", "Value"),
+    "manual_copy_source": ("copy_key", "page_id", "copy_type", "Is_Latest", "source_text"),
     "localized_copy": ("copy_key", "page_id", "copy_type", "Is_Latest", "text_en"),
+    "status_words": ("en", "是否为 status word"),
     "row_key_mapping": ("Row_label_source", "Line_order", "Row_key"),
 }
 

@@ -27,13 +27,13 @@ Required synced tables:
 | `spec_master` | `Spec_Master.csv` | canonical spec values used by generated pages |
 | `spec_footnotes` | `Spec_Footnotes.csv` | footnote text and selectors |
 | `spec_notes` | `Spec_Notes.csv` | note text and selectors |
-| `spec_titles` | `spec_titles.csv` | localized spec title labels |
 | `symbols_blocks` | `symbols_blocks.csv` | symbol-block source rows |
 | `troubleshooting` | `troubleshooting_blocks.csv` | troubleshooting error-code rows |
 | `lcd_icons` | `lcd_icons_blocks.csv` | LCD icon row content, images, and variable markers |
 | `variable_defaults` | `Variable_Defaults.csv` | default values for LCD description variables |
 | `variable_lang_overrides` | `Variable_Lang_Overrides.csv` | language-specific LCD variable overrides |
-| `localized_copy` | `Localized_Copy.csv` | shared short copy for page titles, headers, and labels |
+| `manual_copy_source` | `Manual_Copy_Source.csv` | single-language source rows for page titles, headers, labels, and spec titles |
+| Translation Memory rows tagged `manual_copy` | `Localized_Copy.csv` | generated multilingual short-copy runtime file |
 | Translation Memory rows with `是否为 status word=Y` | `Status_Words.csv` | LCD status-word matching snapshot for bolding description prefixes |
 
 Required derived files:
@@ -41,6 +41,9 @@ Required derived files:
 | Derived file | Purpose |
 | --- | --- |
 | `row_key_mapping.csv` | stable mapping from source rows to generated-page row keys |
+| `spec_titles.csv` | generated spec title labels and default section ordering |
+| `Localized_Copy.csv` | generated multilingual short copy for `{{ copy:<copy_key> }}` |
+| `Status_Words.csv` | generated LCD status-word matching terms |
 
 Snapshot compatibility rules:
 

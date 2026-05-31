@@ -11,8 +11,8 @@ Heading semantics must come from content structure, not from ad hoc hard-coded t
 That means:
 
 - page structure lives in RST templates
-- spec section title localization lives in [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
-- reusable short copy such as CSV-page titles, table headers, and Product overview labels lives in [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
+- spec section title localization is authored in [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv) and rendered from generated [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- reusable short copy such as CSV-page titles, table headers, and Product overview labels is authored in [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv) and rendered from generated [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
 - visual style lives in CSS, LaTeX components, or the shared Word DOCX style remapper
 - Word document title comes from config plus placeholder substitution
 
@@ -31,13 +31,14 @@ These files define normal page heading structure and placeholder-bearing page te
 
 - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 
-Use this file for spec section title mapping across languages.
+This file is generated from `Manual_Copy_Source.csv` rows whose `page_id` is `specifications` plus Translation Memory rows tagged `manual_copy`. Edit the source row and TM pair, not the generated CSV, when changing spec section title mapping across languages.
 
-### 2.3 Short Copy Localization
+### 2.3 Short Copy Source
 
+- [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv)
 - [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
 
-Use this file for reusable short text that should be translated and maintained with the phase2 content source, including LCD / Symbols page titles, table headers, and Product overview labels. RST templates can reference this table with `{{ copy:<copy_key> }}`; missing copy is a build/check error. Image alt text is derived from existing page titles, panel titles, `symbol_key`, or signal-row labels instead of maintained as separate copy rows. Symbols row content and signal labels stay in `symbols_blocks.csv`. LCD status words stay in Translation Memory rows marked `是否为 status word=Y` and are exported to `Status_Words.csv` for prefix bolding.
+Use `Manual_Copy_Source.csv` for reusable source-language short text, including LCD / Symbols page titles, table headers, Product overview labels, and spec titles. `Localized_Copy.csv` and `spec_titles.csv` are generated from those source rows plus Translation Memory rows tagged `manual_copy`; RST templates continue to reference generated copy with `{{ copy:<copy_key> }}` and missing copy remains a build/check error. Image alt text is derived from existing page titles, panel titles, `symbol_key`, or signal-row labels instead of maintained as separate copy rows. Symbols row content and signal labels stay in `symbols_blocks.csv`. LCD status words stay in Translation Memory rows marked `是否为 status word=Y` and are exported to `Status_Words.csv` for prefix bolding.
 
 ### 2.4 HTML Style
 
@@ -105,7 +106,7 @@ Generated app setup pages opt into a recipe postprocess step,
 `**1. ...**` becomes level 2, and dotted substeps such as `**4.1 ...**` become level 3.
 Keep those labels easy to maintain in the source template; the recipe owns whether this semantic promotion runs.
 
-Product overview pages are authored directly as plain RST list-tables in each language's `page_<lang>/03_product_overview_placeholder.rst` template: layout, image placement, and table structure stay in RST, short labels resolve from `Localized_Copy.csv` through `{{ copy:<copy_key> }}`, and spec values remain `|TOKEN|` substitutions resolved from Spec_Master. There is no overview-layout renderer or `{{ product_overview }}` marker; edit the per-language template to change the overview's structure, and edit `Localized_Copy.csv` to change shared labels.
+Product overview pages are authored directly as plain RST list-tables in each language's `page_<lang>/03_product_overview_placeholder.rst` template: layout, image placement, and table structure stay in RST, short labels resolve from generated `Localized_Copy.csv` through `{{ copy:<copy_key> }}`, and spec values remain `|TOKEN|` substitutions resolved from Spec_Master. There is no overview-layout renderer or `{{ product_overview }}` marker; edit the per-language template to change the overview's structure, and edit `Manual_Copy_Source.csv` plus the tagged Translation Memory rows to change shared labels.
 
 HTML entrypoints:
 
@@ -140,7 +141,7 @@ Do not edit shared templates for one-off target review wording.
 
 If the change is specifically a localized spec title:
 
-- edit [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- edit the matching `Manual_Copy_Source.csv` source row and Translation Memory row tagged `manual_copy`; `sync-data` regenerates [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
 
 ### 3.5 Do Not Encode Semantics in Exporter Text Matching
 
@@ -184,9 +185,9 @@ Change the visual gap or typography of headings:
 
 Change the actual heading text:
 
-- [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv) for shared short copy used by `{{ copy:<copy_key> }}`
+- [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv) for shared source-language short copy; tagged Translation Memory rows generate `Localized_Copy.csv` for `{{ copy:<copy_key> }}`
 - [`docs/templates/page_*/*.rst`](../docs/templates) for stable template prose and page structure
-- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv), generated from `Manual_Copy_Source.csv` plus tagged Translation Memory rows
 - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv) for data-driven placeholder content
 
 Change the document title shown in Word:

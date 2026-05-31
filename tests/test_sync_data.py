@@ -174,20 +174,6 @@ class TestSyncData(unittest.TestCase):
         )
         self.assertEqual(
             (
-                "title_en",
-                "section_order",
-                "title_zh",
-                "title_jp",
-                "title_fr",
-                "title_es",
-                "title_de",
-                "title_it",
-                "title_uk",
-            ),
-            sync_data.TABLE_SCHEMAS["spec_titles"].columns,
-        )
-        self.assertEqual(
-            (
                 "symbol_key",
                 "Figure",
                 "image_path",
@@ -296,23 +282,16 @@ class TestSyncData(unittest.TestCase):
                 "copy_key",
                 "page_id",
                 "copy_type",
-                "Region",
+                "Market",
                 "Model",
                 "Source_lang",
                 "Is_Latest",
                 "Version",
-                "text_en",
-                "text_zh",
-                "text_ja",
-                "text_fr",
-                "text_es",
-                "text_pt-BR",
-                "text_de",
-                "text_it",
-                "text_uk",
+                "source_text",
+                "section_order",
                 "notes",
             ),
-            sync_data.TABLE_SCHEMAS["localized_copy"].columns,
+            sync_data.TABLE_SCHEMAS["manual_copy_source"].columns,
         )
 
     def test_symbols_blocks_should_normalize_model_multiselect_cells(self) -> None:
@@ -397,9 +376,9 @@ class TestSyncData(unittest.TestCase):
                     "cli_bin": "lark-cli",
                     "base_token_env": "BASE_TOKEN",
                     "tables": {
-                        "spec_titles": {
-                            "table_id_env": "SPEC_TITLES_TABLE",
-                            "view_id_env": "SPEC_TITLES_VIEW",
+                        "spec_footnotes": {
+                            "table_id_env": "SPEC_FOOTNOTES_TABLE",
+                            "view_id_env": "SPEC_FOOTNOTES_VIEW",
                         },
                     },
                 }
@@ -409,7 +388,7 @@ class TestSyncData(unittest.TestCase):
         with mock.patch("tools.sync_data.shutil.which", return_value=None):
             errors = sync_data.collect_sync_preflight_errors(
                 cfg,
-                table_names=["spec_titles"],
+                table_names=["spec_footnotes"],
                 environ={},
                 require_cli=True,
             )
@@ -417,7 +396,7 @@ class TestSyncData(unittest.TestCase):
         self.assertEqual(
             [
                 "sync.phase2.cli_bin executable is not available: lark-cli",
-                "Required environment variables are not set: BASE_TOKEN, SPEC_TITLES_TABLE, SPEC_TITLES_VIEW",
+                "Required environment variables are not set: BASE_TOKEN, SPEC_FOOTNOTES_TABLE, SPEC_FOOTNOTES_VIEW",
             ],
             errors,
         )
@@ -488,9 +467,13 @@ class TestSyncData(unittest.TestCase):
                         "provider": "lark_cli",
                         "base_token_env": "BASE_TOKEN",
                         "tables": {
-                            "spec_titles": {
-                                "table_id_env": "SPEC_TITLES_TABLE",
-                                "view_id_env": "SPEC_TITLES_VIEW",
+                            "manual_copy_source": {
+                                "table_id_env": "MANUAL_COPY_SOURCE_TABLE",
+                            },
+                            "translation_memory": {
+                                "base_token_env": "TM_BASE_TOKEN",
+                                "table_id": "tbl_tm",
+                                "view_id": "view_tm",
                             },
                             "spec_master": {
                                 "table_id_env": "SPEC_MASTER_TABLE",
@@ -505,9 +488,39 @@ class TestSyncData(unittest.TestCase):
 
             fake_source = _FakeSource(
                 {
-                    "tbl_titles": [
-                        {"fields": {"title_en": "B", "section_order": 2, "title_fr": "B FR"}},
-                        {"fields": {"title_en": "A", "section_order": 1, "title_fr": "A FR"}},
+                    "tbl_manual": [
+                        {
+                            "fields": {
+                                "copy_key": "spec.section.b",
+                                "page_id": "specifications",
+                                "copy_type": "section_title",
+                                "Market": "ALL",
+                                "Model": "ALL",
+                                "Source_lang": "en",
+                                "Is_Latest": True,
+                                "Version": "V1.0",
+                                "source_text": "B",
+                                "section_order": 2,
+                            }
+                        },
+                        {
+                            "fields": {
+                                "copy_key": "spec.section.a",
+                                "page_id": "specifications",
+                                "copy_type": "section_title",
+                                "Market": "ALL",
+                                "Model": "ALL",
+                                "Source_lang": "en",
+                                "Is_Latest": True,
+                                "Version": "V1.0",
+                                "source_text": "A",
+                                "section_order": 1,
+                            }
+                        },
+                    ],
+                    "tbl_tm": [
+                        {"fields": {"en": "A", "fr": "A FR", "用途标签": [{"text": "manual_copy"}]}},
+                        {"fields": {"en": "B", "fr": "B FR", "用途标签": [{"text": "manual_copy"}]}},
                     ],
                     "tbl_master": [
                         {
@@ -553,8 +566,8 @@ class TestSyncData(unittest.TestCase):
                 "os.environ",
                 {
                     "BASE_TOKEN": "app_token",
-                    "SPEC_TITLES_TABLE": "tbl_titles",
-                    "SPEC_TITLES_VIEW": "view_titles",
+                    "MANUAL_COPY_SOURCE_TABLE": "tbl_manual",
+                    "TM_BASE_TOKEN": "tm_token",
                     "SPEC_MASTER_TABLE": "tbl_master",
                     "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID": "",
                     "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID": "",
@@ -565,7 +578,7 @@ class TestSyncData(unittest.TestCase):
                     cfg=cfg,
                     config_path=config_path,
                     data_root="data/phase2",
-                    table_names=["spec_titles", "spec_master"],
+                    table_names=["manual_copy_source", "spec_master"],
                     dry_run=False,
                     source=fake_source,
                     built_at=datetime(2026, 3, 31, 9, 0, tzinfo=timezone.utc),
@@ -579,8 +592,9 @@ class TestSyncData(unittest.TestCase):
             self.assertTrue((root / "data" / "phase2" / "snapshot_manifest.json").exists())
             self.assertEqual(
                 [
-                    ("app_token", "tbl_titles", "view_titles"),
+                    ("app_token", "tbl_manual", None),
                     ("app_token", "tbl_master", None),
+                    ("tm_token", "tbl_tm", "view_tm"),
                 ],
                 fake_source.calls,
             )
@@ -609,11 +623,11 @@ class TestSyncData(unittest.TestCase):
             self.assertIn("Model No.,1,model_no,", mapping_lines)
 
             manifest = json.loads((root / "data" / "phase2" / "snapshot_manifest.json").read_text(encoding="utf-8"))
-            self.assertEqual(["spec_titles", "spec_master"], manifest["requested_tables"])
+            self.assertEqual(["manual_copy_source", "spec_master"], manifest["requested_tables"])
             self.assertIn("spec_footnotes", manifest["skipped_tables"])
             self.assertEqual(2, len(manifest["tables"]))
             self.assertEqual(
-                ["page_registry", "row_key_mapping"],
+                ["page_registry", "row_key_mapping", "localized_copy", "status_words", "spec_titles"],
                 [entry["logical_name"] for entry in manifest["derived_files"]],
             )
 
@@ -1129,21 +1143,31 @@ class TestSyncData(unittest.TestCase):
                         "provider": "lark_cli",
                         "base_token_env": "BASE_TOKEN",
                         "tables": {
-                            "spec_titles": {
-                                "table_id_env": "SPEC_TITLES_TABLE",
+                            "manual_copy_source": {
+                                "table_id_env": "MANUAL_COPY_SOURCE_TABLE",
+                            },
+                            "translation_memory": {
+                                "base_token_env": "TM_BASE_TOKEN",
+                                "table_id": "tbl_tm",
                             },
                         },
                     }
                 }
             }
             _write_page_registry(root, "fixtures/page_registry.csv")
-            fake_source = _FakeSource({"tbl_titles": [{"fields": {"title_en": "SPECIFICATIONS"}}]})
+            fake_source = _FakeSource(
+                {
+                    "tbl_manual": [{"fields": {"copy_key": "spec.page_title", "source_text": "SPECIFICATIONS"}}],
+                    "tbl_tm": [{"fields": {"en": "SPECIFICATIONS", "用途标签": [{"text": "manual_copy"}]}}],
+                }
+            )
 
             with mock.patch.dict(
                 "os.environ",
                 {
                     "BASE_TOKEN": "app_token",
-                    "SPEC_TITLES_TABLE": "tbl_titles",
+                    "MANUAL_COPY_SOURCE_TABLE": "tbl_manual",
+                    "TM_BASE_TOKEN": "tm_token",
                 },
                 clear=True,
             ), mock.patch.object(sync_data, "ROOT", root):
@@ -1151,16 +1175,123 @@ class TestSyncData(unittest.TestCase):
                     cfg=cfg,
                     config_path=root / "config.yaml",
                     data_root="data/phase2",
-                    table_names=["spec_titles"],
+                    table_names=["manual_copy_source"],
                     dry_run=True,
                     source=fake_source,
                 )
 
             self.assertTrue(result.dry_run)
+            self.assertFalse((root / "data" / "phase2" / "Manual_Copy_Source.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "spec_titles.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "page_registry.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "row_key_mapping.csv").exists())
             self.assertFalse((root / "data" / "phase2" / "snapshot_manifest.json").exists())
+
+    def test_sync_phase2_snapshot_should_derive_localized_copy_from_manual_source_and_tm(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "paths": {
+                    "page_registry_csv": "fixtures/page_registry.csv",
+                },
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "manual_copy_source": {
+                                "table_id_env": "MANUAL_COPY_SOURCE_TABLE",
+                            },
+                            "translation_memory": {
+                                "base_token_env": "TM_BASE_TOKEN",
+                                "table_id": "tbl_tm",
+                                "view_id": "view_tm",
+                            },
+                        },
+                    }
+                },
+            }
+            _write_page_registry(root, "fixtures/page_registry.csv")
+            fake_source = _FakeSource(
+                {
+                    "tbl_manual": [
+                        {
+                            "fields": {
+                                "copy_key": "product_overview.page_title",
+                                "page_id": "03_product_overview",
+                                "copy_type": "page_title",
+                                "Market": "ALL",
+                                "Model": "ALL",
+                                "Source_lang": "en",
+                                "Is_Latest": True,
+                                "Version": "V1.0",
+                                "source_text": "PRODUCT OVERVIEW",
+                            }
+                        }
+                    ],
+                    "tbl_tm": [
+                        {
+                            "fields": {
+                                "en": "PRODUCT OVERVIEW",
+                                "zh": "产品外观",
+                                "jp": "各部の名称",
+                                "用途标签": [{"text": "manual_copy"}],
+                            }
+                        },
+                        {
+                            "fields": {
+                                "en": "On",
+                                "zh": "点亮",
+                                "jp": "点灯",
+                                "是否为 status word": "Y",
+                            }
+                        },
+                    ],
+                }
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "MANUAL_COPY_SOURCE_TABLE": "tbl_manual",
+                    "TM_BASE_TOKEN": "tm_token",
+                },
+                clear=True,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                result = sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=root / "config.yaml",
+                    data_root="data/phase2",
+                    table_names=["manual_copy_source"],
+                    dry_run=False,
+                    source=fake_source,
+                    built_at=datetime(2026, 5, 31, 9, 0, tzinfo=timezone.utc),
+                )
+
+            self.assertEqual(
+                [("app_token", "tbl_manual", None), ("tm_token", "tbl_tm", "view_tm")],
+                fake_source.calls,
+            )
+            with (root / "data" / "phase2" / "Localized_Copy.csv").open(encoding="utf-8", newline="") as handle:
+                localized_rows = list(csv.DictReader(handle))
+            self.assertEqual("03_product_overview", localized_rows[0]["page_id"])
+            self.assertEqual("ALL", localized_rows[0]["Region"])
+            self.assertEqual("PRODUCT OVERVIEW", localized_rows[0]["text_en"])
+            self.assertEqual("产品外观", localized_rows[0]["text_zh"])
+            self.assertEqual("PRODUCT OVERVIEW", localized_rows[0]["text_fr"])
+
+            with (root / "data" / "phase2" / "Status_Words.csv").open(encoding="utf-8", newline="") as handle:
+                status_rows = list(csv.DictReader(handle))
+            self.assertEqual("On", status_rows[0]["en"])
+            self.assertEqual("Y", status_rows[0]["是否为 status word"])
+
+            missing_report = root / "reports" / "content_audit" / "manual_copy_missing_translations.csv"
+            self.assertIn("product_overview.page_title,en,fr,PRODUCT OVERVIEW", missing_report.read_text(encoding="utf-8"))
+            self.assertEqual(
+                ["page_registry", "localized_copy", "status_words", "spec_titles"],
+                [entry.logical_name for entry in result.derived_files],
+            )
 
     def test_sync_phase2_snapshot_should_preserve_existing_phase2_row_key_mapping(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1384,9 +1515,9 @@ class TestSyncData(unittest.TestCase):
                     "cli_bin": "lark-cli",
                     "base_token_env": "BASE_TOKEN",
                     "tables": {
-                        "spec_titles": {
-                            "table_id_env": "SPEC_TITLES_TABLE",
-                            "view_id_env": "SPEC_TITLES_VIEW",
+                        "spec_footnotes": {
+                            "table_id_env": "SPEC_FOOTNOTES_TABLE",
+                            "view_id_env": "SPEC_FOOTNOTES_VIEW",
                         },
                     },
                 }
@@ -1405,7 +1536,7 @@ class TestSyncData(unittest.TestCase):
                     cfg=cfg,
                     config_path=Path("config.yaml"),
                     data_root="data/phase2",
-                    table_names=["spec_titles"],
+                    table_names=["spec_footnotes"],
                     dry_run=True,
                     source=None,
                 )
@@ -1413,7 +1544,7 @@ class TestSyncData(unittest.TestCase):
         message = str(exc_info.exception)
         self.assertIn("sync.phase2.cli_bin executable is not available: lark-cli", message)
         self.assertIn(
-            "Required environment variables are not set: BASE_TOKEN, SPEC_TITLES_TABLE, SPEC_TITLES_VIEW",
+            "Required environment variables are not set: BASE_TOKEN, SPEC_FOOTNOTES_TABLE, SPEC_FOOTNOTES_VIEW",
             message,
         )
 

@@ -649,3 +649,17 @@ Why it mattered:
 - short copy now has one operational source instead of being repeated across renderer constants and per-language templates
 - missing copy fails during rendering/check instead of silently falling back to Python literals
 - long-form procedural pages have an explicit migration boundary before any risky prose block move
+
+## 40. 2026-06-01: Replace Online Localized Copy With Manual Copy Source
+
+Main outcomes:
+
+- introduced [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv) as the synced, single-language authoring snapshot for reusable page titles, table headers, Product overview labels, and spec page / section titles
+- kept [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv) as a generated runtime file for existing `{{ copy:<copy_key> }}` rendering, and kept [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv) as a generated compatibility file for the existing spec renderer
+- moved `localized_copy` and `spec_titles` out of required synced tables and recorded them, together with `Status_Words.csv`, under manifest `derived_files`
+- added conflict detection for duplicate `manual_copy` TM rows, source-text fallback for missing target translations, and a missing-translation report at `reports/content_audit/manual_copy_missing_translations.csv`
+
+Why it mattered:
+
+- operators now maintain one source-language copy table plus Translation Memory tags instead of a disconnected multilingual copy table
+- the online `03_内容源_Localized_Copy` and `03_内容源_多语言标题` tables are no longer active maintenance surfaces; generated copy remains reproducible from the synced source rows and TM snapshot

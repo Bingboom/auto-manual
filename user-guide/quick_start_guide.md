@@ -20,7 +20,7 @@ Updated: 2026-05-25
 - `Spec_Master`: 本地构建读取用 read model，由 `sync-data --table spec_master` 或 `spec-master-rebuild` 从上面两张源表生成，不作为人工维护的第三张源表
 - `Spec_Footnotes`
 - `Spec_Notes`
-- `spec_titles`
+- `Manual_Copy_Source`: reusable short copy and spec titles; `spec_titles.csv` is generated from it plus tagged Translation Memory
 - `symbols_blocks`
 - `TROUBLESHOOTING` / `troubleshooting_blocks`
 
@@ -371,7 +371,7 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 - `页面占位参数`
 - `Spec_Footnotes`
 - `Spec_Notes`
-- `spec_titles`
+- `Manual_Copy_Source`
 - `symbols_blocks`
 
 ### 要改 Build Draft Package 文稿

@@ -18,13 +18,12 @@ def _complete_manifest() -> dict[str, object]:
         "spec_master",
         "spec_footnotes",
         "spec_notes",
-        "spec_titles",
         "symbols_blocks",
         "lcd_icons",
         "troubleshooting",
         "variable_defaults",
         "variable_lang_overrides",
-        "localized_copy",
+        "manual_copy_source",
     ]
     return {
         "export_root": "data/phase2",
@@ -36,18 +35,20 @@ def _complete_manifest() -> dict[str, object]:
                 ("spec_master", "Spec_Master.csv"),
                 ("spec_footnotes", "Spec_Footnotes.csv"),
                 ("spec_notes", "Spec_Notes.csv"),
-                ("spec_titles", "spec_titles.csv"),
                 ("symbols_blocks", "symbols_blocks.csv"),
                 ("lcd_icons", "lcd_icons_blocks.csv"),
                 ("troubleshooting", "troubleshooting_blocks.csv"),
                 ("variable_defaults", "Variable_Defaults.csv"),
                 ("variable_lang_overrides", "Variable_Lang_Overrides.csv"),
-                ("localized_copy", "Localized_Copy.csv"),
+                ("manual_copy_source", "Manual_Copy_Source.csv"),
             )
         ],
         "derived_files": [
             {"logical_name": "page_registry", "file_name": "page_registry.csv"},
             {"logical_name": "row_key_mapping", "file_name": "row_key_mapping.csv"},
+            {"logical_name": "spec_titles", "file_name": "spec_titles.csv"},
+            {"logical_name": "localized_copy", "file_name": "Localized_Copy.csv"},
+            {"logical_name": "status_words", "file_name": "Status_Words.csv"},
         ],
     }
 
@@ -113,7 +114,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "troubleshooting_blocks.csv",
                 "Variable_Defaults.csv",
                 "Variable_Lang_Overrides.csv",
+                "Manual_Copy_Source.csv",
                 "Localized_Copy.csv",
+                "Status_Words.csv",
             ):
                 (phase2_dir / file_name).write_text("demo\n", encoding="utf-8")
             (phase2_dir / "snapshot_manifest.json").write_text(
@@ -183,7 +186,9 @@ class TestDataSnapshotPaths(unittest.TestCase):
                 "troubleshooting_blocks.csv",
                 "Variable_Defaults.csv",
                 "Variable_Lang_Overrides.csv",
+                "Manual_Copy_Source.csv",
                 "Localized_Copy.csv",
+                "Status_Words.csv",
             ):
                 (phase2_dir / file_name).write_text("phase2\n", encoding="utf-8")
             manifest = _complete_manifest()
@@ -191,13 +196,12 @@ class TestDataSnapshotPaths(unittest.TestCase):
             manifest["skipped_tables"] = [
                 "spec_footnotes",
                 "spec_notes",
-                "spec_titles",
                 "symbols_blocks",
                 "lcd_icons",
                 "troubleshooting",
                 "variable_defaults",
                 "variable_lang_overrides",
-                "localized_copy",
+                "manual_copy_source",
             ]
             manifest["tables"] = [
                 {"logical_name": "spec_master", "file_name": "Spec_Master.csv"},
