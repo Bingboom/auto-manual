@@ -452,6 +452,17 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "text_es": "Consejo desde datos.",
                 "text_de": "Datentipp.",
             },
+            {
+                "block_type": "alert_label_row",
+                "symbol_key": "DANGER",
+                "order": "105",
+                "Region": "US",
+                "Model": "JE-1000F",
+                "Source_lang": "en",
+                "enabled": "1",
+                "label_en": "DANGER",
+                "label_es": "PELIGRO",
+            },
         ]
 
     def test_render_symbols_page_happy_path(self) -> None:

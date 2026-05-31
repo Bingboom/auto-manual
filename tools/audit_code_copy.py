@@ -562,13 +562,13 @@ def classify_string(
         if context.startswith(("_ALERT_LABELS", "_WARNING_BOX_LABEL_TEXTS")):
             return Classification(
                 "manual_output",
-                "localized_copy",
+                "phase2_blocks",
                 "P0",
                 "manual alert label used by HTML/Word rewrite",
                 page_or_surface="word_html_rewrite",
                 content_role="alert_label",
-                suggested_destination="Localized_Copy.csv",
-                suggested_identifier="alert_labels.<normalized_text>",
+                suggested_destination="symbols_blocks.csv signal_row/alert_label_row label/aliases fields",
+                suggested_identifier="symbols_blocks.<signal_or_alert_row>.<symbol_key>.aliases_<lang>",
                 rst_template_option="no: shared rewrite detection term",
             )
         if context.startswith("_SAFETY_SUBLIST_RULES") or "_SAFETY_SUBLIST_RULES" in context:
@@ -909,10 +909,13 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
             "- `tools/csv_pages/renderers_symbols.py`: migrate legacy `LANG_COPY` page chrome and alt text to `Localized_Copy.csv`; move signal meanings to `symbols_blocks.csv`."
         )
     if "tools/signal_words.py" in p0_files:
-        lines.append("- `tools/signal_words.py`: replace hardcoded signal words with `symbols_blocks.csv` signal-row metadata.")
+        lines.append(
+            "- `tools/signal_words.py`: replace hardcoded signal words with `symbols_blocks.csv` "
+            "signal-row and alert-label-row metadata."
+        )
     if "tools/word_bundle_html_rewrite.py" in p0_files:
         lines.append(
-            "- `tools/word_bundle_html_rewrite.py`: move alert labels to `Localized_Copy.csv`; move safety sublist snippets to a business blocks table if they remain manual content."
+            "- `tools/word_bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should stay in `symbols_blocks.csv` `signal_row` or `alert_label_row` `label_*` / `aliases_*` fields."
         )
     if "tools/csv_pages/renderers_spec_parser.py" in p0_files:
         lines.append("- `tools/csv_pages/renderers_spec_parser.py`: replace the `SPECIFICATIONS` title fallback with required localized copy or data validation.")

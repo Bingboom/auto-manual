@@ -16,6 +16,24 @@ from tools.word_bundle_html_rewrite import _extract_spec_word_data
 
 
 class TestWordBundle(unittest.TestCase):
+    def _write_alert_labels_symbols_blocks(self, root: Path) -> Path:
+        path = root / "symbols_blocks.csv"
+        path.write_text(
+            "\n".join(
+                [
+                    "page_id,symbol_key,block_type,order,Region,Model,Source_lang,Is_Latest,label_en,aliases_en,label_fr,aliases_es,aliases_de,aliases_it,aliases_uk,aliases_jp,aliases_zh",
+                    "symbols,warning,signal_row,1,all,,en,TRUE,WARNING,,AVERTISSEMENT,ADVERTENCIA,WARNUNG,AVVERTENZA,ПОПЕРЕДЖЕННЯ,警告,警告",
+                    "symbols,danger,alert_label_row,2,all,,en,TRUE,DANGER,,DANGER,PELIGRO,GEFAHR,PERICOLO,НЕБЕЗПЕКА,危険,危险",
+                    "symbols,caution,signal_row,3,all,,en,TRUE,CAUTION,,ATTENTION,PRECAUCIÓN,VORSICHT,ATTENZIONE,УВАГА,ご注意,注意",
+                    "symbols,note,signal_row,4,all,,en,TRUE,NOTE,,REMARQUE,NOTA,HINWEIS,NOTA,ПРИМІТКА,備考,提示;说明;备注;備註",
+                    "symbols,tips,signal_row,5,all,,en,TRUE,TIP,TIPS,CONSEIL;CONSEILS,CONSEJO;CONSEJOS,TIPP,SUGGERIMENTO,ПОРАДИ,,",
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        return path
+
     def test_inject_img_dimensions_should_add_proportional_height_for_local_png(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -445,7 +463,9 @@ Congratulations on your new manual.
             '<div class="hb-warning-text">Risk of fire.</div></div></div>'
         )
 
-        out = _rewrite_word_friendly_fragment(fragment)
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
         self.assertIn("<h1>Demo Manual</h1>", out)
         self.assertIn("manual-callout-table", out)
@@ -499,7 +519,9 @@ Congratulations on your new manual.
             '</div></div>'
         )
 
-        out = _rewrite_word_friendly_fragment(fragment, lang="es")
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, lang="es", symbols_blocks_csv=symbols_blocks)
 
         self.assertEqual(1, out.count("ADVERTENCIA"))
         self.assertIn("<strong>ADVERTENCIA</strong>", out)
@@ -533,7 +555,9 @@ Congratulations on your new manual.
             "<h2>Next Section</h2>"
         )
 
-        out = _rewrite_word_friendly_fragment(fragment)
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
         self.assertIn("manual-callout-table", out)
         self.assertIn("<strong>CAUTION</strong>", out)
@@ -543,7 +567,9 @@ Congratulations on your new manual.
     def test_rewrite_word_friendly_fragment_should_convert_alert_headings_into_tables(self) -> None:
         fragment = "<h2>DANGER</h2><ul><li>Indoor use only.</li></ul>"
 
-        out = _rewrite_word_friendly_fragment(fragment)
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
         self.assertIn("manual-callout-table", out)
         self.assertIn("<strong>DANGER</strong>", out)
@@ -588,7 +614,9 @@ Congratulations on your new manual.
             "</tr></tbody></table>"
         )
 
-        out = _rewrite_word_friendly_fragment(fragment)
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
         self.assertEqual(4, out.count("manual-callout-table"))
         self.assertIn("<strong>PRECAUCIÓN</strong>", out)
@@ -629,7 +657,9 @@ DC OUTPUT
             "</div>"
         )
 
-        out = _rewrite_word_friendly_fragment(fragment)
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
         self.assertEqual(2, out.count("manual-callout-table"))
         self.assertIn("Risk of fire.", out)
@@ -734,7 +764,9 @@ DC OUTPUT
             "</tbody></table>"
         )
 
-        out = _rewrite_word_friendly_fragment(fragment)
+        with tempfile.TemporaryDirectory() as td:
+            symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
+            out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
         self.assertIn("warning_bar.png", out)
         self.assertIn("caution_bar.png", out)
