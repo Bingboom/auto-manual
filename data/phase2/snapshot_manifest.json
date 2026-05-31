@@ -1,7 +1,7 @@
 {
   "provider": "lark_cli",
   "cli_bin": "lark-cli",
-  "generated_at": "2026-05-25T09:36:11.773999+00:00",
+  "generated_at": "2026-05-31T05:43:08.456160+00:00",
   "export_root": "data/phase2",
   "manifest_path": "data/phase2/snapshot_manifest.json",
   "dry_run": false,
@@ -60,7 +60,7 @@
       "file_name": "lcd_icons_blocks.csv",
       "path": "data/phase2/lcd_icons_blocks.csv",
       "row_count": 27,
-      "sha256": "59ef8726fa4516dec62d1e6520b1d9ab62e140ef8de1f70035e7a610d72f084d",
+      "sha256": "acc4680dbaa3cb21d1a7d9bbad34a4ccad3d4c24ab06a1164389e2adcab8434c",
       "previous_sha256": null,
       "changed": true
     },
@@ -95,8 +95,8 @@
       "logical_name": "localized_copy",
       "file_name": "Localized_Copy.csv",
       "path": "data/phase2/Localized_Copy.csv",
-      "row_count": 33,
-      "sha256": "25a3d9ebdd42b6a8208a788569b2deb5d283ca51e8e5272c18f941412b41f017",
+      "row_count": 30,
+      "sha256": "d9acf657a1194b2936656a4cce12cb755b4fa74184eff6f2fc37824be76e83a1",
       "previous_sha256": null,
       "changed": true
     },
@@ -116,7 +116,7 @@
       "file_name": "page_registry.csv",
       "path": "data/phase2/page_registry.csv",
       "row_count": 4,
-      "sha256": "3ac4be2059daa18caa605a8084f7c417b8d648ca724c848deeee6363ecc80bc7",
+      "sha256": "8844e610dad91e18dcacc4f284a4c6a991e3702058990a4ec2156a5f7fd19a14",
       "previous_sha256": null,
       "changed": true
     },
@@ -126,6 +126,15 @@
       "path": "data/phase2/row_key_mapping.csv",
       "row_count": 111,
       "sha256": "c8695a9534ed2fadba88f00bf7e4e4b8049e48282bd6f8daed0e01c51adf0c11",
+      "previous_sha256": null,
+      "changed": true
+    },
+    {
+      "logical_name": "status_words",
+      "file_name": "Status_Words.csv",
+      "path": "data/phase2/Status_Words.csv",
+      "row_count": 3,
+      "sha256": "ae2eeb8409acb701ae51e43b334ae149773f72b7a1c27b7f4b2662febf21e145",
       "previous_sha256": null,
       "changed": true
     }

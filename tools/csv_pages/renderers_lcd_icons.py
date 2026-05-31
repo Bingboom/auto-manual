@@ -21,6 +21,8 @@ PH_LCD_ICONS_TABLE_RST = "{{ lcd_icons_table_rst }}"
 _VAR_RE = re.compile(r"\{\{\s*([a-zA-Z0-9_\-]+)\s*\}\}")
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n"}
+_STATUS_WORD_MARKER_FIELD = "是否为 status word"
+_STATUS_WORDS_FILE = "Status_Words.csv"
 
 _LANG_SUFFIX = {
     "ja": "jp",
@@ -43,8 +45,10 @@ def _read_csv(path: str) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def _truthy(value: str, *, default: bool = True) -> bool:
-    raw = (value or "").strip().casefold()
+def _truthy(value: object, *, default: bool = True) -> bool:
+    if isinstance(value, list):
+        value = ",".join(str(item) for item in value)
+    raw = str(value or "").strip().casefold()
     if not raw:
         return default
     if raw in _TRUE_VALUES:
@@ -214,7 +218,7 @@ def _collect_rows(
 ) -> list[dict[str, str]]:
     if not blocks:
         raise ValueError(f"lcd_icons page has no rows for lang={lang}")
-    headers = set(blocks[0].keys())
+    headers = set().union(*(row.keys() for row in blocks))
     name_col = _first_existing(
         headers,
         [*(f"icon_{suffix}" for suffix in _lang_suffix_candidates(lang)), "icon_en"],
@@ -294,27 +298,50 @@ def _copy_text(
     )
 
 
-def _status_labels(
-    vars_map: dict[str, str],
-    *,
-    lang: str,
-    target_model: str,
-    target_region: str,
-) -> tuple[str, ...]:
-    return tuple(
-        _copy_text(
-            vars_map,
-            key,
-            lang=lang,
-            target_model=target_model,
-            target_region=target_region,
-        )
-        for key in (
-            "lcd_icons.status.on",
-            "lcd_icons.status.off",
-            "lcd_icons.status.blink",
-        )
-    )
+def _status_words_csv_path(vars_map: dict[str, str]) -> Path | None:
+    for key in ("lcd_status_words_csv", "status_words_csv", "translation_memory_status_words_csv"):
+        raw = (vars_map.get(key) or "").strip()
+        if raw:
+            return Path(raw)
+    localized_copy_csv = (vars_map.get("localized_copy_csv") or "").strip()
+    if localized_copy_csv:
+        return Path(localized_copy_csv).with_name(_STATUS_WORDS_FILE)
+    return None
+
+
+def _status_word_lang_candidates(lang: str) -> list[str]:
+    raw = (lang or "").strip()
+    normalized = raw.casefold().replace("_", "-")
+    candidates = [raw, normalized]
+    if normalized in {"ja", "jp"}:
+        candidates.extend(["jp", "ja"])
+    if normalized in {"uk", "ukr"}:
+        candidates.extend(["uk", "ukr"])
+    if normalized in {"pt-br", "br"}:
+        candidates.extend(["pt-BR", "pt-br", "pt_BR", "br"])
+    return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _status_labels(vars_map: dict[str, str], *, lang: str) -> tuple[str, ...]:
+    path = _status_words_csv_path(vars_map)
+    if path is None or not path.exists():
+        raise ValueError("lcd_icons renderer requires Status_Words.csv exported from Translation Memory")
+    rows = _read_csv(str(path))
+    if not rows:
+        raise ValueError(f"lcd_icons status words snapshot is empty: {path}")
+    labels: list[str] = []
+    lang_columns = _status_word_lang_candidates(lang)
+    for row in rows:
+        if not _truthy(row.get(_STATUS_WORD_MARKER_FIELD, ""), default=False):
+            continue
+        for column in lang_columns:
+            label = (row.get(column) or "").strip()
+            if label and label not in labels:
+                labels.append(label)
+    labels.sort(key=len, reverse=True)
+    if not labels:
+        raise ValueError(f"lcd_icons status words snapshot has no labels for lang={lang}: {path}")
+    return tuple(labels)
 
 
 def _format_description_line(line: str, *, status_labels: tuple[str, ...]) -> str:
@@ -323,9 +350,10 @@ def _format_description_line(line: str, *, status_labels: tuple[str, ...]) -> st
             prefix = f"{label}{separator}"
             if line.startswith(prefix):
                 remainder = line[len(prefix):]
-                spacer = "" if not remainder or remainder.startswith(" ") else " "
-                return f"**{prefix}**{spacer}{remainder}"
-    return line
+                remainder_text = rst_escape(remainder)
+                spacer = " " if remainder_text else ""
+                return f"**{rst_escape(prefix)}**{spacer}{remainder_text}"
+    return rst_escape(line)
 
 
 def _figure_image_path(value: str) -> str:
@@ -381,10 +409,9 @@ def _append_text_cell(
         return
 
     def format_line(raw_line: str) -> str:
-        line = rst_escape(raw_line)
         if format_status:
-            line = _format_description_line(line, status_labels=status_labels)
-        return line
+            return _format_description_line(raw_line, status_labels=status_labels)
+        return rst_escape(raw_line)
 
     if len(raw_lines) == 1:
         lines.append(prefix + format_line(raw_lines[0]))
@@ -442,8 +469,7 @@ def _latex_description_line(line: str, *, status_labels: tuple[str, ...]) -> str
         for separator in (":", "："):
             prefix = f"{label}{separator}"
             if line.startswith(prefix):
-                remainder = line[len(prefix):]
-                remainder = remainder.strip()
+                remainder = line[len(prefix):].strip()
                 spacer = " " if remainder else ""
                 return rf"\textbf{{{latex_arg_escape(prefix)}}}{spacer}{latex_arg_escape(remainder)}"
     return latex_arg_escape(line)
@@ -522,12 +548,7 @@ def render_lcd_icons_page(
         target_model=target_model,
         target_region=target_region,
     )
-    status_labels = _status_labels(
-        vars_map,
-        lang=lang,
-        target_model=target_model,
-        target_region=target_region,
-    )
+    status_labels = _status_labels(vars_map, lang=lang)
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(title))
     rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(alt))

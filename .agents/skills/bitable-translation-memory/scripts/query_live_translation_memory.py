@@ -34,7 +34,8 @@ DEFAULT_VIEW_ID = "veweqW2fQv"
 DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
 DEFAULT_CACHE_TTL_SECONDS = 900
-CACHE_SCHEMA_VERSION = 1
+CACHE_SCHEMA_VERSION = 2
+LIVE_TM_LANGUAGE_FIELDS = {"en", "fr", "es", "de", "it", "uk", "jp", "ja", "kr", "pt-br", "zh"}
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -282,6 +283,8 @@ def get_table_language_fields(*, cli: str, base_token: str, table_id: str) -> li
         str(field.get("field_name") or field.get("name") or "")
         for field in fields
         if str(field.get("type")) == "text" and str(field.get("field_name") or field.get("name") or "")
+        and (normalize_language(str(field.get("field_name") or field.get("name") or "")) or "")
+        in LIVE_TM_LANGUAGE_FIELDS
     ]
 
 
