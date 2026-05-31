@@ -47,8 +47,6 @@ required_copy_keys:
     - product_overview.page_title
     - product_overview.front_view
     - product_overview.right_side_view
-    - product_overview.front_image_alt
-    - product_overview.right_image_alt
     - product_overview.part.handle
     - product_overview.part.lcd
     - product_overview.part.led_light_button
@@ -57,8 +55,6 @@ required_copy_keys:
     - product_overview.page_title
     - product_overview.front_view
     - product_overview.right_side_view
-    - product_overview.front_image_alt
-    - product_overview.right_image_alt
     - product_overview.part.handle
     - product_overview.part.lcd
     - product_overview.part.led_light_button
@@ -67,8 +63,6 @@ required_copy_keys:
     - product_overview.page_title
     - product_overview.front_view
     - product_overview.right_side_view
-    - product_overview.front_image_alt
-    - product_overview.right_image_alt
     - product_overview.part.handle
     - product_overview.part.lcd
     - product_overview.part.led_light_button

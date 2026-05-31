@@ -638,7 +638,7 @@ Why it mattered:
 
 Main outcomes:
 
-- introduced [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv) as the phase2 short-copy snapshot for page titles, table headers, alt text, and Product overview labels; LCD status words are marked in Translation Memory with `是否为 status word=Y` and exported to `Status_Words.csv` for renderer prefix bolding
+- introduced [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv) as the phase2 short-copy snapshot for page titles, table headers, and Product overview labels; LCD status words are marked in Translation Memory with `是否为 status word=Y` and exported to `Status_Words.csv` for renderer prefix bolding, while image alt text is derived from existing titles, `symbol_key`, or signal-row labels
 - wired `localized_copy` into sync/schema/snapshot validation alongside `lcd_icons`, `variable_defaults`, and `variable_lang_overrides`
 - added `{{ copy:<copy_key> }}` resolution so RST templates keep layout while short copy comes from data
 - moved live LCD / Symbols renderer chrome and representative Product overview labels for US/en, JP/ja, and ZH out of Python/RST literals

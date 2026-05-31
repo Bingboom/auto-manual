@@ -541,16 +541,9 @@ def render_lcd_icons_page(
         target_model=target_model,
         target_region=target_region,
     )
-    alt = _copy_text(
-        vars_map,
-        "lcd_icons.image_alt",
-        lang=lang,
-        target_model=target_model,
-        target_region=target_region,
-    )
     status_labels = _status_labels(vars_map, lang=lang)
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(title))
-    rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(alt))
+    rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(title))
     rendered = rendered.replace(PH_LCD_ICONS_TABLE_RST, _table(rows, status_labels=status_labels))
     return rendered

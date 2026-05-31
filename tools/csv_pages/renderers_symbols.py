@@ -104,14 +104,6 @@ def _copy_text(vars_map: dict[str, str], key: str, *, lang: str) -> str:
     )
 
 
-def _symbol_alt(vars_map: dict[str, str], symbol_key: str, *, lang: str) -> str:
-    return _copy_text(vars_map, f"symbols.symbol.{symbol_key}.alt", lang=lang)
-
-
-def _signal_alt(vars_map: dict[str, str], signal_key: str, *, lang: str) -> str:
-    return _copy_text(vars_map, f"symbols.signal.{signal_key}.alt", lang=lang)
-
-
 def _text_column_for_lang(row: dict[str, str], lang: str) -> str:
     raw = (lang or "").strip()
     normalized = raw.casefold()
@@ -482,13 +474,14 @@ def _collect_signal_rows(
         image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
         image_path = image_path or (block.get("image_path") or "").strip() or default_asset.path
         is_banner = _signal_uses_banner_image(image_path)
+        label = label_from_signal_row(block, key=signal_key, lang=lang)
         signal_rows.append(
             {
                 "mode": "banner" if is_banner else "icon_label",
                 "image": image_path,
-                "alt": _signal_alt(vars_map, signal_key, lang=lang),
+                "alt": label or signal_key,
                 "width": "140px" if is_banner else default_asset.width,
-                "label": "" if is_banner else label_from_signal_row(block, key=signal_key, lang=lang),
+                "label": "" if is_banner else label,
                 "meaning": text,
                 "signal_key": signal_key,
             }
@@ -668,7 +661,7 @@ def _icon_table(lang: str, vars_map: dict[str, str], groups: dict[str, list[dict
                 table_lines,
                 "   * - ",
                 image_path=str(left["image_path"]),
-                alt=_symbol_alt(vars_map, left["symbol_key"], lang=lang),
+                alt=left["symbol_key"],
                 width=left_asset.width,
             )
             _append_text_cell(table_lines, "     - ", left["text"])
@@ -682,7 +675,7 @@ def _icon_table(lang: str, vars_map: dict[str, str], groups: dict[str, list[dict
                 table_lines,
                 "     - ",
                 image_path=str(right["image_path"]),
-                alt=_symbol_alt(vars_map, right["symbol_key"], lang=lang),
+                alt=right["symbol_key"],
                 width=right_asset.width,
             )
             _append_text_cell(table_lines, "     - ", right["text"])

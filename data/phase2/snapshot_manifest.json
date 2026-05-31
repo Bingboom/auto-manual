@@ -95,8 +95,8 @@
       "logical_name": "localized_copy",
       "file_name": "Localized_Copy.csv",
       "path": "data/phase2/Localized_Copy.csv",
-      "row_count": 30,
-      "sha256": "d9acf657a1194b2936656a4cce12cb755b4fa74184eff6f2fc37824be76e83a1",
+      "row_count": 11,
+      "sha256": "9677c7bd514e37515b1fcbeb35d953209b24cdcca45da51b575292d00222655a",
       "previous_sha256": null,
       "changed": true
     },
