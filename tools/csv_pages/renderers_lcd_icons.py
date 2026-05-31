@@ -22,6 +22,7 @@ _VAR_RE = re.compile(r"\{\{\s*([a-zA-Z0-9_\-]+)\s*\}\}")
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n"}
 _STATUS_WORD_MARKER_FIELD = "是否为 status word"
+_STATUS_WORDS_FILE = "Status_Words.csv"
 
 _LANG_SUFFIX = {
     "ja": "jp",
@@ -236,8 +237,6 @@ def _collect_rows(
     def collect(*, allow_model_fallback: bool) -> list[dict[str, str]]:
         collected: list[dict[str, str]] = []
         for row in blocks:
-            if _is_status_word_row(row):
-                continue
             if not _truthy(row.get("Is_latest") or row.get("Is_Latest") or row.get("is_latest"), default=True):
                 continue
             if not allow_model_fallback and not _matches_model(row, target_model=target_model, target_region=target_region):
@@ -299,26 +298,49 @@ def _copy_text(
     )
 
 
-def _is_status_word_row(row: dict[str, str]) -> bool:
-    return _truthy(row.get(_STATUS_WORD_MARKER_FIELD, ""), default=False)
+def _status_words_csv_path(vars_map: dict[str, str]) -> Path | None:
+    for key in ("lcd_status_words_csv", "status_words_csv", "translation_memory_status_words_csv"):
+        raw = (vars_map.get(key) or "").strip()
+        if raw:
+            return Path(raw)
+    localized_copy_csv = (vars_map.get("localized_copy_csv") or "").strip()
+    if localized_copy_csv:
+        return Path(localized_copy_csv).with_name(_STATUS_WORDS_FILE)
+    return None
 
 
-def _status_labels(blocks: list[dict[str, str]], *, lang: str) -> tuple[str, ...]:
-    if not blocks:
-        return ()
-    headers = set().union(*(row.keys() for row in blocks))
-    label_col = _first_existing(
-        headers,
-        [*(f"icon_{suffix}" for suffix in _lang_suffix_candidates(lang)), "icon_en"],
-    )
+def _status_word_lang_candidates(lang: str) -> list[str]:
+    raw = (lang or "").strip()
+    normalized = raw.casefold().replace("_", "-")
+    candidates = [raw, normalized]
+    if normalized in {"ja", "jp"}:
+        candidates.extend(["jp", "ja"])
+    if normalized in {"uk", "ukr"}:
+        candidates.extend(["uk", "ukr"])
+    if normalized in {"pt-br", "br"}:
+        candidates.extend(["pt-BR", "pt-br", "pt_BR", "br"])
+    return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _status_labels(vars_map: dict[str, str], *, lang: str) -> tuple[str, ...]:
+    path = _status_words_csv_path(vars_map)
+    if path is None or not path.exists():
+        raise ValueError("lcd_icons renderer requires Status_Words.csv exported from Translation Memory")
+    rows = _read_csv(str(path))
+    if not rows:
+        raise ValueError(f"lcd_icons status words snapshot is empty: {path}")
     labels: list[str] = []
-    for row in blocks:
-        if not _is_status_word_row(row):
+    lang_columns = _status_word_lang_candidates(lang)
+    for row in rows:
+        if not _truthy(row.get(_STATUS_WORD_MARKER_FIELD, ""), default=False):
             continue
-        label = (row.get(label_col) or row.get("icon_en") or "").strip()
-        if label and label not in labels:
-            labels.append(label)
+        for column in lang_columns:
+            label = (row.get(column) or "").strip()
+            if label and label not in labels:
+                labels.append(label)
     labels.sort(key=len, reverse=True)
+    if not labels:
+        raise ValueError(f"lcd_icons status words snapshot has no labels for lang={lang}: {path}")
     return tuple(labels)
 
 
@@ -526,7 +548,7 @@ def render_lcd_icons_page(
         target_model=target_model,
         target_region=target_region,
     )
-    status_labels = _status_labels(blocks, lang=lang)
+    status_labels = _status_labels(vars_map, lang=lang)
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(title))
     rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(alt))
