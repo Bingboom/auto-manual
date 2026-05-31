@@ -5,7 +5,7 @@
 -------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/front_product.jpg
-   :alt: {{ copy:product_overview.front_image_alt }}
+   :alt: {{ copy:product_overview.front_view }}
    :width: 420px
 
 .. list-table::
@@ -47,7 +47,7 @@
 ------------------------------------------
 
 .. image:: templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: {{ copy:product_overview.right_image_alt }}
+   :alt: {{ copy:product_overview.right_side_view }}
    :width: 420px
 
 .. list-table::

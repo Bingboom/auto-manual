@@ -1296,7 +1296,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         )
 
         self.assertIn("显示屏界面", out)
-        self.assertIn("LCD 图标示意图。", out)
+        self.assertNotIn("LCD 图标示意图。", out)
         self.assertIn("     - | **点亮：** Wi-Fi 已连接。", out)
         self.assertIn("       | **闪烁：** 准备连接 Wi-Fi。", out)
         self.assertIn("       | **熄灭：** Wi-Fi 未连接。", out)
@@ -1356,10 +1356,10 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("When the CA or CC/USB output is on:", fr_out)
         self.assertIn("液晶画面", ja_out)
-        self.assertIn("LCDアイコンマップ。", ja_out)
+        self.assertNotIn("LCDアイコンマップ。", ja_out)
         self.assertIn("AC_UKR / DC_UKR", uk_out)
         self.assertIn("ЕКРАН LCD", uk_out)
-        self.assertIn("Заглушка схеми значків LCD.", uk_out)
+        self.assertNotIn("Заглушка схеми значків LCD.", uk_out)
 
     def test_render_lcd_icons_page_supports_pt_br_columns_and_br_variable_overrides(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1418,7 +1418,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             )
 
         self.assertIn("TELA LCD", out)
-        self.assertIn("Mapa de ícones da tela LCD.", out)
+        self.assertNotIn("Mapa de ícones da tela LCD.", out)
         self.assertIn("Modo de economia de energia", out)
         self.assertIn("Quando a saída CA ou CC/USB estiver ligada:", out)
         self.assertIn("| **Ligado:** Modo de economia de energia ativado.", out)

@@ -12,7 +12,7 @@ That means:
 
 - page structure lives in RST templates
 - spec section title localization lives in [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
-- reusable short copy such as CSV-page titles, table headers, non-row alt text, and Product overview labels lives in [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
+- reusable short copy such as CSV-page titles, table headers, and Product overview labels lives in [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
 - visual style lives in CSS, LaTeX components, or the shared Word DOCX style remapper
 - Word document title comes from config plus placeholder substitution
 
@@ -37,7 +37,7 @@ Use this file for spec section title mapping across languages.
 
 - [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
 
-Use this file for reusable short text that should be translated and maintained with the phase2 content source, including LCD / Symbols page titles, table headers, non-row alt text, and Product overview labels. RST templates can reference this table with `{{ copy:<copy_key> }}`; missing copy is a build/check error. Symbols row content and signal labels stay in `symbols_blocks.csv`, and Symbols image alt text is derived from `symbol_key` or signal-row labels. LCD status words stay in Translation Memory rows marked `是否为 status word=Y` and are exported to `Status_Words.csv` for prefix bolding.
+Use this file for reusable short text that should be translated and maintained with the phase2 content source, including LCD / Symbols page titles, table headers, and Product overview labels. RST templates can reference this table with `{{ copy:<copy_key> }}`; missing copy is a build/check error. Image alt text is derived from existing page titles, panel titles, `symbol_key`, or signal-row labels instead of maintained as separate copy rows. Symbols row content and signal labels stay in `symbols_blocks.csv`. LCD status words stay in Translation Memory rows marked `是否为 status word=Y` and are exported to `Status_Words.csv` for prefix bolding.
 
 ### 2.4 HTML Style
 
