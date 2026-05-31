@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import csv
+from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 
 from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR, SYMBOLS_BLOCKS_FILE
@@ -17,6 +19,23 @@ _SIGNAL_WORD_KEYS = {"warning", "danger", "caution", "note", "tips"}
 _SIGNAL_WORD_ALIASES = {"tip": "tips", "safety_warning": "warning", "symbols_notice": "danger"}
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n", "outdated"}
+_SIGNAL_LABEL_BLOCK_TYPES = {"signal_row", "alert_label_row"}
+_LABEL_COLUMN_PREFIXES = (
+    "label",
+    "labels",
+    "alias",
+    "aliases",
+    "alert_label",
+    "alert_labels",
+    "signal_word",
+    "signal_words",
+)
+
+
+@dataclass(frozen=True)
+class SignalLabel:
+    key: str
+    label: str
 
 
 def _default_symbols_blocks_csv() -> Path:
@@ -50,6 +69,14 @@ def _split_tokens(value: str) -> list[str]:
     return [
         token.strip()
         for token in (value or "").replace(";", ",").replace("|", ",").split(",")
+        if token.strip()
+    ]
+
+
+def _split_label_values(value: str) -> list[str]:
+    return [
+        token.strip()
+        for token in (value or "").replace("\n", ";").replace("|", ";").replace(",", ";").split(";")
         if token.strip()
     ]
 
@@ -108,14 +135,22 @@ def _sort_order(row: dict[str, str]) -> float:
         return 0.0
 
 
-def _read_signal_rows(path: Path) -> list[dict[str, str]]:
+@lru_cache(maxsize=16)
+def _read_signal_rows_cached(path_text: str) -> tuple[dict[str, str], ...]:
+    path = Path(path_text)
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
-        return [
+        rows = [
             row
             for row in reader
-            if (row.get("block_type") or row.get("Block_type") or "").strip().casefold() == "signal_row"
+            if (row.get("block_type") or row.get("Block_type") or "").strip().casefold()
+            in _SIGNAL_LABEL_BLOCK_TYPES
         ]
+    return tuple(rows)
+
+
+def _read_signal_rows(path: Path) -> list[dict[str, str]]:
+    return [dict(row) for row in _read_signal_rows_cached(path.resolve().as_posix())]
 
 
 def _label_columns(lang: str) -> tuple[str, ...]:
@@ -134,36 +169,85 @@ def _label_columns(lang: str) -> tuple[str, ...]:
     for token in aliases:
         if not token:
             continue
-        columns.extend(
-            (
-                f"label_{token}",
-                f"Label_{token}",
-                f"signal_word_{token}",
-                f"Signal_word_{token}",
-            )
-        )
-    columns.extend(("label", "Label", "signal_word", "Signal_word"))
+        for prefix in _LABEL_COLUMN_PREFIXES:
+            columns.append(f"{prefix}_{token}")
+            columns.append(f"{prefix.title()}_{token}")
+    for prefix in _LABEL_COLUMN_PREFIXES:
+        columns.append(prefix)
+        columns.append(prefix.title())
     return tuple(dict.fromkeys(columns))
 
 
+def _all_label_columns(row: dict[str, str]) -> tuple[str, ...]:
+    columns: list[str] = []
+    for column in row:
+        normalized = column.strip().casefold()
+        if any(normalized == prefix or normalized.startswith(f"{prefix}_") for prefix in _LABEL_COLUMN_PREFIXES):
+            columns.append(column)
+    return tuple(columns)
+
+
+def labels_from_signal_row(
+    row: dict[str, str],
+    *,
+    key: str | None = None,
+    lang: str | None = None,
+    include_symbol_key: bool = True,
+) -> tuple[str, ...]:
+    columns = _label_columns(_resolve_lang(lang)) if lang is not None else _all_label_columns(row)
+    values: list[str] = []
+    for column in columns:
+        for value in _split_label_values(row.get(column) or ""):
+            if value not in values:
+                values.append(value)
+
+    if include_symbol_key:
+        signal_key = _resolve_key(key or row.get("symbol_key") or "")
+        label = (row.get("symbol_key") or signal_key).strip().upper()
+        if label and label not in values:
+            values.append(label)
+
+    return tuple(values)
+
+
 def label_from_signal_row(row: dict[str, str], *, key: str | None = None, lang: str | None = None) -> str:
-    """Return the visible signal label from a symbols_blocks signal_row.
+    """Return the visible signal label from a symbols_blocks signal_row."""
 
-    Current Feishu rows use ``symbol_key`` as the maintained signal token. If
-    future rows add explicit label columns, those values take precedence.
-    """
-
-    resolved_lang = _resolve_lang(lang)
-    for column in _label_columns(resolved_lang):
-        value = (row.get(column) or "").strip()
-        if value:
-            return value
-
+    labels = labels_from_signal_row(row, key=key, lang=lang, include_symbol_key=True)
+    if labels:
+        return labels[0]
     signal_key = _resolve_key(key or row.get("symbol_key") or "")
     row_signal_key = _row_key(row)
     if signal_key != row_signal_key:
         raise ValueError(f"signal row key mismatch: expected {signal_key}, got {row_signal_key}")
     return (row.get("symbol_key") or signal_key).strip().upper()
+
+
+def signal_label_entries(
+    *,
+    symbols_blocks_csv: str | Path | None = None,
+    lang: str | None = None,
+) -> tuple[SignalLabel, ...]:
+    csv_path = Path(symbols_blocks_csv) if symbols_blocks_csv else _default_symbols_blocks_csv()
+    entries: list[SignalLabel] = []
+    seen: set[tuple[str, str]] = set()
+    for row in _read_signal_rows(csv_path):
+        if not _row_enabled(row):
+            continue
+        signal_key = _row_key_or_none(row)
+        if signal_key is None:
+            continue
+        labels = [
+            *labels_from_signal_row(row, key=signal_key, lang=lang, include_symbol_key=True),
+            *labels_from_signal_row(row, key=signal_key, lang=None, include_symbol_key=False),
+        ]
+        for label in labels:
+            dedupe_key = (signal_key, label)
+            if dedupe_key in seen:
+                continue
+            seen.add(dedupe_key)
+            entries.append(SignalLabel(key=signal_key, label=label))
+    return tuple(entries)
 
 
 def get_signal_word(

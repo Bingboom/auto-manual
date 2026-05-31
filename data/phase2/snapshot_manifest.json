@@ -50,8 +50,8 @@
       "logical_name": "symbols_blocks",
       "file_name": "symbols_blocks.csv",
       "path": "data/phase2/symbols_blocks.csv",
-      "row_count": 28,
-      "sha256": "a8955d0aa555b90c857e8f69807d98b6814cc1382ef26fca6277abd3cf35d89e",
+      "row_count": 17,
+      "sha256": "1a4b539db4389f6be57f33632bfc7196e354f782d10fa898d57a10947468e906",
       "previous_sha256": null,
       "changed": true
     },
