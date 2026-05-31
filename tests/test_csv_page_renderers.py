@@ -1070,8 +1070,57 @@ class TestCsvPageRenderers(unittest.TestCase):
             + "\n"
         )
 
-    def _lcd_blocks(self) -> list[dict[str, str]]:
+    def _lcd_status_blocks(self) -> list[dict[str, str]]:
         return [
+            {
+                "No.": "1001",
+                "Is_latest": "TRUE",
+                "icon_en": "On",
+                "icon_zh": "点亮",
+                "icon_jp": "点灯",
+                "icon_fr": "Activé",
+                "icon_es": "Encendido",
+                "icon_pt-BR": "Ligado",
+                "icon_de": "Ein",
+                "icon_it": "Acceso",
+                "icon_ukr": "Увімкнено",
+                "是否为 status word": "Y",
+            },
+            {
+                "No.": "1002",
+                "Is_latest": "TRUE",
+                "icon_en": "Off",
+                "icon_zh": "熄灭",
+                "icon_jp": "消灯",
+                "icon_fr": "Désactivé",
+                "icon_es": "Apagado",
+                "icon_pt-BR": "Desligado",
+                "icon_de": "Aus",
+                "icon_it": "Spento",
+                "icon_ukr": "Вимкнено",
+                "是否为 status word": "Y",
+            },
+            {
+                "No.": "1003",
+                "Is_latest": "TRUE",
+                "icon_en": "Blink",
+                "icon_zh": "闪烁",
+                "icon_jp": "点滅",
+                "icon_fr": "Clignotant",
+                "icon_es": "Parpadeo",
+                "icon_pt-BR": "Piscando",
+                "icon_de": "Blinken",
+                "icon_it": "Lampeggiante",
+                "icon_ukr": "Блимає",
+                "是否为 status word": "Y",
+            },
+        ]
+
+    def _with_lcd_status_blocks(self, blocks: list[dict[str, str]]) -> list[dict[str, str]]:
+        return [*blocks, *self._lcd_status_blocks()]
+
+    def _lcd_blocks(self) -> list[dict[str, str]]:
+        return self._with_lcd_status_blocks([
             {
                 "No.": "22",
                 "Model": "JE-1000F",
@@ -1098,7 +1147,7 @@ class TestCsvPageRenderers(unittest.TestCase):
                 "icon_desc_fr": "SHOULD_NOT_RENDER",
                 "icon_desc_ukr": "SHOULD_NOT_RENDER",
             },
-        ]
+        ])
 
     def test_render_lcd_icons_page_resolves_model_default_variables(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -1151,7 +1200,7 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         out = renderers.render_lcd_icons_page(
             template=self._lcd_template(),
-            blocks=blocks,
+            blocks=self._with_lcd_status_blocks(blocks),
             sku_id="",
             lang="en",
             vars_map=self._localized_copy_vars(model="JE-1000F"),
@@ -1214,7 +1263,7 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         out = renderers.render_lcd_icons_page(
             template=self._lcd_template(),
-            blocks=blocks,
+            blocks=self._with_lcd_status_blocks(blocks),
             sku_id="",
             lang="en",
             vars_map=self._localized_copy_vars(model="JE-1000F"),
@@ -1260,7 +1309,7 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         out = renderers.render_lcd_icons_page(
             template=self._lcd_template(),
-            blocks=blocks,
+            blocks=self._with_lcd_status_blocks(blocks),
             sku_id="",
             lang="en",
             vars_map=self._localized_copy_vars(model="JE-1000F"),
@@ -1285,7 +1334,7 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         out = renderers.render_lcd_icons_page(
             template=self._lcd_template(),
-            blocks=blocks,
+            blocks=self._with_lcd_status_blocks(blocks),
             sku_id="",
             lang="zh",
             vars_map=self._localized_copy_vars(model="JE-1000F"),
@@ -1402,7 +1451,7 @@ class TestCsvPageRenderers(unittest.TestCase):
 
             out = renderers.render_lcd_icons_page(
                 template=self._lcd_template(),
-                blocks=blocks,
+                blocks=self._with_lcd_status_blocks(blocks),
                 sku_id="",
                 lang="pt-BR",
                 vars_map=self._localized_copy_vars(

@@ -244,6 +244,7 @@ class TestSyncData(unittest.TestCase):
                 "icon_de",
                 "icon_it",
                 "icon_ukr",
+                "是否为 status word",
                 "icon_desc_en",
                 "icon_desc_zh",
                 "icon_desc_jp",

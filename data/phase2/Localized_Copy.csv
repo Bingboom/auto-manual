@@ -1,9 +1,6 @@
 copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en,text_zh,text_ja,text_fr,text_es,text_pt-BR,text_de,text_it,text_uk,notes
 lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,显示屏界面,液晶画面,AFFICHAGE LCD,PANTALLA LCD,TELA LCD,LCD-ANZEIGE,DISPLAY LCD,ЕКРАН LCD,
 lcd_icons.image_alt,lcd_icons,alt_text,ALL,ALL,en,TRUE,V1.0,LCD icon map placeholder.,LCD 图标示意图。,LCDアイコンマップ。,Carte des icônes de l'écran LCD.,Mapa de iconos de la pantalla LCD.,Mapa de ícones da tela LCD.,Abbildung der LCD-Symbole als Platzhalter.,Segnaposto mappa icone LCD.,Заглушка схеми значків LCD.,
-lcd_icons.status.on,lcd_icons,state_word,ALL,ALL,en,TRUE,V1.0,On,点亮,点灯,Activé,Encendido,Ligado,Ein,Acceso,Увімкнено,
-lcd_icons.status.off,lcd_icons,state_word,ALL,ALL,en,TRUE,V1.0,Off,熄灭,消灯,Désactivé,Apagado,Desligado,Aus,Spento,Вимкнено,
-lcd_icons.status.blink,lcd_icons,state_word,ALL,ALL,en,TRUE,V1.0,Blink,闪烁,点滅,Clignotant,Parpadeo,Piscando,Blinken,Lampeggiante,Блимає,
 symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,符号含义,記号の意味,SIGNIFICATION DES SYMBOLES,SIGNIFICADO DE LOS SÍMBOLOS,SIGNIFICADO DOS SÍMBOLOS,BEDEUTUNG DER SYMBOLE,SIGNIFICATO DEI SIMBOLI,ЗНАЧЕННЯ СИМВОЛІВ,
 symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,符号,記号,Symbole,Símbolo,Símbolo,Symbol,Simbolo,Символ,
 symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,含义,意味,Signification,Significado,Significado,Bedeutung,Significato,Значення,

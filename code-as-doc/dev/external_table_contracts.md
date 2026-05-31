@@ -33,7 +33,7 @@ Required synced tables:
 | `lcd_icons` | `lcd_icons_blocks.csv` | LCD icon row content, images, and variable markers |
 | `variable_defaults` | `Variable_Defaults.csv` | default values for LCD description variables |
 | `variable_lang_overrides` | `Variable_Lang_Overrides.csv` | language-specific LCD variable overrides |
-| `localized_copy` | `Localized_Copy.csv` | shared short copy for page titles, headers, alt text, state words, and labels |
+| `localized_copy` | `Localized_Copy.csv` | shared short copy for page titles, headers, alt text, and labels |
 
 Required derived files:
 

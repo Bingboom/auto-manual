@@ -224,7 +224,7 @@ class TestValidateConfig(unittest.TestCase):
                     "provider": "lark_cli",
                     "base_token_env": "FEISHU_BASE_TOKEN",
                     "tables": {
-                        "lcd_icons": {"table_id": "tblDII3oyqFhQYHn", "view_id": "vewerElnZ3"},
+                        "lcd_icons": {"table_id": "tblDII3oyqFhQYHn", "view_id": "vewUQlvMFL"},
                         "troubleshooting": {"table_id": "tblUSuk3Q5BKTdTh", "view_id": "vewZne4CUk"},
                         "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
                         "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
