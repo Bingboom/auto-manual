@@ -35,7 +35,7 @@ DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
 DEFAULT_CACHE_TTL_SECONDS = 900
 CACHE_SCHEMA_VERSION = 2
-LIVE_TM_LANGUAGE_FIELDS = {"en", "fr", "es", "de", "it", "uk", "jp", "ja", "kr", "pt-br", "zh"}
+LIVE_TM_LANGUAGE_FIELDS = {"en", "fr", "es", "de", "it", "uk", "jp", "ja", "ko", "kr", "pt-br", "zh"}
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

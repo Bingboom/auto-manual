@@ -20,7 +20,7 @@ Before writing, run `lark-cli base +table-get` and use the returned field IDs. D
 
 ## Language Field Pattern
 
-The source field is usually `en`. The target field is the requested language field, such as `fr`, `es`, `de`, `it`, `uk`, `jp`, `pt-BR`, or `kr`.
+The source field is usually `en`. The target field is the requested language field, such as `fr`, `es`, `de`, `it`, `uk`, `jp`, `ko`, or `pt-BR`. (Both tables use `ko` for Korean and `uk` for Ukrainian as of the 2026-06-01 column standardization; Japanese stays `jp` to match the phase2 build convention.)
 
 For the target language, also locate:
 
