@@ -48,7 +48,7 @@ Como alternativa, escaneie o código QR abaixo para baixar e instalar o aplicati
      -
        - Selecione uma rede Wi-Fi na faixa de 2,4 GHz. O dispositivo não suporta redes Wi-Fi na faixa de 5 GHz.
 
-| 2.5 Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo permanecerá aceso.
+| Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo permanecerá aceso.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Tela de resultado da conexão no aplicativo.

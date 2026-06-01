@@ -48,7 +48,7 @@ Alternatively, scan the QR code below to download and install the App.
      -
        - Please select a Wi-Fi network in the 2.4 GHz band. The device does not support a Wi-Fi network in the 5 GHz band.
 
-| 2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
+| After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: App setup result screen placeholder.

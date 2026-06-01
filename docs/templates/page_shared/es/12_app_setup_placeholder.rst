@@ -47,7 +47,7 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
    * - **NOTA**
      - Selecciona una red Wi-Fi en la banda de 2,4 GHz. El dispositivo no admite una red Wi-Fi en la banda de 5 GHz.
 
-| 2.5 Después de agregar exitosamente el dispositivo en la App, el icono del Wi-Fi en el dispositivo permanecerá siempre encendido.
+| Después de agregar exitosamente el dispositivo en la App, el icono del Wi-Fi en el dispositivo permanecerá siempre encendido.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Marcador de posición de la pantalla de resultado de conexión en la aplicación.
