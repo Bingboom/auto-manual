@@ -1,10 +1,10 @@
 # Translation Corpus Bridge — Landing Plan
 
 Updated: 2026-06-01
-Status: **Phases 1–3 executed** (2026-06-01) — single-source migration, the `Glossary_term`
-relation, 182 sentence→term links, and all 9 `term_<lang>` lookups are live and verified.
-Optional follow-ups remain (per-model dedup, language-column standardization). Every write step
-was owner-approved (夏冰).
+Status: **Phases 1–3 + cleanup complete** (2026-06-01) — single-source migration, the
+`Glossary_term` relation, 182 sentence→term links, all 9 `term_<lang>` lookups, per-model
+sentence merge, whitespace + glossary-dedup, and language-column standardization
+(`ko`/`uk`, `jp` kept) are all live and verified. Every write step was owner-approved (夏冰).
 
 > **Phase 1 done (2026-06-01):** harvested 112 translations from TM term-rows into empty
 > glossary cells across 42 records (verified 112/112; conflict cells untouched). Glossary
@@ -238,11 +238,11 @@ per row (the link is replaced with the full matched set each time).
 - ~~Delete the legacy lookups `筛选术语值` (TM) and `筛选` (glossary)~~ **done 2026-06-01.** The
   hidden legacy link field they sat on cannot be seen or removed via lark-cli; it remains
   orphaned but harmless (nothing reads it).
-- Language-column standardization (governance SOP §3: `kr`/`ko-KR`→`ko`, `uk`/`乌克兰语`→`uk`,
-  `jp`→`ja`) should land **before or with** the lookups so the `term_<lang>` names match the
-  standard. Rename in both tables + update
+- Language-column standardization **done 2026-06-01** (governance SOP §3): Korean `kr`/`ko-KR`
+  → `ko`, Ukrainian `乌克兰语` → `uk` in both tables; **Japanese kept as `jp`** to match the
+  phase2 build convention (changing to `ja` would diverge from `STATUS_WORD_COLUMNS` etc.).
   [`query_live_translation_memory.py`](../../.agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py)
-  in the same change.
+  now recognizes `ko`. Both tables now share `en zh fr es de it uk jp ko pt-BR`.
 
 ---
 

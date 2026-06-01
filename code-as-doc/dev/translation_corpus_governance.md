@@ -56,30 +56,29 @@ Four rules follow:
 
 ---
 
-## 3. Language-column standard
+## 3. Language-column standard — standardized 2026-06-01
 
-Both tables must use **identical** language column names. Today they do not, which forces
-per-language patching in any sync code (the live-query script already patches `kr`/`ko-KR`).
+Both tables now use **identical** language column names:
+`en` `zh` `fr` `es` `de` `it` `uk` `jp` `ko` `pt-BR`.
 
-Canonical target codes (BCP-47-aligned):
+| Language | Column | Was (句对库 / 术语库) → now |
+| --- | --- | --- |
+| Korean | `ko` | `kr` / `ko-KR` → unified to **`ko`** |
+| Ukrainian | `uk` | `uk` / `乌克兰语` → unified to **`uk`** |
+| Japanese | `jp` | `jp` / `jp` → **kept `jp`** |
+| Others | `en` `zh` `fr` `es` `de` `it` `pt-BR` | already consistent |
 
-| Language | Canonical | Current 句对库 | Current 术语库 |
-| --- | --- | --- | --- |
-| English (source) | `en` | `en` | `en` |
-| Chinese | `zh` | `zh` | `zh` |
-| French | `fr` | `fr` | `fr` |
-| Spanish | `es` | `es` | `es` |
-| German | `de` | `de` | `de` |
-| Italian | `it` | `it` | `it` |
-| Portuguese (BR) | `pt-BR` | `pt-BR` | `pt-BR` |
-| Ukrainian | `uk` | `uk` | **`乌克兰语`** ✗ |
-| Japanese | `ja` | **`jp`** ✗ | **`jp`** ✗ |
-| Korean | `ko` | **`kr`** ✗ | **`ko-KR`** ✗ |
+**Japanese stays `jp`, not BCP-47 `ja`** — the phase2 build convention uses `jp` throughout
+(`label_jp`, `troubleshooting_jp`, `STATUS_WORD_COLUMNS` in
+[`manual_copy_source.py`](../../tools/manual_copy_source.py)), so the CAT tables match the build
+rather than diverging. Korean and Ukrainian are **not** phase2 build columns (only `en zh jp
+fr es pt-BR de it uk` feed `Status_Words.csv`), so unifying them was build-safe.
 
-Renaming a language column is a **contract change**: it must update both tables and the
-language mapping in
+Renaming a language column is a **contract change**: update both tables and the recognized field
+set in
 [`query_live_translation_memory.py`](../../.agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py)
-in the same change, and prefer adding a compatible alias before removing the old name.
+(now includes `ko`) in the same change. The `term_<lang>` lookups reference glossary columns by
+**field ID**, so a rename does not break them.
 
 ---
 
@@ -204,7 +203,7 @@ Glossary (`tblBIEtLSoAA6W9U`): **98 rows**, 83 distinct `en` (15 are empty shado
 
 Open items found:
 
-- TM: 1 empty-source row (`recvlfSn0Qmb17`, since gone); 30 duplicate `en` keys / 70 rows (per-model copies, some with divergent targets — still open); whitespace **normalized 2026-06-01** (27 TM + 8 GL cells, internal newlines preserved).
+- TM: 1 empty-source row (`recvlfSn0Qmb17`, since gone); per-model duplicate sentences **merged 2026-06-01** — 22 truly-redundant groups collapsed (31 rows removed, `Model` multi-select union, `Glossary_term` links preserved), 6 genuinely-divergent groups (model-specific bypass-mode wording, an untranslated DE placeholder, etc.) **kept separate for human review**; whitespace **normalized 2026-06-01** (27 TM + 8 GL cells, internal newlines preserved). TM now 766 rows.
 - Glossary: 15 duplicate-`en` rows (twins carrying only `en`+`pt-BR`) — **merged + deleted 2026-06-01** (unique `pt-BR` harvested into the full row first; 98 → 83 rows, duplicate `en` now 0).
   `No` filled on only 31/98 with repeated values (not a key).
 - Cross-table: 46 `en` strings in both tables; 4 confirmed target conflicts (`fr` danger=DANGER/ATTENTION, `fr` ups=UPS (ASI)/ASI, `pt-BR` blink=Pisca/Piscando, `it` ac wall charging indicator=…a parete/…da muro).
