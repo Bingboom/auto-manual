@@ -39,7 +39,7 @@ class PrefaceTemplateTests(unittest.TestCase):
             ROOT / "docs" / "templates" / "page_shared" / "en" / "01_user_maintenance_instructions.rst"
         ).read_text(encoding="utf-8")
 
-        self.assertIn("SAFETY PRECAUTIONS FOR USE", text)
+        self.assertIn("IMPORTANT SAFETY INFORMATION", text)
         self.assertNotIn("USER MAINTENANCE INSTRUCTIONS", text)
         self.assertIn("USER MAINTENANCE INSTRUCTIONS", maintenance_text)
         for marker in (
