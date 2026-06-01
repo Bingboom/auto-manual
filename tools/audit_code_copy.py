@@ -491,7 +491,7 @@ def classify_string(
     if rel_path == "tools/signal_words.py" and context.startswith("_SIGNAL_WORDS") and not is_dict_key:
         return Classification(
             "manual_output",
-            "localized_copy",
+            "phase2_blocks",
             "P0",
             "manual notice/signal word in Python",
             page_or_surface="shared_signal_words",
@@ -514,7 +514,7 @@ def classify_string(
                 identifier = "symbols_blocks.signal_row.meaning"
                 rst_option = "maybe: only if meaning is fixed across all products/languages"
             elif dict_value_key in {"page_title", "header_symbol", "header_meaning", "alt", "label"}:
-                owner = "localized_copy"
+                owner = "manual_copy_source"
                 role = {
                     "page_title": "page_title",
                     "header_symbol": "table_header",
@@ -522,7 +522,7 @@ def classify_string(
                     "alt": "alt_text",
                     "label": "signal_label",
                 }[dict_value_key]
-                destination = "Localized_Copy.csv"
+                destination = "Manual_Copy_Source.csv plus Translation Memory manual_copy tag"
                 identifier = f"symbols.{dict_value_key}"
                 rst_option = "yes: template copy is possible if not operator-maintained"
             else:
@@ -548,14 +548,14 @@ def classify_string(
             identifier_prefix = "symbols.signal" if "SIGNAL_DEFAULT_ASSETS" in context else "symbols.symbol"
             return Classification(
                 "manual_output",
-                "localized_copy",
+                "phase2_blocks",
                 "P0",
                 "Symbols alt text default in renderer",
                 page_or_surface="symbols",
                 content_role="alt_text",
-                suggested_destination="Localized_Copy.csv",
+                suggested_destination="derive from symbols_blocks.csv symbol_key or signal_row labels",
                 suggested_identifier=f"{identifier_prefix}.<source_key>.alt",
-                rst_template_option="yes: template copy is possible if static",
+                rst_template_option="no: derive from owned source rows",
             )
 
     if rel_path == "tools/word_bundle_html_rewrite.py":
@@ -586,12 +586,12 @@ def classify_string(
         if "banner placeholder" in text:
             return Classification(
                 "manual_output",
-                "localized_copy",
+                "manual_copy_source",
                 "P0",
                 "generated alt text used by HTML/Word rewrite",
                 page_or_surface="word_html_rewrite",
                 content_role="generated_alt_text",
-                suggested_destination="Localized_Copy.csv",
+                suggested_destination="Manual_Copy_Source.csv plus Translation Memory manual_copy tag if not derivable",
                 suggested_identifier="alert_banner.alt",
                 rst_template_option="yes: template alt is possible if static",
             )
@@ -599,12 +599,12 @@ def classify_string(
     if rel_path == "tools/csv_pages/renderers_spec_parser.py" and text == "SPECIFICATIONS":
         return Classification(
             "manual_output",
-            "localized_copy",
+            "manual_copy_source",
             "P0",
             "spec page title fallback stored in renderer",
             page_or_surface="specifications",
             content_role="page_title_fallback",
-            suggested_destination="Localized_Copy.csv or spec title block",
+            suggested_destination="Manual_Copy_Source.csv plus Translation Memory manual_copy tag or spec title block",
             suggested_identifier="spec.page_title",
             rst_template_option="yes: template title is possible if fixed",
         )
@@ -617,7 +617,7 @@ def classify_string(
             "default Word title stored in code",
             page_or_surface="word_bundle",
             content_role="manual_title",
-            suggested_destination="config or Localized_Copy.csv",
+            suggested_destination="config or Manual_Copy_Source.csv plus Translation Memory manual_copy tag",
             suggested_identifier="manual.title.default",
             rst_template_option="no: document metadata/title",
         )
@@ -906,7 +906,7 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
     )
     if "tools/csv_pages/renderers_symbols.py" in p0_files:
         lines.append(
-            "- `tools/csv_pages/renderers_symbols.py`: migrate legacy `LANG_COPY` page chrome and alt text to `Localized_Copy.csv`; move signal meanings to `symbols_blocks.csv`."
+            "- `tools/csv_pages/renderers_symbols.py`: migrate legacy `LANG_COPY` page chrome to `Manual_Copy_Source.csv` plus tagged Translation Memory; derive alt text from existing source rows and move signal meanings to `symbols_blocks.csv`."
         )
     if "tools/signal_words.py" in p0_files:
         lines.append(
@@ -918,7 +918,7 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
             "- `tools/word_bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should stay in `symbols_blocks.csv` `signal_row` `label_*` fields."
         )
     if "tools/csv_pages/renderers_spec_parser.py" in p0_files:
-        lines.append("- `tools/csv_pages/renderers_spec_parser.py`: replace the `SPECIFICATIONS` title fallback with required localized copy or data validation.")
+        lines.append("- `tools/csv_pages/renderers_spec_parser.py`: replace the `SPECIFICATIONS` title fallback with required manual copy source or data validation.")
     if "tools/word_bundle_common.py" in p0_files:
         lines.append("- `tools/word_bundle_common.py`: make the default Word manual title config/data driven.")
     if not p0_files:
@@ -929,7 +929,7 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
             "",
             "## Migration Guidance",
             "",
-            "- Move short manual labels, titles, table headers, and alt text to `Localized_Copy.csv`.",
+            "- Move short manual labels, titles, and table headers to `Manual_Copy_Source.csv`; generate multilingual runtime copy from Translation Memory rows tagged `manual_copy`.",
             "- Move grouped business rows such as signal descriptions or symbol meanings to the relevant phase2 blocks table.",
             "- Move regional legal/support/channel values to config only when they are reused outside one template.",
             "- Keep report UI and technical diagnostics in code unless they become operator-maintained content.",

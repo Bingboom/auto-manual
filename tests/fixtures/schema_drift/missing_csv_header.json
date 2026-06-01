@@ -4,13 +4,12 @@
       "spec_master",
       "spec_footnotes",
       "spec_notes",
-      "spec_titles",
       "symbols_blocks",
       "lcd_icons",
       "troubleshooting",
       "variable_defaults",
       "variable_lang_overrides",
-      "localized_copy"
+      "manual_copy_source"
     ],
     "skipped_tables": [],
     "tables": [
@@ -25,10 +24,6 @@
       {
         "logical_name": "spec_notes",
         "file_name": "Spec_Notes.csv"
-      },
-      {
-        "logical_name": "spec_titles",
-        "file_name": "spec_titles.csv"
       },
       {
         "logical_name": "symbols_blocks",
@@ -51,14 +46,29 @@
         "file_name": "Variable_Lang_Overrides.csv"
       },
       {
-        "logical_name": "localized_copy",
-        "file_name": "Localized_Copy.csv"
+        "logical_name": "manual_copy_source",
+        "file_name": "Manual_Copy_Source.csv"
       }
     ],
     "derived_files": [
       {
         "logical_name": "row_key_mapping",
         "file_name": "row_key_mapping.csv"
+      },
+      {
+        "logical_name": "spec_titles",
+        "file_name": "spec_titles.csv",
+        "path": "data/phase2/spec_titles.csv"
+      },
+      {
+        "logical_name": "localized_copy",
+        "file_name": "Localized_Copy.csv",
+        "path": "data/phase2/Localized_Copy.csv"
+      },
+      {
+        "logical_name": "status_words",
+        "file_name": "Status_Words.csv",
+        "path": "data/phase2/Status_Words.csv"
       }
     ]
   },
@@ -232,6 +242,30 @@
       "text_it",
       "text_uk",
       "notes"
+    ],
+    "manual_copy_source": [
+      "copy_key",
+      "page_id",
+      "copy_type",
+      "Market",
+      "Model",
+      "Source_lang",
+      "Is_Latest",
+      "Version",
+      "source_text",
+      "notes"
+    ],
+    "status_words": [
+      "en",
+      "zh",
+      "jp",
+      "fr",
+      "es",
+      "pt-BR",
+      "de",
+      "it",
+      "uk",
+      "是否为 status word"
     ]
   },
   "queue_fields": {

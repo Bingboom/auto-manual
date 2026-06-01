@@ -25,12 +25,12 @@ Move to config when content is regional legal identity, support contact, URL, ma
 
 | Page area | Recommendation | Why | Estimated change | Risk |
 | --- | --- | --- | --- | --- |
-| Operation guide section titles and image alt text | Candidate for `localized_copy` | Short, repeated page chrome that translators may maintain consistently | Medium | Low |
-| Operation guide button-action microcopy such as On / Off / Press once | Candidate for `localized_copy` after key naming review | Repeated across targets and already overlaps LCD state terminology | Medium | Medium, because page-specific grammar differs by language |
+| Operation guide section titles and image alt text | Candidate for `Manual_Copy_Source` plus tagged TM only when not derivable | Short, repeated page chrome that translators may maintain consistently | Medium | Low |
+| Operation guide button-action microcopy such as On / Off / Press once | Candidate for source rows / TM tags after key naming review | Repeated across targets and already overlaps LCD state terminology | Medium | Medium, because page-specific grammar differs by language |
 | Operation guide long safety cautions, notes, and explanatory paragraphs | Keep in RST for now | They are long-form translated prose with page-local structure and warning formatting | High | High, because accidental sentence splitting can damage compliance wording |
 | Operation guide thresholds and product-specific values | Keep in `Spec_Master.csv` | These are model/spec values, not reusable copy | None | Low |
 | Operation guide images and RST directives | Keep in RST | Layout and asset placement are template structure | None | Low |
-| App setup section headings, button labels, and image alt text | Candidate for `localized_copy` | Short UI copy repeats across language families and may need coordinated translation | Medium | Medium, because CN app naming differs from global Jackery App wording |
+| App setup section headings, button labels, and image alt text | Candidate for `Manual_Copy_Source` plus tagged TM only when not derivable | Short UI copy repeats across language families and may need coordinated translation | Medium | Medium, because CN app naming differs from global Jackery App wording |
 | App setup QR/app-store instructions | Audit before moving | Business-maintained and regional, but may require per-market app name/store routing | Medium | Medium |
 | App setup binding, Wi-Fi, Bluetooth, and reset paragraphs | Keep in RST until content-block schema exists | Long procedural prose with target-specific phrasing | High | High |
 | App setup manufacturer/address and support tail text | Move to config if reused | This is regional environment/legal identity, not page content | Low | Medium, because CN-only legal text may not map to other families |
@@ -39,7 +39,7 @@ Move to config when content is regional legal identity, support contact, URL, ma
 
 Recommended next implementation round:
 
-1. Add `localized_copy` keys for Operation guide and App setup page titles, section headings, table labels, and image alt text.
+1. Add `Manual_Copy_Source` keys and matching `manual_copy` TM tags for Operation guide and App setup page titles, section headings, and table labels only where those strings are not already owned by a business block table.
 2. Keep body paragraphs in RST and add only copy-token support where labels are already isolated.
 3. Add a check contract for required copy keys per page/language before touching long prose.
 4. Review app market, support, manufacturer, and URL text for config ownership instead of a content table.
@@ -48,7 +48,7 @@ Not recommended in the next round:
 
 - Moving whole Operation guide paragraphs into a generic block table.
 - Splitting warning/caution bodies into sentence-level copy keys before compliance review.
-- Mixing model/spec values into `localized_copy`.
+- Mixing model/spec values into `Manual_Copy_Source` / generated `Localized_Copy.csv`.
 
 ## Decision
 

@@ -68,8 +68,8 @@ The current shared config expects these environment variables:
 - `FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID`
 - `FEISHU_PHASE2_SPEC_NOTES_TABLE_ID`
 - `FEISHU_PHASE2_SPEC_NOTES_VIEW_ID`
-- `FEISHU_PHASE2_SPEC_TITLES_TABLE_ID`
-- `FEISHU_PHASE2_SPEC_TITLES_VIEW_ID`
+- `FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID`
+- `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`
 - `FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID`
 - `FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID`
 
@@ -99,7 +99,7 @@ python3 build.py sync-data --config configs/config.us.yaml --data-root data/phas
    - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
    - [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
    - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
-   - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+   - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv), generated from Manual Copy Source plus tagged Translation Memory
    - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
    - [`data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv)
    - [`data/phase2/snapshot_manifest.json`](../data/phase2/snapshot_manifest.json)

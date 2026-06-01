@@ -4,6 +4,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
+from tools.manual_copy_source import (
+    MANUAL_COPY_SOURCE_COLUMNS,
+    MANUAL_COPY_SOURCE_FILE,
+    TRANSLATION_MEMORY_COLUMNS,
+)
+
 
 class RecordSource(Protocol):
     def fetch_records(
@@ -61,7 +67,6 @@ class SyncRunResult:
 
 
 TABLE_ORDER = (
-    "spec_titles",
     "spec_footnotes",
     "spec_notes",
     "symbols_blocks",
@@ -69,7 +74,7 @@ TABLE_ORDER = (
     "troubleshooting",
     "variable_defaults",
     "variable_lang_overrides",
-    "localized_copy",
+    "manual_copy_source",
     "spec_master",
 )
 SUPPORTED_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
@@ -166,21 +171,6 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Text_it",
             "Text_uk",
             "Enabled",
-        ),
-    ),
-    "spec_titles": TableSchema(
-        logical_name="spec_titles",
-        file_name="spec_titles.csv",
-        columns=(
-            "title_en",
-            "section_order",
-            "title_zh",
-            "title_jp",
-            "title_fr",
-            "title_es",
-            "title_de",
-            "title_it",
-            "title_uk",
         ),
     ),
     "symbols_blocks": TableSchema(
@@ -306,28 +296,14 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "to_prefix",
         ),
     ),
-    "localized_copy": TableSchema(
-        logical_name="localized_copy",
-        file_name="Localized_Copy.csv",
-        columns=(
-            "copy_key",
-            "page_id",
-            "copy_type",
-            "Region",
-            "Model",
-            "Source_lang",
-            "Is_Latest",
-            "Version",
-            "text_en",
-            "text_zh",
-            "text_ja",
-            "text_fr",
-            "text_es",
-            "text_pt-BR",
-            "text_de",
-            "text_it",
-            "text_uk",
-            "notes",
-        ),
+    "manual_copy_source": TableSchema(
+        logical_name="manual_copy_source",
+        file_name=MANUAL_COPY_SOURCE_FILE,
+        columns=MANUAL_COPY_SOURCE_COLUMNS,
+    ),
+    "translation_memory": TableSchema(
+        logical_name="translation_memory",
+        file_name="Translation_Memory.csv",
+        columns=TRANSLATION_MEMORY_COLUMNS,
     ),
 }

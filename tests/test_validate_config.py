@@ -228,7 +228,11 @@ class TestValidateConfig(unittest.TestCase):
                         "troubleshooting": {"table_id": "tblUSuk3Q5BKTdTh", "view_id": "vewZne4CUk"},
                         "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
                         "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
-                        "localized_copy": {"table_id_env": "FEISHU_PHASE2_LOCALIZED_COPY_TABLE_ID"},
+                        "manual_copy_source": {"table_id_env": "FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID"},
+                        "translation_memory": {
+                            "base_token_env": "FEISHU_TRANSLATION_MEMORY_BASE_TOKEN",
+                            "table_id": "tbl6gKPJPTvOcTWv",
+                        },
                     },
                 },
             },

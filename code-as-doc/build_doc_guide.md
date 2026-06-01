@@ -60,7 +60,7 @@ Meaning:
 - `spec-master-rebuild`: merge the Feishu source tables `规格参数明细` and `页面占位参数` into the read-model shape of `Spec_Master.csv`; it validates `spec_row_key` uniqueness, resolves Feishu linked-record footnote refs to stable `Footnote_id` values, and keeps `--write-back` only as a legacy bridge back to the old total table
 - `sync.phase2.tables.<name>` may now pin `table_id` and `view_id` directly in config; when present, those literal bindings take precedence over `table_id_env` / `view_id_env`, which is the safest way to keep one family on one known Base view
 - `sync.phase2.spec_master_sources` pins the two human-maintained source tables used by `spec-master-rebuild` and by `sync-data --table spec_master`; `sync.phase2.tables.spec_master` no longer needs a legacy total-table binding unless you intentionally use `spec-master-rebuild --write-back`
-- `lcd_icons`, `troubleshooting`, `symbols_blocks`, `variable_defaults`, `variable_lang_overrides`, and `localized_copy` sync as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv` and renders downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, the troubleshooting renderer reads `troubleshooting_blocks.csv`, the symbols renderer uses downloaded `Figure` attachments from `data/phase2/_attachments/symbols` when present, `symbols_blocks` also maintains signal metadata with `block_type=signal_row`, page short copy such as LCD / Symbols titles, headers, and Product overview labels resolves from `Localized_Copy.csv`, image alt text is derived from existing titles, `symbol_key`, or signal-row labels, LCD status-word bolding reads `Status_Words.csv` exported from Translation Memory rows marked `是否为 status word=Y`, and LCD description variables continue to resolve from `Variable_Defaults.csv` plus `Variable_Lang_Overrides.csv`
+- `lcd_icons`, `troubleshooting`, `symbols_blocks`, `variable_defaults`, `variable_lang_overrides`, and `manual_copy_source` sync as normal phase2 tables; the LCD icons renderer reads `lcd_icons_blocks.csv` and renders downloaded `figure` attachments from `data/phase2/_attachments/lcd_icons/`, the troubleshooting renderer reads `troubleshooting_blocks.csv`, the symbols renderer uses downloaded `Figure` attachments from `data/phase2/_attachments/symbols` when present, `symbols_blocks` also maintains signal metadata with `block_type=signal_row`, page short copy such as LCD / Symbols titles, headers, Product overview labels, and spec page / section titles is authored in `Manual_Copy_Source.csv`; `sync-data` renders generated runtime copy into `Localized_Copy.csv` and generated spec title metadata into `spec_titles.csv`, image alt text is derived from existing titles, `symbol_key`, or signal-row labels, LCD status-word bolding reads `Status_Words.csv` exported from Translation Memory rows marked `是否为 status word=Y`, and LCD description variables continue to resolve from `Variable_Defaults.csv` plus `Variable_Lang_Overrides.csv`
 - if the Base keeps `Model` as a linked-record field, maintain a text `Model_key` column for variable defaults so exact model matching stays independent of Feishu record ids
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
@@ -245,7 +245,7 @@ Pass target differences through:
 Phase2 snapshot rule:
 
 - keep the shared config families, but use a valid [`../data/phase2/`](../data/phase2) snapshot as the default build/review/publish source when it exists
-- the automatic phase2 default requires a complete manifest-backed core snapshot: `spec_master`, `spec_footnotes`, `spec_notes`, `spec_titles`, `symbols_blocks`, `troubleshooting`, `lcd_icons`, `variable_defaults`, `variable_lang_overrides`, and `localized_copy` must all appear as requested/synced tables in `snapshot_manifest.json`, and the derived `row_key_mapping` must be recorded as well; partial `sync-data --table ...` runs are allowed, but they are treated as explicit experiment snapshots unless you pass them through `--data-root`
+- the automatic phase2 default requires a complete manifest-backed core snapshot: `spec_master`, `spec_footnotes`, `spec_notes`, `symbols_blocks`, `troubleshooting`, `lcd_icons`, `variable_defaults`, `variable_lang_overrides`, and `manual_copy_source` must all appear as requested/synced tables in `snapshot_manifest.json`; derived `row_key_mapping`, `spec_titles.csv`, `Localized_Copy.csv`, and `Status_Words.csv` must also be recorded; partial `sync-data --table ...` runs are allowed, but they are treated as explicit experiment snapshots unless you pass them through `--data-root`
 - explicit `--data-root` still overrides the default, so you can point `rst`, `check`, `diff-report`, `release-manifest`, `publish`, and `process-build-queue` at a different root when needed
 - `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2` is still the explicit refresh step for the phase2 snapshot
 - static legal/support placeholders such as `WARRANTY_EMAIL` and `LEGAL_COMPANY_NAME` are injected from `build.rst_substitutions` in the active config; keep US values in US configs and override EU / pt-BR values there instead of hardcoding region-specific names in shared templates
@@ -301,7 +301,8 @@ That command requires:
 - a working `lark-cli` binary on `PATH`
 - a valid local `lark-cli` login session
 - the `FEISHU_PHASE2_*` environment variables referenced by [`../configs/config.us.yaml`](../configs/config.us.yaml) or [`../configs/config.ja.yaml`](../configs/config.ja.yaml)
-- `--dry-run` is the recommended machine-readiness check first; it now aggregates missing CLI and missing `FEISHU_PHASE2_*` bindings into one preflight error before any fetch
+- `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` for Translation Memory rows that generate `Localized_Copy.csv` and `Status_Words.csv`
+- `--dry-run` is the recommended machine-readiness check first; it now aggregates missing CLI, missing `FEISHU_PHASE2_*` bindings, and missing Translation Memory binding into one preflight error before any fetch
 - on Windows, the default `sync.phase2.cli_bin: lark-cli` is resolved to the installed shim automatically during fetch, so you do not need a Windows-only config override
 - when `spec_master` is included, the sync also refreshes [`../data/phase2/row_key_mapping.csv`](../data/phase2/row_key_mapping.csv) as the phase2 mirror of the row-label mapping table
 - if you also use the Feishu `Document_link` build queue, set `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID` and `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`; `process-build-queue` reuses the same `FEISHU_PHASE2_BASE_TOKEN`, auto-derives the current wiki destination from that base when possible, and optionally accepts `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` when you want to force a different parent wiki node
@@ -341,7 +342,7 @@ If you update any of these:
 - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
 - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
-- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+- [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv), generated from `Manual_Copy_Source.csv` plus Translation Memory `manual_copy` rows
 - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
 - [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
 
@@ -392,7 +393,7 @@ Parallel-language template note:
 - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
 - `Row_order` is now the explicit row order inside each `document_key + Page + Section`, while `Line_order` controls the line order inside one logical row
 - `Line_order` is required for rebuilds; use `1` for single-line rows and `1`, `2`, `3`, ... for multi-line rows under the same logical parameter
-- `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
+- generated `spec_titles.csv section_order` can hold the default order for visible spec sections, but a filled `Spec_Master.csv Section_order` overrides it
 - `project_code` / `项目代码` is no longer part of `Spec_Master.csv`; target rows by `Region` + `Model`
 - if a CLI/build target passes a document-key style model such as `JE-1000F_JP` or `JE-1000F-JP`, spec lookup first normalizes it back to the base model `JE-1000F` and still chooses rows by the explicit `Region`, so `JP` targets stay on `JP` spec rows
 - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source` before importing or checking the sheet

@@ -176,7 +176,7 @@ class TestAuditCodeCopy(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertIn("Total findings: 1", text)
             self.assertIn("P0 Migration Candidates", text)
-            self.assertIn("Localized_Copy.csv", text)
+            self.assertIn("Manual_Copy_Source.csv", text)
 
 
 if __name__ == "__main__":

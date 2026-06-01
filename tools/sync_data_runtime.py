@@ -19,6 +19,20 @@ from tools.spec_master_sources import (
     normalize_spec_master_source_rows,
     source_table_ids_from_cfg,
 )
+from tools.manual_copy_source import (
+    LOCALIZED_COPY_COLUMNS,
+    LOCALIZED_COPY_FILE,
+    MISSING_TRANSLATIONS_REPORT,
+    SPEC_TITLE_COLUMNS,
+    SPEC_TITLES_FILE,
+    STATUS_WORD_COLUMNS,
+    STATUS_WORDS_FILE,
+    build_localized_copy_rows,
+    build_spec_title_rows,
+    build_status_word_rows,
+    csv_text as manual_copy_csv_text,
+    missing_translations_csv_text,
+)
 
 
 class _SchemaLike(Protocol):
@@ -471,6 +485,12 @@ def sync_phase2_snapshot(
         table_names=selected_tables,
         require_cli=source is None,
     )
+    translation_memory_binding: _BindingLike | None = None
+    if "manual_copy_source" in selected_tables:
+        try:
+            translation_memory_binding = deps.resolve_table_binding(cfg, "translation_memory")
+        except RuntimeError as exc:
+            preflight_errors.append(str(exc))
     if preflight_errors:
         raise RuntimeError("sync-data preflight failed:\n- " + "\n- ".join(preflight_errors))
 
@@ -586,6 +606,19 @@ def sync_phase2_snapshot(
             dry_run=dry_run,
         )
 
+    translation_memory_rows: list[dict[str, str]] | None = None
+    if "manual_copy_source" in normalized_rows_by_table:
+        tm_binding = translation_memory_binding or deps.resolve_table_binding(cfg, "translation_memory")
+        tm_raw_records = resolved_source.fetch_records(
+            base_token=tm_binding.base_token,
+            table_id=tm_binding.table_id,
+            view_id=tm_binding.view_id,
+        )
+        translation_memory_rows = deps.normalize_records(
+            deps.table_schemas["translation_memory"],
+            tm_raw_records,
+        )
+
     for logical_name in selected_tables:
         binding = bindings_by_table[logical_name]
         normalized_rows = normalized_rows_by_table[logical_name]
@@ -667,6 +700,74 @@ def sync_phase2_snapshot(
             )
         )
         written_files.append((row_key_mapping_path, mapping_csv_text))
+
+    if "manual_copy_source" in normalized_rows_by_table:
+        assert translation_memory_rows is not None
+        localized_rows, missing_translations = build_localized_copy_rows(
+            normalized_rows_by_table["manual_copy_source"],
+            translation_memory_rows,
+        )
+        localized_csv_text = manual_copy_csv_text(LOCALIZED_COPY_COLUMNS, localized_rows)
+        localized_copy_path = export_root / LOCALIZED_COPY_FILE
+        localized_sha256 = deps.sha256_text(localized_csv_text)
+        previous_localized_sha256 = deps.sha256_file(localized_copy_path)
+        derived_results.append(
+            deps.table_sync_result_cls(
+                logical_name="localized_copy",
+                file_name=localized_copy_path.name,
+                target_path=localized_copy_path,
+                row_count=len(localized_rows),
+                sha256=localized_sha256,
+                previous_sha256=previous_localized_sha256,
+                changed=localized_sha256 != previous_localized_sha256,
+            )
+        )
+        written_files.append((localized_copy_path, localized_csv_text))
+
+        status_rows = build_status_word_rows(translation_memory_rows)
+        status_csv_text = manual_copy_csv_text(STATUS_WORD_COLUMNS, status_rows)
+        status_words_path = export_root / STATUS_WORDS_FILE
+        status_sha256 = deps.sha256_text(status_csv_text)
+        previous_status_sha256 = deps.sha256_file(status_words_path)
+        derived_results.append(
+            deps.table_sync_result_cls(
+                logical_name="status_words",
+                file_name=status_words_path.name,
+                target_path=status_words_path,
+                row_count=len(status_rows),
+                sha256=status_sha256,
+                previous_sha256=previous_status_sha256,
+                changed=status_sha256 != previous_status_sha256,
+            )
+        )
+        written_files.append((status_words_path, status_csv_text))
+
+        spec_title_rows = build_spec_title_rows(
+            normalized_rows_by_table["manual_copy_source"],
+            translation_memory_rows,
+        )
+        spec_titles_csv_text = manual_copy_csv_text(SPEC_TITLE_COLUMNS, spec_title_rows)
+        spec_titles_path = export_root / SPEC_TITLES_FILE
+        spec_titles_sha256 = deps.sha256_text(spec_titles_csv_text)
+        previous_spec_titles_sha256 = deps.sha256_file(spec_titles_path)
+        derived_results.append(
+            deps.table_sync_result_cls(
+                logical_name="spec_titles",
+                file_name=spec_titles_path.name,
+                target_path=spec_titles_path,
+                row_count=len(spec_title_rows),
+                sha256=spec_titles_sha256,
+                previous_sha256=previous_spec_titles_sha256,
+                changed=spec_titles_sha256 != previous_spec_titles_sha256,
+            )
+        )
+        written_files.append((spec_titles_path, spec_titles_csv_text))
+
+        missing_report_path = deps.repo_root / MISSING_TRANSLATIONS_REPORT
+        missing_report_text = missing_translations_csv_text(missing_translations)
+        if not dry_run:
+            missing_report_path.parent.mkdir(parents=True, exist_ok=True)
+            deps.write_atomic_text(missing_report_path, missing_report_text)
 
     skipped_tables = tuple(name for name in deps.table_order if name not in selected_tables)
     manifest = manifest_payload(

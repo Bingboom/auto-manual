@@ -54,7 +54,7 @@ def selected_tables(
     selected: list[str] = []
     for raw in raw_tables:
         name = str(raw).strip().lower()
-        if name not in table_schemas:
+        if name not in table_order:
             raise RuntimeError(
                 "Unsupported --table value: "
                 + name
