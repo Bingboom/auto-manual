@@ -76,6 +76,7 @@ from tools.process_review_start_queue_runtime import (  # noqa: E402
     process_review_start_queue as _process_review_start_queue_impl,
 )
 from tools.queue_config_resolution import resolve_config_path_for_task  # noqa: E402
+from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.review_start_failure_summary import (  # noqa: E402
     build_review_start_failure_report as _build_review_start_failure_report_impl,
     build_review_start_failure_summary as _build_review_start_failure_summary_impl,
@@ -159,7 +160,11 @@ def _resolve_review_start_region_config_path(*, region: str) -> Path | None:
         return None
 
     candidates: list[tuple[int, Path]] = []
-    for config_path in sorted(ROOT.glob("config*.yaml")):
+    config_paths = [
+        *sorted((ROOT / PathSegments.CONFIGS).glob("config*.yaml")),
+        *sorted(ROOT.glob("config*.yaml")),
+    ]
+    for config_path in config_paths:
         try:
             cfg = load_config(config_path)
         except RuntimeError:
