@@ -358,6 +358,17 @@ class TestPilotConfigs(unittest.TestCase):
                 for marker in us_only_markers:
                     self.assertNotIn(marker, text)
 
+    def test_eu_english_solar_direct_image_should_follow_intro_sentence(self) -> None:
+        text = (ROOT / "docs" / "templates" / "page_shared" / "en" / "08_charging_methods.rst").read_text(
+            encoding="utf-8"
+        )
+        intro = "|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels."
+        adapter_intro = "If one DC8020 input port needs to connect two solar panels simultaneously"
+
+        self.assertLess(text.index(intro), text.index("charging/solar_direct.png"))
+        self.assertLess(text.index("charging/solar_direct.png"), text.index(adapter_intro))
+        self.assertLess(text.index(adapter_intro), text.index("charging/solar_adapter.png"))
+
     def test_eu_merged_config_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cfg = check_docs.load_config(ROOT / "configs/config.eu.yaml")
         self.assertEqual("eu-merged", cfg.get("build", {}).get("family_id"))
