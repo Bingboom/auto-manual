@@ -17,7 +17,7 @@ from typing import Any, Callable, Mapping, Protocol
 from tools.spec_master_sources import (
     collect_footnote_record_id_refs,
     normalize_spec_master_source_rows,
-    source_table_ids_from_cfg,
+    source_table_bindings_from_cfg,
 )
 from tools.manual_copy_source import (
     LOCALIZED_COPY_COLUMNS,
@@ -508,8 +508,15 @@ def sync_phase2_snapshot(
 
     for logical_name in selected_tables:
         source_with_ids = _record_source_with_ids(resolved_source)
-        spec_rows_source_table_id, placeholders_source_table_id = (
-            source_table_ids_from_cfg(cfg) if logical_name == "spec_master" else ("", "")
+        (
+            spec_rows_source_table_id,
+            spec_rows_source_view_id,
+            placeholders_source_table_id,
+            placeholders_source_view_id,
+        ) = (
+            source_table_bindings_from_cfg(cfg)
+            if logical_name == "spec_master"
+            else ("", None, "", None)
         )
         if logical_name == "spec_master" and spec_rows_source_table_id and placeholders_source_table_id:
             base_token = deps.phase2_base_token(cfg)
@@ -517,12 +524,12 @@ def sync_phase2_snapshot(
                 *resolved_source.fetch_records(
                     base_token=base_token,
                     table_id=spec_rows_source_table_id,
-                    view_id=None,
+                    view_id=spec_rows_source_view_id,
                 ),
                 *resolved_source.fetch_records(
                     base_token=base_token,
                     table_id=placeholders_source_table_id,
-                    view_id=None,
+                    view_id=placeholders_source_view_id,
                 ),
             ]
             bindings_by_table[logical_name] = SimpleNamespace(

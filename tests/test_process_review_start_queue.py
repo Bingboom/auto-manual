@@ -21,6 +21,16 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual((worktree / "docs").resolve(strict=False), docs_dir.resolve(strict=False))
 
+    def test_resolve_docs_dir_for_config_should_keep_configs_dir_repo_relative(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            worktree = Path(td) / "review-start-worktree"
+            config_path = worktree / "configs" / "config.eu.yaml"
+            cfg = {"paths": {"docs_dir": "docs"}}
+
+            docs_dir = process_review_start_queue._resolve_docs_dir_for_config(config_path, cfg)
+
+        self.assertEqual((worktree / "docs").resolve(strict=False), docs_dir.resolve(strict=False))
+
     def test_parse_review_start_records_should_parse_build_family(self) -> None:
         records = process_review_start_queue.parse_review_start_records(
             [
@@ -258,6 +268,32 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         self.assertEqual(review_dir, observed)
         review_command = mock_run_command.call_args_list[1].args[0]
         self.assertIn("--refresh-review", review_command)
+
+    def test_ensure_review_bundle_on_branch_should_preserve_configs_relative_config_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td, mock.patch.object(
+            process_review_start_queue_git,
+            "run_command",
+        ) as mock_run_command:
+            root = Path(td)
+            worktree = root / "worktree"
+            config_path = root / "configs" / "config.eu.yaml"
+            review_dir = worktree / "docs" / "_review" / "JE-2000F" / "EU"
+            review_dir.mkdir(parents=True, exist_ok=True)
+
+            observed = process_review_start_queue_git.ensure_review_bundle_on_branch(
+                root=root,
+                worktree=worktree,
+                build_config_path=config_path,
+                model="JE-2000F",
+                region="EU",
+                data_root=str(root / ".tmp" / "review-start" / "phase2"),
+                load_config_fn=lambda _: {"paths": {"docs_dir": "docs"}},
+            )
+
+        self.assertEqual(review_dir, observed)
+        rst_command = mock_run_command.call_args_list[0].args[0]
+        self.assertIn(str(worktree / "configs" / "config.eu.yaml"), rst_command)
+        self.assertNotIn(str(worktree / "config.eu.yaml"), rst_command)
 
     def test_push_branch_should_force_with_lease(self) -> None:
         with tempfile.TemporaryDirectory() as td, mock.patch.object(
@@ -549,6 +585,42 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 )
 
         self.assertEqual(root / "config.zh.yaml", resolved)
+
+    def test_resolve_review_start_config_path_fallback_should_scan_configs_dir(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            configs_dir = root / "configs"
+            configs_dir.mkdir()
+            (configs_dir / "config.eu.yaml").write_text("build: {}\n", encoding="utf-8")
+            cfgs = {
+                "config.eu.yaml": {
+                    "build": {
+                        "family_id": "eu-merged",
+                        "languages": ["en", "fr", "es", "de", "it", "uk"],
+                        "default_region": "EU",
+                        "queue_by_document_key": True,
+                    }
+                },
+            }
+
+            with mock.patch.object(process_review_start_queue, "ROOT", root), \
+                mock.patch.object(
+                    process_review_start_queue,
+                    "resolve_config_path_for_task",
+                    side_effect=RuntimeError("No config family matches region='EU' and lang=''"),
+                ), \
+                mock.patch.object(
+                    process_review_start_queue,
+                    "load_config",
+                    side_effect=lambda path: cfgs[path.name],
+                ):
+                resolved = process_review_start_queue._resolve_review_start_config_path(
+                    region="EU",
+                    lang="",
+                    build_family="",
+                )
+
+        self.assertEqual(configs_dir / "config.eu.yaml", resolved)
 
     def test_resolve_target_for_review_start_should_fallback_to_document_id(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(

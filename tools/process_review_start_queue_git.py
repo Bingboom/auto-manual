@@ -105,8 +105,30 @@ def resolve_docs_dir_for_config(
     raw = paths_cfg.get("docs_dir")
     if isinstance(raw, str) and raw.strip():
         candidate = Path(raw.strip())
-        return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
-    return resolved_config_path.parent / PathSegments.DOCS
+        return candidate if candidate.is_absolute() else (_config_repo_root(resolved_config_path) / candidate)
+    return _config_repo_root(resolved_config_path) / PathSegments.DOCS
+
+
+def _config_repo_root(config_path: Path) -> Path:
+    if config_path.parent.name == PathSegments.CONFIGS:
+        return config_path.parent.parent
+    return config_path.parent
+
+
+def _config_path_in_worktree(*, root: Path, worktree: Path, build_config_path: Path) -> Path:
+    resolved_root = root.resolve(strict=False)
+    resolved_worktree = worktree.resolve(strict=False)
+    resolved_config = build_config_path if build_config_path.is_absolute() else (root / build_config_path)
+    try:
+        resolved_config.resolve(strict=False).relative_to(resolved_worktree)
+        return resolved_config
+    except ValueError:
+        pass
+    try:
+        rel_config = resolved_config.resolve(strict=False).relative_to(resolved_root)
+    except ValueError:
+        return worktree / build_config_path.name
+    return worktree / rel_config
 
 
 def review_dir_for_target_config(
@@ -204,7 +226,11 @@ def ensure_review_bundle_on_branch(
     data_root: str | None,
     load_config_fn: Callable[[Path], dict[str, Any]],
 ) -> Path:
-    worktree_config_path = worktree / build_config_path.name
+    worktree_config_path = _config_path_in_worktree(
+        root=root,
+        worktree=worktree,
+        build_config_path=build_config_path,
+    )
 
     run_command(
         build_py_command(

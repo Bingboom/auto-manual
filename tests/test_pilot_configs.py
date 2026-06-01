@@ -279,7 +279,9 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertEqual(
                     {
                         "spec_rows_source_table_id": "tblTw54UzV4ry5VD",
+                        "spec_rows_source_view_id": "vewrnkYUJr",
                         "page_placeholders_source_table_id": "tblhckTT7PfVBsuG",
+                        "page_placeholders_source_view_id": "vewUWc875D",
                     },
                     phase2.get("spec_master_sources"),
                 )
@@ -371,7 +373,9 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertEqual(
             {
                 "spec_rows_source_table_id": "tblTw54UzV4ry5VD",
+                "spec_rows_source_view_id": "vewrnkYUJr",
                 "page_placeholders_source_table_id": "tblhckTT7PfVBsuG",
+                "page_placeholders_source_view_id": "vewUWc875D",
             },
             phase2.get("spec_master_sources"),
         )

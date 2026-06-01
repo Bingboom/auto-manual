@@ -295,7 +295,12 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
         if not isinstance(spec_master_sources, dict):
             issues.append(Issue("ERROR", "sync.phase2.spec_master_sources must be a mapping when provided"))
             spec_master_sources = {}
-        for key in ("spec_rows_source_table_id", "page_placeholders_source_table_id"):
+        for key in (
+            "spec_rows_source_table_id",
+            "spec_rows_source_view_id",
+            "page_placeholders_source_table_id",
+            "page_placeholders_source_view_id",
+        ):
             value = spec_master_sources.get(key) if isinstance(spec_master_sources, dict) else None
             if value is not None and (not isinstance(value, str) or not value.strip()):
                 issues.append(Issue("ERROR", f"sync.phase2.spec_master_sources.{key} must be a non-empty string when provided"))
