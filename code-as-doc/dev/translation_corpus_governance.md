@@ -175,7 +175,7 @@ Re-runnable audit dimensions (pull both tables via
 `lark-cli base +record-list --base-token <bt> --table-id <tid> --format json`, paginate on
 `--offset` until `has_more=false`, align row values to `.data.fields`):
 
-1. **Source integrity** — rows with empty `en`.
+1. **Source integrity** — rows with empty `en`, or `en` containing no letter of any script (bare numbers, callout circled-numbers, stray punctuation) = noise with zero TM value.
 2. **Duplicate `en`** — within each table; for TM, whether duplicates are per-model copies and whether their targets agree.
 3. **Cross-table overlap & conflict** — `en` present in both tables, and where both targets are filled but differ.
 4. **Coverage** — fill rate per language column.
@@ -203,7 +203,7 @@ Glossary (`tblBIEtLSoAA6W9U`): **98 rows**, 83 distinct `en` (15 are empty shado
 
 Open items found:
 
-- TM: 1 empty-source row (`recvlfSn0Qmb17`, since gone); per-model duplicate sentences **merged 2026-06-01** — 22 truly-redundant groups collapsed (31 rows removed, `Model` multi-select union, `Glossary_term` links preserved). Of the 6 genuinely-divergent groups, **4 resolved 2026-06-01** (merged to the chosen value with per-language maintenance/audit logs — incl. replacing an untranslated DE placeholder + fixing its typo), **2 kept separate as legitimately distinct** (`bypass-mode` model-specific wording; `CHARGING` heading-vs-status). Whitespace **normalized 2026-06-01** (27 TM + 8 GL cells, internal newlines preserved). TM now **761 rows**. Resolution detail + backups: `~/corpus_divergence_pending_2026-06-01.md`, `~/tm_divergence_resolve_backup_2026-06-01.json`.
+- TM: 1 empty-source row (`recvlfSn0Qmb17`, since gone); per-model duplicate sentences **merged 2026-06-01** — 22 truly-redundant groups collapsed (31 rows removed, `Model` multi-select union, `Glossary_term` links preserved). Of the 6 genuinely-divergent groups, **4 resolved 2026-06-01** (merged to the chosen value with per-language maintenance/audit logs — incl. replacing an untranslated DE placeholder + fixing its typo), **2 kept separate as legitimately distinct** (`bypass-mode` model-specific wording; `CHARGING` heading-vs-status). Whitespace **normalized 2026-06-01** (27 TM + 8 GL cells, internal newlines preserved). Numeric/symbol noise rows **removed 2026-06-01** — 24 TM rows whose `en` had no letter of any script (15 bare numbers `9`–`24`, 8 callout circled numbers `①`–`⑧`, 1 stray fragment `60%).`), each translated to itself = zero TM value. TM now **737 rows**. Resolution detail + backups: `~/corpus_divergence_pending_2026-06-01.md`, `~/tm_divergence_resolve_backup_2026-06-01.json`, `~/tm_numeric_junk_backup_2026-06-01.json`.
 - Glossary: 15 duplicate-`en` rows (twins carrying only `en`+`pt-BR`) — **merged + deleted 2026-06-01** (unique `pt-BR` harvested into the full row first; 98 → 83 rows, duplicate `en` now 0).
   `No` filled on only 31/98 with repeated values (not a key).
 - Cross-table: 46 `en` strings in both tables; 4 confirmed target conflicts (`fr` danger=DANGER/ATTENTION, `fr` ups=UPS (ASI)/ASI, `pt-BR` blink=Pisca/Piscando, `it` ac wall charging indicator=…a parete/…da muro).
