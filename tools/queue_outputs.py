@@ -43,8 +43,14 @@ def resolve_docs_dir_for_config(
     raw = paths_cfg.get("docs_dir")
     if isinstance(raw, str) and raw.strip():
         candidate = Path(raw.strip())
-        return candidate if candidate.is_absolute() else (resolved_config_path.parent / candidate)
-    return resolved_config_path.parent / PathSegments.DOCS
+        return candidate if candidate.is_absolute() else (_config_repo_root(resolved_config_path) / candidate)
+    return _config_repo_root(resolved_config_path) / PathSegments.DOCS
+
+
+def _config_repo_root(config_path: Path) -> Path:
+    if config_path.parent.name == PathSegments.CONFIGS:
+        return config_path.parent.parent
+    return config_path.parent
 
 
 def resolve_word_output_path_for_target(
@@ -288,6 +294,10 @@ def versioned_md_output_path(
 
 
 def config_path_in_repo_root(config_path: Path, *, repo_root: Path) -> Path:
+    if config_path.parent.name == PathSegments.CONFIGS:
+        return repo_root / PathSegments.CONFIGS / config_path.name
+    if not config_path.is_absolute() and config_path.parent != Path("."):
+        return repo_root / config_path
     return repo_root / config_path.name
 
 

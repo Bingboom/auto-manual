@@ -12,6 +12,28 @@ from tests.test_helpers import temp_test_root
 
 
 class TestProcessBuildQueue(unittest.TestCase):
+    def test_config_path_in_repo_root_should_preserve_configs_dir(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            worktree = root / ".tmp" / "process-build-queue-worktrees" / "main"
+            config_path = root / "configs" / "config.eu.yaml"
+
+            resolved = process_build_queue._config_path_in_repo_root(config_path, repo_root=worktree)
+
+        self.assertEqual(worktree / "configs" / "config.eu.yaml", resolved)
+
+    def test_resolve_docs_dir_for_config_should_keep_configs_dir_repo_relative(self) -> None:
+        with tempfile.TemporaryDirectory() as td, mock.patch.object(process_build_queue, "ROOT", Path(td)):
+            root = Path(td)
+            config_path = root / "configs" / "config.eu.yaml"
+
+            docs_dir = process_build_queue._resolve_docs_dir_for_config(
+                config_path,
+                {"paths": {"docs_dir": "docs"}},
+            )
+
+        self.assertEqual((root / "docs").resolve(strict=False), docs_dir.resolve(strict=False))
+
     def test_cli_main_should_resolve_relative_paths_and_normalize_record_id(self) -> None:
         with temp_test_root() as root:
             seen: dict[str, object] = {}
@@ -819,6 +841,82 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(main_worktree, commands[1][1])
         self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
+
+    def test_build_document_for_task_should_preserve_configs_path_in_git_ref_worktree(self) -> None:
+        commands: list[tuple[list[str], Path]] = []
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            main_worktree = root / ".tmp" / "process-build-queue-worktrees" / "main"
+            review_worktree = root / ".tmp" / "process-build-queue-worktrees" / "codex-review-eu"
+            host_config_path = root / "configs" / "config.eu.yaml"
+            main_worktree_config_path = main_worktree / "configs" / "config.eu.yaml"
+            main_worktree_word_path = (
+                main_worktree / "docs" / "_build" / "JE-2000F" / "EU" / "word" / "manual_je2000f_eu.docx"
+            )
+            main_worktree_md_path = (
+                main_worktree / "docs" / "_build" / "JE-2000F" / "EU" / "md" / "manual_je2000f_eu.md"
+            )
+            staged_word_path = root / "docs" / "_build" / "JE-2000F" / "EU" / "word" / "manual_je2000f_eu_0.1.docx"
+            staged_md_path = root / "docs" / "_build" / "JE-2000F" / "EU" / "md" / "manual_je2000f_eu_0.1.md"
+            host_config_path.parent.mkdir(parents=True, exist_ok=True)
+            host_config_path.write_text("build: {}\n", encoding="utf-8")
+            main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_config_path.write_text("build: {}\n", encoding="utf-8")
+            main_worktree_word_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_word_path.write_bytes(b"docx")
+            main_worktree_md_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_md_path.write_text("# Manual\n", encoding="utf-8")
+            (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
+            (root / "data" / "phase2" / "Spec_Master.csv").write_text("fresh-main-data\n", encoding="utf-8")
+            (review_worktree / "docs" / "_review" / "JE-2000F" / "EU").mkdir(parents=True, exist_ok=True)
+            (review_worktree / "docs" / "_review" / "JE-2000F" / "EU" / "marker.rst").write_text(
+                "review-content\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue,
+                "_prepare_git_ref_worktree",
+                side_effect=[main_worktree, review_worktree],
+            ), mock.patch.object(
+                process_build_queue,
+                "_remove_worktree",
+            ), mock.patch.object(
+                process_build_queue,
+                "_run_command",
+                side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd"))),
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_word_output_path_for_target",
+                return_value=main_worktree_word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "resolve_md_output_path_for_target",
+                return_value=main_worktree_md_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "_stage_draft_word_output_to_host_repo",
+                return_value=staged_word_path,
+            ), mock.patch.object(
+                process_build_queue,
+                "_stage_draft_md_output_to_host_repo",
+                return_value=staged_md_path,
+            ):
+                process_build_queue.build_document_for_task(
+                    config_path=host_config_path,
+                    model="JE-2000F",
+                    region="EU",
+                    data_root="data/phase2",
+                    doc_phase="Draft",
+                    version="0.1",
+                    git_ref="codex/review-eu",
+                )
+
+        self.assertEqual(3, len(commands))
+        check_command, check_cwd = commands[0]
+        self.assertEqual(main_worktree, check_cwd)
+        self.assertIn(str(main_worktree / "configs" / "config.eu.yaml"), check_command)
+        self.assertNotIn(str(main_worktree / "config.eu.yaml"), check_command)
 
     def test_build_document_for_task_should_copy_absolute_repo_data_root_into_git_ref_worktree(self) -> None:
         commands: list[tuple[list[str], Path]] = []
