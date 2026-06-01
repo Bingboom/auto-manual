@@ -9,6 +9,8 @@ from typing import Any, Mapping
 SOURCE_SPEC_PAGE = "specifications"
 SPEC_ROWS_ENV = "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID"
 PLACEHOLDERS_ENV = "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID"
+SPEC_ROWS_VIEW_ENV = "FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID"
+PLACEHOLDERS_VIEW_ENV = "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID"
 FOOTNOTE_REF_COLUMNS = (
     "Row_label_footnote_refs",
     "Param_footnote_refs",
@@ -32,6 +34,34 @@ def source_table_ids_from_cfg(cfg: dict[str, Any], *, environ: Mapping[str, str]
         source_cfg.get("page_placeholders_source_table_id") or env.get(PLACEHOLDERS_ENV, "")
     ).strip()
     return spec_id, placeholder_id
+
+
+def source_view_ids_from_cfg(
+    cfg: dict[str, Any],
+    *,
+    environ: Mapping[str, str] | None = None,
+) -> tuple[str | None, str | None]:
+    env = environ if environ is not None else os.environ
+    source_cfg = spec_master_sources_cfg(cfg)
+    spec_view = (
+        str(source_cfg.get("spec_rows_source_view_id") or env.get(SPEC_ROWS_VIEW_ENV, "")).strip()
+        or None
+    )
+    placeholder_view = (
+        str(source_cfg.get("page_placeholders_source_view_id") or env.get(PLACEHOLDERS_VIEW_ENV, "")).strip()
+        or None
+    )
+    return spec_view, placeholder_view
+
+
+def source_table_bindings_from_cfg(
+    cfg: dict[str, Any],
+    *,
+    environ: Mapping[str, str] | None = None,
+) -> tuple[str, str | None, str, str | None]:
+    spec_id, placeholder_id = source_table_ids_from_cfg(cfg, environ=environ)
+    spec_view, placeholder_view = source_view_ids_from_cfg(cfg, environ=environ)
+    return spec_id, spec_view, placeholder_id, placeholder_view
 
 
 def has_source_table_ids(cfg: dict[str, Any], *, environ: Mapping[str, str] | None = None) -> bool:

@@ -10,7 +10,9 @@ sync:
     base_token_env: FEISHU_PHASE2_BASE_TOKEN
     spec_master_sources:
       spec_rows_source_table_id: tblTw54UzV4ry5VD
+      spec_rows_source_view_id: vewrnkYUJr
       page_placeholders_source_table_id: tblhckTT7PfVBsuG
+      page_placeholders_source_view_id: vewUWc875D
     tables:
       spec_master: {}
       spec_footnotes:

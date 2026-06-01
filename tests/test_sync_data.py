@@ -437,7 +437,9 @@ class TestSyncData(unittest.TestCase):
                     "base_token_env": "BASE_TOKEN",
                     "spec_master_sources": {
                         "spec_rows_source_table_id": "tbl_spec_rows",
+                        "spec_rows_source_view_id": "view_spec_rows",
                         "page_placeholders_source_table_id": "tbl_placeholders",
+                        "page_placeholders_source_view_id": "view_placeholders",
                     },
                     "tables": {
                         "spec_master": {},
@@ -644,7 +646,9 @@ class TestSyncData(unittest.TestCase):
                         "base_token_env": "BASE_TOKEN",
                         "spec_master_sources": {
                             "spec_rows_source_table_id": "tbl_spec_rows",
+                            "spec_rows_source_view_id": "view_spec_rows",
                             "page_placeholders_source_table_id": "tbl_placeholders",
+                            "page_placeholders_source_view_id": "view_placeholders",
                         },
                         "tables": {
                             "spec_master": {},
@@ -740,8 +744,8 @@ class TestSyncData(unittest.TestCase):
 
             self.assertEqual(
                 [
-                    ("app_token", "tbl_spec_rows", None),
-                    ("app_token", "tbl_placeholders", None),
+                    ("app_token", "tbl_spec_rows", "view_spec_rows"),
+                    ("app_token", "tbl_placeholders", "view_placeholders"),
                 ],
                 fake_source.calls,
             )

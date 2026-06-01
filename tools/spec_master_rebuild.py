@@ -31,7 +31,7 @@ from tools.spec_master_sources import (  # noqa: E402
     collect_footnote_record_id_refs,
     footnote_record_id_to_id_map,
     normalize_spec_master_footnote_refs,
-    source_table_ids_from_cfg,
+    source_table_bindings_from_cfg,
 )
 
 
@@ -779,8 +779,8 @@ def _spec_master_sources_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     return source_cfg
 
 
-def _source_table_ids_from_cfg(cfg: dict[str, Any]) -> tuple[str, str]:
-    return source_table_ids_from_cfg(cfg)
+def _source_table_bindings_from_cfg(cfg: dict[str, Any]) -> tuple[str, str | None, str, str | None]:
+    return source_table_bindings_from_cfg(cfg)
 
 
 def _base_token_from_cfg(cfg: dict[str, Any]) -> str:
@@ -816,10 +816,16 @@ def _merged_rows_from_sources(
     *,
     base_token: str,
     spec_rows_table_id: str,
+    spec_rows_view_id: str | None = None,
     placeholders_table_id: str,
+    placeholders_view_id: str | None = None,
 ) -> list[dict[str, str]]:
-    spec_records = source.fetch_records(base_token=base_token, table_id=spec_rows_table_id, view_id=None)
-    placeholder_records = source.fetch_records(base_token=base_token, table_id=placeholders_table_id, view_id=None)
+    spec_records = source.fetch_records(base_token=base_token, table_id=spec_rows_table_id, view_id=spec_rows_view_id)
+    placeholder_records = source.fetch_records(
+        base_token=base_token,
+        table_id=placeholders_table_id,
+        view_id=placeholders_view_id,
+    )
     rows = normalize_records(TABLE_SCHEMAS["spec_master"], [*spec_records, *placeholder_records])
     for row in rows:
         _fill_model_region_from_document_key(row)
@@ -1052,6 +1058,8 @@ def main(argv: list[str] | None = None) -> int:
         source = LarkCliSource(cli_bin=_cli_bin(cfg), identity=_phase2_identity())
         binding = resolve_table_binding(cfg, "spec_master") if (args.bootstrap_source_tables or args.write_back) else None
         base_token = binding.base_token if binding is not None else _base_token_from_cfg(cfg)
+        spec_view_id = None
+        placeholder_view_id = None
         if args.bootstrap_source_tables:
             if args.dry_run:
                 raise RuntimeError("--bootstrap-source-tables cannot be combined with --dry-run")
@@ -1064,9 +1072,13 @@ def main(argv: list[str] | None = None) -> int:
                 args.page_placeholders_table_id,
             )
             if not spec_table_id or not placeholder_table_id:
-                cfg_spec_table_id, cfg_placeholder_table_id = _source_table_ids_from_cfg(cfg)
+                cfg_spec_table_id, cfg_spec_view_id, cfg_placeholder_table_id, cfg_placeholder_view_id = (
+                    _source_table_bindings_from_cfg(cfg)
+                )
                 spec_table_id = spec_table_id or cfg_spec_table_id
                 placeholder_table_id = placeholder_table_id or cfg_placeholder_table_id
+                spec_view_id = cfg_spec_view_id
+                placeholder_view_id = cfg_placeholder_view_id
             if not spec_table_id or not placeholder_table_id:
                 raise RuntimeError(
                     "Source table ids are required. Pass --spec-rows-table-id and "
@@ -1077,7 +1089,9 @@ def main(argv: list[str] | None = None) -> int:
             source,
             base_token=base_token,
             spec_rows_table_id=spec_table_id,
+            spec_rows_view_id=spec_view_id,
             placeholders_table_id=placeholder_table_id,
+            placeholders_view_id=placeholder_view_id,
         )
         _normalize_footnote_refs_from_cfg(cfg, source, rows)
         _validate_merged_rows(

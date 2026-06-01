@@ -180,7 +180,9 @@ class TestValidateConfig(unittest.TestCase):
                     "base_token_env": "FEISHU_BASE_TOKEN",
                     "spec_master_sources": {
                         "spec_rows_source_table_id": "tbl_spec_rows",
+                        "spec_rows_source_view_id": "view_spec_rows",
                         "page_placeholders_source_table_id": "tbl_placeholders",
+                        "page_placeholders_source_view_id": "view_placeholders",
                     },
                     "tables": {
                         "spec_master": {},
