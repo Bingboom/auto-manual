@@ -1,9 +1,10 @@
 # Translation Corpus Bridge — Landing Plan
 
 Updated: 2026-06-01
-Status: **Phase 1 + Phase 2 executed** (2026-06-01). Remaining: the per-language `term_<lang>`
-lookups and sentence→term linking (§3, §5) — call it Phase 3. Every write step is
-owner-approved (夏冰).
+Status: **Phases 1–3 executed** (2026-06-01) — single-source migration, the `Glossary_term`
+relation, 182 sentence→term links, and all 9 `term_<lang>` lookups are live and verified.
+Optional follow-ups remain (per-model dedup, language-column standardization). Every write step
+was owner-approved (夏冰).
 
 > **Phase 1 done (2026-06-01):** harvested 112 translations from TM term-rows into empty
 > glossary cells across 42 records (verified 112/112; conflict cells untouched). Glossary
@@ -19,12 +20,13 @@ owner-approved (夏冰).
 > now 797 rows (45 term-rows removed; the verified gate confirmed all 45 target ids gone and
 > the 3 status rows preserved).
 >
-> **Phase 3 (2026-06-01):** sentence→term linking **done** — 182 TM sentences linked to the
+> **Phase 3 done (2026-06-01):** sentence→term linking — 182 TM sentences linked to the
 > multi-word glossary terms they contain (242 links, verified 182/182 written, 8/8 sample
-> read-back). The **9 `term_<lang>` lookups still must be built in the Feishu UI** — lark-cli
-> cannot create a link-following lookup (§3). Once built, they will surface each linked term's
-> approved target per language for QA. Short/ambiguous single-word terms (on/off/note/handle…)
-> were intentionally **not** auto-linked; link them by hand as needed.
+> read-back). All **9 `term_<lang>` lookups created** (term_fr via the Feishu UI, the other 8
+> via `lark-cli` — both work; §3) and verified link-following (Bluetooth row → "Bluetooth" /
+> "블루투스", single linked-term value, not a whole-table rollup). They surface each linked
+> term's approved target per language for QA. Short/ambiguous single-word terms
+> (on/off/note/handle…) were intentionally **not** auto-linked; link them by hand as needed.
 
 This is the concrete execution plan for §4 of
 [`translation_corpus_governance.md`](translation_corpus_governance.md): build one clean
@@ -54,9 +56,12 @@ the 46 short strings that are duplicated across both tables.
   - Link-cell write: `+record-upsert --record-id <rid> --json '{"<link field id>":["<rec_id>"]}'`
     (verified). The link cell is **readable per-row** via `+record-get --field-id <link fld>`
     (returns `[{"id":"rec..."}]`) even though `+record-list`/`+field-list` hide link fields.
-  - **Link-following lookups cannot be created via CLI** — `where.conditions` must be empty to
-    follow the link, but create/update reject empty conditions; a non-empty condition makes it a
-    table-wide rollup. Build `term_<lang>` lookups in the Feishu UI (§3).
+  - **Link-following lookups CAN be created via CLI** — the trick is a *field-reference* match
+    condition, not a constant one. A constant condition (e.g. `en isNotEmpty`) makes a
+    table-wide rollup that ignores the link; a `field_ref` condition matching the glossary key
+    against the link field follows the link. Empty `where.conditions` is rejected by the API
+    (only the UI's internal API allowed the legacy empty-condition lookups). See §3 for the
+    exact payload.
 - **`+record-batch-update` only does uniform patch** (`{record_id_list, patch}`) — it cannot
   apply different values per record. For heterogeneous writes use per-record
   `+record-upsert --record-id <rid> --json @<relative-path>` (PATCH semantics: only the given
@@ -105,10 +110,10 @@ with `bidirectional:true` — high-risk full-PUT, currently left one-way.
 
 ---
 
-## 3. All-language lookups — **must be built in the Feishu UI**
+## 3. All-language lookups — **9 created & verified 2026-06-01**
 
-The legacy `筛选术语值` surfaced only glossary `fr`. Replace it with one lookup per language,
-each reading the glossary field **through the `Glossary_term` link**:
+The legacy `筛选术语值` surfaced only glossary `fr`. It is replaced with one lookup per
+language, each reading the glossary field through the `Glossary_term` link:
 
 | TM lookup | glossary target column | glossary field id |
 | --- | --- | --- |
@@ -122,21 +127,29 @@ each reading the glossary field **through the `Glossary_term` link**:
 | `term_ja` | jp | `fld0jnHIge` |
 | `term_ko` | ko-KR | `fldy9fiac8` |
 
-> **lark-cli cannot create these (verified 2026-06-01).** A lookup field's `where` only follows
-> the link when its `conditions` are **empty**, but `+field-create`/`+field-update` reject an
-> empty `where.conditions` ("Array must contain at least 1 element"). Any condition you add
-> (e.g. `en isNotEmpty`) turns the lookup into a **table-wide rollup** that concatenates *every*
-> glossary row's value, ignoring the link. Nine such lookups were created and deleted on
-> 2026-06-01 after this was confirmed end-to-end.
+### CLI recipe (verified)
 
-Build them in the **Feishu UI** instead — it is the correct mechanism and trivial there:
+The lookup follows the link when its match condition is a **field reference**, not a constant.
+Match the glossary key (`en`, `fldt7ZEWwl`) against the `Glossary_term` link field
+(`fldUeZQZTZ`) — the link displays each linked term's primary (`en`), so the equality resolves
+to exactly the linked term(s):
 
-1. On the `Translation_Memory` table, add field → type **查找引用 (Lookup)**.
-2. "关联字段" = **`Glossary_term`**; "引用的字段" = the glossary column from the table above.
-3. Name it `term_<lang>`. Repeat for the 9 languages. No filter — it follows the link.
+```powershell
+lark-cli base +field-create --base-token LUIcbxeKdaCY2rsEHwCcnVQSnUe --table-id tbl6gKPJPTvOcTWv `
+  --i-have-read-guide --json '{"field_name":"term_es","type":"lookup","from":"tblBIEtLSoAA6W9U",
+  "select":"fldPEQoGOq","where":{"conditions":[["fldt7ZEWwl","is",{"type":"field_ref","field":"fldUeZQZTZ"}]],"logic":"and"}}'
+```
 
-Verify one: link a TM row to a term (§5), then the `term_*` lookups show that single term's
-targets (not the whole-table concatenation).
+- `from` = glossary table id; `select` = the glossary language column id (table above).
+- condition tuple = `["<glossary en id>","is",{"type":"field_ref","field":"<Glossary_term id>"}]`.
+  `field_ref` (not `field`/`value`) is the key; a `constant` value (e.g. `isNotEmpty`) would
+  roll up the whole table instead.
+
+Equivalent in the **Feishu UI**: add field → 查找引用 → 数据表 `Terms`, 引用字段 = the column;
+查找条件 `en` 等于 当前表 `Glossary_term`. (term_fr was built this way; the other 8 via the CLI.)
+
+Verified link-following on the Bluetooth-linked row `recvgEwErzZXBk`: all 9 return the single
+linked term's value (`Bluetooth` / `블루투스`), not a whole-table concatenation.
 
 ---
 
