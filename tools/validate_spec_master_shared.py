@@ -22,8 +22,10 @@ from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
 from tools.utils.path_utils import Paths  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     canonicalize_model_token,
+    model_value_matches_target,
     normalize_source_lang,
     read_spec_master_rows,
+    region_value_matches_target,
     source_language_for_row,
 )
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
@@ -118,14 +120,14 @@ def _is_truthy(value: str) -> bool:
 def _row_matches_target(row: dict[str, str], *, model: str | None, region: str | None) -> bool:
     row_region = _first_non_empty(row, ("Region", "region"))
     target_region = (region or "").strip()
-    row_model = canonicalize_model_token(
+    if not model_value_matches_target(
         _first_non_empty(row, ("Model", "model")),
-        region=row_region or target_region,
-    )
-    target_model = canonicalize_model_token(model or "", region=target_region)
-    if target_model and row_model.casefold() != target_model.casefold():
+        target_model=model,
+        target_region=target_region,
+        row_region=row_region,
+    ):
         return False
-    if region and row_region.strip().lower() != region.strip().lower():
+    if not region_value_matches_target(row_region, target_region):
         return False
     return _is_truthy(_first_non_empty(row, ("Is_Latest", "is_latest")))
 

@@ -94,6 +94,7 @@ _FOOTNOTE_REF_COLUMNS = (
     "Value_footnote_refs",
     "value_footnote_refs",
 )
+_MULTI_VALUE_SPLIT_RE = re.compile(r"[,;\r\n]+")
 
 
 def _parse_footnote_ref_ids(value: str) -> tuple[str, ...]:
@@ -160,15 +161,16 @@ def _row_matches_footnote_target(
         return False
 
     target_region = (region or "").strip()
-    target_model = canonicalize_model_token(model or "", region=target_region)
     row_region = _first_non_empty(row, ["Region", "region"])
-    row_model = canonicalize_model_token(
-        _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
-        region=row_region or target_region,
-    )
-    if target_model and row_model and row_model.casefold() != target_model.casefold():
+    row_model = _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
+    if not model_value_matches_target(
+        row_model,
+        target_model=model,
+        target_region=target_region,
+        row_region=row_region,
+    ):
         return False
-    if target_region and row_region and row_region.casefold() != target_region.casefold():
+    if not region_value_matches_target(row_region, target_region):
         return False
     return True
 
@@ -201,7 +203,6 @@ def collect_matching_footnote_rows(
         return False
 
     target_region = (region or "").strip()
-    target_model = canonicalize_model_token(model or "", region=target_region)
 
     for raw_page, raw_ids in referenced_ids_by_page.items():
         page = (raw_page or "").strip()
@@ -218,17 +219,22 @@ def collect_matching_footnote_rows(
                     continue
 
                 row_region = _first_non_empty(row, ["Region", "region"])
-                row_model = canonicalize_model_token(
-                    _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"]),
-                    region=row_region or target_region,
+                row_model = _first_non_empty(
+                    row,
+                    ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
                 )
-                if target_model and row_model and row_model.casefold() != target_model.casefold():
+                if not model_value_matches_target(
+                    row_model,
+                    target_model=model,
+                    target_region=target_region,
+                    row_region=row_region,
+                ):
                     continue
 
                 source_lang = source_language_for_row(row)
                 score = (
-                    0 if not row_region else 1,
-                    0 if row_model else 1,
+                    0 if not multi_value_tokens(row_region) else 1,
+                    0 if not multi_value_tokens(row_model) else 1,
                     0 if not preferred_langs or source_lang in preferred_langs else 1,
                     _first_non_empty(row, ["__line__"]) or "0",
                 )
@@ -397,6 +403,50 @@ def canonicalize_model_token(value: str, *, region: str | None = None) -> str:
             candidate = text[: -len(suffix)].strip()
             return candidate.rstrip("_-").strip()
     return text
+
+
+def multi_value_tokens(value: str | None) -> tuple[str, ...]:
+    tokens: list[str] = []
+    for token in _MULTI_VALUE_SPLIT_RE.split(str(value or "")):
+        item = token.strip()
+        if item and item not in tokens:
+            tokens.append(item)
+    return tuple(tokens)
+
+
+def _single_multi_value_token(value: str | None) -> str:
+    tokens = multi_value_tokens(value)
+    return tokens[0] if len(tokens) == 1 else ""
+
+
+def model_value_matches_target(
+    value: str | None,
+    *,
+    target_model: str | None,
+    target_region: str | None,
+    row_region: str | None = None,
+) -> bool:
+    normalized_target = canonicalize_model_token(target_model or "", region=target_region or "")
+    if not normalized_target:
+        return True
+    tokens = multi_value_tokens(value)
+    if not tokens:
+        return True
+    region_for_model = (target_region or "").strip() or _single_multi_value_token(row_region)
+    return any(
+        canonicalize_model_token(token, region=region_for_model).casefold() == normalized_target.casefold()
+        for token in tokens
+    )
+
+
+def region_value_matches_target(value: str | None, target_region: str | None) -> bool:
+    normalized_target = (target_region or "").strip()
+    if not normalized_target:
+        return True
+    tokens = multi_value_tokens(value)
+    if not tokens:
+        return True
+    return any(token.casefold() == normalized_target.casefold() for token in tokens)
 
 
 def _normalize_slot_key(raw: str) -> str:
@@ -678,13 +728,16 @@ def _row_matches_target(
         return False
 
     target_region = (region or "").strip()
-    target_model = canonicalize_model_token(model or "", region=target_region)
     row_region = _pick_row_region(row)
-    row_model = canonicalize_model_token(_pick_row_model(row), region=row_region or target_region)
-    if target_model and row_model and row_model.casefold() != target_model.casefold():
+    if not model_value_matches_target(
+        _pick_row_model(row),
+        target_model=model,
+        target_region=target_region,
+        row_region=row_region,
+    ):
         return False
 
-    if target_region and row_region and row_region != target_region:
+    if not region_value_matches_target(row_region, target_region):
         return False
 
     if line_order is not None:
@@ -717,13 +770,22 @@ def _score_row(
 ) -> int:
     target_region = (region or "").strip()
     target_model = canonicalize_model_token(model or "", region=target_region)
-    row_model = canonicalize_model_token(_pick_row_model(row), region=_pick_row_region(row) or target_region)
+    row_model = _pick_row_model(row)
     row_region = _pick_row_region(row)
 
     score = 0
-    if row_model and target_model and row_model.casefold() == target_model.casefold():
+    if (
+        row_model
+        and target_model
+        and model_value_matches_target(
+            row_model,
+            target_model=target_model,
+            target_region=target_region,
+            row_region=row_region,
+        )
+    ):
         score += 8
-    if row_region and target_region and row_region == target_region:
+    if row_region and target_region and region_value_matches_target(row_region, target_region):
         score += 8
     if not target_region and not row_region:
         score += 2
