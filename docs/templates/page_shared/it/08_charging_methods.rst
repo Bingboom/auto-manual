@@ -51,5 +51,5 @@ Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Ass
    * - **ATTENZIONE**
      -
        - Avviare il veicolo prima di caricare la power station.
-       - Se il veicolo percorre strade sconnesse, e vietato utilizzare il caricatore per auto poiche cio potrebbe causare un funzionamento non conforme. L'Azienda non sara responsabile di eventuali perdite causate da un funzionamento non conforme.
+       - Se il veicolo percorre strade sconnesse, e vietato utilizzare il caricatore per auto poiché ciò potrebbe causare un funzionamento non conforme. L'Azienda non sarà responsabile di eventuali perdite causate da un funzionamento non conforme.
        - La ricarica tramite veicolo e applicabile solo ai veicoli con 12V CC, non a 24V CC. Non caricare questo prodotto in un veicolo da 24V per evitare lesioni personali e danni materiali.

@@ -14,7 +14,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
 
 2.1 Fai clic sul pulsante **+** per aggiungere il dispositivo.
 
-2.2 Premi il |MAIN_POWER_BUTTON_LABEL| sul dispositivo per accenderlo; le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo e entrato nella modalita di configurazione di rete. Fai clic sul pulsante "**Icon Flashed**" (icona lampeggiante) e consenti all'app di connettersi ai dispositivi vicini e di aprire le autorizzazioni Bluetooth.
+2.2 Premi il |MAIN_POWER_BUTTON_LABEL| sul dispositivo per accenderlo; le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo e entrato nella modalità di configurazione di rete. Fai clic sul pulsante "**Icon Flashed**" (icona lampeggiante) e consenti all'app di connettersi ai dispositivi vicini e di aprire le autorizzazioni Bluetooth.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Segnaposto per il passaggio di aggiunta dispositivo nell'app.
@@ -33,7 +33,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
    :widths: 12 88
 
    * - **NOTA**
-     - Se durante la procedura di associazione viene visualizzato il messaggio "**il dispositivo e gia stato associato**", puoi usare i due metodi seguenti per la connessione:
+     - Se durante la procedura di associazione viene visualizzato il messaggio "**il dispositivo e già stato associato**", puoi usare i due metodi seguenti per la connessione:
 
        - Il proprietario del dispositivo condividera questo dispositivo con altri utenti tramite l'app.
        - Tieni premuti |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| per 3 secondi per ripristinare il Wi-Fi e il Bluetooth del dispositivo, quindi associa nuovamente il dispositivo.
@@ -62,7 +62,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
    :widths: 12 88
 
    * - **ATTENZIONE**
-     - L'app Jackery puo connettersi a una sola stazione di alimentazione tramite Bluetooth alla volta. Tornando all'elenco dei dispositivi, il Bluetooth si disconnette automaticamente. Tocca di nuovo la stazione di alimentazione nell'elenco per riconnetterti automaticamente.
+     - L'app Jackery può connettersi a una sola stazione di alimentazione tramite Bluetooth alla volta. Tornando all'elenco dei dispositivi, il Bluetooth si disconnette automaticamente. Tocca di nuovo la stazione di alimentazione nell'elenco per riconnetterti automaticamente.
 
 
 **3. Disassocia il dispositivo**
@@ -74,11 +74,11 @@ Fai clic sull'icona **Impostazioni** nell'angolo in alto a destra dell'interfacc
 **4.1 Per attivare Wi-Fi e Bluetooth**
 
 - Wi-Fi e Bluetooth si attivano automaticamente dopo l'accensione del dispositivo e le icone Wi-Fi e Bluetooth sullo schermo si illuminano.
-- Tieni premuti contemporaneamente |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| finche le icone Wi-Fi e Bluetooth sullo schermo si illuminano.
+- Tieni premuti contemporaneamente |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| finché le icone Wi-Fi e Bluetooth sullo schermo si illuminano.
 
 **4.2 Per disattivare Wi-Fi e Bluetooth**
 
-| Tieni premuti contemporaneamente |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| finche le icone Wi-Fi e Bluetooth sullo schermo si spengono.
+| Tieni premuti contemporaneamente |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| finché le icone Wi-Fi e Bluetooth sullo schermo si spengono.
 
 
 **4.3 Per ripristinare Wi-Fi e Bluetooth**
