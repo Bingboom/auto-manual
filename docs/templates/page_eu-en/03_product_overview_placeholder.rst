@@ -4,11 +4,11 @@
 
       \section{PRODUCT OVERVIEW}
       \HBOverviewPanel{FRONT VIEW}{front_product.jpg}{%
-      \HBOverviewPair{|MAIN_POWER_BUTTON_LABEL|}{}{Handle}{}
-      \HBOverviewPair{|FRONT_DC12_PORT_LABEL|}{|FRONT_DC12_PORT_SPEC|}{LCD}{}
-      \HBOverviewPair{|DC_USB_POWER_BUTTON_LABEL|}{}{LED Light Button}{}
-      \HBOverviewPair{|FRONT_USB_C_LOW_LABEL|}{|FRONT_USB_C_LOW_SPEC|}{LED Light}{}
-      \HBOverviewPair{|FRONT_USB_C_HIGH_LABEL|}{|FRONT_USB_C_HIGH_SPEC|}{|AC_POWER_BUTTON_LABEL|}{}
+      \HBOverviewPair{|MAIN_POWER_BUTTON_LABEL|}{}{LCD}{}
+      \HBOverviewPair{|FRONT_DC12_PORT_LABEL|}{|FRONT_DC12_PORT_SPEC|}{LED Light Button}{}
+      \HBOverviewPair{|DC_USB_POWER_BUTTON_LABEL|}{}{LED Light}{}
+      \HBOverviewPair{|FRONT_USB_C_LOW_LABEL|}{|FRONT_USB_C_LOW_SPEC|}{|AC_POWER_BUTTON_LABEL|}{}
+      \HBOverviewPair{|FRONT_USB_C_HIGH_LABEL|}{|FRONT_USB_C_HIGH_SPEC|}{}{}
       \HBOverviewPair{|FRONT_USB_A_LABEL|}{|FRONT_USB_A_SPEC|}{|FRONT_AC_OUTPUT_LABEL|}{|FRONT_AC_OUTPUT_SPEC|}
       \HBOverviewFull{|FRONT_TOTAL_OUTPUT_LABEL|}{|FRONT_TOTAL_OUTPUT_SPEC|}
       }
@@ -34,21 +34,21 @@
       :widths: 50 50
 
       * - **|MAIN_POWER_BUTTON_LABEL|**
-        - **Handle**
+        - **LCD**
       * - **|FRONT_DC12_PORT_LABEL|**
 
           |FRONT_DC12_PORT_SPEC|
-        - **LCD**
-      * - **|DC_USB_POWER_BUTTON_LABEL|**
         - **LED Light Button**
+      * - **|DC_USB_POWER_BUTTON_LABEL|**
+        - **LED Light**
       * - **|FRONT_USB_C_LOW_LABEL|**
 
           |FRONT_USB_C_LOW_SPEC|
-        - **LED Light**
+        - **|AC_POWER_BUTTON_LABEL|**
       * - **|FRONT_USB_C_HIGH_LABEL|**
 
           |FRONT_USB_C_HIGH_SPEC|
-        - **|AC_POWER_BUTTON_LABEL|**
+        -
       * - **|FRONT_USB_A_LABEL|**
 
           |FRONT_USB_A_SPEC|
