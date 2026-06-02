@@ -5,13 +5,7 @@
 RICARICA TRAMITE PANNELLI SOLARI (VENDUTI SEPARATAMENTE)
 --------------------------------------------------------
 
-Jackery Explorer 1000 dispone di due porte di ingresso DC8020 ed e compatibile con i pannelli solari Jackery.
-
-.. image:: _assets/templates/word_template/common_assets/charging/solar_direct.png
-   :alt: Segnaposto diagramma di collegamento per la ricarica solare 1.
-   :width: 360px
-
-Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli solari, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso di serie).
+Jackery Explorer 1000 dispone di due porte di ingresso DC8020 ed e compatibile con i pannelli solari Jackery. Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli solari, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso di serie).
 
 .. image:: _assets/templates/word_template/common_assets/charging/solar_adapter.png
    :alt: Segnaposto diagramma di collegamento per la ricarica solare 2.
