@@ -30,7 +30,7 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
      - Asegúrese de que el voltaje de entrada para ambos puertos de entrada de CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
 
        - Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
-       - No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Esto puede fundir el fusible del automóvil o provocar un fallo de carga.
+       - No cargue el producto utilizando simultáneamente un cargador de vehículo y un panel solar. Esto puede fundir el fusible del vehículo o provocar un fallo de carga.
 
 
 | 
@@ -39,14 +39,14 @@ Se recomienda usar el panel solar Jackery para cargar el |PRODUCT_NAME|. Asegúr
 CARGA CON UN CARGADOR DE EN EL VEHÍCULO (SE VENDE POR SEPARADO)
 ------------------------------------------------------------
 
-Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de que el cargador de coche y el encendedor de coche ofrezcan una buena conexión.
+Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de que el cargador de vehículo y el encendedor de vehículo ofrezcan una buena conexión.
 
 .. image:: templates/word_template/common_assets/charging/car_charge.png
-   :alt: Diagrama de carga en automóvil.
+   :alt: Diagrama de carga en vehículo.
    :width: 360px
 
 | Vehículo
-| ※El cable de carga para automóvil se vende por separado.
+| ※El cable de carga para vehículo se vende por separado.
 
 
 .. list-table::
@@ -56,5 +56,5 @@ Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de 
    * - **PRECAUCIÓN**
      -
        - Por favor, encienda el vehículo antes de cargar su estación de energía.
-       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar un funcionamiento no conforme. La empresa no se responsabilizará por ninguna pérdida causada por un funcionamiento no conforme.
+       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de vehículo para evitar un funcionamiento no conforme. La empresa no se responsabilizará por ninguna pérdida causada por un funcionamiento no conforme.
        - La carga en vehículo solo es aplicable a vehículos con 12 V CC, no a 24 V CC. Por favor, no cargue este producto en vehículos de 24 V para evitar lesiones personales y daños materiales.

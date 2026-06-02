@@ -17,7 +17,7 @@
       :widths: 33 33 34
 
       * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-             :alt: Abbildung der Power Station als Platzhalter.
+             :alt: Abbildung der Powerstation als Platzhalter.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
