@@ -37,7 +37,8 @@ sync:
         table_id: tblkcXujDMGXnHMo
         view_id: vewODokxUs
       manual_copy_source:
-        table_id_env: FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID
+        table_id: tbl9grwLXLmpmZ1t
+        view_id: vewbmyhzh0
       translation_memory:
         base_token_env: FEISHU_TRANSLATION_MEMORY_BASE_TOKEN
         table_id: tbl6gKPJPTvOcTWv

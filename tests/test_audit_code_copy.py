@@ -84,7 +84,7 @@ class TestAuditCodeCopy(unittest.TestCase):
             self.assertEqual("symbols", by_text["MEANING OF SYMBOLS"].page_or_surface)
             self.assertEqual("en", by_text["MEANING OF SYMBOLS"].source_lang)
             self.assertEqual("page_title", by_text["MEANING OF SYMBOLS"].source_key)
-            self.assertEqual("phase2_blocks", by_text["Hazardous practices that may result in severe injury."].recommended_owner)
+            self.assertEqual("manual_copy_source", by_text["Hazardous practices that may result in severe injury."].recommended_owner)
             self.assertEqual("signal_word", by_text["GEFAHR"].content_role)
 
     def test_classification_should_route_report_ui_to_keep_in_code(self) -> None:

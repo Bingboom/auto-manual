@@ -8,7 +8,8 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
-from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR, SYMBOLS_BLOCKS_FILE
+from tools.data_snapshot import LOCALIZED_COPY_FILE, STRUCTURED_DATA_DEFAULT_DIR, SYMBOLS_BLOCKS_FILE
+from tools.localized_copy import LocalizedCopyResolver
 from tools.utils.path_utils import repo_root
 from tools.utils.spec_master import canonicalize_model_token
 from tools.utils.variable_resolver import parse_model_tokens
@@ -39,6 +40,10 @@ class SignalLabel:
 
 def _default_symbols_blocks_csv() -> Path:
     return repo_root() / STRUCTURED_DATA_DEFAULT_DIR / SYMBOLS_BLOCKS_FILE
+
+
+def _default_localized_copy_csv() -> Path:
+    return repo_root() / STRUCTURED_DATA_DEFAULT_DIR / LOCALIZED_COPY_FILE
 
 
 def _resolve_lang(lang: str | None) -> str:
@@ -130,6 +135,58 @@ def _sort_order(row: dict[str, str]) -> float:
         return 0.0
 
 
+def _signal_label_copy_key(signal_key: str) -> str:
+    return f"symbols.signal.{signal_key}.label"
+
+
+def _localized_copy_path(
+    *,
+    symbols_blocks_csv: str | Path | None = None,
+    localized_copy_csv: str | Path | None = None,
+) -> Path | None:
+    if localized_copy_csv:
+        path = Path(localized_copy_csv)
+        return path if path.exists() else None
+    if symbols_blocks_csv:
+        candidate = Path(symbols_blocks_csv).parent / LOCALIZED_COPY_FILE
+        return candidate if candidate.exists() else None
+    candidate = _default_localized_copy_csv()
+    return candidate if candidate.exists() else None
+
+
+def _localized_signal_labels(
+    signal_key: str,
+    *,
+    lang: str | None,
+    symbols_blocks_csv: str | Path | None = None,
+    localized_copy_csv: str | Path | None = None,
+    model: str | None = None,
+    region: str | None = None,
+) -> tuple[str, ...]:
+    path = _localized_copy_path(
+        symbols_blocks_csv=symbols_blocks_csv,
+        localized_copy_csv=localized_copy_csv,
+    )
+    if path is None:
+        return ()
+    resolver = LocalizedCopyResolver.from_csv(path)
+    langs = (_resolve_lang(lang),) if lang is not None else tuple(sorted(_SUPPORTED_LANGS))
+    labels: list[str] = []
+    for target_lang in langs:
+        try:
+            label = resolver.resolve(
+                _signal_label_copy_key(signal_key),
+                lang=target_lang,
+                model=model,
+                region=region,
+            )
+        except KeyError:
+            continue
+        if label and label not in labels:
+            labels.append(label)
+    return tuple(labels)
+
+
 @lru_cache(maxsize=16)
 def _read_signal_rows_cached(path_text: str) -> tuple[dict[str, str], ...]:
     path = Path(path_text)
@@ -206,7 +263,7 @@ def labels_from_signal_row(
 
 
 def label_from_signal_row(row: dict[str, str], *, key: str | None = None, lang: str | None = None) -> str:
-    """Return the visible signal label from a symbols_blocks signal_row."""
+    """Return the compatibility signal label from a symbols_blocks signal_row."""
 
     labels = labels_from_signal_row(row, key=key, lang=lang, include_symbol_key=True)
     if labels:
@@ -221,11 +278,28 @@ def label_from_signal_row(row: dict[str, str], *, key: str | None = None, lang: 
 def signal_label_entries(
     *,
     symbols_blocks_csv: str | Path | None = None,
+    localized_copy_csv: str | Path | None = None,
     lang: str | None = None,
+    model: str | None = None,
+    region: str | None = None,
 ) -> tuple[SignalLabel, ...]:
     csv_path = Path(symbols_blocks_csv) if symbols_blocks_csv else _default_symbols_blocks_csv()
     entries: list[SignalLabel] = []
     seen: set[tuple[str, str]] = set()
+    for signal_key in sorted(_SIGNAL_WORD_KEYS):
+        for label in _localized_signal_labels(
+            signal_key,
+            lang=lang,
+            symbols_blocks_csv=symbols_blocks_csv,
+            localized_copy_csv=localized_copy_csv,
+            model=model,
+            region=region,
+        ):
+            dedupe_key = (signal_key, label)
+            if dedupe_key in seen:
+                continue
+            seen.add(dedupe_key)
+            entries.append(SignalLabel(key=signal_key, label=label))
     for row in _read_signal_rows(csv_path):
         if not _row_enabled(row):
             continue
@@ -250,11 +324,23 @@ def get_signal_word(
     key: str,
     *,
     symbols_blocks_csv: str | Path | None = None,
+    localized_copy_csv: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> str:
     csv_path = Path(symbols_blocks_csv) if symbols_blocks_csv else _default_symbols_blocks_csv()
     signal_key = _resolve_key(key)
+    labels = _localized_signal_labels(
+        signal_key,
+        lang=lang,
+        symbols_blocks_csv=symbols_blocks_csv,
+        localized_copy_csv=localized_copy_csv,
+        model=model,
+        region=region,
+    )
+    if labels:
+        return labels[0]
+
     rows = [
         row
         for row in _read_signal_rows(csv_path)
@@ -278,6 +364,7 @@ def get_safety_warning_label(
     lang: str | None,
     *,
     symbols_blocks_csv: str | Path | None = None,
+    localized_copy_csv: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> str:
@@ -285,6 +372,7 @@ def get_safety_warning_label(
         lang,
         "safety_warning",
         symbols_blocks_csv=symbols_blocks_csv,
+        localized_copy_csv=localized_copy_csv,
         model=model,
         region=region,
     )
@@ -294,6 +382,7 @@ def get_symbols_notice_label(
     lang: str | None,
     *,
     symbols_blocks_csv: str | Path | None = None,
+    localized_copy_csv: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> str:
@@ -301,6 +390,7 @@ def get_symbols_notice_label(
         lang,
         "symbols_notice",
         symbols_blocks_csv=symbols_blocks_csv,
+        localized_copy_csv=localized_copy_csv,
         model=model,
         region=region,
     )

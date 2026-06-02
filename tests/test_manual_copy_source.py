@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from tools.manual_copy_source import (
+    MANUAL_COPY_TAG_FIELD,
     ManualCopyConflictError,
     build_localized_copy_rows,
     build_spec_title_rows,
@@ -39,6 +40,68 @@ class TestManualCopySource(unittest.TestCase):
         self.assertEqual("符号", rows[0]["text_zh"])
         self.assertEqual("Symbol", rows[0]["text_fr"])
         self.assertIn(("symbols.header_symbol", "fr"), [(item.copy_key, item.target_lang) for item in missing])
+
+    def test_build_localized_copy_rows_should_generate_symbols_signal_copy_from_tm(self) -> None:
+        tm_languages = {
+            "en": "WARNING",
+            "zh": "WARNING ZH",
+            "jp": "WARNING JP",
+            "fr": "AVERTISSEMENT",
+            "es": "ADVERTENCIA",
+            "pt-BR": "AVISO",
+            "de": "WARNUNG",
+            "it": "AVVERTENZA",
+            "uk": "WARNING UK",
+        }
+        meaning_languages = {
+            "en": "Hazardous practices.",
+            "zh": "Hazardous practices ZH.",
+            "jp": "Hazardous practices JP.",
+            "fr": "Pratiques dangereuses.",
+            "es": "Practicas peligrosas.",
+            "pt-BR": "Praticas perigosas.",
+            "de": "Gefaehrliche Handlungen.",
+            "it": "Pratiche pericolose.",
+            "uk": "Hazardous practices UK.",
+        }
+        tm_rows = [
+            {**tm_languages, MANUAL_COPY_TAG_FIELD: "manual_copy"},
+            {**meaning_languages, MANUAL_COPY_TAG_FIELD: "manual_copy"},
+        ]
+
+        rows, missing = build_localized_copy_rows(
+            [
+                {
+                    "copy_key": "symbols.signal.warning.label",
+                    "page_id": "symbols",
+                    "copy_type": "signal_label",
+                    "Market": "ALL",
+                    "Model": "ALL",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Version": "V1.0",
+                    "source_text": "WARNING",
+                },
+                {
+                    "copy_key": "symbols.signal.warning.meaning",
+                    "page_id": "symbols",
+                    "copy_type": "signal_meaning",
+                    "Market": "ALL",
+                    "Model": "ALL",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Version": "V1.0",
+                    "source_text": "Hazardous practices.",
+                },
+            ],
+            tm_rows,
+        )
+
+        by_key = {row["copy_key"]: row for row in rows}
+        self.assertEqual("WARNING", by_key["symbols.signal.warning.label"]["text_en"])
+        self.assertEqual("ADVERTENCIA", by_key["symbols.signal.warning.label"]["text_es"])
+        self.assertEqual("Pratiques dangereuses.", by_key["symbols.signal.warning.meaning"]["text_fr"])
+        self.assertEqual([], missing)
 
     def test_build_localized_copy_rows_should_reject_conflicting_tm_rows(self) -> None:
         with self.assertRaises(ManualCopyConflictError):

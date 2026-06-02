@@ -752,7 +752,7 @@ DC OUTPUT
         right_col_start = out.index("</td><td")
         self.assertGreater(out.index(long_item), right_col_start)
 
-    def test_rewrite_word_friendly_fragment_should_replace_signal_word_cells_with_banners(self) -> None:
+    def test_rewrite_word_friendly_fragment_should_replace_signal_word_cells_with_lockups(self) -> None:
         fragment = (
             "<h1>MEANING OF SYMBOLS</h1>"
             "<table><thead><tr><th><p>Symbol</p></th><th><p>Meaning</p></th></tr></thead>"
@@ -768,11 +768,14 @@ DC OUTPUT
             symbols_blocks = self._write_alert_labels_symbols_blocks(Path(td))
             out = _rewrite_word_friendly_fragment(fragment, symbols_blocks_csv=symbols_blocks)
 
-        self.assertIn("warning_bar.png", out)
-        self.assertIn("caution_bar.png", out)
-        self.assertIn("note_bar.png", out)
-        self.assertIn("tip_bar.png", out)
+        self.assertEqual(4, out.count("hb-warning-lockup"))
+        self.assertIn("⚠", out)
+        self.assertIn("<span>WARNING</span>", out)
+        self.assertIn("<span>CAUTION</span>", out)
+        self.assertIn("<span>NOTE</span>", out)
+        self.assertIn("<span>TIP</span>", out)
         self.assertNotIn("old-warning.png", out)
+        self.assertNotIn("warning_bar.png", out)
         self.assertNotIn("<strong>WARNING</strong>", out)
         self.assertNotIn("manual-callout-table", out)
 

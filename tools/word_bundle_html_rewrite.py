@@ -9,13 +9,6 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from tools.signal_words import SignalLabel, signal_label_entries
-
-_SIGNAL_WORD_BANNERS = {
-    "warning": "templates/word_template/common_assets/symbols/warning_bar.png",
-    "caution": "templates/word_template/common_assets/symbols/caution_bar.png",
-    "note": "templates/word_template/common_assets/symbols/note_bar.png",
-    "tips": "templates/word_template/common_assets/symbols/tip_bar.png",
-}
 _SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
         "Do not charge the battery in extremely hot or cold environments",
@@ -88,6 +81,32 @@ def _is_alert_label_text(
 def _has_non_label_punctuation_text(text: str) -> bool:
     normalized = _normalize_inline_text(text)
     return bool(normalized and _normalize_alert_label_text(normalized))
+
+
+def _build_signal_lockup(label: str) -> ET.Element:
+    outer = ET.Element(
+        "span",
+        {
+            "class": "hb-warning-lockup",
+            "style": (
+                "display:inline-block; width:140px; box-sizing:border-box; "
+                "background:#4a4a4a; color:#ffffff; padding:5px 8px; "
+                "font-weight:700; line-height:1; white-space:nowrap;"
+            ),
+        },
+    )
+    icon = ET.SubElement(
+        outer,
+        "span",
+        {
+            "aria-hidden": "true",
+            "style": "font-size:13px; margin-right:7px;",
+        },
+    )
+    icon.text = "\u26a0"
+    text = ET.SubElement(outer, "span")
+    text.text = label
+    return outer
 
 
 def _normalize_html_void_tags(fragment: str) -> str:
@@ -335,19 +354,10 @@ def _rewrite_signal_word_banner_table(
         first_cell = cells[0]
         label = _normalize_inline_text("".join(first_cell.itertext())).upper()
         signal_label = alert_labels.get(_normalize_alert_label_text(label))
-        banner_src = _SIGNAL_WORD_BANNERS.get(signal_label.key if signal_label else "")
-        if not banner_src:
+        if signal_label is None:
             continue
 
-        image = ET.Element(
-            "img",
-            {
-                "alt": f"{label} banner placeholder.",
-                "src": banner_src,
-                "style": "width: 140px;",
-            },
-        )
-        _set_element_children(first_cell, [image])
+        _set_element_children(first_cell, [_build_signal_lockup(label)])
         first_cell.text = None
         changed = True
 

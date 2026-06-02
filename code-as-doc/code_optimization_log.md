@@ -1,4 +1,4 @@
-# Code Optimization Log
+﻿# Code Optimization Log
 
 Updated: 2026-05-31
 
@@ -663,3 +663,18 @@ Why it mattered:
 
 - operators now maintain one source-language copy table plus Translation Memory tags instead of a disconnected multilingual copy table
 - the online `03_内容源_Localized_Copy` and `03_内容源_多语言标题` tables are no longer active maintenance surfaces; generated copy remains reproducible from the synced source rows and TM snapshot
+- signal-copy follow-up is tracked below because Symbols signal labels and meanings now use the same source table plus TM path.
+
+## 41. 2026-06-02: Move Symbols Signal Copy Into Manual Copy Source
+
+Main outcomes:
+
+- moved reusable Symbols signal labels and meanings (`warning`, `caution`, `note`, `tips`, plus `danger` for rewrite detection) into [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv), with generated multilingual output in [`data/phase2/Localized_Copy.csv`](../data/phase2/Localized_Copy.csv)
+- kept [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv) as the structure and targeting surface for `signal_row` order, scope, and optional icon assets; legacy `label_*` / `aliases_*` columns are compatibility mirrors only
+- rewired the symbols renderer and Word HTML rewrite to resolve signal labels from generated copy while preserving existing renderer entrypoints and the existing `\HBSymbolSignalRow` / `hb-warning-lockup` component surfaces
+- refreshed the code-copy audit guidance so future scans route signal words and signal meanings to `Manual_Copy_Source.csv` plus tagged Translation Memory, not back into Python or `symbols_blocks.csv`
+
+Why it mattered:
+
+- visible signal copy now follows the same source-language table plus Translation Memory flow as LCD / Symbols page chrome and Product overview labels
+- the warning/caution/note/tip table can render localized dark lockups without hardcoded banner images or per-language labels in code
