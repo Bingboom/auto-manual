@@ -496,8 +496,8 @@ def classify_string(
             "manual notice/signal word in Python",
             page_or_surface="shared_signal_words",
             content_role="signal_word",
-            suggested_destination="symbols_blocks.csv signal_row",
-            suggested_identifier="symbols_blocks.signal_row.<source_key>",
+            suggested_destination="Manual_Copy_Source.csv plus Translation Memory manual_copy tag",
+            suggested_identifier="symbols.signal.<source_key>.label",
             rst_template_option="no: shared rendered term",
         )
 
@@ -508,10 +508,10 @@ def classify_string(
             if _looks_like_structural_value(text):
                 return None
             if dict_value_key == "meaning":
-                owner = "phase2_blocks"
+                owner = "manual_copy_source"
                 role = "signal_meaning"
-                destination = "symbols_blocks.csv signal_row"
-                identifier = "symbols_blocks.signal_row.meaning"
+                destination = "Manual_Copy_Source.csv plus Translation Memory manual_copy tag"
+                identifier = "symbols.signal.<source_key>.meaning"
                 rst_option = "maybe: only if meaning is fixed across all products/languages"
             elif dict_value_key in {"page_title", "header_symbol", "header_meaning", "alt", "label"}:
                 owner = "manual_copy_source"
@@ -553,7 +553,7 @@ def classify_string(
                 "Symbols alt text default in renderer",
                 page_or_surface="symbols",
                 content_role="alt_text",
-                suggested_destination="derive from symbols_blocks.csv symbol_key or signal_row labels",
+                suggested_destination="derive from symbols_blocks.csv symbol_key or generated signal labels",
                 suggested_identifier=f"{identifier_prefix}.<source_key>.alt",
                 rst_template_option="no: derive from owned source rows",
             )
@@ -567,8 +567,8 @@ def classify_string(
                 "manual alert label used by HTML/Word rewrite",
                 page_or_surface="word_html_rewrite",
                 content_role="alert_label",
-                suggested_destination="symbols_blocks.csv signal_row label fields",
-                suggested_identifier="symbols_blocks.signal_row.<symbol_key>.label_<lang>",
+                suggested_destination="Manual_Copy_Source.csv plus Translation Memory manual_copy tag",
+                suggested_identifier="symbols.signal.<symbol_key>.label",
                 rst_template_option="no: shared rewrite detection term",
             )
         if context.startswith("_SAFETY_SUBLIST_RULES") or "_SAFETY_SUBLIST_RULES" in context:
@@ -906,16 +906,15 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
     )
     if "tools/csv_pages/renderers_symbols.py" in p0_files:
         lines.append(
-            "- `tools/csv_pages/renderers_symbols.py`: migrate legacy `LANG_COPY` page chrome to `Manual_Copy_Source.csv` plus tagged Translation Memory; derive alt text from existing source rows and move signal meanings to `symbols_blocks.csv`."
+            "- `tools/csv_pages/renderers_symbols.py`: migrate legacy `LANG_COPY` page chrome and signal meanings to `Manual_Copy_Source.csv` plus tagged Translation Memory; derive alt text from existing source rows."
         )
     if "tools/signal_words.py" in p0_files:
         lines.append(
-            "- `tools/signal_words.py`: replace hardcoded signal words with `symbols_blocks.csv` "
-            "signal-row metadata."
+            "- `tools/signal_words.py`: replace hardcoded signal words with generated `Localized_Copy.csv` signal labels, falling back to `symbols_blocks.csv` compatibility labels only when needed."
         )
     if "tools/word_bundle_html_rewrite.py" in p0_files:
         lines.append(
-            "- `tools/word_bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should stay in `symbols_blocks.csv` `signal_row` `label_*` fields."
+            "- `tools/word_bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should come from generated `Localized_Copy.csv` signal labels."
         )
     if "tools/csv_pages/renderers_spec_parser.py" in p0_files:
         lines.append("- `tools/csv_pages/renderers_spec_parser.py`: replace the `SPECIFICATIONS` title fallback with required manual copy source or data validation.")
@@ -930,7 +929,7 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
             "## Migration Guidance",
             "",
             "- Move short manual labels, titles, and table headers to `Manual_Copy_Source.csv`; generate multilingual runtime copy from Translation Memory rows tagged `manual_copy`.",
-            "- Move grouped business rows such as signal descriptions or symbol meanings to the relevant phase2 blocks table.",
+            "- Move grouped business rows such as normal symbol meanings to the relevant phase2 blocks table; keep reusable signal labels and meanings in `Manual_Copy_Source.csv` plus tagged Translation Memory.",
             "- Move regional legal/support/channel values to config only when they are reused outside one template.",
             "- Keep report UI and technical diagnostics in code unless they become operator-maintained content.",
             "",

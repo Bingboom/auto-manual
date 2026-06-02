@@ -541,11 +541,31 @@
 \providecommand{\HBSymbolSignalRow}[3]{%
   \begin{minipage}[c]{\csname HBcomp_symbol_icon_col_width\endcsname}
     \centering
-    \HBImageOrPlaceholder
-      {\csname HBcomp_symbol_signal_width\endcsname}
-      {\csname HBcomp_symbol_signal_height\endcsname}
-      {#1}%
-    \HBIfBlankTF{#2}{}{\\[-0.2mm]\HBTypeSymbolLabel{#2}}%
+    \HBIfBlankTF{#2}{%
+      \HBImageOrPlaceholder
+        {\csname HBcomp_symbol_signal_width\endcsname}
+        {\csname HBcomp_symbol_signal_height\endcsname}
+        {#1}%
+    }{%
+      \begingroup
+      \setlength{\fboxsep}{0pt}%
+      \colorbox{BrandDark}{%
+        \makebox[\csname HBcomp_symbol_signal_width\endcsname][l]{%
+          \rule{0pt}{\csname HBcomp_symbol_signal_height\endcsname}%
+          \hspace{1.5mm}%
+          \raisebox{-0.35mm}{%
+            \begin{tikzpicture}[x=1mm,y=1mm,baseline=(base)]
+              \coordinate (base) at (0,1.25);
+              \fill[white] (0,0) -- (2.5,4.4) -- (5,0) -- cycle;
+              \node[BrandDark,font=\fontsize{3.2pt}{3.2pt}\selectfont\bfseries] at (2.5,1.45) {!};
+            \end{tikzpicture}%
+          }%
+          \hspace{1.1mm}%
+          {\color{white}\HBFontHeavy\fontsize{5.2pt}{5.8pt}\selectfont #2}%
+        }%
+      }%
+      \endgroup
+    }%
   \end{minipage}
   &
   \HBTypeSymbolText{#3}%

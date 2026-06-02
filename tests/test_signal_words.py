@@ -32,6 +32,38 @@ class TestSignalWords(unittest.TestCase):
                 {(entry.key, entry.label) for entry in signal_label_entries(symbols_blocks_csv=path, lang="es")},
             )
 
+    def test_signal_words_should_prefer_generated_localized_copy_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            symbols_blocks = root / "symbols_blocks.csv"
+            symbols_blocks.write_text(
+                "\n".join(
+                    [
+                        "symbol_key,block_type,order,Market,Model,Source_lang,Is_Latest,label_fr,label_es",
+                        "warning,signal_row,1,ALL,ALL,en,TRUE,AVERTISSEMENT_BASE,ADVERTENCIA_BASE",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            localized_copy = root / "Localized_Copy.csv"
+            localized_copy.write_text(
+                "\n".join(
+                    [
+                        "copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en,text_zh,text_ja,text_fr,text_es,text_pt-BR,text_de,text_it,text_uk,notes",
+                        "symbols.signal.warning.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,WARNING,WARNING,WARNING,AVERTISSEMENT_COPY,ADVERTENCIA_COPY,WARNING,WARNING,WARNING,WARNING,",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual("AVERTISSEMENT_COPY", get_signal_word("fr", "warning", symbols_blocks_csv=symbols_blocks))
+            self.assertIn(
+                ("warning", "AVERTISSEMENT_COPY"),
+                {(entry.key, entry.label) for entry in signal_label_entries(symbols_blocks_csv=symbols_blocks, lang="fr")},
+            )
+
     def test_signal_words_should_resolve_danger_signal_row(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "symbols_blocks.csv"

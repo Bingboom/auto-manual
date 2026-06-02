@@ -4,13 +4,13 @@
 from __future__ import annotations
 
 import json
+import html
 import re
 from dataclasses import dataclass
 from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
 from ..localized_copy import LocalizedCopyResolver
-from ..signal_words import label_from_signal_row
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
 
@@ -84,7 +84,6 @@ SIGNAL_DEFAULT_ASSETS: dict[str, SymbolAsset] = {
         path="templates/word_template/common_assets/symbols/mandatory.png",
     ),
 }
-SIGNAL_BANNER_IMAGE_NAMES = {"warning_bar.png", "caution_bar.png", "note_bar.png", "tip_bar.png"}
 SUPPORTED_SYMBOL_BLOCK_TYPES = {"table_row", "signal_row"}
 
 
@@ -102,6 +101,10 @@ def _copy_text(vars_map: dict[str, str], key: str, *, lang: str) -> str:
         model=_pick_target_model(vars_map) or None,
         region=_pick_target_region(vars_map) or None,
     )
+
+
+def _signal_copy_key(signal_key: str, copy_type: str) -> str:
+    return f"symbols.signal.{signal_key}.{copy_type}"
 
 
 def _text_column_for_lang(row: dict[str, str], lang: str) -> str:
@@ -422,8 +425,23 @@ def _normalize_signal_key(value: str) -> str:
     return raw
 
 
-def _signal_uses_banner_image(image_path: str) -> bool:
-    return Path(image_path).name.casefold() in SIGNAL_BANNER_IMAGE_NAMES
+def _signal_lockup_html(label: str) -> str:
+    escaped = html.escape(label)
+    return (
+        '<span class="hb-warning-lockup" '
+        'style="display:inline-block; width:140px; box-sizing:border-box; '
+        "background:#4a4a4a; color:#ffffff; padding:5px 8px; "
+        'font-weight:700; line-height:1; white-space:nowrap;">'
+        '<span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span>'
+        f"<span>{escaped}</span>"
+        "</span>"
+    )
+
+
+def _append_signal_lockup_cell(lines: list[str], prefix: str, label: str) -> None:
+    lines.append(prefix + ".. raw:: html")
+    lines.append("")
+    lines.append("          " + _signal_lockup_html(label))
 
 
 def _collect_signal_rows(
@@ -441,9 +459,6 @@ def _collect_signal_rows(
     )
     if not rows:
         raise ValueError(f"symbols page has no matching signal_row data sku={sku_id} lang={lang}")
-    lang_col = _text_column_for_lang(rows[0], lang)
-    if lang_col not in rows[0]:
-        raise ValueError(f"content csv missing language column: {lang_col}")
     if not _has_unique_explicit_orders(rows):
         raise ValueError(f"symbols signal rows require unique non-empty order values sku={sku_id} lang={lang}")
 
@@ -464,24 +479,24 @@ def _collect_signal_rows(
 
     signal_rows: list[dict[str, object]] = []
     for block, signal_key in display_rows:
-        text = apply_vars(block.get(lang_col, "") or "", vars_map)
+        text = apply_vars(_copy_text(vars_map, _signal_copy_key(signal_key, "meaning"), lang=lang), vars_map)
         if not text.strip():
             raise ValueError(
-                f"symbols signal row missing {lang_col} text at line {(block.get('__line__') or '?').strip()}"
+                f"symbols signal copy is empty for key={signal_key} lang={lang} "
+                f"at line {(block.get('__line__') or '?').strip()}"
             )
 
         default_asset = SIGNAL_DEFAULT_ASSETS[signal_key]
         image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
         image_path = image_path or (block.get("image_path") or "").strip() or default_asset.path
-        is_banner = _signal_uses_banner_image(image_path)
-        label = label_from_signal_row(block, key=signal_key, lang=lang)
+        label = _copy_text(vars_map, _signal_copy_key(signal_key, "label"), lang=lang)
         signal_rows.append(
             {
-                "mode": "banner" if is_banner else "icon_label",
+                "mode": "signal_lockup",
                 "image": image_path,
                 "alt": label or signal_key,
-                "width": "140px" if is_banner else default_asset.width,
-                "label": "" if is_banner else label,
+                "width": "140px",
+                "label": label,
                 "meaning": text,
                 "signal_key": signal_key,
             }
@@ -507,11 +522,9 @@ def _signal_section(
     # \HBSymbolSignalRow{image basename}{optional signal label}{meaning}
     signal_tex_rows = []
     for row in signal_rows:
-        mode = str(row["mode"]).strip()
-        label = str(row["label"]) if mode == "icon_label" else ""
         signal_tex_rows.append(
             rf"\HBSymbolSignalRow{{{_latex_image_name(str(row['image']))}}}"
-            rf"{{{latex_arg_escape(label)}}}{{{_latex_text_arg(str(row['meaning']))}}}"
+            rf"{{{latex_arg_escape(str(row['label']))}}}{{{_latex_text_arg(str(row['meaning']))}}}"
         )
     lines.extend(
         _only_latex_raw_block(
@@ -534,14 +547,10 @@ def _signal_section(
     ]
 
     for row in signal_rows:
-        mode = str(row["mode"]).strip()
-        _append_image_cell(
+        _append_signal_lockup_cell(
             signal_table_lines,
             "   * - ",
-            image_path=str(row["image"]),
-            alt=str(row["alt"]),
-            width=str(row.get("width", "40px")),
-            label=str(row["label"]) if mode == "icon_label" else None,
+            str(row["label"]),
         )
         _append_text_cell(signal_table_lines, "     - ", str(row["meaning"]))
 

@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import csv
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
-import tempfile
 
 from tools.csv_pages import renderers
 
@@ -349,11 +351,84 @@ class TestCsvPageRenderers(unittest.TestCase):
         )
 
     def _localized_copy_vars(self, **values: str) -> dict[str, str]:
-        out = {
-            "localized_copy_csv": str(Path(__file__).resolve().parents[1] / "data/phase2/Localized_Copy.csv")
-        }
+        out = {"localized_copy_csv": str(self._localized_copy_fixture_path())}
         out.update(values)
         return out
+
+    def _localized_copy_fixture_path(self) -> Path:
+        cached = getattr(self, "_localized_copy_fixture", None)
+        if cached is not None:
+            return cached
+
+        temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        dst = Path(temp_dir.name) / "Localized_Copy.csv"
+        src = Path(__file__).resolve().parents[1] / "data/phase2/Localized_Copy.csv"
+        shutil.copyfile(src.with_name("Status_Words.csv"), dst.with_name("Status_Words.csv"))
+
+        with src.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            fieldnames = list(reader.fieldnames or [])
+            rows = [
+                dict(row)
+                for row in reader
+                if not (row.get("copy_key") or "").startswith("symbols.signal.")
+            ]
+
+        def row(
+            copy_key: str,
+            copy_type: str,
+            text_en: str,
+            *,
+            text_fr: str | None = None,
+            text_es: str | None = None,
+            text_de: str | None = None,
+        ) -> dict[str, str]:
+            output = {column: "" for column in fieldnames}
+            output.update(
+                {
+                    "copy_key": copy_key,
+                    "page_id": "symbols",
+                    "copy_type": copy_type,
+                    "Region": "ALL",
+                    "Model": "ALL",
+                    "Source_lang": "en",
+                    "Is_Latest": "TRUE",
+                    "Version": "V1.0",
+                    "text_en": text_en,
+                    "text_zh": text_en,
+                    "text_ja": text_en,
+                    "text_fr": text_fr or text_en,
+                    "text_es": text_es or text_en,
+                    "text_pt-BR": text_en,
+                    "text_de": text_de or text_en,
+                    "text_it": text_en,
+                    "text_uk": text_en,
+                }
+            )
+            return output
+
+        rows.extend(
+            [
+                row("symbols.signal.warning.label", "signal_label", "WARNING", text_fr="AVERTISSEMENT", text_es="ADVERTENCIA", text_de="WARNUNG"),
+                row("symbols.signal.warning.meaning", "signal_meaning", "Data warning.", text_fr="Avertissement de donn茅es.", text_es="Advertencia desde datos.", text_de="Datenwarnung."),
+                row("symbols.signal.caution.label", "signal_label", "CAUTION", text_fr="ATTENTION", text_es="PRECAUCI脫N", text_de="VORSICHT"),
+                row("symbols.signal.caution.meaning", "signal_meaning", "Data caution.", text_fr="Attention de donn茅es.", text_es="Precauci贸n desde datos.", text_de="Datenvorsicht."),
+                row("symbols.signal.note.label", "signal_label", "NOTE", text_fr="REMARQUE", text_es="NOTA", text_de="HINWEIS"),
+                row("symbols.signal.note.meaning", "signal_meaning", "Data note.", text_fr="Remarque de donn茅es.", text_es="Nota desde datos.", text_de="Datenhinweis."),
+                row("symbols.signal.tips.label", "signal_label", "TIP", text_fr="CONSEIL", text_es="CONSEJO", text_de="TIPP"),
+                row("symbols.signal.tips.meaning", "signal_meaning", "Data tip.", text_fr="Conseil de donn茅es.", text_es="Consejo desde datos.", text_de="Datentipp."),
+                row("symbols.signal.danger.label", "signal_label", "DANGER", text_fr="DANGER", text_es="PELIGRO", text_de="GEFAHR"),
+            ]
+        )
+
+        with dst.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(rows)
+
+        self._localized_copy_fixture = dst
+        return dst
 
     def _symbols_blocks(self) -> list[dict[str, str]]:
         return [
@@ -479,7 +554,8 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("Data warning.", out)
         self.assertIn("read_manual_operator.png", out)
         self.assertIn("Do not dismantle.", out)
-        self.assertIn(":alt: WARNING", out)
+        self.assertIn("hb-warning-lockup", out)
+        self.assertIn("<span>WARNING</span>", out)
         self.assertIn(":alt: warning_triangle", out)
         self.assertNotIn("Warning signal symbol.", out)
         self.assertNotIn("Warning symbol.", out)
@@ -539,7 +615,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
         self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
         self.assertIn(".. only:: not latex", out)
-        self.assertIn(".. image:: templates/word_template/common_assets/symbols/warning_triangle.png", out)
+        self.assertIn("hb-warning-lockup", out)
 
     def test_render_symbols_page_latex_image_args_use_basenames(self) -> None:
         blocks = self._symbols_blocks()
@@ -622,8 +698,8 @@ class TestCsvPageRenderers(unittest.TestCase):
             lang="fr",
             vars_map=self._localized_copy_vars(),
         )
-        self.assertIn("**WARNING**", out)
-        self.assertIn("**CAUTION**", out)
+        self.assertIn("<span>AVERTISSEMENT</span>", out)
+        self.assertIn("<span>ATTENTION</span>", out)
         self.assertNotIn(
             "Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).",
             out,
@@ -641,7 +717,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             lang="es",
             vars_map=self._localized_copy_vars(),
         )
-        self.assertIn("**WARNING**", out)
+        self.assertIn("<span>ADVERTENCIA</span>", out)
         self.assertNotIn("**DANGER**", out)
         self.assertNotIn(
             "Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un ambiente similar a interiores cuando lo use en exteriores, ej. autocaravanas, tiendas de campaña, cabañas, etc.).",
@@ -738,15 +814,16 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("Advertencia desde datos.", out)
         self.assertIn("Consejo desde datos.", out)
-        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Advertencia desde datos.}", out)
+        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Advertencia desde datos.}", out)
         self.assertIn("Significado del símbolo de advertencia.", out)
         self.assertNotIn("Prácticas peligrosas que pueden resultar en lesiones graves", out)
 
-    def test_render_symbols_page_resolves_signal_labels_from_signal_rows(self) -> None:
+    def test_render_symbols_page_resolves_signal_labels_from_localized_copy(self) -> None:
         blocks = self._symbols_blocks()
         for block in blocks:
             if block.get("block_type") == "signal_row":
                 block["label_en"] = f"ROW_{block['symbol_key']}"
+                block["text_en"] = f"ROW_TEXT_{block['symbol_key']}"
 
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
@@ -756,9 +833,10 @@ class TestCsvPageRenderers(unittest.TestCase):
             vars_map=self._localized_copy_vars(),
         )
 
-        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{ROW\_WARNING}{Data warning.}", out)
-        self.assertIn("**ROW_CAUTION**", out)
-        self.assertNotIn("**WARNING**", out)
+        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
+        self.assertIn("<span>CAUTION</span>", out)
+        self.assertNotIn("ROW_WARNING", out)
+        self.assertNotIn("ROW_TEXT_WARNING", out)
 
     def test_render_symbols_page_filters_by_market_and_model(self) -> None:
         blocks = self._symbols_blocks()
