@@ -54,6 +54,7 @@ USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 
    * - **ATTENZIONE**
      -
+       - **USB-C 100W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3).** Se il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il dispositivo o l'accessorio collegato sia dotato di protezione antincendio.
        - Collega |PRODUCT_NAME| solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o di altri standard equivalenti).
        - Per ottenere la massima potenza di uscita, usa il cavo da USB-C a USB-C da 5 A (20 V CC/5 A, 100 W).
 
