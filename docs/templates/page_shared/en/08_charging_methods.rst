@@ -1,12 +1,9 @@
 CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 -------------------------------------------
 
-|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
+|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels.
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
-   :alt: Solar charging connection diagram placeholder 1.
-   :width: 360px
-
+If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
 
 .. image:: templates/word_template/common_assets/charging/solar_adapter.png
    :alt: Solar charging connection diagram placeholder 2.

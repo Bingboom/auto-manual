@@ -5,7 +5,9 @@
 CARGA MEDIANTE PANELES SOLARES (SE VENDEN POR SEPARADO)
 -------------------------------------------------------
 
-Jackery Explorer 1000 cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de Jackery. Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
+Jackery Explorer 1000 cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de Jackery.
+
+Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
 
 .. image:: _assets/templates/word_template/common_assets/charging/solar_adapter.png
    :alt: Diagrama de conexión para carga solar 2.

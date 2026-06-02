@@ -3,10 +3,6 @@ AUFLADEN ÜBER SOLARMODULE (SEPARAT ERHÄLTLICH)
 
 |PRODUCT_NAME| verfügt über zwei DC8020-Eingangsanschlüsse und ist mit den Jackery-Solarmodulen kompatibel.
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
-   :alt: Abbildung der Solarladeverbindung als Platzhalter 1.
-   :width: 360px
-
 Wenn ein DC8020-Eingangsanschluss zwei Solarmodule gleichzeitig anschließen muss, beziehen Sie sich bitte auf die folgende Abbildung zum Aufladen über den Solarpanel-Anschluss (separat erhältlich, nicht im Lieferumfang enthalten).
 
 .. image:: templates/word_template/common_assets/charging/solar_adapter.png

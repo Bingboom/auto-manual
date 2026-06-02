@@ -3,10 +3,6 @@
 
 |PRODUCT_NAME| має два вхідні порти DC8020 і сумісний із сонячними панелями Jackery.
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
-   :alt: Заглушка схеми підключення для сонячного заряджання 1.
-   :width: 360px
-
 Якщо до одного входу DC8020 потрібно одночасно підключити дві сонячні панелі, зверніться до наведеної нижче схеми заряджання через з'єднувач сонячних панелей (продається окремо, до стандартної комплектації не входить).
 
 .. image:: templates/word_template/common_assets/charging/solar_adapter.png
