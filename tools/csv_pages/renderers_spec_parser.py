@@ -13,7 +13,9 @@ from ..utils.spec_master import (
     canonicalize_model_token,
     collect_matching_footnote_rows,
     is_page_value_row,
+    model_value_matches_target,
     page_value_matches,
+    region_value_matches_target,
     source_language_for_row,
 )
 
@@ -295,14 +297,18 @@ def _parse_spec_master_sections(
                 continue
 
         row_region = _first_non_empty(row, ["Region", "region"])
-        if var_region and row_region and row_region != var_region:
+        if not region_value_matches_target(row_region, var_region):
             continue
         row_model = _first_non_empty(
             row,
             ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
         )
-        row_model = canonicalize_model_token(row_model, region=row_region or var_region)
-        if var_model and row_model and row_model.casefold() != var_model.casefold():
+        if not model_value_matches_target(
+            row_model,
+            target_model=var_model,
+            target_region=var_region,
+            row_region=row_region,
+        ):
             continue
 
         page_value = _first_non_empty(row, ["Page", "page"])

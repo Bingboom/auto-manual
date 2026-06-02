@@ -293,6 +293,25 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn(r"\HBSpecMarkerOne{}", out)
         self.assertIn('class="hb-spec-footnote" data-spec-trailer-kind="footnote"', out)
 
+    def test_render_spec_page_should_match_multiselect_model_cells(self) -> None:
+        blocks = self._spec_master_blocks()
+        for row in blocks:
+            row["Region"] = "EU"
+            row["Model"] = "JHP-1000A, JHP-2000A"
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(model="JHP-2000A", region="EU"),
+        )
+
+        self.assertIn("Model No.", out)
+        self.assertIn("Demo note", out)
+        self.assertIn("Demo footnote text", out)
+        self.assertIn(r"\HBSpecMarkerOne{}", out)
+
     def test_render_spec_page_should_use_source_columns_for_jp_source_language_rows(self) -> None:
         jp_row = dict(self._spec_master_blocks()[0])
         jp_row["Region"] = "JP"

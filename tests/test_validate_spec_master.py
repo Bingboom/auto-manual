@@ -475,6 +475,53 @@ class TestValidateSpecMaster(unittest.TestCase):
             codes = {issue.code for issue in issues}
             self.assertNotIn("UNKNOWN_FOOTNOTE_REF", codes)
 
+    def test_collect_spec_master_validation_issues_should_match_multiselect_footnote_model(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path = self._write_generated_page_fixture(root)
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "\n".join(
+                    [
+                        "Model,Region,Source_lang,Is_Latest,Page,Row_key,Slot_key,Line_order,Param_source,Param_footnote_refs,Value_source",
+                        "JE-2000F,EU,en,TRUE,specifications,product_name,,,,,Jackery Explorer 2000 EU",
+                        "JE-2000F,EU,en,TRUE,specifications,model_no,,,,,JE-2000F",
+                        "JE-2000F,EU,en,TRUE,Product overview,main_power_button,label,1,,,Main POWER Button",
+                        'JE-2000F,EU,en,TRUE,specifications,ac_input,,1,Bypass Mode,ac_bypass,"220V-240V~50Hz"',
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            spec_footnotes_csv = root / "Spec_Footnotes.csv"
+            spec_footnotes_csv.write_text(
+                "\n".join(
+                    [
+                        "Footnote_id,Type,Region,Model,Source_lang,Is_Latest,Page,Footnote_order,Text_en,Enabled",
+                        'ac_bypass,Footnote,EU,"JE-1000F, JE-2000E, JE-2000F",en,TRUE,specifications,1,Shared AC bypass footnote,TRUE',
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            config_path = self._write_config(
+                root,
+                manifest_path=manifest_path,
+                spec_master_csv=spec_master_csv,
+                spec_footnotes_csv=spec_footnotes_csv,
+            )
+
+            issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-2000F",
+                region="EU",
+                all_targets=False,
+            )
+
+            codes = {issue.code for issue in issues}
+            self.assertNotIn("UNKNOWN_FOOTNOTE_REF", codes)
+            self.assertNotIn("UNUSED_FOOTNOTE", codes)
+
     def test_collect_spec_master_validation_issues_should_accept_family_scoped_document_key(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
