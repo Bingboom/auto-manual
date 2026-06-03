@@ -28,6 +28,12 @@ integrations/openclaw/feishu-im-webhook-adapter/runtime/
 .openclaw/
 HEARTBEAT.md
 TOOLS.md
+# Root persona stubs: the real persona lives in agent/ and is injected via the
+# bootstrap-extra-files hook; these root files are machine-local placeholders
+# maintained by integrations/openclaw/scripts/ensure_blockclaw_persona_wiring.mjs
+/IDENTITY.md
+/SOUL.md
+/USER.md
 
 # Review preview packaging
 site/review-preview/dist/

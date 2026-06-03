@@ -3,6 +3,17 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
+// Re-assert the BlockClaw persona wiring (bootstrap-extra-files hook -> agent/ + root
+// stubs) on every gateway start, so an OpenClaw update/reseed or a config reset cannot
+// silently regress it. Isolated in its own try/catch so it can never affect (or be
+// affected by) the Feishu reaction patch below. See ensure_blockclaw_persona_wiring.mjs.
+try {
+  const personaGuard = await import("./ensure_blockclaw_persona_wiring.mjs");
+  personaGuard.ensureBlockClawPersonaWiring();
+} catch (err) {
+  console.error(`[feishu-startup] persona guard skipped: ${String(err)}`);
+}
+
 const defaultRoot = "/opt/homebrew/opt/manual-node-v24.14.1/lib/node_modules/openclaw";
 const root = process.env.OPENCLAW_INSTALL_ROOT || defaultRoot;
 const distDir = path.join(root, "dist");
