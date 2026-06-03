@@ -10,7 +10,7 @@
 
    .. raw:: latex
 
-      \safetywarning{INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES}
+      \safetywarning{INSTRUCTIONS DE SÉCURITÉ POUR PRÉVENIR LES INCENDIES, LES CHOCS ÉLECTRIQUES OU LES BLESSURES}
 
    .. raw:: latex
 
@@ -51,7 +51,7 @@
         <div class="hb-warning-box">
           <div class="hb-warning-row">
             <div class="hb-warning-lockup">AVERTISSEMENT</div>
-            <div class="hb-warning-text">INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES</div>
+            <div class="hb-warning-text">INSTRUCTIONS DE SÉCURITÉ POUR PRÉVENIR LES INCENDIES, LES CHOCS ÉLECTRIQUES OU LES BLESSURES</div>
           </div>
         </div>
 

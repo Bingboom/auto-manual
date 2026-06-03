@@ -39,7 +39,7 @@ Se recomienda usar el panel solar Jackery para cargar el |PRODUCT_NAME|. Asegúr
 CARGA CON UN CARGADOR PARA VEHÍCULO (SE VENDE POR SEPARADO)
 -----------------------------------------------------------
 
-Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de que el cargador de vehículo y el encendedor de vehículo ofrezcan una buena conexión.
+Este producto puede cargarse usando un cargador para vehículo de 12 V. Asegúrese de que el cargador de vehículo y el encendedor de vehículo ofrezcan una buena conexión.
 
 .. image:: templates/word_template/common_assets/charging/car_charge.png
    :alt: Diagrama de carga en vehículo.

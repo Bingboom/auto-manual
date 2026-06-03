@@ -14,7 +14,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 |ADD_DEVICE_STEP|
 
-2.2 Press the |MAIN_POWER_BUTTON_LABEL| on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode, tap the "**Icon Flashed**" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
+2.2 Press the |MAIN_POWER_BUTTON_LABEL_LOWER| on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode, tap the "**Icon Flashed**" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: App add device step placeholder.
@@ -62,7 +62,7 @@ Alternatively, scan the QR code below to download and install the App.
    :widths: 12 88
 
    * - **CAUTION**
-    - The Jackery App can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
+     - The Jackery App can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.
 
 
 **3. Unbind the device**

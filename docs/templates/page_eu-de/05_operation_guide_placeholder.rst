@@ -14,7 +14,7 @@ HAUPTSTROMVERSORGUNG EIN/AUS
 | **Standard-Standby-Zeit:** |DEFAULT_STANDBY_DURATION|.
 | Das Produkt schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus, wenn weder geladen noch entladen wird.
 | \*Die Standby-Zeit kann in der Jackery-App eingestellt werden.
-| Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach |ENERGY_SAVING_AUTO_OFF_DURATION| aus, wenn der AC- oder DC/USB-Ausgang eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt.
+| Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach |ENERGY_SAVING_AUTO_OFF_DURATION| aus, wenn die AC- oder DC/USB-Einschalttaste eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt.
 
 AC-AUSGANG EIN/AUS
 ------------------
@@ -67,7 +67,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 
    * - **VORSICHT**
      -
-       - Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
+       - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
        - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
        - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
 

@@ -17,7 +17,7 @@ ENCENDIDO/APAGADO
 | **Tiempo de espera predeterminado:** |DEFAULT_STANDBY_DURATION|.
 | El producto se apagará automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad, sin carga ni descarga.
 | \*El tiempo de espera puede configurarse en la aplicación Jackery.
-| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si el |AC_POWER_BUTTON_LABEL_LOWER| o el |DC_USB_POWER_BUTTON_LABEL_LOWER| está encendido, pero el producto no está cargando ni descargando.
+| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de |ENERGY_SAVING_AUTO_OFF_DURATION| si la salida de CA o la salida CC/USB está activada, pero el producto no está cargando ni descargando.
 
 ENCENDER/APAGAR SALIDA CA
 --------------------------
