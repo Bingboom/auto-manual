@@ -154,6 +154,11 @@ build batch when the message carries a broad selector such as `所有` / `全部
 and still narrows to a bounded queue set, for example `JE-1000F` + `欧规`.
 Multi-row status queries such as `当前所有已构建文档链接` are handled as read-only
 status batches and are never dispatched as builds.
+For batch status or link replies, the adapter sends one status summary without
+embedded `Document link` URLs, then sends each unique artifact link as its own
+follow-up text message. That keeps Feishu's document-link renderer on the same
+path as a human sending one document link per message instead of flattening all
+links into one plain-text block.
 Both `输出JE-1000F的所有欧规说明书文案` and `构建JE-1000F的所有欧规说明书文案`
 are treated as batch draft-build requests.
 That phrase becomes a `Task_id` prefix such as `JE-1000F_EU_`; only rows whose
@@ -162,8 +167,9 @@ launched. The adapter dispatches each matched row by `record_id` with
 `queue-execute --no-wait`, throttling each dispatch by `FEISHU_IM_BATCH_DISPATCH_DELAY_MS`,
 then stores a short-lived batch context containing `request_id`, `accepted_at`,
 `action_name`, `queryText`, and the launched rows. Batch status follow-ups such
-as `这个好了没` re-read each stored `record_id` with `--fresh-since accepted_at`
-and classify rows as fresh success/failure, stale result, or writeback pending.
+as `这个好了没` or document-link follow-ups such as `发` / `发一下` re-read each
+stored `record_id` with `--fresh-since accepted_at` and classify rows as fresh
+success/failure, stale result, or writeback pending.
 If Feishu no longer returns a remembered `record_id`, the adapter reports that
 row as not found, clears the stale context when no live rows remain, and does not
 replay the old row payload from local memory.

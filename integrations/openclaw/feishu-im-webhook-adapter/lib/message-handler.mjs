@@ -46,6 +46,20 @@ function contextRows(conversationContext) {
   return Array.isArray(conversationContext?.rows) ? conversationContext.rows : [];
 }
 
+function documentLinksFromRows(rows) {
+  const links = [];
+  const seen = new Set();
+  for (const row of rows || []) {
+    const link = String(row?.document_link || "").trim();
+    if (!link || seen.has(link)) {
+      continue;
+    }
+    seen.add(link);
+    links.push(link);
+  }
+  return links;
+}
+
 // Freshness values that mean "the dispatch fired but the authoritative Feishu
 // writeback is not the current run's final result yet" — i.e. still processing.
 const PENDING_FRESHNESS_STATUSES = ["pending", "writeback_pending", "stale_result", "not_requested"];
@@ -87,6 +101,16 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       chatId: messageEvent.chatId,
       senderId: messageEvent.senderId,
     });
+  }
+
+  async function replyBatchStatus(messageEvent, statusPayload) {
+    await feishuClient.replyTextMessage(
+      messageEvent.messageId,
+      formatBatchStatusReply(statusPayload, localProfile, { includeDocumentLinks: false })
+    );
+    for (const link of documentLinksFromRows(statusPayload?.rows).slice(0, 10)) {
+      await feishuClient.replyTextMessage(messageEvent.messageId, link);
+    }
   }
 
   async function queryContextRows({ rows, freshSince }) {
@@ -259,10 +283,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         await forgetConversationContext(messageEvent);
       }
       await react(messageEvent.messageId, latest.failures.length ? "error" : "completed");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
-        formatBatchStatusReply(latest, localProfile)
-      );
+      await replyBatchStatus(messageEvent, latest);
       return;
     }
 
@@ -317,17 +338,11 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         });
       }
       await react(messageEvent.messageId, "completed");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
-        formatBatchStatusReply(
-          {
-            rows,
-            failures: [],
-            heading: "查到这些 Feishu 当前队列行：",
-          },
-          localProfile
-        )
-      );
+      await replyBatchStatus(messageEvent, {
+        rows,
+        failures: [],
+        heading: "查到这些 Feishu 当前队列行：",
+      });
       return;
     }
 
@@ -420,17 +435,11 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           acceptedAt,
           requestId,
         });
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
-          formatBatchStatusReply(
-            {
-              rows: finalStatus.rows,
-              failures: finalStatus.failures,
-              heading: finalStatus.timedOut ? "批量任务仍在执行或等待写回：" : "批量任务最新写回：",
-            },
-            localProfile
-          )
-        );
+        await replyBatchStatus(messageEvent, {
+          rows: finalStatus.rows,
+          failures: finalStatus.failures,
+          heading: finalStatus.timedOut ? "批量任务仍在执行或等待写回：" : "批量任务最新写回：",
+        });
       }
       return;
     }
