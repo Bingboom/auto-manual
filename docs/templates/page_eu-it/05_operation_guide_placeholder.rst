@@ -14,12 +14,12 @@ ACCENSIONE/SPEGNIMENTO
 | **Tempo di standby predefinito:** |DEFAULT_STANDBY_DURATION|.
 | Il prodotto si spegnerà automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattività, senza ricarica o scarica.
 | \*Il tempo di standby può essere impostato nell'App Jackery.
-| Quando la Modalità risparmio energetico e attiva, il prodotto si spegnerà automaticamente dopo |ENERGY_SAVING_AUTO_OFF_DURATION| se l'uscita CA o DC/USB e attiva ma il prodotto non sta caricando o scaricando.
+| Quando la Modalità risparmio energetico è attiva, il prodotto si spegnerà automaticamente dopo |ENERGY_SAVING_AUTO_OFF_DURATION| se l'uscita CA o DC/USB è attiva ma il prodotto non sta caricando o scaricando.
 
 USCITA CA ATTIVA/DISATTIVA
 --------------------------
 
-**Prerequisito**: il prodotto e acceso.
+**Prerequisito**: il prodotto è acceso.
 
 .. image:: templates/word_template/common_assets/operation/ac_output.png
    :alt: Segnaposto operazione uscita CA attiva/disattiva.
@@ -35,7 +35,7 @@ USCITA CA ATTIVA/DISATTIVA
 USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 ------------------------------------
 
-**Prerequisito**: il prodotto e acceso.
+**Prerequisito**: il prodotto è acceso.
 
 .. image:: templates/word_template/common_assets/operation/dc_usb_output.png
    :alt: Segnaposto operazione uscita CC USB attiva/disattiva.
@@ -67,14 +67,14 @@ USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 
    * - **ATTENZIONE**
      -
-       - La porta CC 12 V e compatibile solo con batterie per auto da 12 V e non e adatta a sistemi da 24 V.
+       - La porta CC 12 V è compatibile solo con batterie per auto da 12 V e non è adatta a sistemi da 24 V.
        - Non avviare l'auto mentre il prodotto sta ricaricando la batteria dell'auto tramite la porta di uscita CC da 12 V, poiché ciò potrebbe danneggiare il prodotto.
-       - Questa funzione e destinata solo all'uso di emergenza e non può ricaricare una batteria dell'auto completamente scarica o danneggiata.
+       - Questa funzione è destinata solo all'uso di emergenza e non può ricaricare una batteria dell'auto completamente scarica o danneggiata.
 
-MODALITA RISPARMIO ENERGETICO
+MODALITÀ RISPARMIO ENERGETICO
 -----------------------------
 
-Per evitare un consumo inutile della batteria dovuto al mancato spegnimento dell'uscita, il prodotto abilita per impostazione predefinita la Modalità risparmio energetico. Quando l'uscita CA o CC e attiva, l'icona della Modalità risparmio energetico viene visualizzata sullo schermo LCD. In questa modalità, se non e collegato alcun dispositivo oppure il consumo del dispositivo collegato e inferiore a una certa soglia (|ENERGY_SAVING_AC_THRESHOLD| per l'uscita CA o |ENERGY_SAVING_DC_THRESHOLD| per l'uscita DC/USB), l'uscita corrispondente si spegnerà automaticamente dopo il tempo impostato. L'impostazione predefinita e |ENERGY_SAVING_AUTO_OFF_DURATION|. La durata della Modalità risparmio energetico può essere impostata nell'App Jackery su 1 H, 2 H, 8 H, 12 H o 24 H. Se viene impostata su Mai spegnimento, la Modalità risparmio energetico sarà disattivata.
+Per evitare un consumo inutile della batteria dovuto al mancato spegnimento dell'uscita, il prodotto abilita per impostazione predefinita la Modalità risparmio energetico. Quando l'uscita CA o CC è attiva, l'icona della Modalità risparmio energetico viene visualizzata sullo schermo LCD. In questa modalità, se non è collegato alcun dispositivo oppure il consumo del dispositivo collegato è inferiore a una certa soglia (|ENERGY_SAVING_AC_THRESHOLD| per l'uscita CA o |ENERGY_SAVING_DC_THRESHOLD| per l'uscita DC/USB), l'uscita corrispondente si spegnerà automaticamente dopo il tempo impostato. L'impostazione predefinita e |ENERGY_SAVING_AUTO_OFF_DURATION|. La durata della Modalità risparmio energetico può essere impostata nell'App Jackery su 1 H, 2 H, 8 H, 12 H o 24 H. Se viene impostata su Mai spegnimento, la Modalità risparmio energetico sarà disattivata.
 
 Per disattivare la Modalità risparmio energetico, tieni premuti per più di 3 secondi sia il pulsante CA sia il pulsante POWER principale. Una volta disattivata la Modalità risparmio energetico, l'icona non comparirà più sullo schermo LCD e il prodotto non spegnerà automaticamente l'uscita CA o DC/USB.
 
@@ -92,7 +92,7 @@ Quando si alimentano dispositivi a basso consumo (CA <= |ENERGY_SAVING_AC_THRESH
    :widths: 12 88
 
    * - **NOTA**
-     - La Modalità risparmio energetico riprende il suo stato precedente dopo l'accensione. Per cambiare modalità e necessario un intervento manuale.
+     - La Modalità risparmio energetico riprende il suo stato precedente dopo l'accensione. Per cambiare modalità è necessario un intervento manuale.
 
 
 LUCE LED ON/OFF
@@ -140,7 +140,7 @@ SCHERMO LCD
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso brevemente</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante POWER principale oppure quando il prodotto e in carica.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi il pulsante POWER principale oppure quando il prodotto è in carica.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Spegni</td>
@@ -153,7 +153,7 @@ SCHERMO LCD
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso fisso (in carica o in scarica)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi due volte il pulsante POWER principale quando il prodotto e acceso.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Premi due volte il pulsante POWER principale quando il prodotto è acceso.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Spegni</td>
@@ -170,8 +170,8 @@ SCHERMO LCD
    .. raw:: latex
 
       \begin{HBLcdModeTable}{lcd_mode.png}
-      \HBLcdModeFirstGroup{Acceso brevemente}{Accendi}{Premi il pulsante POWER principale oppure quando il prodotto e in carica.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente ed entra in modalità sleep dopo 2 minuti di inattività.}
-      \HBLcdModeSecondGroup{Acceso fisso (in carica o in scarica)}{Accendi}{Premi due volte il pulsante POWER principale quando il prodotto e acceso.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattività.}
+      \HBLcdModeFirstGroup{Acceso brevemente}{Accendi}{Premi il pulsante POWER principale oppure quando il prodotto è in carica.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente ed entra in modalità sleep dopo 2 minuti di inattività.}
+      \HBLcdModeSecondGroup{Acceso fisso (in carica o in scarica)}{Accendi}{Premi due volte il pulsante POWER principale quando il prodotto è acceso.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattività.}
       \end{HBLcdModeTable}
 
 Puoi anche impostare la modalità di visualizzazione dello schermo nell'App Jackery.
