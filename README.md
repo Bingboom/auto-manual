@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-05-28
+Updated: 2026-06-03
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -31,6 +31,8 @@ python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --reg
 python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 ```
+
+`review` refreshes the full Feishu/Lark phase2 snapshot before seeding `docs/_review`, so first-review validation uses current online data instead of stale local CSVs.
 
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md).
 
