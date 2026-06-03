@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-05-07
+Updated: 2026-06-03
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -160,6 +160,9 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/queue_config_resolution.py`](../../tools/queue_config_resolution.py)
   - config-family routing
   - target/config resolution for queue rows
+- [`tools/queue_review_start_inference.py`](../../tools/queue_review_start_inference.py)
+  - Review Init target candidate extraction from `Document_Key`, `Document_ID`, and `Task_id`
+  - inferred Start Review `Build_family` for queue-query / resolve-action surfaces
 - [`tools/queue_runtime.py`](../../tools/queue_runtime.py)
   - worktree/runtime helpers
   - generated path and review/runtime input helpers
