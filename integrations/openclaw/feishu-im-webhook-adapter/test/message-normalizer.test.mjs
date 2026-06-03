@@ -119,3 +119,19 @@ test("normalizeIncomingMessage uses batch context for status follow-ups", () => 
   assert.equal(normalized.usedBatchContext, true);
   assert.equal(normalized.contextRows.length, 2);
 });
+
+test("normalizeIncomingMessage uses batch context for send-link follow-ups", () => {
+  const normalized = normalizeIncomingMessage({
+    messageText: "发",
+    conversationContext: {
+      rows: [
+        { record_id: "rec_en", document_id: "JE-1000F_EU_en_0.7" },
+        { record_id: "rec_fr", document_id: "JE-1000F_EU_fr_0.7" },
+      ],
+    },
+  });
+
+  assert.equal(normalized.normalizedText, "发");
+  assert.equal(normalized.usedBatchContext, true);
+  assert.equal(normalized.contextRows.length, 2);
+});

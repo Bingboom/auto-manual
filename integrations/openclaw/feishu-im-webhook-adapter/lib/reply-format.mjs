@@ -1,6 +1,6 @@
 import { localReplyPhrase } from "./local-profile.mjs";
 
-function summarizeRow(row) {
+function summarizeRow(row, { includeDocumentLink = true } = {}) {
   const lines = [];
   if (row.document_id) {
     lines.push(`Document_ID: ${row.document_id}`);
@@ -43,7 +43,7 @@ function summarizeRow(row) {
   if (row.run_url) {
     lines.push(`run: ${row.run_url}`);
   }
-  if (row.document_link) {
+  if (includeDocumentLink && row.document_link) {
     lines.push(`Document link: ${row.document_link}`);
   }
   if (row.document_directory) {
@@ -161,13 +161,17 @@ export function formatBatchCompletionReply({ resolution, rows = [], failures = [
   return lines.filter(Boolean).join("\n");
 }
 
-export function formatBatchStatusReply({ rows = [], failures = [], heading = "" }, localProfile = null) {
+export function formatBatchStatusReply(
+  { rows = [], failures = [], heading = "" },
+  localProfile = null,
+  { includeDocumentLinks = true } = {}
+) {
   const lines = [
     heading || localReplyPhrase(localProfile, "batchStatusPrefix", "这批任务的最新状态如下："),
     `matched_count: ${rows.length}`,
   ];
   for (const row of rows.slice(0, 10)) {
-    lines.push(`- ${summarizeRow(row).replace(/\n/g, " | ")}`);
+    lines.push(`- ${summarizeRow(row, { includeDocumentLink: includeDocumentLinks }).replace(/\n/g, " | ")}`);
   }
   if (rows.length > 10) {
     lines.push(`... 还有 ${rows.length - 10} 条`);

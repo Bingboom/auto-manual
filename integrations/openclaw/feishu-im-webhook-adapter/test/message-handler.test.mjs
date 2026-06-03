@@ -370,6 +370,7 @@ test("message handler answers batch status follow-ups from stored rows", async (
               workflow_action: "Build Draft Package",
               result: "SUCCESS | built_at=2026-05-04T10:02:00+00:00",
               freshness_status: "fresh_success",
+              document_link: payload.recordId === "rec_en" ? "https://example.com/en.docx" : "https://example.com/fr.docx",
             },
           ],
         };
@@ -382,13 +383,16 @@ test("message handler answers batch status follow-ups from stored rows", async (
     },
   });
 
-  const result = await handler.handleHttpRequest(basePayload("这个好了没"));
+  const result = await handler.handleHttpRequest(basePayload("发"));
   await result.backgroundTask();
 
   assert.equal(queried.length, 2);
   assert.equal(queried[0].freshSince, "2026-05-04T10:00:00Z");
-  assert.equal(replies.length, 1);
+  assert.equal(replies.length, 3);
   assert.match(replies[0].text, /fresh_success/);
+  assert.doesNotMatch(replies[0].text, /https:\/\/example.com\/en.docx/);
+  assert.equal(replies[1].text, "https://example.com/en.docx");
+  assert.equal(replies[2].text, "https://example.com/fr.docx");
 });
 
 test("message handler does not replay deleted rows from batch context", async () => {
@@ -559,9 +563,11 @@ test("message handler formats multi-row query status without dispatching builds"
   await result.backgroundTask();
 
   assert.equal(executed, false);
-  assert.equal(replies.length, 1);
+  assert.equal(replies.length, 3);
   assert.match(replies[0].text, /matched_count: 2/);
-  assert.match(replies[0].text, /https:\/\/example.com\/de.docx/);
+  assert.doesNotMatch(replies[0].text, /https:\/\/example.com\/de.docx/);
+  assert.equal(replies[1].text, "https://example.com/de.docx");
+  assert.equal(replies[2].text, "https://example.com/it.docx");
 });
 
 test("message handler dispatches all EU copy package requests without clarification", async () => {
