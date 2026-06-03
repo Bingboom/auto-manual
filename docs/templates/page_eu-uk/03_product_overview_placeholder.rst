@@ -4,11 +4,11 @@
 
       \section{ОГЛЯД ПРОДУКТУ}
       \HBOverviewPanel{ВИГЛЯД СПЕРЕДУ}{front_product.jpg}{%
-      \HBOverviewPair{|MAIN_POWER_BUTTON_LABEL|}{}{Ручка}{}
-      \HBOverviewPair{|FRONT_DC12_PORT_LABEL|}{|FRONT_DC12_PORT_SPEC|}{LCD}{}
-      \HBOverviewPair{|DC_USB_POWER_BUTTON_LABEL|}{}{Кнопка LED-світла}{}
-      \HBOverviewPair{|FRONT_USB_C_LOW_LABEL|}{|FRONT_USB_C_LOW_SPEC|}{LED-світло}{}
-      \HBOverviewPair{|FRONT_USB_C_HIGH_LABEL|}{|FRONT_USB_C_HIGH_SPEC|}{|AC_POWER_BUTTON_LABEL|}{}
+      \HBOverviewPair{|MAIN_POWER_BUTTON_LABEL|}{}{LCD}{}
+      \HBOverviewPair{|FRONT_DC12_PORT_LABEL|}{|FRONT_DC12_PORT_SPEC|}{Кнопка LED-світла}{}
+      \HBOverviewPair{|DC_USB_POWER_BUTTON_LABEL|}{}{LED-світло}{}
+      \HBOverviewPair{|FRONT_USB_C_LOW_LABEL|}{|FRONT_USB_C_LOW_SPEC|}{|AC_POWER_BUTTON_LABEL|}{}
+      \HBOverviewPair{|FRONT_USB_C_HIGH_LABEL|}{|FRONT_USB_C_HIGH_SPEC|}{}{}
       \HBOverviewPair{|FRONT_USB_A_LABEL|}{|FRONT_USB_A_SPEC|}{|FRONT_AC_OUTPUT_LABEL|}{|FRONT_AC_OUTPUT_SPEC|}
       \HBOverviewFull{|FRONT_TOTAL_OUTPUT_LABEL|}{|FRONT_TOTAL_OUTPUT_SPEC|}
       }
@@ -34,21 +34,21 @@
       :widths: 50 50
 
       * - **|MAIN_POWER_BUTTON_LABEL|**
-        - **Ручка**
+        - **LCD**
       * - **|FRONT_DC12_PORT_LABEL|**
 
           |FRONT_DC12_PORT_SPEC|
-        - **LCD**
-      * - **|DC_USB_POWER_BUTTON_LABEL|**
         - **Кнопка LED-світла**
+      * - **|DC_USB_POWER_BUTTON_LABEL|**
+        - **LED-світло**
       * - **|FRONT_USB_C_LOW_LABEL|**
 
           |FRONT_USB_C_LOW_SPEC|
-        - **LED-світло**
+        - **|AC_POWER_BUTTON_LABEL|**
       * - **|FRONT_USB_C_HIGH_LABEL|**
 
           |FRONT_USB_C_HIGH_SPEC|
-        - **|AC_POWER_BUTTON_LABEL|**
+        -
       * - **|FRONT_USB_A_LABEL|**
 
           |FRONT_USB_A_SPEC|
