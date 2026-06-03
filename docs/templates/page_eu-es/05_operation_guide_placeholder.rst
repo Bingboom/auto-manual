@@ -61,7 +61,7 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
        - Solo conecte el |PRODUCT_NAME| a dispositivos o accesorios que cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares equivalentes).
        - Para obtener la potencia máxima de salida, utilice el cable USB-C a USB-C de 5 A (20 V CC/5 A, 100W). 
 
-| El producto puede cargar la batería de su automóvil utilizando el cable de carga de batería para automóvil Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
+| El producto puede cargar la batería de su vehículo utilizando el cable de carga de batería para vehículo Jackery de 12 V, que se vende por separado y está disponible en nuestro sitio web.
 
 .. list-table::
    :header-rows: 0
@@ -69,9 +69,9 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
 
    * - **PRECAUCIÓN**
      -
-       - El puerto CC de 12 V solo es compatible con baterías de automóvil de 12 V y no es adecuado para sistemas de 24 V.
-       - No arranque el automóvil mientras el producto está cargando la batería del automóvil a través del puerto de salida CC de 12V, ya que esto podría dañar el producto.
-       - Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de automóvil descargada o dañada.
+       - El puerto CC de 12 V solo es compatible con baterías de vehículo de 12 V y no es adecuado para sistemas de 24 V.
+       - No arranque el vehículo mientras el producto está cargando la batería del vehículo a través del puerto de salida CC de 12V, ya que esto podría dañar el producto.
+       - Esta función está diseñada únicamente para uso de emergencia y no puede cargar una batería de vehículo descargada o dañada.
 
 MODO DE AHORRO DE ENERGÍA
 -------------------------
@@ -138,13 +138,13 @@ PANTALLA LCD
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
             <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
-          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">En breve</td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encendido breve</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal o cuando el producto se esté cargando.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón POWER principal o cuando el producto se esté cargando.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagar</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón POWER principal.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagado automático</td>
@@ -153,11 +153,11 @@ PANTALLA LCD
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Estable en (durante el estado de carga o descarga)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione dos veces el botón de encendido principal cuando el producto esté encendido.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione dos veces el botón POWER principal cuando el producto esté encendido.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagar</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón de encendido principal.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Presione el botón POWER principal.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Apagado automático</td>
@@ -175,11 +175,11 @@ PANTALLA LCD
       \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
       \hline
       \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{En breve}} & Encender & Presione el botón de encendido principal o cuando el producto se esté cargando. \\ \cline{3-4}
-      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Encendido breve}} & Encender & Presione el botón POWER principal o cuando el producto se esté cargando. \\ \cline{3-4}
+      & & Apagar & Presione el botón POWER principal. \\ \cline{3-4}
       & & Apagado automático & La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Estable en (durante el estado de carga o descarga)}} & Encender & Presione dos veces el botón de encendido principal cuando el producto esté encendido. \\ \cline{3-4}
-      & & Apagar & Presione el botón de encendido principal. \\ \cline{3-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Estable en (durante el estado de carga o descarga)}} & Encender & Presione dos veces el botón POWER principal cuando el producto esté encendido. \\ \cline{3-4}
+      & & Apagar & Presione el botón POWER principal. \\ \cline{3-4}
       & & Apagado automático & La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad. \\ \hline
       \end{tabular}
       \endgroup
@@ -196,15 +196,15 @@ COMBINACIONES DE TECLAS
    * - Botones
      - Operación
      - Función
-   * - Botón de encendido principal + botón de energía de CA
+   * - Botón POWER principal + Botón CA
      - Mantenga pulsados ambos botones durante 3 segundos
      - Encender/apagar el modo de ahorro de energía
-   * - Botón de encendido principal + botón de energía CC/USB
+   * - Botón POWER principal + botón CC/USB
      - Mantenga pulsados ambos botones durante 3 segundos
      - Restablecer Wi-Fi y Bluetooth
-   * - Botón de energía CC/USB + botón de energía de CA
+   * - Botón CC/USB + Botón CA
      - Mantenga pulsados ambos botones durante 1 segundo
      - Encender/apagar Wi-Fi y Bluetooth
-   * - Botón de encendido principal + botón de luz LED
+   * - Botón POWER principal + botón de luz LED
      - Mantenga pulsados ambos botones durante 1 segundo
      - Activar/desactivar el modo de carga de emergencia

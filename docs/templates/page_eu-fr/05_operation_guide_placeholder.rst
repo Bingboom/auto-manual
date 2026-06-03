@@ -133,11 +133,11 @@ AFFICHAGE LCD
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER principal ou lorsque le produit est en charge.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation principal.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER principal.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
@@ -146,11 +146,11 @@ AFFICHAGE LCD
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en continu (en cours de charge ou de décharge)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le bouton POWER principal lorsque le produit est allumé.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation principal.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER principal.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
@@ -168,11 +168,11 @@ AFFICHAGE LCD
       \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
       \hline
       \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en discontinu}} & Allumer & Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge. \\ \cline{3-4}
-      & & Éteindre & Appuyez sur le bouton d'alimentation principal. \\ \cline{3-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en discontinu}} & Allumer & Appuyez sur le bouton POWER principal ou lorsque le produit est en charge. \\ \cline{3-4}
+      & & Éteindre & Appuyez sur le bouton POWER principal. \\ \cline{3-4}
       & & Arrêt automatique & L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en continu (en cours de charge ou de décharge)}} & Allumer & Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé. \\ \cline{3-4}
-      & & Éteindre & Appuyez sur le bouton d'alimentation principal. \\ \cline{3-4}
+      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en continu (en cours de charge ou de décharge)}} & Allumer & Appuyez deux fois sur le bouton POWER principal lorsque le produit est allumé. \\ \cline{3-4}
+      & & Éteindre & Appuyez sur le bouton POWER principal. \\ \cline{3-4}
       & & Arrêt automatique & L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité. \\ \hline
       \end{tabular}
       \endgroup
@@ -189,15 +189,15 @@ FONCTIONNEMENT DES BOUTONS
    * - Boutons
      - Utilisation
      - Fonction
-   * - Bouton d'alimentation principal + Bouton d'alimentation CA
+   * - Bouton POWER principal + Bouton CA
      - Appuyer 3 secondes sur les deux
      - Activer/désactiver le mode économie d'énergie
-   * - Bouton d'alimentation principal + Bouton d'alimentation **CC/USB**
+   * - Bouton POWER principal + Bouton **CC/USB**
      - Appuyer 3 secondes sur les deux
      - Réinitialiser le Wi-Fi et le Bluetooth
-   * - Bouton d'alimentation **CC/USB** + Bouton d'alimentation CA
+   * - Bouton **CC/USB** + Bouton CA
      - Appuyer 1 seconde sur les deux
      - Activer/désactiver le Wi-Fi et le Bluetooth
-   * - Bouton d'alimentation principal + Bouton d'éclairage LED
+   * - Bouton POWER principal + Bouton d'éclairage LED
      - Appuyer 1 seconde sur les deux
-     - Activer/désactiver le mode d'urgence
+     - Activer/désactiver le mode de charge d'urgence

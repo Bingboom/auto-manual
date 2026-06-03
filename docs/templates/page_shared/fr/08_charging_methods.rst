@@ -53,6 +53,6 @@ Ce produit peut être chargé à l'aide d'un chargeur de voiture 12 V. Assurez-v
 
    * - **ATTENTION**
      -
-       - Veuillez démarrer le véhicule avant de charger votre station d'alimentation.
+       - Veuillez démarrer le véhicule avant de charger votre station d'énergie.
        - Si le véhicule roule sur des routes accidentées, il est interdit d'utiliser le chargeur de voiture afin d'éviter tout risque de surchauffe dû à une mauvaise connexion. La société ne sera pas responsable des pertes causées par une utilisation non conforme.
        - La charge par véhicule est uniquement applicable aux véhicules en 12 V CC, pas en 24 V CC. Veuillez ne pas charger ce produit dans un véhicule 24 V afin d'éviter tout risque de blessure ou de dommage matériel.

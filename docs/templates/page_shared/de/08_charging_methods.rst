@@ -51,6 +51,6 @@ Dieses Produkt kann mit einem 12-V-Autoladegerät aufgeladen werden. Stellen Sie
 
    * - **VORSICHT**
      -
-       - Bitte starten Sie das Fahrzeug, bevor Sie Ihre Power Station laden.
+       - Bitte starten Sie das Fahrzeug, bevor Sie Ihre Powerstation laden.
        - Wenn das Fahrzeug auf unebenen Straßen fährt, darf das Autoladegerät nicht verwendet werden, da dies zu einem nicht standardmäßigen Betrieb führen kann. Das Unternehmen übernimmt keine Verantwortung für Verluste, die durch einen nicht standardmäßigen Betrieb entstehen.
        - Das Laden über das Fahrzeug ist nur für Fahrzeuge mit 12 V DC geeignet, nicht für 24 V DC. Bitte laden Sie dieses Produkt nicht in einem 24-V-Fahrzeug, um Personen- und Sachschäden zu vermeiden.

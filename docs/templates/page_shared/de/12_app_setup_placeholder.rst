@@ -62,7 +62,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
    :widths: 12 88
 
    * - **VORSICHT**
-     - Die Jackery-App kann jeweils nur eine Power Station gleichzeitig per Bluetooth verbinden sein. Wenn Sie zur Geräteliste zurückkehren, wird Bluetooth automatisch getrennt. Tippen Sie die Power Station in der Liste erneut an, um automatisch wieder eine Kopplung herzustellen.
+     - Die Jackery-App kann jeweils nur eine Powerstation gleichzeitig per Bluetooth verbinden sein. Wenn Sie zur Geräteliste zurückkehren, wird Bluetooth automatisch getrennt. Tippen Sie die Powerstation in der Liste erneut an, um automatisch wieder eine Kopplung herzustellen.
 
 
 **3. Gerät entkoppeln**
