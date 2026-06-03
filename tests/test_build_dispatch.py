@@ -56,6 +56,8 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertEqual(
             [
                 ("ensure", "review"),
+                ("sync-data", "sync-data", "", "", []),
+                ("run-checked", ("sync-data",)),
                 (
                     "build-docs",
                     "review",
@@ -101,6 +103,18 @@ class TestBuildDispatch(unittest.TestCase):
 
             return command
 
+        def sync_data_command(parsed_args):
+            calls.append(
+                (
+                    "sync-data",
+                    parsed_args.action,
+                    parsed_args.model,
+                    parsed_args.region,
+                    parsed_args.table,
+                )
+            )
+            return ["sync-data"]
+
         def review_bundle_command(parsed_args):
             calls.append(("review-bundle", parsed_args.action))
             return ["review-bundle"]
@@ -116,7 +130,7 @@ class TestBuildDispatch(unittest.TestCase):
             review_bundle_command=review_bundle_command,
             run_check=record_arg("check"),
             sync_review_command=lambda parsed_args: ["sync-review", parsed_args.action],
-            sync_data_command=lambda parsed_args: ["sync-data", parsed_args.action],
+            sync_data_command=sync_data_command,
             spec_master_rebuild_command=lambda parsed_args: ["spec-master-rebuild", parsed_args.action],
             run_translation_memory=record_arg("translation-memory"),
             run_message_control_dry_run=record_arg("message-control-dry-run"),

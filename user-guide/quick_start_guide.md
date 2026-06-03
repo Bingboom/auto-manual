@@ -191,7 +191,7 @@ Publish 的原料是：
 - 仍然以 Feishu 队列表为唯一真源
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
 - 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
-- Start Review 可以只给 `Document_Key`，例如 `review JE-1000F_EU`
+- Start Review 可以只给 `Document_Key`，例如 `review JE-1000F_EU` 或 `重新开始review JE-2000F_EU`；这类请求会路由到线上 `Start Review` worker，不会被当作本地草稿构建。
 - Build Draft Package 的市场文案请求按配置展开；`构建JE-1000F的欧规说明书文案` 或 `基于配置构建JE-1000F的欧规` 隐含“构建配置里的所有欧规语言行”，会解析成 `Task_id` 前缀 `JE-1000F_EU_`，并只执行 `是否触发文档构建 = Y` 的 `Build Draft Package` 行
 - 如果没说市场，例如 `构建JE-1000F说明书文案`，市场也会通配；解析器会用 `Task_id` 前缀 `JE-1000F_`，拉起所有 `JE-1000F` 且 `是否触发文档构建 = Y` 的 `Build Draft Package` 行
 - 如果要指定版本，可以说 `构建 JE-1000F_EU_1.0 的欧规说明书文案`；解析器会保留 `Task_id` 前缀并加上 `Version=1.0`，而不是去找不存在的单条 `JE-1000F_EU_1.0`

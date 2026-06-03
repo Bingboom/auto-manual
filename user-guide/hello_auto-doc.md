@@ -296,7 +296,8 @@ Current flow:
 Important:
 
 - `python build.py rst` only materializes the RST bundle.
-- `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2` is the explicit local refresh step for Feishu/Lark content; build commands default to a valid phase2 snapshot when one exists and only fetch online data when you run `sync-data`.
+- `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2` is the explicit local refresh step for Feishu/Lark content; most build commands default to a valid phase2 snapshot when one exists and only fetch online data when you run `sync-data`.
+- `python build.py review --config ... --model ... --region ...` refreshes the full phase2 snapshot before seeding review, so the first review pass does not validate against stale local `Spec_Master.csv` data.
 - `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run` is the safest readiness probe for a new machine because it checks the local CLI/env prerequisites before attempting the real sync.
 - `python build.py process-build-queue --config configs/config.us.yaml` is the explicit local consume-and-build step for the Feishu `Document_link` task table; it never runs implicitly from `sync-data`, `check`, or `publish`.
 - static legal/support placeholders such as `WARRANTY_EMAIL` and `LEGAL_COMPANY_NAME` are injected from `build.rst_substitutions` in the active config; keep US values in US configs and override EU / pt-BR values there instead of hardcoding region-specific names in shared templates.

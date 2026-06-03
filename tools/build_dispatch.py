@@ -51,7 +51,21 @@ def _dispatch_doctor_action(args: argparse.Namespace, context: DispatchContext) 
     context.run_doctor(args)
 
 
+def _sync_data_args_for_review(args: argparse.Namespace) -> argparse.Namespace:
+    payload = dict(vars(args))
+    payload.update(
+        {
+            "action": "sync-data",
+            "model": "",
+            "region": "",
+            "table": [],
+        }
+    )
+    return argparse.Namespace(**payload)
+
+
 def _dispatch_review_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    context.run_checked(context.sync_data_command(_sync_data_args_for_review(args)))
     context.run_checked(context.build_docs_command(args, action_override="rst", source_override="runtime"))
     context.run_checked(context.review_bundle_command(args))
 

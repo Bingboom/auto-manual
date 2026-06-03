@@ -128,6 +128,7 @@ def _document_key_start_review_row(
     *,
     document_key: str = '{"id":"recvhoZFKGg7l0"}',
     review_trigger_enabled: bool | None = True,
+    task_id: str | None = None,
 ) -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
         queue_scope="review-init",
@@ -150,7 +151,7 @@ def _document_key_start_review_row(
         immediate_build=None,
         initial_result="",
         remarks="",
-        task_id="JE-1000F_EU___Start Review",
+        task_id="JE-1000F_EU___Start Review" if task_id is None else task_id,
     )
 
 
@@ -209,6 +210,24 @@ class TestQueueExecute(unittest.TestCase):
         self.assertEqual("JE-1000F_EU_Start Review", resolved_args.task_id)
         self.assertEqual("start-review", resolved_args.query_workflow_action)
         self.assertEqual("rec_eu_review", row.record_id)
+        self.assertEqual("start-review", queue_execute.dispatch_command_for_row(row))
+        queue_execute.ensure_start_review_dispatchable(row)
+
+    def test_select_unique_queue_row_should_resolve_restart_review_phrase(self) -> None:
+        resolved_args, row = queue_execute.select_unique_queue_row(
+            self._args(query_text="重新开始review JE-2000F_EU"),
+            [
+                _document_key_start_review_row(
+                    record_id="recvlsa1VML5nT",
+                    document_key="JE-2000F_EU",
+                    task_id="",
+                )
+            ],
+        )
+
+        self.assertEqual("JE-2000F_EU_Start Review", resolved_args.task_id)
+        self.assertEqual("start-review", resolved_args.query_workflow_action)
+        self.assertEqual("recvlsa1VML5nT", row.record_id)
         self.assertEqual("start-review", queue_execute.dispatch_command_for_row(row))
         queue_execute.ensure_start_review_dispatchable(row)
 

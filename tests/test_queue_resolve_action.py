@@ -235,6 +235,25 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("JE-1000F_EU_Start Review", resolution.selectors["task_id"])
         self.assertNotIn("document_key", resolution.selectors)
 
+    def test_resolve_queue_action_should_resolve_restart_review_phrase(self) -> None:
+        resolution = queue_resolve_action.resolve_queue_action(
+            self._args(query_text="重新开始review JE-2000F_EU"),
+            [
+                _document_key_review_row(
+                    record_id="recvlsa1VML5nT",
+                    document_key="JE-2000F_EU",
+                    task_id="",
+                )
+            ],
+        )
+
+        self.assertEqual("resolved", resolution.resolution_status)
+        self.assertEqual("start_review", resolution.action_name)
+        self.assertEqual("start-review", resolution.dispatch_command)
+        self.assertTrue(resolution.ready)
+        self.assertEqual("recvlsa1VML5nT", resolution.row["record_id"])
+        self.assertEqual("JE-2000F_EU_Start Review", resolution.selectors["task_id"])
+
     def test_resolve_queue_action_should_resolve_pt_br_document_key_start_review(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
             self._args(query_text="开始review JE-1500D_pt-BR"),

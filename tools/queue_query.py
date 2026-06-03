@@ -55,6 +55,7 @@ from tools.process_review_start_queue import (
     parse_review_start_records,
     resolve_review_init_binding,
 )
+from tools.queue_review_start_inference import infer_review_start_build_family
 
 TASK_ID_FIELD = "Task_id"
 MARKET_GROUP_FIELD = "Market_Group"
@@ -665,6 +666,9 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     if task_workflow_action:
         workflow_action = task_workflow_action
         queue_scope = "review-init" if task_workflow_action == "start-review" else "document-link"
+    elif _has_start_review_intent(text, normalized_text):
+        workflow_action = "start-review"
+        queue_scope = "review-init"
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
@@ -676,9 +680,6 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif "publish" in normalized_text or "发布" in text:
         workflow_action = "publish"
         queue_scope = "document-link"
-    elif _has_start_review_intent(text, normalized_text):
-        workflow_action = "start-review"
-        queue_scope = "review-init"
 
     if any(needle in normalized_text for needle in ("document link", "latest link")) or "链接" in text:
         queue_scope = "document-link"
@@ -925,7 +926,7 @@ def _build_review_init_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 record_id=parsed.record_id,
                 document_id=parsed.document_id,
                 document_key=parsed.document_key,
-                build_family=parsed.build_family,
+                build_family=infer_review_start_build_family(parsed),
                 lang=parsed.lang,
                 version=parsed.version,
                 workflow_action=workflow_action,

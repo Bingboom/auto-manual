@@ -3,9 +3,11 @@ from __future__ import annotations
 import argparse
 import json
 import unittest
+from types import SimpleNamespace
 from unittest import mock
 
 from tools import queue_query
+from tools.queue_review_start_inference import infer_review_start_build_family
 
 
 class TestQueueQuery(unittest.TestCase):
@@ -288,6 +290,15 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("start-review", inferred.query_workflow_action)
         self.assertEqual("review-init", inferred.queue_scope)
 
+    def test_infer_queue_query_from_text_should_parse_restart_review_as_start_review(self) -> None:
+        inferred = queue_query.infer_queue_query_from_text("重新开始review JE-2000F_EU")
+
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("JE-2000F_EU", inferred.document_key)
+        self.assertEqual("JE-2000F_EU_Start Review", inferred.task_id)
+        self.assertEqual("start-review", inferred.query_workflow_action)
+        self.assertEqual("review-init", inferred.queue_scope)
+
     def test_infer_queue_query_from_text_should_parse_pt_br_document_key_start_review(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("开始review JE-1500D_pt-BR")
 
@@ -410,6 +421,18 @@ class TestQueueQuery(unittest.TestCase):
         filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
 
         self.assertEqual(["recvkaCD74mZ4z"], [row.record_id for row in filtered])
+
+    def test_review_init_build_family_should_fallback_to_task_id_target(self) -> None:
+        parsed = SimpleNamespace(
+            build_family="",
+            document_key='{"id":"recvlsa1VML5nT"}',
+            document_id="",
+            lang="",
+            version="",
+            task_id="JE-2000F_EU___Start Review",
+        )
+
+        self.assertEqual("eu-merged", infer_review_start_build_family(parsed))
 
     def test_infer_queue_query_from_text_should_parse_all_eu_draft_copy_batch(self) -> None:
         for query_text in [
