@@ -1,6 +1,6 @@
 CONSERVAZIONE
 =============
-| Conserva il prodotto in un luogo asciutto, pulito e ben ventilato. Temperatura e umidita di conservazione:
+| Conserva il prodotto in un luogo asciutto, pulito e ben ventilato. Temperatura e umidità di conservazione:
 
 - |STORAGE_TEMPERATURE_LINE_1|
 - |STORAGE_TEMPERATURE_LINE_2|

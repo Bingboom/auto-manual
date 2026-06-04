@@ -14,7 +14,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
 
 2.1 Klicken Sie auf die Schaltfläche **+**, um Ihr Gerät hinzuzufügen.
 
-2.2 Drücken Sie |MAIN_POWER_BUTTON_LABEL| am Gerät, um es einzuschalten. Die WLAN- und Bluetooth-Symbole auf dem Gerät blinken, um anzuzeigen, dass das Gerät in den Netzwerkkonfigurationsmodus gewechselt ist. Tippen Sie auf die Schaltfläche "**Symbol blinkt**" und erlauben Sie der App, sich mit Geräten in der Nähe zu verbinden und auf Bluetooth zuzugreifen.
+2.2 Drücken Sie die |MAIN_POWER_BUTTON_LABEL| am Gerät, um es einzuschalten. Die WLAN- und Bluetooth-Symbole auf dem Gerät blinken, um anzuzeigen, dass das Gerät in den Netzwerkkonfigurationsmodus gewechselt ist. Tippen Sie auf die Schaltfläche "**Symbol blinkt**" und erlauben Sie der App, sich mit Geräten in der Nähe zu verbinden und auf Bluetooth zuzugreifen.
 
 .. image:: templates/word_template/common_assets/app/add_device.png
    :alt: Platzhalter für den Schritt „Gerät hinzufügen“.
@@ -62,7 +62,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
    :widths: 12 88
 
    * - **VORSICHT**
-     - Die Jackery-App kann jeweils nur eine Powerstation gleichzeitig per Bluetooth verbinden sein. Wenn Sie zur Geräteliste zurückkehren, wird Bluetooth automatisch getrennt. Tippen Sie die Powerstation in der Liste erneut an, um automatisch wieder eine Kopplung herzustellen.
+     - Die Jackery-App kann jeweils nur mit einer Powerstation gleichzeitig per Bluetooth verbunden sein. Wenn Sie zur Geräteliste zurückkehren, wird Bluetooth automatisch getrennt. Tippen Sie die Powerstation in der Liste erneut an, um die Verbindung automatisch wiederherzustellen.
 
 
 **3. Gerät entkoppeln**

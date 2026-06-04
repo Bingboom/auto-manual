@@ -4,7 +4,7 @@
 
       \section{WHAT'S IN THE BOX}
       \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{Documents}
-      \HBTipBlock{TIPS}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
+      \HBTipBlock{TIP}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
 
 .. only:: latex and region_eu
 
@@ -12,7 +12,7 @@
 
       \section{WHAT'S IN THE BOX}
       \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{User Manual}
-      \HBTipBlock{TIPS}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
+      \HBTipBlock{TIP}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
 
 .. only:: not latex and region_us
 
@@ -72,6 +72,6 @@
       :header-rows: 0
       :widths: 10 90
 
-      * - **TIPS**
+      * - **TIP**
         - The car charging cable is not included but is available for purchase separately on our website.
           For assistance, please contact Jackery customer service.

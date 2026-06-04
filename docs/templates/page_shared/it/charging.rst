@@ -45,7 +45,7 @@
 RICARICA
 ========
 
-**L'energia verde prima di tutto:** promuoviamo l'uso prioritario dell'energia verde. Questo prodotto supporta due modalità di ricarica contemporaneamente: ricarica solare e ricarica CA da presa a muro. Quando la ricarica CA da presa a muro e la ricarica solare sono attive contemporaneamente, il prodotto darà priorita alla ricarica solare e userà entrambi i metodi per caricare la batteria alla massima potenza consentita.
+**L'energia verde prima di tutto:** promuoviamo l'uso prioritario dell'energia verde. Questo prodotto supporta due modalità di ricarica contemporaneamente: ricarica solare e ricarica CA da presa a muro. Quando la ricarica CA da presa a muro e la ricarica solare sono attive contemporaneamente, il prodotto darà priorità alla ricarica solare e userà entrambi i metodi per caricare la batteria alla massima potenza consentita.
 
 
 **Caricare completamente il prodotto prima del primo utilizzo.**
@@ -78,5 +78,5 @@ Collegare il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una 
 
 **Modalità di ricarica di emergenza**
 
-| In questa modalità, e possibile ricaricare rapidamente la power station portatile utilizzando il metodo di ricarica CA. Questa funzione di ricarica di emergenza può essere attivata o disattivata tramite l'app Jackery. Quando la modalità di ricarica di emergenza e attiva, la luce circolare che indica lo stato di carica (SOC) lampeggia più rapidamente.
-| \*Per massimizzare la durata della batteria, e preferibile caricare a velocità normale. Utilizzare la modalità di ricarica di emergenza solo quando necessario. Non e consigliata per un uso regolare e prolungato.
+| In questa modalità, e possibile ricaricare rapidamente la power station portatile utilizzando il metodo di ricarica CA. Questa funzione di ricarica di emergenza può essere attivata o disattivata tramite l'app Jackery. Quando la modalità di ricarica di emergenza è attiva, la luce circolare che indica lo stato di carica (SOC) lampeggia più rapidamente.
+| \*Per massimizzare la durata della batteria, è preferibile caricare a velocità normale. Utilizzare la modalità di ricarica di emergenza solo quando necessario. Non è consigliata per un uso regolare e prolungato.
