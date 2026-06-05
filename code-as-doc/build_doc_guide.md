@@ -324,6 +324,8 @@ This creates:
 
 Use `--source runtime` when you want a fresh draft from template + data only.
 
+If the model is only partially entered (for example a brand-new model still being populated), add `--draft-placeholders` to materialize anyway — missing required Spec_Master values render as `==MISSING:<FIELD>==` instead of aborting, so you can preview the layout and then fill the flagged rows. Strict builds (and `publish` / `release`) still fail fast with a report that names the model/region/lang and each missing binding. Do not use `--draft-placeholders` for publish.
+
 ### 3.3 Enter Review
 
 ```powershell

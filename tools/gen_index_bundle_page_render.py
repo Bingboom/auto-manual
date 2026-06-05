@@ -77,6 +77,7 @@ def materialize_planned_page(
     title: str,
     model: str | None,
     region: str | None,
+    draft_placeholders: bool = False,
     cover_pdf_page_cls: type[Any],
     pdf_insert_page_cls: type[Any],
     csv_page_cls: type[Any],
@@ -179,6 +180,7 @@ def materialize_planned_page(
             region=region,
             lang=planned.lang,
             rendered_source_path=generated_source_path,
+            draft_placeholders=draft_placeholders,
         )
         source_path = generated_render.template_path
         rst_text = generated_render.text

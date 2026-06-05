@@ -259,6 +259,98 @@ class TestDraftEngine(unittest.TestCase):
         self.assertIn("**4.1 To turn on Wi-Fi and Bluetooth**", text)
         self.assertNotIn("1. Download the App and log in\n------------------------------", text)
 
+    def _render_with_missing_rows(
+        self,
+        *,
+        draft_placeholders: bool,
+        required_block: str,
+        template_body: str,
+    ):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            (docs_dir / "templates" / "recipes").mkdir(parents=True)
+            (docs_dir / "templates" / "snippets").mkdir(parents=True)
+            (docs_dir / "templates" / "page_us-en").mkdir(parents=True)
+
+            recipe_path = docs_dir / "templates" / "recipes" / "demo.yaml"
+            recipe_path.write_text(
+                "\n".join(
+                    [
+                        "page_id: demo_page",
+                        "template: templates/page_us-en/demo.rst",
+                        "field_map:",
+                        "  MAIN_POWER_BUTTON_LABEL:",
+                        "    row_key: main_power_button",
+                        "    pages: [Product overview]",
+                        "    usage_type: page_value",
+                        "    value_role: label",
+                        required_block,
+                        "snippet_slots: {}",
+                        "contracts: []",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            template_path = docs_dir / "templates" / "page_us-en" / "demo.rst"
+            template_path.write_text(template_body, encoding="utf-8")
+
+            registry_path = docs_dir / "templates" / "snippets" / "registry.yaml"
+            registry_path.write_text("snippets: []\n", encoding="utf-8")
+
+            spec_master_csv = root / "Spec_Master.csv"
+            spec_master_csv.write_text(
+                "Model,Region,Is_Latest,Page,Row_key,Slot_key,Value_source\n",
+                encoding="utf-8",
+            )
+
+            return render_generated_page(
+                docs_dir=docs_dir,
+                recipe_path=recipe_path,
+                template_path=template_path,
+                spec_master_csv=spec_master_csv,
+                registry_path=registry_path,
+                vars_map={"model": "JE-1000F", "region": "US"},
+                base_substitutions={},
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                draft_placeholders=draft_placeholders,
+            )
+
+    def test_render_generated_page_should_raise_detailed_report_when_rows_missing(self) -> None:
+        with self.assertRaises(RuntimeError) as ctx:
+            self._render_with_missing_rows(
+                draft_placeholders=False,
+                required_block="required_row_keys: []",
+                template_body="Demo\n====\n\n|MAIN_POWER_BUTTON_LABEL|\n",
+            )
+        message = str(ctx.exception)
+        self.assertIn("demo_page", message)
+        self.assertIn("model=JE-1000F", message)
+        self.assertIn("region=US", message)
+        self.assertIn("lang=en", message)
+        self.assertIn("field_map.MAIN_POWER_BUTTON_LABEL", message)
+
+    def test_render_generated_page_should_fill_field_map_placeholder_when_enabled(self) -> None:
+        result = self._render_with_missing_rows(
+            draft_placeholders=True,
+            required_block="required_row_keys: []",
+            template_body="Demo\n====\n\n|MAIN_POWER_BUTTON_LABEL|\n",
+        )
+        self.assertIn("==MISSING:MAIN_POWER_BUTTON_LABEL==", result.text)
+
+    def test_render_generated_page_should_fill_required_row_key_placeholder_when_enabled(self) -> None:
+        result = self._render_with_missing_rows(
+            draft_placeholders=True,
+            required_block="required_row_keys:\n  - product_name",
+            template_body="Demo\n====\n\n|PRODUCT_NAME|\n\n|MAIN_POWER_BUTTON_LABEL|\n",
+        )
+        self.assertIn("==MISSING:PRODUCT_NAME==", result.text)
+        self.assertIn("==MISSING:MAIN_POWER_BUTTON_LABEL==", result.text)
+
 
 if __name__ == "__main__":
     unittest.main()

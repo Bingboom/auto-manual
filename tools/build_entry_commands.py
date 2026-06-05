@@ -112,6 +112,8 @@ def build_docs_command(
         cmd.append("--clean")
     if not args.open:
         cmd.append("--no-open")
+    if getattr(args, "draft_placeholders", False):
+        cmd.append("--draft-placeholders")
     return cmd
 
 

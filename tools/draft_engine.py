@@ -355,6 +355,7 @@ def resolve_recipe_substitutions(
     model: str | None,
     region: str | None,
     lang: str,
+    draft_placeholders: bool = False,
 ) -> dict[str, str]:
     substitutions = resolve_template_substitutions_from_rows(
         spec_rows,
@@ -381,6 +382,9 @@ def resolve_recipe_substitutions(
             continue
         if binding.default is not None:
             substitutions[placeholder] = binding.default
+            continue
+        if draft_placeholders:
+            substitutions[placeholder] = _draft_placeholder_value(placeholder)
     return _with_derived_bindings(substitutions)
 
 
@@ -426,6 +430,32 @@ def missing_required_row_keys(
         if match is None:
             missing.append(format_field_binding(binding, owner=f"field_map.{placeholder}"))
     return missing
+
+
+def _draft_placeholder_value(placeholder: str) -> str:
+    """Visible, greppable stand-in for a missing required value in draft builds."""
+    return f"==MISSING:{placeholder}=="
+
+
+def _format_missing_rows_report(
+    page_id: str,
+    missing: list[str],
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> str:
+    header = (
+        f"Draft page '{page_id}' is missing {len(missing)} required Spec_Master row(s) "
+        f"[model={model or '-'}, region={region or '-'}, lang={lang}]:"
+    )
+    lines = [header]
+    lines.extend(f"  - {item}" for item in missing)
+    lines.append(
+        "  Fix: add the listed row(s) to the Spec_Master source (Feishu phase2 page-value / spec "
+        "table) for this model+region+lang, or set a recipe `default:` for the binding."
+    )
+    return "\n".join(lines)
 
 
 def _render_snippet_text(
@@ -476,6 +506,7 @@ def render_generated_page(
     region: str | None,
     lang: str,
     rendered_source_path: Path | None = None,
+    draft_placeholders: bool = False,
 ) -> GeneratedPageRender:
     recipe = load_draft_recipe(recipe_path)
     spec_rows = read_spec_master_rows(spec_master_csv)
@@ -487,6 +518,7 @@ def render_generated_page(
             model=model,
             region=region,
             lang=lang,
+            draft_placeholders=draft_placeholders,
         ),
     }
 
@@ -498,10 +530,17 @@ def render_generated_page(
         lang=lang,
     )
     if missing_row_keys:
-        raise RuntimeError(
-            f"Draft recipe '{recipe.page_id}' is missing required Spec_Master row(s) for lang '{lang}': "
-            f"{', '.join(missing_row_keys)}"
+        report = _format_missing_rows_report(
+            recipe.page_id, missing_row_keys, model=model, region=region, lang=lang
         )
+        if not draft_placeholders:
+            raise RuntimeError(report)
+        for required_row_key in recipe.required_row_keys:
+            substitution_key = required_row_key.upper()
+            if not (substitutions.get(substitution_key) or "").strip():
+                substitutions[substitution_key] = _draft_placeholder_value(substitution_key)
+        print("[draft] missing Spec_Master rows filled with ==MISSING:...== placeholders:")
+        print(report)
 
     registry_entries = load_snippet_registry(registry_path)
     template_text = template_path.read_text(encoding="utf-8")

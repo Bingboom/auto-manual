@@ -362,6 +362,7 @@ def _materialize_planned_page(
     title: str,
     model: str | None,
     region: str | None,
+    draft_placeholders: bool = False,
 ) -> tuple[str, GeneratedPageRender | None]:
     return _materialize_planned_page_impl(
         planned,
@@ -376,6 +377,7 @@ def _materialize_planned_page(
         title=title,
         model=model,
         region=region,
+        draft_placeholders=draft_placeholders,
         cover_pdf_page_cls=CoverPdfPage,
         pdf_insert_page_cls=PdfInsertPage,
         csv_page_cls=CsvPage,
@@ -413,6 +415,7 @@ def materialize_bundle(
     page_selector: str | None = None,
     bundle_dir_override: Path | None = None,
     write_wrapper_index: bool = True,
+    draft_placeholders: bool = False,
 ) -> MaterializedBundle:
     context = _resolve_bundle_materialization_context_impl(
         cfg,
@@ -424,6 +427,7 @@ def materialize_bundle(
         repo_root=repo_root or paths.root,
         page_selector=page_selector,
         bundle_dir_override=bundle_dir_override,
+        draft_placeholders=draft_placeholders,
         resolve_build_model=resolve_build_model,
         resolve_build_region=resolve_build_region,
         build_langs=_build_langs,

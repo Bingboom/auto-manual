@@ -26,4 +26,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default="auto",
         help="Content source for bundle materialization: auto, runtime, or review",
     )
+    ap.add_argument(
+        "--draft-placeholders",
+        action="store_true",
+        help=(
+            "Draft only: fill missing required Spec_Master values with ==MISSING:<FIELD>== "
+            "placeholders and continue instead of failing. Never use for publish/release."
+        ),
+    )
     return ap.parse_args(argv)
