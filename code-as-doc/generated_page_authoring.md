@@ -38,7 +38,8 @@ This repo now supports two authoring paths for manual pages:
 - Keep `page_id` aligned with the `generated_page.page` value in the manifest.
 - Put extra non-`field_map` Spec_Master dependencies in `required_row_keys`.
 - Use structured `field_map` selectors for page values, for example `row_key + pages + usage_type + placement_key + value_role + variant_key`.
-- `field_map` bindings with no `default` are validated directly during render and `check`.
+- `field_map` bindings with no `default` are validated directly during render and `check`; a missing value aborts the build with a report naming the model/region/lang and each missing `field_map.<PLACEHOLDER> -> row_key[...]` binding.
+- For a partially-entered or brand-new model, pass `--draft-placeholders` to `build.py rst` (or `tools/build_docs.py`) to fill missing required values with `==MISSING:<FIELD>==` and keep building, then grep `==MISSING:` to find and fill the gaps. Never use it for `publish`/`release` — placeholders must not ship.
 - Put reusable copy or button combinations into snippet files instead of duplicating them in multiple templates.
 
 ## Snippet rules

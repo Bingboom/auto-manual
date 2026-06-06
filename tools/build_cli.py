@@ -61,6 +61,15 @@ def parse_args(
         default="auto",
         help="Content source for build actions: auto, runtime, or review",
     )
+    ap.add_argument(
+        "--draft-placeholders",
+        action="store_true",
+        help=(
+            "Draft only: when a target is missing required Spec_Master values, fill them with "
+            "==MISSING:<FIELD>== placeholders and keep building instead of failing. Use to preview a "
+            "partially-entered model, then fill the flagged gaps. Never use for publish/release."
+        ),
+    )
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
     ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")

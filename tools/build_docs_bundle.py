@@ -25,6 +25,7 @@ def prepare_manual_bundle(
     page_selector: str | None = None,
     output_root: Path | None = None,
     write_wrapper_index: bool = True,
+    draft_placeholders: bool = False,
     valid_source_modes: set[str],
     materialize_bundle: Callable[..., Any],
     review_bundle_exists: Callable[..., bool],
@@ -50,6 +51,7 @@ def prepare_manual_bundle(
         page_selector=page_selector,
         bundle_dir_override=(output_root / "rst") if output_root else None,
         write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders,
     )
     review_applied = False
     if source_mode in {"auto", "review"}:

@@ -94,6 +94,7 @@ def run_build(
             output_root=output_root,
             output_base_root=output_base_root,
             write_wrapper_index=not args.skip_root_index,
+            draft_placeholders=getattr(args, "draft_placeholders", False),
         )
 
     if not args.skip_root_index:

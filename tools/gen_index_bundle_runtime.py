@@ -28,6 +28,7 @@ class BundleMaterializationContext:
     index_path: Path
     wrapper_index_path: Path
     bundle_manifest_path: Path
+    draft_placeholders: bool = False
 
 
 def resolve_bundle_materialization_context(
@@ -41,6 +42,7 @@ def resolve_bundle_materialization_context(
     repo_root: Path,
     page_selector: str | None,
     bundle_dir_override: Path | None,
+    draft_placeholders: bool = False,
     resolve_build_model: Callable[[dict, str | None], str | None],
     resolve_build_region: Callable[[dict, str | None], str | None],
     build_langs: Callable[[dict], list[str]],
@@ -181,6 +183,7 @@ def resolve_bundle_materialization_context(
         index_path=index_path,
         wrapper_index_path=wrapper_index_path,
         bundle_manifest_path=bundle_manifest_path,
+        draft_placeholders=draft_placeholders,
     )
 
 
@@ -260,6 +263,7 @@ def materialize_bundle_pages(
             title=context.title,
             model=context.target_model,
             region=context.target_region,
+            draft_placeholders=context.draft_placeholders,
         )
         target_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")
         page_paths.append(target_path)

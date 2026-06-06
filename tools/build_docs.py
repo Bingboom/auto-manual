@@ -694,6 +694,7 @@ def prepare_manual_bundle(
     page_selector: str | None = None,
     output_root: Path | None = None,
     write_wrapper_index: bool = True,
+    draft_placeholders: bool = False,
 ) -> MaterializedBundle:
     return _prepare_manual_bundle_impl(
         cfg,
@@ -705,6 +706,7 @@ def prepare_manual_bundle(
         page_selector=page_selector,
         output_root=output_root,
         write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders,
         valid_source_modes=VALID_SOURCE_MODES,
         materialize_bundle=materialize_bundle,
         review_bundle_exists=review_bundle_exists,
@@ -741,6 +743,7 @@ def build_target(
     output_root: Path | None = None,
     output_base_root: Path | None = None,
     write_wrapper_index: bool = True,
+    draft_placeholders: bool = False,
 ) -> None:
     return _build_target_impl(
         cfg,
@@ -758,6 +761,7 @@ def build_target(
         output_root=output_root,
         output_base_root=output_base_root,
         write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders,
         default_docs_build_dir=paths.docs_build_dir,
         resolve_cfg_languages=resolve_cfg_languages,
         build_root_for_target=build_root_for_target,

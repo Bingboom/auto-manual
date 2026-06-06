@@ -29,6 +29,7 @@ def build_target(
     output_root: Path | None = None,
     output_base_root: Path | None = None,
     write_wrapper_index: bool = True,
+    draft_placeholders: bool = False,
     default_docs_build_dir: Path,
     resolve_cfg_languages: Callable[[dict], list[str]],
     build_root_for_target: Callable[..., Path],
@@ -83,6 +84,7 @@ def build_target(
         page_selector=page_selector,
         output_root=artifact_plan.build_root,
         write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders,
     )
 
     html_built = False
