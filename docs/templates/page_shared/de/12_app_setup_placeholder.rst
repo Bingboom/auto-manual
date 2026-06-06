@@ -36,7 +36,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
      - Wenn während des Kopplungsvorgangs „das Gerät wurde bereits gekoppelt“ angezeigt wird, können die folgenden zwei Möglichkeiten für die Kopplung verwendet werden:
 
        - Der Besitzer des Geräts teilt dieses Gerät über die App mit anderen Benutzern.
-       - Halten Sie |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| 3 Sekunden lang gedrückt, um WLAN und Bluetooth des Geräts zurückzusetzen, und koppeln Sie das Gerät anschließend erneut.
+       - Halten Sie |MAIN_POWER_BUTTON_LABEL| + |DC_USB_POWER_BUTTON_LABEL| 3 Sekunden lang gedrückt, um WLAN und Bluetooth des Geräts zurückzusetzen, und koppeln Sie das Gerät anschließend erneut.
 
 | 2.4 Nachdem das Gerät erfolgreich gekoppelt wurde, geben Sie Ihr WLAN-Passwort ein und tippen Sie auf die Schaltfläche **OK**.
 
@@ -74,13 +74,13 @@ Klicken Sie im Hauptbildschirm des Geräts auf das Symbol **Einstellungen** oben
 **4.1 WLAN und Bluetooth einschalten**
 
 - WLAN und Bluetooth werden automatisch eingeschaltet, nachdem das Gerät eingeschaltet wurde, und die WLAN- und Bluetooth-Symbole auf dem Bildschirm leuchten auf.
-- Halten Sie |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| gleichzeitig gedrückt, bis die WLAN- und Bluetooth-Symbole auf dem Bildschirm aufleuchten.
+- Halten Sie |DC_USB_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL| gleichzeitig gedrückt, bis die WLAN- und Bluetooth-Symbole auf dem Bildschirm aufleuchten.
 
 **4.2 WLAN und Bluetooth ausschalten**
 
-| Halten Sie |DC_USB_POWER_BUTTON_LABEL_LOWER| + |AC_POWER_BUTTON_LABEL_LOWER| gleichzeitig gedrückt, bis die WLAN- und Bluetooth-Symbole auf dem Bildschirm erlöschen.
+| Halten Sie |DC_USB_POWER_BUTTON_LABEL| + |AC_POWER_BUTTON_LABEL| gleichzeitig gedrückt, bis die WLAN- und Bluetooth-Symbole auf dem Bildschirm erlöschen.
 
 
 **4.3 WLAN und Bluetooth zurücksetzen**
 
-Halten Sie |MAIN_POWER_BUTTON_LABEL_LOWER| + |DC_USB_POWER_BUTTON_LABEL_LOWER| gleichzeitig 3 Sekunden lang gedrückt, um WLAN und Bluetooth auf die Werkseinstellungen zurückzusetzen. Das verbundene App-Konto wird entkoppelt.
+Halten Sie |MAIN_POWER_BUTTON_LABEL| + |DC_USB_POWER_BUTTON_LABEL| gleichzeitig 3 Sekunden lang gedrückt, um WLAN und Bluetooth auf die Werkseinstellungen zurückzusetzen. Das verbundene App-Konto wird entkoppelt.
