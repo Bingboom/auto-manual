@@ -21,10 +21,10 @@ This file is not:
 
 Use these documents for those topics:
 
-- long-term strategy: [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
-- current repo component map: [`Hello_Docs_Architecture.md`](Hello_Docs_Architecture.md)
-- current build workflow: [`../build_doc_guide.md`](../build_doc_guide.md)
-- current user workflow: [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
+- long-term strategy: [`System Evolution Strategy.md`](../System%20Evolution%20Strategy.md)
+- current repo component map: [`Hello_Docs_Architecture.md`](../Hello_Docs_Architecture.md)
+- current build workflow: [`../build_doc_guide.md`](../../build_doc_guide.md)
+- current user workflow: [`../../user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)
 
 ## 2. Goal
 
@@ -47,18 +47,18 @@ In practical terms:
 
 Current useful reference pages:
 
-- [`../../docs/templates/page_us-en/safety_en.rst`](../../docs/templates/page_us-en/safety_en.rst) (representative per-language safety template; siblings live under `docs/templates/page_*/safety_*.rst`)
-- [`../../docs/templates/spec_template.rst`](../../docs/templates/spec_template.rst)
+- [`../../docs/templates/page_us-en/safety_en.rst`](../../../docs/templates/page_us-en/safety_en.rst) (representative per-language safety template; siblings live under `docs/templates/page_*/safety_*.rst`)
+- [`../../docs/templates/spec_template.rst`](../../../docs/templates/spec_template.rst)
 
 Current PDF component implementations:
 
-- [`../../docs/renderers/latex/components_safety.tex`](../../docs/renderers/latex/components_safety.tex)
-- [`../../docs/renderers/latex/components_spec.tex`](../../docs/renderers/latex/components_spec.tex)
+- [`../../docs/renderers/latex/components_safety.tex`](../../../docs/renderers/latex/components_safety.tex)
+- [`../../docs/renderers/latex/components_spec.tex`](../../../docs/renderers/latex/components_spec.tex)
 
 Current Word-side adaptation points:
 
-- [`../../tools/word_bundle_html.py`](../../tools/word_bundle_html.py)
-- [`../../tools/word_bundle_docx.py`](../../tools/word_bundle_docx.py)
+- [`../../tools/word_bundle_html.py`](../../../tools/word_bundle_html.py)
+- [`../../tools/word_bundle_docx.py`](../../../tools/word_bundle_docx.py)
 
 Current baseline status:
 

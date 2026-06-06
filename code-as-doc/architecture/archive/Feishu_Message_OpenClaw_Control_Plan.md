@@ -6,7 +6,7 @@ Superseded note:
 
 - this plan predates the repo-local Feishu IM webhook adapter and the consolidated OpenClaw control-layer doc
 - keep it only as implementation history
-- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../agent/BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
+- use [`Control_Orchestration_Strategy.md`](../Control_Orchestration_Strategy.md), [`../../BOOTSTRAP.md`](../../../agent/BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../../integrations/openclaw/README.md) for current behavior
 
 ## 1. Role
 
@@ -34,9 +34,9 @@ The repository already has the low-level execution pieces needed for this contro
 - `process-review-start-queue` already supports `Start Review` and writes back `Git_ref`, `PR_url`, and `Review_status`
 - `process-build-queue` already supports `Build Draft Package` and `Publish` and writes back build result, link, and local output path fields
 - GitHub-hosted workers already exist for:
-  - [`../../.github/workflows/feishu-start-review.yml`](../../.github/workflows/feishu-start-review.yml)
-  - [`../../.github/workflows/feishu-draft-build-queue.yml`](../../.github/workflows/feishu-draft-build-queue.yml)
-  - [`../../.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml)
+  - [`../../.github/workflows/feishu-start-review.yml`](../../../.github/workflows/feishu-start-review.yml)
+  - [`../../.github/workflows/feishu-draft-build-queue.yml`](../../../.github/workflows/feishu-draft-build-queue.yml)
+  - [`../../.github/workflows/feishu-build-queue.yml`](../../../.github/workflows/feishu-build-queue.yml)
 - immediate execution can already be accelerated by Feishu automation plus `workflow_dispatch`
 
 What did not exist when this draft was written:
@@ -57,7 +57,7 @@ At the whole-system level, Hello-Docs is already in Stage 2 of the strategy mode
 
 See:
 
-- [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
+- [`System Evolution Strategy.md`](../System%20Evolution%20Strategy.md)
 
 At the message-control level, this capability is still at Phase 0:
 
@@ -214,7 +214,7 @@ Optional inputs:
 Execution route:
 
 - upsert the review-init row
-- dispatch [`../../.github/workflows/feishu-start-review.yml`](../../.github/workflows/feishu-start-review.yml) on `main`
+- dispatch [`../../.github/workflows/feishu-start-review.yml`](../../../.github/workflows/feishu-start-review.yml) on `main`
 
 Completion fields should come from the existing review-start writeback:
 
@@ -238,7 +238,7 @@ Execution route:
 
 - upsert the `Document_link` row with `Workflow_action=Build Draft Package`
 - set the existing trigger fields
-- dispatch [`../../.github/workflows/feishu-draft-build-queue.yml`](../../.github/workflows/feishu-draft-build-queue.yml) on `main`
+- dispatch [`../../.github/workflows/feishu-draft-build-queue.yml`](../../../.github/workflows/feishu-draft-build-queue.yml) on `main`
 
 Completion fields should come from the existing queue writeback:
 
@@ -263,7 +263,7 @@ Execution route:
 
 - upsert the `Document_link` row with `Workflow_action=Publish`
 - set the existing trigger fields
-- dispatch [`../../.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml) on `main`
+- dispatch [`../../.github/workflows/feishu-build-queue.yml`](../../../.github/workflows/feishu-build-queue.yml) on `main`
 
 Completion fields should come from the existing queue and publish writeback:
 
@@ -375,16 +375,16 @@ Success criteria:
 The control layer should reuse these cut points instead of creating new execution paths:
 
 - queue writeback and field contract:
-  - [`../../tools/queue_contract.py`](../../tools/queue_contract.py)
+  - [`../../tools/queue_contract.py`](../../../tools/queue_contract.py)
 - build queue entrypoint:
-  - [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
+  - [`../../tools/process_build_queue.py`](../../../tools/process_build_queue.py)
 - review-start entrypoint:
-  - [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+  - [`../../tools/process_review_start_queue.py`](../../../tools/process_review_start_queue.py)
 - current maintainer workflow:
-  - [`../build_doc_guide.md`](../build_doc_guide.md)
+  - [`../../build_doc_guide.md`](../../build_doc_guide.md)
 - current user workflow:
-  - [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
-  - [`../../user-guide/quick_start_guide.md`](../../user-guide/quick_start_guide.md)
+  - [`../../user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)
+  - [`../../user-guide/quick_start_guide.md`](../../../user-guide/quick_start_guide.md)
 
 No new build core should be inserted below these cut points for V1.
 

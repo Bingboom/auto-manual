@@ -29,7 +29,7 @@ Read these docs for the current implementation:
 
 - [`integrations/openclaw/IDENTITY.md`](../integrations/openclaw/IDENTITY.md)
 - [`integrations/openclaw/README.md`](../integrations/openclaw/README.md)
-- [`code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md`](../code-as-doc/architecture/OpenClaw_Control_Layer_Plan.md)
+- [`code-as-doc/architecture/Control_Orchestration_Strategy.md`](../code-as-doc/architecture/Control_Orchestration_Strategy.md)
 - [`code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 

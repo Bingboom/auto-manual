@@ -5,7 +5,7 @@ Updated: 2026-04-09
 Archived background note:
 
 - this is the broader provider-migration plan
-- the repo's current maintained DingTalk direction is the narrower hybrid path in [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md)
+- the repo's current maintained DingTalk direction is the narrower hybrid path in [`Feishu_Source_DingTalk_Sink_Plan.md`](../Feishu_Source_DingTalk_Sink_Plan.md)
 - keep this file for background and future expansion only
 
 ## 1. Role
@@ -20,10 +20,10 @@ It focuses on:
 - result and link writeback
 - permission, token, and event-subscription implications
 
-It does not redefine the long-term architecture. For that, use [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md).
+It does not redefine the long-term architecture. For that, use [`System Evolution Strategy.md`](../System%20Evolution%20Strategy.md).
 
 For the narrower first milestone that keeps Feishu as the source and queue system while only moving artifact upload to DingTalk, use
-[`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md).
+[`Feishu_Source_DingTalk_Sink_Plan.md`](../Feishu_Source_DingTalk_Sink_Plan.md).
 
 ## 2. Current Flow To Preserve
 
@@ -43,17 +43,17 @@ phase2 tables
 Current queue orchestration is intentionally build-provider-agnostic in the middle, but provider-specific at the edges:
 
 - sync provider selection and auth bootstrap:
-  [`../../tools/phase2_support.py`](../../tools/phase2_support.py)
+  [`../../tools/phase2_support.py`](../../../tools/phase2_support.py)
 - phase2 sync runtime:
-  [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
+  [`../../tools/sync_data_runtime.py`](../../../tools/sync_data_runtime.py)
 - build queue entrypoint and orchestration:
-  [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py),
-  [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py),
-  [`../../tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+  [`../../tools/process_build_queue.py`](../../../tools/process_build_queue.py),
+  [`../../tools/process_build_queue_services.py`](../../../tools/process_build_queue_services.py),
+  [`../../tools/queue_orchestration.py`](../../../tools/queue_orchestration.py)
 - provider-specific upload and wiki attach:
-  [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+  [`../../tools/queue_lark_ops.py`](../../../tools/queue_lark_ops.py)
 - queue binding and preflight:
-  [`../../tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+  [`../../tools/queue_bound_binding.py`](../../../tools/queue_bound_binding.py)
 
 The build core itself should stay unchanged:
 
@@ -171,7 +171,7 @@ We should not create a separate DingTalk-only build entrypoint.
 ### 6.2 Move From `lark_cli` To Provider Contracts
 
 Current config still hardcodes `lark_cli` as the only supported provider in
-[`../../tools/sync_data_config.py`](../../tools/sync_data_config.py).
+[`../../tools/sync_data_config.py`](../../../tools/sync_data_config.py).
 
 We should evolve this into real provider contracts:
 
@@ -202,21 +202,21 @@ Recommended new contracts:
 
 Expected primary refactor surface:
 
-- [`../../tools/sync_data_config.py`](../../tools/sync_data_config.py)
+- [`../../tools/sync_data_config.py`](../../../tools/sync_data_config.py)
   - stop collapsing every provider into `lark_cli`
   - add provider-specific env and auth settings
-- [`../../tools/phase2_support.py`](../../tools/phase2_support.py)
+- [`../../tools/phase2_support.py`](../../../tools/phase2_support.py)
   - expose provider-neutral loader and provider factories
-- [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
+- [`../../tools/sync_data_runtime.py`](../../../tools/sync_data_runtime.py)
   - remove hard stop on `provider != "lark_cli"`
-- [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`../../tools/process_build_queue_services.py`](../../../tools/process_build_queue_services.py)
   - replace Lark-specific upload/move binding with provider-selected services
-- [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`../../tools/queue_lark_ops.py`](../../../tools/queue_lark_ops.py)
   - keep as Feishu implementation
   - add sibling `queue_dingtalk_ops.py`
-- [`../../tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+- [`../../tools/queue_bound_binding.py`](../../../tools/queue_bound_binding.py)
   - generalize binding resolution away from Feishu-only env names
-- [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+- [`../../tools/process_review_start_queue.py`](../../../tools/process_review_start_queue.py)
   - leave unchanged in phase 1 unless DingTalk also needs review-init queue parity
 
 ### 6.4 Prefer A Repo-Owned CLI Wrapper
@@ -261,8 +261,8 @@ If phase 0 fails, stop and choose a different DingTalk storage product before re
 
 Current verified status:
 
-- the official App-Only token flow for an internal DingTalk app is now verified in-repo through [`../../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py)
-- the spike tooling can already normalize a standard DingTalk docs URL of the form `https://alidocs.dingtalk.com/i/nodes/<node_id>` into a stable node identifier through [`../../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py)
+- the official App-Only token flow for an internal DingTalk app is now verified in-repo through [`../../tools/dingtalk/auth.py`](../../../tools/dingtalk/auth.py)
+- the spike tooling can already normalize a standard DingTalk docs URL of the form `https://alidocs.dingtalk.com/i/nodes/<node_id>` into a stable node identifier through [`../../tools/dingtalk/workspace.py`](../../../tools/dingtalk/workspace.py)
 - the remaining unresolved phase-0 question is the public upload or attach API for the chosen DingTalk docs / knowledge-space product
 
 ### Phase 1: Snapshot Sync Parity

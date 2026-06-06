@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-04-19
+Updated: 2026-06-06
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single current source of truth for the topic you are changing.
@@ -49,6 +49,8 @@ These files describe the repo behavior that should be maintained today.
   - branch hygiene and GitHub protection rules
 - [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md)
   - ownership map for orchestration-first entrypoints
+- [`dev/manual_agents_v0_1_spec.md`](dev/manual_agents_v0_1_spec.md)
+  - v0.1 implementation spec for the planned local Manual Production Agent planner
 - [`dev/code_review_checklist.md`](dev/code_review_checklist.md)
   - code/config/data/doc review checklist
 - [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)
@@ -64,8 +66,8 @@ Use these together; do not split operator guidance across older phase plans.
   - short operator bootstrap for repo-local natural-language control
 - [`../integrations/openclaw/README.md`](../integrations/openclaw/README.md)
   - current package map and ownership boundary
-- [`architecture/OpenClaw_Control_Layer_Plan.md`](architecture/OpenClaw_Control_Layer_Plan.md)
-  - active architecture and responsibility split for the control layer
+- [`architecture/Control_Orchestration_Strategy.md`](architecture/Control_Orchestration_Strategy.md)
+  - current architecture and responsibility split for OpenClaw, Feishu IM, manual agents, queue commands, and GitHub workers
 
 ## 4. Roadmap And Execution
 

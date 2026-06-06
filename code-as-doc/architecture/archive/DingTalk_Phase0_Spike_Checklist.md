@@ -6,7 +6,7 @@ Archived background note:
 
 - this spike checklist is no longer the current maintained DingTalk doc
 - keep it only as evidence for the earlier API and product investigation
-- use [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md) for the current repo direction
+- use [`Feishu_Source_DingTalk_Sink_Plan.md`](../Feishu_Source_DingTalk_Sink_Plan.md) for the current repo direction
 
 ## 1. Role
 

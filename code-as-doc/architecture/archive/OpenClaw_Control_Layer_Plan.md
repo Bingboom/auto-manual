@@ -21,21 +21,21 @@ The goal is to simplify operator entry and status visibility without changing th
 
 Current operator and implementation references live in:
 
-- [`../../BOOTSTRAP.md`](../../agent/BOOTSTRAP.md)
-- [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md)
+- [`../../BOOTSTRAP.md`](../../../agent/BOOTSTRAP.md)
+- [`../../integrations/openclaw/README.md`](../../../integrations/openclaw/README.md)
 
 Current repo package:
 
-- [`../../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer)
-- [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../integrations/openclaw/feishu-im-webhook-adapter/)
+- [`../../integrations/openclaw/auto-manual-control-layer/`](../../../integrations/openclaw/auto-manual-control-layer)
+- [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../../integrations/openclaw/feishu-im-webhook-adapter/)
 
 ## 1.1 Current Repo Status
 
 As of 2026-04-12, the repo has moved beyond the original V1-only bridge:
 
-- the GitHub-dispatch OpenClaw bridge exists under [`../../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer/)
+- the GitHub-dispatch OpenClaw bridge exists under [`../../integrations/openclaw/auto-manual-control-layer/`](../../../integrations/openclaw/auto-manual-control-layer/)
 - the repo-local Phase 2 action surface now exists through `build.py queue-query`, `build.py queue-resolve-action`, and `build.py queue-execute`
-- a standalone Feishu IM ingress adapter now exists under [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../integrations/openclaw/feishu-im-webhook-adapter/)
+- a standalone Feishu IM ingress adapter now exists under [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../../integrations/openclaw/feishu-im-webhook-adapter/)
 
 The remaining gaps are operational, not architectural:
 
@@ -45,9 +45,9 @@ The remaining gaps are operational, not architectural:
 
 Encrypted Feishu callback support is already repo-owned through the adapter config
 and decrypt path in
-[`../../integrations/openclaw/feishu-im-webhook-adapter/lib/config.mjs`](../../integrations/openclaw/feishu-im-webhook-adapter/lib/config.mjs)
+[`../../integrations/openclaw/feishu-im-webhook-adapter/lib/config.mjs`](../../../integrations/openclaw/feishu-im-webhook-adapter/lib/config.mjs)
 and
-[`../../integrations/openclaw/feishu-im-webhook-adapter/lib/feishu-events.mjs`](../../integrations/openclaw/feishu-im-webhook-adapter/lib/feishu-events.mjs).
+[`../../integrations/openclaw/feishu-im-webhook-adapter/lib/feishu-events.mjs`](../../../integrations/openclaw/feishu-im-webhook-adapter/lib/feishu-events.mjs).
 
 ## 2. Why This Is The Right First OpenClaw Milestone
 
@@ -307,9 +307,9 @@ Notes:
 
 Reference docs:
 
-- [`../build_doc_guide.md`](../build_doc_guide.md)
-- [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
-- [`../../user-guide/dingtalk_alidocs_upload_setup_guide.md`](../../user-guide/dingtalk_alidocs_upload_setup_guide.md)
+- [`../build_doc_guide.md`](../../build_doc_guide.md)
+- [`../../user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)
+- [`../../user-guide/dingtalk_alidocs_upload_setup_guide.md`](../../../user-guide/dingtalk_alidocs_upload_setup_guide.md)
 
 ### 3.4 Ownership Boundary
 
@@ -358,7 +358,7 @@ V1 should keep the command set intentionally small.
 
 Behavior:
 
-- dispatch [`.github/workflows/feishu-start-review.yml`](../../.github/workflows/feishu-start-review.yml) on `main`
+- dispatch [`.github/workflows/feishu-start-review.yml`](../../../.github/workflows/feishu-start-review.yml) on `main`
 - pass:
   - `queue_record_id=<review_init_record_id>`
   - `trigger_source=openclaw`
@@ -374,7 +374,7 @@ Rules:
 
 Behavior:
 
-- dispatch [`.github/workflows/feishu-draft-build-queue.yml`](../../.github/workflows/feishu-draft-build-queue.yml) on `main`
+- dispatch [`.github/workflows/feishu-draft-build-queue.yml`](../../../.github/workflows/feishu-draft-build-queue.yml) on `main`
 - pass:
   - `queue_record_id=<document_link_record_id>`
   - `trigger_source=openclaw`
@@ -390,7 +390,7 @@ Rules:
 
 Behavior:
 
-- dispatch [`.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml) on `main`
+- dispatch [`.github/workflows/feishu-build-queue.yml`](../../../.github/workflows/feishu-build-queue.yml) on `main`
 - pass:
   - `queue_record_id=<document_link_record_id>`
   - `trigger_source=openclaw`
@@ -426,23 +426,23 @@ OpenClaw V1 is deliberately thin because the current repo already exposes stable
 
 Primary dispatch targets:
 
-- [`.github/workflows/feishu-start-review.yml`](../../.github/workflows/feishu-start-review.yml)
-- [`.github/workflows/feishu-draft-build-queue.yml`](../../.github/workflows/feishu-draft-build-queue.yml)
-- [`.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml)
+- [`.github/workflows/feishu-start-review.yml`](../../../.github/workflows/feishu-start-review.yml)
+- [`.github/workflows/feishu-draft-build-queue.yml`](../../../.github/workflows/feishu-draft-build-queue.yml)
+- [`.github/workflows/feishu-build-queue.yml`](../../../.github/workflows/feishu-build-queue.yml)
 
 Primary execution surface that stays unchanged:
 
-- [`../../build.py`](../../build.py)
-- [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
-- [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
-- [`../../scripts/validate_required_env.sh`](../../scripts/validate_required_env.sh)
-- [`../../.github/actions/feishu-common-setup/action.yml`](../../.github/actions/feishu-common-setup/action.yml)
+- [`../../build.py`](../../../build.py)
+- [`../../tools/process_review_start_queue.py`](../../../tools/process_review_start_queue.py)
+- [`../../tools/process_build_queue.py`](../../../tools/process_build_queue.py)
+- [`../../scripts/validate_required_env.sh`](../../../scripts/validate_required_env.sh)
+- [`../../.github/actions/feishu-common-setup/action.yml`](../../../.github/actions/feishu-common-setup/action.yml)
 
 Primary documentation that should stay aligned once rollout begins:
 
-- [`../build_doc_guide.md`](../build_doc_guide.md)
-- [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
-- [`../../user-guide/quick_start_guide.md`](../../user-guide/quick_start_guide.md)
+- [`../build_doc_guide.md`](../../build_doc_guide.md)
+- [`../../user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)
+- [`../../user-guide/quick_start_guide.md`](../../../user-guide/quick_start_guide.md)
 
 ## 7. Operational Rules
 
