@@ -26,11 +26,17 @@ the apply techniques, and the decision checklist. Keep it open while you work.
    artifacts (e.g. a working version label). Treat the tracked changes as a *diff against
    a stale baseline*, then re-diff against the **current** source and only act on what is
    genuinely outstanding.
-2. **The source of truth is two-track.** Manual content lives partly in repo **RST
-   templates** (editable here, normal branch/PR) and partly in **Feishu bitable tables**
-   that sync down to `data/phase2/*.csv`. A hand-edit to a synced CSV is clobbered on the
-   next `sync-data`; the durable fix for that content is the Feishu source row. (One
-   exception: `data/phase2/spec_titles.csv` is repo-local, not synced — edit it here.)
+2. **Two-track source of truth — and NO `data/phase2/*.csv` is ever a source.** Manual
+   content lives partly in repo **RST templates / recipes / configs** (editable here,
+   normal branch/PR) and partly in **Feishu bitable tables**. Everything under
+   `data/phase2/` is a *sync artifact* that `build.py sync-data` regenerates from the
+   online tables — the online table is the single source of truth, so a hand-edit to any
+   `data/phase2/*.csv` is silently clobbered on the next sync and the durable fix is always
+   the Feishu source row. Note some CSVs are **derived, not 1:1 mirrors**:
+   `spec_titles.csv` (also `Localized_Manual_Copy`, status words) is built from the
+   `manual_copy_source` table (en source rows) joined to **Translation_Memory** for the
+   localized columns — so the source of a section *title* is the TM row (per language,
+   matched on the en source string), never the CSV.
 3. **`sync-data` is operator-gated.** Its preflight needs `FEISHU_PHASE2_*` secrets that
    only exist in the operator's environment, so you cannot run a real sync or rebuild
    JE-2000F-style targets yourself. You CAN read/write the source rows directly with
@@ -74,11 +80,14 @@ the apply techniques, and the decision checklist. Keep it open while you work.
 
 ## Two-track source — quick orientation
 
-- Repo templates: `docs/templates/page_<region-lang>/*.rst`, `docs/templates/page_shared/<lang>/*.rst`,
-  `docs/templates/recipes/*/*.yaml`, `configs/config.*.yaml`, and the repo-local
-  `data/phase2/spec_titles.csv`.
-- Feishu phase2 tables (read/write with `lark-cli --as bot`): Spec_Master, page_placeholders,
-  symbols_blocks, lcd_icons_blocks, troubleshooting_blocks, Spec_Footnotes, Spec_Notes.
+- Repo templates (editable source): `docs/templates/page_<region-lang>/*.rst`,
+  `docs/templates/page_shared/<lang>/*.rst`, `docs/templates/recipes/*/*.yaml`,
+  `configs/config.*.yaml`.
+- Feishu tables (the source for everything under `data/phase2/`; read/write with
+  `lark-cli --as bot`): Spec_Master, page_placeholders, symbols_blocks, lcd_icons_blocks,
+  troubleshooting_blocks, Spec_Footnotes, Spec_Notes, `manual_copy_source`, and
+  **Translation_Memory** (a *separate base* — it backs derived CSVs like `spec_titles.csv`).
+- `data/phase2/*.csv` are sync artifacts — never hand-edited.
 - Full map (table ids, keying, which content lives where) is in `references/source-map.md`.
 
 ## Validate, commit, PR

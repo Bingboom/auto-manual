@@ -16,11 +16,17 @@ and the scope decisions to surface.
 Manual content has two sources of truth:
 
 - **Repo templates** — editable here, normal branch/PR. RST under `docs/templates/`,
-  recipes under `docs/templates/recipes/`, `configs/config.*.yaml`, and the repo-local CSV
-  `data/phase2/spec_titles.csv` (NOT Feishu-synced — edit it here).
-- **Feishu phase2 bitable tables** — sync DOWN into `data/phase2/*.csv` via
-  `build.py sync-data`. A hand-edit to one of those synced CSVs is overwritten on the next
-  sync, so the durable fix is the **Feishu source row** (write it with `lark-cli`, below).
+  recipes under `docs/templates/recipes/`, and `configs/config.*.yaml`.
+- **Feishu phase2 bitable tables** — the source for **everything** under `data/phase2/`.
+  `build.py sync-data` regenerates `data/phase2/*.csv` FROM these tables, so **no CSV is
+  ever the source**: a hand-edit to any `data/phase2/*.csv` is overwritten on the next
+  sync, and the durable fix is always the **Feishu source row** (write it with `lark-cli`,
+  below). Most CSVs are 1:1 table mirrors; a few are **derived** —
+  `data/phase2/spec_titles.csv` (also `Localized_Manual_Copy`, status words) is built by
+  `build_spec_title_rows` (`tools/manual_copy_source.py`) from the `manual_copy_source`
+  table (en source rows) joined to **Translation_Memory** for the localized columns. So a
+  section *title*'s de/fr/es/it/uk value comes from the TM row matched on its en source
+  string — fix the TM row, not the CSV.
 
 `sync-data` is **operator-gated**: its preflight requires `FEISHU_PHASE2_BASE_TOKEN`,
 `FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID`/`_VIEW_ID`, `..._SPEC_NOTES_...`, `..._SYMBOLS_BLOCKS_...`,
@@ -44,7 +50,7 @@ the phase2 base (wiki node `JKVAwNWlbilFiXkFc99cmRMPnhd` → bitable app token
 | LCD-icon names + state descriptions (LCD DISPLAY section) | **Feishu lcd_icons_blocks** `tblDII3oyqFhQYHn` | `Model` (shared, no Region/document_key); `icon_<lang>` + `icon_desc_<lang>` (descs may embed `{{*_BUTTON_LABEL}}` placeholders) |
 | Troubleshooting corrective measures | **Feishu troubleshooting_blocks** `tblUSuk3Q5BKTdTh` | `Model` (often `ALL`) + `Region` + `error_code`; `corrective_measures_<lang>`. EU vs `US, pt-BR` are SEPARATE rows |
 | Spec footnotes (① …), spec notes | **Feishu Spec_Footnotes** `tbl34wpGJkMipCrg`, **Spec_Notes** `tbl1vhTHwllyMGCx` | `Model`/`Region`; `Text_<lang>` |
-| Spec section titles (e.g. "ENVIRONMENTAL OPERATING TEMPERATURE") | **repo** `data/phase2/spec_titles.csv` (NOT synced) | one row per section, per-lang columns — edit + adjust nothing else |
+| Spec section titles (e.g. "ENVIRONMENTAL OPERATING TEMPERATURE") | **Feishu Translation_Memory** `tbl6gKPJPTvOcTWv` (de/fr/es/it/uk) + `manual_copy_source` `tbl9grwLXLmpmZ1t` (en source row) | matched on the en source string (`en` field). `data/phase2/spec_titles.csv` is a DERIVED sync artifact — do NOT edit it. TM is a *separate base* (see recipe); prefer the `bilingual-tm-maintenance` skill to write it with maintenance/audit logs |
 | Operation-guide narrative, charging/UPS/storage prose, app-setup static lines, in-the-box | **repo templates** `docs/templates/page_<region-lang>/05_operation_guide_placeholder.rst`, `docs/templates/page_shared/<lang>/{06_ups_mode,08_charging_methods,charging,09_storage_and_maintenance,12_app_setup_placeholder}.rst` | per language; literal text (some button refs are `{{…}}`/`|…|` placeholders → already resolved from data) |
 | Product-overview callout layout, front/right-side panels, static part labels (Handle, LCD, …) | **repo templates** `docs/templates/page_<region-lang>/03_product_overview_placeholder.rst` | LaTeX `\HBOverviewPair{LEFT}{}{RIGHT}{}` block + a parallel non-LaTeX `list-table`; edit BOTH; shared across models for that language |
 | Safety boilerplate headings, cover/preface, language-scope line | **repo templates** `page_<region-lang>/safety_*.rst`, `page_<region>/00_preface.rst`, `configs/config.<region>.yaml` `rst_substitutions.MANUAL_LANGUAGE_SCOPE` | — |
@@ -57,6 +63,10 @@ Notes that bite you:
   terminology change.
 - A revision's content can be split across 4+ tables AND templates — that is why the
   residual scan exists.
+- If a section *title* changed, the convergence scan must include a **Translation_Memory**
+  dump (and `manual_copy_source`), not just Spec_Master / page_placeholders — the title
+  lives in TM, so a spec/ph-only scan falsely reports convergence. Likewise never treat a
+  green `data/phase2/spec_titles.csv` as proof; it is a derived artifact, not the source.
 
 ## Feishu access recipe (lark-cli)
 
@@ -69,6 +79,17 @@ lark-cli api GET /open-apis/wiki/v2/spaces/get_node \
   --params '{"token":"JKVAwNWlbilFiXkFc99cmRMPnhd"}' --format json
 # -> data.node.obj_token  (phase2 base = DOp8bczA8aGLhJsc5iMcOqOvnpg)
 ```
+
+**Translation_Memory lives in a DIFFERENT base** ("多维表CAT"), not the phase2 base — needed
+for section-title / derived-CSV fixes:
+
+```bash
+# TM base: wiki node X3O8wCpXPifqGKkP2sYccyxznQb -> app LUIcbxeKdaCY2rsEHwCcnVQSnUe
+#          table tbl6gKPJPTvOcTWv (view veweqW2fQv); rows keyed by lang fields en/de/fr/es/it/uk/jp/...
+```
+
+For TM writes prefer the `bilingual-tm-maintenance` skill: it updates the en-linked row,
+appends the `<lang>维护Log`/`<lang>校验Log` fields, and verifies by read-back.
 
 Read records (paginate all):
 
@@ -128,8 +149,10 @@ Practical rules:
 
 Lay these out and wait — do not decide them yourself:
 - **Model scope:** does the revision data even exist for this target locally? (Often the
-  revised target lives only in Feishu, not yet synced, and has no config target. Adding a
-  config target without synced data breaks the local build — they must land together.)
+  revised target lives only in Feishu, not yet synced — that is EXPECTED, not a blocker.
+  Such targets are bitable-driven and build **online-first via the queue**
+  (`process_build_queue` runs `sync-data` before building); do NOT assume you must
+  hand-add a `config.*.yaml` target. Stale/missing local `data/phase2` rows are normal.)
 - **Region scope:** EU-only, or also US/JP/CN/pt-BR? Same-looking terms can be locale-correct
   elsewhere.
 - **Sibling models:** apply a shared-terminology fix to other models' rows (e.g. JE-1000F_EU,
