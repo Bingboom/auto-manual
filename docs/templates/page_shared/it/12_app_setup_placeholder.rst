@@ -48,7 +48,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
      -
        - Seleziona una rete Wi-Fi nella banda da 2,4 GHz. Il dispositivo non supporta reti Wi-Fi nella banda da 5 GHz.
 
-| Dopo che il dispositivo è stato aggiunto con successo all'app, l'icona Wi-Fi sul dispositivo restera sempre accesa.
+| Dopo che il dispositivo è stato aggiunto con successo all'app, l'icona Wi-Fi sul dispositivo resterà sempre accesa.
 
 .. image:: templates/word_template/common_assets/app/connect_result.png
    :alt: Segnaposto schermata di risultato configurazione app.
