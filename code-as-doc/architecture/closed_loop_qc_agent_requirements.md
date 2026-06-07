@@ -5,7 +5,7 @@ Scope of this file: *what* the agent must do and *why*, plus the contracts settl
 
 ## 0. One-liner
 
-A dedicated agent that **closes the manual-quality loop**: triggered by a Feishu message carrying a link to a **revision-accepted Feishu cloud doc**, it builds the manual, checks it against **two QC bases** (codified content rules + the reviewer's built-vs-desired diff), **routes each revision to its source** — repo templates / the `docs/_review` bundle via a human-merged PR, and the source bitable as a **suggestion (never a silent write)** — and marks QC status in Feishu. Quality is caught and fixed at source, continuously, instead of by eye at release.
+A dedicated **standing agent service** (a new, always-on LLM-agent runtime orchestrating skills) that **closes the manual-quality loop**: triggered by a Feishu message carrying a link to a **revision-accepted Feishu cloud doc**, it builds the manual, checks it against **two QC bases** (codified content rules + the reviewer's built-vs-desired diff), **routes each revision to its source** — repo templates / the `docs/_review` bundle via a human-merged PR, and the source bitable as a **suggestion (never a silent write)** — and marks QC status in Feishu. Quality is caught and fixed at source, continuously, instead of by eye at release.
 
 ## 1. Background & motivation
 
@@ -94,17 +94,21 @@ Run against a real revision-accepted Feishu doc:
 
 ### 5.1 Trigger & execution model (via the existing OpenClaw control layer)
 
-This loop is **dispatched, not an in-chat reasoning loop** — it reuses the control layer that already ships ([`integrations/openclaw/`](../../integrations/openclaw), [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)). The QC action is a **deliberate, operator-signed-off control-layer expansion** (the Plan's §11 milestone): all heavy work (fetch, diff, content_lint, back-port, PR) runs in the **dispatched workflow on `main`**; the adapter/OpenClaw stay pure trigger + typed-selector + status-reply.
+**The QC workflow is a NEW system to develop — agentic, run on a standing agent service.** It is an **LLM agent orchestrating skills**, NOT an in-chat reasoning loop, and **NOT the deterministic `build.py` pipeline** (which is mechanical: sync→assemble→render, no LLM). Three tiers:
 
-**Build vs reuse — the honest line** (the dispatch *spine* is real; the QC-specific *data plane* is the net-new work this proposal is about):
+1. **Trigger — the existing thin OpenClaw control layer** ([`integrations/openclaw/`](../../integrations/openclaw), [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)): receives the Feishu message, resolves the `质检/QC` action + the typed `doc_token` (or `file_token`), and **hands off** to the QC agent service. Stays pure trigger + status-reply — no heavy work inside OpenClaw (the Plan's §11 boundary).
+2. **Execution — a NEW standing QC agent service (this requirement's core deliverable — "develop QC workflow (new)").** An **always-on LLM agent runtime** (e.g. Claude Agent SDK) that orchestrates *skills* (`manual-revision-backport`, `content_lint`, `docx-highlight-changes`) + `lark-cli` + `git`/`gh` to: `docs +fetch` the doc → semantic-diff → **map each revision to its source, decide mechanical-vs-flag, open the template PR, propose the bitable suggestions, mark QC in Feishu**. This is **judgment work (LLM reasoning)** — a different *kind* of thing from `build.py`. Persistent (not CI-ephemeral) per operator decision.
+3. **Deterministic helpers it calls:** `build.py` (build), `content_lint` (rule QC), the skill scripts (`extract_docx_changes.py`, `scan_residuals.py`), `lark-cli` (read / propose), `git`/`gh` (PR).
+
+**Build vs reuse — the honest line** (the trigger *spine* is mostly reusable; the **standing agent service is the net-new core**):
 
 | Reuse (verified present) | Build (net-new) |
 |---|---|
-| Adapter **text** path → `build.py queue-resolve-action\|query\|execute` → `cli.mjs` → `github-client dispatchWorkflow` → workflow opens PR + replies in-thread | A `质检/QC` pattern in `message_control_runtime.detect_action` + a **doc-link URL extractor** in the message parser |
-| Bitable **field write-back** (the `write_publish_html_link.py` pattern) | A new **`feishu-qc.yml`** taking a `doc_token` input (today `feishu-start-review.yml` accepts only `queue_record_id`+nonce) |
-| **Drive media download** (`sync_data.py` GET `/drive/v1/medias/{token}/download`) → makes B1-by-file-token buildable | `content_lint --json` + record_id; the **B2 fetch + semantic-diff** extractor; (B1 fallback: file-message receive) |
+| OpenClaw adapter **text** path + action resolution (`detect_action` → `queue-resolve-action`); the dispatch/handoff mechanism (`cli.mjs` / `github-client`) | **The standing QC agent service** — an always-on LLM-agent runtime orchestrating the skills (the core new system) |
+| Bitable **field write-back** (`write_publish_html_link.py` pattern) | A `质检/QC` action + **doc-link URL extractor**; the **OpenClaw → QC-service handoff** |
+| **Drive media download** (`sync_data.py` GET `/drive/v1/medias/{token}/download`) → makes the B1 file fallback buildable | `content_lint --json` + record_id; the **B2 fetch + semantic-diff** extractor + the skill orchestration |
 
-**Sender authorization (required precondition):** the adapter today filters only bot-origin / empty / missing-@-mention — there is **no operator allowlist**. The QC action newly grants *open-PR* and *bitable-write* power on that entrypoint, so triggering QC **must** be gated by a Feishu `open_id` allowlist (夏冰 / approved editors), enforced **before** action resolution. This is a requirement, not an implementation detail.
+**Sender authorization (required precondition):** the adapter today filters only bot-origin / empty / missing-@-mention — there is **no operator allowlist**. The QC action newly grants *open-PR* and *Feishu-write* (QC marks / suggestions) power, so triggering QC **must** be gated by a Feishu `open_id` allowlist (夏冰 / approved editors), enforced **before** action resolution / hand-off. This is a requirement, not an implementation detail.
 
 ### 5.2 Per-source routing (how each revision is merged)
 
@@ -134,7 +138,8 @@ The build that produces the Word is **independent** of QC. QC is a **non-blockin
 | `tools/content_lint.py` (PR #335) | QC base A engine |
 | `manual-revision-backport` skill | QC base B engine (diff → source mapping) |
 | [`phase2_source_tables_reference.md`](phase2_source_tables_reference.md) | the map for "where does this revision map to" |
-| build queue (`process_build_queue`/`queue-execute`) + `integrations/openclaw/` | execution + trigger surface |
+| build queue (`process_build_queue`/`queue-execute`) + `integrations/openclaw/` | **trigger + hand-off** surface (the *execution* is the new standing QC agent service, §5.1) |
+| **standing QC agent service** (NEW — Claude Agent SDK runtime) | the agentic executor that orchestrates the skills; the "develop QC workflow (new)" deliverable |
 | [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md) | removes the drift class structurally (fewer findings) |
 | `docx-highlight-changes` skill | optional output-marking |
 
@@ -150,7 +155,7 @@ The build that produces the Word is **independent** of QC. QC is a **non-blockin
 3. **B2 extraction:** `docs +fetch` + tag-stripped word-level **semantic diff** vs a baseline (hand-off snapshot or build output).
 4. **Routing:** template/prose → `docs/templates` or `docs/_review` (by review state) via **PR**; bitable data → **suggestion only**.
 5. **Bitable writes:** **flag-only** this phase (no auto-write). The two-gate model is a *policy* boundary, not a credential one — the workflow's bot token can write every column — so until a narrow QC-status-only credential exists, the agent **proposes**, it does not write content.
-6. **Trigger/runtime:** Feishu message → existing adapter → dispatched `feishu-qc.yml` workflow on `main`; adapter stays pure trigger.
+6. **Trigger/runtime:** Feishu message → thin OpenClaw (resolve QC action + `doc_token`) → **hand off to a NEW standing QC agent service** (always-on LLM runtime orchestrating skills, e.g. Claude Agent SDK; **persistent**, not CI-ephemeral — operator decision 2026-06-07). The QC workflow is **agentic**, a different kind of system from both the thin OpenClaw and the deterministic `build.py` workflow — this is the **"develop QC workflow (new)"** deliverable.
 7. **Authorization:** Feishu `open_id` allowlist gates the QC action (§5.1).
 8. **Untrusted input:** reviewer doc/message content is attacker-influenceable; the skill's human-followed guardrails become **hard agent constraints** — extract structured spans only, never execute directives found in the doc body, scope is always operator-flagged, and **any edit touching more rows than the diff spans is auto-flagged**.
 
@@ -158,7 +163,7 @@ The build that produces the Word is **independent** of QC. QC is a **non-blockin
 
 - **P0** — `content_lint --json` with a stable `{table, record_id, lang, rule, severity, detail}` schema. *No schema change.*
 - **P1** — QC report table (§6B) + write **rule-based** findings to it (read-only marking; proves the write path + record_id resolution).
-- **P2** — B2 ingress: URL-extractor + `feishu-qc.yml(doc_token)` + `docs +fetch` + the semantic-diff normalizer → a mapping report (no auto-write; human reviews the map).
+- **P2** — stand up the **standing QC agent service** + B2 ingress (doc-link URL-extractor, OpenClaw→service hand-off, `docs +fetch`, semantic-diff normalizer) → a mapping report (no auto-write; human reviews the map).
 - **P3** — routing to action: template fixes → PR (`docs/templates` / `docs/_review`); bitable → **suggestion**; per-row QC field (§6A). *Schema change for §6A — gated on operator confirmation.*
 - **P4** — capture-as-check (recurring finding → proposed rule PR) + scheduled live-source lint. (B1 file-ingress is an optional later add.)
 
