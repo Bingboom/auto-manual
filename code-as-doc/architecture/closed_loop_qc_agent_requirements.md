@@ -8,7 +8,8 @@ follow-up (a separate proposal once these requirements are agreed).
 
 A dedicated agent that **closes the manual-quality loop**: it builds the manual,
 checks the result against **two QC bases** — the codified content rules and a
-human-submitted *built-vs-desired* diff Word — back-ports the gaps to the **source
+human-submitted *built-vs-desired* review diff (a Word comparison doc **or** a
+revised Feishu cloud doc) — back-ports the gaps to the **source
 of truth**, re-verifies, and **marks QC status directly in Feishu**. Quality is
 caught and fixed at source, continuously, instead of by eye at release.
 
@@ -23,11 +24,12 @@ Two complementary quality signals already exist, but are run ad-hoc by a human:
 
 - **Codified rules** — `tools/content_lint.py` (PR #335): automated, proactive, but
   only covers what has been turned into a rule.
-- **Human reviewer diff** — a Word that compares the *built* manual against the
-  *desired* manual (tracked-changes / 对比稿; 夏冰 has sent three rounds of these for
-  JE-2000F EU). Catches taste, completeness, and desired-vs-built gaps that rules
-  cannot — but is manual and reactive, and its fixes must be back-ported by hand via
-  the [`manual-revision-backport`](../../.agents/skills/manual-revision-backport/SKILL.md) skill.
+- **Human reviewer diff** — a *built-vs-desired* comparison the reviewer expresses
+  **either** as a **Word** doc (tracked-changes / 对比稿; 夏冰 has sent three rounds of
+  these for JE-2000F EU) **or** by revising a **Feishu cloud doc** directly. Catches
+  taste, completeness, and desired-vs-built gaps that rules cannot — but is manual and
+  reactive, and its fixes must be back-ported via the
+  [`manual-revision-backport`](../../.agents/skills/manual-revision-backport/SKILL.md) skill.
 
 The agent makes this a **standing, repeatable loop** and marks results in Feishu so
 editors act at the source. Crucially, the two bases **converge over time**: recurring
@@ -54,16 +56,26 @@ the automated base grows and the reviewer diffs shrink.
 - Runs against the **exported snapshot** → deterministic.
 - **Output:** structured findings `{table, row/record, lang, rule, severity, detail}`.
 
-### 依据 B — 差异对比文档 (diff-based, human-submitted)
-- Input: a reviewer **Word** describing the difference between the **built** document
-  and the **desired** document (tracked-changes or side-by-side 对比稿; the 3-round
-  V3 kind 夏冰 has provided).
-- Engine: the [`manual-revision-backport`](../../.agents/skills/manual-revision-backport/SKILL.md)
+### 依据 B — 评审差异 (diff-based, human-submitted)
+The reviewer expresses the gap between the **built** document and the **desired**
+document through **either of two input channels**; both normalize to the same
+discrepancy list and feed the identical downstream loop:
+
+- **B1 — Word diff / comparison docx.** A tracked-changes or side-by-side 对比稿
+  (the 3-round V3 kind 夏冰 has provided), parsed locally from the `.docx`.
+- **B2 — Feishu revised cloud doc (飞书修订版云文档).** The reviewer revises directly
+  in a Feishu cloud document (suggestion-mode edits / comments / a revised version);
+  the agent **reads the revisions via `lark-cli`** (Feishu CLI) and extracts them —
+  no manual export step. (Exact read mechanism — suggestions vs comments vs
+  version-diff endpoint — is a design-phase choice; see §10.6.)
+
+- **Engine (shared by B1 & B2):** the
+  [`manual-revision-backport`](../../.agents/skills/manual-revision-backport/SKILL.md)
   flow — extract each discrepancy, **diff against current source (don't transcribe)**,
   map it to its source location (a repo template **or** a Feishu phase2 table), and
   surface model/region/sibling scope.
 - **Output:** per-discrepancy `{source location, proposed fix, confidence,
-  auto-applicable vs needs-human-decision}`.
+  auto-applicable vs needs-human-decision}` — identical shape regardless of input channel.
 
 > The two bases are complementary: **A** is the proactive net (cheap, runs every
 > build); **B** is the reactive net (the human's eye for what isn't yet a rule). The
@@ -74,7 +86,9 @@ the automated base grows and the reviewer diffs shrink.
 1. **Build** — trigger an online-first build for a target via the existing queue
    (`process_build_queue` / `queue-execute`); produce the deliverable Word.
 2. **Rule QC** — run `content_lint` on the synced snapshot; collect findings.
-3. **Diff QC** — ingest the reviewer diff Word; extract + map discrepancies to source.
+3. **Diff QC** — ingest the reviewer diff via **either channel** — a Word comparison
+   docx (B1) **or** a revised Feishu cloud doc read through `lark-cli` (B2) — then
+   extract + map discrepancies to source.
 4. **Reconcile / back-port** — apply **mechanical / high-confidence** fixes at source
    (Feishu rows via `lark-cli`; templates via a PR); **flag** terminology / scope /
    taste decisions for the human (never auto-decide those).
@@ -152,8 +166,9 @@ write-back time.
 
 ## 9. Inputs / Outputs
 
-- **Inputs:** target (model / region / langs); optional reviewer diff Word; the
-  codified rules + the live source (Feishu / TM / templates).
+- **Inputs:** target (model / region / langs); an optional review diff via **either**
+  channel — a Word comparison docx (B1) **or** a revised Feishu cloud doc read through
+  `lark-cli` (B2); the codified rules + the live source (Feishu / TM / templates).
 - **Outputs:** built Word (delivered to Feishu); QC marks in Feishu (§6); a QC report
   (both bases); source fixes (direct Feishu writes for data, a PR for templates);
   a list of flagged human decisions; proposed new rules.
@@ -168,14 +183,20 @@ write-back time.
 3. **Severity policy:** does `WARN` get marked? does any severity ever gate delivery?
 4. **Trigger model:** OpenClaw chat command, schedule, reviewer-upload, or all.
 5. **Agent runtime placement:** a repo skill orchestrating the steps, an OpenClaw-side
-   agent, or the queue itself — and how the reviewer Word is handed to it.
+   agent, or the queue itself — and how the diff input (a Word file path **or** a
+   Feishu doc token) is handed to it.
+6. **Feishu revision read mechanism (channel B2):** which Feishu surface the agent
+   reads revisions from via `lark-cli` — suggestion-mode edits, comments, or a
+   version-to-version block diff — and how a revised Feishu doc is identified /
+   registered for a given target.
 
 ## 11. Phased delivery (incremental, low-risk first)
 
 - **P0** — `content_lint --json` (machine-consumable output). *No schema change.*
 - **P1** — QC report table (B) + write **rule-based** findings to it (read-only
   marking; proves the write-back path).
-- **P2** — diff-Word ingestion → a mapping report (no auto-write; human reviews the map).
+- **P2** — diff ingestion for **both** channels (B1 Word docx **and** B2 Feishu doc via
+  `lark-cli`) → a normalized mapping report (no auto-write; human reviews the map).
 - **P3** — back-port auto-apply (mechanical only) + per-row Feishu QC field (A).
   *Schema change — gated on §10.1.*
 - **P4** — capture-as-check (diff finding → proposed rule) + scheduled live-source run.
@@ -189,7 +210,8 @@ write-back time.
 
 ## 13. Acceptance criteria
 
-Given a target and (optionally) a reviewer diff Word, one agent run produces:
+Given a target and (optionally) a reviewer diff — a Word docx **or** a revised Feishu
+cloud doc — one agent run produces:
 
 1. the deliverable Word (built, delivered to Feishu);
 2. a QC report covering **both** bases;
