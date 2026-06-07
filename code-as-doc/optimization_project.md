@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-05-08
+Updated: 2026-06-07
 
 ## 1. Role
 
@@ -79,6 +79,8 @@ As of 2026-05-07, the repo has working baselines for:
 - queue `RUNNING` writeback before success/failure completion
 - first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](dev)
 - fixture-backed long-term content assembly pilot for `03_product_overview`, including an assembly contract validator, no-op assembler, and page-level pilot switch
+- snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py)
+- closed-loop QC requirements under [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
 
 ## 4. Recently Completed
 
@@ -162,6 +164,12 @@ Use this section for short milestone-style updates.
 - completed the midterm queue contract hardening pass with an explicit queue transition layer, external integration fixtures, schema drift gates, a queue-contract CI surface, and another split of the queue test hotspot
 - started the long-term content direction safely by adding a `03_product_overview` assembly pilot plan, multidimensional-table-style fixtures, an assembly contract validator, a no-op assembler, and a page-level pilot switch for `US/en` and `JP/ja`
 
+### 2026-06-07
+
+- added snapshot-based content QC through [`tools/content_lint.py`](../tools/content_lint.py) and the rule inventory in [`code-as-doc/content_quality_rules.md`](content_quality_rules.md)
+- added the closed-loop QC agent requirements baseline in [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
+- activated the implementation rollout in [`code-as-doc/dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md): first make rule QC machine-readable and reportable, then connect the standing agent
+
 ## 5. Open Gaps
 
 Keep this section short and current.
@@ -169,6 +177,7 @@ Keep this section short and current.
 1. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 2. Multi-target conditional content now has a narrow `03_product_overview` pilot, but repo-wide template splitting is still deferred until the pilot proves stable.
 3. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
+4. Content QC is now codified, but it is not yet machine-readable, reportable, or connected to Feishu QC reporting.
 
 ## 6. Active Workstreams
 
@@ -319,14 +328,44 @@ Exit criteria:
 - no-op assembly can render deterministic RST without writing into `docs/templates`, `docs/_review`, or `docs/_build`
 - `US/en` and `JP/ja` product overview can render through assembly while other targets keep the old fallback path
 
+### Workstream I: Closed-Loop QC Rollout
+
+Status: active
+
+Why now:
+
+- `content_lint` has created the first deterministic QC base, but it still prints human text only
+- QC must become machine-readable and reportable before a standing agent can safely consume it
+- report-only QC improves manual production immediately without blocking Word delivery
+
+Scope:
+
+- implement [`code-as-doc/dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md)
+- add stable `content_lint --json` output
+- produce local QC reports before any Feishu writeback
+- attach lightweight `source_ref` values only for the current lint rules while
+  source tables are still evolving
+- keep sync-time `record_id` sidecars, Feishu `QC_Report`, B2 diff mapping, and
+  the standing QC agent deferred until the source/report contracts are stable
+
+Exit criteria:
+
+- rule-QC findings have a stable JSON schema
+- operators can generate local QC reports from a snapshot
+- every current-rule finding has a lightweight source reference, with
+  `record_id` remaining nullable
+- the next sidecar/report-table slice has a stable local finding/report contract
+  to consume
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
-1. Preserve the current `check` + smoke-CI baseline.
-2. Finish Feishu IM ingress hardening around deployment contract, callback mode, and runtime state.
-3. Revisit remaining medium wrappers only when a concrete hotspot reappears.
-4. Split only `03_product_overview` behind a page-level assembly pilot switch.
+1. Keep the current `check` + smoke-CI baseline green.
+2. Implement rule-QC machine output: `content_lint --json`.
+3. Implement local rule-QC reporting and lightweight `source_ref` values.
+4. Defer sync-time sidecars, Feishu `QC_Report`, B2 Feishu doc-link diff
+   reporting, and the standing QC agent until source/report contracts are stable.
 5. Keep repo-wide multi-target conditional content deferred until the pilot page proves stable.
 
 
@@ -339,7 +378,8 @@ This roadmap is successful when:
 3. `check` remains the clear pre-export quality gate.
 4. Diff and release outputs are trustworthy enough for review and audit use.
 5. CI covers the critical workflow surfaces that the repo depends on.
-6. One shared content source can eventually emit correct regional variants without cloning page templates.
+6. Rule-based content QC is machine-readable, reportable, and safe for a future standing agent to consume.
+7. One shared content source can eventually emit correct regional variants without cloning page templates.
 
 ## 10. Next Review Trigger
 
