@@ -24,8 +24,10 @@ Current implementation priority:
 - keep OpenClaw / Feishu IM on the existing queue-command surface
 - keep manual production effort focused on fast manual output and content-model
   stabilization
-- defer the full `manual_agents` layer until an agent/operator handoff trigger
-  appears
+- if adding one near-term agent, prioritize the Closed-loop QC agent because it
+  directly advances the quality loop built on `content_lint`
+- defer the full generic `manual_agents` layer until an agent/operator handoff
+  trigger appears
 
 ## 2. Architecture Decision
 
@@ -60,6 +62,7 @@ No control layer should become:
 | `build.py queue-query` | deterministic queue lookup | no |
 | `build.py queue-resolve-action` | natural-language or selector resolution into bounded action | no |
 | `build.py queue-execute` | bounded workflow dispatch and status reread | through existing GitHub worker and queue writeback |
+| Closed-loop QC agent | first concrete agent candidate for build -> lint/diff QC -> source fix proposal -> Feishu QC marking | only through approved source/writeback gates |
 | `manual_agents` | deferred local planner / role orchestration layer | no in the current stage |
 | GitHub Actions workers | trusted remote execution plane | yes, through existing queue/writeback contracts |
 | `build.py` | build, review, check, publish, and queue command entrypoint | yes only where existing commands already own it |
@@ -79,8 +82,20 @@ They do not own build execution, queue schema, or artifact generation.
 
 ### 4.2 Local Agent Planning
 
-`manual_agents` is deferred. When its trigger conditions arrive, it should start
-as a local planning and audit layer:
+The first near-term agent should be the Closed-loop QC agent, not the full
+generic `manual_agents` planner.
+
+Why this one first:
+
+- it directly supports the current quality workstream
+- it uses PR #335's `content_lint` as QC base A
+- it can incorporate reviewer diff Word back-porting as QC base B
+- it closes the loop by marking source rows or QC report rows in Feishu
+- it compounds quality through capture-as-check: recurring reviewer findings
+  become new content-lint rules
+
+The generic `manual_agents` layer remains deferred. When its trigger conditions
+arrive, it should start as a local planning and audit layer:
 
 - parse local task JSON
 - produce allowlisted command plans
@@ -93,9 +108,11 @@ default.
 
 Near-term exception:
 
-- a small `ManualTask` schema plus command planner may be useful as a typed
-  build recipe for single-operator fast manual production
-- that slice should stay independent of mock clients, MCP, plugins, and content
+- the Closed-loop QC agent may be implemented before the generic planner because
+  it advances quality automation, not command convenience
+- a small `ManualTask` schema plus command planner is still allowed only if it is
+  needed by the QC agent or directly helps repeatable fast manual production
+- either slice should stay independent of mock clients, MCP, plugins, and content
   model migration work
 
 ### 4.3 Queue And State
@@ -192,7 +209,48 @@ Any future `manual_agents` publish path must satisfy:
 - explicit `external-write`
 - resolved source branch or queue row
 
-## 8. Evolution Stages
+## 8. First Concrete Agent: Closed-loop QC
+
+Status: near-term candidate.
+
+The Closed-loop QC agent is the preferred first agent because it advances a live
+quality loop instead of adding generic orchestration overhead.
+
+Scope:
+
+- build or consume the current deliverable target
+- run rule-based QC through `content_lint`
+- ingest a reviewer diff Word when supplied
+- map findings to source locations
+- apply or propose only mechanical/high-confidence source fixes
+- flag terminology, scope, or taste decisions for a human
+- verify by re-syncing, rebuilding, and re-linting
+- mark findings in Feishu through an approved QC report table or per-row QC
+  fields
+- propose new `content_lint` rules for recurring diff findings
+
+Default policy:
+
+- QC annotates and reports by default; it does not block delivery
+- schema changes for Feishu QC fields require explicit approval
+- generated outputs and synced CSV snapshots are never edited as the source of
+  truth
+
+Phasing:
+
+1. P0: make `content_lint` machine-consumable, such as JSON output.
+2. P1: write rule-based findings to a QC report table, no per-row schema change.
+3. P2: ingest reviewer diff Word and produce a source-mapping report.
+4. P3: apply mechanical source fixes and add per-row QC fields only after schema
+   approval.
+5. P4: promote recurring diff findings into proposed `content_lint` rules and
+   support scheduled live-source runs.
+
+Related requirements live in PR #336:
+
+- `code-as-doc/architecture/closed_loop_qc_agent_requirements.md`
+
+## 9. Evolution Stages
 
 ### Stage 1: Current OpenClaw Control Layer
 
@@ -201,7 +259,16 @@ status through existing queue fields.
 
 No queue rewrite.
 
-### Stage 2: Local Manual Agent Planner
+### Stage 2: Closed-loop QC Agent
+
+Status: preferred first agent.
+
+Implement the QC loop in small phases, starting with `content_lint` JSON/report
+output and ending only later in source writeback and capture-as-check.
+
+No delivery blocking by default.
+
+### Stage 3: Local Manual Agent Planner
 
 Status: deferred.
 
@@ -218,7 +285,7 @@ Resume this stage when:
 - page/data contracts are stable enough that orchestration will not chase moving
   schemas
 
-### Stage 3: Queue-Aware Local Orchestration
+### Stage 4: Queue-Aware Local Orchestration
 
 Deferred until Stage 2 exists.
 
@@ -227,7 +294,7 @@ planning. `queue-execute` remains explicitly confirmed.
 
 No new production task table.
 
-### Stage 4: Read-Only MCP And Plugin Surface
+### Stage 5: Read-Only MCP And Plugin Surface
 
 Deferred until the CLI schema settles.
 
@@ -235,7 +302,7 @@ Expose stable plan/read tools after the CLI schema settles.
 
 Write tools remain deferred.
 
-### Stage 5: Staged External Writes
+### Stage 6: Staged External Writes
 
 Deferred until read-only planning has proven useful.
 

@@ -23,8 +23,10 @@ Current repo priority remains:
 
 1. Phase A/B: move data and reusable prose into the structured content model.
 2. Phase C: prove page assembly with stable contracts.
-3. Only then revisit this orchestration layer, unless the small optional PR 1
-   slice below directly helps repeatable manual builds.
+3. Add the Closed-loop QC agent as the first concrete agent if an agent is added
+   now, because it directly supports the active quality loop.
+4. Only then revisit this generic orchestration layer, unless the small optional
+   PR 1 slice below directly helps repeatable manual builds or the QC agent.
 
 Why defer:
 
@@ -32,8 +34,18 @@ Why defer:
 - content contracts such as future block/page data are still moving
 - adding an orchestration layer now would create maintenance drag over a
   changing foundation
-- the layer pays back when OpenClaw or another agent is ready to drive builds,
-  or when multi-operator/audit pressure appears
+- the generic layer pays back when OpenClaw or another agent is ready to drive
+  broad build/review/publish workflows, or when multi-operator/audit pressure
+  appears
+
+Near-term agent priority:
+
+- the Closed-loop QC agent is the right first agent
+- it builds on `content_lint` from PR #335 and the reviewer diff Word back-port
+  loop
+- it advances quality at source instead of adding command convenience
+- requirements live in `code-as-doc/architecture/closed_loop_qc_agent_requirements.md`
+  on PR #336
 
 ## 2. Placement Decision
 
@@ -57,8 +69,11 @@ Do not start the full v0.1 implementation now.
 
 Allowed now, if it is useful for fast manual production:
 
+- prioritize the Closed-loop QC agent workstream over the full generic
+  `manual_agents` package
 - implement only the PR 1 slice: `ManualTask` schema plus a command planner
-  that turns a model/region/config target into a typed build recipe
+  that turns a model/region/config target into a typed build recipe, if the QC
+  agent needs that recipe or it clearly reduces build mistakes
 - keep that slice independent of content model changes
 - do not add mock clients, MCP, plugins, role services, or real external writes
 
