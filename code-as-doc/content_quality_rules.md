@@ -123,6 +123,9 @@ Register new checks here and in
 record to [`code_optimization_log.md`](code_optimization_log.md) when a workstream
 completes.
 
+The active rollout plan is
+[`dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md).
+
 ## 6. References
 
 - Data model & fields: [`architecture/phase2_source_tables_reference.md`](architecture/phase2_source_tables_reference.md)

@@ -1,7 +1,7 @@
 # Requirements: Closed-Loop QC Agent (闭环质检 Agent)
 
-Status: **requirements — merge-ready draft** · Owner: 夏冰 · Drafted 2026-06-07, revised same day after a multi-perspective evaluation + a live B2 feasibility spike.
-Scope of this file: *what* the agent must do and *why*, plus the contracts settled in review. Implementation **design** (the workflow YAML, the semantic-diff normalizer, the record_id strategy) is a follow-up proposal once these requirements are agreed.
+Status: **requirements baseline** · Owner: 夏冰 · Drafted 2026-06-07, revised same day after a multi-perspective evaluation + a live B2 feasibility spike.
+Scope of this file: *what* the agent must do and *why*, plus the contracts settled in review. The active implementation rollout lives in [`../dev/closed_loop_qc_implementation_plan.md`](../dev/closed_loop_qc_implementation_plan.md).
 
 ## 0. One-liner
 
@@ -222,4 +222,5 @@ Given a target and a Feishu message linking a revision-accepted doc, one agent r
 - Reviewer-diff back-port flow: [`manual-revision-backport` skill](../../.agents/skills/manual-revision-backport/SKILL.md)
 - Control-layer plan: [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)
 - Execution roadmap: [`optimization_project.md`](../optimization_project.md)
+- Implementation rollout: [`closed_loop_qc_implementation_plan.md`](../dev/closed_loop_qc_implementation_plan.md)
 - QC base A (rules + lint): `tools/content_lint.py` and `code-as-doc/content_quality_rules.md` — **PR #335** (link once merged).
