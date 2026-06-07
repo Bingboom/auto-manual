@@ -44,7 +44,8 @@ It runs against the **exported snapshot** (`data/phase2/*.csv`) — the same inp
 the build consumes — so it is deterministic and CI-friendly. `FAIL`-level findings
 set exit code `1`; `WARN`-level findings are surfaced but do not fail the gate.
 Use `--json` when another tool or report writer needs the machine-readable
-`content-qc-report/v1` output.
+`content-qc-report/v1` output. JSON findings include a best-effort `source_ref`
+from snapshot keys; `record_id` remains `null` until a later exact resolver lands.
 
 For a local operator artifact, add `--write-report`:
 

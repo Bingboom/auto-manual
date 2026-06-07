@@ -160,12 +160,82 @@ class ContentLintTest(unittest.TestCase):
             self.assertEqual(finding["severity"], "FAIL")
             self.assertEqual(finding["table"], "Spec_Notes")
             self.assertEqual(finding["file"], "Spec_Notes.csv")
-            self.assertIsNone(finding["source_ref"])
+            self.assertEqual(
+                finding["source_ref"],
+                {"kind": "Spec_Notes", "table": "Spec_Notes", "file": "Spec_Notes.csv"},
+            )
             self.assertIsNone(finding["record_id"])
             self.assertEqual(finding["resolution_status"], "snapshot_only")
             self.assertEqual(finding["lang"], "it")
             self.assertEqual(finding["field"], "Text_it")
             self.assertEqual(len(finding["finding_hash"]), 64)
+
+    def test_main_json_source_refs_cover_each_rule(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write(
+                root,
+                "Status_Words.csv",
+                ["en", "fr", "es", "de", "it", "uk", "是否为 status word"],
+                [
+                    {"en": "On", "fr": "Activé", "es": "Encendido", "de": "Ein", "it": "Acceso", "uk": "Увімкнено", "是否为 status word": "Y"},
+                    {"en": "On", "fr": "Activé", "es": "Encendido", "de": "Ein", "it": "Acceso", "uk": "Увімкнено", "是否为 status word": "Y"},
+                ],
+            )
+            _write(
+                root,
+                "lcd_icons_blocks.csv",
+                ["Model", "Version", "icon_en", "icon_desc_fr"],
+                [{"Model": "JE-1000F", "Version": "1.0", "icon_en": "Wi-Fi", "icon_desc_fr": "Allumé : connecté."}],
+            )
+            _write(
+                root,
+                "Spec_Notes.csv",
+                ["Note_id", "Region", "Model", "Text_it"],
+                [{"Note_id": "N1", "Region": "EU", "Model": "JE-1000F", "Text_it": "Blinking while charging."}],
+            )
+            _write(
+                root,
+                "Spec_Master.csv",
+                ["spec_row_key", "document_key", "Row_key", "Page", "Value_source"],
+                [
+                    {"spec_row_key": "k_dup", "document_key": "D", "Row_key": "usb_c", "Page": "specifications", "Value_source": "100 W"},
+                    {"spec_row_key": "k_dup", "document_key": "D", "Row_key": "usb_c", "Page": "specifications", "Value_source": "200 W"},
+                    {"spec_row_key": "k_spec", "document_key": "D", "Row_key": "ac_output", "Page": "specifications", "Value_source": "2200 W total"},
+                    {"spec_row_key": "k_over", "document_key": "D", "Row_key": "ac_output", "Page": "Product overview", "Value_source": "2200 W"},
+                ],
+            )
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                exit_code = main(["--data-root", str(root), "--json", "--run-id", "run-refs"])
+
+            self.assertEqual(exit_code, 1)
+            payload = json.loads(stdout.getvalue())
+            by_rule = {finding["rule"]: finding for finding in payload["findings"]}
+            self.assertEqual(
+                set(by_rule),
+                {
+                    "status_word_consistency",
+                    "english_residue",
+                    "slot_key_collision",
+                    "spec_overview_drift",
+                    "tm_duplicate",
+                },
+            )
+            for finding in payload["findings"]:
+                self.assertIsInstance(finding["source_ref"], dict)
+                self.assertIn("kind", finding["source_ref"])
+                self.assertIn("table", finding["source_ref"])
+                self.assertIsNone(finding["record_id"])
+                self.assertEqual(finding["resolution_status"], "snapshot_only")
+
+            self.assertEqual(by_rule["status_word_consistency"]["source_ref"]["key"], "Wi-Fi")
+            self.assertEqual(by_rule["status_word_consistency"]["source_ref"]["model"], "JE-1000F")
+            self.assertEqual(by_rule["english_residue"]["source_ref"]["key"], "N1")
+            self.assertEqual(by_rule["slot_key_collision"]["source_ref"]["key"], "k_dup")
+            self.assertEqual(by_rule["spec_overview_drift"]["source_ref"]["key"], "ac_output")
+            self.assertEqual(by_rule["spec_overview_drift"]["source_ref"]["document_key"], "D")
+            self.assertEqual(by_rule["tm_duplicate"]["source_ref"]["key"], "On")
 
     def test_main_writes_local_report_files(self) -> None:
         with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as rd:
