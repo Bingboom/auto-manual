@@ -5,8 +5,11 @@ passes on clean input."""
 from __future__ import annotations
 
 import csv
+import io
+import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
 from tools.content_lint import (
@@ -132,6 +135,55 @@ class ContentLintTest(unittest.TestCase):
             _write(root, "lcd_icons_blocks.csv", ["icon_en", "icon_desc_it"],
                    [{"icon_en": "TOU", "icon_desc_it": "On: abilitata."}])
             self.assertEqual(main(["--data-root", str(root)]), 1)
+
+    def test_main_json_output_is_machine_readable(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _status_words(root)
+            _write(root, "Spec_Notes.csv", ["Text_it"],
+                   [{"Text_it": "Blinking while charging."}])
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                exit_code = main(["--data-root", str(root), "--json", "--run-id", "run-1"])
+
+            self.assertEqual(exit_code, 1)
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(payload["schema_version"], "content-qc-report/v1")
+            self.assertEqual(payload["run_id"], "run-1")
+            self.assertEqual(payload["result"], "FAIL")
+            self.assertEqual(payload["summary"]["fail"], 1)
+            self.assertEqual(payload["summary"]["rules"]["english_residue"], 1)
+            finding = payload["findings"][0]
+            self.assertEqual(finding["schema_version"], "content-qc-finding/v1")
+            self.assertEqual(finding["run_id"], "run-1")
+            self.assertEqual(finding["rule"], "english_residue")
+            self.assertEqual(finding["severity"], "FAIL")
+            self.assertEqual(finding["table"], "Spec_Notes")
+            self.assertEqual(finding["file"], "Spec_Notes.csv")
+            self.assertIsNone(finding["source_ref"])
+            self.assertIsNone(finding["record_id"])
+            self.assertEqual(finding["resolution_status"], "snapshot_only")
+            self.assertEqual(finding["lang"], "it")
+            self.assertEqual(finding["field"], "Text_it")
+            self.assertEqual(len(finding["finding_hash"]), 64)
+
+    def test_main_text_output_remains_default(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _status_words(root)
+            _write(root, "lcd_icons_blocks.csv", ["icon_en", "icon_desc_fr"],
+                   [{"icon_en": "Wi-Fi", "icon_desc_fr": "Allumé : connecté."}])
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                exit_code = main(["--data-root", str(root)])
+
+            self.assertEqual(exit_code, 0)
+            text = stdout.getvalue()
+            self.assertIn("content-lint  (data-root:", text)
+            self.assertIn("[status-word consistency]", text)
+            self.assertIn("RESULT: OK", text)
+            with self.assertRaises(json.JSONDecodeError):
+                json.loads(text)
 
 
 if __name__ == "__main__":

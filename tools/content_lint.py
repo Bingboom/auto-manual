@@ -35,9 +35,14 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
+import json
 import sys
 from collections import defaultdict
+from collections.abc import Callable
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 # Reuse the renderer's EXACT status-word matcher, so the lint checks precisely
 # what the build will bold (single source of truth — no parallel logic to drift).
@@ -46,6 +51,8 @@ from tools.csv_pages.renderers_lcd_icons import _match_status_prefix  # noqa: E4
 
 # Non-English shipped EU languages.
 DEFAULT_LANGS = ("fr", "es", "de", "it", "uk")
+FINDING_SCHEMA_VERSION = "content-qc-finding/v1"
+REPORT_SCHEMA_VERSION = "content-qc-report/v1"
 
 # Per-file language→column-suffix maps (the snapshot is not uniform: uk vs ukr).
 _LCD_DESC = {"en": "en", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "ukr"}
@@ -98,6 +105,66 @@ def _looks_like_prefix(line: str) -> bool:
     return 0 < len(head.split()) <= 2
 
 
+def _table_name(filename: str) -> str:
+    return filename[:-4] if filename.endswith(".csv") else filename
+
+
+def _finding_hash(payload: dict[str, Any]) -> str:
+    hash_input = {
+        "rule": payload["rule"],
+        "source_ref": payload["source_ref"],
+        "lang": payload["lang"],
+        "field": payload["field"],
+        "evidence": payload["evidence"],
+    }
+    raw = json.dumps(hash_input, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+@dataclass(frozen=True)
+class CheckSpec:
+    name: str
+    rule: str
+    severity: str
+    findings: list[dict[str, Any]]
+    render_one: Callable[[dict[str, Any]], str]
+    normalize_one: Callable[[dict[str, Any], str], dict[str, Any]]
+
+
+def _normalized_finding(
+    *,
+    run_id: str,
+    rule: str,
+    severity: str,
+    table: str,
+    file: str,
+    lang: str | None,
+    field: str | None,
+    message: str,
+    evidence: dict[str, Any],
+    suggested_action: str,
+) -> dict[str, Any]:
+    finding: dict[str, Any] = {
+        "schema_version": FINDING_SCHEMA_VERSION,
+        "run_id": run_id,
+        "finding_hash": "",
+        "rule": rule,
+        "severity": severity,
+        "table": table,
+        "file": file,
+        "source_ref": None,
+        "record_id": None,
+        "resolution_status": "snapshot_only",
+        "lang": lang,
+        "field": field,
+        "message": message,
+        "evidence": evidence,
+        "suggested_action": suggested_action,
+    }
+    finding["finding_hash"] = _finding_hash(finding)
+    return finding
+
+
 # --- [1] status-word consistency ------------------------------------------------
 def check_status_word_consistency(root: Path, langs: tuple[str, ...]) -> list[dict]:
     status = _read_csv(root / "Status_Words.csv")
@@ -115,6 +182,30 @@ def check_status_word_consistency(root: Path, langs: tuple[str, ...]) -> list[di
                         {"lang": lang, "icon": icon, "prefix": prefix, "line": line[:64]}
                     )
     return findings
+
+
+def _status_word_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
+    lang = _t(raw.get("lang"))
+    field = f"icon_desc_{_LCD_DESC.get(lang, lang)}" if lang else None
+    return _normalized_finding(
+        run_id=run_id,
+        rule="status_word_consistency",
+        severity="FAIL",
+        table="lcd_icons_blocks",
+        file="lcd_icons_blocks.csv",
+        lang=lang or None,
+        field=field,
+        message=f"Non-canonical status prefix {raw.get('prefix')!r} in LCD icon description.",
+        evidence={
+            "icon": raw.get("icon"),
+            "prefix": raw.get("prefix"),
+            "line": raw.get("line"),
+        },
+        suggested_action=(
+            "Align the localized LCD status prefix with the canonical status word "
+            "in Translation_Memory, then sync and re-run QC."
+        ),
+    )
 
 
 # --- [2] english residue --------------------------------------------------------
@@ -137,9 +228,29 @@ def check_english_residue(root: Path, langs: tuple[str, ...]) -> list[dict]:
                 for token in _ENGLISH_RESIDUE:
                     if token in value:
                         findings.append(
-                            {"file": filename, "lang": lang, "token": token, "text": value[:64]}
+                            {"file": filename, "lang": lang, "field": col, "token": token, "text": value[:64]}
                         )
     return findings
+
+
+def _english_residue_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
+    file = _t(raw.get("file"))
+    token = _t(raw.get("token"))
+    return _normalized_finding(
+        run_id=run_id,
+        rule="english_residue",
+        severity="FAIL",
+        table=_table_name(file),
+        file=file,
+        lang=_t(raw.get("lang")) or None,
+        field=_t(raw.get("field")) or None,
+        message=f"English token {token!r} appears in localized text.",
+        evidence={
+            "token": token,
+            "text": raw.get("text"),
+        },
+        suggested_action="Fix the localized source field in Feishu, then sync and re-run QC.",
+    )
 
 
 # --- [3] slot-key collision -----------------------------------------------------
@@ -161,6 +272,26 @@ def check_slot_key_collision(root: Path) -> list[dict]:
                 }
             )
     return findings
+
+
+def _slot_key_collision_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
+    spec_row_key = _t(raw.get("spec_row_key"))
+    return _normalized_finding(
+        run_id=run_id,
+        rule="slot_key_collision",
+        severity="FAIL",
+        table="Spec_Master",
+        file="Spec_Master.csv",
+        lang=None,
+        field="spec_row_key",
+        message=f"Duplicate spec_row_key {spec_row_key!r} collapses multiple source rows.",
+        evidence={
+            "spec_row_key": spec_row_key,
+            "count": raw.get("count"),
+            "rows": raw.get("rows"),
+        },
+        suggested_action="Assign distinct Slot_key values in the source table, then sync and re-run QC.",
+    )
 
 
 # --- [4] spec<->overview drift --------------------------------------------------
@@ -206,6 +337,31 @@ def check_spec_overview_drift(root: Path, langs: tuple[str, ...]) -> list[dict]:
     return findings
 
 
+def _spec_overview_drift_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
+    lang = _t(raw.get("lang"))
+    field = f"Value_{_VALUE.get(lang, lang)}" if lang else None
+    return _normalized_finding(
+        run_id=run_id,
+        rule="spec_overview_drift",
+        severity="WARN",
+        table="Spec_Master",
+        file="Spec_Master.csv",
+        lang=lang or None,
+        field=field,
+        message="Specifications and product-overview values differ for the same row key.",
+        evidence={
+            "document_key": raw.get("document_key"),
+            "row_key": raw.get("row_key"),
+            "spec": raw.get("spec"),
+            "overview": raw.get("overview"),
+        },
+        suggested_action=(
+            "Review the duplicated source values and reconcile the overview/specification "
+            "copy, or wait for the value-dedup workstream if this is expected drift."
+        ),
+    )
+
+
 # --- [5] tm duplicate (snapshot) ------------------------------------------------
 def check_tm_duplicate(root: Path) -> list[dict]:
     rows = _read_csv(root / "Status_Words.csv")
@@ -215,6 +371,25 @@ def check_tm_duplicate(root: Path) -> list[dict]:
         if en:
             counts[en] += 1
     return [{"en": en, "count": count} for en, count in counts.items() if count > 1]
+
+
+def _tm_duplicate_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
+    en = _t(raw.get("en"))
+    return _normalized_finding(
+        run_id=run_id,
+        rule="tm_duplicate",
+        severity="FAIL",
+        table="Status_Words",
+        file="Status_Words.csv",
+        lang="en",
+        field="en",
+        message=f"Duplicate status-word English key {en!r} appears in the snapshot.",
+        evidence={
+            "en": en,
+            "count": raw.get("count"),
+        },
+        suggested_action="Reconcile and remove the duplicate Translation_Memory/status-word source row.",
+    )
 
 
 def _render(name: str, severity: str, findings: list, render_one) -> bool:
@@ -230,46 +405,118 @@ def _render(name: str, severity: str, findings: list, render_one) -> bool:
     return (not ok) and severity == "FAIL"
 
 
+def _check_specs(root: Path, langs: tuple[str, ...]) -> list[CheckSpec]:
+    return [
+        CheckSpec(
+            name="status-word consistency",
+            rule="status_word_consistency",
+            severity="FAIL",
+            findings=check_status_word_consistency(root, langs),
+            render_one=lambda f: (
+                f"{f['lang']} · {f['icon']}: non-canonical prefix {f['prefix']!r}  | {f['line']!r}"
+            ),
+            normalize_one=_status_word_json,
+        ),
+        CheckSpec(
+            name="english residue",
+            rule="english_residue",
+            severity="FAIL",
+            findings=check_english_residue(root, langs),
+            render_one=lambda f: f"{f['file']} [{f['lang']}]: {f['token']!r} in {f['text']!r}",
+            normalize_one=_english_residue_json,
+        ),
+        CheckSpec(
+            name="slot-key collision",
+            rule="slot_key_collision",
+            severity="FAIL",
+            findings=check_slot_key_collision(root),
+            render_one=lambda f: f"{f['spec_row_key']} ×{f['count']}  ({', '.join(f['rows'])})",
+            normalize_one=_slot_key_collision_json,
+        ),
+        CheckSpec(
+            name="spec<->overview drift",
+            rule="spec_overview_drift",
+            severity="WARN",
+            findings=check_spec_overview_drift(root, langs),
+            render_one=lambda f: (
+                f"{f['document_key']} · {f['row_key']} [{f['lang']}]: "
+                f"spec={f['spec']} overview={f['overview']}"
+            ),
+            normalize_one=_spec_overview_drift_json,
+        ),
+        CheckSpec(
+            name="tm duplicate (snapshot)",
+            rule="tm_duplicate",
+            severity="FAIL",
+            findings=check_tm_duplicate(root),
+            render_one=lambda f: f"en={f['en']!r} appears ×{f['count']}",
+            normalize_one=_tm_duplicate_json,
+        ),
+    ]
+
+
+def _json_report(*, root: Path, langs: tuple[str, ...], run_id: str, checks: list[CheckSpec]) -> dict[str, Any]:
+    findings = [
+        check.normalize_one(raw_finding, run_id)
+        for check in checks
+        for raw_finding in check.findings
+    ]
+    fail_count = sum(1 for finding in findings if finding["severity"] == "FAIL")
+    warn_count = sum(1 for finding in findings if finding["severity"] == "WARN")
+    rule_counts = {
+        check.rule: len(check.findings)
+        for check in checks
+    }
+    return {
+        "schema_version": REPORT_SCHEMA_VERSION,
+        "run_id": run_id,
+        "data_root": root.as_posix(),
+        "langs": list(langs),
+        "result": "FAIL" if fail_count else "OK",
+        "summary": {
+            "total": len(findings),
+            "fail": fail_count,
+            "warn": warn_count,
+            "info": sum(1 for finding in findings if finding["severity"] == "INFO"),
+            "rules": rule_counts,
+        },
+        "findings": findings,
+    }
+
+
+def _render_text_report(*, root: Path, langs: tuple[str, ...], checks: list[CheckSpec]) -> bool:
+    print(f"content-lint  (data-root: {root}, langs: {','.join(langs)})")
+    print("=" * 60)
+    failed = False
+    for check in checks:
+        failed |= _render(check.name, check.severity, check.findings, check.render_one)
+    print("-" * 60)
+    print(f"RESULT: {'FAIL' if failed else 'OK'}  (WARN-level findings do not fail the gate)")
+    return failed
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Content-quality lint for the phase2 snapshot.")
     parser.add_argument("--data-root", default="data/phase2", help="phase2 snapshot dir")
     parser.add_argument("--langs", default=",".join(DEFAULT_LANGS), help="comma-separated langs")
+    parser.add_argument("--json", action="store_true", help="emit machine-readable JSON instead of text")
+    parser.add_argument(
+        "--run-id",
+        default="content-lint-local",
+        help="run identifier to include in JSON output; keep stable in tests and reports",
+    )
     args = parser.parse_args(argv)
 
     root = Path(args.data_root)
     langs = tuple(part.strip() for part in args.langs.split(",") if part.strip())
-    print(f"content-lint  (data-root: {root}, langs: {','.join(langs)})")
-    print("=" * 60)
-
-    failed = False
-    failed |= _render(
-        "status-word consistency", "FAIL",
-        check_status_word_consistency(root, langs),
-        lambda f: f"{f['lang']} · {f['icon']}: non-canonical prefix {f['prefix']!r}  | {f['line']!r}",
-    )
-    failed |= _render(
-        "english residue", "FAIL",
-        check_english_residue(root, langs),
-        lambda f: f"{f['file']} [{f['lang']}]: {f['token']!r} in {f['text']!r}",
-    )
-    failed |= _render(
-        "slot-key collision", "FAIL",
-        check_slot_key_collision(root),
-        lambda f: f"{f['spec_row_key']} ×{f['count']}  ({', '.join(f['rows'])})",
-    )
-    failed |= _render(
-        "spec<->overview drift", "WARN",
-        check_spec_overview_drift(root, langs),
-        lambda f: f"{f['document_key']} · {f['row_key']} [{f['lang']}]: spec={f['spec']} overview={f['overview']}",
-    )
-    failed |= _render(
-        "tm duplicate (snapshot)", "FAIL",
-        check_tm_duplicate(root),
-        lambda f: f"en={f['en']!r} appears ×{f['count']}",
-    )
-
-    print("-" * 60)
-    print(f"RESULT: {'FAIL' if failed else 'OK'}  (WARN-level findings do not fail the gate)")
+    checks = _check_specs(root, langs)
+    if args.json:
+        run_id = str(args.run_id or "").strip() or "content-lint-local"
+        report = _json_report(root=root, langs=langs, run_id=run_id, checks=checks)
+        print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
+        failed = report["result"] == "FAIL"
+    else:
+        failed = _render_text_report(root=root, langs=langs, checks=checks)
     return 1 if failed else 0
 
 
