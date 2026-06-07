@@ -19,6 +19,8 @@ Not every file here is equally current.
   - future canonical content-model direction
 - [`closed_loop_qc_agent_requirements.md`](closed_loop_qc_agent_requirements.md)
   - requirements baseline for the closed-loop QC agent that combines content-lint rules, reviewer diff Word back-porting, and Feishu QC marking
+- [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md)
+  - source-of-truth routing design for Feishu cloud document backport flows: in-review final docs and template maintenance docs
 - [`HTML_PDF_Component_Convergence.md`](HTML_PDF_Component_Convergence.md)
   - output-convergence notes for current rendering work
 - [`MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md`](MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md)

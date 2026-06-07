@@ -39,6 +39,10 @@ The reviewer expresses the built-vs-desired gap through one of two channels; bot
 - Input: a Feishu **message carrying the doc link**. The doc must be **revision-accepted** (suggestions applied, or directly edited) so the content is the final intended text.
 - Read via `lark-cli`: `docs +fetch --doc "<link>"` returns the doc as markdown; extraction = **semantic diff** (normalize away `lark-*` tags, word-level compare) against a baseline.
 - **Why primary:** the ingress is the lightest — a link is *text*, so it rides the existing Feishu text adapter (only a small URL-extractor to add). The reviewer never leaves Feishu.
+- Boundary: this QC channel uses the **Review Doc Backport** path from
+  [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md).
+  Template-maintenance cloud docs use the sibling **Template Doc Backport** path
+  and are not themselves a QC base.
 
 **B1 — Word tracked-changes docx (FALLBACK).**
 - Extraction is trivial — `extract_docx_changes.py` reads explicit `w:ins`/`w:del`, no semantic diff, no accept step.
@@ -220,6 +224,8 @@ Given a target and a Feishu message linking a revision-accepted doc, one agent r
 - Long-term layers / stages: [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
 - Drift's structural fix: [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md)
 - Reviewer-diff back-port flow: [`manual-revision-backport` skill](../../.agents/skills/manual-revision-backport/SKILL.md)
+- Feishu cloud-doc backport routing:
+  [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md)
 - Control-layer plan: [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)
 - Execution roadmap: [`optimization_project.md`](../optimization_project.md)
 - Implementation rollout: [`closed_loop_qc_implementation_plan.md`](../dev/closed_loop_qc_implementation_plan.md)
