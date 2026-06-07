@@ -344,15 +344,43 @@ def _status_labels(vars_map: dict[str, str], *, lang: str) -> tuple[str, ...]:
     return tuple(labels)
 
 
-def _format_description_line(line: str, *, status_labels: tuple[str, ...]) -> str:
+# Whitespace permitted between a status word and its colon. French typography
+# puts a space (often NBSP U+00A0 or narrow NBSP U+202F) before the colon —
+# "Clignotant : ..." — so the bold-prefix detector must tolerate it; matching
+# only the bare "label:" form left every French (and any " :"-style) status
+# line un-bolded.
+_STATUS_PREFIX_WS = frozenset({" ", "\t", "\u00a0", "\u202f", "\u2009"})  # space, tab, NBSP, narrow-NBSP, thin space
+
+
+def _match_status_prefix(
+    line: str, status_labels: tuple[str, ...]
+) -> tuple[str, str] | None:
+    """Return ``(prefix, remainder)`` when *line* opens with a status label
+    followed by optional typographic whitespace and a colon (``:`` or ``：``).
+
+    ``prefix`` is the matched ``label[ ws]:`` text as it appears in the source;
+    ``remainder`` is the rest of the line. Labels are tried in caller order
+    (callers pass them longest-first so ``Blink`` wins over a shorter prefix).
+    Returns ``None`` when no status label leads the line.
+    """
     for label in status_labels:
-        for separator in (":", "："):
-            prefix = f"{label}{separator}"
-            if line.startswith(prefix):
-                remainder = line[len(prefix):]
-                remainder_text = rst_escape(remainder)
-                spacer = " " if remainder_text else ""
-                return f"**{rst_escape(prefix)}**{spacer}{remainder_text}"
+        if not label or not line.startswith(label):
+            continue
+        idx = len(label)
+        while idx < len(line) and line[idx] in _STATUS_PREFIX_WS:
+            idx += 1
+        if idx < len(line) and line[idx] in ":：":
+            return line[: idx + 1], line[idx + 1 :]
+    return None
+
+
+def _format_description_line(line: str, *, status_labels: tuple[str, ...]) -> str:
+    matched = _match_status_prefix(line, status_labels)
+    if matched is not None:
+        prefix, remainder = matched
+        remainder_text = rst_escape(remainder)
+        spacer = " " if remainder_text else ""
+        return f"**{rst_escape(prefix)}**{spacer}{remainder_text}"
     return rst_escape(line)
 
 
@@ -465,13 +493,12 @@ def _latex_lines_arg(text: str) -> str:
 
 
 def _latex_description_line(line: str, *, status_labels: tuple[str, ...]) -> str:
-    for label in status_labels:
-        for separator in (":", "："):
-            prefix = f"{label}{separator}"
-            if line.startswith(prefix):
-                remainder = line[len(prefix):].strip()
-                spacer = " " if remainder else ""
-                return rf"\textbf{{{latex_arg_escape(prefix)}}}{spacer}{latex_arg_escape(remainder)}"
+    matched = _match_status_prefix(line, status_labels)
+    if matched is not None:
+        prefix, remainder = matched
+        remainder = remainder.strip()
+        spacer = " " if remainder else ""
+        return rf"\textbf{{{latex_arg_escape(prefix)}}}{spacer}{latex_arg_escape(remainder)}"
     return latex_arg_escape(line)
 
 

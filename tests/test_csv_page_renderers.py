@@ -1371,6 +1371,38 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn("       | **Blink:** Ready to connect to Wi-Fi.", out)
         self.assertIn("       | **Off:** Wi-Fi disconnected.", out)
 
+    def test_render_lcd_icons_page_bolds_status_word_with_space_before_colon(self) -> None:
+        # French typography puts a space before the colon ("Clignotant : ...").
+        # The bold-prefix detector must tolerate whitespace (incl. NBSP) between
+        # the status word and its colon; matching only the bare "label:" form
+        # left every French status line un-bolded. Regression guard.
+        blocks = [
+            {
+                "No.": "1",
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": "Wi-Fi",
+                "icon_fr": "Wi-Fi",
+                "icon_desc_fr": (
+                    "Clignotant : Prêt à se connecter au Wi-Fi."
+                    "\\nClignotant\u00a0: variante avec espace insécable."
+                ),
+            }
+        ]
+
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="fr",
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
+        )
+
+        # "Clignotant" is a real fr status word; both the plain-space and the
+        # NBSP variant must bold (the colon-adjacent whitespace is normalized).
+        self.assertIn("**Clignotant :** Prêt à se connecter au Wi-Fi.", out)
+        self.assertIn("**Clignotant :** variante avec espace insécable.", out)
+
     def test_render_lcd_icons_page_supports_zh_columns(self) -> None:
         blocks = [
             {
