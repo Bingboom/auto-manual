@@ -313,10 +313,10 @@ class TestPilotConfigs(unittest.TestCase):
     def test_eu_safety_pages_should_use_eu_safety_content(self) -> None:
         cases = (
             ("en", "IMPORTANT SAFETY INFORMATION", "USER MAINTENANCE INSTRUCTIONS"),
-            ("fr", "IMPORTANT SAFETY INFORMATION", "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR"),
+            ("fr", "INFORMATIONS DE SÉCURITÉ IMPORTANTES", "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR"),
             ("es", "INFORMACIÓN IMPORTANTE DE SEGURIDAD", "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO"),
-            ("de", "SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG", "ANWEISUNGEN ZUR BENUTZERWARTUNG"),
-            ("it", "PRECAUZIONI DI SICUREZZA", "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL'UTENTE"),
+            ("de", "WICHTIGE SICHERHEITSINFORMATIONEN", "ANWEISUNGEN ZUR BENUTZERWARTUNG"),
+            ("it", "INFORMAZIONI IMPORTANTI SULLA SICUREZZA", "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL'UTENTE"),
             ("uk", "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ", "ІНСТРУКЦІЇ З ТЕХНІЧНОГО ОБСЛУГОВУВАННЯ КОРИСТУВАЧЕМ"),
         )
         us_only_markers = (
