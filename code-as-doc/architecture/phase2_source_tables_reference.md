@@ -127,6 +127,7 @@ The LCD-screen icon names + descriptions.
 
 `icon_en` * · `No.` · `Model` · `figure` (Attach) · `icon_<lang>` (icon name) + `icon_desc_<lang>` (description) for `en`, `fr`, `es`, `de`, `it`, `ukr`, `jp`, `zh`, `pt-BR` · `Is_latest` · `Version` · `has_variables` · `variable_keys` (MulSel). → `lcd_icons_blocks.csv`.
 > Descriptions may embed `{{*_BUTTON_LABEL}}` variables (resolved from §2.9/§2.10). Keep the literal button noun on localization — do **not** collapse it to a bare label. Note the column spelling `ukr` (not `uk`) and `jp` (not `ja`) here.
+> Line-leading state words (`On:`/`Off:`/`Blink:` + their localized forms) render **bold** via the status-word safelist — see §3 (`是否为 status word`) and the mechanism in §4.7.
 
 ### 2.8 `03_内容源_TROUBLESHOOTING` — troubleshooting · `tblUSuk3Q5BKTdTh`
 Corrective measures keyed by error code.
@@ -150,7 +151,8 @@ Where a token's value differs by language (e.g. button `AC` → `CA` in French).
 The bilingual TM: one row per source sentence, with its translation in every language, plus maintenance/audit logs and terminology links.
 
 - **Translations:** `en` * · `fr` · `es` · `de` · `it` · `uk` · `jp` · `ko` · `pt-BR` · `zh` — keyed by the **`en` source string** (the primary). This is the key the build uses to localize Manual_Copy_Source strings (§2.3).
-- **Scope:** `Model` (MulSel), `是否为 status word` (SglSel), `用途标签` / `content_attribute` (MulSel) classifiers.
+- **Scope / classifiers:** `Model` (MulSel), `用途标签` / `content_attribute` (MulSel).
+- **`是否为 status word`** (SglSel) — `Y` marks the row as an LCD **state-word prefix** (`On`/`Off`/`Blink`). Its per-language columns are exported to `Status_Words.csv` and used to **bold** the matching `On:`/`Off:`/`Blink:` line-leads in LCD descriptions (§2.7, §4.7). The localized value here is the **authority** for that word — `icon_desc_<lang>` must use the same spelling or it won't bold.
 - **Glossary:** `Glossary_term` (Link) + `term_<lang>` (Lookup, per language) — terminology consistency.
 - **Logs (one pair per language):** `…维护Log` (maintenance) + `…校验Log` (audit), each in an **AI** and a **人工 (manual)** variant — the trail the `bilingual-tm-maintenance` skill writes.
 - **Gotcha:** duplicate `en` rows break the sync's TM index (a stale dup can win and re-introduce an old translation). Keep `en` unique; reconcile + delete dups.
@@ -165,6 +167,9 @@ The bilingual TM: one row per source sentence, with its translation in every lan
 4. **Footnote attachment** — `*_footnote_refs` (Link) from spec rows → Footnotes/Notes (§2.4/§2.5).
 5. **Variable resolution** — templates emit `|TOKEN|` / `{{TOKEN}}`; values come from Variable_Defaults (§2.9) with per-language overrides from Variable_Lang_Overrides (§2.10).
 6. **Value dedup (NEW, in progress)** — `page_placeholders.spec_value_link` (Link → Spec_Master) + `Value_<lang>_ref` (Lookup) makes the overview callout *derive* the spec value instead of storing a copy. Match is an **explicit per-row link**, not a key-join (the two tables' `Slot_key` differ in meaning — §1.2). Pilot proven on usb_c JE-2000F_EU; rollout pending — see [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md).
+7. **Status-word bolding** — in LCD icon descriptions (§2.7) a **line-leading state word** (`On:` / `Off:` / `Blink:` and its per-language translations) renders **bold** (e.g. `**On:** Wi-Fi connected.`). The bold safelist is the per-language column of every `Translation_Memory` row flagged `是否为 status word = Y` (§3), exported to the derived `Status_Words.csv` and read by `tools/csv_pages/renderers_lcd_icons.py`. Two correctness conditions (both bit us, fixed 2026-06-07):
+   - **The matcher tolerates a typographic space before the colon.** French uses `Allumé :` (space / NBSP / narrow NBSP), so it matches `词[ws]:`, not only `词:` (PR #334). Without this, **no French status line bolds**.
+   - **The content word must equal the canonical status word** for that language. The TM status-word table is the authority; if `icon_desc_<lang>` uses a different word it silently fails to bold (seen: fr `Allumé/Éteint` vs table's old `Activé/Désactivé`, de `Blinkt` vs `Blinken`, it left untranslated English `On/Off`). Fix = conform the content to the table per language (or correct the table when it holds the worse term, as done for fr `On`→`Allumé`).
 
 ---
 
