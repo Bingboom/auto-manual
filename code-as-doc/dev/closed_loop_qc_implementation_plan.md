@@ -8,15 +8,24 @@ This is the execution plan for the closed-loop QC requirements in
 The implementation order is intentionally narrow:
 
 1. make rule-based QC machine-readable;
-2. make rule-based QC reportable;
-3. only then connect the standing QC agent.
+2. make rule-based QC reportable locally;
+3. add only lightweight source references while the Feishu source tables keep
+   evolving;
+4. connect Feishu writeback and the standing agent only after the source
+   contracts are stable enough.
 
 The first two steps should work without an LLM agent, without changing delivery
 semantics, and without writing content back to the source bitable.
 
+Near-term mode: **observation layer first, control layer later**. While the
+source data model is still being optimized, the active work is M1 + M3, with a
+limited M2 slice only where current lint rules need it. M4/M7/M8 are deliberately
+deferred until the table contracts and reporting contract stop moving.
+
 ## 1. Current Baseline
 
-Baseline as of 2026-06-07. **This plan is stacked on the still-open QC PRs, which merge first:**
+Baseline as of 2026-06-07. **This plan is stacked on the predecessor QC PRs,
+which merge before this plan:**
 
 - [`../../tools/content_lint.py`](../../tools/content_lint.py) runs deterministic
   snapshot-based content checks and exits non-zero on `FAIL` findings.
@@ -25,7 +34,7 @@ Baseline as of 2026-06-07. **This plan is stacked on the still-open QC PRs, whic
 - [`../architecture/closed_loop_qc_agent_requirements.md`](../architecture/closed_loop_qc_agent_requirements.md)
   defines the long-loop agent requirements.
 
-> **Prerequisite stack (not yet on `main`):** `content_lint` + the rules doc are **PR #335**; the requirements doc is **#336**; the source-tables map M2 resolves against is [`../architecture/phase2_source_tables_reference.md`](../architecture/phase2_source_tables_reference.md) (**#333**). M1 builds on #335 — merge order is **#333 / #335 / #336 → then this plan (#337)**.
+> **Prerequisite stack:** `content_lint` + the rules doc are **PR #335**; the requirements doc is **#336**; the source-tables map M2 resolves against is [`../architecture/phase2_source_tables_reference.md`](../architecture/phase2_source_tables_reference.md) (**#333**). M1 builds on #335 — merge order is **#333 / #335 / #336 → then this plan (#337)**.
 
 Known gaps:
 
@@ -35,6 +44,9 @@ Known gaps:
 - the Feishu/OpenClaw text adapter has no `QC` action, doc-link extractor, or
   sender allowlist.
 - B2 extraction needs a new `docs +fetch` semantic-diff normalizer.
+- the Feishu source-table structure is still being optimized, so any feature
+  that writes back to live tables would become expensive to maintain if added
+  too early.
 
 ## 2. Implementation Boundaries
 
@@ -46,6 +58,12 @@ Keep these boundaries fixed while implementing:
   only, not source bitable fields or templates.
 - **Do not add a generic agent framework first.** The standing QC agent starts
   only after rule QC has stable machine output and report storage.
+- **Keep the near-term QC layer read-only.** JSON findings and local reports may
+  point at source rows, but they do not update source content, Feishu status
+  fields, or workflow state.
+- **Limit source mapping to the rules already implemented.** Do not build a full
+  source-location framework for every future table before the content model
+  settles.
 - **Do not add `record_id` columns directly to existing content CSV contracts in
   the first slice.** Prefer a sidecar index or exact resolver so current build
   consumers are not surprised by schema drift.
@@ -105,6 +123,8 @@ Rules:
 
 ### M1: Machine-Readable Rule QC
 
+Near-term status: **active first slice**.
+
 Goal: `content_lint` becomes usable by scripts, reports, and later agents.
 
 Scope:
@@ -129,11 +149,16 @@ Exit criteria:
 
 ### M2: Source Reference And Record Resolution
 
+Near-term status: **lightweight / limited scope**. Do not make this a full
+cross-table source-mapping framework yet.
+
 Goal: findings can point to source rows without guessing.
 
 Scope:
 
 - Define `source_ref` builders for each lint rule.
+- Keep the first implementation limited to the current `content_lint` rules and
+  the tables those rules already read.
 - Attach `record_id` only when the match is **exact** (exact-or-abstain).
 - **Prefer a sync-time sidecar** (e.g. `data/phase2/source_record_index.json`
   emitted by `sync-data`, which is where the live `record_id`s are actually known)
@@ -142,6 +167,8 @@ Scope:
   way, **do not add `record_id` columns to existing CSV contracts**.
 - Note the dependency: the sidecar adds a small step to `sync-data`
   (**operator-gated**), so M2 is partly gated on a sync change.
+- Do not require M2 before M3. A local report with stable `source_ref` and
+  nullable `record_id` is useful even before the sidecar exists.
 - Keep `record_id` nullable in all downstream contracts.
 - For unresolved and ambiguous cases, include enough keys for a human to find the
   row in Feishu.
@@ -153,6 +180,8 @@ Exit criteria:
 - No content CSV schema is changed without an explicit follow-up decision.
 
 ### M3: Local QC Report
+
+Near-term status: **active second slice**.
 
 Goal: rule QC produces an operator-readable artifact before any Feishu writes.
 
@@ -176,6 +205,8 @@ Exit criteria:
 
 ### M4: Feishu QC Report Table
 
+Near-term status: **deferred until source/report schema approval**.
+
 Goal: prove report writeback without touching content source fields.
 
 Scope:
@@ -188,6 +219,9 @@ Scope:
 - Treat content-row QC status fields as out of scope for this milestone.
 - **Creating the `QC_Report` Feishu table is a schema change → operator-gated**:
   the operator creates/approves the table; the writer only appends/upserts rows.
+- Do not start M4 while source table structure is still changing unless the
+  operator explicitly wants a report-only Feishu table as a stable external
+  contract.
 
 Exit criteria:
 
@@ -197,6 +231,8 @@ Exit criteria:
 - Re-running the same report is idempotent.
 
 ### M5: Workflow Integration
+
+Near-term status: **docs/local command only unless approved**.
 
 Goal: QC becomes easy to run in daily work while staying non-blocking.
 
@@ -209,6 +245,8 @@ Scope:
 - Add docs for local use and validation commands.
 - Keep `build.py check` integration optional until the operator decides whether
   rule-QC should block release checks.
+- Prefer documenting a direct report command first; defer public `build.py`
+  surface until the command is stable.
 
 Exit criteria:
 
@@ -227,8 +265,13 @@ Do not start agent implementation until these are true:
 - Feishu report-table writeback is proven with dry-run and live verification.
 - record resolution has exact-or-abstain behavior.
 - OpenClaw has or is ready to add a sender `open_id` allowlist.
+- Feishu source-table contracts are stable enough that the agent will not chase
+  weekly schema changes.
 
 ### M7: B2 Diff Mapping Report
+
+Near-term status: **deferred**. This is useful, but it is not needed for the
+first rule-QC observation layer.
 
 Goal: connect reviewer diff input without writing fixes.
 
@@ -259,6 +302,9 @@ Exit criteria:
 
 ### M8: Standing QC Agent
 
+Near-term status: **deferred**. Start only after deterministic QC outputs and
+reports are stable.
+
 Goal: agent orchestration starts after deterministic inputs are boring.
 
 Scope:
@@ -280,12 +326,17 @@ Exit criteria:
 
 ## 5. Suggested PR Slices
 
+Near-term PRs:
+
 1. `feat(qc): emit content-lint json`
-2. `feat(qc): add content source refs`
-3. `feat(qc): resolve live record ids exactly`
-4. `feat(qc): write local content qc reports`
-5. `feat(qc): add qc report table writer`
-6. `docs(qc): document operator qc workflow`
+2. `feat(qc): write local content qc reports`
+3. `feat(qc): add lightweight content source refs`
+4. `docs(qc): document local qc workflow`
+
+Deferred until source/report contracts stabilize:
+
+5. `feat(qc): add sync-time source record sidecar`
+6. `feat(qc): add qc report table writer`
 7. `feat(qc): add b2 feishu doc diff report`
 8. `feat(openclaw): add qc trigger handoff`
 9. `feat(qc-agent): stand up report-only qc service`

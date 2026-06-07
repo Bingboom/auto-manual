@@ -342,27 +342,30 @@ Scope:
 
 - implement [`code-as-doc/dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md)
 - add stable `content_lint --json` output
-- attach stable `source_ref` values and exact-or-abstain `record_id` resolution
 - produce local QC reports before any Feishu writeback
-- add a Feishu `QC_Report` table writer after the local report format is stable
-- keep the standing QC agent deferred until rule QC output and reporting are boring
+- attach lightweight `source_ref` values only for the current lint rules while
+  source tables are still evolving
+- keep sync-time `record_id` sidecars, Feishu `QC_Report`, B2 diff mapping, and
+  the standing QC agent deferred until the source/report contracts are stable
 
 Exit criteria:
 
 - rule-QC findings have a stable JSON schema
-- every finding has a source reference and an honest record-resolution status
 - operators can generate local QC reports from a snapshot
-- rule-QC findings can be written to a report table without changing source content
-- the next agent slice has a stable finding/report contract to consume
+- every current-rule finding has a lightweight source reference, with
+  `record_id` remaining nullable
+- the next sidecar/report-table slice has a stable local finding/report contract
+  to consume
 
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 1. Keep the current `check` + smoke-CI baseline green.
-2. Implement rule-QC machine output: `content_lint --json`, `source_ref`, and exact-or-abstain record resolution.
-3. Implement rule-QC reporting: local report artifacts, then Feishu `QC_Report` writeback.
-4. Only after rule QC is stable, start B2 Feishu doc-link diff reporting and the standing QC agent handoff.
+2. Implement rule-QC machine output: `content_lint --json`.
+3. Implement local rule-QC reporting and lightweight `source_ref` values.
+4. Defer sync-time sidecars, Feishu `QC_Report`, B2 Feishu doc-link diff
+   reporting, and the standing QC agent until source/report contracts are stable.
 5. Keep repo-wide multi-target conditional content deferred until the pilot page proves stable.
 
 
