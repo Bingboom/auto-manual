@@ -43,6 +43,8 @@ python tools/content_lint.py --data-root data/phase2 [--langs fr,es,de,it,uk]
 It runs against the **exported snapshot** (`data/phase2/*.csv`) — the same inputs
 the build consumes — so it is deterministic and CI-friendly. `FAIL`-level findings
 set exit code `1`; `WARN`-level findings are surfaced but do not fail the gate.
+Use `--json` when another tool or report writer needs the machine-readable
+`content-qc-report/v1` output.
 
 ## 3. Rules
 
