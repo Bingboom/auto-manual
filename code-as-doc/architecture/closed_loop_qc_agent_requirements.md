@@ -121,6 +121,24 @@ Each extracted revision maps to its **source type** (the `manual-revision-backpo
 
 The agent must detect the target's **review state** to choose `docs/templates` vs `docs/_review`.
 
+### 5.3 Skills & tools the QC workflow orchestrates
+
+The standing QC agent service is an LLM runtime; its "work" **is** invoking these repo **skills** (`.agents/skills/`, registered in AGENTS.md §7) and **tools**. This is the explicit inventory the workflow depends on.
+
+**Skills (the agentic building blocks):**
+
+| Skill | Role in the QC loop | When invoked |
+|---|---|---|
+| **`manual-revision-backport`** | **CORE.** Map each revision to its source (repo template vs Feishu phase2 table), **diff against current source (don't transcribe)**, surface model/region/sibling scope, verify zero residuals. Ships `extract_docx_changes.py` (B1 Word tracked-changes extraction) and `scan_residuals.py` (the verify step). | every run (QC base B) |
+| **`bitable-translation-memory`** | Terminology / sentence-pair lookup when a revision touches localized text — so a proposed bitable suggestion uses the **canonical** term, consistent with the Translation Memory. | when a revision affects translated content |
+| **`bilingual-tm-maintenance`** | Write a corrected translation back to the live `Translation_Memory` (+ maintenance / audit logs) when the fix should become the canonical pair — keeps QC base A's TM-driven rules fed. | when a correction should update the TM |
+| **`docx-highlight-changes`** | Optional output-marking: highlight the corrected spans in the delivered `.docx` so the reviewer sees exactly what changed (§6 option C). | optional, on the built docx |
+| **`manual-rewrite-with-tm`** | Secondary: a structure-preserving chunk rewrite reusing TM phrasing, when a revision is large rather than a point edit. | rare / large rewrites |
+
+**Tools (deterministic, not skills):** `content_lint.py` (QC base A), `build.py` (build the manual), `lark-cli` (`docs +fetch`, comments, bitable read / propose), `git` / `gh` (open the PR).
+
+**B2 extraction note:** `manual-revision-backport`'s *extraction* script (`extract_docx_changes.py`) is **docx-only (B1)**. The **B2 (Feishu) channel's extraction is the net-new `docs +fetch` + semantic-diff** (§3.1); its output then feeds the **same** skill's mapping / scope / verify logic. So B2 **reuses the skill's judgment half and builds the extraction half**.
+
 ## 6. Feishu QC marking (质检标识)
 
 - **A. Per-row QC field (recommended):** `质检状态` (✅/⚠️/❌) + `质检说明` on content rows — editors see per-row what to fix (mirrors `参数填写`/`多语言复核`).
