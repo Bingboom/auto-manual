@@ -43,6 +43,13 @@ The overview recipe pulls each callout value from Spec_Master at build; page_pla
 
 **Decision: Option A** (夏冰, 2026-06-07) — lower risk, data-driven, reuses the shipped lookup machinery. Option B is **rejected** for v1: build-time composition was already rolled back once (#295/#296) due to hard-coded values; Option A keeps the source data-driven and avoids re-introducing that debt.
 
+#### Match mechanism — refined (2026-06-07, during implementation prep)
+The first draft said "match by `document_key`+`Row_key`+`Slot_key`". That is **wrong**: the two tables use `Slot_key` for *different* purposes —
+- Spec_Master `Slot_key` = **port variant** (`main` / `30w` / `100w`), disambiguating multiple rows under one `Row_key`;
+- page_placeholders `Slot_key` = **layout placement** (`side.spec` / `front.label`), i.e. where in the overview the callout renders.
+
+They are not the same key, so a `Slot_key`-based match would mis-align. **Correct mechanism = an explicit row-level link**: the ph callout's spec-value row gets a `link` field pointing at *its* specific Spec_Master record, then `Value_<lang>` is a lookup through that link. Single-row Row_keys (`ac_input`, `ac_output`, `dc12_port`, `usb_a`) link 1:1; `usb_c` callouts link per variant (30w / 100w). `Slot_key` is still the enabler (it makes the usb_c rows individually addressable so they *can* be linked), just not the match key itself.
+
 ## 6. Prerequisite — already in place
 
 The controlled `Slot_key` field (shipped 2026-06-07) is the enabler: `usb_c` has two ports (30W/100W) under one `Row_key`, so a per-port lookup **must** match on `Slot_key` to pull the correct value for each. Without distinct Slot_keys this dedup would be impossible. ✓ Done.
@@ -57,7 +64,7 @@ The controlled `Slot_key` field (shipped 2026-06-07) is the enabler: `usb_c` has
 
 ## 8. Risks / considerations
 
-- Lookup match key **must include `Slot_key`** (usb_c per-port) — enabled.
+- Match is an explicit **row-level link** (ph callout → its Spec_Master record), **not** a `Slot_key` key-match — the two tables' `Slot_key` differ in meaning (see §5 refinement); `Slot_key` still enables addressing the usb_c variant rows.
 - **Label vs value**: v1 dedupes values only; labels stay per-table.
 - **Sync**: ph `Value`-as-lookup is read identically to the existing `Row_key` lookup — proven this session (sync + build verified).
 - **Field volume**: 6 languages × N shared Row_keys × ref fields — script the field creation (as done for `Slot_key`).
