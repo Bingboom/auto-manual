@@ -167,6 +167,40 @@ class ContentLintTest(unittest.TestCase):
             self.assertEqual(finding["field"], "Text_it")
             self.assertEqual(len(finding["finding_hash"]), 64)
 
+    def test_main_writes_local_report_files(self) -> None:
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as rd:
+            root = Path(td)
+            report_dir = Path(rd)
+            _status_words(root)
+            _write(root, "Spec_Notes.csv", ["Text_it"],
+                   [{"Text_it": "Blinking while charging."}])
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                exit_code = main([
+                    "--data-root",
+                    str(root),
+                    "--json",
+                    "--run-id",
+                    "run-1",
+                    "--report-dir",
+                    str(report_dir),
+                ])
+
+            self.assertEqual(exit_code, 1)
+            payload = json.loads(stdout.getvalue())
+            findings_path = report_dir / "findings.json"
+            markdown_path = report_dir / "report.md"
+            self.assertTrue(findings_path.exists())
+            self.assertTrue(markdown_path.exists())
+            self.assertEqual(json.loads(findings_path.read_text(encoding="utf-8")), payload)
+            self.assertEqual(payload["metadata"]["target"], "snapshot")
+            self.assertIn("started_at", payload["metadata"])
+            self.assertEqual(payload["summary"]["unresolved_record_count"], 1)
+            markdown = markdown_path.read_text(encoding="utf-8")
+            self.assertIn("# Content QC Report", markdown)
+            self.assertIn("`english_residue`", markdown)
+            self.assertIn("Unresolved records: `1`", markdown)
+
     def test_main_text_output_remains_default(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
