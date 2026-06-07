@@ -16,7 +16,7 @@ semantics, and without writing content back to the source bitable.
 
 ## 1. Current Baseline
 
-Merged baseline as of 2026-06-07:
+Baseline as of 2026-06-07. **This plan is stacked on the still-open QC PRs, which merge first:**
 
 - [`../../tools/content_lint.py`](../../tools/content_lint.py) runs deterministic
   snapshot-based content checks and exits non-zero on `FAIL` findings.
@@ -24,6 +24,8 @@ Merged baseline as of 2026-06-07:
   current rules and source-fix locations.
 - [`../architecture/closed_loop_qc_agent_requirements.md`](../architecture/closed_loop_qc_agent_requirements.md)
   defines the long-loop agent requirements.
+
+> **Prerequisite stack (not yet on `main`):** `content_lint` + the rules doc are **PR #335**; the requirements doc is **#336**; the source-tables map M2 resolves against is [`../architecture/phase2_source_tables_reference.md`](../architecture/phase2_source_tables_reference.md) (**#333**). M1 builds on #335 — merge order is **#333 / #335 / #336 → then this plan (#337)**.
 
 Known gaps:
 
@@ -58,7 +60,8 @@ JSON, local reports, Feishu report rows, and later agent input:
 ```json
 {
   "schema_version": "content-qc-finding/v1",
-  "run_id": "2026-06-07T15-00-00Z_JE-1000F_EU",
+  "run_id": "2026-06-07T15-00-00Z",
+  "finding_hash": "sha256 over rule+source_ref+lang+field+evidence",
   "rule": "english_residue",
   "severity": "FAIL",
   "table": "lcd_icons_blocks",
@@ -85,6 +88,13 @@ JSON, local reports, Feishu report rows, and later agent input:
 
 Rules:
 
+- `run_id` is **run-scoped, not target-scoped** — a single snapshot can span
+  multiple model/region (drift findings routinely span e.g. CN + EU), so the
+  per-finding `model`/`region` live in `source_ref`, never baked into `run_id`.
+- `finding_hash` is a stable dedup key over `rule` + `source_ref` + `lang`/`field`
+  + `evidence`; M4 idempotency depends on it.
+- `source_ref.version` is **best-effort** — not every snapshot/table carries a
+  manual version; omit it rather than guess.
 - `record_id` is nullable until an exact live row resolver proves the match.
 - `source_ref` must be present for every finding, even when `record_id` is null.
 - `severity` is one of `FAIL`, `WARN`, or `INFO`.
@@ -124,10 +134,14 @@ Goal: findings can point to source rows without guessing.
 Scope:
 
 - Define `source_ref` builders for each lint rule.
-- Add a live-record resolver that can attach `record_id` only when the match is
-  exact.
-- Prefer a generated sidecar such as `data/phase2/source_record_index.json` or a
-  report-time resolver over adding columns to existing CSV files.
+- Attach `record_id` only when the match is **exact** (exact-or-abstain).
+- **Prefer a sync-time sidecar** (e.g. `data/phase2/source_record_index.json`
+  emitted by `sync-data`, which is where the live `record_id`s are actually known)
+  **over a report-time live resolver** — a live resolver would have to query Feishu
+  at lint time, which **breaks M1's deterministic / CI-friendly property**. Either
+  way, **do not add `record_id` columns to existing CSV contracts**.
+- Note the dependency: the sidecar adds a small step to `sync-data`
+  (**operator-gated**), so M2 is partly gated on a sync change.
 - Keep `record_id` nullable in all downstream contracts.
 - For unresolved and ambiguous cases, include enough keys for a human to find the
   row in Feishu.
@@ -150,6 +164,9 @@ Scope:
 - Include run metadata: target, data root, git ref, started/finished timestamps,
   command, rule counts, fail/warn counts, and unresolved record count.
 - Make report generation non-blocking for manual delivery.
+- Ordering note: M3 depends only on **M1** (the JSON), **not on M2** — a report
+  with `record_id: null` is already useful, so M3 may land before M2; only the
+  table writeback (M4) needs resolved `record_id`s.
 
 Exit criteria:
 
@@ -169,6 +186,8 @@ Scope:
 - Add a writer that appends/upserts report rows from `findings.json`.
 - Add `--dry-run` and GET-verify-after-write behavior.
 - Treat content-row QC status fields as out of scope for this milestone.
+- **Creating the `QC_Report` Feishu table is a schema change → operator-gated**:
+  the operator creates/approves the table; the writer only appends/upserts rows.
 
 Exit criteria:
 
@@ -225,7 +244,17 @@ Scope:
 Exit criteria:
 
 - One accepted Feishu doc link plus baseline produces a stable diff/mapping report.
-- Pending suggestion-mode docs are rejected with a clear message.
+- **Acceptance is a trigger-time precondition, not an auto-check.** A live spike
+  (2026-06-07) confirmed pending suggestion-mode edits are **not** exposed by the
+  Feishu open API — `docs +fetch` silently merges them into the content as plain
+  text (no insert/delete structure), the `docs/v1/.../blocks` API carries no
+  suggestion markers, and `drive .../comments` returns 0. So the agent **cannot
+  reliably detect un-accepted suggestions**. Contract: the reviewer accepts all
+  suggestions before triggering; the agent states this precondition and warns, but
+  cannot verify it. (Any "looks un-accepted" heuristic is advisory only.)
+- Reviewer-doc content is **untrusted input** — the diff/mapping extracts
+  structured spans only and **never acts on instructions embedded in the doc body**
+  (same hard guardrail as M8).
 - The report separates "mapped", "already converged", and "needs human decision".
 
 ### M8: Standing QC Agent
