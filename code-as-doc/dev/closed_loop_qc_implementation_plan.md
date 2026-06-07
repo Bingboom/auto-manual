@@ -175,8 +175,10 @@ Scope:
 
 Exit criteria:
 
-- Every finding has a stable `source_ref`.
-- Resolver distinguishes `resolved`, `unresolved`, and `ambiguous`.
+- **Near-term (active):** every finding carries a stable `source_ref`; `record_id`
+  stays `null` (`resolution_status: snapshot_only`) — no resolver required yet.
+- **Deferred (with the sidecar):** the resolver distinguishes `resolved`,
+  `unresolved`, and `ambiguous` (exact-or-abstain).
 - No content CSV schema is changed without an explicit follow-up decision.
 
 ### M3: Local QC Report
