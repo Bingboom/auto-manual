@@ -58,6 +58,19 @@ Use `--report-dir <path>` when the report should go to a specific directory.
 Report writing is local-only and does not write Feishu rows or block Word
 delivery beyond the lint's existing `FAIL` exit code.
 
+Recommended local loop:
+
+1. Refresh or reuse the intended snapshot.
+2. Run `python tools/content_lint.py --data-root data/phase2 --json --write-report`.
+3. Open the Markdown report and fix `FAIL` findings in the Feishu source tables
+   or Translation Memory, not in `data/phase2` or `reports/content_qc`.
+4. Sync again and rerun the lint until the report is clean enough for the
+   planned delivery stage.
+
+For PR validation of QC rule changes, run `python3 -m unittest tests.test_content_lint`,
+the repo ruff gate, and `python3 tools/check_doc_link_integrity.py` when docs
+change.
+
 ## 3. Rules
 
 Each rule maps to a quality dimension and a source location to fix.

@@ -123,7 +123,7 @@ Rules:
 
 ### M1: Machine-Readable Rule QC
 
-Near-term status: **active first slice**.
+Near-term status: **completed**. Implemented by PR #338.
 
 Goal: `content_lint` becomes usable by scripts, reports, and later agents.
 
@@ -149,8 +149,9 @@ Exit criteria:
 
 ### M2: Source Reference And Record Resolution
 
-Near-term status: **lightweight / limited scope**. Do not make this a full
-cross-table source-mapping framework yet.
+Near-term status: **lightweight source-ref slice completed**. PR #340 added
+best-effort snapshot `source_ref` values for current lint rules. Do not make this
+a full cross-table source-mapping framework yet.
 
 Goal: findings can point to source rows without guessing.
 
@@ -175,15 +176,16 @@ Scope:
 
 Exit criteria:
 
-- **Near-term (active):** every finding carries a stable `source_ref`; `record_id`
-  stays `null` (`resolution_status: snapshot_only`) — no resolver required yet.
+- **Near-term (completed):** every finding carries a stable `source_ref`;
+  `record_id` stays `null` (`resolution_status: snapshot_only`) — no resolver
+  required yet.
 - **Deferred (with the sidecar):** the resolver distinguishes `resolved`,
   `unresolved`, and `ambiguous` (exact-or-abstain).
 - No content CSV schema is changed without an explicit follow-up decision.
 
 ### M3: Local QC Report
 
-Near-term status: **active second slice**.
+Near-term status: **completed**. Implemented by PR #339.
 
 Goal: rule QC produces an operator-readable artifact before any Feishu writes.
 
@@ -234,7 +236,8 @@ Exit criteria:
 
 ### M5: Workflow Integration
 
-Near-term status: **docs/local command only unless approved**.
+Near-term status: **completed for docs/local command**. No `build.py` action was
+added; adding one still requires explicit approval.
 
 Goal: QC becomes easy to run in daily work while staying non-blocking.
 
