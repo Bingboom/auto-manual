@@ -115,6 +115,26 @@ def _table_name(filename: str) -> str:
     return filename[:-4] if filename.endswith(".csv") else filename
 
 
+def _compact_dict(values: dict[str, Any]) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in values.items()
+        if value not in (None, "", [], {})
+    }
+
+
+def _source_ref(*, kind: str, table: str, file: str, **values: Any) -> dict[str, Any]:
+    return _compact_dict({"kind": kind, "table": table, "file": file, **values})
+
+
+def _first_present(row: dict[str, str], fields: tuple[str, ...]) -> str | None:
+    for field in fields:
+        value = _t(row.get(field))
+        if value:
+            return value
+    return None
+
+
 def _finding_hash(payload: dict[str, Any]) -> str:
     hash_input = {
         "rule": payload["rule"],
@@ -170,6 +190,7 @@ def _normalized_finding(
     file: str,
     lang: str | None,
     field: str | None,
+    source_ref: dict[str, Any],
     message: str,
     evidence: dict[str, Any],
     suggested_action: str,
@@ -182,7 +203,7 @@ def _normalized_finding(
         "severity": severity,
         "table": table,
         "file": file,
-        "source_ref": None,
+        "source_ref": source_ref,
         "record_id": None,
         "resolution_status": "snapshot_only",
         "lang": lang,
@@ -209,7 +230,14 @@ def check_status_word_consistency(root: Path, langs: tuple[str, ...]) -> list[di
                 if _looks_like_prefix(line) and not _match_status_prefix(line, labels):
                     prefix = line.split(":")[0].split("：")[0].strip()
                     findings.append(
-                        {"lang": lang, "icon": icon, "prefix": prefix, "line": line[:64]}
+                        {
+                            "lang": lang,
+                            "icon": icon,
+                            "model": _t(row.get("Model")),
+                            "version": _t(row.get("Version")),
+                            "prefix": prefix,
+                            "line": line[:64],
+                        }
                     )
     return findings
 
@@ -225,6 +253,14 @@ def _status_word_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
         file="lcd_icons_blocks.csv",
         lang=lang or None,
         field=field,
+        source_ref=_source_ref(
+            kind="lcd_icon",
+            table="lcd_icons_blocks",
+            file="lcd_icons_blocks.csv",
+            key=_t(raw.get("icon")),
+            model=_t(raw.get("model")),
+            version=_t(raw.get("version")),
+        ),
         message=f"Non-canonical status prefix {raw.get('prefix')!r} in LCD icon description.",
         evidence={
             "icon": raw.get("icon"),
@@ -241,13 +277,13 @@ def _status_word_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
 # --- [2] english residue --------------------------------------------------------
 def check_english_residue(root: Path, langs: tuple[str, ...]) -> list[dict]:
     targets = [
-        ("lcd_icons_blocks.csv", "icon_desc_{s}", _LCD_DESC),
-        ("troubleshooting_blocks.csv", "corrective_measures_{s}", _TROUBLE),
-        ("Spec_Footnotes.csv", "Text_{s}", _TEXT),
-        ("Spec_Notes.csv", "Text_{s}", _TEXT),
+        ("lcd_icons_blocks.csv", "icon_desc_{s}", _LCD_DESC, ("icon_en",)),
+        ("troubleshooting_blocks.csv", "corrective_measures_{s}", _TROUBLE, ("error_code",)),
+        ("Spec_Footnotes.csv", "Text_{s}", _TEXT, ("Footnote_id",)),
+        ("Spec_Notes.csv", "Text_{s}", _TEXT, ("Note_id",)),
     ]
     findings: list[dict] = []
-    for filename, pattern, suffix_map in targets:
+    for filename, pattern, suffix_map, key_fields in targets:
         rows = _read_csv(root / filename)
         if not rows:
             continue
@@ -258,7 +294,17 @@ def check_english_residue(root: Path, langs: tuple[str, ...]) -> list[dict]:
                 for token in _ENGLISH_RESIDUE:
                     if token in value:
                         findings.append(
-                            {"file": filename, "lang": lang, "field": col, "token": token, "text": value[:64]}
+                            {
+                                "file": filename,
+                                "lang": lang,
+                                "field": col,
+                                "key": _first_present(row, key_fields),
+                                "model": _t(row.get("Model")),
+                                "region": _t(row.get("Region")),
+                                "version": _t(row.get("Version")),
+                                "token": token,
+                                "text": value[:64],
+                            }
                         )
     return findings
 
@@ -274,6 +320,15 @@ def _english_residue_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
         file=file,
         lang=_t(raw.get("lang")) or None,
         field=_t(raw.get("field")) or None,
+        source_ref=_source_ref(
+            kind=_table_name(file),
+            table=_table_name(file),
+            file=file,
+            key=_t(raw.get("key")),
+            model=_t(raw.get("model")),
+            region=_t(raw.get("region")),
+            version=_t(raw.get("version")),
+        ),
         message=f"English token {token!r} appears in localized text.",
         evidence={
             "token": token,
@@ -314,6 +369,13 @@ def _slot_key_collision_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]
         file="Spec_Master.csv",
         lang=None,
         field="spec_row_key",
+        source_ref=_source_ref(
+            kind="spec_row_key",
+            table="Spec_Master",
+            file="Spec_Master.csv",
+            key=spec_row_key,
+            rows=raw.get("rows"),
+        ),
         message=f"Duplicate spec_row_key {spec_row_key!r} collapses multiple source rows.",
         evidence={
             "spec_row_key": spec_row_key,
@@ -378,6 +440,14 @@ def _spec_overview_drift_json(raw: dict[str, Any], run_id: str) -> dict[str, Any
         file="Spec_Master.csv",
         lang=lang or None,
         field=field,
+        source_ref=_source_ref(
+            kind="spec_master_row",
+            table="Spec_Master",
+            file="Spec_Master.csv",
+            document_key=_t(raw.get("document_key")),
+            key=_t(raw.get("row_key")),
+            page_sides=["specifications", "Product overview"],
+        ),
         message="Specifications and product-overview values differ for the same row key.",
         evidence={
             "document_key": raw.get("document_key"),
@@ -413,6 +483,12 @@ def _tm_duplicate_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
         file="Status_Words.csv",
         lang="en",
         field="en",
+        source_ref=_source_ref(
+            kind="status_word",
+            table="Status_Words",
+            file="Status_Words.csv",
+            key=en,
+        ),
         message=f"Duplicate status-word English key {en!r} appears in the snapshot.",
         evidence={
             "en": en,
