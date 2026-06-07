@@ -6,7 +6,7 @@ Superseded note:
 
 - the repo now implements the Phase 2 surface described here
 - keep this file as rollout history, not as the current architecture owner
-- use [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md), [`../../BOOTSTRAP.md`](../../agent/BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../integrations/openclaw/README.md) for current behavior
+- use [`Control_Orchestration_Strategy.md`](../Control_Orchestration_Strategy.md), [`../../BOOTSTRAP.md`](../../../agent/BOOTSTRAP.md), and [`../../integrations/openclaw/README.md`](../../../integrations/openclaw/README.md) for current behavior
 
 ## 1. Goal
 
@@ -28,7 +28,7 @@ As of 2026-04-12, the repo-local Phase 2 surface is implemented:
 - `build.py queue-query` resolves candidate queue rows
 - `build.py queue-resolve-action` turns one natural-language ask into a bounded action contract
 - `build.py queue-execute` dispatches the matching `main`-owned worker and waits for the final row state
-- [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../integrations/openclaw/feishu-im-webhook-adapter/) provides the repo-external Feishu IM ingress layer for the same control surface
+- [`../../integrations/openclaw/feishu-im-webhook-adapter/`](../../../integrations/openclaw/feishu-im-webhook-adapter/) provides the repo-external Feishu IM ingress layer for the same control surface
 
 The main remaining gaps are deployment hardening, shared runtime state, and encrypted Feishu callback support.
 

@@ -11,9 +11,9 @@ The maintained direction today is:
 - `build.py` plus the existing queue workers stay the execution plane
 - DingTalk is an optional artifact destination, not the queue control plane
 
-Use [`DingTalk_Build_Writeback_Plan.md`](DingTalk_Build_Writeback_Plan.md) and
-[`DingTalk_Phase0_Spike_Checklist.md`](DingTalk_Phase0_Spike_Checklist.md) only
-as historical background.
+Use [`archive/DingTalk_Build_Writeback_Plan.md`](archive/DingTalk_Build_Writeback_Plan.md)
+and [`archive/DingTalk_Phase0_Spike_Checklist.md`](archive/DingTalk_Phase0_Spike_Checklist.md)
+only as historical background.
 
 ## 1. Current Repo Status
 
@@ -224,4 +224,4 @@ control plane itself is intentionally being redesigned.
 - DingTalk local setup and smoke steps:
   [`../../user-guide/dingtalk_alidocs_upload_setup_guide.md`](../../user-guide/dingtalk_alidocs_upload_setup_guide.md)
 - current OpenClaw and queue architecture context:
-  [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)
+  [`Control_Orchestration_Strategy.md`](Control_Orchestration_Strategy.md)
