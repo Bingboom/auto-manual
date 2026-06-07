@@ -1,14 +1,14 @@
 # Control Orchestration Strategy
 
-Updated: 2026-06-06
+Updated: 2026-06-07
 
 ## 1. Role
 
 This file is the current architecture note for operator control and local
 orchestration around the manual production workflow.
 
-Use it to decide how OpenClaw, Feishu IM, `manual_agents`, queue commands,
-GitHub Actions, and `build.py` should relate to one another.
+Use it to decide how OpenClaw, Feishu IM, future `manual_agents`, queue
+commands, GitHub Actions, and `build.py` should relate to one another.
 
 Historical detail lives in:
 
@@ -18,6 +18,14 @@ Historical detail lives in:
 Implementation-facing v0.1 agent scope lives in:
 
 - [`../dev/manual_agents_v0_1_spec.md`](../dev/manual_agents_v0_1_spec.md)
+
+Current implementation priority:
+
+- keep OpenClaw / Feishu IM on the existing queue-command surface
+- keep manual production effort focused on fast manual output and content-model
+  stabilization
+- defer the full `manual_agents` layer until an agent/operator handoff trigger
+  appears
 
 ## 2. Architecture Decision
 
@@ -52,7 +60,7 @@ No control layer should become:
 | `build.py queue-query` | deterministic queue lookup | no |
 | `build.py queue-resolve-action` | natural-language or selector resolution into bounded action | no |
 | `build.py queue-execute` | bounded workflow dispatch and status reread | through existing GitHub worker and queue writeback |
-| `manual_agents` | planned local planner / role orchestration layer | no in v0.1 |
+| `manual_agents` | deferred local planner / role orchestration layer | no in the current stage |
 | GitHub Actions workers | trusted remote execution plane | yes, through existing queue/writeback contracts |
 | `build.py` | build, review, check, publish, and queue command entrypoint | yes only where existing commands already own it |
 
@@ -71,7 +79,8 @@ They do not own build execution, queue schema, or artifact generation.
 
 ### 4.2 Local Agent Planning
 
-`manual_agents` should start as a local planning and audit layer:
+`manual_agents` is deferred. When its trigger conditions arrive, it should start
+as a local planning and audit layer:
 
 - parse local task JSON
 - produce allowlisted command plans
@@ -81,6 +90,13 @@ They do not own build execution, queue schema, or artifact generation.
 
 It must not create a second production queue or write live external systems by
 default.
+
+Near-term exception:
+
+- a small `ManualTask` schema plus command planner may be useful as a typed
+  build recipe for single-operator fast manual production
+- that slice should stay independent of mock clients, MCP, plugins, and content
+  model migration work
 
 ### 4.3 Queue And State
 
@@ -187,12 +203,24 @@ No queue rewrite.
 
 ### Stage 2: Local Manual Agent Planner
 
+Status: deferred.
+
 `manual_agents` adds plan-only local task orchestration, command planning, mock
-clients, and audit logs.
+clients, and audit logs only after the trigger conditions are met.
 
 No external writes.
 
+Resume this stage when:
+
+- OpenClaw or another agent is ready to drive build/review/publish workflows
+- multi-operator handoff or audit becomes a real constraint
+- command sequencing, rather than content modeling, becomes the bottleneck
+- page/data contracts are stable enough that orchestration will not chase moving
+  schemas
+
 ### Stage 3: Queue-Aware Local Orchestration
+
+Deferred until Stage 2 exists.
 
 `manual_agents` wraps `queue-query` and `queue-resolve-action` for deterministic
 planning. `queue-execute` remains explicitly confirmed.
@@ -201,11 +229,15 @@ No new production task table.
 
 ### Stage 4: Read-Only MCP And Plugin Surface
 
+Deferred until the CLI schema settles.
+
 Expose stable plan/read tools after the CLI schema settles.
 
 Write tools remain deferred.
 
 ### Stage 5: Staged External Writes
+
+Deferred until read-only planning has proven useful.
 
 Only add real connector writes after:
 

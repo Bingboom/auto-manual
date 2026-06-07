@@ -50,7 +50,7 @@ These files describe the repo behavior that should be maintained today.
 - [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md)
   - ownership map for orchestration-first entrypoints
 - [`dev/manual_agents_v0_1_spec.md`](dev/manual_agents_v0_1_spec.md)
-  - v0.1 implementation spec for the planned local Manual Production Agent planner
+  - deferred v0.1 spec for the future local Manual Production Agent planner
 - [`dev/code_review_checklist.md`](dev/code_review_checklist.md)
   - code/config/data/doc review checklist
 - [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)

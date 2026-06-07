@@ -12,7 +12,7 @@ Not every file here is equally current.
 - [`Hello_Docs_Architecture.md`](Hello_Docs_Architecture.md)
   - current repository component map and ownership split
 - [`Control_Orchestration_Strategy.md`](Control_Orchestration_Strategy.md)
-  - current control/orchestration strategy for OpenClaw, Feishu IM, manual agents, queue commands, and GitHub workers
+  - current control/orchestration strategy for OpenClaw, Feishu IM, deferred manual agents, queue commands, and GitHub workers
 - [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md)
   - active DingTalk artifact-sink plan while Feishu remains the source and queue system
 - [`Content_Data_Model.md`](Content_Data_Model.md)

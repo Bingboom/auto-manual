@@ -1,20 +1,39 @@
 # Manual Agents v0.1 Spec
 
-Updated: 2026-06-06
+Updated: 2026-06-07
 
 ## 1. Role
 
-This file is the implementation-facing v0.1 spec for the planned
+This file is the deferred implementation-facing v0.1 spec for the planned
 `manual_agents` layer.
 
-Use it to prepare the first implementation PRs for a local Manual Production
-Agent framework. The companion long-term architecture plan is:
+Use it as a shelf-ready contract for a future local Manual Production Agent
+framework. Do not treat it as an active implementation workstream until the
+trigger conditions in this file are met.
+
+The companion long-term architecture plan is:
 
 - [`../architecture/Control_Orchestration_Strategy.md`](../architecture/Control_Orchestration_Strategy.md)
 
-This spec is deliberately narrower than the original full proposal. v0.1 must
-prove a small, safe orchestration layer before plugins, MCP tools, or real
-external write clients are added.
+This spec is deliberately narrower than the original full proposal. It is kept
+because the boundaries are useful, but the full `manual_agents` layer is not the
+right next implementation priority.
+
+Current repo priority remains:
+
+1. Phase A/B: move data and reusable prose into the structured content model.
+2. Phase C: prove page assembly with stable contracts.
+3. Only then revisit this orchestration layer, unless the small optional PR 1
+   slice below directly helps repeatable manual builds.
+
+Why defer:
+
+- single-operator command friction is not the current bottleneck
+- content contracts such as future block/page data are still moving
+- adding an orchestration layer now would create maintenance drag over a
+  changing foundation
+- the layer pays back when OpenClaw or another agent is ready to drive builds,
+  or when multi-operator/audit pressure appears
 
 ## 2. Placement Decision
 
@@ -30,7 +49,29 @@ Reason:
 - the v0.1 details belong in `code-as-doc/dev/` because they are an execution
   contract for the next implementation wave
 
-## 3. v0.1 Goal
+## 3. Current Status
+
+Status: `deferred`.
+
+Do not start the full v0.1 implementation now.
+
+Allowed now, if it is useful for fast manual production:
+
+- implement only the PR 1 slice: `ManualTask` schema plus a command planner
+  that turns a model/region/config target into a typed build recipe
+- keep that slice independent of content model changes
+- do not add mock clients, MCP, plugins, role services, or real external writes
+
+Trigger conditions for resuming the full v0.1:
+
+- OpenClaw or another agent is ready to drive build/review/publish workflows
+- more than one operator needs repeatable handoff/audit behavior
+- build actions become high-frequency enough that manual command sequencing is
+  a real bottleneck
+- content model contracts are stable enough that orchestration will not chase
+  moving table/page schemas
+
+## 4. v0.1 Goal
 
 Add a non-invasive local `manual_agents` package that can:
 
@@ -42,10 +83,10 @@ Add a non-invasive local `manual_agents` package that can:
   GitHub, or notification writes
 - keep role boundaries explicit through small services and later skill docs
 
-v0.1 is a planning and local orchestration shell around existing repo commands.
-It is not a new production queue system.
+When resumed, v0.1 is a planning and local orchestration shell around existing
+repo commands. It is not a new production queue system.
 
-## 4. Corrections From The Original Proposal
+## 5. Corrections From The Original Proposal
 
 v0.1 closes the main gaps in the original proposal before implementation
 starts.
@@ -58,7 +99,7 @@ starts.
 | Dry-run was too vague | v0.1 defines `plan-only`, `local-execute`, and `external-write` modes |
 | MCP, plugins, and real connectors were bundled too early | v0.1 starts with CLI, mock clients, command planning, and audit logs only |
 
-## 5. Non-Goals For v0.1
+## 6. Non-Goals For v0.1
 
 Do not implement these in v0.1:
 
@@ -75,7 +116,7 @@ Do not implement these in v0.1:
 - migration of `page_registry.csv` into the phase2 synced-table contract
 - making `content_blocks.csv` a required live phase2 synced table
 
-## 6. Existing System Boundaries
+## 7. Existing System Boundaries
 
 The current system already owns the real workflow state and execution path.
 `manual_agents` v0.1 must wrap these surfaces instead of replacing them.
@@ -101,7 +142,7 @@ Hard rule:
   workflow truth source. If a task needs live queue state, it must resolve
   through the existing queue commands and contracts.
 
-## 7. Data Contract Alignment
+## 8. Data Contract Alignment
 
 v0.1 must follow the current table contract in
 [`external_table_contracts.md`](external_table_contracts.md).
@@ -132,7 +173,7 @@ Rules:
   [`external_table_contracts.md`](external_table_contracts.md), fixtures, schema
   drift checks, and relevant docs in the same change.
 
-## 8. Contract Diff Gate
+## 9. Contract Diff Gate
 
 Before any implementation PR claims support for new live data tables, it must
 answer these questions:
@@ -148,7 +189,7 @@ answer these questions:
 
 If the answers change the live contract, update the contract doc first.
 
-## 9. Execution Modes
+## 10. Execution Modes
 
 v0.1 replaces the vague `dry_run` behavior with explicit execution modes.
 
@@ -171,7 +212,7 @@ Compatibility note:
 - a future `--local-execute` flag may opt into local command execution
 - a future `--external-write` flag may opt into real remote writes
 
-## 10. Role Boundaries
+## 11. Role Boundaries
 
 v0.1 services may be named after agent roles, but they must keep a small
 permission surface.
@@ -188,7 +229,7 @@ permission surface.
 The original proposal allowed `manual-builder` to publish. v0.1 corrects that:
 builder never publishes.
 
-## 11. Publish Gate
+## 12. Publish Gate
 
 Publish is a separate role and a separate phase.
 
@@ -203,7 +244,7 @@ Any real publish path must require all of:
 
 v0.1 may generate a publish plan, but it must not perform a real publish.
 
-## 12. ManualTask v0.1
+## 13. ManualTask v0.1
 
 Implement a small local task schema before any live table schema.
 
@@ -242,7 +283,7 @@ Defer these until after the planner is stable:
 - `publish_manual`
 - `queue_execute`
 
-## 13. Command Planner
+## 14. Command Planner
 
 All command plans must use `list[str]`, never shell strings.
 
@@ -266,7 +307,7 @@ Rules:
   future permission gate explicitly allow real external writes
 - publish planning must be separated from build planning
 
-## 14. Mock State And Audit
+## 15. Mock State And Audit
 
 v0.1 may create local runtime state under:
 
@@ -287,7 +328,7 @@ Audit rules:
 - failures store a short error summary, not unbounded stderr
 - audit paths must remain inside the repo root
 
-## 15. Minimal File Set
+## 16. Minimal File Set
 
 First implementation PRs should prefer this smaller surface:
 
@@ -332,7 +373,7 @@ scripts/
 Defer the original plugin directories, MCP server, and agent-plugin manifests
 until the CLI contract is stable.
 
-## 16. Tests
+## 17. Tests
 
 Minimum v0.1 tests:
 
@@ -361,7 +402,13 @@ python -m unittest
 python scripts/validate_manual_agents.py
 ```
 
-## 17. Suggested PR Sequence
+## 18. Suggested PR Sequence
+
+This sequence is deferred. Do not execute it as the current roadmap.
+
+The only slice with possible near-term value is PR 1, because it can act as a
+small typed build recipe for fast manual production without depending on the
+content model.
 
 Keep the implementation incremental:
 
@@ -377,7 +424,7 @@ Keep the implementation incremental:
 Do not add MCP, plugin manifests, or real external-write connectors in these
 first PRs.
 
-## 18. v0.1 Exit Criteria
+## 19. v0.1 Exit Criteria
 
 v0.1 is complete when:
 
@@ -393,7 +440,7 @@ v0.1 is complete when:
 9. New examples and docs use `data/phase2`.
 10. The long-term architecture plan and this v0.1 spec agree on boundaries.
 
-## 19. Deferred Milestones
+## 20. Deferred Milestones
 
 After v0.1:
 
