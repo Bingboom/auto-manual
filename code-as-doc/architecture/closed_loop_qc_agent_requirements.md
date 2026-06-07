@@ -101,7 +101,7 @@ discrepancy list and feed the identical downstream loop:
 ## 5. Workflow (the loop)
 
 ```text
-  [trigger: OpenClaw command / schedule / reviewer uploads a diff Word]
+  [trigger: a Feishu message to OpenClaw / a revised Feishu doc / a schedule]
         │
         ▼
    BUILD (queue, online-first) ─────────────► deliverable Word (delivered to Feishu)
@@ -125,6 +125,37 @@ discrepancy list and feed the identical downstream loop:
                                                                                             │
    (next round: the automated base is bigger, the reviewer diff is smaller) ◄──────────────┘
 ```
+
+### 5.1 Trigger & execution model (via the existing OpenClaw control layer)
+
+This loop is **dispatched, not an in-chat reasoning loop** — it reuses the control
+layer that already ships ([`integrations/openclaw/`](../../integrations/openclaw),
+[`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)). So 夏冰's proposed
+flow ("Feishu 发消息给 OpenClaw → 读修订 → 开 PR 改模板 + 提意见改源头多维表") is an
+**increment on existing plumbing, not a new system**:
+
+1. **Trigger — a Feishu message to OpenClaw.** The `feishu-im-webhook-adapter` already
+   receives Feishu text, normalizes it, calls `build.py
+   queue-resolve-action|queue-query|queue-execute`, and replies in-thread;
+   `message_control_runtime.detect_action` already resolves NL → actions
+   (`start-review` / `build-draft` / `publish` / `query-status`). **QC is a new action**
+   (e.g. `质检` / `QC <doc>`) in the same resolver.
+2. **Execution — a dispatched workflow.** Each action routes to a workflow
+   (e.g. `.github/workflows/feishu-start-review.yml`). The QC agent runs the same way —
+   a dispatched GitHub workflow (or queue executor) performing §4's steps with the
+   repo's credentials, so it can open PRs and run `lark-cli` deterministically.
+3. **Read the revision (channel B2).** When the trigger references a revised Feishu
+   doc, the workflow reads its revisions via `lark-cli` (mechanism: §10.6) and feeds the
+   same reconcile loop.
+4. **Two write targets, two gates — the key asymmetry:**
+   - **Templates → a PR.** The workflow opens a pull request; 夏冰 reviews and merges
+     (the agent never self-merges). The PR *is* the 修改意见 for templates.
+   - **Source bitable → a suggestion, not a silent write.** The source of truth has no
+     PR gate, so the agent **proposes** bitable edits — as QC marks / a review list /
+     Feishu comments (§6) — for human approval; only clearly-mechanical fixes auto-write
+     (policy: §10.2). This is exactly "提供意见修改源头多维表数据".
+5. **Reply.** The adapter replies in the originating Feishu thread with the outcome —
+   PR link, the proposed bitable edits, and the QC summary.
 
 ## 6. Feishu QC marking (质检标识)
 
@@ -181,10 +212,13 @@ write-back time.
 2. **Auto-fix policy:** which diff-doc change classes auto-apply vs always-flag
    (terminology / scope / taste are always human).
 3. **Severity policy:** does `WARN` get marked? does any severity ever gate delivery?
-4. **Trigger model:** OpenClaw chat command, schedule, reviewer-upload, or all.
-5. **Agent runtime placement:** a repo skill orchestrating the steps, an OpenClaw-side
-   agent, or the queue itself — and how the diff input (a Word file path **or** a
-   Feishu doc token) is handed to it.
+4. **Trigger model** — *resolved (§5.1):* a Feishu message to OpenClaw via the existing
+   `feishu-im-webhook-adapter`, by adding a `QC` / `质检` action to
+   `message_control_runtime.detect_action`. A schedule remains an optional second trigger.
+5. **Agent runtime placement** — *resolved (§5.1):* a dispatched GitHub workflow / queue
+   executor (mirroring `feishu-start-review.yml`), **not** an in-chat loop — so it opens
+   PRs and runs `lark-cli` with repo credentials. Open sub-point: exactly how the diff
+   input (a Word file path vs a Feishu doc token) is passed into the dispatched workflow.
 6. **Feishu revision read mechanism (channel B2):** which Feishu surface the agent
    reads revisions from via `lark-cli` — suggestion-mode edits, comments, or a
    version-to-version block diff — and how a revised Feishu doc is identified /
