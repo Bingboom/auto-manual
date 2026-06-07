@@ -1,6 +1,6 @@
 # Architecture Documentation Map
 
-Updated: 2026-05-11
+Updated: 2026-06-07
 
 Use this directory for architecture and integration boundaries.
 Not every file here is equally current.
@@ -17,6 +17,8 @@ Not every file here is equally current.
   - active DingTalk artifact-sink plan while Feishu remains the source and queue system
 - [`Content_Data_Model.md`](Content_Data_Model.md)
   - future canonical content-model direction
+- [`closed_loop_qc_agent_requirements.md`](closed_loop_qc_agent_requirements.md)
+  - requirements draft for the closed-loop QC agent that combines content-lint rules, reviewer diff Word back-porting, and Feishu QC marking
 - [`HTML_PDF_Component_Convergence.md`](HTML_PDF_Component_Convergence.md)
   - output-convergence notes for current rendering work
 - [`MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md`](MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md)
