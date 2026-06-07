@@ -46,6 +46,17 @@ set exit code `1`; `WARN`-level findings are surfaced but do not fail the gate.
 Use `--json` when another tool or report writer needs the machine-readable
 `content-qc-report/v1` output.
 
+For a local operator artifact, add `--write-report`:
+
+```bash
+python tools/content_lint.py --data-root data/phase2 --json --write-report
+```
+
+This writes `findings.json` and `report.md` under `reports/content_qc/<run-id>/`.
+Use `--report-dir <path>` when the report should go to a specific directory.
+Report writing is local-only and does not write Feishu rows or block Word
+delivery beyond the lint's existing `FAIL` exit code.
+
 ## 3. Rules
 
 Each rule maps to a quality dimension and a source location to fix.

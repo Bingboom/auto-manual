@@ -37,10 +37,14 @@ import argparse
 import csv
 import hashlib
 import json
+import re
+import shlex
+import subprocess
 import sys
 from collections import defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -48,6 +52,7 @@ from typing import Any
 # what the build will bold (single source of truth — no parallel logic to drift).
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.csv_pages.renderers_lcd_icons import _match_status_prefix  # noqa: E402
+from tools.utils.path_utils import get_paths  # noqa: E402
 
 # Non-English shipped EU languages.
 DEFAULT_LANGS = ("fr", "es", "de", "it", "uk")
@@ -64,6 +69,7 @@ _VALUE = {"en": "source", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": 
 _ENGLISH_RESIDUE = ("On:", "Off:", "Blinking", "Flashing")
 
 _TRUE = {"y", "yes", "true", "1"}
+_SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -119,6 +125,30 @@ def _finding_hash(payload: dict[str, Any]) -> str:
     }
     raw = json.dumps(hash_input, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _utc_now() -> str:
+    return datetime.now(tz=UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def _git_ref() -> str | None:
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=get_paths().root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    ref = completed.stdout.strip()
+    return ref or None
+
+
+def _safe_path_token(value: str) -> str:
+    token = _SAFE_PATH_CHARS.sub("-", value.strip()).strip(".-")
+    return token or "content-lint-local"
 
 
 @dataclass(frozen=True)
@@ -455,7 +485,14 @@ def _check_specs(root: Path, langs: tuple[str, ...]) -> list[CheckSpec]:
     ]
 
 
-def _json_report(*, root: Path, langs: tuple[str, ...], run_id: str, checks: list[CheckSpec]) -> dict[str, Any]:
+def _json_report(
+    *,
+    root: Path,
+    langs: tuple[str, ...],
+    run_id: str,
+    checks: list[CheckSpec],
+    metadata: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     findings = [
         check.normalize_one(raw_finding, run_id)
         for check in checks
@@ -467,7 +504,7 @@ def _json_report(*, root: Path, langs: tuple[str, ...], run_id: str, checks: lis
         check.rule: len(check.findings)
         for check in checks
     }
-    return {
+    report: dict[str, Any] = {
         "schema_version": REPORT_SCHEMA_VERSION,
         "run_id": run_id,
         "data_root": root.as_posix(),
@@ -479,9 +516,106 @@ def _json_report(*, root: Path, langs: tuple[str, ...], run_id: str, checks: lis
             "warn": warn_count,
             "info": sum(1 for finding in findings if finding["severity"] == "INFO"),
             "rules": rule_counts,
+            "unresolved_record_count": sum(
+                1 for finding in findings if finding.get("record_id") is None
+            ),
         },
         "findings": findings,
     }
+    if metadata:
+        report["metadata"] = metadata
+    return report
+
+
+def _markdown_cell(value: object) -> str:
+    text = json.dumps(value, ensure_ascii=False) if isinstance(value, (dict, list)) else str(value or "")
+    return text.replace("\n", " ").replace("|", "\\|")
+
+
+def _markdown_report(report: dict[str, Any]) -> str:
+    metadata = report.get("metadata") or {}
+    summary = report["summary"]
+    lines = [
+        "# Content QC Report",
+        "",
+        "## Run",
+        "",
+        f"- Run ID: `{report['run_id']}`",
+        f"- Result: `{report['result']}`",
+        f"- Data root: `{report['data_root']}`",
+        f"- Languages: `{', '.join(report['langs'])}`",
+        f"- Target: `{metadata.get('target', 'snapshot')}`",
+        f"- Git ref: `{metadata.get('git_ref') or 'unknown'}`",
+        f"- Started at: `{metadata.get('started_at') or 'unknown'}`",
+        f"- Finished at: `{metadata.get('finished_at') or 'unknown'}`",
+        f"- Command: `{metadata.get('command') or 'unknown'}`",
+        "",
+        "## Summary",
+        "",
+        f"- Total findings: `{summary['total']}`",
+        f"- Fail: `{summary['fail']}`",
+        f"- Warn: `{summary['warn']}`",
+        f"- Unresolved records: `{summary['unresolved_record_count']}`",
+        "",
+        "## Rule Counts",
+        "",
+        "| Rule | Count |",
+        "| --- | ---: |",
+    ]
+    for rule, count in summary["rules"].items():
+        lines.append(f"| `{rule}` | {count} |")
+
+    lines.extend(
+        [
+            "",
+            "## Findings",
+            "",
+        ]
+    )
+    findings = report["findings"]
+    if not findings:
+        lines.append("No findings.")
+    else:
+        lines.extend(
+            [
+                "| Severity | Rule | Source | Lang | Field | Message | Evidence |",
+                "| --- | --- | --- | --- | --- | --- | --- |",
+            ]
+        )
+        for finding in findings:
+            source = finding.get("source_ref") or f"{finding.get('file')}#{finding.get('table')}"
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        _markdown_cell(finding.get("severity")),
+                        f"`{_markdown_cell(finding.get('rule'))}`",
+                        _markdown_cell(source),
+                        _markdown_cell(finding.get("lang") or "-"),
+                        _markdown_cell(finding.get("field") or "-"),
+                        _markdown_cell(finding.get("message")),
+                        _markdown_cell(finding.get("evidence")),
+                    ]
+                )
+                + " |"
+            )
+    return "\n".join(lines) + "\n"
+
+
+def _default_report_dir(run_id: str) -> Path:
+    return get_paths().content_qc_reports_dir / _safe_path_token(run_id)
+
+
+def _write_local_reports(report: dict[str, Any], report_dir: Path) -> dict[str, Path]:
+    report_dir.mkdir(parents=True, exist_ok=True)
+    findings_path = report_dir / "findings.json"
+    markdown_path = report_dir / "report.md"
+    findings_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    markdown_path.write_text(_markdown_report(report), encoding="utf-8")
+    return {"json": findings_path, "markdown": markdown_path}
 
 
 def _render_text_report(*, root: Path, langs: tuple[str, ...], checks: list[CheckSpec]) -> bool:
@@ -501,22 +635,49 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--langs", default=",".join(DEFAULT_LANGS), help="comma-separated langs")
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON instead of text")
     parser.add_argument(
+        "--write-report",
+        action="store_true",
+        help="write findings.json and report.md under the default local QC report directory",
+    )
+    parser.add_argument(
+        "--report-dir",
+        help="write findings.json and report.md to this directory; implies --write-report",
+    )
+    parser.add_argument(
         "--run-id",
         default="content-lint-local",
         help="run identifier to include in JSON output; keep stable in tests and reports",
     )
-    args = parser.parse_args(argv)
+    raw_argv = list(sys.argv[1:] if argv is None else argv)
+    args = parser.parse_args(raw_argv)
 
     root = Path(args.data_root)
     langs = tuple(part.strip() for part in args.langs.split(",") if part.strip())
+    started_at = _utc_now()
     checks = _check_specs(root, langs)
+    run_id = str(args.run_id or "").strip() or "content-lint-local"
+    metadata = {
+        "target": "snapshot",
+        "git_ref": _git_ref(),
+        "started_at": started_at,
+        "finished_at": _utc_now(),
+        "command": shlex.join(["tools/content_lint.py", *raw_argv]),
+    }
+    report = _json_report(root=root, langs=langs, run_id=run_id, checks=checks, metadata=metadata)
     if args.json:
-        run_id = str(args.run_id or "").strip() or "content-lint-local"
-        report = _json_report(root=root, langs=langs, run_id=run_id, checks=checks)
         print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
         failed = report["result"] == "FAIL"
     else:
         failed = _render_text_report(root=root, langs=langs, checks=checks)
+    if args.write_report or args.report_dir:
+        report_dir = Path(args.report_dir) if args.report_dir else _default_report_dir(run_id)
+        try:
+            written = _write_local_reports(report, report_dir)
+        except OSError as exc:
+            print(f"WARNING: failed to write QC report: {exc}", file=sys.stderr)
+        else:
+            if not args.json:
+                print(f"REPORT: {written['json']} ; {written['markdown']}")
     return 1 if failed else 0
 
 
