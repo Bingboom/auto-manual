@@ -22,6 +22,7 @@ For onboarding new external Markdown manuals into the template library, use:
 ```powershell
 python build.py validate
 python build.py sync-data --config configs/config.us.yaml --data-root data/phase2
+python tools/content_lint.py --data-root data/phase2 --json --write-report
 python build.py rst
 python build.py review
 python scripts\local_build.py check
@@ -57,6 +58,7 @@ Meaning:
 
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
 - `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood; when `sync.phase2.spec_master_sources` is configured, `sync-data --table spec_master` reads the two split source tables instead of the legacy total table
+- `tools/content_lint.py --json --write-report`: local closed-loop QC observation step for the current phase2 snapshot. It writes `reports/content_qc/<run-id>/findings.json` and `report.md`, includes best-effort snapshot `source_ref` values, keeps `record_id` nullable, and does not write Feishu rows or add a `build.py` action yet.
 - `spec-master-rebuild`: merge the Feishu source tables `规格参数明细` and `页面占位参数` into the read-model shape of `Spec_Master.csv`; it validates `spec_row_key` uniqueness, resolves Feishu linked-record footnote refs to stable `Footnote_id` values, and keeps `--write-back` only as a legacy bridge back to the old total table
 - `sync.phase2.tables.<name>` may now pin `table_id` and `view_id` directly in config; when present, those literal bindings take precedence over `table_id_env` / `view_id_env`, which is the safest way to keep one family on one known Base view
 - `sync.phase2.spec_master_sources` pins the two human-maintained source tables and their active views used by `spec-master-rebuild` and by `sync-data --table spec_master`; `sync.phase2.tables.spec_master` no longer needs a legacy total-table binding unless you intentionally use `spec-master-rebuild --write-back`
