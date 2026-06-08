@@ -249,6 +249,20 @@ Scope:
 - Emits `cloud_doc_backport_report.json` and `.md`.
 - No source writes, no PR.
 
+Current command:
+
+```bash
+python tools/cloud_doc_backport.py diff \
+  --doc-url "<Feishu cloud doc URL or local fixture.md>" \
+  --baseline <baseline.md> \
+  --doc-type review|template \
+  --out reports/cloud_doc_backport/<run-id>
+```
+
+For CI and local development, `--doc-url` may be a local markdown fixture path.
+For real Feishu docs, the tool calls `lark-cli docs +fetch` and writes only local
+reports.
+
 Exit:
 
 - One accepted-revision review doc produces a readable delta list.
