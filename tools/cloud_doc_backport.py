@@ -40,6 +40,8 @@ _UNIT_VALUE_RE = re.compile(
     r"\b\d+(?:[.,]\d+)?\s?(?:W|V|A|Hz|Wh|kWh|mAh|Ah|degC|°C|%|mm|cm|m|kg|lb)\b",
     re.IGNORECASE,
 )
+_RST_HEADING_CHARS = {"=": 1, "-": 2, "~": 3, "^": 4, '"': 5, "'": 6}
+_RST_HEADING_UNDERLINE_RE = re.compile(r"^\s*([=\-~^\"'])\1{2,}\s*$")
 
 
 @dataclass(frozen=True)
@@ -49,6 +51,21 @@ class Block:
     normalized: str
     heading_path: tuple[str, ...]
     line_no: int
+    heading_level: int | None = None
+
+
+@dataclass(frozen=True)
+class SectionSelection:
+    requested_title: str | None
+    resolved_title: str | None
+    inferred_from: str | None
+    applied: bool
+    baseline_found: bool
+    fetched_found: bool
+    baseline_blocks_before: int
+    fetched_blocks_before: int
+    baseline_blocks_after: int
+    fetched_blocks_after: int
 
 
 def _utc_now() -> str:
@@ -180,12 +197,40 @@ def _normalize_inline(text: str) -> str:
     text = _strip_lark_noise(text)
     text = text.replace("**", "").replace("__", "")
     text = text.replace("\\n", "\n")
+    text = text.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 
 def _table_separator(line: str) -> bool:
     return bool(_TABLE_SEPARATOR_RE.match(line))
+
+
+def _rst_heading_level(line: str) -> int | None:
+    match = _RST_HEADING_UNDERLINE_RE.match(line.strip())
+    if not match:
+        return None
+    return _RST_HEADING_CHARS.get(match.group(1))
+
+
+def _preprocessed_lines(text: str) -> list[tuple[int, str]]:
+    """Convert simple RST headings to markdown headings while preserving line numbers."""
+    raw_lines = text.splitlines()
+    converted: list[tuple[int, str]] = []
+    index = 0
+    while index < len(raw_lines):
+        line = _strip_lark_noise(raw_lines[index]).rstrip()
+        if index + 1 < len(raw_lines):
+            next_line = _strip_lark_noise(raw_lines[index + 1]).rstrip()
+            heading_level = _rst_heading_level(next_line)
+            title = _normalize_inline(line)
+            if heading_level is not None and title and len(next_line.strip()) >= max(3, len(title) // 2):
+                converted.append((index + 1, f"{'#' * heading_level} {title}"))
+                index += 2
+                continue
+        converted.append((index + 1, line))
+        index += 1
+    return converted
 
 
 def parse_blocks(text: str) -> list[Block]:
@@ -198,7 +243,7 @@ def parse_blocks(text: str) -> list[Block]:
     def current_path() -> tuple[str, ...]:
         return tuple(part for part in heading_stack if part)
 
-    def add_block(kind: str, value: str, line_no: int) -> None:
+    def add_block(kind: str, value: str, line_no: int, *, heading_level: int | None = None) -> None:
         normalized = _normalize_inline(value)
         if not normalized:
             return
@@ -209,6 +254,7 @@ def parse_blocks(text: str) -> list[Block]:
                 normalized=normalized,
                 heading_path=current_path(),
                 line_no=line_no,
+                heading_level=heading_level,
             )
         )
 
@@ -219,8 +265,7 @@ def parse_blocks(text: str) -> list[Block]:
             paragraph_lines = []
             paragraph_start = 0
 
-    for line_no, raw_line in enumerate(text.splitlines(), start=1):
-        line = _strip_lark_noise(raw_line).rstrip()
+    for line_no, line in _preprocessed_lines(text):
         if not line.strip():
             flush_paragraph()
             continue
@@ -232,7 +277,7 @@ def parse_blocks(text: str) -> list[Block]:
             title = _normalize_inline(heading.group(2))
             heading_stack = heading_stack[: level - 1]
             heading_stack.append(title)
-            add_block("heading", line.strip(), line_no)
+            add_block("heading", line.strip(), line_no, heading_level=level)
             continue
 
         stripped = line.strip()
@@ -258,17 +303,116 @@ def parse_blocks(text: str) -> list[Block]:
 def _location(block: Block | None) -> dict[str, Any]:
     if block is None:
         return {}
-    return {
+    location = {
         "kind": block.kind,
         "line_no": block.line_no,
         "heading_path": list(block.heading_path),
     }
+    if block.heading_level is not None:
+        location["heading_level"] = block.heading_level
+    return location
 
 
 def _context(blocks: list[Block], index: int) -> dict[str, str | None]:
     previous_text = blocks[index - 1].text if index > 0 else None
     next_text = blocks[index + 1].text if index + 1 < len(blocks) else None
     return {"previous": previous_text, "next": next_text}
+
+
+def _heading_title(block: Block) -> str:
+    if block.kind != "heading":
+        return ""
+    heading = _HEADING_RE.match(block.text.strip())
+    if heading:
+        return _normalize_inline(heading.group(2))
+    return _normalize_inline(block.text)
+
+
+def _section_key(title: str) -> str:
+    return _normalize_inline(title).casefold()
+
+
+def first_heading_title(blocks: list[Block]) -> str | None:
+    for block in blocks:
+        if block.kind == "heading":
+            title = _heading_title(block)
+            if title:
+                return title
+    return None
+
+
+def select_section_blocks(blocks: list[Block], title: str) -> list[Block] | None:
+    """Return a heading section and its content, stopping at the next peer heading."""
+    title_key = _section_key(title)
+    for start, block in enumerate(blocks):
+        if block.kind != "heading" or _section_key(_heading_title(block)) != title_key:
+            continue
+        level = block.heading_level or max(1, len(block.heading_path))
+        end = len(blocks)
+        for index in range(start + 1, len(blocks)):
+            candidate = blocks[index]
+            if candidate.kind == "heading" and (candidate.heading_level or 1) <= level:
+                end = index
+                break
+        return blocks[start:end]
+    return None
+
+
+def _apply_section_selection(
+    *,
+    baseline_blocks: list[Block],
+    fetched_blocks: list[Block],
+    section_title: str | None,
+    inferred_from: str | None,
+    require_match: bool,
+) -> tuple[list[Block], list[Block], SectionSelection]:
+    baseline_before = len(baseline_blocks)
+    fetched_before = len(fetched_blocks)
+    if not section_title:
+        selection = SectionSelection(
+            requested_title=None,
+            resolved_title=None,
+            inferred_from=None,
+            applied=False,
+            baseline_found=False,
+            fetched_found=False,
+            baseline_blocks_before=baseline_before,
+            fetched_blocks_before=fetched_before,
+            baseline_blocks_after=baseline_before,
+            fetched_blocks_after=fetched_before,
+        )
+        return baseline_blocks, fetched_blocks, selection
+
+    selected_baseline = select_section_blocks(baseline_blocks, section_title)
+    selected_fetched = select_section_blocks(fetched_blocks, section_title)
+    baseline_found = selected_baseline is not None
+    fetched_found = selected_fetched is not None
+    if require_match and not (baseline_found and fetched_found):
+        missing = []
+        if not baseline_found:
+            missing.append("baseline")
+        if not fetched_found:
+            missing.append("fetched")
+        raise RuntimeError(f"section heading {section_title!r} was not found in: {', '.join(missing)}")
+
+    applied = baseline_found and fetched_found
+    if applied:
+        baseline_blocks = selected_baseline or baseline_blocks
+        fetched_blocks = selected_fetched or fetched_blocks
+
+    selection = SectionSelection(
+        requested_title=section_title if inferred_from is None else None,
+        resolved_title=section_title,
+        inferred_from=inferred_from,
+        applied=applied,
+        baseline_found=baseline_found,
+        fetched_found=fetched_found,
+        baseline_blocks_before=baseline_before,
+        fetched_blocks_before=fetched_before,
+        baseline_blocks_after=len(baseline_blocks),
+        fetched_blocks_after=len(fetched_blocks),
+    )
+    return baseline_blocks, fetched_blocks, selection
 
 
 def _looks_data_like(*blocks: Block | None) -> bool:
@@ -353,8 +497,13 @@ def diff_blocks(
 ) -> list[dict[str, Any]]:
     import difflib
 
-    baseline_norm = [block.normalized for block in baseline_blocks]
-    fetched_norm = [block.normalized for block in fetched_blocks]
+    def diff_key(block: Block) -> str:
+        if block.kind == "heading":
+            return "heading:" + _section_key(_heading_title(block))
+        return block.normalized
+
+    baseline_norm = [diff_key(block) for block in baseline_blocks]
+    fetched_norm = [diff_key(block) for block in fetched_blocks]
     matcher = difflib.SequenceMatcher(None, baseline_norm, fetched_norm, autojunk=False)
     deltas: list[dict[str, Any]] = []
 
@@ -450,6 +599,59 @@ def _counter_dict(values: list[str]) -> dict[str, int]:
     return dict(sorted(Counter(values).items()))
 
 
+def _source_kind_for_path(path: Path | None, doc_type: str) -> str | None:
+    if path is None:
+        return None
+    parts = path.as_posix().split("/")
+    if "templates" in parts:
+        return "template"
+    if "_review" in parts:
+        return "review"
+    return doc_type
+
+
+def _source_target_payload(source_path: Path | None, doc_type: str) -> dict[str, str] | None:
+    if source_path is None:
+        return None
+    return {
+        "path": source_path.as_posix(),
+        "kind": _source_kind_for_path(source_path, doc_type) or doc_type,
+    }
+
+
+def _selection_payload(selection: SectionSelection) -> dict[str, Any]:
+    return {
+        "requested_title": selection.requested_title,
+        "resolved_title": selection.resolved_title,
+        "inferred_from": selection.inferred_from,
+        "applied": selection.applied,
+        "baseline_found": selection.baseline_found,
+        "fetched_found": selection.fetched_found,
+        "baseline_blocks_before": selection.baseline_blocks_before,
+        "fetched_blocks_before": selection.fetched_blocks_before,
+        "baseline_blocks_after": selection.baseline_blocks_after,
+        "fetched_blocks_after": selection.fetched_blocks_after,
+    }
+
+
+def _attach_source_evidence(
+    deltas: list[dict[str, Any]],
+    *,
+    source_target: dict[str, str] | None,
+    baseline_text: str,
+) -> None:
+    if source_target is None:
+        return
+    for delta in deltas:
+        old_text = delta.get("old_text")
+        old_in_source = bool(isinstance(old_text, str) and old_text and old_text in baseline_text)
+        delta["source_evidence"] = {
+            **source_target,
+            "old_text_in_baseline": old_in_source,
+            "repo_write_candidate": delta["route_class"] in {"repo_review_text", "repo_template_text"} and old_in_source,
+        }
+
+
 def build_report(
     *,
     run_id: str,
@@ -459,21 +661,36 @@ def build_report(
     fetched_text: str,
     baseline_text: str,
     command: list[str],
+    source_path: Path | None = None,
+    section_title: str | None = None,
+    section_inferred_from: str | None = None,
+    require_section_match: bool = False,
 ) -> dict[str, Any]:
     baseline_blocks = parse_blocks(baseline_text)
     fetched_blocks = parse_blocks(fetched_text)
+    baseline_blocks, fetched_blocks, selection = _apply_section_selection(
+        baseline_blocks=baseline_blocks,
+        fetched_blocks=fetched_blocks,
+        section_title=section_title,
+        inferred_from=section_inferred_from,
+        require_match=require_section_match,
+    )
     deltas = diff_blocks(
         baseline_blocks,
         fetched_blocks,
         doc_type=doc_type,
         run_id=run_id,
     )
+    source_target = _source_target_payload(source_path, doc_type)
+    _attach_source_evidence(deltas, source_target=source_target, baseline_text=baseline_text)
     return {
         "schema_version": REPORT_SCHEMA_VERSION,
         "run_id": run_id,
         "doc_type": doc_type,
         "doc_url": doc_url,
         "baseline": baseline_path.as_posix(),
+        "source_target": source_target,
+        "section_selection": _selection_payload(selection),
         "normalizer_version": NORMALIZER_VERSION,
         "result": "DIFF" if deltas else "NO_DIFF",
         "metadata": {
@@ -503,6 +720,8 @@ def _markdown_cell(value: object) -> str:
 
 def markdown_report(report: dict[str, Any]) -> str:
     summary = report["summary"]
+    source_target = report.get("source_target") or {}
+    section_selection = report.get("section_selection") or {}
     lines = [
         "# Cloud Doc Backport Diff Report",
         "",
@@ -512,10 +731,13 @@ def markdown_report(report: dict[str, Any]) -> str:
         f"- Result: `{report['result']}`",
         f"- Doc type: `{report['doc_type']}`",
         f"- Baseline: `{report['baseline']}`",
+        f"- Source target: `{source_target.get('path') or '-'}`",
         f"- Normalizer: `{report['normalizer_version']}`",
         f"- Git ref: `{report['metadata'].get('git_ref') or 'unknown'}`",
         f"- Generated at: `{report['metadata']['generated_at']}`",
         f"- Command: `{report['metadata']['command']}`",
+        f"- Section: `{section_selection.get('resolved_title') or '-'}`",
+        f"- Section applied: `{section_selection.get('applied', False)}`",
         "",
         "## Summary",
         "",
@@ -577,6 +799,26 @@ def _default_out_dir(run_id: str) -> Path:
     return get_paths().cloud_doc_backport_reports_dir / _safe_path_token(run_id)
 
 
+def _resolve_existing_path(value: str | None, *, label: str) -> Path | None:
+    if not value:
+        return None
+    path = Path(value)
+    if not path.is_absolute():
+        path = get_paths().root / path
+    if not path.exists():
+        raise RuntimeError(f"{label} does not exist: {value}")
+    if not path.is_file():
+        raise RuntimeError(f"{label} must be a file: {value}")
+    return path
+
+
+def _display_path(path: Path) -> Path:
+    try:
+        return path.relative_to(get_paths().root)
+    except ValueError:
+        return path
+
+
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Feishu cloud-doc backport helpers.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -586,7 +828,15 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         description="Fetch/read a cloud doc and compare it with a baseline.",
     )
     diff_parser.add_argument("--doc-url", required=True, help="Feishu doc URL or local fixture path")
-    diff_parser.add_argument("--baseline", required=True, help="baseline markdown file")
+    diff_parser.add_argument("--baseline", help="baseline markdown/RST file")
+    diff_parser.add_argument("--source-path", help="repo source target path; also used as fallback baseline")
+    diff_parser.add_argument("--template", help="repo template source path; shortcut for --source-path")
+    diff_parser.add_argument("--section-heading", help="heading to compare within both fetched and baseline content")
+    diff_parser.add_argument(
+        "--no-auto-section",
+        action="store_true",
+        help="do not infer a section heading from the source target's first heading",
+    )
     diff_parser.add_argument("--doc-type", required=True, choices=("review", "template"))
     diff_parser.add_argument("--out", help="output directory for JSON and Markdown reports")
     diff_parser.add_argument("--run-id", default="cloud-doc-backport-local")
@@ -596,23 +846,47 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
     run_id = str(args.run_id or "").strip() or "cloud-doc-backport-local"
-    baseline_path = Path(args.baseline)
     out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
     try:
+        if args.template and args.source_path:
+            raise RuntimeError("--template and --source-path are mutually exclusive")
+        if args.template and args.doc_type != "template":
+            raise RuntimeError("--template requires --doc-type template")
+        source_path = _resolve_existing_path(args.template or args.source_path, label="source target")
+        baseline_path = _resolve_existing_path(args.baseline, label="baseline")
+        if baseline_path is None:
+            baseline_path = source_path
+        if baseline_path is None:
+            raise RuntimeError("--baseline is required unless --template or --source-path is supplied")
         baseline_text = _read_text(baseline_path)
         fetched_text = fetch_doc_text(args.doc_url, lark_cli=args.lark_cli)
+        section_title = str(args.section_heading or "").strip() or None
+        section_inferred_from = None
+        if section_title is None and source_path is not None and not args.no_auto_section:
+            source_title = first_heading_title(parse_blocks(_read_text(source_path)))
+            if source_title:
+                section_title = source_title
+                section_inferred_from = _display_path(source_path).as_posix()
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
-    report = build_report(
-        run_id=run_id,
-        doc_type=args.doc_type,
-        doc_url=args.doc_url,
-        baseline_path=baseline_path,
-        fetched_text=fetched_text,
-        baseline_text=baseline_text,
-        command=["tools/cloud_doc_backport.py", *raw_argv],
-    )
+    try:
+        report = build_report(
+            run_id=run_id,
+            doc_type=args.doc_type,
+            doc_url=args.doc_url,
+            baseline_path=_display_path(baseline_path),
+            fetched_text=fetched_text,
+            baseline_text=baseline_text,
+            command=["tools/cloud_doc_backport.py", *raw_argv],
+            source_path=_display_path(source_path) if source_path else None,
+            section_title=section_title,
+            section_inferred_from=section_inferred_from,
+            require_section_match=bool(args.section_heading),
+        )
+    except RuntimeError as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
     written = write_reports(report, out_dir)
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
