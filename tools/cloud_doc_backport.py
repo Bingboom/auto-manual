@@ -30,6 +30,7 @@ NORMALIZER_VERSION = "cloud-doc-normalizer/v1"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
 _LARK_TAG_RE = re.compile(r"</?lark-[^>]*>", re.IGNORECASE)
+_TITLE_TAG_RE = re.compile(r"^\s*<title>.*?</title>\s*", re.IGNORECASE | re.DOTALL)
 _HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 _TABLE_SEPARATOR_RE = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
 _LIST_RE = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
@@ -78,8 +79,12 @@ def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8-sig")
 
 
+def _strip_document_title(text: str) -> str:
+    return _TITLE_TAG_RE.sub("", text, count=1)
+
+
 def _extract_doc_markdown(raw_text: str) -> str:
-    """Return lark-cli data.markdown when stdout is the documented JSON envelope."""
+    """Return Markdown from plain text or the lark-cli JSON envelope."""
     stripped = raw_text.lstrip()
     if not stripped.startswith("{"):
         return raw_text
@@ -95,6 +100,12 @@ def _extract_doc_markdown(raw_text: str) -> str:
         markdown = data.get("markdown")
         if isinstance(markdown, str):
             return markdown
+
+        document = data.get("document")
+        if isinstance(document, dict):
+            content = document.get("content")
+            if isinstance(content, str):
+                return _strip_document_title(content)
 
     markdown = payload.get("markdown")
     if isinstance(markdown, str):
@@ -122,6 +133,18 @@ def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
         return _extract_doc_markdown(sys.stdin.read())
 
     attempts = [
+        [
+            lark_cli,
+            "docs",
+            "+fetch",
+            "--api-version",
+            "v2",
+            "--doc",
+            doc_url,
+            "--doc-format",
+            "markdown",
+        ],
+        [lark_cli, "docs", "+fetch", "--doc", doc_url, "--doc-format", "markdown"],
         [lark_cli, "docs", "+fetch", "--doc", doc_url],
         [lark_cli, "docs", "+fetch", doc_url],
     ]
