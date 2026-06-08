@@ -234,6 +234,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`docs/_review/<model>/<region>/manifest.json`](../docs/_review)
    - [`docs/_review/<model>/<region>/overrides/**`](../docs/_review)
    - Responsibility: target-specific review editing, Git review, revision history, final release source after review starts
+   - Accepted Feishu cloud-doc revisions can be compared with `python tools/cloud_doc_backport.py diff --source-path docs/_review/... --doc-type review` and then planned with `python tools/cloud_doc_backport.py apply-review --report ...`; the apply step is dry-run by default and only writes guarded review prose replacements when `--write` is supplied. Data-like deltas stay report-only and should be routed back to the Feishu source tables deliberately.
 
 4. Runtime build layer
    - [`docs/_build/<model>/<region>/rst/**`](../docs/_build)

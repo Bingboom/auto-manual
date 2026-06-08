@@ -5,8 +5,8 @@
 The diff command fetches/reads a Feishu cloud document, normalizes it, compares
 it with a baseline, and writes structured JSON + Markdown diff reports.
 
-The apply-template command can turn a diff report into guarded local template
-edits. It never edits review bundles, generated output, or Feishu bitable rows.
+The apply-template/apply-review commands can turn a diff report into guarded
+local source edits. They never edit generated output or Feishu bitable rows.
 """
 from __future__ import annotations
 
@@ -821,15 +821,22 @@ def _resolve_source_path(value: str | None, *, label: str) -> Path:
     return path
 
 
-def _validate_template_source(path: Path) -> None:
+def _validate_apply_source(path: Path, *, kind: str) -> None:
     if path.suffix != ".rst":
-        raise RuntimeError(f"template source must be an .rst file: {path}")
-    if "templates" not in path.parts:
-        raise RuntimeError(f"template source must live under a templates directory: {path}")
+        raise RuntimeError(f"{kind} source must be an .rst file: {path}")
+    if kind == "template":
+        if "templates" not in path.parts:
+            raise RuntimeError(f"template source must live under a templates directory: {path}")
+        return
+    if kind == "review":
+        if "_review" not in path.parts:
+            raise RuntimeError(f"review source must live under docs/_review: {path}")
+        return
+    raise RuntimeError(f"unsupported apply source kind: {kind}")
 
 
-def _template_apply_skip_reason(delta: dict[str, Any]) -> str | None:
-    if delta.get("route_class") != "repo_template_text":
+def _apply_skip_reason(delta: dict[str, Any], *, route_class: str) -> str | None:
+    if delta.get("route_class") != route_class:
         return f"route_class is {delta.get('route_class') or 'missing'}"
     if delta.get("change_type") != "replace":
         return f"change_type is {delta.get('change_type') or 'missing'}"
@@ -842,19 +849,21 @@ def _template_apply_skip_reason(delta: dict[str, Any]) -> str | None:
     if old_text == new_text:
         return "old_text and new_text are identical"
     evidence = delta.get("source_evidence")
-    if not isinstance(evidence, dict) or not evidence.get("repo_write_candidate"):
+    if isinstance(evidence, dict) and evidence.get("repo_write_candidate") is False:
         return "delta is not marked as a repo write candidate"
     return None
 
 
-def _template_apply_operation(
+def _apply_operation(
     *,
     index: int,
     delta: dict[str, Any],
     current_text: str,
+    route_class: str,
+    source_label: str,
     write: bool,
 ) -> tuple[dict[str, Any], str]:
-    reason = _template_apply_skip_reason(delta)
+    reason = _apply_skip_reason(delta, route_class=route_class)
     base_operation = {
         "index": index,
         "delta_hash": delta.get("delta_hash"),
@@ -873,14 +882,14 @@ def _template_apply_operation(
         return {
             **base_operation,
             "status": "skipped",
-            "reason": "old_text was not found in current template",
+            "reason": f"old_text was not found in current {source_label}",
             "matches": matches,
         }, current_text
     if matches > 1:
         return {
             **base_operation,
             "status": "skipped",
-            "reason": "old_text matched more than once in current template",
+            "reason": f"old_text matched more than once in current {source_label}",
             "matches": matches,
         }, current_text
 
@@ -888,36 +897,42 @@ def _template_apply_operation(
         return {
             **base_operation,
             "status": "applied",
-            "reason": "unique repo_template_text replacement",
+            "reason": f"unique {route_class} replacement",
             "matches": matches,
         }, current_text.replace(old_text, new_text, 1)
     return {
         **base_operation,
         "status": "planned",
-        "reason": "unique repo_template_text replacement",
+        "reason": f"unique {route_class} replacement",
         "matches": matches,
     }, current_text
 
 
-def build_template_apply_report(
+def build_guarded_apply_report(
     diff_report: dict[str, Any],
     *,
+    expected_doc_type: str,
+    expected_source_kind: str,
+    route_class: str,
+    source_label: str,
     source_path: Path | None = None,
     write: bool = False,
     command: list[str] | None = None,
 ) -> dict[str, Any]:
     if diff_report.get("schema_version") != REPORT_SCHEMA_VERSION:
         raise RuntimeError("report schema is not cloud-doc-backport-report/v1")
-    if diff_report.get("doc_type") != "template":
-        raise RuntimeError("apply-template requires a template diff report")
+    if diff_report.get("doc_type") != expected_doc_type:
+        raise RuntimeError(f"apply-{expected_doc_type} requires a {expected_doc_type} diff report")
     source_target = diff_report.get("source_target")
     if not isinstance(source_target, dict):
-        raise RuntimeError("diff report is missing source_target")
-    if source_target.get("kind") != "template":
-        raise RuntimeError("diff report source_target.kind must be template")
+        if source_path is None:
+            raise RuntimeError("diff report is missing source_target")
+        source_target = {"kind": expected_source_kind}
+    elif source_target.get("kind") != expected_source_kind:
+        raise RuntimeError(f"diff report source_target.kind must be {expected_source_kind}")
 
     resolved_source = source_path or _resolve_source_path(str(source_target.get("path") or ""), label="source target")
-    _validate_template_source(resolved_source)
+    _validate_apply_source(resolved_source, kind=expected_source_kind)
     original_text = _read_text(resolved_source)
     current_text = original_text
     operations: list[dict[str, Any]] = []
@@ -932,10 +947,12 @@ def build_template_apply_report(
                 }
             )
             continue
-        operation, current_text = _template_apply_operation(
+        operation, current_text = _apply_operation(
             index=index,
             delta=delta,
             current_text=current_text,
+            route_class=route_class,
+            source_label=source_label,
             write=write,
         )
         operations.append(operation)
@@ -950,7 +967,7 @@ def build_template_apply_report(
         "mode": "write" if write else "dry-run",
         "source_target": {
             "path": _display_path(resolved_source).as_posix(),
-            "kind": "template",
+            "kind": expected_source_kind,
         },
         "diff_report": {
             "run_id": diff_report.get("run_id"),
@@ -969,6 +986,44 @@ def build_template_apply_report(
         },
         "operations": operations,
     }
+
+
+def build_template_apply_report(
+    diff_report: dict[str, Any],
+    *,
+    source_path: Path | None = None,
+    write: bool = False,
+    command: list[str] | None = None,
+) -> dict[str, Any]:
+    return build_guarded_apply_report(
+        diff_report,
+        expected_doc_type="template",
+        expected_source_kind="template",
+        route_class="repo_template_text",
+        source_label="template",
+        source_path=source_path,
+        write=write,
+        command=command,
+    )
+
+
+def build_review_apply_report(
+    diff_report: dict[str, Any],
+    *,
+    source_path: Path | None = None,
+    write: bool = False,
+    command: list[str] | None = None,
+) -> dict[str, Any]:
+    return build_guarded_apply_report(
+        diff_report,
+        expected_doc_type="review",
+        expected_source_kind="review",
+        route_class="repo_review_text",
+        source_label="review source",
+        source_path=source_path,
+        write=write,
+        command=command,
+    )
 
 
 def markdown_apply_report(report: dict[str, Any]) -> str:
@@ -1087,6 +1142,15 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     apply_parser.add_argument("--source-path", help="optional source template override")
     apply_parser.add_argument("--out", help="output directory for JSON and Markdown apply reports")
     apply_parser.add_argument("--write", action="store_true", help="write safe replacements to the source template")
+
+    apply_review_parser = subparsers.add_parser(
+        "apply-review",
+        description="Plan or apply safe review text replacements from a diff report.",
+    )
+    apply_review_parser.add_argument("--report", required=True, help="cloud_doc_backport_report.json path")
+    apply_review_parser.add_argument("--source-path", help="optional review source override")
+    apply_review_parser.add_argument("--out", help="output directory for JSON and Markdown apply reports")
+    apply_review_parser.add_argument("--write", action="store_true", help="write safe replacements to the review source")
     return parser.parse_args(argv)
 
 
@@ -1139,12 +1203,17 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
     return 0
 
 
-def _run_apply_template(args: argparse.Namespace, raw_argv: list[str]) -> int:
+def _run_apply(
+    args: argparse.Namespace,
+    raw_argv: list[str],
+    *,
+    build_apply_report: Any,
+) -> int:
     try:
         report_path = _resolve_source_path(args.report, label="diff report")
         source_override = _resolve_source_path(args.source_path, label="source target") if args.source_path else None
         diff_report = _load_json_file(report_path)
-        apply_report = build_template_apply_report(
+        apply_report = build_apply_report(
             diff_report,
             source_path=source_override,
             write=bool(args.write),
@@ -1162,6 +1231,14 @@ def _run_apply_template(args: argparse.Namespace, raw_argv: list[str]) -> int:
     return 0
 
 
+def _run_apply_template(args: argparse.Namespace, raw_argv: list[str]) -> int:
+    return _run_apply(args, raw_argv, build_apply_report=build_template_apply_report)
+
+
+def _run_apply_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
+    return _run_apply(args, raw_argv, build_apply_report=build_review_apply_report)
+
+
 def main(argv: list[str] | None = None) -> int:
     raw_argv = list(sys.argv[1:] if argv is None else argv)
     args = _parse_args(raw_argv)
@@ -1169,6 +1246,8 @@ def main(argv: list[str] | None = None) -> int:
         return _run_diff(args, raw_argv)
     if args.command == "apply-template":
         return _run_apply_template(args, raw_argv)
+    if args.command == "apply-review":
+        return _run_apply_review(args, raw_argv)
     raise AssertionError(f"unhandled command: {args.command}")
 
 
