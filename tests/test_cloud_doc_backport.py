@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from tools.cloud_doc_backport import (
     build_report,
@@ -24,6 +26,27 @@ class CloudDocBackportTest(unittest.TestCase):
         text = fetch_doc_text(str(FIXTURES / "fetched.md"))
 
         self.assertIn("2200 W", text)
+
+    def test_fetch_doc_text_extracts_lark_cli_json_markdown(self) -> None:
+        payload = {
+            "ok": True,
+            "data": {
+                "doc_id": "doc-1",
+                "markdown": "# Safety\n\n- Read all instructions.\n",
+                "title": "manual",
+            },
+        }
+        completed = subprocess.CompletedProcess(
+            args=["lark-cli", "docs", "+fetch", "--doc", "https://example.feishu.cn/wiki/doc-1"],
+            returncode=0,
+            stdout=json.dumps(payload),
+            stderr="",
+        )
+
+        with patch("tools.cloud_doc_backport.subprocess.run", return_value=completed):
+            text = fetch_doc_text("https://example.feishu.cn/wiki/doc-1")
+
+        self.assertEqual(text, "# Safety\n\n- Read all instructions.\n")
 
     def test_parse_blocks_strips_lark_tags_and_keeps_structure(self) -> None:
         text = (FIXTURES / "fetched.md").read_text(encoding="utf-8")
