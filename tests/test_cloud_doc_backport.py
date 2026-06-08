@@ -27,7 +27,7 @@ class CloudDocBackportTest(unittest.TestCase):
 
         self.assertIn("2200 W", text)
 
-    def test_fetch_doc_text_extracts_lark_cli_json_markdown(self) -> None:
+    def test_fetch_doc_text_extracts_legacy_lark_json_markdown(self) -> None:
         payload = {
             "ok": True,
             "data": {
@@ -47,6 +47,49 @@ class CloudDocBackportTest(unittest.TestCase):
             text = fetch_doc_text("https://example.feishu.cn/wiki/doc-1")
 
         self.assertEqual(text, "# Safety\n\n- Read all instructions.\n")
+
+    def test_fetch_doc_text_extracts_v2_document_content_and_strips_title(self) -> None:
+        payload = {
+            "ok": True,
+            "data": {
+                "document": {
+                    "document_id": "doc-1",
+                    "revision_id": 12,
+                    "content": "<title>manual</title>\n\n# Safety\n\n- Read all instructions.\n",
+                },
+                "log_id": "log-1",
+            },
+        }
+        completed = subprocess.CompletedProcess(
+            args=["lark-cli", "docs", "+fetch"],
+            returncode=0,
+            stdout=json.dumps(payload),
+            stderr="",
+        )
+        calls: list[list[str]] = []
+
+        def fake_run(command: list[str], **_: object) -> subprocess.CompletedProcess[str]:
+            calls.append(command)
+            return completed
+
+        with patch("tools.cloud_doc_backport.subprocess.run", side_effect=fake_run):
+            text = fetch_doc_text("https://example.feishu.cn/wiki/doc-1")
+
+        self.assertEqual(text, "# Safety\n\n- Read all instructions.\n")
+        self.assertEqual(
+            calls[0],
+            [
+                "lark-cli",
+                "docs",
+                "+fetch",
+                "--api-version",
+                "v2",
+                "--doc",
+                "https://example.feishu.cn/wiki/doc-1",
+                "--doc-format",
+                "markdown",
+            ],
+        )
 
     def test_parse_blocks_strips_lark_tags_and_keeps_structure(self) -> None:
         text = (FIXTURES / "fetched.md").read_text(encoding="utf-8")
