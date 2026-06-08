@@ -78,6 +78,30 @@ def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8-sig")
 
 
+def _extract_doc_markdown(raw_text: str) -> str:
+    """Return lark-cli data.markdown when stdout is the documented JSON envelope."""
+    stripped = raw_text.lstrip()
+    if not stripped.startswith("{"):
+        return raw_text
+    try:
+        payload = json.loads(raw_text)
+    except json.JSONDecodeError:
+        return raw_text
+    if not isinstance(payload, dict):
+        return raw_text
+
+    data = payload.get("data")
+    if isinstance(data, dict):
+        markdown = data.get("markdown")
+        if isinstance(markdown, str):
+            return markdown
+
+    markdown = payload.get("markdown")
+    if isinstance(markdown, str):
+        return markdown
+    return raw_text
+
+
 def _local_doc_path(doc_url: str) -> Path | None:
     if doc_url == "-":
         return None
@@ -93,9 +117,9 @@ def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
     """Fetch a cloud doc, or read a local fixture when doc_url is a file path."""
     local_path = _local_doc_path(doc_url)
     if local_path is not None:
-        return _read_text(local_path)
+        return _extract_doc_markdown(_read_text(local_path))
     if doc_url == "-":
-        return sys.stdin.read()
+        return _extract_doc_markdown(sys.stdin.read())
 
     attempts = [
         [lark_cli, "docs", "+fetch", "--doc", doc_url],
@@ -114,7 +138,7 @@ def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
             errors.append(f"{shlex.join(command)} -> {exc}")
             continue
         if completed.returncode == 0 and completed.stdout.strip():
-            return completed.stdout
+            return _extract_doc_markdown(completed.stdout)
         errors.append(
             f"{shlex.join(command)} -> exit {completed.returncode}: "
             f"{(completed.stderr or completed.stdout).strip()}"
