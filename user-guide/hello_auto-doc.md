@@ -84,6 +84,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`docs/manifests/*.yaml`](../docs/manifests)
    - Responsibility: reusable page structure, headings, shared prose, and initial draft layout
    - Some templates intentionally duplicate prose across normal RST and renderer-specific branches such as `.. raw:: html` or `.. raw:: latex`; when changing wording, treat the RST list as the source wording and keep renderer-specific copies aligned
+   - Template-maintenance Feishu cloud docs can be compared with `python tools/cloud_doc_backport.py diff --template ...` and then planned with `python tools/cloud_doc_backport.py apply-template --report ...`; the apply step is dry-run by default and only writes guarded template prose replacements when `--write` is supplied. It does not write Feishu source tables or review bundles.
 
 2. Data layer
    - preferred snapshot root [`data/phase2/`](../data/phase2)
