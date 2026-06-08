@@ -199,6 +199,10 @@ def _parse_json_payload(raw: str) -> dict[str, Any]:
     return payload
 
 
+def _is_unknown_format_flag_error(exc: RuntimeError) -> bool:
+    return "unknown flag: --format" in str(exc)
+
+
 class LarkCliSource:
     def __init__(self, *, cli_bin: str, identity: str = "user"):
         self.cli_bin = cli_bin
@@ -296,7 +300,7 @@ class LarkCliSource:
         offset: int,
         limit: int,
     ) -> dict[str, Any]:
-        args = [
+        base_args = [
             "+record-list",
             "--as",
             self.identity,
@@ -304,6 +308,9 @@ class LarkCliSource:
             base_token,
             "--table-id",
             table_id,
+        ]
+        args = [
+            *base_args,
             "--format",
             "json",
             "--jq",
@@ -315,7 +322,24 @@ class LarkCliSource:
             args += ["--view-id", view_id]
         if offset:
             args += ["--offset", str(offset)]
-        return self._run_base_command(args=args)
+        try:
+            return self._run_base_command(args=args)
+        except RuntimeError as exc:
+            if not _is_unknown_format_flag_error(exc):
+                raise
+
+        fallback_args = [
+            *base_args,
+            "--jq",
+            ".",
+            "--limit",
+            str(limit),
+        ]
+        if view_id:
+            fallback_args += ["--view-id", view_id]
+        if offset:
+            fallback_args += ["--offset", str(offset)]
+        return self._run_base_command(args=fallback_args)
 
     def fetch_records(
         self,

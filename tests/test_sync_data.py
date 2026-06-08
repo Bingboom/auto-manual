@@ -1645,6 +1645,62 @@ class TestSyncData(unittest.TestCase):
         self.assertIn("--offset", seen_commands[2])
         self.assertIn("1", seen_commands[2])
 
+    def test_lark_cli_source_should_retry_record_list_without_format_for_old_cli(self) -> None:
+        source = sync_data.LarkCliSource(cli_bin="lark-cli", identity="bot")
+        seen_commands: list[list[str]] = []
+
+        def fake_run(cmd: list[str], **_: object) -> mock.Mock:
+            seen_commands.append(cmd)
+            if cmd[2] == "+field-list":
+                return mock.Mock(
+                    stdout=json.dumps(
+                        {
+                            "data": {
+                                "items": [{"field_id": "fld_title_en", "field_name": "title_en"}],
+                                "total": 1,
+                            },
+                            "ok": True,
+                        }
+                    )
+                )
+            if "--format" in cmd:
+                raise subprocess.CalledProcessError(
+                    1,
+                    cmd,
+                    stderr="Error: unknown flag: --format",
+                )
+            return mock.Mock(
+                stdout=json.dumps(
+                    {
+                        "data": {
+                            "field_id_list": ["fld_title_en"],
+                            "fields": ["title_en"],
+                            "data": [["A"]],
+                            "has_more": False,
+                        },
+                        "ok": True,
+                    }
+                )
+            )
+
+        with mock.patch("tools.sync_data.shutil.which", return_value="/usr/local/bin/lark-cli"), mock.patch(
+            "tools.sync_data.subprocess.run",
+            side_effect=fake_run,
+        ):
+            rows = source.fetch_records(
+                base_token="app_token",
+                table_id="tbl_titles",
+                view_id="view_titles",
+            )
+
+        self.assertEqual([{"fields": {"title_en": "A"}}], rows)
+        record_commands = [cmd for cmd in seen_commands if cmd[2] == "+record-list"]
+        self.assertEqual(2, len(record_commands))
+        self.assertIn("--format", record_commands[0])
+        self.assertNotIn("--format", record_commands[1])
+        self.assertIn("--jq", record_commands[1])
+        self.assertIn(".", record_commands[1])
+
     def test_lark_cli_source_should_include_cli_output_when_command_fails(self) -> None:
         source = sync_data.LarkCliSource(cli_bin="lark-cli")
 
