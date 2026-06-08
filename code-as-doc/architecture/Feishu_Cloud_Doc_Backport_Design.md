@@ -246,6 +246,12 @@ Goal: prove `docs +fetch` plus normalization produces stable deltas.
 Scope:
 
 - CLI/script accepts `--doc-url`, `--baseline`, `--doc-type`.
+- Template-doc runs may pass `--template <docs/templates/...rst>` instead of
+  `--baseline`; the template becomes both the fallback baseline and the
+  reported source target.
+- Runs with a source target auto-select the fetched document section matching
+  the source file's first heading; explicit `--section-heading <title>` is also
+  supported.
 - Emits `cloud_doc_backport_report.json` and `.md`.
 - No source writes, no PR.
 
@@ -256,6 +262,12 @@ python tools/cloud_doc_backport.py diff \
   --doc-url "<Feishu cloud doc URL or local fixture.md>" \
   --baseline <baseline.md> \
   --doc-type review|template \
+  --out reports/cloud_doc_backport/<run-id>
+
+python tools/cloud_doc_backport.py diff \
+  --doc-url "<Feishu cloud doc URL or local fixture.md>" \
+  --template docs/templates/page_zh/00_preface.rst \
+  --doc-type template \
   --out reports/cloud_doc_backport/<run-id>
 ```
 

@@ -15,6 +15,7 @@ from tools.cloud_doc_backport import (
     fetch_doc_text,
     main,
     parse_blocks,
+    select_section_blocks,
 )
 
 
@@ -100,6 +101,22 @@ class CloudDocBackportTest(unittest.TestCase):
         self.assertTrue(any(block.kind == "table_row" for block in blocks))
         self.assertTrue(any(block.kind == "list_item" for block in blocks))
 
+    def test_parse_blocks_converts_rst_headings_for_source_matching(self) -> None:
+        blocks = parse_blocks("用户指南\n========\n\n原始内容。\n")
+
+        self.assertEqual(blocks[0].kind, "heading")
+        self.assertEqual(blocks[0].normalized, "# 用户指南")
+        self.assertEqual(blocks[0].heading_level, 1)
+        self.assertEqual(blocks[1].heading_path, ("用户指南",))
+
+    def test_select_section_blocks_stops_at_next_peer_heading(self) -> None:
+        blocks = parse_blocks("# manual\n\n## 用户指南\n\nA\n\n## 其他\n\nB\n")
+
+        selected = select_section_blocks(blocks, "用户指南")
+
+        self.assertIsNotNone(selected)
+        self.assertEqual([block.normalized for block in selected or []], ["## 用户指南", "A"])
+
     def test_build_report_classifies_review_prose_and_data_like_deltas(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")
         fetched = (FIXTURES / "fetched.md").read_text(encoding="utf-8")
@@ -174,6 +191,72 @@ class CloudDocBackportTest(unittest.TestCase):
             markdown = markdown_path.read_text(encoding="utf-8")
             self.assertIn("# Cloud Doc Backport Diff Report", markdown)
             self.assertIn("repo_review_text", markdown)
+
+    def test_main_uses_template_as_fallback_baseline_and_auto_section(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            template_path = root / "docs" / "templates" / "page_zh" / "00_preface.rst"
+            template_path.parent.mkdir(parents=True)
+            template_path.write_text("用户指南\n========\n\n原始内容。\n", encoding="utf-8")
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text(
+                "# manual\n\n## 用户指南\n\n修改内容。\n\n## 其他章节\n\n这段不应该进入 diff。\n",
+                encoding="utf-8",
+            )
+            out_dir = root / "out"
+
+            exit_code = main(
+                [
+                    "diff",
+                    "--doc-url",
+                    str(fetched_path),
+                    "--template",
+                    str(template_path),
+                    "--doc-type",
+                    "template",
+                    "--run-id",
+                    "run-template",
+                    "--out",
+                    str(out_dir),
+                ]
+            )
+
+            self.assertEqual(exit_code, 0)
+            payload = json.loads((out_dir / "cloud_doc_backport_report.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["baseline"], str(template_path))
+            self.assertEqual(payload["source_target"]["path"], str(template_path))
+            self.assertEqual(payload["source_target"]["kind"], "template")
+            self.assertTrue(payload["section_selection"]["applied"])
+            self.assertEqual(payload["section_selection"]["resolved_title"], "用户指南")
+            self.assertEqual(payload["summary"]["fetched_blocks"], 2)
+            self.assertEqual(payload["summary"]["total_deltas"], 1)
+            self.assertNotIn("其他章节", json.dumps(payload["deltas"], ensure_ascii=False))
+
+    def test_main_fails_when_explicit_section_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            baseline_path = root / "baseline.rst"
+            baseline_path.write_text("用户指南\n========\n\n原始内容。\n", encoding="utf-8")
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text("# manual\n\n## 用户指南\n\n修改内容。\n", encoding="utf-8")
+
+            exit_code = main(
+                [
+                    "diff",
+                    "--doc-url",
+                    str(fetched_path),
+                    "--baseline",
+                    str(baseline_path),
+                    "--doc-type",
+                    "template",
+                    "--section-heading",
+                    "不存在",
+                    "--out",
+                    str(root / "out"),
+                ]
+            )
+
+            self.assertEqual(exit_code, 2)
 
     def test_report_is_no_diff_for_identical_content(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")
