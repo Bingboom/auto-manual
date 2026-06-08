@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Feishu cloud document backport prototype.
+"""Feishu cloud document backport helpers.
 
-P0 only: fetch/read a Feishu cloud document, normalize it, compare it with a
-baseline, and write structured JSON + Markdown diff reports. It never edits
-repo sources, review bundles, generated output, or Feishu bitable rows.
+The diff command fetches/reads a Feishu cloud document, normalizes it, compares
+it with a baseline, and writes structured JSON + Markdown diff reports.
+
+The apply-template command can turn a diff report into guarded local template
+edits. It never edits review bundles, generated output, or Feishu bitable rows.
 """
 from __future__ import annotations
 
@@ -26,6 +28,7 @@ from tools.utils.path_utils import get_paths  # noqa: E402
 
 REPORT_SCHEMA_VERSION = "cloud-doc-backport-report/v1"
 DELTA_SCHEMA_VERSION = "cloud-doc-backport-delta/v1"
+APPLY_SCHEMA_VERSION = "cloud-doc-backport-apply/v1"
 NORMALIZER_VERSION = "cloud-doc-normalizer/v1"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
@@ -795,6 +798,240 @@ def write_reports(report: dict[str, Any], out_dir: Path) -> dict[str, Path]:
     return {"json": json_path, "markdown": markdown_path}
 
 
+def _load_json_file(path: Path) -> dict[str, Any]:
+    try:
+        payload = json.loads(_read_text(path))
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"invalid JSON file {path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise RuntimeError(f"JSON file must contain an object: {path}")
+    return payload
+
+
+def _resolve_source_path(value: str | None, *, label: str) -> Path:
+    if not value:
+        raise RuntimeError(f"missing {label}")
+    path = Path(value)
+    if not path.is_absolute():
+        path = get_paths().root / path
+    if not path.exists():
+        raise RuntimeError(f"{label} does not exist: {value}")
+    if not path.is_file():
+        raise RuntimeError(f"{label} must be a file: {value}")
+    return path
+
+
+def _validate_template_source(path: Path) -> None:
+    if path.suffix != ".rst":
+        raise RuntimeError(f"template source must be an .rst file: {path}")
+    if "templates" not in path.parts:
+        raise RuntimeError(f"template source must live under a templates directory: {path}")
+
+
+def _template_apply_skip_reason(delta: dict[str, Any]) -> str | None:
+    if delta.get("route_class") != "repo_template_text":
+        return f"route_class is {delta.get('route_class') or 'missing'}"
+    if delta.get("change_type") != "replace":
+        return f"change_type is {delta.get('change_type') or 'missing'}"
+    old_text = delta.get("old_text")
+    new_text = delta.get("new_text")
+    if not isinstance(old_text, str) or not old_text:
+        return "old_text is missing"
+    if not isinstance(new_text, str) or not new_text:
+        return "new_text is missing"
+    if old_text == new_text:
+        return "old_text and new_text are identical"
+    evidence = delta.get("source_evidence")
+    if not isinstance(evidence, dict) or not evidence.get("repo_write_candidate"):
+        return "delta is not marked as a repo write candidate"
+    return None
+
+
+def _template_apply_operation(
+    *,
+    index: int,
+    delta: dict[str, Any],
+    current_text: str,
+    write: bool,
+) -> tuple[dict[str, Any], str]:
+    reason = _template_apply_skip_reason(delta)
+    base_operation = {
+        "index": index,
+        "delta_hash": delta.get("delta_hash"),
+        "change_type": delta.get("change_type"),
+        "route_class": delta.get("route_class"),
+        "old_text": delta.get("old_text"),
+        "new_text": delta.get("new_text"),
+    }
+    if reason is not None:
+        return {**base_operation, "status": "skipped", "reason": reason, "matches": 0}, current_text
+
+    old_text = str(delta["old_text"])
+    new_text = str(delta["new_text"])
+    matches = current_text.count(old_text)
+    if matches == 0:
+        return {
+            **base_operation,
+            "status": "skipped",
+            "reason": "old_text was not found in current template",
+            "matches": matches,
+        }, current_text
+    if matches > 1:
+        return {
+            **base_operation,
+            "status": "skipped",
+            "reason": "old_text matched more than once in current template",
+            "matches": matches,
+        }, current_text
+
+    if write:
+        return {
+            **base_operation,
+            "status": "applied",
+            "reason": "unique repo_template_text replacement",
+            "matches": matches,
+        }, current_text.replace(old_text, new_text, 1)
+    return {
+        **base_operation,
+        "status": "planned",
+        "reason": "unique repo_template_text replacement",
+        "matches": matches,
+    }, current_text
+
+
+def build_template_apply_report(
+    diff_report: dict[str, Any],
+    *,
+    source_path: Path | None = None,
+    write: bool = False,
+    command: list[str] | None = None,
+) -> dict[str, Any]:
+    if diff_report.get("schema_version") != REPORT_SCHEMA_VERSION:
+        raise RuntimeError("report schema is not cloud-doc-backport-report/v1")
+    if diff_report.get("doc_type") != "template":
+        raise RuntimeError("apply-template requires a template diff report")
+    source_target = diff_report.get("source_target")
+    if not isinstance(source_target, dict):
+        raise RuntimeError("diff report is missing source_target")
+    if source_target.get("kind") != "template":
+        raise RuntimeError("diff report source_target.kind must be template")
+
+    resolved_source = source_path or _resolve_source_path(str(source_target.get("path") or ""), label="source target")
+    _validate_template_source(resolved_source)
+    original_text = _read_text(resolved_source)
+    current_text = original_text
+    operations: list[dict[str, Any]] = []
+    for index, delta in enumerate(diff_report.get("deltas") or [], start=1):
+        if not isinstance(delta, dict):
+            operations.append(
+                {
+                    "index": index,
+                    "status": "skipped",
+                    "reason": "delta is not an object",
+                    "matches": 0,
+                }
+            )
+            continue
+        operation, current_text = _template_apply_operation(
+            index=index,
+            delta=delta,
+            current_text=current_text,
+            write=write,
+        )
+        operations.append(operation)
+
+    changed = current_text != original_text
+    if write and changed:
+        resolved_source.write_text(current_text, encoding="utf-8")
+
+    statuses = _counter_dict([str(operation["status"]) for operation in operations])
+    return {
+        "schema_version": APPLY_SCHEMA_VERSION,
+        "mode": "write" if write else "dry-run",
+        "source_target": {
+            "path": _display_path(resolved_source).as_posix(),
+            "kind": "template",
+        },
+        "diff_report": {
+            "run_id": diff_report.get("run_id"),
+            "result": diff_report.get("result"),
+            "schema_version": diff_report.get("schema_version"),
+        },
+        "metadata": {
+            "generated_at": _utc_now(),
+            "git_ref": _git_ref(),
+            "command": shlex.join(command or []),
+        },
+        "summary": {
+            "total_operations": len(operations),
+            "statuses": statuses,
+            "changed": changed,
+        },
+        "operations": operations,
+    }
+
+
+def markdown_apply_report(report: dict[str, Any]) -> str:
+    summary = report["summary"]
+    lines = [
+        "# Cloud Doc Backport Apply Report",
+        "",
+        "## Run",
+        "",
+        f"- Mode: `{report['mode']}`",
+        f"- Source target: `{report['source_target']['path']}`",
+        f"- Changed: `{summary['changed']}`",
+        f"- Git ref: `{report['metadata'].get('git_ref') or 'unknown'}`",
+        f"- Generated at: `{report['metadata']['generated_at']}`",
+        f"- Command: `{report['metadata']['command']}`",
+        "",
+        "## Summary",
+        "",
+        f"- Total operations: `{summary['total_operations']}`",
+        f"- Statuses: `{json.dumps(summary['statuses'], ensure_ascii=False)}`",
+        "",
+        "## Operations",
+        "",
+    ]
+    if not report["operations"]:
+        lines.append("No operations.")
+    else:
+        lines.extend(
+            [
+                "| # | Status | Reason | Matches | Old | New |",
+                "| ---: | --- | --- | ---: | --- | --- |",
+            ]
+        )
+        for operation in report["operations"]:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        str(operation["index"]),
+                        _markdown_cell(operation.get("status")),
+                        _markdown_cell(operation.get("reason")),
+                        _markdown_cell(operation.get("matches")),
+                        _markdown_cell(operation.get("old_text")),
+                        _markdown_cell(operation.get("new_text")),
+                    ]
+                )
+                + " |"
+            )
+    return "\n".join(lines) + "\n"
+
+
+def write_apply_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    json_path = out_dir / "cloud_doc_backport_apply.json"
+    markdown_path = out_dir / "cloud_doc_backport_apply.md"
+    json_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    markdown_path.write_text(markdown_apply_report(report), encoding="utf-8")
+    return {"json": json_path, "markdown": markdown_path}
+
+
 def _default_out_dir(run_id: str) -> Path:
     return get_paths().cloud_doc_backport_reports_dir / _safe_path_token(run_id)
 
@@ -841,6 +1078,15 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     diff_parser.add_argument("--out", help="output directory for JSON and Markdown reports")
     diff_parser.add_argument("--run-id", default="cloud-doc-backport-local")
     diff_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for real docs")
+
+    apply_parser = subparsers.add_parser(
+        "apply-template",
+        description="Plan or apply safe template text replacements from a diff report.",
+    )
+    apply_parser.add_argument("--report", required=True, help="cloud_doc_backport_report.json path")
+    apply_parser.add_argument("--source-path", help="optional source template override")
+    apply_parser.add_argument("--out", help="output directory for JSON and Markdown apply reports")
+    apply_parser.add_argument("--write", action="store_true", help="write safe replacements to the source template")
     return parser.parse_args(argv)
 
 
@@ -893,11 +1139,36 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
     return 0
 
 
+def _run_apply_template(args: argparse.Namespace, raw_argv: list[str]) -> int:
+    try:
+        report_path = _resolve_source_path(args.report, label="diff report")
+        source_override = _resolve_source_path(args.source_path, label="source target") if args.source_path else None
+        diff_report = _load_json_file(report_path)
+        apply_report = build_template_apply_report(
+            diff_report,
+            source_path=source_override,
+            write=bool(args.write),
+            command=["tools/cloud_doc_backport.py", *raw_argv],
+        )
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    out_dir = Path(args.out) if args.out else report_path.parent
+    written = write_apply_report(apply_report, out_dir)
+    print(f"WROTE {written['json']}")
+    print(f"WROTE {written['markdown']}")
+    if args.write and apply_report["summary"]["changed"]:
+        print(f"UPDATED {apply_report['source_target']['path']}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     raw_argv = list(sys.argv[1:] if argv is None else argv)
     args = _parse_args(raw_argv)
     if args.command == "diff":
         return _run_diff(args, raw_argv)
+    if args.command == "apply-template":
+        return _run_apply_template(args, raw_argv)
     raise AssertionError(f"unhandled command: {args.command}")
 
 
