@@ -40,6 +40,7 @@ class PathSegments:
     VERSION_TRACKING = "version_tracking"
     RELEASES = "releases"
     CONTENT_QC = "content_qc"
+    CLOUD_DOC_BACKPORT = "cloud_doc_backport"
 
     PARAMS_TEX = "params.tex"
     FONTS_TEX = "fonts.tex"
@@ -95,6 +96,10 @@ def releases_of(base_root: Path) -> Path:
 
 def content_qc_reports_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.CONTENT_QC
+
+
+def cloud_doc_backport_reports_of(base_root: Path) -> Path:
+    return base_root / PathSegments.REPORTS / PathSegments.CLOUD_DOC_BACKPORT
 
 
 @dataclass(frozen=True)
@@ -193,6 +198,10 @@ class Paths:
     @property
     def content_qc_reports_dir(self) -> Path:
         return content_qc_reports_of(self.root)
+
+    @property
+    def cloud_doc_backport_reports_dir(self) -> Path:
+        return cloud_doc_backport_reports_of(self.root)
 
     def safety_rst(self, lang: str) -> Path:
         return self.docs_dir / f"safety_{lang}.rst"
