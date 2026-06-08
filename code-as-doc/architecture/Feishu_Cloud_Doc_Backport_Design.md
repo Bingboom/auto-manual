@@ -335,13 +335,28 @@ Goal: close the in-review loop.
 Scope:
 
 - Apply high-confidence `repo_review_text` deltas to `docs/_review/...`.
-- Emit source-table suggestions for data-driven deltas.
-- Verify repo residuals against the accepted cloud doc delta list.
+- Keep data-driven deltas as `source_table_suggestion` and skip them into the
+  apply report.
+- Require `--write` for local review edits; the dry-run default only writes an
+  apply report.
+- Emit source-table suggestions for data-driven deltas. A richer suggestion
+  artifact and residual verification remain follow-up work.
 
 Exit:
 
-- An in-review cloud doc can produce a review-branch PR plus source-table
-  suggestions.
+- An in-review cloud doc can produce guarded local `docs/_review/...` edits and
+  a skipped source-table suggestion list without touching Feishu source tables.
+
+Current command:
+
+```bash
+python tools/cloud_doc_backport.py apply-review \
+  --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
+
+python tools/cloud_doc_backport.py apply-review \
+  --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json \
+  --write
+```
 
 ### P4: OpenClaw Trigger
 
