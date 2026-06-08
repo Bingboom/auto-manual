@@ -304,13 +304,29 @@ Goal: implement the lower-risk template-doc path first.
 Scope:
 
 - Require explicit `template=<path>` binding.
-- Apply high-confidence prose deltas to `docs/templates/...`.
-- Open a PR with a mapping report.
+- Plan and apply only high-confidence `repo_template_text` replacements to
+  `docs/templates/...`.
+- Keep placeholder/spec/table-like deltas report-only as `needs_human_mapping`.
+- Require `--write` for local template edits; the dry-run default only writes an
+  apply report.
+- Open a PR with a mapping report. This remains an operator/agent step until
+  the chat-triggered runner exists.
 
 Exit:
 
 - A template cloud doc edit can become a repo PR without touching review bundles
   or Feishu source tables.
+
+Current command:
+
+```bash
+python tools/cloud_doc_backport.py apply-template \
+  --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
+
+python tools/cloud_doc_backport.py apply-template \
+  --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json \
+  --write
+```
 
 ### P3: Review Doc PR + Suggestions
 

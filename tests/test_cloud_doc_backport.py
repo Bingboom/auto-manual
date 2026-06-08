@@ -258,6 +258,75 @@ class CloudDocBackportTest(unittest.TestCase):
 
             self.assertEqual(exit_code, 2)
 
+    def test_apply_template_dry_run_plans_only_safe_template_text(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            template_path = root / "docs" / "templates" / "page_zh" / "00_preface.rst"
+            template_path.parent.mkdir(parents=True)
+            template_path.write_text(
+                "用户指南\n========\n\n原始内容。\n\n|PRODUCT_NAME| 1500 W\n",
+                encoding="utf-8",
+            )
+            fetched = "# manual\n\n## 用户指南\n\n修改内容。\n\n|PRODUCT_NAME| 2200 W\n"
+            report = build_report(
+                run_id="run-apply",
+                doc_type="template",
+                doc_url="fixture.md",
+                baseline_path=template_path,
+                fetched_text=fetched,
+                baseline_text=template_path.read_text(encoding="utf-8"),
+                command=["tools/cloud_doc_backport.py", "diff"],
+                source_path=template_path,
+                section_title="用户指南",
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            exit_code = main(["apply-template", "--report", str(report_path)])
+
+            self.assertEqual(exit_code, 0)
+            self.assertIn("原始内容。", template_path.read_text(encoding="utf-8"))
+            payload = json.loads((out_dir / "cloud_doc_backport_apply.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["mode"], "dry-run")
+            self.assertEqual(payload["summary"]["statuses"]["planned"], 1)
+            self.assertEqual(payload["summary"]["statuses"]["skipped"], 1)
+            skipped = next(operation for operation in payload["operations"] if operation["status"] == "skipped")
+            self.assertIn("needs_human_mapping", skipped["reason"])
+
+    def test_apply_template_write_updates_unique_safe_replacements(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            template_path = root / "docs" / "templates" / "page_zh" / "00_preface.rst"
+            template_path.parent.mkdir(parents=True)
+            template_path.write_text("用户指南\n========\n\n原始内容。\n", encoding="utf-8")
+            fetched = "# manual\n\n## 用户指南\n\n修改内容。\n"
+            report = build_report(
+                run_id="run-write",
+                doc_type="template",
+                doc_url="fixture.md",
+                baseline_path=template_path,
+                fetched_text=fetched,
+                baseline_text=template_path.read_text(encoding="utf-8"),
+                command=["tools/cloud_doc_backport.py", "diff"],
+                source_path=template_path,
+                section_title="用户指南",
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            exit_code = main(["apply-template", "--report", str(report_path), "--write"])
+
+            self.assertEqual(exit_code, 0)
+            self.assertIn("修改内容。", template_path.read_text(encoding="utf-8"))
+            payload = json.loads((out_dir / "cloud_doc_backport_apply.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["mode"], "write")
+            self.assertEqual(payload["summary"]["statuses"]["applied"], 1)
+            self.assertTrue(payload["summary"]["changed"])
+
     def test_report_is_no_diff_for_identical_content(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")
         report = build_report(
