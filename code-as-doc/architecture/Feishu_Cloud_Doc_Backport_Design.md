@@ -411,7 +411,11 @@ Scope:
 
 - Add typed action resolution for `cloud-doc-backport` in the Feishu IM adapter.
 - Extract Feishu cloud-doc links from text messages.
-- Require an explicit `docs/_review/...rst` source path.
+- Accept an explicit `docs/_review/...rst` source path, or infer it from a
+  target hint such as `manual_je2000f_eu_en_0.7` when the current review checkout
+  has one safe source candidate or one unique message-hint match.
+- Reply with candidate paths instead of guessing when source inference is
+  ambiguous or the review bundle is missing.
 - Enforce sender allowlist through `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`.
 - Hand off to the backport runner and reply with report paths / `PR_READY`.
 - Keep `--write` behind `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; even then,
@@ -419,8 +423,10 @@ Scope:
 
 Exit:
 
-- A single typed Feishu message starts the mapping/report flow:
-  `cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst`.
+- A single typed Feishu message starts the mapping/report flow. The safest shape
+  is `cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst`;
+  when source inference is unique, `cloud-doc backport <Feishu cloud-doc URL>` is
+  accepted as the operator-friendly shape.
 - GitHub PR creation remains a second explicit step; Feishu source-table writes
   remain follow-up work.
 

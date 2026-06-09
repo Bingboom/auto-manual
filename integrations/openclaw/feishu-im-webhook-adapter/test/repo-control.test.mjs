@@ -55,6 +55,71 @@ console.log(JSON.stringify({ args }));
   assert.match(result.stdout, /--write/);
 });
 
+test("inferCloudDocBackportSource resolves the only review page candidate", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "repo-control-source-infer-"));
+  await fs.mkdir(path.join(root, "docs", "_review", "JE-2000F", "EU", "page"), { recursive: true });
+  await fs.writeFile(
+    path.join(root, "docs", "_review", "JE-2000F", "EU", "page", "00_preface.rst"),
+    "**IMPORTANT**\n\nOriginal copy.\n",
+    "utf8"
+  );
+
+  const repoControl = createRepoControl({ repoRoot: root, pythonBin: "python3" });
+  const result = await repoControl.inferCloudDocBackportSource({
+    docUrl: "https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc",
+    messageText: "根据这个文档回填修订 manual_je2000f_eu_en_0.7 副本",
+    targetHint: { model: "JE-2000F", region: "EU", lang: "en", version: "0.7" },
+  });
+
+  assert.equal(result.status, "resolved");
+  assert.equal(result.reason, "single_review_source_candidate");
+  assert.equal(result.sourcePath, "docs/_review/JE-2000F/EU/page/00_preface.rst");
+});
+
+test("inferCloudDocBackportSource reports ambiguity with candidates", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "repo-control-source-ambiguous-"));
+  const pageDir = path.join(root, "docs", "_review", "JE-2000F", "EU", "page");
+  await fs.mkdir(pageDir, { recursive: true });
+  await fs.writeFile(path.join(pageDir, "00_preface.rst"), "**IMPORTANT**\n", "utf8");
+  await fs.writeFile(path.join(pageDir, "11_warranty.rst"), "Warranty\n========\n", "utf8");
+
+  const repoControl = createRepoControl({ repoRoot: root, pythonBin: "python3" });
+  const result = await repoControl.inferCloudDocBackportSource({
+    docUrl: "https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc",
+    messageText: "根据这个文档回填修订 manual_je2000f_eu_en_0.7 副本",
+    targetHint: { model: "JE-2000F", region: "EU", lang: "en", version: "0.7" },
+  });
+
+  assert.equal(result.status, "needs_input");
+  assert.equal(result.reason, "review_source_ambiguous");
+  assert.deepEqual(
+    result.candidates.map((candidate) => candidate.sourcePath),
+    [
+      "docs/_review/JE-2000F/EU/page/00_preface.rst",
+      "docs/_review/JE-2000F/EU/page/11_warranty.rst",
+    ]
+  );
+});
+
+test("inferCloudDocBackportSource resolves a unique message hint among multiple pages", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "repo-control-source-hint-"));
+  const pageDir = path.join(root, "docs", "_review", "JE-2000F", "EU", "page");
+  await fs.mkdir(pageDir, { recursive: true });
+  await fs.writeFile(path.join(pageDir, "00_preface.rst"), "**IMPORTANT**\n", "utf8");
+  await fs.writeFile(path.join(pageDir, "11_warranty.rst"), "Warranty\n========\n", "utf8");
+
+  const repoControl = createRepoControl({ repoRoot: root, pythonBin: "python3" });
+  const result = await repoControl.inferCloudDocBackportSource({
+    docUrl: "https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc",
+    messageText: "根据这个文档回填修订 manual_je2000f_eu_en_0.7 warranty",
+    targetHint: { model: "JE-2000F", region: "EU", lang: "en", version: "0.7" },
+  });
+
+  assert.equal(result.status, "resolved");
+  assert.equal(result.reason, "unique_message_hint_match");
+  assert.equal(result.sourcePath, "docs/_review/JE-2000F/EU/page/11_warranty.rst");
+});
+
 test("openCloudDocBackportPr calls the Python open-pr helper and parses JSON", async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "repo-control-backport-pr-"));
   const fakePython = path.join(root, "fake-python.mjs");

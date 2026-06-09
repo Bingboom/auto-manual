@@ -59,6 +59,198 @@ function defaultCloudDocBackportRunId() {
   return `feishu-im-${new Date().toISOString().replace(/[^0-9A-Za-z]+/g, "-").replace(/-+$/g, "")}`;
 }
 
+function compactPathPart(value) {
+  return String(value || "").replace(/[/:\\]+/g, "_").trim();
+}
+
+function normalizeSearchText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[_-]+/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function sourceLabelFromFileName(filePath) {
+  return normalizeSearchText(path.basename(filePath, path.extname(filePath)).replace(/^\d+_/, ""));
+}
+
+function sourceLabelsFromText(text) {
+  const labels = [];
+  const lines = String(text || "").split(/\r?\n/);
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = String(lines[index] || "").trim();
+    if (!line || /^\|[A-Z0-9_]+\|$/.test(line) || line.startsWith(".. ")) {
+      continue;
+    }
+    const bold = line.match(/^\*\*(.+?)\*\*$/);
+    if (bold) {
+      labels.push(normalizeSearchText(bold[1]));
+      break;
+    }
+    const nextLine = String(lines[index + 1] || "").trim();
+    if (/^[=\-~^"']{3,}$/.test(nextLine)) {
+      labels.push(normalizeSearchText(line));
+      break;
+    }
+    if (/^#+\s+\S+/.test(line)) {
+      labels.push(normalizeSearchText(line.replace(/^#+\s+/, "")));
+      break;
+    }
+  }
+  return labels.filter(Boolean);
+}
+
+async function pathExists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function collectReviewSourceCandidates(config, { model, region, lang = "" }) {
+  const docsReviewRoot = path.join(config.repoRoot, "docs", "_review");
+  const targetRoots = [];
+  const modelPart = compactPathPart(model);
+  const regionPart = compactPathPart(region);
+  const langPart = compactPathPart(lang);
+  if (!modelPart || !regionPart) {
+    return [];
+  }
+  if (langPart) {
+    targetRoots.push(path.join(docsReviewRoot, modelPart, regionPart, langPart));
+  }
+  targetRoots.push(path.join(docsReviewRoot, modelPart, regionPart));
+
+  const candidates = [];
+  const seen = new Set();
+  for (const root of targetRoots) {
+    const pageDir = path.join(root, "page");
+    if (!(await pathExists(pageDir))) {
+      continue;
+    }
+    const entries = await fs.readdir(pageDir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (!entry.isFile() || !entry.name.endsWith(".rst")) {
+        continue;
+      }
+      const absPath = path.join(pageDir, entry.name);
+      const relPath = path.relative(config.repoRoot, absPath).split(path.sep).join("/");
+      if (seen.has(relPath)) {
+        continue;
+      }
+      seen.add(relPath);
+      let labels = [sourceLabelFromFileName(entry.name)].filter(Boolean);
+      try {
+        const text = await fs.readFile(absPath, "utf8");
+        labels = [...labels, ...sourceLabelsFromText(text)];
+      } catch {
+        // Candidate listing should not fail just because one file is unreadable;
+        // the runner will validate the chosen source before it writes anything.
+      }
+      candidates.push({
+        sourcePath: relPath,
+        reviewRoot: path.relative(config.repoRoot, root).split(path.sep).join("/"),
+        label: labels[0] || "",
+        labels: [...new Set(labels)],
+      });
+    }
+  }
+  return candidates.sort((left, right) => left.sourcePath.localeCompare(right.sourcePath));
+}
+
+function scoreReviewSourceCandidate(candidate, request) {
+  const text = normalizeSearchText(`${request.messageText || ""} ${request.docUrl || ""}`);
+  const label = normalizeSearchText(candidate.label);
+  if (!text || !label) {
+    return 0;
+  }
+  let score = 0;
+  const fileStem = normalizeSearchText(path.basename(candidate.sourcePath, ".rst"));
+  if (fileStem && text.includes(fileStem)) {
+    score += 80;
+  }
+  for (const candidateLabel of candidate.labels || [label]) {
+    const normalizedLabel = normalizeSearchText(candidateLabel);
+    if (!normalizedLabel) {
+      continue;
+    }
+    if (text.includes(normalizedLabel)) {
+      score += 50;
+    }
+    for (const part of normalizedLabel.split(" ").filter(Boolean)) {
+      if (part.length >= 4 && text.includes(part)) {
+        score += 10;
+      }
+    }
+  }
+  return score;
+}
+
+async function inferCloudDocBackportSourceJson(config, request = {}) {
+  if (request.sourcePath) {
+    return {
+      status: "resolved",
+      reason: "explicit_source_path",
+      sourcePath: request.sourcePath,
+      candidates: [],
+      targetHint: request.targetHint || {},
+    };
+  }
+  const target = request.targetHint || {};
+  if (!target.model || !target.region) {
+    return {
+      status: "needs_input",
+      reason: "target_not_found",
+      sourcePath: "",
+      candidates: [],
+      targetHint: target,
+    };
+  }
+  const candidates = await collectReviewSourceCandidates(config, target);
+  if (!candidates.length) {
+    return {
+      status: "needs_input",
+      reason: "review_bundle_not_found",
+      sourcePath: "",
+      candidates: [],
+      targetHint: target,
+    };
+  }
+  if (candidates.length === 1) {
+    return {
+      status: "resolved",
+      reason: "single_review_source_candidate",
+      sourcePath: candidates[0].sourcePath,
+      candidates,
+      targetHint: target,
+    };
+  }
+
+  const scored = candidates
+    .map((candidate) => ({ ...candidate, score: scoreReviewSourceCandidate(candidate, request) }))
+    .sort((left, right) => right.score - left.score || left.sourcePath.localeCompare(right.sourcePath));
+  if (scored[0]?.score > 0 && scored[0].score > (scored[1]?.score || 0)) {
+    return {
+      status: "resolved",
+      reason: "unique_message_hint_match",
+      sourcePath: scored[0].sourcePath,
+      candidates: scored.slice(0, 10),
+      targetHint: target,
+    };
+  }
+  return {
+    status: "needs_input",
+    reason: "review_source_ambiguous",
+    sourcePath: "",
+    candidates: scored.slice(0, 10),
+    targetHint: target,
+  };
+}
+
 function execFileResult(file, args, options) {
   return new Promise((resolve) => {
     execFile(file, args, options, (error, stdout, stderr) => {
@@ -203,6 +395,9 @@ export function createRepoControl(config) {
     },
     async runCloudDocBackportReview({ docUrl, sourcePath, runId = "", write = false }) {
       return runCloudDocBackportJson(config, { docUrl, sourcePath, runId, write });
+    },
+    async inferCloudDocBackportSource(request) {
+      return inferCloudDocBackportSourceJson(config, request);
     },
     async openCloudDocBackportPr({ manifestPath, branchName = "" }) {
       return openCloudDocBackportPrJson(config, { manifestPath, branchName });
