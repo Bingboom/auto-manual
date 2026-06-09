@@ -427,6 +427,82 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(payload["source_target"]["kind"], "review")
             self.assertEqual(payload["summary"]["statuses"]["planned"], 1)
 
+    def test_verify_review_fails_when_safe_review_text_is_still_pending(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text(
+                "用户指南\n========\n\n原始内容。\n\n持续功率 1500 W\n",
+                encoding="utf-8",
+            )
+            fetched = "# manual\n\n## 用户指南\n\n修改内容。\n\n持续功率 2200 W\n"
+            report = build_report(
+                run_id="run-review-verify-pending",
+                doc_type="review",
+                doc_url="fixture.md",
+                baseline_path=review_path,
+                fetched_text=fetched,
+                baseline_text=review_path.read_text(encoding="utf-8"),
+                command=["tools/cloud_doc_backport.py", "diff"],
+                source_path=review_path,
+                section_title="用户指南",
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            exit_code = main(["verify-review", "--report", str(report_path)])
+
+            self.assertEqual(exit_code, 1)
+            payload = json.loads((out_dir / "cloud_doc_backport_verify.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["result"], "FAIL")
+            self.assertEqual(payload["summary"]["categories"]["still_pending"], 1)
+            self.assertEqual(payload["summary"]["categories"]["source_table_suggestion"], 1)
+            self.assertEqual(payload["summary"]["failing_categories"]["still_pending"], 1)
+            self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
+            self.assertEqual(payload["source_table_suggestions"][0]["old_matches"], 1)
+            self.assertIn("持续功率 2200 W", payload["source_table_suggestions"][0]["new_text"])
+
+    def test_verify_review_passes_after_safe_review_text_is_applied(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text(
+                "用户指南\n========\n\n原始内容。\n\n持续功率 1500 W\n",
+                encoding="utf-8",
+            )
+            fetched = "# manual\n\n## 用户指南\n\n修改内容。\n\n持续功率 2200 W\n"
+            report = build_report(
+                run_id="run-review-verify-pass",
+                doc_type="review",
+                doc_url="fixture.md",
+                baseline_path=review_path,
+                fetched_text=fetched,
+                baseline_text=review_path.read_text(encoding="utf-8"),
+                command=["tools/cloud_doc_backport.py", "diff"],
+                source_path=review_path,
+                section_title="用户指南",
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            apply_exit = main(["apply-review", "--report", str(report_path), "--write", "--out", str(root / "apply")])
+            verify_exit = main(["verify-review", "--report", str(report_path), "--out", str(root / "verify")])
+
+            self.assertEqual(apply_exit, 0)
+            self.assertEqual(verify_exit, 0)
+            payload = json.loads((root / "verify" / "cloud_doc_backport_verify.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["result"], "PASS")
+            self.assertEqual(payload["summary"]["categories"]["applied_resolved"], 1)
+            self.assertEqual(payload["summary"]["categories"]["source_table_suggestion"], 1)
+            self.assertEqual(payload["summary"]["failing_categories"], {})
+            self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
+
     def test_report_is_no_diff_for_identical_content(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")
         report = build_report(
