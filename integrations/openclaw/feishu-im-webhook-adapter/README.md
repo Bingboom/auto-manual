@@ -207,9 +207,10 @@ cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run
 The default mode is dry-run: the adapter calls
 `python tools/cloud_doc_backport.py run-review ...`, writes
 `cloud_doc_backport_report.*`, `cloud_doc_backport_apply.*`, and
-`cloud_doc_backport_run.*` under `reports/cloud_doc_backport/<run-id>/`, and
-replies with the manifest/report paths plus `source_table_suggestions`. If the
-message includes `--write`, the adapter refuses it unless
+`cloud_doc_backport_run.*` under `reports/cloud_doc_backport/<run-id>/`, writes
+`cloud_doc_backport_source_table_suggestions.*` for report-only data-like
+deltas, and replies with the manifest/report paths plus
+`source_table_suggestions`. If the message includes `--write`, the adapter refuses it unless
 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true`; write mode still only patches
 guarded review prose and reports source-table suggestions without writing Feishu
 source tables.

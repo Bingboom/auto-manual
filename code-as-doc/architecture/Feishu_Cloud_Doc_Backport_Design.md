@@ -341,8 +341,7 @@ Scope:
   apply report.
 - Verify review-text residuals against the accepted cloud-doc delta list after
   apply. Review text residuals fail; source-table suggestions remain report-only.
-- Emit source-table suggestions for data-driven deltas. A richer suggestion
-  artifact remains follow-up work.
+- Emit source-table suggestions for data-driven deltas.
 
 Exit:
 
@@ -392,6 +391,18 @@ changes, requires the checkout to be on `main`, commits only the changed
 Local `reports/cloud_doc_backport/...` files stay evidence and are not committed
 by this helper.
 
+`run-review` and `verify-review` also write a P6 operator artifact:
+
+```text
+reports/cloud_doc_backport/<run-id>/cloud_doc_backport_source_table_suggestions.json
+reports/cloud_doc_backport/<run-id>/cloud_doc_backport_source_table_suggestions.md
+```
+
+This report is report-only. It enriches each `source_table_suggestion` with a
+candidate source-table route, evidence, location, and operator next steps. It
+does not include a Feishu `record_id` unless a later resolver can prove one, and
+it does not write source tables.
+
 ### P4: OpenClaw Trigger
 
 Goal: make the workflow callable from Feishu chat.
@@ -436,6 +447,28 @@ Exit:
   one explicit Feishu message from an allowed sender.
 - The helper does not self-merge and does not mutate Feishu source tables.
 
+### P6: Source-Table Suggestion Artifact
+
+Goal: make report-only source-table deltas reviewable without coupling the
+backport flow to a still-evolving Feishu Base schema.
+
+Scope:
+
+- Build `cloud_doc_backport_source_table_suggestions.json/.md` from
+  `source_table_suggestion` deltas.
+- Preserve `external_write=false` in the report contract.
+- Provide candidate source-table hints such as spec values, page placeholders,
+  symbols/LCD, troubleshooting, or generic phase2 source tables.
+- Include the old/new text, heading path, line number, delta hash, and source
+  evidence for each suggestion.
+- Surface the Markdown report path in the Feishu IM reply when present.
+
+Exit:
+
+- Operators can review source-table suggestions from a durable local report
+  before editing Feishu.
+- No Feishu source table is mutated, and no row-level `record_id` is guessed.
+
 ## 9. Relationship To QC
 
 Closed-loop QC uses Review Doc Backport as B2:
@@ -455,8 +488,8 @@ its purpose is source maintenance, not quality marking.
 - Which report shape should be shared with QC reports: reuse
   `content-qc-report/v1`, or define `cloud-doc-backport-report/v1` and link the
   two later?
-- How should source-table suggestions be represented in Feishu: document
-  comments, a report table, or existing content-table fields?
+- If source-table suggestions later move into Feishu, should they be represented
+  as document comments, a report table, or existing content-table fields?
 - Should P2 template-doc PRs be allowed before the standing agent exists, using
   Codex/Claude as the executor?
 

@@ -465,6 +465,14 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
             self.assertEqual(payload["source_table_suggestions"][0]["old_matches"], 1)
             self.assertIn("持续功率 2200 W", payload["source_table_suggestions"][0]["new_text"])
+            suggestions = json.loads(
+                (out_dir / "cloud_doc_backport_source_table_suggestions.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(suggestions["schema_version"], "cloud-doc-backport-source-table-suggestions/v1")
+            self.assertEqual(suggestions["result"], "HAS_SUGGESTIONS")
+            self.assertFalse(suggestions["summary"]["external_write"])
+            self.assertEqual(suggestions["suggestions"][0]["routing_hint"]["route_key"], "spec_or_numeric_value")
+            self.assertIn("规格参数明细", suggestions["suggestions"][0]["routing_hint"]["candidate_source_tables"])
 
     def test_verify_review_passes_after_safe_review_text_is_applied(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -538,6 +546,7 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertIn("原始内容。", review_path.read_text(encoding="utf-8"))
             self.assertTrue((out_dir / "cloud_doc_backport_report.json").exists())
             self.assertTrue((out_dir / "cloud_doc_backport_apply.json").exists())
+            self.assertTrue((out_dir / "cloud_doc_backport_source_table_suggestions.json").exists())
             self.assertFalse((out_dir / "cloud_doc_backport_verify.json").exists())
             payload = json.loads((out_dir / "cloud_doc_backport_run.json").read_text(encoding="utf-8"))
             self.assertEqual(payload["schema_version"], "cloud-doc-backport-run/v1")
@@ -547,6 +556,13 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(payload["summary"]["apply_statuses"]["planned"], 1)
             self.assertEqual(payload["summary"]["apply_statuses"]["skipped"], 1)
             self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
+            self.assertIn("source_table_suggestions_markdown", payload["reports"])
+            suggestions = json.loads(
+                (out_dir / "cloud_doc_backport_source_table_suggestions.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(suggestions["summary"]["total_suggestions"], 1)
+            self.assertEqual(suggestions["suggestions"][0]["status"], "operator_review_required")
+            self.assertFalse(suggestions["suggestions"][0]["external_write"])
 
     def test_run_review_write_applies_verifies_and_marks_pr_ready(self) -> None:
         with tempfile.TemporaryDirectory() as td:
