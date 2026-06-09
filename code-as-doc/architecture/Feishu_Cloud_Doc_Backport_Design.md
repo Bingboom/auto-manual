@@ -352,6 +352,17 @@ Exit:
 Current command:
 
 ```bash
+python tools/cloud_doc_backport.py run-review \
+  --doc-url <doc-or-fixture.md> \
+  --source-path docs/_review/<model>/<region>/page/<page>.rst \
+  --out reports/cloud_doc_backport/<run-id>
+
+python tools/cloud_doc_backport.py run-review \
+  --doc-url <doc-or-fixture.md> \
+  --source-path docs/_review/<model>/<region>/page/<page>.rst \
+  --out reports/cloud_doc_backport/<run-id> \
+  --write
+
 python tools/cloud_doc_backport.py apply-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 
@@ -362,6 +373,11 @@ python tools/cloud_doc_backport.py apply-review \
 python tools/cloud_doc_backport.py verify-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 ```
+
+`run-review` is the P4 handoff surface: it writes a durable
+`cloud_doc_backport_run.json/.md` manifest with the diff/apply/verify report
+paths, `PR_READY` gating, and report-only source-table suggestions. It does not
+create GitHub PRs or write Feishu source tables by itself.
 
 ### P4: OpenClaw Trigger
 

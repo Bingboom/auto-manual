@@ -503,6 +503,127 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(payload["summary"]["failing_categories"], {})
             self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
 
+    def test_run_review_dry_run_writes_manifest_without_editing_source(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text(
+                "用户指南\n========\n\n原始内容。\n\n持续功率 1500 W\n",
+                encoding="utf-8",
+            )
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text(
+                "# manual\n\n## 用户指南\n\n修改内容。\n\n持续功率 2200 W\n",
+                encoding="utf-8",
+            )
+            out_dir = root / "out"
+
+            exit_code = main(
+                [
+                    "run-review",
+                    "--doc-url",
+                    str(fetched_path),
+                    "--source-path",
+                    str(review_path),
+                    "--run-id",
+                    "run-review-dry",
+                    "--out",
+                    str(out_dir),
+                ]
+            )
+
+            self.assertEqual(exit_code, 0)
+            self.assertIn("原始内容。", review_path.read_text(encoding="utf-8"))
+            self.assertTrue((out_dir / "cloud_doc_backport_report.json").exists())
+            self.assertTrue((out_dir / "cloud_doc_backport_apply.json").exists())
+            self.assertFalse((out_dir / "cloud_doc_backport_verify.json").exists())
+            payload = json.loads((out_dir / "cloud_doc_backport_run.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["schema_version"], "cloud-doc-backport-run/v1")
+            self.assertEqual(payload["result"], "DRY_RUN")
+            self.assertFalse(payload["summary"]["changed"])
+            self.assertFalse(payload["summary"]["pr_ready"])
+            self.assertEqual(payload["summary"]["apply_statuses"]["planned"], 1)
+            self.assertEqual(payload["summary"]["apply_statuses"]["skipped"], 1)
+            self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
+
+    def test_run_review_write_applies_verifies_and_marks_pr_ready(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text(
+                "用户指南\n========\n\n原始内容。\n\n持续功率 1500 W\n",
+                encoding="utf-8",
+            )
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text(
+                "# manual\n\n## 用户指南\n\n修改内容。\n\n持续功率 2200 W\n",
+                encoding="utf-8",
+            )
+            out_dir = root / "out"
+
+            exit_code = main(
+                [
+                    "run-review",
+                    "--doc-url",
+                    str(fetched_path),
+                    "--source-path",
+                    str(review_path),
+                    "--run-id",
+                    "run-review-write",
+                    "--out",
+                    str(out_dir),
+                    "--write",
+                ]
+            )
+
+            self.assertEqual(exit_code, 0)
+            self.assertIn("修改内容。", review_path.read_text(encoding="utf-8"))
+            self.assertTrue((out_dir / "cloud_doc_backport_report.json").exists())
+            self.assertTrue((out_dir / "cloud_doc_backport_apply.json").exists())
+            self.assertTrue((out_dir / "cloud_doc_backport_verify.json").exists())
+            payload = json.loads((out_dir / "cloud_doc_backport_run.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["result"], "PR_READY")
+            self.assertTrue(payload["summary"]["changed"])
+            self.assertTrue(payload["summary"]["pr_ready"])
+            self.assertEqual(payload["summary"]["apply_statuses"]["applied"], 1)
+            self.assertEqual(payload["summary"]["verify_categories"]["applied_resolved"], 1)
+            self.assertEqual(payload["summary"]["source_table_suggestions"], 1)
+
+    def test_run_review_write_fails_when_residuals_are_ambiguous(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text("用户指南\n========\n\n原始内容。\n\n其他\n========\n\n原始内容。\n", encoding="utf-8")
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text("# manual\n\n## 用户指南\n\n修改内容。\n", encoding="utf-8")
+            out_dir = root / "out"
+
+            exit_code = main(
+                [
+                    "run-review",
+                    "--doc-url",
+                    str(fetched_path),
+                    "--source-path",
+                    str(review_path),
+                    "--run-id",
+                    "run-review-fail",
+                    "--out",
+                    str(out_dir),
+                    "--write",
+                ]
+            )
+
+            self.assertEqual(exit_code, 1)
+            self.assertNotIn("修改内容。", review_path.read_text(encoding="utf-8"))
+            payload = json.loads((out_dir / "cloud_doc_backport_run.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["result"], "FAIL")
+            self.assertEqual(payload["summary"]["apply_statuses"]["skipped"], 1)
+            self.assertEqual(payload["summary"]["verify_failing_categories"]["unsafe_or_ambiguous"], 1)
+            self.assertFalse(payload["summary"]["pr_ready"])
+
     def test_report_is_no_diff_for_identical_content(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")
         report = build_report(
