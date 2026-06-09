@@ -223,3 +223,69 @@ export function formatRecordNoLongerAvailableReply(row = {}, localProfile = null
   const recordLine = row?.record_id ? `record_id: ${row.record_id}` : "";
   return [prefix, recordLine].filter(Boolean).join("\n");
 }
+
+export function formatCloudDocBackportNeedInputReply(request = {}, localProfile = null) {
+  const missing = Array.isArray(request.missing) ? request.missing : [];
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportNeedInput", "云文档修订回填需要补齐输入。"),
+    missing.length ? `missing: ${missing.join(", ")}` : "",
+    "请发送：cloud-doc backport <飞书云文档链接> docs/_review/<model>/<region>/page/<page>.rst",
+    "默认只 dry-run 出报告；要写入需显式开启 adapter 写入开关并在消息里写 --write。",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportDeniedReply(reason, localProfile = null) {
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportDenied", "云文档修订回填没有执行。"),
+    String(reason || "").trim(),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportAcceptedReply(request = {}, localProfile = null) {
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportAccepted", "已接受云文档修订回填任务，开始生成报告。"),
+    request.write ? "mode: write" : "mode: dry-run",
+    request.sourcePath ? `source: ${request.sourcePath}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportResultReply(result = {}, localProfile = null) {
+  const summary = result.summary || {};
+  const reports = result.reports || {};
+  const lines = [
+    localReplyPhrase(localProfile, "cloudDocBackportResult", "云文档修订回填完成。"),
+    `result: ${result.result || "-"}`,
+    `mode: ${result.mode || "-"}`,
+    `pr_ready: ${summary.pr_ready === true}`,
+    `changed: ${summary.changed === true}`,
+    `source_table_suggestions: ${summary.source_table_suggestions ?? 0}`,
+  ];
+  if (result.manifest_path) {
+    lines.push(`manifest: ${result.manifest_path}`);
+  }
+  if (reports.run_markdown) {
+    lines.push(`run_report: ${reports.run_markdown}`);
+  }
+  if (reports.diff_markdown) {
+    lines.push(`diff_report: ${reports.diff_markdown}`);
+  }
+  if (reports.apply_markdown) {
+    lines.push(`apply_report: ${reports.apply_markdown}`);
+  }
+  if (reports.verify_markdown) {
+    lines.push(`verify_report: ${reports.verify_markdown}`);
+  }
+  if (Array.isArray(result.next_actions) && result.next_actions.length) {
+    lines.push("next:");
+    for (const action of result.next_actions.slice(0, 3)) {
+      lines.push(`- ${action}`);
+    }
+  }
+  return lines.filter(Boolean).join("\n");
+}

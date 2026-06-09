@@ -385,14 +385,19 @@ Goal: make the workflow callable from Feishu chat.
 
 Scope:
 
-- Add typed action resolution for `cloud-doc-backport`.
-- Extract doc links from text messages.
-- Enforce sender allowlist.
-- Hand off to the backport runner and reply with report/PR links.
+- Add typed action resolution for `cloud-doc-backport` in the Feishu IM adapter.
+- Extract Feishu cloud-doc links from text messages.
+- Require an explicit `docs/_review/...rst` source path.
+- Enforce sender allowlist through `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`.
+- Hand off to the backport runner and reply with report paths / `PR_READY`.
+- Keep `--write` behind `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; even then,
+  source-table suggestions remain report-only.
 
 Exit:
 
-- A single typed Feishu message starts the mapping/report flow.
+- A single typed Feishu message starts the mapping/report flow:
+  `cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst`.
+- GitHub PR creation and Feishu source-table writes remain follow-up work.
 
 ## 9. Relationship To QC
 

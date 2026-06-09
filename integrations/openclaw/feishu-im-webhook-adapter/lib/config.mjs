@@ -29,6 +29,13 @@ function booleanEnv(name, defaultValue) {
   return defaultValue;
 }
 
+function listEnv(name) {
+  return String(process.env[name] || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
 export function loadAdapterConfig() {
   const repoRoot = path.resolve(process.env.AUTO_MANUAL_REPO_ROOT || defaultRepoRoot);
   const localProfileDir = path.resolve(
@@ -58,6 +65,8 @@ export function loadAdapterConfig() {
     batchDispatchDelayMs: integerEnv("FEISHU_IM_BATCH_DISPATCH_DELAY_MS", 2000),
     batchStatusTimeoutSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS", 60),
     batchStatusPollSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_POLL_SECONDS", 5),
+    cloudDocBackportAllowedSenderIds: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS"),
+    cloudDocBackportAllowWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE", false),
     stateFile:
       String(process.env.FEISHU_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "feishu-im-webhook-adapter-state.json"),
