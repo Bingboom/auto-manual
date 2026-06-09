@@ -59,10 +59,13 @@ For an in-review cloud doc, bind the diff to the current review source and use
 ```bash
 python tools/cloud_doc_backport.py diff --doc-url <doc-or-fixture.md> --source-path docs/_review/<model>/<region>/page/<page>.rst --doc-type review --out reports/cloud_doc_backport/<run-id>
 python tools/cloud_doc_backport.py apply-review --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
+python tools/cloud_doc_backport.py verify-review --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 ```
 
 `apply-review` is also dry-run by default and only patches guarded review prose
-deltas; data-like edits remain report-only suggestions.
+deltas; data-like edits remain report-only suggestions. `verify-review` checks
+the current `_review` source after apply and fails only when safe review prose is
+still pending or ambiguous; source-table suggestions stay report-only.
 
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md). For BlockClaw / Feishu IM behavior, including batch document-link replies that send each artifact link as its own message, see [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md).
 

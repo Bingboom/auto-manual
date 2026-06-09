@@ -339,8 +339,10 @@ Scope:
   apply report.
 - Require `--write` for local review edits; the dry-run default only writes an
   apply report.
+- Verify review-text residuals against the accepted cloud-doc delta list after
+  apply. Review text residuals fail; source-table suggestions remain report-only.
 - Emit source-table suggestions for data-driven deltas. A richer suggestion
-  artifact and residual verification remain follow-up work.
+  artifact remains follow-up work.
 
 Exit:
 
@@ -356,6 +358,9 @@ python tools/cloud_doc_backport.py apply-review \
 python tools/cloud_doc_backport.py apply-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json \
   --write
+
+python tools/cloud_doc_backport.py verify-review \
+  --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 ```
 
 ### P4: OpenClaw Trigger

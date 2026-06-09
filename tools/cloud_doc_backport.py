@@ -29,6 +29,7 @@ from tools.utils.path_utils import get_paths  # noqa: E402
 REPORT_SCHEMA_VERSION = "cloud-doc-backport-report/v1"
 DELTA_SCHEMA_VERSION = "cloud-doc-backport-delta/v1"
 APPLY_SCHEMA_VERSION = "cloud-doc-backport-apply/v1"
+VERIFY_SCHEMA_VERSION = "cloud-doc-backport-verify/v1"
 NORMALIZER_VERSION = "cloud-doc-normalizer/v1"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
@@ -1087,6 +1088,268 @@ def write_apply_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path]
     return {"json": json_path, "markdown": markdown_path}
 
 
+def _resolve_report_source(
+    diff_report: dict[str, Any],
+    *,
+    expected_doc_type: str,
+    expected_source_kind: str,
+    source_path: Path | None,
+    command_name: str,
+) -> Path:
+    if diff_report.get("schema_version") != REPORT_SCHEMA_VERSION:
+        raise RuntimeError("report schema is not cloud-doc-backport-report/v1")
+    if diff_report.get("doc_type") != expected_doc_type:
+        raise RuntimeError(f"{command_name} requires a {expected_doc_type} diff report")
+    source_target = diff_report.get("source_target")
+    if not isinstance(source_target, dict):
+        if source_path is None:
+            raise RuntimeError("diff report is missing source_target")
+        source_target = {"kind": expected_source_kind}
+    elif source_target.get("kind") != expected_source_kind:
+        raise RuntimeError(f"diff report source_target.kind must be {expected_source_kind}")
+    resolved_source = source_path or _resolve_source_path(str(source_target.get("path") or ""), label="source target")
+    _validate_apply_source(resolved_source, kind=expected_source_kind)
+    return resolved_source
+
+
+def _verify_delta(index: int, delta: dict[str, Any], current_text: str) -> dict[str, Any]:
+    old_text = delta.get("old_text")
+    new_text = delta.get("new_text")
+    old_matches = current_text.count(old_text) if isinstance(old_text, str) and old_text else 0
+    new_matches = current_text.count(new_text) if isinstance(new_text, str) and new_text else 0
+    base_result = {
+        "index": index,
+        "delta_hash": delta.get("delta_hash"),
+        "change_type": delta.get("change_type"),
+        "route_class": delta.get("route_class"),
+        "old_text": old_text,
+        "new_text": new_text,
+        "location": delta.get("location") or {},
+        "source_evidence": delta.get("source_evidence") or {},
+    }
+    route_class = delta.get("route_class")
+    if route_class == "source_table_suggestion":
+        return {
+            **base_result,
+            "category": "source_table_suggestion",
+            "status": "reported",
+            "reason": "data-like review delta is report-only",
+            "old_matches": old_matches,
+            "new_matches": new_matches,
+        }
+    if route_class != "repo_review_text":
+        return {
+            **base_result,
+            "category": "unsafe_or_ambiguous",
+            "status": "blocked",
+            "reason": f"route_class is {route_class or 'missing'}",
+            "old_matches": 0,
+            "new_matches": 0,
+        }
+    if delta.get("change_type") != "replace":
+        return {
+            **base_result,
+            "category": "unsafe_or_ambiguous",
+            "status": "blocked",
+            "reason": f"unsupported review change_type {delta.get('change_type') or 'missing'}",
+            "old_matches": 0,
+            "new_matches": 0,
+        }
+    if not isinstance(old_text, str) or not old_text or not isinstance(new_text, str) or not new_text:
+        return {
+            **base_result,
+            "category": "unsafe_or_ambiguous",
+            "status": "blocked",
+            "reason": "old_text or new_text is missing",
+            "old_matches": 0,
+            "new_matches": 0,
+        }
+
+    if old_matches == 0 and new_matches >= 1:
+        return {
+            **base_result,
+            "category": "applied_resolved",
+            "status": "resolved",
+            "reason": "old_text no longer exists and new_text is present",
+            "old_matches": old_matches,
+            "new_matches": new_matches,
+        }
+    if old_matches == 1 and new_matches == 0:
+        return {
+            **base_result,
+            "category": "still_pending",
+            "status": "pending",
+            "reason": "old_text still exists and new_text is absent",
+            "old_matches": old_matches,
+            "new_matches": new_matches,
+        }
+    return {
+        **base_result,
+        "category": "unsafe_or_ambiguous",
+        "status": "blocked",
+        "reason": "current review source contains an ambiguous old/new text state",
+        "old_matches": old_matches,
+        "new_matches": new_matches,
+    }
+
+
+def build_review_verify_report(
+    diff_report: dict[str, Any],
+    *,
+    source_path: Path | None = None,
+    command: list[str] | None = None,
+) -> dict[str, Any]:
+    resolved_source = _resolve_report_source(
+        diff_report,
+        expected_doc_type="review",
+        expected_source_kind="review",
+        source_path=source_path,
+        command_name="verify-review",
+    )
+    current_text = _read_text(resolved_source)
+    results: list[dict[str, Any]] = []
+    for index, delta in enumerate(diff_report.get("deltas") or [], start=1):
+        if isinstance(delta, dict):
+            results.append(_verify_delta(index, delta, current_text))
+        else:
+            results.append(
+                {
+                    "index": index,
+                    "category": "unsafe_or_ambiguous",
+                    "status": "blocked",
+                    "reason": "delta is not an object",
+                    "old_matches": 0,
+                    "new_matches": 0,
+                }
+            )
+    categories = _counter_dict([str(result["category"]) for result in results])
+    failing_categories = {category: categories.get(category, 0) for category in ("still_pending", "unsafe_or_ambiguous")}
+    has_failure = any(count for count in failing_categories.values())
+    source_table_suggestions = [
+        result for result in results if result.get("category") == "source_table_suggestion"
+    ]
+    return {
+        "schema_version": VERIFY_SCHEMA_VERSION,
+        "result": "FAIL" if has_failure else "PASS",
+        "source_target": {
+            "path": _display_path(resolved_source).as_posix(),
+            "kind": "review",
+        },
+        "diff_report": {
+            "run_id": diff_report.get("run_id"),
+            "result": diff_report.get("result"),
+            "schema_version": diff_report.get("schema_version"),
+        },
+        "metadata": {
+            "generated_at": _utc_now(),
+            "git_ref": _git_ref(),
+            "command": shlex.join(command or []),
+        },
+        "summary": {
+            "total_results": len(results),
+            "categories": categories,
+            "failing_categories": {key: value for key, value in failing_categories.items() if value},
+            "source_table_suggestions": len(source_table_suggestions),
+        },
+        "source_table_suggestions": source_table_suggestions,
+        "results": results,
+    }
+
+
+def markdown_verify_report(report: dict[str, Any]) -> str:
+    summary = report["summary"]
+    lines = [
+        "# Cloud Doc Backport Verify Report",
+        "",
+        "## Run",
+        "",
+        f"- Result: `{report['result']}`",
+        f"- Source target: `{report['source_target']['path']}`",
+        f"- Git ref: `{report['metadata'].get('git_ref') or 'unknown'}`",
+        f"- Generated at: `{report['metadata']['generated_at']}`",
+        f"- Command: `{report['metadata']['command']}`",
+        "",
+        "## Summary",
+        "",
+        f"- Total results: `{summary['total_results']}`",
+        f"- Categories: `{json.dumps(summary['categories'], ensure_ascii=False)}`",
+        f"- Failing categories: `{json.dumps(summary['failing_categories'], ensure_ascii=False)}`",
+        f"- Source-table suggestions: `{summary['source_table_suggestions']}`",
+        "",
+        "## Results",
+        "",
+    ]
+    if not report["results"]:
+        lines.append("No results.")
+    else:
+        lines.extend(
+            [
+                "| # | Category | Status | Reason | Old matches | New matches | Old | New |",
+                "| ---: | --- | --- | --- | ---: | ---: | --- | --- |",
+            ]
+        )
+        for result in report["results"]:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        str(result["index"]),
+                        _markdown_cell(result.get("category")),
+                        _markdown_cell(result.get("status")),
+                        _markdown_cell(result.get("reason")),
+                        _markdown_cell(result.get("old_matches")),
+                        _markdown_cell(result.get("new_matches")),
+                        _markdown_cell(result.get("old_text")),
+                        _markdown_cell(result.get("new_text")),
+                    ]
+                )
+                + " |"
+            )
+    suggestions = report.get("source_table_suggestions") or []
+    lines.extend(["", "## Source-Table Suggestions", ""])
+    if not suggestions:
+        lines.append("No source-table suggestions.")
+    else:
+        lines.extend(
+            [
+                "| # | Location | Old | New | Evidence |",
+                "| ---: | --- | --- | --- | --- |",
+            ]
+        )
+        for suggestion in suggestions:
+            location = suggestion.get("location") or {}
+            heading = " > ".join(location.get("heading_path") or [])
+            location_text = f"{location.get('kind', '-')}:L{location.get('line_no', '-')}"
+            if heading:
+                location_text = f"{heading} / {location_text}"
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        str(suggestion.get("index")),
+                        _markdown_cell(location_text),
+                        _markdown_cell(suggestion.get("old_text")),
+                        _markdown_cell(suggestion.get("new_text")),
+                        _markdown_cell(suggestion.get("source_evidence")),
+                    ]
+                )
+                + " |"
+            )
+    return "\n".join(lines) + "\n"
+
+
+def write_verify_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    json_path = out_dir / "cloud_doc_backport_verify.json"
+    markdown_path = out_dir / "cloud_doc_backport_verify.md"
+    json_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    markdown_path.write_text(markdown_verify_report(report), encoding="utf-8")
+    return {"json": json_path, "markdown": markdown_path}
+
+
 def _default_out_dir(run_id: str) -> Path:
     return get_paths().cloud_doc_backport_reports_dir / _safe_path_token(run_id)
 
@@ -1151,6 +1414,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     apply_review_parser.add_argument("--source-path", help="optional review source override")
     apply_review_parser.add_argument("--out", help="output directory for JSON and Markdown apply reports")
     apply_review_parser.add_argument("--write", action="store_true", help="write safe replacements to the review source")
+
+    verify_review_parser = subparsers.add_parser(
+        "verify-review",
+        description="Verify review backport residuals from a diff report against the current review source.",
+    )
+    verify_review_parser.add_argument("--report", required=True, help="cloud_doc_backport_report.json path")
+    verify_review_parser.add_argument("--source-path", help="optional review source override")
+    verify_review_parser.add_argument("--out", help="output directory for JSON and Markdown verify reports")
     return parser.parse_args(argv)
 
 
@@ -1239,6 +1510,26 @@ def _run_apply_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
     return _run_apply(args, raw_argv, build_apply_report=build_review_apply_report)
 
 
+def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
+    try:
+        report_path = _resolve_source_path(args.report, label="diff report")
+        source_override = _resolve_source_path(args.source_path, label="source target") if args.source_path else None
+        diff_report = _load_json_file(report_path)
+        verify_report = build_review_verify_report(
+            diff_report,
+            source_path=source_override,
+            command=["tools/cloud_doc_backport.py", *raw_argv],
+        )
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    out_dir = Path(args.out) if args.out else report_path.parent
+    written = write_verify_report(verify_report, out_dir)
+    print(f"WROTE {written['json']}")
+    print(f"WROTE {written['markdown']}")
+    return 0 if verify_report["result"] == "PASS" else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     raw_argv = list(sys.argv[1:] if argv is None else argv)
     args = _parse_args(raw_argv)
@@ -1248,6 +1539,8 @@ def main(argv: list[str] | None = None) -> int:
         return _run_apply_template(args, raw_argv)
     if args.command == "apply-review":
         return _run_apply_review(args, raw_argv)
+    if args.command == "verify-review":
+        return _run_verify_review(args, raw_argv)
     raise AssertionError(f"unhandled command: {args.command}")
 
 
