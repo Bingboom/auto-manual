@@ -67,6 +67,13 @@ write run patches guarded review prose, verifies residuals, and marks the run
 `PR_READY` only when the review source changed and verification passed.
 Data-like edits remain report-only source-table suggestions.
 
+The Feishu IM adapter can also trigger the same review backport runner from a
+typed message, gated by `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`:
+
+```text
+cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst
+```
+
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md). For BlockClaw / Feishu IM behavior, including batch document-link replies that send each artifact link as its own message, see [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md).
 
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py), [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1), and the US-only [`scripts/build_us_manuals.ps1`](scripts/build_us_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).

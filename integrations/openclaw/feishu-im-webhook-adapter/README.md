@@ -26,11 +26,17 @@ Current scope:
 - `build_draft_package`
 - batch `build_draft_package` when the message names a model, market, and manual copy or config scope, such as `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案`; if no market is named, phrases such as `构建JE-1000F说明书文案` use a model-wide `Task_id` prefix and match every triggered Build Draft Package row for that model
 - `publish` with explicit confirmation
+- `cloud-doc backport` for accepted Feishu cloud-doc review revisions, gated by
+  `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; the message must include one
+  Feishu cloud-doc link plus an explicit `docs/_review/...rst` source path
 
 Current limitations:
 
 - expects the callback security mode and runtime env to stay explicit
 - uses the repo-local `build.py` CLI and the existing OpenClaw/GitHub dispatch path
+- cloud-doc backport messages run `tools/cloud_doc_backport.py run-review`
+  locally and reply with report paths / `PR_READY`; they do not create GitHub PRs
+  or write Feishu source tables
 
 ## Environment
 
@@ -54,6 +60,11 @@ Optional:
 - `FEISHU_IM_BATCH_DISPATCH_DELAY_MS`; defaults to `2000` so batch Draft dispatches do not burst all GitHub workflow requests at once
 - `FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS`; defaults to `60` for deployed adapters and controls how long the adapter waits for fresh batch writeback before sending a follow-up status summary
 - `FEISHU_IM_BATCH_STATUS_POLL_SECONDS`; defaults to `5` for batch writeback polling
+- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; comma-separated Feishu
+  `open_id` allowlist for cloud-doc backport messages, or `*` for local smoke
+- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; defaults to `false`; when true,
+  an allowed sender can include `--write` to patch guarded `_review` prose and
+  run residual verification
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
@@ -179,6 +190,23 @@ cancel each other while they are pending.
 `最新` does not collapse batch Draft requests by `Document_Key`; the trigger
 checkbox remains the eligibility gate for each language row.
 `是否强制刷新数据` remains a build-time row input read by `process-build-queue`.
+
+Cloud-doc review backport messages bypass the queue resolver only after a typed
+request is detected. Use this shape:
+
+```text
+cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst
+```
+
+The default mode is dry-run: the adapter calls
+`python tools/cloud_doc_backport.py run-review ...`, writes
+`cloud_doc_backport_report.*`, `cloud_doc_backport_apply.*`, and
+`cloud_doc_backport_run.*` under `reports/cloud_doc_backport/<run-id>/`, and
+replies with the manifest/report paths plus `source_table_suggestions`. If the
+message includes `--write`, the adapter refuses it unless
+`FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true`; write mode still only patches
+guarded review prose and reports source-table suggestions without writing Feishu
+source tables.
 
 Freshness fields come from `build.py queue-query --fresh-since ...` and are
 included in Document_link JSON rows as `freshness_status`, `result_built_at`,

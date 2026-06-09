@@ -448,6 +448,170 @@ test("message handler does not replay deleted rows from batch context", async ()
   assert.doesNotMatch(replies[0].text, /JE-1000F_EU_de_1\.0/);
 });
 
+test("message handler runs cloud-doc backport dry-run before queue resolution", async () => {
+  const replies = [];
+  let resolved = false;
+  let backportPayload = null;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+      cloudDocBackportAllowWrite: false,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        resolved = true;
+        throw new Error("queue resolver should not run");
+      },
+      async runCloudDocBackportReview(payload) {
+        backportPayload = payload;
+        return {
+          result: "DRY_RUN",
+          mode: "dry-run",
+          manifest_path: "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json",
+          reports: {
+            run_markdown: "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.md",
+            diff_markdown: "reports/cloud_doc_backport/run-1/cloud_doc_backport_report.md",
+            apply_markdown: "reports/cloud_doc_backport/run-1/cloud_doc_backport_apply.md",
+          },
+          summary: {
+            pr_ready: false,
+            changed: false,
+            source_table_suggestions: 1,
+          },
+          next_actions: ["Review the apply report, then rerun with --write."],
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const text =
+    "cloud-doc backport https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc docs/_review/JE-2000F/EU/page/00_preface.rst";
+  const result = await handler.handleHttpRequest(basePayload(text));
+  await result.backgroundTask();
+
+  assert.equal(resolved, false);
+  assert.equal(backportPayload.docUrl, "https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc");
+  assert.equal(backportPayload.sourcePath, "docs/_review/JE-2000F/EU/page/00_preface.rst");
+  assert.equal(backportPayload.write, false);
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /已接受云文档修订回填任务/);
+  assert.match(replies[1].text, /result: DRY_RUN/);
+  assert.match(replies[1].text, /source_table_suggestions: 1/);
+});
+
+test("message handler requires cloud-doc backport allowlist", async () => {
+  const replies = [];
+  let backportCalled = false;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_other"],
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async runCloudDocBackportReview() {
+        backportCalled = true;
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload(
+      "cloud-doc backport https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc docs/_review/JE-2000F/EU/page/00_preface.rst"
+    )
+  );
+  await result.backgroundTask();
+
+  assert.equal(backportCalled, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS/);
+});
+
+test("message handler asks for review source path before cloud-doc backport", async () => {
+  const replies = [];
+  let backportCalled = false;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async runCloudDocBackportReview() {
+        backportCalled = true;
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload("把这个云文档修订回填 https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc")
+  );
+  await result.backgroundTask();
+
+  assert.equal(backportCalled, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /docs\/_review/);
+});
+
+test("message handler blocks explicit cloud-doc backport write when adapter write mode is disabled", async () => {
+  const replies = [];
+  let backportCalled = false;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+      cloudDocBackportAllowWrite: false,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async runCloudDocBackportReview() {
+        backportCalled = true;
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload(
+      "cloud-doc backport --write https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc docs/_review/JE-2000F/EU/page/00_preface.rst"
+    )
+  );
+  await result.backgroundTask();
+
+  assert.equal(backportCalled, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /ALLOW_WRITE=true/);
+});
+
 test("message handler does not fall back to a stale single row when fresh lookup is missing", async () => {
   const replies = [];
   let cleared = false;
