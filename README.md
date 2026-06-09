@@ -66,7 +66,9 @@ python tools/cloud_doc_backport.py open-pr --manifest reports/cloud_doc_backport
 editing `_review`. Add `--write` only after reviewing the apply report; the
 write run patches guarded review prose, verifies residuals, and marks the run
 `PR_READY` only when the review source changed and verification passed.
-Data-like edits remain report-only source-table suggestions.
+Data-like edits remain report-only source-table suggestions, and the runner
+writes `cloud_doc_backport_source_table_suggestions.md` with candidate source
+tables and operator steps.
 `open-pr` is the separate operator-gated PR step: it only accepts a `PR_READY`
 run manifest, refuses unrelated working-tree changes, commits the changed
 `docs/_review/...rst` source, and opens a draft PR with the manifest summary.

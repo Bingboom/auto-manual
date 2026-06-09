@@ -31,6 +31,7 @@ DELTA_SCHEMA_VERSION = "cloud-doc-backport-delta/v1"
 APPLY_SCHEMA_VERSION = "cloud-doc-backport-apply/v1"
 VERIFY_SCHEMA_VERSION = "cloud-doc-backport-verify/v1"
 RUN_SCHEMA_VERSION = "cloud-doc-backport-run/v1"
+SOURCE_TABLE_SUGGESTIONS_SCHEMA_VERSION = "cloud-doc-backport-source-table-suggestions/v1"
 NORMALIZER_VERSION = "cloud-doc-normalizer/v1"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
@@ -1351,6 +1352,233 @@ def write_verify_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path
     return {"json": json_path, "markdown": markdown_path}
 
 
+def _suggestion_heading_text(suggestion: dict[str, Any]) -> str:
+    location = suggestion.get("location") if isinstance(suggestion.get("location"), dict) else {}
+    return " > ".join(str(part) for part in (location.get("heading_path") or []) if part)
+
+
+def _source_table_routing_hint(suggestion: dict[str, Any]) -> dict[str, Any]:
+    text = " ".join(
+        str(suggestion.get(key) or "") for key in ("old_text", "new_text", "old_normalized", "new_normalized")
+    )
+    heading = _suggestion_heading_text(suggestion)
+    searchable = f"{heading} {text}".lower()
+    if _PLACEHOLDER_RE.search(text):
+        return {
+            "route_key": "placeholder_or_page_value",
+            "candidate_source_tables": ["页面占位参数", "Variable_Defaults", "Variable_Lang_Overrides"],
+            "confidence": "medium",
+            "reason": "placeholder-like token changed in reviewed prose",
+        }
+    if "troubleshoot" in searchable or "故障" in searchable or "排除" in searchable:
+        return {
+            "route_key": "troubleshooting_block",
+            "candidate_source_tables": ["troubleshooting_blocks", "TROUBLESHOOTING"],
+            "confidence": "medium",
+            "reason": "suggestion is under a troubleshooting-like heading",
+        }
+    if "symbol" in searchable or "符号" in searchable or "icon" in searchable or "图标" in searchable:
+        return {
+            "route_key": "symbol_or_lcd_block",
+            "candidate_source_tables": ["symbols_blocks", "lcd_icons"],
+            "confidence": "medium",
+            "reason": "suggestion is under a symbol/icon-like heading",
+        }
+    if _UNIT_VALUE_RE.search(text) or "spec" in searchable or "规格" in searchable:
+        return {
+            "route_key": "spec_or_numeric_value",
+            "candidate_source_tables": ["规格参数明细", "Spec_Notes", "Spec_Master read model"],
+            "confidence": "medium",
+            "reason": "numeric/unit or spec-like value changed",
+        }
+    location = suggestion.get("location") if isinstance(suggestion.get("location"), dict) else {}
+    if location.get("kind") == "table_row":
+        return {
+            "route_key": "structured_table_row",
+            "candidate_source_tables": ["Manual_Copy_Source", "Spec_Notes", "symbols_blocks", "troubleshooting_blocks"],
+            "confidence": "low",
+            "reason": "review delta came from a table row but no specific table family was inferred",
+        }
+    return {
+        "route_key": "phase2_source_table_review",
+        "candidate_source_tables": ["Manual_Copy_Source", "phase2 source tables"],
+        "confidence": "low",
+        "reason": "data-like review delta needs operator mapping to the source table",
+    }
+
+
+def _operator_locator(suggestion: dict[str, Any]) -> dict[str, Any]:
+    location = suggestion.get("location") if isinstance(suggestion.get("location"), dict) else {}
+    heading = _suggestion_heading_text(suggestion)
+    return {
+        "heading_path": location.get("heading_path") or [],
+        "heading": heading,
+        "line_no": location.get("line_no"),
+        "kind": location.get("kind"),
+        "old_text": suggestion.get("old_text"),
+        "new_text": suggestion.get("new_text"),
+    }
+
+
+def build_source_table_suggestions_report(
+    *,
+    run_report: dict[str, Any] | None = None,
+    diff_report: dict[str, Any] | None = None,
+    verify_report: dict[str, Any] | None = None,
+    suggestions: list[dict[str, Any]] | None = None,
+    command: list[str] | None = None,
+) -> dict[str, Any]:
+    if suggestions is None:
+        if verify_report:
+            suggestions = list(verify_report.get("source_table_suggestions") or [])
+        elif run_report:
+            suggestions = list(run_report.get("source_table_suggestions") or [])
+        elif diff_report:
+            suggestions = _source_table_suggestions_from_diff(diff_report)
+        else:
+            suggestions = []
+    source_target = (
+        (run_report or {}).get("source_target")
+        or (verify_report or {}).get("source_target")
+        or (diff_report or {}).get("source_target")
+    )
+    enriched: list[dict[str, Any]] = []
+    for fallback_index, suggestion in enumerate(suggestions, start=1):
+        if not isinstance(suggestion, dict):
+            continue
+        routing_hint = _source_table_routing_hint(suggestion)
+        enriched.append(
+            {
+                "index": suggestion.get("index") or fallback_index,
+                "delta_hash": suggestion.get("delta_hash"),
+                "status": "operator_review_required",
+                "external_write": False,
+                "routing_hint": routing_hint,
+                "operator_locator": _operator_locator(suggestion),
+                "old_text": suggestion.get("old_text"),
+                "new_text": suggestion.get("new_text"),
+                "source_evidence": suggestion.get("source_evidence") or {},
+                "reason": suggestion.get("reason") or "data-like review delta is report-only",
+            }
+        )
+    route_counts = _counter_dict([str(item["routing_hint"]["route_key"]) for item in enriched])
+    candidate_tables = sorted(
+        {
+            table
+            for item in enriched
+            for table in item.get("routing_hint", {}).get("candidate_source_tables", [])
+            if table
+        }
+    )
+    run_id = (
+        (run_report or {}).get("diff_report", {}).get("run_id")
+        or (verify_report or {}).get("diff_report", {}).get("run_id")
+        or (diff_report or {}).get("run_id")
+    )
+    return {
+        "schema_version": SOURCE_TABLE_SUGGESTIONS_SCHEMA_VERSION,
+        "result": "HAS_SUGGESTIONS" if enriched else "NO_SUGGESTIONS",
+        "run_id": run_id,
+        "source_target": source_target,
+        "metadata": {
+            "generated_at": _utc_now(),
+            "git_ref": _git_ref(),
+            "command": shlex.join(command or []),
+        },
+        "summary": {
+            "total_suggestions": len(enriched),
+            "route_keys": route_counts,
+            "candidate_source_tables": candidate_tables,
+            "external_write": False,
+        },
+        "operator_contract": {
+            "purpose": "Review report-only data-like deltas before updating Feishu phase2 source tables.",
+            "external_write": False,
+            "next_steps": [
+                "Update the appropriate Feishu phase2 source row manually.",
+                "Run sync-data for the affected source table.",
+                "Run sync-review or the target build/check flow to regenerate the review package.",
+            ],
+        },
+        "suggestions": enriched,
+    }
+
+
+def markdown_source_table_suggestions_report(report: dict[str, Any]) -> str:
+    summary = report["summary"]
+    source_target = report.get("source_target") or {}
+    lines = [
+        "# Cloud Doc Backport Source-Table Suggestions",
+        "",
+        "## Contract",
+        "",
+        "- External write: `False`",
+        "- Purpose: review data-like deltas before updating Feishu phase2 source tables.",
+        f"- Source target: `{source_target.get('path') or '-'}`",
+        f"- Git ref: `{report['metadata'].get('git_ref') or 'unknown'}`",
+        f"- Generated at: `{report['metadata']['generated_at']}`",
+        "",
+        "## Summary",
+        "",
+        f"- Result: `{report['result']}`",
+        f"- Total suggestions: `{summary['total_suggestions']}`",
+        f"- Route keys: `{json.dumps(summary['route_keys'], ensure_ascii=False)}`",
+        f"- Candidate source tables: `{', '.join(summary['candidate_source_tables']) or '-'}`",
+        "",
+        "## Suggested Operator Steps",
+        "",
+    ]
+    for step in report["operator_contract"]["next_steps"]:
+        lines.append(f"- {step}")
+    lines.extend(["", "## Suggestions", ""])
+    suggestions = report.get("suggestions") or []
+    if not suggestions:
+        lines.append("No source-table suggestions.")
+        return "\n".join(lines) + "\n"
+    lines.extend(
+        [
+            "| # | Route | Candidate Tables | Confidence | Location | Old | New |",
+            "| ---: | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for suggestion in suggestions:
+        routing = suggestion.get("routing_hint") or {}
+        locator = suggestion.get("operator_locator") or {}
+        location_parts = []
+        if locator.get("heading"):
+            location_parts.append(str(locator.get("heading")))
+        if locator.get("kind") or locator.get("line_no"):
+            location_parts.append(f"{locator.get('kind', '-')}:L{locator.get('line_no', '-')}")
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(suggestion.get("index")),
+                    _markdown_cell(routing.get("route_key")),
+                    _markdown_cell(", ".join(routing.get("candidate_source_tables") or [])),
+                    _markdown_cell(routing.get("confidence")),
+                    _markdown_cell(" / ".join(location_parts) or "-"),
+                    _markdown_cell(suggestion.get("old_text")),
+                    _markdown_cell(suggestion.get("new_text")),
+                ]
+            )
+            + " |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+def write_source_table_suggestions_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    json_path = out_dir / "cloud_doc_backport_source_table_suggestions.json"
+    markdown_path = out_dir / "cloud_doc_backport_source_table_suggestions.md"
+    json_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    markdown_path.write_text(markdown_source_table_suggestions_report(report), encoding="utf-8")
+    return {"json": json_path, "markdown": markdown_path}
+
+
 def _source_table_suggestions_from_diff(diff_report: dict[str, Any]) -> list[dict[str, Any]]:
     suggestions: list[dict[str, Any]] = []
     for index, delta in enumerate(diff_report.get("deltas") or [], start=1):
@@ -2003,8 +2231,16 @@ def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
         return 2
     out_dir = Path(args.out) if args.out else report_path.parent
     written = write_verify_report(verify_report, out_dir)
+    suggestions_report = build_source_table_suggestions_report(
+        diff_report=diff_report,
+        verify_report=verify_report,
+        command=["tools/cloud_doc_backport.py", *raw_argv],
+    )
+    suggestions_written = write_source_table_suggestions_report(suggestions_report, out_dir)
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
+    print(f"WROTE {suggestions_written['json']}")
+    print(f"WROTE {suggestions_written['markdown']}")
     return 0 if verify_report["result"] == "PASS" else 1
 
 
@@ -2059,6 +2295,17 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
                 output_paths.update(
                     {f"verify_{key}": value for key, value in write_verify_report(verify_report, out_dir).items()}
                 )
+        suggestions_report = build_source_table_suggestions_report(
+            diff_report=diff_report,
+            verify_report=verify_report,
+            command=command,
+        )
+        output_paths.update(
+            {
+                f"source_table_suggestions_{key}": value
+                for key, value in write_source_table_suggestions_report(suggestions_report, out_dir).items()
+            }
+        )
         run_report = build_review_run_report(
             diff_report,
             apply_report=apply_report,

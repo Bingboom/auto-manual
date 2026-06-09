@@ -476,6 +476,8 @@ test("message handler runs cloud-doc backport dry-run before queue resolution", 
             run_markdown: "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.md",
             diff_markdown: "reports/cloud_doc_backport/run-1/cloud_doc_backport_report.md",
             apply_markdown: "reports/cloud_doc_backport/run-1/cloud_doc_backport_apply.md",
+            source_table_suggestions_markdown:
+              "reports/cloud_doc_backport/run-1/cloud_doc_backport_source_table_suggestions.md",
           },
           summary: {
             pr_ready: false,
@@ -506,6 +508,7 @@ test("message handler runs cloud-doc backport dry-run before queue resolution", 
   assert.match(replies[0].text, /已接受云文档修订回填任务/);
   assert.match(replies[1].text, /result: DRY_RUN/);
   assert.match(replies[1].text, /source_table_suggestions: 1/);
+  assert.match(replies[1].text, /source_table_report:/);
 });
 
 test("message handler requires cloud-doc backport allowlist", async () => {

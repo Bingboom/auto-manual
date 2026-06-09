@@ -281,6 +281,9 @@ export function formatCloudDocBackportResultReply(result = {}, localProfile = nu
   if (reports.verify_markdown) {
     lines.push(`verify_report: ${reports.verify_markdown}`);
   }
+  if (reports.source_table_suggestions_markdown) {
+    lines.push(`source_table_report: ${reports.source_table_suggestions_markdown}`);
+  }
   if (Array.isArray(result.next_actions) && result.next_actions.length) {
     lines.push("next:");
     for (const action of result.next_actions.slice(0, 3)) {
