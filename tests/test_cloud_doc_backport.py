@@ -16,6 +16,7 @@ from tools.cloud_doc_backport import (
     main,
     open_backport_pr_from_manifest,
     parse_blocks,
+    select_document_preamble_blocks,
     select_section_blocks,
 )
 
@@ -117,6 +118,14 @@ class CloudDocBackportTest(unittest.TestCase):
 
         self.assertIsNotNone(selected)
         self.assertEqual([block.normalized for block in selected or []], ["## 用户指南", "A"])
+
+    def test_select_document_preamble_blocks_stops_at_first_heading(self) -> None:
+        blocks = parse_blocks("Intro\n\n**IMPORTANT**\n\nCopy\n\n# Safety\n\nA\n")
+
+        selected = select_document_preamble_blocks(blocks)
+
+        self.assertIsNotNone(selected)
+        self.assertEqual([block.normalized for block in selected or []], ["Intro", "IMPORTANT", "Copy"])
 
     def test_build_report_classifies_review_prose_and_data_like_deltas(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")
@@ -563,6 +572,112 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(suggestions["summary"]["total_suggestions"], 1)
             self.assertEqual(suggestions["suggestions"][0]["status"], "operator_review_required")
             self.assertFalse(suggestions["suggestions"][0]["external_write"])
+
+    def test_run_review_auto_selects_headingless_preface_preamble(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-2000F" / "EU" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text(
+                "\n".join(
+                    [
+                        "|MANUAL_LANGUAGE_SCOPE|",
+                        "",
+                        "**IMPORTANT**",
+                        "",
+                        "English copy.",
+                        "",
+                        "**UK ВАЖЛИВО**",
+                        "",
+                        "Ukrainian copy.",
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text(
+                "\n".join(
+                    [
+                        "English / French / Spanish / German / Italian / Ukrainian",
+                        "",
+                        "**IMPORTANT**",
+                        "",
+                        "English copy.",
+                        "",
+                        "# IMPORTANT SAFETY INFORMATION",
+                        "",
+                        "Safety copy should stay outside the preface diff.",
+                        "",
+                        "# APP SETUP",
+                        "",
+                        "App Setup should stay outside the preface diff.",
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            out_dir = root / "out"
+
+            exit_code = main(
+                [
+                    "run-review",
+                    "--doc-url",
+                    str(fetched_path),
+                    "--source-path",
+                    str(review_path),
+                    "--run-id",
+                    "run-preface-preamble",
+                    "--out",
+                    str(out_dir),
+                ]
+            )
+
+            self.assertEqual(exit_code, 0)
+            diff_payload = json.loads((out_dir / "cloud_doc_backport_report.json").read_text(encoding="utf-8"))
+            self.assertEqual(diff_payload["section_selection"]["resolved_title"], "document preamble")
+            self.assertTrue(diff_payload["section_selection"]["applied"])
+            self.assertNotIn("APP SETUP", json.dumps(diff_payload["deltas"], ensure_ascii=False))
+            self.assertNotIn("IMPORTANT SAFETY INFORMATION", json.dumps(diff_payload["deltas"], ensure_ascii=False))
+            self.assertEqual(diff_payload["summary"]["change_types"]["delete"], 2)
+            run_payload = json.loads((out_dir / "cloud_doc_backport_run.json").read_text(encoding="utf-8"))
+            self.assertEqual(run_payload["section_selection"]["resolved_title"], "document preamble")
+            self.assertEqual(run_payload["summary"]["review_source_changes"], 2)
+            self.assertIn("UK ВАЖЛИВО", json.dumps(run_payload["review_source_changes"], ensure_ascii=False))
+
+    def test_apply_review_write_deletes_unique_safe_review_text(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text("用户指南\n========\n\n保留内容。\n\n删除这句。\n", encoding="utf-8")
+            fetched = "# manual\n\n## 用户指南\n\n保留内容。\n"
+            report = build_report(
+                run_id="run-review-delete",
+                doc_type="review",
+                doc_url="fixture.md",
+                baseline_path=review_path,
+                fetched_text=fetched,
+                baseline_text=review_path.read_text(encoding="utf-8"),
+                command=["tools/cloud_doc_backport.py", "diff"],
+                source_path=review_path,
+                section_title="用户指南",
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            apply_exit = main(["apply-review", "--report", str(report_path), "--write", "--out", str(root / "apply")])
+            verify_exit = main(["verify-review", "--report", str(report_path), "--out", str(root / "verify")])
+
+            self.assertEqual(apply_exit, 0)
+            self.assertEqual(verify_exit, 0)
+            self.assertNotIn("删除这句。", review_path.read_text(encoding="utf-8"))
+            apply_payload = json.loads((root / "apply" / "cloud_doc_backport_apply.json").read_text(encoding="utf-8"))
+            self.assertEqual(apply_payload["summary"]["statuses"]["applied"], 1)
+            verify_payload = json.loads((root / "verify" / "cloud_doc_backport_verify.json").read_text(encoding="utf-8"))
+            self.assertEqual(verify_payload["summary"]["categories"]["applied_resolved"], 1)
 
     def test_run_review_write_applies_verifies_and_marks_pr_ready(self) -> None:
         with tempfile.TemporaryDirectory() as td:
