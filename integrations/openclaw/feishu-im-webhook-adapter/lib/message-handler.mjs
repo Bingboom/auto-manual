@@ -351,7 +351,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       return;
     }
 
-    const cloudDocBackportRequest = parseCloudDocBackportRequest(normalizedMessage.normalizedText);
+    let cloudDocBackportRequest = parseCloudDocBackportRequest(normalizedMessage.normalizedText);
     if (cloudDocBackportRequest.matched) {
       if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
         await react(messageEvent.messageId, "needs_input");
@@ -363,6 +363,36 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           )
         );
         return;
+      }
+      if (
+        cloudDocBackportRequest.missing.includes("docs/_review/... .rst source path") &&
+        !cloudDocBackportRequest.missing.includes("Feishu cloud-doc URL") &&
+        typeof repoControl.inferCloudDocBackportSource === "function"
+      ) {
+        let sourceInference;
+        try {
+          sourceInference = await repoControl.inferCloudDocBackportSource(cloudDocBackportRequest);
+        } catch (error) {
+          logger.error?.("cloud-doc backport source inference failed", error);
+          sourceInference = {
+            status: "needs_input",
+            reason: "source_inference_failed",
+            message: error?.message || String(error),
+          };
+        }
+        if (sourceInference?.status === "resolved" && sourceInference.sourcePath) {
+          cloudDocBackportRequest = {
+            ...cloudDocBackportRequest,
+            sourcePath: sourceInference.sourcePath,
+            sourceInference,
+            missing: cloudDocBackportRequest.missing.filter((item) => item !== "docs/_review/... .rst source path"),
+          };
+        } else {
+          cloudDocBackportRequest = {
+            ...cloudDocBackportRequest,
+            sourceInference,
+          };
+        }
       }
       if (cloudDocBackportRequest.missing.length) {
         await react(messageEvent.messageId, "needs_input");

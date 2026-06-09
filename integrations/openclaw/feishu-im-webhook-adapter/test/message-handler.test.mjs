@@ -511,6 +511,69 @@ test("message handler runs cloud-doc backport dry-run before queue resolution", 
   assert.match(replies[1].text, /source_table_report:/);
 });
 
+test("message handler infers cloud-doc backport source path before running", async () => {
+  const replies = [];
+  let inferencePayload = null;
+  let backportPayload = null;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async inferCloudDocBackportSource(payload) {
+        inferencePayload = payload;
+        return {
+          status: "resolved",
+          reason: "single_review_source_candidate",
+          sourcePath: "docs/_review/JE-2000F/EU/page/00_preface.rst",
+          targetHint: payload.targetHint,
+          candidates: [{ sourcePath: "docs/_review/JE-2000F/EU/page/00_preface.rst" }],
+        };
+      },
+      async runCloudDocBackportReview(payload) {
+        backportPayload = payload;
+        return {
+          result: "DRY_RUN",
+          mode: "dry-run",
+          manifest_path: "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json",
+          reports: {},
+          summary: {
+            pr_ready: false,
+            changed: false,
+            source_table_suggestions: 0,
+          },
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const text =
+    "根据这个文档回填修订 https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc manual_je2000f_eu_en_0.7 副本";
+  const result = await handler.handleHttpRequest(basePayload(text));
+  await result.backgroundTask();
+
+  assert.equal(inferencePayload.docUrl, "https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc");
+  assert.deepEqual(inferencePayload.targetHint, {
+    model: "JE-2000F",
+    region: "EU",
+    lang: "en",
+    version: "0.7",
+  });
+  assert.equal(backportPayload.sourcePath, "docs/_review/JE-2000F/EU/page/00_preface.rst");
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /source_inference: single_review_source_candidate/);
+  assert.match(replies[1].text, /result: DRY_RUN/);
+});
+
 test("message handler requires cloud-doc backport allowlist", async () => {
   const replies = [];
   let backportCalled = false;

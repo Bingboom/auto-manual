@@ -226,10 +226,23 @@ export function formatRecordNoLongerAvailableReply(row = {}, localProfile = null
 
 export function formatCloudDocBackportNeedInputReply(request = {}, localProfile = null) {
   const missing = Array.isArray(request.missing) ? request.missing : [];
+  const inference = request.sourceInference || {};
+  const target = inference.targetHint || request.targetHint || {};
+  const candidates = Array.isArray(inference.candidates) ? inference.candidates : [];
+  const candidateLines = candidates.slice(0, 5).map((candidate, index) => {
+    const score = candidate.score ? ` score=${candidate.score}` : "";
+    return `${index + 1}. ${candidate.sourcePath}${score}`;
+  });
   return [
     localReplyPhrase(localProfile, "cloudDocBackportNeedInput", "云文档修订回填需要补齐输入。"),
     missing.length ? `missing: ${missing.join(", ")}` : "",
-    "请发送：cloud-doc backport <飞书云文档链接> docs/_review/<model>/<region>/page/<page>.rst",
+    target.model && target.region ? `target: ${target.model} ${target.region}${target.lang ? ` ${target.lang}` : ""}` : "",
+    inference.reason ? `inference: ${inference.reason}` : "",
+    inference.message ? `detail: ${inference.message}` : "",
+    candidateLines.length ? "candidates:" : "",
+    ...candidateLines,
+    "请发送：cloud-doc backport <飞书云文档链接> [docs/_review/<model>/<region>/page/<page>.rst]",
+    "如果云文档标题和当前 review 包能唯一定位源文件，路径可以省略；否则请补一个候选 source path。",
     "默认只 dry-run 出报告；要写入需显式开启 adapter 写入开关并在消息里写 --write。",
   ]
     .filter(Boolean)
@@ -246,10 +259,12 @@ export function formatCloudDocBackportDeniedReply(reason, localProfile = null) {
 }
 
 export function formatCloudDocBackportAcceptedReply(request = {}, localProfile = null) {
+  const inference = request.sourceInference || {};
   return [
     localReplyPhrase(localProfile, "cloudDocBackportAccepted", "已接受云文档修订回填任务，开始生成报告。"),
     request.write ? "mode: write" : "mode: dry-run",
     request.sourcePath ? `source: ${request.sourcePath}` : "",
+    inference.reason ? `source_inference: ${inference.reason}` : "",
   ]
     .filter(Boolean)
     .join("\n");

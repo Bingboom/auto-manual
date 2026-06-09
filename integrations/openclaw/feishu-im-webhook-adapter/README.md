@@ -201,8 +201,16 @@ request is detected. Use this shape:
 
 ```text
 cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst
+cloud-doc backport <Feishu cloud-doc URL>
 cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
 ```
+
+The source path is optional only for the IM adapter. When omitted, the adapter
+extracts a target hint from the message text or cloud-doc title, for example
+`manual_je2000f_eu_en_0.7`, then looks under the current checkout's
+`docs/_review/<model>/<region>/`. It runs only when there is one safe source
+candidate or one unique message-hint match; otherwise it replies with candidate
+paths and asks for the explicit `docs/_review/...rst` source.
 
 The default mode is dry-run: the adapter calls
 `python tools/cloud_doc_backport.py run-review ...`, writes
