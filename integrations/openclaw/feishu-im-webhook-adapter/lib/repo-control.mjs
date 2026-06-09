@@ -115,6 +115,28 @@ async function runCloudDocBackportJson(config, { docUrl, sourcePath, runId = "",
   };
 }
 
+async function openCloudDocBackportPrJson(config, { manifestPath, branchName = "" }) {
+  const args = [
+    CLOUD_DOC_BACKPORT_TOOL,
+    "open-pr",
+    "--manifest",
+    manifestPath,
+    "--json",
+  ];
+  if (branchName) {
+    args.push("--branch", branchName);
+  }
+  const result = await execFileResult(config.pythonBin, args, {
+    cwd: config.repoRoot,
+    env: process.env,
+    maxBuffer: 1024 * 1024 * 8,
+  });
+  if (result.code !== 0) {
+    throw new Error(String(result.stderr || result.stdout || "cloud-doc backport PR creation failed").trim());
+  }
+  return JSON.parse(result.stdout);
+}
+
 export function createRepoControl(config) {
   return {
     async resolveAction({ messageText, confirmPublish = false }) {
@@ -181,6 +203,9 @@ export function createRepoControl(config) {
     },
     async runCloudDocBackportReview({ docUrl, sourcePath, runId = "", write = false }) {
       return runCloudDocBackportJson(config, { docUrl, sourcePath, runId, write });
+    },
+    async openCloudDocBackportPr({ manifestPath, branchName = "" }) {
+      return openCloudDocBackportPrJson(config, { manifestPath, branchName });
     },
   };
 }

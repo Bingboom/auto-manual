@@ -1,7 +1,10 @@
 const URL_RE = /https?:\/\/[^\s<>"'，。；、)）\]]+/gi;
 const REVIEW_SOURCE_RE = /\bdocs\/_review\/[^\s<>"'，。；、)）\]]+?\.rst\b/i;
+const RUN_MANIFEST_RE = /\breports\/cloud_doc_backport\/[^\s<>"'，。；、)）\]]+?\/cloud_doc_backport_run\.json\b/i;
 const RUN_ID_RE = /(?:--run-id|run_id|run-id)\s*[=:]?\s*([A-Za-z0-9._-]+)/i;
+const BRANCH_RE = /(?:--branch|branch)\s*[=:]?\s*([A-Za-z0-9._/-]+)/i;
 const INTENT_RE = /(cloud[-_\s]?doc|backport|run-review|云文档|修订|修订稿|合入修改|改回|导回|回填|闭环合入)/i;
+const PR_INTENT_RE = /(backport[-_\s]?pr|cloud[-_\s]?doc[-_\s]?pr|open\s+pr|create\s+pr|开\s*pr|开\s*PR|建\s*pr|建\s*PR|拉\s*PR)/i;
 const WRITE_INTENT_RE = /(--write|\bwrite\b|写入|应用|合入到|落到|改到)/i;
 const FEISHU_DOC_HOST_RE = /(?:^|\.)((feishu|larksuite)\.cn|feishu\.com|larksuite\.com)$/i;
 
@@ -14,6 +17,14 @@ function safeRunId(value) {
     .replace(/[^A-Za-z0-9._-]+/g, "-")
     .replace(/^[.-]+|[.-]+$/g, "")
     .slice(0, 120);
+}
+
+function safeBranchName(value) {
+  return String(value || "")
+    .replace(/[^A-Za-z0-9._/-]+/g, "-")
+    .replace(/\/{2,}/g, "/")
+    .replace(/^[./-]+|[./-]+$/g, "")
+    .slice(0, 160);
 }
 
 function looksLikeFeishuDocUrl(value) {
@@ -41,6 +52,16 @@ function extractReviewSourcePath(text) {
 function extractRunId(text) {
   const match = compactText(text).match(RUN_ID_RE);
   return safeRunId(match ? match[1] : "");
+}
+
+function extractRunManifestPath(text) {
+  const match = compactText(text).match(RUN_MANIFEST_RE);
+  return match ? match[0] : "";
+}
+
+function extractBranchName(text) {
+  const match = compactText(text).match(BRANCH_RE);
+  return safeBranchName(match ? match[1] : "");
 }
 
 export function parseCloudDocBackportRequest(messageText) {
@@ -86,4 +107,28 @@ export function cloudDocBackportSenderAllowed(senderId, config = {}) {
     return false;
   }
   return allowed.includes("*") || allowed.includes(sender);
+}
+
+export function parseCloudDocBackportPrRequest(messageText) {
+  const text = compactText(messageText);
+  const hasIntent = PR_INTENT_RE.test(text);
+  if (!hasIntent) {
+    return {
+      matched: false,
+      missing: [],
+      manifestPath: "",
+      branchName: "",
+    };
+  }
+  const manifestPath = extractRunManifestPath(text);
+  const missing = [];
+  if (!manifestPath) {
+    missing.push("reports/cloud_doc_backport/.../cloud_doc_backport_run.json manifest");
+  }
+  return {
+    matched: true,
+    missing,
+    manifestPath,
+    branchName: extractBranchName(text),
+  };
 }

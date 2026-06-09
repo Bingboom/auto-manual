@@ -178,7 +178,7 @@ Publish 的原料是：
    - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
    - 如果同一台机器还要保留旧 app 的本地 `lark-cli` 配置，先设置 `FEISHU_IM_LARK_CLI_HOME=单独目录`，再在那个目录下初始化新 app 的 `lark-cli` 配置
    - 它仍然只处理这套文档控制层支持的动作和状态问题，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`
-   - 已接受修订的飞书云文档可以走显式 backport 入口：`cloud-doc backport <飞书云文档链接> docs/_review/<model>/<region>/page/<page>.rst`。这条入口需要 adapter 配置 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`，默认只生成 dry-run 报告；消息里写 `--write` 前还必须把 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true` 打开。
+   - 已接受修订的飞书云文档可以走显式 backport 入口：`cloud-doc backport <飞书云文档链接> docs/_review/<model>/<region>/page/<page>.rst`。这条入口需要 adapter 配置 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`，默认只生成 dry-run 报告；消息里写 `--write` 前还必须把 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true` 打开。写入后如果回复 `PR_READY`，再单独发 `cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json`；这一步还需要 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true`，并只会开 draft PR。
    - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
    - 如果部署在长期运行的 ECS 上，改用 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/) 里的 wrapper 和 `systemd` unit 模板，不要长期靠手工 `nohup`

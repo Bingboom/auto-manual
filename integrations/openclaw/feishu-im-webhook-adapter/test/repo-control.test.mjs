@@ -54,3 +54,37 @@ console.log(JSON.stringify({ args }));
   assert.match(result.stdout, /tools\/cloud_doc_backport\.py/);
   assert.match(result.stdout, /--write/);
 });
+
+test("openCloudDocBackportPr calls the Python open-pr helper and parses JSON", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "repo-control-backport-pr-"));
+  const fakePython = path.join(root, "fake-python.mjs");
+  await fs.writeFile(
+    fakePython,
+    `#!/usr/bin/env node
+const args = process.argv.slice(2);
+console.log(JSON.stringify({
+  schema_version: "cloud-doc-backport-pr/v1",
+  result: "PR_OPENED",
+  branch: args[args.indexOf("--branch") + 1],
+  manifest_path: args[args.indexOf("--manifest") + 1],
+  pr_url: "https://github.com/Bingboom/auto-manual/pull/999"
+}));
+`,
+    { mode: 0o755 }
+  );
+
+  const repoControl = createRepoControl({
+    repoRoot: root,
+    pythonBin: fakePython,
+  });
+
+  const result = await repoControl.openCloudDocBackportPr({
+    manifestPath: "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json",
+    branchName: "review/JE-2000F-EU-cloud-doc",
+  });
+
+  assert.equal(result.result, "PR_OPENED");
+  assert.equal(result.branch, "review/JE-2000F-EU-cloud-doc");
+  assert.equal(result.manifest_path, "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json");
+  assert.equal(result.pr_url, "https://github.com/Bingboom/auto-manual/pull/999");
+});

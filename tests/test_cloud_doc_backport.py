@@ -14,6 +14,7 @@ from tools.cloud_doc_backport import (
     build_report,
     fetch_doc_text,
     main,
+    open_backport_pr_from_manifest,
     parse_blocks,
     select_section_blocks,
 )
@@ -623,6 +624,121 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(payload["summary"]["apply_statuses"]["skipped"], 1)
             self.assertEqual(payload["summary"]["verify_failing_categories"]["unsafe_or_ambiguous"], 1)
             self.assertFalse(payload["summary"]["pr_ready"])
+
+    def test_open_pr_from_manifest_creates_draft_pr_for_pr_ready_review_source(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text("修改内容。\n", encoding="utf-8")
+            manifest_path = root / "reports" / "cloud_doc_backport" / "run-1" / "cloud_doc_backport_run.json"
+            manifest_path.parent.mkdir(parents=True)
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "cloud-doc-backport-run/v1",
+                        "result": "PR_READY",
+                        "mode": "write",
+                        "source_target": {
+                            "path": "docs/_review/JE-1000F/US/page/00_preface.rst",
+                            "kind": "review",
+                        },
+                        "summary": {
+                            "total_deltas": 2,
+                            "changed": True,
+                            "pr_ready": True,
+                            "source_table_suggestions": 1,
+                        },
+                        "reports": {
+                            "run_markdown": "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.md",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            calls: list[list[str]] = []
+
+            def fake_run(command: list[str], *, root: Path, stdin: str | None = None) -> str:
+                del root, stdin
+                calls.append(command)
+                if command[:3] == ["git", "status", "--porcelain"]:
+                    return "\n".join(
+                        [
+                            " M docs/_review/JE-1000F/US/page/00_preface.rst",
+                            "?? reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json",
+                        ]
+                    )
+                if command[:3] == ["git", "branch", "--show-current"]:
+                    return "main"
+                if command[:3] == ["git", "rev-parse", "HEAD"]:
+                    return "abc123"
+                if command[:3] == ["gh", "pr", "create"]:
+                    return "https://github.com/Bingboom/auto-manual/pull/999"
+                return ""
+
+            with patch("tools.cloud_doc_backport._run_pr_command", side_effect=fake_run):
+                result = open_backport_pr_from_manifest(
+                    manifest_path=manifest_path,
+                    repo_root=root,
+                    git_bin="git",
+                    gh_bin="gh",
+                )
+
+            self.assertEqual(result["result"], "PR_OPENED")
+            self.assertEqual(result["pr_url"], "https://github.com/Bingboom/auto-manual/pull/999")
+            self.assertEqual(result["source_table_suggestions"], 1)
+            self.assertIn(
+                [
+                    "git",
+                    "switch",
+                    "-c",
+                    "review/JE-1000F-US-cloud-doc-backport-run-1",
+                ],
+                calls,
+            )
+            self.assertIn(["git", "add", "docs/_review/JE-1000F/US/page/00_preface.rst"], calls)
+            pr_create_call = next(command for command in calls if command[:3] == ["gh", "pr", "create"])
+            self.assertIn("--draft", pr_create_call)
+            self.assertIn("reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json", "\n".join(pr_create_call))
+
+    def test_open_pr_from_manifest_refuses_unrelated_worktree_changes(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text("修改内容。\n", encoding="utf-8")
+            manifest_path = root / "reports" / "cloud_doc_backport" / "run-1" / "cloud_doc_backport_run.json"
+            manifest_path.parent.mkdir(parents=True)
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "cloud-doc-backport-run/v1",
+                        "result": "PR_READY",
+                        "mode": "write",
+                        "source_target": {
+                            "path": "docs/_review/JE-1000F/US/page/00_preface.rst",
+                            "kind": "review",
+                        },
+                        "summary": {"changed": True, "pr_ready": True},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def fake_run(command: list[str], *, root: Path, stdin: str | None = None) -> str:
+                del root, stdin
+                if command[:3] == ["git", "status", "--porcelain"]:
+                    return "\n".join(
+                        [
+                            " M docs/_review/JE-1000F/US/page/00_preface.rst",
+                            " M README.md",
+                        ]
+                    )
+                return "main"
+
+            with patch("tools.cloud_doc_backport._run_pr_command", side_effect=fake_run):
+                with self.assertRaisesRegex(RuntimeError, "unrelated working-tree changes"):
+                    open_backport_pr_from_manifest(manifest_path=manifest_path, repo_root=root)
 
     def test_report_is_no_diff_for_identical_content(self) -> None:
         baseline = (FIXTURES / "baseline.md").read_text(encoding="utf-8")

@@ -612,6 +612,94 @@ test("message handler blocks explicit cloud-doc backport write when adapter writ
   assert.match(replies[0].text, /ALLOW_WRITE=true/);
 });
 
+test("message handler blocks cloud-doc backport PR creation when adapter PR mode is disabled", async () => {
+  const replies = [];
+  let prCalled = false;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+      cloudDocBackportAllowPrCreate: false,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async openCloudDocBackportPr() {
+        prCalled = true;
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload("cloud-doc backport-pr reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json")
+  );
+  await result.backgroundTask();
+
+  assert.equal(prCalled, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /ALLOW_PR_CREATE=true/);
+});
+
+test("message handler opens cloud-doc backport PR before queue resolution", async () => {
+  const replies = [];
+  let resolved = false;
+  let prPayload = null;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+      cloudDocBackportAllowPrCreate: true,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        resolved = true;
+        throw new Error("queue resolver should not run");
+      },
+      async openCloudDocBackportPr(payload) {
+        prPayload = payload;
+        return {
+          result: "PR_OPENED",
+          pr_url: "https://github.com/Bingboom/auto-manual/pull/999",
+          branch: "review/JE-2000F-EU-cloud-doc",
+          commit: "abc123",
+          source_path: "docs/_review/JE-2000F/EU/page/00_preface.rst",
+          manifest_path: "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json",
+          source_table_suggestions: 1,
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload(
+      "cloud-doc backport-pr reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json --branch review/JE-2000F-EU-cloud-doc"
+    )
+  );
+  await result.backgroundTask();
+
+  assert.equal(resolved, false);
+  assert.equal(prPayload.manifestPath, "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json");
+  assert.equal(prPayload.branchName, "review/JE-2000F-EU-cloud-doc");
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /已接受云文档修订 PR 请求/);
+  assert.match(replies[1].text, /PR_OPENED/);
+  assert.match(replies[1].text, /pull\/999/);
+});
+
 test("message handler does not fall back to a stale single row when fresh lookup is missing", async () => {
   const replies = [];
   let cleared = false;
