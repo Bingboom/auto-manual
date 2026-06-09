@@ -379,6 +379,19 @@ python tools/cloud_doc_backport.py verify-review \
 paths, `PR_READY` gating, and report-only source-table suggestions. It does not
 create GitHub PRs or write Feishu source tables by itself.
 
+`open-pr` is the P5 handoff surface:
+
+```bash
+python tools/cloud_doc_backport.py open-pr \
+  --manifest reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
+```
+
+It accepts only a `PR_READY` review run manifest, refuses unrelated working-tree
+changes, requires the checkout to be on `main`, commits only the changed
+`docs/_review/...rst` source, and opens a draft PR with the manifest summary.
+Local `reports/cloud_doc_backport/...` files stay evidence and are not committed
+by this helper.
+
 ### P4: OpenClaw Trigger
 
 Goal: make the workflow callable from Feishu chat.
@@ -397,7 +410,31 @@ Exit:
 
 - A single typed Feishu message starts the mapping/report flow:
   `cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst`.
-- GitHub PR creation and Feishu source-table writes remain follow-up work.
+- GitHub PR creation remains a second explicit step; Feishu source-table writes
+  remain follow-up work.
+
+### P5: Manifest To Draft PR
+
+Goal: turn a verified review-source backport into an operator-visible GitHub PR
+without merging it or writing Feishu source tables.
+
+Scope:
+
+- Add `tools/cloud_doc_backport.py open-pr --manifest ...`.
+- Require `cloud_doc_backport_run.json` to be `PR_READY`.
+- Refuse unrelated working-tree changes.
+- Commit only the changed `docs/_review/...rst` source; keep local reports out
+  of the branch.
+- Open a draft PR with the run summary and source-table suggestion count.
+- Add a separate Feishu IM message shape:
+  `cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json`.
+- Gate that message with `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true`.
+
+Exit:
+
+- A write-mode `PR_READY` run can be promoted to a draft PR by local CLI or by
+  one explicit Feishu message from an allowed sender.
+- The helper does not self-merge and does not mutate Feishu source tables.
 
 ## 9. Relationship To QC
 

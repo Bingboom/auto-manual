@@ -67,6 +67,7 @@ export function loadAdapterConfig() {
     batchStatusPollSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_POLL_SECONDS", 5),
     cloudDocBackportAllowedSenderIds: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS"),
     cloudDocBackportAllowWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE", false),
+    cloudDocBackportAllowPrCreate: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE", false),
     stateFile:
       String(process.env.FEISHU_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "feishu-im-webhook-adapter-state.json"),

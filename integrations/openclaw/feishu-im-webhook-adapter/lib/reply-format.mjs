@@ -289,3 +289,39 @@ export function formatCloudDocBackportResultReply(result = {}, localProfile = nu
   }
   return lines.filter(Boolean).join("\n");
 }
+
+export function formatCloudDocBackportPrNeedInputReply(request = {}, localProfile = null) {
+  const missing = Array.isArray(request.missing) ? request.missing : [];
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportPrNeedInput", "云文档修订 PR 需要补齐输入。"),
+    missing.length ? `missing: ${missing.join(", ")}` : "",
+    "请发送：cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportPrAcceptedReply(request = {}, localProfile = null) {
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportPrAccepted", "已接受云文档修订 PR 请求，开始检查 manifest 并创建 draft PR。"),
+    request.manifestPath ? `manifest: ${request.manifestPath}` : "",
+    request.branchName ? `branch: ${request.branchName}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportPrResultReply(result = {}, localProfile = null) {
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportPrResult", "云文档修订 draft PR 已创建。"),
+    `result: ${result.result || "-"}`,
+    result.pr_url ? `PR: ${result.pr_url}` : "",
+    result.branch ? `branch: ${result.branch}` : "",
+    result.commit ? `commit: ${result.commit}` : "",
+    result.source_path ? `source: ${result.source_path}` : "",
+    result.manifest_path ? `manifest: ${result.manifest_path}` : "",
+    `source_table_suggestions: ${result.source_table_suggestions ?? 0}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}

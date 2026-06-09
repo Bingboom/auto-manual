@@ -35,8 +35,10 @@ Current limitations:
 - expects the callback security mode and runtime env to stay explicit
 - uses the repo-local `build.py` CLI and the existing OpenClaw/GitHub dispatch path
 - cloud-doc backport messages run `tools/cloud_doc_backport.py run-review`
-  locally and reply with report paths / `PR_READY`; they do not create GitHub PRs
-  or write Feishu source tables
+  locally and reply with report paths / `PR_READY`
+- cloud-doc backport PR messages call `tools/cloud_doc_backport.py open-pr`
+  only after an explicit `backport-pr` message and the PR-create env gate; they
+  still do not write Feishu source tables
 
 ## Environment
 
@@ -65,6 +67,9 @@ Optional:
 - `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; defaults to `false`; when true,
   an allowed sender can include `--write` to patch guarded `_review` prose and
   run residual verification
+- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE`; defaults to `false`; when
+  true, an allowed sender can send a separate `cloud-doc backport-pr ...`
+  message to create a draft PR from a `PR_READY` run manifest
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
@@ -196,6 +201,7 @@ request is detected. Use this shape:
 
 ```text
 cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst
+cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
 ```
 
 The default mode is dry-run: the adapter calls
@@ -207,6 +213,12 @@ message includes `--write`, the adapter refuses it unless
 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true`; write mode still only patches
 guarded review prose and reports source-table suggestions without writing Feishu
 source tables.
+After a write run replies `PR_READY`, the operator can send the separate
+`cloud-doc backport-pr .../cloud_doc_backport_run.json` message. The adapter
+refuses that request unless `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true`;
+the helper checks the manifest, refuses unrelated working-tree changes, commits
+only the changed `docs/_review/...rst` source, and opens a draft PR. Local
+`reports/cloud_doc_backport/...` files stay evidence and are not committed.
 
 Freshness fields come from `build.py queue-query --fresh-since ...` and are
 included in Document_link JSON rows as `freshness_status`, `result_built_at`,

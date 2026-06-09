@@ -8,7 +8,11 @@ import {
   shouldIgnoreMessageEvent,
   validateVerificationToken,
 } from "./feishu-events.mjs";
-import { cloudDocBackportSenderAllowed, parseCloudDocBackportRequest } from "./cloud-doc-backport-action.mjs";
+import {
+  cloudDocBackportSenderAllowed,
+  parseCloudDocBackportPrRequest,
+  parseCloudDocBackportRequest,
+} from "./cloud-doc-backport-action.mjs";
 import {
   formatAcceptedReply,
   formatBatchAcceptedReply,
@@ -17,6 +21,9 @@ import {
   formatCloudDocBackportAcceptedReply,
   formatCloudDocBackportDeniedReply,
   formatCloudDocBackportNeedInputReply,
+  formatCloudDocBackportPrAcceptedReply,
+  formatCloudDocBackportPrNeedInputReply,
+  formatCloudDocBackportPrResultReply,
   formatCloudDocBackportResultReply,
   formatCompletionReply,
   formatExecutionErrorReply,
@@ -289,6 +296,58 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       }
       await react(messageEvent.messageId, latest.failures.length ? "error" : "completed");
       await replyBatchStatus(messageEvent, latest);
+      return;
+    }
+
+    const cloudDocBackportPrRequest = parseCloudDocBackportPrRequest(normalizedMessage.normalizedText);
+    if (cloudDocBackportPrRequest.matched) {
+      if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
+        await react(messageEvent.messageId, "needs_input");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportDeniedReply(
+            "sender is not in FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
+            localProfile
+          )
+        );
+        return;
+      }
+      if (cloudDocBackportPrRequest.missing.length) {
+        await react(messageEvent.messageId, "needs_input");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportPrNeedInputReply(cloudDocBackportPrRequest, localProfile)
+        );
+        return;
+      }
+      if (!config.cloudDocBackportAllowPrCreate) {
+        await react(messageEvent.messageId, "needs_input");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportDeniedReply(
+            "draft PR creation is disabled; set FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true to allow explicit backport-pr requests",
+            localProfile
+          )
+        );
+        return;
+      }
+      await react(messageEvent.messageId, "accepted");
+      await feishuClient.replyTextMessage(
+        messageEvent.messageId,
+        formatCloudDocBackportPrAcceptedReply(cloudDocBackportPrRequest, localProfile)
+      );
+      try {
+        const prResult = await repoControl.openCloudDocBackportPr(cloudDocBackportPrRequest);
+        await react(messageEvent.messageId, "completed");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportPrResultReply(prResult, localProfile)
+        );
+      } catch (error) {
+        logger.error?.("cloud-doc backport PR creation failed", error);
+        await react(messageEvent.messageId, "error");
+        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+      }
       return;
     }
 

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   cloudDocBackportSenderAllowed,
+  parseCloudDocBackportPrRequest,
   parseCloudDocBackportRequest,
 } from "../lib/cloud-doc-backport-action.mjs";
 
@@ -34,6 +35,24 @@ test("parseCloudDocBackportRequest ignores ordinary queue messages", () => {
   const request = parseCloudDocBackportRequest("开始review JE-2000F_EU");
 
   assert.equal(request.matched, false);
+});
+
+test("parseCloudDocBackportPrRequest extracts manifest path and branch", () => {
+  const request = parseCloudDocBackportPrRequest(
+    "cloud-doc backport-pr reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json --branch review/JE-2000F-EU-fix"
+  );
+
+  assert.equal(request.matched, true);
+  assert.equal(request.manifestPath, "reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json");
+  assert.equal(request.branchName, "review/JE-2000F-EU-fix");
+  assert.deepEqual(request.missing, []);
+});
+
+test("parseCloudDocBackportPrRequest asks for manifest path", () => {
+  const request = parseCloudDocBackportPrRequest("开 PR cloud-doc backport-pr");
+
+  assert.equal(request.matched, true);
+  assert.deepEqual(request.missing, ["reports/cloud_doc_backport/.../cloud_doc_backport_run.json manifest"]);
 });
 
 test("cloudDocBackportSenderAllowed requires an explicit allowlist", () => {
