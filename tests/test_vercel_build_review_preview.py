@@ -60,3 +60,19 @@ class TestVercelBuildReviewPreview(unittest.TestCase):
         self.assertIn("US", cmd)
         self.assertIn("--config", cmd)
         self.assertIn("configs/config.us.yaml", cmd)
+        self.assertIn("--data-root", cmd)
+        self.assertIn("tests/fixtures/phase2", cmd)
+
+    def test_build_preview_command_should_allow_data_root_override(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            review_root = Path(td)
+            (review_root / "EXPLORER-500" / "US").mkdir(parents=True)
+
+            with mock.patch.dict("os.environ", {"PREVIEW_DATA_ROOT": "data/phase2"}, clear=True):
+                cmd = vercel_build_review_preview.build_preview_command(
+                    Path("/python"),
+                    review_root=review_root,
+                )
+
+        self.assertIn("--data-root", cmd)
+        self.assertIn("data/phase2", cmd)

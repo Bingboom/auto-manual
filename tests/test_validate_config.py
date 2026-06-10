@@ -179,10 +179,10 @@ class TestValidateConfig(unittest.TestCase):
                     "provider": "lark_cli",
                     "base_token_env": "FEISHU_BASE_TOKEN",
                     "spec_master_sources": {
-                        "spec_rows_source_table_id": "tbl_spec_rows",
-                        "spec_rows_source_view_id": "view_spec_rows",
-                        "page_placeholders_source_table_id": "tbl_placeholders",
-                        "page_placeholders_source_view_id": "view_placeholders",
+                        "spec_rows_source_table_id_env": "SPEC_ROWS_SOURCE_TABLE",
+                        "spec_rows_source_view_id_env": "SPEC_ROWS_SOURCE_VIEW",
+                        "page_placeholders_source_table_id_env": "PAGE_PLACEHOLDERS_SOURCE_TABLE",
+                        "page_placeholders_source_view_id_env": "PAGE_PLACEHOLDERS_SOURCE_VIEW",
                     },
                     "tables": {
                         "spec_master": {},
@@ -226,14 +226,30 @@ class TestValidateConfig(unittest.TestCase):
                     "provider": "lark_cli",
                     "base_token_env": "FEISHU_BASE_TOKEN",
                     "tables": {
-                        "lcd_icons": {"table_id": "tblDII3oyqFhQYHn", "view_id": "vewUQlvMFL"},
-                        "troubleshooting": {"table_id": "tblUSuk3Q5BKTdTh", "view_id": "vewZne4CUk"},
-                        "variable_defaults": {"table_id": "tblRyRdqRg2MGVgH", "view_id": "vew5jbxqLj"},
-                        "variable_lang_overrides": {"table_id": "tblkcXujDMGXnHMo", "view_id": "vewODokxUs"},
-                        "manual_copy_source": {"table_id_env": "FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID"},
+                        "lcd_icons": {
+                            "table_id_env": "FEISHU_PHASE2_LCD_ICONS_TABLE_ID",
+                            "view_id_env": "FEISHU_PHASE2_LCD_ICONS_VIEW_ID",
+                        },
+                        "troubleshooting": {
+                            "table_id_env": "FEISHU_PHASE2_TROUBLESHOOTING_TABLE_ID",
+                            "view_id_env": "FEISHU_PHASE2_TROUBLESHOOTING_VIEW_ID",
+                        },
+                        "variable_defaults": {
+                            "table_id_env": "FEISHU_PHASE2_VARIABLE_DEFAULTS_TABLE_ID",
+                            "view_id_env": "FEISHU_PHASE2_VARIABLE_DEFAULTS_VIEW_ID",
+                        },
+                        "variable_lang_overrides": {
+                            "table_id_env": "FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_TABLE_ID",
+                            "view_id_env": "FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_VIEW_ID",
+                        },
+                        "manual_copy_source": {
+                            "table_id_env": "FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID",
+                            "view_id_env": "FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID",
+                        },
                         "translation_memory": {
                             "base_token_env": "FEISHU_TRANSLATION_MEMORY_BASE_TOKEN",
-                            "table_id": "tbl6gKPJPTvOcTWv",
+                            "table_id_env": "FEISHU_TRANSLATION_MEMORY_TABLE_ID",
+                            "view_id_env": "FEISHU_TRANSLATION_MEMORY_VIEW_ID",
                         },
                     },
                 },

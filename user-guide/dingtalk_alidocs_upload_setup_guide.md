@@ -373,6 +373,8 @@ https://alidocs.dingtalk.com/i/nodes/<dentryUuid>
 - `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`
 - `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`
 
+如果队列行会勾选 `是否强制刷新数据`，worker 还需要和 `sync-data` 相同的完整 phase2 table/view env 绑定，例如 `FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID`、`FEISHU_PHASE2_LCD_ICONS_TABLE_ID`、`FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID` 以及对应 `*_VIEW_ID`。
+
 ## 14. 推荐的本地使用顺序
 
 第一次配置：

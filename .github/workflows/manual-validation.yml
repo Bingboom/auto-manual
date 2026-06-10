@@ -99,7 +99,7 @@ jobs:
       - name: Run schema drift fixture check
         run: |
           python tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json
-          python tools/schema_drift.py --phase2-root data/phase2 --queue-fields tests/fixtures/schema_drift/queue_fields_complete.json
+          python tools/schema_drift.py --phase2-root tests/fixtures/phase2 --queue-fields tests/fixtures/schema_drift/queue_fields_complete.json
 
   doctor-en:
     runs-on: ubuntu-latest
@@ -121,7 +121,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run doctor (EN/US)
-        run: python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
+        run: python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
 
   check-en:
     runs-on: ubuntu-latest
@@ -135,7 +135,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run check (EN/US)
-        run: python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
+        run: python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
 
   check-jp:
     runs-on: ubuntu-latest
@@ -149,7 +149,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run check (JP)
-        run: python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
+        run: python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2
 
   workflow-smoke:
     runs-on: ubuntu-latest
@@ -165,6 +165,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
       - name: Run diff-report smoke
-        run: python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --from-ref HEAD~1 --to-ref HEAD
+        run: python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --from-ref HEAD~1 --to-ref HEAD
       - name: Run release-manifest smoke
-        run: python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
+        run: python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2

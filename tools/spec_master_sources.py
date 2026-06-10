@@ -11,6 +11,10 @@ SPEC_ROWS_ENV = "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID"
 PLACEHOLDERS_ENV = "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID"
 SPEC_ROWS_VIEW_ENV = "FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID"
 PLACEHOLDERS_VIEW_ENV = "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID"
+SPEC_ROWS_ENV_KEY = "spec_rows_source_table_id_env"
+PLACEHOLDERS_ENV_KEY = "page_placeholders_source_table_id_env"
+SPEC_ROWS_VIEW_ENV_KEY = "spec_rows_source_view_id_env"
+PLACEHOLDERS_VIEW_ENV_KEY = "page_placeholders_source_view_id_env"
 FOOTNOTE_REF_COLUMNS = (
     "Row_label_footnote_refs",
     "Param_footnote_refs",
@@ -26,13 +30,38 @@ def spec_master_sources_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
     return source_cfg
 
 
+def _text(value: Any) -> str:
+    return str(value or "").strip()
+
+
+def _env_name(source_cfg: dict[str, Any], key: str, default: str) -> str:
+    return _text(source_cfg.get(key)) or default
+
+
+def source_table_env_names_from_cfg(cfg: dict[str, Any]) -> tuple[str, str]:
+    source_cfg = spec_master_sources_cfg(cfg)
+    return (
+        _env_name(source_cfg, SPEC_ROWS_ENV_KEY, SPEC_ROWS_ENV),
+        _env_name(source_cfg, PLACEHOLDERS_ENV_KEY, PLACEHOLDERS_ENV),
+    )
+
+
+def source_view_env_names_from_cfg(cfg: dict[str, Any]) -> tuple[str, str]:
+    source_cfg = spec_master_sources_cfg(cfg)
+    return (
+        _env_name(source_cfg, SPEC_ROWS_VIEW_ENV_KEY, SPEC_ROWS_VIEW_ENV),
+        _env_name(source_cfg, PLACEHOLDERS_VIEW_ENV_KEY, PLACEHOLDERS_VIEW_ENV),
+    )
+
+
 def source_table_ids_from_cfg(cfg: dict[str, Any], *, environ: Mapping[str, str] | None = None) -> tuple[str, str]:
     env = environ if environ is not None else os.environ
     source_cfg = spec_master_sources_cfg(cfg)
-    spec_id = str(source_cfg.get("spec_rows_source_table_id") or env.get(SPEC_ROWS_ENV, "")).strip()
-    placeholder_id = str(
-        source_cfg.get("page_placeholders_source_table_id") or env.get(PLACEHOLDERS_ENV, "")
-    ).strip()
+    spec_env, placeholder_env = source_table_env_names_from_cfg(cfg)
+    spec_id = _text(source_cfg.get("spec_rows_source_table_id") or env.get(spec_env, ""))
+    placeholder_id = _text(
+        source_cfg.get("page_placeholders_source_table_id") or env.get(placeholder_env, "")
+    )
     return spec_id, placeholder_id
 
 
@@ -43,12 +72,10 @@ def source_view_ids_from_cfg(
 ) -> tuple[str | None, str | None]:
     env = environ if environ is not None else os.environ
     source_cfg = spec_master_sources_cfg(cfg)
-    spec_view = (
-        str(source_cfg.get("spec_rows_source_view_id") or env.get(SPEC_ROWS_VIEW_ENV, "")).strip()
-        or None
-    )
+    spec_view_env, placeholder_view_env = source_view_env_names_from_cfg(cfg)
+    spec_view = _text(source_cfg.get("spec_rows_source_view_id") or env.get(spec_view_env, "")) or None
     placeholder_view = (
-        str(source_cfg.get("page_placeholders_source_view_id") or env.get(PLACEHOLDERS_VIEW_ENV, "")).strip()
+        _text(source_cfg.get("page_placeholders_source_view_id") or env.get(placeholder_view_env, ""))
         or None
     )
     return spec_view, placeholder_view
@@ -67,6 +94,15 @@ def source_table_bindings_from_cfg(
 def has_source_table_ids(cfg: dict[str, Any], *, environ: Mapping[str, str] | None = None) -> bool:
     spec_id, placeholder_id = source_table_ids_from_cfg(cfg, environ=environ)
     return bool(spec_id and placeholder_id)
+
+
+def has_source_table_bindings(cfg: dict[str, Any], *, environ: Mapping[str, str] | None = None) -> bool:
+    if has_source_table_ids(cfg, environ=environ):
+        return True
+    source_cfg = spec_master_sources_cfg(cfg)
+    spec_env = _text(source_cfg.get(SPEC_ROWS_ENV_KEY))
+    placeholder_env = _text(source_cfg.get(PLACEHOLDERS_ENV_KEY))
+    return bool(spec_env and placeholder_env)
 
 
 def scalar(value: Any) -> str:

@@ -63,19 +63,37 @@ The current shared config expects these environment variables:
 
 - `FEISHU_PHASE2_BASE_TOKEN`
 - `FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID`
+- `FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID`
 - `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID`
+- `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID`
 - `FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID`
 - `FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID`
 - `FEISHU_PHASE2_SPEC_NOTES_TABLE_ID`
 - `FEISHU_PHASE2_SPEC_NOTES_VIEW_ID`
-- `FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID`
-- `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`
 - `FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID`
 - `FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID`
+- `FEISHU_PHASE2_LCD_ICONS_TABLE_ID`
+- `FEISHU_PHASE2_LCD_ICONS_VIEW_ID`
+- `FEISHU_PHASE2_TROUBLESHOOTING_TABLE_ID`
+- `FEISHU_PHASE2_TROUBLESHOOTING_VIEW_ID`
+- `FEISHU_PHASE2_VARIABLE_DEFAULTS_TABLE_ID`
+- `FEISHU_PHASE2_VARIABLE_DEFAULTS_VIEW_ID`
+- `FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_TABLE_ID`
+- `FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_VIEW_ID`
+- `FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID`
+- `FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID`
+- `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`
+- `FEISHU_TRANSLATION_MEMORY_TABLE_ID`
+- `FEISHU_TRANSLATION_MEMORY_VIEW_ID`
+
+Optional maintenance-only bindings for `spec-master-rebuild --bootstrap-source-tables`:
+
+- `FEISHU_PHASE2_DOCUMENT_KEY_TABLE_ID`
+- `FEISHU_PHASE2_ROW_KEY_TABLE_ID`
 
 Execution steps:
 
-1. Collect the Base token plus the split spec source table IDs and the remaining table/view IDs from Feishu.
+1. Collect the Base token plus every source table/view ID from Feishu. Mirror repositories should keep these values in environment variables or GitHub Secrets, not in committed config.
 2. Export them in the shell profile used on the new machine.
 3. Open a new shell and verify:
 
@@ -95,7 +113,7 @@ python3 build.py sync-data --config configs/config.us.yaml --data-root data/phas
 python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2
 ```
 
-6. Confirm these outputs changed as expected:
+6. Confirm these local generated outputs changed as expected. `data/phase2/` is gitignored, so this verification should not become a code commit unless a task explicitly asks for a checked-in fixture:
    - [`data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
    - [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
    - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)

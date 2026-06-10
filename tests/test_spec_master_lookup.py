@@ -12,6 +12,10 @@ from tools.utils.spec_master import (
 )
 
 
+ROOT = Path(__file__).resolve().parents[1]
+PHASE2_FIXTURE = ROOT / "tests" / "fixtures" / "phase2"
+
+
 class TestSpecMasterLookup(unittest.TestCase):
     def _rows(self) -> list[dict[str, str]]:
         return [
@@ -474,7 +478,7 @@ class TestSpecMasterLookup(unittest.TestCase):
         )
 
     def test_real_spec_master_should_resolve_je1000f_us_product_name_for_western_langs(self) -> None:
-        spec_master_csv = Path(__file__).resolve().parents[1] / "data" / "phase2" / "Spec_Master.csv"
+        spec_master_csv = PHASE2_FIXTURE / "Spec_Master.csv"
 
         for lang in ("en", "es", "fr"):
             match = resolve_product_name_from_spec_master(
@@ -498,7 +502,7 @@ class TestSpecMasterLookup(unittest.TestCase):
         self.assertEqual("Explorer 1000", substitutions["PRODUCT_SHORT_NAME"])
 
     def test_real_spec_master_should_resolve_phase2_temperature_placeholders_for_us_and_jp(self) -> None:
-        spec_master_csv = Path(__file__).resolve().parents[1] / "data" / "phase2" / "Spec_Master.csv"
+        spec_master_csv = PHASE2_FIXTURE / "Spec_Master.csv"
 
         expected_us_prefixes = {
             "en": "1 month:",

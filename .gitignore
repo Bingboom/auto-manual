@@ -11,6 +11,9 @@ docs/_build/*/*/*
 !docs/_build/*/*/rst/**
 docs/generated/
 
+# Local Feishu/Lark snapshot data; each mirror repo syncs its own Base.
+data/phase2/
+
 # Python caches
 **/__pycache__/
 *.pyc

@@ -39,11 +39,21 @@ class SignalLabel:
 
 
 def _default_symbols_blocks_csv() -> Path:
-    return repo_root() / STRUCTURED_DATA_DEFAULT_DIR / SYMBOLS_BLOCKS_FILE
+    root = repo_root()
+    default_path = root / STRUCTURED_DATA_DEFAULT_DIR / SYMBOLS_BLOCKS_FILE
+    if default_path.exists():
+        return default_path
+    fixture_path = root / "tests" / "fixtures" / "phase2" / SYMBOLS_BLOCKS_FILE
+    return fixture_path if fixture_path.exists() else default_path
 
 
 def _default_localized_copy_csv() -> Path:
-    return repo_root() / STRUCTURED_DATA_DEFAULT_DIR / LOCALIZED_COPY_FILE
+    root = repo_root()
+    default_path = root / STRUCTURED_DATA_DEFAULT_DIR / LOCALIZED_COPY_FILE
+    if default_path.exists():
+        return default_path
+    fixture_path = root / "tests" / "fixtures" / "phase2" / LOCALIZED_COPY_FILE
+    return fixture_path if fixture_path.exists() else default_path
 
 
 def _resolve_lang(lang: str | None) -> str:

@@ -6,7 +6,12 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable, Mapping
 
-from tools.spec_master_sources import has_source_table_ids
+from tools.spec_master_sources import (
+    has_source_table_bindings,
+    source_table_env_names_from_cfg,
+    source_view_env_names_from_cfg,
+    spec_master_sources_cfg,
+)
 
 
 def sync_phase2_cfg(cfg: dict[str, Any]) -> dict[str, Any]:
@@ -167,30 +172,49 @@ def collect_sync_preflight_errors(
 
     required_env_names: list[str] = []
     seen_env_names: set[str] = set()
+
+    def add_required_env(env_name: str) -> None:
+        if env_name and env_name not in seen_env_names:
+            seen_env_names.add(env_name)
+            required_env_names.append(env_name)
+
     for logical_name in selected:
         base_token_env, table_id_env, view_id_env = table_env_names_fn(cfg, logical_name)
         table_id, view_id = table_binding_values(cfg, logical_name)
-        spec_master_uses_sources = logical_name == "spec_master" and has_source_table_ids(cfg, environ=environ)
+        spec_master_uses_sources = logical_name == "spec_master" and has_source_table_bindings(cfg, environ=environ)
         if not base_token_env:
             errors.append(
                 f"sync.phase2.tables.{logical_name}.base_token_env is required, "
                 "or provide sync.phase2.base_token_env"
             )
-        elif base_token_env not in seen_env_names:
-            seen_env_names.add(base_token_env)
-            required_env_names.append(base_token_env)
+        else:
+            add_required_env(base_token_env)
         if not table_id and not table_id_env:
             if not spec_master_uses_sources:
                 errors.append(
                     f"sync.phase2.tables.{logical_name}.table_id or "
                     f"sync.phase2.tables.{logical_name}.table_id_env is required"
                 )
-        elif table_id is None and table_id_env not in seen_env_names:
-            seen_env_names.add(table_id_env)
-            required_env_names.append(table_id_env)
-        if view_id is None and view_id_env and view_id_env not in seen_env_names:
-            seen_env_names.add(view_id_env)
-            required_env_names.append(view_id_env)
+        elif table_id is None:
+            add_required_env(table_id_env)
+        if view_id is None and view_id_env:
+            add_required_env(view_id_env)
+        if logical_name == "spec_master" and spec_master_uses_sources:
+            source_cfg = spec_master_sources_cfg(cfg)
+            spec_rows_env, placeholders_env = source_table_env_names_from_cfg(cfg)
+            spec_rows_view_env, placeholders_view_env = source_view_env_names_from_cfg(cfg)
+            if not str(source_cfg.get("spec_rows_source_table_id") or "").strip():
+                add_required_env(spec_rows_env)
+            if not str(source_cfg.get("page_placeholders_source_table_id") or "").strip():
+                add_required_env(placeholders_env)
+            if source_cfg.get("spec_rows_source_view_id_env") and not str(
+                source_cfg.get("spec_rows_source_view_id") or ""
+            ).strip():
+                add_required_env(spec_rows_view_env)
+            if source_cfg.get("page_placeholders_source_view_id_env") and not str(
+                source_cfg.get("page_placeholders_source_view_id") or ""
+            ).strip():
+                add_required_env(placeholders_view_env)
 
     missing_env_names = [
         env_name

@@ -38,7 +38,7 @@ from tools.config_pages import (
     RstIncludePage,
 )
 from tools.page_manifest import resolve_config_pages, resolve_page_manifest_path
-from tools.spec_master_sources import has_source_table_ids
+from tools.spec_master_sources import has_source_table_bindings
 
 SYNC_PHASE2_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
 SYNC_PHASE2_TABLES = {
@@ -297,9 +297,13 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             spec_master_sources = {}
         for key in (
             "spec_rows_source_table_id",
+            "spec_rows_source_table_id_env",
             "spec_rows_source_view_id",
+            "spec_rows_source_view_id_env",
             "page_placeholders_source_table_id",
+            "page_placeholders_source_table_id_env",
             "page_placeholders_source_view_id",
+            "page_placeholders_source_view_id_env",
         ):
             value = spec_master_sources.get(key) if isinstance(spec_master_sources, dict) else None
             if value is not None and (not isinstance(value, str) or not value.strip()):
@@ -348,7 +352,7 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
         if (
             not _non_empty_str(table_cfg.get("table_id"))
             and not _non_empty_str(table_cfg.get("table_id_env"))
-            and not (table_name == "spec_master" and has_source_table_ids(cfg))
+            and not (table_name == "spec_master" and has_source_table_bindings(cfg))
         ):
             issues.append(
                 Issue(

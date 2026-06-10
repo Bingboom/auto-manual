@@ -37,8 +37,8 @@ from tools.spec_master_sources import (  # noqa: E402
 
 SPEC_ROWS_SOURCE_NAME = "规格参数明细"
 PLACEHOLDERS_SOURCE_NAME = "页面占位参数"
-DOCUMENT_KEY_TABLE_ID = "tbl8FDno2WH4OvpO"
-ROW_KEY_TABLE_ID = "tbl3Jgz9qqNltYPe"
+DOCUMENT_KEY_TABLE_ENV = "FEISHU_PHASE2_DOCUMENT_KEY_TABLE_ID"
+ROW_KEY_TABLE_ENV = "FEISHU_PHASE2_ROW_KEY_TABLE_ID"
 SOURCE_SPEC_PAGE = "specifications"
 SPEC_ROWS_ENV = "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID"
 PLACEHOLDERS_ENV = "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID"
@@ -83,6 +83,21 @@ SOURCE_FIELD_ORDER = (
     "Param_uk",
     "Value_uk",
 )
+
+
+def _required_env(env_name: str) -> str:
+    value = str(os.environ.get(env_name, "")).strip()
+    if not value:
+        raise RuntimeError(f"Required environment variable is not set: {env_name}")
+    return value
+
+
+def _document_key_table_id() -> str:
+    return _required_env(DOCUMENT_KEY_TABLE_ENV)
+
+
+def _row_key_table_id() -> str:
+    return _required_env(ROW_KEY_TABLE_ENV)
 
 SPEC_MASTER_VISIBLE_ORDER = (
     "spec_row_key",
@@ -293,9 +308,9 @@ def _update_field(cli_bin: str, base_token: str, table_id: str, field_id: str, f
 
 def _base_field_definition(name: str, total_fields: dict[str, dict[str, Any]]) -> dict[str, Any]:
     if name == "Document_key_link":
-        return {"name": name, "type": "link", "link_table": DOCUMENT_KEY_TABLE_ID, "bidirectional": False}
+        return {"name": name, "type": "link", "link_table": _document_key_table_id(), "bidirectional": False}
     if name == "Row_key_link":
-        return {"name": name, "type": "link", "link_table": ROW_KEY_TABLE_ID, "bidirectional": False}
+        return {"name": name, "type": "link", "link_table": _row_key_table_id(), "bidirectional": False}
     source = total_fields.get(name)
     if source:
         result: dict[str, Any] = {"name": name, "type": source.get("type", "text")}
@@ -336,7 +351,7 @@ def _ensure_row_key_lookup(
     table_id: str,
     fields_by_name: dict[str, dict[str, Any]],
 ) -> None:
-    row_key_fields = _field_by_name(_field_list(cli_bin, base_token, ROW_KEY_TABLE_ID))
+    row_key_fields = _field_by_name(_field_list(cli_bin, base_token, _row_key_table_id()))
     lookup_field = _row_key_lookup_definition(fields_by_name, row_key_fields)
     if "Row_key" in fields_by_name:
         field_id = str(fields_by_name["Row_key"].get("id") or fields_by_name["Row_key"].get("field_id") or "").strip()
@@ -506,7 +521,7 @@ def _rows_by_split(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]],
 
 
 def _row_key_dictionary(source: LarkCliSource, *, base_token: str) -> dict[str, str]:
-    records = _fetch_records_with_ids(source, base_token=base_token, table_id=ROW_KEY_TABLE_ID)
+    records = _fetch_records_with_ids(source, base_token=base_token, table_id=_row_key_table_id())
     mapping: dict[str, str] = {}
     for record in records:
         fields = record.get("fields") if isinstance(record.get("fields"), dict) else {}
@@ -518,7 +533,7 @@ def _row_key_dictionary(source: LarkCliSource, *, base_token: str) -> dict[str, 
 
 
 def _document_key_dictionary(source: LarkCliSource, *, base_token: str) -> dict[str, str]:
-    records = _fetch_records_with_ids(source, base_token=base_token, table_id=DOCUMENT_KEY_TABLE_ID)
+    records = _fetch_records_with_ids(source, base_token=base_token, table_id=_document_key_table_id())
     mapping: dict[str, str] = {}
     for record in records:
         fields = record.get("fields") if isinstance(record.get("fields"), dict) else {}
@@ -547,7 +562,7 @@ def _create_missing_row_key_records(
         [row_key, label, "Auto-created during spec_master source-table split"]
         for row_key, label in sorted(missing.items())
     ]
-    _batch_create(cli_bin, base_token, ROW_KEY_TABLE_ID, ["Row_key", "Row_label_source", "Remark"], rows)
+    _batch_create(cli_bin, base_token, _row_key_table_id(), ["Row_key", "Row_label_source", "Remark"], rows)
 
 
 def _api_value(field_name: str, value: Any, total_fields: dict[str, dict[str, Any]]) -> Any:

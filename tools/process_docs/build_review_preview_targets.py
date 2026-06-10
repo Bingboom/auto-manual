@@ -324,6 +324,7 @@ def build_export_command(
     family: str,
     source_mode: str,
     no_clean: bool,
+    data_root: str | None = None,
 ) -> list[str]:
     cmd = [
         sys.executable,
@@ -340,11 +341,13 @@ def build_export_command(
     ]
     if no_clean:
         cmd.append("--no-clean")
+    if data_root:
+        cmd.extend(["--data-root", data_root])
     return cmd
 
 
 def build_diff_command(*, args: argparse.Namespace, target: WorkspaceTarget, tracked_root: Path) -> list[str]:
-    return [
+    cmd = [
         sys.executable,
         str(ROOT / "build.py"),
         "diff-report",
@@ -361,6 +364,10 @@ def build_diff_command(*, args: argparse.Namespace, target: WorkspaceTarget, tra
         "--to-ref",
         args.to_ref,
     ]
+    data_root = getattr(args, "data_root", None)
+    if data_root:
+        cmd.extend(["--data-root", str(data_root)])
+    return cmd
 
 
 def discover_workspace_targets(

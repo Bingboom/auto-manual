@@ -382,7 +382,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         temp_dir = tempfile.TemporaryDirectory()
         self.addCleanup(temp_dir.cleanup)
         dst = Path(temp_dir.name) / "Localized_Copy.csv"
-        src = Path(__file__).resolve().parents[1] / "data/phase2/Localized_Copy.csv"
+        src = Path(__file__).resolve().parents[1] / "tests/fixtures/phase2/Localized_Copy.csv"
         shutil.copyfile(src.with_name("Status_Words.csv"), dst.with_name("Status_Words.csv"))
 
         with src.open(encoding="utf-8-sig", newline="") as handle:

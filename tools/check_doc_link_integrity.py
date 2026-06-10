@@ -36,6 +36,7 @@ EXTERNAL_PREFIXES = ("http://", "https://", "mailto:", "ftp://", "tel:")
 # output roots that build.py and the queue workers write under.
 SKIP_REPO_RELATIVE_PREFIXES = (
     ".tmp/",
+    "data/phase2/",
     "docs/_build/",
     "docs/_review/",
     "docs/generated/",
