@@ -18,7 +18,7 @@ Options:
   --mirror-repo OWNER/REPO    Mirror repo, default Bingboom/Hello-Docs
   --pause                     Set FEISHU_BUILD_QUEUE_PAUSED=true, default
   --unpause                   Set FEISHU_BUILD_QUEUE_PAUSED=false after audit passes
-  --include-optional          Also write optional Vercel / DingTalk / wiki-parent secrets when present
+  --include-optional          Also write optional Vercel / DingTalk / Feishu IM / OpenClaw values when present
   --dry-run                   Show what would be written without changing GitHub
   -h, --help                  Show this help
 
@@ -109,6 +109,33 @@ optional_secret_names=(
   DINGTALK_DOCS_XSRF_TOKEN
   DINGTALK_DOCS_COOKIE
   DINGTALK_DOCS_BX_V
+  FEISHU_IM_APP_ID
+  FEISHU_IM_APP_SECRET
+  FEISHU_IM_VERIFICATION_TOKEN
+  FEISHU_IM_ENCRYPT_KEY
+  FEISHU_VERIFICATION_TOKEN
+  FEISHU_ENCRYPT_KEY
+  CLOUDFLARED_TUNNEL_TOKEN
+)
+
+optional_variable_names=(
+  AUTO_MANUAL_GITHUB_DEFAULT_BRANCH
+  AUTO_MANUAL_GITHUB_API_BASE_URL
+  AUTO_MANUAL_GITHUB_METADATA_ARTIFACT_NAME
+  AUTO_MANUAL_GITHUB_DISPATCH_TIMEOUT_SECONDS
+  AUTO_MANUAL_CONTROL_CONFIG
+  FEISHU_IM_WEBHOOK_HOST
+  FEISHU_IM_WEBHOOK_PORT
+  FEISHU_IM_WEBHOOK_PATH
+  FEISHU_IM_HEALTH_PATH
+  FEISHU_IM_REQUIRE_MENTION
+  FEISHU_IM_ENABLE_MESSAGE_REACTIONS
+  FEISHU_IM_BATCH_DISPATCH_DELAY_MS
+  FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS
+  FEISHU_IM_BATCH_STATUS_POLL_SECONDS
+  FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS
+  FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE
+  FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE
 )
 
 missing=()
@@ -148,6 +175,15 @@ set_secret_from_env() {
   fi
 }
 
+set_variable_from_env() {
+  local name="$1"
+  if [ -n "${!name:-}" ]; then
+    set_variable "$name" "${!name}"
+  else
+    printf '[skip] optional variable %s is not present in environment\n' "$name"
+  fi
+}
+
 set_variable AUTO_MANUAL_GITHUB_REPO_OWNER "$mirror_owner"
 set_variable AUTO_MANUAL_GITHUB_REPO_NAME "$mirror_name"
 set_variable FEISHU_BUILD_QUEUE_PAUSED true
@@ -163,6 +199,9 @@ if [ "$include_optional" -eq 1 ]; then
     else
       printf '[skip] optional secret %s is not present in environment\n' "$name"
     fi
+  done
+  for name in "${optional_variable_names[@]}"; do
+    set_variable_from_env "$name"
   done
 fi
 

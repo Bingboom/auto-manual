@@ -115,6 +115,36 @@ optional_mirror_secrets=(
   DINGTALK_DOCS_BX_V
 )
 
+optional_mirror_openclaw_secrets=(
+  FEISHU_IM_APP_ID
+  FEISHU_IM_APP_SECRET
+  FEISHU_IM_VERIFICATION_TOKEN
+  FEISHU_IM_ENCRYPT_KEY
+  FEISHU_VERIFICATION_TOKEN
+  FEISHU_ENCRYPT_KEY
+  CLOUDFLARED_TUNNEL_TOKEN
+)
+
+optional_mirror_openclaw_variables=(
+  AUTO_MANUAL_GITHUB_DEFAULT_BRANCH
+  AUTO_MANUAL_GITHUB_API_BASE_URL
+  AUTO_MANUAL_GITHUB_METADATA_ARTIFACT_NAME
+  AUTO_MANUAL_GITHUB_DISPATCH_TIMEOUT_SECONDS
+  AUTO_MANUAL_CONTROL_CONFIG
+  FEISHU_IM_WEBHOOK_HOST
+  FEISHU_IM_WEBHOOK_PORT
+  FEISHU_IM_WEBHOOK_PATH
+  FEISHU_IM_HEALTH_PATH
+  FEISHU_IM_REQUIRE_MENTION
+  FEISHU_IM_ENABLE_MESSAGE_REACTIONS
+  FEISHU_IM_BATCH_DISPATCH_DELAY_MS
+  FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS
+  FEISHU_IM_BATCH_STATUS_POLL_SECONDS
+  FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS
+  FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE
+  FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE
+)
+
 contains_line() {
   local needle="$1"
   grep -Fxq -- "$needle"
@@ -146,6 +176,16 @@ variable_value() {
   local repo="$1"
   local name="$2"
   gh variable list --repo "$repo" | awk -F '\t' -v key="$name" '$1 == key {print $2; exit}'
+}
+
+secret_present() {
+  local name="$1"
+  printf '%s\n' "$mirror_secret_names" | contains_line "$name"
+}
+
+variable_present() {
+  local name="$1"
+  printf '%s\n' "$mirror_variable_names" | contains_line "$name"
 }
 
 expected_owner="${mirror_repo%%/*}"
@@ -231,8 +271,35 @@ printf '\n'
 
 printf 'Mirror optional secrets\n'
 for name in "${optional_mirror_secrets[@]}"; do
-  if printf '%s\n' "$mirror_secret_names" | contains_line "$name"; then
+  if secret_present "$name"; then
     printf '  [ok] %s\n' "$name"
+  else
+    printf '  [optional-missing] %s\n' "$name"
+  fi
+done
+printf '\n'
+
+printf 'Mirror optional Feishu IM / OpenClaw secrets\n'
+for name in "${optional_mirror_openclaw_secrets[@]}"; do
+  if secret_present "$name"; then
+    printf '  [ok] %s\n' "$name"
+  else
+    printf '  [optional-missing] %s\n' "$name"
+  fi
+done
+if secret_present FEISHU_IM_APP_ID && secret_present FEISHU_IM_APP_SECRET; then
+  printf '  [ok] Feishu IM adapter has explicit FEISHU_IM_APP_ID / FEISHU_IM_APP_SECRET\n'
+elif secret_present FEISHU_APP_ID && secret_present FEISHU_APP_SECRET; then
+  printf '  [ok] Feishu IM adapter can fall back to required FEISHU_APP_ID / FEISHU_APP_SECRET\n'
+else
+  printf '  [optional-missing] Feishu IM adapter app credentials are not yet available through FEISHU_IM_* or FEISHU_APP_*\n'
+fi
+printf '\n'
+
+printf 'Mirror optional Feishu IM / OpenClaw variables\n'
+for name in "${optional_mirror_openclaw_variables[@]}"; do
+  if variable_present "$name"; then
+    printf '  [ok] %s=%s\n' "$name" "$(variable_value "$mirror_repo" "$name")"
   else
     printf '  [optional-missing] %s\n' "$name"
   fi
@@ -252,7 +319,7 @@ else
   printf 'Summary: mirror binding is incomplete and Feishu runtime workflows are not paused.\n'
 fi
 
-printf 'OpenClaw note: repo-level audit can verify AUTO_MANUAL_GITHUB_REPO_OWNER/NAME only. Keep FEISHU_IM_APP_ID, FEISHU_IM_APP_SECRET, and any OpenClaw gateway tokens in the actual OpenClaw runtime environment.\n'
+printf 'OpenClaw note: repo-level audit verifies the mirror repo variables plus optional Feishu IM adapter entries. The OpenClaw plugin host still needs its GitHub token in the OpenClaw plugin config or runtime environment; repository secrets are only available to GitHub Actions unless the runtime explicitly exports them.\n'
 
 if [ "$failures" -gt 0 ] && [ "$report_only" -ne 1 ]; then
   exit 1
