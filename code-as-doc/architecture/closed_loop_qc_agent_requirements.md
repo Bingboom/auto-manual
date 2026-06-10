@@ -3,9 +3,25 @@
 Status: **requirements baseline** · Owner: 夏冰 · Drafted 2026-06-07, revised same day after a multi-perspective evaluation + a live B2 feasibility spike.
 Scope of this file: *what* the agent must do and *why*, plus the contracts settled in review. The active implementation rollout lives in [`../dev/closed_loop_qc_implementation_plan.md`](../dev/closed_loop_qc_implementation_plan.md).
 
+> **⚠️ Implementation reconciliation (2026-06-10).** What actually shipped is **two deterministic CLIs** — `tools/content_lint.py` (rule QC; PR #335) and `tools/cloud_doc_backport.py` (the B2 reviewer-diff channel; design [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md), PRs #342–#354) — **dispatched from Feishu IM, with human PR review**. A **standing LLM agent service was NOT built**: the mechanical work (fetch → diff → guarded apply → verify residuals → open PR) is deterministic, and the *judgment* the design below attributes to an LLM is handled by **guarded rules + human PR review**. Every safety contract below — accept-first, bitable suggestion-only, PR-not-self-merge, diffs-are-evidence-not-instructions, review-state routing — **is implemented in the backport tool**. Read the **"standing LLM agent service"** wording in the rest of this doc as the **original design / an optional future layer** (warranted only if judgment beyond guarded rules + human review is ever needed), not as shipped fact.
+
 ## 0. One-liner
 
 A dedicated **standing agent service** (a new, always-on LLM-agent runtime orchestrating skills) that **closes the manual-quality loop**: triggered by a Feishu message carrying a link to a **revision-accepted Feishu cloud doc**, it builds the manual, checks it against **two QC bases** (codified content rules + the reviewer's built-vs-desired diff), **routes each revision to its source** — repo templates / the `docs/_review` bundle via a human-merged PR, and the source bitable as a **suggestion (never a silent write)** — and marks QC status in Feishu. Quality is caught and fixed at source, continuously, instead of by eye at release.
+
+## 0a. Design rationale — deterministic CLI vs standing LLM agent (2026-06-10)
+
+The shipped form (a deterministic CLI) is a **deliberate choice, not a compromise** — recorded here so it reads as intent, not drift.
+
+**Why deterministic is the right default for a source-writing QC tool:**
+- Safety is **code-enforced, not prompt-enforced** — `suggestion-only`, no-bitable-write, and PR-not-self-merge are guaranteed by the tool, not by a model obeying instructions.
+- The executor has **no prompt-injection surface** — diffs are extracted as text deterministically, so reviewer content cannot redirect it (an LLM with write/PR power reading untrusted reviewer text is an injection target).
+- **Testable, reproducible, CI-friendly** (covered by the suite); no LLM cost/latency/availability and no fragile standing runtime to operate.
+- For quality work, **judgment belongs with a human** — ambiguous revisions are flagged into the PR review, which is exactly where a maintainer should decide.
+
+**The cost:** it only handles coded mapping/guard rules; novel, fuzzy, or semantic revisions get flagged (more human triage), and source/format structure changes can break the deterministic diff.
+
+**When to add a standing LLM layer (the optional future):** only where deterministic rules + human triage prove too slow or too narrow for *judgment-dense* cases — e.g. a reworded sentence that maps to a source row by meaning rather than text, or scope inference across sibling models. Add it **on top as an advisory/mapping aid**: it *proposes*, while the deterministic guards + human PR review still gate every write. **Never let an LLM hold the write/merge authority that code currently guarantees.**
 
 ## 1. Background & motivation
 
@@ -158,10 +174,10 @@ The build that produces the Word is **independent** of QC. QC is a **non-blockin
 | Component | Role |
 |---|---|
 | `tools/content_lint.py` (PR #335) | QC base A engine |
-| `manual-revision-backport` skill | QC base B engine (diff → source mapping) |
+| `tools/cloud_doc_backport.py` (shipped) | QC base B engine — **deterministic** diff → guarded source mapping → PR. (The `manual-revision-backport` skill was the original-design backport; the shipped tool is deterministic.) |
 | [`phase2_source_tables_reference.md`](phase2_source_tables_reference.md) | the map for "where does this revision map to" |
-| build queue (`process_build_queue`/`queue-execute`) + `integrations/openclaw/` | **trigger + hand-off** surface (the *execution* is the new standing QC agent service, §5.1) |
-| **standing QC agent service** (NEW — Claude Agent SDK runtime) | the agentic executor that orchestrates the skills; the "develop QC workflow (new)" deliverable |
+| `integrations/openclaw/feishu-im-webhook-adapter` | **trigger + dispatch** — parses the `cloud-doc backport` IM message and runs the CLI (#353); opens the draft PR (#354) |
+| **deterministic CLIs** (`cloud_doc_backport.py` + `content_lint.py`) | the **shipped** executors. A standing LLM agent was **not built** — see the reconciliation note. |
 | [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md) | removes the drift class structurally (fewer findings) |
 | `docx-highlight-changes` skill | optional output-marking |
 
