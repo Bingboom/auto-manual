@@ -27,6 +27,7 @@ permissions:
 
 jobs:
   process-review-start:
+    if: ${{ github.repository != 'Bingboom/Hello-Docs' || vars.FEISHU_BUILD_QUEUE_PAUSED != 'true' }}
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
