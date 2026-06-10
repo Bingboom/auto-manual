@@ -1,0 +1,80 @@
+name: Sync Hello-Docs Mirror
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: sync-hello-docs-main
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  MIRROR_REPOSITORY: Bingboom/Hello-Docs
+  MIRROR_BRANCH: main
+
+jobs:
+  sync:
+    if: ${{ github.repository == 'Bingboom/auto-manual' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check mirror token
+        env:
+          HELLO_DOCS_SYNC_TOKEN: ${{ secrets.HELLO_DOCS_SYNC_TOKEN }}
+        run: |
+          if [ -z "${HELLO_DOCS_SYNC_TOKEN}" ]; then
+            echo "::error::Missing HELLO_DOCS_SYNC_TOKEN. Add a token that can write ${MIRROR_REPOSITORY} contents and workflows."
+            exit 1
+          fi
+
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          path: source
+          fetch-depth: 0
+
+      - name: Checkout mirror
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.MIRROR_REPOSITORY }}
+          ref: ${{ env.MIRROR_BRANCH }}
+          path: mirror
+          token: ${{ secrets.HELLO_DOCS_SYNC_TOKEN }}
+          fetch-depth: 0
+
+      - name: Sync source tree to mirror checkout
+        run: |
+          rsync -a --delete --exclude '.git/' source/ mirror/
+
+      - name: Commit and push mirror update
+        env:
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          git -C mirror config user.name "github-actions[bot]"
+          git -C mirror config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C mirror add -A
+
+          if git -C mirror diff --cached --quiet; then
+            echo "Mirror already matches ${SOURCE_REPOSITORY}@${SOURCE_SHA}."
+            exit 0
+          fi
+
+          git -C mirror commit \
+            -m "chore(mirror): sync auto-manual main" \
+            -m "Source: ${SOURCE_REPOSITORY}@${SOURCE_SHA}" \
+            -m "Run: ${SOURCE_RUN_URL}"
+
+          source_tree="$(git -C source rev-parse HEAD^{tree})"
+          mirror_tree="$(git -C mirror rev-parse HEAD^{tree})"
+          if [ "${source_tree}" != "${mirror_tree}" ]; then
+            echo "::error::Mirror tree ${mirror_tree} does not match source tree ${source_tree}."
+            exit 1
+          fi
+
+          git -C mirror push origin "HEAD:${MIRROR_BRANCH}"

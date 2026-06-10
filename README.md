@@ -15,6 +15,7 @@ This repository is responsible for:
 
 - generating target-specific runtime bundles from templates and local Feishu-synced CSV snapshots, with a valid generated `data/phase2/` snapshot as the default build/review/publish source and explicit `--data-root` still overriding it
 - keeping CI deterministic with `tests/fixtures/phase2/` as a frozen sample snapshot while each mirror repo generates its own gitignored `data/phase2/` from its bound Feishu Base
+- syncing `main` one-way into [`Bingboom/Hello-Docs`](https://github.com/Bingboom/Hello-Docs) through [`sync-hello-docs.yml`](.github/workflows/sync-hello-docs.yml); `Hello-Docs` keeps its own GitHub Secrets / Variables for the alternate Feishu and OpenClaw bindings
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
