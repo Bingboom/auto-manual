@@ -3,7 +3,7 @@
   "cli_bin": "lark-cli",
   "generated_at": "2026-05-31T16:37:33.435469+00:00",
   "export_root": "data/phase2",
-  "manifest_path": "data/phase2/snapshot_manifest.json",
+  "manifest_path": "tests/fixtures/phase2/snapshot_manifest.json",
   "dry_run": false,
   "requested_tables": [
     "spec_footnotes",
@@ -21,7 +21,7 @@
     {
       "logical_name": "spec_footnotes",
       "file_name": "Spec_Footnotes.csv",
-      "path": "data/phase2/Spec_Footnotes.csv",
+      "path": "tests/fixtures/phase2/Spec_Footnotes.csv",
       "row_count": 3,
       "sha256": "c5daa5452fb8377d8b390439387b99dbe4c45e1babfcd6b961254291327dff79",
       "previous_sha256": null,
@@ -30,7 +30,7 @@
     {
       "logical_name": "spec_notes",
       "file_name": "Spec_Notes.csv",
-      "path": "data/phase2/Spec_Notes.csv",
+      "path": "tests/fixtures/phase2/Spec_Notes.csv",
       "row_count": 2,
       "sha256": "92cc791a9d1544f7b1c3e3f6faa55a2b40c12249dcbe303bb01725d381d556bc",
       "previous_sha256": null,
@@ -39,7 +39,7 @@
     {
       "logical_name": "symbols_blocks",
       "file_name": "symbols_blocks.csv",
-      "path": "data/phase2/symbols_blocks.csv",
+      "path": "tests/fixtures/phase2/symbols_blocks.csv",
       "row_count": 17,
       "sha256": "1907ac07360fb807ad8c33538c8052631ef773611a12fe8481b0d3e0baf77717",
       "previous_sha256": null,
@@ -48,7 +48,7 @@
     {
       "logical_name": "lcd_icons",
       "file_name": "lcd_icons_blocks.csv",
-      "path": "data/phase2/lcd_icons_blocks.csv",
+      "path": "tests/fixtures/phase2/lcd_icons_blocks.csv",
       "row_count": 27,
       "sha256": "acc4680dbaa3cb21d1a7d9bbad34a4ccad3d4c24ab06a1164389e2adcab8434c",
       "previous_sha256": null,
@@ -57,7 +57,7 @@
     {
       "logical_name": "troubleshooting",
       "file_name": "troubleshooting_blocks.csv",
-      "path": "data/phase2/troubleshooting_blocks.csv",
+      "path": "tests/fixtures/phase2/troubleshooting_blocks.csv",
       "row_count": 49,
       "sha256": "199bab665b38dcc9eb872e8d599aa5b558c7abbf283dec01b4eda206c29beb3d",
       "previous_sha256": null,
@@ -66,7 +66,7 @@
     {
       "logical_name": "variable_defaults",
       "file_name": "Variable_Defaults.csv",
-      "path": "data/phase2/Variable_Defaults.csv",
+      "path": "tests/fixtures/phase2/Variable_Defaults.csv",
       "row_count": 3,
       "sha256": "45d4e52b1ad8b4e9c93548f8617b89ef36c40173882dbc1ceff14c3d61a86be5",
       "previous_sha256": null,
@@ -75,7 +75,7 @@
     {
       "logical_name": "variable_lang_overrides",
       "file_name": "Variable_Lang_Overrides.csv",
-      "path": "data/phase2/Variable_Lang_Overrides.csv",
+      "path": "tests/fixtures/phase2/Variable_Lang_Overrides.csv",
       "row_count": 9,
       "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482",
       "previous_sha256": null,
@@ -84,7 +84,7 @@
     {
       "logical_name": "manual_copy_source",
       "file_name": "Manual_Copy_Source.csv",
-      "path": "data/phase2/Manual_Copy_Source.csv",
+      "path": "tests/fixtures/phase2/Manual_Copy_Source.csv",
       "row_count": 16,
       "sha256": "a8a1346ce525dde8adcd37c9446f5c63c0d3541188f0b2af186c193ea9095d02",
       "previous_sha256": null,
@@ -93,7 +93,7 @@
     {
       "logical_name": "spec_master",
       "file_name": "Spec_Master.csv",
-      "path": "data/phase2/Spec_Master.csv",
+      "path": "tests/fixtures/phase2/Spec_Master.csv",
       "row_count": 373,
       "sha256": "c19bd9f4bc702a0a9996a7ee2cf660a6b35b16975fa2d2f821f834cf3a120a95",
       "previous_sha256": null,
@@ -104,7 +104,7 @@
     {
       "logical_name": "page_registry",
       "file_name": "page_registry.csv",
-      "path": "data/phase2/page_registry.csv",
+      "path": "tests/fixtures/phase2/page_registry.csv",
       "row_count": 4,
       "sha256": "8844e610dad91e18dcacc4f284a4c6a991e3702058990a4ec2156a5f7fd19a14",
       "previous_sha256": null,
@@ -113,7 +113,7 @@
     {
       "logical_name": "row_key_mapping",
       "file_name": "row_key_mapping.csv",
-      "path": "data/phase2/row_key_mapping.csv",
+      "path": "tests/fixtures/phase2/row_key_mapping.csv",
       "row_count": 111,
       "sha256": "c8695a9534ed2fadba88f00bf7e4e4b8049e48282bd6f8daed0e01c51adf0c11",
       "previous_sha256": null,
@@ -122,7 +122,7 @@
     {
       "logical_name": "spec_titles",
       "file_name": "spec_titles.csv",
-      "path": "data/phase2/spec_titles.csv",
+      "path": "tests/fixtures/phase2/spec_titles.csv",
       "row_count": 5,
       "sha256": "492ca05d3311d1377130c4b1849473df7e6cbc4de0d8c2a247aefbdaf589e9cc",
       "previous_sha256": null,
@@ -131,7 +131,7 @@
     {
       "logical_name": "localized_copy",
       "file_name": "Localized_Copy.csv",
-      "path": "data/phase2/Localized_Copy.csv",
+      "path": "tests/fixtures/phase2/Localized_Copy.csv",
       "row_count": 16,
       "sha256": "9fa7de76c16fc19f0314f3f3aa402acb28606477470146007122c312c4d65e66",
       "previous_sha256": null,
@@ -140,7 +140,7 @@
     {
       "logical_name": "status_words",
       "file_name": "Status_Words.csv",
-      "path": "data/phase2/Status_Words.csv",
+      "path": "tests/fixtures/phase2/Status_Words.csv",
       "row_count": 3,
       "sha256": "daa44ec1deadd992b3774576c7ee95990c0fbce9e4687069f8436244c31f58fe",
       "previous_sha256": null,

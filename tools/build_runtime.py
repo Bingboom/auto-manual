@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.config_loader import load_config_mapping
+from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.utils.path_utils import PathSegments, docs_build_dir_of
 
 
@@ -67,6 +69,40 @@ def format_command(cmd: list[str]) -> str:
 def run_checked(cmd: list[str], *, repo_root: Path) -> None:
     print(f"[build.py] {format_command(cmd)}")
     subprocess.run(cmd, cwd=str(repo_root), check=True)
+
+
+def should_run_spec_master_validation(
+    config_path: Path,
+    *,
+    repo_root: Path,
+    data_root: str | None,
+    model: str | None,
+    region: str | None,
+) -> bool:
+    if isinstance(data_root, str) and data_root.strip():
+        return True
+
+    try:
+        cfg = load_config_mapping(config_path)
+        snapshot_paths = resolve_data_snapshot_paths(
+            cfg,
+            repo_root=repo_root,
+            model=model,
+            region=region,
+        )
+    except Exception:
+        return True
+
+    if snapshot_paths.spec_master_csv.exists():
+        return True
+
+    print(
+        "[build.py] Skipping Spec_Master content validation because the local "
+        f"phase2 snapshot is missing: {snapshot_paths.spec_master_csv}. "
+        "Run `python build.py sync-data --config <config> --data-root data/phase2` "
+        "or pass `--data-root <snapshot>` to validate a materialized snapshot."
+    )
+    return False
 
 
 def review_sync_target_args(
@@ -161,6 +197,14 @@ def run_validate(
             str(resolve_layout_params_csv(config_path)),
         ]
     )
+    if not should_run_spec_master_validation(
+        config_path,
+        repo_root=repo_root,
+        data_root=data_root,
+        model=model,
+        region=region,
+    ):
+        return
     run_checked(
         [
             sys.executable,

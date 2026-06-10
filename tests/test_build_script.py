@@ -523,10 +523,10 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertIn("--refresh-existing", cmd)
 
-    def test_run_validate_should_include_spec_master_validation(self) -> None:
+    def test_run_validate_should_include_spec_master_validation_for_explicit_snapshot(self) -> None:
         seen: list[list[str]] = []
         with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
-            build_cli.run_validate(build_cli.ROOT / "configs/config.us.yaml")
+            build_cli.run_validate(build_cli.ROOT / "configs/config.us.yaml", data_root="tests/fixtures/phase2")
 
         self.assertEqual(3, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
@@ -550,6 +550,7 @@ class TestBuildScript(unittest.TestCase):
         with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
             build_cli.run_validate(
                 build_cli.ROOT / "configs/config.eu-en.yaml",
+                data_root="tests/fixtures/phase2",
                 model="JE-1000F",
                 region="US",
             )
@@ -564,12 +565,48 @@ class TestBuildScript(unittest.TestCase):
     def test_run_validate_should_forward_review_source_to_spec_master_validation(self) -> None:
         seen: list[list[str]] = []
         with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
-            build_cli.run_validate(build_cli.ROOT / "configs/config.us.yaml", source_mode="review")
+            build_cli.run_validate(
+                build_cli.ROOT / "configs/config.us.yaml",
+                data_root="tests/fixtures/phase2",
+                source_mode="review",
+            )
 
         self.assertEqual(3, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
         self.assertIn("--source", seen[2])
         self.assertIn("review", seen[2])
+
+    def test_run_validate_should_skip_spec_master_validation_when_default_snapshot_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            docs_dir.mkdir()
+            layout_csv = root / "layout.csv"
+            layout_csv.write_text("Model,Region\n", encoding="utf-8")
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  default_model: JE-1000F",
+                        "  default_region: US",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                        f"  layout_params_csv: {layout_csv.as_posix()}",
+                        f"  spec_master_csv: {(root / 'missing' / 'Spec_Master.csv').as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            seen: list[list[str]] = []
+
+            with patch_module_attrs(build_cli, run_checked=lambda cmd: seen.append(cmd)):
+                build_cli.run_validate(config_path)
+
+        self.assertEqual(2, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
 
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(

@@ -42,7 +42,7 @@ python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-sp
 `Row_key` 也是 lookup 列，来自 `参数名.Row_key`；新增或更换参数概念时，先维护/选择 `Row_key_link`。
 两张源表不再维护 `Model` / `Region`；rebuild 会从 `document_key` 自动生成给本地 read model 使用。
 
-不要把 [`data/phase2/`](../data/phase2) 当成主编辑面。
+不要把 [`data/phase2/`](../data/phase2) 当成主编辑面；它是 gitignored 本地 snapshot，每个镜像仓应从自己的 Feishu Base 生成。
 只有当 `Document_link.是否强制刷新数据 = 勾选` 时，队列才会在这次构建前执行 `sync-data`；不勾时会直接复用当前本地 snapshot。
 
 ### 1.2 Review Init 表
@@ -144,7 +144,7 @@ Build Draft Package 的原料是：
 - 结构化数据改动看 Feishu
 - 评审文稿改动看 PR 分支里的 `_review`
 
-如果你在 PR 里直接改 [`data/phase2/*.csv`](../data/phase2)，Build Draft Package 不会把它当最终真源。
+`data/phase2/*.csv` 默认不进 PR；即使本地 snapshot 有变化，Build Draft Package 也不会把它当最终真源。
 只有当这条记录勾了 `是否强制刷新数据`，队列才会先自动 `sync-data`，把这份目录刷新成 Feishu 当前快照。
 如果这条记录没有勾这个开关，队列会直接复用当前本地 snapshot。
 如果这条记录已经由 `Review Init` 回写过 `Git_ref`，后续 Build Draft Package / Publish 都应继续沿用这条分支，不要手动清空。

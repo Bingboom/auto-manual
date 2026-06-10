@@ -9,6 +9,7 @@ from tools.page_manifest import resolve_config_pages_or_raise
 
 
 ROOT = Path(__file__).resolve().parents[1]
+PHASE2_FIXTURE = "tests/fixtures/phase2"
 
 
 class TestPilotConfigs(unittest.TestCase):
@@ -37,6 +38,7 @@ class TestPilotConfigs(unittest.TestCase):
             docs_dir=docs_dir,
             target=check_docs.BuildTarget(model=model, region=region),
             langs=langs,
+            data_root=PHASE2_FIXTURE,
         )
         self.assertEqual([], issues)
 
@@ -89,6 +91,7 @@ class TestPilotConfigs(unittest.TestCase):
                     docs_dir=check_docs.resolve_docs_dir(cfg),
                     target=check_docs.BuildTarget(model="JE-1000F", region="US", lang=expected_lang),
                     langs=[expected_lang],
+                    data_root=PHASE2_FIXTURE,
                 )
                 self.assertEqual([], issues)
 
@@ -278,10 +281,10 @@ class TestPilotConfigs(unittest.TestCase):
                 phase2 = cfg.get("sync", {}).get("phase2", {})
                 self.assertEqual(
                     {
-                        "spec_rows_source_table_id": "tblTw54UzV4ry5VD",
-                        "spec_rows_source_view_id": "vewrnkYUJr",
-                        "page_placeholders_source_table_id": "tblhckTT7PfVBsuG",
-                        "page_placeholders_source_view_id": "vewUWc875D",
+                        "spec_rows_source_table_id_env": "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID",
+                        "spec_rows_source_view_id_env": "FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID",
+                        "page_placeholders_source_table_id_env": "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID",
+                        "page_placeholders_source_view_id_env": "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID",
                     },
                     phase2.get("spec_master_sources"),
                 )
@@ -307,6 +310,7 @@ class TestPilotConfigs(unittest.TestCase):
                     docs_dir=check_docs.resolve_docs_dir(cfg),
                     target=check_docs.BuildTarget(model="JE-1000F", region="EU", lang=expected_lang),
                     langs=[expected_lang],
+                    data_root=PHASE2_FIXTURE,
                 )
                 self.assertEqual([], issues)
 
@@ -389,10 +393,10 @@ class TestPilotConfigs(unittest.TestCase):
         phase2 = cfg.get("sync", {}).get("phase2", {})
         self.assertEqual(
             {
-                "spec_rows_source_table_id": "tblTw54UzV4ry5VD",
-                "spec_rows_source_view_id": "vewrnkYUJr",
-                "page_placeholders_source_table_id": "tblhckTT7PfVBsuG",
-                "page_placeholders_source_view_id": "vewUWc875D",
+                "spec_rows_source_table_id_env": "FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID",
+                "spec_rows_source_view_id_env": "FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID",
+                "page_placeholders_source_table_id_env": "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID",
+                "page_placeholders_source_view_id_env": "FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID",
             },
             phase2.get("spec_master_sources"),
         )
@@ -419,6 +423,7 @@ class TestPilotConfigs(unittest.TestCase):
             docs_dir=check_docs.resolve_docs_dir(cfg),
             target=check_docs.BuildTarget(model="JE-1000F", region="EU"),
             langs=["en", "fr", "es", "de", "it", "uk"],
+            data_root=PHASE2_FIXTURE,
         )
         self.assertEqual([], issues)
 

@@ -457,6 +457,42 @@ class TestSyncData(unittest.TestCase):
 
         self.assertEqual([], errors)
 
+    def test_collect_sync_preflight_errors_should_require_spec_master_source_env_bindings(self) -> None:
+        cfg = {
+            "sync": {
+                "phase2": {
+                    "provider": "lark_cli",
+                    "cli_bin": "lark-cli",
+                    "base_token_env": "BASE_TOKEN",
+                    "spec_master_sources": {
+                        "spec_rows_source_table_id_env": "SPEC_ROWS_SOURCE_TABLE",
+                        "spec_rows_source_view_id_env": "SPEC_ROWS_SOURCE_VIEW",
+                        "page_placeholders_source_table_id_env": "PAGE_PLACEHOLDERS_SOURCE_TABLE",
+                        "page_placeholders_source_view_id_env": "PAGE_PLACEHOLDERS_SOURCE_VIEW",
+                    },
+                    "tables": {
+                        "spec_master": {},
+                    },
+                }
+            }
+        }
+
+        errors = sync_data.collect_sync_preflight_errors(
+            cfg,
+            table_names=["spec_master"],
+            environ={"BASE_TOKEN": "app_token"},
+            require_cli=False,
+        )
+
+        self.assertEqual(
+            [
+                "Required environment variables are not set: "
+                "SPEC_ROWS_SOURCE_TABLE, PAGE_PLACEHOLDERS_SOURCE_TABLE, "
+                "SPEC_ROWS_SOURCE_VIEW, PAGE_PLACEHOLDERS_SOURCE_VIEW",
+            ],
+            errors,
+        )
+
     def test_sync_phase2_snapshot_should_write_csvs_and_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

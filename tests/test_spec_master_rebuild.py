@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest import mock
 
 from tools import spec_master_rebuild
 
@@ -99,6 +100,39 @@ class TestSpecMasterRebuild(unittest.TestCase):
             },
             field,
         )
+
+    def test_base_field_definition_should_read_dictionary_table_ids_from_env(self) -> None:
+        with mock.patch.dict(
+            "os.environ",
+            {
+                "FEISHU_PHASE2_DOCUMENT_KEY_TABLE_ID": "tbl_document_key",
+                "FEISHU_PHASE2_ROW_KEY_TABLE_ID": "tbl_row_key",
+            },
+            clear=True,
+        ):
+            self.assertEqual(
+                {
+                    "name": "Document_key_link",
+                    "type": "link",
+                    "link_table": "tbl_document_key",
+                    "bidirectional": False,
+                },
+                spec_master_rebuild._base_field_definition("Document_key_link", {}),
+            )
+            self.assertEqual(
+                {
+                    "name": "Row_key_link",
+                    "type": "link",
+                    "link_table": "tbl_row_key",
+                    "bidirectional": False,
+                },
+                spec_master_rebuild._base_field_definition("Row_key_link", {}),
+            )
+
+    def test_base_field_definition_should_report_missing_dictionary_table_env(self) -> None:
+        with mock.patch.dict("os.environ", {}, clear=True):
+            with self.assertRaisesRegex(RuntimeError, "FEISHU_PHASE2_DOCUMENT_KEY_TABLE_ID"):
+                spec_master_rebuild._base_field_definition("Document_key_link", {})
 
     def test_validate_merged_rows_should_require_unique_keys_and_expected_split_counts(self) -> None:
         rows = [
