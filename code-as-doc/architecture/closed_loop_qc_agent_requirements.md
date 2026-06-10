@@ -9,6 +9,20 @@ Scope of this file: *what* the agent must do and *why*, plus the contracts settl
 
 A dedicated **standing agent service** (a new, always-on LLM-agent runtime orchestrating skills) that **closes the manual-quality loop**: triggered by a Feishu message carrying a link to a **revision-accepted Feishu cloud doc**, it builds the manual, checks it against **two QC bases** (codified content rules + the reviewer's built-vs-desired diff), **routes each revision to its source** — repo templates / the `docs/_review` bundle via a human-merged PR, and the source bitable as a **suggestion (never a silent write)** — and marks QC status in Feishu. Quality is caught and fixed at source, continuously, instead of by eye at release.
 
+## 0a. Design rationale — deterministic CLI vs standing LLM agent (2026-06-10)
+
+The shipped form (a deterministic CLI) is a **deliberate choice, not a compromise** — recorded here so it reads as intent, not drift.
+
+**Why deterministic is the right default for a source-writing QC tool:**
+- Safety is **code-enforced, not prompt-enforced** — `suggestion-only`, no-bitable-write, and PR-not-self-merge are guaranteed by the tool, not by a model obeying instructions.
+- The executor has **no prompt-injection surface** — diffs are extracted as text deterministically, so reviewer content cannot redirect it (an LLM with write/PR power reading untrusted reviewer text is an injection target).
+- **Testable, reproducible, CI-friendly** (covered by the suite); no LLM cost/latency/availability and no fragile standing runtime to operate.
+- For quality work, **judgment belongs with a human** — ambiguous revisions are flagged into the PR review, which is exactly where a maintainer should decide.
+
+**The cost:** it only handles coded mapping/guard rules; novel, fuzzy, or semantic revisions get flagged (more human triage), and source/format structure changes can break the deterministic diff.
+
+**When to add a standing LLM layer (the optional future):** only where deterministic rules + human triage prove too slow or too narrow for *judgment-dense* cases — e.g. a reworded sentence that maps to a source row by meaning rather than text, or scope inference across sibling models. Add it **on top as an advisory/mapping aid**: it *proposes*, while the deterministic guards + human PR review still gate every write. **Never let an LLM hold the write/merge authority that code currently guarantees.**
+
 ## 1. Background & motivation
 
 The manual is produced from Feishu source tables + Translation Memory + per-language templates (data model: [`phase2_source_tables_reference.md`](phase2_source_tables_reference.md)). Historically, content defects were found **late and by eye** on the built `.docx` (2026-06-07 examples: LCD status words not bold; an Italian line still reading `On:`).
