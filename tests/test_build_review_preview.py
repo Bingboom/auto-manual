@@ -325,6 +325,51 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertEqual("configs/config.ja.yaml", target.config)
         self.assertFalse(target.include_lang_in_output_path)
 
+    def test_build_commands_should_pass_data_root_to_build_py(self) -> None:
+        args = argparse.Namespace(
+            config="configs/config.us-en.yaml",
+            model="JE-1000F",
+            region="US",
+            source="review",
+            tracked_root=None,
+            data_root="tests/fixtures/phase2",
+            from_ref="HEAD~1",
+            to_ref="HEAD",
+            output_dir="site/review-preview/dist",
+            clean_build=False,
+            skip_build=False,
+            skip_diff=False,
+            skip_word=True,
+            all_review_models=False,
+        )
+        target = build_review_preview.WorkspaceTarget(
+            model="JE-1000F",
+            family="US",
+            language="en",
+            config="configs/config.us-en.yaml",
+            include_lang_in_output_path=True,
+        )
+
+        export_cmd = build_review_preview.build_export_command(
+            action="html",
+            model=target.model,
+            config_path=build_review_preview.resolve_path(target.config),
+            family=target.family,
+            source_mode="runtime",
+            no_clean=True,
+            data_root=args.data_root,
+        )
+        diff_cmd = build_review_preview.build_diff_command(
+            args=args,
+            target=target,
+            tracked_root=build_review_preview.tracked_root_for_target(args, target),
+        )
+
+        self.assertIn("--data-root", export_cmd)
+        self.assertIn("tests/fixtures/phase2", export_cmd)
+        self.assertIn("--data-root", diff_cmd)
+        self.assertIn("tests/fixtures/phase2", diff_cmd)
+
     def test_copy_report_assets_should_return_stable_relative_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             report_root = Path(td) / "reports"

@@ -184,6 +184,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Tracked subtree for diff-report on the preferred family. Defaults to docs/_review/<model>/<region>.",
     )
+    ap.add_argument(
+        "--data-root",
+        default=None,
+        help="Structured data snapshot root passed through to build.py exports and diff-report.",
+    )
     ap.add_argument("--from-ref", default="HEAD~1", help="Git from ref for diff-report.")
     ap.add_argument("--to-ref", default="HEAD", help="Git to ref for diff-report.")
     ap.add_argument(

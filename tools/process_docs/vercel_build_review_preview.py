@@ -25,6 +25,7 @@ DEFAULT_PREVIEW_CONFIGS = {
     "JP": "configs/config.ja.yaml",
     "CN": "configs/config.zh.yaml",
 }
+DEFAULT_PREVIEW_DATA_ROOT = "tests/fixtures/phase2"
 
 
 def run(cmd: list[str]) -> None:
@@ -96,7 +97,7 @@ def build_preview_command(
 ) -> list[str]:
     model, region = resolve_preview_target(review_root)
     config = os.environ.get("PREVIEW_CONFIG", "").strip() or default_preview_config(region)
-    return [
+    cmd = [
         str(python_exe),
         "tools/process_docs/build_review_preview.py",
         "--config",
@@ -113,6 +114,10 @@ def build_preview_command(
         os.environ.get("TO_REF", "HEAD"),
         "--all-review-models",
     ]
+    data_root = os.environ.get("PREVIEW_DATA_ROOT", DEFAULT_PREVIEW_DATA_ROOT).strip()
+    if data_root:
+        cmd.extend(["--data-root", data_root])
+    return cmd
 
 
 def main() -> int:

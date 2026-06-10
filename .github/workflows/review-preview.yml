@@ -11,6 +11,7 @@ on:
       - "docs/templates/**"
       - "docs/manifests/**"
       - "data/phase2/**"
+      - "tests/fixtures/phase2/**"
       - "build.py"
       - "tools/**"
       - "configs/config.us.yaml"
@@ -101,6 +102,7 @@ jobs:
           --source "${{ steps.preview-target.outputs.source }}"
           --from-ref "$FROM_REF"
           --to-ref "$TO_REF"
+          --data-root tests/fixtures/phase2
           --all-review-models
           --skip-word
       - name: Verify review preview smoke artifacts

@@ -9,7 +9,7 @@ Generated output:
 The generated site is built by:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config configs/config.us.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD
+python tools/process_docs/build_review_preview.py --config configs/config.us.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --data-root tests/fixtures/phase2
 ```
 
 Do not hand-edit `dist/`.
@@ -36,4 +36,3 @@ The generated `index.html` is meant to be the designer-facing entry page:
 - then open the rendered manual or the shared family diff package
 - use the Word / Excel downloads when you need an offline handoff
 - use raw file-level diff links only when deeper maintainer tracing is needed
-

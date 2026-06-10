@@ -94,6 +94,7 @@ def export_workspace_targets(
                     family=target.family,
                     source_mode=str(spec["source_mode"]),
                     no_clean=no_clean,
+                    data_root=getattr(args, "data_root", None),
                 )
             )
         except subprocess.CalledProcessError as exc:
