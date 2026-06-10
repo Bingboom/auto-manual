@@ -6,6 +6,7 @@ pause_value="true"
 unpause=0
 dry_run=0
 include_optional=0
+env_file=""
 
 usage() {
   cat <<'EOF'
@@ -16,6 +17,7 @@ GitHub repository Secrets / Variables. Secret values are never printed.
 
 Options:
   --mirror-repo OWNER/REPO    Mirror repo, default Bingboom/Hello-Docs
+  --env-file FILE             Source a local shell env file before validation
   --pause                     Set FEISHU_BUILD_QUEUE_PAUSED=true, default
   --unpause                   Set FEISHU_BUILD_QUEUE_PAUSED=false after audit passes
   --include-optional          Also write optional Vercel / DingTalk / Feishu IM / OpenClaw values when present
@@ -24,6 +26,8 @@ Options:
 
 Required environment variables are the same Feishu runtime secrets reported by
 scripts/audit_hello_docs_binding.sh. Missing required values stop the script.
+Copy scripts/hello_docs_binding.env.example to a gitignored path such as
+.tmp/hello-docs-binding/env.sh, fill it locally, then pass --env-file.
 EOF
 }
 
@@ -31,6 +35,10 @@ while [ "$#" -gt 0 ]; do
   case "$1" in
     --mirror-repo)
       mirror_repo="${2:?missing value for --mirror-repo}"
+      shift 2
+      ;;
+    --env-file)
+      env_file="${2:?missing value for --env-file}"
       shift 2
       ;;
     --pause)
@@ -62,6 +70,17 @@ while [ "$#" -gt 0 ]; do
       ;;
   esac
 done
+
+if [ -n "$env_file" ]; then
+  if [ ! -f "$env_file" ]; then
+    printf 'Env file not found: %s\n' "$env_file" >&2
+    exit 2
+  fi
+  set -a
+  # shellcheck disable=SC1090
+  source "$env_file"
+  set +a
+fi
 
 if ! command -v gh >/dev/null 2>&1; then
   printf 'gh is required. Install GitHub CLI and authenticate first.\n' >&2
