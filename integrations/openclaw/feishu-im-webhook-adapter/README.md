@@ -218,7 +218,14 @@ The default mode is dry-run: the adapter calls
 `cloud_doc_backport_run.*` under `reports/cloud_doc_backport/<run-id>/`, writes
 `cloud_doc_backport_source_table_suggestions.*` for report-only data-like
 deltas, and replies with the manifest/report paths plus
-`source_table_suggestions`. If the message includes `--write`, the adapter refuses it unless
+`source_table_suggestions`. The run is source-scoped: it reports only evidence
+from the chosen `docs/_review/...rst` file and the matched cloud-doc section. For
+headingless `00_preface.rst` pages, the runner automatically compares only the
+cloud document preamble before the first heading, so later sections such as
+Safety, Symbols, or App Setup cannot be misreported as preface residuals. The
+chat reply includes the source scope, matched section, and a short
+manifest-backed evidence list; it must not invent a broader reviewed/backfill
+checklist. If the message includes `--write`, the adapter refuses it unless
 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true`; write mode still only patches
 guarded review prose and reports source-table suggestions without writing Feishu
 source tables.

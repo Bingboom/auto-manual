@@ -48,6 +48,8 @@ _UNIT_VALUE_RE = re.compile(
 )
 _RST_HEADING_CHARS = {"=": 1, "-": 2, "~": 3, "^": 4, '"': 5, "'": 6}
 _RST_HEADING_UNDERLINE_RE = re.compile(r"^\s*([=\-~^\"'])\1{2,}\s*$")
+_DOCUMENT_PREAMBLE_SECTION = "__document_preamble__"
+_DOCUMENT_PREAMBLE_LABEL = "document preamble"
 
 
 @dataclass(frozen=True)
@@ -72,6 +74,10 @@ class SectionSelection:
     fetched_blocks_before: int
     baseline_blocks_after: int
     fetched_blocks_after: int
+
+
+def _is_document_preamble_section(section_title: str | None) -> bool:
+    return section_title == _DOCUMENT_PREAMBLE_SECTION
 
 
 def _utc_now() -> str:
@@ -364,6 +370,22 @@ def select_section_blocks(blocks: list[Block], title: str) -> list[Block] | None
     return None
 
 
+def select_document_preamble_blocks(blocks: list[Block]) -> list[Block] | None:
+    """Return the leading content before the first heading.
+
+    Some generated review pages, notably ``00_preface.rst``, intentionally have
+    no page title. When comparing that single source file with a full cloud
+    document, the matching scope is the document lead-in before the first cloud
+    heading, not the entire manual.
+    """
+    preamble: list[Block] = []
+    for block in blocks:
+        if block.kind == "heading":
+            break
+        preamble.append(block)
+    return preamble if preamble else None
+
+
 def _apply_section_selection(
     *,
     baseline_blocks: list[Block],
@@ -389,8 +411,14 @@ def _apply_section_selection(
         )
         return baseline_blocks, fetched_blocks, selection
 
-    selected_baseline = select_section_blocks(baseline_blocks, section_title)
-    selected_fetched = select_section_blocks(fetched_blocks, section_title)
+    if _is_document_preamble_section(section_title):
+        selected_baseline = select_document_preamble_blocks(baseline_blocks)
+        selected_fetched = select_document_preamble_blocks(fetched_blocks)
+        resolved_title = _DOCUMENT_PREAMBLE_LABEL
+    else:
+        selected_baseline = select_section_blocks(baseline_blocks, section_title)
+        selected_fetched = select_section_blocks(fetched_blocks, section_title)
+        resolved_title = section_title
     baseline_found = selected_baseline is not None
     fetched_found = selected_fetched is not None
     if require_match and not (baseline_found and fetched_found):
@@ -407,8 +435,8 @@ def _apply_section_selection(
         fetched_blocks = selected_fetched or fetched_blocks
 
     selection = SectionSelection(
-        requested_title=section_title if inferred_from is None else None,
-        resolved_title=section_title,
+        requested_title=section_title if inferred_from is None and not _is_document_preamble_section(section_title) else None,
+        resolved_title=resolved_title,
         inferred_from=inferred_from,
         applied=applied,
         baseline_found=baseline_found,
@@ -419,6 +447,27 @@ def _apply_section_selection(
         fetched_blocks_after=len(fetched_blocks),
     )
     return baseline_blocks, fetched_blocks, selection
+
+
+def _source_path_prefers_document_preamble(source_path: Path | None, blocks: list[Block]) -> bool:
+    if source_path is None:
+        return False
+    if any(block.kind == "heading" for block in blocks):
+        return False
+    stem = source_path.stem.casefold()
+    return stem in {"00_preface", "preface"} or stem.endswith("_preface")
+
+
+def _auto_section_for_source(source_path: Path | None, source_text: str) -> tuple[str | None, str | None]:
+    if source_path is None:
+        return None, None
+    blocks = parse_blocks(source_text)
+    source_title = first_heading_title(blocks)
+    if source_title:
+        return source_title, _display_path(source_path).as_posix()
+    if _source_path_prefers_document_preamble(source_path, blocks):
+        return _DOCUMENT_PREAMBLE_SECTION, _display_path(source_path).as_posix()
+    return None, None
 
 
 def _looks_data_like(*blocks: Block | None) -> bool:
@@ -841,15 +890,16 @@ def _validate_apply_source(path: Path, *, kind: str) -> None:
 def _apply_skip_reason(delta: dict[str, Any], *, route_class: str) -> str | None:
     if delta.get("route_class") != route_class:
         return f"route_class is {delta.get('route_class') or 'missing'}"
-    if delta.get("change_type") != "replace":
+    change_type = delta.get("change_type")
+    if change_type not in {"replace", "delete"}:
         return f"change_type is {delta.get('change_type') or 'missing'}"
     old_text = delta.get("old_text")
     new_text = delta.get("new_text")
     if not isinstance(old_text, str) or not old_text:
         return "old_text is missing"
-    if not isinstance(new_text, str) or not new_text:
+    if change_type == "replace" and (not isinstance(new_text, str) or not new_text):
         return "new_text is missing"
-    if old_text == new_text:
+    if change_type == "replace" and old_text == new_text:
         return "old_text and new_text are identical"
     evidence = delta.get("source_evidence")
     if isinstance(evidence, dict) and evidence.get("repo_write_candidate") is False:
@@ -879,7 +929,8 @@ def _apply_operation(
         return {**base_operation, "status": "skipped", "reason": reason, "matches": 0}, current_text
 
     old_text = str(delta["old_text"])
-    new_text = str(delta["new_text"])
+    change_type = str(delta.get("change_type") or "")
+    new_text = "" if change_type == "delete" else str(delta["new_text"])
     matches = current_text.count(old_text)
     if matches == 0:
         return {
@@ -900,13 +951,13 @@ def _apply_operation(
         return {
             **base_operation,
             "status": "applied",
-            "reason": f"unique {route_class} replacement",
+            "reason": f"unique {route_class} {'deletion' if change_type == 'delete' else 'replacement'}",
             "matches": matches,
         }, current_text.replace(old_text, new_text, 1)
     return {
         **base_operation,
         "status": "planned",
-        "reason": f"unique {route_class} replacement",
+        "reason": f"unique {route_class} {'deletion' if change_type == 'delete' else 'replacement'}",
         "matches": matches,
     }, current_text
 
@@ -1148,23 +1199,61 @@ def _verify_delta(index: int, delta: dict[str, Any], current_text: str) -> dict[
             "old_matches": 0,
             "new_matches": 0,
         }
-    if delta.get("change_type") != "replace":
+    change_type = delta.get("change_type")
+    if change_type not in {"replace", "delete"}:
         return {
             **base_result,
             "category": "unsafe_or_ambiguous",
             "status": "blocked",
-            "reason": f"unsupported review change_type {delta.get('change_type') or 'missing'}",
+            "reason": f"unsupported review change_type {change_type or 'missing'}",
             "old_matches": 0,
             "new_matches": 0,
         }
-    if not isinstance(old_text, str) or not old_text or not isinstance(new_text, str) or not new_text:
+    if not isinstance(old_text, str) or not old_text:
         return {
             **base_result,
             "category": "unsafe_or_ambiguous",
             "status": "blocked",
-            "reason": "old_text or new_text is missing",
+            "reason": "old_text is missing",
             "old_matches": 0,
             "new_matches": 0,
+        }
+    if change_type == "replace" and (not isinstance(new_text, str) or not new_text):
+        return {
+            **base_result,
+            "category": "unsafe_or_ambiguous",
+            "status": "blocked",
+            "reason": "new_text is missing",
+            "old_matches": 0,
+            "new_matches": 0,
+        }
+
+    if change_type == "delete":
+        if old_matches == 0:
+            return {
+                **base_result,
+                "category": "applied_resolved",
+                "status": "resolved",
+                "reason": "deleted old_text no longer exists",
+                "old_matches": old_matches,
+                "new_matches": new_matches,
+            }
+        if old_matches == 1:
+            return {
+                **base_result,
+                "category": "still_pending",
+                "status": "pending",
+                "reason": "deleted old_text still exists",
+                "old_matches": old_matches,
+                "new_matches": new_matches,
+            }
+        return {
+            **base_result,
+            "category": "unsafe_or_ambiguous",
+            "status": "blocked",
+            "reason": "deleted old_text has an ambiguous match count",
+            "old_matches": old_matches,
+            "new_matches": new_matches,
         }
 
     if old_matches == 0 and new_matches >= 1:
@@ -1601,6 +1690,27 @@ def _source_table_suggestions_from_diff(diff_report: dict[str, Any]) -> list[dic
     return suggestions
 
 
+def _repo_text_changes_from_diff(diff_report: dict[str, Any]) -> list[dict[str, Any]]:
+    changes: list[dict[str, Any]] = []
+    for index, delta in enumerate(diff_report.get("deltas") or [], start=1):
+        if not isinstance(delta, dict) or delta.get("route_class") != "repo_review_text":
+            continue
+        changes.append(
+            {
+                "index": index,
+                "delta_hash": delta.get("delta_hash"),
+                "change_type": delta.get("change_type"),
+                "route_class": delta.get("route_class"),
+                "old_text": delta.get("old_text"),
+                "new_text": delta.get("new_text"),
+                "location": delta.get("location") or {},
+                "source_evidence": delta.get("source_evidence") or {},
+                "status": "repo_write_candidate",
+            }
+        )
+    return changes
+
+
 def _display_report_paths(paths: dict[str, Path]) -> dict[str, str]:
     return {key: _display_path(path).as_posix() for key, path in sorted(paths.items())}
 
@@ -1632,6 +1742,7 @@ def build_review_run_report(
         source_table_suggestions = list(verify_report.get("source_table_suggestions") or [])
     else:
         source_table_suggestions = _source_table_suggestions_from_diff(diff_report)
+    review_source_changes = _repo_text_changes_from_diff(diff_report)
 
     next_actions = {
         "NO_DIFF": ["No source change is needed."],
@@ -1646,6 +1757,7 @@ def build_review_run_report(
         "result": result,
         "mode": "write" if write else "dry-run",
         "source_target": diff_report.get("source_target"),
+        "section_selection": diff_report.get("section_selection") or {},
         "diff_report": {
             "run_id": diff_report.get("run_id"),
             "result": diff_report.get("result"),
@@ -1680,10 +1792,12 @@ def build_review_run_report(
             else {},
             "changed": changed,
             "pr_ready": result == "PR_READY",
+            "review_source_changes": len(review_source_changes),
             "source_table_suggestions": len(source_table_suggestions),
         },
         "reports": _display_report_paths(output_paths),
         "next_actions": next_actions,
+        "review_source_changes": review_source_changes,
         "source_table_suggestions": source_table_suggestions,
     }
 
@@ -1698,6 +1812,8 @@ def markdown_review_run_report(report: dict[str, Any]) -> str:
         f"- Result: `{report['result']}`",
         f"- Mode: `{report['mode']}`",
         f"- Source target: `{(report.get('source_target') or {}).get('path') or '-'}`",
+        f"- Section: `{(report.get('section_selection') or {}).get('resolved_title') or '-'}`",
+        f"- Section applied: `{(report.get('section_selection') or {}).get('applied', False)}`",
         f"- Git ref: `{report['metadata'].get('git_ref') or 'unknown'}`",
         f"- Generated at: `{report['metadata']['generated_at']}`",
         f"- Command: `{report['metadata']['command']}`",
@@ -1711,6 +1827,7 @@ def markdown_review_run_report(report: dict[str, Any]) -> str:
         f"- Verify failing categories: `{json.dumps(summary['verify_failing_categories'], ensure_ascii=False)}`",
         f"- Changed: `{summary['changed']}`",
         f"- PR ready: `{summary['pr_ready']}`",
+        f"- Review-source changes: `{summary['review_source_changes']}`",
         f"- Source-table suggestions: `{summary['source_table_suggestions']}`",
         "",
         "## Reports",
@@ -1721,6 +1838,37 @@ def markdown_review_run_report(report: dict[str, Any]) -> str:
     lines.extend(["", "## Next Actions", ""])
     for action in report["next_actions"]:
         lines.append(f"- {action}")
+
+    changes = report.get("review_source_changes") or []
+    lines.extend(["", "## Review-Source Changes", ""])
+    if not changes:
+        lines.append("No review-source changes.")
+    else:
+        lines.extend(
+            [
+                "| # | Type | Location | Old | New |",
+                "| ---: | --- | --- | --- | --- |",
+            ]
+        )
+        for change in changes:
+            location = change.get("location") or {}
+            heading = " > ".join(location.get("heading_path") or [])
+            location_text = f"{location.get('kind', '-')}:L{location.get('line_no', '-')}"
+            if heading:
+                location_text = f"{heading} / {location_text}"
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        str(change.get("index")),
+                        _markdown_cell(change.get("change_type")),
+                        _markdown_cell(location_text),
+                        _markdown_cell(change.get("old_text")),
+                        _markdown_cell(change.get("new_text")),
+                    ]
+                )
+                + " |"
+            )
 
     suggestions = report.get("source_table_suggestions") or []
     lines.extend(["", "## Source-Table Suggestions", ""])
@@ -2150,10 +2298,7 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
         section_title = str(args.section_heading or "").strip() or None
         section_inferred_from = None
         if section_title is None and source_path is not None and not args.no_auto_section:
-            source_title = first_heading_title(parse_blocks(_read_text(source_path)))
-            if source_title:
-                section_title = source_title
-                section_inferred_from = _display_path(source_path).as_posix()
+            section_title, section_inferred_from = _auto_section_for_source(source_path, _read_text(source_path))
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
@@ -2256,10 +2401,7 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
         section_title = str(args.section_heading or "").strip() or None
         section_inferred_from = None
         if section_title is None and not args.no_auto_section:
-            source_title = first_heading_title(parse_blocks(baseline_text))
-            if source_title:
-                section_title = source_title
-                section_inferred_from = _display_path(source_path).as_posix()
+            section_title, section_inferred_from = _auto_section_for_source(source_path, baseline_text)
         diff_report = build_report(
             run_id=run_id,
             doc_type="review",

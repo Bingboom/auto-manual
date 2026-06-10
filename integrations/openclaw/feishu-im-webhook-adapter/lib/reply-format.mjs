@@ -1,5 +1,37 @@
 import { localReplyPhrase } from "./local-profile.mjs";
 
+function compactOneLine(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function truncateOneLine(value, maxLength = 96) {
+  const text = compactOneLine(value);
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return `${text.slice(0, Math.max(maxLength - 1, 1))}…`;
+}
+
+function formatLocation(location = {}) {
+  const heading = Array.isArray(location.heading_path)
+    ? location.heading_path.map(compactOneLine).filter(Boolean).join(" > ")
+    : "";
+  const kindLine = [location.kind || "", location.line_no ? `L${location.line_no}` : ""].filter(Boolean).join(":");
+  return [heading, kindLine].filter(Boolean).join(" / ") || "-";
+}
+
+function formatBackportEvidenceItem(item = {}, fallbackRoute = "") {
+  const route = compactOneLine(item.route_class || fallbackRoute || "delta");
+  const type = compactOneLine(item.change_type || "change");
+  const location = formatLocation(item.location || {});
+  const oldText = truncateOneLine(item.old_text || "");
+  const newText = truncateOneLine(item.new_text || "");
+  if (type === "delete") {
+    return `- ${route} ${type} @ ${location}: old="${oldText}"`;
+  }
+  return `- ${route} ${type} @ ${location}: old="${oldText}" new="${newText}"`;
+}
+
 function summarizeRow(row, { includeDocumentLink = true } = {}) {
   const lines = [];
   if (row.document_id) {
@@ -273,12 +305,18 @@ export function formatCloudDocBackportAcceptedReply(request = {}, localProfile =
 export function formatCloudDocBackportResultReply(result = {}, localProfile = null) {
   const summary = result.summary || {};
   const reports = result.reports || {};
+  const section = result.section_selection || {};
+  const reviewSourceChanges = Array.isArray(result.review_source_changes) ? result.review_source_changes : [];
+  const sourceTableSuggestions = Array.isArray(result.source_table_suggestions) ? result.source_table_suggestions : [];
   const lines = [
     localReplyPhrase(localProfile, "cloudDocBackportResult", "云文档修订回填完成。"),
     `result: ${result.result || "-"}`,
     `mode: ${result.mode || "-"}`,
+    `scope: ${(result.source_target || {}).path || "-"}`,
+    section.resolved_title ? `section: ${section.resolved_title} (applied=${section.applied === true})` : "",
     `pr_ready: ${summary.pr_ready === true}`,
     `changed: ${summary.changed === true}`,
+    `review_source_changes: ${summary.review_source_changes ?? reviewSourceChanges.length}`,
     `source_table_suggestions: ${summary.source_table_suggestions ?? 0}`,
   ];
   if (result.manifest_path) {
@@ -298,6 +336,16 @@ export function formatCloudDocBackportResultReply(result = {}, localProfile = nu
   }
   if (reports.source_table_suggestions_markdown) {
     lines.push(`source_table_report: ${reports.source_table_suggestions_markdown}`);
+  }
+  const evidenceLines = [
+    ...reviewSourceChanges.slice(0, 3).map((item) => formatBackportEvidenceItem(item, "repo_review_text")),
+    ...sourceTableSuggestions.slice(0, Math.max(0, 3 - Math.min(reviewSourceChanges.length, 3))).map((item) =>
+      formatBackportEvidenceItem(item, "source_table_suggestion")
+    ),
+  ];
+  if (evidenceLines.length) {
+    lines.push("evidence:");
+    lines.push(...evidenceLines);
   }
   if (Array.isArray(result.next_actions) && result.next_actions.length) {
     lines.push("next:");
