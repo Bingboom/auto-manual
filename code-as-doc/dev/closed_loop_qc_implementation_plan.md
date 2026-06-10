@@ -1,6 +1,8 @@
 # Closed-Loop QC Implementation Plan
 
-Status: active implementation plan · Owner: 夏冰 · Created: 2026-06-07
+Status: active implementation plan · Owner: 夏冰 · Created: 2026-06-07 · **Updated 2026-06-10 with shipped status.**
+
+> **✅ Implementation status (2026-06-10).** Near-term observation layer **shipped**: M1 `content_lint --json` (#338), M3 local reports (#339), M2 lightweight `source_ref` (#340), M5 docs (#341) — all verified (valid JSON, `findings.json`+`report.md` written, full test suite green). The B2 reviewer-diff channel (M7) **and** its source routing (M8) **also shipped — as the deterministic `tools/cloud_doc_backport.py` CLI** (`diff` / `apply-template` / `apply-review` / `verify-review` / `run-review` / `open-pr`), triggered from Feishu IM (#353) and opening draft PRs (#354); design: [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md). **No standing LLM agent was built** — judgment is handled by guarded rules + human PR review. **Still deferred (as planned):** M4 (Feishu `QC_Report` table) and the sync-time `record_id` sidecar — `record_id` stays `null`/unresolved until then. Read "standing QC agent" below as the original design, superseded for now by the deterministic CLI.
 
 This is the execution plan for the closed-loop QC requirements in
 [`../architecture/closed_loop_qc_agent_requirements.md`](../architecture/closed_loop_qc_agent_requirements.md).
@@ -307,8 +309,11 @@ Exit criteria:
 
 ### M8: Standing QC Agent
 
-Near-term status: **deferred**. Start only after deterministic QC outputs and
-reports are stable.
+Status (2026-06-10): **superseded by a deterministic CLI.** The B2 routing /
+apply / verify / PR work shipped as `tools/cloud_doc_backport.py` + the Feishu IM
+trigger (#342–#354) — **not** a standing LLM agent. A standing LLM agent remains
+an optional future layer, warranted only if judgment beyond guarded rules + human
+PR review is ever needed. The original design follows.
 
 Goal: agent orchestration starts after deterministic inputs are boring.
 
