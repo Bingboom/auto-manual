@@ -28,6 +28,8 @@ For current human workflows, read:
 
 - Default to [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py).
 - Treat [`tools/`](/Users/pika/Documents/GitHub/auto-manual/tools) as low-level implementation unless the task is explicitly about those scripts.
+- Claude Code navigation is layered: root [`CLAUDE.md`](/Users/pika/Documents/GitHub/auto-manual/CLAUDE.md) stays thin, while directory-local `CLAUDE.md` files provide local maps and targeted validation commands.
+  These files are navigation overlays, not a second policy source; this `AGENTS.md` wins on conflict.
 
 ## 2. Editing Surface
 
@@ -69,6 +71,8 @@ For current human workflows, read:
 
 ## 7. Local Skills
 
+- Use [`.claude/skills/config-review/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.claude/skills/config-review/SKILL.md) for Claude Code scaffolding review.
+  Use it when changing root or nested `CLAUDE.md`, `.claude/settings.json`, hooks, skills, permissions, plugin/MCP setup, or model-release configuration cleanup.
 - Use [`.agents/skills/markdown-rst-template-intake/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/markdown-rst-template-intake/SKILL.md) when mapping external Markdown manuals into this repo's reusable RST template and recipe layout.
 - Use [`.agents/skills/bitable-translation-memory/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/bitable-translation-memory/SKILL.md) for one-shot sentence translation, terminology lookup, and live sentence-pair retrieval.
 - Use [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/manual-rewrite-with-tm/SKILL.md) for full manual or Markdown rewrite tasks that must preserve structure, reuse translation-memory phrasing, or keep unmatched source text highlighted with `==...==`.
