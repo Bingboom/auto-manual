@@ -42,16 +42,30 @@ incoming Feishu IM with the native `Get` emoji:
 node integrations/openclaw/scripts/patch_openclaw_feishu_received_reaction.mjs
 ```
 
-The script scans the installed OpenClaw `dist/` bundle, injects a best-effort
+The script locates the installed Feishu monitor bundle, injects a best-effort
 `messageReaction.create` call into the `im.message.receive_v1` handler, and
 leaves the normal text reply path untouched. It is idempotent and writes a
 `.before-feishu-received-reaction` backup before the first patch.
 
+Two OpenClaw layouts are supported, and every match found is patched:
+
+- **Plugin layout** (OpenClaw ≥ 2026.6, current on this machine): the Feishu
+  channel is the community plugin `@openclaw/feishu`, installed under
+  `~/.openclaw/npm/projects/openclaw-feishu-*/node_modules/@openclaw/feishu/dist/`.
+  The scan base `~/.openclaw` can be overridden with `OPENCLAW_STATE_DIR`, or a
+  specific plugin package directory can be pinned with
+  `OPENCLAW_FEISHU_PLUGIN_DIR`.
+- **Legacy layout** (pre-2026.6): the Feishu channel is bundled into the install
+  root's `dist/`. The default install root is
+  `/opt/homebrew/opt/manual-node-v24.14.1/lib/node_modules/openclaw`; override it
+  with `OPENCLAW_INSTALL_ROOT` if OpenClaw is installed elsewhere (e.g. the
+  isolated prefix `~/agent-runtimes/openclaw/lib/node_modules/openclaw`).
+
 For a stable local service, run the patcher before `openclaw gateway` starts in
 the user LaunchAgent. That makes package overwrites self-heal on the next
-service start while keeping the actual patch source in this repo. The default
-install root is `/opt/homebrew/opt/manual-node-v24.14.1/lib/node_modules/openclaw`;
-override it with `OPENCLAW_INSTALL_ROOT` if OpenClaw is installed elsewhere.
+service start while keeping the actual patch source in this repo. Note that a
+plugin update or reinstall creates a fresh `openclaw-feishu-*` project
+directory, so the LaunchAgent re-run is what keeps the patch applied.
 
 ## BlockClaw persona wiring and regression guard
 
