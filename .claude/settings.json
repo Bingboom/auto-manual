@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./.venv/**)",
+      "Read(./.mypy_cache/**)",
+      "Read(./.ruff_cache/**)",
+      "Read(./.tmp/**)",
+      "Read(./**/__pycache__/**)",
+      "Read(./**/*.pyc)",
+      "Read(./docs/_build/**)",
+      "Read(./docs/generated/**)",
+      "Read(./site/review-preview/dist/**)",
+      "Read(./reports/version_tracking/**)",
+      "Read(./reports/releases/**)",
+      "Read(./integrations/openclaw/**/node_modules/**)",
+      "Read(./integrations/openclaw/**/runtime/**)"
+    ]
+  }
+}

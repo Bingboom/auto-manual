@@ -1,29 +1,32 @@
 # Claude Code Entrypoint
 
-This file is the Claude Code entrypoint for this repo. The repo's operating rules live in [`AGENTS.md`](AGENTS.md), which every AI agent (Claude, Codex, future agents) shares. Read it first.
+This file is the thin Claude Code map for this repo. Shared operating rules live in [`AGENTS.md`](AGENTS.md); read those first.
 
 @AGENTS.md
 
-## When opening a new Claude window
+## Start Small
 
-A new window has no memory of the previous one. Before touching the working tree:
+Start Claude from the smallest directory that contains the work. Claude loads this root file plus the nearest child `CLAUDE.md` files as it moves through the tree.
 
-1. Confirm clean state and create a fresh branch with the wrapper:
+- [`tools/`](tools/CLAUDE.md): Python build, queue, review, release, and validation implementation.
+- [`docs/`](docs/CLAUDE.md): manual source, templates, manifests, renderers, review, and build outputs.
+- [`docs/templates/`](docs/templates/CLAUDE.md): reusable RST templates, placeholder contracts, snippets, and recipes.
+- [`data/`](data/CLAUDE.md): CSV source data and local phase2 mirror boundaries.
+- [`configs/`](configs/CLAUDE.md): shared family configs and config-base inheritance.
+- [`tests/`](tests/CLAUDE.md): unittest layout and targeted test selection.
+- [`scripts/`](scripts/CLAUDE.md): branch, local-build, and service helper scripts.
+- [`integrations/`](integrations/CLAUDE.md): OpenClaw and Feishu adapter packages.
+- [`code-as-doc/`](code-as-doc/CLAUDE.md): architecture, roadmap, and maintainer documentation.
+- [`user-guide/`](user-guide/CLAUDE.md): operator-facing workflow guides.
+- [`.agents/`](.agents/CLAUDE.md): Codex/local skill inventory, distinct from Claude Code project skills.
 
-   ```powershell
-   git fetch origin
-   git status
-   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>
-   ```
+## Claude Config
 
-   `<type>` is one of `feat`, `fix`, `refactor`, `docs`, `chore`, `review`, `spike`, `release` — never the agent name. See [`AGENTS.md`](AGENTS.md) §8.1 and [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md) §2.
+- Team-shared Claude Code settings live in [`.claude/settings.json`](.claude/settings.json).
+- Personal permissions stay in `.claude/settings.local.json`; do not commit them.
+- Hook management notes live in [`.claude/hooks/README.md`](.claude/hooks/README.md).
+- Project skill management notes live in [`.claude/skills/README.md`](.claude/skills/README.md).
+- When starting below repo root, confirm active project settings with `/config`; add subdirectory settings only after `/config-review`.
+- Run `/config-review` before changing Claude settings, hooks, skills, or nested `CLAUDE.md` files.
 
-2. If another window may be working in this checkout in parallel, open a `git worktree` per [`code-as-doc/dev/git_worktree_guide.md`](code-as-doc/dev/git_worktree_guide.md) instead of sharing the checkout.
-
-3. Follow the rest of [`AGENTS.md`](AGENTS.md) §8 for concurrency safety, commit discipline, local validation, and the PR flow.
-
-## Notes specific to Claude Code
-
-- Operator: 唐夏冰 (call them 夏冰). See [`agent/USER.md`](agent/USER.md) for tone and timezone context.
-- For chat-facing identity (BlockClaw role, voice rules), see [`agent/BOOTSTRAP.md`](agent/BOOTSTRAP.md), [`agent/IDENTITY.md`](agent/IDENTITY.md), [`agent/SOUL.md`](agent/SOUL.md). Those describe the chat persona running on top of OpenClaw; **they are not** the repo coding rules. Do not edit them while doing engineering tasks.
-- This file should stay thin. New rules go into [`AGENTS.md`](AGENTS.md) so Codex and any future agent inherit them automatically.
+Keep this root file as navigation only. Put directory-specific commands and conventions in the relevant child `CLAUDE.md`, and put reusable procedures in a skill.
