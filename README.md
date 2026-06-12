@@ -155,7 +155,7 @@ Use the document that owns the topic:
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
-- `data/phase2/`: gitignored Feishu-synced CSV snapshot inputs for active build, review, and publish flows
+- `data/phase2/`: gitignored Feishu-synced CSV snapshot inputs for active build, review, and publish flows; only the repo-maintained [`data/phase2/page_registry.csv`](data/phase2/page_registry.csv) stays tracked because `sync-data` reads it as input
 - [`tests/fixtures/phase2/`](tests/fixtures/phase2): committed fixture snapshot used only by CI/tests, not by live authoring
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`.agents/skills/bitable-translation-memory/`](.agents/skills/bitable-translation-memory): repo-local Codex skill for live sentence-pair lookup and terminology grounding

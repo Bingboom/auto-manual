@@ -42,7 +42,7 @@ python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-sp
 `Row_key` 也是 lookup 列，来自 `参数名.Row_key`；新增或更换参数概念时，先维护/选择 `Row_key_link`。
 两张源表不再维护 `Model` / `Region`；rebuild 会从 `document_key` 自动生成给本地 read model 使用。
 
-不要把 [`data/phase2/`](../data/phase2) 当成主编辑面；它是 gitignored 本地 snapshot，每个镜像仓应从自己的 Feishu Base 生成。
+不要把 [`data/phase2/`](../data/phase2) 当成主编辑面；它是 gitignored 本地 snapshot，每个镜像仓应从自己的 Feishu Base 生成。唯一入库的例外是 [`page_registry.csv`](../data/phase2/page_registry.csv)（仓库维护的页面结构输入，`sync-data` 每次运行都要读取）。
 只有当 `Document_link.是否强制刷新数据 = 勾选` 时，队列才会在这次构建前执行 `sync-data`；不勾时会直接复用当前本地 snapshot。
 
 ### 1.2 Review Init 表
