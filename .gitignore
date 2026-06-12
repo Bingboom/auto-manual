@@ -12,7 +12,10 @@ docs/_build/*/*/*
 docs/generated/
 
 # Local Feishu/Lark snapshot data; each mirror repo syncs its own Base.
-data/phase2/
+# page_registry.csv is the repo-maintained page-structure input that sync-data
+# copies into the snapshot; it must stay tracked or fresh checkouts cannot sync.
+data/phase2/*
+!data/phase2/page_registry.csv
 
 # Python caches
 **/__pycache__/
