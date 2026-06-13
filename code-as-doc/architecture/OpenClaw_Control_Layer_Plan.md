@@ -400,7 +400,7 @@ Rules:
 
 - only for rows that already represent `Workflow_action = Publish`
 - if the row carries `Git_ref`, the current worker still uses that review branch as the real build source
-- the existing 5-minute publish poller should stay enabled as a fallback
+- the previous 5-minute publish poller is kept as a commented workflow fallback, but normal operation should use OpenClaw-triggered `workflow_dispatch`
 
 ### 5.4 `/manual-status [run_id|last]`
 
@@ -597,7 +597,7 @@ Confirm that OpenClaw does not change:
 - Feishu row writeback fields
 - `Document_link.Git_ref` behavior
 - the current `main`-owned worker rule
-- the current 5-minute publish poller fallback
+- the commented 5-minute publish poller fallback
 
 ## 11. Decision Rule
 

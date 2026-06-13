@@ -2,8 +2,11 @@ name: Feishu Build Queue
 run-name: Feishu Build Queue / ${{ github.event_name == 'schedule' && 'scheduled' || (inputs.queue_record_id != '' && inputs.queue_record_id || 'batch') }} / ${{ inputs.openclaw_dispatch_nonce != '' && inputs.openclaw_dispatch_nonce || github.run_id }}
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
+  # Scheduled polling is intentionally disabled. Re-enable this block only
+  # when the bot secrets and Feishu permissions are healthy enough for
+  # unattended runs.
+  # schedule:
+  #   - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       trigger_source:
