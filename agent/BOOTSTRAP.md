@@ -1,6 +1,6 @@
 # BlockClaw Bootstrap
 
-Updated: 2026-05-06
+Updated: 2026-06-15
 
 Use this file only as the short entrypoint for the repo's current BlockClaw surface.
 It is not the detailed architecture plan and it is not the full workflow guide.
@@ -76,6 +76,7 @@ node integrations/openclaw/feishu-im-webhook-adapter/server.mjs
 - On Feishu or other chat surfaces, do not narrate routine internal steps like "我先查表" or "我先看一下" unless the task is long-running or the user explicitly asks how you did it.
 - When sharing document or build links on a chat surface, render each one as a Markdown link with the document name or record id as the anchor text — e.g. `[JE-2000F_EU_de_0.5](https://…/wiki/…)` — so Feishu turns it into a clickable document card. Never paste a bare `https://…` URL as plain text: Feishu does not render bot-sent raw URLs as cards, so they show as inert text. Listing several such Markdown links (for example one per language) in one bulleted message is fine; the card rendering depends on the Markdown-link form, not on how many you send.
 - For manual-copy multilingual wording advice asks, always load and follow `.agents/skills/bitable-translation-memory/SKILL.md` first.
+- For Feishu/Lark document-link translation preprocessing asks, such as "预处理", "翻译预处理", "上传同路径/原路径", or requests with explicit source/target languages, load and follow `.agents/skills/lark-tm-translation-preprocess/SKILL.md`; resolve the source and target language pair from the message and use only language columns available in `Translation_Memory`.
 - For long Markdown or manual rewrite asks, or when the user asks to preserve document structure, reuse TM sentence patterns, or keep unmatched source wrapped in `==...==`, load `.agents/skills/manual-rewrite-with-tm/SKILL.md` after the TM lookup skill and let it own the rewrite flow.
 - Treat `Translation_Memory` as an internal wording memory. Use it before free wording, but answer with user-ready suggested wording instead of describing the lookup process.
 - If the live wording-memory table contains a direct match, use that matched wording as the default answer. Do not replace it with a freer paraphrase unless the user asks you to rewrite or adapt tone.

@@ -143,6 +143,7 @@ Use the document that owns the topic:
 - current OpenClaw bootstrap: [`agent/BOOTSTRAP.md`](agent/BOOTSTRAP.md)
 - current OpenClaw integration package: [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
 - repo-local translation memory skill for OpenClaw-assisted multilingual work: [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md)
+- repo-local Feishu DOCX preprocessing skill for TM-backed source/target language conversion: [`.agents/skills/lark-tm-translation-preprocess/SKILL.md`](.agents/skills/lark-tm-translation-preprocess/SKILL.md)
 - repo-local TM-first manual rewrite skill for structured Markdown/manual translation work: [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](.agents/skills/manual-rewrite-with-tm/SKILL.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
@@ -159,6 +160,7 @@ Use the document that owns the topic:
 - [`tests/fixtures/phase2/`](tests/fixtures/phase2): committed fixture snapshot used only by CI/tests, not by live authoring
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`.agents/skills/bitable-translation-memory/`](.agents/skills/bitable-translation-memory): repo-local Codex skill for live sentence-pair lookup and terminology grounding
+- [`.agents/skills/lark-tm-translation-preprocess/`](.agents/skills/lark-tm-translation-preprocess): repo-local Codex/OpenClaw skill for Feishu DOCX preprocessing with configurable Translation_Memory source/target language pairs and yellow-highlighted replacements
 - [`.agents/skills/manual-rewrite-with-tm/`](.agents/skills/manual-rewrite-with-tm): repo-local Codex skill for TM-first Markdown/manual rewrite with structure preservation and `==...==` unmatched fallback
 - [`.agents/skills/markdown-rst-template-intake/`](.agents/skills/markdown-rst-template-intake): repo-local Codex skill for mapping external Markdown manuals into the current RST template and recipe layout
 - [`docs/_review/`](docs/_review): target-specific review layer
