@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lark TM Translation Preprocess"
+  short_description: "Preprocess Lark DOCX files with live TM matches"
+  default_prompt: "Use $lark-tm-translation-preprocess to preprocess this Feishu document with Translation_Memory matches, highlight replacements, upload it beside the source, and return the result link."
