@@ -12,10 +12,19 @@ Use this skill for the repeatable Feishu/OpenClaw workflow:
 3. Read live `Translation_Memory` sentence pairs.
 4. Replace only source text that has a safe exact, parameter-only, or high-confidence fuzzy match in the requested target language.
 5. Highlight every replacement with yellow by default.
-6. Upload the processed DOCX to the same Wiki parent path as the source.
-7. Return the uploaded document link.
+6. **Re-open the packed DOCX and verify the translation actually landed** (open-state gate — see Verification).
+7. Upload to the same Wiki parent path as the source — only when verification passed.
+8. Return the uploaded document link.
 
 This is a translation preprocessing pass, not a full free-translation pass. Unmatched source text stays unchanged unless the user explicitly asks for a human/LLM completion step after preprocessing.
+
+> **Never hand-edit the `.docx` zip.** Always run the script below. It rebuilds the archive
+> cleanly (every part written exactly once, so a duplicate `word/document.xml` cannot
+> happen) and self-verifies before uploading. Appending to / patching the zip in place is
+> exactly what produced the "looks translated but the opened file is still the original"
+> failure — do not do it. **Done = the script returned `ok: true` AND `verified: true`.**
+> Treat `verified: false` (or `ok: false`) as a hard failure: report it, do not upload, do
+> not tell the user it is done.
 
 ## Dependencies
 
@@ -110,20 +119,29 @@ For parameter-only differences, reuse the target sentence skeleton and replace o
 
 ## Verification
 
-Before replying that a task is done:
+The script runs an **open-state acceptance gate** itself (`verify_output`): after repacking and *before* uploading, it re-opens the packed DOCX and checks that
 
-1. Confirm the script returned `ok: true`.
-2. Confirm `change_count > 0` unless the user only wanted a dry run or audit.
-3. Confirm `highlighted_runs > 0`.
-4. If uploaded, verify the uploaded file's Wiki parent equals the source parent:
+- the archive is a sound zip with **exactly one** `word/document.xml` and a `[Content_Types].xml`,
+- when `change_count > 0`, the reopened body actually carries highlighted runs, and
+- a sample of the written target strings is genuinely present in the reopened body.
 
-```bash
-lark-cli wiki +node-get --node-token <uploaded_file_token> --obj-type file --as user --json
-```
+If any check fails the script sets `verified: false` / `ok: false`, **skips the upload**, and exits non-zero — so a write-back that did not land can never be uploaded or called done. The specific failures are listed under `verification.problems`.
 
-Compare `parent_node_token` to the source node's `parent_node_token`.
+Before replying that a task is done, confirm from the script's JSON:
 
-5. Optional visual QA (needs a renderer): if LibreOffice / `soffice` is available, convert the DOCX to PDF/images and eyeball representative pages. Skip this when no renderer is installed — it is a confidence check, not a gate.
+1. `ok: true` **and** `verified: true` (with `verification.problems` empty).
+2. `change_count > 0` unless the user only wanted a dry run or audit.
+3. If uploaded, the uploaded file's Wiki parent equals the source parent:
+
+   ```bash
+   lark-cli wiki +node-get --node-token <uploaded_file_token> --obj-type file --as user --json
+   ```
+
+   Compare `parent_node_token` to the source node's `parent_node_token`.
+
+4. Optional visual QA (needs a renderer): if LibreOffice / `soffice` is available, convert the DOCX to PDF/images and eyeball representative pages. Skip when no renderer is installed — a confidence check, not a gate.
+
+If `verified: false`, do **not** upload and do **not** report success — surface `verification.problems` and fix the cause (most often a bad write-back or zero matches).
 
 ## Natural-Language Trigger Examples
 

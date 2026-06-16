@@ -590,16 +590,26 @@ def preprocess_docx(
                 continue
             set_para_text(p_el, translated, highlight_color=highlight_color, target_lang=target_lang)
             if record:
+                record["target"] = translated  # keep written text for open-state verification
                 changes.append(record)
 
         document_path.write_bytes(etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True))
         output_docx.parent.mkdir(parents=True, exist_ok=True)
         if output_docx.exists():
             output_docx.unlink()
+        # Rebuild as a brand-new archive (mode "w" => every part is written exactly once,
+        # so a duplicate word/document.xml can never occur). Emit [Content_Types].xml and
+        # the package rels first, per the OPC convention, for reader compatibility.
+        files = [p for p in temp_dir.rglob("*") if p.is_file()]
+
+        def _opc_rank(p: Path) -> tuple[int, str]:
+            rel = p.relative_to(temp_dir).as_posix()
+            rank = 0 if rel == "[Content_Types].xml" else 1 if rel == "_rels/.rels" else 2
+            return (rank, rel)
+
         with zipfile.ZipFile(output_docx, "w", zipfile.ZIP_DEFLATED) as zout:
-            for path in temp_dir.rglob("*"):
-                if path.is_file():
-                    zout.write(path, path.relative_to(temp_dir).as_posix())
+            for path in sorted(files, key=_opc_rank):
+                zout.write(path, path.relative_to(temp_dir).as_posix())
 
         report = {
             "input_docx": str(input_docx),
@@ -816,6 +826,60 @@ def count_yellow_runs(docx_path: Path, color: str) -> int:
     return len(root.xpath(f'.//w:rPr/w:shd[@w:fill="{color}"]', namespaces=NS))
 
 
+def verify_output(output_docx: Path, *, highlight_color: str, report: dict[str, object]) -> dict[str, object]:
+    """Open-state acceptance check on the FINAL packed file.
+
+    Re-opens the archive we just wrote and confirms it is a coherent DOCX whose body
+    actually carries the translated, highlighted text. This is the gate that stops the
+    "the script says it changed but the opened file is still the original" failure: a
+    write-back that did not truly land (duplicate word/document.xml, stale entry, lost
+    highlight, corrupt zip) fails HERE instead of being uploaded and reported as success.
+    """
+    problems: list[str] = []
+    body_text = ""
+    highlighted_runs = 0
+    try:
+        with zipfile.ZipFile(output_docx) as zin:
+            bad = zin.testzip()
+            if bad is not None:
+                problems.append(f"corrupt zip entry: {bad}")
+            names = zin.namelist()
+            doc_count = names.count("word/document.xml")
+            if doc_count != 1:
+                problems.append(f"word/document.xml present {doc_count}x, must be exactly 1")
+            if "[Content_Types].xml" not in names:
+                problems.append("missing [Content_Types].xml")
+            if doc_count >= 1:
+                root = etree.fromstring(zin.read("word/document.xml"))
+                body_text = "".join((t.text or "") for t in root.xpath(".//w:t", namespaces=NS))
+                highlighted_runs = len(root.xpath(f'.//w:rPr/w:shd[@w:fill="{highlight_color}"]', namespaces=NS))
+    except Exception as exc:  # noqa: BLE001
+        return {"verified": False, "problems": [f"cannot reopen output docx: {exc}"],
+                "highlighted_runs": 0, "targets_checked": 0, "targets_found": 0}
+
+    change_count = int(report.get("change_count") or 0)  # type: ignore[arg-type]
+    targets = [str(c.get("target") or "").strip() for c in (report.get("changes") or [])]  # type: ignore[union-attr]
+    targets = [t for t in targets if t]
+    step = max(1, len(targets) // 25)
+    sample = targets[::step]
+    missing = [t for t in sample if t not in body_text]
+    if change_count > 0:
+        if highlighted_runs == 0:
+            problems.append("change_count>0 but the reopened file has no highlighted runs")
+        if missing:
+            problems.append(
+                f"{len(missing)}/{len(sample)} sampled target strings absent from the reopened body "
+                "— the write-back did not land in the opened document"
+            )
+    return {
+        "verified": not problems,
+        "problems": problems,
+        "highlighted_runs": highlighted_runs,
+        "targets_checked": len(sample),
+        "targets_found": len(sample) - len(missing),
+    }
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Preprocess a Lark/Feishu DOCX with live Translation_Memory matches.")
     parser.add_argument("--url", help="Feishu/Lark file, docx, doc, or wiki URL")
@@ -875,29 +939,40 @@ def main(argv: list[str] | None = None) -> int:
         collapse_notice=args.collapse_leading_multilingual_notice,
         front_matter_end_text=args.front_matter_end_text,
     )
-    upload_payload = upload_same_path(args, output_docx, source_node, work_dir, output_name)
+    # Open-state acceptance gate: re-open the packed file and confirm the translation
+    # truly landed BEFORE uploading. Never upload / report success on a file whose
+    # opened body is still the original — the exact failure this skill exists to prevent.
+    verification = verify_output(output_docx, highlight_color=highlight_color, report=report)
+    verified = bool(verification["verified"])
+
+    upload_payload = upload_same_path(args, output_docx, source_node, work_dir, output_name) if verified else None
+    upload_skipped_reason = None
+    if not verified:
+        upload_skipped_reason = "verification_failed"
+    elif args.no_upload:
+        upload_skipped_reason = "no_upload"
 
     result = {
-        "ok": True,
+        "ok": verified,
+        "verified": verified,
+        "verification": verification,
         "source_lang": source_lang,
         "target_lang": target_lang,
         "available_languages": available_langs,
         "pair_count": len(pairs),
         "change_count": report["change_count"],
         "highlight_color": highlight_color,
-        "highlighted_runs": count_yellow_runs(output_docx, highlight_color),
+        "highlighted_runs": verification["highlighted_runs"],
         "work_dir": str(work_dir),
         "output_docx": str(output_docx),
         "report_json": str(report_path),
         "upload": upload_payload.get("data") if isinstance(upload_payload, dict) else None,
+        "upload_skipped_reason": upload_skipped_reason,
         "source_inspect": inspect_payload.get("data") if isinstance(inspect_payload, dict) else None,
         "source_wiki_node": source_node,
     }
-    if args.json:
-        print(json.dumps(result, ensure_ascii=False, indent=2))
-    else:
-        print(json.dumps(result, ensure_ascii=False, indent=2))
-    return 0
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0 if verified else 1
 
 
 if __name__ == "__main__":
