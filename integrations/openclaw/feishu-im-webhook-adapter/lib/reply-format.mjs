@@ -94,6 +94,81 @@ function summarizeCandidate(candidate) {
   return pieces.join(" | ");
 }
 
+function listText(value) {
+  if (!Array.isArray(value)) {
+    return compactOneLine(value || "");
+  }
+  return value.map(compactOneLine).filter(Boolean).join(", ");
+}
+
+function formatCounts(counts = {}) {
+  if (!counts || typeof counts !== "object" || Array.isArray(counts)) {
+    return "-";
+  }
+  const entries = Object.entries(counts).filter(([_key, value]) => Number(value) > 0);
+  if (!entries.length) {
+    return "-";
+  }
+  return entries.map(([key, value]) => `${key}=${value}`).join("; ");
+}
+
+function summarizeManualIndexRow(row = {}) {
+  const title = compactOneLine(row.manual_name || row.document_name || row.manual_link_text || "-");
+  const pieces = [
+    listText(row.product_models) || row.business_id || row.record_id || "-",
+    title,
+    listText(row.region),
+    listText(row.source_lang),
+    listText(row.version),
+    compactOneLine(row.archived_at || ""),
+  ].filter(Boolean);
+  const link = compactOneLine(row.manual_link || "");
+  return link ? `${pieces.join(" | ")}\n  ${link}` : pieces.join(" | ");
+}
+
+function formatManualIndexOverview(overview = {}) {
+  const lines = [
+    `total_manuals: ${overview.total_manuals ?? 0}`,
+    `distinct_product_model_count: ${overview.distinct_product_model_count ?? 0}`,
+    `by_region: ${formatCounts(overview.by_region)}`,
+    `by_source_lang: ${formatCounts(overview.by_source_lang)}`,
+    `by_doc_type: ${formatCounts(overview.by_doc_type)}`,
+    `by_category: ${formatCounts(overview.by_category)}`,
+  ];
+  if (overview.latest_archive_date) {
+    lines.push(`latest_archive_date: ${overview.latest_archive_date}`);
+  }
+  return lines;
+}
+
+export function formatManualIndexReply(result = {}, localProfile = null) {
+  const lines = [
+    localReplyPhrase(localProfile, "manualIndexPrefix", "已读取发布文档管理表："),
+    result.summary || "",
+  ];
+  if (result.query_type === "overview") {
+    lines.push(...formatManualIndexOverview(result.overview || {}));
+    return lines.filter(Boolean).join("\n");
+  }
+  const rows = Array.isArray(result.rows) ? result.rows : [];
+  if (result.query_type === "inventory" && result.overview) {
+    lines.push(...formatManualIndexOverview(result.overview).slice(0, 4));
+  }
+  if (!rows.length) {
+    lines.push("没有查到匹配的说明书记录。");
+  }
+  for (const row of rows.slice(0, 10)) {
+    lines.push(`- ${summarizeManualIndexRow(row)}`);
+  }
+  if (result.truncated) {
+    lines.push(`还有 ${Math.max((result.matched_count || 0) - rows.length, 0)} 条未显示；可以补充产品型号、区域、语言或版本继续缩小。`);
+  }
+  if (result.next_step) {
+    lines.push(result.next_step);
+  }
+  return lines.filter(Boolean).join("\n");
+}
+
 export function formatResolutionReply(resolution, localProfile = null) {
   const lines = [resolution.summary];
   if (resolution.next_step) {

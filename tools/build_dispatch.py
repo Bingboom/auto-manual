@@ -21,6 +21,7 @@ class DispatchContext:
     spec_master_rebuild_command: Callable[[argparse.Namespace], list[str]]
     run_translation_memory: Callable[[argparse.Namespace], None]
     run_message_control_dry_run: Callable[[argparse.Namespace], None]
+    run_manual_index_query: Callable[[argparse.Namespace], None]
     run_queue_query: Callable[[argparse.Namespace], None]
     run_queue_resolve_action: Callable[[argparse.Namespace], None]
     run_queue_execute: Callable[[argparse.Namespace], None]
@@ -79,6 +80,10 @@ def _dispatch_translation_memory_action(args: argparse.Namespace, context: Dispa
 
 def _dispatch_message_control_dry_run_action(args: argparse.Namespace, context: DispatchContext) -> None:
     context.run_message_control_dry_run(args)
+
+
+def _dispatch_manual_index_query_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    context.run_manual_index_query(args)
 
 
 def _dispatch_queue_query_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -140,6 +145,7 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "spec-master-rebuild": _dispatch_spec_master_rebuild_action,
     "translation-memory": _dispatch_translation_memory_action,
     "message-control-dry-run": _dispatch_message_control_dry_run_action,
+    "manual-index-query": _dispatch_manual_index_query_action,
     "queue-query": _dispatch_queue_query_action,
     "queue-resolve-action": _dispatch_queue_resolve_action_action,
     "queue-execute": _dispatch_queue_execute_action,
@@ -174,6 +180,7 @@ def dispatch_action(
     spec_master_rebuild_command: Callable[[argparse.Namespace], list[str]],
     run_translation_memory: Callable[[argparse.Namespace], None],
     run_message_control_dry_run: Callable[[argparse.Namespace], None],
+    run_manual_index_query: Callable[[argparse.Namespace], None],
     run_queue_query: Callable[[argparse.Namespace], None],
     run_queue_resolve_action: Callable[[argparse.Namespace], None],
     run_queue_execute: Callable[[argparse.Namespace], None],
@@ -201,6 +208,7 @@ def dispatch_action(
         spec_master_rebuild_command=spec_master_rebuild_command,
         run_translation_memory=run_translation_memory,
         run_message_control_dry_run=run_message_control_dry_run,
+        run_manual_index_query=run_manual_index_query,
         run_queue_query=run_queue_query,
         run_queue_resolve_action=run_queue_resolve_action,
         run_queue_execute=run_queue_execute,

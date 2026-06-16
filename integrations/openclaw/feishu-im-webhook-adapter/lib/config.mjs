@@ -65,6 +65,7 @@ export function loadAdapterConfig() {
     batchDispatchDelayMs: integerEnv("FEISHU_IM_BATCH_DISPATCH_DELAY_MS", 2000),
     batchStatusTimeoutSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS", 60),
     batchStatusPollSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_POLL_SECONDS", 5),
+    manualIndexLimit: integerEnv("FEISHU_IM_MANUAL_INDEX_LIMIT", 10),
     cloudDocBackportAllowedSenderIds: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS"),
     cloudDocBackportAllowWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE", false),
     cloudDocBackportAllowPrCreate: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE", false),

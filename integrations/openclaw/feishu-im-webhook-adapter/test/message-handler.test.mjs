@@ -186,6 +186,101 @@ test("message handler replies with queue status for resolved query_status", asyn
   assert.match(replies[0].text, /SUCCESS/);
 });
 
+test("message handler answers manual index lookups before queue resolution", async () => {
+  const replies = [];
+  let resolvedQueue = false;
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      manualIndexLimit: 5,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async queryManualIndex(payload) {
+        assert.equal(payload.limit, 5);
+        return {
+          matched: true,
+          query_type: "lookup",
+          summary: "Matched 1 manual index row(s).",
+          matched_count: 1,
+          returned_count: 1,
+          rows: [
+            {
+              record_id: "rec_manual",
+              product_models: ["JE-2000F"],
+              manual_name: "Jackery Explorer 2000 User Manual V2.0",
+              region: ["美加规"],
+              source_lang: ["EN"],
+              version: ["V2.0"],
+              archived_at: "2026-04-30 00:00:00",
+              manual_link: "https://alidocs.example/je2000f",
+            },
+          ],
+        };
+      },
+      async resolveAction() {
+        resolvedQueue = true;
+        return { resolution_status: "target_not_found", summary: "unexpected" };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("查 JE-2000F 的说明书链接"));
+  await result.backgroundTask();
+
+  assert.equal(resolvedQueue, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /发布文档管理表/);
+  assert.match(replies[0].text, /JE-2000F/);
+  assert.match(replies[0].text, /https:\/\/alidocs\.example\/je2000f/);
+});
+
+test("message handler keeps build-copy requests on the queue path", async () => {
+  let manualIndexQueries = 0;
+  let resolvedQueue = false;
+  const replies = [];
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async queryManualIndex() {
+        manualIndexQueries += 1;
+        return { matched: true };
+      },
+      async resolveAction() {
+        resolvedQueue = true;
+        return {
+          resolution_status: "target_not_found",
+          summary: "No matching queue rows.",
+        };
+      },
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("输出JE-1000F的所有欧规说明书文案"));
+  await result.backgroundTask();
+
+  assert.equal(manualIndexQueries, 0);
+  assert.equal(resolvedQueue, true);
+  assert.match(replies[0].text, /No matching queue rows/);
+});
+
 test("message handler applies local aliases before resolving actions", async () => {
   const replies = [];
   let resolvedMessage = "";

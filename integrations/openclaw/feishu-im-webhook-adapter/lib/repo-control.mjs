@@ -384,6 +384,19 @@ export function createRepoControl(config) {
       }
       return runBuildJson(config, args);
     },
+    async queryManualIndex({ messageText, limit = 10 }) {
+      const args = [
+        "manual-index-query",
+        "--config",
+        config.controlConfig,
+        "--query-text",
+        messageText,
+        "--limit",
+        String(limit || 10),
+        "--json",
+      ];
+      return runBuildJson(config, args);
+    },
     async runStatus({ runId = "" } = {}) {
       const target = String(runId || "").trim() || "last";
       const { stdout } = await execFileAsync(config.nodeBin || "node", [CONTROL_LAYER_CLI, "status", target], {

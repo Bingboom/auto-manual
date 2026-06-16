@@ -39,6 +39,7 @@ def parse_args(
             "preview",
             "fast",
             "message-control-dry-run",
+            "manual-index-query",
         ),
         help="Action to run",
     )
@@ -196,7 +197,10 @@ def parse_args(
     ap.add_argument(
         "--query-text",
         default=None,
-        help="For queue-query or queue-resolve-action: raw natural-language text to parse with document_id-first resolution",
+        help=(
+            "For queue-query, queue-resolve-action, or manual-index-query: raw natural-language text to parse "
+            "with document_id-first or manual-index resolution"
+        ),
     )
     ap.add_argument(
         "--langs",
@@ -236,9 +240,9 @@ def parse_args(
         "--limit",
         type=int,
         default=10,
-        help="For translation-memory, queue-query, or queue-resolve-action: maximum rows to return",
+        help="For translation-memory, queue-query, queue-resolve-action, or manual-index-query: maximum rows to return",
     )
-    ap.add_argument("--json", action="store_true", help="For queue-query or queue-resolve-action: emit machine-readable JSON")
+    ap.add_argument("--json", action="store_true", help="For queue-query, queue-resolve-action, or manual-index-query: emit machine-readable JSON")
     ap.set_defaults(wait_for_completion=True)
     ap.add_argument(
         "--no-wait",

@@ -28,6 +28,7 @@ import {
   formatCompletionReply,
   formatExecutionErrorReply,
   formatFailedReply,
+  formatManualIndexReply,
   formatNoPendingPublishReply,
   formatPendingPublishReply,
   formatProcessingReply,
@@ -70,6 +71,31 @@ function documentLinksFromRows(rows) {
     links.push(link);
   }
   return links;
+}
+
+function looksLikeManualIndexQuery(messageText) {
+  const text = String(messageText || "").replace(/\s+/g, " ").trim();
+  if (!text) {
+    return false;
+  }
+  const lowered = text.toLowerCase();
+  const hasReadIntent =
+    /(查|查询|查看|找|获取|给我|发我|链接|列表|清单|总览|概览|统计|多少|有哪些)/.test(text) ||
+    /\b(show|find|search|list|overview|summary|count|link)\b/i.test(text);
+  const hasManualKeyword = /(说明书|手册|发布文档|文档管理)/.test(text) || /\bmanual(?:\s+index|\s+table)?\b/i.test(text);
+  const hasOverview = /(总览|概览|统计|多少)/.test(text) || /\b(overview|summary|count)\b/i.test(text);
+  const hasInventory = /(所有|全部|全量|各产品|各个|列表|清单)/.test(text) || /\b(all|every|list|inventory)\b/i.test(text);
+  const hasExecution =
+    /(构建|生成|输出|发起|触发|补跑|补构建|重跑|重新构建|开始|发布)/.test(text) ||
+    /\b(build|run|trigger|start|publish|review)\b/i.test(text);
+  const hasQueueCopy = /(文案)/.test(text) || /\bmanual\s+copy\b/i.test(text) || /\bcopy\b/i.test(text);
+  if (hasExecution && hasQueueCopy && !hasOverview && !/(链接|link)/i.test(text)) {
+    return false;
+  }
+  if (hasOverview && !(hasExecution && !hasReadIntent)) {
+    return true;
+  }
+  return hasManualKeyword && (hasReadIntent || hasInventory) && !(hasExecution && !hasReadIntent);
 }
 
 // Freshness values that mean "the dispatch fired but the authoritative Feishu
@@ -428,6 +454,28 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
       }
       return;
+    }
+
+    if (looksLikeManualIndexQuery(normalizedMessage.normalizedText) && typeof repoControl.queryManualIndex === "function") {
+      try {
+        const manualIndexResult = await repoControl.queryManualIndex({
+          messageText: normalizedMessage.normalizedText,
+          limit: config.manualIndexLimit || 10,
+        });
+        if (manualIndexResult?.matched) {
+          await react(messageEvent.messageId, "completed");
+          await feishuClient.replyTextMessage(
+            messageEvent.messageId,
+            formatManualIndexReply(manualIndexResult, localProfile)
+          );
+          return;
+        }
+      } catch (error) {
+        logger.error?.("manual index query failed", error);
+        await react(messageEvent.messageId, "error");
+        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+        return;
+      }
     }
 
     let resolution;
