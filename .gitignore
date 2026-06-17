@@ -36,6 +36,8 @@ integrations/openclaw/dingtalk-im-adapter/runtime/
 .openclaw/
 HEARTBEAT.md
 TOOLS.md
+# BlockClaw per-machine agent memory (session keys / staffIds); never sync via the mirror
+/memory/
 # Root persona stubs: the real persona lives in agent/ and is injected via the
 # bootstrap-extra-files hook; these root files are machine-local placeholders
 # maintained by integrations/openclaw/scripts/ensure_blockclaw_persona_wiring.mjs

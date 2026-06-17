@@ -61,6 +61,8 @@ openclaw plugins inspect ddingtalk
 
 编辑 `~/.openclaw/openclaw.json`,在 `channels` 下新增 `ddingtalk`(保留已有的 `channels.feishu` 等不要动):
 
+> 仓库模板可直接参考:`integrations/openclaw/openclaw.ddingtalk.example.json`(只加钉钉通道,合并进现有配置);或 `integrations/openclaw/openclaw.example.json`(整份脱敏网关配置,含 agents/feishu/hooks/plugins,用于全新主机复刻整个 BlockClaw)。后者里 `gateway.auth.token` 等通常由 `openclaw onboard` 生成,`wizard` / `meta` / `plugins.installs` 是自动维护项、模板已省略;所有 secret/token/id 均为占位符,填你本机的值。
+
 ```json
 "ddingtalk": {
   "enabled": true,

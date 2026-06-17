@@ -1,0 +1,115 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "REPLACE_WITH_ABSOLUTE_PATH_TO_AUTO_MANUAL_CHECKOUT",
+      "model": {
+        "primary": "openai-codex/gpt-5.4"
+      },
+      "models": {
+        "openai-codex/gpt-5.4": {}
+      },
+      "compaction": {
+        "mode": "safeguard"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "identity": {
+          "name": "BlockClaw",
+          "emoji": "▣",
+          "theme": "direct, natural, low-ceremony",
+          "avatar": "use the existing channel avatar"
+        }
+      }
+    ]
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "REPLACE_WITH_GATEWAY_AUTH_TOKEN_normally_generated_by_openclaw_onboard"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "channels": {
+    "feishu": {
+      "actions": {
+        "reactions": true
+      },
+      "requireMention": true,
+      "typingIndicator": false,
+      "resolveSenderNames": true,
+      "enabled": true,
+      "defaultAccount": "main",
+      "accounts": {
+        "main": {
+          "appId": "REPLACE_WITH_FEISHU_APP_ID",
+          "name": "OpenClaw Feishu Bot",
+          "appSecret": {
+            "source": "file",
+            "provider": "feishu_file",
+            "id": "value"
+          }
+        }
+      }
+    },
+    "ddingtalk": {
+      "enabled": true,
+      "clientId": "REPLACE_WITH_DINGTALK_CLIENT_ID",
+      "clientSecret": "REPLACE_WITH_DINGTALK_CLIENT_SECRET",
+      "allowFrom": ["REPLACE_WITH_YOUR_DINGTALK_STAFF_ID"],
+      "groupPolicy": "open"
+    }
+  },
+  "secrets": {
+    "providers": {
+      "feishu_file": {
+        "source": "file",
+        "path": "REPLACE_WITH_ABSOLUTE_PATH_TO_HOME/.openclaw/secrets/feishu-app-secret.txt",
+        "mode": "singleValue"
+      }
+    }
+  },
+  "plugins": {
+    "allow": ["ddingtalk"],
+    "entries": {
+      "openai": {
+        "enabled": true
+      },
+      "ddingtalk": {
+        "enabled": true
+      }
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "feishu-auto-get": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true,
+          "paths": [
+            "agent/IDENTITY.md",
+            "agent/SOUL.md",
+            "agent/USER.md",
+            "agent/BOOTSTRAP.md"
+          ]
+        }
+      }
+    }
+  }
+}
