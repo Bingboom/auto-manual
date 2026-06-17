@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Manual Catalog"
+  short_description: "Look up shipped product manuals and catalog overview from the Feishu 发布文档管理 Base"
+  default_prompt: "When the user asks for a product's manual, its link/version/region/document type, or a catalog overview, query the 发布文档管理 catalog with .agents/skills/product-manual-catalog/scripts/query_product_manuals.py and answer with the matched manual links (Markdown links, latest version first) or the overview summary."
