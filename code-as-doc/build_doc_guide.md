@@ -101,8 +101,8 @@ Meaning:
 - if the table does not have `是否上传钉钉`, the worker follows the current global worker mode for that whole row
 - if that checked row also has `DingTalk_target_node_url`, the worker uploads to that row-level target first; otherwise it falls back to the global `DINGTALK_DOCS_TARGET_NODE_URL`
 - if the row also has `operator_union_id`, the worker can resolve a per-operator DingTalk session file before falling back to the global browser-session envs
-- `DingTalk_session_key` and `閽夐拤浼氳瘽閿甡 are accepted as aliases for `operator_union_id`; if the row uses `alice`, the worker expects `<session_root>/alice.json`
-- if a DingTalk-enabled row points at a missing per-operator session or there is no usable global DingTalk session, the queue now fails that row before build starts and writes the exact missing-session reason back to `鏋勫缓缁撴灉`
+- `DingTalk_session_key` and `钉钉会话键` are accepted as aliases for `operator_union_id`; if the row uses `alice`, the worker expects `<session_root>/alice.json`
+- if a DingTalk-enabled row points at a missing per-operator session or there is no usable global DingTalk session, the queue now fails that row before build starts and writes the exact missing-session reason back to `构建结果`
 - `queue-query`: OpenClaw Phase 2 queue resolution helper; it reads the Feishu-bound `Review Init` / `Document_link` rows and returns the concrete `record_id`, optional `Task_id`, workflow intent, `Git_ref`, `Document link`, and status fields that a natural-language control layer needs before dispatch
 - `queue-resolve-action`: structured OpenClaw dry-run resolver; it turns one natural-language ask into the bounded action contract from the control-layer plan, including `action_name`, `resolution_status`, required confirmation, missing required fields, and the matched queue row
 - `manual-index-query`: read-only OpenClaw helper for the `发布文档管理` Base view. It answers product/manual-link inventory and overview asks such as `查 JE-2000F 的说明书链接`, `查询各产品的说明书`, or `获取说明书总览信息`; it respects `FEISHU_MANUAL_INDEX_*` overrides and does not dispatch builds.
