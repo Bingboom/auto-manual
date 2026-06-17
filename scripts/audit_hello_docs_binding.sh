@@ -188,6 +188,11 @@ variable_present() {
   printf '%s\n' "$mirror_variable_names" | contains_line "$name"
 }
 
+mirror_can_create_prs() {
+  local repo="$1"
+  gh api "repos/${repo}/actions/permissions/workflow" --jq '.can_approve_pull_request_reviews' 2>/dev/null
+}
+
 expected_owner="${mirror_repo%%/*}"
 expected_name="${mirror_repo#*/}"
 failures=0
@@ -267,6 +272,17 @@ for name in "${required_mirror_secrets[@]}"; do
     failures=$((failures + 1))
   fi
 done
+printf '\n'
+
+printf 'Mirror Actions PR-creation permission\n'
+pr_toggle="$(mirror_can_create_prs "$mirror_repo" || true)"
+if [ "$pr_toggle" = "true" ]; then
+  printf '  [ok] Actions may create pull requests (can_approve_pull_request_reviews=true)\n'
+else
+  printf '  [missing] Actions cannot create pull requests (can_approve_pull_request_reviews=%s); Start Review PR creation will 403\n' "${pr_toggle:-unknown}"
+  printf '           Fix: gh api -X PUT /repos/%s/actions/permissions/workflow -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true\n' "$mirror_repo"
+  failures=$((failures + 1))
+fi
 printf '\n'
 
 printf 'Mirror optional secrets\n'
