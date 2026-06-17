@@ -167,6 +167,7 @@ Publish 的原料是：
 1. 查状态或查记录时，先查表定位唯一目标行：
    - `python build.py queue-query --config configs/config.us.yaml --query-text "查 JE-1000F_US_0.3 的 Build Draft Package" --json`
    - 如果要先让 OpenClaw 看结构化 dry-run 结果，再走下一步：`python build.py queue-resolve-action --config configs/config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json`
+   - 如果只是查发布文档管理表里的产品说明书链接或总览：`python build.py manual-index-query --config configs/config.us.yaml --query-text "查 JE-2000F 的说明书链接" --json`
 2. 要真正执行时，直接走一条确定性命令：
    - `python build.py queue-execute --config configs/config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
    - 如果这条命令最终会命中 `Workflow_action = Publish`，要额外带上 `--confirm-publish`
@@ -177,7 +178,7 @@ Publish 的原料是：
    - 本机直连、不要服务器中转时：启动 `python build.py listen-message-control --config configs/config.us.yaml`
    - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
    - 如果同一台机器还要保留旧 app 的本地 `lark-cli` 配置，先设置 `FEISHU_IM_LARK_CLI_HOME=单独目录`，再在那个目录下初始化新 app 的 `lark-cli` 配置
-   - 它仍然只处理这套文档控制层支持的动作和状态问题，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`
+   - 它仍然只处理这套文档控制层支持的动作、状态和只读发布文档管理查询，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`、`查 JE-2000F 的说明书链接`、`获取说明书总览信息`
    - 已接受修订的飞书云文档可以走显式 backport 入口：`cloud-doc backport <飞书云文档链接> docs/_review/<model>/<region>/page/<page>.rst`。如果消息或云文档标题里有 `manual_je2000f_eu_en_0.7` 这类目标信息，且当前 review checkout 里只能定位到一个安全源文件，也可以省略后面的 `docs/_review/...rst`。这条入口需要 adapter 配置 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`，默认只生成 dry-run 报告；消息里写 `--write` 前还必须把 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true` 打开。数据类差异会生成 `cloud_doc_backport_source_table_suggestions.md`，只给候选源表和人工处理步骤，不写飞书源表。写入后如果回复 `PR_READY`，再单独发 `cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json`；这一步还需要 `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true`，并只会开 draft PR。
    - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
@@ -192,6 +193,7 @@ Publish 的原料是：
 - 仍然以 Feishu 队列表为唯一真源
 - 如果一句话里已经给了完整 `Document_ID`，例如 `JE-1000F_US_0.3`，解析器会优先把它当成精确 `Document_ID`，而不是拆成猜测的 `Build_family` 或 `Lang`
 - 解析器现在也支持空格写法，例如 `帮我生成 JE-1000F US 0.3 草稿`、`开始 review JE-1000F us-merged`、`为什么 JE-1000F US 0.3 构建失败`
+- 只读说明书索引查询会先读 `发布文档管理` Base 视图：`查 JE-2000F 的说明书链接` 返回匹配行，`查询各产品的说明书` 返回清单，`获取说明书总览信息` 返回按区域、源语言、文档类型、分类等维度的总览
 - Start Review 可以只给 `Document_Key`，例如 `review JE-1000F_EU`
 - Build Draft Package 的市场文案请求按配置展开；`构建JE-1000F的欧规说明书文案` 或 `基于配置构建JE-1000F的欧规` 隐含“构建配置里的所有欧规语言行”，会解析成 `Task_id` 前缀 `JE-1000F_EU_`，并只执行 `是否触发文档构建 = Y` 的 `Build Draft Package` 行
 - 如果没说市场，例如 `构建JE-1000F说明书文案`，市场也会通配；解析器会用 `Task_id` 前缀 `JE-1000F_`，拉起所有 `JE-1000F` 且 `是否触发文档构建 = Y` 的 `Build Draft Package` 行

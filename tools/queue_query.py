@@ -4,6 +4,7 @@ import argparse
 import json
 import re
 from dataclasses import asdict, dataclass, replace
+from pathlib import Path
 from typing import Any
 
 from tools.document_link_actions import (
@@ -1163,9 +1164,9 @@ def render_queue_query_rows(
     return "\n\n".join(blocks)
 
 
-def run_queue_query(args: argparse.Namespace, *, config_path) -> None:
+def run_queue_query(args: argparse.Namespace, *, config_path=None) -> None:
     resolved_args = apply_inferred_queue_query(args)
-    cfg = load_config(config_path)
+    cfg = load_config(config_path or Path(getattr(args, "config", "")))
     rows = collect_queue_query_rows(cfg, queue_scope=resolved_args.queue_scope)
     query_result = query_queue_rows(resolved_args, rows)
     print(render_queue_query_rows(query_result.rows, as_json=resolved_args.json, query_result=query_result))

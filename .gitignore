@@ -29,11 +29,15 @@ integrations/openclaw/auto-manual-control-layer/node_modules/
 integrations/openclaw/auto-manual-control-layer/runtime/
 integrations/openclaw/feishu-im-webhook-adapter/node_modules/
 integrations/openclaw/feishu-im-webhook-adapter/runtime/
+integrations/openclaw/dingtalk-im-adapter/node_modules/
+integrations/openclaw/dingtalk-im-adapter/runtime/
 
 # OpenClaw local-only operator profile and workspace notes
 .openclaw/
 HEARTBEAT.md
 TOOLS.md
+# BlockClaw per-machine agent memory (session keys / staffIds); never sync via the mirror
+/memory/
 # Root persona stubs: the real persona lives in agent/ and is injected via the
 # bootstrap-extra-files hook; these root files are machine-local placeholders
 # maintained by integrations/openclaw/scripts/ensure_blockclaw_persona_wiring.mjs

@@ -1,0 +1,14 @@
+{
+  "channels": {
+    "ddingtalk": {
+      "enabled": true,
+      "clientId": "REPLACE_WITH_DINGTALK_CLIENT_ID",
+      "clientSecret": "REPLACE_WITH_DINGTALK_CLIENT_SECRET",
+      "allowFrom": ["REPLACE_WITH_YOUR_STAFF_ID"],
+      "groupPolicy": "open"
+    }
+  },
+  "plugins": {
+    "allow": ["ddingtalk"]
+  }
+}

@@ -1,13 +1,9 @@
 import { randomUUID } from "node:crypto";
 
 import {
-  extractMessageEvent,
   isPublishConfirmationText,
-  isUrlVerification,
-  resolveEventPayload,
   shouldIgnoreMessageEvent,
-  validateVerificationToken,
-} from "./feishu-events.mjs";
+} from "./dingtalk-events.mjs";
 import {
   cloudDocBackportSenderAllowed,
   parseCloudDocBackportPrRequest,
@@ -41,9 +37,9 @@ import { classifyTaskState, rowLooksFreshFailure, rowLooksFreshSuccess } from ".
 import { normalizeIncomingMessage } from "./message-normalizer.mjs";
 import { sendStageReaction } from "./reaction-policy.mjs";
 
-async function replyAndIgnore(feishuClient, messageId, text) {
-  if (messageId) {
-    await feishuClient.replyTextMessage(messageId, text);
+async function replyAndIgnore(imClient, messageEvent, text) {
+  if (messageEvent) {
+    await imClient.replyTextMessage(messageEvent, text);
   }
 }
 
@@ -106,11 +102,11 @@ function isRowStillProcessing(row) {
   return PENDING_FRESHNESS_STATUSES.includes(String(row?.freshness_status || ""));
 }
 
-export function createMessageHandler({ config, stateStore, repoControl, feishuClient, logger = console }) {
+export function createMessageHandler({ config, stateStore, repoControl, imClient, logger = console }) {
   const localProfile = config?.localProfile || null;
 
-  async function react(messageId, stage) {
-    await sendStageReaction({ config, feishuClient, localProfile, logger, messageId, stage });
+  async function react(messageEvent, stage) {
+    await sendStageReaction({ config, imClient, logger, messageEvent, stage });
   }
 
   async function rememberConversationContext(messageEvent, { row, rows = [], queryText, actionName, acceptedAt = "", requestId = "" }) {
@@ -142,12 +138,12 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
   }
 
   async function replyBatchStatus(messageEvent, statusPayload) {
-    await feishuClient.replyTextMessage(
-      messageEvent.messageId,
+    await imClient.replyTextMessage(
+      messageEvent,
       formatBatchStatusReply(statusPayload, localProfile, { includeDocumentLinks: false })
     );
     for (const link of documentLinksFromRows(statusPayload?.rows).slice(0, 10)) {
-      await feishuClient.replyTextMessage(messageEvent.messageId, link);
+      await imClient.replyTextMessage(messageEvent, link);
     }
   }
 
@@ -224,16 +220,16 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
   }
 
   async function replyForRowState(messageEvent, { state, row, runStatus }) {
-    await react(messageEvent.messageId, state === "failed" ? "error" : "completed");
+    await react(messageEvent, state === "failed" ? "error" : "completed");
     if (state === "completed") {
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatCompletionReply(row, localProfile));
+      await imClient.replyTextMessage(messageEvent, formatCompletionReply(row, localProfile));
       return;
     }
     if (state === "failed") {
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatFailedReply(row, runStatus, localProfile));
+      await imClient.replyTextMessage(messageEvent, formatFailedReply(row, runStatus, localProfile));
       return;
     }
-    await feishuClient.replyTextMessage(messageEvent.messageId, formatProcessingReply(row, localProfile));
+    await imClient.replyTextMessage(messageEvent, formatProcessingReply(row, localProfile));
   }
 
   async function processMessageEvent(messageEvent) {
@@ -242,7 +238,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     if (!(await stateStore.claimProcessedEvent(messageEvent.eventId))) {
       return;
     }
-    await react(messageEvent.messageId, "received");
+    await react(messageEvent, "received");
 
     if (isPublishConfirmationText(messageEvent.normalizedText)) {
       const pending = await stateStore.consumePendingPublish({
@@ -250,14 +246,14 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         senderId: messageEvent.senderId,
       });
       if (!pending) {
-        await react(messageEvent.messageId, "needs_input");
-        await replyAndIgnore(feishuClient, messageEvent.messageId, formatNoPendingPublishReply(localProfile));
+        await react(messageEvent, "needs_input");
+        await replyAndIgnore(imClient, messageEvent, formatNoPendingPublishReply(localProfile));
         return;
       }
       try {
-        await react(messageEvent.messageId, "accepted");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "accepted");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatPublishConfirmationAcceptedReply(pending.row, localProfile)
         );
         const executionResult = await repoControl.executeResolvedAction({
@@ -281,15 +277,15 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
             acceptedAt,
           });
         }
-        await react(messageEvent.messageId, "completed");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "completed");
+        await imClient.replyTextMessage(
+          messageEvent,
           row ? formatCompletionReply(row, localProfile) : formatPublishCompletedButUnreadableReply(localProfile)
         );
       } catch (error) {
         logger.error?.("publish confirmation failed", error);
-        await react(messageEvent.messageId, "error");
-        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+        await react(messageEvent, "error");
+        await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
       }
       return;
     }
@@ -320,7 +316,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       } else {
         await forgetConversationContext(messageEvent);
       }
-      await react(messageEvent.messageId, latest.failures.length ? "error" : "completed");
+      await react(messageEvent, latest.failures.length ? "error" : "completed");
       await replyBatchStatus(messageEvent, latest);
       return;
     }
@@ -328,51 +324,51 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     const cloudDocBackportPrRequest = parseCloudDocBackportPrRequest(normalizedMessage.normalizedText);
     if (cloudDocBackportPrRequest.matched) {
       if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
-        await react(messageEvent.messageId, "needs_input");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "needs_input");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportDeniedReply(
-            "sender is not in FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
+            "sender is not in DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
             localProfile
           )
         );
         return;
       }
       if (cloudDocBackportPrRequest.missing.length) {
-        await react(messageEvent.messageId, "needs_input");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "needs_input");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportPrNeedInputReply(cloudDocBackportPrRequest, localProfile)
         );
         return;
       }
       if (!config.cloudDocBackportAllowPrCreate) {
-        await react(messageEvent.messageId, "needs_input");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "needs_input");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportDeniedReply(
-            "draft PR creation is disabled; set FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true to allow explicit backport-pr requests",
+            "draft PR creation is disabled; set DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true to allow explicit backport-pr requests",
             localProfile
           )
         );
         return;
       }
-      await react(messageEvent.messageId, "accepted");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
+      await react(messageEvent, "accepted");
+      await imClient.replyTextMessage(
+        messageEvent,
         formatCloudDocBackportPrAcceptedReply(cloudDocBackportPrRequest, localProfile)
       );
       try {
         const prResult = await repoControl.openCloudDocBackportPr(cloudDocBackportPrRequest);
-        await react(messageEvent.messageId, "completed");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "completed");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportPrResultReply(prResult, localProfile)
         );
       } catch (error) {
         logger.error?.("cloud-doc backport PR creation failed", error);
-        await react(messageEvent.messageId, "error");
-        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+        await react(messageEvent, "error");
+        await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
       }
       return;
     }
@@ -380,11 +376,11 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     let cloudDocBackportRequest = parseCloudDocBackportRequest(normalizedMessage.normalizedText);
     if (cloudDocBackportRequest.matched) {
       if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
-        await react(messageEvent.messageId, "needs_input");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "needs_input");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportDeniedReply(
-            "sender is not in FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
+            "sender is not in DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
             localProfile
           )
         );
@@ -421,37 +417,37 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         }
       }
       if (cloudDocBackportRequest.missing.length) {
-        await react(messageEvent.messageId, "needs_input");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "needs_input");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportNeedInputReply(cloudDocBackportRequest, localProfile)
         );
         return;
       }
       if (cloudDocBackportRequest.write && !config.cloudDocBackportAllowWrite) {
-        await react(messageEvent.messageId, "needs_input");
-        await feishuClient.replyTextMessage(
-          messageEvent.messageId,
+        await react(messageEvent, "needs_input");
+        await imClient.replyTextMessage(
+          messageEvent,
           formatCloudDocBackportDeniedReply(
-            "write mode is disabled; set FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true to allow explicit --write requests",
+            "write mode is disabled; set DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true to allow explicit --write requests",
             localProfile
           )
         );
         return;
       }
-      await react(messageEvent.messageId, "accepted");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
+      await react(messageEvent, "accepted");
+      await imClient.replyTextMessage(
+        messageEvent,
         formatCloudDocBackportAcceptedReply(cloudDocBackportRequest, localProfile)
       );
       try {
         const runResult = await repoControl.runCloudDocBackportReview(cloudDocBackportRequest);
-        await react(messageEvent.messageId, runResult?.result === "FAIL" ? "error" : "completed");
-        await feishuClient.replyTextMessage(messageEvent.messageId, formatCloudDocBackportResultReply(runResult, localProfile));
+        await react(messageEvent, runResult?.result === "FAIL" ? "error" : "completed");
+        await imClient.replyTextMessage(messageEvent, formatCloudDocBackportResultReply(runResult, localProfile));
       } catch (error) {
         logger.error?.("cloud-doc backport failed", error);
-        await react(messageEvent.messageId, "error");
-        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+        await react(messageEvent, "error");
+        await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
       }
       return;
     }
@@ -463,17 +459,17 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           limit: config.manualIndexLimit || 10,
         });
         if (manualIndexResult?.matched) {
-          await react(messageEvent.messageId, "completed");
-          await feishuClient.replyTextMessage(
-            messageEvent.messageId,
+          await react(messageEvent, "completed");
+          await imClient.replyTextMessage(
+            messageEvent,
             formatManualIndexReply(manualIndexResult, localProfile)
           );
           return;
         }
       } catch (error) {
         logger.error?.("manual index query failed", error);
-        await react(messageEvent.messageId, "error");
-        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+        await react(messageEvent, "error");
+        await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
         return;
       }
     }
@@ -486,8 +482,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       });
     } catch (error) {
       logger.error?.("message resolution failed", error);
-      await react(messageEvent.messageId, "error");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+      await react(messageEvent, "error");
+      await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
       return;
     }
 
@@ -505,15 +501,15 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         queryText: normalizedMessage.normalizedText,
         actionName: resolution.action_name,
       });
-      await react(messageEvent.messageId, "needs_confirmation");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatPendingPublishReply(resolution, localProfile));
+      await react(messageEvent, "needs_confirmation");
+      await imClient.replyTextMessage(messageEvent, formatPendingPublishReply(resolution, localProfile));
       return;
     }
 
     if (!["resolved", "resolved_batch"].includes(resolution.resolution_status)) {
       const stage = resolution.resolution_status === "target_not_found" ? "unresolved" : "needs_input";
-      await react(messageEvent.messageId, stage);
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatResolutionReply(resolution, localProfile));
+      await react(messageEvent, stage);
+      await imClient.replyTextMessage(messageEvent, formatResolutionReply(resolution, localProfile));
       return;
     }
 
@@ -528,7 +524,7 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           requestId: conversationContext?.requestId || "",
         });
       }
-      await react(messageEvent.messageId, "completed");
+      await react(messageEvent, "completed");
       await replyBatchStatus(messageEvent, {
         rows,
         failures: [],
@@ -551,8 +547,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         const latestRow = Array.isArray(latest?.rows) ? latest.rows[0] : null;
         if (!latestRow) {
           await forgetConversationContext(messageEvent);
-          await react(messageEvent.messageId, "unresolved");
-          await feishuClient.replyTextMessage(messageEvent.messageId, formatRecordNoLongerAvailableReply(row, localProfile));
+          await react(messageEvent, "unresolved");
+          await imClient.replyTextMessage(messageEvent, formatRecordNoLongerAvailableReply(row, localProfile));
           return;
         }
         row = latestRow;
@@ -576,8 +572,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       const dispatchDelayMs = Math.max(Number(config?.batchDispatchDelayMs || 0), 0);
       const acceptedAt = nowIso();
       const requestId = randomUUID();
-      await react(messageEvent.messageId, "accepted");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatBatchAcceptedReply(resolution, localProfile));
+      await react(messageEvent, "accepted");
+      await imClient.replyTextMessage(messageEvent, formatBatchAcceptedReply(resolution, localProfile));
       for (const [index, candidate] of candidates.entries()) {
         if (index > 0 && dispatchDelayMs > 0) {
           await sleep(dispatchDelayMs);
@@ -612,9 +608,9 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
         acceptedAt,
         requestId,
       });
-      await react(messageEvent.messageId, failures.length ? "error" : "completed");
-      await feishuClient.replyTextMessage(
-        messageEvent.messageId,
+      await react(messageEvent, failures.length ? "error" : "completed");
+      await imClient.replyTextMessage(
+        messageEvent,
         formatBatchCompletionReply({ resolution, rows, failures }, localProfile)
       );
       const finalStatus = await pollBatchRows({ rows, freshSince: acceptedAt });
@@ -646,8 +642,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       actionName: resolution.action_name,
       acceptedAt: acceptedAt0,
     });
-    await react(messageEvent.messageId, "accepted");
-    await feishuClient.replyTextMessage(messageEvent.messageId, formatAcceptedReply(resolution, localProfile));
+    await react(messageEvent, "accepted");
+    await imClient.replyTextMessage(messageEvent, formatAcceptedReply(resolution, localProfile));
 
     let executionResult;
     try {
@@ -660,8 +656,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       });
     } catch (error) {
       logger.error?.("message execution failed", error);
-      await react(messageEvent.messageId, "error");
-      await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+      await react(messageEvent, "error");
+      await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
       return;
     }
 
@@ -680,52 +676,21 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
     });
   }
 
-  async function handleEventPayload(payload, { skipVerification = false } = {}) {
-    if (!skipVerification && !validateVerificationToken(payload, config.verificationToken)) {
-      return {
-        statusCode: 403,
-        body: { code: 403, msg: "invalid verification token" },
-      };
-    }
-    if (isUrlVerification(payload)) {
-      return {
-        statusCode: 200,
-        body: { challenge: payload.challenge },
-      };
-    }
-
-    const messageEvent = extractMessageEvent(payload);
+  // DingTalk Stream delivers an already-decrypted robot message; there is no
+  // URL-verification handshake or callback token to validate (unlike the Feishu
+  // webhook). The stream listener builds the messageEvent and calls this; a
+  // bare publish-confirmation is honoured even in a group without an @mention.
+  async function handleMessageEvent(messageEvent) {
     const ignoreReason = shouldIgnoreMessageEvent(messageEvent, { requireMention: config.requireMention });
     if (ignoreReason && !(ignoreReason === "missing_mention" && isPublishConfirmationText(messageEvent?.normalizedText))) {
-      return {
-        statusCode: 200,
-        body: { code: 0, msg: `ignored:${ignoreReason}` },
-      };
+      return { ignored: true, reason: ignoreReason };
     }
-
-    return {
-      statusCode: 200,
-      body: { code: 0, msg: "ok" },
-      backgroundTask: async () => processMessageEvent(messageEvent),
-    };
+    await processMessageEvent(messageEvent);
+    return { ignored: false };
   }
 
   return {
-    async handleHttpRequest(rawBody) {
-      let payload;
-      try {
-        payload = resolveEventPayload(rawBody, { encryptKey: config.encryptKey });
-      } catch (error) {
-        const message = String(error?.message || error);
-        const statusCode = /not configured/i.test(message) ? 501 : 400;
-        logger.error?.("failed to resolve callback payload", error);
-        return {
-          statusCode,
-          body: { code: statusCode, msg: message },
-        };
-      }
-      return handleEventPayload(payload);
-    },
-    handleEventPayload,
+    processMessageEvent,
+    handleMessageEvent,
   };
 }

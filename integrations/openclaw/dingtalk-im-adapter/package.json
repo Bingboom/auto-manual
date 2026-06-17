@@ -1,0 +1,14 @@
+{
+  "name": "auto-manual-dingtalk-im-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DingTalk IM Stream-mode adapter for the auto-manual OpenClaw control layer.",
+  "scripts": {
+    "test": "node --test test/**/*.test.mjs",
+    "start": "node dingtalk-stream-listener.mjs"
+  },
+  "dependencies": {
+    "dingtalk-stream": "^2.1.4"
+  }
+}

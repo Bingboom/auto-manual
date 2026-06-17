@@ -25,6 +25,7 @@ Current scope:
 - `start_review`
 - `build_draft_package`
 - batch `build_draft_package` when the message names a model, market, and manual copy or config scope, such as `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案`; if no market is named, phrases such as `构建JE-1000F说明书文案` use a model-wide `Task_id` prefix and match every triggered Build Draft Package row for that model
+- read-only manual-index lookups from the Feishu Base table `发布文档管理`; messages such as `查 JE-2000F 的说明书链接`, `查询各产品的说明书`, or `获取说明书总览信息` call `build.py manual-index-query` before queue resolution and never dispatch builds
 - `publish` with explicit confirmation
 - `cloud-doc backport` for accepted Feishu cloud-doc review revisions, gated by
   `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; the message must include one
@@ -62,6 +63,11 @@ Optional:
 - `FEISHU_IM_BATCH_DISPATCH_DELAY_MS`; defaults to `2000` so batch Draft dispatches do not burst all GitHub workflow requests at once
 - `FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS`; defaults to `60` for deployed adapters and controls how long the adapter waits for fresh batch writeback before sending a follow-up status summary
 - `FEISHU_IM_BATCH_STATUS_POLL_SECONDS`; defaults to `5` for batch writeback polling
+- `FEISHU_IM_MANUAL_INDEX_LIMIT`; defaults to `10` rows in manual-index replies
+- `FEISHU_MANUAL_INDEX_BASE_TOKEN`; optional override for the `发布文档管理` Base token; defaults to the Base behind `AS02w8ZL2iDv44kDLHIcHCPqntd`
+- `FEISHU_MANUAL_INDEX_TABLE_ID`; optional override for the manual-index table; defaults to `tbl1ypQJJPbKostu`
+- `FEISHU_MANUAL_INDEX_VIEW_ID`; optional override for the manual-index view; defaults to `vewytqcvDc`, preserving the table's visible-record scope
+- `FEISHU_MANUAL_INDEX_IDENTITY`; optional `user` / `bot` override; defaults to `FEISHU_PHASE2_IDENTITY` or `user`
 - `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; comma-separated Feishu
   `open_id` allowlist for cloud-doc backport messages, or `*` for local smoke
 - `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; defaults to `false`; when true,
@@ -170,6 +176,10 @@ build batch when the message carries a broad selector such as `所有` / `全部
 and still narrows to a bounded queue set, for example `JE-1000F` + `欧规`.
 Multi-row status queries such as `当前所有已构建文档链接` are handled as read-only
 status batches and are never dispatched as builds.
+Manual-index queries are also read-only. They use the `发布文档管理` Base view to
+answer product/manual-link inventory and overview questions, while phrases that
+include build-copy intent such as `输出JE-1000F的所有欧规说明书文案` stay on the
+existing Build Draft queue path.
 For batch status or link replies, the adapter sends one status summary without
 embedded `Document link` URLs, then sends each unique artifact link as its own
 follow-up text message. That keeps Feishu's document-link renderer on the same
