@@ -29,6 +29,8 @@ integrations/openclaw/auto-manual-control-layer/node_modules/
 integrations/openclaw/auto-manual-control-layer/runtime/
 integrations/openclaw/feishu-im-webhook-adapter/node_modules/
 integrations/openclaw/feishu-im-webhook-adapter/runtime/
+integrations/openclaw/dingtalk-im-adapter/node_modules/
+integrations/openclaw/dingtalk-im-adapter/runtime/
 
 # OpenClaw local-only operator profile and workspace notes
 .openclaw/
