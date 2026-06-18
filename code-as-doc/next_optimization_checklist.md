@@ -511,8 +511,9 @@ operator-gated (`AGENTS.md` §8.7).
     - backport uses it to classify a delta as Class `D` (data-origin) instead of guessing
     - a data-origin delta is never routed to `docs/_review/...` or a template
 
-- [ ] PR F3: Family-identical classification (Workstream Q — `R` vs `T` plus scope)
-  - Status: `pending`
+- [x] PR F3: Family-identical classification (Workstream Q — `R` vs `T` plus scope)
+  - Status: `done`
+  - Note: `tools/family_scope.py` (`build_family_index` over sibling sources + `classify_family_scope`) wired into `cloud_doc_backport` alongside the F2 value index. A review-doc prose span identical across the family is routed `needs_human_mapping` with its blast radius (`family_scope.targets`) — the §5.1 R5 intentional-divergence gate — instead of auto-routing; target-local spans stay `repo_review_text`. Siblings are supplied via repeatable `--sibling` (auto family resolution from config is a follow-up). Tests in `tests/test_family_scope.py`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
     - [`../.agents/skills/manual-revision-backport/scripts/scan_residuals.py`](../.agents/skills/manual-revision-backport/scripts/scan_residuals.py)
