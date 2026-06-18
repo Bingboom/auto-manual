@@ -471,6 +471,107 @@ gated on the same design.
     - page composition and applicability are read from data, not inferred from per-language folder layout
     - RST rendering output is unchanged for prose pages (fallback path preserved)
 
+## 6d. Milestone F: Backport Reverse-Sync & QC Writeback Enablement
+
+Milestone status: `pending`
+Milestone target: `after the Milestone E baseline`
+Milestone note: PR-level breakdown of Workstream I's remaining tail (the
+`record_id` sidecar + QC report writeback) and Workstream Q (backport
+layer-routing, template-sync, and approval-gated source-table writes). The rules
+are already codified in
+[`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md)
+§5.1. Suggested order: F1 → (F2, F3) → F4 → F5 → F6 → F7; F8 may run in parallel
+once F1 lands. **F1 is the shared prerequisite for F6 and F8.** Items touching
+`sync-data`, `data/phase2` contracts, `build.py` behavior, or Feishu schema are
+operator-gated (`AGENTS.md` §8.7).
+
+- [ ] PR F1: Sync-time `record_id` sidecar (Workstream I — shared prerequisite)
+  - Status: `pending`
+  - Note: touches `sync-data` + the phase2 contract → operator-gated; this is the detailed form of Milestone E PR E2
+  - Target files:
+    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/content_lint.py`](../tools/content_lint.py)
+    - `data/phase2/source_record_index.json` (new derived sidecar)
+    - [`dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md)
+  - Done when:
+    - `sync-data` emits a `source_record_index` sidecar mapping source keys to live `record_id`s, without adding `record_id` columns to existing CSV contracts
+    - resolution is exact-or-abstain: zero or multiple matches yield `record_id: null` plus `resolution_status: unresolved`/`ambiguous`
+    - `content_lint` and backport can resolve an exact `record_id` from the sidecar
+    - the sidecar is listed under manifest `derived_files` and is reproducible from a snapshot
+
+- [ ] PR F2: Build-time token/copy resolution map (Workstream Q — Class `D` detection)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/draft_engine.py`](../tools/draft_engine.py)
+    - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
+    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+  - Done when:
+    - the build emits a per-target map of resolved token / copy / csv values back to their source key (the lightweight provenance of §5.1 R8)
+    - backport uses it to classify a delta as Class `D` (data-origin) instead of guessing
+    - a data-origin delta is never routed to `docs/_review/...` or a template
+
+- [ ] PR F3: Family-identical classification (Workstream Q — `R` vs `T` plus scope)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`../.agents/skills/manual-revision-backport/scripts/scan_residuals.py`](../.agents/skills/manual-revision-backport/scripts/scan_residuals.py)
+  - Done when:
+    - backport derives `R` (target-local) vs `T` (shared) from whether the span is identical across the family, reusing the residual scanner
+    - the sibling / blast-radius scope of a `T` or `D` delta is computed, not guessed
+    - template-origin spans changed by the reviewer are flagged `needs_decision` (the §5.1 R5 intentional-divergence gate), not auto-classified
+
+- [ ] PR F4: Emit `template_sync_proposal` for Class `T` (Workstream Q)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md)
+  - Done when:
+    - a review-backport run emits `template_sync_proposal.json/.md` for Class `T` deltas with the §5.1 R4 contract (target template(s), family scope, old→new, evidence, post-apply rebuild step, delta hash)
+    - backport still writes only Class `R` to `docs/_review/...`; it never writes templates
+    - Class `T` deltas are not written to `_review` (strict)
+
+- [ ] PR F5: `rebuild + rediff` idempotency gate (Workstream Q — §5.1 R7)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+  - Done when:
+    - `verify-review` is extended to rebuild from edited sources and re-diff against the accepted doc
+    - the gate passes only when residuals are zero AND no diff appears outside the intended spans (recorded intentional overrides excepted)
+    - a `PR_READY` review run requires the gate to pass
+
+- [ ] PR F6: Approval-gated source-table-sync (Workstream Q — §5.1 R9; depends on F1)
+  - Status: `pending`
+  - Note: writes Feishu Bitable content → operator-gated; depends on PR F1
+  - Target files:
+    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - `tools/source_table_sync.py` (new executor)
+    - [`../integrations/openclaw/feishu-im-webhook-adapter`](../integrations/openclaw/feishu-im-webhook-adapter)
+  - Done when:
+    - backport emits a `source_table_change_request` for Class `D` deltas (table, exact `record_id` from F1, field, old→new, scope, blast radius, evidence, delta hash)
+    - a human approves/rejects via a Feishu IM message from an allowlisted sender; an agent may propose/execute but never approve
+    - the executor applies only approved requests via `lark-cli --as bot`, with GET-verify-after-write and delta-hash idempotency; ambiguous/duplicate matches abstain
+    - content fields only; table schema stays a separate operator-gated action; the change-request plus approval log is retained as the audit trail
+
+- [ ] PR F7: Template-sync operator runbook (Workstream Q)
+  - Status: `pending`
+  - Target files:
+    - `dev/template_sync_runbook.md` (new)
+    - [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+  - Done when:
+    - a documented operator procedure consumes a `template_sync_proposal` and applies it to `docs/templates/...` via a normal PR, passing the F5 gate
+    - the dedicated template-sync agent remains an explicit, deferred follow-up
+
+- [ ] PR F8: Feishu `QC_Report` table writeback (Workstream I — M4; depends on F1)
+  - Status: `pending`
+  - Note: creates/uses a Feishu table → schema change is operator-gated; depends on PR F1
+  - Target files:
+    - [`dev/external_table_contracts.md`](dev/external_table_contracts.md)
+    - [`../tools/content_lint.py`](../tools/content_lint.py)
+  - Done when:
+    - `content_lint` findings can be appended/upserted to a `QC_Report` table in dry-run and live modes, idempotent by `finding_hash`
+    - rows carry `run_id`, `finding_hash`, severity, rule, source ref, resolved `record_id` (from F1) when available, and suggested action
+    - content-row QC status fields stay out of scope
+
 ## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
