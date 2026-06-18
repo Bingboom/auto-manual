@@ -495,6 +495,8 @@ Exit criteria:
 
 Status: next
 
+PR-level breakdown (with Workstream I's tail): [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone F.
+
 Why now:
 
 - the 2026-06-18 scope decision made backport a single writer to `docs/_review/...`, with template changes emitted as a proposal applied by a separate template-sync role (operator now, agent later); the rules R1–R8 are defined in [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md) §5.1 but are not yet enforced in code
