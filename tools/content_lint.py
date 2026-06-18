@@ -52,6 +52,7 @@ from typing import Any
 # what the build will bold (single source of truth — no parallel logic to drift).
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.csv_pages.renderers_lcd_icons import _match_status_prefix  # noqa: E402
+from tools.source_record_index import resolve_findings  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 
 # Non-English shipped EU languages.
@@ -574,6 +575,9 @@ def _json_report(
         for check in checks
         for raw_finding in check.findings
     ]
+    # F1: resolve findings to live Feishu record ids when a source_record_index
+    # sidecar is present in the snapshot; otherwise they stay snapshot_only.
+    findings = resolve_findings(findings, root)
     fail_count = sum(1 for finding in findings if finding["severity"] == "FAIL")
     warn_count = sum(1 for finding in findings if finding["severity"] == "WARN")
     rule_counts = {

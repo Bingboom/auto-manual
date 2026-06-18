@@ -33,6 +33,21 @@ from tools.manual_copy_source import (
     csv_text as manual_copy_csv_text,
     missing_translations_csv_text,
 )
+from tools.source_record_index import (
+    INDEXED_LOGICAL_TABLES as _SOURCE_RECORD_INDEX_LOGICAL_TABLES,
+    SIDECAR_FILENAME as SOURCE_RECORD_INDEX_FILENAME,
+    build_index as build_source_record_index,
+    collect_index_rows as collect_source_record_index_rows,
+    index_json_text as source_record_index_json_text,
+    record_count as source_record_index_count,
+)
+
+# Tables fetched with record ids: footnotes (link-ref mapping) plus the tables the
+# source_record_index sidecar indexes (F1). Other tables keep the id-free fetch so
+# observable sync behavior is unchanged for them.
+_WITH_ID_LOGICAL_TABLES = frozenset({"spec_footnotes"}) | frozenset(
+    _SOURCE_RECORD_INDEX_LOGICAL_TABLES
+)
 
 
 class _SchemaLike(Protocol):
@@ -547,7 +562,10 @@ def sync_phase2_snapshot(
 
         binding = deps.resolve_table_binding(cfg, logical_name)
         bindings_by_table[logical_name] = binding
-        if logical_name == "spec_footnotes" and source_with_ids is not None:
+        # Fetch with record ids only for tables that need them (footnotes ref
+        # mapping + the source_record_index sidecar's indexed tables, F1). CSV
+        # output is unchanged because normalization only consumes record fields.
+        if logical_name in _WITH_ID_LOGICAL_TABLES and source_with_ids is not None:
             raw_records = source_with_ids.fetch_records_with_ids(
                 base_token=binding.base_token,
                 table_id=binding.table_id,
@@ -775,6 +793,32 @@ def sync_phase2_snapshot(
         if not dry_run:
             missing_report_path.parent.mkdir(parents=True, exist_ok=True)
             deps.write_atomic_text(missing_report_path, missing_report_text)
+
+    # F1: emit the source_record_index sidecar (optional derived file) mapping
+    # indexed tables' business keys to live record ids, exact-or-abstain. It adds
+    # no record_id column to any CSV; consumers degrade to snapshot_only when it
+    # is absent.
+    source_record_index_rows = collect_source_record_index_rows(
+        normalized_rows_by_table,
+        raw_records_by_table,
+    )
+    source_record_index_payload = build_source_record_index(source_record_index_rows)
+    source_record_index_text = source_record_index_json_text(source_record_index_payload)
+    source_record_index_path = export_root / SOURCE_RECORD_INDEX_FILENAME
+    source_record_index_sha256 = deps.sha256_text(source_record_index_text)
+    previous_source_record_index_sha256 = deps.sha256_file(source_record_index_path)
+    derived_results.append(
+        deps.table_sync_result_cls(
+            logical_name="source_record_index",
+            file_name=source_record_index_path.name,
+            target_path=source_record_index_path,
+            row_count=source_record_index_count(source_record_index_payload),
+            sha256=source_record_index_sha256,
+            previous_sha256=previous_source_record_index_sha256,
+            changed=source_record_index_sha256 != previous_source_record_index_sha256,
+        )
+    )
+    written_files.append((source_record_index_path, source_record_index_text))
 
     skipped_tables = tuple(name for name in deps.table_order if name not in selected_tables)
     manifest = manifest_payload(

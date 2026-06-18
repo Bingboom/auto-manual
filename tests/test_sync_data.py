@@ -47,7 +47,9 @@ class _FakeSourceWithIds(_FakeSource):
         view_id: str | None,
     ) -> list[dict[str, object]]:
         self.calls_with_ids.append((base_token, table_id, view_id))
-        return list(self.records_with_ids_by_table[table_id])
+        if table_id in self.records_with_ids_by_table:
+            return list(self.records_with_ids_by_table[table_id])
+        return list(self.records_by_table.get(table_id, []))
 
 
 class _FakeSourceWithDownloads(_FakeSource):
@@ -665,7 +667,7 @@ class TestSyncData(unittest.TestCase):
             self.assertIn("spec_footnotes", manifest["skipped_tables"])
             self.assertEqual(2, len(manifest["tables"]))
             self.assertEqual(
-                ["page_registry", "row_key_mapping", "localized_copy", "status_words", "spec_titles"],
+                ["page_registry", "row_key_mapping", "localized_copy", "status_words", "spec_titles", "source_record_index"],
                 [entry["logical_name"] for entry in manifest["derived_files"]],
             )
 
@@ -1329,7 +1331,7 @@ class TestSyncData(unittest.TestCase):
             missing_report = root / "reports" / "content_audit" / "manual_copy_missing_translations.csv"
             self.assertIn("product_overview.page_title,en,fr,PRODUCT OVERVIEW", missing_report.read_text(encoding="utf-8"))
             self.assertEqual(
-                ["page_registry", "localized_copy", "status_words", "spec_titles"],
+                ["page_registry", "localized_copy", "status_words", "spec_titles", "source_record_index"],
                 [entry.logical_name for entry in result.derived_files],
             )
 
@@ -1407,7 +1409,7 @@ class TestSyncData(unittest.TestCase):
             mapping_text = (root / "data" / "phase2" / "row_key_mapping.csv").read_text(encoding="utf-8-sig")
             self.assertIn("Product Name,1,product_name,keep existing remark", mapping_text)
             self.assertEqual(
-                ["page_registry", "row_key_mapping"],
+                ["page_registry", "row_key_mapping", "source_record_index"],
                 [entry.logical_name for entry in result.derived_files],
             )
 
