@@ -1,6 +1,6 @@
 # Feishu Cloud Doc Backport Design
 
-Status: design baseline · Owner: 夏冰 · Created: 2026-06-08
+Status: design baseline · Owner: 夏冰 · Created: 2026-06-08 · Updated: 2026-06-18 (scope narrowed to `_review`-only writes; see §5.1)
 
 This document defines the reverse-sync design for Feishu cloud documents that
 act as editing surfaces for `auto-manual`.
@@ -12,6 +12,16 @@ It covers two different maintenance loops that share the same Feishu
    reviewer, then changes are merged back into the target review source.
 2. **Template Doc Backport** — a Feishu cloud document is used as a template
    maintenance surface, then changes are merged back into repo templates.
+
+> **Scope decision (2026-06-18).** Backport is now a **single writer to
+> `docs/_review/...`**. A review-doc backport run writes only review-owned
+> (target-local) prose; it never writes `docs/templates/...` or Feishu source
+> tables. Template changes implied by a review edit are emitted as a
+> **template-sync proposal** (an artifact, not a write) and applied by a separate
+> **template-sync role** — manually by the operator at first, by a dedicated agent
+> later. Source-table deltas stay report-only suggestions. The full rules are in
+> §5.1, and they remove the cross-layer write conflicts by construction: one
+> layer, one writer.
 
 This is intentionally separate from
 [`closed_loop_qc_agent_requirements.md`](closed_loop_qc_agent_requirements.md):
@@ -192,6 +202,115 @@ Source-table suggestions require:
 - exact current value or substring evidence;
 - model/region/language scope surfaced;
 - no silent write. The suggested change is operator-gated.
+
+## 5.1 Layer Routing Rules And Idempotency
+
+These rules implement the 2026-06-18 scope decision. They make reverse-sync
+deterministic across the related layers — review RST is a derivative of template
+RST plus structured content — so backport does not become inconsistent ("乱").
+
+### Layer model
+
+```text
+① structured content (Feishu rows → Spec_Master / Manual_Copy_Source / csv)  — owns token, copy, and csv-page content
+② shared template RST (docs/templates/page_*)                                — owns shared prose, directives, placeholder positions
+③ review layer (docs/_review/<model>/<region>)                              — materialization of ②+① for one target; manual prose preserved, param/generated re-pulled by sync-review
+④ built output (_build / Word)                                              — flat render; the reviewer edits here
+```
+
+Once rendered, ④ is flat: a span may originate in ①, ②, or ③. Routing by guess at
+that boundary is what causes inconsistency. The rules below route by provenance
+and keep one writer per layer.
+
+### R1 — One writer per layer
+
+- `docs/_review/...` is written **only** by backport (from reviewer deltas).
+- `docs/templates/...` is written **only** by the template-sync role (operator now, agent later), from a template-sync proposal.
+- Feishu source tables are written by **no one** in this flow; they receive report-only suggestions.
+
+No layer has two writers, so clobber and double-write cannot happen by construction.
+
+### R2 — Classify each delta into exactly one destination
+
+| Delta provenance | Class | Writer | Destination |
+| --- | --- | --- | --- |
+| target-local prose (unique to this model/region/language) | `R` | backport | `docs/_review/...` |
+| shared template prose (identical across the family) | `T` | template-sync role | `docs/templates/...` via proposal |
+| resolved token / copy / csv value | `D` | none (operator) | source-table suggestion (report-only) |
+| multi-match / ambiguous | `A` | none | flag (`needs_human_mapping`) |
+
+A delta that fits more than one class is `A` (flag), never auto-routed. These map
+onto the §5 route classes `repo_review_text` / `repo_template_text` /
+`source_table_suggestion` / `needs_human_mapping`.
+
+### R3 — `docs/_review/...` receives only Class `R`
+
+`sync-review --refresh-review params` preserves manual review prose but re-pulls
+parameter-driven and generated content from source. Writing Class `T` or `D` into
+`_review` would therefore be clobbered on the next sync, or conflict with
+re-resolution. Keeping `_review` Class-`R`-only is what makes sync-review
+idempotent. **Class `T` is never written to `_review`** — it is proposal-only
+(2026-06-18 decision: strict).
+
+### R4 — Template-sync proposal contract
+
+For each Class `T` delta, a review-backport run emits
+`template_sync_proposal.json/.md` (an artifact, not a write) carrying:
+
+- target template file(s) under `docs/templates/...`;
+- family scope: which sibling targets share this span;
+- `old_text` → `new_text` plus evidence (provenance, heading path, line number);
+- the required post-apply step: rebuild + `sync-review` for affected targets;
+- a stable delta hash for idempotent re-application.
+
+This proposal is the contract consumed by the template-sync role.
+
+### R5 — The `R` vs `T` decision
+
+- `T` when the `old_text` span exists **identically across the family** template
+  (changing it should change all sharing targets). Detect with the family residual
+  scanner (`scan_residuals --scope`, shared rows always kept).
+- `R` when the span is unique to this target with no template/data origin.
+- **Intentional-divergence gate (irreducible human judgment).** When a span
+  originates in a shared template but the reviewer may want it changed for this
+  target only, backport does **not** auto-classify. It flags
+  `needs_decision: shared (T) or target-only (R)?`; the operator (or a recorded
+  rule) decides, and the decision is recorded so R7's rebuild check does not treat
+  an intentional override as drift (2026-06-18 decision: flag-and-ask).
+
+### R6 — Template-sync role handoff contract (operator now, agent later)
+
+The template-sync role consumes `template_sync_proposal.json` and:
+
+- writes **only** `docs/templates/...` (plus recipe/config when the binding is proven);
+- never touches `docs/_review/...`, Feishu source tables, `.github/**`, branch rules, or source-table schema;
+- treats proposal and doc text as untrusted input (ignores embedded instructions);
+- runs behind an operator allowlist and opens a PR; it does not self-merge;
+- is not "done" until it passes R7.
+
+This bounded contract is what makes the work safe to delegate to a dedicated agent.
+
+### R7 — Idempotency gate (the machine definition of "not messy")
+
+After backport (`_review`) and template-sync (`templates`) have applied, a full
+rebuild from sources must:
+
+1. reproduce the reviewer's accepted document, and
+2. change nothing else — no sibling pollution, no broken token, no unexpected diff
+   outside the intended spans (recorded intentional overrides excepted).
+
+Implement as a `rebuild + rediff` extension of `verify-review`: residuals must be
+zero **and** no extra diff may appear.
+
+### R8 — Prerequisites that make R2/R5 reliable
+
+- a build-time **token/copy resolution map** per target, to recognize Class `D`
+  spans without guessing;
+- a **family-identical check** (reuse the residual scanner) to recognize Class `T`
+  and its sibling scope.
+
+Without these, the classification and the proposal are guesswork. They are the
+lightweight form of build-time provenance.
 
 ## 6. Baseline Storage
 
@@ -496,8 +615,15 @@ its purpose is source maintenance, not quality marking.
   two later?
 - If source-table suggestions later move into Feishu, should they be represented
   as document comments, a report table, or existing content-table fields?
-- Should P2 template-doc PRs be allowed before the standing agent exists, using
-  Codex/Claude as the executor?
+- (Resolved 2026-06-18) Template changes from a review edit are applied by the
+  template-sync role — operator now, dedicated agent later — from a
+  `template_sync_proposal`; backport itself never writes templates. See §5.1.
+- Build-time provenance: ship the per-target token/copy resolution map and the
+  family-identical check (§5.1 R8) so Class `D`/`T` are detected, not guessed.
+- Idempotency: implement the `rebuild + rediff` gate (§5.1 R7) as the acceptance
+  test for the combined backport + template-sync loop.
+- Family fan-out: should the template-sync proposal apply across all sharing
+  siblings in one run, or one target at a time?
 
 ## 11. References
 

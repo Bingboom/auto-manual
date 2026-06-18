@@ -1,6 +1,6 @@
 # System Evolution Strategy
 
-Updated: 2026-03-17
+Updated: 2026-06-18
 
 ## 1. Role
 
@@ -174,9 +174,21 @@ In this stage:
 
 In the target end state:
 
-- the CMS becomes the content source of truth
+- the CMS becomes the content source of truth for governed content classes
 - the repository becomes a deterministic build, validation, and publishing engine
 - every release is traceable to a frozen snapshot and a build record
+
+Stage 3 is a deliberate hybrid, not total structuralization. "Source of truth"
+applies to the content classes that benefit from governance — spec values,
+high-reuse short copy, and tabular/reference content. Layout and page structure,
+stable long-form and compliance prose, and environment differences (legal
+identity, contacts, URLs, marketplaces) are deliberately owned by repository
+templates and config, which are themselves versioned build inputs. The goal is to
+eliminate template forks — the same page cloned per language or region — and to
+govern reusable content; it is not to move every paragraph into a table. Which
+class each piece of content belongs to is decided by an explicit content-truth
+allocation rule, not case by case. See the allocation rule in
+[`Long_Form_Content_Block_Design.md`](Long_Form_Content_Block_Design.md).
 
 ## 6. Stable Architectural Principles
 
@@ -187,6 +199,7 @@ These principles should remain true even as repo implementation changes.
 3. Page assembly rules should be declared, not inferred from tribal knowledge.
 4. Review and release must remain traceable.
 5. Layer responsibilities should become clearer over time, not more blended.
+6. Structure is selective: not all content should be governed by the CMS. Layout, stable long-form and compliance prose, and environment differences are deliberately repository- or config-owned, allocated by an explicit content-truth rule rather than drifting case by case. The enemy is template forks, not templates.
 
 ## 7. Strategic Invariants
 

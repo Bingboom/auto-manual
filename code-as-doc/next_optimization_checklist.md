@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-05-08
+Updated: 2026-06-18
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -74,8 +74,11 @@ This checklist assumes the 2026-05-07 baseline below:
   - [`../tools/word_bundle_docx_styles.py`](../tools/word_bundle_docx_styles.py)
   - [`../tools/csv_pages/renderers_symbols.py`](../tools/csv_pages/renderers_symbols.py)
   - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
-- long-term content assembly pilot preparation is fixture-backed and does not
-  replace the current HTML/PDF build path
+- the long-term content assembly pilot (Milestone D) was rolled back to
+  template-driven rendering (#295/#296); the live data-driven primitives are now
+  `csv_pages` + `page_registry` + `content_blocks` + `Manual_Copy_Source`
+  short-copy tokens, and prose-assembly re-launch is tracked as Workstream N in
+  [`optimization_project.md`](optimization_project.md)
 
 ## 3. Milestone A: 2 Weeks
 
@@ -410,13 +413,72 @@ template system.
   - Completed: `2026-05-08`
   - Note: enabled the product overview pilot for `US/en` and `JP/ja`, added block templates, and kept the switch target-scoped
 
+## 6b. Milestone E: Stage-3 Path — Lock Stage 2 + Safe Prose Cut
+
+Milestone status: `pending`
+Milestone target: `next wave`
+Milestone note: this is the active wave for the path to Stage 3 — the
+deliberate-hybrid end state. E1+E2 lock Stage 2 traceability; E3+E4 take the safe
+first cut into prose without moving body prose. E4 (page_registry authority) is
+the main lever for eliminating template forks, which is the real Stage 3 win and
+is independent of structuralizing prose bodies. What gets structured vs
+deliberately kept in templates/config follows the content-truth allocation rule
+(§3.1) in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md).
+The long-form prose assembly re-launch (Workstream N) stays out of this milestone,
+gated on the same design.
+
+- [ ] PR E1: Freeze release snapshots (Workstream J)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/release_manifest.py`](../tools/release_manifest.py)
+    - [`../tools/utils/path_utils.py`](../tools/utils/path_utils.py)
+    - [`../tools/sync_data.py`](../tools/sync_data.py)
+  - Done when:
+    - a timestamped snapshot (source revision, exported files, target matrix) is archived at release time
+    - `release-manifest` binds to that frozen snapshot through `path_utils`, not a re-pulled live snapshot
+    - rebuilding from the archived snapshot reproduces the release output
+
+- [ ] PR E2: QC closed-loop tail — sync-time `record_id` sidecar (Workstream I)
+  - Status: `pending`
+  - Note: touches `sync-data` and the phase2 source contract → operator-gated per `AGENTS.md` §8.7
+  - Target files:
+    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/content_lint.py`](../tools/content_lint.py)
+    - [`dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md)
+  - Done when:
+    - `sync-data` emits a `source_record_index` sidecar without adding `record_id` columns to existing CSV contracts
+    - `content_lint` findings resolve to an exact live `record_id` or abstain (`unresolved`/`ambiguous`)
+    - the optional Feishu `QC_Report` writer stays dry-run/operator-gated
+
+- [ ] PR E3: Extend short-copy to operation-guide and app-setup chrome (Workstream L)
+  - Status: `pending`
+  - Target files:
+    - [`dev/content_block_migration_assessment.md`](dev/content_block_migration_assessment.md)
+    - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
+  - Done when:
+    - operation-guide and app-setup section headings, button/UI labels, table labels, and image alt text resolve from `Manual_Copy_Source` via `{{ copy:<copy_key> }}`
+    - missing copy keys fail in `build.py check`
+    - no body prose is moved, and app-market/support/manufacturer/URL text is routed to config, not the copy table
+
+- [ ] PR E4: Make `page_registry` the single composition authority (Workstream M)
+  - Status: `pending`
+  - Note: touches the phase2 source contract → operator-gated per `AGENTS.md` §8.7
+  - Target files:
+    - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
+    - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
+  - Done when:
+    - every shipped page (including prose pages) is declared in `page_registry` with explicit applicability (`sku_scope`, `langs`, region/model)
+    - page composition and applicability are read from data, not inferred from per-language folder layout
+    - RST rendering output is unchanged for prose pages (fallback path preserved)
+
 ## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
   - Status: `deferred`
   - Why deferred:
-    - the pilot safety net is ready, but repo-wide template rewrites are still too broad
-    - the next step should be only the `03_product_overview` split behind a page-level pilot switch
+    - the `03_product_overview` pilot was rolled back (#295/#296); a repo-wide prose rewrite is still too broad
+    - re-launch is tracked as Workstream N in [`optimization_project.md`](optimization_project.md), gated on the schema and review workflow in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md)
+    - the safe near-term steps are short-copy coverage (Workstream L) and page_registry authority (Workstream M), not a full template rewrite
 
 - [ ] Deferred 2: Word/PDF backend replacement or export-stack rewrite
   - Status: `deferred`
