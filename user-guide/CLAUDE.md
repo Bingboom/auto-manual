@@ -7,6 +7,7 @@
 - `hello_auto-doc.md`: current human workflow guide.
 - `quick_start_guide.md`: happy-path onboarding and sample commands.
 - `dingtalk_alidocs_upload_setup_guide.md`: DingTalk/AliDocs setup workflow.
+- `feishu_cli_setup_guide.md`: install/auth `lark-cli` and operate Feishu cloud docs/Bitable through Claude.
 
 ## Local Rules
 
