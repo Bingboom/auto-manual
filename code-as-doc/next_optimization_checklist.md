@@ -566,9 +566,9 @@ operator-gated (`AGENTS.md` §8.7).
     - a documented operator procedure consumes a `template_sync_proposal` and applies it to `docs/templates/...` via a normal PR, passing the F5 gate
     - the dedicated template-sync agent remains an explicit, deferred follow-up
 
-- [ ] PR F8: Feishu `QC_Report` table writeback (Workstream I — M4; depends on F1)
-  - Status: `pending`
-  - Note: creates/uses a Feishu table → schema change is operator-gated; depends on PR F1
+- [x] PR F8: Feishu `QC_Report` table writeback (Workstream I — M4; depends on F1)
+  - Status: `done` (to the dry-run/fixture boundary; table creation + live write operator-gated)
+  - Note: `tools/qc_report.py` — `build_qc_report_rows` maps `content_lint` findings to QC_Report rows (run_id, finding_hash, severity, rule, source_ref, resolved record_id, suggested_action); `upsert_qc_report` is idempotent by `finding_hash`, dry-run by default, with a transport-injected live path that skips finding hashes already in the table. **Operator follow-up (live):** create the `QC_Report` Feishu table (schema) and wire a `lark-cli --as bot` transport. Content-row QC status fields stay out of scope. Tests in `tests/test_qc_report.py`.
   - Target files:
     - [`dev/external_table_contracts.md`](dev/external_table_contracts.md)
     - [`../tools/content_lint.py`](../tools/content_lint.py)
