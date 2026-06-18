@@ -282,7 +282,7 @@ This proposal is the contract consumed by the template-sync role.
 
 ### R6 — Template-sync role handoff contract (operator now, agent later)
 
-The template-sync role consumes `template_sync_proposal.json` and:
+The template-sync role consumes `template_sync_proposal.json` (operator procedure: [`../dev/template_sync_runbook.md`](../dev/template_sync_runbook.md)) and:
 
 - writes **only** `docs/templates/...` (plus recipe/config when the binding is proven);
 - never touches `docs/_review/...`, Feishu source tables, `.github/**`, branch rules, or source-table schema;
