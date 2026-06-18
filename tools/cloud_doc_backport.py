@@ -1345,6 +1345,70 @@ def _verify_delta(index: int, delta: dict[str, Any], current_text: str) -> dict[
     }
 
 
+def _resolve_baseline_text(diff_report: dict[str, Any]) -> str | None:
+    """Best-effort read of the diff baseline (for the F5 rebuild+rediff gate)."""
+    baseline = diff_report.get("baseline")
+    if not isinstance(baseline, str) or not baseline:
+        return None
+    for candidate in (Path(baseline), get_paths().root / baseline):
+        if candidate.exists():
+            try:
+                return candidate.read_text(encoding="utf-8")
+            except OSError:
+                return None
+    return None
+
+
+def _rebuild_rediff_gate(
+    *, baseline_text: str, edited_text: str, deltas: list[Any], run_id: str
+) -> dict[str, Any]:
+    """F5: re-diff baseline vs the edited source; the only changes must be the
+    intended repo_review_text deltas (no collateral, none missing)."""
+
+    def pair(delta: dict[str, Any]) -> tuple[Any, Any]:
+        return (delta.get("old_normalized"), delta.get("new_normalized"))
+
+    expected = {
+        pair(delta)
+        for delta in deltas
+        if isinstance(delta, dict) and delta.get("route_class") == "repo_review_text"
+    }
+    actual = {
+        pair(delta)
+        for delta in diff_blocks(
+            parse_blocks(baseline_text), parse_blocks(edited_text), doc_type="review", run_id=run_id
+        )
+    }
+    unexpected = sorted(f"{old!r}->{new!r}" for old, new in (actual - expected))
+    missing = sorted(f"{old!r}->{new!r}" for old, new in (expected - actual))
+    return {
+        "skipped": False,
+        "passed": not unexpected and not missing,
+        "unexpected": unexpected,
+        "missing": missing,
+    }
+
+
+def _rebuild_rediff_for_report(diff_report: dict[str, Any], edited_text: str) -> dict[str, Any]:
+    baseline = diff_report.get("baseline")
+    source_path = (diff_report.get("source_target") or {}).get("path")
+    if not baseline or (source_path and baseline == source_path):
+        # The baseline is the in-place source (e.g. run-review uses the review
+        # source as its own baseline); after apply we can no longer reconstruct the
+        # pre-edit text, so the gate is unreliable. It runs only against a distinct
+        # baseline snapshot (design §6 Baseline Storage). Skipping is gate-pass.
+        return {"skipped": True, "reason": "no distinct baseline snapshot", "passed": True}
+    baseline_text = _resolve_baseline_text(diff_report)
+    if baseline_text is None:
+        return {"skipped": True, "reason": "baseline unavailable", "passed": True}
+    return _rebuild_rediff_gate(
+        baseline_text=baseline_text,
+        edited_text=edited_text,
+        deltas=diff_report.get("deltas") or [],
+        run_id=str(diff_report.get("run_id") or "verify"),
+    )
+
+
 def build_review_verify_report(
     diff_report: dict[str, Any],
     *,
@@ -1377,6 +1441,7 @@ def build_review_verify_report(
     categories = _counter_dict([str(result["category"]) for result in results])
     failing_categories = {category: categories.get(category, 0) for category in ("still_pending", "unsafe_or_ambiguous")}
     has_failure = any(count for count in failing_categories.values())
+    rebuild_rediff = _rebuild_rediff_for_report(diff_report, current_text)
     source_table_suggestions = [
         result for result in results if result.get("category") == "source_table_suggestion"
     ]
@@ -1402,7 +1467,9 @@ def build_review_verify_report(
             "categories": categories,
             "failing_categories": {key: value for key, value in failing_categories.items() if value},
             "source_table_suggestions": len(source_table_suggestions),
+            "rebuild_rediff_passed": rebuild_rediff.get("passed"),
         },
+        "rebuild_rediff": rebuild_rediff,
         "source_table_suggestions": source_table_suggestions,
         "results": results,
     }
@@ -1869,11 +1936,15 @@ def build_review_run_report(
     verify_summary = verify_report.get("summary") if verify_report else {}
     changed = bool(apply_summary.get("changed")) if isinstance(apply_summary, dict) else False
     verify_result = verify_report.get("result") if verify_report else None
+    rebuild_rediff = verify_report.get("rebuild_rediff") if verify_report else None
+    rebuild_ok = rebuild_rediff.get("passed", True) if isinstance(rebuild_rediff, dict) else True
     if diff_report.get("result") == "NO_DIFF":
         result = "NO_DIFF"
     elif not write:
         result = "DRY_RUN"
-    elif verify_result == "PASS":
+    elif verify_result == "PASS" and rebuild_ok:
+        # F5: a write run is PR_READY only when the rebuild+rediff gate confirms the
+        # edit reproduces the accepted doc and changes nothing else.
         result = "PR_READY" if changed else "PASS"
     else:
         result = "FAIL"

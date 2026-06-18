@@ -533,8 +533,9 @@ operator-gated (`AGENTS.md` §8.7).
     - backport still writes only Class `R` to `docs/_review/...`; it never writes templates
     - Class `T` deltas are not written to `_review` (strict)
 
-- [ ] PR F5: `rebuild + rediff` idempotency gate (Workstream Q — §5.1 R7)
-  - Status: `pending`
+- [x] PR F5: `rebuild + rediff` idempotency gate (Workstream Q — §5.1 R7)
+  - Status: `done`
+  - Note: `_rebuild_rediff_gate` re-diffs the baseline against the edited source and asserts the only changes are the intended `repo_review_text` deltas (no collateral `unexpected`, none `missing`); `build_review_verify_report` attaches the result and `build_review_run_report` requires it for `PR_READY` (verify PASS **and** gate pass). It runs against a distinct baseline snapshot; for run-review's in-place baseline it skips (gate-pass) since the pre-edit text cannot be reconstructed after apply — wiring run-review's in-memory baseline is a follow-up. Tests in `tests/test_rebuild_rediff_gate.py`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
   - Done when:
