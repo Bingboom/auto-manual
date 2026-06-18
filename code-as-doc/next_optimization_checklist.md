@@ -499,8 +499,9 @@ operator-gated (`AGENTS.md` §8.7).
     - `content_lint` and backport can resolve an exact `record_id` from the sidecar
     - the sidecar is listed under manifest `derived_files` and is reproducible from a snapshot
 
-- [ ] PR F2: Build-time token/copy resolution map (Workstream Q — Class `D` detection)
-  - Status: `pending`
+- [x] PR F2: Build-time token/copy resolution map (Workstream Q — Class `D` detection)
+  - Status: `done`
+  - Note: implemented as a snapshot-based value index (`tools/token_resolution_map.py`: `build_value_index` over `Spec_Master`/`Localized_Copy` per-lang columns + `classify_data_origin`), wired into `cloud_doc_backport` `_classify_route`/`diff_blocks` behind `--lang`/`--data-root` so a reviewer span that exactly matches a resolved data value is classified Class `D` (`source_table_suggestion`) with its `source_ref` — no build-engine change needed. Behavior preserved when no value index is supplied. Tests in `tests/test_token_resolution_map.py`.
   - Target files:
     - [`../tools/draft_engine.py`](../tools/draft_engine.py)
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)

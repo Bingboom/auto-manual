@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 
 REPORT_SCHEMA_VERSION = "cloud-doc-backport-report/v1"
@@ -477,7 +478,26 @@ def _looks_data_like(*blocks: Block | None) -> bool:
     return bool(_PLACEHOLDER_RE.search(text) or _UNIT_VALUE_RE.search(text))
 
 
-def _classify_route(doc_type: str, old: Block | None, new: Block | None) -> tuple[str, str, str]:
+def _classify_route(
+    doc_type: str,
+    old: Block | None,
+    new: Block | None,
+    data_origin: dict[str, Any] | None = None,
+) -> tuple[str, str, str]:
+    if data_origin is not None:
+        # F2: the old text exactly matches a resolved data value, so this is a
+        # data-origin (Class D) delta — deterministic, not the heuristic guess.
+        if doc_type == "review":
+            return (
+                "source_table_suggestion",
+                "high",
+                f"resolved data value from {data_origin.get('table')}",
+            )
+        return (
+            "needs_human_mapping",
+            "low",
+            "resolved data value in a template-maintenance document",
+        )
     if _looks_data_like(old, new):
         if doc_type == "review":
             return (
@@ -511,8 +531,12 @@ def _make_delta(
     new_index: int | None,
     baseline_blocks: list[Block],
     fetched_blocks: list[Block],
+    value_index: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    route_class, confidence, reason = _classify_route(doc_type, old, new)
+    data_origin = (
+        classify_data_origin(old.text, value_index) if (value_index and old is not None) else None
+    )
+    route_class, confidence, reason = _classify_route(doc_type, old, new, data_origin)
     hash_payload = {
         "doc_type": doc_type,
         "change_type": change_type,
@@ -534,6 +558,7 @@ def _make_delta(
         "route_class": route_class,
         "confidence": confidence,
         "classification_reason": reason,
+        "source_ref": data_origin,
         "location": _location(new or old),
         "old_text": old.text if old else None,
         "new_text": new.text if new else None,
@@ -549,6 +574,7 @@ def diff_blocks(
     *,
     doc_type: str,
     run_id: str,
+    value_index: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     import difflib
 
@@ -583,6 +609,7 @@ def diff_blocks(
                         new_index=new_index,
                         baseline_blocks=baseline_blocks,
                         fetched_blocks=fetched_blocks,
+                        value_index=value_index,
                     )
                 )
             for old_index in old_range[paired:]:
@@ -597,6 +624,7 @@ def diff_blocks(
                         new_index=None,
                         baseline_blocks=baseline_blocks,
                         fetched_blocks=fetched_blocks,
+                        value_index=value_index,
                     )
                 )
             for new_index in new_range[paired:]:
@@ -611,6 +639,7 @@ def diff_blocks(
                         new_index=new_index,
                         baseline_blocks=baseline_blocks,
                         fetched_blocks=fetched_blocks,
+                        value_index=value_index,
                     )
                 )
             continue
@@ -628,6 +657,7 @@ def diff_blocks(
                         new_index=None,
                         baseline_blocks=baseline_blocks,
                         fetched_blocks=fetched_blocks,
+                        value_index=value_index,
                     )
                 )
             continue
@@ -645,6 +675,7 @@ def diff_blocks(
                         new_index=new_index,
                         baseline_blocks=baseline_blocks,
                         fetched_blocks=fetched_blocks,
+                        value_index=value_index,
                     )
                 )
     return deltas
@@ -720,6 +751,7 @@ def build_report(
     section_title: str | None = None,
     section_inferred_from: str | None = None,
     require_section_match: bool = False,
+    value_index: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     baseline_blocks = parse_blocks(baseline_text)
     fetched_blocks = parse_blocks(fetched_text)
@@ -735,6 +767,7 @@ def build_report(
         fetched_blocks,
         doc_type=doc_type,
         run_id=run_id,
+        value_index=value_index,
     )
     source_target = _source_target_payload(source_path, doc_type)
     _attach_source_evidence(deltas, source_target=source_target, baseline_text=baseline_text)
@@ -2213,6 +2246,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     diff_parser.add_argument("--out", help="output directory for JSON and Markdown reports")
     diff_parser.add_argument("--run-id", default="cloud-doc-backport-local")
     diff_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for real docs")
+    diff_parser.add_argument("--lang", help="value-column lang (e.g. fr) to enable data-origin (Class D) detection")
+    diff_parser.add_argument("--data-root", help="phase2 snapshot dir for the token/copy value index (used with --lang)")
 
     apply_parser = subparsers.add_parser(
         "apply-template",
@@ -2259,6 +2294,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     run_review_parser.add_argument("--out", help="output directory for all JSON and Markdown reports")
     run_review_parser.add_argument("--run-id", default="cloud-doc-backport-local")
     run_review_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for real docs")
+    run_review_parser.add_argument("--lang", help="value-column lang (e.g. fr) to enable data-origin (Class D) detection")
+    run_review_parser.add_argument("--data-root", help="phase2 snapshot dir for the token/copy value index (used with --lang)")
     run_review_parser.add_argument(
         "--write",
         action="store_true",
@@ -2315,6 +2352,7 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
             section_title=section_title,
             section_inferred_from=section_inferred_from,
             require_section_match=bool(args.section_heading),
+            value_index=_value_index_from_args(args),
         )
     except RuntimeError as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
@@ -2414,6 +2452,7 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
             section_title=section_title,
             section_inferred_from=section_inferred_from,
             require_section_match=bool(args.section_heading),
+            value_index=_value_index_from_args(args),
         )
         output_paths = {f"diff_{key}": value for key, value in write_reports(diff_report, out_dir).items()}
         apply_report: dict[str, Any] | None = None
@@ -2490,6 +2529,15 @@ def _run_open_pr(args: argparse.Namespace) -> int:
         print(f"BRANCH {result['branch']}")
         print(f"COMMIT {result['commit']}")
     return 0
+
+
+def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
+    """Build the token/copy value index when --lang and --data-root are given (F2)."""
+    lang = getattr(args, "lang", None)
+    data_root = getattr(args, "data_root", None)
+    if not lang or not data_root:
+        return None
+    return build_value_index(Path(data_root), str(lang))
 
 
 def main(argv: list[str] | None = None) -> int:
