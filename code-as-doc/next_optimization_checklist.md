@@ -522,8 +522,9 @@ operator-gated (`AGENTS.md` §8.7).
     - the sibling / blast-radius scope of a `T` or `D` delta is computed, not guessed
     - template-origin spans changed by the reviewer are flagged `needs_decision` (the §5.1 R5 intentional-divergence gate), not auto-classified
 
-- [ ] PR F4: Emit `template_sync_proposal` for Class `T` (Workstream Q)
-  - Status: `pending`
+- [x] PR F4: Emit `template_sync_proposal` for Class `T` (Workstream Q)
+  - Status: `done`
+  - Note: `cloud_doc_backport` now emits `cloud_doc_backport_template_sync_proposal.json/.md` (report-only, `external_write=false`) from `verify-review` and `run-review`, one entry per Class `T` (shared-across-family) delta with the §5.1 R4 contract: target templates (family scope), old→new, evidence, delta hash, and the post-apply rebuild+sync-review step. Backport still writes only Class `R` to `docs/_review/...`; Class `T` is never written there. Tests in `tests/test_template_sync_proposal.py`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
     - [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md)
