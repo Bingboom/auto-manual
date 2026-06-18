@@ -556,8 +556,9 @@ operator-gated (`AGENTS.md` §8.7).
     - the executor applies only approved requests via `lark-cli --as bot`, with GET-verify-after-write and delta-hash idempotency; ambiguous/duplicate matches abstain
     - content fields only; table schema stays a separate operator-gated action; the change-request plus approval log is retained as the audit trail
 
-- [ ] PR F7: Template-sync operator runbook (Workstream Q)
-  - Status: `pending`
+- [x] PR F7: Template-sync operator runbook (Workstream Q)
+  - Status: `done`
+  - Note: added [`dev/template_sync_runbook.md`](dev/template_sync_runbook.md) — the operator procedure to consume a `template_sync_proposal` (F4) and apply Class T changes to `docs/templates/...` via a normal PR, passing the F5 rebuild+rediff gate; with the R6 boundaries (templates-only, untrusted input, no self-merge) and the dedicated agent kept as an explicit deferred follow-up. Cross-referenced from `Feishu_Cloud_Doc_Backport_Design.md` §5.1 R6.
   - Target files:
     - `dev/template_sync_runbook.md` (new)
     - [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
