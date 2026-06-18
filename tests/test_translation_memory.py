@@ -3,6 +3,7 @@ from __future__ import annotations
 import contextlib
 import importlib.util
 import io
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -224,11 +225,13 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as td:
             cache_dir = Path(td)
+            # Default invocation (sentence scope, no explicit ids) keys the cache on the
+            # table-name selector, matching what main() computes below.
             cache_key = query_live_translation_memory.build_cache_key(
                 wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
                 base_token=None,
-                table_id=query_live_translation_memory.DEFAULT_TABLE_ID,
-                view_id=query_live_translation_memory.DEFAULT_VIEW_ID,
+                table_id="name:Translation_Memory",
+                view_id="auto",
                 max_records=query_live_translation_memory.DEFAULT_MAX_RECORDS,
             )
             with mock.patch.object(query_live_translation_memory.time, "time", return_value=1000.0):
@@ -236,8 +239,8 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
                     cache_dir=cache_dir,
                     cache_key=cache_key,
                     wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
-                    table_id=query_live_translation_memory.DEFAULT_TABLE_ID,
-                    view_id=query_live_translation_memory.DEFAULT_VIEW_ID,
+                    table_id="name:Translation_Memory",
+                    view_id="auto",
                     max_records=query_live_translation_memory.DEFAULT_MAX_RECORDS,
                     language_fields=["en", "fr"],
                     rows=rows,
@@ -245,6 +248,7 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
 
             output = io.StringIO()
             with (
+                mock.patch.dict(os.environ, {query_live_translation_memory.ENV_BASE_TOKEN_VAR: ""}),
                 mock.patch.object(query_live_translation_memory.time, "time", return_value=1001.0),
                 mock.patch.object(query_live_translation_memory, "resolve_lark_cli", side_effect=AssertionError("cache hit should skip lark-cli")),
                 contextlib.redirect_stdout(output),
@@ -279,8 +283,8 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
             cache_key = query_live_translation_memory.build_cache_key(
                 wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
                 base_token=None,
-                table_id=query_live_translation_memory.DEFAULT_TABLE_ID,
-                view_id=query_live_translation_memory.DEFAULT_VIEW_ID,
+                table_id="name:Translation_Memory",
+                view_id="auto",
                 max_records=query_live_translation_memory.DEFAULT_MAX_RECORDS,
             )
             with mock.patch.object(query_live_translation_memory.time, "time", return_value=1000.0):
@@ -288,8 +292,8 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
                     cache_dir=cache_dir,
                     cache_key=cache_key,
                     wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
-                    table_id=query_live_translation_memory.DEFAULT_TABLE_ID,
-                    view_id=query_live_translation_memory.DEFAULT_VIEW_ID,
+                    table_id="name:Translation_Memory",
+                    view_id="auto",
                     max_records=query_live_translation_memory.DEFAULT_MAX_RECORDS,
                     language_fields=["en", "fr"],
                     rows=rows,

@@ -1,4 +1,18 @@
 interface:
   display_name: "Bitable Translation Memory"
-  short_description: "Build OpenClaw translation context from live sentence pairs plus phase2 fallback"
-  default_prompt: "For any manual sentence translation in this repo, query the live Translation_Memory sentence-pair table first, use the matched target sentence as the default answer when a direct hit exists, and fall back to repo phase2 translation memory only when needed."
+  short_description: "Chat translation grounded in the live Terms / Translation_Memory Base, with source attribution"
+  default_prompt: |
+    For ANY translation you give a user in chat, you MUST first look it up in the live Base via
+    .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py — never translate from your own knowledge.
+
+    Route by input shape:
+    - Short term / word / glossary entry -> run with `--scope term` (Terms table).
+    - Full sentence or paragraph -> run with `--scope sentence` (Translation_Memory table).
+
+    When the library has a match: answer with the matched target wording, and ALWAYS cite the source on its own line, e.g.
+    `出处：Translation_Memory「<matched source text>」` or `出处：Terms「<matched term>」(row <row_key>)`.
+
+    When the library has NO match: do not fabricate a source. Give your best translation but clearly mark it as unverified, e.g.
+    prefix the line with `⚠️ 机翻待人工校对（记忆库无匹配）`.
+
+    This attribution requirement applies to interactive chat replies only; batch/document rewrite jobs follow SKILL.md output rules.

@@ -14,12 +14,22 @@ Use this skill when the task is a one-shot translation reply, a sentence or para
 
 If the user wants a whole Markdown page or manual rewritten, wants headings and tables preserved, wants unmatched source text kept in `==...==`, or wants translation-memory sentence patterns reused across a structured document, load `manual-rewrite-with-tm` after this skill and let that skill own the output document.
 
+## Scope routing: term vs sentence
+
+The live Base holds two lookup tables. Route by input shape:
+
+- **Short term / word / glossary entry** (e.g. `handle`, `output port`) -> the `Terms` table. Pass `--scope term`.
+- **Full sentence or paragraph** -> the `Translation_Memory` sentence-pair table. Pass `--scope sentence` (the default).
+
+The script resolves each table **by name** inside whichever Base is active, so mirrored Bases (same table names, different table ids) work without code changes. The active Base is `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` when set, otherwise the bundled `--wiki-token` fallback. Pass `--table-id` / `--view-id` only to override the name resolution.
+
 ## Default workflow
 
-1. Query the live sentence-pair table first:
-   `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<phrase>" --source-lang en --target-lang <target-lang> --limit 8`
+1. Query the live table first, routing by scope:
+   - Term: `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<term>" --scope term --source-lang en --target-lang <target-lang> --limit 8`
+   - Sentence: `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<phrase>" --scope sentence --source-lang en --target-lang <target-lang> --limit 8`
 2. For OpenClaw prompt construction, prefer prompt output:
-   `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<paragraph>" --source-lang en --target-lang <target-lang> --format prompt`
+   `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<paragraph>" --scope sentence --source-lang en --target-lang <target-lang> --format prompt`
    The script auto-splits multi-sentence input unless `--no-split` is passed.
    Run the command in the foreground and wait for completion. Do not background it and do not use `process poll` for a normal lookup; this query is expected to finish quickly.
    The script keeps a short local cache of the live table to speed up repeated chat lookups. Use `--no-cache` or `--cache-ttl-seconds 0` only when you need a forced refresh.
@@ -49,8 +59,10 @@ If the user wants a whole Markdown page or manual rewritten, wants headings and 
 
 ## Good queries
 
+- Live term lookup (Terms table):
+  `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "handle" --scope term --source-lang en --target-lang fr --limit 5`
 - Live sentence-pair lookup:
-  `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --source-lang en --target-lang fr --limit 5`
+  `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product." --scope sentence --source-lang en --target-lang fr --limit 5`
 - OpenClaw-ready paragraph prompt:
   `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "Always follow these basic precautions when using this product. Read all the instructions before using the product." --source-lang en --target-lang fr --format prompt`
 - Exact term lookup:

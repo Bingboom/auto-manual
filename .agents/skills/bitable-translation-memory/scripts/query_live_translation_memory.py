@@ -24,18 +24,31 @@ from tools.translation_memory import (  # noqa: E402
     split_translation_units,
 )
 
-# Live sentence-pair table lives in the dedicated "多维表CAT" base (wiki node
-# X3O8wCpXPifqGKkP2sYccyxznQb). The previous default (wiki JKVAwNWlbilFiXkFc99cmRMPnhd /
-# table tblnst8YURfRB1gY) pointed at the phase2 data base where that table no
-# longer exists, so the live lookup returned not_found.
+# Fallback Base when no base token is provided (neither --base-token nor
+# $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN). Resolves the "多维表CAT" base via this
+# wiki node; the sentence/term tables inside are then resolved by name, not id,
+# so mirrored Bases with different table ids still work.
 DEFAULT_WIKI_TOKEN = "X3O8wCpXPifqGKkP2sYccyxznQb"
-DEFAULT_TABLE_ID = "tbl6gKPJPTvOcTWv"
-DEFAULT_VIEW_ID = "veweqW2fQv"
 DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
 DEFAULT_CACHE_TTL_SECONDS = 900
 CACHE_SCHEMA_VERSION = 2
 LIVE_TM_LANGUAGE_FIELDS = {"en", "fr", "es", "de", "it", "uk", "jp", "ja", "ko", "kr", "pt-br", "zh"}
+
+# When set, this env var pins the live lookup to a specific Base token. It takes
+# precedence over the bundled DEFAULT_WIKI_TOKEN so a host can point the skill at
+# its own (e.g. mirrored) Base without editing this file.
+ENV_BASE_TOKEN_VAR = "FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"
+
+# Lookup scope -> Base table name. Short terms search the terminology table; full
+# sentences search the sentence-pair table. Table ids differ across mirrored Bases,
+# so resolve by name within whichever Base is active instead of hardcoding ids.
+SCOPE_TABLE_NAMES = {"sentence": "Translation_Memory", "term": "Terms"}
+# Scope -> (entry_type, table label) so the emitted provenance names the right source.
+SCOPE_ENTRY_META = {
+    "sentence": ("sentence-pair", "translation-memory-bitable"),
+    "term": ("terminology", "terms-bitable"),
+}
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -49,10 +62,20 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--format", choices=("markdown", "json", "prompt"), default="markdown", help="Output format")
     parser.add_argument("--no-split", dest="split_units", action="store_false", help="Treat the whole input as one query unit")
     parser.set_defaults(split_units=True)
-    parser.add_argument("--wiki-token", default=DEFAULT_WIKI_TOKEN, help="Wiki node token for the translation-memory base")
-    parser.add_argument("--table-id", default=DEFAULT_TABLE_ID, help="Bitable table id for sentence pairs")
-    parser.add_argument("--view-id", default=DEFAULT_VIEW_ID, help="Bitable view id to read records from")
-    parser.add_argument("--base-token", default=None, help="Optional base token override; skips wiki node resolution")
+    parser.add_argument(
+        "--scope",
+        choices=("sentence", "term"),
+        default="sentence",
+        help="Which library to search: 'sentence' -> Translation_Memory table (default), 'term' -> Terms table. Ignored when --table-id is given.",
+    )
+    parser.add_argument("--wiki-token", default=DEFAULT_WIKI_TOKEN, help="Wiki node token for the translation-memory base (fallback when no base token is set)")
+    parser.add_argument("--table-id", default=None, help="Explicit bitable table id; overrides --scope name resolution")
+    parser.add_argument("--view-id", default=None, help="Explicit bitable view id; defaults to the resolved table's first grid view")
+    parser.add_argument(
+        "--base-token",
+        default=None,
+        help=f"Base token override; skips wiki node resolution. Defaults to ${ENV_BASE_TOKEN_VAR} when set.",
+    )
     parser.add_argument("--max-records", type=int, default=DEFAULT_MAX_RECORDS, help="Safety cap while paginating record-list")
     parser.add_argument(
         "--cache-ttl-seconds",
@@ -69,11 +92,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     source_lang = normalize_language(args.source_lang) or "en"
     target_lang = normalize_language(args.target_lang)
+    base_token_arg = args.base_token or os.environ.get(ENV_BASE_TOKEN_VAR) or None
+    table_name = SCOPE_TABLE_NAMES[args.scope]
+    entry_type, table_label = SCOPE_ENTRY_META[args.scope]
+    # Cache keys on the requested selector (explicit ids, or scope/name) so a cache
+    # hit never needs a live table-id resolution round-trip.
     cache_key = build_cache_key(
         wiki_token=args.wiki_token,
-        base_token=args.base_token,
-        table_id=args.table_id,
-        view_id=args.view_id,
+        base_token=base_token_arg,
+        table_id=args.table_id or f"name:{table_name}",
+        view_id=args.view_id or "auto",
         max_records=args.max_records,
     )
     cache_dir = resolve_cache_dir(args.cache_dir) if not args.no_cache and args.cache_ttl_seconds > 0 else None
@@ -82,30 +110,40 @@ def main(argv: list[str] | None = None) -> int:
         cache_key=cache_key,
         max_age_seconds=args.cache_ttl_seconds,
     )
+    resolved_table_id = args.table_id
+    resolved_view_id = args.view_id
     if cached_snapshot is None:
         cli = resolve_lark_cli()
-        base_token = args.base_token or resolve_base_token(cli=cli, wiki_token=args.wiki_token)
-        language_fields = get_table_language_fields(cli=cli, base_token=base_token, table_id=args.table_id)
+        base_token = base_token_arg or resolve_base_token(cli=cli, wiki_token=args.wiki_token)
+        resolved_table_id = args.table_id or resolve_table_id_by_name(
+            cli=cli, base_token=base_token, table_name=table_name
+        )
+        resolved_view_id = args.view_id or resolve_default_view_id(
+            cli=cli, base_token=base_token, table_id=resolved_table_id
+        )
+        language_fields = get_table_language_fields(cli=cli, base_token=base_token, table_id=resolved_table_id)
         rows = list_records(
             cli=cli,
             base_token=base_token,
-            table_id=args.table_id,
-            view_id=args.view_id,
+            table_id=resolved_table_id,
+            view_id=resolved_view_id,
             max_records=args.max_records,
         )
         save_cached_table_snapshot(
             cache_dir=cache_dir,
             cache_key=cache_key,
             wiki_token=args.wiki_token,
-            table_id=args.table_id,
-            view_id=args.view_id,
+            table_id=resolved_table_id,
+            view_id=resolved_view_id,
             max_records=args.max_records,
             language_fields=language_fields,
             rows=rows,
         )
     else:
         language_fields, rows = cached_snapshot
-    entries = build_sentence_pair_entries(rows, language_fields=language_fields)
+    entries = build_sentence_pair_entries(
+        rows, language_fields=language_fields, entry_type=entry_type, table_label=table_label
+    )
     query_units = split_translation_units(args.query_text) if args.split_units else [" ".join(args.query_text.split())]
     unit_matches = []
     seen_entry_keys: set[tuple[str, str, str]] = set()
@@ -138,7 +176,7 @@ def main(argv: list[str] | None = None) -> int:
         "source_lang": source_lang,
         "preferred_lang": target_lang,
         "target_lang": target_lang,
-        "snapshot_root": f"lark-base:{args.table_id}/{args.view_id}",
+        "snapshot_root": f"lark-base:{args.scope}:{resolved_table_id or table_name}/{resolved_view_id or 'auto'}",
         "query_units": query_units,
         "unit_matches": unit_matches,
         "match_count": sum(group["match_count"] for group in unit_matches),
@@ -276,6 +314,28 @@ def resolve_base_token(*, cli: str, wiki_token: str) -> str:
     return str(payload["data"]["node"]["obj_token"])
 
 
+def resolve_table_id_by_name(*, cli: str, base_token: str, table_name: str) -> str:
+    payload = run_lark_json([cli, "base", "+table-list", "--base-token", base_token])
+    tables = payload["data"]["tables"]
+    wanted = table_name.strip().lower()
+    for table in tables:
+        if str(table.get("name") or "").strip().lower() == wanted:
+            return str(table["id"])
+    available = ", ".join(f"{t.get('name')}({t.get('id')})" for t in tables)
+    raise RuntimeError(f"Table '{table_name}' not found in base {base_token}. Available: {available}")
+
+
+def resolve_default_view_id(*, cli: str, base_token: str, table_id: str) -> str:
+    payload = run_lark_json([cli, "base", "+view-list", "--base-token", base_token, "--table-id", table_id])
+    views = payload["data"]["views"]
+    for view in views:
+        if str(view.get("type")) == "grid":
+            return str(view["id"])
+    if views:
+        return str(views[0]["id"])
+    raise RuntimeError(f"No views found for table {table_id} in base {base_token}.")
+
+
 def get_table_language_fields(*, cli: str, base_token: str, table_id: str) -> list[str]:
     payload = run_lark_json([cli, "base", "+table-get", "--base-token", base_token, "--table-id", table_id])
     fields = payload["data"]["fields"]
@@ -326,7 +386,13 @@ def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_
     return rows
 
 
-def build_sentence_pair_entries(rows: list[dict[str, object]], *, language_fields: list[str]) -> list[TranslationMemoryEntry]:
+def build_sentence_pair_entries(
+    rows: list[dict[str, object]],
+    *,
+    language_fields: list[str],
+    entry_type: str = "sentence-pair",
+    table_label: str = "translation-memory-bitable",
+) -> list[TranslationMemoryEntry]:
     entries: list[TranslationMemoryEntry] = []
     for row in rows:
         translations = {}
@@ -339,8 +405,8 @@ def build_sentence_pair_entries(rows: list[dict[str, object]], *, language_field
         source_lang = "en" if translations.get("en") else next(iter(translations.keys()))
         entries.append(
             TranslationMemoryEntry(
-                table="translation-memory-bitable",
-                entry_type="sentence-pair",
+                table=table_label,
+                entry_type=entry_type,
                 source_lang=source_lang,
                 source_text=translations[source_lang],
                 translations=translations,
