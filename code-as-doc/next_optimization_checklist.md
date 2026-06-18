@@ -543,9 +543,9 @@ operator-gated (`AGENTS.md` §8.7).
     - the gate passes only when residuals are zero AND no diff appears outside the intended spans (recorded intentional overrides excepted)
     - a `PR_READY` review run requires the gate to pass
 
-- [ ] PR F6: Approval-gated source-table-sync (Workstream Q — §5.1 R9; depends on F1)
-  - Status: `pending`
-  - Note: writes Feishu Bitable content → operator-gated; depends on PR F1
+- [x] PR F6: Approval-gated source-table-sync (Workstream Q — §5.1 R9; depends on F1)
+  - Status: `done` (to the dry-run/fixture boundary; live activation operator-gated)
+  - Note: `tools/source_table_sync.py` — `build_change_requests` turns Class D deltas into change requests (record_id resolved via the F1 sidecar, exact-or-abstain); `plan_apply`/`apply_change_requests` enforce the R9 gates (human approval required, exact-or-abstain skip, content-field only, delta-hash idempotency, GET-verify-after-write) with an injected transport — dry-run by default. `run-review` now emits `cloud_doc_backport_source_table_change_request.json`. **Operator follow-up (live):** wire `lark-cli --as bot` as the transport, the Feishu IM approve/reject gate (allowlist), and a populated `record_id` sidecar; an agent may propose/execute but never approve. Tests in `tests/test_source_table_sync.py`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
     - `tools/source_table_sync.py` (new executor)

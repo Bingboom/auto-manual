@@ -25,6 +25,11 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.family_scope import build_family_index, classify_family_scope  # noqa: E402
+from tools.source_table_sync import (  # noqa: E402
+    build_change_request_report,
+    load_sidecar_index,
+    write_change_request_report,
+)
 from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 
@@ -2682,6 +2687,11 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
                 f"template_sync_proposal_{key}": value
                 for key, value in write_template_sync_proposal_report(proposal_report, out_dir).items()
             }
+        )
+        sidecar_index = load_sidecar_index(Path(args.data_root)) if getattr(args, "data_root", None) else None
+        change_request_report = build_change_request_report(diff_report, sidecar_index=sidecar_index)
+        output_paths["source_table_change_request_json"] = write_change_request_report(
+            change_request_report, out_dir
         )
         run_report = build_review_run_report(
             diff_report,
