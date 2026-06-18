@@ -507,13 +507,15 @@ Scope:
 - wire a family-identical check (reuse `scan_residuals`) into delta classification so `R` vs `T` and sibling scope are derived, not guessed
 - add a `rebuild + rediff` idempotency gate extending `verify-review`: a rebuild from edited sources must reproduce the accepted doc and change nothing else
 - write the template-sync role as a documented operator runbook first; defer the dedicated template-sync agent until the runbook and the rules prove stable
+- add an approval-gated source-table-sync role: backport emits a `source_table_change_request` for Class `D` deltas (with blast radius); a human approves via Feishu IM (an agent may propose/execute but never approve); the executor applies via `lark-cli --as bot` with GET-verify and delta-hash idempotency; content fields only, with table schema staying operator-gated. Depends on the `record_id` sidecar (Workstream I) for exact-or-abstain resolution
 
 Exit criteria:
 
-- backport never writes `docs/templates/...` or Feishu source tables; a review run writes only Class `R` to `docs/_review/...` and emits a template-sync proposal for Class `T`
+- backport never writes `docs/templates/...` or Feishu source tables; a review run writes only Class `R` to `docs/_review/...`, emits a template-sync proposal for Class `T`, and emits an approval-gated change request for Class `D`
 - Class `D`/`T` classification is backed by the token/copy map and the family check, not heuristics
 - the `rebuild + rediff` gate passes for a real review backport before its PR is marked ready
 - the template-sync runbook exists; the dedicated agent remains a documented, deferred follow-up
+- Class `D` deltas reach Bitable only via the source-table-sync role after explicit human approval and exact `record_id` resolution; no guessed or unapproved writes
 
 ## 8. Recommended Order
 
