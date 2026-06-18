@@ -34,6 +34,7 @@ APPLY_SCHEMA_VERSION = "cloud-doc-backport-apply/v1"
 VERIFY_SCHEMA_VERSION = "cloud-doc-backport-verify/v1"
 RUN_SCHEMA_VERSION = "cloud-doc-backport-run/v1"
 SOURCE_TABLE_SUGGESTIONS_SCHEMA_VERSION = "cloud-doc-backport-source-table-suggestions/v1"
+TEMPLATE_SYNC_PROPOSAL_SCHEMA_VERSION = "cloud-doc-backport-template-sync-proposal/v1"
 NORMALIZER_VERSION = "cloud-doc-normalizer/v1"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
@@ -1750,6 +1751,85 @@ def _source_table_suggestions_from_diff(diff_report: dict[str, Any]) -> list[dic
     return suggestions
 
 
+def _template_sync_proposals_from_diff(diff_report: dict[str, Any]) -> list[dict[str, Any]]:
+    """F4: report-only proposals for Class T (shared-across-family) review deltas."""
+    proposals: list[dict[str, Any]] = []
+    for index, delta in enumerate(diff_report.get("deltas") or [], start=1):
+        if not isinstance(delta, dict):
+            continue
+        family_scope = delta.get("family_scope")
+        if not (isinstance(family_scope, dict) and family_scope.get("shared")):
+            continue
+        proposals.append(
+            {
+                "index": index,
+                "delta_hash": delta.get("delta_hash"),
+                "change_type": delta.get("change_type"),
+                "old_text": delta.get("old_text"),
+                "new_text": delta.get("new_text"),
+                "location": delta.get("location") or {},
+                "family_scope": family_scope,
+                "target_templates": list(family_scope.get("targets") or []),
+                "post_apply": "rebuild + sync-review the affected family targets, then verify (R7 rebuild+rediff gate)",
+                "status": "reported",
+                "reason": "span identical across the family - apply as a shared template change after review (R5)",
+            }
+        )
+    return proposals
+
+
+def build_template_sync_proposal_report(*, diff_report: dict[str, Any], command: list[str]) -> dict[str, Any]:
+    proposals = _template_sync_proposals_from_diff(diff_report)
+    return {
+        "schema_version": TEMPLATE_SYNC_PROPOSAL_SCHEMA_VERSION,
+        "run_id": diff_report.get("run_id"),
+        "external_write": False,
+        "summary": {"proposals": len(proposals)},
+        "proposals": proposals,
+        "metadata": {
+            "generated_at": _utc_now(),
+            "git_ref": _git_ref(),
+            "command": shlex.join(command),
+        },
+    }
+
+
+def markdown_template_sync_proposal_report(report: dict[str, Any]) -> str:
+    proposals = report.get("proposals") or []
+    lines = [
+        "# Template Sync Proposal",
+        "",
+        f"- Run ID: `{report.get('run_id')}`",
+        f"- Proposals: `{report['summary']['proposals']}`",
+        "- External write: `false` (report-only; apply via the template-sync role)",
+        "",
+    ]
+    if not proposals:
+        lines.append("_No shared-across-family (Class T) deltas in this run._")
+        return "\n".join(lines) + "\n"
+    lines += ["| # | change | targets | old | new |", "| --- | --- | --- | --- | --- |"]
+    for proposal in proposals:
+        lines.append(
+            "| {index} | {change} | {targets} | {old} | {new} |".format(
+                index=proposal.get("index"),
+                change=_markdown_cell(proposal.get("change_type")),
+                targets=_markdown_cell(", ".join(proposal.get("target_templates") or [])),
+                old=_markdown_cell(proposal.get("old_text")),
+                new=_markdown_cell(proposal.get("new_text")),
+            )
+        )
+    return "\n".join(lines) + "\n"
+
+
+def write_template_sync_proposal_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    json_path = out_dir / "cloud_doc_backport_template_sync_proposal.json"
+    markdown_path = out_dir / "cloud_doc_backport_template_sync_proposal.md"
+    json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    markdown_path.write_text(markdown_template_sync_proposal_report(report), encoding="utf-8")
+    return {"json": json_path, "markdown": markdown_path}
+
+
 def _repo_text_changes_from_diff(diff_report: dict[str, Any]) -> list[dict[str, Any]]:
     changes: list[dict[str, Any]] = []
     for index, delta in enumerate(diff_report.get("deltas") or [], start=1):
@@ -2450,10 +2530,17 @@ def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
         command=["tools/cloud_doc_backport.py", *raw_argv],
     )
     suggestions_written = write_source_table_suggestions_report(suggestions_report, out_dir)
+    proposal_report = build_template_sync_proposal_report(
+        diff_report=diff_report,
+        command=["tools/cloud_doc_backport.py", *raw_argv],
+    )
+    proposal_written = write_template_sync_proposal_report(proposal_report, out_dir)
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
     print(f"WROTE {suggestions_written['json']}")
     print(f"WROTE {suggestions_written['markdown']}")
+    print(f"WROTE {proposal_written['json']}")
+    print(f"WROTE {proposal_written['markdown']}")
     return 0 if verify_report["result"] == "PASS" else 1
 
 
@@ -2516,6 +2603,13 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
             {
                 f"source_table_suggestions_{key}": value
                 for key, value in write_source_table_suggestions_report(suggestions_report, out_dir).items()
+            }
+        )
+        proposal_report = build_template_sync_proposal_report(diff_report=diff_report, command=command)
+        output_paths.update(
+            {
+                f"template_sync_proposal_{key}": value
+                for key, value in write_template_sync_proposal_report(proposal_report, out_dir).items()
             }
         )
         run_report = build_review_run_report(
