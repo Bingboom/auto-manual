@@ -1,6 +1,6 @@
 # Optimization Project
 
-Updated: 2026-06-07
+Updated: 2026-06-18
 
 ## 1. Role
 
@@ -78,9 +78,11 @@ As of 2026-05-07, the repo has working baselines for:
 - config contract validation for phase2 table bindings and declared build languages
 - queue `RUNNING` writeback before success/failure completion
 - first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](dev)
-- fixture-backed long-term content assembly pilot for `03_product_overview`, including an assembly contract validator, no-op assembler, and page-level pilot switch
-- snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py)
+- data-driven rendering for reference/tabular/safety pages (`symbols`, `lcd_icons`, `troubleshooting`, `spec`, safety blocks) through [`tools/csv_pages/`](../tools/csv_pages) renderers, `page_registry.csv` composition, and `content_blocks.csv`
+- structured short-copy through `Manual_Copy_Source` plus Translation Memory tags, resolved into RST via `{{ copy:<copy_key> }}` while templates keep layout
+- snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py), with machine-readable `--json` output and local QC reports
 - closed-loop QC requirements under [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
+- deterministic reviewer-diff backport through [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py), routing accepted Feishu-doc changes into templates/source as draft PRs
 
 ## 4. Recently Completed
 
@@ -170,14 +172,24 @@ Use this section for short milestone-style updates.
 - added the closed-loop QC agent requirements baseline in [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
 - activated the implementation rollout in [`code-as-doc/dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md): first make rule QC machine-readable and reportable, then connect the standing agent
 
+### 2026-06-18
+
+- re-assessed the strategy stage against [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md): the repo is mid/late Stage 2, with governance, snapshot, build/render, and release/traceability near Stage 3, but page assembly is split between data-driven reference pages and template-forked prose pages
+- corrected the stale Workstream H record: the generalized `03_product_overview` content-assembly pilot was rolled back to template-driven rendering in PRs #295/#296; the `assembly_pilot` switch and the `content_assembly*` / `product_overview_renderer` modules no longer exist
+- re-scoped the path to Stage 3 into tiered Workstreams J–Q below, and added Milestone E to [`next_optimization_checklist.md`](next_optimization_checklist.md)
+- added the prose-assembly re-launch design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md)
+- clarified the Stage 3 end state as a **deliberate hybrid** in [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md) (new Principle 6 plus a Stage 3 note): the CMS governs reusable content while layout, stable long-form/compliance prose, and environment differences stay repository/config-owned, allocated by an explicit content-truth rule; the target is to eliminate template forks, not to structuralize every paragraph
+- recorded the backport scope decision in [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md) §5.1 (rules R1–R8): backport is a single writer to `docs/_review/...`, template changes go through a template-sync proposal applied by a separate role (operator now, agent later); tracked as Workstream Q below
+
 ## 5. Open Gaps
 
 Keep this section short and current.
 
 1. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
-2. Multi-target conditional content now has a narrow `03_product_overview` pilot, but repo-wide template splitting is still deferred until the pilot proves stable.
+2. Page assembly is split: reference/tabular/safety pages are data-driven, but prose pages (product overview, operation guide, app setup, and most long-form pages) are still template-forked per language family. The generalized assembly pilot was rolled back (#295/#296). The goal is to eliminate the per-language template forks and structure reusable content per the content-truth allocation rule — not to structuralize all prose; long-form/compliance prose is deliberately repository-owned. See [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md).
 3. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
-4. Content QC is now codified, but it is not yet machine-readable, reportable, or connected to Feishu QC reporting.
+4. Rule-based content QC is now machine-readable and locally reportable (`content_lint --json`, local reports, lightweight `source_ref`), but Feishu `QC_Report` writeback and exact live-row `record_id` resolution are still deferred until the source/report contracts stabilize.
+5. Release snapshots are not yet frozen or archived per release: `release-manifest` records build metadata but does not bind each release to an immutable, timestamped snapshot, so the Stage 3 invariant "every release is traceable to a frozen snapshot" is not yet met.
 
 ## 6. Active Workstreams
 
@@ -306,31 +318,21 @@ Exit criteria:
 
 ### Workstream H: Content Assembly Pilot
 
-Status: done
+Status: rolled back (2026-05-30) — superseded by Workstream N
 
-Why now:
+Outcome:
 
-- template splitting should not start until the current page dependencies, data contract, asset contract, and fallback behavior are explicit
-- future multidimensional-table content needs local fixture coverage before live Feishu/Lark fields become a runtime dependency
+- the fixture-backed `03_product_overview` assembly pilot (assembly contract validator, no-op assembler, page-level pilot switch, `assembly_blocks/` templates) was built, then reverted to pure template-driven rendering in PRs #295/#296; the `assembly_pilot` switch and the `content_assembly*` / `content_assembly_contract` / `product_overview_renderer` modules no longer exist
+- lesson: a bespoke per-page renderer plus naive layout machinery, attempted first on the hardest page (product overview, which has intentional EU raw-LaTeX divergence), is the wrong entry point; long-form translated prose with compliance formatting cannot be naively block-split without a dedicated schema and a block-level review workflow
+- the proven data-driven pattern that survived is `csv_pages` + `page_registry` + `content_blocks` + `Manual_Copy_Source` short-copy tokens; Workstream N re-launches prose assembly on that pattern instead of a bespoke renderer
 
-Scope:
-
-- freeze the `03_product_overview` inventory and first block taxonomy
-- add fixture-backed table contracts for page assembly, content blocks, block fields, assets, and block rules
-- add a validator for unknown blocks, missing fields, missing assets, fallback declarations, and fixture schema drift
-- add a no-op assembler that writes only requested temporary output
-- connect `03_product_overview` through a page-level pilot switch for configured region/language targets while leaving non-matching targets on the old template path
-
-Exit criteria:
-
-- the pilot contract validates for `US/en` and `JP/ja`
-- missing field, missing asset, unknown block, and missing fallback cases fail in unit tests
-- no-op assembly can render deterministic RST without writing into `docs/templates`, `docs/_review`, or `docs/_build`
-- `US/en` and `JP/ja` product overview can render through assembly while other targets keep the old fallback path
+See [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone D for the historical pilot record and [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) for the re-launch design.
 
 ### Workstream I: Closed-Loop QC Rollout
 
 Status: active
+
+Progress (2026-06-18): M1 (`content_lint --json`), M2 lightweight `source_ref`, M3 local reports, and M5 docs/command shipped (#338-#341); the B2 reviewer-diff channel shipped as the deterministic [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) CLI (#342-#354), not a standing LLM agent. Remaining tail: M4 Feishu `QC_Report` table and the sync-time `record_id` sidecar, both deferred until the source/report contracts stabilize.
 
 Why now:
 
@@ -357,16 +359,173 @@ Exit criteria:
 - the next sidecar/report-table slice has a stable local finding/report contract
   to consume
 
+The workstreams below are the tiered path from the current Stage 2.5 baseline to
+Stage 3 ("fully structured content-driven production"). Tier 1 (J + the QC tail
+of I) locks Stage 2 traceability; Tier 2 (L, M) takes the safe first cut into
+prose; Tier 3 (N, O) is the Stage 3 gate and is deferred until its design and
+source-model dependencies clear; Tier 4 (P) is operational hardening.
+
+### Workstream J: Release Snapshot Freezing And Traceability
+
+Status: next
+
+Why now:
+
+- Stage 3 requires every release to be traceable to an immutable snapshot
+- today snapshots are sync-on-demand and are not archived per release, so a past release cannot be rebuilt byte-for-byte from a frozen input
+
+Scope:
+
+- archive a timestamped snapshot (source revision, exported data files, target matrix) at release time
+- bind `release-manifest` to that frozen snapshot, resolving the archive path through [`tools/utils/path_utils.py`](../tools/utils/path_utils.py)
+- record snapshot identity (timestamp + source revision + target matrix) in the manifest
+- keep `--data-root` rebuilds reproducible from the archived snapshot
+
+Exit criteria:
+
+- a release-manifest references an immutable archived snapshot
+- rebuilding from the archived snapshot reproduces the release output
+- the manifest carries snapshot timestamp, source revision, and target matrix
+
+### Workstream L: Short-Copy Coverage Extension
+
+Status: next
+
+Why now:
+
+- the `Manual_Copy_Source` + `{{ copy:<copy_key> }}` primitive already covers page titles, table headers, labels, and symbols signals
+- extending it to operation-guide and app-setup chrome is the safe first cut into prose pages without touching long bodies
+
+Scope:
+
+- follow the migration list in [`dev/content_block_migration_assessment.md`](dev/content_block_migration_assessment.md): add copy keys plus TM tags for operation-guide and app-setup section headings, button/UI labels, table labels, and image alt text only
+- keep body paragraphs in RST
+- add a per-page/language required-copy-key check before any long-prose move
+- route app-market, support, manufacturer, and URL text to config ownership, not a content table
+
+Exit criteria:
+
+- operation-guide and app-setup chrome resolves from `Manual_Copy_Source`
+- missing copy keys fail in `check`
+- no body prose is moved, and config-owned environment text is not in the copy table
+
+### Workstream M: Page Registry As Single Composition Authority
+
+Status: next
+
+Why now:
+
+- today `page_registry.csv` declares only csv_pages; prose-page composition is implicit in which per-language RST files happen to exist
+- that keeps applicability encoded in folder names instead of structured data, which is the driver of template forking
+
+Scope:
+
+- declare every shipped page — including prose pages — in `page_registry` with explicit applicability (`sku_scope`, `langs`, region/model), page order, template family, and contract reference
+- keep the current RST render path as the prose-page fallback (no behavior change)
+- normalize applicability across `region`, `language`, and `model` per [`architecture/Content_Data_Model.md`](architecture/Content_Data_Model.md)
+
+Exit criteria:
+
+- all shipped pages appear in `page_registry` with explicit applicability
+- page composition and applicability are read from data, not inferred from folder layout
+- RST rendering output is unchanged for prose pages
+
+### Workstream N: Long-Form Prose Assembly Re-Launch
+
+Status: deferred (gated on the design doc and Feishu source-model stability)
+
+Why now:
+
+- the core Stage 3 move is eliminating per-language template forks and governing reusable content — not structuralizing every paragraph; the content-truth allocation rule in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) §3.1 decides what is structured vs deliberately repository-owned
+- the first pilot was rolled back, so it must restart on the proven data-driven pattern with a long-form schema and a block-level review workflow
+
+Scope:
+
+- implement [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md): a structure-preserving, paragraph/section-grained long-form content-block schema (not sentence-split), per-block-type render templates including per-region variants (EU raw-LaTeX), block-level review via the existing `cloud_doc_backport` flow, a parity-gated per-page pilot switch with RST fallback, and content_lint block rules
+- structure only the content the allocation rule assigns to the CMS; keep long-form/compliance prose repository-owned by default
+- collapse template forks for migrated pages via one shared definition (structured blocks plus a shared template where bodies stay RST), starting on the lowest-risk prose page (not product overview, not compliance-heavy)
+
+Exit criteria:
+
+- at least one prose page has its per-language forks eliminated, rendering from one shared definition plus structured data/config with parity to the current output for every target
+- structured blocks cover the content the allocation rule assigns to the CMS; long-form/compliance prose stays repository-owned by default
+- missing-field, missing-asset, and missing-fallback cases fail in tests
+- compliance prose is block-split only as a reviewed, recorded exception
+
+### Workstream O: Multi-Model Online-First Scale-Out
+
+Status: deferred
+
+Why now:
+
+- Stage 3 means the CMS is the source of truth for all models; today only JE-2000F EU is built online-first with data sync-only
+
+Scope:
+
+- bring two to three more product lines to online-first / data-sync-only through the queue
+- prove zero hand-committed snapshots for those lines
+- confirm one shared content source emits correct regional variants without cloning page templates
+
+Exit criteria:
+
+- two to three more lines build online-first with no committed snapshot rows
+- regional variants are produced from shared structured content plus applicability, not per-model template clones
+
+### Workstream P: Control-Plane Consolidation
+
+Status: deferred
+
+Why now:
+
+- IM-triggered production (OpenClaw, DingTalk, Feishu IM) is advanced but not yet hands-off for multi-instance use
+
+Scope:
+
+- add shared runtime state for multi-instance adapters
+- provision a stable named ingress (Cloudflare-managed domain plus named tunnel hostname) to replace temporary `trycloudflare.com` URLs
+- keep adapters outside the Python build plane
+
+Exit criteria:
+
+- adapters run multi-instance without state collisions
+- Feishu/DingTalk ingress uses a stable named hostname
+- the restart/runtime contract is documented
+
+### Workstream Q: Backport Layer-Routing And Template-Sync
+
+Status: next
+
+Why now:
+
+- the 2026-06-18 scope decision made backport a single writer to `docs/_review/...`, with template changes emitted as a proposal applied by a separate template-sync role (operator now, agent later); the rules R1–R8 are defined in [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md) §5.1 but are not yet enforced in code
+- this is what keeps reverse-sync safe as models grow, and it is the precondition the deliberate hybrid relies on (template-owned prose must stay safely backportable)
+
+Scope:
+
+- emit a `template_sync_proposal.json/.md` artifact from review-backport runs for Class `T` (shared-template) deltas, which are only flagged today
+- add a build-time per-target token/copy resolution map so Class `D` (data-origin) spans are detected, not guessed
+- wire a family-identical check (reuse `scan_residuals`) into delta classification so `R` vs `T` and sibling scope are derived, not guessed
+- add a `rebuild + rediff` idempotency gate extending `verify-review`: a rebuild from edited sources must reproduce the accepted doc and change nothing else
+- write the template-sync role as a documented operator runbook first; defer the dedicated template-sync agent until the runbook and the rules prove stable
+- add an approval-gated source-table-sync role: backport emits a `source_table_change_request` for Class `D` deltas (with blast radius); a human approves via Feishu IM (an agent may propose/execute but never approve); the executor applies via `lark-cli --as bot` with GET-verify and delta-hash idempotency; content fields only, with table schema staying operator-gated. Depends on the `record_id` sidecar (Workstream I) for exact-or-abstain resolution
+
+Exit criteria:
+
+- backport never writes `docs/templates/...` or Feishu source tables; a review run writes only Class `R` to `docs/_review/...`, emits a template-sync proposal for Class `T`, and emits an approval-gated change request for Class `D`
+- Class `D`/`T` classification is backed by the token/copy map and the family check, not heuristics
+- the `rebuild + rediff` gate passes for a real review backport before its PR is marked ready
+- the template-sync runbook exists; the dedicated agent remains a documented, deferred follow-up
+- Class `D` deltas reach Bitable only via the source-table-sync role after explicit human approval and exact `record_id` resolution; no guessed or unapproved writes
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 1. Keep the current `check` + smoke-CI baseline green.
-2. Implement rule-QC machine output: `content_lint --json`.
-3. Implement local rule-QC reporting and lightweight `source_ref` values.
-4. Defer sync-time sidecars, Feishu `QC_Report`, B2 Feishu doc-link diff
-   reporting, and the standing QC agent until source/report contracts are stable.
-5. Keep repo-wide multi-target conditional content deferred until the pilot page proves stable.
+2. Lock Stage 2 traceability and safe reverse-sync: finish the QC tail (Workstream I), enforce the backport layer-routing rules (Workstream Q), and freeze release snapshots (Workstream J).
+3. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M).
+4. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
+5. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear.
 
 
 ## 9. Success Criteria
@@ -380,6 +539,8 @@ This roadmap is successful when:
 5. CI covers the critical workflow surfaces that the repo depends on.
 6. Rule-based content QC is machine-readable, reportable, and safe for a future standing agent to consume.
 7. One shared content source can eventually emit correct regional variants without cloning page templates.
+8. Release snapshots are frozen, and every release is traceable to an immutable snapshot.
+9. The CMS / template / config boundary follows the explicit content-truth allocation rule, with long-form and compliance prose deliberately repository-owned.
 
 ## 10. Next Review Trigger
 

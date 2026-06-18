@@ -17,6 +17,8 @@ Not every file here is equally current.
   - active DingTalk artifact-sink plan while Feishu remains the source and queue system
 - [`Content_Data_Model.md`](Content_Data_Model.md)
   - future canonical content-model direction
+- [`Long_Form_Content_Block_Design.md`](Long_Form_Content_Block_Design.md)
+  - re-launch design for prose page assembly (long-form block schema + block-level review workflow); backs Workstream N
 - [`closed_loop_qc_agent_requirements.md`](closed_loop_qc_agent_requirements.md)
   - requirements baseline for the closed-loop QC agent that combines content-lint rules, reviewer diff Word back-porting, and Feishu QC marking
 - [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md)

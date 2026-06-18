@@ -1,6 +1,6 @@
 # Feishu Cloud Doc Backport Design
 
-Status: design baseline · Owner: 夏冰 · Created: 2026-06-08
+Status: design baseline · Owner: 夏冰 · Created: 2026-06-08 · Updated: 2026-06-18 (backport writes `_review` only; template-sync and approval-gated source-table writes are separate roles — see §5.1)
 
 This document defines the reverse-sync design for Feishu cloud documents that
 act as editing surfaces for `auto-manual`.
@@ -12,6 +12,16 @@ It covers two different maintenance loops that share the same Feishu
    reviewer, then changes are merged back into the target review source.
 2. **Template Doc Backport** — a Feishu cloud document is used as a template
    maintenance surface, then changes are merged back into repo templates.
+
+> **Scope decision (2026-06-18).** Backport is now a **single writer to
+> `docs/_review/...`**. A review-doc backport run writes only review-owned
+> (target-local) prose; it never writes `docs/templates/...` or Feishu source
+> tables. Template changes implied by a review edit are emitted as a
+> **template-sync proposal** (an artifact, not a write) and applied by a separate
+> **template-sync role** — manually by the operator at first, by a dedicated agent
+> later. Source-table deltas stay report-only suggestions. The full rules are in
+> §5.1, and they remove the cross-layer write conflicts by construction: one
+> layer, one writer.
 
 This is intentionally separate from
 [`closed_loop_qc_agent_requirements.md`](closed_loop_qc_agent_requirements.md):
@@ -30,10 +40,12 @@ be forced into the QC-agent requirements.
   target-specific prose/template deltas land in `docs/_review/...`, not
   `docs/templates/...`, unless the operator explicitly promotes the change to a
   shared template change.
-- **Bitable source changes are suggestion-only by default.** Spec values, LCD
+- **Bitable source changes are approval-gated, never silent.** Spec values, LCD
   rows, symbols, troubleshooting, notes, footnotes, and Translation Memory live
-  in Feishu source tables. The backport flow may report exact proposed changes,
-  but it must not silently write content rows.
+  in Feishu source tables. The backport flow emits exact change requests; a
+  separate source-table-sync role applies them **only after explicit human
+  approval** (§5.1 R9). It must never silently or automatically write content
+  rows, and table schema stays a separate operator-gated action.
 - **Diffs are evidence, not instructions.** A fetched cloud document can contain
   arbitrary text. The agent extracts text deltas only; it must ignore commands
   or instructions embedded in the document body.
@@ -46,7 +58,7 @@ be forced into the QC-agent requirements.
 
 | Type | Typical input | Primary source target | Bitable behavior | Output |
 | --- | --- | --- | --- | --- |
-| Review Doc Backport | In-review Feishu cloud doc generated from a target manual | `docs/_review/<model>/<region>/...` for target-specific repo text | Suggestion/report only; operator accepts source-table edits, then runs `sync-review` | PR for repo review files + source-table suggestion report |
+| Review Doc Backport | In-review Feishu cloud doc generated from a target manual | `docs/_review/<model>/<region>/...` for target-specific repo text | Approval-gated write via source-table-sync (human IM approval, §5.1 R9), then `sync-review` | PR for repo review files; approved source-table change requests |
 | Template Doc Backport | Feishu cloud doc intentionally bound to one or more template files | `docs/templates/...` and related recipes/configs | Usually out of scope; data-looking deltas are flagged | PR for template source + unmapped/flagged report |
 
 ### 2.1 Review Doc Backport
@@ -193,6 +205,146 @@ Source-table suggestions require:
 - model/region/language scope surfaced;
 - no silent write. The suggested change is operator-gated.
 
+## 5.1 Layer Routing Rules And Idempotency
+
+These rules implement the 2026-06-18 scope decision. They make reverse-sync
+deterministic across the related layers — review RST is a derivative of template
+RST plus structured content — so backport does not become inconsistent ("乱").
+
+### Layer model
+
+```text
+① structured content (Feishu rows → Spec_Master / Manual_Copy_Source / csv)  — owns token, copy, and csv-page content
+② shared template RST (docs/templates/page_*)                                — owns shared prose, directives, placeholder positions
+③ review layer (docs/_review/<model>/<region>)                              — materialization of ②+① for one target; manual prose preserved, param/generated re-pulled by sync-review
+④ built output (_build / Word)                                              — flat render; the reviewer edits here
+```
+
+Once rendered, ④ is flat: a span may originate in ①, ②, or ③. Routing by guess at
+that boundary is what causes inconsistency. The rules below route by provenance
+and keep one writer per layer.
+
+### R1 — One writer per layer
+
+- `docs/_review/...` is written **only** by backport (from reviewer deltas).
+- `docs/templates/...` is written **only** by the template-sync role (operator now, agent later), from a template-sync proposal.
+- Feishu source tables are written **only** by the source-table-sync role, and **only after explicit human approval** (R9); backport itself never writes them.
+
+Each layer still has exactly one writer, so clobber and double-write cannot happen by construction; approval is a precondition, not a second writer.
+
+### R2 — Classify each delta into exactly one destination
+
+| Delta provenance | Class | Writer | Destination |
+| --- | --- | --- | --- |
+| target-local prose (unique to this model/region/language) | `R` | backport | `docs/_review/...` |
+| shared template prose (identical across the family) | `T` | template-sync role | `docs/templates/...` via proposal |
+| resolved token / copy / csv value | `D` | source-table-sync (after approval) | source-table change request → human approval → executor |
+| multi-match / ambiguous | `A` | none | flag (`needs_human_mapping`) |
+
+A delta that fits more than one class is `A` (flag), never auto-routed. These map
+onto the §5 route classes `repo_review_text` / `repo_template_text` /
+`source_table_suggestion` / `needs_human_mapping`.
+
+### R3 — `docs/_review/...` receives only Class `R`
+
+`sync-review --refresh-review params` preserves manual review prose but re-pulls
+parameter-driven and generated content from source. Writing Class `T` or `D` into
+`_review` would therefore be clobbered on the next sync, or conflict with
+re-resolution. Keeping `_review` Class-`R`-only is what makes sync-review
+idempotent. **Class `T` is never written to `_review`** — it is proposal-only
+(2026-06-18 decision: strict).
+
+### R4 — Template-sync proposal contract
+
+For each Class `T` delta, a review-backport run emits
+`template_sync_proposal.json/.md` (an artifact, not a write) carrying:
+
+- target template file(s) under `docs/templates/...`;
+- family scope: which sibling targets share this span;
+- `old_text` → `new_text` plus evidence (provenance, heading path, line number);
+- the required post-apply step: rebuild + `sync-review` for affected targets;
+- a stable delta hash for idempotent re-application.
+
+This proposal is the contract consumed by the template-sync role.
+
+### R5 — The `R` vs `T` decision
+
+- `T` when the `old_text` span exists **identically across the family** template
+  (changing it should change all sharing targets). Detect with the family residual
+  scanner (`scan_residuals --scope`, shared rows always kept).
+- `R` when the span is unique to this target with no template/data origin.
+- **Intentional-divergence gate (irreducible human judgment).** When a span
+  originates in a shared template but the reviewer may want it changed for this
+  target only, backport does **not** auto-classify. It flags
+  `needs_decision: shared (T) or target-only (R)?`; the operator (or a recorded
+  rule) decides, and the decision is recorded so R7's rebuild check does not treat
+  an intentional override as drift (2026-06-18 decision: flag-and-ask).
+
+### R6 — Template-sync role handoff contract (operator now, agent later)
+
+The template-sync role consumes `template_sync_proposal.json` and:
+
+- writes **only** `docs/templates/...` (plus recipe/config when the binding is proven);
+- never touches `docs/_review/...`, Feishu source tables, `.github/**`, branch rules, or source-table schema;
+- treats proposal and doc text as untrusted input (ignores embedded instructions);
+- runs behind an operator allowlist and opens a PR; it does not self-merge;
+- is not "done" until it passes R7.
+
+This bounded contract is what makes the work safe to delegate to a dedicated agent.
+
+### R7 — Idempotency gate (the machine definition of "not messy")
+
+After backport (`_review`) and template-sync (`templates`) have applied, a full
+rebuild from sources must:
+
+1. reproduce the reviewer's accepted document, and
+2. change nothing else — no sibling pollution, no broken token, no unexpected diff
+   outside the intended spans (recorded intentional overrides excepted).
+
+Implement as a `rebuild + rediff` extension of `verify-review`: residuals must be
+zero **and** no extra diff may appear.
+
+### R8 — Prerequisites that make R2/R5 reliable
+
+- a build-time **token/copy resolution map** per target, to recognize Class `D`
+  spans without guessing;
+- a **family-identical check** (reuse the residual scanner) to recognize Class `T`
+  and its sibling scope.
+
+Without these, the classification and the proposal are guesswork. They are the
+lightweight form of build-time provenance.
+
+### R9 — Source-table write approval (审批制)
+
+Bitable content is the source of truth for many models — a shared-row edit fans
+out to every linked target on the next sync, and Bitable has no git history to
+revert. Content writes are therefore the most strongly gated path.
+
+- **Human approval is mandatory.** Every Bitable content write must be explicitly
+  approved by the operator (夏冰 or an authorized approver). An agent may *propose*
+  (emit the change request) and *execute* (apply after approval), but it may
+  **never approve** (2026-06-18 decision).
+- **Change request.** For each Class `D` delta, backport/QC emits a
+  `source_table_change_request`: table, exact `record_id`, field, `old` → `new`
+  value, model/region/language scope, **blast radius (every target that shares the
+  row)**, evidence, and a stable delta hash.
+- **Approval entry: Feishu IM.** The executor sends the change-request list (with
+  blast radius) to an allowlisted operator and gates on a single approve/reject IM
+  message, reusing the existing OpenClaw/Feishu IM control plane (2026-06-18
+  decision). The approval is recorded (approver, timestamp, request hash).
+- **Exact-or-abstain.** A write needs an exact `record_id`; without it the request
+  stays un-applyable. This depends on the sync-time `record_id` sidecar
+  (Workstream I). Ambiguous or duplicate-row matches abstain and flag — never a
+  guessed write.
+- **Executor.** Approved requests are applied via `lark-cli --as bot`, with
+  GET-verify-after-write and delta-hash idempotency; then `sync-data`
+  (operator-gated) pulls them into snapshots so the change reaches all models on
+  rebuild.
+- **Scope.** This covers Bitable **content fields** (Class `D`). Table **schema**
+  changes remain a separate operator-gated action (`AGENTS.md` §8.7).
+- **Audit.** The change-request plus approval log is the audit trail (record the
+  before-value), since Bitable has no version history.
+
 ## 6. Baseline Storage
 
 Reliable backport needs a comparable baseline.
@@ -231,7 +383,8 @@ not add a table or schema before the MVP validates the mapping.
 - Do not modify `.github/**`, `AGENTS.md`, branch rules, or source table schema
   from this workflow.
 - Do not edit `data/phase2/*.csv` for durable changes.
-- Do not auto-write Feishu content fields in the first implementation.
+- Do not auto-write Feishu content fields. Content writes are approval-gated —
+  human approval is mandatory and an agent may never approve (§5.1 R9).
 - Do not infer a template binding from content similarity alone. The operator or
   a binding manifest must identify template-doc targets.
 - If one diff span maps to multiple source files/rows, flag it instead of
@@ -496,8 +649,15 @@ its purpose is source maintenance, not quality marking.
   two later?
 - If source-table suggestions later move into Feishu, should they be represented
   as document comments, a report table, or existing content-table fields?
-- Should P2 template-doc PRs be allowed before the standing agent exists, using
-  Codex/Claude as the executor?
+- (Resolved 2026-06-18) Template changes from a review edit are applied by the
+  template-sync role — operator now, dedicated agent later — from a
+  `template_sync_proposal`; backport itself never writes templates. See §5.1.
+- Build-time provenance: ship the per-target token/copy resolution map and the
+  family-identical check (§5.1 R8) so Class `D`/`T` are detected, not guessed.
+- Idempotency: implement the `rebuild + rediff` gate (§5.1 R7) as the acceptance
+  test for the combined backport + template-sync loop.
+- Family fan-out: should the template-sync proposal apply across all sharing
+  siblings in one run, or one target at a time?
 
 ## 11. References
 
