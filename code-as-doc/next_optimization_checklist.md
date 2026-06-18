@@ -485,9 +485,9 @@ once F1 lands. **F1 is the shared prerequisite for F6 and F8.** Items touching
 `sync-data`, `data/phase2` contracts, `build.py` behavior, or Feishu schema are
 operator-gated (`AGENTS.md` §8.7).
 
-- [ ] PR F1: Sync-time `record_id` sidecar (Workstream I — shared prerequisite)
-  - Status: `pending`
-  - Note: touches `sync-data` + the phase2 contract → operator-gated; this is the detailed form of Milestone E PR E2
+- [x] PR F1: Sync-time `record_id` sidecar (Workstream I — shared prerequisite)
+  - Status: `done`
+  - Note: touches `sync-data` + the phase2 contract → operator-gated; this is the detailed form of Milestone E PR E2. Delivered by `tools/source_record_index.py` (builder/resolver, exact-or-abstain), the `sync_data_runtime` sidecar emission, and `content_lint` resolution (lcd_icons indexed; coverage expands in follow-ups). Live population needs an operator `sync-data`; logic is covered by `tests/test_source_record_index.py`.
   - Target files:
     - [`../tools/sync_data.py`](../tools/sync_data.py)
     - [`../tools/content_lint.py`](../tools/content_lint.py)
