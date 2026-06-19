@@ -196,6 +196,12 @@ python tools/cloud_doc_backport.py run-review-branch \
 >   cursor never advances (routing + apply + advance is phase 3), so an un-applied
 >   edit is never lost. With `--page`, or with no baseline, it falls back to the
 >   per-page RST diff.
+> - **No-baseline write guard (shipped):** a whole-doc `run-review-branch --write`
+>   with **no baseline** is **refused** — that path is the over-reporting
+>   per-page RST diff, and writing it splatters rendered text across many RST pages
+>   (corrupting `.. raw:: latex` / line-blocks). Seed a baseline first (`--seed`)
+>   for a clean diff, or pass `--page <file>` to write one targeted page. A dry-run
+>   (no `--write`) report is still allowed.
 
 **Template guard:** the source path is *derived* from the resolved
 `docs/_review/<model>/<region>` + `--page` — never an arbitrary path — and is
