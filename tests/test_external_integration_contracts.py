@@ -168,6 +168,7 @@ class TestExternalIntegrationContracts(unittest.TestCase):
                 ),
                 publish_word_artifact=fake_publish_word_artifact,
                 import_markdown_to_cloud_doc=lambda **_: ("", ""),
+                finalize_cloud_doc=lambda **kw: kw["cloud_doc_url"],
                 build_success_fields=fake_build_success_fields,
                 queue_record_legacy_doc_phase=lambda _: None,
                 publish_release_latest_dir_for_target=lambda **_: Path("reports/releases/latest"),
