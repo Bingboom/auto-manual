@@ -69,6 +69,19 @@ jobs:
         working-directory: integrations/openclaw/auto-manual-control-layer
         run: npm test
 
+  feishu-adapter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # The adapter has no npm dependencies (Node built-ins only) and no
+      # lockfile, so there is nothing to `npm ci`; run the test script directly.
+      - name: Run Feishu IM webhook adapter tests
+        working-directory: integrations/openclaw/feishu-im-webhook-adapter
+        run: npm test
+
   unit:
     runs-on: ubuntu-latest
     steps:
