@@ -132,6 +132,58 @@ class CollectIndexRowsTests(unittest.TestCase):
         self.assertEqual(resolve_by_table(index, ref), ("recDC", "resolved"))
 
 
+def _mcs_row(copy_key: str, is_latest: str = "true") -> dict[str, str]:
+    return {"copy_key": copy_key, "Is_Latest": is_latest}
+
+
+def _copy_ref(copy_key: str) -> dict[str, str]:
+    # The source_ref shape token_resolution_map emits for a Localized_Copy value.
+    return {"table": "Localized_Copy", "field": "text_it", "copy_key": copy_key}
+
+
+class ManualCopySourceIndexTests(unittest.TestCase):
+    def test_localized_copy_origin_resolves_to_manual_copy_source(self) -> None:
+        normalized = {"manual_copy_source": [_mcs_row("warning.intro")]}
+        raws = {"manual_copy_source": [{"fields": {}, "record_id": "recMC1"}]}
+        index = build_index(collect_index_rows(normalized, raws))
+        self.assertIn("Manual_Copy_Source", index["tables"])
+        self.assertEqual(record_count(index), 1)
+        # A Localized_Copy-origin source_ref resolves to the authoring row.
+        self.assertEqual(resolve_by_table(index, _copy_ref("warning.intro")), ("recMC1", "resolved"))
+
+    def test_non_latest_rows_are_filtered_out(self) -> None:
+        # The stale row shares copy_key but has a different record_id; without the
+        # Is_Latest filter the key would be ambiguous. Only the latest is indexed.
+        normalized = {
+            "manual_copy_source": [
+                _mcs_row("warning.intro", is_latest="false"),
+                _mcs_row("warning.intro", is_latest="true"),
+            ]
+        }
+        raws = {"manual_copy_source": [{"record_id": "recOLD"}, {"record_id": "recNEW"}]}
+        index = build_index(collect_index_rows(normalized, raws))
+        self.assertEqual(record_count(index), 1)
+        self.assertEqual(resolve_by_table(index, _copy_ref("warning.intro")), ("recNEW", "resolved"))
+
+    def test_blank_is_latest_is_kept(self) -> None:
+        # A snapshot that does not populate Is_Latest must not silently empty the index.
+        normalized = {"manual_copy_source": [_mcs_row("warning.intro", is_latest="")]}
+        raws = {"manual_copy_source": [{"record_id": "recMC1"}]}
+        index = build_index(collect_index_rows(normalized, raws))
+        self.assertEqual(resolve_by_table(index, _copy_ref("warning.intro")), ("recMC1", "resolved"))
+
+    def test_collision_among_latest_rows_abstains(self) -> None:
+        normalized = {
+            "manual_copy_source": [
+                _mcs_row("dup.key", is_latest="true"),
+                _mcs_row("dup.key", is_latest="true"),
+            ]
+        }
+        raws = {"manual_copy_source": [{"record_id": "recA"}, {"record_id": "recB"}]}
+        index = build_index(collect_index_rows(normalized, raws))
+        self.assertEqual(resolve_by_table(index, _copy_ref("dup.key")), (None, "ambiguous"))
+
+
 class ResolveFindingsTests(unittest.TestCase):
     def _write_sidecar(self, root: Path, index: dict) -> None:
         (root / SIDECAR_FILENAME).write_text(index_json_text(index), encoding="utf-8")

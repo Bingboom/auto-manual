@@ -115,23 +115,31 @@ append/upsert only.
 
 ---
 
-## Step 4 — Extend the F1 sidecar coverage (follow-up; raises F6 resolution rate)
+## Step 4 — Extend the F1 sidecar coverage — DONE (raised F6 resolution rate)
 
-**Why:** F1 currently indexes `lcd_icons` only, while F2's Class D `source_ref`s are
-mostly `Spec_Master` / `Localized_Copy` — so F6 requests currently abstain
-(`record_id: null`) for those. Extending coverage lets them resolve.
+**Why:** F1 originally indexed `lcd_icons` only, while F2's Class D `source_ref`s are
+mostly `Spec_Master` / `Localized_Copy` — so F6 requests abstained
+(`record_id: null`) for those. Coverage is now extended in
+[`../../tools/source_record_index.py`](../../tools/source_record_index.py):
 
-**Do:** in [`../../tools/source_record_index.py`](../../tools/source_record_index.py):
+1. **`Spec_Master`** (#397): keyed by `document_key` + `Row_key` + `Slot_key`
+   (`Slot_key` disambiguates the `usb_c` 30w/100w collision class).
+2. **`Manual_Copy_Source`** (this is where a copy value is written back —
+   operator decision: the source-of-truth is the **authoring** table, not the
+   `Localized_Copy` rendered derivative). Keyed by `copy_key`, indexing only
+   `Is_Latest` rows so historical versions never shadow the current row. The
+   `Localized_Copy`-origin `source_ref` that F2 emits is resolved against the
+   `Manual_Copy_Source` index via `TABLE_RESOLUTION`'s index-table redirect.
 
-1. Add `Spec_Master` / `Localized_Copy` to `TABLE_KEY_FIELDS` with their
-   uniquely-identifying key columns (for `Spec_Master`, include `Slot_key` or it
-   abstains as ambiguous — that is the `usb_c` collision class).
-2. Add matching `KIND_RESOLUTION` entries (and `INDEXED_LOGICAL_TABLES` for the
-   sync emission) mapping F2's `source_ref` fields to those key columns.
-3. Add tests and open a normal PR.
+Genuine duplicate keys still abstain (exact-or-abstain), so resolution is never a
+guess.
 
-**Verify:** F6 change requests for `Spec_Master` / `Localized_Copy` now resolve to
-a `record_id` instead of abstaining.
+**Verify (live, env-gated):** run `sync-data` with the populated phase2 env, then
+check `source_record_index.json` has non-empty `Spec_Master` / `Manual_Copy_Source`
+`records`; F6 change requests for those tables resolve to a `record_id` instead of
+abstaining. The verification needs the operator's `FEISHU_PHASE2_*` /
+`FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` values — a checkout without them (and without
+a local `data/phase2/` snapshot) cannot exercise this path.
 
 ---
 
