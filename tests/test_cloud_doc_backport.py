@@ -8,11 +8,13 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from tools.cloud_doc_backport import (
     _diff_delta_count,
     _parse_table_bindings,
+    _run_review_branch_baseline,
     build_report,
     fetch_doc_text,
     main,
@@ -1013,6 +1015,93 @@ class DiffDeltaCountTests(unittest.TestCase):
     def test_zero_when_report_absent(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(_diff_delta_count(Path(tmp)), 0)
+
+
+class BaselineDiffTests(unittest.TestCase):
+    """Approach C phase 2: diff the cloud-doc against the stored RENDER baseline.
+
+    Both sides are the rendered manual, so only the reviewer's real edits surface —
+    no RST-source-vs-rendered storm. Mirrors the JE-1000F EU preface case the
+    operator hit: deleting one language block + a small text change should produce a
+    couple of deltas, not ~22 mis-paired ones.
+    """
+
+    BASELINE = (
+        "Preface\n\n"
+        "English / French / Spanish / German / Italian / Ukrainian\n\n"
+        "IMPORTANT\n\n"
+        "Congratulations on your new device.\n"
+    )
+    # reviewer: drop "Ukrainian" + append "- test" to the IMPORTANT heading
+    EDITED = (
+        "Preface\n\n"
+        "English / French / Spanish / German / Italian\n\n"
+        "IMPORTANT - test\n\n"
+        "Congratulations on your new device.\n"
+    )
+
+    def test_render_vs_render_surfaces_only_the_real_edits(self) -> None:
+        report = build_report(
+            run_id="baseline-diff",
+            doc_type="review",
+            doc_url="https://example.feishu.cn/wiki/doc-1",
+            baseline_path=Path("docs/_review/JE-1000F/EU/.backport/doc-1.baseline.md"),
+            fetched_text=self.EDITED,
+            baseline_text=self.BASELINE,
+            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+            source_path=None,
+            section_title=None,
+        )
+        # whole-doc: no section narrowing happens
+        self.assertFalse(report["section_selection"]["applied"])
+        # the two real edits — not a markup-mismatch storm
+        self.assertEqual(report["result"], "DIFF")
+        self.assertLessEqual(report["summary"]["total_deltas"], 3)
+        serialized = json.dumps(report["deltas"], ensure_ascii=False)
+        self.assertIn("IMPORTANT - test", serialized)
+        self.assertNotIn("Ukrainian", report["deltas"][-1].get("new_text", ""))
+
+    def test_identical_baseline_and_cloud_doc_is_no_diff(self) -> None:
+        # After seeding (baseline := current cloud-doc), a re-run with no new edit is
+        # clean — 0 deltas, not the ~22 garbage the RST-source path reported.
+        report = build_report(
+            run_id="baseline-diff",
+            doc_type="review",
+            doc_url="https://example.feishu.cn/wiki/doc-1",
+            baseline_path=Path("docs/_review/JE-1000F/EU/.backport/doc-1.baseline.md"),
+            fetched_text=self.BASELINE,
+            baseline_text=self.BASELINE,
+            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+            source_path=None,
+            section_title=None,
+        )
+        self.assertEqual(report["result"], "NO_DIFF")
+        self.assertEqual(report["summary"]["total_deltas"], 0)
+
+    def test_run_review_branch_baseline_writes_report_and_is_report_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-1",
+                run_id="phase2", out=str(out_dir), lark_cli="lark-cli",
+                write=True, push=True,  # must be a no-op in baseline mode
+            )
+            resolved = {"git_ref": "review/JE-1000F-EU", "pr_url": "https://github.com/x/y/pull/1"}
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=self.EDITED):
+                rc = _run_review_branch_baseline(
+                    args, resolved=resolved, worktree=tmp,
+                    review_dir="docs/_review/JE-1000F/EU", doc_tok="doc-1",
+                    baseline_text=self.BASELINE,
+                )
+            self.assertEqual(rc, 0)
+            report_json = out_dir / "cloud_doc_backport_report.json"
+            self.assertTrue(report_json.is_file())
+            payload = json.loads(report_json.read_text(encoding="utf-8"))
+            self.assertEqual(payload["result"], "DIFF")
+            self.assertFalse(payload["section_selection"]["applied"])
+            # --write/--push must not have mutated the worktree (report-only)
+            backport_dir = Path(tmp) / "docs/_review/JE-1000F/EU/.backport"
+            self.assertFalse((backport_dir / "doc-1.baseline.md").exists())
 
 
 if __name__ == "__main__":

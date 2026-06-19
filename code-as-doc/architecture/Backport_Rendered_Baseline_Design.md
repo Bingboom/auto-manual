@@ -164,8 +164,15 @@ source-vs-rendered noise, phases 3–4 add incremental + source routing.
   store/load) + `run-review-branch --seed` (store the current cloud-doc as the
   baseline; `--reseed` to overwrite; `--push` commits it). This covers legacy
   seeding (§7.2) and the storage foundation.
-- **Phase 2 (next):** baseline-diff in `run-review-branch` (diff `C_now` vs the
-  stored baseline instead of the RST page) + cursor advance on full apply (§5–§6).
-- **Phase 3 (next):** route the clean deltas through F2/F3/F6 (§8).
+- **Phase 2 (shipped):** baseline-diff in `run-review-branch`
+  (`_run_review_branch_baseline`). When a render baseline exists for the resolved
+  doc (and no `--page`), the run diffs `C_now` against the stored baseline via
+  `build_report` (whole-doc, no section narrowing) instead of the per-page RST
+  diff. **Report-only** — it never advances the cursor and `--write`/`--push` are an
+  explicit no-op (routing + apply is phase 3), so an un-applied edit can never be
+  buried (§6). Verified live on JE-1000F EU: the render baseline reports the
+  reviewer's **2** real edits where the RST-source path reported **293**.
+- **Phase 3 (next):** route the clean deltas through F2/F3/F6 (§8) and advance the
+  cursor on a full apply (§5 step 6, §6).
 - **Phase 4 (next):** store R0 at review-start (§9.1) so new reviews are clean from
   edit #1.
