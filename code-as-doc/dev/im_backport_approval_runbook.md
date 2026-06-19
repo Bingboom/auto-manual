@@ -128,6 +128,30 @@ Feishu columns must match that namespace — true for a Spec_Master-shaped sandb
   id does not by itself say which sub-table to write. Bind it only to a table whose
   rows the record ids actually belong to.
 
+## Review-branch resolution (where `docs/_review/...` lives)
+
+A target's `docs/_review/<model>/<region>/` tree exists only on its **review
+branch** — recorded as `Git_ref` in the Document_link build table (`文档构建表`),
+created when the review started — not on the default branch a backport runs from.
+A `cloud-doc backport` that runs on the default checkout therefore reports the
+`_review` source as "not found".
+
+Map the edited cloud-doc to its review branch with:
+
+```sh
+python tools/cloud_doc_backport.py resolve-review-branch \
+  --cloud-doc "<feishu cloud-doc URL>" --identity bot
+# -> {git_ref, model, region, review_dir: docs/_review/<model>/<region>, pr_url, ...}
+```
+
+It matches the cloud-doc by its doc token against the `飞书云文档` column (needs
+`FEISHU_PHASE2_BASE_TOKEN` + `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`), resolves the
+`Git_ref` + `Document_ID` → `docs/_review/<model>/<region>`, and abstains when a
+cloud-doc maps to more than one distinct branch. The backport must then run against
+that `Git_ref` branch (so `_review` exists) and write back to it / update its PR —
+wiring that worktree run into the CLI is the next step (this command is the
+deterministic resolver it builds on).
+
 ## References
 
 - Design: [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md) §5.1 R9
