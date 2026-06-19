@@ -254,12 +254,60 @@ def resolve_by_table(index: dict[str, Any], source_ref: dict[str, Any]) -> tuple
     return None, "unresolved"
 
 
-def resolve_findings(findings: list[dict[str, Any]], root: Path) -> list[dict[str, Any]]:
-    """Fill ``record_id`` / ``resolution_status`` on findings using the sidecar.
+# content_lint ``source_ref`` ``kind`` -> (index table, ((source_ref_field, key_field), ...))
+# for ROW-LEVEL findings: a finding about a whole spec row (the sidecar indexes at
+# Slot_key granularity, so a row maps to MANY slot records). The fields here are a
+# *prefix* of the index table's key — unlisted key fields (e.g. Slot_key) act as
+# wildcards. Resolution returns the LIST of the row's slot record_ids.
+ROW_KIND_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
+    "spec_master_row": ("Spec_Master", (("document_key", "document_key"), ("key", "Row_key"))),
+}
 
-    When no sidecar exists the findings are returned unchanged (they keep their
-    ``snapshot_only`` status). ``record_id`` is not part of the finding hash, so
-    resolving in place does not change ``finding_hash``.
+
+def resolve_row_record_ids(
+    index: dict[str, Any], *, kind: str, source_ref: dict[str, Any]
+) -> tuple[list[str], str]:
+    """Resolve a row-level finding to ALL matching slot record_ids.
+
+    The finding fixes a whole row that spans multiple ``Slot_key`` records, so a
+    single ``record_id`` does not exist; this returns the de-duplicated list of
+    the row's slot record_ids. 0 matches -> ``unresolved``; otherwise ``resolved``.
+    """
+    spec = ROW_KIND_RESOLUTION.get(kind)
+    if spec is None:
+        return [], "unresolved"
+    table, field_map = spec
+    table_index = (index.get("tables") or {}).get(table)
+    if not isinstance(table_index, dict):
+        return [], "unresolved"
+    key_fields = list(table_index.get("key_fields") or [])
+    want = {key_field: _clean(source_ref.get(ref_field)) for ref_field, key_field in field_map}
+    if not all(want.values()):
+        return [], "unresolved"
+    out: list[str] = []
+    seen: set[str] = set()
+    for composite, record_id in (table_index.get("records") or {}).items():
+        parts = dict(zip(key_fields, composite.split(_KEY_SEP)))
+        if all(parts.get(key_field) == value for key_field, value in want.items()):
+            if record_id not in seen:
+                seen.add(record_id)
+                out.append(record_id)
+    return out, ("resolved" if out else "unresolved")
+
+
+def resolve_findings(findings: list[dict[str, Any]], root: Path) -> list[dict[str, Any]]:
+    """Fill ``record_id`` / ``record_ids`` / ``resolution_status`` on findings using
+    the sidecar.
+
+    - A single-record kind (e.g. ``lcd_icon``) sets ``record_id``.
+    - A row-level kind (e.g. ``spec_master_row``) sets ``record_ids`` (the row's
+      slot records) and also ``record_id`` when the row has exactly one slot.
+    - Other kinds are left as-is (``snapshot_only``) rather than marked unresolved
+      against a sidecar that never tried to resolve them.
+
+    When no sidecar exists the findings are returned unchanged. ``record_id`` /
+    ``record_ids`` are not part of the finding hash, so resolving in place does not
+    change ``finding_hash``.
     """
 
     index = load_index(root)
@@ -268,12 +316,16 @@ def resolve_findings(findings: list[dict[str, Any]], root: Path) -> list[dict[st
     for finding in findings:
         source_ref = finding.get("source_ref") or {}
         kind = source_ref.get("kind")
-        if not kind or kind not in KIND_RESOLUTION:
-            # Leave kinds we do not index as snapshot_only rather than marking them
-            # unresolved against a sidecar that never tried to resolve them.
-            continue
-        record_id, status = resolve(index, kind=str(kind), source_ref=source_ref)
-        finding["resolution_status"] = status
-        if record_id is not None:
-            finding["record_id"] = record_id
+        if kind and kind in KIND_RESOLUTION:
+            record_id, status = resolve(index, kind=str(kind), source_ref=source_ref)
+            finding["resolution_status"] = status
+            if record_id is not None:
+                finding["record_id"] = record_id
+        elif kind and kind in ROW_KIND_RESOLUTION:
+            record_ids, status = resolve_row_record_ids(index, kind=str(kind), source_ref=source_ref)
+            finding["resolution_status"] = status
+            if record_ids:
+                finding["record_ids"] = record_ids
+                if len(record_ids) == 1:
+                    finding["record_id"] = record_ids[0]
     return findings

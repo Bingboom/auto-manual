@@ -22,6 +22,7 @@ from tools.source_record_index import (  # noqa: E402
     resolve,
     resolve_by_table,
     resolve_findings,
+    resolve_row_record_ids,
 )
 
 
@@ -230,6 +231,64 @@ class JsonTextTests(unittest.TestCase):
         text_b = index_json_text(build_index({"lcd_icons_blocks": [(_lcd_row("battery", "JE-1000F", "0.7"), "recAAA")]}))
         self.assertEqual(text_a, text_b)
         self.assertEqual(json.loads(text_a)["schema_version"], "source-record-index/v1")
+
+
+def _spec_slot(document_key: str, row_key: str, slot_key: str) -> dict[str, str]:
+    return {"document_key": document_key, "Row_key": row_key, "Slot_key": slot_key}
+
+
+def _spec_row_finding(document_key: str, row_key: str) -> dict[str, object]:
+    # content_lint's spec_overview_drift shape: row-level, uses `key` for Row_key.
+    return {
+        "rule": "spec_overview_drift",
+        "resolution_status": "snapshot_only",
+        "source_ref": {"kind": "spec_master_row", "table": "Spec_Master", "document_key": document_key, "key": row_key},
+    }
+
+
+class RowResolutionTests(unittest.TestCase):
+    def _index(self):
+        return build_index(
+            {
+                "Spec_Master": [
+                    (_spec_slot("D", "ac_input", "label"), "recA"),
+                    (_spec_slot("D", "ac_input", "spec"), "recB"),
+                    (_spec_slot("D", "usb_a", "main"), "recC"),  # single slot
+                    (_spec_slot("E", "ac_input", "label"), "recOther"),  # other document
+                ]
+            }
+        )
+
+    def test_row_resolves_to_all_slot_record_ids(self) -> None:
+        ids, status = resolve_row_record_ids(
+            self._index(), kind="spec_master_row", source_ref={"document_key": "D", "key": "ac_input"}
+        )
+        self.assertEqual(status, "resolved")
+        self.assertEqual(sorted(ids), ["recA", "recB"])  # both slots, not the other document's
+
+    def test_unknown_row_is_unresolved(self) -> None:
+        ids, status = resolve_row_record_ids(
+            self._index(), kind="spec_master_row", source_ref={"document_key": "D", "key": "missing"}
+        )
+        self.assertEqual((ids, status), ([], "unresolved"))
+
+    def test_missing_key_field_abstains(self) -> None:
+        ids, status = resolve_row_record_ids(
+            self._index(), kind="spec_master_row", source_ref={"document_key": "D"}
+        )
+        self.assertEqual((ids, status), ([], "unresolved"))
+
+    def test_resolve_findings_sets_record_ids_for_row_kind(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / SIDECAR_FILENAME).write_text(index_json_text(self._index()), encoding="utf-8")
+            findings = resolve_findings([_spec_row_finding("D", "ac_input"), _spec_row_finding("D", "usb_a")], root)
+            self.assertEqual(findings[0]["resolution_status"], "resolved")
+            self.assertEqual(sorted(findings[0]["record_ids"]), ["recA", "recB"])
+            self.assertNotIn("record_id", findings[0])  # multi-slot -> no single record_id
+            # single-slot row exposes record_id too
+            self.assertEqual(findings[1]["record_ids"], ["recC"])
+            self.assertEqual(findings[1]["record_id"], "recC")
 
 
 if __name__ == "__main__":
