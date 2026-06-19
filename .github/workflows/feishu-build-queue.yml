@@ -37,6 +37,9 @@ jobs:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
       FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
       FEISHU_PHASE2_IDENTITY: bot
+      # Auto-grant the built (bot-owned) cloud doc to the operator so they edit it
+      # directly instead of making a 副本; used when a build row has no operator_union_id.
+      FEISHU_CLOUD_DOC_DEFAULT_EDITOR: ou_377437909529b57c474e7b9004edecb2
       FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
       FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID }}
       FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID }}
