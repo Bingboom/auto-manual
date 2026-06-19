@@ -21,6 +21,7 @@ from tools.queue_cloud_doc_finalize import (  # noqa: E402
     finalize_cloud_doc,
     grant_doc_full_access,
     is_wiki_destination,
+    resolve_cloud_doc_grantee,
 )
 from tools.queue_lark_ops import move_drive_file_to_wiki  # noqa: E402
 
@@ -107,8 +108,8 @@ class FinalizeCloudDocTests(unittest.TestCase):
         move_calls: list[tuple[str, str]] = []
         warnings: list[str] = []
 
-        def grant(*, doc_token: str, member_id: str) -> None:
-            grant_calls.append((doc_token, member_id))
+        def grant(*, doc_token: str, member_id: str, member_type: str) -> None:
+            grant_calls.append((doc_token, member_id, member_type))
             if grant_exc:
                 raise grant_exc
 
@@ -125,13 +126,14 @@ class FinalizeCloudDocTests(unittest.TestCase):
         url = finalize_cloud_doc(
             cloud_doc_token="docTOK",
             cloud_doc_url="https://x.feishu.cn/docx/docTOK",
-            member_union_id="on_union_xyz",
+            grantee_member_id="on_union_xyz",
+            grantee_member_type="unionid",
             destination=WIKI_DEST,
             grant_full_access=grant,
             move_to_wiki=move,
             on_warning=warnings.append,
         )
-        self.assertEqual(grant_calls, [("docTOK", "on_union_xyz")])
+        self.assertEqual(grant_calls, [("docTOK", "on_union_xyz", "unionid")])
         self.assertEqual(move_calls, [("docTOK", "https://x.feishu.cn/docx/docTOK")])
         self.assertEqual(url, "https://x.feishu.cn/wiki/wTok")  # wiki URL after move
         self.assertEqual(warnings, [])
@@ -141,7 +143,8 @@ class FinalizeCloudDocTests(unittest.TestCase):
         url = finalize_cloud_doc(
             cloud_doc_token="docTOK",
             cloud_doc_url="https://x/docx/docTOK",
-            member_union_id="",
+            grantee_member_id="",
+            grantee_member_type="",
             destination=WIKI_DEST,
             grant_full_access=grant,
             move_to_wiki=move,
@@ -155,12 +158,13 @@ class FinalizeCloudDocTests(unittest.TestCase):
         url = finalize_cloud_doc(
             cloud_doc_token="docTOK",
             cloud_doc_url="https://x/docx/docTOK",
-            member_union_id="on_union_xyz",
+            grantee_member_id="on_union_xyz",
+            grantee_member_type="unionid",
             destination=NON_WIKI_DEST,
             grant_full_access=grant,
             move_to_wiki=move,
         )
-        self.assertEqual(grant_calls, [("docTOK", "on_union_xyz")])
+        self.assertEqual(grant_calls, [("docTOK", "on_union_xyz", "unionid")])
         self.assertEqual(move_calls, [])  # no wiki dest -> no move
         self.assertEqual(url, "https://x/docx/docTOK")  # original import URL
 
@@ -169,7 +173,8 @@ class FinalizeCloudDocTests(unittest.TestCase):
         url = finalize_cloud_doc(
             cloud_doc_token="docTOK",
             cloud_doc_url="https://x/docx/docTOK",
-            member_union_id="on_union_xyz",
+            grantee_member_id="on_union_xyz",
+            grantee_member_type="unionid",
             destination=WIKI_DEST,
             grant_full_access=grant,
             move_to_wiki=move,
@@ -186,7 +191,8 @@ class FinalizeCloudDocTests(unittest.TestCase):
         url = finalize_cloud_doc(
             cloud_doc_token="docTOK",
             cloud_doc_url="https://x/docx/docTOK",
-            member_union_id="on_union_xyz",
+            grantee_member_id="on_union_xyz",
+            grantee_member_type="unionid",
             destination=WIKI_DEST,
             grant_full_access=grant,
             move_to_wiki=move,
@@ -195,6 +201,33 @@ class FinalizeCloudDocTests(unittest.TestCase):
         self.assertEqual(len(warnings), 1)
         self.assertIn("co-location failed", warnings[0])
         self.assertEqual(url, "https://x/docx/docTOK")  # fallback: keep import URL
+
+
+class ResolveGranteeTests(unittest.TestCase):
+    def test_operator_union_id_wins(self) -> None:
+        self.assertEqual(
+            resolve_cloud_doc_grantee(operator_union_id="on_op", default_editor="ou_default"),
+            ("on_op", "unionid"),
+        )
+
+    def test_falls_back_to_default_editor_when_no_operator(self) -> None:
+        # build rows have no operator today -> the configured default editor is used
+        self.assertEqual(
+            resolve_cloud_doc_grantee(operator_union_id="", default_editor="ou_default"),
+            ("ou_default", "openid"),
+        )
+
+    def test_default_editor_type_inferred_from_prefix(self) -> None:
+        self.assertEqual(resolve_cloud_doc_grantee(default_editor="ou_x"), ("ou_x", "openid"))
+        self.assertEqual(resolve_cloud_doc_grantee(default_editor="on_x"), ("on_x", "unionid"))
+
+    def test_default_editor_explicit_type_prefix(self) -> None:
+        self.assertEqual(resolve_cloud_doc_grantee(default_editor="userid:abc"), ("abc", "userid"))
+        self.assertEqual(resolve_cloud_doc_grantee(default_editor="openid:ou_x"), ("ou_x", "openid"))
+
+    def test_empty_when_neither_set(self) -> None:
+        self.assertEqual(resolve_cloud_doc_grantee(), ("", ""))
+        self.assertEqual(resolve_cloud_doc_grantee(operator_union_id="  ", default_editor="  "), ("", ""))
 
 
 if __name__ == "__main__":

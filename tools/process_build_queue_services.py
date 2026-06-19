@@ -16,6 +16,7 @@ from tools.queue_group_processing import process_queue_record_group as _process_
 from tools.queue_cloud_doc_finalize import (
     finalize_cloud_doc as _finalize_cloud_doc_impl,
     grant_doc_full_access as _grant_doc_full_access_impl,
+    resolve_cloud_doc_grantee as _resolve_cloud_doc_grantee_impl,
 )
 from tools.queue_lark_ops import (
     host_root_from_url as _host_root_from_url_impl,
@@ -90,16 +91,22 @@ def finalize_cloud_doc(
 ) -> str:
     """Grant the operator edit access on the bot-owned cloud doc + co-locate it in
     the Word's wiki node. Best-effort; returns the doc URL (wiki URL after move)."""
+    grantee_member_id, grantee_member_type = _resolve_cloud_doc_grantee_impl(
+        operator_union_id=member_union_id,
+        default_editor=os.environ.get("FEISHU_CLOUD_DOC_DEFAULT_EDITOR", ""),
+    )
     return _finalize_cloud_doc_impl(
         cloud_doc_token=cloud_doc_token,
         cloud_doc_url=cloud_doc_url,
-        member_union_id=member_union_id,
+        grantee_member_id=grantee_member_id,
+        grantee_member_type=grantee_member_type,
         destination=destination,
-        grant_full_access=lambda *, doc_token, member_id: _grant_doc_full_access_impl(
+        grant_full_access=lambda *, doc_token, member_id, member_type: _grant_doc_full_access_impl(
             cli_bin=cli_bin,
             identity=identity,
             doc_token=doc_token,
             member_id=member_id,
+            member_type=member_type,
             run_lark_cli_json=module._run_lark_cli_json,
         ),
         move_to_wiki=lambda *, obj_token, doc_url: _move_drive_file_to_wiki_impl(
