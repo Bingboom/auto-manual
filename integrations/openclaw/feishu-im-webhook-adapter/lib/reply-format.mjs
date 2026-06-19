@@ -542,5 +542,19 @@ export function formatCloudDocBackportApprovalResultReply(result = {}, localProf
       lines.push(`… +${translation.length - 3} more`);
     }
   }
+  const tm = result.translation_apply || {};
+  const tmSummary = tm.summary || {};
+  if (tm.summary) {
+    lines.push(
+      `tm_writes: ${tm.external_write ? "write" : "dry-run"} — written ${tmSummary.written ?? 0}, ` +
+        `already ${tmSummary.already ?? 0}, apply ${tmSummary.apply ?? 0}, skip ${tmSummary.skip ?? 0}, ` +
+        `verify_failed ${tmSummary.verify_failed ?? 0}, error ${tmSummary.error ?? 0}`
+    );
+    if (!tm.external_write && (tmSummary.apply ?? 0) > 0) {
+      lines.push(
+        "TM-write 关闭中：译文仅出计划。开启 FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_TM_WRITE=true + 配 TM_BINDING 后重发可写入 TM。"
+      );
+    }
+  }
   return lines.filter(Boolean).join("\n");
 }

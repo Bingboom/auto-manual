@@ -945,6 +945,49 @@ class ApplySourceTableCliTest(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 _parse_table_bindings([bad])
 
+    def _write_report_with_translation(self, root: Path) -> Path:
+        report = {
+            "schema_version": "source-table-change-request/v1",
+            "run_id": "rr",
+            "requests": [
+                {
+                    "delta_hash": "t1",
+                    "table": "Localized_Copy",
+                    "field": "text_it",
+                    "record_id": None,
+                    "resolution_status": "translation_abstain",
+                    "old_text": "Vecchio",
+                    "new_text": "Nuovo",
+                    "source_ref": {"table": "Localized_Copy", "copy_key": "k1", "lang": "it", "source_lang": "en"},
+                }
+            ],
+            "translation_suggestions": [
+                {"delta_hash": "t1", "copy_key": "k1", "lang": "it", "source_lang": "en", "old_text": "Vecchio", "new_text": "Nuovo"},
+            ],
+        }
+        path = root / "cloud_doc_backport_source_table_change_request.json"
+        path.write_text(json.dumps(report), encoding="utf-8")
+        return path
+
+    def test_translation_suggestion_dry_run_plans_tm_write(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            report_path = self._write_report_with_translation(root)
+            exit_code = main(["apply-source-table", "--report", str(report_path), "--approve", "t1"])
+            self.assertEqual(exit_code, 0)
+            apply_report = json.loads((root / "cloud_doc_backport_source_table_apply.json").read_text("utf-8"))
+            tm = apply_report["translation_apply"]
+            self.assertFalse(tm["external_write"])  # dry-run
+            self.assertEqual(tm["summary"]["apply"], 1)  # approved translation would be written to TM
+            self.assertEqual(tm["plan"][0]["resolution_status"], "deferred")
+
+    def test_tm_write_requires_tm_binding(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            report_path = self._write_report_with_translation(root)
+            exit_code = main(["apply-source-table", "--report", str(report_path), "--approve", "t1", "--tm-write"])
+            self.assertEqual(exit_code, 2)  # no --tm-binding -> refuse
+
 
 if __name__ == "__main__":
     unittest.main()

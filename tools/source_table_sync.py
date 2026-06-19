@@ -295,6 +295,16 @@ def load_change_requests(report_path: Path) -> tuple[list[dict[str, Any]], str |
     return requests, payload.get("run_id")
 
 
+def load_translation_suggestions(report_path: Path) -> list[dict[str, Any]]:
+    """Load the change-request report's ``translation_suggestions`` (the abstained
+    translation copy edits whose home is the TM). Returns ``[]`` when absent."""
+    payload = json.loads(Path(report_path).read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        return []
+    items = payload.get("translation_suggestions")
+    return items if isinstance(items, list) else []
+
+
 def source_table_apply_markdown(report: dict[str, Any]) -> str:
     summary = report.get("summary") or {}
     lines = [
@@ -339,6 +349,25 @@ def source_table_apply_markdown(report: dict[str, Any]) -> str:
             lines.append(
                 f"- `{item.get('copy_key')}` [{item.get('lang')}] (delta `{item.get('delta_hash')}`): "
                 f"{item.get('old_text')!r} → {item.get('new_text')!r}"
+            )
+        lines.append("")
+    tm_apply = report.get("translation_apply") or {}
+    tm_summary = tm_apply.get("summary") or {}
+    if tm_apply:
+        lines.append("## Translation_Memory writes")
+        lines.append("")
+        lines.append(
+            f"- {'WRITE' if tm_apply.get('external_write') else 'dry-run'}: "
+            f"apply {tm_summary.get('apply', 0)}, skip {tm_summary.get('skip', 0)} / "
+            f"written {tm_summary.get('written', 0)}, already {tm_summary.get('already', 0)}, "
+            f"verify_failed {tm_summary.get('verify_failed', 0)}, error {tm_summary.get('error', 0)}"
+        )
+        for entry in tm_apply.get("applied") or []:
+            status = entry.get("status", "?")
+            detail = f" — {entry['error']}" if entry.get("error") else ""
+            lines.append(
+                f"- `{status}` `{entry.get('copy_key')}` [{entry.get('lang')}] → TM `{entry.get('field')}` "
+                f"record `{entry.get('record_id')}` (delta `{entry.get('delta_hash')}`){detail}"
             )
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"

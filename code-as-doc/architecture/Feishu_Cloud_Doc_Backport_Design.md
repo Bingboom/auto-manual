@@ -355,10 +355,15 @@ dry-run; enabling review writes never enables Bitable writes). Per-table targets
 explicit via `FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS`
 (`TABLE=BASE:TABLE_ID`); an unmapped table is isolated per-request and skipped.
 Operator steps: [`../dev/im_backport_approval_runbook.md`](../dev/im_backport_approval_runbook.md).
-Copy write-back is mapped for **source-language** edits (reviewed lang == the copy's
-`Source_lang` → write `Manual_Copy_Source.source_text`); **translation** copy edits
-abstain (`translation_abstain`) because their home is the `Translation_Memory` —
-routing those to the TM is a future follow-up.
+Copy write-back is routed by language: a **source-language** edit (reviewed lang ==
+the copy's `Source_lang`) writes `Manual_Copy_Source.source_text`; a **translation**
+edit abstains at the source boundary and is written to the **`Translation_Memory`**
+instead (`tools/translation_memory_sync.apply_translation_suggestions`), resolved by
+`(target-language column, old translation)` exact-or-abstain, GET-verified and
+idempotent. TM writes are gated SEPARATELY again — `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_TM_WRITE`
++ `FEISHU_IM_CLOUD_DOC_BACKPORT_TM_BINDING` — because TM is the widest blast radius
+(a shared sentence fans out to every model on the next sync). A single `approve`
+routes each delta to its correct target; each write needs its own gate on.
 
 ## 6. Baseline Storage
 

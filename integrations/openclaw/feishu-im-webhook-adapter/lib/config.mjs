@@ -76,6 +76,11 @@ export function loadAdapterConfig() {
     // Writable Feishu bindings per change-request table, comma-separated
     // `TABLE=BASE_TOKEN:TABLE_ID` (e.g. `Manual_Copy_Source=bascn…:tbl…`).
     cloudDocBackportSourceTableBindings: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS"),
+    // Translation_Memory writes are gated SEPARATELY again — TM is shared across
+    // every model, the widest blast radius. Default OFF.
+    cloudDocBackportAllowTmWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_TM_WRITE", false),
+    // The single TM binding `BASE_TOKEN:TABLE_ID`.
+    cloudDocBackportTmBinding: String(process.env.FEISHU_IM_CLOUD_DOC_BACKPORT_TM_BINDING || "").trim(),
     cloudDocBackportApprovalLog:
       String(process.env.FEISHU_IM_CLOUD_DOC_BACKPORT_APPROVAL_LOG || "").trim() ||
       path.join(repoRoot, "reports", "cloud_doc_backport", "approval_audit.jsonl"),
