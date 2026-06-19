@@ -36,14 +36,15 @@ _KEY_SEP = "\x1f"
 TABLE_KEY_FIELDS: dict[str, tuple[str, ...]] = {
     # icon_en + Model + Version uniquely identifies an LCD icon row.
     "lcd_icons_blocks": ("icon_en", "Model", "Version"),
-    # NOTE: Spec_Master is intentionally not indexed yet: (document_key, Row_key)
-    # is non-unique by design (Slot_key disambiguation), so it would always
-    # abstain. Add it once findings carry Slot_key.
+    # document_key + Row_key + Slot_key uniquely identifies a Spec_Master row
+    # (Slot_key disambiguates the usb_c 30w/100w collision class).
+    "Spec_Master": ("document_key", "Row_key", "Slot_key"),
 }
 
 # sync logical table name -> index table name used in the sidecar / source_ref.
 INDEXED_LOGICAL_TABLES: dict[str, str] = {
     "lcd_icons": "lcd_icons_blocks",
+    "spec_master": "Spec_Master",
 }
 
 # content_lint source_ref ``kind`` -> (index table, ((source_ref_field, key_field), ...)).

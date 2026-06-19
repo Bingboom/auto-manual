@@ -780,14 +780,12 @@ class TestSyncData(unittest.TestCase):
             with (root / "data" / "phase2" / "Spec_Master.csv").open("r", encoding="utf-8", newline="") as handle:
                 rows = list(csv.DictReader(handle))
 
-            self.assertEqual(
-                [
-                    ("app_token", "tbl_spec_rows", "view_spec_rows"),
-                    ("app_token", "tbl_placeholders", "view_placeholders"),
-                ],
-                fake_source.calls,
-            )
-            self.assertEqual([("app_token", "tbl_footnotes", None)], fake_source.calls_with_ids)
+            # spec_master sub-tables are now fetched with record ids (for the
+            # source_record_index sidecar), so they appear in calls_with_ids.
+            self.assertEqual([], fake_source.calls)
+            self.assertIn(("app_token", "tbl_spec_rows", "view_spec_rows"), fake_source.calls_with_ids)
+            self.assertIn(("app_token", "tbl_placeholders", "view_placeholders"), fake_source.calls_with_ids)
+            self.assertIn(("app_token", "tbl_footnotes", None), fake_source.calls_with_ids)
             self.assertEqual(2, len(rows))
             spec_row = next(row for row in rows if row["Page"] == "specifications")
             self.assertEqual("JE-1000F", spec_row["Model"])
@@ -1538,7 +1536,11 @@ class TestSyncData(unittest.TestCase):
             with (root / "data" / "phase2" / "Spec_Master.csv").open("r", encoding="utf-8", newline="") as handle:
                 rows = list(csv.DictReader(handle))
 
-            self.assertEqual([("app_token", "tbl_footnotes", None)], fake_source.calls_with_ids)
+            # spec_master ('tbl_master') is now fetched with record ids too.
+            self.assertEqual(
+                [("app_token", "tbl_footnotes", None), ("app_token", "tbl_master", None)],
+                fake_source.calls_with_ids,
+            )
 
             ac_input_row = next(row for row in rows if row["Row_key"] == "ac_input")
             self.assertEqual("ac_bypass", ac_input_row["Param_footnote_refs"])

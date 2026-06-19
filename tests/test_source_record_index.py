@@ -20,6 +20,7 @@ from tools.source_record_index import (  # noqa: E402
     load_index,
     record_count,
     resolve,
+    resolve_by_table,
     resolve_findings,
 )
 
@@ -114,8 +115,21 @@ class CollectIndexRowsTests(unittest.TestCase):
         self.assertEqual(collect_index_rows({}, {}), {})
 
     def test_unindexed_logical_table_is_ignored(self) -> None:
-        rows = collect_index_rows({"spec_master": [{"a": "b"}]}, {"spec_master": [{"record_id": "r"}]})
+        rows = collect_index_rows({"troubleshooting": [{"a": "b"}]}, {"troubleshooting": [{"record_id": "r"}]})
         self.assertEqual(rows, {})
+
+    def test_spec_master_is_indexed_and_resolvable(self) -> None:
+        normalized = {
+            "spec_master": [
+                {"document_key": "JE-1000F_EU", "Row_key": "dc12_port", "Slot_key": "main", "Value_uk": "DC 12 В"}
+            ]
+        }
+        raws = {"spec_master": [{"fields": {}, "record_id": "recDC"}]}
+        index = build_index(collect_index_rows(normalized, raws))
+        self.assertIn("Spec_Master", index["tables"])
+        self.assertEqual(record_count(index), 1)
+        ref = {"table": "Spec_Master", "document_key": "JE-1000F_EU", "row_key": "dc12_port", "slot_key": "main"}
+        self.assertEqual(resolve_by_table(index, ref), ("recDC", "resolved"))
 
 
 class ResolveFindingsTests(unittest.TestCase):

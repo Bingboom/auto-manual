@@ -535,13 +535,21 @@ def sync_phase2_snapshot(
         )
         if logical_name == "spec_master" and spec_rows_source_table_id and placeholders_source_table_id:
             base_token = deps.phase2_base_token(cfg)
+            # Fetch with record ids when the source supports it, so the
+            # source_record_index sidecar can map Spec_Master rows to record ids
+            # (F6). CSV output is unchanged because normalization consumes fields.
+            spec_fetch = (
+                source_with_ids.fetch_records_with_ids
+                if source_with_ids is not None
+                else resolved_source.fetch_records
+            )
             raw_records = [
-                *resolved_source.fetch_records(
+                *spec_fetch(
                     base_token=base_token,
                     table_id=spec_rows_source_table_id,
                     view_id=spec_rows_source_view_id,
                 ),
-                *resolved_source.fetch_records(
+                *spec_fetch(
                     base_token=base_token,
                     table_id=placeholders_source_table_id,
                     view_id=placeholders_source_view_id,
