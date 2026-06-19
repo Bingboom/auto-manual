@@ -17,6 +17,7 @@ from tools.source_table_sync import (  # noqa: E402
     apply_change_requests,
     build_change_request_report,
     build_change_requests,
+    collect_translation_suggestions,
     load_change_requests,
     plan_apply,
     source_table_apply_markdown,
@@ -136,6 +137,57 @@ class CopyWriteTargetTests(unittest.TestCase):
         # A snapshot without Source_lang -> empty source_lang -> safe abstain.
         reqs = build_change_requests(self._copy_diff(lang="en", source_lang=""), sidecar_index=self._sidecar())
         self.assertEqual(reqs[0]["resolution_status"], "translation_abstain")
+
+    def test_source_lang_without_sidecar_is_not_a_translation_suggestion(self) -> None:
+        # Source-language edit whose record_id did not resolve stays a normal
+        # unresolved request, NOT mislabeled as a translation suggestion.
+        reqs = build_change_requests(self._copy_diff(lang="en", source_lang="en"))  # no sidecar
+        self.assertNotEqual(reqs[0]["resolution_status"], "translation_abstain")
+        self.assertEqual(collect_translation_suggestions(reqs), [])
+
+
+class TranslationSuggestionTests(unittest.TestCase):
+    def _translation_diff(self):
+        return {
+            "deltas": [
+                {
+                    "route_class": "source_table_suggestion",
+                    "delta_hash": "t1",
+                    "source_ref": {
+                        "table": "Localized_Copy",
+                        "field": "text_it",
+                        "copy_key": "k1",
+                        "lang": "it",
+                        "source_lang": "en",
+                    },
+                    "old_text": "Vecchio",
+                    "new_text": "Nuovo",
+                }
+            ]
+        }
+
+    def test_apply_report_surfaces_translation_suggestions_without_writing(self) -> None:
+        reqs = build_change_requests(self._translation_diff())
+        report = apply_change_requests(reqs, approved_hashes={"t1"})
+        self.assertEqual(report["summary"]["translation_suggestions"], 1)
+        self.assertEqual(report["summary"]["written"], 0)
+        suggestion = report["translation_suggestions"][0]
+        self.assertEqual(suggestion["copy_key"], "k1")
+        self.assertEqual(suggestion["lang"], "it")
+        self.assertEqual(suggestion["new_text"], "Nuovo")
+        self.assertEqual(suggestion["routing_hint"], "translation_memory")
+
+    def test_change_request_report_surfaces_translation_suggestions(self) -> None:
+        report = build_change_request_report(self._translation_diff())
+        self.assertEqual(report["summary"]["translation_suggestions"], 1)
+        self.assertEqual(report["translation_suggestions"][0]["copy_key"], "k1")
+
+    def test_markdown_includes_translation_section(self) -> None:
+        reqs = build_change_requests(self._translation_diff())
+        report = {**apply_change_requests(reqs, approved_hashes={"t1"}), "run_id": "r"}
+        md = source_table_apply_markdown(report)
+        self.assertIn("Translation suggestions", md)
+        self.assertIn("k1", md)
 
 
 class PlanApplyTests(unittest.TestCase):

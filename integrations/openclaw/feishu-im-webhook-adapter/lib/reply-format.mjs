@@ -528,5 +528,19 @@ export function formatCloudDocBackportApprovalResultReply(result = {}, localProf
     lines.push("evidence:");
     lines.push(...evidence);
   }
+  const translation = Array.isArray(result.translation_suggestions) ? result.translation_suggestions : [];
+  if (translation.length) {
+    const clip = (value) => {
+      const text = String(value ?? "");
+      return text.length > 60 ? `${text.slice(0, 57)}…` : text;
+    };
+    lines.push(`translation_suggestions: ${translation.length}(译文修订,改投 Translation_Memory 或人工处理):`);
+    for (const item of translation.slice(0, 3)) {
+      lines.push(`- ${item.copy_key} [${item.lang}]: ${clip(item.old_text)} → ${clip(item.new_text)}`);
+    }
+    if (translation.length > 3) {
+      lines.push(`… +${translation.length - 3} more`);
+    }
+  }
   return lines.filter(Boolean).join("\n");
 }

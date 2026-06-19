@@ -105,11 +105,14 @@ Feishu columns must match that namespace — true for a Spec_Master-shaped sandb
   is mapped to write the authoring **`Manual_Copy_Source.source_text`** (the record
   id resolves to the authoring row via the F6 sidecar redirect). Bind it with
   `Manual_Copy_Source=<base_token>:<table_id>`.
-- **Translation copy edits abstain.** When the reviewed language is not the copy's
-  source language, the correction's home is the `Translation_Memory`, which is out
-  of F6 scope — the request abstains at the write boundary
-  (`resolution_status: translation_abstain`) and is never written. Routing
-  translation edits to the TM is a future follow-up.
+- **Translation copy edits abstain but are surfaced, not dropped.** When the
+  reviewed language is not the copy's source language, the correction's home is the
+  `Translation_Memory`, which is out of F6 scope — the request abstains at the write
+  boundary (`resolution_status: translation_abstain`) and is never written to
+  source. It is reported as a **translation suggestion** (`copy_key`, `lang`,
+  old → new) in the apply report and replied back through the IM message layer, so a
+  human (or a future TM sync) can act on it. Auto-routing these to the TM is a
+  future follow-up.
 - **Spec_Master** is synced from two sub-tables (spec rows + placeholders); a record
   id does not by itself say which sub-table to write. Bind it only to a table whose
   rows the record ids actually belong to.
