@@ -315,6 +315,7 @@ def move_drive_file_to_wiki(
     host_root_from_url: Callable[[str], str],
     wiki_url_from_host_root: Callable[[str, str], str],
     wait_for_wiki_move_task: Callable[..., str],
+    obj_type: str = "file",
 ) -> str:
     host_root = host_root_from_url(drive_url)
     payload = run_lark_cli_json(
@@ -329,7 +330,7 @@ def move_drive_file_to_wiki(
             json.dumps(
                 {
                     "parent_wiki_token": destination.parent_wiki_token,
-                    "obj_type": "file",
+                    "obj_type": obj_type,
                     "obj_token": file_token,
                 },
                 ensure_ascii=False,

@@ -13,6 +13,10 @@ from tools.queue_build_execution import (
 )
 from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_impl
 from tools.queue_group_processing import process_queue_record_group as _process_queue_record_group_impl
+from tools.queue_cloud_doc_finalize import (
+    finalize_cloud_doc as _finalize_cloud_doc_impl,
+    grant_doc_full_access as _grant_doc_full_access_impl,
+)
 from tools.queue_lark_ops import (
     host_root_from_url as _host_root_from_url_impl,
     import_markdown_to_cloud_doc as _import_markdown_to_cloud_doc_impl,
@@ -71,6 +75,46 @@ def import_markdown_to_cloud_doc(
         repo_root=module.ROOT,
         run_lark_cli_json=module._run_lark_cli_json,
         cli_relative_file_arg=lambda *, repo_root, path: module._cli_relative_file_arg(path),
+    )
+
+
+def finalize_cloud_doc(
+    module: Any,
+    *,
+    cli_bin: str,
+    identity: str,
+    cloud_doc_token: str,
+    cloud_doc_url: str,
+    member_union_id: str,
+    destination: Any,
+) -> str:
+    """Grant the operator edit access on the bot-owned cloud doc + co-locate it in
+    the Word's wiki node. Best-effort; returns the doc URL (wiki URL after move)."""
+    return _finalize_cloud_doc_impl(
+        cloud_doc_token=cloud_doc_token,
+        cloud_doc_url=cloud_doc_url,
+        member_union_id=member_union_id,
+        destination=destination,
+        grant_full_access=lambda *, doc_token, member_id: _grant_doc_full_access_impl(
+            cli_bin=cli_bin,
+            identity=identity,
+            doc_token=doc_token,
+            member_id=member_id,
+            run_lark_cli_json=module._run_lark_cli_json,
+        ),
+        move_to_wiki=lambda *, obj_token, doc_url: _move_drive_file_to_wiki_impl(
+            cli_bin=cli_bin,
+            identity=identity,
+            file_token=obj_token,
+            drive_url=doc_url,
+            destination=destination,
+            obj_type="docx",
+            run_lark_cli_json=module._run_lark_cli_json,
+            host_root_from_url=_host_root_from_url_impl,
+            wiki_url_from_host_root=_wiki_url_from_host_root_impl,
+            wait_for_wiki_move_task=module.wait_for_wiki_move_task,
+        ),
+        on_warning=lambda message: print(f"[build-queue] WARNING {message}", file=module.sys.stderr),
     )
 
 
@@ -615,6 +659,7 @@ def process_build_queue(
         build_document_for_task=module.build_document_for_task,
         publish_word_artifact=module.publish_word_artifact,
         import_markdown_to_cloud_doc=module.import_markdown_to_cloud_doc,
+        finalize_cloud_doc=module.finalize_cloud_doc,
         build_success_fields=module.build_success_fields,
         publish_release_latest_dir_for_target=module._publish_release_latest_dir_for_target,
         write_publish_release_metadata=module.write_publish_release_metadata,

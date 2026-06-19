@@ -93,6 +93,7 @@ from tools.process_build_queue_services import (  # noqa: E402
     build_started_fields as _build_started_fields_service,
     build_success_fields as _build_success_fields_service,
     ensure_dingtalk_session_ready as _ensure_dingtalk_session_ready_service,
+    finalize_cloud_doc as _finalize_cloud_doc_service,
     import_markdown_to_cloud_doc as _import_markdown_to_cloud_doc_service,
     move_drive_file_to_wiki as _move_drive_file_to_wiki_service,
     publish_word_artifact as _publish_word_artifact_service,
@@ -253,6 +254,7 @@ wait_for_wiki_move_task = partial(_wait_for_wiki_move_task_service, _service_mod
 move_drive_file_to_wiki = partial(_move_drive_file_to_wiki_service, _service_module())
 publish_word_artifact = partial(_publish_word_artifact_service, _service_module())
 import_markdown_to_cloud_doc = partial(_import_markdown_to_cloud_doc_service, _service_module())
+finalize_cloud_doc = partial(_finalize_cloud_doc_service, _service_module())
 
 
 def _build_py_target_command(

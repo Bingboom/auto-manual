@@ -1588,6 +1588,14 @@ class TestProcessBuildQueue(unittest.TestCase):
                 cloud_import_calls.append(kwargs)
                 return "doc_token_123", "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123"
 
+            finalize_calls: list[dict[str, object]] = []
+
+            def fake_finalize_cloud_doc(**kwargs: object) -> str:
+                # Keep the leaf test hermetic (no real lark-cli grant/move); just
+                # record the args the leaf passes and echo the import URL back.
+                finalize_calls.append(kwargs)
+                return str(kwargs["cloud_doc_url"])
+
             with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
                 process_build_queue,
                 "resolve_document_link_binding",
@@ -1623,6 +1631,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 side_effect=fake_import_markdown_to_cloud_doc,
             ), mock.patch.object(
                 process_build_queue,
+                "finalize_cloud_doc",
+                side_effect=fake_finalize_cloud_doc,
+            ), mock.patch.object(
+                process_build_queue,
                 "_phase2_identity",
                 return_value="bot",
             ):
@@ -1643,6 +1655,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             success_payload[process_build_queue.FEISHU_CLOUD_DOC_FIELD],
         )
         self.assertIn("cloud_doc=ok", success_payload[process_build_queue.RESULT_FIELD])
+        # the leaf hands the freshly-imported doc to finalize_cloud_doc (grant edit
+        # access + wiki co-location) with the right token / url / wiki destination
+        self.assertEqual(1, len(finalize_calls))
+        self.assertEqual("doc_token_123", finalize_calls[0]["cloud_doc_token"])
+        self.assertEqual(
+            "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123",
+            finalize_calls[0]["cloud_doc_url"],
+        )
+        self.assertEqual("space_123", finalize_calls[0]["destination"].space_id)
 
     def test_process_build_queue_should_fail_when_cloud_doc_import_fails_and_preserve_artifact_link(self) -> None:
         cfg = {

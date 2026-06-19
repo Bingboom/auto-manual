@@ -52,6 +52,7 @@ def process_queue_record_group(
     build_document_for_task: Callable[..., Any],
     publish_word_artifact: Callable[..., Any],
     import_markdown_to_cloud_doc: Callable[..., tuple[str, str]],
+    finalize_cloud_doc: Callable[..., str],
     build_success_fields: Callable[..., dict[str, Any]],
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
     publish_release_latest_dir_for_target: Callable[..., Path],
@@ -248,6 +249,18 @@ def process_queue_record_group(
                 cli_bin=cli_bin,
                 markdown_output_path=md_output_path,
                 identity=identity,
+            )
+            # Grant the operator edit access (the bot owns the import, so without
+            # this they can only make a 副本) and co-locate it in the Word's wiki
+            # node. Best-effort: returns the wiki URL after a move, else the import
+            # URL. Both never fail the build.
+            feishu_cloud_doc_url = finalize_cloud_doc(
+                cli_bin=cli_bin,
+                identity=identity,
+                cloud_doc_token=_cloud_doc_token,
+                cloud_doc_url=feishu_cloud_doc_url,
+                member_union_id=dingtalk_operator_union_id,
+                destination=effective_artifact_destination,
             )
             latest_feishu_cloud_doc_url = feishu_cloud_doc_url
             cloud_doc_status_notes = ("cloud_doc=ok",)
