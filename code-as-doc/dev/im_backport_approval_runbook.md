@@ -203,6 +203,29 @@ python tools/cloud_doc_backport.py run-review-branch \
 >   for a clean diff, or pass `--page <file>` to write one targeted page. A dry-run
 >   (no `--write`) report is still allowed.
 
+### Capturing R0 so a new review backports cleanly
+
+A clean backport needs a render baseline (R0). Capture it **right after the build
+creates the cloud doc, before anyone edits it** — at that moment the fetch is the
+pristine render:
+
+```sh
+python3 tools/cloud_doc_backport.py run-review-branch --seed --push \
+  --doc-name "<doc name>" --cloud-doc "<feishu cloud-doc URL>" --identity bot
+```
+
+Then, as the reviewer edits the cloud doc, `run-review-branch` (whole-doc, no
+`--page`) automatically diffs against R0 and reports **only their real edits**
+(phase 2), instead of the per-page RST garbage.
+
+> ⚠️ Only seed an **edit-free** doc. Seeding a doc that already has un-backported
+> edits declares them "already reviewed" (buries them). A review that started before
+> R0 capture (e.g. one already edited) has no clean bootstrap — handle those edits
+> directly at the source.
+>
+> Auto-running this `--seed` from the build pipeline (so no manual step is needed) is
+> the planned **phase 4**; it is a build-path change and is not wired in yet.
+
 **Template guard:** the source path is *derived* from the resolved
 `docs/_review/<model>/<region>` + `--page` — never an arbitrary path — and is
 hard-refused if it would resolve to `docs/templates/` or `docs/_build/`. So a
