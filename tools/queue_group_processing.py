@@ -5,6 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.queue_contract import BASELINE_DOC_FIELD
 from tools.queue_transitions import append_writeback_failed
 
 
@@ -241,6 +242,7 @@ def process_queue_record_group(
         document_link_dd_url = artifact_result.document_link_dd_url
         latest_document_link_dd_url = document_link_dd_url or None
         feishu_cloud_doc_url = ""
+        baseline_doc_url = ""
         cloud_doc_status_notes: tuple[str, ...] = ()
         if can_write_feishu_cloud_doc:
             if md_output_path is None:
@@ -263,7 +265,24 @@ def process_queue_record_group(
                 destination=effective_artifact_destination,
             )
             latest_feishu_cloud_doc_url = feishu_cloud_doc_url
-            cloud_doc_status_notes = ("cloud_doc=ok",)
+            # Frozen baseline (R0): a second import of the same markdown, placed in the
+            # review-doc node WITHOUT an edit grant. Backport later diffs the editable
+            # 飞书云文档 against this (render-vs-render → only the reviewer's edits).
+            _baseline_token, baseline_doc_url = import_markdown_to_cloud_doc(
+                cli_bin=cli_bin,
+                markdown_output_path=md_output_path,
+                identity=identity,
+            )
+            baseline_doc_url = finalize_cloud_doc(
+                cli_bin=cli_bin,
+                identity=identity,
+                cloud_doc_token=_baseline_token,
+                cloud_doc_url=baseline_doc_url,
+                member_union_id="",
+                destination=effective_artifact_destination,
+                grant=False,
+            )
+            cloud_doc_status_notes = ("cloud_doc=ok", "baseline_doc=ok")
         built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
@@ -281,6 +300,10 @@ def process_queue_record_group(
             write_document_link_dd=can_write_document_link_dd,
             write_feishu_cloud_doc=can_write_feishu_cloud_doc,
         )
+        # Record the frozen baseline doc link alongside the editable one (success_fields
+        # is a plain dict). Backport reads 基线文档 from the row to diff against.
+        if can_write_feishu_cloud_doc and baseline_doc_url:
+            success_fields[BASELINE_DOC_FIELD] = baseline_doc_url
         for group_record in group:
             source.upsert_record(
                 base_token=binding.base_token,

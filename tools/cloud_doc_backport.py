@@ -3088,11 +3088,19 @@ def _run_review_branch(args: argparse.Namespace) -> int:
                 ensure_ascii=False, sort_keys=True,
             ))
             return 0
-        # Approach C (phase 2): when a render baseline exists for this doc, diff the
-        # cloud-doc against it (render-vs-render → only the reviewer's real edits)
-        # instead of the RST-source-vs-rendered per-page diff. Whole-doc only — the
-        # baseline is the whole doc, so --page falls through to the legacy per-page path.
-        baseline_text = load_baseline(worktree, review_dir, doc_tok) if (doc_tok and not args.page) else None
+        # Approach C: diff the cloud-doc against a render baseline (render-vs-render →
+        # only the reviewer's real edits) instead of the RST-source-vs-rendered per-page
+        # diff. Whole-doc only — the baseline is the whole doc, so --page falls through
+        # to the legacy per-page path. Two baseline sources, in order of preference:
+        #   1. the 基线文档 doc recorded on the build-table row (a frozen copy made at
+        #      build time) — fetched and diffed (the copy-doc baseline model);
+        #   2. the on-branch .backport/<doc-token>.baseline.md file (the --seed model).
+        baseline_text = None
+        baseline_doc_url = (resolved.get("baseline_doc_url") or "").strip()
+        if baseline_doc_url and not args.page:
+            baseline_text = fetch_doc_text(baseline_doc_url, lark_cli=args.lark_cli)
+        elif doc_tok and not args.page:
+            baseline_text = load_baseline(worktree, review_dir, doc_tok)
         if baseline_text is not None:
             return _run_review_branch_baseline(
                 args, resolved=resolved, worktree=worktree,

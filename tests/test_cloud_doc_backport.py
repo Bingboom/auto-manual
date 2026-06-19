@@ -1049,6 +1049,32 @@ class RunReviewBranchGuardTests(unittest.TestCase):
         self.assertEqual(rc, 2)  # refused (caught -> return 2)
         self.assertIn("refusing whole-doc --write", err.getvalue())
 
+    def test_baseline_doc_from_row_is_fetched_and_preferred(self) -> None:
+        # A2: when the build-table row has a 基线文档 link, run-review-branch fetches it
+        # as R0 and diffs against it — preferred over the on-branch .backport file.
+        resolved = {
+            "git_ref": "codex/review-id-x", "review_dir": "docs/_review/JE-1000F/US",
+            "pr_url": None, "baseline_doc_url": "https://x.feishu.cn/docx/BASELINE_R0",
+        }
+        captured: dict[str, object] = {}
+
+        def fake_baseline(_args, *, resolved, worktree, review_dir, doc_tok, baseline_text):
+            captured["baseline_text"] = baseline_text
+            return 0
+
+        with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport.ensure_review_worktree", return_value="/tmp/wt"), \
+             patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport.fetch_doc_text", return_value="R0 RENDER TEXT") as fetch, \
+             patch("tools.cloud_doc_backport.load_baseline") as load_file, \
+             patch("tools.cloud_doc_backport._run_review_branch_baseline", side_effect=fake_baseline):
+            rc = _run_review_branch(self._args(write=False, page=None))
+        self.assertEqual(rc, 0)
+        self.assertEqual(captured["baseline_text"], "R0 RENDER TEXT")  # the fetched doc baseline
+        fetch.assert_called_once_with("https://x.feishu.cn/docx/BASELINE_R0", lark_cli="lark-cli")
+        load_file.assert_not_called()  # the .backport file is NOT consulted when the row has a baseline doc
+
     def test_dry_run_whole_doc_not_blocked_by_guard(self) -> None:
         # without --write the guard must NOT fire — a no-baseline whole-doc REPORT is fine.
         import contextlib

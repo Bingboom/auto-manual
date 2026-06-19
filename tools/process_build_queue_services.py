@@ -114,13 +114,21 @@ def finalize_cloud_doc(
     cloud_doc_url: str,
     member_union_id: str,
     destination: Any,  # the Word's destination — NOT used for the review doc (see below)
+    grant: bool = True,
 ) -> str:
     """Grant the operator edit access on the bot-owned cloud doc + place it in the
     dedicated review-doc wiki node (``FEISHU_REVIEW_DOC_WIKI_NODE``), not the Word's
-    node. Best-effort; returns the doc URL (wiki URL after the move)."""
-    grantee_member_id, grantee_member_type = _resolve_cloud_doc_grantee_impl(
-        operator_union_id=member_union_id,
-        default_editor=os.environ.get("FEISHU_CLOUD_DOC_DEFAULT_EDITOR", ""),
+    node. Best-effort; returns the doc URL (wiki URL after the move).
+
+    ``grant=False`` places the doc without granting edit access — used for the
+    frozen baseline (R0) doc, which must stay un-edited."""
+    grantee_member_id, grantee_member_type = (
+        _resolve_cloud_doc_grantee_impl(
+            operator_union_id=member_union_id,
+            default_editor=os.environ.get("FEISHU_CLOUD_DOC_DEFAULT_EDITOR", ""),
+        )
+        if grant
+        else ("", "")
     )
     review_dest = review_doc_wiki_destination(module, cli_bin=cli_bin, identity=identity)
     return _finalize_cloud_doc_impl(
