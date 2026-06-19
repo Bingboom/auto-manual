@@ -34,7 +34,9 @@ from tools.source_table_sync import (  # noqa: E402
     write_change_request_report,
     write_source_table_apply_report,
 )
+from tools.backport_baseline import load_baseline, store_baseline  # noqa: E402
 from tools.review_branch_resolver import (  # noqa: E402
+    doc_token,
     list_in_review_branches,
     match_review_branch,
     match_review_branch_by_name,
@@ -2587,6 +2589,16 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     run_review_branch_parser.add_argument("--page", help="a single review page (e.g. 00_preface.rst); omit to diff the WHOLE doc against every docs/_review/<model>/<region>/page/*.rst")
     run_review_branch_parser.add_argument("--write", action="store_true", help="apply edits to the worktree's _review file (else dry-run)")
     run_review_branch_parser.add_argument("--push", action="store_true", help="commit + push the review branch (updates its PR); needs --write")
+    run_review_branch_parser.add_argument(
+        "--seed",
+        action="store_true",
+        help="store the current cloud-doc as the render baseline (approach C) instead of diffing — declares the current state as 'already reviewed'. Use only when there are no pending un-backported edits. --push commits it.",
+    )
+    run_review_branch_parser.add_argument(
+        "--reseed",
+        action="store_true",
+        help="with --seed: overwrite an existing baseline (default refuses to overwrite)",
+    )
     run_review_branch_parser.add_argument("--worktrees-root", help="where to create review worktrees (default: ../review-worktrees)")
     run_review_branch_parser.add_argument("--remote", default="origin", help="git remote")
     run_review_branch_parser.add_argument("--git-bin", default="git", help="git binary")
@@ -3054,6 +3066,28 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             git_bin=args.git_bin,
             sparse_paths=None if args.full_checkout else [review_dir],
         )
+        doc_tok = doc_token(args.cloud_doc)
+        if args.seed:
+            # Store the current cloud-doc as the render baseline (approach C). Used
+            # to declare "the current state is already reviewed"; subsequent backports
+            # diff against this. Refuses to clobber an existing baseline unless --reseed.
+            if not doc_tok:
+                raise RuntimeError("--seed needs a resolvable cloud-doc token in --cloud-doc")
+            if load_baseline(worktree, review_dir, doc_tok) is not None and not args.reseed:
+                raise RuntimeError("a render baseline already exists for this doc; pass --reseed to overwrite")
+            baseline_rel = store_baseline(worktree, review_dir, doc_tok, fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli))
+            pushed = False
+            if args.push:
+                _run_pr_command([args.git_bin, "add", baseline_rel], root=Path(worktree))
+                if _run_pr_command([args.git_bin, "status", "--porcelain", baseline_rel], root=Path(worktree)).strip():
+                    _run_pr_command([args.git_bin, "commit", "-m", f"backport: seed render baseline for {git_ref}"], root=Path(worktree))
+                    _run_pr_command([args.git_bin, "push"], root=Path(worktree))
+                    pushed = True
+            print(json.dumps(
+                {"seeded": True, "git_ref": git_ref, "baseline": baseline_rel, "worktree": worktree, "pushed": pushed},
+                ensure_ascii=False, sort_keys=True,
+            ))
+            return 0
         # Pages to backport. With --page: that one. Without: every
         # docs/_review/<model>/<region>/page/*.rst (whole-doc diff — find which pages
         # the cloud-doc changed). The source path is always DERIVED from the resolved

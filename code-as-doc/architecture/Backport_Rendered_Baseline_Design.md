@@ -151,10 +151,21 @@ are starved by a garbage diff.
 Each phase is independently shippable and testable; phase 1+2 already removes the
 source-vs-rendered noise, phases 3–4 add incremental + source routing.
 
-## 10. Open decisions (need 夏冰)
+## 10. Decisions (resolved, 夏冰 2026-06-19)
 
-- **Baseline storage:** on-branch `.backport/` (recommended, simple, travels) vs a
-  dedicated git ref (cleaner PR history). 
-- **What counts as "fully captured" for cursor advance** (§6): all-applied-only
-  (recommended) vs always-advance-with-pending-list.
-- **Legacy in-flight reviews:** seed-now (§7.2) vs let the first run bootstrap (§7.3).
+- **Baseline storage:** on-branch `.backport/` ✅ (simple, travels with the branch/PR).
+- **Cursor advance:** only after a full apply ✅ (never bury un-applied edits).
+- **Legacy in-flight reviews:** seed the current cloud-doc now ✅ (§7.2) — only when
+  there are no pending un-backported edits.
+
+## 11. Implementation status
+
+- **Phase 1 (shipped):** `tools/backport_baseline.py` (on-branch `.backport/`
+  store/load) + `run-review-branch --seed` (store the current cloud-doc as the
+  baseline; `--reseed` to overwrite; `--push` commits it). This covers legacy
+  seeding (§7.2) and the storage foundation.
+- **Phase 2 (next):** baseline-diff in `run-review-branch` (diff `C_now` vs the
+  stored baseline instead of the RST page) + cursor advance on full apply (§5–§6).
+- **Phase 3 (next):** route the clean deltas through F2/F3/F6 (§8).
+- **Phase 4 (next):** store R0 at review-start (§9.1) so new reviews are clean from
+  edit #1.
