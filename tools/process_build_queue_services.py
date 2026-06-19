@@ -79,6 +79,32 @@ def import_markdown_to_cloud_doc(
     )
 
 
+def _wiki_node_token_from_ref(raw: str) -> str:
+    """Extract a wiki node token from a `.../wiki/<token>?...` URL, or pass a bare token through."""
+    raw = (raw or "").strip()
+    if not raw:
+        return ""
+    if "/" in raw:
+        return raw.split("?", 1)[0].rstrip("/").split("/")[-1]
+    return raw
+
+
+def review_doc_wiki_destination(module: Any, *, cli_bin: str, identity: str) -> Any:
+    """The dedicated wiki node for review cloud docs (`FEISHU_REVIEW_DOC_WIKI_NODE`).
+
+    Review docs live in their own knowledge-base node — NOT co-located with the Word
+    artifact (which sits under the build table's node). Returns a ``WikiDestination``,
+    or ``None`` when the env is unset (then the doc is left in the bot's drive)."""
+    token = _wiki_node_token_from_ref(os.environ.get("FEISHU_REVIEW_DOC_WIKI_NODE", ""))
+    if not token:
+        return None
+    node = module.get_wiki_node(cli_bin=cli_bin, identity=identity, token=token)
+    space_id = str(node.get("space_id") or "").strip()
+    if not space_id:
+        return None
+    return module.WikiDestination(space_id=space_id, parent_wiki_token=token)
+
+
 def finalize_cloud_doc(
     module: Any,
     *,
@@ -87,20 +113,22 @@ def finalize_cloud_doc(
     cloud_doc_token: str,
     cloud_doc_url: str,
     member_union_id: str,
-    destination: Any,
+    destination: Any,  # the Word's destination — NOT used for the review doc (see below)
 ) -> str:
-    """Grant the operator edit access on the bot-owned cloud doc + co-locate it in
-    the Word's wiki node. Best-effort; returns the doc URL (wiki URL after move)."""
+    """Grant the operator edit access on the bot-owned cloud doc + place it in the
+    dedicated review-doc wiki node (``FEISHU_REVIEW_DOC_WIKI_NODE``), not the Word's
+    node. Best-effort; returns the doc URL (wiki URL after the move)."""
     grantee_member_id, grantee_member_type = _resolve_cloud_doc_grantee_impl(
         operator_union_id=member_union_id,
         default_editor=os.environ.get("FEISHU_CLOUD_DOC_DEFAULT_EDITOR", ""),
     )
+    review_dest = review_doc_wiki_destination(module, cli_bin=cli_bin, identity=identity)
     return _finalize_cloud_doc_impl(
         cloud_doc_token=cloud_doc_token,
         cloud_doc_url=cloud_doc_url,
         grantee_member_id=grantee_member_id,
         grantee_member_type=grantee_member_type,
-        destination=destination,
+        destination=review_dest,
         grant_full_access=lambda *, doc_token, member_id, member_type: _grant_doc_full_access_impl(
             cli_bin=cli_bin,
             identity=identity,
@@ -114,7 +142,7 @@ def finalize_cloud_doc(
             identity=identity,
             file_token=obj_token,
             drive_url=doc_url,
-            destination=destination,
+            destination=review_dest,
             obj_type="docx",
             run_lark_cli_json=module._run_lark_cli_json,
             host_root_from_url=_host_root_from_url_impl,
