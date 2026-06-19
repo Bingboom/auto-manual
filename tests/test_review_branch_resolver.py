@@ -13,6 +13,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.review_branch_resolver import (  # noqa: E402
     doc_token,
     match_review_branch,
+    match_review_branch_by_name,
+    parse_doc_name,
     parse_document_id,
 )
 
@@ -110,6 +112,42 @@ class MatchReviewBranchTests(unittest.TestCase):
     def test_record_without_git_ref_is_ignored(self) -> None:
         records = [_rec(US_DOC, "", "JE-1000F_US_1.4")]
         self.assertIsNone(match_review_branch(US_URL, records))
+
+
+class DocNameResolutionTests(unittest.TestCase):
+    def _records(self):
+        return [
+            _rec("https://x.feishu.cn/docx/EUTOKEN", "codex/review-eu", "JE-1000F_EU_en_0.8", pr="pr150"),
+            _rec("https://x.feishu.cn/docx/USTOKEN", "codex/review-us", "JE-1000F_US_1.4"),
+        ]
+
+    def test_parse_doc_name(self) -> None:
+        self.assertEqual(parse_doc_name("manual_je1000f_eu_en_0.8 副本"), ("je1000f", "eu"))
+        self.assertEqual(parse_doc_name("manual je1000f eu"), ("je1000f", "eu"))
+        self.assertIsNone(parse_doc_name("manual"))
+
+    def test_name_matches_model_region(self) -> None:
+        result = match_review_branch_by_name("manual_je1000f_eu_en_0.8 副本", self._records())
+        assert result is not None
+        self.assertEqual(result["git_ref"], "codex/review-eu")
+        self.assertEqual(result["review_dir"], "docs/_review/JE-1000F/EU")
+
+    def test_name_no_match_returns_none(self) -> None:
+        self.assertIsNone(match_review_branch_by_name("manual_je9999f_zz", self._records()))
+
+    def test_match_review_branch_falls_back_to_name(self) -> None:
+        # A bare doc name (no URL token) resolves via the name path.
+        result = match_review_branch("manual_je1000f_us_1.4", self._records())
+        assert result is not None
+        self.assertEqual(result["git_ref"], "codex/review-us")
+
+    def test_name_ambiguous_across_branches_raises(self) -> None:
+        records = [
+            _rec("https://x/docx/A", "codex/eu1", "JE-1000F_EU_en_0.8", status="InReview"),
+            _rec("https://x/docx/B", "codex/eu2", "JE-1000F_EU_fr_0.8", status="InReview"),
+        ]
+        with self.assertRaises(RuntimeError):
+            match_review_branch_by_name("manual_je1000f_eu", records)
 
 
 if __name__ == "__main__":

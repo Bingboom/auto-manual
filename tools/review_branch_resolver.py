@@ -79,35 +79,84 @@ def _record_to_match(fields: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
-def match_review_branch(cloud_doc_url: str, raw_records: list[dict[str, Any]]) -> dict[str, Any] | None:
-    """Match the edited cloud-doc to its review branch via the build table.
+_NAME_DROP_TOKENS = {"manual", "副本", "copy", "draft", "test"}
 
-    Returns a dict ``{git_ref, document_id, model, region, version, review_dir,
-    pr_url, review_status}`` or ``None`` when no record references the cloud-doc.
-    Raises ``RuntimeError`` when the cloud-doc maps to more than one **distinct**
-    ``Git_ref`` (ambiguous — never guess which branch to write).
-    """
-    token = doc_token(cloud_doc_url)
-    if not token:
+
+def _alnum(value: str) -> str:
+    return re.sub(r"[^0-9a-z]", "", str(value or "").lower())
+
+
+def parse_doc_name(name: str) -> tuple[str, str] | None:
+    """Extract ``(model, region)`` tokens from a doc NAME like
+    ``manual_je1000f_eu_en_0.8 副本`` -> ``("je1000f", "eu")`` (the first two
+    meaningful segments). Used to identify the review branch when the cloud-doc
+    URL is not registered in the build table (e.g. a 副本/copy of a doc)."""
+    tokens = [
+        token
+        for token in re.split(r"[\s_]+", str(name or "").strip())
+        if token and token.lower() not in _NAME_DROP_TOKENS
+    ]
+    if len(tokens) < 2:
         return None
-    matches: list[dict[str, Any]] = []
+    return tokens[0], tokens[1]
+
+
+def _select_match(matches: list[dict[str, Any]], *, label: str) -> dict[str, Any] | None:
+    """Prefer InReview; abstain (raise) on more than one distinct ``Git_ref``."""
+    if not matches:
+        return None
+    preferred = [m for m in matches if m["review_status"] == IN_REVIEW_STATUS] or matches
+    refs = sorted({m["git_ref"] for m in preferred})
+    if len(refs) > 1:
+        raise RuntimeError(f"{label} maps to multiple review branches (ambiguous): {refs}")
+    return preferred[0]
+
+
+def _matches_by_token(token: str, raw_records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    for record in raw_records:
+        fields = record.get("fields") or {}
+        if isinstance(fields, dict) and doc_token(scalar_text(field_value(fields, *CLOUD_DOC_FIELDS))) == token:
+            match = _record_to_match(fields)
+            if match is not None:
+                out.append(match)
+    return out
+
+
+def match_review_branch_by_name(name: str, raw_records: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Match a doc NAME to its review branch by **model + region** (ignoring
+    language/version), for cloud-docs whose URL is not in the build table (a
+    副本/copy). Abstains (raises) on more than one distinct ``Git_ref``."""
+    parsed = parse_doc_name(name)
+    if parsed is None:
+        return None
+    model_token, region_token = _alnum(parsed[0]), _alnum(parsed[1])
+    out: list[dict[str, Any]] = []
     for record in raw_records:
         fields = record.get("fields") or {}
         if not isinstance(fields, dict):
             continue
-        if doc_token(scalar_text(field_value(fields, *CLOUD_DOC_FIELDS))) != token:
-            continue
         match = _record_to_match(fields)
-        if match is not None:
-            matches.append(match)
-    if not matches:
-        return None
-    # Prefer active reviews; fall back to all matches if none are InReview.
-    preferred = [m for m in matches if m["review_status"] == IN_REVIEW_STATUS] or matches
-    refs = sorted({m["git_ref"] for m in preferred})
-    if len(refs) > 1:
-        raise RuntimeError(f"cloud-doc maps to multiple review branches (ambiguous): {refs}")
-    return preferred[0]
+        if match is not None and _alnum(match["model"]) == model_token and _alnum(match["region"]) == region_token:
+            out.append(match)
+    return _select_match(out, label=f"doc name {name!r}")
+
+
+def match_review_branch(cloud_doc_url: str, raw_records: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Match the edited cloud-doc to its review branch via the build table.
+
+    Tries the cloud-doc URL token (vs the ``飞书云文档`` column) first, then falls
+    back to matching the input as a doc NAME (model+region) when the URL is absent
+    or unregistered (e.g. a 副本/copy). Returns ``{git_ref, document_id, model,
+    region, version, review_dir, pr_url, review_status}`` or ``None``; raises when
+    the match is ambiguous (>1 distinct ``Git_ref``).
+    """
+    token = doc_token(cloud_doc_url)
+    if token:
+        result = _select_match(_matches_by_token(token, raw_records), label="cloud-doc")
+        if result is not None:
+            return result
+    return match_review_branch_by_name(cloud_doc_url, raw_records)
 
 
 def list_in_review_branches(raw_records: list[dict[str, Any]]) -> list[dict[str, Any]]:

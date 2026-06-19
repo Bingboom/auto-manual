@@ -150,6 +150,12 @@ It matches the cloud-doc by its doc token against the `飞书云文档` column (
 second `_`-segment; a language segment like `EU_en` does NOT widen it), and abstains
 when a cloud-doc maps to more than one distinct branch.
 
+**Resolve by doc name** (for a 副本/copy whose URL is not registered in the build
+table): pass the name instead of (or alongside) the URL. The resolver falls back
+to matching the doc NAME by **model + region** — e.g. `manual_je1000f_eu_en_0.8 副本`
+→ `JE-1000F` / `EU` → its InReview branch. `run-review-branch` takes `--doc-name`
+for this (it still fetches the doc via `--cloud-doc`).
+
 ### One-shot branch-targeted backport
 
 `run-review-branch` does the whole chain so the bot never has to guess:

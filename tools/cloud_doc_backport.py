@@ -34,7 +34,11 @@ from tools.source_table_sync import (  # noqa: E402
     write_change_request_report,
     write_source_table_apply_report,
 )
-from tools.review_branch_resolver import list_in_review_branches, match_review_branch  # noqa: E402
+from tools.review_branch_resolver import (  # noqa: E402
+    list_in_review_branches,
+    match_review_branch,
+    match_review_branch_by_name,
+)
 from tools.review_worktree import derive_review_source_rel, ensure_review_worktree  # noqa: E402
 from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
 from tools.translation_memory_sync import apply_translation_suggestions  # noqa: E402
@@ -2565,7 +2569,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "The review _review tree lives on that branch, not the default branch."
         ),
     )
-    resolve_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL")
+    resolve_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL or doc name (falls back to name -> model+region)")
     resolve_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
     resolve_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
 
@@ -2578,7 +2582,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "its PR. Dry-run unless --write."
         ),
     )
-    run_review_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL")
+    run_review_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL (used to FETCH the doc content)")
+    run_review_branch_parser.add_argument("--doc-name", help="doc name (e.g. manual_je1000f_eu_en_0.8) to resolve the review branch by model+region when the URL is not registered (a 副本/copy)")
     run_review_branch_parser.add_argument("--page", required=True, help="review page, e.g. 00_preface.rst or page/00_preface.rst")
     run_review_branch_parser.add_argument("--write", action="store_true", help="apply edits to the worktree's _review file (else dry-run)")
     run_review_branch_parser.add_argument("--push", action="store_true", help="commit + push the review branch (updates its PR); needs --write")
@@ -3015,9 +3020,13 @@ def _run_sync_review_worktrees(args: argparse.Namespace) -> int:
 def _run_review_branch(args: argparse.Namespace) -> int:
     worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
     try:
-        resolved = match_review_branch(args.cloud_doc, _fetch_build_table_records(args.lark_cli, args.identity))
+        records = _fetch_build_table_records(args.lark_cli, args.identity)
+        doc_name = (getattr(args, "doc_name", None) or "").strip()
+        # Resolve by the doc NAME when given (robust for a 副本 whose URL is not in
+        # the build table); else by the cloud-doc URL. The fetch always uses --cloud-doc.
+        resolved = match_review_branch_by_name(doc_name, records) if doc_name else match_review_branch(args.cloud_doc, records)
         if resolved is None:
-            raise RuntimeError(f"no review branch found for cloud-doc {args.cloud_doc}")
+            raise RuntimeError(f"no review branch found for cloud-doc {doc_name or args.cloud_doc}")
         git_ref = resolved["git_ref"]
         # Template guard: the source path is DERIVED from the resolved review dir,
         # never an arbitrary caller path -> a backport can only write docs/_review.
