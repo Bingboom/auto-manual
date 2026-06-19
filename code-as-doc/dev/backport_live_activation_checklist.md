@@ -149,4 +149,4 @@ a `record_id` instead of abstaining.
   [`../../tools/source_table_sync.py`](../../tools/source_table_sync.py),
   [`../../tools/qc_report.py`](../../tools/qc_report.py)
 - Workstream Q / roadmap: [`../optimization_project.md`](../optimization_project.md)
-- PR-level history: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone F
+- PR-level history: [`next_optimization_checklist.md`](../next_optimization_checklist.md) Milestone F
