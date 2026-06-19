@@ -41,16 +41,18 @@ def doc_token(url: str | None) -> str:
 
 
 def parse_document_id(document_id: str | None) -> tuple[str, str, str] | None:
-    """``JE-1000F_US_1.4`` -> ``(model, region, version)``.
+    """``JE-1000F_US_1.4`` / ``JE-1000F_EU_en_0.8`` -> ``(model, region, version)``.
 
-    The first ``_``-segment is the model, the last is the version, and everything
-    between is the region (so a region like ``pt-BR`` survives). Returns ``None``
-    when the id does not have all three parts.
+    The first ``_``-segment is the model and the **second is the region** (US / EU
+    / JP / CN / pt-BR — always a single segment; the `docs/_review/<model>/<region>`
+    tree stops at the region). Any middle segment (e.g. a language ``en``) and the
+    trailing version are not part of the review dir. Returns ``None`` when the id
+    has fewer than three segments.
     """
     parts = [part for part in str(document_id or "").split("_") if part != ""]
     if len(parts) < 3:
         return None
-    model, version, region = parts[0], parts[-1], "_".join(parts[1:-1])
+    model, region, version = parts[0], parts[1], parts[-1]
     if not (model and region and version):
         return None
     return model, region, version
@@ -106,3 +108,19 @@ def match_review_branch(cloud_doc_url: str, raw_records: list[dict[str, Any]]) -
     if len(refs) > 1:
         raise RuntimeError(f"cloud-doc maps to multiple review branches (ambiguous): {refs}")
     return preferred[0]
+
+
+def list_in_review_branches(raw_records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Every distinct **InReview** review branch in the build table (one entry per
+    ``Git_ref``) — so a sync step can ensure a worktree exists for each."""
+    by_ref: dict[str, dict[str, Any]] = {}
+    for record in raw_records:
+        fields = record.get("fields") or {}
+        if not isinstance(fields, dict):
+            continue
+        if scalar_text(field_value(fields, *REVIEW_STATUS_FIELDS)) != IN_REVIEW_STATUS:
+            continue
+        match = _record_to_match(fields)
+        if match is not None:
+            by_ref.setdefault(match["git_ref"], match)
+    return list(by_ref.values())
