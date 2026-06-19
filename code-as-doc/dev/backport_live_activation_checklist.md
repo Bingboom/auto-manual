@@ -68,22 +68,41 @@ tables. `python tools/content_lint.py --data-root data/phase2 --json` now shows
 **Why:** apply reviewer-confirmed Class D (data-origin) changes to Bitable content,
 human-approved, exact-or-abstain.
 
-**Do:**
+**Do:** the transport (`SourceTableLarkTransport` in
+[`../../tools/feishu_record_transport.py`](../../tools/feishu_record_transport.py))
+and the executor are built; the CLI entrypoint is **`cloud_doc_backport.py
+apply-source-table`** (and the Feishu IM `approve`/`reject` commands route to it —
+see [`im_backport_approval_runbook.md`](im_backport_approval_runbook.md)):
 
-1. **Implement a `lark-cli` transport** satisfying the `source_table_sync._Transport`
-   protocol in [`../../tools/source_table_sync.py`](../../tools/source_table_sync.py):
-   - `upsert(*, table, record_id, field, value)` → `lark-cli --as bot` record-upsert;
-   - `get(*, table, record_id, field)` → record fetch (for GET-verify-after-write).
-2. **Wire the Feishu IM approve/reject gate:** an allowlisted operator message
-   supplies the approved `delta_hash` set. **Human approval is mandatory; the agent
-   never approves.**
-3. **Run the executor** on the change-request report:
-   `apply_change_requests(requests, approved_hashes=<approved>, transport=<lark transport>, write=True)`.
-   It applies **only** approved **and** resolved requests, GET-verifies each write,
-   and is idempotent by `delta_hash`.
+```
+# dry-run plan (default; no writes, no bindings needed):
+python tools/cloud_doc_backport.py apply-source-table \
+  --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_source_table_change_request.json \
+  --approve <delta_hash> [--approve <delta_hash> ...]
 
-**Verify:** the GET-verify result is `verified: true`; re-running the same approved
-set is a no-op (idempotent); unresolved or unapproved requests are skipped.
+# live write (operator-deliberate): one --table-binding per writable table:
+python tools/cloud_doc_backport.py apply-source-table --report <…> \
+  --approve <delta_hash> --write \
+  --table-binding "Manual_Copy_Source=<base_token>:<table_id>" --identity bot
+```
+
+1. **Human approval is mandatory; the agent never approves.** Only the
+   `--approve`d `delta_hash`es are eligible; everything else is skipped.
+2. **Per-table bindings are explicit.** `--write` requires a `--table-binding
+   TABLE=BASE:TABLE_ID` for each change-request table you intend to write; an
+   unmapped table (e.g. the derived `Localized_Copy`) is isolated per-request as
+   `error` and skipped — never mis-written. ⚠️ The change-request `table`/`field`
+   are in the normalized (CSV) namespace; a binding's Feishu columns must match
+   (true for a Spec_Master-shaped sandbox). Copy write-back field mapping
+   (`text_<lang>` → authoring `source_text`, source-lang vs TM routing) is a
+   **follow-up** — copy-origin requests currently abstain at the write boundary.
+3. The executor applies **only** approved **and** resolved requests, GET-verifies
+   each write, isolates per-request failures, and is idempotent by `delta_hash`.
+
+**Verify:** dry-run shows the expected `apply`/`skip` plan; with `--write`, the
+apply report's `summary.written` matches and `verify_failed`/`error` are 0;
+re-running the same approved set is a no-op (idempotent); unresolved or unapproved
+requests are skipped.
 
 **Gate:** writes Bitable content (source of truth, widest blast radius) — the
 human-approval and exact-or-abstain invariants above are hard requirements.

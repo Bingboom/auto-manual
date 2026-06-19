@@ -466,3 +466,67 @@ export function formatCloudDocBackportPrResultReply(result = {}, localProfile = 
     .filter(Boolean)
     .join("\n");
 }
+
+export function formatCloudDocBackportApprovalNeedInputReply(request = {}, localProfile = null) {
+  const missing = Array.isArray(request.missing) ? request.missing : [];
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportApprovalNeedInput", "源表回写审批需要补齐输入。"),
+    missing.length ? `missing: ${missing.join(", ")}` : "",
+    "请发送：cloud-doc approve <run-id> <delta_hash> [<delta_hash> …]",
+    "或拒绝：cloud-doc reject <run-id> <delta_hash> […]",
+    "delta_hash 来自该 run 的 cloud_doc_backport_source_table_change_request.json。",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportApprovalAcceptedReply(request = {}, localProfile = null) {
+  const count = Array.isArray(request.hashes) ? request.hashes.length : 0;
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportApprovalAccepted", "已接受源表回写审批，开始执行。"),
+    `decision: ${request.decision || "approve"}`,
+    `run: ${request.runId || "-"}`,
+    `approved_hashes: ${count}`,
+    request.write ? "mode: write (Bitable)" : "mode: dry-run (source-write disabled)",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportRejectReply(request = {}, localProfile = null) {
+  const count = Array.isArray(request.hashes) ? request.hashes.length : 0;
+  return [
+    localReplyPhrase(localProfile, "cloudDocBackportReject", "已记录源表回写拒绝，未做任何写入。"),
+    `run: ${request.runId || "-"}`,
+    `rejected_hashes: ${count}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function formatCloudDocBackportApprovalResultReply(result = {}, localProfile = null) {
+  const summary = result.summary || {};
+  const lines = [
+    localReplyPhrase(localProfile, "cloudDocBackportApprovalResult", "源表回写执行完成。"),
+    `mode: ${result.external_write ? "write (Bitable)" : "dry-run"}`,
+    `run: ${result.run_id || "-"}`,
+    `plan: apply ${summary.apply ?? 0}, skip ${summary.skip ?? 0}`,
+    `written: ${summary.written ?? 0}, verify_failed: ${summary.verify_failed ?? 0}, error: ${summary.error ?? 0}`,
+  ];
+  if (result.apply_path) {
+    lines.push(`apply_report: ${result.apply_path}`);
+  }
+  if (!result.external_write) {
+    lines.push("source-write 关闭中：仅出计划。开启 FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE=true 后重发可写入。");
+  }
+  const applied = Array.isArray(result.applied) ? result.applied : [];
+  const evidence = applied
+    .filter((entry) => entry && entry.status && entry.status !== "planned")
+    .slice(0, 3)
+    .map((entry) => `- ${entry.status} ${entry.table}::${entry.field} (${entry.delta_hash})${entry.error ? ` — ${entry.error}` : ""}`);
+  if (evidence.length) {
+    lines.push("evidence:");
+    lines.push(...evidence);
+  }
+  return lines.filter(Boolean).join("\n");
+}

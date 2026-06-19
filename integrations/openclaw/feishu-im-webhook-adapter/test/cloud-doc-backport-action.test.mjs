@@ -4,9 +4,13 @@ import assert from "node:assert/strict";
 import {
   cloudDocBackportSenderAllowed,
   inferCloudDocBackportTarget,
+  parseCloudDocBackportApprovalRequest,
   parseCloudDocBackportPrRequest,
   parseCloudDocBackportRequest,
 } from "../lib/cloud-doc-backport-action.mjs";
+
+const HASH_A = "a".repeat(64);
+const HASH_B = "b".repeat(64);
 
 test("parseCloudDocBackportRequest extracts Feishu doc, review source, run id, and write mode", () => {
   const request = parseCloudDocBackportRequest(
@@ -82,4 +86,51 @@ test("cloudDocBackportSenderAllowed requires an explicit allowlist", () => {
   assert.equal(cloudDocBackportSenderAllowed("ou_1", { cloudDocBackportAllowedSenderIds: ["ou_2"] }), false);
   assert.equal(cloudDocBackportSenderAllowed("ou_1", { cloudDocBackportAllowedSenderIds: ["ou_1"] }), true);
   assert.equal(cloudDocBackportSenderAllowed("ou_1", { cloudDocBackportAllowedSenderIds: ["*"] }), true);
+});
+
+test("parseCloudDocBackportApprovalRequest extracts run-id and hashes, not mistaking one for the other", () => {
+  const request = parseCloudDocBackportApprovalRequest(`cloud-doc approve feishu-im-run-1 ${HASH_A} ${HASH_B}`);
+  assert.equal(request.matched, true);
+  assert.equal(request.decision, "approve");
+  assert.equal(request.runId, "feishu-im-run-1");
+  assert.deepEqual(request.hashes, [HASH_A, HASH_B]);
+  assert.deepEqual(request.missing, []);
+});
+
+test("parseCloudDocBackportApprovalRequest honors an explicit run-id marker", () => {
+  const request = parseCloudDocBackportApprovalRequest(`批准 run-id=cloud-doc-backport-local ${HASH_A}`);
+  assert.equal(request.matched, true);
+  assert.equal(request.decision, "approve");
+  assert.equal(request.runId, "cloud-doc-backport-local");
+  assert.deepEqual(request.hashes, [HASH_A]);
+});
+
+test("parseCloudDocBackportApprovalRequest treats reject as the decision and never approves on ambiguity", () => {
+  const reject = parseCloudDocBackportApprovalRequest(`cloud-doc reject feishu-im-run-9 ${HASH_A}`);
+  assert.equal(reject.matched, true);
+  assert.equal(reject.decision, "reject");
+  // both intents present -> reject wins (fail-safe).
+  const ambiguous = parseCloudDocBackportApprovalRequest(`approve but reject feishu-im-run-9 ${HASH_A}`);
+  assert.equal(ambiguous.decision, "reject");
+});
+
+test("parseCloudDocBackportApprovalRequest reports missing run-id and hashes", () => {
+  const noHash = parseCloudDocBackportApprovalRequest("cloud-doc approve feishu-im-run-1");
+  assert.equal(noHash.matched, true);
+  assert.ok(noHash.missing.some((item) => item.includes("delta_hash")));
+  const noRun = parseCloudDocBackportApprovalRequest(`approve ${HASH_A}`);
+  assert.ok(noRun.missing.some((item) => item.includes("run-id")));
+});
+
+test("parseCloudDocBackportApprovalRequest ignores ordinary backport/review messages", () => {
+  const request = parseCloudDocBackportApprovalRequest(
+    "cloud-doc backport https://test.feishu.cn/wiki/X docs/_review/JE-2000F/EU/page/00_preface.rst"
+  );
+  assert.equal(request.matched, false);
+});
+
+test("parseCloudDocBackportApprovalRequest does not hijack a bare approval word without a handle", () => {
+  // an approval word but no hash and no run-id -> not an approval command.
+  assert.equal(parseCloudDocBackportApprovalRequest("批准这个修改").matched, false);
+  assert.equal(parseCloudDocBackportApprovalRequest("looks good, approve please").matched, false);
 });

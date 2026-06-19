@@ -328,10 +328,10 @@ revert. Content writes are therefore the most strongly gated path.
   `source_table_change_request`: table, exact `record_id`, field, `old` → `new`
   value, model/region/language scope, **blast radius (every target that shares the
   row)**, evidence, and a stable delta hash.
-- **Approval entry: Feishu IM.** The executor sends the change-request list (with
-  blast radius) to an allowlisted operator and gates on a single approve/reject IM
-  message, reusing the existing OpenClaw/Feishu IM control plane (2026-06-18
-  decision). The approval is recorded (approver, timestamp, request hash).
+- **Approval entry: Feishu IM.** An allowlisted operator approves/rejects specific
+  `delta_hash`es with `cloud-doc approve <run-id> <hash…>` / `reject …`, reusing the
+  existing OpenClaw/Feishu IM control plane (2026-06-18 decision). The approval is
+  recorded (approver, timestamp, request hashes, result).
 - **Exact-or-abstain.** A write needs an exact `record_id`; without it the request
   stays un-applyable. This depends on the sync-time `record_id` sidecar
   (Workstream I). Ambiguous or duplicate-row matches abstain and flag — never a
@@ -344,6 +344,21 @@ revert. Content writes are therefore the most strongly gated path.
   changes remain a separate operator-gated action (`AGENTS.md` §8.7).
 - **Audit.** The change-request plus approval log is the audit trail (record the
   before-value), since Bitable has no version history.
+
+**Implementation (shipped).** The executor entrypoint is
+`tools/cloud_doc_backport.py apply-source-table` (loads the change-request report,
+applies the R9 gates via `source_table_sync.apply_change_requests`, writes an apply
+report). The Feishu IM adapter routes `cloud-doc approve|reject <run-id> <hash…>` to
+it, gated by `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS` and a **separate**
+`FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE` flag (default OFF → approve runs
+dry-run; enabling review writes never enables Bitable writes). Per-table targets are
+explicit via `FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS`
+(`TABLE=BASE:TABLE_ID`); an unmapped table is isolated per-request and skipped.
+Operator steps: [`../dev/im_backport_approval_runbook.md`](../dev/im_backport_approval_runbook.md).
+Open follow-up: the change-request `table`/`field` are in the normalized (CSV)
+namespace, so copy-origin (`Localized_Copy`→`Manual_Copy_Source`) write-field mapping
+(`text_<lang>` → `source_text`, source-lang vs TM) is unresolved and abstains at the
+write boundary.
 
 ## 6. Baseline Storage
 

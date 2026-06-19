@@ -142,8 +142,19 @@ def apply_change_requests(
         if not (write and transport is not None):
             applied.append({**entry, "status": "planned"})
             continue
-        transport.upsert(table=entry["table"], record_id=entry["record_id"], field=entry["field"], value=entry["value"])
-        current = transport.get(table=entry["table"], record_id=entry["record_id"], field=entry["field"])
+        # Per-request isolation: a missing table binding, a transport error, or a
+        # network failure for ONE approved request must not abort the rest of the
+        # batch nor leave the run half-reported. The bad request is recorded as
+        # `error` and the loop continues. (E.g. a Localized_Copy-origin request
+        # whose table has no writable binding lands here and is skipped safely.)
+        try:
+            transport.upsert(
+                table=entry["table"], record_id=entry["record_id"], field=entry["field"], value=entry["value"]
+            )
+            current = transport.get(table=entry["table"], record_id=entry["record_id"], field=entry["field"])
+        except Exception as exc:  # isolate one request's failure from the batch
+            applied.append({**entry, "status": "error", "error": str(exc)})
+            continue
         verified = current == entry["value"]
         applied.append({**entry, "status": "written" if verified else "verify_failed", "verified": verified})
     return {
@@ -154,6 +165,8 @@ def apply_change_requests(
             "apply": sum(1 for entry in plan if entry["action"] == "apply"),
             "skip": sum(1 for entry in plan if entry["action"] == "skip"),
             "written": sum(1 for entry in applied if entry.get("status") == "written"),
+            "verify_failed": sum(1 for entry in applied if entry.get("status") == "verify_failed"),
+            "error": sum(1 for entry in applied if entry.get("status") == "error"),
         },
         "plan": plan,
         "applied": applied,
@@ -183,3 +196,64 @@ def write_change_request_report(report: dict[str, Any], out_dir: Path) -> Path:
     path = out_dir / "cloud_doc_backport_source_table_change_request.json"
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
+
+
+def load_change_requests(report_path: Path) -> tuple[list[dict[str, Any]], str | None]:
+    """Load the change-request report and return ``(requests, run_id)``.
+
+    The report's ``requests`` list is exactly the shape ``apply_change_requests``
+    consumes, so no reconstruction is needed.
+    """
+    payload = json.loads(Path(report_path).read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise RuntimeError("source-table change-request report must be a JSON object")
+    requests = payload.get("requests")
+    if not isinstance(requests, list):
+        raise RuntimeError("source-table change-request report has no 'requests' list")
+    return requests, payload.get("run_id")
+
+
+def source_table_apply_markdown(report: dict[str, Any]) -> str:
+    summary = report.get("summary") or {}
+    lines = [
+        "# Cloud-doc backport — source-table apply",
+        "",
+        f"- Run ID: `{report.get('run_id') or 'n/a'}`",
+        f"- External write: **{'yes' if report.get('external_write') else 'no (dry-run)'}**",
+        f"- Approved hashes: {report.get('approved_count', 0)}",
+        (
+            f"- Plan: apply {summary.get('apply', 0)}, skip {summary.get('skip', 0)} "
+            f"/ written {summary.get('written', 0)}, verify_failed {summary.get('verify_failed', 0)}, "
+            f"error {summary.get('error', 0)}"
+        ),
+        "",
+    ]
+    applied = report.get("applied") or []
+    if applied:
+        lines.append("## Applied / planned")
+        lines.append("")
+        for entry in applied:
+            status = entry.get("status", "?")
+            detail = f" — {entry['error']}" if entry.get("error") else ""
+            lines.append(
+                f"- `{status}` {entry.get('table')}::{entry.get('field')} "
+                f"record `{entry.get('record_id')}` (delta `{entry.get('delta_hash')}`){detail}"
+            )
+        lines.append("")
+    skips = [entry for entry in (report.get("plan") or []) if entry.get("action") == "skip"]
+    if skips:
+        lines.append("## Skipped (gated)")
+        lines.append("")
+        for entry in skips:
+            lines.append(f"- {entry.get('table')}::{entry.get('field')} (delta `{entry.get('delta_hash')}`) — {entry.get('reason')}")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def write_source_table_apply_report(report: dict[str, Any], out_dir: Path) -> dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    json_path = out_dir / "cloud_doc_backport_source_table_apply.json"
+    markdown_path = out_dir / "cloud_doc_backport_source_table_apply.md"
+    json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    markdown_path.write_text(source_table_apply_markdown(report), encoding="utf-8")
+    return {"json": json_path, "markdown": markdown_path}

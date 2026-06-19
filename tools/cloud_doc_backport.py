@@ -26,9 +26,12 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.family_scope import build_family_index, classify_family_scope  # noqa: E402
 from tools.source_table_sync import (  # noqa: E402
+    apply_change_requests,
     build_change_request_report,
+    load_change_requests,
     load_sidecar_index,
     write_change_request_report,
+    write_source_table_apply_report,
 )
 from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
@@ -2498,6 +2501,44 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     open_pr_parser.add_argument("--git-bin", default="git", help="git binary")
     open_pr_parser.add_argument("--gh-bin", default="gh", help="GitHub CLI binary")
     open_pr_parser.add_argument("--json", action="store_true", help="print the PR result as JSON")
+
+    apply_source_table_parser = subparsers.add_parser(
+        "apply-source-table",
+        description=(
+            "Apply HUMAN-APPROVED source-table change requests to Bitable (F6). "
+            "Dry-run by default; --write needs --table-binding mappings. Each request "
+            "is R9-gated: human approval + exact record_id + content field + idempotent."
+        ),
+    )
+    apply_source_table_parser.add_argument(
+        "--report", required=True, help="cloud_doc_backport_source_table_change_request.json path"
+    )
+    apply_source_table_parser.add_argument(
+        "--approve",
+        action="append",
+        default=[],
+        metavar="DELTA_HASH",
+        help="a human-approved delta_hash; repeatable. Only these are eligible to write.",
+    )
+    apply_source_table_parser.add_argument("--out", help="output directory (defaults to the report's directory)")
+    apply_source_table_parser.add_argument(
+        "--write",
+        action="store_true",
+        help="actually write approved+resolved requests to Bitable (else dry-run plan only)",
+    )
+    apply_source_table_parser.add_argument(
+        "--table-binding",
+        action="append",
+        default=[],
+        metavar="TABLE=BASE:TABLE_ID",
+        help=(
+            "writable Feishu binding for a change-request table, e.g. "
+            "'Manual_Copy_Source=bascnXXXX:tblYYYY'; repeatable. Required (per table) "
+            "with --write. Unmapped tables are skipped safely."
+        ),
+    )
+    apply_source_table_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for --write")
+    apply_source_table_parser.add_argument("--identity", default="bot", help="lark-cli identity for --write")
     return parser.parse_args(argv)
 
 
@@ -2737,6 +2778,79 @@ def _run_open_pr(args: argparse.Namespace) -> int:
     return 0
 
 
+def _parse_table_bindings(specs: list[str]) -> dict[str, tuple[str, str]]:
+    """Parse ``--table-binding 'TABLE=BASE:TABLE_ID'`` specs into ``{table: (base, table_id)}``."""
+    bindings: dict[str, tuple[str, str]] = {}
+    for spec in specs:
+        name, sep, rest = str(spec).partition("=")
+        base, sep2, table_id = rest.partition(":")
+        name, base, table_id = name.strip(), base.strip(), table_id.strip()
+        if not (name and sep and sep2 and base and table_id):
+            raise RuntimeError(f"--table-binding must look like TABLE=BASE:TABLE_ID, got: {spec!r}")
+        bindings[name] = (base, table_id)
+    return bindings
+
+
+def _source_table_transport(bindings: dict[str, tuple[str, str]], *, lark_cli: str, identity: str) -> Any:
+    """Build a live F6 transport whose ``binding_for`` resolves only the given tables.
+
+    An unmapped table raises, which ``apply_change_requests`` isolates per-request
+    (status ``error``) — so e.g. a derived ``Localized_Copy`` table is skipped safely.
+    """
+    from tools.feishu_record_transport import SourceTableLarkTransport
+    from tools.sync_data import LarkCliSource
+
+    def binding_for(table: str) -> tuple[str, str]:
+        try:
+            return bindings[table]
+        except KeyError:
+            raise RuntimeError(f"no writable --table-binding for table {table!r}") from None
+
+    source = LarkCliSource(cli_bin=lark_cli, identity=identity)
+    return SourceTableLarkTransport(source=source, binding_for=binding_for)
+
+
+def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> int:
+    try:
+        report_path = _resolve_source_path(args.report, label="change-request report")
+        change_requests, run_id = load_change_requests(report_path)
+        approved = {h for h in (args.approve or []) if h}
+        transport = None
+        if args.write:
+            bindings = _parse_table_bindings(args.table_binding or [])
+            if not bindings:
+                raise RuntimeError("--write requires at least one --table-binding TABLE=BASE:TABLE_ID")
+            transport = _source_table_transport(bindings, lark_cli=args.lark_cli, identity=args.identity)
+        apply_result = apply_change_requests(
+            change_requests,
+            approved_hashes=approved,
+            transport=transport,
+            write=bool(args.write),
+        )
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    report = {
+        **apply_result,
+        "run_id": run_id,
+        "approved_count": len(approved),
+        "command": ["tools/cloud_doc_backport.py", *raw_argv],
+    }
+    out_dir = Path(args.out) if args.out else report_path.parent
+    written = write_source_table_apply_report(report, out_dir)
+    print(f"WROTE {written['json']}")
+    print(f"WROTE {written['markdown']}")
+    summary = report.get("summary") or {}
+    print(
+        f"APPLY plan: apply {summary.get('apply', 0)} skip {summary.get('skip', 0)} "
+        f"| written {summary.get('written', 0)} verify_failed {summary.get('verify_failed', 0)} "
+        f"error {summary.get('error', 0)} ({'WRITE' if report.get('external_write') else 'dry-run'})"
+    )
+    if report.get("external_write") and (summary.get("verify_failed") or summary.get("error")):
+        return 1
+    return 0
+
+
 def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
     """Build the token/copy value index when --lang and --data-root are given (F2)."""
     lang = getattr(args, "lang", None)
@@ -2769,6 +2883,8 @@ def main(argv: list[str] | None = None) -> int:
         return _run_review(args, raw_argv)
     if args.command == "open-pr":
         return _run_open_pr(args)
+    if args.command == "apply-source-table":
+        return _run_apply_source_table(args, raw_argv)
     raise AssertionError(f"unhandled command: {args.command}")
 
 
