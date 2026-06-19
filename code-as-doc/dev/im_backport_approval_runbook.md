@@ -162,18 +162,23 @@ for this (it still fetches the doc via `--cloud-doc`).
 
 ```sh
 python tools/cloud_doc_backport.py run-review-branch \
-  --cloud-doc "<feishu cloud-doc URL>" --page 00_preface.rst \
-  [--write] [--push]            # dry-run unless --write; --push needs --write
+  --doc-name "manual_je1000f_eu_en_0.8" --cloud-doc "<feishu cloud-doc URL>" \
+  [--page 00_preface.rst] [--write] [--push]   # dry-run unless --write; --push needs --write
 ```
 
-1. resolves the cloud-doc → review branch (above);
+1. resolves the cloud-doc → review branch (by `--doc-name`, else `--cloud-doc`);
 2. ensures a git **worktree** of that `Git_ref` (reuses an existing one, else
    fetch + `git worktree add` under `--worktrees-root`, default `../review-worktrees`).
    The worktree is **sparse by default** — a cone-mode sparse-checkout of only
    `docs/_review/<model>/<region>` (≈1 MB vs ≈250 MB full); pass `--full-checkout`
    for a complete checkout;
-3. runs `run-review` against the worktree's `_review` file;
-4. with `--push`, commits + pushes the review branch (updates its PR).
+3. runs `run-review` against the worktree's `_review` file(s). **With `--page`:** that
+   one page. **Without `--page`:** the WHOLE doc is fetched once and diffed against
+   every `docs/_review/<model>/<region>/page/*.rst`; only pages whose section is
+   actually located in the cloud doc (`section_selection.applied`) are reported as
+   changed — pages whose section is absent fall back to a whole-document diff and are
+   filtered out as false positives;
+4. with `--push`, commits + pushes the changed page(s) on the review branch (updates its PR).
 
 **Template guard:** the source path is *derived* from the resolved
 `docs/_review/<model>/<region>` + `--page` — never an arbitrary path — and is
