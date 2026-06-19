@@ -14,6 +14,7 @@ from unittest.mock import patch
 from tools.cloud_doc_backport import (
     _diff_delta_count,
     _parse_table_bindings,
+    _run_review_branch,
     _run_review_branch_baseline,
     build_report,
     fetch_doc_text,
@@ -1015,6 +1016,55 @@ class DiffDeltaCountTests(unittest.TestCase):
     def test_zero_when_report_absent(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(_diff_delta_count(Path(tmp)), 0)
+
+
+class RunReviewBranchGuardTests(unittest.TestCase):
+    """The no-baseline whole-doc --write guard (stops mass RST-corrupting writes)."""
+
+    def _args(self, **over):
+        base = dict(
+            worktrees_root=None, lark_cli="lark-cli", identity="user",
+            doc_name="manual_je1000f_us_en_1.0",
+            cloud_doc="https://test-degwga5x6ex8.feishu.cn/wiki/tok",
+            remote="origin", git_bin="git", full_checkout=False,
+            seed=False, reseed=False, push=False, write=False, page=None,
+            run_id=None, out=None,
+        )
+        base.update(over)
+        return SimpleNamespace(**base)
+
+    def test_whole_doc_write_without_baseline_is_refused(self) -> None:
+        import contextlib
+        import io
+
+        resolved = {"git_ref": "codex/review-id-x", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
+        with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport.ensure_review_worktree", return_value="/tmp/wt"), \
+             patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport.load_baseline", return_value=None):
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                rc = _run_review_branch(self._args(write=True, page=None))
+        self.assertEqual(rc, 2)  # refused (caught -> return 2)
+        self.assertIn("refusing whole-doc --write", err.getvalue())
+
+    def test_dry_run_whole_doc_not_blocked_by_guard(self) -> None:
+        # without --write the guard must NOT fire — a no-baseline whole-doc REPORT is fine.
+        import contextlib
+        import io
+
+        resolved = {"git_ref": "codex/review-id-x", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
+        with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport.ensure_review_worktree", return_value="/tmp/wt-missing"), \
+             patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport.load_baseline", return_value=None):
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                _run_review_branch(self._args(write=False, page=None))
+        # it fails later (no page dir on the fake worktree), but NOT via the write guard
+        self.assertNotIn("refusing whole-doc --write", err.getvalue())
 
 
 class BaselineDiffTests(unittest.TestCase):

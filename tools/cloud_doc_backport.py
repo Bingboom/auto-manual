@@ -3098,6 +3098,18 @@ def _run_review_branch(args: argparse.Namespace) -> int:
                 args, resolved=resolved, worktree=worktree,
                 review_dir=review_dir, doc_tok=doc_tok, baseline_text=baseline_text,
             )
+        # Safety guard: a whole-doc run with NO render baseline falls back to the
+        # per-page RST-source-vs-rendered diff, which over-reports and whose --write
+        # would splatter rendered text across many RST pages (corrupting `.. raw::
+        # latex` / line-blocks). Refuse the mass write — seed a baseline so the diff
+        # is clean (run-review-branch --seed), or target one page with --page.
+        if args.write and not args.page:
+            raise RuntimeError(
+                "refusing whole-doc --write without a render baseline: the per-page "
+                "RST-vs-rendered diff over-reports and writing it corrupts the RST "
+                "source. Seed a baseline first (run-review-branch --seed) for a clean "
+                "diff, or pass --page <file> to write one targeted page."
+            )
         # Pages to backport. With --page: that one. Without: every
         # docs/_review/<model>/<region>/page/*.rst (whole-doc diff — find which pages
         # the cloud-doc changed). The source path is always DERIVED from the resolved
