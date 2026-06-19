@@ -106,7 +106,20 @@ class EnsureWorktreeTests(unittest.TestCase):
             path = ensure_review_worktree("codex/r1", worktrees_root=tmp, run_git=fake)
             self.assertEqual(path, str(Path(tmp) / "review-codex-r1"))
         self.assertIn(["fetch", "origin", "codex/r1"], fake.calls)
-        self.assertTrue(any(call[:2] == ["worktree", "add"] for call in fake.calls))
+        add_calls = [c for c in fake.calls if c[:2] == ["worktree", "add"]]
+        self.assertTrue(add_calls)
+        self.assertNotIn("--no-checkout", add_calls[0])  # full checkout when no sparse_paths
+
+    def test_creates_sparse_when_paths_given(self) -> None:
+        fake = _FakeGit("")
+        with tempfile.TemporaryDirectory() as tmp:
+            ensure_review_worktree(
+                "codex/r1", worktrees_root=tmp, run_git=fake, sparse_paths=["docs/_review/JE-1000F/EU"]
+            )
+        sparse_calls = [c for c in fake.calls if "sparse-checkout" in c]
+        self.assertTrue(sparse_calls)
+        self.assertIn("--cone", sparse_calls[0])
+        self.assertIn("docs/_review/JE-1000F/EU", sparse_calls[0])
 
 
 if __name__ == "__main__":

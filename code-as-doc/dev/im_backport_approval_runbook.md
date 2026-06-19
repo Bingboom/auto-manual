@@ -162,7 +162,10 @@ python tools/cloud_doc_backport.py run-review-branch \
 
 1. resolves the cloud-doc → review branch (above);
 2. ensures a git **worktree** of that `Git_ref` (reuses an existing one, else
-   fetch + `git worktree add` under `--worktrees-root`, default `../review-worktrees`);
+   fetch + `git worktree add` under `--worktrees-root`, default `../review-worktrees`).
+   The worktree is **sparse by default** — a cone-mode sparse-checkout of only
+   `docs/_review/<model>/<region>` (≈1 MB vs ≈250 MB full); pass `--full-checkout`
+   for a complete checkout;
 3. runs `run-review` against the worktree's `_review` file;
 4. with `--push`, commits + pushes the review branch (updates its PR).
 
