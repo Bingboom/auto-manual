@@ -30,6 +30,11 @@ Current scope:
 - `cloud-doc backport` for accepted Feishu cloud-doc review revisions, gated by
   `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; the message must include one
   Feishu cloud-doc link plus an explicit `docs/_review/...rst` source path
+- `cloud-doc approve <run-id> <delta_hash> …` / `cloud-doc reject <run-id> <delta_hash> …`
+  to approve/reject **F6 source-table (Bitable) writes** of reviewer-confirmed
+  Class D values, gated by `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS` and the
+  separate `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE` flag (see the runbook
+  `code-as-doc/dev/im_backport_approval_runbook.md`)
 
 Current limitations:
 
@@ -40,6 +45,11 @@ Current limitations:
 - cloud-doc backport PR messages call `tools/cloud_doc_backport.py open-pr`
   only after an explicit `backport-pr` message and the PR-create env gate; they
   still do not write Feishu source tables
+- cloud-doc `approve`/`reject` messages call `tools/cloud_doc_backport.py
+  apply-source-table`; **source-table writes default to dry-run** and only write
+  Bitable when `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE=true` and the
+  approved request resolves to an exact `record_id` with a configured table
+  binding — human approval is always mandatory and the agent never approves
 
 ## Environment
 
@@ -76,6 +86,16 @@ Optional:
 - `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE`; defaults to `false`; when
   true, an allowed sender can send a separate `cloud-doc backport-pr ...`
   message to create a draft PR from a `PR_READY` run manifest
+- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE`; defaults to `false`; gates
+  **F6 Bitable source-table writes** SEPARATELY from `_review` writes (wider blast
+  radius, no git revert). When false, `cloud-doc approve` runs a dry-run plan;
+  when true, approved+resolved requests are written via the explicit bindings
+- `FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS`; comma-separated
+  `TABLE=BASE_TOKEN:TABLE_ID` writable bindings per change-request table (e.g.
+  `Manual_Copy_Source=bascn…:tbl…`); required (per table) for live source writes
+- `FEISHU_IM_CLOUD_DOC_BACKPORT_APPROVAL_LOG`; append-only JSONL audit of every
+  approve/reject (approver, timestamp, decision, run-id, hashes, result);
+  defaults to `reports/cloud_doc_backport/approval_audit.jsonl`
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`

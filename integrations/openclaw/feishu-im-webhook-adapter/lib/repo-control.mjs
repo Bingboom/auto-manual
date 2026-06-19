@@ -307,6 +307,59 @@ async function runCloudDocBackportJson(config, { docUrl, sourcePath, runId = "",
   };
 }
 
+async function applyCloudDocBackportSourceTableJson(
+  config,
+  { runId, approvedHashes = [], write = false, tableBindings = [] }
+) {
+  const resolvedRunId = safePathToken(runId);
+  const outDir = path.join("reports", "cloud_doc_backport", resolvedRunId);
+  const reportPath = path.join(outDir, "cloud_doc_backport_source_table_change_request.json");
+  const args = [CLOUD_DOC_BACKPORT_TOOL, "apply-source-table", "--report", reportPath];
+  for (const hash of approvedHashes) {
+    args.push("--approve", hash);
+  }
+  if (write) {
+    args.push("--write");
+    for (const binding of tableBindings) {
+      args.push("--table-binding", binding);
+    }
+  }
+  const result = await execFileResult(config.pythonBin, args, {
+    cwd: config.repoRoot,
+    env: process.env,
+    maxBuffer: 1024 * 1024 * 8,
+  });
+  const applyPath = path.join(config.repoRoot, outDir, "cloud_doc_backport_source_table_apply.json");
+  let report = null;
+  try {
+    report = JSON.parse(await fs.readFile(applyPath, "utf8"));
+  } catch (error) {
+    if (result.code !== 0) {
+      throw new Error(
+        String(result.stderr || result.stdout || error?.message || "source-table apply failed").trim()
+      );
+    }
+    throw error;
+  }
+  return {
+    ...report,
+    exit_code: result.code,
+    stdout: result.stdout.trim(),
+    stderr: result.stderr.trim(),
+    run_id: resolvedRunId,
+    apply_path: path.relative(config.repoRoot, applyPath),
+  };
+}
+
+async function appendApprovalAuditLine(config, entry) {
+  const logPath = config.cloudDocBackportApprovalLog;
+  if (!logPath) {
+    return;
+  }
+  await fs.mkdir(path.dirname(logPath), { recursive: true });
+  await fs.appendFile(logPath, `${JSON.stringify(entry)}\n`, "utf8");
+}
+
 async function openCloudDocBackportPrJson(config, { manifestPath, branchName = "" }) {
   const args = [
     CLOUD_DOC_BACKPORT_TOOL,
@@ -414,6 +467,12 @@ export function createRepoControl(config) {
     },
     async openCloudDocBackportPr({ manifestPath, branchName = "" }) {
       return openCloudDocBackportPrJson(config, { manifestPath, branchName });
+    },
+    async applyCloudDocBackportSourceTable({ runId, approvedHashes = [], write = false, tableBindings = [] }) {
+      return applyCloudDocBackportSourceTableJson(config, { runId, approvedHashes, write, tableBindings });
+    },
+    async recordCloudDocBackportApproval(entry) {
+      return appendApprovalAuditLine(config, entry);
     },
   };
 }

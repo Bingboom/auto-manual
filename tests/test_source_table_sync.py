@@ -4,7 +4,9 @@
 
 from __future__ import annotations
 
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -12,8 +14,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.source_table_sync import (  # noqa: E402
     apply_change_requests,
+    build_change_request_report,
     build_change_requests,
+    load_change_requests,
     plan_apply,
+    source_table_apply_markdown,
+    write_change_request_report,
+    write_source_table_apply_report,
 )
 
 
@@ -45,6 +52,22 @@ class _NoOpTransport:
 
     def get(self, **_kwargs):
         return "STALE"
+
+
+class _RaisingTransport:
+    """upsert raises for one table (e.g. no writable binding), writes others."""
+
+    def __init__(self, *, fail_table: str) -> None:
+        self.fail_table = fail_table
+        self.store: dict = {}
+
+    def upsert(self, *, table, record_id, field, value) -> None:
+        if table == self.fail_table:
+            raise RuntimeError(f"no writable binding for table {table!r}")
+        self.store[(table, record_id, field)] = value
+
+    def get(self, *, table, record_id, field):
+        return self.store.get((table, record_id, field))
 
 
 class BuildChangeRequestsTests(unittest.TestCase):
@@ -119,6 +142,65 @@ class ApplyTests(unittest.TestCase):
         transport = _FakeTransport()
         apply_change_requests([_resolved_request()], approved_hashes=set(), transport=transport, write=True)
         self.assertEqual(transport.store, {})
+
+    def test_one_request_error_does_not_abort_the_batch(self) -> None:
+        # A request whose table has no writable binding (transport raises) is
+        # isolated as `error`; the other approved request still writes.
+        good = _resolved_request("good")
+        bad = {**_resolved_request("bad"), "table": "Localized_Copy"}
+        transport = _RaisingTransport(fail_table="Localized_Copy")
+        report = apply_change_requests(
+            [good, bad], approved_hashes={"good", "bad"}, transport=transport, write=True
+        )
+        statuses = {entry["delta_hash"]: entry["status"] for entry in report["applied"]}
+        self.assertEqual(statuses["good"], "written")
+        self.assertEqual(statuses["bad"], "error")
+        self.assertEqual(report["summary"]["written"], 1)
+        self.assertEqual(report["summary"]["error"], 1)
+        self.assertEqual(transport.store[("Spec_Master", "recAAA", "Value_uk")], "DC 12 В")
+
+
+class ReportIoTests(unittest.TestCase):
+    def test_load_change_requests_round_trips_run_review_report(self) -> None:
+        diff_report = {
+            "run_id": "rr",
+            "deltas": [
+                {
+                    "route_class": "source_table_suggestion",
+                    "delta_hash": "h1",
+                    "source_ref": {"table": "Spec_Master", "field": "Value_uk"},
+                    "old_text": "DC 12 V",
+                    "new_text": "DC 12 В",
+                }
+            ],
+        }
+        report = build_change_request_report(diff_report)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = write_change_request_report(report, Path(tmp))
+            requests, run_id = load_change_requests(path)
+        self.assertEqual(run_id, "rr")
+        self.assertEqual(len(requests), 1)
+        self.assertEqual(requests[0]["delta_hash"], "h1")
+
+    def test_load_change_requests_rejects_malformed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "bad.json"
+            path.write_text("[]", encoding="utf-8")
+            with self.assertRaises(RuntimeError):
+                load_change_requests(path)
+
+    def test_apply_markdown_and_report_io(self) -> None:
+        report = apply_change_requests([_resolved_request()], approved_hashes={"h1"})
+        report = {**report, "run_id": "rr", "approved_count": 1}
+        md = source_table_apply_markdown(report)
+        self.assertIn("source-table apply", md)
+        self.assertIn("dry-run", md)
+        with tempfile.TemporaryDirectory() as tmp:
+            written = write_source_table_apply_report(report, Path(tmp))
+            self.assertTrue(written["json"].exists())
+            self.assertTrue(written["markdown"].exists())
+            payload = json.loads(written["json"].read_text(encoding="utf-8"))
+            self.assertEqual(payload["run_id"], "rr")
 
 
 if __name__ == "__main__":

@@ -69,6 +69,16 @@ export function loadAdapterConfig() {
     cloudDocBackportAllowedSenderIds: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS"),
     cloudDocBackportAllowWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE", false),
     cloudDocBackportAllowPrCreate: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE", false),
+    // F6 Bitable source-table writes are gated SEPARATELY from _review writes
+    // (wider blast radius, no git revert). Defaults OFF: an approve command runs
+    // dry-run until the operator deliberately enables this.
+    cloudDocBackportAllowSourceWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE", false),
+    // Writable Feishu bindings per change-request table, comma-separated
+    // `TABLE=BASE_TOKEN:TABLE_ID` (e.g. `Manual_Copy_Source=bascn…:tbl…`).
+    cloudDocBackportSourceTableBindings: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS"),
+    cloudDocBackportApprovalLog:
+      String(process.env.FEISHU_IM_CLOUD_DOC_BACKPORT_APPROVAL_LOG || "").trim() ||
+      path.join(repoRoot, "reports", "cloud_doc_backport", "approval_audit.jsonl"),
     stateFile:
       String(process.env.FEISHU_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "feishu-im-webhook-adapter-state.json"),

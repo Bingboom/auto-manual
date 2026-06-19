@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tools.cloud_doc_backport import (
+    _parse_table_bindings,
     build_report,
     fetch_doc_text,
     main,
@@ -886,6 +887,63 @@ class CloudDocBackportTest(unittest.TestCase):
         self.assertEqual(report["result"], "NO_DIFF")
         self.assertEqual(report["summary"]["total_deltas"], 0)
         self.assertEqual(report["deltas"], [])
+
+
+class ApplySourceTableCliTest(unittest.TestCase):
+    def _write_change_request_report(self, root: Path) -> Path:
+        report = {
+            "schema_version": "source-table-change-request/v1",
+            "run_id": "rr",
+            "requests": [
+                {
+                    "delta_hash": "h1",
+                    "table": "Spec_Master",
+                    "field": "Value_uk",
+                    "record_id": "recAAA",
+                    "resolution_status": "resolved",
+                    "new_text": "DC 12 В",
+                },
+                {
+                    "delta_hash": "h2",
+                    "table": "Localized_Copy",
+                    "field": "text_it",
+                    "record_id": "recMCS",
+                    "resolution_status": "resolved",
+                    "new_text": "n",
+                },
+            ],
+        }
+        path = root / "cloud_doc_backport_source_table_change_request.json"
+        path.write_text(json.dumps(report), encoding="utf-8")
+        return path
+
+    def test_dry_run_gates_to_approved_and_resolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            report_path = self._write_change_request_report(root)
+            exit_code = main(["apply-source-table", "--report", str(report_path), "--approve", "h1"])
+            self.assertEqual(exit_code, 0)
+            apply_report = json.loads((root / "cloud_doc_backport_source_table_apply.json").read_text("utf-8"))
+            self.assertFalse(apply_report["external_write"])  # dry-run, no write
+            actions = {entry["delta_hash"]: entry["action"] for entry in apply_report["plan"]}
+            self.assertEqual(actions["h1"], "apply")  # approved + resolved
+            self.assertEqual(actions["h2"], "skip")  # not approved
+
+    def test_write_requires_table_binding(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            report_path = self._write_change_request_report(root)
+            exit_code = main(["apply-source-table", "--report", str(report_path), "--approve", "h1", "--write"])
+            self.assertEqual(exit_code, 2)  # no --table-binding -> refuse
+
+    def test_parse_table_bindings(self) -> None:
+        self.assertEqual(
+            _parse_table_bindings(["Manual_Copy_Source=base1:tbl1", "Spec_Master=base2:tbl2"]),
+            {"Manual_Copy_Source": ("base1", "tbl1"), "Spec_Master": ("base2", "tbl2")},
+        )
+        for bad in ["noequals", "T=", "T=baseonly", "=base:tbl"]:
+            with self.assertRaises(RuntimeError):
+                _parse_table_bindings([bad])
 
 
 if __name__ == "__main__":

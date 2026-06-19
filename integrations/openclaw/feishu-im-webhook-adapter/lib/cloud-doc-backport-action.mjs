@@ -169,6 +169,68 @@ export function cloudDocBackportSenderAllowed(senderId, config = {}) {
   return allowed.includes("*") || allowed.includes(sender);
 }
 
+const APPROVE_INTENT_RE = /(approve|approved|批准|审批通过|通过审批|确认写入|同意写入|同意回写)/i;
+const REJECT_INTENT_RE = /(reject|rejected|拒绝|驳回|不批准|审批拒绝)/i;
+// delta_hash is a full sha256 hexdigest (64 chars). Accept 16+ so a slightly
+// truncated paste still parses; the executor requires an EXACT match, so an
+// inexact hash simply approves nothing (fail-safe).
+const DELTA_HASH_RE = /\b[a-f0-9]{16,64}\b/gi;
+
+function extractApprovalRunId(text, hashes) {
+  const explicit = text.match(RUN_ID_RE);
+  if (explicit) {
+    const candidate = safeRunId(explicit[1]);
+    if (candidate) {
+      return candidate;
+    }
+  }
+  const hashSet = new Set(hashes.map((value) => value.toLowerCase()));
+  for (const rawToken of compactText(text).split(/\s+/)) {
+    const token = rawToken.replace(/[^A-Za-z0-9._/-]+/g, "");
+    if (!token || hashSet.has(token.toLowerCase())) {
+      continue;
+    }
+    if (/^[a-f0-9]{16,64}$/i.test(token)) {
+      continue; // a hash, not the run-id
+    }
+    if (/^(cloud-doc|cloud_doc|backport|approve|approved|reject|rejected)$/i.test(token)) {
+      continue;
+    }
+    // run-id shape: the feishu-im default prefix, or any token with a dash and a digit.
+    if (/^feishu-im[-_]/i.test(token) || (/[-_]/.test(token) && /\d/.test(token))) {
+      return safeRunId(token);
+    }
+  }
+  return "";
+}
+
+export function parseCloudDocBackportApprovalRequest(messageText) {
+  const text = compactText(messageText);
+  const isReject = REJECT_INTENT_RE.test(text);
+  const isApprove = APPROVE_INTENT_RE.test(text);
+  if (!isApprove && !isReject) {
+    return { matched: false, decision: "", missing: [], runId: "", hashes: [] };
+  }
+  // Reject wins on ambiguity so we never auto-write when intent is unclear.
+  const decision = isReject ? "reject" : "approve";
+  const hashes = [...new Set((text.match(DELTA_HASH_RE) || []).map((value) => value.toLowerCase()))];
+  const runId = extractApprovalRunId(text, hashes);
+  // Require some concrete handle (a hash or a run-id) before claiming this is an
+  // approval command, so an ordinary backport/review message that merely contains
+  // an approval word is NOT hijacked into the approval path.
+  if (!hashes.length && !runId) {
+    return { matched: false, decision: "", missing: [], runId: "", hashes: [] };
+  }
+  const missing = [];
+  if (!runId) {
+    missing.push("run-id (e.g. feishu-im-2026-…)");
+  }
+  if (!hashes.length) {
+    missing.push(`one or more delta_hash values to ${decision}`);
+  }
+  return { matched: true, decision, missing, runId, hashes };
+}
+
 export function parseCloudDocBackportPrRequest(messageText) {
   const text = compactText(messageText);
   const hasIntent = PR_INTENT_RE.test(text);

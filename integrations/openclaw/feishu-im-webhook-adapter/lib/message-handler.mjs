@@ -10,6 +10,7 @@ import {
 } from "./feishu-events.mjs";
 import {
   cloudDocBackportSenderAllowed,
+  parseCloudDocBackportApprovalRequest,
   parseCloudDocBackportPrRequest,
   parseCloudDocBackportRequest,
 } from "./cloud-doc-backport-action.mjs";
@@ -19,11 +20,15 @@ import {
   formatBatchCompletionReply,
   formatBatchStatusReply,
   formatCloudDocBackportAcceptedReply,
+  formatCloudDocBackportApprovalAcceptedReply,
+  formatCloudDocBackportApprovalNeedInputReply,
+  formatCloudDocBackportApprovalResultReply,
   formatCloudDocBackportDeniedReply,
   formatCloudDocBackportNeedInputReply,
   formatCloudDocBackportPrAcceptedReply,
   formatCloudDocBackportPrNeedInputReply,
   formatCloudDocBackportPrResultReply,
+  formatCloudDocBackportRejectReply,
   formatCloudDocBackportResultReply,
   formatCompletionReply,
   formatExecutionErrorReply,
@@ -322,6 +327,91 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       }
       await react(messageEvent.messageId, latest.failures.length ? "error" : "completed");
       await replyBatchStatus(messageEvent, latest);
+      return;
+    }
+
+    const cloudDocBackportApproval = parseCloudDocBackportApprovalRequest(normalizedMessage.normalizedText);
+    if (cloudDocBackportApproval.matched) {
+      if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
+        await react(messageEvent.messageId, "needs_input");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportDeniedReply(
+            "sender is not in FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
+            localProfile
+          )
+        );
+        return;
+      }
+      if (cloudDocBackportApproval.missing.length) {
+        await react(messageEvent.messageId, "needs_input");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportApprovalNeedInputReply(cloudDocBackportApproval, localProfile)
+        );
+        return;
+      }
+      const auditBase = {
+        at: new Date().toISOString(),
+        sender: messageEvent.senderId,
+        decision: cloudDocBackportApproval.decision,
+        run_id: cloudDocBackportApproval.runId,
+        hashes: cloudDocBackportApproval.hashes,
+      };
+      const recordApproval = async (entry) => {
+        if (typeof repoControl.recordCloudDocBackportApproval !== "function") {
+          return;
+        }
+        try {
+          await repoControl.recordCloudDocBackportApproval(entry);
+        } catch (error) {
+          logger.error?.("cloud-doc backport approval audit append failed", error);
+        }
+      };
+      if (cloudDocBackportApproval.decision === "reject") {
+        // Reject is an audit-only action: it never touches Bitable.
+        await recordApproval({ ...auditBase, result: "rejected" });
+        await react(messageEvent.messageId, "completed");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportRejectReply(cloudDocBackportApproval, localProfile)
+        );
+        return;
+      }
+      // approve: source-table writes are gated SEPARATELY and default OFF, so an
+      // approve runs dry-run until the operator enables ALLOW_SOURCE_WRITE.
+      const sourceWrite = config.cloudDocBackportAllowSourceWrite === true;
+      await react(messageEvent.messageId, "accepted");
+      await feishuClient.replyTextMessage(
+        messageEvent.messageId,
+        formatCloudDocBackportApprovalAcceptedReply({ ...cloudDocBackportApproval, write: sourceWrite }, localProfile)
+      );
+      try {
+        const applyResult = await repoControl.applyCloudDocBackportSourceTable({
+          runId: cloudDocBackportApproval.runId,
+          approvedHashes: cloudDocBackportApproval.hashes,
+          write: sourceWrite,
+          tableBindings: config.cloudDocBackportSourceTableBindings || [],
+        });
+        await recordApproval({
+          ...auditBase,
+          write: sourceWrite,
+          external_write: applyResult?.external_write === true,
+          result: applyResult?.summary || {},
+        });
+        const failed = Boolean(
+          applyResult?.summary && (applyResult.summary.verify_failed || applyResult.summary.error)
+        );
+        await react(messageEvent.messageId, failed ? "error" : "completed");
+        await feishuClient.replyTextMessage(
+          messageEvent.messageId,
+          formatCloudDocBackportApprovalResultReply(applyResult, localProfile)
+        );
+      } catch (error) {
+        logger.error?.("cloud-doc backport source-table apply failed", error);
+        await react(messageEvent.messageId, "error");
+        await feishuClient.replyTextMessage(messageEvent.messageId, formatExecutionErrorReply(error, localProfile));
+      }
       return;
     }
 

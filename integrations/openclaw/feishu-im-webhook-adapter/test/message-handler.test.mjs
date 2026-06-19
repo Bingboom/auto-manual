@@ -861,6 +861,154 @@ test("message handler opens cloud-doc backport PR before queue resolution", asyn
   assert.match(replies[1].text, /pull\/999/);
 });
 
+const APPROVAL_HASH = "a".repeat(64);
+
+function approvalHandler({ allowSourceWrite = false, bindings = [], repoOverrides = {}, replies, audits } = {}) {
+  return createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+      cloudDocBackportAllowedSenderIds: ["ou_sender"],
+      cloudDocBackportAllowSourceWrite: allowSourceWrite,
+      cloudDocBackportSourceTableBindings: bindings,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {
+      async resolveAction() {
+        throw new Error("queue resolver should not run");
+      },
+      async recordCloudDocBackportApproval(entry) {
+        audits.push(entry);
+      },
+      ...repoOverrides,
+    },
+    feishuClient: {
+      async replyTextMessage(messageId, text) {
+        replies.push({ messageId, text });
+      },
+    },
+  });
+}
+
+test("source-table approval runs dry-run when source-write is disabled", async () => {
+  const replies = [];
+  const audits = [];
+  let applyPayload = null;
+  const handler = approvalHandler({
+    allowSourceWrite: false,
+    replies,
+    audits,
+    repoOverrides: {
+      async applyCloudDocBackportSourceTable(payload) {
+        applyPayload = payload;
+        return {
+          external_write: false,
+          run_id: payload.runId,
+          summary: { total: 1, apply: 1, skip: 0, written: 0, verify_failed: 0, error: 0 },
+          applied: [{ status: "planned", table: "Spec_Master", field: "Value_uk", delta_hash: APPROVAL_HASH }],
+          apply_path: "reports/cloud_doc_backport/feishu-im-run-1/cloud_doc_backport_source_table_apply.json",
+        };
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload(`cloud-doc approve feishu-im-run-1 ${APPROVAL_HASH}`));
+  await result.backgroundTask();
+
+  assert.equal(applyPayload.write, false);
+  assert.equal(applyPayload.runId, "feishu-im-run-1");
+  assert.deepEqual(applyPayload.approvedHashes, [APPROVAL_HASH]);
+  assert.equal(replies.length, 2);
+  assert.match(replies[0].text, /mode: dry-run/);
+  assert.match(replies[1].text, /plan: apply 1/);
+  assert.match(replies[1].text, /ALLOW_SOURCE_WRITE/);
+  assert.equal(audits.length, 1);
+  assert.equal(audits[0].decision, "approve");
+  assert.equal(audits[0].external_write, false);
+});
+
+test("source-table approval writes to Bitable when enabled with bindings", async () => {
+  const replies = [];
+  const audits = [];
+  let applyPayload = null;
+  const handler = approvalHandler({
+    allowSourceWrite: true,
+    bindings: ["Spec_Master=base1:tbl1"],
+    replies,
+    audits,
+    repoOverrides: {
+      async applyCloudDocBackportSourceTable(payload) {
+        applyPayload = payload;
+        return {
+          external_write: true,
+          run_id: payload.runId,
+          summary: { total: 1, apply: 1, skip: 0, written: 1, verify_failed: 0, error: 0 },
+          applied: [{ status: "written", table: "Spec_Master", field: "Value_uk", delta_hash: APPROVAL_HASH }],
+          apply_path: "reports/cloud_doc_backport/feishu-im-run-1/cloud_doc_backport_source_table_apply.json",
+        };
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload(`cloud-doc approve feishu-im-run-1 ${APPROVAL_HASH}`));
+  await result.backgroundTask();
+
+  assert.equal(applyPayload.write, true);
+  assert.deepEqual(applyPayload.tableBindings, ["Spec_Master=base1:tbl1"]);
+  assert.match(replies[0].text, /mode: write \(Bitable\)/);
+  assert.match(replies[1].text, /written: 1/);
+  assert.equal(audits[0].external_write, true);
+});
+
+test("source-table rejection records audit and never writes", async () => {
+  const replies = [];
+  const audits = [];
+  const handler = approvalHandler({
+    replies,
+    audits,
+    repoOverrides: {
+      async applyCloudDocBackportSourceTable() {
+        throw new Error("reject must never apply");
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload(`cloud-doc reject feishu-im-run-1 ${APPROVAL_HASH}`));
+  await result.backgroundTask();
+
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /已记录源表回写拒绝/);
+  assert.equal(audits.length, 1);
+  assert.equal(audits[0].decision, "reject");
+  assert.equal(audits[0].result, "rejected");
+});
+
+test("source-table approval enforces the sender allowlist", async () => {
+  const replies = [];
+  const audits = [];
+  let applied = false;
+  const handler = approvalHandler({
+    replies,
+    audits,
+    repoOverrides: {
+      async applyCloudDocBackportSourceTable() {
+        applied = true;
+        return {};
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(
+    basePayload(`cloud-doc approve feishu-im-run-1 ${APPROVAL_HASH}`, { senderId: "ou_intruder" })
+  );
+  await result.backgroundTask();
+
+  assert.equal(applied, false);
+  assert.equal(replies.length, 1);
+  assert.match(replies[0].text, /ALLOWED_SENDERS/);
+});
+
 test("message handler does not fall back to a stale single row when fresh lookup is missing", async () => {
   const replies = [];
   let cleared = false;
