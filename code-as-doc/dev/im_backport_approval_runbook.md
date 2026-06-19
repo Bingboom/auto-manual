@@ -180,6 +180,15 @@ python tools/cloud_doc_backport.py run-review-branch \
    filtered out as false positives;
 4. with `--push`, commits + pushes the changed page(s) on the review branch (updates its PR).
 
+> **Diff baseline (approach C, phased).** The current diff compares against the RST
+> `page/*.rst`, which over-reports (RST source vs rendered cloud-doc — see
+> [`../architecture/Backport_Rendered_Baseline_Design.md`](../architecture/Backport_Rendered_Baseline_Design.md)).
+> The fix is a per-target render baseline. **Phase 1 (shipped):** `run-review-branch
+> --seed --cloud-doc <url> [--doc-name <n>] [--push]` stores the current cloud-doc as
+> the baseline under `docs/_review/<model>/<region>/.backport/` (declares "already
+> reviewed"; `--reseed` overwrites). Use it for a review with **no pending edits**.
+> Phase 2 will diff against this baseline so only the reviewer's real edits surface.
+
 **Template guard:** the source path is *derived* from the resolved
 `docs/_review/<model>/<region>` + `--page` — never an arbitrary path — and is
 hard-refused if it would resolve to `docs/templates/` or `docs/_build/`. So a
