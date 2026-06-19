@@ -34,7 +34,8 @@ from tools.source_table_sync import (  # noqa: E402
     write_change_request_report,
     write_source_table_apply_report,
 )
-from tools.review_branch_resolver import match_review_branch  # noqa: E402
+from tools.review_branch_resolver import list_in_review_branches, match_review_branch  # noqa: E402
+from tools.review_worktree import derive_review_source_rel, ensure_review_worktree  # noqa: E402
 from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
 from tools.translation_memory_sync import apply_translation_suggestions  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
@@ -2567,6 +2568,37 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     resolve_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL")
     resolve_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
     resolve_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
+
+    run_review_branch_parser = subparsers.add_parser(
+        "run-review-branch",
+        description=(
+            "One-shot branch-targeted backport: resolve the cloud-doc's review branch, "
+            "ensure a worktree of it, run-review against its docs/_review file (the "
+            "source path is DERIVED, never a template), and optionally push to update "
+            "its PR. Dry-run unless --write."
+        ),
+    )
+    run_review_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL")
+    run_review_branch_parser.add_argument("--page", required=True, help="review page, e.g. 00_preface.rst or page/00_preface.rst")
+    run_review_branch_parser.add_argument("--write", action="store_true", help="apply edits to the worktree's _review file (else dry-run)")
+    run_review_branch_parser.add_argument("--push", action="store_true", help="commit + push the review branch (updates its PR); needs --write")
+    run_review_branch_parser.add_argument("--worktrees-root", help="where to create review worktrees (default: ../review-worktrees)")
+    run_review_branch_parser.add_argument("--remote", default="origin", help="git remote")
+    run_review_branch_parser.add_argument("--git-bin", default="git", help="git binary")
+    run_review_branch_parser.add_argument("--run-id", default="cloud-doc-backport-branch")
+    run_review_branch_parser.add_argument("--out", help="output directory for run-review reports")
+    run_review_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
+    run_review_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
+
+    sync_worktrees_parser = subparsers.add_parser(
+        "sync-review-worktrees",
+        description="Ensure a git worktree exists for every InReview branch in the build table (so a backport always has its docs/_review tree).",
+    )
+    sync_worktrees_parser.add_argument("--worktrees-root", help="where to create review worktrees (default: ../review-worktrees)")
+    sync_worktrees_parser.add_argument("--remote", default="origin", help="git remote")
+    sync_worktrees_parser.add_argument("--git-bin", default="git", help="git binary")
+    sync_worktrees_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
+    sync_worktrees_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
     return parser.parse_args(argv)
 
 
@@ -2916,7 +2948,8 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
     return 1 if wrote_with_failures else 0
 
 
-def _run_resolve_review_branch(args: argparse.Namespace) -> int:
+def _fetch_build_table_records(lark_cli: str, identity: str) -> list[dict[str, Any]]:
+    """Fetch the Document_link build table (文档构建表) records via lark-cli."""
     import os
 
     from tools.sync_data import LarkCliSource
@@ -2925,15 +2958,21 @@ def _run_resolve_review_branch(args: argparse.Namespace) -> int:
     table = os.environ.get("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", "").strip()
     view = os.environ.get("FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID", "").strip() or None
     if not base or not table:
-        print(
-            "cloud-doc-backport: FEISHU_PHASE2_BASE_TOKEN + FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID are required",
-            file=sys.stderr,
-        )
-        return 2
+        raise RuntimeError("FEISHU_PHASE2_BASE_TOKEN + FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID are required")
+    source = LarkCliSource(cli_bin=lark_cli, identity=identity)
+    return source.fetch_records_with_ids(base_token=base, table_id=table, view_id=view)
+
+
+def _default_worktrees_root() -> Path:
+    import os
+
+    env = os.environ.get("AUTO_MANUAL_REVIEW_WORKTREES_ROOT", "").strip()
+    return Path(env) if env else (get_paths().root.parent / "review-worktrees")
+
+
+def _run_resolve_review_branch(args: argparse.Namespace) -> int:
     try:
-        source = LarkCliSource(cli_bin=args.lark_cli, identity=args.identity)
-        records = source.fetch_records_with_ids(base_token=base, table_id=table, view_id=view)
-        result = match_review_branch(args.cloud_doc, records)
+        result = match_review_branch(args.cloud_doc, _fetch_build_table_records(args.lark_cli, args.identity))
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
@@ -2941,6 +2980,90 @@ def _run_resolve_review_branch(args: argparse.Namespace) -> int:
         print(json.dumps({"resolved": False, "cloud_doc": args.cloud_doc}, ensure_ascii=False))
         return 1
     print(json.dumps({"resolved": True, **result}, ensure_ascii=False, indent=2, sort_keys=True))
+    return 0
+
+
+def _run_sync_review_worktrees(args: argparse.Namespace) -> int:
+    worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
+    try:
+        branches = list_in_review_branches(_fetch_build_table_records(args.lark_cli, args.identity))
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    results: list[dict[str, Any]] = []
+    for branch in branches:
+        try:
+            path = ensure_review_worktree(
+                branch["git_ref"],
+                worktrees_root=worktrees_root,
+                repo_root=get_paths().root,
+                remote=args.remote,
+                git_bin=args.git_bin,
+            )
+            results.append({**branch, "worktree": path})
+            print(f"WORKTREE {branch['git_ref']} -> {path}")
+        except (OSError, RuntimeError) as exc:
+            results.append({**branch, "error": str(exc)})
+            print(f"cloud-doc-backport: worktree for {branch['git_ref']} failed: {exc}", file=sys.stderr)
+    print(json.dumps({"in_review": len(branches), "ensured": sum(1 for r in results if "worktree" in r)}, ensure_ascii=False))
+    return 0 if branches and all("worktree" in r for r in results) else (0 if not branches else 1)
+
+
+def _run_review_branch(args: argparse.Namespace) -> int:
+    worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
+    try:
+        resolved = match_review_branch(args.cloud_doc, _fetch_build_table_records(args.lark_cli, args.identity))
+        if resolved is None:
+            raise RuntimeError(f"no review branch found for cloud-doc {args.cloud_doc}")
+        git_ref = resolved["git_ref"]
+        # Template guard: the source path is DERIVED from the resolved review dir,
+        # never an arbitrary caller path -> a backport can only write docs/_review.
+        source_rel = derive_review_source_rel(resolved["review_dir"], args.page)
+        worktree = ensure_review_worktree(
+            git_ref,
+            worktrees_root=worktrees_root,
+            repo_root=get_paths().root,
+            remote=args.remote,
+            git_bin=args.git_bin,
+        )
+        source_abs = Path(worktree) / source_rel
+        if not source_abs.is_file():
+            raise RuntimeError(f"review source not found on branch {git_ref}: {source_rel}")
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
+    out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
+    print(f"BRANCH {git_ref}  SOURCE {source_rel}  WORKTREE {worktree}")
+    review_cmd = [
+        sys.executable, str(Path(__file__).resolve()), "run-review",
+        "--doc-url", args.cloud_doc, "--source-path", str(source_abs),
+        "--run-id", run_id, "--out", str(out_dir), "--lark-cli", args.lark_cli,
+    ]
+    if args.write:
+        review_cmd.append("--write")
+    review_proc = subprocess.run(review_cmd, cwd=str(get_paths().root))
+    if review_proc.returncode not in (0, 1):  # run-review returns 1 only on a FAIL residual result
+        return review_proc.returncode
+    pushed = False
+    if args.write and args.push:
+        try:
+            _run_pr_command([args.git_bin, "add", source_rel], root=Path(worktree))
+            if _run_pr_command([args.git_bin, "status", "--porcelain", source_rel], root=Path(worktree)).strip():
+                _run_pr_command(
+                    [args.git_bin, "commit", "-m", f"backport: {git_ref} review edits ({run_id})"],
+                    root=Path(worktree),
+                )
+                _run_pr_command([args.git_bin, "push"], root=Path(worktree))
+                pushed = True
+        except (OSError, RuntimeError) as exc:
+            print(f"cloud-doc-backport: push to {git_ref} failed: {exc}", file=sys.stderr)
+            return 2
+    print(json.dumps(
+        {"git_ref": git_ref, "source": source_rel, "worktree": worktree,
+         "wrote": bool(args.write), "pushed": pushed, "pr_url": resolved.get("pr_url")},
+        ensure_ascii=False, sort_keys=True,
+    ))
     return 0
 
 
@@ -2980,6 +3103,10 @@ def main(argv: list[str] | None = None) -> int:
         return _run_apply_source_table(args, raw_argv)
     if args.command == "resolve-review-branch":
         return _run_resolve_review_branch(args)
+    if args.command == "run-review-branch":
+        return _run_review_branch(args)
+    if args.command == "sync-review-worktrees":
+        return _run_sync_review_worktrees(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 

@@ -146,11 +146,40 @@ python tools/cloud_doc_backport.py resolve-review-branch \
 
 It matches the cloud-doc by its doc token against the `飞书云文档` column (needs
 `FEISHU_PHASE2_BASE_TOKEN` + `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`), resolves the
-`Git_ref` + `Document_ID` → `docs/_review/<model>/<region>`, and abstains when a
-cloud-doc maps to more than one distinct branch. The backport must then run against
-that `Git_ref` branch (so `_review` exists) and write back to it / update its PR —
-wiring that worktree run into the CLI is the next step (this command is the
-deterministic resolver it builds on).
+`Git_ref` + `Document_ID` → `docs/_review/<model>/<region>` (the region is the
+second `_`-segment; a language segment like `EU_en` does NOT widen it), and abstains
+when a cloud-doc maps to more than one distinct branch.
+
+### One-shot branch-targeted backport
+
+`run-review-branch` does the whole chain so the bot never has to guess:
+
+```sh
+python tools/cloud_doc_backport.py run-review-branch \
+  --cloud-doc "<feishu cloud-doc URL>" --page 00_preface.rst \
+  [--write] [--push]            # dry-run unless --write; --push needs --write
+```
+
+1. resolves the cloud-doc → review branch (above);
+2. ensures a git **worktree** of that `Git_ref` (reuses an existing one, else
+   fetch + `git worktree add` under `--worktrees-root`, default `../review-worktrees`);
+3. runs `run-review` against the worktree's `_review` file;
+4. with `--push`, commits + pushes the review branch (updates its PR).
+
+**Template guard:** the source path is *derived* from the resolved
+`docs/_review/<model>/<region>` + `--page` — never an arbitrary path — and is
+hard-refused if it would resolve to `docs/templates/` or `docs/_build/`. So a
+backport can only ever write the review derivative, not the shared template (the
+failure mode where the bot guessed `docs/templates/page_eu/00_preface.rst`).
+
+### Pre-create worktrees for every active review
+
+```sh
+python tools/cloud_doc_backport.py sync-review-worktrees   # one worktree per InReview Git_ref
+```
+
+Run this after reviews start so every InReview target's `docs/_review/...` tree is
+already on disk for the bot to edit.
 
 ## References
 

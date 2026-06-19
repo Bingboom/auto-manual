@@ -50,6 +50,11 @@ class ParseDocumentIdTests(unittest.TestCase):
     def test_region_keeps_internal_dash(self) -> None:
         self.assertEqual(parse_document_id("JE-1000F_pt-BR_1.4"), ("JE-1000F", "pt-BR", "1.4"))
 
+    def test_language_segment_is_not_part_of_region(self) -> None:
+        # JE-1000F_EU_en_0.8: region is EU (the _review tree stops at the region);
+        # the language segment (en) must NOT leak into the region (was "EU_en" bug).
+        self.assertEqual(parse_document_id("JE-1000F_EU_en_0.8"), ("JE-1000F", "EU", "0.8"))
+
     def test_too_short_is_none(self) -> None:
         self.assertIsNone(parse_document_id("JE-1000F"))
         self.assertIsNone(parse_document_id(""))
