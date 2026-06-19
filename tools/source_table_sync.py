@@ -59,6 +59,11 @@ COPY_ORIGIN_TABLE = "Localized_Copy"
 COPY_AUTHORING_TABLE = "Manual_Copy_Source"
 COPY_AUTHORING_FIELD = "source_text"
 
+# A translation copy edit can't be written to source via F6 (its home is the
+# Translation_Memory). It abstains with this status and is surfaced as a
+# translation suggestion rather than silently skipped.
+TRANSLATION_ABSTAIN_STATUS = "translation_abstain"
+
 
 def _norm_lang(value: Any) -> str:
     return str(value or "").strip().lower()
@@ -93,10 +98,15 @@ def build_change_requests(
         # abstains so plan_apply skips it instead of mis-writing text_<lang>.
         if table == COPY_ORIGIN_TABLE:
             target = _copy_write_target(source_ref)
-            if target is not None and record_id:
+            if target is None:
+                # Translation edit -> not writable to source via F6; abstain and
+                # surface as a translation suggestion (its home is the TM).
+                record_id, status = None, TRANSLATION_ABSTAIN_STATUS
+            elif record_id:
+                # Source-language edit -> write the authoring source field.
                 table, field = target
-            else:
-                record_id, status = None, "translation_abstain"
+            # else: source-language edit whose record_id did not resolve -> leave
+            # it as a normal unresolved request (NOT a translation suggestion).
         requests.append(
             {
                 "schema_version": CHANGE_REQUEST_SCHEMA_VERSION,
@@ -113,6 +123,33 @@ def build_change_requests(
             }
         )
     return requests
+
+
+def collect_translation_suggestions(change_requests: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Translation copy edits that abstain at the F6 write boundary.
+
+    A reviewer-edited translated copy value can't be written to source via F6 (its
+    home is the Translation_Memory), but it should NOT be silently dropped — it is
+    surfaced as a suggestion so the message layer can reply the proposed
+    translation change for a human (or a future TM sync) to act on.
+    """
+    suggestions: list[dict[str, Any]] = []
+    for request in change_requests:
+        if request.get("resolution_status") != TRANSLATION_ABSTAIN_STATUS:
+            continue
+        source_ref = request.get("source_ref") or {}
+        suggestions.append(
+            {
+                "delta_hash": request.get("delta_hash"),
+                "copy_key": source_ref.get("copy_key"),
+                "lang": source_ref.get("lang"),
+                "source_lang": source_ref.get("source_lang"),
+                "old_text": request.get("old_text"),
+                "new_text": request.get("new_text"),
+                "routing_hint": "translation_memory",
+            }
+        )
+    return suggestions
 
 
 def _ref(request: dict[str, Any]) -> dict[str, Any]:
@@ -193,6 +230,7 @@ def apply_change_requests(
             continue
         verified = current == entry["value"]
         applied.append({**entry, "status": "written" if verified else "verify_failed", "verified": verified})
+    translation_suggestions = collect_translation_suggestions(change_requests)
     return {
         "schema_version": CHANGE_REQUEST_SCHEMA_VERSION,
         "external_write": bool(write and transport is not None),
@@ -203,9 +241,11 @@ def apply_change_requests(
             "written": sum(1 for entry in applied if entry.get("status") == "written"),
             "verify_failed": sum(1 for entry in applied if entry.get("status") == "verify_failed"),
             "error": sum(1 for entry in applied if entry.get("status") == "error"),
+            "translation_suggestions": len(translation_suggestions),
         },
         "plan": plan,
         "applied": applied,
+        "translation_suggestions": translation_suggestions,
     }
 
 
@@ -214,12 +254,18 @@ def build_change_request_report(
 ) -> dict[str, Any]:
     requests = build_change_requests(diff_report, sidecar_index=sidecar_index)
     resolved = sum(1 for request in requests if request.get("resolution_status") == "resolved")
+    translation_suggestions = collect_translation_suggestions(requests)
     return {
         "schema_version": CHANGE_REQUEST_SCHEMA_VERSION,
         "run_id": diff_report.get("run_id"),
         "external_write": False,
-        "summary": {"requests": len(requests), "resolved_record_ids": resolved},
+        "summary": {
+            "requests": len(requests),
+            "resolved_record_ids": resolved,
+            "translation_suggestions": len(translation_suggestions),
+        },
         "requests": requests,
+        "translation_suggestions": translation_suggestions,
     }
 
 
@@ -282,6 +328,18 @@ def source_table_apply_markdown(report: dict[str, Any]) -> str:
         lines.append("")
         for entry in skips:
             lines.append(f"- {entry.get('table')}::{entry.get('field')} (delta `{entry.get('delta_hash')}`) — {entry.get('reason')}")
+        lines.append("")
+    translation = report.get("translation_suggestions") or []
+    if translation:
+        lines.append("## Translation suggestions (route to Translation_Memory)")
+        lines.append("")
+        lines.append("These translated copy edits cannot be written to source via F6; act on them in the TM:")
+        lines.append("")
+        for item in translation:
+            lines.append(
+                f"- `{item.get('copy_key')}` [{item.get('lang')}] (delta `{item.get('delta_hash')}`): "
+                f"{item.get('old_text')!r} → {item.get('new_text')!r}"
+            )
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 

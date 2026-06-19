@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   formatAcceptedReply,
+  formatCloudDocBackportApprovalResultReply,
   formatCloudDocBackportResultReply,
   formatFailedReply,
   formatProcessingReply,
@@ -76,4 +77,20 @@ test("formatCloudDocBackportResultReply reports only manifest evidence", () => {
   assert.match(text, /USB-C 30W/);
   assert.doesNotMatch(text, /AC Output/);
   assert.doesNotMatch(text, /App Setup/);
+});
+
+test("formatCloudDocBackportApprovalResultReply surfaces translation suggestions", () => {
+  const text = formatCloudDocBackportApprovalResultReply({
+    external_write: false,
+    run_id: "feishu-im-run-1",
+    summary: { apply: 0, skip: 1, written: 0, verify_failed: 0, error: 0, translation_suggestions: 1 },
+    applied: [],
+    translation_suggestions: [
+      { delta_hash: "t1", copy_key: "warning.intro", lang: "it", source_lang: "en", old_text: "Vecchio", new_text: "Nuovo" },
+    ],
+  });
+  assert.match(text, /translation_suggestions: 1/);
+  assert.match(text, /warning\.intro/);
+  assert.match(text, /Nuovo/);
+  assert.match(text, /Translation_Memory/);
 });
