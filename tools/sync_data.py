@@ -515,6 +515,51 @@ class LarkCliSource:
         finally:
             payload_path.unlink(missing_ok=True)
 
+    def create_record(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        fields: dict[str, Any],
+    ) -> str:
+        """Create one record via +record-batch-create; return its record id."""
+        payload = {"fields": list(fields.keys()), "rows": [list(fields.values())]}
+        payload_dir = ROOT / ".tmp"
+        payload_dir.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            delete=False,
+            dir=str(payload_dir),
+            prefix="lark-create-",
+            suffix=".json",
+        ) as handle:
+            payload_path = Path(handle.name)
+            handle.write(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+
+        try:
+            response = self._run_base_command(
+                args=[
+                    "+record-batch-create",
+                    "--as",
+                    self.identity,
+                    "--base-token",
+                    base_token,
+                    "--table-id",
+                    table_id,
+                    "--format",
+                    "json",
+                    "--json",
+                    "@" + payload_path.relative_to(ROOT).as_posix(),
+                ]
+            )
+        finally:
+            payload_path.unlink(missing_ok=True)
+        record_ids = ((response.get("data") or {}).get("record_id_list")) or []
+        if not record_ids:
+            raise RuntimeError("Lark CLI record-batch-create returned no record id")
+        return str(record_ids[0])
+
 
 def _resolve_existing_row_key_mapping_path(
     cfg: dict[str, Any],

@@ -35,7 +35,8 @@ def build_qc_report_rows(findings: list[Any]) -> list[dict[str, Any]]:
             continue
         rows.append(
             {
-                "schema_version": QC_REPORT_ROW_SCHEMA_VERSION,
+                # Row keys must be exactly the QC_Report table fields (no metadata
+                # like schema_version, which would be rejected as an unknown field).
                 "run_id": finding.get("run_id"),
                 "finding_hash": finding.get("finding_hash"),
                 "severity": finding.get("severity"),
