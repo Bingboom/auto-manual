@@ -25,7 +25,11 @@ import json
 from pathlib import Path
 from typing import Any, Protocol
 
-from tools.source_record_index import load_index, resolve as _resolve_record
+from tools.source_record_index import (
+    load_index,
+    resolve as _resolve_record,
+    resolve_by_table as _resolve_by_table,
+)
 
 CHANGE_REQUEST_SCHEMA_VERSION = "source-table-change-request/v1"
 
@@ -39,9 +43,12 @@ def _resolve_record_id(source_ref: dict[str, Any], sidecar_index: dict[str, Any]
     if not sidecar_index:
         return None, "snapshot_only"
     kind = source_ref.get("kind")
-    if not kind:
-        return None, "unresolved"
-    return _resolve_record(sidecar_index, kind=str(kind), source_ref=source_ref)
+    if kind:
+        record_id, status = _resolve_record(sidecar_index, kind=str(kind), source_ref=source_ref)
+        if record_id:
+            return record_id, status
+    # F2/F6 source_refs usually carry a table + keys but no kind.
+    return _resolve_by_table(sidecar_index, source_ref)
 
 
 def build_change_requests(

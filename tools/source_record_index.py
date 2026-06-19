@@ -57,6 +57,15 @@ KIND_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
 }
 
 
+# Resolve by source_ref["table"] directly, for F2/F6 source_refs that carry a
+# table + key fields but no content_lint `kind`. The key-field order must match
+# the table's `TABLE_KEY_FIELDS` once that table is indexed (sync side).
+TABLE_RESOLUTION: dict[str, tuple[tuple[str, str], ...]] = {
+    "Spec_Master": (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
+    "Localized_Copy": (("copy_key", "copy_key"),),
+}
+
+
 def _join_key(values: list[str]) -> str:
     return _KEY_SEP.join(values)
 
@@ -161,6 +170,28 @@ def resolve(index: dict[str, Any], *, kind: str, source_ref: dict[str, Any]) -> 
     if spec is None:
         return None, "unresolved"
     table, field_map = spec
+    table_index = (index.get("tables") or {}).get(table)
+    if not isinstance(table_index, dict):
+        return None, "unresolved"
+    values = [_clean(source_ref.get(ref_field)) for ref_field, _ in field_map]
+    if not all(values):
+        return None, "unresolved"
+    key = _join_key(values)
+    if key in (table_index.get("ambiguous") or []):
+        return None, "ambiguous"
+    record_id = (table_index.get("records") or {}).get(key)
+    if record_id:
+        return record_id, "resolved"
+    return None, "unresolved"
+
+
+def resolve_by_table(index: dict[str, Any], source_ref: dict[str, Any]) -> tuple[str | None, str]:
+    """Resolve a `source_ref` that has a `table` + key fields but no `kind`
+    (the shape F2/F6 produce). Returns `(record_id, resolution_status)`."""
+    table = source_ref.get("table")
+    field_map = TABLE_RESOLUTION.get(str(table) if table else "")
+    if field_map is None:
+        return None, "unresolved"
     table_index = (index.get("tables") or {}).get(table)
     if not isinstance(table_index, dict):
         return None, "unresolved"
