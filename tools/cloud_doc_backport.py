@@ -34,7 +34,7 @@ from tools.source_table_sync import (  # noqa: E402
     write_change_request_report,
     write_source_table_apply_report,
 )
-from tools.backport_baseline import load_baseline, store_baseline  # noqa: E402
+from tools.backport_baseline import baseline_rel_path, load_baseline, store_baseline  # noqa: E402
 from tools.review_branch_resolver import (  # noqa: E402
     doc_token,
     list_in_review_branches,
@@ -3088,6 +3088,16 @@ def _run_review_branch(args: argparse.Namespace) -> int:
                 ensure_ascii=False, sort_keys=True,
             ))
             return 0
+        # Approach C (phase 2): when a render baseline exists for this doc, diff the
+        # cloud-doc against it (render-vs-render → only the reviewer's real edits)
+        # instead of the RST-source-vs-rendered per-page diff. Whole-doc only — the
+        # baseline is the whole doc, so --page falls through to the legacy per-page path.
+        baseline_text = load_baseline(worktree, review_dir, doc_tok) if (doc_tok and not args.page) else None
+        if baseline_text is not None:
+            return _run_review_branch_baseline(
+                args, resolved=resolved, worktree=worktree,
+                review_dir=review_dir, doc_tok=doc_tok, baseline_text=baseline_text,
+            )
         # Pages to backport. With --page: that one. Without: every
         # docs/_review/<model>/<region>/page/*.rst (whole-doc diff — find which pages
         # the cloud-doc changed). The source path is always DERIVED from the resolved
@@ -3157,6 +3167,68 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         ensure_ascii=False, sort_keys=True,
     ))
     return 1 if failed else 0
+
+
+def _run_review_branch_baseline(
+    args: argparse.Namespace,
+    *,
+    resolved: dict[str, Any],
+    worktree: str,
+    review_dir: str,
+    doc_tok: str,
+    baseline_text: str,
+) -> int:
+    """Approach C phase 2: diff the cloud-doc against the stored render baseline.
+
+    Both sides are the Feishu fetch of the doc (the baseline is the render that was
+    pushed / last backported), so the diff is render-vs-render and surfaces only the
+    reviewer's real edits — not the RST-source-vs-rendered noise of the per-page path.
+
+    Report-only: routing the clean deltas to the source tables / TM (F2/F3/F6) and
+    advancing the baseline cursor on a full apply are phase 3. We never advance the
+    baseline here — that would bury un-applied edits below the cursor (design §6).
+    """
+    git_ref = resolved["git_ref"]
+    run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
+    out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
+    try:
+        out_dir.mkdir(parents=True, exist_ok=True)
+        c_now = fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli)
+        baseline_rel = baseline_rel_path(review_dir, doc_tok)
+        report = build_report(
+            run_id=run_id,
+            doc_type="review",
+            doc_url=args.cloud_doc,
+            baseline_path=Path(baseline_rel),
+            fetched_text=c_now,
+            baseline_text=baseline_text,
+            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+            source_path=None,
+            section_title=None,
+            section_inferred_from=None,
+            require_section_match=False,
+            value_index=None,
+            family_index=None,
+        )
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    written = write_reports(report, out_dir)
+    deltas = report["summary"]["total_deltas"]
+    print(f"BRANCH {git_ref}  WORKTREE {worktree}  BASELINE-DIFF deltas={deltas}")
+    print(f"WROTE {written['json']}")
+    print(f"WROTE {written['markdown']}")
+    if args.write or args.push:
+        # Honest no-op: applying the clean deltas + advancing the baseline cursor is
+        # phase 3 (route via F2/F3/F6). Don't silently imply a write happened.
+        print("NOTE: baseline-diff is report-only until phase 3 (F2/F3/F6 routing); --write/--push ignored")
+    print(json.dumps(
+        {"git_ref": git_ref, "worktree": worktree, "mode": "baseline-diff",
+         "baseline": baseline_rel, "deltas": deltas, "result": report["result"],
+         "report": str(written["json"]), "pr_url": resolved.get("pr_url")},
+        ensure_ascii=False, sort_keys=True,
+    ))
+    return 0
 
 
 def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:

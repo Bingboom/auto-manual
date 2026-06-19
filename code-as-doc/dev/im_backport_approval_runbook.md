@@ -180,14 +180,22 @@ python tools/cloud_doc_backport.py run-review-branch \
    filtered out as false positives;
 4. with `--push`, commits + pushes the changed page(s) on the review branch (updates its PR).
 
-> **Diff baseline (approach C, phased).** The current diff compares against the RST
-> `page/*.rst`, which over-reports (RST source vs rendered cloud-doc — see
+> **Diff baseline (approach C, phased).** Diffing the fetched cloud-doc against the
+> RST `page/*.rst` over-reports (RST source vs rendered cloud-doc — see
 > [`../architecture/Backport_Rendered_Baseline_Design.md`](../architecture/Backport_Rendered_Baseline_Design.md)).
-> The fix is a per-target render baseline. **Phase 1 (shipped):** `run-review-branch
-> --seed --cloud-doc <url> [--doc-name <n>] [--push]` stores the current cloud-doc as
-> the baseline under `docs/_review/<model>/<region>/.backport/` (declares "already
-> reviewed"; `--reseed` overwrites). Use it for a review with **no pending edits**.
-> Phase 2 will diff against this baseline so only the reviewer's real edits surface.
+> The fix is a per-target render baseline.
+> - **Phase 1 (shipped):** `run-review-branch --seed --cloud-doc <url> [--doc-name
+>   <n>] [--push]` stores the current cloud-doc as the baseline under
+>   `docs/_review/<model>/<region>/.backport/` (declares "already reviewed";
+>   `--reseed` overwrites). Use it for a review with **no pending edits** (seeding a
+>   doc that has un-backported edits would bury them).
+> - **Phase 2 (shipped):** once a baseline exists, a whole-doc `run-review-branch`
+>   (no `--page`) **automatically** diffs the cloud-doc against that baseline
+>   (render-vs-render → only the reviewer's real edits; live: 2 vs 293 on the RST
+>   path). It is **report-only** — `--write`/`--push` are a no-op and the baseline
+>   cursor never advances (routing + apply + advance is phase 3), so an un-applied
+>   edit is never lost. With `--page`, or with no baseline, it falls back to the
+>   per-page RST diff.
 
 **Template guard:** the source path is *derived* from the resolved
 `docs/_review/<model>/<region>` + `--page` — never an arbitrary path — and is
