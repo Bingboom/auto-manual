@@ -84,6 +84,11 @@ def build_value_index(snapshot_root: Path, lang: str) -> dict[str, dict[str, Any
                 "table": "Localized_Copy",
                 "field": column,
                 "copy_key": (row.get("copy_key") or "").strip(),
+                # Carry the rendered lang + the copy's source language so the F6
+                # write path can map a source-language edit back to the authoring
+                # Manual_Copy_Source.source_text, and abstain on translations.
+                "lang": str(lang or "").strip(),
+                "source_lang": (row.get("Source_lang") or "").strip(),
             },
         )
     return index

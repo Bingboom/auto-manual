@@ -355,10 +355,10 @@ dry-run; enabling review writes never enables Bitable writes). Per-table targets
 explicit via `FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS`
 (`TABLE=BASE:TABLE_ID`); an unmapped table is isolated per-request and skipped.
 Operator steps: [`../dev/im_backport_approval_runbook.md`](../dev/im_backport_approval_runbook.md).
-Open follow-up: the change-request `table`/`field` are in the normalized (CSV)
-namespace, so copy-origin (`Localized_Copy`→`Manual_Copy_Source`) write-field mapping
-(`text_<lang>` → `source_text`, source-lang vs TM) is unresolved and abstains at the
-write boundary.
+Copy write-back is mapped for **source-language** edits (reviewed lang == the copy's
+`Source_lang` → write `Manual_Copy_Source.source_text`); **translation** copy edits
+abstain (`translation_abstain`) because their home is the `Translation_Memory` —
+routing those to the TM is a future follow-up.
 
 ## 6. Baseline Storage
 
