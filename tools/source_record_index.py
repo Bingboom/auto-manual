@@ -39,12 +39,20 @@ TABLE_KEY_FIELDS: dict[str, tuple[str, ...]] = {
     # document_key + Row_key + Slot_key uniquely identifies a Spec_Master row
     # (Slot_key disambiguates the usb_c 30w/100w collision class).
     "Spec_Master": ("document_key", "Row_key", "Slot_key"),
+    # copy_key identifies the authoring row in Manual_Copy_Source. A
+    # Localized_Copy value (the rendered derivative) is written back here by
+    # copy_key (operator decision: source-of-truth is the authoring table, not
+    # the localized derivative). Historical rows are filtered out at index time
+    # (see TABLE_ROW_FILTERS) so only the current authoring row is keyed; a
+    # genuine cross-row copy_key collision still abstains.
+    "Manual_Copy_Source": ("copy_key",),
 }
 
 # sync logical table name -> index table name used in the sidecar / source_ref.
 INDEXED_LOGICAL_TABLES: dict[str, str] = {
     "lcd_icons": "lcd_icons_blocks",
     "spec_master": "Spec_Master",
+    "manual_copy_source": "Manual_Copy_Source",
 }
 
 # content_lint source_ref ``kind`` -> (index table, ((source_ref_field, key_field), ...)).
@@ -58,12 +66,40 @@ KIND_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
 }
 
 
-# Resolve by source_ref["table"] directly, for F2/F6 source_refs that carry a
-# table + key fields but no content_lint `kind`. The key-field order must match
-# the table's `TABLE_KEY_FIELDS` once that table is indexed (sync side).
-TABLE_RESOLUTION: dict[str, tuple[tuple[str, str], ...]] = {
-    "Spec_Master": (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
-    "Localized_Copy": (("copy_key", "copy_key"),),
+# Resolve a source_ref by its ``table`` directly, for F2/F6 source_refs that
+# carry a table + key fields but no content_lint ``kind``. The map value is
+# ``(index_table, ((source_ref_field, index_key_field), ...))`` so the *origin*
+# table named in a source_ref can resolve against a *different* index table — a
+# Localized_Copy-origin value writes back to its Manual_Copy_Source authoring
+# row. The index-key-field order must match that index table's
+# ``TABLE_KEY_FIELDS``.
+TABLE_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
+    "Spec_Master": (
+        "Spec_Master",
+        (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
+    ),
+    "Localized_Copy": ("Manual_Copy_Source", (("copy_key", "copy_key"),)),
+}
+
+
+def _is_latest(row: dict[str, Any]) -> bool:
+    """Whether an authoring row is the current version.
+
+    Coverage-safe: a row is treated as current unless ``Is_Latest`` is an
+    explicit false-marker. A blank/absent column keeps the row (the snapshot may
+    not populate it), so the filter never silently empties an index — genuine
+    duplicate keys still abstain downstream.
+    """
+
+    raw = _clean(row.get("Is_Latest")).lower()
+    return raw not in {"false", "0", "no", "n", "off"}
+
+
+# Optional per-index-table row predicate applied when collecting index rows.
+# A row that fails the predicate is not indexed, so non-current authoring rows
+# never shadow the current row nor create false ambiguity.
+TABLE_ROW_FILTERS: dict[str, Any] = {
+    "Manual_Copy_Source": _is_latest,
 }
 
 
@@ -127,10 +163,14 @@ def collect_index_rows(
         raws = raw_records_by_table.get(logical_name)
         if not normalized or not raws:
             continue
+        row_filter = TABLE_ROW_FILTERS.get(index_table)
         pairs: list[tuple[dict[str, Any], str]] = []
         for index in range(min(len(normalized), len(raws))):
+            row = normalized[index]
+            if row_filter is not None and not row_filter(row):
+                continue
             record_id = _clean((raws[index] or {}).get("record_id"))
-            pairs.append((normalized[index], record_id))
+            pairs.append((row, record_id))
         out[index_table] = pairs
     return out
 
@@ -188,12 +228,18 @@ def resolve(index: dict[str, Any], *, kind: str, source_ref: dict[str, Any]) -> 
 
 def resolve_by_table(index: dict[str, Any], source_ref: dict[str, Any]) -> tuple[str | None, str]:
     """Resolve a `source_ref` that has a `table` + key fields but no `kind`
-    (the shape F2/F6 produce). Returns `(record_id, resolution_status)`."""
+    (the shape F2/F6 produce). Returns `(record_id, resolution_status)`.
+
+    The source_ref's origin ``table`` may resolve against a different index
+    table (e.g. a Localized_Copy value resolves to its Manual_Copy_Source
+    authoring row); ``TABLE_RESOLUTION`` carries that index-table redirect.
+    """
     table = source_ref.get("table")
-    field_map = TABLE_RESOLUTION.get(str(table) if table else "")
-    if field_map is None:
+    resolution = TABLE_RESOLUTION.get(str(table) if table else "")
+    if resolution is None:
         return None, "unresolved"
-    table_index = (index.get("tables") or {}).get(table)
+    index_table, field_map = resolution
+    table_index = (index.get("tables") or {}).get(index_table)
     if not isinstance(table_index, dict):
         return None, "unresolved"
     values = [_clean(source_ref.get(ref_field)) for ref_field, _ in field_map]
