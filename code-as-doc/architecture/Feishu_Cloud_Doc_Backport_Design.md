@@ -172,6 +172,14 @@ Normalization should:
 
 Diff strategy:
 
+> ⚠️ **Baseline must be a *render*, not RST source.** Diffing the fetched (rendered)
+> doc against `docs/_review/.../page/*.rst` (RST source: `.. raw::` directives,
+> `| line-blocks`, `|TOKEN|`, `**bold**`) mis-aligns on nearly every block and
+> corrupts the RST on apply. The fix — an advancing per-target render baseline so
+> the diff is render-vs-render and isolates only the reviewer's edits (incl. across
+> repeated edits) — is specified in
+> [`Backport_Rendered_Baseline_Design.md`](Backport_Rendered_Baseline_Design.md).
+
 - compare normalized fetched content against the selected baseline;
 - produce structured deltas, not free-form prose:
   `{doc_type, location, old_text, new_text, context, confidence}`;
