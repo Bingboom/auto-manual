@@ -863,7 +863,15 @@ test("message handler opens cloud-doc backport PR before queue resolution", asyn
 
 const APPROVAL_HASH = "a".repeat(64);
 
-function approvalHandler({ allowSourceWrite = false, bindings = [], repoOverrides = {}, replies, audits } = {}) {
+function approvalHandler({
+  allowSourceWrite = false,
+  bindings = [],
+  allowTmWrite = false,
+  tmBinding = "",
+  repoOverrides = {},
+  replies,
+  audits,
+} = {}) {
   return createMessageHandler({
     config: {
       verificationToken: "verify_token",
@@ -872,6 +880,8 @@ function approvalHandler({ allowSourceWrite = false, bindings = [], repoOverride
       cloudDocBackportAllowedSenderIds: ["ou_sender"],
       cloudDocBackportAllowSourceWrite: allowSourceWrite,
       cloudDocBackportSourceTableBindings: bindings,
+      cloudDocBackportAllowTmWrite: allowTmWrite,
+      cloudDocBackportTmBinding: tmBinding,
     },
     stateStore: createMemoryStateStore(),
     repoControl: {
@@ -1007,6 +1017,37 @@ test("source-table approval enforces the sender allowlist", async () => {
   assert.equal(applied, false);
   assert.equal(replies.length, 1);
   assert.match(replies[0].text, /ALLOWED_SENDERS/);
+});
+
+test("source-table approval forwards the TM write gate + binding to the executor", async () => {
+  const replies = [];
+  const audits = [];
+  let applyPayload = null;
+  const handler = approvalHandler({
+    allowTmWrite: true,
+    tmBinding: "bascnTM:tblTM",
+    replies,
+    audits,
+    repoOverrides: {
+      async applyCloudDocBackportSourceTable(payload) {
+        applyPayload = payload;
+        return {
+          external_write: false,
+          run_id: payload.runId,
+          summary: { apply: 0, skip: 0, written: 0, verify_failed: 0, error: 0 },
+          applied: [],
+          translation_apply: { external_write: true, summary: { apply: 1, written: 1, already: 0, skip: 0, verify_failed: 0, error: 0 } },
+        };
+      },
+    },
+  });
+
+  const result = await handler.handleHttpRequest(basePayload(`cloud-doc approve feishu-im-run-1 ${APPROVAL_HASH}`));
+  await result.backgroundTask();
+
+  assert.equal(applyPayload.tmWrite, true);
+  assert.equal(applyPayload.tmBinding, "bascnTM:tblTM");
+  assert.match(replies[1].text, /tm_writes: write/);
 });
 
 test("message handler does not fall back to a stale single row when fresh lookup is missing", async () => {

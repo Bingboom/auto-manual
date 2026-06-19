@@ -94,3 +94,31 @@ test("formatCloudDocBackportApprovalResultReply surfaces translation suggestions
   assert.match(text, /Nuovo/);
   assert.match(text, /Translation_Memory/);
 });
+
+test("formatCloudDocBackportApprovalResultReply surfaces translation-memory write results", () => {
+  const text = formatCloudDocBackportApprovalResultReply({
+    external_write: true,
+    run_id: "feishu-im-run-1",
+    summary: { apply: 0, skip: 1, written: 0, verify_failed: 0, error: 0 },
+    applied: [],
+    translation_suggestions: [{ delta_hash: "t1", copy_key: "warning.intro", lang: "it", old_text: "Vecchio", new_text: "Nuovo" }],
+    translation_apply: {
+      external_write: true,
+      summary: { apply: 1, skip: 0, written: 1, already: 0, verify_failed: 0, error: 0 },
+    },
+  });
+  assert.match(text, /tm_writes: write/);
+  assert.match(text, /written 1/);
+});
+
+test("formatCloudDocBackportApprovalResultReply nudges to enable TM write in dry-run", () => {
+  const text = formatCloudDocBackportApprovalResultReply({
+    external_write: false,
+    run_id: "r",
+    summary: { apply: 0, skip: 0 },
+    applied: [],
+    translation_apply: { external_write: false, summary: { apply: 2, skip: 0, written: 0 } },
+  });
+  assert.match(text, /tm_writes: dry-run/);
+  assert.match(text, /ALLOW_TM_WRITE/);
+});

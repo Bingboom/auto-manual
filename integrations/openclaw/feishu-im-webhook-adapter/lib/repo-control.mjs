@@ -309,7 +309,7 @@ async function runCloudDocBackportJson(config, { docUrl, sourcePath, runId = "",
 
 async function applyCloudDocBackportSourceTableJson(
   config,
-  { runId, approvedHashes = [], write = false, tableBindings = [] }
+  { runId, approvedHashes = [], write = false, tableBindings = [], tmWrite = false, tmBinding = "" }
 ) {
   const resolvedRunId = safePathToken(runId);
   const outDir = path.join("reports", "cloud_doc_backport", resolvedRunId);
@@ -323,6 +323,9 @@ async function applyCloudDocBackportSourceTableJson(
     for (const binding of tableBindings) {
       args.push("--table-binding", binding);
     }
+  }
+  if (tmWrite && tmBinding) {
+    args.push("--tm-write", "--tm-binding", tmBinding);
   }
   const result = await execFileResult(config.pythonBin, args, {
     cwd: config.repoRoot,
@@ -468,8 +471,22 @@ export function createRepoControl(config) {
     async openCloudDocBackportPr({ manifestPath, branchName = "" }) {
       return openCloudDocBackportPrJson(config, { manifestPath, branchName });
     },
-    async applyCloudDocBackportSourceTable({ runId, approvedHashes = [], write = false, tableBindings = [] }) {
-      return applyCloudDocBackportSourceTableJson(config, { runId, approvedHashes, write, tableBindings });
+    async applyCloudDocBackportSourceTable({
+      runId,
+      approvedHashes = [],
+      write = false,
+      tableBindings = [],
+      tmWrite = false,
+      tmBinding = "",
+    }) {
+      return applyCloudDocBackportSourceTableJson(config, {
+        runId,
+        approvedHashes,
+        write,
+        tableBindings,
+        tmWrite,
+        tmBinding,
+      });
     },
     async recordCloudDocBackportApproval(entry) {
       return appendApprovalAuditLine(config, entry);

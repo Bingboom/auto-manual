@@ -30,10 +30,12 @@ from tools.source_table_sync import (  # noqa: E402
     build_change_request_report,
     load_change_requests,
     load_sidecar_index,
+    load_translation_suggestions,
     write_change_request_report,
     write_source_table_apply_report,
 )
 from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
+from tools.translation_memory_sync import apply_translation_suggestions  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 
 REPORT_SCHEMA_VERSION = "cloud-doc-backport-report/v1"
@@ -2537,6 +2539,19 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "with --write. Unmapped tables are skipped safely."
         ),
     )
+    apply_source_table_parser.add_argument(
+        "--tm-write",
+        action="store_true",
+        help=(
+            "also write approved TRANSLATION suggestions back to the Translation_Memory "
+            "(widest blast radius; gated separately from --write). Needs --tm-binding."
+        ),
+    )
+    apply_source_table_parser.add_argument(
+        "--tm-binding",
+        metavar="BASE:TABLE_ID",
+        help="Translation_Memory Feishu binding 'BASE_TOKEN:TABLE_ID'; required with --tm-write",
+    )
     apply_source_table_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for --write")
     apply_source_table_parser.add_argument("--identity", default="bot", help="lark-cli identity for --write")
     return parser.parse_args(argv)
@@ -2810,6 +2825,19 @@ def _source_table_transport(bindings: dict[str, tuple[str, str]], *, lark_cli: s
     return SourceTableLarkTransport(source=source, binding_for=binding_for)
 
 
+def _tm_transport(spec: str, *, lark_cli: str, identity: str) -> Any:
+    """Build a live Translation_Memory transport from a ``BASE:TABLE_ID`` binding."""
+    from tools.feishu_record_transport import TranslationMemoryLarkTransport
+    from tools.sync_data import LarkCliSource
+
+    base, sep, table_id = str(spec or "").partition(":")
+    base, table_id = base.strip(), table_id.strip()
+    if not (sep and base and table_id):
+        raise RuntimeError(f"--tm-binding must look like BASE:TABLE_ID, got: {spec!r}")
+    source = LarkCliSource(cli_bin=lark_cli, identity=identity)
+    return TranslationMemoryLarkTransport(source=source, base_token=base, table_id=table_id)
+
+
 def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> int:
     try:
         report_path = _resolve_source_path(args.report, label="change-request report")
@@ -2827,6 +2855,21 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
             transport=transport,
             write=bool(args.write),
         )
+        # Translation copy edits abstain at the source boundary; their home is the
+        # Translation_Memory. Apply approved ones there, gated SEPARATELY (--tm-write
+        # + --tm-binding) since TM is the widest-blast-radius write.
+        translation_suggestions = load_translation_suggestions(report_path)
+        tm_transport = None
+        if args.tm_write:
+            if not args.tm_binding:
+                raise RuntimeError("--tm-write requires --tm-binding BASE:TABLE_ID")
+            tm_transport = _tm_transport(args.tm_binding, lark_cli=args.lark_cli, identity=args.identity)
+        tm_apply_result = apply_translation_suggestions(
+            translation_suggestions,
+            approved_hashes=approved,
+            transport=tm_transport,
+            write=bool(args.tm_write),
+        )
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
@@ -2834,6 +2877,7 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
         **apply_result,
         "run_id": run_id,
         "approved_count": len(approved),
+        "translation_apply": tm_apply_result,
         "command": ["tools/cloud_doc_backport.py", *raw_argv],
     }
     out_dir = Path(args.out) if args.out else report_path.parent
@@ -2841,14 +2885,22 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
     summary = report.get("summary") or {}
+    tm_summary = tm_apply_result.get("summary") or {}
     print(
         f"APPLY plan: apply {summary.get('apply', 0)} skip {summary.get('skip', 0)} "
         f"| written {summary.get('written', 0)} verify_failed {summary.get('verify_failed', 0)} "
         f"error {summary.get('error', 0)} ({'WRITE' if report.get('external_write') else 'dry-run'})"
     )
-    if report.get("external_write") and (summary.get("verify_failed") or summary.get("error")):
-        return 1
-    return 0
+    print(
+        f"TM plan: apply {tm_summary.get('apply', 0)} skip {tm_summary.get('skip', 0)} "
+        f"| written {tm_summary.get('written', 0)} already {tm_summary.get('already', 0)} "
+        f"verify_failed {tm_summary.get('verify_failed', 0)} error {tm_summary.get('error', 0)} "
+        f"({'WRITE' if tm_apply_result.get('external_write') else 'dry-run'})"
+    )
+    wrote_with_failures = (report.get("external_write") and (summary.get("verify_failed") or summary.get("error"))) or (
+        tm_apply_result.get("external_write") and (tm_summary.get("verify_failed") or tm_summary.get("error"))
+    )
+    return 1 if wrote_with_failures else 0
 
 
 def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:

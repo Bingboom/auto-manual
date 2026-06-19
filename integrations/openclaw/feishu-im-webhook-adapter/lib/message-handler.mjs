@@ -392,6 +392,8 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
           approvedHashes: cloudDocBackportApproval.hashes,
           write: sourceWrite,
           tableBindings: config.cloudDocBackportSourceTableBindings || [],
+          tmWrite: config.cloudDocBackportAllowTmWrite === true,
+          tmBinding: config.cloudDocBackportTmBinding || "",
         });
         await recordApproval({
           ...auditBase,

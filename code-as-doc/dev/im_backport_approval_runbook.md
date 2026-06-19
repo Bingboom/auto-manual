@@ -70,9 +70,16 @@ export FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS="ou_xxx"
 export FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE=true
 # one entry per writable change-request table
 export FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS="Manual_Copy_Source=<base_token>:<table_id>"
+# Translation_Memory writes are gated SEPARATELY (widest blast radius). OFF by default.
+export FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_TM_WRITE=true
+export FEISHU_IM_CLOUD_DOC_BACKPORT_TM_BINDING="<tm_base_token>:<tm_table_id>"
 ```
 
 The executor also needs the `lark-cli --as bot` plumbing already used by sync-data.
+The three write gates are independent: `_ALLOW_SOURCE_WRITE` (Bitable source tables),
+`_ALLOW_TM_WRITE` (Translation_Memory). A single `approve` routes each approved
+`delta_hash` to its correct target — source edits to the source table, translation
+edits to the TM — each only when its own gate is on.
 
 ## Underneath: the CLI
 
@@ -86,33 +93,37 @@ python tools/cloud_doc_backport.py apply-source-table \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_source_table_change_request.json \
   --approve <delta_hash>
 
-# live write:
+# live write — source table and/or Translation_Memory (each gated independently):
 python tools/cloud_doc_backport.py apply-source-table --report <…> \
-  --approve <delta_hash> --write \
-  --table-binding "Manual_Copy_Source=<base_token>:<table_id>" --identity bot
+  --approve <delta_hash> \
+  --write --table-binding "Manual_Copy_Source=<base_token>:<table_id>" \
+  --tm-write --tm-binding "<tm_base_token>:<tm_table_id>" --identity bot
 ```
 
-It writes `cloud_doc_backport_source_table_apply.{json,md}` next to the report.
+It writes `cloud_doc_backport_source_table_apply.{json,md}` next to the report (the
+JSON carries both the source-table apply and a `translation_apply` section).
 
-## Copy write-back (source-language only) and remaining gaps
+## Where each copy edit is written
 
 The change-request `table`/`field` are in the normalized (CSV) namespace
 (`Spec_Master` / `Value_<lang>`, `Localized_Copy` / `text_<lang>`). A live binding's
 Feishu columns must match that namespace — true for a Spec_Master-shaped sandbox.
 
-- **Copy write-back is supported for source-language edits.** When the reviewed
-  language equals the copy's `Source_lang`, a `Localized_Copy`-origin change request
-  is mapped to write the authoring **`Manual_Copy_Source.source_text`** (the record
-  id resolves to the authoring row via the F6 sidecar redirect). Bind it with
+- **Source-language copy edit → `Manual_Copy_Source.source_text`.** When the
+  reviewed language equals the copy's `Source_lang`, a `Localized_Copy`-origin change
+  request is mapped to write the authoring source text (the record id resolves to the
+  authoring row via the F6 sidecar redirect). Gated by `--write` +
   `Manual_Copy_Source=<base_token>:<table_id>`.
-- **Translation copy edits abstain but are surfaced, not dropped.** When the
-  reviewed language is not the copy's source language, the correction's home is the
-  `Translation_Memory`, which is out of F6 scope — the request abstains at the write
-  boundary (`resolution_status: translation_abstain`) and is never written to
-  source. It is reported as a **translation suggestion** (`copy_key`, `lang`,
-  old → new) in the apply report and replied back through the IM message layer, so a
-  human (or a future TM sync) can act on it. Auto-routing these to the TM is a
-  future follow-up.
+- **Translation copy edit → `Translation_Memory`.** When the reviewed language is
+  not the copy's source language, the edit is a translation; it abstains at the
+  source boundary (`resolution_status: translation_abstain`, never written to source)
+  and is routed to the TM instead. The executor resolves the TM record by
+  `(target-language column, old translation)` — **exact-or-abstain** (0 or >1 match
+  abstains) — and writes the new translation into that column, GET-verified and
+  idempotent (`already` when the column already holds the new text). Gated by
+  `--tm-write` + `--tm-binding`. ⚠️ A TM write is the **widest blast radius**: it
+  changes the shared translation for every copy/model using that source sentence on
+  the next sync. Translations are still also reported as suggestions in the reply.
 - **Spec_Master** is synced from two sub-tables (spec rows + placeholders); a record
   id does not by itself say which sub-table to write. Bind it only to a table whose
   rows the record ids actually belong to.

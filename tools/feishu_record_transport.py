@@ -99,3 +99,34 @@ class QcReportLarkTransport:
         return self._source.create_record(
             base_token=self._base_token, table_id=self._table_id, fields=fields
         )
+
+
+class TranslationMemoryLarkTransport:
+    """TM transport: satisfies ``translation_memory_sync._TmTransport``
+    (``list_records`` + ``write`` + ``get``) over the `Translation_Memory` table.
+
+    Resolution (old translation -> record_id) lives in the executor, which reads
+    ``list_records()`` and matches exact-or-abstain — so this stays a thin CRUD
+    wrapper over the proven `LarkCliSource` record primitives.
+    """
+
+    def __init__(self, *, source: _RecordSource, base_token: str, table_id: str) -> None:
+        self._source = source
+        self._base_token = base_token
+        self._table_id = table_id
+
+    def list_records(self) -> list[dict[str, Any]]:
+        return self._source.fetch_records_with_ids(
+            base_token=self._base_token, table_id=self._table_id, view_id=None
+        )
+
+    def write(self, *, record_id: str, field: str, value: Any) -> None:
+        self._source.upsert_record(
+            base_token=self._base_token, table_id=self._table_id, record_id=record_id, record={field: _as_cell(value)}
+        )
+
+    def get(self, *, record_id: str, field: str) -> Any:
+        for record in self.list_records():
+            if record.get("record_id") == record_id:
+                return (record.get("fields") or {}).get(field)
+        return None
