@@ -107,9 +107,17 @@ def ensure_review_worktree(
     remote: str = "origin",
     git_bin: str = "git",
     run_git: RunGit | None = None,
+    sparse_paths: list[str] | None = None,
 ) -> str:
     """Return the path to a worktree checked out on ``git_ref``, creating it if
-    needed (idempotent). Fetches ``remote/git_ref`` before adding the worktree."""
+    needed (idempotent). Fetches ``remote/git_ref`` before adding the worktree.
+
+    When ``sparse_paths`` is given the checkout is shrunk to a **cone-mode
+    sparse-checkout** limited to those directories (e.g.
+    ``docs/_review/<model>/<region>``), so it keeps only the review tree (plus the
+    small cone of ancestor root files) instead of the whole repo. An
+    already-existing worktree is reused as-is and not re-sparsified.
+    """
     if not str(git_ref or "").strip():
         raise RuntimeError("git_ref is required")
     runner = run_git or _default_run_git(Path(repo_root), git_bin)
@@ -125,4 +133,8 @@ def ensure_review_worktree(
     except RuntimeError:
         # Local branch absent / not DWIM-able: attach detached from the remote ref.
         runner(["worktree", "add", "--detach", str(path), f"{remote}/{git_ref}"])
+    if sparse_paths:
+        # Shrink the full checkout to a cone-mode sparse-checkout of just the review
+        # tree (+ the small cone of ancestor root files) — e.g. 250M -> ~1M.
+        runner(["-C", str(path), "sparse-checkout", "set", "--cone", *sparse_paths])
     return str(path)

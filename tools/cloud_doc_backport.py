@@ -2585,6 +2585,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     run_review_branch_parser.add_argument("--worktrees-root", help="where to create review worktrees (default: ../review-worktrees)")
     run_review_branch_parser.add_argument("--remote", default="origin", help="git remote")
     run_review_branch_parser.add_argument("--git-bin", default="git", help="git binary")
+    run_review_branch_parser.add_argument("--full-checkout", action="store_true", help="materialize the whole repo in the worktree (default: sparse, only docs/_review/<model>/<region>)")
     run_review_branch_parser.add_argument("--run-id", default="cloud-doc-backport-branch")
     run_review_branch_parser.add_argument("--out", help="output directory for run-review reports")
     run_review_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
@@ -2597,6 +2598,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     sync_worktrees_parser.add_argument("--worktrees-root", help="where to create review worktrees (default: ../review-worktrees)")
     sync_worktrees_parser.add_argument("--remote", default="origin", help="git remote")
     sync_worktrees_parser.add_argument("--git-bin", default="git", help="git binary")
+    sync_worktrees_parser.add_argument("--full-checkout", action="store_true", help="materialize the whole repo in each worktree (default: sparse, only docs/_review/<model>/<region>)")
     sync_worktrees_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
     sync_worktrees_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
     return parser.parse_args(argv)
@@ -2999,6 +3001,7 @@ def _run_sync_review_worktrees(args: argparse.Namespace) -> int:
                 repo_root=get_paths().root,
                 remote=args.remote,
                 git_bin=args.git_bin,
+                sparse_paths=None if args.full_checkout else [branch["review_dir"]],
             )
             results.append({**branch, "worktree": path})
             print(f"WORKTREE {branch['git_ref']} -> {path}")
@@ -3025,6 +3028,7 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             repo_root=get_paths().root,
             remote=args.remote,
             git_bin=args.git_bin,
+            sparse_paths=None if args.full_checkout else [resolved["review_dir"]],
         )
         source_abs = Path(worktree) / source_rel
         if not source_abs.is_file():
