@@ -34,6 +34,7 @@ from tools.source_table_sync import (  # noqa: E402
     write_change_request_report,
     write_source_table_apply_report,
 )
+from tools.review_branch_resolver import match_review_branch  # noqa: E402
 from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
 from tools.translation_memory_sync import apply_translation_suggestions  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
@@ -2554,6 +2555,18 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     apply_source_table_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for --write")
     apply_source_table_parser.add_argument("--identity", default="bot", help="lark-cli identity for --write")
+
+    resolve_branch_parser = subparsers.add_parser(
+        "resolve-review-branch",
+        description=(
+            "Resolve a Feishu cloud-doc to its in-review branch (Git_ref) + "
+            "docs/_review/<model>/<region> path via the Document_link build table. "
+            "The review _review tree lives on that branch, not the default branch."
+        ),
+    )
+    resolve_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL")
+    resolve_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
+    resolve_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
     return parser.parse_args(argv)
 
 
@@ -2903,6 +2916,34 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
     return 1 if wrote_with_failures else 0
 
 
+def _run_resolve_review_branch(args: argparse.Namespace) -> int:
+    import os
+
+    from tools.sync_data import LarkCliSource
+
+    base = os.environ.get("FEISHU_PHASE2_BASE_TOKEN", "").strip()
+    table = os.environ.get("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", "").strip()
+    view = os.environ.get("FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID", "").strip() or None
+    if not base or not table:
+        print(
+            "cloud-doc-backport: FEISHU_PHASE2_BASE_TOKEN + FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID are required",
+            file=sys.stderr,
+        )
+        return 2
+    try:
+        source = LarkCliSource(cli_bin=args.lark_cli, identity=args.identity)
+        records = source.fetch_records_with_ids(base_token=base, table_id=table, view_id=view)
+        result = match_review_branch(args.cloud_doc, records)
+    except (OSError, RuntimeError) as exc:
+        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    if result is None:
+        print(json.dumps({"resolved": False, "cloud_doc": args.cloud_doc}, ensure_ascii=False))
+        return 1
+    print(json.dumps({"resolved": True, **result}, ensure_ascii=False, indent=2, sort_keys=True))
+    return 0
+
+
 def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
     """Build the token/copy value index when --lang and --data-root are given (F2)."""
     lang = getattr(args, "lang", None)
@@ -2937,6 +2978,8 @@ def main(argv: list[str] | None = None) -> int:
         return _run_open_pr(args)
     if args.command == "apply-source-table":
         return _run_apply_source_table(args, raw_argv)
+    if args.command == "resolve-review-branch":
+        return _run_resolve_review_branch(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 
