@@ -76,6 +76,19 @@ class MatchReviewBranchTests(unittest.TestCase):
         self.assertEqual(result["review_dir"], "docs/_review/JE-1000F/US")
         self.assertEqual(result["pr_url"], "pr106")
 
+    def test_match_returns_baseline_doc_url(self) -> None:
+        # backport reads the 基线文档 link off the row to diff the editable doc against
+        rec = _rec(US_DOC, "codex/review-id-recvfw0zg4pzxs", "JE-1000F_US_1.4")
+        rec["fields"]["基线文档"] = "https://x.feishu.cn/docx/BASELINE_R0"
+        result = match_review_branch(US_URL, [rec])
+        assert result is not None
+        self.assertEqual(result["baseline_doc_url"], "https://x.feishu.cn/docx/BASELINE_R0")
+
+    def test_match_baseline_doc_url_empty_when_absent(self) -> None:
+        result = match_review_branch(US_URL, [_rec(US_DOC, "codex/review-id-x", "JE-1000F_US_1.4")])
+        assert result is not None
+        self.assertEqual(result["baseline_doc_url"], "")
+
     def test_no_match_returns_none(self) -> None:
         records = [_rec("https://x.feishu.cn/docx/OTHER", "codex/review-id-other", "JE-2000F_EU_0.1")]
         self.assertIsNone(match_review_branch(US_URL, records))

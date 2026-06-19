@@ -1646,24 +1646,33 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(cloud_import_calls))
+        # two imports: the editable cloud doc + the frozen baseline (same markdown)
+        self.assertEqual(2, len(cloud_import_calls))
         self.assertEqual(md_path, cloud_import_calls[0]["markdown_output_path"])
+        self.assertEqual(md_path, cloud_import_calls[1]["markdown_output_path"])
         success_payload = captured_upserts[-1]["record"]
         self.assertIsInstance(success_payload, dict)
         self.assertEqual(
             "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123",
             success_payload[process_build_queue.FEISHU_CLOUD_DOC_FIELD],
         )
+        # the baseline doc link is recorded in the 基线文档 field for backport to diff against
+        self.assertEqual(
+            "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123",
+            success_payload[process_build_queue.BASELINE_DOC_FIELD],
+        )
         self.assertIn("cloud_doc=ok", success_payload[process_build_queue.RESULT_FIELD])
-        # the leaf hands the freshly-imported doc to finalize_cloud_doc (grant edit
-        # access + wiki co-location) with the right token / url / wiki destination
-        self.assertEqual(1, len(finalize_calls))
+        self.assertIn("baseline_doc=ok", success_payload[process_build_queue.RESULT_FIELD])
+        # finalize runs twice: the editable doc (grant) + the baseline (grant=False)
+        self.assertEqual(2, len(finalize_calls))
         self.assertEqual("doc_token_123", finalize_calls[0]["cloud_doc_token"])
         self.assertEqual(
             "https://test-degwga5x6ex8.feishu.cn/docx/doc_token_123",
             finalize_calls[0]["cloud_doc_url"],
         )
         self.assertEqual("space_123", finalize_calls[0]["destination"].space_id)
+        self.assertNotEqual(False, finalize_calls[0].get("grant", True))  # editable: granted
+        self.assertEqual(False, finalize_calls[1]["grant"])  # baseline: not granted
 
     def test_process_build_queue_should_fail_when_cloud_doc_import_fails_and_preserve_artifact_link(self) -> None:
         cfg = {

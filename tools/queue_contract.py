@@ -19,6 +19,9 @@ DOCUMENT_DIRECTORY_FIELD = "Document directory"
 DOCUMENT_LINK_FIELD = "Document link"
 DOCUMENT_LINK_DD_FIELD = "Document link_dd"
 FEISHU_CLOUD_DOC_FIELD = "飞书云文档"
+# Frozen baseline (R0) doc — a second import of the build's markdown, made at build
+# time. Backport diffs the editable 飞书云文档 against this (render-vs-render → clean).
+BASELINE_DOC_FIELD = "基线文档"
 HTML_LINK_FIELD = "HTML_link"
 UPLOAD_DINGTALK_FIELD = "是否上传钉钉"
 DINGTALK_TARGET_NODE_URL_FIELD = "DingTalk_target_node_url"

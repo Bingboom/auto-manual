@@ -26,6 +26,7 @@ from tools.document_link_queue import field_value, scalar_text
 _DOC_TOKEN_RE = re.compile(r"/(?:wiki|docx|docs|file|sheets|base)/([A-Za-z0-9]+)")
 
 CLOUD_DOC_FIELDS = ("飞书云文档", "飞书云文档链接", "Feishu_doc", "cloud_doc")
+BASELINE_DOC_FIELDS = ("基线文档", "基线文档链接", "baseline_doc")
 GIT_REF_FIELDS = ("Git_ref",)
 DOCUMENT_ID_FIELDS = ("Document_ID",)
 REVIEW_STATUS_FIELDS = ("Review_status",)
@@ -76,6 +77,7 @@ def _record_to_match(fields: dict[str, Any]) -> dict[str, Any] | None:
         "review_dir": f"docs/_review/{model}/{region}",
         "pr_url": scalar_text(field_value(fields, *PR_URL_FIELDS)),
         "review_status": scalar_text(field_value(fields, *REVIEW_STATUS_FIELDS)),
+        "baseline_doc_url": scalar_text(field_value(fields, *BASELINE_DOC_FIELDS)),
     }
 
 

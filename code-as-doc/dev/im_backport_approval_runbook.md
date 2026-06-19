@@ -196,6 +196,12 @@ python tools/cloud_doc_backport.py run-review-branch \
 >   cursor never advances (routing + apply + advance is phase 3), so an un-applied
 >   edit is never lost. With `--page`, or with no baseline, it falls back to the
 >   per-page RST diff.
+> - **Copy-doc baseline (shipped, preferred):** the build creates a frozen baseline
+>   doc (a second import of the markdown) and records its link in the build table's
+>   **`基线文档`** field (editable doc → `飞书云文档`). `run-review-branch` prefers
+>   this: it fetches both docs and diffs them (fetch-vs-fetch → clean), ahead of the
+>   on-branch `.backport/` file. This is the going-forward baseline source; the
+>   `.backport/` + `--seed` path remains as a fallback for docs with no baseline doc.
 > - **No-baseline write guard (shipped):** a whole-doc `run-review-branch --write`
 >   with **no baseline** is **refused** — that path is the over-reporting
 >   per-page RST diff, and writing it splatters rendered text across many RST pages
