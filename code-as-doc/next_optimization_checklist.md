@@ -483,7 +483,9 @@ are already codified in
 §5.1. Suggested order: F1 → (F2, F3) → F4 → F5 → F6 → F7; F8 may run in parallel
 once F1 lands. **F1 is the shared prerequisite for F6 and F8.** Items touching
 `sync-data`, `data/phase2` contracts, `build.py` behavior, or Feishu schema are
-operator-gated (`AGENTS.md` §8.7).
+operator-gated (`AGENTS.md` §8.7). **Status: F1–F8 all merged.** F6/F8 are at the
+dry-run boundary; live activation is the operator's, per
+[`dev/backport_live_activation_checklist.md`](dev/backport_live_activation_checklist.md).
 
 - [x] PR F1: Sync-time `record_id` sidecar (Workstream I — shared prerequisite)
   - Status: `done`
