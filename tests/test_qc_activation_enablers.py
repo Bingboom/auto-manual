@@ -81,6 +81,7 @@ class ChangeRequestTableResolutionTests(unittest.TestCase):
 class _FakeSource:
     def __init__(self, records: list[dict] | None = None) -> None:
         self.upserts: list[dict] = []
+        self.created: list[dict] = []
         self._records = records or []
 
     def upsert_record(self, *, base_token, table_id, record_id, record):
@@ -89,6 +90,10 @@ class _FakeSource:
 
     def fetch_records_with_ids(self, *, base_token, table_id, view_id):
         return list(self._records)
+
+    def create_record(self, *, base_token, table_id, fields):
+        self.created.append({"base_token": base_token, "table_id": table_id, "fields": fields})
+        return "recNEW1"
 
 
 class SourceTableTransportTests(unittest.TestCase):
@@ -119,9 +124,17 @@ class QcReportTransportTests(unittest.TestCase):
         )
         self.assertEqual(self._transport(source).list_finding_hashes(), {"fh1", "fh2"})
 
-    def test_append_row_is_not_yet_wired(self) -> None:
-        with self.assertRaises(NotImplementedError):
-            self._transport(_FakeSource()).append_row(row={"finding_hash": "fh1"})
+    def test_append_row_creates_record_with_coercion(self) -> None:
+        source = _FakeSource()
+        rid = self._transport(source).append_row(
+            row={"finding_hash": "fh1", "source_ref": {"k": "v"}, "record_id": None}
+        )
+        self.assertEqual(rid, "recNEW1")
+        self.assertEqual(source.created[0]["table_id"], "tbl_qc")
+        fields = source.created[0]["fields"]
+        self.assertEqual(fields["finding_hash"], "fh1")
+        self.assertEqual(fields["source_ref"], '{"k": "v"}')  # dict -> JSON string
+        self.assertEqual(fields["record_id"], "")  # None -> empty string
 
 
 if __name__ == "__main__":

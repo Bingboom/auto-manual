@@ -12,20 +12,33 @@ Construct with a live `LarkCliSource`, e.g.::
     f6 = SourceTableLarkTransport(source=source, binding_for=lambda t: (BASE, TABLE_IDS[t]))
     apply_change_requests(reqs, approved_hashes=approved, transport=f6, write=True)
 
-LIVE-UNVERIFIED CAVEAT: the F8 row-create path has **no proven verb in-repo** —
-`append_row` raises until the operator wires and verifies a create command against
-the live `lark-cli`. F6 (`upsert`/`get`) and F8 `list_finding_hashes` reuse proven
-primitives.
+All paths reuse `LarkCliSource` primitives: F6 `upsert`/`get` via `+record-upsert`
+/ `+record-list`; F8 `append_row` via `+record-batch-create` (`create_record`) and
+`list_finding_hashes` via `+record-list`. All verbs were verified live against the
+test base on 2026-06-19.
 """
 
 from __future__ import annotations
 
+import json
 from typing import Any, Callable, Protocol
+
+
+def _as_cell(value: Any) -> str:
+    """Coerce a row value to a text cell: dict/list -> JSON string, None -> ''."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, (dict, list)):
+        return json.dumps(value, ensure_ascii=False)
+    return str(value)
 
 
 class _RecordSource(Protocol):
     def upsert_record(self, *, base_token: str, table_id: str, record_id: str, record: dict[str, Any]) -> Any: ...
     def fetch_records_with_ids(self, *, base_token: str, table_id: str, view_id: str | None) -> list[dict[str, Any]]: ...
+    def create_record(self, *, base_token: str, table_id: str, fields: dict[str, Any]) -> str: ...
 
 
 class SourceTableLarkTransport:
@@ -81,8 +94,8 @@ class QcReportLarkTransport:
         return hashes
 
     def append_row(self, *, row: dict[str, Any]) -> str:
-        raise NotImplementedError(
-            "lark-cli has no confirmed record-create verb in this repo (only "
-            "+record-upsert / +record-list). Wire the create command here after "
-            "verifying it against your live lark-cli, then return the new record_id."
+        # QC_Report fields are text; serialize dict/list (e.g. source_ref) to JSON.
+        fields = {key: _as_cell(value) for key, value in row.items()}
+        return self._source.create_record(
+            base_token=self._base_token, table_id=self._table_id, fields=fields
         )
