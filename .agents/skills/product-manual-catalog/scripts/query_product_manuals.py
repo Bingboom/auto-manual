@@ -46,6 +46,8 @@ SEARCH_FIELDS = (
 # Fields shown in a per-manual result block, in display order.
 DETAIL_FIELDS = (
     "产品型号",
+    "项目",
+    "业务号",
     "产品名称_zh",
     "区域",
     "文档类型",
@@ -62,7 +64,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         description="Query the Feishu published-manual catalog table for OpenClaw chat."
     )
     p.add_argument("query", nargs="?", default=None, help="Free-text product/manual search (model, name, project…)")
-    p.add_argument("--search", dest="query", default=None, help="Alias for the positional query")
+    p.add_argument("--search", dest="search", default=None, help="Alias for the positional query")
     p.add_argument("--overview", action="store_true", help="Show catalog summary counts instead of records")
     p.add_argument("--list", dest="list_all", action="store_true", help="List every catalog row (subject to filters)")
     p.add_argument("--region", default=None, help="Filter by 区域 substring, e.g. 美加规 / 日规 / 欧英规")
@@ -80,7 +82,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--view-id", default=os.environ.get("FEISHU_PUBLISHED_DOCS_VIEW_ID", DEFAULT_VIEW_ID))
     p.add_argument("--base-token", default=os.environ.get("FEISHU_PUBLISHED_DOCS_BASE_TOKEN") or None,
                    help="Optional base token override; skips wiki-node resolution")
-    return p.parse_args(argv)
+    args = p.parse_args(argv)
+    # `--search` and the positional `query` express the same intent but must not
+    # share an argparse dest: an absent positional's None default would otherwise
+    # clobber a value passed via --search. Resolve to whichever was provided.
+    if args.query is None:
+        args.query = args.search
+    return args
 
 
 def run_lark_json(cmd: list[str]) -> dict:
